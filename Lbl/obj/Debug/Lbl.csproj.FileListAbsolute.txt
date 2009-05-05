@@ -1,0 +1,12 @@
+C:\LazaroOSE\Lbl\bin\Debug\Lbl.dll.config
+C:\LazaroOSE\Lbl\bin\Debug\Lbl.dll
+C:\LazaroOSE\Lbl\bin\Debug\Lbl.pdb
+C:\LazaroOSE\Lbl\bin\Debug\Lfx.dll
+C:\LazaroOSE\Lbl\bin\Debug\Lws.dll
+C:\LazaroOSE\Lbl\bin\Debug\Lfx.pdb
+C:\LazaroOSE\Lbl\bin\Debug\Lws.pdb
+C:\LazaroOSE\Lbl\obj\Debug\ResolveAssemblyReference.cache
+C:\LazaroOSE\Lbl\obj\Debug\Lbl.Impresion.ManualFeedDialog.resources
+C:\LazaroOSE\Lbl\obj\Debug\Lbl.csproj.GenerateResource.Cache
+C:\LazaroOSE\Lbl\obj\Debug\Lbl.dll
+C:\LazaroOSE\Lbl\obj\Debug\Lbl.pdb
