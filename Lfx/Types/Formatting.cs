@@ -1,0 +1,568 @@
+// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// Este programa es software libre; puede distribuirlo y/o moficiarlo de
+// acuerdo a los términos de la Licencia Pública General de GNU (GNU
+// General Public License), como la publica la Fundación para el Software
+// Libre (Free Software Foundation), tanto la versión 3 de la Licencia
+// como (a su elección) cualquier versión posterior.
+//
+// Este programa se distribuye con la esperanza de que sea útil, pero SIN
+// GARANTÍA ALGUNA; ni siquiera la garantía MERCANTIL implícita y sin
+// garantizar su CONVENIENCIA PARA UN PROPÓSITO PARTICULAR. Véase la
+// Licencia Pública General de GNU para más detalles. 
+//
+// Debería haber recibido una copia de la Licencia Pública General junto
+// con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Lfx.Types
+{
+	public static class Formatting
+	{
+                public static class DateTime
+                {
+                        public static string DefaultDateFormat
+                        {
+                                get
+                                {
+                                        return "dd/MM/yyyy";
+                                }
+                        }
+
+                        public static string LongDateFormat
+                        {
+                                get
+                                {
+                                        return @"dddd, d ""de"" MMMM ""de"" yyyy";
+                                }
+                        }
+
+                        public static string DefaultDateTimeFormat
+                        {
+                                get
+                                {
+                                        return "dd/MM/yyyy HH:mm";
+                                }
+                        }
+
+                        public static string SqlDateFormat
+                        {
+                                get
+                                {
+                                        return "yyyy-MM-dd";
+                                }
+                        }
+
+                        public static string SqlDateTimeFormat
+                        {
+                                get
+                                {
+                                        return "yyyy-MM-dd HH:mm:ss";
+                                }
+                        }
+                }
+
+		public static string SpellNumber(double number)
+		{
+			return SpellNumber(number, true);
+		}
+
+		public static string SpellNumber(double number, bool withDecimals)
+		{
+			string Numero = System.Convert.ToInt32(Math.Abs(Math.Floor(number))).ToString();
+			string NumeroInvertido = Lfx.Types.Strings.StrReverse(Numero).PadRight(32, '0');
+                        string Resultado = string.Empty;
+
+			int Billones = int.Parse(Lfx.Types.Strings.StrReverse(NumeroInvertido.Substring(9, 6)));
+
+			if(Billones == 1) {
+				Resultado += " un billón";
+			} else if(Billones > 0) {
+				Resultado += " " + Lfx.Types.Formatting.SpellNumber(Billones, false) + " billones";
+			}
+
+			int Millones = int.Parse(Lfx.Types.Strings.StrReverse(NumeroInvertido.Substring(6, 3)));
+
+			if(Millones == 1) {
+				Resultado += " un millón";
+			} else if(Millones > 0) {
+				Resultado += " " + Lfx.Types.Formatting.SpellNumber(Millones, false) + " millones";
+			}
+
+			int Miles = int.Parse(Lfx.Types.Strings.StrReverse(NumeroInvertido.Substring(3, 3)));
+
+			if(Miles == 1) {
+				Resultado += " un mil";
+			} else if(Miles > 0) {
+				Resultado += " " + Lfx.Types.Formatting.SpellNumber(Miles, false) + " mil";
+			}
+
+			switch(int.Parse(NumeroInvertido.Substring(2, 1))) {
+				case 1:
+					if(int.Parse(Numero.Substring(Numero.Length - 2, 2)) > 0)
+						Resultado += " ciento ";
+					else
+						Resultado += " cien ";
+					break;
+
+				case 2:
+					Resultado += " doscientos ";
+					break;
+
+				case 3:
+					Resultado += " trescientos ";
+					break;
+
+				case 4:
+					Resultado += " cuatrocientos ";
+					break;
+
+				case 5:
+					Resultado += " quinientos ";
+					break;
+
+				case 6:
+					Resultado += " seiscientos ";
+					break;
+
+				case 7:
+					Resultado += " setecientos ";
+					break;
+
+				case 8:
+					Resultado += " ochocientos ";
+					break;
+
+				case 9:
+					Resultado += " novecientos ";
+					break;
+			}
+
+			if(Numero.Length == 1) {
+				switch(int.Parse(Numero)) {
+					case 1:
+						Resultado += " uno";
+						break;
+
+					case 2:
+						Resultado += " dos";
+						break;
+
+					case 3:
+						Resultado += " tres";
+						break;
+
+					case 4:
+						Resultado += " cuatro";
+						break;
+
+					case 5:
+						Resultado += " cinco";
+						break;
+
+					case 6:
+						Resultado += " seis";
+						break;
+
+					case 7:
+						Resultado += " siete";
+						break;
+
+					case 8:
+						Resultado += " ocho";
+						break;
+
+					case 9:
+						Resultado += " nueve";
+						break;
+				}
+			} else {
+				switch(int.Parse(Numero.Substring(Numero.Length - 2, 2))) {
+					case 10:
+						Resultado += " diez";
+						break;
+
+					case 11:
+						Resultado += " once";
+						break;
+
+					case 12:
+						Resultado += " doce";
+						break;
+
+					case 13:
+						Resultado += " trece";
+						break;
+					case 14:
+						Resultado += " catorce";
+						break;
+
+					case 15:
+						Resultado += " quince";
+						break;
+
+					case 16:
+					case 17:
+					case 18:
+					case 19:
+						Resultado += " dieci" + SpellNumber(int.Parse(Numero.Substring(Numero.Length - 1, 1)), false);
+						break;
+
+					case 20:
+						Resultado += " veinte";
+						break;
+
+					case 30:
+						Resultado += " treinta";
+						break;
+
+					case 40:
+						Resultado += " cuarenta";
+						break;
+
+					case 50:
+						Resultado += " cincuenta";
+						break;
+
+					case 60:
+						Resultado += " sesenta";
+						break;
+
+					case 70:
+						Resultado += " setenta";
+						break;
+
+					case 80:
+						Resultado += " ochenta";
+						break;
+
+					case 90:
+						Resultado += " noventa";
+						break;
+
+					default:
+						switch(int.Parse(NumeroInvertido.Substring(1, 1))) {
+							case 2:
+								Resultado += " veinti" + Lfx.Types.Formatting.SpellNumber(int.Parse(Numero.Substring(Numero.Length - 1, 1)), false);
+								break;
+
+							case 3:
+								Resultado += " treinta y " + Lfx.Types.Formatting.SpellNumber(int.Parse(Numero.Substring(Numero.Length - 1, 1)), false);
+								break;
+
+							case 4:
+								Resultado += " cuarenta y " + Lfx.Types.Formatting.SpellNumber(int.Parse(Numero.Substring(Numero.Length - 1, 1)), false);
+								break;
+
+							case 5:
+								Resultado += " cincuenta y " + Lfx.Types.Formatting.SpellNumber(int.Parse(Numero.Substring(Numero.Length - 1, 1)), false);
+								break;
+
+							case 6:
+								Resultado += " sesenta y " + Lfx.Types.Formatting.SpellNumber(int.Parse(Numero.Substring(Numero.Length - 1, 1)), false);
+								break;
+
+							case 7:
+								Resultado += " setenta y " + Lfx.Types.Formatting.SpellNumber(int.Parse(Numero.Substring(Numero.Length - 1, 1)), false);
+								break;
+
+							case 8:
+								Resultado += " ochenta y " + Lfx.Types.Formatting.SpellNumber(int.Parse(Numero.Substring(Numero.Length - 1, 1)), false);
+								break;
+
+							case 9:
+								Resultado += " noventa y " + Lfx.Types.Formatting.SpellNumber(int.Parse(Numero.Substring(Numero.Length - 1, 1)), false);
+								break;
+						}
+						break;
+				}
+			}
+
+			if(withDecimals)
+				Resultado += " con " + ((number - Math.Floor(number)) * 100).ToString("00") + "/100.";
+
+			return Resultado.Replace("  ", " ").Trim();
+		}
+
+		public static string FormatStock(double number, int decimals)
+		{
+			return FormatNumber(number, decimals);
+		}
+		public static string FormatStock(double number)
+		{
+			return FormatStock(number, 8);
+		}
+
+		public static string FormatStockSql(double number, int decimals)
+		{
+			return FormatNumberSql(number, decimals);
+		}
+		public static string FormatStockSql(double number)
+		{
+			return FormatStockSql(number, 8);
+		}
+
+
+		public static string FormatNumber(double number)
+		{
+			return FormatNumber(number, 2);
+		}
+
+		public static string FormatNumber(double number, int decimals)
+		{
+			if(decimals < 0)
+				decimals = 8;
+			return number.ToString("0.".PadRight(decimals + 2, '0'), System.Globalization.CultureInfo.InvariantCulture);
+		}
+
+		public static string FormatCurrencySql(double numero)
+		{
+			return FormatCurrencySql(numero, -1, true);
+		}
+
+		public static string FormatCurrencySql(double numero, int decimales, bool redondeo)
+		{
+			return FormatCurrency(numero, decimales, redondeo);
+		}
+
+		public static string FormatCurrency(double numero, int decimales)
+		{
+			return FormatCurrency(numero, decimales, true);
+		}
+
+		public static string FormatCurrency(double numero, int decimales, bool redondeo)
+		{
+			if(decimales < 0)
+				decimales = 2;
+
+			if(redondeo == false) {
+				long Expo = System.Convert.ToInt64(Math.Pow(10, decimales));
+				numero = System.Math.Floor(numero * Expo) / Expo;
+			}
+
+			return numero.ToString("0." + "0000000000".Substring(0, decimales), System.Globalization.CultureInfo.InvariantCulture);
+		}
+
+		public static string FormatNumberForPrint(double numero)
+		{
+			return FormatNumberForPrint(numero, 2);
+		}
+
+		public static string FormatNumberForPrint(double numero, int decimales)
+		{
+			return numero.ToString("#,##0." + "0000000000".Substring(0, decimales), System.Globalization.CultureInfo.InvariantCulture); //.Replace(",", "'").Replace(".", ",");
+		}
+
+		public static string FormatCurrencyForPrint(double numero, int decimales)
+		{
+			return numero.ToString("#,##0." + "0000000000".Substring(0, decimales), System.Globalization.CultureInfo.InvariantCulture); //.Replace(",", "'").Replace(".", ",");
+		}
+
+		public static string FormatDateAndTime(object fecha)
+		{
+			string formatearFechaYHoraReturn = null;
+
+			if(fecha == null || fecha == DBNull.Value) {
+                                return string.Empty;
+			} else if(fecha is System.DateTime) {
+				return FormatDateAndTime(((System.DateTime)fecha).ToString(Formatting.DateTime.DefaultDateTimeFormat));
+			} else {
+				string FechaString = System.Convert.ToString(fecha);
+				formatearFechaYHoraReturn = FormatDate(fecha);
+
+				if(FechaString.Length >= 8 && System.Text.RegularExpressions.Regex.IsMatch(FechaString.Substring(FechaString.Length - 8, 8), @"^[0-2]\d:[0-5]\d:[0-5]\d$"))
+					formatearFechaYHoraReturn += " " + FechaString.Substring(FechaString.Length - 8, 8).Substring(0, 5);
+				else if(FechaString.Length >= 5 && System.Text.RegularExpressions.Regex.IsMatch(FechaString.Substring(FechaString.Length - 5, 5), @"^[0-2]\d:[0-5]\d$"))
+					formatearFechaYHoraReturn += " " + FechaString.Substring(FechaString.Length - 5, 5);
+			}
+
+			return formatearFechaYHoraReturn;
+		}
+
+		// Función: FormatNumberSql
+		// Parámetros:
+		//    dNumero: valor a convertir.
+		//    iDecimales: cantidad de espacios decimales despues de la coma.
+		// Descripción:
+		//    entrega un número con formato compatible para poder formar parte de una sentencia Sql.
+		public static string FormatNumberSql(double numero)
+		{
+			return FormatNumberSql(numero, -1);
+		}
+
+		public static string FormatNumberSql(double numero, int decimales)
+		{
+			string formatearNumeroSqlReturn = null;
+
+			if(decimales < 0)
+				decimales = 2;
+
+			formatearNumeroSqlReturn = numero.ToString("0." + "0000000000".Substring(0, decimales),
+				System.Globalization.CultureInfo.InvariantCulture);
+			return formatearNumeroSqlReturn;
+		}
+
+                public static string FormatDateSql(System.DateTime? Fecha)
+                {
+                        return Fecha.Value.ToString(Formatting.DateTime.SqlDateFormat);
+                }
+
+                public static string FormatDateSql(string Fecha)
+                {
+                        object Res = FormatDateTimeSql(Fecha);
+                        if (Res == null || Res is DBNull)
+                                return "";
+                        else
+                                return FormatDateTimeSql(Fecha).ToString().Substring(0, 10);
+                }
+
+		public static string FormatDateTimeSql(System.DateTime Fecha)
+		{
+                        return Fecha.ToString(Formatting.DateTime.SqlDateTimeFormat);
+		}
+
+		public static object FormatDateTimeSql(string fecha)
+		{
+			object formatearFechaSqlReturn = null;
+
+			// Permite DDMMYYYY, DD-MM-YYYY, DD/MM/YYYY, DDMMYY, DD-MM-YY y DD/MM/YY
+			if(fecha.Length > 0) {
+				long lngDia = 0;
+				long lngMes = 0;
+				long lngAnio = 0;
+
+                                fecha = fecha.Trim().Replace("-", string.Empty);
+                                fecha = fecha.Replace("/", string.Empty);
+                                fecha = fecha.Replace(".", string.Empty);
+
+				lngDia = int.Parse(fecha.Substring(0, 2));
+				lngMes = int.Parse(fecha.Substring(2, 2));
+				lngAnio = int.Parse(fecha.Substring(4, 4));
+
+				if(lngAnio < 50)
+					lngAnio = lngAnio + 2000;
+				else if(lngAnio < 100)
+					lngAnio = lngAnio + 1900;
+
+				string Resultado = (lngAnio.ToString("0000") + "-" + lngMes.ToString("00") + "-" + lngDia.ToString("00"));
+
+				if(fecha.Length > 9)
+					Resultado += " " + fecha.Substring(9, fecha.Length - 9).Trim();
+
+				formatearFechaSqlReturn = Resultado;
+			} else {
+				formatearFechaSqlReturn = DBNull.Value;
+			}
+
+			return formatearFechaSqlReturn;
+		}
+
+		public static string FormatDate(object fecha)
+		{
+                        if (fecha == null || fecha == DBNull.Value) {
+                                return string.Empty;
+                        } else if (fecha is System.DateTime) {
+                                return FormatDate(System.Convert.ToDateTime(fecha).ToString(DateTime.DefaultDateFormat));
+                        } else if (fecha is Nullable<System.DateTime>) {
+                                System.DateTime? fechaNullable = fecha as System.DateTime?;
+                                if (fechaNullable.HasValue)
+                                        return FormatDate(fechaNullable.Value);
+                                else
+                                        return string.Empty;
+                        } else {
+                                return FormatDate(fecha.ToString());
+                        }
+		}
+
+		public static string FormatDate(string fecha)
+		{
+			string formatearFechaReturn = null;
+
+			// Permite DDMMYYYY, DD-MM-YYYY, DD/MM/YYYY, DDMMYY, DD-MM-YY y DD/MM/YY
+			if(fecha != null && fecha.Length > 0) {
+				int intDia = 0;
+				int intMes = 0;
+				int intAnio = 0;
+
+				fecha = fecha.Trim().Replace("-", "/").Replace(".", "/");
+
+				string[] Partes = fecha.Split('/');
+
+				if(Partes.Length == 1) {
+					// Es una sola pieza... espero que tipo ddmmaaaa
+					if(fecha.Length >= 2)
+						intDia = Parsing.ParseInt(fecha.Substring(0, 2));
+
+					if(fecha.Length >= 4)
+						intMes = Parsing.ParseInt(fecha.Substring(2, 2));
+
+					if(fecha.Length >= 6)
+						intAnio = Parsing.ParseInt(fecha.Substring(4, fecha.Length - 4));
+					else
+						intAnio = System.DateTime.Now.Year;
+				} else {
+					// Son dos o más piezas (tipo dd/mm o dd/mm/aa, etc.)
+					if(Lfx.Types.Strings.IsNumericInt(System.Convert.ToString(Partes[0])))
+						intDia = System.Convert.ToInt32(Partes[0]);
+					else
+						intDia = System.DateTime.Now.Day;
+
+					if(Partes.Length >= 2 && Lfx.Types.Strings.IsNumericInt(System.Convert.ToString(Partes[1])))
+						intMes = System.Convert.ToInt32(Partes[1]);
+					else
+						intMes = System.DateTime.Now.Month;
+
+					if(Partes.Length >= 3 && Partes[2].Length > 4)
+						Partes[2] = Partes[2].Substring(0, 4);
+
+					if(Partes.Length >= 3 && Lfx.Types.Strings.IsNumericInt(System.Convert.ToString(Partes[2])))
+						intAnio = System.Convert.ToInt32(Partes[2]);
+					else
+						intAnio = System.DateTime.Now.Year;
+				}
+
+				if(intAnio < 50)
+					intAnio = intAnio + 2000;
+				else if(intAnio < 100)
+					intAnio = intAnio + 1900;
+
+				if(intMes < 1)
+					intMes = 1;
+
+				if(intMes > 12)
+					intMes = 12;
+
+				if(intDia < 1)
+					intDia = 1;
+
+				if(intDia > System.DateTime.DaysInMonth(intAnio, intMes))
+                                        intDia = System.DateTime.DaysInMonth(intAnio, intMes);
+
+				formatearFechaReturn = intDia.ToString("00") + "/" + intMes.ToString("00") + "/" + intAnio.ToString("0000");
+
+				if(formatearFechaReturn == "00/00/2000")
+					formatearFechaReturn = string.Empty;
+			} else {
+                                formatearFechaReturn = string.Empty;
+			}
+
+			return formatearFechaReturn;
+		}
+	}
+}

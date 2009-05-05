@@ -1,0 +1,920 @@
+﻿<Database>
+	<Table name="alicuotas">
+		<Column name="id_alicuota" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="porcentaje" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="importe_minimo" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Index table="alicuotas" name="PRIMARY" columns="id_alicuota" unique="1" primary="1" />
+	</Table>
+	<Table name="articulos">
+		<Column name="id_articulo" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="codigo1" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="codigo2" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="codigo3" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="codigo4" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="tipo" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="id_marca" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_cuenta" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="modelo" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="serie" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="url" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="descripcion" datatype="Text" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="descripcion2" datatype="Text" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_cat_articulo" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_proveedor" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="control_stock" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="stock_actual" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="stock_minimo" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="unidad_stock" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="rendimiento" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="unidad_rend" datatype="VarChar" nullable="1" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="costo" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="id_margen" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="pvp" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="pvp2" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="pvp3" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="pvp4" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="pvp5" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="obs" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="estado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="destacado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="fecha_creado" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fecha_precio" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="apedir" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="pedido" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="web" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Index table="articulos" name="articulos_id_cat_articulo" columns="id_cat_articulo" unique="0" primary="0" />
+		<Index table="articulos" name="articulos_id_marca" columns="id_marca" unique="0" primary="0" />
+		<Index table="articulos" name="articulos_id_cuenta" columns="id_cuenta" unique="0" primary="0" />
+		<Index table="articulos" name="articulos_id_margen" columns="id_margen" unique="0" primary="0" />
+		<Index table="articulos" name="articulos_id_proveedor" columns="id_proveedor" unique="0" primary="0" />
+		<Index table="articulos" name="PRIMARY" columns="id_articulo" unique="1" primary="1" />
+	</Table>
+	<Table name="articulos_codigos">
+		<Column name="id_codigo" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="id_proveedor" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="articulos_codigos" name="articulos_codigos_id_proveedor" columns="id_proveedor" unique="0" primary="0" />
+		<Index table="articulos_codigos" name="PRIMARY" columns="id_codigo" unique="1" primary="1" />
+	</Table>
+	<Table name="articulos_imagenes">
+		<Column name="id_articulo" datatype="Integer" nullable="0" primary_key="1" lenght="0" precision="0" default="0" />
+		<Column name="imagen" datatype="Blob" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="articulos_imagenes" name="PRIMARY" columns="id_articulo" unique="1" primary="1" />
+		<Index table="articulos_imagenes" name="articulos_imagenes_id_articulo" columns="id_articulo" unique="0" primary="0" />
+	</Table>
+	<Table name="articulos_movim">
+		<Column name="id_movim" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="id_articulo" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="cantidad" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="desdesituacion" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="haciasituacion" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="saldo" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="obs" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="articulos_movim" name="articulos_movim_desdesituacion" columns="desdesituacion" unique="0" primary="0" />
+		<Index table="articulos_movim" name="articulos_movim_haciasituacion" columns="haciasituacion" unique="0" primary="0" />
+		<Index table="articulos_movim" name="articulos_movim_id_articulo" columns="id_articulo" unique="0" primary="0" />
+		<Index table="articulos_movim" name="PRIMARY" columns="id_movim" unique="1" primary="1" />
+	</Table>
+	<Table name="articulos_precios">
+		<Column name="id_articulo" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="costo" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="id_margen" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="pvp" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="id_persona" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="articulos_precios" name="articulos_precios_id_articulo" columns="id_articulo" unique="0" primary="0" />
+		<Index table="articulos_precios" name="articulos_precios_id_margen" columns="id_margen" unique="0" primary="0" />
+		<Index table="articulos_precios" name="articulos_precios_id_persona" columns="id_persona" unique="0" primary="0" />
+	</Table>
+	<Table name="articulos_recetas">
+		<Column name="id_articulo" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="cantidad" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+	</Table>
+	<Table name="articulos_rubros">
+		<Column name="id_rubro" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="id_alicuota" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="articulos_rubros" name="articulos_rubros_id_alicuota" columns="id_alicuota" unique="0" primary="0" />
+		<Index table="articulos_rubros" name="PRIMARY" columns="id_rubro" unique="1" primary="1" />
+	</Table>
+	<Table name="articulos_situaciones">
+		<Column name="id_situacion" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="cuenta_stock" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="deposito" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="facturable" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Index table="articulos_situaciones" name="PRIMARY" columns="id_situacion" unique="1" primary="1" />
+	</Table>
+	<Table name="articulos_stock">
+		<Column name="id_articulo" datatype="Integer" nullable="0" primary_key="1" lenght="0" precision="0" default="0" />
+		<Column name="id_situacion" datatype="Integer" nullable="0" primary_key="1" lenght="0" precision="0" default="0" />
+		<Column name="cantidad" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Index table="articulos_stock" name="articulos_stock_id_articulo" columns="id_articulo" unique="0" primary="0" />
+		<Index table="articulos_stock" name="articulos_stock_id_situacion" columns="id_situacion" unique="0" primary="0" />
+		<Index table="articulos_stock" name="PRIMARY" columns="id_situacion,id_articulo" unique="1" primary="1" />
+	</Table>
+	<Table name="bancos">
+		<Column name="id_banco" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="estado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Index table="bancos" name="PRIMARY" columns="id_banco" unique="1" primary="1" />
+	</Table>
+	<Table name="bancos_cheques">
+		<Column name="id_cheque" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="id_concepto" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="concepto" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_banco" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+    <Column name="prefijo" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="numero" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_sucursal" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+    <Column name="id_chequera" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="id_cuenta" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_factura" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_recibo" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="emitido" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="importe" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="fechaemision" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_cliente" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="emitidopor" datatype="VarChar" nullable="1" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="fechacobro" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="obs" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="estado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Index table="bancos_cheques" name="bancos_cheques_id_concepto" columns="id_concepto" unique="0" primary="0" />
+		<Index table="bancos_cheques" name="bancos_cheques_id_cuenta" columns="id_cuenta" unique="0" primary="0" />
+		<Index table="bancos_cheques" name="bancos_cheques_id_factura" columns="id_factura" unique="0" primary="0" />
+		<Index table="bancos_cheques" name="bancos_cheques_id_recibo" columns="id_recibo" unique="0" primary="0" />
+		<Index table="bancos_cheques" name="bancos_cheques_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
+		<Index table="bancos_cheques" name="bancos_cheques_id_cliente" columns="id_cliente" unique="0" primary="0" />
+    <Index table="bancos_cheques" name="bancos_cheques_id_chequera" columns="id_chequera" unique="0" primary="0" />
+		<Index table="bancos_cheques" name="PRIMARY" columns="id_cheque" unique="1" primary="1" />
+	</Table>
+	<Table name="cat_articulos">
+		<Column name="id_cat_articulo" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="nombresing" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="stock_minimo" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="imagen" datatype="Blob" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="obs" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="estado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="web" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="id_rubro" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="cat_articulos" name="cat_articulos_id_rubro" columns="id_rubro" unique="0" primary="0" />
+		<Index table="cat_articulos" name="PRIMARY" columns="id_cat_articulo" unique="1" primary="1" />
+	</Table>
+	<Table name="chequeras">
+		<Column name="id_chequera" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="id_banco" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="prefijo" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="desde" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="hasta" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_cuenta" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="titular" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="obs" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="estado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_sucursal" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="chequeras" name="chequeras_id_banco" columns="id_banco" unique="0" primary="0" />
+		<Index table="chequeras" name="chequeras_id_cuenta" columns="id_cuenta" unique="0" primary="0" />
+		<Index table="chequeras" name="PRIMARY" columns="id_chequera" unique="1" primary="1" />
+	</Table>
+	<Table name="ciudades">
+		<Column name="id_ciudad" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="cp" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="parent" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="ca" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="ciudades" name="ciudades_cp" columns="cp" unique="0" primary="0" />
+		<Index table="ciudades" name="PRIMARY" columns="id_ciudad" unique="1" primary="1" />
+	</Table>
+	<Table name="ctacte">
+		<Column name="id_movim" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="auto" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="id_concepto" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="concepto" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="id_cliente" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="importe" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="saldo" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="id_factura" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_recibo" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="comprob" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="obs" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="pagado" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Index table="ctacte" name="ctacte_id_cliente" columns="id_cliente" unique="0" primary="0" />
+		<Index table="ctacte" name="ctacte_id_concepto" columns="id_concepto" unique="0" primary="0" />
+		<Index table="ctacte" name="ctacte_id_factura" columns="id_factura" unique="0" primary="0" />
+		<Index table="ctacte" name="ctacte_id_recibo" columns="id_recibo" unique="0" primary="0" />
+		<Index table="ctacte" name="PRIMARY" columns="id_movim" unique="1" primary="1" />
+	</Table>
+	<Table name="cuentas">
+		<Column name="id_cuenta" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="id_banco" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="numero" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="titular" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="tipo" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="id_moneda" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="cbu" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="estado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="1" />
+		<Column name="fecha" datatype="DateTime" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="cuentas" name="cuentas_id_banco" columns="id_banco" unique="0" primary="0" />
+		<Index table="cuentas" name="cuentas_id_moneda" columns="id_moneda" unique="0" primary="0" />
+		<Index table="cuentas" name="PRIMARY" columns="id_cuenta" unique="1" primary="1" />
+	</Table>
+	<Table name="cuentas_conceptos">
+		<Column name="id_concepto" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="es" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="grupo" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fijo" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="cuentas_conceptos" name="PRIMARY" columns="id_concepto" unique="1" primary="1" />
+	</Table>
+	<Table name="cuentas_movim">
+		<Column name="id_movim" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="id_banco" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_cuenta" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="id_persona" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_cliente" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_factura" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_recibo" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="importe" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="saldo" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="auto" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="id_concepto" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="concepto" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="comprob" datatype="VarChar" nullable="1" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="obs" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_sucursal" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="cuentas_movim" name="cuentas_movim_id_banco" columns="id_banco" unique="0" primary="0" />
+		<Index table="cuentas_movim" name="cuentas_movim_id_cliente" columns="id_cliente" unique="0" primary="0" />
+		<Index table="cuentas_movim" name="cuentas_movim_id_concepto" columns="id_concepto" unique="0" primary="0" />
+		<Index table="cuentas_movim" name="cuentas_movim_id_cuenta" columns="id_cuenta" unique="0" primary="0" />
+		<Index table="cuentas_movim" name="cuentas_movim_id_factura" columns="id_factura" unique="0" primary="0" />
+		<Index table="cuentas_movim" name="cuentas_movim_id_recibo" columns="id_recibo" unique="0" primary="0" />
+		<Index table="cuentas_movim" name="cuentas_movim_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
+		<Index table="cuentas_movim" name="cuentas_movim_id_persona" columns="id_persona" unique="0" primary="0" />
+		<Index table="cuentas_movim" name="PRIMARY" columns="id_movim" unique="1" primary="1" />
+	</Table>
+	<Table name="documentos_tipos">
+		<Column name="id_tipo" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="letra" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="mueve_stock" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="situacionorigen" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="situaciondestino" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="numerar_guardar" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="imprimir_guardar" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="numerar_imprimir" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="imprimir_repetir" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="imprimir_modificar" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Index table="documentos_tipos" name="PRIMARY" columns="id_tipo" unique="1" primary="1" />
+		<Index table="documentos_tipos" name="documentos_tipos_situacionorigen" columns="situacionorigen" unique="0" primary="0" />
+		<Index table="documentos_tipos" name="documentos_tipos_situaciondestino" columns="situaciondestino" unique="0" primary="0" />
+		<Index table="documentos_tipos" name="documentos_tipos_letra" columns="letra" unique="1" primary="0" />
+	</Table>
+	<Table name="facturas">
+		<Column name="id_factura" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="id_factura_orig" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_formapago" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="tipo_fac" datatype="VarChar" nullable="0" primary_key="0" lenght="3" precision="0" default="" />
+		<Column name="pv" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="numero" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="situacionorigen" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="situaciondestino" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_vendedor" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_cliente" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="subtotal" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="descuento" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="interes" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="cuotas" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="total" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="totalreal" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="obs" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="impresa" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="anulada" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="cancelado" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="remito" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="plantilla" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="id_sucursal" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="estado" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="nombremodelo" datatype="VarChar" nullable="1" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="gastosenvio" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="" />
+    <Column name="otrosgastos" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="" />
+		<Column name="compra" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="facturas" name="facturas_id_cliente" columns="id_cliente" unique="0" primary="0" />
+		<Index table="facturas" name="facturas_id_factura_orig" columns="id_factura_orig" unique="0" primary="0" />
+		<Index table="facturas" name="facturas_id_formapago" columns="id_formapago" unique="0" primary="0" />
+		<Index table="facturas" name="facturas_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
+		<Index table="facturas" name="facturas_id_vendedor" columns="id_vendedor" unique="0" primary="0" />
+		<Index table="facturas" name="facturas_situaciondestino" columns="situaciondestino" unique="0" primary="0" />
+		<Index table="facturas" name="facturas_situacionorigen" columns="situacionorigen" unique="0" primary="0" />
+		<Index table="facturas" name="facturas_tipo_fac_pv_numero" columns="tipo_fac,pv,numero" unique="0" primary="0" />
+		<Index table="facturas" name="PRIMARY" columns="id_factura" unique="1" primary="1" />
+	</Table>
+	<Table name="facturas_detalle">
+		<Column name="id_factura_detalle" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="numero_factura" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="id_factura" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="orden" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="id_articulo" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="descripcion" datatype="Text" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="cantidad" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="precio" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="costo" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="importe" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="recargo" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="series" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="facturas_detalle" name="facturas_detalle_id_articulo" columns="id_articulo" unique="0" primary="0" />
+		<Index table="facturas_detalle" name="facturas_detalle_id_factura" columns="id_factura" unique="0" primary="0" />
+		<Index table="facturas_detalle" name="facturas_detalle_id_factura_id_articulo" columns="id_factura,id_articulo" unique="0" primary="0"  />
+		<Index table="facturas_detalle" name="PRIMARY" columns="id_factura_detalle" unique="1" primary="1" />
+	</Table>
+	<Table name="formaspago">
+		<Column name="id_formapago" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="estado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Index table="formaspago" name="PRIMARY" columns="id_formapago" unique="1" primary="1" />
+	</Table>
+	<Table name="marcas">
+		<Column name="id_marca" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="url" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="id_proveedor" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="obs" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="estado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Index table="marcas" name="marcas_id_proveedor" columns="id_proveedor" unique="0" primary="0" />
+		<Index table="marcas" name="PRIMARY" columns="id_marca" unique="1" primary="1" />
+	</Table>
+	<Table name="margenes">
+		<Column name="id_margen" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="sumar" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="porcentaje" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="porcentaje2" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="porcentaje3" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="sumar2" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="predet" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="obs" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="estado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Index table="margenes" name="PRIMARY" columns="id_margen" unique="1" primary="1" />
+	</Table>
+	<Table name="monedas">
+		<Column name="id_moneda" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="signo" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="cotizacion" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Index table="monedas" name="PRIMARY" columns="id_moneda" unique="1" primary="1" />
+	</Table>
+	<Table name="personas">
+		<Column name="id_persona" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="tipo" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="id_grupo" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_subgrupo" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="vendedor" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="apellido" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="razon_social" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="nombre_visible" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="contrasena" datatype="VarChar" nullable="0" primary_key="0" lenght="20" precision="0" default="" />
+		<Column name="id_tipo_doc" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="num_doc" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="cuit" datatype="VarChar" nullable="0" primary_key="0" lenght="16" precision="0" default="" />
+		<Column name="id_situacion" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="domicilio" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="id_ciudad" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="telefono" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="email" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="tipo_fac" datatype="VarChar" nullable="1" primary_key="0" lenght="1" precision="0" default="" />
+		<Column name="limitecredito" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="fechanac" datatype="DateTime" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fechaalta" datatype="DateTime" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="domiciliotrabajo" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="numerocuenta" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="cbu" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="estadocredito" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="obs" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="estado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Index table="personas" name="personas_id_situacion" columns="id_situacion" unique="0" primary="0" />
+		<Index table="personas" name="personas_id_ciudad" columns="id_ciudad" unique="0" primary="0" />
+		<Index table="personas" name="personas_id_grupo" columns="id_grupo" unique="0" primary="0" />
+		<Index table="personas" name="personas_id_tipo_doc" columns="id_tipo_doc" unique="0" primary="0" />
+		<Index table="personas" name="personas_num_doc" columns="num_doc" unique="0" primary="0" />
+		<Index table="personas" name="personas_cuit" columns="cuit" unique="0" primary="0" />
+		<Index table="personas" name="PRIMARY" columns="id_persona" unique="1" primary="1" />
+	</Table>
+	<Table name="personas_eventos">
+		<Column name="id_evento" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="id_persona" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_creador" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="descripcion" datatype="Text" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="personas_eventos" name="PRIMARY" columns="id_evento" unique="1" primary="1" />
+		<Index table="personas_eventos" name="personas_eventos_id_persona" columns="id_persona" unique="0" primary="0" />
+		<Index table="personas_eventos" name="personas_eventos_id_creador" columns="id_creador" unique="0" primary="0" />
+	</Table>
+	<Table name="personas_grupos">
+		<Column name="id_grupo" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="parent" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="descuento" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="predet" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+    <Column name="fecha" datatype="DateTime" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="personas_grupos" name="PRIMARY" columns="id_grupo" unique="1" primary="1" />
+		<Index table="personas_grupos" name="personas_grupos_parent" columns="parent" unique="0" primary="0" />
+	</Table>
+	<Table name="personas_tipos">
+		<Column name="id_tipo_persona" datatype="Integer" nullable="0" primary_key="1" lenght="0" precision="0" default="0" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Index table="personas_tipos" name="PRIMARY" columns="id_tipo_persona" unique="1" primary="1" />
+	</Table>
+	<Table name="pvs">
+		<Column name="id_pv" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="id_sucursal" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="tipo" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="estacion" datatype="VarChar" nullable="1" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="carga" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="modelo" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="puerto" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="bps" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="ultimoz" datatype="VarChar" nullable="1" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="lsa" datatype="VarChar" nullable="1" primary_key="0" lenght="50" precision="0" default="" />
+		<Index table="pvs" name="PRIMARY" columns="id_pv" unique="1" primary="1" />
+		<Index table="pvs" name="pvs_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
+	</Table>
+	<Table name="sys_quickpaste">
+		<Column name="id_paste" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="texto" datatype="Text" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="estacion" datatype="VarChar" nullable="1" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="usuario" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="sys_quickpaste" name="PRIMARY" columns="id_paste" unique="1" primary="1" />
+	</Table>
+	<Table name="recibos">
+		<Column name="id_recibo" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="tipo_fac" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="id_concepto" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="concepto" datatype="VarChar" nullable="1" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="pv" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="numero" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="impreso" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_cliente" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_vendedor" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="total" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="id_sucursal" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="obs" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="recibos" name="PRIMARY" columns="id_recibo" unique="1" primary="1" />
+		<Index table="recibos" name="recibos_id_cliente" columns="id_cliente" unique="0" primary="0" />
+		<Index table="recibos" name="recibos_id_vendedor" columns="id_vendedor" unique="0" primary="0" />
+		<Index table="recibos" name="recibos_numero" columns="numero" unique="0" primary="0" />
+		<Index table="recibos" name="recibos_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
+		<Index table="recibos" name="recibos_id_concepto" columns="id_concepto" unique="0" primary="0" />
+	</Table>
+	<Table name="recibos_facturas">
+		<Column name="id_recibo" datatype="Integer" nullable="0" primary_key="1" lenght="0" precision="0" default="0" />
+		<Column name="id_factura" datatype="Integer" nullable="0" primary_key="1" lenght="0" precision="0" default="0" />
+		<Column name="importe" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Index table="recibos_facturas" name="PRIMARY" columns="id_factura,id_recibo" unique="1" primary="1" />
+		<Index table="recibos_facturas" name="recibos_facturas_id_recibo" columns="id_recibo" unique="0" primary="0" />
+		<Index table="recibos_facturas" name="recibos_facturas_id_factura" columns="id_factura" unique="0" primary="0" />
+	</Table>
+	<Table name="situaciones">
+		<Column name="id_situacion" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="abrev" datatype="VarChar" nullable="0" primary_key="0" lenght="2" precision="0" default="0" />
+		<Column name="comprob" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="comprob2" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Index table="situaciones" name="PRIMARY" columns="id_situacion" unique="1" primary="1" />
+	</Table>
+	<Table name="sucursales">
+		<Column name="id_sucursal" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="direccion" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="telefono" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="id_ciudad" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="situacionorigen" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_cuenta_caja" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_cuenta_cheques" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fecha" datatype="DateTime" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="sucursales" name="PRIMARY" columns="id_sucursal" unique="1" primary="1" />
+		<Index table="sucursales" name="sucursales_id_ciudad" columns="id_ciudad" unique="0" primary="0" />
+		<Index table="sucursales" name="sucursales_situacionorigen" columns="situacionorigen" unique="0" primary="0" />
+		<Index table="sucursales" name="sucursales_id_cuenta_caja" columns="id_cuenta_caja" unique="0" primary="0" />
+		<Index table="sucursales" name="sucursales_id_cuenta_cheques" columns="id_cuenta_cheques" unique="0" primary="0" />
+	</Table>
+	<Table name="sys_accessbase">
+		<Column name="id_acceso" datatype="VarChar" nullable="0" primary_key="1" lenght="200" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="tipo" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="parent" datatype="VarChar" nullable="1" primary_key="0" lenght="200" precision="0" default="" />
+		<Index table="sys_accessbase" name="PRIMARY" columns="id_acceso" unique="1" primary="1" />
+	</Table>
+	<Table name="sys_accesslist">
+		<Column name="id_acceso" datatype="VarChar" nullable="0" primary_key="1" lenght="255" precision="0" default="" />
+		<Column name="id_persona" datatype="Integer" nullable="0" primary_key="1" lenght="0" precision="0" default="0" />
+		<Column name="item" datatype="VarChar" nullable="0" primary_key="1" lenght="50" precision="0" default="" />
+		<Index table="sys_accesslist" name="PRIMARY" columns="id_acceso,id_persona,item" unique="1" primary="1" />
+		<Index table="sys_accesslist" name="sys_accesslist_id_persona" columns="id_persona" unique="0" primary="0" />
+	</Table>
+	<Table name="sys_asl">
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="1" lenght="200" precision="0" default="" />
+		<Column name="fecha" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="checksum" datatype="VarChar" nullable="1" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="contenido" datatype="Blob" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="sys_asl" name="PRIMARY" columns="nombre" unique="1" primary="1" />
+	</Table>
+	<Table name="sys_config">
+		<Column name="estacion" datatype="VarChar" nullable="0" primary_key="1" lenght="200" precision="0" default="" />
+		<Column name="grupo" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="id_sucursal" datatype="Integer" nullable="0" primary_key="1" lenght="0" precision="0" default="0" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="1" lenght="200" precision="0" default="" />
+		<Column name="valor" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Index table="sys_config" name="PRIMARY" columns="estacion,nombre,id_sucursal" unique="1" primary="1" />
+	</Table>
+	<Table name="sys_log">
+		<Column name="id_log" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="estacion" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="usuario" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="comando" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="tabla" datatype="VarChar" nullable="1" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="item_id" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="extra1" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="sys_log" name="PRIMARY" columns="id_log" unique="1" primary="1" />
+		<Index table="sys_log" name="sys_log_tabla_item_id" columns="tabla,item_id" unique="0" primary="0" />
+	</Table>
+	<Table name="sys_menu">
+		<Column name="id_menu" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="parent" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="orden" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="funcion" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="web" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="visible" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Index table="sys_menu" name="PRIMARY" columns="id_menu" unique="1" primary="1" />
+		<Index table="sys_menu" name="sys_menu_parent" columns="parent" unique="0" primary="0" />
+	</Table>
+	<Table name="sys_plantillas">
+		<Column name="id_plantilla" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="codigo" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="definicion" datatype="Text" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="tamanopapel" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="landscape" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="copias" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="1" />
+		<Column name="membrete" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="defxml" datatype="Text" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="sys_plantillas" name="PRIMARY" columns="id_plantilla" unique="1" primary="1" />
+		<Index table="sys_plantillas" name="sys_plantillas_codigo" columns="codigo" unique="1" primary="0" />
+	</Table>
+	<Table name="sys_programador">
+		<Column name="id_evento" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="crea_estacion" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="crea_usuario" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="estacion" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="comando" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="estado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="fecha" datatype="DateTime" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="componente" datatype="VarChar" nullable="1" primary_key="0" lenght="50" precision="0" default="" />
+		<Index table="sys_programador" name="PRIMARY" columns="id_evento" unique="1" primary="1" />
+		<Index table="sys_programador" name="sys_programador_estado_estacion_componente" columns="estado,estacion,componente" unique="0" primary="0" />
+	</Table>
+	<Table name="sys_proxystatus">
+		<Column name="tabla" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="id" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fecha" datatype="DateTime" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+	</Table>
+	<Table name="sys_tags">
+		<Column name="id_tag" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="tablename" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="fieldname" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="fieldtype" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="varchar" />
+		<Column name="fieldnullable" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fielddefault" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="label" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="internal" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="sys_tags" name="PRIMARY" columns="id_tag" unique="1" primary="1" />
+	</Table>
+	<Table name="tarjetas">
+		<Column name="id_tarjeta" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="credeb" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="100" precision="0" default="" />
+		<Column name="comision" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="autopres" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+    <Column name="autoacred" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+    <Column name="anticipa" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="id_cuenta" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="dias_normal" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+    <Column name="dias_anticipada" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Index table="tarjetas" name="PRIMARY" columns="id_tarjeta" unique="1" primary="1" />
+		<Index table="tarjetas" name="tarjetas_id_cuenta" columns="id_cuenta" unique="0" primary="0" />
+	</Table>
+	<Table name="tarjetas_cupones">
+		<Column name="id_cupon" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="numero" datatype="VarChar" nullable="0" primary_key="0" lenght="30" precision="0" default="" />
+		<Column name="id_concepto" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="concepto" datatype="VarChar" nullable="1" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="autorizacion" datatype="VarChar" nullable="1" primary_key="0" lenght="30" precision="0" default="" />
+		<Column name="id_tarjeta" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_cliente" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_vendedor" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_plan" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_factura" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_recibo" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+    <Column name="fecha_pres" datatype="DateTime" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fecha_acred" datatype="DateTime" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="importe" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+    <Column name="importe_pagado" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+    <Column name="estado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="obs" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="tarjetas_cupones" name="PRIMARY" columns="id_cupon" unique="1" primary="1" />
+		<Index table="tarjetas_cupones" name="tarjetas_cupones_id_cliente" columns="id_cliente" unique="0" primary="0" />
+		<Index table="tarjetas_cupones" name="tarjetas_cupones_id_concepto" columns="id_concepto" unique="0" primary="0" />
+		<Index table="tarjetas_cupones" name="tarjetas_cupones_id_factura" columns="id_factura" unique="0" primary="0" />
+		<Index table="tarjetas_cupones" name="tarjetas_cupones_id_plan" columns="id_plan" unique="0" primary="0" />
+		<Index table="tarjetas_cupones" name="tarjetas_cupones_id_recibo" columns="id_recibo" unique="0" primary="0" />
+		<Index table="tarjetas_cupones" name="tarjetas_cupones_id_tarjeta" columns="id_tarjeta" unique="0" primary="0" />
+		<Index table="tarjetas_cupones" name="tarjetas_cupones_id_vendedor" columns="id_vendedor" unique="0" primary="0" />
+	</Table>
+	<Table name="tarjetas_planes">
+		<Column name="id_plan" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="id_tarjeta" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="100" precision="0" default="" />
+		<Column name="cuotas" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="interes" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="comision" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Index table="tarjetas_planes" name="PRIMARY" columns="id_plan" unique="1" primary="1" />
+		<Index table="tarjetas_planes" name="tarjetas_planes_id_tarjeta" columns="id_tarjeta" unique="0" primary="0" />
+	</Table>
+	<Table name="tarjetas_presentaciones">
+		<Column name="id_presentacion" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="acreditacion" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="cuponinicio" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="cuponfin" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="subtotal" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="comision" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="total" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="acreditado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Index table="tarjetas_presentaciones" name="PRIMARY" columns="id_presentacion" unique="1" primary="1" />
+	</Table>
+	<Table name="tickets">
+		<Column name="id_ticket" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="id_persona" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_factura" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fecha_ingreso" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="descripcion" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="prioridad" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="id_tipo_ticket" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="minutos_tecnico" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="id_tecnico_recibe" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="presupuesto" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="articulos_descuento" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="presupuesto_aprobado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="entrega_estimada" datatype="DateTime" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="entrega_limite" datatype="DateTime" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fecha_finalizacion" datatype="DateTime" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fecha_salida" datatype="DateTime" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_tecnico_entrega" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_tecnico_verifica" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="obs" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="estado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="id_sucursal" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Index table="tickets" name="PRIMARY" columns="id_ticket" unique="1" primary="1" />
+		<Index table="tickets" name="tickets_id_factura" columns="id_factura" unique="0" primary="0" />
+		<Index table="tickets" name="tickets_id_persona" columns="id_persona" unique="0" primary="0" />
+		<Index table="tickets" name="tickets_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
+		<Index table="tickets" name="tickets_id_tecnico_entrega" columns="id_tecnico_entrega" unique="0" primary="0" />
+		<Index table="tickets" name="tickets_id_tecnico_recibe" columns="id_tecnico_recibe" unique="0" primary="0" />
+		<Index table="tickets" name="tickets_id_tecnico_verifica" columns="id_tecnico_verifica" unique="0" primary="0" />
+		<Index table="tickets" name="tickets_id_tipo_ticket" columns="id_tipo_ticket" unique="0" primary="0" />
+	</Table>
+	<Table name="tickets_articulos">
+		<Column name="id_ticket" datatype="Integer" nullable="0" primary_key="1" lenght="0" precision="0" default="0" />
+		<Column name="id_articulo" datatype="Integer" nullable="0" primary_key="1" lenght="0" precision="0" default="0" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="orden" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="cantidad" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="precio" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Index table="tickets_articulos" name="PRIMARY" columns="id_ticket,id_articulo" unique="1" primary="1" />
+		<Index table="tickets_articulos" name="tickets_articulos_id_articulo" columns="id_articulo" unique="0" primary="0" />
+	</Table>
+	<Table name="tickets_estados">
+		<Column name="id_ticket_estado" datatype="SmallInt" nullable="0" primary_key="1" lenght="0" precision="0" default="0" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="0" />
+		<Index table="tickets_estados" name="PRIMARY" columns="id_ticket_estado" unique="1" primary="1" />
+	</Table>
+	<Table name="tickets_eventos">
+		<Column name="id_evento" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="id_ticket" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="id_tecnico" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="descripcion" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="minutos_tecnico" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="estado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="privado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Index table="tickets_eventos" name="PRIMARY" columns="id_evento" unique="1" primary="1" />
+		<Index table="tickets_eventos" name="tickets_eventos_id_tecnico" columns="id_tecnico" unique="0" primary="0" />
+		<Index table="tickets_eventos" name="tickets_eventos_id_ticket" columns="id_ticket" unique="0" primary="0" />
+	</Table>
+	<Table name="tickets_tipos">
+		<Column name="id_tipo_ticket" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="0" />
+		<Column name="obs" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="estado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Index table="tickets_tipos" name="PRIMARY" columns="id_tipo_ticket" unique="1" primary="1" />
+	</Table>
+	<Table name="tipo_doc">
+		<Column name="id_tipo_doc" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Index table="tipo_doc" name="PRIMARY" columns="id_tipo_doc" unique="1" primary="1" />
+	</Table>
+	<Table name="vencimientos">
+		<Column name="id_vencimiento" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="fecha_inicio" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fecha_proxima" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fecha_fin" datatype="DateTime" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="frecuencia" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="repetir" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="ocurrencia" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="id_concepto" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="importe" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="estado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="obs" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="vencimientos" name="PRIMARY" columns="id_vencimiento" unique="1" primary="1" />
+		<Index table="vencimientos" name="vencimientos_id_concepto" columns="id_concepto" unique="0" primary="0" />
+	</Table>
+	<Table name="ventas_cuotas">
+		<Column name="id_cuota" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="prefijo" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="operacion" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="autorizacion" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_factura" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_resumen" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_cliente" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_comercio" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="cuota" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="cuotas" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="importe" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="vencimiento" datatype="DateTime" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="estado" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="estado_com" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="plandepagos" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="id_recibo" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="total" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="" />
+		<Column name="total_bruto" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="obs" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="ventas_cuotas" name="PRIMARY" columns="id_cuota" unique="1" primary="1" />
+		<Index table="ventas_cuotas" name="ventas_cuotas_id_comercio" columns="id_comercio" unique="0" primary="0" />
+		<Index table="ventas_cuotas" name="ventas_cuotas_id_cliente" columns="id_cliente" unique="0" primary="0" />
+		<Index table="ventas_cuotas" name="ventas_cuotas_prefijo_operacion_cuota" columns="prefijo,operacion,cuota" unique="0" primary="0" />
+		<Index table="ventas_cuotas" name="ventas_cuotas_vencimiento" columns="vencimiento" unique="0" primary="0" />
+		<Index table="ventas_cuotas" name="ventas_cuotas_id_factura" columns="id_factura" unique="0" primary="0" />
+		<Index table="ventas_cuotas" name="ventas_cuotas_id_recibo" columns="id_recibo" unique="0" primary="0" />
+		<Index table="ventas_cuotas" name="ventas_cuotas_cliente_estado_vencimiento" columns="id_cliente,estado,vencimiento" unique="0" primary="0" />
+	</Table>
+	<Table name="ventas_resumenes">
+		<Column name="id_resumen" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+		<Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_factura" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="tipo" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_persona" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="importe" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="cancelado" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Column name="vencimiento" datatype="DateTime" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="obs" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Index table="ventas_resumenes" name="PRIMARY" columns="id_resumen" unique="1" primary="1" />
+		<Index table="ventas_resumenes" name="ventas_resumenes_id_persona" columns="id_persona" unique="0" primary="0" />
+		<Index table="ventas_resumenes" name="ventas_resumenes_fecha" columns="fecha" unique="0" primary="0" />
+		<Index table="ventas_resumenes" name="ventas_resumenes_id_factura" columns="id_factura" unique="0" primary="0" />
+	</Table>
+	<Table name="ventas_resumenes_detalles">
+		<Column name="id_resumen" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="id_persona" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="prefijo" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="operacion" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
+		<Column name="fecha" datatype="DateTime" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="detalle" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="cuota" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="cuotas" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="importe" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="" />
+		<Column name="total" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="" />
+		<Column name="total_bruto" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
+		<Index table="ventas_resumenes_detalles" name="ventas_resumenes_detalles_id_resumen" columns="id_resumen" unique="0" primary="0" />
+		<Index table="ventas_resumenes_detalles" name="ventas_resumenes_detalles_id_persona" columns="id_persona" unique="0" primary="0" />
+		<Index table="ventas_resumenes_detalles" name="ventas_resumenes_detalles_prefijo_operacion" columns="prefijo,operacion" unique="0" primary="0" />
+	</Table>
+	<Constraint name="articulos_id_proveedor" table="articulos" column="id_proveedor" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="articulos_id_cat_articulo" table="articulos" column="id_cat_articulo" reference_table="cat_articulos" reference_column="id_cat_articulo" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="articulos_id_marca" table="articulos" column="id_marca" reference_table="marcas" reference_column="id_marca" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="articulos_id_cuenta" table="articulos" column="id_cuenta" reference_table="cuentas" reference_column="id_cuenta" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="articulos_id_margen" table="articulos" column="id_margen" reference_table="margenes" reference_column="id_margen" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="articulos_codigos_id_proveedor" table="articulos_codigos" column="id_proveedor" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="articulos_imagenes_id_articulo" table="articulos_imagenes" column="id_articulo" reference_table="articulos" reference_column="id_articulo" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="articulos_movim_desdesituacion" table="articulos_movim" column="desdesituacion" reference_table="articulos_situaciones" reference_column="id_situacion" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="articulos_movim_haciasituacion" table="articulos_movim" column="haciasituacion" reference_table="articulos_situaciones" reference_column="id_situacion" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="articulos_movim_id_articulo" table="articulos_movim" column="id_articulo" reference_table="articulos" reference_column="id_articulo" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="articulos_precios_id_articulo" table="articulos_precios" column="id_articulo" reference_table="articulos" reference_column="id_articulo" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="articulos_precios_id_margen" table="articulos_precios" column="id_margen" reference_table="margenes" reference_column="id_margen" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="articulos_precios_id_persona" table="articulos_precios" column="id_persona" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="articulos_rubros_id_alicuota" table="articulos_rubros" column="id_alicuota" reference_table="alicuotas" reference_column="id_alicuota" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="articulos_stock_id_articulo" table="articulos_stock" column="id_articulo" reference_table="articulos" reference_column="id_articulo" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="articulos_stock_id_situacion" table="articulos_stock" column="id_situacion" reference_table="articulos_situaciones" reference_column="id_situacion" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="bancos_cheques_id_concepto" table="bancos_cheques" column="id_concepto" reference_table="cuentas_conceptos" reference_column="id_concepto" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="bancos_cheques_id_cuenta" table="bancos_cheques" column="id_cuenta" reference_table="cuentas" reference_column="id_cuenta" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="bancos_cheques_id_factura" table="bancos_cheques" column="id_factura" reference_table="facturas" reference_column="id_factura" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="bancos_cheques_id_recibo" table="bancos_cheques" column="id_recibo" reference_table="recibos" reference_column="id_recibo" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="bancos_cheques_id_sucursal" table="bancos_cheques" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="bancos_cheques_id_cliente" table="bancos_cheques" column="id_cliente" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+  <Constraint name="bancos_cheques_id_chequera" table="bancos_cheques" column="id_chequera" reference_table="chequeras" reference_column="id_chequera" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="cat_articulos_id_rubro" table="cat_articulos" column="id_rubro" reference_table="articulos_rubros" reference_column="id_rubro" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="chequeras_id_banco" table="chequeras" column="id_banco" reference_table="bancos" reference_column="id_banco" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="chequeras_id_cuenta" table="chequeras" column="id_cuenta" reference_table="cuentas" reference_column="id_cuenta" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="ctacte_id_cliente" table="ctacte" column="id_cliente" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="ctacte_id_concepto" table="ctacte" column="id_concepto" reference_table="cuentas_conceptos" reference_column="id_concepto" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="ctacte_id_factura" table="ctacte" column="id_factura" reference_table="facturas" reference_column="id_factura" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="ctacte_id_recibo" table="ctacte" column="id_recibo" reference_table="recibos" reference_column="id_recibo" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="cuentas_id_moneda" table="cuentas" column="id_moneda" reference_table="monedas" reference_column="id_moneda" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="cuentas_id_banco" table="cuentas" column="id_banco" reference_table="bancos" reference_column="id_banco" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="cuentas_movim_id_banco" table="cuentas_movim" column="id_banco" reference_table="bancos" reference_column="id_banco" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="cuentas_movim_id_cliente" table="cuentas_movim" column="id_cliente" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="cuentas_movim_id_concepto" table="cuentas_movim" column="id_concepto" reference_table="cuentas_conceptos" reference_column="id_concepto" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="cuentas_movim_id_cuenta" table="cuentas_movim" column="id_cuenta" reference_table="cuentas" reference_column="id_cuenta" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="cuentas_movim_id_factura" table="cuentas_movim" column="id_factura" reference_table="facturas" reference_column="id_factura" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="cuentas_movim_id_recibo" table="cuentas_movim" column="id_recibo" reference_table="recibos" reference_column="id_recibo" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="cuentas_movim_id_sucursal" table="cuentas_movim" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="cuentas_movim_id_persona" table="cuentas_movim" column="id_persona" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="documentos_tipos_situacionorigen" table="documentos_tipos" column="situacionorigen" reference_table="articulos_situaciones" reference_column="id_situacion" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="documentos_tipos_situaciondestino" table="documentos_tipos" column="situaciondestino" reference_table="articulos_situaciones" reference_column="id_situacion" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="facturas_id_sucursal" table="facturas" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="facturas_id_vendedor" table="facturas" column="id_vendedor" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="facturas_situaciondestino" table="facturas" column="situaciondestino" reference_table="articulos_situaciones" reference_column="id_situacion" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="facturas_situacionorigen" table="facturas" column="situacionorigen" reference_table="articulos_situaciones" reference_column="id_situacion" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="facturas_id_cliente" table="facturas" column="id_cliente" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="facturas_id_factura_orig" table="facturas" column="id_factura_orig" reference_table="facturas" reference_column="id_factura" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="facturas_id_formapago" table="facturas" column="id_formapago" reference_table="formaspago" reference_column="id_formapago" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="facturas_detalle_id_articulo" table="facturas_detalle" column="id_articulo" reference_table="articulos" reference_column="id_articulo" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="facturas_detalle_id_factura" table="facturas_detalle" column="id_factura" reference_table="facturas" reference_column="id_factura" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="marcas_id_proveedor" table="marcas" column="id_proveedor" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="personas_id_ciudad" table="personas" column="id_ciudad" reference_table="ciudades" reference_column="id_ciudad" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="personas_id_grupo" table="personas" column="id_grupo" reference_table="personas_grupos" reference_column="id_grupo" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="personas_id_situacion" table="personas" column="id_situacion" reference_table="situaciones" reference_column="id_situacion" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="personas_id_tipo_doc" table="personas" column="id_tipo_doc" reference_table="tipo_doc" reference_column="id_tipo_doc" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="personas_eventos_id_persona" table="personas_eventos" column="id_persona" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="personas_eventos_id_creador" table="personas_eventos" column="id_creador" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="personas_grupos_parent" table="personas_grupos" column="parent" reference_table="personas_grupos" reference_column="id_grupo" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="pvs_id_sucursal" table="pvs" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="recibos_id_cliente" table="recibos" column="id_cliente" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="recibos_id_vendedor" table="recibos" column="id_vendedor" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="recibos_id_sucursal" table="recibos" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="recibos_id_concepto" table="recibos" column="id_concepto" reference_table="cuentas_conceptos" reference_column="id_concepto" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="recibos_facturas_id_factura" table="recibos_facturas" column="id_factura" reference_table="facturas" reference_column="id_factura" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="recibos_facturas_id_recibo" table="recibos_facturas" column="id_recibo" reference_table="recibos" reference_column="id_recibo" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="sucursales_id_ciudad" table="sucursales" column="id_ciudad" reference_table="ciudades" reference_column="id_ciudad" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="sucursales_situacionorigen" table="sucursales" column="situacionorigen" reference_table="situaciones" reference_column="id_situacion" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="sucursales_id_cuenta_caja" table="sucursales" column="id_cuenta_caja" reference_table="cuentas" reference_column="id_cuenta" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="sucursales_id_cuenta_cheques" table="sucursales" column="id_cuenta_cheques" reference_table="cuentas" reference_column="id_cuenta" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="sys_accesslist_id_persona" table="sys_accesslist" column="id_persona" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<DisabledConstraint name="sys_config_id_sucursal" table="sys_config" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="sys_menu_parent" table="sys_menu" column="parent" reference_table="sys_menu" reference_column="id_menu" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tarjetas_id_cuenta" table="tarjetas" column="id_cuenta" reference_table="cuentas" reference_column="id_cuenta" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tarjetas_cupones_id_recibo" table="tarjetas_cupones" column="id_recibo" reference_table="recibos" reference_column="id_recibo" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tarjetas_cupones_id_tarjeta" table="tarjetas_cupones" column="id_tarjeta" reference_table="tarjetas" reference_column="id_tarjeta" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tarjetas_cupones_id_vendedor" table="tarjetas_cupones" column="id_vendedor" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tarjetas_cupones_id_cliente" table="tarjetas_cupones" column="id_cliente" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tarjetas_cupones_id_concepto" table="tarjetas_cupones" column="id_concepto" reference_table="cuentas_conceptos" reference_column="id_concepto" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tarjetas_cupones_id_factura" table="tarjetas_cupones" column="id_factura" reference_table="facturas" reference_column="id_factura" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tarjetas_cupones_id_plan" table="tarjetas_cupones" column="id_plan" reference_table="tarjetas_planes" reference_column="id_plan" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tarjetas_planes_id_tarjeta" table="tarjetas_planes" column="id_tarjeta" reference_table="tarjetas" reference_column="id_tarjeta" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tickets_id_factura" table="tickets" column="id_factura" reference_table="facturas" reference_column="id_factura" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tickets_id_persona" table="tickets" column="id_persona" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tickets_id_sucursal" table="tickets" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tickets_id_tecnico_entrega" table="tickets" column="id_tecnico_entrega" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tickets_id_tecnico_recibe" table="tickets" column="id_tecnico_recibe" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tickets_id_tecnico_verifica" table="tickets" column="id_tecnico_verifica" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tickets_id_tipo_ticket" table="tickets" column="id_tipo_ticket" reference_table="tickets_tipos" reference_column="id_tipo_ticket" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tickets_articulos_id_ticket" table="tickets_articulos" column="id_ticket" reference_table="tickets" reference_column="id_ticket" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tickets_articulos_id_articulo" table="tickets_articulos" column="id_articulo" reference_table="articulos" reference_column="id_articulo" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tickets_eventos_id_tecnico" table="tickets_eventos" column="id_tecnico" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="tickets_eventos_id_ticket" table="tickets_eventos" column="id_ticket" reference_table="tickets" reference_column="id_ticket" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="ventas_cuotas_id_cliente" table="ventas_cuotas" column="id_cliente" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="ventas_cuotas_id_comercio" table="ventas_cuotas" column="id_comercio" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="ventas_cuotas_id_factura" table="ventas_cuotas" column="id_factura" reference_table="facturas" reference_column="id_factura" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="ventas_cuotas_id_recibo" table="ventas_cuotas" column="id_recibo" reference_table="recibos" reference_column="id_recibo" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="ventas_resumenes_id_factura" table="ventas_resumenes" column="id_factura" reference_table="facturas" reference_column="id_factura" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="ventas_resumenes_id_persona" table="ventas_resumenes" column="id_persona" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="ventas_resumenes_detalles_id_resumen" table="ventas_resumenes_detalles" column="id_resumen" reference_table="ventas_resumenes" reference_column="id_resumen" on_delete="Unknown" on_update="Unknown" />
+	<Constraint name="ventas_resumenes_detalles_id_persona" table="ventas_resumenes_detalles" column="id_persona" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+</Database>
