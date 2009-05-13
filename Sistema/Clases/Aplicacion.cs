@@ -429,15 +429,6 @@ namespace Lazaro
                                         Lfx.Sound.Lic(@"C:\Lazaro\Lui");
                                         Lfx.Sound.Lic(@"C:\Lazaro\Lfc");
                                         break;
-                                case "ACTIVAR":
-                                        if (Config.Version == Config.Versiones.Completa) {
-                                                Lui.Forms.MessageBox.Show("Ya está utilizando la versión completa del sistema.", "Aviso");
-                                        } else {
-                                                Lazaro.Misc.Activar FormularioActivar = new Lazaro.Misc.Activar();
-                                                FormularioActivar.Workspace = Lws.Workspace.Master;
-                                                FormularioActivar.ShowDialog();
-                                        }
-                                        break;
 
                                 case "CHKDB":
                                         string SubComandoDbCheck = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpperInvariant();
