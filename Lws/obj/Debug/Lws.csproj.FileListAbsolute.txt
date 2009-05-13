@@ -1,8 +1,0 @@
-C:\LazaroOSE\Lws\bin\Debug\Lws.dll.config
-C:\LazaroOSE\Lws\bin\Debug\Lws.dll
-C:\LazaroOSE\Lws\bin\Debug\Lws.pdb
-C:\LazaroOSE\Lws\bin\Debug\Lfx.dll
-C:\LazaroOSE\Lws\bin\Debug\Lfx.pdb
-C:\LazaroOSE\Lws\obj\Debug\ResolveAssemblyReference.cache
-C:\LazaroOSE\Lws\obj\Debug\Lws.dll
-C:\LazaroOSE\Lws\obj\Debug\Lws.pdb
