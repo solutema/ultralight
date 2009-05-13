@@ -19,6 +19,17 @@
             Obtiene las estructuras de las tablas desde dbstruct.xml (puede no coincidir con el contenido actual de la base de datos)
             </summary>
         </member>
+        <member name="T:Lfx.Data.Providers.Npgsql">
+            <summary>
+            Proveedor compatible con Npgsql versión 2. Requiere la presencia de Npgsql.dll en el directorio del programa.
+            </summary>
+        </member>
+        <member name="T:Lfx.Data.Providers.Provider">
+            <summary>
+            Representa un proveedor ADO.NET, el cual se carga en tiempo de ejecución a través de System.Reflection para no
+            agregar dependencias en tiempo de diseño. La única dependencia en tiempo de diseño es System.Data.Odbc.
+            </summary>
+        </member>
         <member name="T:Lfx.Data.DataBase">
             <summary>
             Proporciona una conexión a la base de datos y acceso de bajo nivel (sin abstracción) a los datos. Se utiliza normalmente para ejecutar consultas.
@@ -172,6 +183,16 @@
         <member name="T:Lfx.Types.ControlChars">
             <summary>
             Clases referentes al manejo de tipos.
+            </summary>
+        </member>
+        <member name="T:Lfx.Data.Providers.MySql">
+            <summary>
+            Proveedor compatible con MySql Connector/NET versión 6. Requiere la presencia de MySql.Data.dll en el directorio del programa.
+            </summary>
+        </member>
+        <member name="T:Lfx.Data.Providers.Odbc">
+            <summary>
+            Proveedor compatible ODBC. Este es el único proveedor que está enlazado estáticamente y no trabaja por reflexión.
             </summary>
         </member>
     </members>

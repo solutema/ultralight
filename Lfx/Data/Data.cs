@@ -37,7 +37,7 @@ namespace Lfx.Data
                 ODBC,
                 MyOdbc,         //MySQL Connector/ODBC
                 MySql,          //MySQL Connector/NET
-                PgOdbc,
+                Npgsql,
                 MSSql,
                 Oracle,
         }

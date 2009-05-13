@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+﻿// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -33,18 +33,19 @@ using System.Text;
 namespace Lfx.Data.Providers
 {
         /// <summary>
-        /// Proveedor compatible con MySql Connector/NET versión 6. Requiere la presencia de MySql.Data.dll en el directorio del programa.
+        /// Proveedor compatible con Npgsql versión 2. Requiere la presencia de Npgsql.dll en el directorio del programa.
         /// </summary>
-        public class MySql : Provider
+        public class Npgsql : Provider
         {
-                public MySql() :
-                        base("MySql.Data",
-                        "MySql.Data",
-                        "MySqlClient.MySqlConnection",
-                        "MySqlClient.MySqlCommand",
-                        "MySqlClient.MySqlDataAdapter",
-                        "MySqlClient.MySqlParameter")
+                public Npgsql() :
+                        base("Npgsql",
+                        "Npgsql",
+                        "Npgsql.NpgsqlConnection",
+                        "Npgsql.NpgsqlCommand",
+                        "Npgsql.NpgsqlDataAdapter",
+                        "Npgsql.NpgsqlParameter")
                 {
                 }
         }
 }
+

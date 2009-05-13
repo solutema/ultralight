@@ -42,7 +42,6 @@ namespace Lazaro
                 public static Principal.Inicio FormularioPrincipal;
                 public static bool Flotante;
                 public static bool ReinicioPendiente;
-
                 public static string CUIT = "";
 
                 public static string Version()
@@ -429,6 +428,15 @@ namespace Lazaro
                                         Lfx.Sound.Lic(@"C:\Lazaro\Lws");
                                         Lfx.Sound.Lic(@"C:\Lazaro\Lui");
                                         Lfx.Sound.Lic(@"C:\Lazaro\Lfc");
+                                        break;
+                                case "ACTIVAR":
+                                        if (Config.Version == Config.Versiones.Completa) {
+                                                Lui.Forms.MessageBox.Show("Ya está utilizando la versión completa del sistema.", "Aviso");
+                                        } else {
+                                                Lazaro.Misc.Activar FormularioActivar = new Lazaro.Misc.Activar();
+                                                FormularioActivar.Workspace = Lws.Workspace.Master;
+                                                FormularioActivar.ShowDialog();
+                                        }
                                         break;
 
                                 case "CHKDB":

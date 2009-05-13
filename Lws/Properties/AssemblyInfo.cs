@@ -11,10 +11,10 @@ using System.Security.Permissions;
 
 [assembly: AssemblyTitle("Lázaro Work Space")]
 [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyDescription("Lázaro Work Space versión 1.0")]
-[assembly: AssemblyCompany("Carrea Martnez SDH")]
+[assembly: AssemblyDescription("Lázaro Workspace versión 1.0")]
+[assembly: AssemblyCompany("Carrea Ernesto, Martínez Miguel")]
 [assembly: AssemblyProduct("Lázaro")]
-[assembly: AssemblyCopyright("Copyright © Carrea Martnez SDH")]
+[assembly: AssemblyCopyright("Copyright © 2004-2009 Carrea Ernesto, Martínez Miguel")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: System.Runtime.InteropServices.ComVisible(false)]

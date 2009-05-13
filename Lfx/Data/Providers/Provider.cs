@@ -33,6 +33,10 @@ using System.Reflection;
 
 namespace Lfx.Data.Providers
 {
+        /// <summary>
+        /// Representa un proveedor ADO.NET, el cual se carga en tiempo de ejecución a través de System.Reflection para no
+        /// agregar dependencias en tiempo de diseño. La única dependencia en tiempo de diseño es System.Data.Odbc.
+        /// </summary>
         public class Provider
         {
                 public string AssemblyName = null;

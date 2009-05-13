@@ -33,13 +33,13 @@ namespace Lazaro.Misc
                         this.Label6 = new System.Windows.Forms.Label();
                         this.EtiquetaUsuario = new System.Windows.Forms.Label();
                         this.Label8 = new System.Windows.Forms.Label();
-                        this.Label10 = new System.Windows.Forms.Label();
                         this.label9 = new System.Windows.Forms.Label();
                         this.OkButton = new Lui.Forms.Button();
                         this.label11 = new System.Windows.Forms.Label();
                         this.ListaComponentes = new System.Windows.Forms.ListBox();
                         this.EtiquetaFramework = new System.Windows.Forms.Label();
                         this.Label7 = new System.Windows.Forms.Label();
+                        this.label4 = new System.Windows.Forms.Label();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
                         this.SuspendLayout();
                         // 
@@ -61,7 +61,7 @@ namespace Lazaro.Misc
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(534, 16);
                         this.Label1.TabIndex = 2;
-                        this.Label1.Text = "Lázaro Copyright  2004-2007 Carrea Martínez S.D.H.";
+                        this.Label1.Text = "Copyright © 2004-2009 Carrea Ernesto, Martínez Miguel";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label2
@@ -140,22 +140,11 @@ namespace Lazaro.Misc
                         this.Label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.Label8.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.Label8.Location = new System.Drawing.Point(16, 128);
+                        this.Label8.Location = new System.Drawing.Point(16, 124);
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(605, 16);
                         this.Label8.TabIndex = 14;
                         this.Label8.Text = "Incluye SharpZipLib, Copyright ©2000-2009 IC#Code.";
-                        // 
-                        // Label10
-                        // 
-                        this.Label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.Label10.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.Label10.Location = new System.Drawing.Point(16, 216);
-                        this.Label10.Name = "Label10";
-                        this.Label10.Size = new System.Drawing.Size(84, 16);
-                        this.Label10.TabIndex = 15;
-                        this.Label10.Text = "ID Instalación";
-                        this.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // label9
                         // 
@@ -193,12 +182,11 @@ namespace Lazaro.Misc
                         this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.label11.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.label11.Location = new System.Drawing.Point(16, 148);
+                        this.label11.Location = new System.Drawing.Point(16, 140);
                         this.label11.Name = "label11";
-                        this.label11.Size = new System.Drawing.Size(605, 32);
+                        this.label11.Size = new System.Drawing.Size(605, 16);
                         this.label11.TabIndex = 21;
-                        this.label11.Text = "Incluye gráficos del Tango Desktop Project. Más información en tango.freedesktop." +
-                            "org.";
+                        this.label11.Text = "Incluye MySQL Connector/NET. Copyright 2004-2007 MySQL AB.";
                         // 
                         // ListaComponentes
                         // 
@@ -238,15 +226,27 @@ namespace Lazaro.Misc
                         this.Label7.Text = "Framework";
                         this.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
+                        // label4
+                        // 
+                        this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label4.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.label4.Location = new System.Drawing.Point(16, 156);
+                        this.label4.Name = "label4";
+                        this.label4.Size = new System.Drawing.Size(605, 16);
+                        this.label4.TabIndex = 23;
+                        this.label4.Text = "Incluye gráficos del Tango Desktop Project. Más información en tango.freedesktop." +
+                            "org.";
+                        // 
                         // AcercaDe
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(634, 394);
                         this.ControlBox = false;
+                        this.Controls.Add(this.label4);
                         this.Controls.Add(this.ListaComponentes);
                         this.Controls.Add(this.label11);
                         this.Controls.Add(this.label9);
-                        this.Controls.Add(this.Label10);
                         this.Controls.Add(this.Label8);
                         this.Controls.Add(this.EtiquetaFramework);
                         this.Controls.Add(this.EtiquetaUsuario);
@@ -291,9 +291,9 @@ namespace Lazaro.Misc
                 private Lui.Forms.Button OkButton;
                 private Label label11;
                 private ListBox ListaComponentes;
-                private System.Windows.Forms.Label Label10;
                 private Label EtiquetaFramework;
                 private Label Label7;
+                private Label label4;
 
         }
 }

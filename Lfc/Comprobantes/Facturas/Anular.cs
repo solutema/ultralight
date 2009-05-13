@@ -514,44 +514,7 @@ namespace Lfc.Comprobantes.Facturas
                                         Lui.Forms.MessageBox.Show("Se anuló el comprobante " + Lbl.Comprobantes.Comprobante.NumeroCompleto(DataView, m_Id) + ". Recuerde archivar ambas copias.", "Aviso");
                                 } else {
                                         Lbl.Comprobantes.Factura Fac = new Lbl.Comprobantes.Factura(DataView, IdFactura);
-                                        if (Fac.Tipo.EsNotaDebito) {
-                                                Lbl.Cuentas.CuentaCorriente CtaCteDeb = new Lbl.Cuentas.CuentaCorriente(DataView, Fac.Cliente.Id);
-                                                CtaCteDeb.Movimiento(true, 11000, "Anulación Comprob. " + Fac.ToString(), -Fac.Total, "", Fac.Id, 0, true);
-                                        } else if (Fac.Tipo.EsNotaCredito) {
-                                                Lbl.Cuentas.CuentaCorriente CtaCteCred = new Lbl.Cuentas.CuentaCorriente(DataView, Fac.Cliente.Id);
-                                                CtaCteCred.Movimiento(true, 11000, "Anulación Comprob. " + Fac.ToString(), Fac.Total, "", Fac.Id, 0, true);
-                                        } else if (Fac.Tipo.EsFactura) {
-
-                                                Lbl.Articulos.Stock.MoverStockFactura(Fac, false);
-                                                switch (Fac.FormaDePago) {
-                                                        case Lbl.Comprobantes.FormasDePago.Efectivo:
-                                                                // Hago un egreso de caja
-                                                                Lbl.Cuentas.CuentaRegular Caja = new Lbl.Cuentas.CuentaRegular(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
-                                                                Caja.Movimiento(true, 11000, "Anulación Comprob. " + Fac.ToString(), Fac.Cliente.Id, -Fac.ImporteCancelado, "", Fac.Id, 0, "");
-                                                                break;
-
-                                                        case Lbl.Comprobantes.FormasDePago.Tarjeta:
-                                                        case Lbl.Comprobantes.FormasDePago.TarjetaDeDebito:
-                                                                //TODO: anular el cupón?
-                                                                break;
-
-                                                        case Lbl.Comprobantes.FormasDePago.Cheque:
-                                                                // TODO: quitar el cheque?
-                                                                break;
-
-                                                        case Lbl.Comprobantes.FormasDePago.CuentaCorriente:
-                                                                // Anulo, slamente por el monto cancelado.
-                                                                // Si la factura estaba impaga, no anulo nada
-								if(Fac.ImporteCancelado > 0) {
-                                                                	Lbl.Cuentas.CuentaCorriente CtaCteFac = new Lbl.Cuentas.CuentaCorriente(DataView, Fac.Cliente.Id);
-                                                                	CtaCteFac.Movimiento(true, 11000, "Anulación Comprob. " + Fac.ToString(), -Fac.ImporteCancelado, "", Fac.Id, 0, false);
-								}
-                                                                break;
-                                                }
-                                        }
-
-                                        // Marco la factura como anulada
-                                        DataView.DataBase.Execute("UPDATE facturas SET anulada=1 WHERE id_factura=" + Fac.Id.ToString());
+                                        Fac.Anular();
                                         Lui.Forms.MessageBox.Show("Se anuló el comprobante " + Fac.ToString() + ". Recuerde archivar ambas copias.", "Aviso");
                                 }
 

@@ -371,7 +371,11 @@ namespace Lfx.FileFormats.Office.Spreadsheet
                                                                 CellString += cl.Content.ToString();
                                                                 break;
                                                         case "System.DateTime":
-                                                                CellString += cl.Content.ToString();
+                                                                DateTime clContent = (DateTime)cl.Content;
+                                                                if (clContent.Hour == 0 && clContent.Minute == 0 && clContent.Second == 0)
+                                                                        CellString += clContent.ToString(Lfx.Types.Formatting.DateTime.DefaultDateFormat);
+                                                                else
+                                                                        CellString += clContent.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat);
                                                                 break;
                                                         case "System.String":
                                                                 CellString += cl.Content.ToString();
@@ -503,7 +507,13 @@ namespace Lfx.FileFormats.Office.Spreadsheet
 								CellString += @"<Data ss:Type=""Number"">" + cl.Content.ToString() + @"</Data>";
 								break;
 							case "System.DateTime":
-								CellString += @"<Data ss:Type=""String"">" + cl.Content.ToString() + @"</Data>";
+                                                                CellString += @"<Data ss:Type=""String"">";
+                                                                DateTime clContent = (DateTime)cl.Content;
+                                                                if (clContent.Hour == 0 && clContent.Minute == 0 && clContent.Second == 0)
+                                                                        CellString += clContent.ToString(Lfx.Types.Formatting.DateTime.DefaultDateFormat);
+                                                                else
+                                                                        CellString += clContent.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat);
+                                                                CellString += @"</Data>";
 								break;
 							case "System.String":
 								CellString += @"<Data ss:Type=""String"">" + cl.Content.ToString() + @"</Data>";

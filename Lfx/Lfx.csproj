@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
@@ -98,6 +98,7 @@
     <Compile Include="Data\DataBaseCache.cs" />
     <Compile Include="Data\Field.cs" />
     <Compile Include="Data\IndexDefinition.cs" />
+    <Compile Include="Data\Providers\Npgsql.cs" />
     <Compile Include="Data\Row.cs" />
     <Compile Include="Data\TableStructure.cs" />
     <Compile Include="Data\Tag.cs" />
@@ -197,7 +198,4 @@
   <ProjectExtensions>
     <VisualStudio />
   </ProjectExtensions>
-  <ItemGroup>
-    <Folder Include="Data\Providers\" />
-  </ItemGroup>
 </Project>

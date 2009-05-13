@@ -379,16 +379,15 @@ namespace Lazaro.Misc.Config
                         this.txtConexion.ReadOnly = false;
                         this.txtConexion.SetData = new string[] {
         "ODBC|odbc",
-        "MySQL Connector/ODBC|myodbc",
-        "MySQL Connector/NET|mysql",
-        "PostgreSQL (via pgodbc)|pgodbc",
-        "SQL Server|mssql"};
+        "MySQL Nativo|mysql",
+        "MySQL via ODBC|myodbc",
+        "PostgreSQL|npgsql"};
                         this.txtConexion.Size = new System.Drawing.Size(196, 23);
                         this.txtConexion.TabIndex = 1;
                         this.txtConexion.Table = null;
-                        this.txtConexion.Text = "MySQL Connector/NET";
+                        this.txtConexion.Text = "MySQL Nativo";
                         this.txtConexion.TextKey = "mysql";
-                        this.txtConexion.TextRaw = "MySQL Connector/NET";
+                        this.txtConexion.TextRaw = "MySQL Nativo";
                         this.txtConexion.TipWhenBlank = "";
                         this.txtConexion.ToolTipText = "";
                         this.txtConexion.TextChanged += new System.EventHandler(this.txtConexion_TextChanged);
@@ -745,8 +744,8 @@ namespace Lazaro.Misc.Config
                                         case "mysql":
                                                 Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MySql;
                                                 break;
-                                        case "pgodbc":
-                                                Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.PgOdbc;
+                                        case "npgsql":
+                                                Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.Npgsql;
                                                 break;
                                         case "mssql":
                                                 Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MSSql;

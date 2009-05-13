@@ -75,6 +75,8 @@ namespace Lfx.Data
                                         if (Lfx.Data.DataBaseCache.DefaultCache.Provider == null)
                                                 Lfx.Data.DataBaseCache.DefaultCache.Provider = new Lfx.Data.Providers.MySql();
                                         ConnectionString.Append("Convert Zero Datetime=true;");
+                                        ConnectionString.Append("Connection Timeout=60;");
+                                        ConnectionString.Append("Default Command Timeout=900;");
                                         if (Lfx.Data.DataBaseCache.DefaultCache.SlowLink)
                                                 ConnectionString.Append("Compress=true;");
                                         Lfx.Data.DataBaseCache.DefaultCache.OdbcDriver = null;
@@ -117,10 +119,10 @@ namespace Lfx.Data
                                         ConnectionString.Append("OPTION=" + MyOdbcOptions.ToString() + ";");
                                         Lfx.Data.DataBaseCache.DefaultCache.SqlMode = SqlModes.MySql;
                                         break;
-                                case AccessModes.PgOdbc:
+                                case AccessModes.Npgsql:
                                         if (Lfx.Data.DataBaseCache.DefaultCache.Provider == null)
-                                                Lfx.Data.DataBaseCache.DefaultCache.Provider = new Lfx.Data.Providers.Odbc();
-                                        Lfx.Data.DataBaseCache.DefaultCache.OdbcDriver = "PoWstgreSQL Unicode";
+                                                Lfx.Data.DataBaseCache.DefaultCache.Provider = new Lfx.Data.Providers.Npgsql();
+                                        ConnectionString.Append("CommandTimeout=900;");
                                         Lfx.Data.DataBaseCache.DefaultCache.SqlMode = SqlModes.PostgreSql;
                                         break;
                                 case AccessModes.MSSql:
@@ -148,8 +150,7 @@ namespace Lfx.Data
                         }
                         try {
                                 DbConnection.Open();
-                        }
-                        catch {
+                        } catch {
                                 if (Lfx.Data.DataBaseCache.DefaultCache.SlowLink && showProgress) {
                                         StatusForm.Close();
                                         StatusForm = null;
@@ -249,7 +250,7 @@ namespace Lfx.Data
                                                 Data.ColumnDefinition CurrentFieldDef = CurrentTableDef.Columns[NewFieldDef.Name];
                                                 if (CurrentFieldDef != NewFieldDef) {
                                                         //Existe el campo, pero no es igual... hay que modificarlo
-                                                        if (this.AccessMode == AccessModes.PgOdbc) {
+                                                        if (this.AccessMode == AccessModes.Npgsql) {
                                                                 Sql = string.Empty;
                                                                 if (CurrentFieldDef.FieldType != NewFieldDef.FieldType)
                                                                         Sql += ", ALTER COLUMN \"" + NewFieldDef.Name + "\" TYPE " + NewFieldDef.SqlType();
@@ -305,7 +306,7 @@ namespace Lfx.Data
                         //Crear y modificar
                         if (newTableDef.Indexes != null) {
                                 foreach (Data.IndexDefinition NewIndex in newTableDef.Indexes.Values) {
-                                        if (NewIndex.Primary && this.AccessMode == AccessModes.PgOdbc)
+                                        if (NewIndex.Primary && this.AccessMode == AccessModes.Npgsql)
                                                 NewIndex.Name = NewIndex.TableName + "_pkey";
 
                                         bool Create = false;
@@ -341,7 +342,7 @@ namespace Lfx.Data
                 {
                         string Sql = null;
                         switch (this.AccessMode) {
-                                case AccessModes.PgOdbc:
+                                case AccessModes.Npgsql:
                                         if (index.Primary)
                                                 Sql = "ALTER TABLE \"" + index.TableName + "\" ADD PRIMARY KEY (\"" + String.Join(",", index.Columns).Replace(",", "\",\"") + "\"); ";
                                         else {
@@ -362,7 +363,7 @@ namespace Lfx.Data
                 {
                         string Sql;
                         switch (this.AccessMode) {
-                                case AccessModes.PgOdbc:
+                                case AccessModes.Npgsql:
                                         if (index.Primary)
                                                 Sql = "ALTER TABLE \"" + index.TableName + "\" DROP CONSTRAINT \"" + index.TableName + "_pkey\"";
                                         else
@@ -408,7 +409,7 @@ namespace Lfx.Data
 
                         //requiere INFORMATION_SCHEMA. No compatible con MySql < 5 ni PostgreSQL < 7.4
                         string Sql;
-                        if (this.AccessMode == AccessModes.PgOdbc)
+                        if (this.AccessMode == AccessModes.Npgsql)
                                 Sql = "SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA='public' AND TABLE_CATALOG='" + this.DbConnection.Database + "' AND TABLE_NAME='" + tableName + "' ORDER BY ORDINAL_POSITION";
                         else
                                 Sql = "SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA='" + this.DbConnection.Database + "' AND TABLE_NAME='" + tableName + "' ORDER BY ORDINAL_POSITION";
@@ -430,7 +431,7 @@ namespace Lfx.Data
                                                 FieldDef.Precision = 4;
                                                 break;
                                 }
-                                string COLUMN_TYPE = (this.AccessMode == AccessModes.PgOdbc) ? "DATA_TYPE" : "COLUMN_TYPE";
+                                string COLUMN_TYPE = (this.AccessMode == AccessModes.Npgsql) ? "DATA_TYPE" : "COLUMN_TYPE";
                                 if (Columna[COLUMN_TYPE].ToString().ToLower().IndexOf("unsigned") >= 0)
                                         FieldDef.Unsigned = true;
 
@@ -467,7 +468,7 @@ namespace Lfx.Data
                                 //Es la clave autonumérica?
                                 if (this.SqlMode == SqlModes.MySql && Columna["EXTRA"].ToString() == "auto_increment") {
                                         FieldDef.FieldType = DbTypes.Serial;
-                                } else if (this.AccessMode == AccessModes.PgOdbc && Columna["COLUMN_DEFAULT"].ToString().IndexOf("nextval(") >= 0) {
+                                } else if (this.AccessMode == AccessModes.Npgsql && Columna["COLUMN_DEFAULT"].ToString().IndexOf("nextval(") >= 0) {
                                         FieldDef.FieldType = DbTypes.Serial;
                                 }
 
@@ -481,7 +482,7 @@ namespace Lfx.Data
                         }
 
                         //Indices
-                        if (this.AccessMode == AccessModes.PgOdbc)
+                        if (this.AccessMode == AccessModes.Npgsql)
                                 Sql = @"SELECT a.table_catalog, a.table_schema, a.table_name, a.constraint_name AS INDEX_NAME, a.constraint_type, array_to_string(array(SELECT column_name::varchar FROM information_schema.key_column_usage WHERE constraint_name = a.constraint_name ORDER BY ordinal_position), ', ') as column_list, c.table_name, c.column_name
 					FROM information_schema.table_constraints a 
 					INNER JOIN information_schema.key_column_usage b
@@ -525,7 +526,7 @@ namespace Lfx.Data
                                                                 if (IndexName.ToUpperInvariant() == "PRIMARY")
                                                                         NewIndex.Primary = true;
                                                                 break;
-                                                        case AccessModes.PgOdbc:
+                                                        case AccessModes.Npgsql:
                                                                 if (Index["CONSTRAINT_TYPE"].ToString() == "PRIMARY KEY")
                                                                         NewIndex.Primary = true;
                                                                 break;
@@ -588,7 +589,7 @@ namespace Lfx.Data
                                                 this.Execute(this.CustomizeSql(Sql));
                                         } else if (CurrentConstraints[NewCon.Name] != NewCon) {
                                                 //No es igual... hay que modificarlo
-                                                if (this.AccessMode == AccessModes.PgOdbc)
+                                                if (this.AccessMode == AccessModes.Npgsql)
                                                         Sql = "ALTER TABLE \"" + NewCon.TableName + "\" DROP CONSTRAINT \"" + NewCon.Name + "\"";
                                                 else
                                                         Sql = "ALTER TABLE \"" + NewCon.TableName + "\" DROP FOREIGN KEY \"" + NewCon.Name + "\"";
@@ -613,7 +614,7 @@ namespace Lfx.Data
                         System.Collections.Generic.Dictionary<string, ConstraintDefinition> Res = new System.Collections.Generic.Dictionary<string, ConstraintDefinition>();
                         //Claves foráneas
                         string SQL;
-                        if (this.AccessMode == AccessModes.PgOdbc) {
+                        if (this.AccessMode == AccessModes.Npgsql) {
                                 SQL = @"SELECT INFORMATION_SCHEMA.TABLE_CONSTRAINTS.CONSTRAINT_NAME, INFORMATION_SCHEMA.TABLE_CONSTRAINTS.TABLE_NAME, INFORMATION_SCHEMA.TABLE_CONSTRAINTS.TABLE_NAME, INFORMATION_SCHEMA.TABLE_CONSTRAINTS.CONSTRAINT_TYPE,
 					INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE.COLUMN_NAME, INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE.table_name AS REFERENCED_TABLE_NAME, INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE.column_name AS REFERENCED_COLUMN_NAME
 					FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE

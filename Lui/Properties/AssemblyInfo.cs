@@ -11,10 +11,10 @@ using System.Security.Permissions;
 
 [assembly: AssemblyTitle("Lázaro User Interface")]
 [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyDescription("Lázaro User Interface versión 1.0")]
-[assembly: AssemblyCompany("Carrea Martnez SDH")]
+[assembly: AssemblyDescription("Lázaro User Interface Controls versión 1.0")]
+[assembly: AssemblyCompany("Carrea Ernesto, Martínez Miguel")]
 [assembly: AssemblyProduct("Lázaro")]
-[assembly: AssemblyCopyright("Copyright © Carrea Martnez SDH")]
+[assembly: AssemblyCopyright("Copyright © 2004-2009 Carrea Ernesto, Martínez Miguel")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: System.Runtime.InteropServices.ComVisible (false)]

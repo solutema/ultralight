@@ -33,6 +33,9 @@ using System.Text;
 
 namespace Lfx.Data.Providers
 {
+        /// <summary>
+        /// Proveedor compatible ODBC. Este es el único proveedor que está enlazado estáticamente y no trabaja por reflexión.
+        /// </summary>
         public class Odbc : Provider
         {
                 public Odbc() :
