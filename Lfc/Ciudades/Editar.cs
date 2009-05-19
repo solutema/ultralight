@@ -260,14 +260,14 @@ namespace Lfc.Ciudades
                                         Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
                                 } else {
                                         Comando = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "ciudades");
-                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_ciudad=" + m_Id.ToString());
+                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_ciudad", m_Id);
                                 }
 
                                 Comando.Fields.AddWithValue("nombre", txtNombre.Text);
                                 Comando.Fields.AddWithValue("cp", txtCP.Text);
                                 Comando.Fields.AddWithValue("parent", Lfx.Data.DataBase.ConvertZeroToDBNull(txtParent.TextInt));
 
-				this.DataView.DataBase.Execute(Comando);
+				this.DataView.Execute(Comando);
                                 this.DataView.DataBase.Commit();
                                 
                                 if (m_Nuevo) {

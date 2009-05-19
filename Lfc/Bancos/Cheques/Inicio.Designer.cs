@@ -35,9 +35,9 @@ namespace Lfc.Bancos.Cheques
 {
         public partial class Inicio : Lui.Forms.ListingForm
         {
-                #region C�digo generado por el Dise�ador de Windows Forms
+                #region Código generado por el Diseñador de Windows Forms
 
-                // Limpiar los recursos que se est�n utilizando.
+                // Limpiar los recursos que se están utilizando.
                 protected override void Dispose(bool disposing)
                 {
                         if (disposing) {
@@ -49,7 +49,7 @@ namespace Lfc.Bancos.Cheques
                 }
 
 
-                // Requerido por el Dise�ador de Windows Forms
+                // Requerido por el Diseñador de Windows Forms
                 private System.ComponentModel.Container components = null;
 
                 private void InitializeComponent()

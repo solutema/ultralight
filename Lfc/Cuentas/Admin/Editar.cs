@@ -486,7 +486,7 @@ namespace Lfc.Cuentas.Admin
                                         Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
                                 } else {
                                         Comando = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "cuentas");
-                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_cuenta=" + m_Id.ToString());
+                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_cuenta", m_Id);
                                 }
 
                                 Comando.Fields.AddWithValue("titular", txtTitular.Text);
@@ -498,7 +498,7 @@ namespace Lfc.Cuentas.Admin
 				Comando.Fields.AddWithValue("cbu", txtCBU.Text);
                                 Comando.Fields.AddWithValue("estado", Lfx.Types.Parsing.ParseInt(txtEstado.TextKey));
 
-                                DataView.DataBase.Execute(Comando);
+                                DataView.Execute(Comando);
 
                                 if (m_Nuevo) {
                                         m_Id = DataView.DataBase.FieldInt("SELECT MAX(id_cuenta) FROM cuentas WHERE nombre='" + DataView.DataBase.EscapeString(txtNombre.Text) + "'");

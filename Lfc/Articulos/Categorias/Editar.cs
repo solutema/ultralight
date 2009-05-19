@@ -622,7 +622,7 @@ namespace Lfc.Articulos.Categorias
                                                 Lfx.Data.SqlInsertBuilder InsertarImagen = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, "cat_articulos");
                                                 InsertarImagen.Fields.AddWithValue("id_cat_articulo", m_Id);
                                                 InsertarImagen.Fields.AddWithValue("imagen", pctImagen.Image);
-                                                DataView.DataBase.Execute(InsertarImagen);
+                                                DataView.Execute(InsertarImagen);
                                                 break;
                                 }
 

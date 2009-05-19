@@ -173,7 +173,7 @@ namespace Lfc.Articulos.Rubros
 		public override Lfx.Types.OperationResult Edit(int lId)
 		{
 			Lfx.Data.SqlSelectBuilder ComandoSelect = new Lfx.Data.SqlSelectBuilder();
-			ComandoSelect.WhereClause = new Lfx.Data.SqlWhereBuilder("id_rubro=" + lId.ToString());
+			ComandoSelect.WhereClause = new Lfx.Data.SqlWhereBuilder("id_rubro", lId);
 
 			Lfx.Data.Row Registro = this.Workspace.DefaultDataBase.Row("articulos_rubros", "id_rubro", lId);
 
@@ -201,12 +201,12 @@ namespace Lfc.Articulos.Rubros
                                         Comando = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, "articulos_rubros");
                                 } else {
                                         Comando = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "articulos_rubros");
-                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_rubro=" + m_Id.ToString());
+                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_rubro", m_Id);
                                 }
 
                                 Comando.Fields.AddWithValue("nombre", txtNombre.Text);
                                 Comando.Fields.AddWithValue("id_alicuota", Lfx.Data.DataBase.ConvertZeroToDBNull(txtAlicuota.TextInt));
-                                DataView.DataBase.Execute(Comando);
+                                DataView.Execute(Comando);
 
 				if(m_Nuevo && ControlDestino != null) {
                                         m_Nuevo = false;

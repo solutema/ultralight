@@ -35,7 +35,7 @@ namespace Lfx.Data
 {
         public enum SqlModes
         {
-                ANSI = 0,
+                Ansi = 0,
                 MySql,
                 PostgreSql,
                 MSSql,
@@ -44,13 +44,13 @@ namespace Lfx.Data
 
         public enum ValueTypes
         {
-                StringValue,
-                UndefinedValue,
-                IntValue,
-                DoubleValue,
-                CurrencyValue,
+                String,
+                Undefined,
+                Int,
+                Double,
+                Currency,
                 TimeStamp,
-                BlobValue
+                Blob
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Lfx.Data
                         SoundsLike,
                 }
 
-                internal SqlModes m_Mode = SqlModes.ANSI;
+                internal SqlModes m_Mode = SqlModes.Ansi;
 
                 public SqlFieldCollection Fields = new SqlFieldCollection();
                 public SqlWhereBuilder WhereClause = null;
@@ -342,9 +342,9 @@ namespace Lfx.Data
                                         System.Data.IDbDataParameter Param = Lfx.Data.DataBaseCache.DefaultCache.Provider.GetParameter();
                                         Param.ParameterName = "@" + ThisField.ColumnName;
                                         Param.Value = ThisField.FieldValue;
-                                        if (ThisField.FieldType == ValueTypes.BlobValue)
+                                        if (ThisField.FieldType == ValueTypes.Blob)
                                                 Param.DbType = DbType.Binary;
-                                        if (Lfx.Data.DataBaseCache.DefaultCache.Provider is Lfx.Data.Providers.Odbc && ThisField.FieldType == ValueTypes.BlobValue)
+                                        if (Lfx.Data.DataBaseCache.DefaultCache.Provider is Lfx.Data.Providers.Odbc && ThisField.FieldType == ValueTypes.Blob)
                                                 ((System.Data.Odbc.OdbcParameter)Param).OdbcType = System.Data.Odbc.OdbcType.VarBinary;
                                         baseCommand.Parameters.Add(Param);
 				}
@@ -366,7 +366,7 @@ namespace Lfx.Data
                                 if (ThisField.FieldValue == null || ThisField.FieldValue == DBNull.Value) {
                                         ParamValue = "NULL";
                                 } else {
-                                        switch (ThisField.FieldValue.GetType().ToString()) {
+                                        switch (ThisField.FieldValue.GetType().Name) {
                                                 case "Lfx.Data.SqlFunctions":
                                                         switch(((Lfx.Data.SqlFunctions)(ThisField.FieldValue))) {
                                                                 case SqlFunctions.Now:
@@ -460,9 +460,9 @@ namespace Lfx.Data
                                         System.Data.IDbDataParameter Param = Lfx.Data.DataBaseCache.DefaultCache.Provider.GetParameter();
                                         Param.ParameterName = "@" + ThisField.ColumnName;
                                         Param.Value = ThisField.FieldValue;
-                                        if (ThisField.FieldType == ValueTypes.BlobValue)
+                                        if (ThisField.FieldType == ValueTypes.Blob)
                                                 Param.DbType = DbType.Binary;
-                                        if (Lfx.Data.DataBaseCache.DefaultCache.Provider is Lfx.Data.Providers.Odbc && ThisField.FieldType == ValueTypes.BlobValue)
+                                        if (Lfx.Data.DataBaseCache.DefaultCache.Provider is Lfx.Data.Providers.Odbc && ThisField.FieldType == ValueTypes.Blob)
                                                 ((System.Data.Odbc.OdbcParameter)Param).OdbcType = System.Data.Odbc.OdbcType.VarBinary;
 
                                         baseCommand.Parameters.Add(Param);
@@ -487,7 +487,7 @@ namespace Lfx.Data
                                 if (ThisField.FieldValue == null || ThisField.FieldValue == DBNull.Value) {
                                         ParamValue = "NULL";
                                 } else {
-                                        string Tipo = ThisField.FieldValue.GetType().ToString();
+                                        string Tipo = ThisField.FieldValue.GetType().Name;
                                         switch (Tipo) {
                                                 case "Lfx.Data.SqlFunctions":
                                                         switch (((Lfx.Data.SqlFunctions)(ThisField.FieldValue))) {
@@ -589,26 +589,29 @@ namespace Lfx.Data
                 }
 
                 public OperandsAndOr AndOr = OperandsAndOr.OperandAnd;
-                public System.Collections.ArrayList Conditions = new System.Collections.ArrayList();
+                public System.Collections.ArrayList Conditions;
 
                 public SqlWhereBuilder()
-                        : base() { }
+                        : base()
+                {
+                        this.Conditions = new System.Collections.ArrayList();
+                }
 
                 public SqlWhereBuilder(string Condition)
                         : this()
                 {
-                        if (Condition != null && Condition.Length > 0)
-                        {
-                                this.Conditions = new System.Collections.ArrayList();
-                                this.Conditions.Add(Condition);
-                        }
+                        this.Conditions.Add(Condition);
                 }
 
                 public SqlWhereBuilder(SqlCondition Condition)
                         : this()
                 {
-                        this.Conditions = new System.Collections.ArrayList();
                         this.Conditions.Add(Condition);
+                }
+
+                public SqlWhereBuilder(string columnName, object equalsValue)
+                        : this(new SqlCondition(columnName, equalsValue))
+                {
                 }
 
                 public SqlWhereBuilder(System.Collections.ArrayList Conditions)
@@ -625,7 +628,7 @@ namespace Lfx.Data
 
                 public override string ToString()
                 {
-                        if (Conditions.Count > 0)
+                        if (Conditions != null && Conditions.Count > 0)
                         {
                                 System.Text.StringBuilder Command = new System.Text.StringBuilder();
 
@@ -708,12 +711,47 @@ namespace Lfx.Data
 		Now
 	}
 
+        public class SqlExpression
+        {
+                public string Value = null;
+                
+                public SqlExpression(string expr)
+                {
+                        this.Value = expr;
+                }
+
+                public override string ToString()
+                {
+                        return this.Value;
+                }
+        }
+
         public class SqlField
         {
-                protected Lfx.Data.SqlModes m_Mode = Lfx.Data.SqlModes.ANSI;
+                protected Lfx.Data.SqlModes m_Mode = Lfx.Data.SqlModes.Ansi;
                 private string m_Name;
                 private ValueTypes m_Type;
                 private object m_Value;
+
+                public SqlField(string columnName, object fieldValue)
+                {
+                        m_Name = columnName;
+                        m_Value = fieldValue;
+
+                        if (fieldValue is int || fieldValue is long) {
+                                this.m_Type = ValueTypes.Int;
+                        } else if (fieldValue is string) {
+                                this.m_Type = ValueTypes.String;
+                        } else if (fieldValue is DateTime || fieldValue is Nullable<DateTime>) {
+                                this.m_Type = ValueTypes.TimeStamp;
+                        } else if (fieldValue is float || fieldValue is decimal || fieldValue is double) {
+                                this.m_Type = ValueTypes.Double;
+                        } else if (fieldValue is byte[] || fieldValue is System.Drawing.Image) {
+                                this.m_Type = ValueTypes.Blob;
+                        } else {
+                                this.m_Type = ValueTypes.Undefined;
+                        }
+                }
 
                 public SqlField(string columnName, ValueTypes fieldType, object fieldValue)
                 {
@@ -748,14 +786,14 @@ namespace Lfx.Data
                         {
                                 switch (m_Type)
                                 {
-                                        case ValueTypes.StringValue:
+                                        case ValueTypes.String:
                                                 return System.Data.Odbc.OdbcType.VarChar;
-                                        case ValueTypes.DoubleValue:
-                                        case ValueTypes.CurrencyValue:
+                                        case ValueTypes.Double:
+                                        case ValueTypes.Currency:
                                                 return System.Data.Odbc.OdbcType.Numeric;
-                                        case ValueTypes.IntValue:
+                                        case ValueTypes.Int:
                                                 return System.Data.Odbc.OdbcType.Int;
-                                        case ValueTypes.BlobValue:
+                                        case ValueTypes.Blob:
                                                 return System.Data.Odbc.OdbcType.VarBinary;
                                         default:
                                                 return System.Data.Odbc.OdbcType.VarChar;
@@ -792,26 +830,7 @@ namespace Lfx.Data
 
 		public virtual int AddWithValue(string fieldName, object fieldValue)
                 {
-			SqlField Fld;
-			if(fieldValue is int || fieldValue is long) {
-				Fld = new SqlField(fieldName, ValueTypes.IntValue, fieldValue);
-			} else if(fieldValue is string) {
-				Fld = new SqlField(fieldName, ValueTypes.StringValue, fieldValue);
-			} else if(fieldValue is DateTime) {
-				Fld = new SqlField(fieldName, ValueTypes.TimeStamp, fieldValue);
-			} else if(fieldValue is Nullable<DateTime>) {
-				if(((Nullable<DateTime>)fieldValue).HasValue)
-					Fld = new SqlField(fieldName, ValueTypes.TimeStamp, ((Nullable<DateTime>)fieldValue).Value);
-				else
-					Fld = new SqlField(fieldName, ValueTypes.TimeStamp, null);
-			} else if(fieldValue is float || fieldValue is decimal || fieldValue is double) {
-				Fld = new SqlField(fieldName, ValueTypes.DoubleValue, fieldValue);
-                        } else if (fieldValue is byte[] || fieldValue is System.Drawing.Image) {
-                                Fld = new SqlField(fieldName, ValueTypes.BlobValue, fieldValue);
-			} else {
-				Fld = new SqlField(fieldName, ValueTypes.UndefinedValue, fieldValue);
-			}
-                        return this.List.Add(Fld);
+                        return this.List.Add(new SqlField(fieldName, fieldValue));
                 }
 
 		public virtual SqlField this[string columnName]
@@ -823,7 +842,7 @@ namespace Lfx.Data
 						return Itm;
 				}
 				//Si no existe, creo dinámicamente el campo
-				SqlField Res = new SqlField(columnName, ValueTypes.StringValue, "");
+				SqlField Res = new SqlField(columnName, ValueTypes.String, "");
 				this.List.Add(Res);
 				return Res;
 			}
@@ -869,9 +888,9 @@ namespace Lfx.Data
 
         public class SqlCondition
         {
-                protected Lfx.Data.SqlModes m_Mode = Lfx.Data.SqlModes.ANSI;
+                protected Lfx.Data.SqlModes m_Mode = Lfx.Data.SqlModes.Ansi;
                 protected string LeftValue = "";
-                protected string RightValue = "";
+                protected object m_RightValue = "";
                 public SqlCommandBuilder.SqlOperands Operand = SqlCommandBuilder.SqlOperands.Equals;
 
                 public SqlCondition()
@@ -880,24 +899,26 @@ namespace Lfx.Data
                 }
 
                 public SqlCondition(Lfx.Data.SqlModes Mode)
-                        :
-                    this()
+                        : this()
                 {
                         m_Mode = Mode;
                 }
 
-                public SqlCondition(string LeftValue, SqlCommandBuilder.SqlOperands Operand, string RightValue)
-                        :
-                    this()
+                public SqlCondition(string LeftValue, object RightValue)
+                        : this(LeftValue, SqlCommandBuilder.SqlOperands.Equals, RightValue)
+                {
+                }
+
+                public SqlCondition(string LeftValue, SqlCommandBuilder.SqlOperands Operand, object RightValue)
+                        : this()
                 {
                         this.LeftValue = LeftValue;
                         this.Operand = Operand;
-                        this.RightValue = RightValue;
+                        this.m_RightValue = RightValue;
                 }
 
-                public SqlCondition(Lfx.Data.SqlModes Mode, string LeftValue, SqlCommandBuilder.SqlOperands Operand, string RightValue)
-                        :
-                    this(LeftValue, Operand, RightValue)
+                public SqlCondition(Lfx.Data.SqlModes Mode, string LeftValue, SqlCommandBuilder.SqlOperands Operand, object RightValue)
+                        : this(LeftValue, Operand, RightValue)
                 {
                         m_Mode = Mode;
                 }
@@ -911,6 +932,26 @@ namespace Lfx.Data
                         set
                         {
                                 m_Mode = value;
+                        }
+                }
+
+                public string RightValue
+                {
+                        get
+                        {
+                                if (m_RightValue == null || m_RightValue is DBNull) {
+                                        return "NULL";
+                                } else if (m_RightValue is double || m_RightValue is decimal) {
+                                        return Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDouble(m_RightValue));
+                                } else if (m_RightValue is DateTime) {
+                                        return Lfx.Types.Formatting.FormatDateTimeSql((DateTime)m_RightValue);
+                                } else if (m_RightValue is int || m_RightValue is long) {
+                                        return m_RightValue.ToString();
+                                } else if (m_RightValue is SqlExpression) {
+                                        return m_RightValue.ToString();
+                                } else {
+                                        return "'" + m_RightValue.ToString() + "'";
+                                }
                         }
                 }
 
@@ -931,7 +972,10 @@ namespace Lfx.Data
                                         break;
 
                                 case SqlCommandBuilder.SqlOperands.Equals:
-                                        Result = LeftValue + "=" + RightValue;
+                                        if (m_RightValue == null)
+                                                Result = LeftValue + " IS NULL";
+                                        else
+                                                Result = LeftValue + "=" + RightValue;
                                         break;
 
                                 case SqlCommandBuilder.SqlOperands.GreaterOrEqual:
@@ -963,7 +1007,10 @@ namespace Lfx.Data
                                         break;
 
                                 case SqlCommandBuilder.SqlOperands.NotEquals:
-                                        Result = LeftValue + "<>" + RightValue;
+                                        if (m_RightValue == null)
+                                                Result = LeftValue + " IS NOT NULL";
+                                        else
+                                                Result = LeftValue + "<>" + RightValue;
                                         break;
 
                                 case SqlCommandBuilder.SqlOperands.SensitiveLike:

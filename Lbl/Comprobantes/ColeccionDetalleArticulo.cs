@@ -52,7 +52,7 @@ namespace Lbl.Comprobantes
                 {
                         ColeccionDetalleArticulos Res = new ColeccionDetalleArticulos();
                         foreach (DetalleArticulo Det in this.List) {
-                                //TODO: deber�a clonar tambi�n Det
+                                //TODO: debería clonar también Det
                                 Res.Add(Det);
                         }
                         return Res;
@@ -60,9 +60,9 @@ namespace Lbl.Comprobantes
 
 
                 /// <summary>
-                /// Unifica la lista de articulos. Cuando un art�culo aparece 2 o m�s veces, que una sola instancia
+                /// Unifica la lista de articulos. Cuando un artículo aparece 2 o más veces, que una sola instancia
                 /// con la sumatoria de las cantidades (Si la lista consta de "2 manzanas, 3 naranjas y 1 manzana",
-                /// esta funci�n devuelve "3 manzanas y 3 naranjas").
+                /// esta función devuelve "3 manzanas y 3 naranjas").
                 /// </summary>
                 public ColeccionDetalleArticulos Unificar()
                 {
@@ -116,12 +116,12 @@ namespace Lbl.Comprobantes
                                 }
 
 
-                                //Si no existe (o no tiene c�digo de art�culo) lo agrego
+                                //Si no existe (o no tiene código de artículo) lo agrego
                                 if (Encontre == false)
                                         Res.Add(DetHacia.Clone());
                         }
 
-                        //Ahora quito los que ya no est�n
+                        //Ahora quito los que ya no están
                         foreach (DetalleArticulo DetDesde in Desde) {
                                 bool Encontre = false;
                                 foreach (DetalleArticulo DetHacia in Hacia) {

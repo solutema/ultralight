@@ -237,14 +237,14 @@ namespace Lfc.Alicuotas
                                         Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
                                 } else {
                                         Comando = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "alicuotas");
-                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_alicuota=" + m_Id.ToString());
+                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_alicuota", m_Id);
                                 }
 
 				Comando.Fields.AddWithValue("nombre", txtNombre.Text);
 				Comando.Fields.AddWithValue("porcentaje", Lfx.Types.Parsing.ParseDouble(txtPorcentaje.Text));
 				Comando.Fields.AddWithValue("importe_minimo", Lfx.Types.Parsing.ParseDouble(txtImporteMinimo.Text));
 
-                                this.DataView.DataBase.Execute(Comando);
+                                this.DataView.Execute(Comando);
                                 this.DataView.DataBase.Commit();
 
                                 if (m_Nuevo)

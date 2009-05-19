@@ -102,9 +102,9 @@ namespace Lbl.Comprobantes
                                                 return Cheque.ToString();
                                 case FormasDePago.CuentaRegular:
                                         if (CuentaOrigen == null)
-                                                return "D�bito de cuenta";
+                                                return "Débito de cuenta";
                                         else
-                                                return "D�bito de " + CuentaOrigen.ToString();
+                                                return "Débito de " + CuentaOrigen.ToString();
                                 default:
                                         return "No especificado";
                         }

@@ -34,6 +34,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Lazaro.Principal
 {
@@ -524,59 +525,39 @@ namespace Lazaro.Principal
                         ItmInfo.Text = Lfx.Types.Strings.SimplifyText(ItmTmp.Text);
                         AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
 
-                        System.Data.DataTable TablaMenu = this.Workspace.DefaultDataBase.Select("SELECT id_menu, parent, orden, nombre, funcion, visible FROM sys_menu");
-                        CargarMenu(TablaMenu, 0, Aplicacion.FormularioPrincipal.MainMenu, "Menu");
+
+                        System.Xml.XmlDocument MenuXml = new XmlDocument();
+                        MenuXml.Load(Funciones.ObtenerRecurso(@"Data.menu.xml"));
+                        CargarMenuXml(MenuXml.GetElementsByTagName("Menu").Item(0), Aplicacion.FormularioPrincipal.MainMenu, "Menu");
 
                         CargarMenuComponentes();
                 }
 
-                // Sub: CargarMenu
-                // Parámetros:
-                //    iParent:        id_menu del registro parent en la tabla sys_menu
-                //    ColgarDe:       Objeto men del cual colgar este men
-                //    sParentText:    Path al parent (p. ej. "Comprobantes\Facturas\Listado_A")
-                // Descripción:
-                //    Carga un menú (y sus sub-menús) desde la BD
-                //    Utiliza la función AgregarAlMenu
-                //    Esta función es recursiva
-                private void CargarMenu(System.Data.DataTable TablaMenu, int parent, Menu colgarDe, string parentText)
+                /// <summary>
+                /// Carga un menú desde un documento Xml.
+                /// </summary>
+                private void CargarMenuXml(XmlNode node, Menu colgarDe, string parentText)
                 {
-                        // Carga los menes desde la base de datos
-                        string FiltroParent = null;
+                        if (node.ChildNodes.Count > 0) {
+                                foreach (XmlNode opcion in node.ChildNodes) {
+                                        MenuItem Itm = new MenuItem(opcion.Attributes["Nombre"].Value, new System.EventHandler(MnuClick));
 
-                        if (parent == 0)
-                                FiltroParent = "([parent] IS NULL OR [parent]=0)";
-                        else
-                                FiltroParent = "[parent]=" + parent.ToString();
-
-                        System.Data.DataRow[] Menu = TablaMenu.Select("visible>0 AND " + FiltroParent, "orden");
-
-                        if (Menu != null && Menu.Length > 0)
-                        {
-                                for (int i = 0; i < Menu.Length; i++)
-                                {
-                                        System.Data.DataRow row = Menu[i];
-                                        MenuItem Itm = new MenuItem(System.Convert.ToString(row["nombre"]), new System.EventHandler(MnuClick));
-
-                                        if (System.Convert.ToString(row["funcion"]) == "MDILIST")
+                                        if (opcion.Attributes["Funcion"].Value == "MDILIST")
                                                 Itm.MdiList = true;
 
                                         MenuItemInfo ItmInfo = new MenuItemInfo();
                                         ItmInfo.Item = Itm;
-                                        ItmInfo.Funcion = System.Convert.ToString(row["funcion"]);
+                                        ItmInfo.Funcion = opcion.Attributes["Funcion"].Value;
                                         ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText(parentText);
-                                        ItmInfo.Text = Lfx.Types.Strings.SimplifyText(System.Convert.ToString(row["nombre"]));
+                                        ItmInfo.Text = Lfx.Types.Strings.SimplifyText(opcion.Attributes["Nombre"].Value);
 
                                         AgregarAlMenu(colgarDe, Itm, ItmInfo);
 
-                                        if (System.Convert.ToString(row["funcion"]) == "CUENTAS" && Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "accounts.read"))
-                                        {
+                                        if (opcion.Attributes["Funcion"].Value == "CUENTAS" && Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "accounts.read")) {
                                                 DataTable Cuentas = this.Workspace.DefaultDataBase.Select("SELECT id_cuenta, nombre FROM cuentas WHERE estado>0 ORDER BY nombre");
 
-                                                foreach (System.Data.DataRow Cuenta in Cuentas.Rows)
-                                                {
-                                                        MenuItem ItmH = new MenuItem(System.Convert.ToString(Cuenta["nombre"]),
-                                                            new System.EventHandler(MnuClick));
+                                                foreach (System.Data.DataRow Cuenta in Cuentas.Rows) {
+                                                        MenuItem ItmH = new MenuItem(Cuenta["nombre"].ToString(), new System.EventHandler(MnuClick));
                                                         MenuItemInfo ItmInfoH = new MenuItemInfo();
                                                         ItmInfoH.Item = ItmH;
                                                         ItmInfoH.Funcion = "CUENTA " + Cuenta["id_cuenta"].ToString();
@@ -584,15 +565,12 @@ namespace Lazaro.Principal
                                                         ItmInfoH.Text = Lfx.Types.Strings.SimplifyText(System.Convert.ToString(Cuenta["nombre"]));
                                                         AgregarAlMenu(Itm, ItmH, ItmInfoH);
                                                 }
-                                        }
-                                        else if (System.Convert.ToString(row["funcion"]) == "LISTADO TICKETS")
-                                        {
+                                        } else if (opcion.Attributes["Funcion"].Value == "LISTADO TICKETS") {
                                                 MenuItem ItmH = null;
                                                 MenuItemInfo ItmInfoH = new MenuItemInfo();
                                                 DataTable Tipos = this.Workspace.DefaultDataBase.Select("SELECT id_tipo_ticket, nombre FROM tickets_tipos ORDER BY nombre");
 
-                                                if (Tipos.Rows.Count > 10)
-                                                {
+                                                if (Tipos.Rows.Count > 10) {
                                                         ItmH = new MenuItem("Todos", new System.EventHandler(MnuClick));
                                                         ItmInfoH = new MenuItemInfo();
                                                         ItmInfoH.Item = ItmH;
@@ -602,44 +580,39 @@ namespace Lazaro.Principal
                                                         AgregarAlMenu(Itm, ItmH, ItmInfoH);
                                                 }
 
-                                                foreach (System.Data.DataRow Tipo in Tipos.Rows)
-                                                {
-                                                        ItmH = new MenuItem(System.Convert.ToString(Tipo["nombre"]),
-                                                            new System.EventHandler(MnuClick));
+                                                foreach (System.Data.DataRow Tipo in Tipos.Rows) {
+                                                        ItmH = new MenuItem(Tipo["nombre"].ToString(), new System.EventHandler(MnuClick));
                                                         ItmInfoH = new MenuItemInfo();
                                                         ItmInfoH.Item = ItmH;
                                                         ItmInfoH.Funcion = "LISTADO TICKETS " + Tipo["id_tipo_ticket"].ToString();
                                                         ItmInfoH.ParentText = ItmInfo.Text;
-                                                        ItmInfoH.Text = Lfx.Types.Strings.SimplifyText(System.Convert.ToString(Tipo["nombre"]));
+                                                        ItmInfoH.Text = Lfx.Types.Strings.SimplifyText(Tipo["nombre"].ToString());
 
                                                         if (Tipos.Rows.Count > 10)
                                                                 AgregarAlMenu(Itm, ItmH, ItmInfoH);
                                                         else
                                                                 AgregarAlMenu(colgarDe, ItmH, ItmInfoH);
                                                 }
-                                        }
-                                        else
-                                        {
+                                        } else {
                                                 string NuevoParentText = null;
 
                                                 if (parentText.Length > 0)
-                                                        NuevoParentText = parentText + "." + System.Convert.ToString(row["nombre"]);
+                                                        NuevoParentText = parentText + "." + opcion.Attributes["Nombre"].Value;
                                                 else
-                                                        NuevoParentText = System.Convert.ToString(row["nombre"]);
+                                                        NuevoParentText = opcion.Attributes["Funcion"].Value;
 
-                                                CargarMenu(TablaMenu, System.Convert.ToInt32(row["id_menu"]), Itm, NuevoParentText);
+                                                CargarMenuXml(opcion, Itm, NuevoParentText);
                                         }
                                 }
                         }
                 }
 
-                // Sub: AgregarAlMenu
-                // Parámetros:
-                //    ColgarDe:   Objeto men del cual colgar este men
-                //    Itm:        Objeto men que se quiere agregar
-                //    ItmInfo:    Estructura con información extendida sobre Itm
-                // Descripción:
-                //    Agrega un tem a un men y lo hace OwnerDraw
+                /// <summary>
+                /// Agrega un ítem a un menú y lo hace OwnerDraw.
+                /// </summary>
+                /// <param name="ColgarDe">Objeto Menu del cual colgar este menú.</param>
+                /// <param name="Itm">Objeto Menu que se quiere agregar</param>
+                /// <param name="ItmInfo">Estructura con información extendida sobre Itm</param>
                 private void AgregarAlMenu(Menu ColgarDe, MenuItem Itm, MenuItemInfo ItmInfo)
                 {
                         // Para los tem OwnerDraw, ver las funciones Menu_Select, Menu_MeasureItem y Menu_DrawItem más abajo
@@ -745,9 +718,11 @@ namespace Lazaro.Principal
                         }
                 }
 
-                // Sub: MnuClick
-                // Descripción:
-                //    Maneja los eventos click de los mens
+                /// <summary>
+                /// Maneja los eventos Click de los menús
+                /// </summary>
+                /// <param name="sender"></param>
+                /// <param name="e"></param>
                 private void MnuClick(object sender, System.EventArgs e)
                 {
                         MenuItem SenderItem = ((MenuItem)sender);

@@ -304,21 +304,21 @@ namespace Lui.Forms
 				if (m_SearchText != null && m_SearchText.Length > 0)
 				{
 					if (Lfx.Types.Strings.IsNumericInt(m_SearchText))
-						WhereBuscarTexto.Conditions.Add(new Lfx.Data.SqlCondition(m_KeyField.ColumnName, Lfx.Data.SqlCommandBuilder.SqlOperands.Equals, Lfx.Types.Parsing.ParseInt(m_SearchText).ToString()));
+						WhereBuscarTexto.Conditions.Add(new Lfx.Data.SqlCondition(m_KeyField.ColumnName, Lfx.Types.Parsing.ParseInt(m_SearchText).ToString()));
 
 					if (m_FormFields != null)
 					{
 						foreach(Lfx.Data.FormField CurField in m_FormFields)
 						{
 							if(CurField.ColumnName.IndexOf(" AS ") == -1 && CurField.ColumnName.IndexOf("(") == -1)
-								WhereBuscarTexto.Conditions.Add(new Lfx.Data.SqlCondition(CurField.ColumnName, Lfx.Data.SqlCommandBuilder.SqlOperands.InsensitiveLike, "'%" + m_SearchText + "%'"));
+								WhereBuscarTexto.Conditions.Add(new Lfx.Data.SqlCondition(CurField.ColumnName, Lfx.Data.SqlCommandBuilder.SqlOperands.InsensitiveLike, "%" + m_SearchText + "%"));
 						}
 					}
 					if (m_ExtraSearchFields != null)
 					{
 						foreach(Lfx.Data.FormField CurField in m_ExtraSearchFields)
 						{
-							WhereBuscarTexto.Conditions.Add(new Lfx.Data.SqlCondition(CurField.ColumnName, Lfx.Data.SqlCommandBuilder.SqlOperands.InsensitiveLike, "'%" + m_SearchText + "%'"));
+							WhereBuscarTexto.Conditions.Add(new Lfx.Data.SqlCondition(CurField.ColumnName, Lfx.Data.SqlCommandBuilder.SqlOperands.InsensitiveLike, "%" + m_SearchText + "%"));
 						}
 					}
 				}

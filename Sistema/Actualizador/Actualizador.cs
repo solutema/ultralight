@@ -427,13 +427,13 @@ namespace Lazaro.Actualizador
 						// Lo publico en la BD
 						if (Lws.Workspace.Master.SlowLink == false && Lfx.Environment.SystemInformation.DesignMode == false)
 						{
-                                                        GetDataView().DataBase.Execute("DELETE FROM sys_asl WHERE nombre='" + nombreCarpeta + NombreArchivo.ToLower() + "'");
+                                                        Lws.Workspace.Master.DefaultDataView.DataBase.Execute("DELETE FROM sys_asl WHERE nombre='" + nombreCarpeta + NombreArchivo.ToLower() + "'");
                                                         Lfx.Data.SqlInsertBuilder InsertarArchivo = new Lfx.Data.SqlInsertBuilder(GetDataView().DataBase, "sys_asl");
                                                         InsertarArchivo.Fields.AddWithValue("nombre", nombreCarpeta + NombreArchivo);
                                                         InsertarArchivo.Fields.AddWithValue("fecha", FechaNueva);
                                                         InsertarArchivo.Fields.AddWithValue("checksum", ChecksumContenido);
                                                         InsertarArchivo.Fields.AddWithValue("contenido", Contenido);
-                                                        GetDataView().DataBase.Execute(InsertarArchivo);
+                                                        Lws.Workspace.Master.DefaultDataView.Execute(InsertarArchivo);
 						}
 
                                                 if (NombreArchivo == "Upgrade.exe")

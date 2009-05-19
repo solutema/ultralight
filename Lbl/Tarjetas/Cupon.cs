@@ -227,7 +227,7 @@ namespace Lbl.Tarjetas
                                 Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
                         } else {
                                 Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId + "=" + this.Id.ToString());
+                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
                         }
 
 			Comando.Fields.AddWithValue("numero", this.Numero);
@@ -299,7 +299,7 @@ namespace Lbl.Tarjetas
 
 			this.AgregarTags(Comando);
 
-			this.DataView.DataBase.Execute(Comando);
+			this.DataView.Execute(Comando);
 
 			return new Lfx.Types.SuccessOperationResult();
 		}

@@ -330,9 +330,13 @@ namespace Lfc.Tareas
                 {
                         int intComprobanteId = Lfx.Types.Parsing.ParseInt(txtComprobanteId.Text);
                         if (intComprobanteId > 0) {
-                                txtComprobante.Text = Lbl.Comprobantes.Comprobante.NumeroCompleto(this.Workspace.DefaultDataView, intComprobanteId);
-                                // Guardo el comprobante en la tarea (sólo si no tena uno asociado)
-                                this.Workspace.DefaultDataBase.Execute("UPDATE tickets SET id_factura=" + intComprobanteId.ToString() + " WHERE id_factura=0 AND id_ticket=" + m_Id.ToString());
+                                txtComprobante.Text = Lbl.Comprobantes.Comprobante.NumeroCompleto(this.DataView, intComprobanteId);
+                                // Guardo el comprobante en la tarea (sólo si no tenía uno asociado)
+                                //this.Workspace.DefaultDataView.Execute("UPDATE tickets SET id_factura=" + intComprobanteId.ToString() + " WHERE id_factura=0 AND id_ticket=" + m_Id.ToString());
+                                Lfx.Data.SqlUpdateBuilder Actual = new Lfx.Data.SqlUpdateBuilder("tickets");
+                                Actual.Fields.Add(new Lfx.Data.SqlField("id_factura", intComprobanteId));
+                                Actual.WhereClause = new Lfx.Data.SqlWhereBuilder("id_factura=0 AND id_ticket=" + m_Id.ToString());
+                                this.DataView.Execute(Actual);
                         } else {
                                 txtComprobante.Text = "";
                         }

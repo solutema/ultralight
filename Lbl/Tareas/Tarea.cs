@@ -172,7 +172,7 @@ namespace Lbl.Tareas
                                 Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Company.CurrentBranch);
                         } else {
                                 Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId + "=" + this.Id.ToString());
+                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
                         }
 
                         Comando.Fields.AddWithValue("id_persona", this.Cliente.Id);
@@ -189,7 +189,7 @@ namespace Lbl.Tareas
 
                         this.AgregarTags(Comando);
 
-                        this.DataView.DataBase.Execute(Comando);
+                        this.DataView.Execute(Comando);
 
                         if (this.Existe == false)
                                 m_ItemId = this.DataView.DataBase.FieldInt("SELECT MAX(" + this.CampoId + ") FROM " + this.TablaDatos);

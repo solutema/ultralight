@@ -44,14 +44,14 @@ namespace Lfc.Cuentas.Vencimientos
                         InitializeComponent();
 
                         DataTableName = "vencimientos";
-                        KeyField = new Lfx.Data.FormField("vencimientos.id_vencimiento", "C�d.", Lfx.Data.InputFieldTypes.Serial, 20);
+                        KeyField = new Lfx.Data.FormField("vencimientos.id_vencimiento", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20);
                         OrderBy = "vencimientos.fecha_proxima DESC";
                         FormFields = new Lfx.Data.FormField[]
 			{
 				new Lfx.Data.FormField("vencimientos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 120),
 				new Lfx.Data.FormField("vencimientos.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
 				new Lfx.Data.FormField("vencimientos.frecuencia", "Frecuencia", Lfx.Data.InputFieldTypes.Text, 120),
-				new Lfx.Data.FormField("vencimientos.fecha_proxima", "Pr�xima Ocurrencia", Lfx.Data.InputFieldTypes.Date, 96),
+				new Lfx.Data.FormField("vencimientos.fecha_proxima", "Próxima Ocurrencia", Lfx.Data.InputFieldTypes.Date, 96),
 				new Lfx.Data.FormField("vencimientos.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 160),
 				new Lfx.Data.FormField("vencimientos.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 96),
                                 new Lfx.Data.FormField("vencimientos.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 320)

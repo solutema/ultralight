@@ -74,16 +74,16 @@ namespace Lws.Config
                         if (ps_DefaultCode != null)
                                 return ps_DefaultCode;
 
-                        // Devuelve el c�digo predeterminado de un art�culo
+                        // Devuelve el código predeterminado de un artículo
                         int CodPredet = ConfigManager.ReadGlobalSettingInt(null, "Sistema.Stock.CodigoPredet", 0);
 
                         switch (CodPredet) {
                                 case 0:
-                                        // Usar el c�digo autonum�rico integrado
+                                        // Usar el código autonumérico integrado
                                         ps_DefaultCode = "id_articulo";
                                         break;
                                 default:
-                                        // Usar un c�digo en particular
+                                        // Usar un código en particular
                                         ps_DefaultCode = "codigo" + CodPredet.ToString();
                                         break;
                         }

@@ -38,9 +38,9 @@ namespace Lfc.Comprobantes.Compra
 {
         public partial class Inicio
         {
-                #region C�digo generado por el Dise�ador de Windows Forms
+                #region Código generado por el Diseñador de Windows Forms
 
-                // Limpiar los recursos que se est�n utilizando.
+                // Limpiar los recursos que se están utilizando.
                 protected override void Dispose(bool disposing)
                 {
                         if (disposing) {
@@ -52,12 +52,12 @@ namespace Lfc.Comprobantes.Compra
                 }
 
 
-                // Requerido por el Dise�ador de Windows Forms
+                // Requerido por el Diseñador de Windows Forms
                 private System.ComponentModel.Container components = null;
 
-                // NOTA: el Dise�ador de Windows Forms requiere el siguiente procedimiento
-                // Puede modificarse utilizando el Dise�ador de Windows Forms. 
-                // No lo modifique con el editor de c�digo.
+                // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
+                // Puede modificarse utilizando el Diseñador de Windows Forms. 
+                // No lo modifique con el editor de código.
 
                 private void InitializeComponent()
                 {

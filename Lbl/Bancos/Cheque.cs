@@ -217,7 +217,7 @@ namespace Lbl.Bancos
 			Lfx.Data.SqlTableCommandBuilder Comando;
                         if (this.Existe) {
 				Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-				Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId + "=" + this.Id.ToString());
+				Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
 			} else {
 				Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, this.TablaDatos);
 			}
@@ -277,7 +277,7 @@ namespace Lbl.Bancos
 
 			this.AgregarTags(Comando);
 
-			this.DataView.DataBase.Execute(Comando);
+			this.DataView.Execute(Comando);
 
                         if (this.Emitido == false) {
                                 //Asiento en la cuenta cheques, sólo para cheques de cobro

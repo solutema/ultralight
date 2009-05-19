@@ -53,7 +53,7 @@ namespace Lfx.Data
                 public string ServerName = null, DataBaseName, UserName, Password;
                 public bool SlowLink = false, Mars = true;
                 public Lfx.Data.AccessModes AccessMode = Lfx.Data.AccessModes.Undefined;
-                public Lfx.Data.SqlModes SqlMode = Lfx.Data.SqlModes.ANSI;
+                public Lfx.Data.SqlModes SqlMode = Lfx.Data.SqlModes.Ansi;
 
                 private System.Collections.Generic.Dictionary<string, Lfx.Data.ConstraintDefinition> m_Constraints = null;
                 private System.Collections.Generic.Dictionary<string, Lfx.Data.TableStructure> m_TableStructures = null;

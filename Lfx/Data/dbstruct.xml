@@ -538,6 +538,18 @@
 		<Column name="valor" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
 		<Index table="sys_config" name="PRIMARY" columns="estacion,nombre,id_sucursal" unique="1" primary="1" />
 	</Table>
+  <Table name="sys_labels">
+    <Column name="id_label" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+    <Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
+    <Column name="tablas" datatype="VarChar" nullable="1" primary_key="0" lenght="200" precision="0" default="" />
+    <Index table="sys_labels" name="PRIMARY" columns="id_label" unique="1" primary="1" />
+  </Table>
+  <Table name="sys_labels_values">
+    <Column name="id_label" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+    <Column name="tabla" datatype="VarChar" nullable="0" primary_key="1" lenght="200" precision="0" default="" />
+    <Column name="item_id" datatype="Integer" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
+    <Index table="sys_labels_values" name="PRIMARY" columns="id_label,tabla,item_id" unique="1" primary="1" />
+  </Table>
 	<Table name="sys_log">
 		<Column name="id_log" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
 		<Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
@@ -549,17 +561,6 @@
 		<Column name="extra1" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
 		<Index table="sys_log" name="PRIMARY" columns="id_log" unique="1" primary="1" />
 		<Index table="sys_log" name="sys_log_tabla_item_id" columns="tabla,item_id" unique="0" primary="0" />
-	</Table>
-	<Table name="sys_menu">
-		<Column name="id_menu" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
-		<Column name="parent" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
-		<Column name="orden" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
-		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
-		<Column name="funcion" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
-		<Column name="web" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
-		<Column name="visible" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
-		<Index table="sys_menu" name="PRIMARY" columns="id_menu" unique="1" primary="1" />
-		<Index table="sys_menu" name="sys_menu_parent" columns="parent" unique="0" primary="0" />
 	</Table>
 	<Table name="sys_plantillas">
 		<Column name="id_plantilla" datatype="Serial" nullable="0" primary_key="1" lenght="0" precision="0" default="" />
@@ -887,8 +888,8 @@
 	<Constraint name="sucursales_id_cuenta_caja" table="sucursales" column="id_cuenta_caja" reference_table="cuentas" reference_column="id_cuenta" on_delete="Unknown" on_update="Unknown" />
 	<Constraint name="sucursales_id_cuenta_cheques" table="sucursales" column="id_cuenta_cheques" reference_table="cuentas" reference_column="id_cuenta" on_delete="Unknown" on_update="Unknown" />
 	<Constraint name="sys_accesslist_id_persona" table="sys_accesslist" column="id_persona" reference_table="personas" reference_column="id_persona" on_delete="Unknown" on_update="Unknown" />
+  <Constraint name="sys_labels_values_id_label" table="sys_labels_values" column="id_label" reference_table="sys_labels" reference_column="id_label" on_delete="Unknown" on_update="Unknown" />
 	<DisabledConstraint name="sys_config_id_sucursal" table="sys_config" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" on_delete="Unknown" on_update="Unknown" />
-	<Constraint name="sys_menu_parent" table="sys_menu" column="parent" reference_table="sys_menu" reference_column="id_menu" on_delete="Unknown" on_update="Unknown" />
 	<Constraint name="tarjetas_id_cuenta" table="tarjetas" column="id_cuenta" reference_table="cuentas" reference_column="id_cuenta" on_delete="Unknown" on_update="Unknown" />
 	<Constraint name="tarjetas_cupones_id_recibo" table="tarjetas_cupones" column="id_recibo" reference_table="recibos" reference_column="id_recibo" on_delete="Unknown" on_update="Unknown" />
 	<Constraint name="tarjetas_cupones_id_tarjeta" table="tarjetas_cupones" column="id_tarjeta" reference_table="tarjetas" reference_column="id_tarjeta" on_delete="Unknown" on_update="Unknown" />

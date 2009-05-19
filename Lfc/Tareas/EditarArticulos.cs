@@ -301,7 +301,7 @@ namespace Lfc.Tareas
                                         Comando.Fields.AddWithValue("orden", i + 1);
                                         Comando.Fields.AddWithValue("cantidad", ProductArray.ChildControls[i].Cantidad);
                                         Comando.Fields.AddWithValue("precio", ProductArray.ChildControls[i].Unitario);
-                                        DataView.DataBase.Execute(Comando);
+                                        DataView.Execute(Comando);
                                 }
                         }
                         DataView.DataBase.Execute("UPDATE tickets SET articulos_descuento=" + Lfx.Types.Formatting.FormatNumber(Lfx.Types.Parsing.ParseDouble(txtDescuento.Text)) + " WHERE id_ticket=" + m_Id.ToString());

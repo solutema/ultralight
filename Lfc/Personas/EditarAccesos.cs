@@ -341,7 +341,7 @@ namespace Lfc.Personas
 				}
 
                                 Lfx.Data.SqlUpdateBuilder ActualizarAcceso = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "personas");
-                                ActualizarAcceso.WhereClause = new Lfx.Data.SqlWhereBuilder("id_persona=" + m_Id.ToString());
+                                ActualizarAcceso.WhereClause = new Lfx.Data.SqlWhereBuilder("id_persona", m_Id);
 
         			int OldTipo = System.Convert.ToInt32(txtAcceso.Tag);
 				if(txtAcceso.TextKey == "1")
@@ -352,7 +352,7 @@ namespace Lfc.Personas
                                 ActualizarAcceso.Fields.AddWithValue("tipo", OldTipo);
                                 ActualizarAcceso.Fields.AddWithValue("contrasena", txtContrasena.Text);
 
-                                DataView.DataBase.Execute(ActualizarAcceso);
+                                DataView.Execute(ActualizarAcceso);
                                 DataView.Commit();
 			}
 

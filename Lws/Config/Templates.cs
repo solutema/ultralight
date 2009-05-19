@@ -103,11 +103,11 @@ namespace Lws.Config.Templates
                         ToolBarText = System.Drawing.SystemColors.InfoText;
                 }
 
-                // Funci�n: PaletaCambiarBrillo
-                // Par�metros:
+                // Función: PaletaCambiarBrillo
+                // Parámetros:
                 //    Color   El color que se desea cambiar
                 //    Brillo  Un valor porcentual de birllo positivo (aumentar) o negativo (disminuir)
-                // Descripci�n:
+                // Descripción:
                 //    Sube o baja el brillo de un color, segn un porcentaje (de -100 a 100)
                 public static System.Drawing.Color CambiarBrillo(System.Drawing.Color colorOrigen, int Brillo)
                 {

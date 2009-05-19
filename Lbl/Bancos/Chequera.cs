@@ -146,7 +146,7 @@ namespace Lbl.Bancos
                                 Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
                         } else {
                                 Comando = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "chequeras");
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_chequera=" + m_ItemId.ToString());
+                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_chequera", m_ItemId);
                         }
 
                         if (this.Banco == null)
@@ -167,14 +167,24 @@ namespace Lbl.Bancos
                         Comando.Fields.AddWithValue("titular", this.Titular);
                         Comando.Fields.AddWithValue("estado", this.Estado);
 
-                        DataView.DataBase.Execute(Comando);
+                        DataView.Execute(Comando);
 
                         if (m_ItemId == 0)
                                 m_ItemId = DataView.DataBase.FieldInt("SELECT MAX(id_chequera) FROM chequeras");
 
                         if (this.Desde > 0 && this.Hasta > 0 && this.Hasta > this.Desde) {
-                                DataView.DataBase.Execute("UPDATE bancos_cheques SET id_chequera=" + this.Id.ToString() + " WHERE emitido=1 AND numero BETWEEN " + this.Desde.ToString() + " AND " + this.Hasta.ToString());
-                                DataView.DataBase.Execute("UPDATE bancos_cheques SET id_chequera=NULL WHERE emitido=1 AND id_chequera=" + this.Id.ToString() + " AND (numero<" + this.Desde.ToString() + " OR numero>" + this.Hasta.ToString() + ")");
+				Lfx.Data.SqlUpdateBuilder Actua = new Lfx.Data.SqlUpdateBuilder("bancos_cheques");
+				Actua.Fields.Add(new Lfx.Data.SqlField("id_chequera", Lfx.Data.ValueTypes.Int, this.Id));
+				Actua.WhereClause = new Lfx.Data.SqlWhereBuilder("emitido=1 AND numero BETWEEN " + this.Desde.ToString() + " AND " + this.Hasta.ToString());
+				DataView.Execute(Actua);
+				
+				Actua = new Lfx.Data.SqlUpdateBuilder("bancos_cheques");
+				Actua.Fields.Add(new Lfx.Data.SqlField("id_chequera", Lfx.Data.ValueTypes.Int, null));
+				Actua.WhereClause = new Lfx.Data.SqlWhereBuilder("emitido=1 AND id_chequera=" + this.Id.ToString() + " AND (numero<" + this.Desde.ToString() + " OR numero>" + this.Hasta.ToString() + ")");
+				DataView.Execute(Actua);
+				
+                                //DataView.DataBase.Execute("UPDATE bancos_cheques SET id_chequera=" + this.Id.ToString() + " WHERE emitido=1 AND numero BETWEEN " + this.Desde.ToString() + " AND " + this.Hasta.ToString());
+                                //DataView.DataBase.Execute("UPDATE bancos_cheques SET id_chequera=NULL WHERE emitido=1 AND id_chequera=" + this.Id.ToString() + " AND (numero<" + this.Desde.ToString() + " OR numero>" + this.Hasta.ToString() + ")");
                         }
 
                         return base.Guardar();

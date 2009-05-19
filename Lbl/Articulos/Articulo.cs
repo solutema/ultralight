@@ -362,7 +362,7 @@ namespace Lbl.Articulos
 			Comando.Fields.AddWithValue("saldo", Saldo);
 			Comando.Fields.AddWithValue("obs", obs);
 			
-			this.DataView.DataBase.Execute(Comando);
+			this.DataView.Execute(Comando);
 		}
 
 		public double Costo
@@ -438,7 +438,7 @@ namespace Lbl.Articulos
 				Comando.Fields.AddWithValue("fecha_precio", Lfx.Data.SqlFunctions.Now);
 			} else {
 				Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId + "=" + this.Id.ToString());
+                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
 			}
 
                         Comando.Fields.AddWithValue("codigo1", this.Codigo1);
@@ -505,7 +505,7 @@ namespace Lbl.Articulos
 
 			this.AgregarTags(Comando);
 
-                        this.DataView.DataBase.Execute(Comando);
+                        this.DataView.Execute(Comando);
 
                         if (this.Existe == false) {
                                 m_ItemId = this.DataView.DataBase.FieldInt("SELECT MAX(id_articulo) FROM articulos");
@@ -525,7 +525,7 @@ namespace Lbl.Articulos
                                                 Comando.Fields.AddWithValue("id_margen", this.Margen.Id);
                                         Comando.Fields.AddWithValue("pvp", this.PVP);
                                         Comando.Fields.AddWithValue("id_persona", this.Workspace.CurrentUser.UserId);
-                                        this.DataView.DataBase.Execute(Comando);
+                                        this.DataView.Execute(Comando);
                                 }
                         }
 
@@ -543,7 +543,7 @@ namespace Lbl.Articulos
                                         Lfx.Data.SqlInsertBuilder InsertarImagen = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, this.TablaImagenes);
                                         InsertarImagen.Fields.AddWithValue("id_articulo", this.Id);
                                         InsertarImagen.Fields.AddWithValue("imagen", ImagenBytes);
-                                        this.DataView.DataBase.Execute(InsertarImagen);
+                                        this.DataView.Execute(InsertarImagen);
                                 }
                         }
 

@@ -31,7 +31,7 @@ namespace Lfc.Comprobantes
 {
         public partial class Inicio
         {
-                #region C�digo generado por el Dise�ador de Windows Forms
+                #region Código generado por el Diseñador de Windows Forms
 
                 private void InitializeComponent()
                 {

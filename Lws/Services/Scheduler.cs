@@ -89,7 +89,7 @@ namespace Lws.Services
                         Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
 
                         try {
-                                this.DataView.DataBase.Execute(Comando);
+                                this.DataView.Execute(Comando);
                         }
                         catch {
                                 return true;
@@ -127,8 +127,8 @@ namespace Lws.Services
                                         //Elimino tareas viejas
                                         Lfx.Data.SqlUpdateBuilder Actualizar = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, "sys_programador", "id_evento=" + Result.Id.ToString());
                                         Actualizar.Fields.AddWithValue("estado", 1);
-                                        this.DataView.DataBase.Execute(Actualizar);
-                                        this.DataView.DataBase.Execute(new Lfx.Data.SqlDeleteBuilder(this.DataView.DataBase, "sys_programador", "fecha<'" + Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.AddDays(-7)) + "'"));
+                                        this.DataView.Execute(Actualizar);
+                                        this.DataView.Execute(new Lfx.Data.SqlDeleteBuilder(this.DataView.DataBase, "sys_programador", "fecha<'" + Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.AddDays(-7)) + "'"));
 
                                         return Result;
                                 } else

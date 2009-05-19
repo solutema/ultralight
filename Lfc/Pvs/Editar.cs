@@ -499,7 +499,7 @@ namespace Lfc.Pvs
                                         Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
                                 } else {
                                         Comando = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "pvs");
-                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_pv=" + m_Id.ToString());
+                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_pv", m_Id);
                                 }
 
 				Comando.Fields.AddWithValue("id_pv", Lfx.Types.Parsing.ParseInt(txtPV.Text));
@@ -513,7 +513,7 @@ namespace Lfc.Pvs
 
 				try
 				{
-                                        DataView.DataBase.Execute(Comando);
+                                        DataView.Execute(Comando);
 				}
 				catch(Exception ex)
 				{

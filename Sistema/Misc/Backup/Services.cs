@@ -463,7 +463,7 @@ namespace Lazaro.Misc.Backup
 
 							// Guardar blob nuevo
                                                         Lfx.Data.SqlUpdateBuilder ActualizarBlob = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, Tabla);
-                                                        ActualizarBlob.WhereClause = new Lfx.Data.SqlWhereBuilder(Campo + "=" + CampoId.ToString());
+                                                        ActualizarBlob.WhereClause = new Lfx.Data.SqlWhereBuilder(Campo, CampoId);
 
 							System.IO.FileStream ArchivoImagen = new System.IO.FileStream(BackupPath + Carpeta + NombreArchivoImagen, System.IO.FileMode.Open, System.IO.FileAccess.Read);
 							byte[] Contenido = new byte[System.Convert.ToInt32(ArchivoImagen.Length) - 1 + 1];
@@ -471,7 +471,7 @@ namespace Lazaro.Misc.Backup
 							ArchivoImagen.Close();
 
                                                         ActualizarBlob.Fields.AddWithValue(Campo, Contenido);
-                                                        DataView.DataBase.Execute(ActualizarBlob);
+                                                        DataView.Execute(ActualizarBlob);
 						}
 					}
 					while(InfoImagen != null);

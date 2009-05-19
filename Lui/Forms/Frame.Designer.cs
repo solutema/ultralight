@@ -32,12 +32,12 @@ namespace Lui.Forms
         public partial class Frame
         {
                 /// <summary> 
-                /// Variable del dise�ador requerida.
+                /// Variable del diseñador requerida.
                 /// </summary>
                 private System.ComponentModel.Container components = null;
 
                 /// <summary> 
-                /// Limpiar los recursos que se est�n utilizando.
+                /// Limpiar los recursos que se están utilizando.
                 /// </summary>
                 /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
                 protected override void Dispose(bool disposing)
@@ -47,10 +47,10 @@ namespace Lui.Forms
                         }
                         base.Dispose(disposing);
                 }
-                #region C�digo generado por el Dise�ador de componentes
+                #region Código generado por el Diseñador de componentes
                 /// <summary> 
-                /// M�todo necesario para admitir el Dise�ador. No se puede modificar
-                /// el contenido del m�todo con el editor de c�digo.
+                /// Método necesario para admitir el Diseñador. No se puede modificar
+                /// el contenido del método con el editor de código.
                 /// </summary>
 
                 private void InitializeComponent()

@@ -206,7 +206,7 @@ namespace Lbl.Cuentas
                                 Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
                         } else {
                                 Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId + "=" + this.Id.ToString());
+                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
                         }
 
                         Comando.Fields.AddWithValue("nombre", this.Nombre);
@@ -254,7 +254,7 @@ namespace Lbl.Cuentas
 
                         this.AgregarTags(Comando);
 
-                        this.DataView.DataBase.Execute(Comando);
+                        this.DataView.Execute(Comando);
 
                         return new Lfx.Types.SuccessOperationResult();
                 }

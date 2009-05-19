@@ -101,6 +101,13 @@ namespace Lws.Data
                                 m_DataBase = value;
                         }
                 }
+		
+		public int Execute(Lfx.Data.SqlTableCommandBuilder sqlCommand)
+		{
+                        if(sqlCommand is Lfx.Data.SqlUpdateBuilder || sqlCommand is Lfx.Data.SqlDeleteBuilder)
+                        	this.Tables[sqlCommand.Tables].FastRows.ClearCache();
+			return this.DataBase.ExecuteCommand(sqlCommand);
+		}
 
 		public void BeginTransaction()
 		{

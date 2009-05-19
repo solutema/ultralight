@@ -36,9 +36,9 @@ namespace Lfc.Bancos.Cheques
         public partial class Filtros
         {
 
-                #region C�digo generado por el dise�ador
+                #region Código generado por el diseñador
                 /// <summary>
-                /// Limpiar los recursos que se est�n utilizando.
+                /// Limpiar los recursos que se están utilizando.
                 /// </summary>
                 protected override void Dispose(bool disposing)
                 {
@@ -51,8 +51,8 @@ namespace Lfc.Bancos.Cheques
                 }
 
                 /// <summary>
-                /// M�todo necesario para admitir el Dise�ador. No se puede modificar
-                /// el contenido del m�todo con el editor de c�digo.
+                /// Método necesario para admitir el Diseñador. No se puede modificar
+                /// el contenido del método con el editor de código.
                 /// </summary>
                 private void InitializeComponent()
                 {

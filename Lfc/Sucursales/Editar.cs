@@ -430,7 +430,7 @@ namespace Lfc.Sucursales
                                         Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
                                 } else {
                                         Comando = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "sucursales");
-                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_sucursal=" + m_Id.ToString());
+                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_sucursal", m_Id);
                                 }
 
 				Comando.Fields.AddWithValue("nombre", txtNombre.Text);
@@ -441,7 +441,7 @@ namespace Lfc.Sucursales
 				Comando.Fields.AddWithValue("id_cuenta_caja", Lfx.Data.DataBase.ConvertZeroToDBNull(txtCuentaCaja.TextInt));
 				Comando.Fields.AddWithValue("id_cuenta_cheques", Lfx.Data.DataBase.ConvertZeroToDBNull(txtCuentaCheques.TextInt));
 
-                                this.DataView.DataBase.Execute(Comando);
+                                this.DataView.Execute(Comando);
                                 this.DataView.DataBase.Commit();
 
 				if(m_Nuevo) {

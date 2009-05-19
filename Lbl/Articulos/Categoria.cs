@@ -103,7 +103,7 @@ namespace Lbl.Articulos
                                 Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, this.TablaDatos);
                         } else {
                                 Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId + "=" + this.Id.ToString());
+                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
                         }
 
                         Comando.Fields.AddWithValue("nombre", this.Nombre);
@@ -114,7 +114,7 @@ namespace Lbl.Articulos
 
 			this.AgregarTags(Comando);
 
-                        this.DataView.DataBase.Execute(Comando);
+                        this.DataView.Execute(Comando);
 
                         if (this.Existe == false)
 				m_ItemId = this.DataView.DataBase.FieldInt("SELECT MAX(" + this.CampoId + ") FROM " + this.TablaDatos);

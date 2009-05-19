@@ -191,7 +191,7 @@ namespace Lws
 				Comando.Fields.AddWithValue("tabla", table);
 				Comando.Fields.AddWithValue("item_id", Lfx.Data.DataBase.ConvertZeroToDBNull(item_id));
 				Comando.Fields.AddWithValue("extra1", extra1);
-				this.DefaultDataBase.Execute(Comando);
+				this.DefaultDataView.Execute(Comando);
 			}
 			catch (System.Exception ex)
 			{

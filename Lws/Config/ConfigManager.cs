@@ -277,8 +277,8 @@ namespace Lws.Config
                         Lfx.Data.SqlDeleteBuilder DeleteCommand = new Lfx.Data.SqlDeleteBuilder("sys_config");
                         DeleteCommand.WhereClause = new Lfx.Data.SqlWhereBuilder();
                         DeleteCommand.WhereClause.AndOr = Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandAnd;
-                        DeleteCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("nombre", Lfx.Data.SqlCommandBuilder.SqlOperands.Equals, "'" + CompleteSettingName + "'"));
-                        DeleteCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("id_sucursal", Lfx.Data.SqlCommandBuilder.SqlOperands.Equals, branch.ToString()));
+                        DeleteCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("nombre", CompleteSettingName));
+                        DeleteCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("id_sucursal", branch));
 			ConfigDB.Delete(DeleteCommand);
 
 			this.InvalidateConfigCache();
@@ -297,8 +297,8 @@ namespace Lws.Config
                         Lfx.Data.SqlDeleteBuilder DeleteCommand = new Lfx.Data.SqlDeleteBuilder("sys_config");
                         DeleteCommand.WhereClause = new Lfx.Data.SqlWhereBuilder();
                         DeleteCommand.WhereClause.AndOr = Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandAnd;
-                        DeleteCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("nombre", Lfx.Data.SqlCommandBuilder.SqlOperands.Equals, "'" + CompleteSettingName + "'"));
-                        DeleteCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("estacion", Lfx.Data.SqlCommandBuilder.SqlOperands.Equals, "'" + terminalName + "'"));
+                        DeleteCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("nombre", CompleteSettingName));
+                        DeleteCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("estacion", terminalName));
 			ConfigDB.Delete(DeleteCommand);
 
 			this.InvalidateConfigCache();
@@ -321,21 +321,21 @@ namespace Lws.Config
 			{
 				//Crear el valor
                                 Lfx.Data.SqlInsertBuilder InsertCommand = new Lfx.Data.SqlInsertBuilder("sys_config");
-                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("id_sucursal", Lfx.Data.ValueTypes.StringValue, branch));
-                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("estacion", Lfx.Data.ValueTypes.StringValue, "*"));
-                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("nombre", Lfx.Data.ValueTypes.StringValue, CompleteSettingName));
-                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("valor", Lfx.Data.ValueTypes.StringValue, stringValue));
+                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("id_sucursal", Lfx.Data.ValueTypes.String, branch));
+                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("estacion", Lfx.Data.ValueTypes.String, "*"));
+                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("nombre", Lfx.Data.ValueTypes.String, CompleteSettingName));
+                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("valor", Lfx.Data.ValueTypes.String, stringValue));
 				ConfigDB.Insert(InsertCommand);
 			}
 			else
 			{
 				//Actualizar el valor
 				Lfx.Data.SqlUpdateBuilder UpdateCommand = new Lfx.Data.SqlUpdateBuilder("sys_config");
-                                UpdateCommand.Fields.Add(new Lfx.Data.SqlField("valor", Lfx.Data.ValueTypes.StringValue, stringValue));
+                                UpdateCommand.Fields.Add(new Lfx.Data.SqlField("valor", Lfx.Data.ValueTypes.String, stringValue));
 				UpdateCommand.WhereClause = new Lfx.Data.SqlWhereBuilder();
 				UpdateCommand.WhereClause.AndOr = Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandAnd;
-				UpdateCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("nombre", Lfx.Data.SqlCommandBuilder.SqlOperands.Equals, "'" + CompleteSettingName + "'"));
-				UpdateCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("id_sucursal", Lfx.Data.SqlCommandBuilder.SqlOperands.Equals, branch.ToString()));
+				UpdateCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("nombre", CompleteSettingName));
+				UpdateCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("id_sucursal", branch));
 				ConfigDB.Update(UpdateCommand);
 			}
 
@@ -357,20 +357,20 @@ namespace Lws.Config
 			{
 				//Crear el valor
                                 Lfx.Data.SqlInsertBuilder InsertCommand = new Lfx.Data.SqlInsertBuilder("sys_config");
-                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("estacion", Lfx.Data.ValueTypes.StringValue, terminalName));
-                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("nombre", Lfx.Data.ValueTypes.StringValue, CompleteSettingName));
-                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("valor", Lfx.Data.ValueTypes.StringValue, stringValue));
+                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("estacion", Lfx.Data.ValueTypes.String, terminalName));
+                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("nombre", Lfx.Data.ValueTypes.String, CompleteSettingName));
+                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("valor", Lfx.Data.ValueTypes.String, stringValue));
 				ConfigDB.Insert(InsertCommand);
 			}
 			else
 			{
 				//Actualizar el valor
                                 Lfx.Data.SqlUpdateBuilder UpdateCommand = new Lfx.Data.SqlUpdateBuilder("sys_config");
-                                UpdateCommand.Fields.Add(new Lfx.Data.SqlField("valor", Lfx.Data.ValueTypes.StringValue, stringValue));
+                                UpdateCommand.Fields.Add(new Lfx.Data.SqlField("valor", Lfx.Data.ValueTypes.String, stringValue));
                                 UpdateCommand.WhereClause = new Lfx.Data.SqlWhereBuilder();
                                 UpdateCommand.WhereClause.AndOr = Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandAnd;
-                                UpdateCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("nombre", Lfx.Data.SqlCommandBuilder.SqlOperands.Equals, "'" + CompleteSettingName + "'"));
-                                UpdateCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("estacion", Lfx.Data.SqlCommandBuilder.SqlOperands.Equals, "'" + terminalName + "'"));
+                                UpdateCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("nombre", CompleteSettingName));
+                                UpdateCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("estacion", terminalName));
 				ConfigDB.Update(UpdateCommand);
 			}
 

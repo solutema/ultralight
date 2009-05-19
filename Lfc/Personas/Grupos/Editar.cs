@@ -289,7 +289,7 @@ namespace Lfc.Personas.Grupos
                                         Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
                                 } else {
                                         Comando = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "personas_grupos");
-                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_grupo=" + m_Id.ToString());
+                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_grupo", m_Id);
                                 }
 
                                 Comando.Fields.AddWithValue("nombre", txtNombre.Text);
@@ -297,7 +297,7 @@ namespace Lfc.Personas.Grupos
                                 Comando.Fields.AddWithValue("predet", Lfx.Types.Parsing.ParseInt(txtPredet.TextKey));
                                 Comando.Fields.AddWithValue("parent", Lfx.Data.DataBase.ConvertZeroToDBNull(txtGrupo.TextInt));
 
-                                DataView.DataBase.Execute(Comando);
+                                DataView.Execute(Comando);
                                 DataView.DataBase.Commit();
 
 				if(m_Nuevo)

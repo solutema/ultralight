@@ -149,7 +149,11 @@ namespace Lbl.Comprobantes
                         }
 
                         // Marco la factura como anulada
-                        DataView.DataBase.Execute("UPDATE facturas SET anulada=1 WHERE id_factura=" + this.Id.ToString());
+                        Lfx.Data.SqlUpdateBuilder Act = new Lfx.Data.SqlUpdateBuilder("facturas");
+                        Act.Fields.AddWithValue("anulada", 1);
+                        Act.WhereClause = new Lfx.Data.SqlWhereBuilder("id_factura", this.Id);
+                        this.DataView.Execute(Act);
+                        //DataView.DataBase.Execute("UPDATE facturas SET anulada=1 WHERE id_factura=" + this.Id.ToString());
                 }
 
 		public double SubTotal
@@ -421,7 +425,7 @@ namespace Lbl.Comprobantes
 			this.ImporteCancelado += importe;
 			Lfx.Data.SqlUpdateBuilder Actualizar = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, "facturas", "id_factura=" + this.Id.ToString());
 			Actualizar.Fields.AddWithValue("cancelado", this.ImporteCancelado);
-			this.DataView.DataBase.Execute(Actualizar);
+			this.DataView.Execute(Actualizar);
 			return new Lfx.Types.SuccessOperationResult();
 		}
 
@@ -502,7 +506,7 @@ namespace Lbl.Comprobantes
                                 Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, this.TablaDatos);
                         } else {
                                 Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId + "=" + this.Id.ToString());
+                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
                         }
 
                         if (this.Existe == false && this.Numero == 0 && this.Tipo.NumerarAlGuardar) {
@@ -551,7 +555,7 @@ namespace Lbl.Comprobantes
 
 			this.AgregarTags(Comando);
 
-                        this.DataView.DataBase.Execute(Comando);
+                        this.DataView.Execute(Comando);
 
                         if (this.Existe == false)
                                 this.m_ItemId = this.DataView.DataBase.FieldInt("SELECT MAX(id_factura) AS id_factura FROM facturas WHERE tipo_fac='" + this.Tipo.Nomenclatura + "'");
@@ -652,7 +656,7 @@ namespace Lbl.Comprobantes
 
                                 this.AgregarTags(Comando, Art.Registro, "facturas_detalle");
 
-                                this.DataView.DataBase.Execute(Comando);
+                                this.DataView.Execute(Comando);
                                 i++;
                         }
                 }

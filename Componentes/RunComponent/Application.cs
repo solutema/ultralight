@@ -14,7 +14,7 @@ namespace RunComponent
 
 			//Console.WriteLine("RunComponent");
 			//Console.WriteLine("    Ejecuta un componente Lfx fuera del entorno del sistema Lázaro.");
-			//Console.WriteLine("    Copyright © 2005-2007 Carrea Martinez SDH");
+                        //Console.WriteLine("    Copyright © 2004-2009 Carrea Ernesto, Martínez Miguel");
 			//Console.WriteLine("");
 
 			string ComponentName = null, FunctionName = null;

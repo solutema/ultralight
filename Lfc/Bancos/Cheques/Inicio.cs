@@ -180,7 +180,11 @@ namespace Lfc.Bancos.Cheques
                         if (Lui.Login.LoginData.ValidateAccess(this.Workspace.CurrentUser, "bancos.cheques.delete")) {
                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("¿Desea anular los cheques seleccionados?", "Pregunta");
                                 if (Pregunta.ShowDialog() == DialogResult.OK) {
-                                        this.Workspace.DefaultDataBase.Execute("UPDATE bancos_cheques SET estado=90 WHERE id_cheque IN (" + Lfx.Types.Strings.Ints2CSV(itemIds, ",") + ")");
+                                        Lfx.Data.SqlUpdateBuilder Actua = new Lfx.Data.SqlUpdateBuilder("bancos_cheques");
+                                        Actua.Fields.AddWithValue("estado", 90);
+                                        Actua.WhereClause = new Lfx.Data.SqlWhereBuilder("id_cheque IN (" + Lfx.Types.Strings.Ints2CSV(itemIds, ",") + ")");
+                                        this.DataView.Execute(Actua);
+                                        //this.Workspace.DefaultDataBase.Execute("UPDATE bancos_cheques SET estado=90 WHERE id_cheque IN (" + Lfx.Types.Strings.Ints2CSV(itemIds, ",") + ")");
                                         this.RefreshList();
                                         return new Lfx.Types.SuccessOperationResult();
                                 }

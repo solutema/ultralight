@@ -805,7 +805,7 @@ namespace Lfx.Data
                 }
 
 
-                //TODO: Debería ser protected o private
+                //TODO: Debería ser private o no existir
                 public int Execute(string sqlCommand)
                 {
                         sqlCommand = sqlCommand.Trim(new char[] { ' ', (char)13, (char)10, (char)9 });
@@ -815,12 +815,9 @@ namespace Lfx.Data
                         return this.Execute(this.GetCommand(sqlCommand));
                 }
 
-                public int Execute(Lfx.Data.SqlTableCommandBuilder sqlCommand)
+                public int ExecuteCommand(Lfx.Data.SqlTableCommandBuilder sqlCommand)
                 {
                         sqlCommand.SqlMode = this.SqlMode;
-                        //TODO: hacer que esto funcione
-                        //if(sqlCommand is SqlUpdateBuilder || sqlCommand is SqlDeleteBuilder)
-                        //	this.DataView.Tables[sqlCommand.Tables].Rows.ClearCache();
                         return this.Execute(this.GetCommand(sqlCommand));
                 }
 

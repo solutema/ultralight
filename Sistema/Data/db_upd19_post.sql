@@ -7,9 +7,6 @@ UPDATE sys_config SET nombre='Documentos.RC.NumerarAlGuardar' WHERE nombre='Docu
 UPDATE sys_config SET nombre='Documentos.RC.ImprimirAlGuardar' WHERE nombre='Documentos.R.ImprimirAlGuardar';
 UPDATE recibos SET tipo_fac='RC' WHERE tipo_fac='' OR tipo_fac IS NULL;
 UPDATE recibos SET id_concepto=11000 WHERE id_concepto=0 OR id_concepto IS NULL;
-INSERT IGNORE INTO sys_menu SET id_menu=136, parent=22, orden=4, nombre='-', visible=1;
-INSERT IGNORE INTO sys_menu SET id_menu=137, parent=22, orden=5, nombre='Nuevo Recibo de Pago', funcion='CREAR RECIBO_PAGO', visible=1;
-UPDATE sys_menu SET nombre='Nuevo Recibo de Cobro' WHERE funcion='CREAR RECIBO';
 INSERT IGNORE INTO cuentas_conceptos ("id_concepto","nombre","es","grupo","fijo") VALUES (23015,'Comisiones por ventas',0,231,1);
 INSERT IGNORE INTO cuentas_conceptos ("id_concepto","nombre","es","grupo","fijo") VALUES (13010,'Ingresos por comisiones ganadas',0,100,1);
 

@@ -284,7 +284,7 @@ namespace Lbl.Comprobantes.Impresion
                                 Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, this.TablaDatos);
                         } else {
                                 Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId + "=" + this.Id.ToString());
+                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
                         }
 
                         Comando.Fields.AddWithValue("codigo", this.Codigo);
@@ -295,7 +295,7 @@ namespace Lbl.Comprobantes.Impresion
                         Comando.Fields.AddWithValue("copias", this.Copias);
                         Comando.Fields.AddWithValue("membrete", this.Membrete);
 
-                        this.DataView.DataBase.Execute(Comando);
+                        this.DataView.Execute(Comando);
 
 			if(this.Existe == false)
 				m_ItemId = this.DataView.DataBase.FieldInt("SELECT MAX(id_plantilla) AS id_plantilla FROM sys_plantillas");

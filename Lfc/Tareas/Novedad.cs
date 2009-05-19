@@ -316,7 +316,7 @@ namespace Lfc.Tareas
                                 InsertarNovedad.Fields.AddWithValue("privado", txtCondicion.TextKey);
                                 InsertarNovedad.Fields.AddWithValue("descripcion", txtDescripcion.Text);
                                 InsertarNovedad.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
-                                DataView.DataBase.Execute(InsertarNovedad);
+                                DataView.Execute(InsertarNovedad);
 
                                 ResultadoGuardar = base.Save();
                         }

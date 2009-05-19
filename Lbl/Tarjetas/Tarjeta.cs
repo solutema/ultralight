@@ -164,7 +164,7 @@ namespace Lbl.Tarjetas
                                 Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, this.TablaDatos);
                         } else {
                                 Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId + "=" + this.Id.ToString());
+                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
                         }
 
                         Comando.Fields.AddWithValue("credeb", ((int)(this.Tipo)));
@@ -177,7 +177,7 @@ namespace Lbl.Tarjetas
 
 			this.AgregarTags(Comando);
 
-                        this.DataView.DataBase.Execute(Comando);
+                        this.DataView.Execute(Comando);
 
                         if (this.Existe == false)
                                 m_ItemId = this.DataView.DataBase.FieldInt("SELECT MAX(id_tarjeta) FROM artitarjetasculos");

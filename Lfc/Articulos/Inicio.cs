@@ -78,22 +78,22 @@ namespace Lfc.Articulos
                         Lfx.Data.SqlWhereBuilder FiltroWhere = new Lfx.Data.SqlWhereBuilder();
 
                         if (m_Proveedor > 0)
-                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("id_proveedor", Lfx.Data.SqlCommandBuilder.SqlOperands.Equals, m_Proveedor.ToString()));
+                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("id_proveedor", m_Proveedor));
 
                         if (m_Marca > 0)
-                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("id_marca", Lfx.Data.SqlCommandBuilder.SqlOperands.Equals, m_Marca.ToString()));
+                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("id_marca", m_Marca));
 
                         if (m_Categoria > 0)
-                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("id_cat_articulo", Lfx.Data.SqlCommandBuilder.SqlOperands.Equals, m_Categoria.ToString()));
+                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("id_cat_articulo", m_Categoria));
 
                         if (m_PVPDesde != 0)
-                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("pvp", Lfx.Data.SqlCommandBuilder.SqlOperands.GreaterOrEqual, Lfx.Types.Formatting.FormatCurrencySql(m_PVPDesde)));
+                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("pvp", Lfx.Data.SqlCommandBuilder.SqlOperands.GreaterOrEqual, m_PVPDesde));
                         if (m_PVPHasta != 0)
-                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("pvp", Lfx.Data.SqlCommandBuilder.SqlOperands.LessOrEqual, Lfx.Types.Formatting.FormatCurrencySql(m_PVPHasta)));
+                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("pvp", Lfx.Data.SqlCommandBuilder.SqlOperands.LessOrEqual, m_PVPHasta));
 
                         if (m_Situacion > 0) {
-                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("articulos_stock.id_situacion", Lfx.Data.SqlCommandBuilder.SqlOperands.Equals, m_Situacion.ToString()));
-                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("articulos_stock.cantidad", Lfx.Data.SqlCommandBuilder.SqlOperands.NotEquals, "0"));
+                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("articulos_stock.id_situacion", m_Situacion));
+                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("articulos_stock.cantidad", Lfx.Data.SqlCommandBuilder.SqlOperands.NotEquals, 0));
                                 ExtraDataTableNames = "articulos_stock";
                                 Relations = "articulos.id_articulo=articulos_stock.id_articulo";
                                 this.FormFields[3] = new Lfx.Data.FormField("articulos_stock.cantidad", "Stock", Lfx.Data.InputFieldTypes.Numeric, 120);
@@ -105,11 +105,11 @@ namespace Lfc.Articulos
 
                         switch (m_Stock) {
                                 case "cs":
-                                        FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("stock_actual", Lfx.Data.SqlCommandBuilder.SqlOperands.GreaterThan, "0"));
+                                        FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("stock_actual", Lfx.Data.SqlCommandBuilder.SqlOperands.GreaterThan, 0));
                                         break;
 
                                 case "ss":
-                                        FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("stock_actual", Lfx.Data.SqlCommandBuilder.SqlOperands.LessOrEqual, "0"));
+                                        FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("stock_actual", Lfx.Data.SqlCommandBuilder.SqlOperands.LessOrEqual, 0));
                                         break;
 
                                 case "faltante":
@@ -117,16 +117,16 @@ namespace Lfc.Articulos
                                         break;
 
                                 case "faltanteip":
-                                        FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("stock_minimo", Lfx.Data.SqlCommandBuilder.SqlOperands.GreaterThan, "0"));
-                                        FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("stock_actual+pedido", Lfx.Data.SqlCommandBuilder.SqlOperands.LessThan, "stock_minimo"));
+                                        FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("stock_minimo", Lfx.Data.SqlCommandBuilder.SqlOperands.GreaterThan, 0));
+                                        FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("stock_actual+pedido", Lfx.Data.SqlCommandBuilder.SqlOperands.LessThan, new Lfx.Data.SqlExpression("stock_minimo")));
                                         break;
 
                                 case "apedir":
-                                        FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("apedir", Lfx.Data.SqlCommandBuilder.SqlOperands.GreaterThan, "0"));
+                                        FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("apedir", Lfx.Data.SqlCommandBuilder.SqlOperands.GreaterThan, 0));
                                         break;
 
                                 case "pedido":
-                                        FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("pedido", Lfx.Data.SqlCommandBuilder.SqlOperands.GreaterThan, "0"));
+                                        FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("pedido", Lfx.Data.SqlCommandBuilder.SqlOperands.GreaterThan, 0));
                                         break;
                         }
                         this.CurrentFilter = FiltroWhere;

@@ -46,7 +46,7 @@ namespace Lazaro.Misc.SuperBuscador
 
                 internal void Buscar(string Texto)
                 {
-                        string ValorABuscar = "'%" + Texto.Trim().ToLower() + "%'";
+                        string ValorABuscar = "%" + Texto.Trim().ToLower() + "%";
 
                         Lfx.Data.SqlWhereBuilder ComandoWhere = null;
 
@@ -118,8 +118,8 @@ namespace Lazaro.Misc.SuperBuscador
                                 //Comprobantes de esta persona
                                 Lfx.Data.SqlWhereBuilder ComandoWhere = new Lfx.Data.SqlWhereBuilder();
                                 ComandoWhere.AndOr = Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandOr;
-                                ComandoWhere.Conditions.Add(new Lfx.Data.SqlCondition("id_cliente", Lfx.Data.SqlCommandBuilder.SqlOperands.Equals, Res.Codigo.ToString()));
-                                ComandoWhere.Conditions.Add(new Lfx.Data.SqlCondition("id_vendedor", Lfx.Data.SqlCommandBuilder.SqlOperands.Equals, Res.Codigo.ToString()));
+                                ComandoWhere.Conditions.Add(new Lfx.Data.SqlCondition("id_cliente", Res.Codigo));
+                                ComandoWhere.Conditions.Add(new Lfx.Data.SqlCondition("id_vendedor", Res.Codigo));
                                 BuscarComprobantes(PanelResultados, ComandoWhere, sangria + 1);
 
                         }

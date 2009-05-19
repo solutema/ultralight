@@ -31,7 +31,7 @@ namespace Lfc.Cuentas.Corriente
 {
         public partial class Inicio : Lui.Forms.AccountForm
         {
-                #region C�digo generado por el Dise�ador de Windows Forms
+                #region Código generado por el Diseñador de Windows Forms
 
                 private void InitializeComponent()
                 {
@@ -62,7 +62,7 @@ namespace Lfc.Cuentas.Corriente
                         this.cmdNotaDeb.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.cmdNotaDeb.Subtext = "F4";
                         this.cmdNotaDeb.TabIndex = 61;
-                        this.cmdNotaDeb.Text = "Nota D�b";
+                        this.cmdNotaDeb.Text = "Nota Déb";
                         this.cmdNotaDeb.ToolTipText = "";
                         this.cmdNotaDeb.Click += new System.EventHandler(this.cmdNotaDeb_Click);
                         // 
@@ -83,7 +83,7 @@ namespace Lfc.Cuentas.Corriente
                         this.cmdNotaCred.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.cmdNotaCred.Subtext = "F3";
                         this.cmdNotaCred.TabIndex = 60;
-                        this.cmdNotaCred.Text = "Nota Cr�d";
+                        this.cmdNotaCred.Text = "Nota Créd";
                         this.cmdNotaCred.ToolTipText = "";
                         this.cmdNotaCred.Click += new System.EventHandler(this.cmdNotaCred_Click);
                         // 

@@ -259,7 +259,7 @@ namespace Lbl.Comprobantes
 
                         this.AgregarTags(Comando);
 
-                        this.DataView.DataBase.Execute(Comando);
+                        this.DataView.Execute(Comando);
 
                         // Tomo el id del recibo que acabo de crear
                         m_ItemId = this.DataView.DataBase.FieldInt("SELECT MAX(id_recibo) AS id_recibo FROM recibos WHERE numero=" + this.Numero.ToString() + " AND pv=" + this.PV.ToString() + " AND tipo_fac='" + this.Tipo.Nomenclatura + "'");

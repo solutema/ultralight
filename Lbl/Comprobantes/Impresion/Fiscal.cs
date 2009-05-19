@@ -721,8 +721,13 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                         System.Data.DataTable ArticulosDetalle = DataView.DataBase.Select("SELECT facturas_detalle.id_factura_detalle, facturas_detalle.id_articulo, articulos.costo FROM facturas_detalle, articulos WHERE facturas_detalle.id_articulo=articulos.id_articulo AND id_factura=" + Fac.Id.ToString());
 
                         foreach (System.Data.DataRow Art in ArticulosDetalle.Rows) {
-                                if (Lfx.Data.DataBase.ConvertDBNullToZero(Art["id_articulo"]) > 0)
-                                        this.DataView.DataBase.Execute("UPDATE facturas_detalle SET costo=" + Lfx.Types.Formatting.FormatCurrencySql(System.Convert.ToDouble(Art["costo"])).ToString() + " WHERE id_factura_detalle=" + Art["id_factura_detalle"].ToString());
+                                if (Lfx.Data.DataBase.ConvertDBNullToZero(Art["id_articulo"]) > 0) {
+                                        Lfx.Data.SqlUpdateBuilder Act = new Lfx.Data.SqlUpdateBuilder("facturas_detalle");
+                                        Act.Fields.AddWithValue("costo", System.Convert.ToDouble(Art["costo"]));
+                                        Act.WhereClause = new Lfx.Data.SqlWhereBuilder("id_factura_detalle", System.Convert.ToInt32(Art["id_factura_detalle"]));
+                                        this.DataView.Execute(Act);
+                                        //this.DataView.DataBase.Execute("UPDATE facturas_detalle SET costo=" + Lfx.Types.Formatting.FormatCurrencySql(System.Convert.ToDouble(Art["costo"])).ToString() + " WHERE id_factura_detalle=" + Art["id_factura_detalle"].ToString());
+                                }
                         }
 
                         ArticulosDetalle = null;

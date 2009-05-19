@@ -309,7 +309,7 @@ namespace Lfc.Cuentas.Conceptos
                                         Comando = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, "cuentas_conceptos");
                                 } else {
                                         Comando = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "cuentas_conceptos");
-                                	Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_concepto=" + m_Id.ToString());        
+                                	Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_concepto", m_Id);        
                                 }
 
 				Comando.Fields.AddWithValue("id_concepto", Lfx.Types.Parsing.ParseInt(txtCodigo.Text));
@@ -317,7 +317,7 @@ namespace Lfc.Cuentas.Conceptos
 				Comando.Fields.AddWithValue("es", Lfx.Types.Parsing.ParseInt(txtDireccion.TextKey));
 				Comando.Fields.AddWithValue("grupo", Lfx.Data.DataBase.ConvertZeroToDBNull(Lfx.Types.Parsing.ParseInt(txtTipo.TextKey)));
 
-                                DataView.DataBase.Execute(Comando);
+                                DataView.Execute(Comando);
                                 DataView.DataBase.Commit();
 
 				m_Id = Lfx.Types.Parsing.ParseInt(txtCodigo.Text);

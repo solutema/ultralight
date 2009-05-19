@@ -45,6 +45,7 @@ namespace Lbl
 		protected Lfx.Data.Row m_Registro = null, m_RegistroOriginal = null;
                 protected System.Drawing.Image m_Imagen = null;
                 protected bool m_ImagenCambio = false;
+                protected System.Collections.Generic.List<Etiqueta> m_Etiquetas = null;
 
 		protected ElementoDeDatos(Lws.Data.DataView dataView)
 		{
@@ -74,6 +75,7 @@ namespace Lbl
 			get
 			{
                                 if (m_Registro == null) {
+                                        m_Etiquetas = null;
                                         if (this.Id != 0) {
                                                 if (this.CampoId == this.DataView.Tables[this.TablaDatos].PrimaryKey)
                                                         //Si estoy accediendo a través de una clave primaria puedo usar directamente DataView.Tables.FastRows, que es cacheable
@@ -223,7 +225,8 @@ namespace Lbl
                         m_ItemId = 0;
 			m_Registro = new Lfx.Data.Row();
                         m_RegistroOriginal = null;
-			return new Lfx.Types.SuccessOperationResult();
+                        m_Etiquetas = null;
+                        return new Lfx.Types.SuccessOperationResult();
 		}
 
 		public virtual Lfx.Types.OperationResult Guardar()
@@ -401,6 +404,7 @@ namespace Lbl
 
 			this.m_Registro = null;
                         this.m_RegistroOriginal = null;
+                        this.m_Etiquetas = null;
                         this.m_ImagenCambio = false;
                         this.m_Imagen = null;
 			Lfx.Data.Row Dummy = this.Registro;
@@ -434,5 +438,23 @@ namespace Lbl
 
 		#endregion
 
+                public System.Collections.Generic.List<Etiqueta> Etiquetas
+                {
+                        get
+                        {
+                                if (m_Etiquetas == null) {
+                                        m_Etiquetas = new List<Etiqueta>();
+                                        System.Data.IDataReader EtiquetasElem = this.DataView.DataBase.GetReader("SELECT id_label FROM sys_labels_values WHERE tabla='" + this.TablaDatos + " ' AND item_id=" + this.Id.ToString());
+                                        while (EtiquetasElem.Read()) {
+                                                m_Etiquetas.Add(new Etiqueta(this.DataView, EtiquetasElem.GetInt32(0)));
+                                        }
+                                }
+                                return m_Etiquetas;
+                        }
+                        set
+                        {
+                                m_Etiquetas = value;
+                        }
+                }
 	}
 }

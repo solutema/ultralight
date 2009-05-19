@@ -87,7 +87,7 @@ namespace Lbl.Cuentas
 			Comando.Fields.AddWithValue("comprob", comprobantes);
 			Comando.Fields.AddWithValue("saldo", SaldoActual + importe);
 			Comando.Fields.AddWithValue("obs", obs);
-			this.DataView.DataBase.Execute(Comando);
+			this.DataView.Execute(Comando);
 
 			return new Lfx.Types.SuccessOperationResult();
 		}

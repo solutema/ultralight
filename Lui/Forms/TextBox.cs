@@ -368,7 +368,7 @@ namespace Lui.Forms
 			Comando.Fields.AddWithValue("estacion", Lfx.Environment.SystemInformation.ComputerName);
 			Comando.Fields.AddWithValue("usuario", this.Workspace.CurrentUser.UserId);
 			Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
-			this.Workspace.DefaultDataView.DataBase.Execute(Comando);
+			this.Workspace.DefaultDataView.Execute(Comando);
 		}
 
 		private void MenuItemPegadoRapidoTexto_Click(object sender, System.EventArgs e)

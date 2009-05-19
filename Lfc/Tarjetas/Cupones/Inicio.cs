@@ -61,13 +61,13 @@ namespace Lfc.Tarjetas.Cupones
                                 m_SelectCommand.WhereClause.AndOr = Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandAnd;
 
 				if (m_Cliente > 0)
-                                        m_SelectCommand.WhereClause.Conditions.Add("id_cliente=" + m_Cliente.ToString());
+                                        m_SelectCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("id_cliente", m_Cliente));
 
 				if (m_Tarjeta > 0)
-					m_SelectCommand.WhereClause.Conditions.Add("id_tarjeta=" + m_Tarjeta.ToString());
+                                        m_SelectCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("id_tarjeta", m_Tarjeta));
 
 				if (m_Estado >= 0)
-					m_SelectCommand.WhereClause.Conditions.Add("estado=" + m_Estado.ToString());
+                                        m_SelectCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("estado", m_Estado));
                                 else if(m_Estado == -2)
                                         m_SelectCommand.WhereClause.Conditions.Add("estado IN (0, 10)");
 
