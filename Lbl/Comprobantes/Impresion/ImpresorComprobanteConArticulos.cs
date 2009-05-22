@@ -53,7 +53,6 @@ namespace Lbl.Comprobantes.Impresion
                                                 Act.Fields.AddWithValue("costo", System.Convert.ToDouble(Art["costo"]));
                                                 Act.WhereClause = new Lfx.Data.SqlWhereBuilder("id_factura_detalle", System.Convert.ToInt32(Art["id_factura_detalle"]));
                                                 this.DataView.Execute(Act);
-                                                //this.DataView.DataBase.Execute("UPDATE facturas_detalle SET costo=" + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Art["costo"]), this.Comprobante.Workspace.CurrentConfig.Currency.DecimalPlacesCosto).ToString() + " WHERE id_factura_detalle=" + Art["id_factura_detalle"].ToString());
                                         }
                                 }
                         }
@@ -70,24 +69,24 @@ namespace Lbl.Comprobantes.Impresion
 					return new Lfx.Types.FailureOperationResult("Operación cancelada");
 			}
 
+                        if (ComprobConArt.Numero == 0 && ComprobConArt.Tipo.NumerarAlImprimir)
+                                ComprobConArt.Numerar();
+                        
                         ResultadoImprimir = base.Imprimir(nombreImpresora);
 
                         if (ResultadoImprimir.Success == true) {
-                                System.Threading.Thread.Sleep(400);
-
-                                if (ComprobConArt.Numero == 0 && ComprobConArt.Tipo.NumerarAlImprimir)
-                                        ComprobConArt.Numerar();
+                                ComprobConArt.Impreso = true;
+                                ComprobConArt.Estado = 1;
+                                ComprobConArt.Fecha = System.DateTime.Now;
 
                                 //Marco la factura como impresa y actualizo la fecha
                                 Lfx.Data.SqlUpdateBuilder Act = new Lfx.Data.SqlUpdateBuilder("facturas");
-                                Act.Fields.AddWithValue("impresa", 1);
-                                Act.Fields.AddWithValue("estado", 1);
-                                Act.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
+                                Act.Fields.AddWithValue("impresa", ComprobConArt.Impreso ? 1 : 0);
+                                Act.Fields.AddWithValue("estado", ComprobConArt.Estado);
+                                Act.Fields.AddWithValue("fecha", ComprobConArt.Fecha);
                                 Act.WhereClause = new Lfx.Data.SqlWhereBuilder("id_factura", ComprobConArt.Id);
                                 this.DataView.Execute(Act);
-                                //this.DataView.DataBase.Execute("UPDATE facturas SET impresa=1, estado=1, fecha=NOW() WHERE id_factura=" + ComprobConArt.Id.ToString());
-                                ComprobConArt.Impreso = true;
-                                ComprobConArt.Estado = 1;
+
                                 ComprobConArt.Guardar();
 
                                 //Resto el stock si corresponde

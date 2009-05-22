@@ -332,6 +332,7 @@ namespace Lbl.Comprobantes
                         if (this.Numero == 0) {
                                 int NumeroNuevo = Numerador.Numerar(this.DataView, this);
                                 Registro["numero"] = NumeroNuevo;
+                                Registro["fecha"] = System.DateTime.Now;
                         }
 		}
 

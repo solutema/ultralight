@@ -318,6 +318,8 @@ namespace Lbl
                                 return System.Convert.ToDecimal(a) == System.Convert.ToDecimal(b);
 			} else if(a is DateTime && b is DateTime) {
 				return System.Convert.ToDateTime(a) == System.Convert.ToDateTime(b);
+                        } else if (a is string && b is string) {
+                                return string.Equals(a as string, b as string, StringComparison.CurrentCulture);
 			} else {
 				return System.Convert.ToString(a) == System.Convert.ToString(b);
 			}

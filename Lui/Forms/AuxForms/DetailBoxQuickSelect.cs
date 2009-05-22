@@ -439,7 +439,6 @@ namespace Lui.Forms
 			{
 				// No se puede crear
 				this.Show();
-				Lfx.Sound.Beep();
 			}
 			else if (Resultado is Lui.Forms.EditForm)
 			{

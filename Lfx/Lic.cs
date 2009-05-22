@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+﻿// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -28,21 +28,17 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Media;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Lfx
 {
-	/// <summary>
-	/// Descripción breve de Sound.
-	/// </summary>
-	public static class Sound
-	{
-		public static void Beep()
-		{
-			//TODO
-		}
-
-                public static void Lic(string path)
+        /// <summary>
+        /// Agrega la licencia GPL como encabezado a todos los archivos de código fuente.
+        /// </summary>
+        public static class Lic
+        {
+                public static void Licenciar(string path)
                 {
                         string[] Archivos = System.IO.Directory.GetFiles(path, "*.cs", System.IO.SearchOption.AllDirectories);
                         foreach (string Archivo in Archivos) {

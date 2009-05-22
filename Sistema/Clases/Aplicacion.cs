@@ -422,12 +422,12 @@ namespace Lazaro
 
                         switch (SubComando) {
                                 case "LIC":
-                                        Lfx.Sound.Lic(@"C:\Lazaro\Sistema");
-                                        Lfx.Sound.Lic(@"C:\Lazaro\Lfx");
-                                        Lfx.Sound.Lic(@"C:\Lazaro\Lbl");
-                                        Lfx.Sound.Lic(@"C:\Lazaro\Lws");
-                                        Lfx.Sound.Lic(@"C:\Lazaro\Lui");
-                                        Lfx.Sound.Lic(@"C:\Lazaro\Lfc");
+                                        Lfx.Lic.Licenciar(@"C:\Lazaro\Sistema");
+                                        Lfx.Lic.Licenciar(@"C:\Lazaro\Lfx");
+                                        Lfx.Lic.Licenciar(@"C:\Lazaro\Lbl");
+                                        Lfx.Lic.Licenciar(@"C:\Lazaro\Lws");
+                                        Lfx.Lic.Licenciar(@"C:\Lazaro\Lui");
+                                        Lfx.Lic.Licenciar(@"C:\Lazaro\Lfc");
                                         break;
 
                                 case "CHKDB":
@@ -1391,10 +1391,6 @@ namespace Lazaro
                                         case "edicion":
                                                 TmpFormularioNuevo = ((Form)(Aplicacion.Exec("CREAR EDICION")));
                                                 break;
-
-                                        default:
-                                                Lfx.Sound.Beep();
-                                                break;
                                 }
 
                                 if (ControlDestino != null) {
@@ -1444,11 +1440,6 @@ namespace Lazaro
 
                                         case "edicion":
                                                 TmpFormularioNuevo = Aplicacion.Exec("EDITAR EDICION " + Id.ToString());
-                                                break;
-
-                                        default:
-                                                Lfx.Sound.Beep();
-
                                                 break;
                                 }
 

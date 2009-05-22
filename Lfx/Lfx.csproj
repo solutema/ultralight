@@ -105,6 +105,7 @@
     <Compile Include="Data\FormField.cs" />
     <Compile Include="FileFormats\Compression\Archive.cs" />
     <Compile Include="FileFormats\Office\Spreadsheet.cs" />
+    <Compile Include="Lic.cs" />
     <Compile Include="Printing\TextPrint.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -126,7 +127,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Sound.cs" />
     <Compile Include="Types\Currency.cs" />
     <Compile Include="Types\Formatting.cs" />
     <Compile Include="Types\Ini.cs" />

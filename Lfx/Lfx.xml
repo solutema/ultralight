@@ -30,6 +30,11 @@
             agregar dependencias en tiempo de diseño. La única dependencia en tiempo de diseño es System.Data.Odbc.
             </summary>
         </member>
+        <member name="T:Lfx.Lic">
+            <summary>
+            Agrega la licencia GPL como encabezado a todos los archivos de código fuente.
+            </summary>
+        </member>
         <member name="T:Lfx.Data.DataBase">
             <summary>
             Proporciona una conexión a la base de datos y acceso de bajo nivel (sin abstracción) a los datos. Se utiliza normalmente para ejecutar consultas.
@@ -123,11 +128,6 @@
             <summary>
               Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
               búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
-            </summary>
-        </member>
-        <member name="T:Lfx.Sound">
-            <summary>
-            Descripción breve de Sound.
             </summary>
         </member>
         <member name="M:Lfx.Types.Parsing.ParseSqlDateTime(System.String)">

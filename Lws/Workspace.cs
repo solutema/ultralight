@@ -76,7 +76,7 @@ namespace Lws
                                 Lfx.Data.DataBaseCache.DefaultCache = new Lfx.Data.DataBaseCache(m_DataBase);
 
                         if (this.DefaultDataBase.AccessMode == Lfx.Data.AccessModes.Undefined) {
-                                switch (this.CurrentConfig.ReadLocalSettingString("Data", "ConnectionType", "odbc")) {
+                                switch (this.CurrentConfig.ReadLocalSettingString("Data", "ConnectionType", "mysql")) {
                                         case "odbc":
                                                 Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.ODBC;
                                                 break;
