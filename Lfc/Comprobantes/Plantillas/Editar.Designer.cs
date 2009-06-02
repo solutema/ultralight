@@ -37,7 +37,7 @@ namespace Lfc.Comprobantes.Plantillas
 {
         public partial class Editar : Lui.Forms.EditForm
         {
-                private System.Windows.Forms.ListView lvCampos;
+                private Lui.Forms.ListView lvCampos;
                 private System.Windows.Forms.ColumnHeader Campo;
                 private System.Windows.Forms.ColumnHeader Extra;
                 private System.Windows.Forms.TabControl TabControl;
@@ -80,7 +80,7 @@ namespace Lfc.Comprobantes.Plantillas
                 /// </summary>
                 private void InitializeComponent()
                 {
-                        this.lvCampos = new System.Windows.Forms.ListView();
+                        this.lvCampos = new Lui.Forms.ListView();
                         this.Campo = new System.Windows.Forms.ColumnHeader();
                         this.Valor = new System.Windows.Forms.ColumnHeader();
                         this.CampoX = new System.Windows.Forms.ColumnHeader();

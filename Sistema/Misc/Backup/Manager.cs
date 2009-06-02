@@ -76,7 +76,7 @@ namespace Lazaro.Misc.Backup
 		internal Lui.Forms.Button cmdBackup;
 		internal System.Windows.Forms.Label Label1;
 		internal System.Windows.Forms.Label Label2;
-		internal System.Windows.Forms.ListView lvItems;
+                internal Lui.Forms.ListView lvItems;
 		internal System.Windows.Forms.ColumnHeader FechaYHora;
 		internal System.Windows.Forms.ColumnHeader Usuario;
 		internal System.Windows.Forms.ColumnHeader Carpeta;
@@ -93,7 +93,7 @@ namespace Lazaro.Misc.Backup
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
 			this.cmdBackup = new Lui.Forms.Button();
 			this.Label1 = new System.Windows.Forms.Label();
-			this.lvItems = new System.Windows.Forms.ListView();
+                        this.lvItems = new Lui.Forms.ListView();
 			this.Carpeta = new System.Windows.Forms.ColumnHeader();
 			this.Numero = new System.Windows.Forms.ColumnHeader();
 			this.FechaYHora = new System.Windows.Forms.ColumnHeader();

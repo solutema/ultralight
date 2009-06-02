@@ -114,64 +114,67 @@ namespace Lazaro.Principal
 		private void ActualizarBarra()
 		{
 			this.SuspendLayout();
-			ItemActual = ItemSolicitado;
-			TablaActual = TablaSolicitada;
 
-			switch (TablaActual)
+                        switch (TablaSolicitada)
 			{
 				case "articulo":
 				case "articulos":
 					PanelAyuda.Visible = false;
 					PanelPersona.Visible = false;
-                                        Lbl.Articulos.Articulo Art = new Lbl.Articulos.Articulo(this.DataView, ItemActual);
-					string Codigos = Art.Id.ToString();
-					if (Art.Codigo1.Length > 0)
-						Codigos += System.Environment.NewLine + Art.Codigo1;
-					if(Art.Codigo2.Length > 0)
-						Codigos += System.Environment.NewLine + Art.Codigo2;
-					if(Art.Codigo3.Length > 0)
-						Codigos += System.Environment.NewLine + Art.Codigo3;
-					if(Art.Codigo4.Length > 0)
-						Codigos += System.Environment.NewLine + Art.Codigo4;
-					ArticuloCodigos.Text = Codigos;
-					ArticuloNombre.Text = Art.ToString();
-					ArticuloDescripcion.Text = Art.Descripcion;
-					ArticuloPVP.Text = Lfx.Types.Formatting.FormatCurrency(Art.PVP, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-					ArticuloStock.Text = Lfx.Types.Formatting.FormatCurrency(Art.StockActual(), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-					PanelArticulo.Visible = true;
+                                        Lbl.Articulos.Articulo Art = new Lbl.Articulos.Articulo(this.DataView, ItemSolicitado);
+                                        if (Art.Existe) {
+                                                ItemActual = ItemSolicitado;
+                                                TablaActual = TablaSolicitada;
+
+                                                string Codigos = Art.Id.ToString();
+                                                if (Art.Codigo1.Length > 0)
+                                                        Codigos += System.Environment.NewLine + Art.Codigo1;
+                                                if (Art.Codigo2.Length > 0)
+                                                        Codigos += System.Environment.NewLine + Art.Codigo2;
+                                                if (Art.Codigo3.Length > 0)
+                                                        Codigos += System.Environment.NewLine + Art.Codigo3;
+                                                if (Art.Codigo4.Length > 0)
+                                                        Codigos += System.Environment.NewLine + Art.Codigo4;
+                                                ArticuloCodigos.Text = Codigos;
+                                                ArticuloNombre.Text = Art.ToString();
+                                                ArticuloDescripcion.Text = Art.Descripcion;
+                                                ArticuloPVP.Text = Lfx.Types.Formatting.FormatCurrency(Art.PVP, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                                ArticuloStock.Text = Lfx.Types.Formatting.FormatCurrency(Art.StockActual(), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                                PanelArticulo.Visible = true;
+                                        }
 					break;
 				case "persona":
 				case "personas":
 					PanelAyuda.Visible = false;
 					PanelArticulo.Visible = false;
-                                        Lbl.Personas.Persona Per = new Lbl.Personas.Persona(this.DataView, ItemActual);
-					PersonaNombre.Text = Per.ToString();
-					PersonaDomicilio.Text = Per.Domicilio;
-					PersonaTelefono.Text = Per.Telefono;
-					PersonaEmail.Text = Per.Email;
-					if (Per.Grupo != null)
-						PersonaGrupo.Text = Per.Grupo.ToString();
-					else
-						PersonaGrupo.Text = "-";
-                                        Lbl.Cuentas.CuentaCorriente CtaCte = new Lbl.Cuentas.CuentaCorriente(this.DataView, ItemActual);
-					double Saldo = CtaCte.Saldo();
-					if (Saldo > 0)
-					{
-						PersonaComentario.Text = "Esta persona registra saldo impago en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
-						PersonaComentario.BackColor = System.Drawing.Color.Tomato;
-						PersonaComentario.Visible = true;
-					}
-					else if (Saldo < 0)
-					{
-						PersonaComentario.Text = "Esta persona registra saldo a favor en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(-Saldo, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
-						PersonaComentario.BackColor = System.Drawing.SystemColors.Control;
-						PersonaComentario.Visible = true;
-					}
-					else
-					{
-						PersonaComentario.Visible = false;
-					}
-					PanelPersona.Visible = true;
+                                        Lbl.Personas.Persona Per = new Lbl.Personas.Persona(this.DataView, ItemSolicitado);
+                                        if (Per.Existe) {
+                                                ItemActual = ItemSolicitado;
+                                                TablaActual = TablaSolicitada;
+
+                                                PersonaNombre.Text = Per.ToString();
+                                                PersonaDomicilio.Text = Per.Domicilio;
+                                                PersonaTelefono.Text = Per.Telefono;
+                                                PersonaEmail.Text = Per.Email;
+                                                if (Per.Grupo != null)
+                                                        PersonaGrupo.Text = Per.Grupo.ToString();
+                                                else
+                                                        PersonaGrupo.Text = "-";
+                                                Lbl.Cuentas.CuentaCorriente CtaCte = new Lbl.Cuentas.CuentaCorriente(this.DataView, ItemActual);
+                                                double Saldo = CtaCte.Saldo();
+                                                if (Saldo > 0) {
+                                                        PersonaComentario.Text = "Esta persona registra saldo impago en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
+                                                        PersonaComentario.BackColor = System.Drawing.Color.Tomato;
+                                                        PersonaComentario.Visible = true;
+                                                } else if (Saldo < 0) {
+                                                        PersonaComentario.Text = "Esta persona registra saldo a favor en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(-Saldo, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
+                                                        PersonaComentario.BackColor = System.Drawing.SystemColors.Control;
+                                                        PersonaComentario.Visible = true;
+                                                } else {
+                                                        PersonaComentario.Visible = false;
+                                                }
+                                                PanelPersona.Visible = true;
+                                        }
 					break;
 			}
 			this.ResumeLayout();
@@ -190,12 +193,12 @@ namespace Lazaro.Principal
 
 		private void ArticuloNombre_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			Aplicacion.Exec("EDITAR articulos " + ItemActual.ToString());
+			Aplicacion.Exec("EDITAR " + TablaActual + " " + ItemActual.ToString());
 		}
 
                 private void PersonaNombre_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
-                        Aplicacion.Exec("EDITAR personas " + ItemActual.ToString());
+                        Aplicacion.Exec("EDITAR " + TablaActual + " " + ItemActual.ToString());
                 }
 	}
 }

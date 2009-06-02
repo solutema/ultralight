@@ -100,6 +100,7 @@
     <Compile Include="Data\IndexDefinition.cs" />
     <Compile Include="Data\Providers\Npgsql.cs" />
     <Compile Include="Data\Row.cs" />
+    <Compile Include="Data\Table.cs" />
     <Compile Include="Data\TableStructure.cs" />
     <Compile Include="Data\Tag.cs" />
     <Compile Include="Data\FormField.cs" />

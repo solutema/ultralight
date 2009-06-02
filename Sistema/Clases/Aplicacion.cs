@@ -34,6 +34,8 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Net.Mail;
+using System.Security.Permissions;
 
 namespace Lazaro
 {
@@ -57,12 +59,6 @@ namespace Lazaro
                         return Lfx.Types.Formatting.FormatDateAndTime(InfoArchivo.LastWriteTime);
                 }
 
-                public static void ShowException(Exception ex, string Extra)
-                {
-                        FormError OFormError = new FormError();
-                        OFormError.MostrarError(ex, Extra);
-                        OFormError.ShowDialog();
-                }
 
                 /// <summary>
                 /// Guarda registro de un error, intentando hacer un stack trace sobre el error.
@@ -162,7 +158,7 @@ namespace Lazaro
                 // Descripción: Punto de entrada principal del programa
                 //    Hace la conexión a la base de datos y llama a IniciarNormal o IniciarFiscal
                 //    dependiente de si está en modo modo normal o servidor fiscal
-                [STAThread]
+                [STAThread, SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.ControlAppDomain)]
                 public static int Main(string[] args)
                 {
                         System.Console.WriteLine("Codificación: " + System.Text.Encoding.Default.BodyName);
@@ -173,6 +169,9 @@ namespace Lazaro
                         }
 
                         Application.EnableVisualStyles();
+                        Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(ThreadExceptionHandler);
+                        AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
+                        Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 
                         bool ReconfigDB = false;
 
@@ -343,7 +342,7 @@ namespace Lazaro
                         if (Aplicacion.CUIT == null || Aplicacion.CUIT.Length == 0 || Aplicacion.CUIT == "00-00000000-0") {
                                 Misc.Config.Preferencias FormConfig = new Misc.Config.Preferencias();
                                 FormConfig.Workspace = Lws.Workspace.Master;
-                                FormConfig.cmdSiguiente.Visible = false;
+                                FormConfig.BotonSiguiente.Visible = false;
                                 if (FormConfig.ShowDialog() == DialogResult.OK)
                                         Aplicacion.Exec("REBOOT");
                                 else
@@ -383,9 +382,6 @@ namespace Lazaro
                         }
 
                         if (Lws.Workspace.Master.CurrentUser.UserId > 0) {
-                                // Dim Yo As Process = Process.GetCurrentProcess
-                                // Yo.PriorityClass = ProcessPriorityClass.AboveNormal
-
                                 // Mostrar el formulario
                                 Aplicacion.FormularioPrincipal = new Principal.Inicio();
                                 Aplicacion.FormularioPrincipal.Workspace = Lws.Workspace.Master;
@@ -429,6 +425,9 @@ namespace Lazaro
                                         Lfx.Lic.Licenciar(@"C:\Lazaro\Lui");
                                         Lfx.Lic.Licenciar(@"C:\Lazaro\Lfc");
                                         break;
+
+                                case "ERROR":
+                                        throw new InvalidOperationException("Error de Prueba");
 
                                 case "CHKDB":
                                         string SubComandoDbCheck = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpperInvariant();
@@ -1452,6 +1451,63 @@ namespace Lazaro
                         catch {
                                 return null;
                         }
+                }
+
+                public static void ThreadExceptionHandler(object sender, System.Threading.ThreadExceptionEventArgs e)
+                {
+                        ExceptionHandler(e.Exception);
+                }
+
+                private static void GlobalExceptionHandler(object sender, UnhandledExceptionEventArgs args)
+                {
+                        ExceptionHandler(args.ExceptionObject as Exception);
+                }
+
+                public static void ExceptionHandler(Exception ex)
+                {
+                        Misc.ErrorGlobal FormularioError = new Lazaro.Misc.ErrorGlobal();
+                        FormularioError.Show();
+                        FormularioError.Refresh();
+                        System.Windows.Forms.Application.DoEvents();
+
+                        System.Text.StringBuilder Texto = new System.Text.StringBuilder();
+                        Texto.AppendLine("Lugar   :" + ex.Source);
+                        Texto.AppendLine("Equipo  :" + Lfx.Environment.SystemInformation.ComputerName);
+                        Texto.AppendLine("Plataf. :" + Lfx.Environment.SystemInformation.Platform);
+                        Texto.AppendLine("RunTime :" + Lfx.Environment.SystemInformation.RunTime);
+                        Texto.AppendLine("Excepción no controlada: " + ex.ToString());
+                        Texto.AppendLine("");
+
+                        Texto.AppendLine("Lazaro versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").ProductVersion + " del " + new System.IO.FileInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
+                        System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ApplicationFolder);
+                        foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.dll")) {
+                                Texto.AppendLine(DirItem.Name + " versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(DirItem.FullName).ProductVersion + " del " + new System.IO.FileInfo(DirItem.FullName).LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
+                        }
+
+                        Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ComponentsFolder);
+                        foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.dll")) {
+                                Texto.AppendLine(DirItem.Name + " versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(DirItem.FullName).ProductVersion + " del " + new System.IO.FileInfo(DirItem.FullName).LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
+                        }
+
+                        MailMessage Mensaje = new MailMessage();
+                        Mensaje.To.Add(new MailAddress("error@sistemalazaro.com.ar"));
+                        Mensaje.From = new MailAddress(Lws.Workspace.Master.CurrentUser.UserCompleteName + " en " + Lws.Workspace.Master.CurrentConfig.Company.Name + "<" + Lws.Workspace.Master.CurrentUser.UserId.ToString() + "@" + Lfx.Environment.SystemInformation.ComputerName + ">");
+                        Mensaje.Subject = ex.Message;
+                        Mensaje.Body = Texto.ToString();
+
+                        SmtpClient Cliente = new SmtpClient("mail.sistemalazaro.com.ar");
+                        try {
+                                Cliente.Send(Mensaje);
+                                FormularioError.EtiquetaDescripcion.Text = "Se envió un reporte de error. Haga clic en Continuar para continuar.";
+                        }
+                        catch (Exception ExSnd) {
+                                FormularioError.EtiquetaDescripcion.Text = "No se puedo enviar el reporte de error (" + ExSnd.Message + "). Haga clic en Continuar para continuar.";
+                        }
+
+                        FormularioError.BotonCerrar.Visible = true;
+                        FormularioError.BotonCerrar.Enabled = true;
+                        FormularioError.Refresh();
+                        System.Windows.Forms.Application.DoEvents();
                 }
         }
 }

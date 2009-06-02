@@ -71,13 +71,13 @@ namespace Lui.Printing
 		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
 		// Puede modificarse utilizando el Diseñador de Windows Forms. 
 		// No lo modifique con el editor de código.
-		internal System.Windows.Forms.ListView lvItems;
+                internal Lui.Forms.ListView lvItems;
 		private System.Windows.Forms.ColumnHeader Nombre;
 
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			this.lvItems = new System.Windows.Forms.ListView();
+                        this.lvItems = new Lui.Forms.ListView();
 			this.Nombre = new System.Windows.Forms.ColumnHeader();
 			this.NombreVisible = new System.Windows.Forms.ColumnHeader();
 			this.SuspendLayout();

@@ -100,6 +100,12 @@
     <Compile Include="Misc\Config\Preferencias.Designer.cs">
       <DependentUpon>Preferencias.cs</DependentUpon>
     </Compile>
+    <Compile Include="Misc\ErrorGlobal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\ErrorGlobal.Designer.cs">
+      <DependentUpon>ErrorGlobal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Misc\Fiscal.Designer.cs">
       <DependentUpon>Fiscal.cs</DependentUpon>
     </Compile>
@@ -153,9 +159,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Actualizador\Estado.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Misc\FormError.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Misc\FormImagen.cs">
@@ -239,10 +242,6 @@
       <DependentUpon>Estado.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Misc\FormError.resx">
-      <DependentUpon>FormError.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Misc\FormImagen.resx">
       <DependentUpon>FormImagen.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -276,6 +275,7 @@
     <EmbeddedResource Include="Data\db_upd20_pre.sql" />
     <None Include="app.config" />
     <EmbeddedResource Include="Data\db_upd20_post.sql" />
+    <EmbeddedResource Include="Data\db_upd21_post.sql" />
     <None Include="Resources\contact-new.png" />
     <None Include="Resources\edit-copy.png" />
     <None Include="Resources\edit-undo.png" />
@@ -329,6 +329,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Data\menu.xml" />
+    <EmbeddedResource Include="Misc\ErrorGlobal.resx">
+      <DependentUpon>ErrorGlobal.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

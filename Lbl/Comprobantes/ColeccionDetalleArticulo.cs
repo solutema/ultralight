@@ -86,7 +86,7 @@ namespace Lbl.Comprobantes
 
 
                 /// <summary>
-                /// Hace una lista de movimientos para convertir "original" en "this"
+                /// Hace una lista de movimientos necesarios para convertir "original" en "this".
                 /// </summary>
                 public ColeccionDetalleArticulos Diferencia(ColeccionDetalleArticulos original)
                 {

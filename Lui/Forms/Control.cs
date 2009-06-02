@@ -343,13 +343,16 @@ namespace Lui.Forms
 
 		private Lws.Workspace FindMyWorkspace(System.Windows.Forms.Control whereToFind)
 		{
+                        if (whereToFind == null)
+                                return null;
+
 			if (whereToFind is Lui.Forms.Form)
 				return ((Lui.Forms.Form)whereToFind).Workspace;
 			else if (whereToFind is System.Windows.Forms.Form && ((Form)whereToFind).Owner != null)
 				return FindMyWorkspace(((Form)whereToFind).Owner);
-			else if (whereToFind != null && whereToFind.Parent != null)
+			else if (whereToFind.Parent != null)
 				return FindMyWorkspace(whereToFind.Parent);
-			else if (whereToFind != null && ((Form)whereToFind).MdiParent != null)
+			else if (((Form)whereToFind).MdiParent != null)
 				return FindMyWorkspace(((Form)whereToFind).MdiParent);
 			else
 				return null;

@@ -346,34 +346,6 @@ namespace Lfc.Tareas
                 private void lvHistorial_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
                 {
                         switch (e.KeyCode) {
-                                case Keys.Up:
-                                        if (lvHistorial.Items.Count == 0) {
-                                                System.Windows.Forms.SendKeys.Send("+{tab}");
-                                        } else if (lvHistorial.SelectedItems.Count == 0) {
-                                                lvHistorial.Items[0].Selected = true;
-                                                lvHistorial.Items[0].Focused = true;
-                                        } else if (lvHistorial.SelectedItems[0].Index > 0) {
-                                                lvHistorial.Items[lvHistorial.SelectedItems[0].Index - 1].Selected = true;
-                                                lvHistorial.Items[lvHistorial.SelectedItems[0].Index].Focused = true;
-                                        } else {
-                                                System.Windows.Forms.SendKeys.Send("+{tab}");
-                                        }
-                                        e.Handled = true;
-                                        break;
-                                case Keys.Down:
-                                        if (lvHistorial.Items.Count == 0) {
-                                                System.Windows.Forms.SendKeys.Send("{tab}");
-                                        } else if (lvHistorial.SelectedItems.Count == 0) {
-                                                lvHistorial.Items[0].Selected = true;
-                                                lvHistorial.Items[0].Focused = true;
-                                        } else if (lvHistorial.SelectedItems[0].Index < lvHistorial.Items.Count - 1) {
-                                                lvHistorial.Items[lvHistorial.SelectedItems[0].Index + 1].Selected = true;
-                                                lvHistorial.Items[lvHistorial.SelectedItems[0].Index].Focused = true;
-                                        } else {
-                                                System.Windows.Forms.SendKeys.Send("{tab}");
-                                        }
-                                        e.Handled = true;
-                                        break;
                                 case Keys.Enter:
                                         if (lvHistorial.SelectedItems.Count > 0) {
                                                 e.Handled = true;

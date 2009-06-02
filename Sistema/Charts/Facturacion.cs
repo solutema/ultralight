@@ -49,7 +49,7 @@ namespace Lazaro.Charts
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.PictureBox pictureBox4;
                 private Lui.Forms.Chart ChartRent;
-		private System.Windows.Forms.ListView lvAnual;
+		private Lui.Forms.ListView lvAnual;
 		private System.Windows.Forms.ColumnHeader lvAnualMes;
 		private System.Windows.Forms.ColumnHeader lvAnualMonto;
 		private System.Windows.Forms.Label label7;
@@ -110,7 +110,7 @@ namespace Lazaro.Charts
                         this.pictureBox3 = new System.Windows.Forms.PictureBox();
                         this.label4 = new System.Windows.Forms.Label();
                         this.pictureBox4 = new System.Windows.Forms.PictureBox();
-                        this.lvAnual = new System.Windows.Forms.ListView();
+                        this.lvAnual = new Lui.Forms.ListView();
                         this.lvAnualMes = new System.Windows.Forms.ColumnHeader();
                         this.lvAnualMonto = new System.Windows.Forms.ColumnHeader();
                         this.label7 = new System.Windows.Forms.Label();

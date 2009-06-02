@@ -43,7 +43,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.PrintButton = new Lui.Forms.Button();
                         this.cmdMostrar = new Lui.Forms.Button();
                         this.CancelCommandButton = new Lui.Forms.Button();
-                        this.ItemList = new System.Windows.Forms.ListView();
+                        this.ItemList = new Lui.Forms.ListView();
                         this.ChId = new System.Windows.Forms.ColumnHeader();
                         this.ChFecha = new System.Windows.Forms.ColumnHeader();
                         this.ChConcepto = new System.Windows.Forms.ColumnHeader();
@@ -527,7 +527,7 @@ namespace Lfc.Tarjetas.Cupones
                 internal Lui.Forms.Button PrintButton;
                 internal Lui.Forms.Button cmdMostrar;
                 internal Lui.Forms.Button CancelCommandButton;
-                internal System.Windows.Forms.ListView ItemList;
+                internal Lui.Forms.ListView ItemList;
                 internal System.Windows.Forms.Label EtiquetaTitulo;
                 internal System.Windows.Forms.Label Label4;
                 internal Lui.Forms.TextBox EtiquetaImporteSinPresentar;

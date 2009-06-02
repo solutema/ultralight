@@ -92,11 +92,10 @@ namespace Lfc.Personas
                         if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.read"))
                                 return new Lfx.Types.NoAccessOperationResult();
 
-                        Lbl.Personas.Persona Persona = new Lbl.Personas.Persona(this.DataView, iId);
-
                         if (iId == 999) {
                                 return new Lfx.Types.FailureOperationResult("No se pueden cambiar los datos de \"Consumidor Final\"");
                         } else {
+                                Lbl.Personas.Persona Persona = new Lbl.Personas.Persona(this.DataView, iId);
                                 this.FromRow(Persona);
                                 return new Lfx.Types.SuccessOperationResult();
                         }

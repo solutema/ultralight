@@ -93,7 +93,7 @@ namespace Lazaro.Reportes
                 internal Lui.Forms.TextBox txtGastosFijos;
                 internal Lui.Forms.TextBox txtGastosVariables;
                 internal Lui.Forms.TextBox txtOtrosEgresos;
-                internal System.Windows.Forms.ListView lvItems;
+                internal Lui.Forms.ListView lvItems;
                 internal System.Windows.Forms.ColumnHeader id;
                 internal System.Windows.Forms.ColumnHeader fecha;
                 internal System.Windows.Forms.ColumnHeader concepto;
@@ -140,7 +140,7 @@ namespace Lazaro.Reportes
                         this.cmdGastosFijos = new Lui.Forms.Button();
                         this.cmdGastosVariables = new Lui.Forms.Button();
                         this.cmdOtrosEgresos = new Lui.Forms.Button();
-                        this.lvItems = new System.Windows.Forms.ListView();
+                        this.lvItems = new Lui.Forms.ListView();
                         this.id = new System.Windows.Forms.ColumnHeader();
                         this.fecha = new System.Windows.Forms.ColumnHeader();
                         this.concepto = new System.Windows.Forms.ColumnHeader();

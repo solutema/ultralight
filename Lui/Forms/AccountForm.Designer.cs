@@ -51,7 +51,7 @@ namespace Lui.Forms
 		internal System.Windows.Forms.Panel LowerPanel;
                 internal Lui.Forms.Button PrintButton;
 		internal Lui.Forms.Button CancelCommandButton;
-		public System.Windows.Forms.ListView ItemList;
+                public Lui.Forms.ListView ItemList;
 		internal System.Windows.Forms.ColumnHeader fecha;
 		internal System.Windows.Forms.ColumnHeader concepto;
 		internal System.Windows.Forms.ColumnHeader saldo;
@@ -78,7 +78,7 @@ namespace Lui.Forms
                         this.FilterButton = new Lui.Forms.Button();
                         this.PrintButton = new Lui.Forms.Button();
                         this.CancelCommandButton = new Lui.Forms.Button();
-                        this.ItemList = new System.Windows.Forms.ListView();
+                        this.ItemList = new Lui.Forms.ListView();
                         this.id = new System.Windows.Forms.ColumnHeader();
                         this.fecha = new System.Windows.Forms.ColumnHeader();
                         this.concepto = new System.Windows.Forms.ColumnHeader();

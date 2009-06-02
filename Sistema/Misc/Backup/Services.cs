@@ -27,13 +27,13 @@
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 
-using System.Text.RegularExpressions;
 using System;
 using System.Collections;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Lazaro.Misc.Backup
 {
@@ -64,6 +64,9 @@ namespace Lazaro.Misc.Backup
 			}
 		}
 
+                /// <summary>
+                /// Exporta los campos binarios de una tabla en archivos.
+                /// </summary>
 		public static void ExportBlobs(Lfx.Data.SqlSelectBuilder ComandoSelect, string Carpeta)
 		{
 			if(char.Parse(Carpeta.Substring(Carpeta.Length - 1, 1)) != System.IO.Path.DirectorySeparatorChar)
@@ -91,17 +94,92 @@ namespace Lazaro.Misc.Backup
 
                 
                 /// <summary>
-                /// Nueva rutina para exportar una tabla a un formato binario propietario, incluyendo BLOBs.
+                /// Exporta una tabla en un formato binario propietario, incluyendo BLOBs.
                 /// </summary>
-                public static void ExportTableBin(Lfx.Data.SqlSelectBuilder Comando, bool ExportarBlobs, System.IO.StreamWriter writer)
+                public static void ExportTableBin(string nombreTabla, BackupStreamWriter writer)
                 {
-                        System.Data.IDataReader Tabla = Lws.Workspace.Master.DefaultDataBase.GetReader(Comando.ToString());
+                        Lfx.Data.SqlSelectBuilder Comando = new Lfx.Data.SqlSelectBuilder(nombreTabla);
+                        System.Data.IDataReader Tabla = Lws.Workspace.Master.DefaultDataBase.GetReader(Comando);
+                        
+                        bool EmitiTabla = false;
+                        string[] Fields = null;
                         while (Tabla.Read()) {
+                                if (EmitiTabla == false) {
+                                        Fields = new string[Tabla.FieldCount];
+                                        for (int i = 0; i < Tabla.FieldCount; i++) {
+                                                Fields[i] = Tabla.GetName(i);
+                                        }
+                                        string FieldList = string.Join(",", Fields);
+                                        writer.Write(":TBL" + Comando.Tables.Length.ToString("0000") + Comando.Tables);
+                                        writer.Write(":FDL" + FieldList.Length.ToString("0000") + FieldList);
+                                        EmitiTabla = true;
+                                }
+                                writer.Write(":ROW");
 
+                                for (int i = 0; i < Tabla.FieldCount; i++) {
+                                        object ValorOrigen = Tabla[Fields[i]];
+                                        string TipoCampoOrigen = ValorOrigen.GetType().ToString();
+                                        string TipoCampoDestino;
+                                        switch (TipoCampoOrigen) {
+                                                case "System.Byte[]":
+                                                        TipoCampoDestino = "B";
+                                                        break;
+                                                case "System.SByte":
+                                                case "System.Byte":
+                                                case "System.Int16":
+                                                case "System.Int32":
+                                                case "System.Int64":
+                                                        ValorOrigen = ValorOrigen.ToString();
+                                                        TipoCampoDestino = "I";
+                                                        break;
+                                                case "System.Decimal":
+                                                case "System.Single":
+                                                case "System.Double":
+                                                        double ValDouble = System.Convert.ToDouble(ValorOrigen);
+                                                        ValorOrigen = ValDouble.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                                                        TipoCampoDestino = "N";
+                                                        break;
+                                                case "System.DateTime":
+                                                        ValorOrigen = ((DateTime)ValorOrigen).ToString(Lfx.Types.Formatting.DateTime.SqlDateTimeFormat);
+                                                        TipoCampoDestino = "D";
+                                                        break;
+                                                case "System.String":
+                                                        TipoCampoDestino = "S";
+                                                        break;
+                                                case "System.DBNull":
+                                                        TipoCampoDestino = "U";
+                                                        ValorOrigen = "";
+                                                        break;
+                                                default:
+                                                        TipoCampoDestino = "S";
+                                                        ValorOrigen = ValorOrigen.ToString();
+                                                        break;
+                                        }
+
+                                        byte[] ValorDestino;
+
+                                        if (ValorOrigen is byte[])
+                                                ValorDestino = (byte[])ValorOrigen;
+                                        else if (ValorOrigen is string)
+                                                ValorDestino = System.Text.Encoding.UTF8.GetBytes((string)ValorOrigen);
+                                        else
+                                                throw new NotImplementedException();
+
+                                        writer.Write(":FLD" + TipoCampoDestino + ValorDestino.Length.ToString("00000000"));
+                                        if (ValorDestino.Length > 0)
+                                                writer.Write(ValorDestino);
+                                }
+                                writer.Write(".ROW");
+                                //writer.Write(":REM0002" + Lfx.Types.ControlChars.CrLf);
                         }
+
+                        writer.Write(".TBL");
                         Tabla.Close();
                 }
 
+                /// <summary>
+                /// Exporta una tabla a un archivo de texto con una secuencia de comandos SQL.
+                /// </summary>
 		public static void ExportTable(Lfx.Data.SqlSelectBuilder Comando, bool ExportarBlobs, System.IO.StreamWriter writer)
 		{
 			System.Data.DataTable Tabla = Lws.Workspace.Master.DefaultDataBase.Select(Comando);
@@ -130,6 +208,7 @@ namespace Lazaro.Misc.Backup
 									Valor = "NULL";
 								}
 								break;
+                                                        case "SByte":
 							case "Byte":
 							case "Int16":
 							case "Int32":
@@ -184,30 +263,27 @@ namespace Lazaro.Misc.Backup
 			OProgreso.Texto = "Este proceso puede demorar varios minutos.";
 			OProgreso.ProgressBar.Style = ProgressBarStyle.Continuous;
 			OProgreso.Progreso = 0;
+                        OProgreso.Max = Lfx.Data.DataBaseCache.DefaultCache.TableList.Count + 1;
 			OProgreso.Show();
 
 			OProgreso.Operacion = "Exportando estructura...";
+                        OProgreso.Progreso += 1;
 			System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
 			doc.AppendChild(Lws.Workspace.Master.DefaultDataBase.GetXmlStructure(doc));
 			doc.Save(Lfx.Environment.Folders.TemporaryFolder + workFolder + "dbstruct.xml");
 
-			/*
-			if (Lws.Workspace.Master.DefaultDataBase.AccessMode == Lfx.Data.AccessModes.MySql && System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + "mysqldump.exe"))
-			{
-			    //Si es un servidor MySql y tengo mysqldump.exe, lo uso
-			    OProgreso.Operacion = "Volcado completo...";
-			    MySqlDump(workFolder);
-			}
-			else
-			{
-			    //De lo contrario, el viejo volcado manual
-			    OProgreso.Operacion = "Volcado manual...";
-			    ManualDump(workFolder);
-			}
-			*/
-
-			OProgreso.Operacion = "Volcado manual...";
-			ManualDump(workFolder);
+                        BackupStreamWriter Writer = new BackupStreamWriter(Lfx.Environment.Folders.TemporaryFolder + workFolder + "dbdata.lbd", false);
+                        Writer.Write(":BKP");
+                        
+                        foreach (string Tabla in Lfx.Data.DataBaseCache.DefaultCache.TableList) {
+                                if (Tabla != "sys_asl") {
+                                        OProgreso.Operacion = "Volcando " + Tabla;
+                                        OProgreso.Progreso += 1;
+                                        ExportTableBin(Tabla, Writer);
+                                        System.Windows.Forms.Application.DoEvents();
+                                }
+                        }
+                        Writer.Close();
 
 			System.IO.FileStream Archivo = new System.IO.FileStream(Lfx.Environment.Folders.TemporaryFolder + workFolder + "info.txt", System.IO.FileMode.Append, System.IO.FileAccess.Write);
 			System.IO.StreamWriter Escribidor = new System.IO.StreamWriter(Archivo, System.Text.Encoding.Default);
@@ -224,19 +300,21 @@ namespace Lazaro.Misc.Backup
 			Escribidor.Close();
 			Archivo.Close();
 
-			OProgreso.Operacion = "Comprimiendo los datos...";
-			Lfx.FileFormats.Compression.Archive ArchivoComprimido = new Lfx.FileFormats.Compression.Archive(Lfx.Environment.Folders.TemporaryFolder + workFolder + "backup.7z");
-			ArchivoComprimido.Add(Lfx.Environment.Folders.TemporaryFolder + workFolder + "*");
-			if(System.IO.File.Exists(Lfx.Environment.Folders.TemporaryFolder + workFolder + "backup.7z")) {
-				OProgreso.Operacion = "Eliminando archivos temporales...";
-				// Borrar los archivos que acabo de comprimir
-				System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.TemporaryFolder + workFolder);
-				foreach(System.IO.FileInfo DirItem in Dir.GetFiles()) {
-					if(DirItem.Name != "backup.7z" && DirItem.Name != "info.txt") {
-						System.IO.File.Delete(Lfx.Environment.Folders.TemporaryFolder + workFolder + DirItem.Name);
-					}
-				}
-			}
+                        if (Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingInt("Sistema", "ComprimirCopiasDeRespaldo", 0) != 0) {
+                                OProgreso.Operacion = "Comprimiendo los datos...";
+                                Lfx.FileFormats.Compression.Archive ArchivoComprimido = new Lfx.FileFormats.Compression.Archive(Lfx.Environment.Folders.TemporaryFolder + workFolder + "backup.7z");
+                                ArchivoComprimido.Add(Lfx.Environment.Folders.TemporaryFolder + workFolder + "*");
+                                if (System.IO.File.Exists(Lfx.Environment.Folders.TemporaryFolder + workFolder + "backup.7z")) {
+                                        OProgreso.Operacion = "Eliminando archivos temporales...";
+                                        // Borrar los archivos que acabo de comprimir
+                                        System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.TemporaryFolder + workFolder);
+                                        foreach (System.IO.FileInfo DirItem in Dir.GetFiles()) {
+                                                if (DirItem.Name != "backup.7z" && DirItem.Name != "info.txt") {
+                                                        System.IO.File.Delete(Lfx.Environment.Folders.TemporaryFolder + workFolder + DirItem.Name);
+                                                }
+                                        }
+                                }
+                        }
 
 			OProgreso.Operacion = "Almacenando...";
 			OProgreso.Progreso++;
@@ -259,35 +337,6 @@ namespace Lazaro.Misc.Backup
 
 			OProgreso.Dispose();
 			return new Lfx.Types.SuccessOperationResult();
-		}
-
-		private static void MySqlDump(string workFolder)
-		{
-			string Arguments = "--compatible=ansi --complete-insert --force --ignore-table=%.sys_asl --no-create-info --single-transaction --hex-blob";
-                        Arguments += " --host=" + Lfx.Data.DataBaseCache.DefaultCache.ServerName;
-                        Arguments += " -u " + Lfx.Data.DataBaseCache.DefaultCache.UserName;
-                        if (Lfx.Data.DataBaseCache.DefaultCache.Password.Length > 0)
-                                Arguments += " --password=" + Lfx.Data.DataBaseCache.DefaultCache.Password;
-			Arguments += " --result-file=\"" + Lfx.Environment.Folders.TemporaryFolder + workFolder + "tablas.sql\"";
-			Arguments += " " + Lws.Workspace.Master.DefaultDataBase.DataBaseName;
-			Lfx.Environment.Shell.Execute(Lfx.Environment.Folders.ApplicationFolder + "mysqldump.exe", Arguments, ProcessWindowStyle.Hidden, true);
-		}
-
-		private static void ManualDump(string workFolder)
-		{
-			System.IO.StreamWriter Writer = new System.IO.StreamWriter(Lfx.Environment.Folders.TemporaryFolder + workFolder + "tablas.sql", false, System.Text.Encoding.Default);
-			foreach(string Tabla in Lfx.Data.DataBaseCache.DefaultCache.TableList) {
-				if(Tabla != "sys_asl") {
-					Lfx.Data.SqlSelectBuilder Comando = new Lfx.Data.SqlSelectBuilder();
-					Comando.Tables = Tabla;
-					//OProgreso.Progreso++;
-                                        ExportTable(Comando, false, Writer);
-					ExportBlobs(Comando, Lfx.Environment.Folders.TemporaryFolder + workFolder);
-					//OProgreso.Progreso++;
-					System.Windows.Forms.Application.DoEvents();
-				}
-			}
-			Writer.Close();
 		}
 
 
@@ -358,12 +407,12 @@ namespace Lazaro.Misc.Backup
 
 				bool UsandoArchivoComprimido = false;
 
-				Lui.Forms.ProgressForm OProgreso = new Lui.Forms.ProgressForm();
-				OProgreso.Titulo = "Restaurando Copia de Respaldo";
-				OProgreso.Style = ProgressBarStyle.Continuous;
-				OProgreso.Texto = "Este proceso va a demorar varios minutos. Por favor no lo interrumpa.";
+				Lui.Forms.ProgressForm FormularioProgreso = new Lui.Forms.ProgressForm();
+				FormularioProgreso.Titulo = "Restaurando Copia de Respaldo";
+				FormularioProgreso.Style = ProgressBarStyle.Continuous;
+				FormularioProgreso.Texto = "Este proceso va a demorar varios minutos. Por favor no lo interrumpa.";
 
-				OProgreso.Operacion = "Descomprimiendo...";
+				FormularioProgreso.Operacion = "Descomprimiendo...";
 				// Descomprimir backup si está comprimido
 				if(System.IO.File.Exists(BackupPath + Carpeta + "backup.7z")) {
 					Lfx.FileFormats.Compression.Archive ArchivoComprimido = new Lfx.FileFormats.Compression.Archive(BackupPath + Carpeta + "backup.7z");
@@ -371,7 +420,7 @@ namespace Lazaro.Misc.Backup
 					UsandoArchivoComprimido = true;
 				}
 
-				OProgreso.Operacion = "Eliminando datos actuales...";
+				FormularioProgreso.Operacion = "Eliminando datos actuales...";
                                 Lws.Data.DataView DataView = Lws.Workspace.Master.GetDataView(true);
                                 DataView.DataBase.BeginTransaction();
                                 DataView.DataBase.EnableConstraints(false);
@@ -382,7 +431,7 @@ namespace Lazaro.Misc.Backup
                                         DataView.DataBase.Execute("DELETE FROM " + Tabla);
 				}
 
-                                OProgreso.Operacion = "Acomodando estructuras...";
+                                FormularioProgreso.Operacion = "Acomodando estructuras...";
                                 Lfx.Data.DataBaseCache.DefaultCache.CargarEstructuraDesdeXml(BackupPath + Carpeta + "dbstruct.xml");
                                 Datos.VerificarVersionDB(DataView, true, true);
 
@@ -391,43 +440,55 @@ namespace Lazaro.Misc.Backup
                                         DataView.DataBase.Execute("DELETE FROM " + Tabla);
                                 }
 
-				OProgreso.Operacion = "Incorporando tablas de datos...";
-				System.IO.StreamReader Lector = new System.IO.StreamReader(BackupPath + Carpeta + "tablas.sql", System.Text.Encoding.Default);
+				FormularioProgreso.Operacion = "Incorporando tablas de datos...";
+                                BackupStreamReader Lector = new BackupStreamReader(BackupPath + Carpeta + "dbdata.lbd");
 
-                                //En tiempo de diseño cargamos línea por línea, en tiempo de ejecución, cargamos de a 1 MB
-                                int TamanoMax = Lfx.Environment.SystemInformation.DesignMode ? 1 : 1024 * 1024;
-				bool FinArchivo = false;
+				FormularioProgreso.Max = (int)Lector.Length;
+                                string TablaActual = null;
+                                string[] ListaCampos = null;
+                                object[] ValoresCampos = null;
+                                int CampoActual = 0, RenglonActual = 0;
+                                do {
+                                        string Comando = Lector.ReadString(4);
+                                        switch (Comando) {
+                                                case ":TBL":
+                                                        TablaActual = Lector.ReadPrefixedString4();
+                                                        FormularioProgreso.Operacion = "Cargando " + TablaActual;
+                                                        break;
+                                                case ":FDL":
+                                                        ListaCampos = Lector.ReadPrefixedString4().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                                                        ValoresCampos = new object[ListaCampos.Length];
+                                                        CampoActual = 0;
+                                                        break;
+                                                case ":FLD":
+                                                        ValoresCampos[CampoActual++] = Lector.ReadField();
+                                                        break;
+                                                case ".ROW":
+                                                        Lfx.Data.SqlInsertBuilder Insertar = new Lfx.Data.SqlInsertBuilder(TablaActual);
+                                                        Insertar.InsertType = Lfx.Data.InsertTypes.InsertOrReplace;
+                                                        for (int i = 0; i < ListaCampos.Length; i++) {
+                                                                Insertar.Fields.AddWithValue(ListaCampos[i], ValoresCampos[i]);
+                                                        }
+                                                        DataView.Execute(Insertar);
 
-				OProgreso.Max = (int)Lector.BaseStream.Length;
-				do {
-					System.Text.StringBuilder Buffer = new System.Text.StringBuilder();
-					// Cargo un poco de datos en el buffer
-					do {
-						string Linea = Lector.ReadLine();
-						if(Linea == null) {
-							FinArchivo = true;
-							break;
-						} else {
-							Buffer.AppendLine(Linea);
-						}
-					}
-					while(Buffer.Length < TamanoMax);
-					OProgreso.Progreso = (int)Lector.BaseStream.Position;
-					System.Windows.Forms.Application.DoEvents();
-                                        try {
-                                                DataView.DataBase.Execute(DataView.DataBase.CustomizeSql(Buffer.ToString()));
+                                                        ValoresCampos = new object[ListaCampos.Length];
+                                                        CampoActual = 0;
+
+                                                        if ((RenglonActual++ % 1000) == 0) {
+                                                                FormularioProgreso.Progreso = (int)Lector.Position;
+                                                                System.Windows.Forms.Application.DoEvents();
+                                                        }
+                                                        break;
+                                                case ":REM":
+                                                        Lector.ReadPrefixedString4();
+                                                        break;
                                         }
-                                        catch {
-                                                if (Lfx.Environment.SystemInformation.DesignMode)
-                                                        throw;
-                                        }
-				}
-				while(FinArchivo == false);
+                                } while (Lector.Position < Lector.Length);
 				Lector.Close();
 
 				if(Lws.Workspace.Master.DefaultDataBase.SqlMode == Lfx.Data.SqlModes.PostgreSql) {
 					// PostgreSql: Tengo que actualizar las secuencias
-					OProgreso.Operacion = "Actualizando secuencias...";
+					FormularioProgreso.Operacion = "Actualizando secuencias...";
 					string PatronSecuencia = @"nextval\(\'(.+)\'(.*)\)";
                                         foreach (string Tabla in Lfx.Data.DataBaseCache.DefaultCache.TableList) {
                                                 string OID = DataView.DataBase.FieldString("SELECT c.oid FROM pg_catalog.pg_class c LEFT JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE pg_catalog.pg_table_is_visible(c.oid) AND c.relname ~ '^" + Tabla + "$'");
@@ -450,11 +511,11 @@ namespace Lazaro.Misc.Backup
 
 				if(System.IO.File.Exists(BackupPath + Carpeta + "blobs.lst")) {
 					// Incorporar Blobs
-					OProgreso.Operacion = "Incorporando imgenes...";
-					Lector = new System.IO.StreamReader(BackupPath + Carpeta + "blobs.lst", System.Text.Encoding.Default);
+					FormularioProgreso.Operacion = "Incorporando imgenes...";
+					System.IO.StreamReader LectorBlobs = new System.IO.StreamReader(BackupPath + Carpeta + "blobs.lst", System.Text.Encoding.Default);
 					string InfoImagen = null;
 					do {
-						InfoImagen = Lector.ReadLine();
+                                                InfoImagen = LectorBlobs.ReadLine();
 						if(InfoImagen != null && InfoImagen.Length > 0) {
 							string Tabla = Lfx.Types.Strings.GetNextToken(ref InfoImagen, ",");
 							string Campo = Lfx.Types.Strings.GetNextToken(ref InfoImagen, ",");
@@ -475,11 +536,11 @@ namespace Lazaro.Misc.Backup
 						}
 					}
 					while(InfoImagen != null);
-					Lector.Close();
+                                        LectorBlobs.Close();
 				}
 
 				if(UsandoArchivoComprimido) {
-					OProgreso.Operacion = "Eliminando archivos temporales...";
+					FormularioProgreso.Operacion = "Eliminando archivos temporales...";
 					// Borrar los archivos que descomprim temporalmente
 					System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(BackupPath + Carpeta);
 					foreach(System.IO.FileInfo DirItem in Dir.GetFiles()) {
@@ -488,14 +549,120 @@ namespace Lazaro.Misc.Backup
 						}
 					}
 				}
-				OProgreso.Operacion = "Terminando transacción...";
+				FormularioProgreso.Operacion = "Terminando transacción...";
                                 DataView.DataBase.Commit();
 				DataView.Dispose();
-				OProgreso.Close();
+				FormularioProgreso.Close();
 
 				Lui.Forms.MessageBox.Show("La copia de seguridad se restauró con éxito. A continuación se va a reiniciar la aplicación.", "Copia Restaurada");
 				Aplicacion.Exec("REBOOT");
 			}
 		}
 	}
+
+        public class BackupStreamWriter
+        {
+                public System.IO.Stream outputStream;
+
+                public BackupStreamWriter(string path, bool compress)
+                {
+                        //if (compress) {
+                        //        System.IO.FileStream fileStream = new System.IO.FileStream(path, System.IO.FileMode.Create, System.IO.FileAccess.Write);
+                        //        outputStream = new ICSharpCode.SharpZipLib.BZip2.BZip2OutputStream(fileStream, 9);
+                        //} else {
+                                outputStream = new System.IO.FileStream(path, System.IO.FileMode.Create, System.IO.FileAccess.Write);
+                        //}
+                }
+
+                public void Close()
+                {
+                        outputStream.Close();
+                }
+
+                public void Write(string text)
+                {
+                        this.Write(System.Text.Encoding.UTF8.GetBytes(text));
+                }
+
+                public void Write(byte[] bytes)
+                {
+                        outputStream.Write(bytes, 0, bytes.Length);
+                }
+        }
+
+        public class BackupStreamReader
+        {
+                System.IO.Stream inputStream;
+                public BackupStreamReader(string path)
+                {
+                        System.IO.FileStream fs = new System.IO.FileStream(path, System.IO.FileMode.Open, System.IO.FileAccess.Read);
+                        int FirstPos = fs.ReadByte();
+                        //if (FirstPos == 58) {
+                        //        //Archivo plano
+                                inputStream = fs;
+                        //} else {
+                        //        //Archivo comprimido, asumo BZip2
+                        //        inputStream = new ICSharpCode.SharpZipLib.BZip2.BZip2InputStream(fs);
+                        //}
+                        inputStream.Seek(0, System.IO.SeekOrigin.Begin);
+                }
+
+                public string ReadString(int length)
+                {
+                        byte[] Res = new byte[length];
+                        inputStream.Read(Res, 0, length);
+                        return System.Text.Encoding.UTF8.GetString(Res);
+                }
+
+                public string ReadPrefixedString4()
+                {
+                        int Len = int.Parse(this.ReadString(4));
+                        return this.ReadString(Len);
+                }
+
+                public object ReadField()
+                {
+                        string Type = this.ReadString(1);
+                        string StrLen = this.ReadString(8);
+                        int Len = int.Parse(StrLen);
+                        switch(Type) {
+                                case "I":
+                                        return int.Parse(this.ReadString(Len));
+                                case "N":
+                                        return Lfx.Types.Parsing.ParseDouble(this.ReadString(Len));
+                                case "D":
+                                        return DateTime.ParseExact(this.ReadString(Len), Lfx.Types.Formatting.DateTime.SqlDateTimeFormat, null);
+                                case "B":
+                                        byte[] Res = new byte[Len];
+                                        inputStream.Read(Res, 0, Len);
+                                        return Res;
+                                case "U":
+                                        return DBNull.Value;
+                                default:
+                                        return this.ReadString(Len);
+
+                        }
+                }
+
+                public void Close()
+                {
+                        inputStream.Close();
+                }
+
+                public long Length
+                {
+                        get
+                        {
+                                return inputStream.Length;
+                        }
+                }
+
+                public long Position
+                {
+                        get
+                        {
+                                return inputStream.Position;
+                        }
+                }
+        }
 }

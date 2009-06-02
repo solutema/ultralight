@@ -87,8 +87,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.Cobro.TabIndex = 0;
                         this.Cobro.Text = "Detalles";
                         this.Cobro.TituloVisible = true;
-                        this.Cobro.ToolTipText = "";
-                        // 
+                         // 
                         // EditarCobro
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);

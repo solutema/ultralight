@@ -82,7 +82,7 @@ namespace Lfc.Comprobantes.Facturas
                 internal System.Windows.Forms.Label Label4;
                 internal System.Windows.Forms.Label Label8;
                 internal Lui.Forms.DetailBox txtVendedor;
-                internal System.Windows.Forms.ListView lvItems;
+                internal Lui.Forms.ListView lvItems;
                 internal System.Windows.Forms.ColumnHeader ColFecha;
                 internal System.Windows.Forms.ColumnHeader ColumnHeader1;
                 internal System.Windows.Forms.ColumnHeader ColumnHeader2;
@@ -105,7 +105,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.Label4 = new System.Windows.Forms.Label();
                         this.Label8 = new System.Windows.Forms.Label();
                         this.txtVendedor = new Lui.Forms.DetailBox();
-                        this.lvItems = new System.Windows.Forms.ListView();
+                        this.lvItems = new Lui.Forms.ListView();
                         this.ColumnHeader6 = new System.Windows.Forms.ColumnHeader();
                         this.ColFecha = new System.Windows.Forms.ColumnHeader();
                         this.ColumnHeader1 = new System.Windows.Forms.ColumnHeader();

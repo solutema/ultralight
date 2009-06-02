@@ -307,6 +307,7 @@ namespace Lfc.Comprobantes.Recibos
                                 Comprobantes.Recibos.EditarPago FormularioEditarPago = new Comprobantes.Recibos.EditarPago();
                                 FormularioEditarPago.Workspace = this.Workspace;
                                 FormularioEditarPago.Owner = this;
+                                FormularioEditarPago.Pago.FromPago(new Lbl.Comprobantes.Pago(this.DataView, Lbl.Comprobantes.FormasDePago.Efectivo));
                                 FormularioEditarPago.Pago.ObsVisible = false;
 
                                 if (FormularioEditarPago.ShowDialog() == DialogResult.OK) {
@@ -319,6 +320,7 @@ namespace Lfc.Comprobantes.Recibos
                                 Comprobantes.Recibos.EditarCobro FormularioEditarCobro = new Comprobantes.Recibos.EditarCobro();
                                 FormularioEditarCobro.Workspace = this.Workspace;
                                 FormularioEditarCobro.Owner = this;
+                                FormularioEditarCobro.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.DataView, Lbl.Comprobantes.FormasDePago.Efectivo));
                                 FormularioEditarCobro.Cobro.ObsVisible = false;
 
                                 if (FormularioEditarCobro.ShowDialog() == DialogResult.OK) {

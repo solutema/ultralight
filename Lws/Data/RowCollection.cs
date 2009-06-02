@@ -42,7 +42,7 @@ namespace Lws.Data
                         this.Table = table;
                 }
 
-                private static bool LoadAll_Loaded = false;
+                private bool LoadAll_Loaded = false;
                 public void LoadAll()
                 {
                         if (this.Table.Cacheable && LoadAll_Loaded)
@@ -51,6 +51,7 @@ namespace Lws.Data
                         System.Data.DataTable Todo = this.Table.DataView.DataBase.Select("SELECT * FROM " + this.Table.Name);
                         foreach(System.Data.DataRow Rw in Todo.Rows) {
                                 Lfx.Data.Row NewRow = (Lfx.Data.Row)Rw;
+                                NewRow.Table = this.Table;
                                 int id = System.Convert.ToInt32(NewRow.Fields[this.Table.PrimaryKey].Value);
                                 if (this.Contains(id))
                                         this[id] = NewRow;
@@ -58,6 +59,13 @@ namespace Lws.Data
                                         this.List.Add(NewRow);
                         }
                         LoadAll_Loaded = true;
+                }
+
+                public new System.Collections.IEnumerator GetEnumerator()
+                {
+                        //GetEnumerator es llamado antes de un foreach. En ese caso, se cargan todos los registros en memoria.
+                        this.LoadAll();
+                        return base.GetEnumerator();
                 }
 
                 public bool Contains(int id)
@@ -84,12 +92,15 @@ namespace Lws.Data
                         {
                                 if (Table.DataView.DataBase.InTransaction || Table.Cacheable == false) {
 					//No uso el caché si hay una transacción activa o se esta tabla no es cacheable
-                                        Lfx.Data.Row NewRow = this.Table.DataView.DataBase.Row(this.Table.Name, this.Table.PrimaryKey, id);
+                                        Lfx.Data.Row NewRow = this.Table.DataView.DataBase.Row(this.Table.Name, this.Table.PrimaryKey, id) as Lfx.Data.Row;
+                                        NewRow.Table = this.Table;
                                         return NewRow;
                                 } else if (this.Contains(id) == false) {
                                         Lfx.Data.Row NewRow = this.Table.DataView.DataBase.Row(this.Table.Name, this.Table.PrimaryKey, id);
-                                        if (NewRow != null)
+                                        if (NewRow != null) {
+                                                NewRow.Table = this.Table;
                                                 this.List.Add(NewRow);
+                                        }
                                         return NewRow;
                                 } else {
                                         return this.GetById(id);
@@ -105,6 +116,7 @@ namespace Lws.Data
 		public void ClearCache()
 		{
 			this.List.Clear();
+                        LoadAll_Loaded = false;
 		}
 
                 public void RemoveFromCache(int id)

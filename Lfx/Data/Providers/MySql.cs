@@ -29,15 +29,17 @@
 
 using System;
 using System.Text;
+using System.Data;
+//using MySql.Data.MySqlClient;
 
 namespace Lfx.Data.Providers
 {
         /// <summary>
         /// Proveedor compatible con MySql Connector/NET versión 6. Requiere la presencia de MySql.Data.dll en el directorio del programa.
         /// </summary>
-        public class MySql : Provider
+        public class MySqlProvider : Provider
         {
-                public MySql() :
+                public MySqlProvider() :
                         base("MySql.Data",
                         "MySql.Data",
                         "MySqlClient.MySqlConnection",
@@ -46,5 +48,28 @@ namespace Lfx.Data.Providers
                         "MySqlClient.MySqlParameter")
                 {
                 }
+
+                /* Para acceso nativo, con MySql.Data incorporado en la solución
+                public override IDbConnection GetConnection()
+                {
+                        return new MySql.Data.MySqlClient.MySqlConnection();
+                }
+
+                public override IDbCommand GetCommand()
+                {
+                        return new MySql.Data.MySqlClient.MySqlCommand();
+                }
+
+                public override IDbDataAdapter GetAdapter(string commandText, IDbConnection connection)
+                {
+
+                        return new MySql.Data.MySqlClient.MySqlDataAdapter(commandText, (MySqlConnection)connection);
+                }
+
+                public override IDbDataParameter GetParameter()
+                {
+                        return new MySql.Data.MySqlClient.MySqlParameter();
+                }
+                */
         }
 }

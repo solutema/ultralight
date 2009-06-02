@@ -406,10 +406,16 @@ namespace Lfx.Data
 		}
         }
 
-	
+        public enum InsertTypes
+        {
+                Insert,
+                InsertOrReplace
+        }
+
 	public class SqlInsertBuilder :
                 SqlTableCommandBuilder
         {
+                public InsertTypes InsertType = InsertTypes.Insert;
                 public SqlInsertBuilder()
                         : base() { }
 		
@@ -469,7 +475,11 @@ namespace Lfx.Data
                                 }
 
                         }
-                        baseCommand.CommandText = @"INSERT INTO """ + this.Tables + @""" (" + FieldList.ToString() + ") VALUES (" + ParamList.ToString() + ")";
+                        if (this.InsertType == InsertTypes.InsertOrReplace)
+                                baseCommand.CommandText = "REPLACE INTO";
+                        else
+                                baseCommand.CommandText = "INSERT INTO";
+                        baseCommand.CommandText += @" """ + this.Tables + @""" (" + FieldList.ToString() + ") VALUES (" + ParamList.ToString() + ")";
                 }
 
                 public string SqlText(Data.SqlModes sqlMode)

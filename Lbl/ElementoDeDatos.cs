@@ -37,7 +37,7 @@ namespace Lbl
         /// Proporciona acceso a los datos con alto nivel de abstracción.
         /// Normalmente refleja un registro de la base de datos como un objeto con propiedades y métodos.
         /// </summary>
-	abstract public class ElementoDeDatos
+	public abstract class ElementoDeDatos
 	{
 		public Lws.Data.DataView DataView = null;
 
@@ -45,12 +45,26 @@ namespace Lbl
 		protected Lfx.Data.Row m_Registro = null, m_RegistroOriginal = null;
                 protected System.Drawing.Image m_Imagen = null;
                 protected bool m_ImagenCambio = false;
-                protected System.Collections.Generic.List<Etiqueta> m_Etiquetas = null;
+                protected ColeccionDeEtiquetas m_Etiquetas = null, m_EtiquetasOriginal = null;
 
 		protected ElementoDeDatos(Lws.Data.DataView dataView)
 		{
 			this.DataView = dataView;
 		}
+
+                public ElementoDeDatos(Lws.Data.DataView dataView, Lfx.Data.Row fromRow)
+                        : this(dataView)
+                {
+                        this.FromRow(fromRow);
+                }
+
+                protected void FromRow(Lfx.Data.Row fromRow)
+                {
+                        m_Registro = fromRow;
+                        m_ItemId = System.Convert.ToInt32(m_Registro[this.CampoId]);
+                        m_RegistroOriginal = m_Registro.Clone();
+                        this.OnLoad();
+                }
 
 		#region Propiedades
 
@@ -106,9 +120,12 @@ namespace Lbl
                 }
 
 
-		public abstract string TablaDatos
+                public virtual string TablaDatos
 		{
-			get;
+			get
+                        {
+                                throw new InvalidOperationException("No se puede instanciar ElementoDeDatos");
+                        }
 		}
 
                 public virtual string TablaImagenes
@@ -120,9 +137,12 @@ namespace Lbl
                 }
 
 
-                public abstract string CampoId
+                public virtual string CampoId
 		{
-			get;
+                        get
+                        {
+                                throw new InvalidOperationException("No se puede instanciar ElementoDeDatos");
+                        }
 		}
 
                 public virtual string CampoNombre
@@ -220,6 +240,9 @@ namespace Lbl
 
 		#region Métodos
 
+                /// <summary>
+                /// Crea un nuevo elemento, con sus valores predeterminados.
+                /// </summary>
 		public virtual Lfx.Types.OperationResult Crear()
 		{
                         m_ItemId = 0;
@@ -229,8 +252,33 @@ namespace Lbl
                         return new Lfx.Types.SuccessOperationResult();
 		}
 
+                /// <summary>
+                /// Guarda los cambios en la base de datos.
+                /// </summary>
 		public virtual Lfx.Types.OperationResult Guardar()
 		{
+                        // Elimino las etiquetas que ya no están.
+                        ColeccionDeElementos ListaEtiquetas = this.Etiquetas.Quitados(m_EtiquetasOriginal);
+                        if (ListaEtiquetas != null && ListaEtiquetas.Count > 0) {
+                                Lfx.Data.SqlDeleteBuilder EliminarEtiquetas = new Lfx.Data.SqlDeleteBuilder(this.DataView.DataBase, "sys_labels_values");
+                                EliminarEtiquetas.WhereClause = new Lfx.Data.SqlWhereBuilder("tabla", this.TablaDatos);
+                                EliminarEtiquetas.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("item_id", this.Id));
+                                EliminarEtiquetas.WhereClause.Conditions.Add("id_label IN (" + string.Join(", ", ListaEtiquetas.Ids()) + ")");
+                                this.DataView.Execute(EliminarEtiquetas);
+                        }
+
+                        // Agrego las etiquetas nuevas.
+                        ListaEtiquetas = this.Etiquetas.Agregados(m_EtiquetasOriginal);
+                        if (ListaEtiquetas != null && ListaEtiquetas.Count > 0) {
+                                foreach (ElementoDeDatos El in ListaEtiquetas) {
+                                        Lfx.Data.SqlInsertBuilder CrearEtiquetas = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, "sys_labels_values");
+                                        CrearEtiquetas.Fields.AddWithValue("id_label", El.Id);
+                                        CrearEtiquetas.Fields.AddWithValue("tabla", this.TablaDatos);
+                                        CrearEtiquetas.Fields.AddWithValue("item_id", this.Id);
+                                        this.DataView.Execute(CrearEtiquetas);
+                                }
+                        }
+
 			string Extra1 = null;
                         try {
                                 //Intento generar una lista de cambios
@@ -276,13 +324,17 @@ namespace Lbl
                         this.Workspace.NotifyTableChange(this.TablaDatos, this.Id);
 
                         this.m_RegistroOriginal = this.m_Registro.Clone();
+                        this.m_EtiquetasOriginal = ((ColeccionDeEtiquetas)(this.m_Etiquetas.Clone()));
                         this.m_ImagenCambio = false;
 			this.m_Registro.IsNew = false;
 			
                         return new Lfx.Types.SuccessOperationResult();
 		}
 
-				
+		/// <summary>
+		/// Compara dos objetos para ver si son iguales en cuanto a su valor.
+                /// Se utiliza para hacer una lista de los campos modificados para guardar en el log.
+		/// </summary>
 		private bool ObjectEquals(object val1, object val2)
 		{
 
@@ -325,6 +377,10 @@ namespace Lbl
 			}
 		}
 
+                /// <summary>
+                /// Agrega los campos personalizados (tags) al comando, antes de guardar.
+                /// </summary>
+                /// <param name="comando">El parámetro al cual agregar los campos.</param>
 		public virtual void AgregarTags(Lfx.Data.SqlCommandBuilder comando)
 		{
 			this.AgregarTags(comando, this.Registro, this.TablaDatos);
@@ -354,6 +410,9 @@ namespace Lbl
                         }
                 }
 
+                /// <summary>
+                /// Devuelve Verdadero si el elemento existe en la base de datos.
+                /// </summary>
 		public bool Existe
 		{
                         get
@@ -399,6 +458,9 @@ namespace Lbl
 			return this.Registro[this.CampoNombre].ToString();
 		}
 
+                /// <summary>
+                /// Carga el elemento desde la base de datos.
+                /// </summary>
 		public virtual Lfx.Types.OperationResult Cargar()
 		{
 			if(m_ItemId == 0)
@@ -417,6 +479,9 @@ namespace Lbl
 				return new Lfx.Types.SuccessOperationResult();
 		}
 
+                /// <summary>
+                /// Carga un elemento por su Id desde la base de datos.
+                /// </summary>
 		public Lfx.Types.OperationResult Cargar(int itemId)
 		{
 			m_ItemId = itemId;
@@ -439,17 +504,22 @@ namespace Lbl
 		}
 
 		#endregion
-
-                public System.Collections.Generic.List<Etiqueta> Etiquetas
+                
+                /// <summary>
+                /// Devuelve o establece una colección de etiquetas del elemento.
+                /// </summary>
+                public ColeccionDeEtiquetas Etiquetas
                 {
                         get
                         {
                                 if (m_Etiquetas == null) {
-                                        m_Etiquetas = new List<Etiqueta>();
+                                        m_Etiquetas = new ColeccionDeEtiquetas();
                                         System.Data.IDataReader EtiquetasElem = this.DataView.DataBase.GetReader("SELECT id_label FROM sys_labels_values WHERE tabla='" + this.TablaDatos + " ' AND item_id=" + this.Id.ToString());
                                         while (EtiquetasElem.Read()) {
                                                 m_Etiquetas.Add(new Etiqueta(this.DataView, EtiquetasElem.GetInt32(0)));
                                         }
+                                        EtiquetasElem.Close();
+                                        this.m_EtiquetasOriginal = ((ColeccionDeEtiquetas)(this.m_Etiquetas.Clone()));
                                 }
                                 return m_Etiquetas;
                         }

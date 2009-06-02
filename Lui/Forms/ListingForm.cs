@@ -677,34 +677,20 @@ namespace Lui.Forms
 
 		private void Listado_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
-			if (Listado.SelectedItems.Count > 0)
-				this.Workspace.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", m_DataTableName, Listado.SelectedItems[0].Text });
+                        if (this.Visible && Listado.SelectedItems.Count > 0)
+                                this.ItemSelected(Listado.SelectedItems[0]);
 		}
+
+                public virtual void ItemSelected(ListViewItem itm)
+                {
+                        this.Workspace.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", m_DataTableName, itm.Text });
+                }
 
 		private void Listado_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
 		{
 			if (e.Alt == false && e.Control == false) {
 				switch (e.KeyCode)
 				{
-					case Keys.Up:
-						if (Listado.Items.Count == 0) {
-							e.Handled = true;
-							System.Windows.Forms.SendKeys.Send("+{tab}");
-						} else if (Listado.SelectedItems.Count > 0 && Listado.SelectedItems[0].Index == 0) {
-							e.Handled = true;
-							System.Windows.Forms.SendKeys.Send("+{tab}");
-						}
-						break;
-
-					case Keys.Down:
-						if (Listado.Items.Count == 0) {
-							e.Handled = true;
-							System.Windows.Forms.SendKeys.Send("{tab}");
-						} else if (Listado.SelectedItems.Count > 0 && Listado.SelectedItems[0].Index == Listado.Items.Count - 1) {
-							e.Handled = true;
-							System.Windows.Forms.SendKeys.Send("{tab}");
-						}
-						break;
                                         case Keys.Delete:
                                                 e.Handled = true;
                                                 int[] Codigos = this.CodigosSeleccionados;

@@ -62,8 +62,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControlDatos.cs">
+    <Compile Include="Control.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control.Designer.cs">
+      <DependentUpon>Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\Datos\ControlDatos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\Datos\Campo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\Datos\Campo.Designer.cs">
+      <DependentUpon>Campo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\ContenedorCampos.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controles\Datos\Detalle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\Datos\Detalle.Designer.cs">
+      <DependentUpon>Detalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\Encabezado.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\Encabezado.Designer.cs">
+      <DependentUpon>Encabezado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\Datos\Etiquetas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\Datos\Etiquetas.Designer.cs">
+      <DependentUpon>Etiquetas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\LsitView.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controles\RangoFechas.cs">
       <SubType>UserControl</SubType>
@@ -71,10 +107,34 @@
     <Compile Include="Controles\RangoFechas.Designer.cs">
       <DependentUpon>RangoFechas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Edicion\Articulos\ControlEdicion.cs">
+    <Compile Include="Controles\TextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controles\TextBoxBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Edicion\Articulos\Codigos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Edicion\Articulos\Articulo.cs">
+    <Compile Include="Edicion\Articulos\Codigos.Designer.cs">
+      <DependentUpon>Codigos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edicion\Articulos\Denominacion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Edicion\Articulos\Denominacion.Designer.cs">
+      <DependentUpon>Denominacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edicion\Articulos\General.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Edicion\Articulos\PrecioYStock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Edicion\Articulos\PrecioYStock.Designer.cs">
+      <DependentUpon>PrecioYStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edicion\ControlEdicion.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Edicion\Comprobantes\Cobro.cs">
@@ -92,6 +152,7 @@
     <Compile Include="Edicion\Imagen.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ILccControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -113,8 +174,40 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Control.resx">
+      <DependentUpon>Control.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\Datos\Campo.resx">
+      <DependentUpon>Campo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\Encabezado.resx">
+      <DependentUpon>Encabezado.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\Datos\Etiquetas.resx">
+      <DependentUpon>Etiquetas.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controles\RangoFechas.resx">
       <DependentUpon>RangoFechas.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edicion\Articulos\Codigos.resx">
+      <DependentUpon>Codigos.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edicion\Articulos\Denominacion.resx">
+      <DependentUpon>Denominacion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edicion\Articulos\General.resx">
+      <DependentUpon>General.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edicion\Articulos\PrecioYStock.resx">
+      <DependentUpon>PrecioYStock.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Edicion\Comprobantes\Cobro.resx">

@@ -74,7 +74,7 @@ namespace Lfc.Tareas
                         this.txtObs = new Lui.Forms.TextBox();
                         this.Label11 = new System.Windows.Forms.Label();
                         this.Frame2 = new Lui.Forms.Frame();
-                        this.lvHistorial = new System.Windows.Forms.ListView();
+                        this.lvHistorial = new Lui.Forms.ListView();
                         this.Ticket = new System.Windows.Forms.ColumnHeader();
                         this.Tecnico = new System.Windows.Forms.ColumnHeader();
                         this.Fecha = new System.Windows.Forms.ColumnHeader();
@@ -924,7 +924,7 @@ namespace Lfc.Tareas
                 internal Lui.Forms.TextBox txtObs;
                 internal System.Windows.Forms.Label Label11;
                 internal Lui.Forms.Frame Frame2;
-                internal System.Windows.Forms.ListView lvHistorial;
+                internal Lui.Forms.ListView lvHistorial;
                 internal System.Windows.Forms.ColumnHeader Tecnico;
                 internal System.Windows.Forms.ColumnHeader Detalle;
                 internal Lui.Forms.Button cmdNovedad;

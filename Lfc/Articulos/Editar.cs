@@ -494,6 +494,7 @@ namespace Lfc.Articulos
                         EntradaImagen.Image = Res.Imagen;
                         this.EntradaTags.Registro = Res;
                         EntradaImagen.Tag = "*";
+                        etiquetas1.Elemento = row;
 
                         SaveButton.Visible = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "products.write");
 

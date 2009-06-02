@@ -33,10 +33,8 @@ using System.Text;
 
 namespace Lws.Data
 {
-        public class Table
+        public class Table : Lfx.Data.Table
         {
-                public string Name, PrimaryKey;
-                public bool Cacheable = true;
                 public DataView DataView;
 		protected RowCollection m_Rows = null;
 

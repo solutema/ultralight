@@ -179,9 +179,9 @@ namespace Lbl.Comprobantes
                                 System.Data.DataTable TablaPagos = DataView.DataBase.Select("SELECT * FROM cuentas_movim WHERE id_cuenta=" + this.Workspace.CurrentConfig.Company.CajaDiaria.ToString() + " AND id_recibo=" + Id.ToString());
                                 foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
                                         if (this.DePago)
-                                                Pagos.Add(new Pago(FormasDePago.Efectivo, Math.Abs(System.Convert.ToDouble(Pago["importe"]))));
+                                                Pagos.Add(new Pago(this.DataView, FormasDePago.Efectivo, Math.Abs(System.Convert.ToDouble(Pago["importe"]))));
                                         else
-                                                Cobros.Add(new Cobro(FormasDePago.Efectivo, Math.Abs(System.Convert.ToDouble(Pago["importe"]))));
+                                                Cobros.Add(new Cobro(this.DataView, FormasDePago.Efectivo, Math.Abs(System.Convert.ToDouble(Pago["importe"]))));
                                 }
 
                                 // Pagos con cheque
@@ -205,11 +205,11 @@ namespace Lbl.Comprobantes
                                 TablaPagos = this.DataView.DataBase.Select("SELECT * FROM cuentas_movim WHERE auto=1 AND id_cuenta<>" + this.Workspace.CurrentConfig.Company.CajaDiaria.ToString() + " AND id_cuenta<>" + this.Workspace.CurrentConfig.Company.CuentaCheques.ToString() + " AND id_recibo=" + Id.ToString());
                                 foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
                                         if (this.DePago) {
-                                                Pago Pg = new Pago(FormasDePago.CuentaRegular, Math.Abs(System.Convert.ToDouble(Pago["importe"])));
+                                                Pago Pg = new Pago(this.DataView, FormasDePago.CuentaRegular, Math.Abs(System.Convert.ToDouble(Pago["importe"])));
                                                 Pg.CuentaOrigen = new Cuentas.CuentaRegular(DataView, System.Convert.ToInt32(Pago["id_cuenta"]));
                                                 Pagos.Add(Pg);
                                         } else {
-                                                Cobro Cb = new Cobro(FormasDePago.CuentaRegular, System.Convert.ToDouble(Pago["importe"]));
+                                                Cobro Cb = new Cobro(this.DataView, FormasDePago.CuentaRegular, System.Convert.ToDouble(Pago["importe"]));
                                                 Cb.CuentaDestino = new Cuentas.CuentaRegular(DataView, System.Convert.ToInt32(Pago["id_cuenta"]));
                                                 Cobros.Add(Cb);
                                         }
@@ -409,7 +409,7 @@ namespace Lbl.Comprobantes
                         Lbl.Comprobantes.Impresion.ImpresorRecibo Impresor = new Lbl.Comprobantes.Impresion.ImpresorRecibo(this);
                         Lfx.Types.OperationResult Res = Impresor.Imprimir(nombreImpresora);
                         if (Res.Success)
-                                this.DataView.DataBase.Execute("UPDATE recibos SET impreso=1, fecha=NOW() WHERE id_recibo=" + this.Id.ToString());
+                                this.DataView.DataBase.Execute("UPDATE recibos SET impreso=1 WHERE id_recibo=" + this.Id.ToString());
                         return Res;
                 }
         }

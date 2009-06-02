@@ -458,17 +458,6 @@ namespace Lazaro.Principal
                         ItmInfo.Text = Lfx.Types.Strings.SimplifyText(ItmTmp.Text);
                         AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
 
-                        if (Config.Version == Config.Versiones.Gratuita)
-                        {
-                                // Creo la opción de Activar
-                                ItmTmp = new MenuItem("&Activar Versión Completa", new System.EventHandler(MnuClick));
-                                ItmInfo.Item = ItmTmp;
-                                ItmInfo.Funcion = "ACTIVAR";
-                                ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu.&Sistema");
-                                ItmInfo.Text = Lfx.Types.Strings.SimplifyText(ItmTmp.Text);
-                                AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
-                        }
-
                         // Creo la opción de Calculadora ...
                         ItmTmp = new MenuItem("&Calculadora", new System.EventHandler(MnuClick));
                         ItmInfo.Item = ItmTmp;

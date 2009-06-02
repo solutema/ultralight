@@ -81,7 +81,7 @@ namespace Lfc.Articulos
 		internal Lui.Forms.TextBox txtFechaPrecio;
 		internal Lui.Forms.TextBox txtCostoUlt;
 		internal Lui.Forms.TextBox txtCostoProm;
-		internal System.Windows.Forms.ListView lvItems;
+                internal Lui.Forms.ListView lvItems;
 		internal System.Windows.Forms.Label Label5;
 		internal System.Windows.Forms.ColumnHeader fecha;
 		internal System.Windows.Forms.ColumnHeader costo;
@@ -98,7 +98,7 @@ namespace Lfc.Articulos
                         this.Label3 = new System.Windows.Forms.Label();
                         this.txtCostoProm = new Lui.Forms.TextBox();
                         this.Label4 = new System.Windows.Forms.Label();
-                        this.lvItems = new System.Windows.Forms.ListView();
+                        this.lvItems = new Lui.Forms.ListView();
                         this.fecha = new System.Windows.Forms.ColumnHeader();
                         this.costo = new System.Windows.Forms.ColumnHeader();
                         this.pvp = new System.Windows.Forms.ColumnHeader();

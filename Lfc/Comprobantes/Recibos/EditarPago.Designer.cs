@@ -83,7 +83,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.Pago.TabIndex = 0;
                         this.Pago.Text = "Detalles";
                         this.Pago.TituloVisible = true;
-                        this.Pago.ToolTipText = "";
                         // 
                         // EditarPago
                         // 

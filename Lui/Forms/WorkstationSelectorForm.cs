@@ -39,7 +39,7 @@ namespace Lui.Forms
 	{
 		private System.Windows.Forms.ColumnHeader NombreEstacion;
 		private System.Windows.Forms.ColumnHeader Nombre;
-		private System.Windows.Forms.ListView lvItems;
+                private Lui.Forms.ListView lvItems;
 		private System.ComponentModel.IContainer components = null;
 		public string Estacion;
 
@@ -70,7 +70,7 @@ namespace Lui.Forms
 		/// </summary>
 		private void InitializeComponent()
 		{
-                        this.lvItems = new System.Windows.Forms.ListView();
+                        this.lvItems = new Lui.Forms.ListView();
                         this.NombreEstacion = new System.Windows.Forms.ColumnHeader();
                         this.Nombre = new System.Windows.Forms.ColumnHeader();
                         this.SuspendLayout();

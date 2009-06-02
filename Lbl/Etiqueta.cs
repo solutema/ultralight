@@ -44,6 +44,12 @@ namespace Lbl
                         m_ItemId = itemId;
 		}
 
+                public Etiqueta(Lfx.Data.Row row)
+                        : this(((Lws.Data.Table)(row.Table)).DataView)
+                {
+                        this.FromRow(row);
+                }
+
                 public override string TablaDatos
                 {
                         get
@@ -58,6 +64,25 @@ namespace Lbl
                         {
                                 return "id_label";
                         }
+                }
+
+                public static implicit operator Etiqueta(Lfx.Data.Row row)
+                {
+                        Etiqueta Res = new Etiqueta(((Lws.Data.Table)(row.Table)).DataView);
+                        Res.FromRow(row);
+                        return Res;
+                }
+        }
+
+        public class ColeccionDeEtiquetas : ColeccionDeElementos
+        {
+                public new ColeccionDeEtiquetas Clone()
+                {
+                        ColeccionDeEtiquetas Res = new ColeccionDeEtiquetas();
+                        foreach (ElementoDeDatos El in this) {
+                                Res.Add(El);
+                        }
+                        return Res;
                 }
         }
 }

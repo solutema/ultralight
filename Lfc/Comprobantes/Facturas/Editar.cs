@@ -367,10 +367,12 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
 				case 4:
 				case 5:
 				case 6:
+                                        Lbl.Comprobantes.FormasDePago FormaPago = ((Lbl.Comprobantes.FormasDePago)(Lfx.Types.Parsing.ParseInt(txtFormaPago.Text)));
+
 					Comprobantes.Recibos.EditarCobro FormularioEditarPago = new Comprobantes.Recibos.EditarCobro();
 					FormularioEditarPago.Workspace = this.Workspace;
+					FormularioEditarPago.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.DataView, FormaPago));
                                         FormularioEditarPago.Cobro.FormaDePagoEditable = false;
-					FormularioEditarPago.Cobro.FormaDePago = ((Lbl.Comprobantes.FormasDePago)(Lfx.Types.Parsing.ParseInt(txtFormaPago.Text)));
                                         FormularioEditarPago.Cobro.Importe = Factura.Total;
                                         FormularioEditarPago.Cobro.ImporteVisible = true;
                                         FormularioEditarPago.Cobro.ImporteEditable = false;

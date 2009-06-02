@@ -63,7 +63,7 @@ namespace Lazaro.Misc.Config
 		// No lo modifique con el editor de código.
 		internal Lui.Forms.Button cmdOk;
 		internal Lui.Forms.Button CancelCommandButton;
-		internal System.Windows.Forms.ListView lvImpresionComprob;
+                internal Lui.Forms.ListView lvImpresionComprob;
 		internal System.Windows.Forms.ColumnHeader comprob;
 		internal System.Windows.Forms.ColumnHeader impresora;
 		internal System.Windows.Forms.ColumnHeader carga;
@@ -104,7 +104,7 @@ namespace Lazaro.Misc.Config
 		internal System.Windows.Forms.Label Label25;
                 internal Lui.Forms.ComboBox txtStockDecimales;
 		private System.Windows.Forms.ColumnHeader nombrecomprob;
-		internal Lui.Forms.Button cmdSiguiente;
+		internal Lui.Forms.Button BotonSiguiente;
 		internal Lui.Forms.Frame FrmArticulos;
 		internal Lui.Forms.Frame FrmComprobantes;
 		internal Lui.Forms.Frame FrmImpresion;
@@ -154,12 +154,12 @@ namespace Lazaro.Misc.Config
                         this.Label3 = new System.Windows.Forms.Label();
                         this.Label2 = new System.Windows.Forms.Label();
                         this.Label1 = new System.Windows.Forms.Label();
-                        this.lvImpresionComprob = new System.Windows.Forms.ListView();
+                        this.lvImpresionComprob = new Lui.Forms.ListView();
                         this.comprob = new System.Windows.Forms.ColumnHeader();
                         this.nombrecomprob = new System.Windows.Forms.ColumnHeader();
                         this.impresora = new System.Windows.Forms.ColumnHeader();
                         this.carga = new System.Windows.Forms.ColumnHeader();
-                        this.cmdSiguiente = new Lui.Forms.Button();
+                        this.BotonSiguiente = new Lui.Forms.Button();
                         this.FrmArticulos = new Lui.Forms.Frame();
                         this.label26 = new System.Windows.Forms.Label();
                         this.txtStockDepositoPredetSuc = new Lui.Forms.DetailBox();
@@ -1031,24 +1031,24 @@ namespace Lazaro.Misc.Config
                         // 
                         // cmdSiguiente
                         // 
-                        this.cmdSiguiente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.cmdSiguiente.AutoHeight = false;
-                        this.cmdSiguiente.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdSiguiente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdSiguiente.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdSiguiente.Image = null;
-                        this.cmdSiguiente.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdSiguiente.Location = new System.Drawing.Point(8, 405);
-                        this.cmdSiguiente.Name = "cmdSiguiente";
-                        this.cmdSiguiente.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdSiguiente.ReadOnly = false;
-                        this.cmdSiguiente.Size = new System.Drawing.Size(96, 32);
-                        this.cmdSiguiente.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.cmdSiguiente.Subtext = "F9";
-                        this.cmdSiguiente.TabIndex = 5;
-                        this.cmdSiguiente.Text = "Más...";
-                        this.cmdSiguiente.ToolTipText = "";
-                        this.cmdSiguiente.Click += new System.EventHandler(this.cmdSiguiente_Click);
+                        this.BotonSiguiente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonSiguiente.AutoHeight = false;
+                        this.BotonSiguiente.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonSiguiente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonSiguiente.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonSiguiente.Image = null;
+                        this.BotonSiguiente.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonSiguiente.Location = new System.Drawing.Point(8, 405);
+                        this.BotonSiguiente.Name = "cmdSiguiente";
+                        this.BotonSiguiente.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonSiguiente.ReadOnly = false;
+                        this.BotonSiguiente.Size = new System.Drawing.Size(96, 32);
+                        this.BotonSiguiente.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonSiguiente.Subtext = "F9";
+                        this.BotonSiguiente.TabIndex = 5;
+                        this.BotonSiguiente.Text = "Más...";
+                        this.BotonSiguiente.ToolTipText = "";
+                        this.BotonSiguiente.Click += new System.EventHandler(this.cmdSiguiente_Click);
                         // 
                         // FrmArticulos
                         // 
@@ -1347,7 +1347,7 @@ namespace Lazaro.Misc.Config
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(634, 448);
-                        this.Controls.Add(this.cmdSiguiente);
+                        this.Controls.Add(this.BotonSiguiente);
                         this.Controls.Add(this.CancelCommandButton);
                         this.Controls.Add(this.cmdOk);
                         this.Controls.Add(this.FrmGeneral);

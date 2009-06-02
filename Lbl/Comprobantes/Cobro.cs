@@ -33,7 +33,7 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        public class Cobro
+        public class Cobro : ElementoDeDatos
         {
                 public FormasDePago FormaDePago;
                 private double m_Importe = 0;
@@ -41,32 +41,31 @@ namespace Lbl.Comprobantes
                 public Tarjetas.Cupon Cupon;
                 public Bancos.Cheque Cheque;
                 public Cuentas.Concepto Concepto;
-                public string Obs, ConceptoTexto;
+                public string ConceptoTexto;
 
-                public Cobro()
-                {
-                }
+                //Heredar constructor
+                public Cobro(Lws.Data.DataView dataView) : base(dataView) { }
 
-                public Cobro(FormasDePago formaDePago)
-                        : this()
+                public Cobro(Lws.Data.DataView dataView, FormasDePago formaDePago)
+                        : this(dataView)
                 {
                         this.FormaDePago = formaDePago;
                 }
 
-                public Cobro(FormasDePago formaDePago, double importe)
-                        : this(formaDePago)
+                public Cobro(Lws.Data.DataView dataView, FormasDePago formaDePago, double importe)
+                        : this(dataView, formaDePago)
                 {
                         this.Importe = importe;
                 }
 
                 public Cobro(Bancos.Cheque cheque)
-                        : this(FormasDePago.Cheque)
+                        : this(cheque.DataView, FormasDePago.Cheque)
                 {
                         this.Cheque = cheque;
                 }
 
                 public Cobro(Tarjetas.Cupon cupon)
-                        : this(FormasDePago.Tarjeta)
+                        : this(cupon.DataView, FormasDePago.Tarjeta)
                 {
                         this.Cupon = cupon;
                 }
@@ -77,10 +76,16 @@ namespace Lbl.Comprobantes
                         {
                                 switch (FormaDePago) {
                                         case FormasDePago.Cheque:
-                                                return Cheque.Importe;
+                                                if (Cheque == null)
+                                                        return 0;
+                                                else
+                                                        return Cheque.Importe;
                                         case FormasDePago.Tarjeta:
                                         case FormasDePago.TarjetaDeDebito:
-                                                return Cupon.Importe;
+                                                if (Cupon == null)
+                                                        return 0;
+                                                else
+                                                        return Cupon.Importe;
                                         default:
                                                 return this.m_Importe;
                                 }

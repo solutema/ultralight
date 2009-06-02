@@ -74,13 +74,13 @@ namespace Lfc.Articulos
 		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
 		// Puede modificarse utilizando el Diseñador de Windows Forms. 
 		// No lo modifique con el editor de código.
-		internal System.Windows.Forms.ListView lvItems;
+                internal Lui.Forms.ListView lvItems;
 		internal System.Windows.Forms.ColumnHeader id;
 		internal System.Windows.Forms.ColumnHeader fecha;
 		internal System.Windows.Forms.ColumnHeader cantidad;
 		internal System.Windows.Forms.ColumnHeader obs;
 		internal System.Windows.Forms.ColumnHeader saldo;
-		internal System.Windows.Forms.ListView lvPedidos;
+                internal Lui.Forms.ListView lvPedidos;
 		internal System.Windows.Forms.ColumnHeader ColumnHeader1;
 		internal System.Windows.Forms.ColumnHeader ColumnHeader2;
 		internal System.Windows.Forms.ColumnHeader ColumnHeader3;
@@ -94,7 +94,7 @@ namespace Lfc.Articulos
 
 		private void InitializeComponent()
 		{
-                        this.lvItems = new System.Windows.Forms.ListView();
+                        this.lvItems = new Lui.Forms.ListView();
                         this.id = new System.Windows.Forms.ColumnHeader();
                         this.fecha = new System.Windows.Forms.ColumnHeader();
                         this.cantidad = new System.Windows.Forms.ColumnHeader();
@@ -102,7 +102,7 @@ namespace Lfc.Articulos
                         this.hacia = new System.Windows.Forms.ColumnHeader();
                         this.saldo = new System.Windows.Forms.ColumnHeader();
                         this.obs = new System.Windows.Forms.ColumnHeader();
-                        this.lvPedidos = new System.Windows.Forms.ListView();
+                        this.lvPedidos = new Lui.Forms.ListView();
                         this.ColumnHeader1 = new System.Windows.Forms.ColumnHeader();
                         this.ColumnHeader2 = new System.Windows.Forms.ColumnHeader();
                         this.ColumnHeader3 = new System.Windows.Forms.ColumnHeader();

@@ -73,7 +73,7 @@ namespace Lfx.Data
                                         break;
                                 case AccessModes.MySql:
                                         if (Lfx.Data.DataBaseCache.DefaultCache.Provider == null)
-                                                Lfx.Data.DataBaseCache.DefaultCache.Provider = new Lfx.Data.Providers.MySql();
+                                                Lfx.Data.DataBaseCache.DefaultCache.Provider = new Lfx.Data.Providers.MySqlProvider();
                                         ConnectionString.Append("Convert Zero Datetime=true;");
                                         ConnectionString.Append("Connection Timeout=60;");
                                         ConnectionString.Append("Default Command Timeout=900;");
@@ -952,7 +952,7 @@ namespace Lfx.Data
                         if (Rdr != null){
                                 Lfx.Data.Row Res = null;
                                 if (Rdr.Read()) {
-                                        Res = new Row();
+                                        Res = new Lfx.Data.Row();
                                         for (int i = 0; i < Rdr.FieldCount; i++) {
                                                 object Val = Rdr[i];
                                                 if (Val is DateTime && (DateTime)Val == DateTime.MinValue)
@@ -976,6 +976,11 @@ namespace Lfx.Data
                 public bool IsOpen()
                 {
                         return (this.ConectionState == System.Data.ConnectionState.Open) || (this.ConectionState == System.Data.ConnectionState.Executing) || (this.ConectionState == System.Data.ConnectionState.Fetching);
+                }
+
+                public System.Data.IDataReader GetReader(Lfx.Data.SqlSelectBuilder comando)
+                {
+                        return this.GetReader(comando.ToString());
                 }
 
                 public System.Data.IDataReader GetReader(string selectCommand)
@@ -1140,13 +1145,7 @@ namespace Lfx.Data
                 public void RollBack()
                 {
                         m_InTransaction = false;
-                        try {
-                                this.Execute("ROLLBACK");
-                        }
-                        catch (Exception ex) {
-                                if (Lfx.Environment.SystemInformation.DesignMode)
-                                        throw;
-                        }
+                        this.Execute("ROLLBACK");
                 }
 
                 //Función: CustomizeSql

@@ -106,6 +106,7 @@ namespace Lui.Forms
                         {
                                 base.ReadOnly = value;
                                 TextBox1.ReadOnly = true;
+                                ItemList.Enabled = !value;
                         }
                 }
 

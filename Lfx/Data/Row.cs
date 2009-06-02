@@ -38,6 +38,7 @@ namespace Lfx.Data
 		public bool IsNew = true, IsModified = false;
 		public FieldCollection Fields = null;
 		public System.Data.DataTable DataTable;
+                public Lfx.Data.Table Table;
 
 		public Row()
 		{
@@ -95,7 +96,7 @@ namespace Lfx.Data
 
                 public virtual Row Clone()
                 {
-                        Row Res = new Lfx.Data.Row();
+                        Lfx.Data.Row Res = new Lfx.Data.Row();
                         Res.DataTable = this.DataTable;
                         foreach (Lfx.Data.Field Fld in this.Fields) {
                                 Res.Fields.Add(Fld.Clone());

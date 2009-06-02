@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lcc.Edicion
 {
-        public class Imagen : Lui.Forms.Control
+        public class Imagen : Lcc.LccControl
         {
         }
 }

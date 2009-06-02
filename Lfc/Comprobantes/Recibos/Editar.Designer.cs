@@ -57,7 +57,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.Label2 = new System.Windows.Forms.Label();
                         this.EntradaNumero = new Lui.Forms.TextBox();
                         this.frmFacturas = new Lui.Forms.Frame();
-                        this.ListaFacturas = new System.Windows.Forms.ListView();
+                        this.ListaFacturas = new Lui.Forms.ListView();
                         this.FacturasId = new System.Windows.Forms.ColumnHeader();
                         this.FacturasNumero = new System.Windows.Forms.ColumnHeader();
                         this.FacturasFecha = new System.Windows.Forms.ColumnHeader();
@@ -68,7 +68,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.BotonAgregarFactura = new Lui.Forms.Button();
                         this.BotonQuitarFactura = new Lui.Forms.Button();
                         this.Frame1 = new Lui.Forms.Frame();
-                        this.ListaValores = new System.Windows.Forms.ListView();
+                        this.ListaValores = new Lui.Forms.ListView();
                         this.ValoresTipoPagoId = new System.Windows.Forms.ColumnHeader();
                         this.ValoresTipoPago = new System.Windows.Forms.ColumnHeader();
                         this.ValoresImporte = new System.Windows.Forms.ColumnHeader();
@@ -660,10 +660,10 @@ namespace Lfc.Comprobantes.Recibos
                 internal System.Windows.Forms.Label Label2;
                 internal Lui.Forms.TextBox EntradaNumero;
                 internal Lui.Forms.Frame frmFacturas;
-                internal System.Windows.Forms.ListView ListaFacturas;
+                internal Lui.Forms.ListView ListaFacturas;
                 internal Lui.Forms.Button BotonAgregarFactura;
                 internal Lui.Forms.Frame Frame1;
-                internal System.Windows.Forms.ListView ListaValores;
+                internal Lui.Forms.ListView ListaValores;
                 internal System.Windows.Forms.Label EtiquetaFacturasImporte;
                 internal Lui.Forms.Button BotonQuitarFactura;
                 internal System.Windows.Forms.Label EtiquetaValoresImporte;

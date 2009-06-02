@@ -33,33 +33,32 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        public class Pago
+        public class Pago : ElementoDeDatos
         {
                 public FormasDePago FormaDePago;
                 private double m_Importe = 0;
                 public Cuentas.CuentaRegular CuentaOrigen;
                 public Bancos.Cheque Cheque;
                 public Cuentas.Concepto Concepto;
-                public string Obs, ConceptoTexto;
+                public string ConceptoTexto;
 
-                public Pago()
-                {
-                }
+                //Heredar constructor
+                public Pago(Lws.Data.DataView dataView) : base(dataView) { }
 
-                public Pago(FormasDePago formaDePago)
-                        : this()
+                public Pago(Lws.Data.DataView dataView, FormasDePago formaDePago)
+                        : this(dataView)
                 {
                         this.FormaDePago = formaDePago;
                 }
 
-                public Pago(FormasDePago formaDePago, double importe)
-                        : this(formaDePago)
+                public Pago(Lws.Data.DataView dataView, FormasDePago formaDePago, double importe)
+                        : this(dataView, formaDePago)
                 {
                         this.Importe = importe;
                 }
 
                 public Pago(Bancos.Cheque cheque)
-                        : this(FormasDePago.Cheque)
+                        : this(cheque.DataView, FormasDePago.Cheque)
                 {
                         this.Cheque = cheque;
                 }
@@ -70,7 +69,10 @@ namespace Lbl.Comprobantes
                         {
                                 switch (FormaDePago) {
                                         case FormasDePago.Cheque:
-                                                return Cheque.Importe;
+                                                if (Cheque == null)
+                                                        return 0;
+                                                else
+                                                        return Cheque.Importe;
                                         default:
                                                 return this.m_Importe;
                                 }

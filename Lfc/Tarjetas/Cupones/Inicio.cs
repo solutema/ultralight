@@ -409,8 +409,7 @@ namespace Lfc.Tarjetas.Cupones
 				{
 					dTotalAcreditar = Lfx.Types.Parsing.ParseCurrency(FormularioAcreditacion.txtTotal.Text);
 					dGestionDeCobro = Total - dTotalAcreditar;
-
-					FormularioPago.Cobro.FormaDePago = ((Lbl.Comprobantes.FormasDePago)(Lfx.Types.Parsing.ParseInt(FormularioAcreditacion.txtFormaPago.TextKey)));
+                                        FormularioPago.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.DataView, ((Lbl.Comprobantes.FormasDePago)(Lfx.Types.Parsing.ParseInt(FormularioAcreditacion.txtFormaPago.TextKey)))));
                                         FormularioPago.Cobro.FormaDePagoEditable = false;
 					FormularioPago.Cobro.Importe = dTotalAcreditar;
 					FormularioPago.Cobro.ImporteEditable = false;

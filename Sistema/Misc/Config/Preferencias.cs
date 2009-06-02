@@ -216,24 +216,18 @@ namespace Lazaro.Misc.Config
 			}
 		}
 
-		private void cmdOk_Click(object sender, System.EventArgs e)
-		{
-                        if (cmdSiguiente.Visible == false) {
+                private void cmdOk_Click(object sender, System.EventArgs e)
+                {
+                        if (BotonSiguiente.Visible == false) {
                                 this.DialogResult = DialogResult.OK;
                                 this.Close();
                         }
 
-			Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Algunos de los cambios tendrán efecto de inmediato, tanto en esta PC como en otras estaciones en la red.", "¿Desea guardar los cambios ahora?");
-			Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
-			if (Pregunta.ShowDialog() == DialogResult.OK)
-			{
-				if (GuardarConfig() == false)
-				{
-					this.DialogResult = DialogResult.OK;
-					this.Close();
-				}
-			}
-		}
+                        if (GuardarConfig() == false) {
+                                this.DialogResult = DialogResult.OK;
+                                this.Close();
+                        }
+                }
 
 
 		private void CargarConfig()
@@ -282,11 +276,10 @@ namespace Lazaro.Misc.Config
 			if (txtEmpresaCUIT.Text.Length == 11)
 				txtEmpresaCUIT.Text = txtEmpresaCUIT.Text.Substring(0, 2) + "-" + txtEmpresaCUIT.Text.Substring(2, 8) + "-" + txtEmpresaCUIT.Text.Substring(10, 1);
 
-			if (Lfx.Types.Strings.ValidCUIT(txtEmpresaCUIT.Text) == false)
-			{
-				Lui.Forms.MessageBox.Show("Por favor ingrese una CUIT válida.\nSi todavía no disponde de una CUIT, puede utilizar provisoriamente la clave 00-00000000-0.", "La CUIT no es válida");
-				return true;
-			}
+                        if (txtEmpresaCUIT.Text != "00-00000000-0" && Lfx.Types.Strings.ValidCUIT(txtEmpresaCUIT.Text) == false) {
+                                Lui.Forms.MessageBox.Show("Por favor ingrese una CUIT válida.\nSi todavía no disponde de una CUIT, puede utilizar provisoriamente la clave 00-00000000-0.", "La CUIT no es válida");
+                                return true;
+                        }
 
 			int Sucursal = this.Workspace.CurrentConfig.ReadLocalSettingInt("Estacion", "Sucursal", 1);
 

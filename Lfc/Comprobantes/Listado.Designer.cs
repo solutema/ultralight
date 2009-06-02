@@ -37,7 +37,7 @@ namespace Lfc.Comprobantes
                 {
                         this.Label1 = new System.Windows.Forms.Label();
                         this.txtAgrupar = new Lui.Forms.ComboBox();
-                        this.ReportListView = new System.Windows.Forms.ListView();
+                        this.ReportListView = new Lui.Forms.ListView();
                         this.SuspendLayout();
                         // 
                         // Label1
@@ -122,7 +122,7 @@ namespace Lfc.Comprobantes
                 internal Lui.Forms.ComboBox txtAgrupar;
 
                 #endregion
-                private System.Windows.Forms.ListView ReportListView;
+                private Lui.Forms.ListView ReportListView;
 
         }
 }

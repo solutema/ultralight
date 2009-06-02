@@ -39,7 +39,7 @@ namespace Lfc.Personas
 	{
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
-		public System.Windows.Forms.ListView ListaComparacion;
+                public Lui.Forms.ListView ListaComparacion;
 		private System.Windows.Forms.ColumnHeader NombreColumna;
 		private System.Windows.Forms.ColumnHeader ColumnaActual;
 		private System.Windows.Forms.ColumnHeader ColumnaNueva;
@@ -81,7 +81,7 @@ namespace Lfc.Personas
 		{
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.ListaComparacion = new System.Windows.Forms.ListView();
+                        this.ListaComparacion = new Lui.Forms.ListView();
 			this.NombreColumna = new System.Windows.Forms.ColumnHeader();
 			this.ColumnaActual = new System.Windows.Forms.ColumnHeader();
 			this.ColumnaNueva = new System.Windows.Forms.ColumnHeader();

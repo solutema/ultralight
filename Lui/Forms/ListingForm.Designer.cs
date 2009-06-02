@@ -57,7 +57,7 @@ namespace Lui.Forms
                         this.BotonFiltrar = new Lui.Forms.Button();
                         this.BotonCrear = new Lui.Forms.Button();
                         this.BotonCancelar = new Lui.Forms.Button();
-                        this.Listado = new System.Windows.Forms.ListView();
+                        this.Listado = new Lui.Forms.ListView();
                         this.id = new System.Windows.Forms.ColumnHeader();
                         this.nombre = new System.Windows.Forms.ColumnHeader();
                         this.extra1 = new System.Windows.Forms.ColumnHeader();
@@ -342,7 +342,7 @@ namespace Lui.Forms
                 private Lui.Forms.TextBox EntradaBuscar;
                 private System.Windows.Forms.Panel PanelBotonera;
                 private Lui.Forms.Button BotonCancelar;
-                public System.Windows.Forms.ListView Listado;
+                public Lui.Forms.ListView Listado;
                 public Lui.Forms.Button BotonCrear;
                 public Lui.Forms.Button BotonFiltrar;
                 public Lui.Forms.Button BotonImprimir;

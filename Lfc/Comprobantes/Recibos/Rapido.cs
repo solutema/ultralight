@@ -57,7 +57,7 @@ namespace Lfc.Comprobantes.Recibos
 			Lbl.Personas.Persona Cliente = new Lbl.Personas.Persona(DataView, txtCliente.TextInt);
 			Lbl.Comprobantes.ReciboDeCobro Rec = new Lbl.Comprobantes.ReciboDeCobro(DataView, Cliente);
 			Rec.Crear();
-			Rec.Cobros.Add(new Lbl.Comprobantes.Cobro(Lbl.Comprobantes.FormasDePago.CuentaRegular, Lfx.Types.Parsing.ParseCurrency(txtImporte.Text)));
+			Rec.Cobros.Add(new Lbl.Comprobantes.Cobro(DataView, Lbl.Comprobantes.FormasDePago.CuentaRegular, Lfx.Types.Parsing.ParseCurrency(txtImporte.Text)));
 			Rec.Cobros[0].CuentaDestino = new Lbl.Cuentas.CuentaRegular(DataView, txtCuenta.TextInt);
 			Rec.Vendedor = new Lbl.Personas.Persona(DataView, this.Workspace.CurrentUser.UserId);
 			Lfx.Types.OperationResult Res = Rec.Guardar();

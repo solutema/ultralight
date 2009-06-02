@@ -42,7 +42,7 @@ namespace Lfc.Personas
 		internal System.Windows.Forms.Label label1;
 		private Lui.Forms.TextBox txtContrasena;
 		private System.Windows.Forms.TreeView Accesos;
-		private System.Windows.Forms.ListView SubItems;
+                private Lui.Forms.ListView SubItems;
 		private System.Windows.Forms.ColumnHeader Cod;
 		private System.Windows.Forms.ColumnHeader Nombre;
 		private System.ComponentModel.IContainer components = null;
@@ -96,7 +96,7 @@ namespace Lfc.Personas
 			this.Label6 = new System.Windows.Forms.Label();
 			this.txtContrasena = new Lui.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.SubItems = new System.Windows.Forms.ListView();
+                        this.SubItems = new Lui.Forms.ListView();
 			this.Cod = new System.Windows.Forms.ColumnHeader();
 			this.Nombre = new System.Windows.Forms.ColumnHeader();
                         this.txtSubItems = new Lui.Forms.ComboBox();

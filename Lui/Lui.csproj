@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -70,12 +70,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\AuxForms\ProductDetail.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AuxForms\ProductDetail.Designer.cs">
-      <DependentUpon>ProductDetail.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Bracket.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -105,6 +99,9 @@
     </Compile>
     <Compile Include="Forms\FieldTags.Designer.cs">
       <DependentUpon>FieldTags.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ListView.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\LuiControl.cs">
       <SubType>UserControl</SubType>
@@ -302,10 +299,6 @@
     <None Include="Resources\applications-system.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\AuxForms\ProductDetail.resx">
-      <DependentUpon>ProductDetail.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Bracket.resx">
       <DependentUpon>Bracket.cs</DependentUpon>
       <SubType>Designer</SubType>

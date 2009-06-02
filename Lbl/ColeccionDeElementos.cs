@@ -33,7 +33,94 @@ using System.Text;
 
 namespace Lbl
 {
+        /// <summary>
+        /// Una colección de ElementosDeDatos.
+        /// </summary>
         public class ColeccionDeElementos : System.Collections.CollectionBase
         {
+                /// <summary>
+                /// Busca un elemento por su Id.
+                /// </summary>
+                public bool Contains(int id)
+                {
+                        foreach (Lbl.ElementoDeDatos El in this.List) {
+                                if (El.Id == id)
+                                        return true;
+                        }
+                        return false;
+                }
+
+                public string[] Ids()
+                {
+                        string[] Res = new string[this.Count];
+                        int i = 0;
+                        foreach (Lbl.ElementoDeDatos El in this.List) {
+                                Res[i++] = El.Id.ToString();
+                        }
+                        return Res;
+                }
+
+                /// <summary>
+                /// Agrega un elemento a la colección.
+                /// </summary>
+                public void Add(ElementoDeDatos elemento)
+                {
+                        this.List.Add(elemento);
+                }
+
+                /// <summary>
+                /// Elimina un elemento por su Id.
+                /// </summary>
+                public void RemoveById(int id)
+                {
+                        for (int i = 0; i < this.List.Count; i++) {
+                                if (((Lbl.ElementoDeDatos)(this.List[i])).Id == id) {
+                                        this.List.RemoveAt(i);
+                                        break;
+                                }
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve una nueva colección, conteniendo los mismos elementos.
+                /// </summary>
+                public ColeccionDeElementos Clone()
+                {
+                        ColeccionDeElementos Res = new ColeccionDeElementos();
+                        foreach (ElementoDeDatos El in this) {
+                                Res.Add(El);
+                        }
+                        return Res;
+                }
+
+                /// <summary>
+                /// Devuelve una colección de elementos nuevos, en comparación con una colección original.
+                /// </summary>
+                /// <param name="original">La colección original.</param>
+                /// <returns>La colección de los elementos presentes en esta colección, pero no en la original.</returns>
+                public ColeccionDeElementos Agregados(ColeccionDeElementos original)
+                {
+                        ColeccionDeElementos Res = new ColeccionDeElementos();
+                        foreach (ElementoDeDatos El in this) {
+                                if(original.Contains(El.Id) == false)
+                                        Res.Add(El);
+                        }
+                        return Res;
+                }
+
+                /// <summary>
+                /// Devuelve una colección de elementos faltantes, en comparación con una colección original.
+                /// </summary>
+                /// <param name="original">La colección original.</param>
+                /// <returns>La colección de los elementos no presentes en esta colección, pero si en la original.</returns>
+                public ColeccionDeElementos Quitados(ColeccionDeElementos original)
+                {
+                        ColeccionDeElementos Res = new ColeccionDeElementos();
+                        foreach (ElementoDeDatos El in original) {
+                                if (this.Contains(El.Id) == false)
+                                        Res.Add(El);
+                        }
+                        return Res;
+                }
         }
 }

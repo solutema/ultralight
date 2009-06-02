@@ -18,15 +18,15 @@
 		<Column name="modelo" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
 		<Column name="serie" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
 		<Column name="nombre" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
-		<Column name="url" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
-		<Column name="descripcion" datatype="Text" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
-		<Column name="descripcion2" datatype="Text" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="url" datatype="VarChar" nullable="1" primary_key="0" lenght="200" precision="0" default="" />
+		<Column name="descripcion" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
+		<Column name="descripcion2" datatype="Text" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
 		<Column name="id_cat_articulo" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
 		<Column name="id_proveedor" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
 		<Column name="control_stock" datatype="SmallInt" nullable="0" primary_key="0" lenght="0" precision="0" default="0" />
 		<Column name="stock_actual" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
 		<Column name="stock_minimo" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
-		<Column name="unidad_stock" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
+		<Column name="unidad_stock" datatype="VarChar" nullable="1" primary_key="0" lenght="50" precision="0" default="" />
 		<Column name="rendimiento" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
 		<Column name="unidad_rend" datatype="VarChar" nullable="1" primary_key="0" lenght="50" precision="0" default="" />
 		<Column name="costo" datatype="Numeric" nullable="0" primary_key="0" lenght="14" precision="4" default="0" />
