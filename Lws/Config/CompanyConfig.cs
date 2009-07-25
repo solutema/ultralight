@@ -161,7 +161,7 @@ namespace Lws.Config
                         }
                 }
 
-                public string CUIT
+                public string Cuit
                 {
                         get
                         {
@@ -170,6 +170,18 @@ namespace Lws.Config
                         set
                         {
                                 ConfigManager.WriteGlobalSetting("Sistema", "Empresa.CUIT", value, 0);
+                        }
+                }
+
+                public string Email
+                {
+                        get
+                        {
+                                return ConfigManager.ReadGlobalSettingString("Sistema", "Empresa.Email", "");
+                        }
+                        set
+                        {
+                                ConfigManager.WriteGlobalSetting("Sistema", "Empresa.Email", value, "*");
                         }
                 }
         }

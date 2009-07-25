@@ -79,11 +79,11 @@ namespace Lazaro.Misc.Config
 		internal System.Windows.Forms.Label Label15;
 		internal Lui.Forms.DetailBox txtFormaPagoPredet;
 		internal System.Windows.Forms.Label Label17;
-		internal Lui.Forms.TextBox txtEmpresaNombre;
+		internal Lui.Forms.TextBox EntradaEmpresaNombre;
 		internal System.Windows.Forms.Label Label18;
 		internal System.Windows.Forms.Label Label19;
-		internal Lui.Forms.TextBox txtEmpresaCUIT;
-		internal Lui.Forms.DetailBox txtEmpresaSituacion;
+		internal Lui.Forms.TextBox EntradaEmpresaCuit;
+		internal Lui.Forms.DetailBox EntradaEmpresaSituacion;
 		internal System.Windows.Forms.Label Label9;
 		internal Lui.Forms.TextBox txtPVND;
 		internal System.Windows.Forms.Label Label10;
@@ -113,11 +113,11 @@ namespace Lazaro.Misc.Config
 		{
                         this.cmdOk = new Lui.Forms.Button();
                         this.CancelCommandButton = new Lui.Forms.Button();
-                        this.txtEmpresaSituacion = new Lui.Forms.DetailBox();
+                        this.EntradaEmpresaSituacion = new Lui.Forms.DetailBox();
                         this.Label19 = new System.Windows.Forms.Label();
-                        this.txtEmpresaCUIT = new Lui.Forms.TextBox();
+                        this.EntradaEmpresaCuit = new Lui.Forms.TextBox();
                         this.Label18 = new System.Windows.Forms.Label();
-                        this.txtEmpresaNombre = new Lui.Forms.TextBox();
+                        this.EntradaEmpresaNombre = new Lui.Forms.TextBox();
                         this.Label17 = new System.Windows.Forms.Label();
                         this.FrmGeneral = new Lui.Forms.Frame();
                         this.EntradaModoPantalla = new Lui.Forms.ComboBox();
@@ -174,6 +174,8 @@ namespace Lazaro.Misc.Config
                         this.txtPVR = new Lui.Forms.TextBox();
                         this.label12 = new System.Windows.Forms.Label();
                         this.FrmImpresion = new Lui.Forms.Frame();
+                        this.EntradaEmpresaEmail = new Lui.Forms.TextBox();
+                        this.label28 = new System.Windows.Forms.Label();
                         this.FrmGeneral.SuspendLayout();
                         this.FrmArticulos.SuspendLayout();
                         this.FrmComprobantes.SuspendLayout();
@@ -222,36 +224,36 @@ namespace Lazaro.Misc.Config
                         this.CancelCommandButton.ToolTipText = "";
                         this.CancelCommandButton.Click += new System.EventHandler(this.cmdCancelar_Click);
                         // 
-                        // txtEmpresaSituacion
+                        // EntradaEmpresaSituacion
                         // 
-                        this.txtEmpresaSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaEmpresaSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtEmpresaSituacion.AutoHeight = false;
-                        this.txtEmpresaSituacion.AutoTab = true;
-                        this.txtEmpresaSituacion.CanCreate = true;
-                        this.txtEmpresaSituacion.DetailField = "nombre";
-                        this.txtEmpresaSituacion.ExtraDetailFields = null;
-                        this.txtEmpresaSituacion.Filter = "";
-                        this.txtEmpresaSituacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtEmpresaSituacion.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtEmpresaSituacion.FreeTextCode = "";
-                        this.txtEmpresaSituacion.KeyField = "id_situacion";
-                        this.txtEmpresaSituacion.Location = new System.Drawing.Point(180, 92);
-                        this.txtEmpresaSituacion.MaxLength = 200;
-                        this.txtEmpresaSituacion.Name = "txtEmpresaSituacion";
-                        this.txtEmpresaSituacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtEmpresaSituacion.ReadOnly = false;
-                        this.txtEmpresaSituacion.Required = true;
-                        this.txtEmpresaSituacion.SelectOnFocus = true;
-                        this.txtEmpresaSituacion.Size = new System.Drawing.Size(424, 24);
-                        this.txtEmpresaSituacion.TabIndex = 5;
-                        this.txtEmpresaSituacion.Table = "situaciones";
-                        this.txtEmpresaSituacion.TeclaDespuesDeEnter = "{tab}";
-                        this.txtEmpresaSituacion.Text = "0";
-                        this.txtEmpresaSituacion.TextDetail = "";
-                        this.txtEmpresaSituacion.TextInt = 0;
-                        this.txtEmpresaSituacion.TipWhenBlank = "";
-                        this.txtEmpresaSituacion.ToolTipText = "";
+                        this.EntradaEmpresaSituacion.AutoHeight = false;
+                        this.EntradaEmpresaSituacion.AutoTab = true;
+                        this.EntradaEmpresaSituacion.CanCreate = true;
+                        this.EntradaEmpresaSituacion.DetailField = "nombre";
+                        this.EntradaEmpresaSituacion.ExtraDetailFields = null;
+                        this.EntradaEmpresaSituacion.Filter = "";
+                        this.EntradaEmpresaSituacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaEmpresaSituacion.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaEmpresaSituacion.FreeTextCode = "";
+                        this.EntradaEmpresaSituacion.KeyField = "id_situacion";
+                        this.EntradaEmpresaSituacion.Location = new System.Drawing.Point(180, 92);
+                        this.EntradaEmpresaSituacion.MaxLength = 200;
+                        this.EntradaEmpresaSituacion.Name = "EntradaEmpresaSituacion";
+                        this.EntradaEmpresaSituacion.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEmpresaSituacion.ReadOnly = false;
+                        this.EntradaEmpresaSituacion.Required = true;
+                        this.EntradaEmpresaSituacion.SelectOnFocus = true;
+                        this.EntradaEmpresaSituacion.Size = new System.Drawing.Size(388, 24);
+                        this.EntradaEmpresaSituacion.TabIndex = 5;
+                        this.EntradaEmpresaSituacion.Table = "situaciones";
+                        this.EntradaEmpresaSituacion.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaEmpresaSituacion.Text = "0";
+                        this.EntradaEmpresaSituacion.TextDetail = "";
+                        this.EntradaEmpresaSituacion.TextInt = 0;
+                        this.EntradaEmpresaSituacion.TipWhenBlank = "";
+                        this.EntradaEmpresaSituacion.ToolTipText = "";
                         // 
                         // Label19
                         // 
@@ -262,31 +264,31 @@ namespace Lazaro.Misc.Config
                         this.Label19.Text = "Condición IVA";
                         this.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtEmpresaCUIT
+                        // EntradaEmpresaCuit
                         // 
-                        this.txtEmpresaCUIT.AutoHeight = false;
-                        this.txtEmpresaCUIT.AutoNav = true;
-                        this.txtEmpresaCUIT.AutoTab = true;
-                        this.txtEmpresaCUIT.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.txtEmpresaCUIT.DecimalPlaces = -1;
-                        this.txtEmpresaCUIT.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtEmpresaCUIT.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtEmpresaCUIT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtEmpresaCUIT.Location = new System.Drawing.Point(180, 64);
-                        this.txtEmpresaCUIT.MaxLenght = 32767;
-                        this.txtEmpresaCUIT.MultiLine = false;
-                        this.txtEmpresaCUIT.Name = "txtEmpresaCUIT";
-                        this.txtEmpresaCUIT.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtEmpresaCUIT.PasswordChar = '\0';
-                        this.txtEmpresaCUIT.Prefijo = "";
-                        this.txtEmpresaCUIT.ReadOnly = false;
-                        this.txtEmpresaCUIT.SelectOnFocus = true;
-                        this.txtEmpresaCUIT.Size = new System.Drawing.Size(112, 24);
-                        this.txtEmpresaCUIT.Sufijo = "";
-                        this.txtEmpresaCUIT.TabIndex = 3;
-                        this.txtEmpresaCUIT.TextRaw = "";
-                        this.txtEmpresaCUIT.TipWhenBlank = "";
-                        this.txtEmpresaCUIT.ToolTipText = "";
+                        this.EntradaEmpresaCuit.AutoHeight = false;
+                        this.EntradaEmpresaCuit.AutoNav = true;
+                        this.EntradaEmpresaCuit.AutoTab = true;
+                        this.EntradaEmpresaCuit.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaEmpresaCuit.DecimalPlaces = -1;
+                        this.EntradaEmpresaCuit.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaEmpresaCuit.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaEmpresaCuit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaEmpresaCuit.Location = new System.Drawing.Point(180, 64);
+                        this.EntradaEmpresaCuit.MaxLenght = 32767;
+                        this.EntradaEmpresaCuit.MultiLine = false;
+                        this.EntradaEmpresaCuit.Name = "EntradaEmpresaCuit";
+                        this.EntradaEmpresaCuit.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEmpresaCuit.PasswordChar = '\0';
+                        this.EntradaEmpresaCuit.Prefijo = "";
+                        this.EntradaEmpresaCuit.ReadOnly = false;
+                        this.EntradaEmpresaCuit.SelectOnFocus = true;
+                        this.EntradaEmpresaCuit.Size = new System.Drawing.Size(112, 24);
+                        this.EntradaEmpresaCuit.Sufijo = "";
+                        this.EntradaEmpresaCuit.TabIndex = 3;
+                        this.EntradaEmpresaCuit.TextRaw = "";
+                        this.EntradaEmpresaCuit.TipWhenBlank = "";
+                        this.EntradaEmpresaCuit.ToolTipText = "";
                         // 
                         // Label18
                         // 
@@ -297,31 +299,31 @@ namespace Lazaro.Misc.Config
                         this.Label18.Text = "CUIT";
                         this.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtEmpresaNombre
+                        // EntradaEmpresaNombre
                         // 
-                        this.txtEmpresaNombre.AutoHeight = false;
-                        this.txtEmpresaNombre.AutoNav = true;
-                        this.txtEmpresaNombre.AutoTab = true;
-                        this.txtEmpresaNombre.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.txtEmpresaNombre.DecimalPlaces = -1;
-                        this.txtEmpresaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtEmpresaNombre.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtEmpresaNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtEmpresaNombre.Location = new System.Drawing.Point(180, 36);
-                        this.txtEmpresaNombre.MaxLenght = 32767;
-                        this.txtEmpresaNombre.MultiLine = false;
-                        this.txtEmpresaNombre.Name = "txtEmpresaNombre";
-                        this.txtEmpresaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtEmpresaNombre.PasswordChar = '\0';
-                        this.txtEmpresaNombre.Prefijo = "";
-                        this.txtEmpresaNombre.ReadOnly = false;
-                        this.txtEmpresaNombre.SelectOnFocus = true;
-                        this.txtEmpresaNombre.Size = new System.Drawing.Size(388, 24);
-                        this.txtEmpresaNombre.Sufijo = "";
-                        this.txtEmpresaNombre.TabIndex = 1;
-                        this.txtEmpresaNombre.TextRaw = "";
-                        this.txtEmpresaNombre.TipWhenBlank = "";
-                        this.txtEmpresaNombre.ToolTipText = "";
+                        this.EntradaEmpresaNombre.AutoHeight = false;
+                        this.EntradaEmpresaNombre.AutoNav = true;
+                        this.EntradaEmpresaNombre.AutoTab = true;
+                        this.EntradaEmpresaNombre.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaEmpresaNombre.DecimalPlaces = -1;
+                        this.EntradaEmpresaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaEmpresaNombre.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaEmpresaNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaEmpresaNombre.Location = new System.Drawing.Point(180, 36);
+                        this.EntradaEmpresaNombre.MaxLenght = 32767;
+                        this.EntradaEmpresaNombre.MultiLine = false;
+                        this.EntradaEmpresaNombre.Name = "EntradaEmpresaNombre";
+                        this.EntradaEmpresaNombre.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEmpresaNombre.PasswordChar = '\0';
+                        this.EntradaEmpresaNombre.Prefijo = "";
+                        this.EntradaEmpresaNombre.ReadOnly = false;
+                        this.EntradaEmpresaNombre.SelectOnFocus = true;
+                        this.EntradaEmpresaNombre.Size = new System.Drawing.Size(388, 24);
+                        this.EntradaEmpresaNombre.Sufijo = "";
+                        this.EntradaEmpresaNombre.TabIndex = 1;
+                        this.EntradaEmpresaNombre.TextRaw = "";
+                        this.EntradaEmpresaNombre.TipWhenBlank = "";
+                        this.EntradaEmpresaNombre.ToolTipText = "";
                         // 
                         // Label17
                         // 
@@ -338,15 +340,17 @@ namespace Lazaro.Misc.Config
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.FrmGeneral.AutoHeight = false;
+                        this.FrmGeneral.Controls.Add(this.EntradaEmpresaEmail);
+                        this.FrmGeneral.Controls.Add(this.label28);
                         this.FrmGeneral.Controls.Add(this.EntradaModoPantalla);
                         this.FrmGeneral.Controls.Add(this.label27);
                         this.FrmGeneral.Controls.Add(this.txtBackup);
                         this.FrmGeneral.Controls.Add(this.label14);
-                        this.FrmGeneral.Controls.Add(this.txtEmpresaSituacion);
+                        this.FrmGeneral.Controls.Add(this.EntradaEmpresaSituacion);
                         this.FrmGeneral.Controls.Add(this.Label19);
-                        this.FrmGeneral.Controls.Add(this.txtEmpresaCUIT);
+                        this.FrmGeneral.Controls.Add(this.EntradaEmpresaCuit);
                         this.FrmGeneral.Controls.Add(this.Label18);
-                        this.FrmGeneral.Controls.Add(this.txtEmpresaNombre);
+                        this.FrmGeneral.Controls.Add(this.EntradaEmpresaNombre);
                         this.FrmGeneral.Controls.Add(this.Label17);
                         this.FrmGeneral.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.FrmGeneral.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -1029,7 +1033,7 @@ namespace Lazaro.Misc.Config
                         this.carga.Text = "Carga";
                         this.carga.Width = 160;
                         // 
-                        // cmdSiguiente
+                        // BotonSiguiente
                         // 
                         this.BotonSiguiente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonSiguiente.AutoHeight = false;
@@ -1039,7 +1043,7 @@ namespace Lazaro.Misc.Config
                         this.BotonSiguiente.Image = null;
                         this.BotonSiguiente.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonSiguiente.Location = new System.Drawing.Point(8, 405);
-                        this.BotonSiguiente.Name = "cmdSiguiente";
+                        this.BotonSiguiente.Name = "BotonSiguiente";
                         this.BotonSiguiente.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonSiguiente.ReadOnly = false;
                         this.BotonSiguiente.Size = new System.Drawing.Size(96, 32);
@@ -1343,6 +1347,41 @@ namespace Lazaro.Misc.Config
                         this.FrmImpresion.ToolTipText = "";
                         this.FrmImpresion.Visible = false;
                         // 
+                        // EntradaEmpresaEmail
+                        // 
+                        this.EntradaEmpresaEmail.AutoHeight = false;
+                        this.EntradaEmpresaEmail.AutoNav = true;
+                        this.EntradaEmpresaEmail.AutoTab = true;
+                        this.EntradaEmpresaEmail.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaEmpresaEmail.DecimalPlaces = -1;
+                        this.EntradaEmpresaEmail.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaEmpresaEmail.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaEmpresaEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaEmpresaEmail.Location = new System.Drawing.Point(180, 120);
+                        this.EntradaEmpresaEmail.MaxLenght = 32767;
+                        this.EntradaEmpresaEmail.MultiLine = false;
+                        this.EntradaEmpresaEmail.Name = "EntradaEmpresaEmail";
+                        this.EntradaEmpresaEmail.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEmpresaEmail.PasswordChar = '\0';
+                        this.EntradaEmpresaEmail.Prefijo = "";
+                        this.EntradaEmpresaEmail.ReadOnly = false;
+                        this.EntradaEmpresaEmail.SelectOnFocus = true;
+                        this.EntradaEmpresaEmail.Size = new System.Drawing.Size(388, 24);
+                        this.EntradaEmpresaEmail.Sufijo = "";
+                        this.EntradaEmpresaEmail.TabIndex = 7;
+                        this.EntradaEmpresaEmail.TextRaw = "";
+                        this.EntradaEmpresaEmail.TipWhenBlank = "";
+                        this.EntradaEmpresaEmail.ToolTipText = "";
+                        // 
+                        // label28
+                        // 
+                        this.label28.Location = new System.Drawing.Point(16, 120);
+                        this.label28.Name = "label28";
+                        this.label28.Size = new System.Drawing.Size(160, 24);
+                        this.label28.TabIndex = 6;
+                        this.label28.Text = "Correo Electrónico";
+                        this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
                         // Preferencias
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -1380,5 +1419,7 @@ namespace Lazaro.Misc.Config
                 internal System.Windows.Forms.Label label22;
                 internal Lui.Forms.ComboBox EntradaModoPantalla;
                 internal System.Windows.Forms.Label label27;
+                internal Lui.Forms.TextBox EntradaEmpresaEmail;
+                internal System.Windows.Forms.Label label28;
 	}
 }

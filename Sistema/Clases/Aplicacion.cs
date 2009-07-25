@@ -206,6 +206,12 @@ namespace Lazaro
 
                         Lws.Workspace.Master.RunTime.IpcEvent += new Lws.Workspace.RunTimeServices.IpcEventHandler(Workspace_IpcEvent);
 
+                        if (Lws.Workspace.Master.CurrentConfig.Company.Email.Length <= 5) {
+                                string Email = Lui.Forms.InputBox.ShowInputBox("Por favor escriba la dirección de correo electrónico (e-mail) de la empresa. Si desea ingresar al sistema sin escribir la dirección ahora, haga clic en Cancelar.", Lws.Workspace.Master.CurrentConfig.Company.Name, "");
+                                if (Email != null && Email.Length > 5)
+                                        Lws.Workspace.Master.CurrentConfig.Company.Email = Email;
+                        }
+
                         ResultadoInicio = IniciarNormal();
 
                         if (ResultadoInicio.Success == false)
@@ -1416,7 +1422,7 @@ namespace Lazaro
 
                         MailMessage Mensaje = new MailMessage();
                         Mensaje.To.Add(new MailAddress("error@sistemalazaro.com.ar"));
-                        Mensaje.From = new MailAddress(Lws.Workspace.Master.CurrentUser.UserId.ToString() + "@" + System.Environment.MachineName.ToUpperInvariant(), Lws.Workspace.Master.CurrentUser.UserCompleteName + " en " + Lws.Workspace.Master.CurrentConfig.Company.Name);
+                        Mensaje.From = new MailAddress(Lws.Workspace.Master.CurrentConfig.Company.Email, Lws.Workspace.Master.CurrentUser.UserCompleteName + " en " + Lws.Workspace.Master.CurrentConfig.Company.Name);
                         try {
                                 //No sé por qué, pero una vez dió un error al poner el asunto
                                 Mensaje.Subject = ex.Message;

@@ -248,9 +248,10 @@ namespace Lazaro.Misc.Config
 			txtStockDecimales.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.Decimales", "0");
                         txtBackup.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Backup.Tipo", "0");
 
-			txtEmpresaNombre.Text = this.Workspace.CurrentConfig.Company.Name;
-			txtEmpresaCUIT.Text = this.Workspace.CurrentConfig.Company.CUIT;
-			txtEmpresaSituacion.TextInt = this.Workspace.CurrentConfig.Company.SituacionTributaria;
+			EntradaEmpresaNombre.Text = this.Workspace.CurrentConfig.Company.Name;
+			EntradaEmpresaCuit.Text = this.Workspace.CurrentConfig.Company.Cuit;
+			EntradaEmpresaSituacion.TextInt = this.Workspace.CurrentConfig.Company.SituacionTributaria;
+                        EntradaEmpresaEmail.Text = this.Workspace.CurrentConfig.Company.Email;
                         EntradaModoPantalla.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Apariencia.ModoPantalla", "maximizado");
 
 			CargarImpresorasPredet();
@@ -273,10 +274,10 @@ namespace Lazaro.Misc.Config
 
 		private bool GuardarConfig()
 		{
-			if (txtEmpresaCUIT.Text.Length == 11)
-				txtEmpresaCUIT.Text = txtEmpresaCUIT.Text.Substring(0, 2) + "-" + txtEmpresaCUIT.Text.Substring(2, 8) + "-" + txtEmpresaCUIT.Text.Substring(10, 1);
+			if (EntradaEmpresaCuit.Text.Length == 11)
+				EntradaEmpresaCuit.Text = EntradaEmpresaCuit.Text.Substring(0, 2) + "-" + EntradaEmpresaCuit.Text.Substring(2, 8) + "-" + EntradaEmpresaCuit.Text.Substring(10, 1);
 
-                        if (txtEmpresaCUIT.Text != "00-00000000-0" && Lfx.Types.Strings.ValidCUIT(txtEmpresaCUIT.Text) == false) {
+                        if (EntradaEmpresaCuit.Text != "00-00000000-0" && Lfx.Types.Strings.ValidCUIT(EntradaEmpresaCuit.Text) == false) {
                                 Lui.Forms.MessageBox.Show("Por favor ingrese una CUIT válida.\nSi todavía no disponde de una CUIT, puede utilizar provisoriamente la clave 00-00000000-0.", "La CUIT no es válida");
                                 return true;
                         }
@@ -292,9 +293,10 @@ namespace Lazaro.Misc.Config
 			else
 				this.Workspace.CurrentConfig.DeleteGlobalSetting("Sistema", "Stock.DepositoPredet", Sucursal);
 
-			this.Workspace.CurrentConfig.Company.Name = txtEmpresaNombre.Text;
-			this.Workspace.CurrentConfig.Company.CUIT = txtEmpresaCUIT.Text;
-			this.Workspace.CurrentConfig.Company.SituacionTributaria = txtEmpresaSituacion.TextInt;
+			this.Workspace.CurrentConfig.Company.Name = EntradaEmpresaNombre.Text;
+			this.Workspace.CurrentConfig.Company.Cuit = EntradaEmpresaCuit.Text;
+			this.Workspace.CurrentConfig.Company.SituacionTributaria = EntradaEmpresaSituacion.TextInt;
+                        this.Workspace.CurrentConfig.Company.Email = EntradaEmpresaEmail.Text;
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Backup.Tipo", txtBackup.TextKey, System.Environment.MachineName.ToUpperInvariant());
                         if (EntradaModoPantalla.TextKey == "*")
                                 this.Workspace.CurrentConfig.DeleteGlobalSetting("Sistema", "Apariencia.ModoPantalla", System.Environment.MachineName.ToUpperInvariant());
