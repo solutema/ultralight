@@ -422,14 +422,24 @@ namespace Lazaro.Actualizador
                         return actualizarArchivoDesdeWebReturn;
                 }
 
+                public static void NetGet(string url, string archivo)
+                {
+                        byte[] Contenido = NetGet(url);
 
-                private static byte[] NetGet(string Archivo)
+                        if (Contenido != null) {
+                                System.IO.BinaryWriter wr = new System.IO.BinaryWriter(System.IO.File.OpenWrite(archivo), System.Text.Encoding.Default);
+                                wr.Write(Contenido);
+                                wr.Close();
+                        }
+                }
+
+                private static byte[] NetGet(string url)
 		{
 			try
 			{
-				System.Console.Write("Descargando " + Archivo + ": ");
+				System.Console.Write("Descargando " + url + ": ");
 				System.Net.WebRequest Solicitud = null;
-				Solicitud = System.Net.WebRequest.CreateDefault(new System.Uri(Archivo));
+				Solicitud = System.Net.WebRequest.CreateDefault(new System.Uri(url));
 				System.Net.WebResponse Respuesta = Solicitud.GetResponse();
 				byte[] Contenido = new byte[Respuesta.ContentLength];
 				System.IO.StreamReader Lector = new System.IO.StreamReader(Respuesta.GetResponseStream(), System.Text.Encoding.Default);

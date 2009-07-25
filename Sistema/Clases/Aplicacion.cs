@@ -92,6 +92,22 @@ namespace Lazaro
                         AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
                         Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 
+                        if (System.IO.File.Exists("ICSharpCode.SharpZipLib.dll") == false || System.IO.File.Exists("MySql.Data.dll") == false) {
+                                Actualizador.Estado Estado = new Lazaro.Actualizador.Estado();
+                                Estado.LabelEstado.Text = "Se están descargando algunos archivos necesarios para el funcionamiento del sistema.";
+                                Estado.Show();
+                                Estado.Refresh();
+
+                                if (System.IO.File.Exists("ICSharpCode.SharpZipLib.dll") == false)
+                                        Lazaro.Actualizador.Actualizador.NetGet(@"http://www.sistemalazaro.com.ar/aslnlwc/ICSharpCode.SharpZipLib.dll", "ICSharpCode.SharpZipLib.dll");
+
+                                if (System.IO.File.Exists("MySql.Data.dll") == false)
+                                        Lazaro.Actualizador.Actualizador.NetGet(@"http://www.sistemalazaro.com.ar/aslnlwc/MySql.Data.dll", "MySql.Data.dll");
+
+                                Estado.Dispose();
+                                Estado = null;
+                        }
+
                         bool ReconfigDB = false;
 
                         string NombreConfig = "default";

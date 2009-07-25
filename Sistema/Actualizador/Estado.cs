@@ -59,7 +59,7 @@ namespace Lazaro.Actualizador
                 private System.ComponentModel.Container components = null;
 
                 internal System.Windows.Forms.PictureBox PictureBox1;
-                internal System.Windows.Forms.Label Label1;
+                public Label LabelEstado;
                 internal Lui.Forms.ProgressBar GProgressBar1;
                 internal System.Windows.Forms.Label lblOperacion;
 
@@ -68,7 +68,7 @@ namespace Lazaro.Actualizador
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Estado));
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
                         this.lblOperacion = new System.Windows.Forms.Label();
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.LabelEstado = new System.Windows.Forms.Label();
                         this.GProgressBar1 = new Lui.Forms.ProgressBar();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
                         this.SuspendLayout();
@@ -93,14 +93,14 @@ namespace Lazaro.Actualizador
                         this.lblOperacion.Text = "Puede demorar varios minutos.";
                         this.lblOperacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // Label1
+                        // LabelEstado
                         // 
-                        this.Label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.Label1.Location = new System.Drawing.Point(88, 20);
-                        this.Label1.Name = "Label1";
-                        this.Label1.Size = new System.Drawing.Size(364, 32);
-                        this.Label1.TabIndex = 3;
-                        this.Label1.Text = "Por favor aguarde mientras se verifica si existe una nueva versión del sistema.";
+                        this.LabelEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.LabelEstado.Location = new System.Drawing.Point(88, 20);
+                        this.LabelEstado.Name = "LabelEstado";
+                        this.LabelEstado.Size = new System.Drawing.Size(364, 32);
+                        this.LabelEstado.TabIndex = 3;
+                        this.LabelEstado.Text = "Por favor aguarde mientras se verifica si existe una nueva versión del sistema.";
                         // 
                         // GProgressBar1
                         // 
@@ -113,20 +113,20 @@ namespace Lazaro.Actualizador
                         this.GProgressBar1.TabIndex = 4;
                         this.GProgressBar1.Value = 33;
                         // 
-                        // FormEstado
+                        // Estado
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(474, 138);
                         this.ControlBox = false;
                         this.Controls.Add(this.GProgressBar1);
-                        this.Controls.Add(this.Label1);
+                        this.Controls.Add(this.LabelEstado);
                         this.Controls.Add(this.lblOperacion);
                         this.Controls.Add(this.PictureBox1);
                         this.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-                        this.Name = "FormEstado";
+                        this.Name = "Estado";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
                         this.Text = "Lázaro";
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
