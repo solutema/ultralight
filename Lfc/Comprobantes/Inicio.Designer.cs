@@ -96,7 +96,7 @@ namespace Lfc.Comprobantes
                         this.Label4.Text = "Anulado";
                         this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtTotal
+                        // EntradaTotal
                         // 
                         this.txtTotal.AutoHeight = false;
                         this.txtTotal.AutoNav = true;
@@ -109,7 +109,7 @@ namespace Lfc.Comprobantes
                         this.txtTotal.Location = new System.Drawing.Point(44, 68);
                         this.txtTotal.MaxLenght = 32767;
                         this.txtTotal.MultiLine = false;
-                        this.txtTotal.Name = "txtTotal";
+                        this.txtTotal.Name = "EntradaTotal";
                         this.txtTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTotal.PasswordChar = '\0';
                         this.txtTotal.Prefijo = "";
@@ -184,12 +184,6 @@ namespace Lfc.Comprobantes
                         this.Name = "Inicio";
                         this.Text = "Comprobantes: Listado";
                         this.WorkspaceChanged += new System.EventHandler(this.FormComprobantesInicio_WorkspaceChanged);
-                        this.Controls.SetChildIndex(this.Listado, 0);
-                        this.Controls.SetChildIndex(this.Frame, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.Label6, 0);
-                        this.Controls.SetChildIndex(this.txtTotal, 0);
-                        this.Controls.SetChildIndex(this.txtPendiente, 0);
                         this.Frame.ResumeLayout(false);
                         this.Frame.PerformLayout();
                         this.ResumeLayout(false);

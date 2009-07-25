@@ -203,12 +203,12 @@ namespace Lui.Printing
 					case Keys.Escape:
 						e.Handled = true;
 						if(CancelCommandButton.Enabled && CancelCommandButton.Visible)
-							cmdCancelar_Click(sender, e);
+							CancelCommandButton.PerformClick();
 						break;
 					case Keys.F2:
 					case Keys.Space:
 						e.Handled = true;
-						cmdZoom_Click(sender, e);
+						cmdZoom.PerformClick();
 						break;
 					case Keys.PageDown:
 						e.Handled = true;

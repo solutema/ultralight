@@ -142,10 +142,12 @@ namespace Lfc.Comprobantes.Recibos
                         this.MostrarFacturas();
                         this.MostrarValores();
 
-                        if (Rec.Existe)
+                        if (Rec.Existe) {
                                 EtiquetaTitulo.Text = Rec.ToString();
-                        else
+                                this.ReadOnly = true;
+                        } else {
                                 EtiquetaTitulo.Text = Rec.Tipo.Nombre;
+                        }
                 }
 
 
@@ -428,37 +430,37 @@ namespace Lfc.Comprobantes.Recibos
                                 case Keys.F2:
                                         e.Handled = true;
                                         if (BotonAgregarFactura.Enabled && BotonAgregarFactura.Visible)
-                                                cmdFacturasAgregar_Click(sender, e);
+                                                BotonAgregarFactura.PerformClick();
                                         break;
                                 case Keys.F3:
                                         e.Handled = true;
                                         if (BotonQuitarFactura.Enabled && BotonQuitarFactura.Visible)
-                                                cmdFacturasQuitar_Click(sender, e);
+                                                BotonQuitarFactura.PerformClick();
                                         break;
                                 case Keys.F4:
                                         e.Handled = true;
                                         if (this.DePago == false && BotonAgregarValor.Enabled && BotonAgregarValor.Visible)
-                                                cmdValoresAgregar_Click(sender, e);
+                                                BotonAgregarValor.PerformClick();
                                         break;
                                 case Keys.F5:
                                         e.Handled = true;
                                         if (this.DePago == false && BotonQuitarValor.Enabled && BotonQuitarValor.Visible)
-                                                cmdValoresQuitar_Click(sender, e);
+                                                BotonQuitarValor.PerformClick();
                                         break;
                                 case Keys.F6:
                                         e.Handled = true;
                                         if (this.DePago == true && BotonAgregarValor.Enabled && BotonAgregarValor.Visible)
-                                                cmdValoresAgregar_Click(sender, e);
+                                                BotonAgregarValor.PerformClick();
                                         break;
                                 case Keys.F7:
                                         e.Handled = true;
                                         if (this.DePago == true && BotonQuitarValor.Enabled && BotonQuitarValor.Visible)
-                                                cmdValoresQuitar_Click(sender, e);
+                                                BotonQuitarValor.PerformClick();
                                         break;
                                 case Keys.F8:
                                         e.Handled = true;
                                         if (PrintButton.Enabled && PrintButton.Visible)
-                                                cmdImprimir_Click(sender, e);
+                                                PrintButton.PerformClick();
                                         break;
                         }
 
@@ -588,8 +590,10 @@ namespace Lfc.Comprobantes.Recibos
                 {
                         Lbl.Comprobantes.Recibo Rec = this.CachedRow as Lbl.Comprobantes.Recibo;
                         string Impresora = this.Workspace.CurrentConfig.Printing.PreferredPrinter(Rec.Tipo.Nomenclatura);
-                        // Si es de carga manual, presento el formulario correspondiente
-                        return Rec.Imprimir(Impresora);
+                        Lfx.Types.OperationResult Res = Rec.Imprimir(Impresora);
+                        if (Res.Success)
+                                this.ReadOnly = true;
+                        return Res;
                 }
 
                 private void FormReciboEditar_WorkspaceChanged(object sender, System.EventArgs e)

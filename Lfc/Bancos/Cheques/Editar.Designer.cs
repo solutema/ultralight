@@ -237,16 +237,6 @@ namespace Lfc.Bancos.Cheques
                         this.Controls.Add(this.Label1);
                         this.Name = "Editar";
                         this.Text = "Cheque";
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.label5, 0);
-                        this.Controls.SetChildIndex(this.lblFecha1, 0);
-                        this.Controls.SetChildIndex(this.label2, 0);
-                        this.Controls.SetChildIndex(this.EntradaBanco, 0);
-                        this.Controls.SetChildIndex(this.EntradaNumero, 0);
-                        this.Controls.SetChildIndex(this.EntradaEmisor, 0);
-                        this.Controls.SetChildIndex(this.EntradaFechaEmision, 0);
-                        this.Controls.SetChildIndex(this.EntradaFechaCobro, 0);
                         this.ResumeLayout(false);
 
                 }

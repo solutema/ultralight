@@ -41,6 +41,7 @@ namespace Lbl.Comprobantes
                 public Bancos.Cheque Cheque;
                 public Cuentas.Concepto Concepto;
                 public string ConceptoTexto;
+                public Comprobantes.Recibo Recibo;
 
                 //Heredar constructor
                 public Pago(Lws.Data.DataView dataView) : base(dataView) { }
@@ -87,6 +88,36 @@ namespace Lbl.Comprobantes
                                                 this.m_Importe = value;
                                                 break;
                                 }
+                        }
+                }
+
+                public void Anular()
+                {
+                        string DescripConcepto = "Anulación";
+                        if (Recibo != null)
+                                DescripConcepto = "Anulación " + Recibo.ToString();
+
+                        Personas.Persona Cliente = null;
+                        Comprobantes.ComprobanteConArticulos Factura = null;
+                        if (this.Recibo != null) {
+                                if (Recibo.Cliente != null)
+                                        Cliente = Recibo.Cliente;
+                                if (Recibo.Facturas != null && Recibo.Facturas.Count > 0)
+                                        Factura = Recibo.Facturas[0];
+                        }
+
+                        switch (this.FormaDePago) {
+                                case FormasDePago.Efectivo:
+                                        Lbl.Cuentas.CuentaRegular Caja = new Lbl.Cuentas.CuentaRegular(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
+                                        Caja.Movimiento(true, this.Concepto, DescripConcepto, Cliente, this.Importe, null, Factura, this.Recibo, null);
+                                        break;
+                                case FormasDePago.Cheque:
+                                        if (this.Cheque != null)
+                                                this.Cheque.Anular();
+                                        break;
+                                case FormasDePago.CuentaRegular:
+                                        this.CuentaOrigen.Movimiento(true, this.Concepto, DescripConcepto, Cliente, this.Importe, null, Factura, this.Recibo, null);
+                                        break;
                         }
                 }
 

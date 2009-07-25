@@ -131,7 +131,7 @@ namespace Lfx.Data
                                 case "SMALLINT":
 				case "TINYINT":
                                         return Lfx.Data.DbTypes.SmallInt;
-                                case "DECIMAL":         //TODO: DECIMAL no es lo mismo que NUMERIC, pero MySQL 5.0 los trata igual y reporta los numeric como decimal
+                                case "DECIMAL":         // FIXME: DECIMAL no es lo mismo que NUMERIC, pero MySQL 5.0 los trata igual y reporta los numeric como decimal
                                 case "NUMERIC":
                                         return Lfx.Data.DbTypes.Numeric;
                                 case "DOUBLE":

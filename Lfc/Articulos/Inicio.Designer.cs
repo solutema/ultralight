@@ -71,6 +71,7 @@ namespace Lfc.Articulos
                         // cmdMovim
                         // 
                         this.cmdMovim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.cmdMovim.AutoHeight = false;
                         this.cmdMovim.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.cmdMovim.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.cmdMovim.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -90,6 +91,7 @@ namespace Lfc.Articulos
                         // 
                         // Frame
                         // 
+                        this.Frame.AutoHeight = false;
                         this.Frame.Controls.Add(this.txtValorPVP);
                         this.Frame.Controls.Add(this.txtValorCosto);
                         this.Frame.Controls.Add(this.label2);
@@ -110,21 +112,29 @@ namespace Lfc.Articulos
                         // 
                         this.txtValorPVP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.txtValorPVP.AutoHeight = false;
                         this.txtValorPVP.AutoNav = true;
                         this.txtValorPVP.AutoTab = true;
                         this.txtValorPVP.DataType = Lui.Forms.DataTypes.Money;
+                        this.txtValorPVP.DecimalPlaces = -1;
                         this.txtValorPVP.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.txtValorPVP.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtValorPVP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtValorPVP.Location = new System.Drawing.Point(20, 112);
                         this.txtValorPVP.MaxLenght = 32767;
+                        this.txtValorPVP.MultiLine = false;
                         this.txtValorPVP.Name = "txtValorPVP";
                         this.txtValorPVP.Padding = new System.Windows.Forms.Padding(2);
+                        this.txtValorPVP.PasswordChar = '\0';
                         this.txtValorPVP.Prefijo = "$";
                         this.txtValorPVP.ReadOnly = true;
+                        this.txtValorPVP.SelectOnFocus = true;
                         this.txtValorPVP.Size = new System.Drawing.Size(108, 23);
+                        this.txtValorPVP.Sufijo = "";
                         this.txtValorPVP.TabIndex = 5;
                         this.txtValorPVP.TabStop = false;
                         this.txtValorPVP.Text = "0.00";
+                        this.txtValorPVP.TextRaw = "0.00";
                         this.txtValorPVP.TipWhenBlank = "";
                         this.txtValorPVP.ToolTipText = "";
                         // 
@@ -132,21 +142,29 @@ namespace Lfc.Articulos
                         // 
                         this.txtValorCosto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.txtValorCosto.AutoHeight = false;
                         this.txtValorCosto.AutoNav = true;
                         this.txtValorCosto.AutoTab = true;
                         this.txtValorCosto.DataType = Lui.Forms.DataTypes.Money;
+                        this.txtValorCosto.DecimalPlaces = -1;
                         this.txtValorCosto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.txtValorCosto.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtValorCosto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtValorCosto.Location = new System.Drawing.Point(20, 52);
                         this.txtValorCosto.MaxLenght = 32767;
+                        this.txtValorCosto.MultiLine = false;
                         this.txtValorCosto.Name = "txtValorCosto";
                         this.txtValorCosto.Padding = new System.Windows.Forms.Padding(2);
+                        this.txtValorCosto.PasswordChar = '\0';
                         this.txtValorCosto.Prefijo = "$";
                         this.txtValorCosto.ReadOnly = true;
+                        this.txtValorCosto.SelectOnFocus = true;
                         this.txtValorCosto.Size = new System.Drawing.Size(108, 22);
+                        this.txtValorCosto.Sufijo = "";
                         this.txtValorCosto.TabIndex = 4;
                         this.txtValorCosto.TabStop = false;
                         this.txtValorCosto.Text = "0.00";
+                        this.txtValorCosto.TextRaw = "0.00";
                         this.txtValorCosto.TipWhenBlank = "";
                         this.txtValorCosto.ToolTipText = "";
                         // 
@@ -176,15 +194,15 @@ namespace Lfc.Articulos
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(768, 480);
-                        this.Controls.Add(this.Frame);
                         this.Controls.Add(this.cmdMovim);
+                        this.Controls.Add(this.Frame);
                         this.Name = "Inicio";
                         this.Text = "Artículos: Listado";
                         this.WorkspaceChanged += new System.EventHandler(this.Inicio_WorkspaceChanged);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormArticulosInicio_KeyDown);
+                        this.Controls.SetChildIndex(this.Frame, 0);
                         this.Controls.SetChildIndex(this.Listado, 0);
                         this.Controls.SetChildIndex(this.cmdMovim, 0);
-                        this.Controls.SetChildIndex(this.Frame, 0);
                         this.Frame.ResumeLayout(false);
                         this.Frame.PerformLayout();
                         this.ResumeLayout(false);

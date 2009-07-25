@@ -53,7 +53,7 @@ namespace Lfc.Comprobantes
                         // txtAgrupar
                         // 
                         this.txtAgrupar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtAgrupar.AutoHeight = true;
+                        this.txtAgrupar.AutoHeight = false;
                         this.txtAgrupar.AutoNav = true;
                         this.txtAgrupar.AutoTab = true;
                         this.txtAgrupar.DetailField = null;

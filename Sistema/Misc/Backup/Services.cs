@@ -118,35 +118,35 @@ namespace Lazaro.Misc.Backup
 
                                 for (int i = 0; i < Tabla.FieldCount; i++) {
                                         object ValorOrigen = Tabla[Fields[i]];
-                                        string TipoCampoOrigen = ValorOrigen.GetType().ToString();
+                                        string TipoCampoOrigen = ValorOrigen.GetType().ToString().Replace("System.", "");
                                         string TipoCampoDestino;
                                         switch (TipoCampoOrigen) {
-                                                case "System.Byte[]":
+                                                case "Byte[]":
                                                         TipoCampoDestino = "B";
                                                         break;
-                                                case "System.SByte":
-                                                case "System.Byte":
-                                                case "System.Int16":
-                                                case "System.Int32":
-                                                case "System.Int64":
+                                                case "SByte":
+                                                case "Byte":
+                                                case "Int16":
+                                                case "Int32":
+                                                case "Int64":
                                                         ValorOrigen = ValorOrigen.ToString();
                                                         TipoCampoDestino = "I";
                                                         break;
-                                                case "System.Decimal":
-                                                case "System.Single":
-                                                case "System.Double":
+                                                case "Decimal":
+                                                case "Single":
+                                                case "Double":
                                                         double ValDouble = System.Convert.ToDouble(ValorOrigen);
                                                         ValorOrigen = ValDouble.ToString(System.Globalization.CultureInfo.InvariantCulture);
                                                         TipoCampoDestino = "N";
                                                         break;
-                                                case "System.DateTime":
+                                                case "DateTime":
                                                         ValorOrigen = ((DateTime)ValorOrigen).ToString(Lfx.Types.Formatting.DateTime.SqlDateTimeFormat);
                                                         TipoCampoDestino = "D";
                                                         break;
-                                                case "System.String":
+                                                case "String":
                                                         TipoCampoDestino = "S";
                                                         break;
-                                                case "System.DBNull":
+                                                case "DBNull":
                                                         TipoCampoDestino = "U";
                                                         ValorOrigen = "";
                                                         break;
@@ -203,7 +203,7 @@ namespace Lazaro.Misc.Backup
 						switch(Campo.DataType.Name) {
 							case "Byte[]":
 								if(ExportarBlobs) {
-									//TODO: exportar BLOBS
+                                                                        // FIXME: exportar BLOBS
 								} else {
 									Valor = "NULL";
 								}
@@ -293,7 +293,7 @@ namespace Lazaro.Misc.Backup
 			Escribidor.WriteLine("EspacioTrabajo=" + Lws.Workspace.Master.Name);
 			Escribidor.WriteLine("FechaYHora=" + System.DateTime.Now.ToString("dd-MM-yyyy") + " a las " + System.DateTime.Now.ToString("HH:mm:ss"));
 			Escribidor.WriteLine("Usuario=" + Lws.Workspace.Master.CurrentUser.UserCompleteName);
-			Escribidor.WriteLine("Estación=" + Lfx.Environment.SystemInformation.ComputerName);
+			Escribidor.WriteLine("Estación=" + System.Environment.MachineName.ToUpperInvariant());
 			Escribidor.WriteLine("Versión Aplic=" + Aplicacion.Version() + " del " + Aplicacion.BuildDate());
 			Escribidor.WriteLine("");
 			Escribidor.WriteLine("Por favor no modifique ni elimine este archivo.");
@@ -389,7 +389,7 @@ namespace Lazaro.Misc.Backup
 			foreach(System.IO.DirectoryInfo DirItem in Dir.GetDirectories("*.lbk")) {
 				Lista.Add(DirItem.Name);
 			}
-			//TODO: eliminar las carpetas lbkp_*
+                        // FIXME: eliminar las carpetas lbkp_*
 			foreach(System.IO.DirectoryInfo DirItem in Dir.GetDirectories("lbkp_*")) {
 				Lista.Add(DirItem.Name);
 			}
@@ -427,17 +427,22 @@ namespace Lazaro.Misc.Backup
 
 				// Vaciar todas las tablas
                                 foreach (string Tabla in Lfx.Data.DataBaseCache.DefaultCache.TableList) {
-					//No uso TRUNCATE porque tiene problemas con las transacciones en MySql
-                                        DataView.DataBase.Execute("DELETE FROM " + Tabla);
+                                        Lfx.Data.SqlDeleteBuilder DelCmd = new Lfx.Data.SqlDeleteBuilder(Tabla);
+                                        DelCmd.Truncate = true;
+                                        DataView.Execute(DelCmd);
 				}
 
                                 FormularioProgreso.Operacion = "Acomodando estructuras...";
+                                Lfx.Data.DataBaseCache.DefaultCache.TagList.Clear();
+                                Lfx.Data.DataBaseCache.DefaultCache.TableList.Clear();
                                 Lfx.Data.DataBaseCache.DefaultCache.CargarEstructuraDesdeXml(BackupPath + Carpeta + "dbstruct.xml");
                                 Datos.VerificarVersionDB(DataView, true, true);
 
                                 // Vuelvo a vaciar todas las tablas, por si VerificarVersionDB() volvió a escribir cosas
                                 foreach (string Tabla in Lfx.Data.DataBaseCache.DefaultCache.TableList) {
-                                        DataView.DataBase.Execute("DELETE FROM " + Tabla);
+                                        Lfx.Data.SqlDeleteBuilder DelCmd = new Lfx.Data.SqlDeleteBuilder(Tabla);
+                                        DelCmd.Truncate = true;
+                                        DataView.Execute(DelCmd);
                                 }
 
 				FormularioProgreso.Operacion = "Incorporando tablas de datos...";
@@ -448,11 +453,14 @@ namespace Lazaro.Misc.Backup
                                 string[] ListaCampos = null;
                                 object[] ValoresCampos = null;
                                 int CampoActual = 0, RenglonActual = 0;
+                                bool EndTable = false;
+                                Lfx.Data.SqlBuilkInsertBuilder Insertador = new Lfx.Data.SqlBuilkInsertBuilder();
                                 do {
                                         string Comando = Lector.ReadString(4);
                                         switch (Comando) {
                                                 case ":TBL":
                                                         TablaActual = Lector.ReadPrefixedString4();
+                                                        EndTable = false;
                                                         FormularioProgreso.Operacion = "Cargando " + TablaActual;
                                                         break;
                                                 case ":FDL":
@@ -465,23 +473,26 @@ namespace Lazaro.Misc.Backup
                                                         break;
                                                 case ".ROW":
                                                         Lfx.Data.SqlInsertBuilder Insertar = new Lfx.Data.SqlInsertBuilder(TablaActual);
-                                                        Insertar.InsertType = Lfx.Data.InsertTypes.InsertOrReplace;
                                                         for (int i = 0; i < ListaCampos.Length; i++) {
                                                                 Insertar.Fields.AddWithValue(ListaCampos[i], ValoresCampos[i]);
                                                         }
-                                                        DataView.Execute(Insertar);
+                                                        Insertador.Add(Insertar);
 
                                                         ValoresCampos = new object[ListaCampos.Length];
                                                         CampoActual = 0;
-
-                                                        if ((RenglonActual++ % 1000) == 0) {
-                                                                FormularioProgreso.Progreso = (int)Lector.Position;
-                                                                System.Windows.Forms.Application.DoEvents();
-                                                        }
                                                         break;
                                                 case ":REM":
                                                         Lector.ReadPrefixedString4();
                                                         break;
+                                                case ".TBL":
+                                                        EndTable = true;
+                                                        break;
+                                        }
+                                        if (EndTable || Insertador.Count >= 1000) {
+                                                DataView.DataBase.Execute(Insertador.ToString());
+                                                Insertador.Clear();
+                                                FormularioProgreso.Progreso = (int)Lector.Position;
+                                                System.Windows.Forms.Application.DoEvents();
                                         }
                                 } while (Lector.Position < Lector.Length);
 				Lector.Close();
@@ -631,7 +642,8 @@ namespace Lazaro.Misc.Backup
                                 case "N":
                                         return Lfx.Types.Parsing.ParseDouble(this.ReadString(Len));
                                 case "D":
-                                        return DateTime.ParseExact(this.ReadString(Len), Lfx.Types.Formatting.DateTime.SqlDateTimeFormat, null);
+                                        string FldVal = this.ReadString(Len);
+                                        return DateTime.ParseExact(FldVal, Lfx.Types.Formatting.DateTime.SqlDateTimeFormat, null);
                                 case "B":
                                         byte[] Res = new byte[Len];
                                         inputStream.Read(Res, 0, Len);

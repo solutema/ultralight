@@ -180,7 +180,7 @@ namespace Lfc.Bancos.Cheques
                         this.Label2.Text = "- Gestión de cobro";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtTotal
+                        // EntradaTotal
                         // 
                         this.txtTotal.AutoNav = true;
                         this.txtTotal.AutoTab = true;
@@ -189,7 +189,7 @@ namespace Lfc.Bancos.Cheques
                         this.txtTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtTotal.Location = new System.Drawing.Point(212, 196);
                         this.txtTotal.MaxLenght = 32767;
-                        this.txtTotal.Name = "txtTotal";
+                        this.txtTotal.Name = "EntradaTotal";
                         this.txtTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTotal.Prefijo = "$";
                         this.txtTotal.ReadOnly = false;
@@ -309,19 +309,6 @@ namespace Lfc.Bancos.Cheques
                         this.Controls.Add(this.lblLabel1);
                         this.Name = "Efectivizar";
                         this.Text = "Acreditar";
-                        this.Controls.SetChildIndex(this.lblLabel1, 0);
-                        this.Controls.SetChildIndex(this.txtCantidad, 0);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.txtSubTotal, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.txtGestionDeCobro, 0);
-                        this.Controls.SetChildIndex(this.Label8, 0);
-                        this.Controls.SetChildIndex(this.txtTotal, 0);
-                        this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.txtCuentaDestino, 0);
-                        this.Controls.SetChildIndex(this.label4, 0);
-                        this.Controls.SetChildIndex(this.txtImpuestos, 0);
-                        this.Controls.SetChildIndex(this.label5, 0);
                         this.ResumeLayout(false);
 
                 }

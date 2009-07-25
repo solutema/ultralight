@@ -57,11 +57,11 @@ namespace Lui.Forms.AuxForms
 			{
 				case Keys.Escape:
 					e.Handled = true;
-					cmdCancelar_Click(sender, e);
+					cmdCancelar.PerformClick();
 					break;
 				case Keys.F9:
 					e.Handled = true;
-					cmdAceptar_Click(sender, e);
+					cmdAceptar.PerformClick();
 					break;
 			}
 

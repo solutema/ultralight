@@ -573,11 +573,10 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
 						Impresora.Encoding = DefaultEncoding;
 						SeqNum = FIRST_SEQ;
 
-						if (ModeloImpresora != Modelos.HasarGenerico)
-						{
-							Impresora.Handshake = System.IO.Ports.Handshake.XOnXOff;
-							Impresora.RtsEnable = true;
-						}
+                                                if (ModeloImpresora != Modelos.HasarGenerico) {
+                                                        Impresora.Handshake = System.IO.Ports.Handshake.XOnXOff;
+                                                        Impresora.RtsEnable = true;
+                                                }
 
 						try
 						{
@@ -750,7 +749,7 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                                 case "M":
                                 case "NDM":
                                 case "NCM":
-                                        //TODO: va como A?
+                                        // FIXME: va como A?
                                 case "A":
                                 case "NDA":
                                 case "NCA":
@@ -1073,7 +1072,7 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                                                         ParametroSumaRestaHasar = "m";
 
                                                 ComandoAEnviar = new ComandoFiscal(CodigosComandosFiscales.HasarDocumentoFiscalItem,
-                                                        FiscalizarTexto(ItemNombre, 20),
+                                                        FiscalizarTexto(ItemNombre, 50),
                                                         FormatearNumeroHasar(System.Convert.ToDouble(Detalle["cantidad"]), 3),
                                                         FormatearNumeroHasar(Math.Abs(System.Convert.ToDouble(Detalle["precio"])), 2),
                                                         "0.0", /* IVA */
@@ -1217,8 +1216,8 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                                                         break;
                                                 case Modelos.HasarGenerico:
                                                         ComandoAEnviar = new ComandoFiscal(CodigosComandosFiscales.HasarDocumentoFiscalPago,
-                                                                "Cheque",
-                                                                FormatearNumeroHasar(Fac.Total, 2).PadLeft(13, '0'),
+                                                                "Cheuqe",
+                                                                FormatearNumeroHasar(Fac.Total, 2),
                                                                 "T",
                                                                 "0");
                                                         Res = Enviar(ComandoAEnviar);
@@ -1240,7 +1239,7 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                                                 case Modelos.HasarGenerico:
                                                         ComandoAEnviar = new ComandoFiscal(CodigosComandosFiscales.HasarDocumentoFiscalPago,
                                                                 "Cuenta Corriente",
-                                                                FormatearNumeroHasar(Fac.Total, 2).PadLeft(13, '0'),
+                                                                FormatearNumeroHasar(Fac.Total, 2),
                                                                 "T",
                                                                 "0");
                                                         Res = Enviar(ComandoAEnviar);
@@ -1250,7 +1249,7 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                         }
 
                         if (Res.Error != ErroresFiscales.Ok) {
-                                Res.Lugar = "DocumentoFiscalPagosYDescuentos:Interes";
+                                Res.Lugar = "DocumentoFiscalPagosYDescuentos:Pago";
                                 return Res;
                         }
 

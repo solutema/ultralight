@@ -38,7 +38,6 @@ namespace Lfc.Comprobantes.Compra
 {
         public class Filtros : Lui.Forms.DialogForm
         {
-
                 #region Código generado por el Diseñador de Windows Forms
 
                 public Filtros()
@@ -74,14 +73,11 @@ namespace Lfc.Comprobantes.Compra
                 internal Lui.Forms.ComboBox txtTipo;
                 internal System.Windows.Forms.Label Label4;
                 internal System.Windows.Forms.Label Label2;
-                internal Lui.Forms.TextBox txtFecha2;
-                internal System.Windows.Forms.Label lblFecha2;
-                internal Lui.Forms.TextBox txtFecha1;
-                internal System.Windows.Forms.Label lblFecha1;
-                internal Lui.Forms.ComboBox txtFecha;
                 internal System.Windows.Forms.Label Label1;
                 internal System.Windows.Forms.Label label3;
                 internal Lui.Forms.ComboBox txtEstado;
+                private TableLayoutPanel tableLayoutPanel1;
+                internal Lcc.Controles.RangoFechas EntradaFechas;
                 internal Lui.Forms.DetailBox txtProveedor;
 
                 private void InitializeComponent()
@@ -90,33 +86,37 @@ namespace Lfc.Comprobantes.Compra
                         this.Label4 = new System.Windows.Forms.Label();
                         this.txtProveedor = new Lui.Forms.DetailBox();
                         this.Label2 = new System.Windows.Forms.Label();
-                        this.txtFecha2 = new Lui.Forms.TextBox();
-                        this.lblFecha2 = new System.Windows.Forms.Label();
-                        this.txtFecha1 = new Lui.Forms.TextBox();
-                        this.lblFecha1 = new System.Windows.Forms.Label();
-                        this.txtFecha = new Lui.Forms.ComboBox();
                         this.Label1 = new System.Windows.Forms.Label();
                         this.txtEstado = new Lui.Forms.ComboBox();
                         this.label3 = new System.Windows.Forms.Label();
+                        this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+                        this.EntradaFechas = new Lcc.Controles.RangoFechas();
+                        this.tableLayoutPanel1.SuspendLayout();
                         this.SuspendLayout();
                         // 
                         // OkButton
                         // 
-                        this.OkButton.Location = new System.Drawing.Point(278, 8);
+                        this.OkButton.Location = new System.Drawing.Point(394, 8);
                         // 
                         // CancelCommandButton
                         // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(386, 8);
+                        this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
                         // 
-                        // txtTipo
+                        // EntradaTipo
                         // 
+                        this.txtTipo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.txtTipo.AutoHeight = true;
                         this.txtTipo.AutoNav = true;
                         this.txtTipo.AutoTab = true;
+                        this.txtTipo.DetailField = null;
+                        this.txtTipo.Filter = null;
                         this.txtTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtTipo.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtTipo.Location = new System.Drawing.Point(100, 20);
+                        this.txtTipo.KeyField = null;
+                        this.txtTipo.Location = new System.Drawing.Point(137, 3);
                         this.txtTipo.MaxLenght = 32767;
-                        this.txtTipo.Name = "txtTipo";
+                        this.txtTipo.Name = "EntradaTipo";
                         this.txtTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTipo.ReadOnly = false;
                         this.txtTipo.SetData = new string[] {
@@ -124,25 +124,27 @@ namespace Lfc.Comprobantes.Compra
         "Pedidos|PD",
         "Remitos|R",
         "Facturas A|A",
-                                "Facturas B|B",
-                                "Facturas C|C",
-                                "Facturas E|E",
-                                "Facturas M|M",
-                                "Facturas (todas)|FP",
+        "Facturas B|B",
+        "Facturas C|C",
+        "Facturas E|E",
+        "Facturas M|M",
+        "Facturas (todas)|FP",
         "Todo|*"};
-                        this.txtTipo.Size = new System.Drawing.Size(276, 24);
+                        this.txtTipo.Size = new System.Drawing.Size(440, 24);
                         this.txtTipo.TabIndex = 1;
+                        this.txtTipo.Table = null;
                         this.txtTipo.Text = "Pedidos";
                         this.txtTipo.TextKey = "PD";
+                        this.txtTipo.TextRaw = "Pedidos";
                         this.txtTipo.TipWhenBlank = "";
                         this.txtTipo.ToolTipText = "";
                         this.txtTipo.TextChanged += new System.EventHandler(this.txtTipo_TextChanged);
                         // 
                         // Label4
                         // 
-                        this.Label4.Location = new System.Drawing.Point(20, 20);
+                        this.Label4.Location = new System.Drawing.Point(3, 0);
                         this.Label4.Name = "Label4";
-                        this.Label4.Size = new System.Drawing.Size(80, 24);
+                        this.Label4.Size = new System.Drawing.Size(128, 24);
                         this.Label4.TabIndex = 0;
                         this.Label4.Text = "Tipo";
                         this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -151,6 +153,7 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         this.txtProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.txtProveedor.AutoHeight = true;
                         this.txtProveedor.AutoTab = true;
                         this.txtProveedor.CanCreate = false;
                         this.txtProveedor.DetailField = "nombre_visible";
@@ -160,13 +163,14 @@ namespace Lfc.Comprobantes.Compra
                         this.txtProveedor.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.txtProveedor.FreeTextCode = "";
                         this.txtProveedor.KeyField = "id_persona";
-                        this.txtProveedor.Location = new System.Drawing.Point(100, 84);
+                        this.txtProveedor.Location = new System.Drawing.Point(137, 63);
                         this.txtProveedor.MaxLength = 200;
                         this.txtProveedor.Name = "txtProveedor";
                         this.txtProveedor.Padding = new System.Windows.Forms.Padding(2);
                         this.txtProveedor.ReadOnly = false;
                         this.txtProveedor.Required = false;
-                        this.txtProveedor.Size = new System.Drawing.Size(376, 24);
+                        this.txtProveedor.SelectOnFocus = true;
+                        this.txtProveedor.Size = new System.Drawing.Size(440, 25);
                         this.txtProveedor.TabIndex = 5;
                         this.txtProveedor.Table = "personas";
                         this.txtProveedor.TeclaDespuesDeEnter = "{tab}";
@@ -178,176 +182,114 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         // Label2
                         // 
-                        this.Label2.Location = new System.Drawing.Point(20, 84);
+                        this.Label2.Location = new System.Drawing.Point(3, 60);
                         this.Label2.Name = "Label2";
-                        this.Label2.Size = new System.Drawing.Size(80, 24);
+                        this.Label2.Size = new System.Drawing.Size(128, 24);
                         this.Label2.TabIndex = 4;
                         this.Label2.Text = "Proveedor";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtFecha2
-                        // 
-                        this.txtFecha2.AutoNav = true;
-                        this.txtFecha2.AutoTab = true;
-                        this.txtFecha2.DataType = Lui.Forms.DataTypes.Date;
-                        this.txtFecha2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtFecha2.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtFecha2.Location = new System.Drawing.Point(268, 148);
-                        this.txtFecha2.MaxLenght = 32767;
-                        this.txtFecha2.Name = "txtFecha2";
-                        this.txtFecha2.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtFecha2.ReadOnly = false;
-                        this.txtFecha2.Size = new System.Drawing.Size(108, 24);
-                        this.txtFecha2.TabIndex = 11;
-                        this.txtFecha2.TipWhenBlank = "";
-                        this.txtFecha2.ToolTipText = "";
-                        this.txtFecha2.Visible = false;
-                        // 
-                        // lblFecha2
-                        // 
-                        this.lblFecha2.Location = new System.Drawing.Point(216, 148);
-                        this.lblFecha2.Name = "lblFecha2";
-                        this.lblFecha2.Size = new System.Drawing.Size(52, 24);
-                        this.lblFecha2.TabIndex = 10;
-                        this.lblFecha2.Text = "Hasta";
-                        this.lblFecha2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        this.lblFecha2.Visible = false;
-                        // 
-                        // txtFecha1
-                        // 
-                        this.txtFecha1.AutoNav = true;
-                        this.txtFecha1.AutoTab = true;
-                        this.txtFecha1.DataType = Lui.Forms.DataTypes.Date;
-                        this.txtFecha1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtFecha1.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtFecha1.Location = new System.Drawing.Point(100, 148);
-                        this.txtFecha1.MaxLenght = 32767;
-                        this.txtFecha1.Name = "txtFecha1";
-                        this.txtFecha1.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtFecha1.ReadOnly = false;
-                        this.txtFecha1.Size = new System.Drawing.Size(108, 24);
-                        this.txtFecha1.TabIndex = 9;
-                        this.txtFecha1.TipWhenBlank = "";
-                        this.txtFecha1.ToolTipText = "";
-                        this.txtFecha1.Visible = false;
-                        // 
-                        // lblFecha1
-                        // 
-                        this.lblFecha1.Location = new System.Drawing.Point(20, 148);
-                        this.lblFecha1.Name = "lblFecha1";
-                        this.lblFecha1.Size = new System.Drawing.Size(80, 24);
-                        this.lblFecha1.TabIndex = 8;
-                        this.lblFecha1.Text = "Desde";
-                        this.lblFecha1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        this.lblFecha1.Visible = false;
-                        // 
-                        // txtFecha
-                        // 
-                        this.txtFecha.AutoNav = true;
-                        this.txtFecha.AutoTab = true;
-                        this.txtFecha.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtFecha.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtFecha.Location = new System.Drawing.Point(100, 116);
-                        this.txtFecha.MaxLenght = 32767;
-                        this.txtFecha.Name = "txtFecha";
-                        this.txtFecha.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtFecha.ReadOnly = false;
-                        this.txtFecha.SetData = new string[] {
-        "Todas|todo",
-        "Los Últimos 30 Días|ultimos30",
-        "El Mes en Curso|mesactual",
-        "El Mes Pasado|mespasado",
-        "Por Fecha|fecha"};
-                        this.txtFecha.Size = new System.Drawing.Size(276, 24);
-                        this.txtFecha.TabIndex = 7;
-                        this.txtFecha.Text = "Todas";
-                        this.txtFecha.TextKey = "todo";
-                        this.txtFecha.TipWhenBlank = "";
-                        this.txtFecha.ToolTipText = "";
-                        this.txtFecha.TextChanged += new System.EventHandler(this.txtFecha_TextChanged);
-                        // 
                         // Label1
                         // 
-                        this.Label1.Location = new System.Drawing.Point(20, 116);
+                        this.Label1.Location = new System.Drawing.Point(3, 91);
                         this.Label1.Name = "Label1";
-                        this.Label1.Size = new System.Drawing.Size(80, 24);
+                        this.Label1.Size = new System.Drawing.Size(128, 24);
                         this.Label1.TabIndex = 6;
                         this.Label1.Text = "Fecha";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // txtEstado
                         // 
+                        this.txtEstado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.txtEstado.AutoHeight = true;
                         this.txtEstado.AutoNav = true;
                         this.txtEstado.AutoTab = true;
+                        this.txtEstado.DetailField = null;
+                        this.txtEstado.Filter = null;
                         this.txtEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtEstado.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtEstado.Location = new System.Drawing.Point(100, 52);
+                        this.txtEstado.KeyField = null;
+                        this.txtEstado.Location = new System.Drawing.Point(137, 33);
                         this.txtEstado.MaxLenght = 32767;
                         this.txtEstado.Name = "txtEstado";
                         this.txtEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.txtEstado.ReadOnly = false;
                         this.txtEstado.SetData = new string[] {
         "N/A|0"};
-                        this.txtEstado.Size = new System.Drawing.Size(276, 24);
+                        this.txtEstado.Size = new System.Drawing.Size(440, 24);
                         this.txtEstado.TabIndex = 3;
+                        this.txtEstado.Table = null;
                         this.txtEstado.Text = "N/A";
                         this.txtEstado.TextKey = "0";
+                        this.txtEstado.TextRaw = "N/A";
                         this.txtEstado.TipWhenBlank = "";
                         this.txtEstado.ToolTipText = "";
                         // 
                         // label3
                         // 
-                        this.label3.Location = new System.Drawing.Point(20, 52);
+                        this.label3.Location = new System.Drawing.Point(3, 30);
                         this.label3.Name = "label3";
-                        this.label3.Size = new System.Drawing.Size(80, 24);
+                        this.label3.Size = new System.Drawing.Size(128, 24);
                         this.label3.TabIndex = 2;
                         this.label3.Text = "Estado";
                         this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // FormPedidosFiltros
+                        // tableLayoutPanel1
                         // 
-                        this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
-                        this.ClientSize = new System.Drawing.Size(494, 359);
-                        this.Controls.Add(this.txtEstado);
-                        this.Controls.Add(this.label3);
-                        this.Controls.Add(this.txtFecha2);
-                        this.Controls.Add(this.lblFecha2);
-                        this.Controls.Add(this.txtFecha1);
-                        this.Controls.Add(this.lblFecha1);
-                        this.Controls.Add(this.txtFecha);
-                        this.Controls.Add(this.Label1);
-                        this.Controls.Add(this.txtTipo);
-                        this.Controls.Add(this.Label4);
-                        this.Controls.Add(this.txtProveedor);
-                        this.Controls.Add(this.Label2);
-                        this.Name = "FormPedidosFiltros";
+                        this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.tableLayoutPanel1.ColumnCount = 2;
+                        this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+                        this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+                        this.tableLayoutPanel1.Controls.Add(this.EntradaFechas, 1, 3);
+                        this.tableLayoutPanel1.Controls.Add(this.Label4, 0, 0);
+                        this.tableLayoutPanel1.Controls.Add(this.txtEstado, 1, 1);
+                        this.tableLayoutPanel1.Controls.Add(this.txtProveedor, 1, 2);
+                        this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
+                        this.tableLayoutPanel1.Controls.Add(this.Label2, 0, 2);
+                        this.tableLayoutPanel1.Controls.Add(this.txtTipo, 1, 0);
+                        this.tableLayoutPanel1.Controls.Add(this.Label1, 0, 3);
+                        this.tableLayoutPanel1.Location = new System.Drawing.Point(28, 28);
+                        this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+                        this.tableLayoutPanel1.RowCount = 4;
+                        this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+                        this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+                        this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+                        this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+                        this.tableLayoutPanel1.Size = new System.Drawing.Size(580, 252);
+                        this.tableLayoutPanel1.TabIndex = 0;
+                        // 
+                        // EntradaFechas
+                        // 
+                        this.EntradaFechas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaFechas.AutoHeight = true;
+                        this.EntradaFechas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EntradaFechas.Location = new System.Drawing.Point(137, 94);
+                        this.EntradaFechas.MuestraFuturos = false;
+                        this.EntradaFechas.Name = "EntradaFechas";
+                        this.EntradaFechas.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaFechas.ReadOnly = false;
+                        this.EntradaFechas.Size = new System.Drawing.Size(440, 30);
+                        this.EntradaFechas.TabIndex = 7;
+                        this.EntradaFechas.ToolTipText = "";
+                        // 
+                        // Filtros
+                        // 
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+                        this.ClientSize = new System.Drawing.Size(634, 374);
+                        this.Controls.Add(this.tableLayoutPanel1);
+                        this.Name = "Filtros";
                         this.WorkspaceChanged += new System.EventHandler(this.FormPedidosFiltros_WorkspaceChanged);
-                        this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.txtProveedor, 0);
-                        this.Controls.SetChildIndex(this.Label4, 0);
-                        this.Controls.SetChildIndex(this.txtTipo, 0);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.txtFecha, 0);
-                        this.Controls.SetChildIndex(this.lblFecha1, 0);
-                        this.Controls.SetChildIndex(this.txtFecha1, 0);
-                        this.Controls.SetChildIndex(this.lblFecha2, 0);
-                        this.Controls.SetChildIndex(this.txtFecha2, 0);
-                        this.Controls.SetChildIndex(this.label3, 0);
-                        this.Controls.SetChildIndex(this.txtEstado, 0);
+                        this.Controls.SetChildIndex(this.tableLayoutPanel1, 0);
+                        this.tableLayoutPanel1.ResumeLayout(false);
                         this.ResumeLayout(false);
 
                 }
 
 
                 #endregion
-
-                private void txtFecha_TextChanged(object sender, System.EventArgs e)
-                {
-                        lblFecha1.Visible = (txtFecha.TextKey == "fecha");
-                        txtFecha1.Visible = lblFecha1.Visible;
-                        lblFecha2.Visible = lblFecha1.Visible;
-                        txtFecha2.Visible = lblFecha1.Visible;
-                }
 
                 private void txtTipo_TextChanged(object sender, System.EventArgs e)
                 {
@@ -381,7 +323,6 @@ namespace Lfc.Comprobantes.Compra
                 private void FormPedidosFiltros_WorkspaceChanged(object sender, System.EventArgs e)
                 {
                         txtTipo_TextChanged(sender, e);
-                        txtFecha_TextChanged(sender, e);
                 }
 
         }

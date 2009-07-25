@@ -359,23 +359,6 @@ namespace Lfc.Bancos.Chequeras
                         this.Controls.Add(this.Label1);
                         this.Name = "Editar";
                         this.Text = "Chequera";
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.lblCuenta, 0);
-                        this.Controls.SetChildIndex(this.Label7, 0);
-                        this.Controls.SetChildIndex(this.label5, 0);
-                        this.Controls.SetChildIndex(this.label8, 0);
-                        this.Controls.SetChildIndex(this.EntradaBanco, 0);
-                        this.Controls.SetChildIndex(this.EntradaDesde, 0);
-                        this.Controls.SetChildIndex(this.label2, 0);
-                        this.Controls.SetChildIndex(this.EntradaHasta, 0);
-                        this.Controls.SetChildIndex(this.EntradaCuenta, 0);
-                        this.Controls.SetChildIndex(this.EntradaEstado, 0);
-                        this.Controls.SetChildIndex(this.EntradaTitular, 0);
-                        this.Controls.SetChildIndex(this.EntradaPrefijo, 0);
-                        this.Controls.SetChildIndex(this.label4, 0);
-                        this.Controls.SetChildIndex(this.label6, 0);
-                        this.Controls.SetChildIndex(this.EntradaSucursal, 0);
                         this.ResumeLayout(false);
 
                 }

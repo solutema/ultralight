@@ -237,12 +237,17 @@ namespace Lui.Forms
 		}
 
 
-		private void MenuItemPegar_Click(System.Object sender, System.EventArgs e)
-		{
-			string DatosPortapapeles = System.Convert.ToString(Clipboard.GetDataObject().GetData(DataFormats.Text, true));
-			if (DatosPortapapeles != null)
-				this.Text = DatosPortapapeles;
-		}
+                private void MenuItemPegar_Click(System.Object sender, System.EventArgs e)
+                {
+                        string DatosPortapapeles;
+                        try {
+                                DatosPortapapeles = System.Convert.ToString(Clipboard.GetDataObject().GetData(DataFormats.Text, true));
+                        } finally {
+                                DatosPortapapeles = null;
+                        }
+                        if (DatosPortapapeles != null)
+                                this.Text = DatosPortapapeles;
+                }
 
 
 		private void MenuItemCalculadora_Click(System.Object sender, System.EventArgs e)
@@ -365,7 +370,7 @@ namespace Lui.Forms
 		{
 			Lfx.Data.SqlInsertBuilder Comando = new Lfx.Data.SqlInsertBuilder(this.Workspace.DefaultDataView.DataBase, "sys_quickpaste");
 			Comando.Fields.AddWithValue("texto", this.Text);
-			Comando.Fields.AddWithValue("estacion", Lfx.Environment.SystemInformation.ComputerName);
+			Comando.Fields.AddWithValue("estacion", System.Environment.MachineName.ToUpperInvariant());
 			Comando.Fields.AddWithValue("usuario", this.Workspace.CurrentUser.UserId);
 			Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
 			this.Workspace.DefaultDataView.Execute(Comando);

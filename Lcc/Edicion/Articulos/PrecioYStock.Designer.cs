@@ -142,7 +142,6 @@
                         this.Controls.Add(this.contenedorCampos1);
                         this.Name = "PrecioYStock";
                         this.Size = new System.Drawing.Size(668, 341);
-                        this.Controls.SetChildIndex(this.contenedorCampos1, 0);
                         this.contenedorCampos1.ResumeLayout(false);
                         this.ResumeLayout(false);
                         this.PerformLayout();

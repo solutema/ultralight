@@ -49,9 +49,18 @@ namespace Lazaro
 			Lfx.Types.OperationResult iniciarReturn = new Lfx.Types.SuccessOperationResult();
 
                         //Si el servidor SQL es esta misma PC, intento iniciar el servidor
-                        if (Lfx.Environment.SystemInformation.Platform == Lfx.Environment.SystemInformation.Platforms.Windows 
-                                && Lfx.Data.DataBaseCache.DefaultCache.ServerName.ToUpperInvariant() == "LOCALHOST")
-                                Lfx.Environment.Shell.Execute("net", "start mysql", ProcessWindowStyle.Hidden, true);
+                        if (Lfx.Environment.SystemInformation.Platform == Lfx.Environment.SystemInformation.Platforms.Windows && Lfx.Data.DataBaseCache.DefaultCache.ServerName.ToUpperInvariant() == "LOCALHOST") {
+                                switch (Lfx.Data.DataBaseCache.DefaultCache.AccessMode) {
+                                        case Lfx.Data.AccessModes.MyOdbc:
+                                        case Lfx.Data.AccessModes.MySql:
+                                                Lfx.Environment.Shell.Execute("net", "start mysql", ProcessWindowStyle.Hidden, true);
+                                                break;
+                                        case Lfx.Data.AccessModes.Npgsql:
+                                                // FIXME: detectar el nombre del servicio.
+                                                Lfx.Environment.Shell.Execute("net", "start postgresql-8.4", ProcessWindowStyle.Hidden, true);
+                                                break;
+                                }
+                        }
 
 			try
 			{
@@ -98,6 +107,9 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro.", 
                         if (Lfx.Environment.SystemInformation.DesignMode == false) {
 				Lws.Data.DataView DataView = Lws.Workspace.Master.GetDataView(true);
                                 VerificarVersionDB(DataView, false, false);
+                                DataView.DataBase.Execute("DELETE FROM sys_asl WHERE nombre='version.xml'");
+                                DataView.DataBase.Execute("UPDATE articulos_movim SET fecha='1900-01-01' WHERE fecha IS NULL");
+                                DataView.DataBase.Execute("UPDATE personas SET contrasena_fecha=NOW() WHERE contrasena_fecha IS NULL OR contrasena_fecha='0000-00-00 00:00:00'");
 				DataView.Dispose();
 			}
 			return iniciarReturn;
@@ -178,12 +190,6 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro.", 
 
                         Progreso.Operacion = "Leyendo información de base de datos";
 
-                        bool MustCommit = false;
-                        if (dataView.DataBase.InTransaction == false) {
-                                dataView.DataBase.BeginTransaction();
-                                MustCommit = true;
-                        }
-
                         bool MustEnableConstraints = false;
                         if (dataView.DataBase.ConstraintsEnabled) {
                                 dataView.DataBase.EnableConstraints(false);
@@ -208,8 +214,6 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro.", 
                         dataView.DataBase.SetConstraints(Lfx.Data.DataBaseCache.DefaultCache.Constraints, false);
 
 			Progreso.Operacion = "Guardando modificaciones";
-                        if (MustCommit)
-                                dataView.DataBase.Commit();
                         if (MustEnableConstraints)
                                 dataView.DataBase.EnableConstraints(true);
 			
@@ -224,17 +228,16 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro.", 
 			OProgreso.Operacion = "Creando estructura...";
 			OProgreso.Show();
 
-			// Paso 1: Creación de tablas
+			// Creación de tablas
 			VerificarEstructuraDB(dataView);
 
-                        dataView.DataBase.BeginTransaction();
 			dataView.DataBase.EnableConstraints(false);
 
 			System.IO.Stream RecursoSql = null;
 			System.IO.StreamReader Lector = null;
 			string Sql = "";
 
-			// Paso 2: Carga inicial de datos
+			// Carga inicial de datos
 			RecursoSql = Funciones.ObtenerRecurso(@"Data.dbdata.sql");
 			Lector = new System.IO.StreamReader(RecursoSql, System.Text.Encoding.UTF8);
 			Sql = dataView.DataBase.CustomizeSql(Lector.ReadToEnd());
@@ -249,16 +252,10 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro.", 
 			}
 			while (Sql.Length > 0);
 
-			OProgreso.Operacion = "Finalizando transacción...";
-			// Paso 4: terminar la transacción
-			try
-			{
-				dataView.DataBase.Commit();
-			}
-			catch (Exception ex)
-			{
-				return new Lfx.Types.FailureOperationResult(ex.Message);
-			}
+                        // Cargar TagList y volver a verificar la estructura
+                        Lfx.Data.DataBaseCache.DefaultCache.TagList.Clear();
+                        Lfx.Data.DataBaseCache.DefaultCache.CargarEstructuraDesdeXml(null);
+                        VerificarEstructuraDB(dataView);
 
 			dataView.DataBase.EnableConstraints(true);
 			Lws.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema", "DB.Version", VersionUltima.ToString(), "*");
@@ -276,14 +273,10 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro.", 
 		public static string GetNextCommand(ref string Comandos)
 		{
 			if (Comandos != null && Comandos.Length == 0)
-			{
 				return "";
-			}
 
 			if (Comandos.Substring(Comandos.Length - 1, 1) != ";")
-			{
 				Comandos += ";";
-			}
 
 			char[] Caracteres = { '\'', Lfx.Types.ControlChars.Quote, ';', '\\' };
 			char Comilla = ' ';

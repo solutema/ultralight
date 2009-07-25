@@ -33,6 +33,7 @@ using System.Data;
 using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace Lfc.Comprobantes
 {
@@ -50,17 +51,17 @@ namespace Lfc.Comprobantes
                 {
                         Lfx.Types.OperationResult validarReturn = base.ValidateData();
 
-                        if (txtVendedor.TextInt == 0) {
+                        if (EntradaVendedor.TextInt == 0) {
                                 validarReturn.Success = false;
                                 validarReturn.Message += "Seleccione un Vendedor." + Environment.NewLine;
                         }
 
-                        if (txtCliente.TextInt == 0) {
+                        if (EntradaCliente.TextInt == 0) {
                                 validarReturn.Success = false;
                                 validarReturn.Message += "Seleccione un Cliente." + Environment.NewLine;
                         }
 
-                        if (Lfx.Types.Parsing.ParseCurrency(txtTotal.Text) <= 0) {
+                        if (Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text) <= 0) {
                                 validarReturn.Success = false;
                                 validarReturn.Message += "El comprobante debe tener un Importe superior a $ 0.00." + Environment.NewLine;
                         }
@@ -136,15 +137,15 @@ namespace Lfc.Comprobantes
                         this.SuspendLayout();
                         txtPV.Text = Registro.PV.ToString();
                         if (Registro.Vendedor != null)
-                                txtVendedor.TextInt = Registro.Vendedor.Id;
+                                EntradaVendedor.TextInt = Registro.Vendedor.Id;
                         else
-                                txtVendedor.TextInt = 0;
+                                EntradaVendedor.TextInt = 0;
 
                         Ignorar_txtCliente_TextChanged = true;
                         if (Registro.Cliente != null)
-                                txtCliente.TextInt = Registro.Cliente.Id;
+                                EntradaCliente.TextInt = Registro.Cliente.Id;
                         else
-                                txtCliente.TextInt = 0;
+                                EntradaCliente.TextInt = 0;
 
                         Ignorar_txtCliente_TextChanged = false;
                         txtSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Registro.SubTotal, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
@@ -185,8 +186,8 @@ namespace Lfc.Comprobantes
                 {
                         Lbl.Comprobantes.ComprobanteConArticulos Res = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
                         Res.PV = Lfx.Types.Parsing.ParseInt(txtPV.Text);
-                        Res.Vendedor = new Lbl.Personas.Persona(Res.DataView, txtVendedor.TextInt);
-                        Res.Cliente = new Lbl.Personas.Persona(Res.DataView, txtCliente.TextInt);
+                        Res.Vendedor = new Lbl.Personas.Persona(Res.DataView, EntradaVendedor.TextInt);
+                        Res.Cliente = new Lbl.Personas.Persona(Res.DataView, EntradaCliente.TextInt);
 
                         Res.Descuento = Lfx.Types.Parsing.ParseDouble(txtDescuento.Text);
                         Res.Recargo = Lfx.Types.Parsing.ParseDouble(txtInteres.Text);
@@ -259,25 +260,25 @@ namespace Lfc.Comprobantes
                                         case Keys.F4:
                                                 e.Handled = true;
                                                 if (cmdConvertir.Enabled && cmdConvertir.Visible)
-                                                        cmdConvertir_Click(sender, e);
+                                                        cmdConvertir.PerformClick();
                                                 break;
 
                                         case Keys.F5:
                                                 e.Handled = true;
                                                 if (cmdMasDatos.Enabled && cmdMasDatos.Visible)
-                                                        cmdMasDatos_Click(sender, e);
+                                                        cmdMasDatos.PerformClick();
                                                 break;
 
                                         case Keys.F7:
                                                 e.Handled = true;
                                                 if (cmdObs.Enabled && cmdObs.Visible)
-                                                        cmdObs_Click(sender, e);
+                                                        cmdObs.PerformClick();
                                                 break;
 
                                         case Keys.F8:
                                                 e.Handled = true;
                                                 if (PrintButton.Enabled && PrintButton.Visible)
-                                                        cmdImprimir_Click(sender, e);
+                                                        PrintButton.PerformClick();
                                                 break;
                                 }
                         }
@@ -290,7 +291,7 @@ namespace Lfc.Comprobantes
                         	EditarObs.EditText = CachedRow.Obs;
 			else
 				EditarObs.EditText = "";
-                        EditarObs.ReadOnly = txtCliente.ReadOnly;
+                        EditarObs.ReadOnly = EntradaCliente.ReadOnly;
 
                         if (EditarObs.ShowDialog() == DialogResult.OK) {
 				if (EditarObs.EditText.Length > 0)
@@ -358,14 +359,14 @@ namespace Lfc.Comprobantes
                                 NuevoComprob.Create(tipoComprob);
                                 ((Lbl.Comprobantes.ComprobanteConArticulos)(NuevoComprob.CachedRow)).ComprobanteOriginal = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
 
-                                NuevoComprob.txtCliente.Text = txtCliente.Text;
-                                NuevoComprob.txtVendedor.Text = txtVendedor.Text;
+                                NuevoComprob.EntradaCliente.Text = EntradaCliente.Text;
+                                NuevoComprob.EntradaVendedor.Text = EntradaVendedor.Text;
                                 NuevoComprob.txtDescuento.Text = txtDescuento.Text;
                                 NuevoComprob.txtInteres.Text = txtInteres.Text;
                                 NuevoComprob.ProductArray.Count = ProductArray.Count;
                                 if (this is Facturas.Editar && NuevoComprob is Facturas.Editar) {
-                                        ((Facturas.Editar)NuevoComprob).txtRemito.Text = ((Facturas.Editar)this).txtRemito.Text;
-                                        ((Facturas.Editar)NuevoComprob).txtFormaPago.Text = ((Facturas.Editar)this).txtFormaPago.Text;
+                                        ((Facturas.Editar)NuevoComprob).EntradaRemito.Text = ((Facturas.Editar)this).EntradaRemito.Text;
+                                        ((Facturas.Editar)NuevoComprob).EntradaFormaPago.Text = ((Facturas.Editar)this).EntradaFormaPago.Text;
                                 }
 
                                 for (int n = 0; n <= ProductArray.Count - 1; n++) {
@@ -452,15 +453,15 @@ namespace Lfc.Comprobantes
                         if (Ignorar_txtCliente_TextChanged)
                                 return;
 
-                        double Descuento = this.Workspace.DefaultDataBase.FieldDouble("SELECT descuento FROM personas_grupos WHERE id_grupo=(SELECT id_grupo FROM personas WHERE id_persona=" + txtCliente.TextInt.ToString() + ")");
+                        double Descuento = this.Workspace.DefaultDataBase.FieldDouble("SELECT descuento FROM personas_grupos WHERE id_grupo=(SELECT id_grupo FROM personas WHERE id_persona=" + EntradaCliente.TextInt.ToString() + ")");
 
                         if (Descuento > 0 && Lfx.Types.Parsing.ParseDouble(txtDescuento.Text) == 0) {
                                 txtDescuento.Text = Lfx.Types.Formatting.FormatNumber(Descuento, 2);
                                 txtDescuento.ShowBalloon("Se aplicó el descuento que corresponde al tipo de cliente.");
                         }
 
-                        if (this.Tipo.EsFacturaNCoND && this.CachedRow.Existe == false && txtCliente.TextInt > 0) {
-                                Lbl.Personas.Persona Persona = new Lbl.Personas.Persona(CachedRow.DataView, txtCliente.TextInt, true);
+                        if (this.Tipo.EsFacturaNCoND && this.CachedRow.Existe == false && EntradaCliente.TextInt > 0) {
+                                Lbl.Personas.Persona Persona = new Lbl.Personas.Persona(CachedRow.DataView, EntradaCliente.TextInt, true);
                                 string TipoComprob = Persona.TipoComprobantePredeterminado();
 
                                 switch (TipoComprob) {
@@ -489,8 +490,8 @@ namespace Lfc.Comprobantes
                                 OFormMasDatos.txtDesdeSituacion.TextInt = Registro.SituacionOrigen.Id;
                         if (Registro.SituacionDestino != null)
                                 OFormMasDatos.txtHaciaSituacion.TextInt = Registro.SituacionDestino.Id;
-                        OFormMasDatos.txtDesdeSituacion.ReadOnly = txtCliente.ReadOnly;
-                        OFormMasDatos.txtHaciaSituacion.ReadOnly = txtCliente.ReadOnly;
+                        OFormMasDatos.txtDesdeSituacion.ReadOnly = EntradaCliente.ReadOnly;
+                        OFormMasDatos.txtHaciaSituacion.ReadOnly = EntradaCliente.ReadOnly;
                         OFormMasDatos.txtBloqueada.TextKey = this.CachedRow.Registro["estado"].ToString();
                         if (Registro.Tipo.EsFactura)
                                 OFormMasDatos.txtDesdeSituacion.Filter = "facturable=1";
@@ -507,7 +508,7 @@ namespace Lfc.Comprobantes
 
 		private void FormComprobanteEditar_WorkspaceChanged(object sender, System.EventArgs e)
 		{
-			txtTotal.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal;
+			EntradaTotal.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal;
 			ProductArray.LockPrice = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.CambiaPrecioItemFactura", 0) == 0;
 		}
 
@@ -534,7 +535,7 @@ namespace Lfc.Comprobantes
                                 Total = SubTotal * (1 + Recargo - Descuento);
 
                         int Cuotas = Lfx.Types.Parsing.ParseInt(txtCuotas.Text);
-                        txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal, false);
+                        EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal, false);
 
 			if (Cuotas > 0)
                                 txtValorCuota.Text = Lfx.Types.Formatting.FormatCurrency(Total / Cuotas, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
@@ -551,7 +552,7 @@ namespace Lfc.Comprobantes
 
                         IgnorarEventos = true;
                         if (Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text) > 0) {
-                                double Descuento = Lfx.Types.Parsing.ParseCurrency(txtTotal.Text) / Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text);
+                                double Descuento = Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text) / Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text);
                                 if (Descuento < 1) {
                                         txtDescuento.Text = Lfx.Types.Formatting.FormatNumber((1 - Descuento) * 100, 2);
                                         txtInteres.Text = "0";
@@ -564,6 +565,7 @@ namespace Lfc.Comprobantes
                         IgnorarEventos = false;
                 }
 
+                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public virtual Lbl.Comprobantes.Tipo Tipo
                 {
                         get
@@ -573,10 +575,12 @@ namespace Lfc.Comprobantes
                         }
                         set
                         {
-                                Lbl.Comprobantes.ComprobanteConArticulos Registro = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
-                                Registro.Tipo = value;
-                                PnlCuotas.Visible = value.EsPresupuesto;
-                                this.PonerTitulo();
+                                if (this.CachedRow != null) {
+                                        Lbl.Comprobantes.ComprobanteConArticulos Registro = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
+                                        Registro.Tipo = value;
+                                        PnlCuotas.Visible = value.EsPresupuesto;
+                                        this.PonerTitulo();
+                                }
                         }
                 }
 	}

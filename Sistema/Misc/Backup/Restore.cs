@@ -81,7 +81,7 @@ namespace Lazaro.Misc.Backup
         internal System.Windows.Forms.Label lblFecha;
         internal System.Windows.Forms.Label Label4;
         internal System.Windows.Forms.Label Label5;
-        internal Lui.Forms.TextBox txtConfirmar;
+        internal Lui.Forms.TextBox EntradaConfirmar;
         internal System.Windows.Forms.PictureBox PictureBox1;
 
         private void InitializeComponent()
@@ -94,7 +94,7 @@ namespace Lazaro.Misc.Backup
             this.lblFecha = new System.Windows.Forms.Label();
             this.Label4 = new System.Windows.Forms.Label();
             this.Label5 = new System.Windows.Forms.Label();
-            this.txtConfirmar = new Lui.Forms.TextBox();
+            this.EntradaConfirmar = new Lui.Forms.TextBox();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.SuspendLayout();
             // 
@@ -183,25 +183,25 @@ namespace Lazaro.Misc.Backup
             this.Label5.TabIndex = 62;
             this.Label5.Text = "Para continuar con el proceso, escriba \"si\" en el cuadro:";
             // 
-            // txtConfirmar
+            // EntradaConfirmar
             // 
-            this.txtConfirmar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtConfirmar.AutoNav = true;
-            this.txtConfirmar.AutoTab = false;
-            this.txtConfirmar.DataType = Lui.Forms.DataTypes.FreeText;
-            this.txtConfirmar.DockPadding.All = 2;
-            this.txtConfirmar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-            this.txtConfirmar.ForceCase = Lui.Forms.TextCasing.LowerCase;
-            this.txtConfirmar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtConfirmar.Location = new System.Drawing.Point(500, 236);
-            this.txtConfirmar.MaxLenght = 32767;
-            this.txtConfirmar.Name = "txtConfirmar";
-            this.txtConfirmar.ReadOnly = false;
-            this.txtConfirmar.Size = new System.Drawing.Size(80, 24);
-            this.txtConfirmar.TabIndex = 0;
-            this.txtConfirmar.ToolTipText = "Escriba el texto de confirmación para poder continuar";
-            this.txtConfirmar.Workspace = null;
-            this.txtConfirmar.TextChanged += new System.EventHandler(this.txtConfirmar_TextChanged);
+            this.EntradaConfirmar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.EntradaConfirmar.AutoNav = true;
+            this.EntradaConfirmar.AutoTab = false;
+            this.EntradaConfirmar.DataType = Lui.Forms.DataTypes.FreeText;
+            this.EntradaConfirmar.DockPadding.All = 2;
+            this.EntradaConfirmar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+            this.EntradaConfirmar.ForceCase = Lui.Forms.TextCasing.LowerCase;
+            this.EntradaConfirmar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.EntradaConfirmar.Location = new System.Drawing.Point(500, 236);
+            this.EntradaConfirmar.MaxLenght = 32767;
+            this.EntradaConfirmar.Name = "EntradaConfirmar";
+            this.EntradaConfirmar.ReadOnly = false;
+            this.EntradaConfirmar.Size = new System.Drawing.Size(80, 24);
+            this.EntradaConfirmar.TabIndex = 0;
+            this.EntradaConfirmar.ToolTipText = "Escriba el texto de confirmación para poder continuar";
+            this.EntradaConfirmar.Workspace = null;
+            this.EntradaConfirmar.TextChanged += new System.EventHandler(this.EntradaConfirmar_TextChanged);
             // 
             // PictureBox1
             // 
@@ -217,7 +217,7 @@ namespace Lazaro.Misc.Backup
             this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
             this.ClientSize = new System.Drawing.Size(594, 375);
             this.Controls.Add(this.PictureBox1);
-            this.Controls.Add(this.txtConfirmar);
+            this.Controls.Add(this.EntradaConfirmar);
             this.Controls.Add(this.Label5);
             this.Controls.Add(this.Label4);
             this.Controls.Add(this.lblFecha);
@@ -227,15 +227,6 @@ namespace Lazaro.Misc.Backup
             this.Controls.Add(this.pctExclamation);
             this.Name = "Restore";
             this.Text = "Restaurar Copia de Seguridad";
-            this.Controls.SetChildIndex(this.pctExclamation, 0);
-            this.Controls.SetChildIndex(this.Label1, 0);
-            this.Controls.SetChildIndex(this.Label2, 0);
-            this.Controls.SetChildIndex(this.Label3, 0);
-            this.Controls.SetChildIndex(this.lblFecha, 0);
-            this.Controls.SetChildIndex(this.Label4, 0);
-            this.Controls.SetChildIndex(this.Label5, 0);
-            this.Controls.SetChildIndex(this.txtConfirmar, 0);
-            this.Controls.SetChildIndex(this.PictureBox1, 0);
             this.ResumeLayout(false);
 
         }
@@ -243,9 +234,9 @@ namespace Lazaro.Misc.Backup
 
         #endregion
 
-        private void txtConfirmar_TextChanged(object sender, System.EventArgs e)
+        private void EntradaConfirmar_TextChanged(object sender, System.EventArgs e)
         {
-            OkButton.Visible = (txtConfirmar.Text == "si");
+            OkButton.Visible = (EntradaConfirmar.Text == "si");
         }
     }
 }

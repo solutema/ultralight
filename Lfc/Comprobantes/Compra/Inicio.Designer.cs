@@ -90,7 +90,7 @@ namespace Lfc.Comprobantes.Compra
                         this.txtPendiente.TipWhenBlank = "";
                         this.txtPendiente.ToolTipText = "";
                         // 
-                        // txtTotal
+                        // EntradaTotal
                         // 
                         this.txtTotal.AutoNav = true;
                         this.txtTotal.AutoTab = true;
@@ -99,7 +99,7 @@ namespace Lfc.Comprobantes.Compra
                         this.txtTotal.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.txtTotal.Location = new System.Drawing.Point(44, 60);
                         this.txtTotal.MaxLenght = 32767;
-                        this.txtTotal.Name = "txtTotal";
+                        this.txtTotal.Name = "EntradaTotal";
                         this.txtTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTotal.ReadOnly = true;
                         this.txtTotal.Size = new System.Drawing.Size(88, 20);
@@ -139,11 +139,6 @@ namespace Lfc.Comprobantes.Compra
                         this.Controls.Add(this.Label2);
                         this.Name = "Inicio";
                         this.Text = "Pedidos: Listado";
-                        this.Controls.SetChildIndex(this.Listado, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.Label6, 0);
-                        this.Controls.SetChildIndex(this.txtTotal, 0);
-                        this.Controls.SetChildIndex(this.txtPendiente, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

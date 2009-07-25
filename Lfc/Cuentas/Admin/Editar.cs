@@ -183,7 +183,7 @@ namespace Lfc.Cuentas.Admin
                         this.txtBanco.ToolTipText = "";
                         this.txtBanco.TextChanged += new System.EventHandler(this.NumeroBanco_TextChanged);
                         // 
-                        // txtTipo
+                        // EntradaTipo
                         // 
                         this.txtTipo.AutoNav = true;
                         this.txtTipo.AutoTab = true;
@@ -191,7 +191,7 @@ namespace Lfc.Cuentas.Admin
                         this.txtTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtTipo.Location = new System.Drawing.Point(144, 84);
                         this.txtTipo.MaxLenght = 32767;
-                        this.txtTipo.Name = "txtTipo";
+                        this.txtTipo.Name = "EntradaTipo";
                         this.txtTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTipo.ReadOnly = false;
                         this.txtTipo.SetData = new string[] {
@@ -385,22 +385,6 @@ namespace Lfc.Cuentas.Admin
                         this.Controls.Add(this.txtNumero);
                         this.Controls.Add(this.Label3);
                         this.Name = "Editar";
-                        this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.txtNumero, 0);
-                        this.Controls.SetChildIndex(this.txtBanco, 0);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.Label7, 0);
-                        this.Controls.SetChildIndex(this.txtTipo, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.txtNombre, 0);
-                        this.Controls.SetChildIndex(this.txtMoneda, 0);
-                        this.Controls.SetChildIndex(this.Label4, 0);
-                        this.Controls.SetChildIndex(this.label5, 0);
-                        this.Controls.SetChildIndex(this.txtCBU, 0);
-                        this.Controls.SetChildIndex(this.label6, 0);
-                        this.Controls.SetChildIndex(this.txtTitular, 0);
-                        this.Controls.SetChildIndex(this.label8, 0);
-                        this.Controls.SetChildIndex(this.txtEstado, 0);
                         this.ResumeLayout(false);
 
 		}

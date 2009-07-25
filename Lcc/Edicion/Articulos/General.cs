@@ -6,6 +6,12 @@ namespace Lcc.Edicion.Articulos
 {
         public class General : Lcc.Edicion.ControlEdicion
         {
+		public General()
+			: base()
+		{
+			// Necesario para admitir el Diseñador de Windows Forms
+			InitializeComponent();
+		}
         
                 public void DesdeElemento(Lbl.ElementoDeDatos elemento)
                 {

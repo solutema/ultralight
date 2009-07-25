@@ -191,12 +191,6 @@ namespace Lfc.Alicuotas
 			this.Controls.Add(this.Label5);
 			this.Name = "FormAlicuotasEditar";
 			this.Text = "Alícuotas: Editar";
-			this.Controls.SetChildIndex(this.Label5, 0);
-			this.Controls.SetChildIndex(this.txtNombre, 0);
-			this.Controls.SetChildIndex(this.label1, 0);
-			this.Controls.SetChildIndex(this.txtPorcentaje, 0);
-			this.Controls.SetChildIndex(this.label2, 0);
-			this.Controls.SetChildIndex(this.txtImporteMinimo, 0);
 			this.ResumeLayout(false);
 
 		}

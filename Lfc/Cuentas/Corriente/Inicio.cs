@@ -303,7 +303,7 @@ namespace Lfc.Cuentas.Corriente
                         if (m_Cliente > 0) {
                                 Lfc.Comprobantes.Facturas.Editar OFormNota = ((Lfc.Comprobantes.Facturas.Editar)(this.Workspace.RunTime.Execute("CREAR NCB")));
                                 if (OFormNota != null)
-                                        OFormNota.txtCliente.Text = m_Cliente.ToString();
+                                        OFormNota.EntradaCliente.Text = m_Cliente.ToString();
                         } else {
                                 Lui.Forms.MessageBox.Show("Debe seleccionar un cliente. Utilice la opcin Filtros (tecla <F2>).", "Error");
                         }
@@ -315,7 +315,7 @@ namespace Lfc.Cuentas.Corriente
                         if (m_Cliente > 0) {
                                 Lfc.Comprobantes.Facturas.Editar OFormNota = ((Lfc.Comprobantes.Facturas.Editar)(this.Workspace.RunTime.Execute("CREAR NDB")));
                                 if (OFormNota != null)
-                                        OFormNota.txtCliente.Text = m_Cliente.ToString();
+                                        OFormNota.EntradaCliente.Text = m_Cliente.ToString();
                         } else {
                                 Lui.Forms.MessageBox.Show("Debe seleccionar un cliente. Utilice la opcin Filtros (tecla <F2>).", "Error");
                         }
@@ -328,19 +328,19 @@ namespace Lfc.Cuentas.Corriente
                                 case Keys.F3:
                                         e.Handled = true;
                                         if (cmdNotaCred.Enabled && cmdNotaCred.Visible) {
-                                                cmdNotaCred_Click(sender, e);
+                                                cmdNotaCred.PerformClick();
                                         }
                                         break;
                                 case Keys.F4:
                                         e.Handled = true;
                                         if (cmdNotaDeb.Enabled && cmdNotaDeb.Visible) {
-                                                cmdNotaDeb_Click(sender, e);
+                                                cmdNotaDeb.PerformClick();
                                         }
                                         break;
                                 case Keys.F5:
                                         e.Handled = true;
                                         if (cmdAjuste.Enabled && cmdAjuste.Visible) {
-                                                cmdAjuste_Click(sender, e);
+                                                cmdAjuste.PerformClick();
                                         }
                                         break;
                         }

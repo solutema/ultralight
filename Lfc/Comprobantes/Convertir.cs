@@ -264,17 +264,6 @@ namespace Lfc.Comprobantes
                         this.Controls.Add(this.PictureBox3);
                         this.Name = "Convertir";
                         this.Text = "Convertir Comprobante";
-                        this.Controls.SetChildIndex(this.PictureBox3, 0);
-                        this.Controls.SetChildIndex(this.txtOrigen, 0);
-                        this.Controls.SetChildIndex(this.Label6, 0);
-                        this.Controls.SetChildIndex(this.txtDestinoTipo, 0);
-                        this.Controls.SetChildIndex(this.Label7, 0);
-                        this.Controls.SetChildIndex(this.lblInfo, 0);
-                        this.Controls.SetChildIndex(this.PictureBox1, 0);
-                        this.Controls.SetChildIndex(this.PictureBox2, 0);
-                        this.Controls.SetChildIndex(this.lblOrigenTipo, 0);
-                        this.Controls.SetChildIndex(this.lblDestinoTipo, 0);
-                        this.Controls.SetChildIndex(this.lblDuplicado, 0);
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).EndInit();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).EndInit();

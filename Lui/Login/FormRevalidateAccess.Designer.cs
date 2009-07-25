@@ -190,13 +190,6 @@ namespace Lui.Login
 			this.Controls.Add(this.Titulo);
 			this.Name = "FormRevalidateAccess";
 			this.Text = "Revalidar autorización";
-			this.Controls.SetChildIndex(this.Titulo, 0);
-			this.Controls.SetChildIndex(this.Label2, 0);
-			this.Controls.SetChildIndex(this.PictureBox2, 0);
-			this.Controls.SetChildIndex(this.txtContrasena, 0);
-			this.Controls.SetChildIndex(this.label3, 0);
-			this.Controls.SetChildIndex(this.txtUsuario, 0);
-			this.Controls.SetChildIndex(this.LabelExplain, 0);
 			((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).EndInit();
 			this.ResumeLayout(false);
 

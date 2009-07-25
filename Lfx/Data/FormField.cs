@@ -72,5 +72,10 @@ namespace Lfx.Data
 				m_Label = value;
 			}
 		}
+
+                public override string ToString()
+                {
+                        return this.ColumnName;
+                }
 	}
 }

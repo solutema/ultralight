@@ -242,15 +242,6 @@ namespace Lui.Forms
             this.DockPadding.All = 2;
             this.Name = "Calendar";
             this.Size = new System.Drawing.Size(236, 212);
-            this.Controls.SetChildIndex(this.pctFondo, 0);
-            this.Controls.SetChildIndex(this.lblDia1, 0);
-            this.Controls.SetChildIndex(this.lblDia2, 0);
-            this.Controls.SetChildIndex(this.lblDia3, 0);
-            this.Controls.SetChildIndex(this.lblDia4, 0);
-            this.Controls.SetChildIndex(this.lblDia5, 0);
-            this.Controls.SetChildIndex(this.lblDia6, 0);
-            this.Controls.SetChildIndex(this.lblDia7, 0);
-            this.Controls.SetChildIndex(this.lblMes, 0);
             this.ResumeLayout(false);
 
             base.GotFocus += new System.EventHandler(Calendar_GotFocus);

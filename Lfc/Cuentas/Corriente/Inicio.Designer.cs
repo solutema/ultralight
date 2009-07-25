@@ -112,9 +112,9 @@ namespace Lfc.Cuentas.Corriente
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(692, 473);
-                        this.Controls.Add(this.cmdAjuste);
                         this.Controls.Add(this.cmdNotaDeb);
                         this.Controls.Add(this.cmdNotaCred);
+                        this.Controls.Add(this.cmdAjuste);
                         this.Name = "Inicio";
                         this.Text = "Cuenta Corriente";
                         this.WorkspaceChanged += new System.EventHandler(this.FormCuentaCorriente_WorkspaceChanged);
@@ -125,9 +125,9 @@ namespace Lfc.Cuentas.Corriente
                         this.Controls.SetChildIndex(this.EtiquetaTransporte, 0);
                         this.Controls.SetChildIndex(this.EtiquetaTitulo, 0);
                         this.Controls.SetChildIndex(this.ItemList, 0);
+                        this.Controls.SetChildIndex(this.cmdAjuste, 0);
                         this.Controls.SetChildIndex(this.cmdNotaCred, 0);
                         this.Controls.SetChildIndex(this.cmdNotaDeb, 0);
-                        this.Controls.SetChildIndex(this.cmdAjuste, 0);
                         this.ResumeLayout(false);
 
                 }

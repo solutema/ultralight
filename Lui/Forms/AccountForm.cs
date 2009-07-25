@@ -122,12 +122,12 @@ namespace Lui.Forms
 					case Keys.Escape:
 						e.Handled = true;
 						if (CancelCommandButton.Enabled && CancelCommandButton.Visible)
-							cmdCancelar_Click(sender, e);
+							CancelCommandButton.PerformClick();
 						break;
 					case Keys.F2:
 						e.Handled = true;
 						if (FilterButton.Enabled && FilterButton.Visible)
-							cmdFiltros_Click(sender, e);
+							FilterButton.PerformClick();
 						break;
 					case Keys.F9:
 						e.Handled = true;
@@ -136,7 +136,7 @@ namespace Lui.Forms
 					case Keys.F8:
 						e.Handled = true;
 						if (PrintButton.Enabled && PrintButton.Visible)
-							cmdImprimir_Click(sender, e);
+							PrintButton.PerformClick();
 						break;
 				}
 

@@ -658,7 +658,7 @@ namespace Lazaro.Misc.Config
                                 txtServidor.Text = Servidor;
 
                         if (Conexion == null)
-                                txtConexion.TextKey = "myodbc";
+                                txtConexion.TextKey = "mysql";
                         else
                                 txtConexion.TextKey = Conexion;
 

@@ -538,10 +538,6 @@ namespace Lfc.Articulos.Categorias
                         this.Name = "Editar";
                         this.Text = "Artículos: Categoría: Editar";
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormArticulosCategEditar_KeyDown);
-                        this.Controls.SetChildIndex(this.Frame2, 0);
-                        this.Controls.SetChildIndex(this.Frame1, 0);
-                        this.Controls.SetChildIndex(this.Frame3, 0);
-                        this.Controls.SetChildIndex(this.Label8, 0);
                         this.Frame1.ResumeLayout(false);
                         this.Frame1.PerformLayout();
                         this.Frame2.ResumeLayout(false);
@@ -648,13 +644,13 @@ namespace Lfc.Articulos.Categorias
                                 case Keys.F4:
                                         e.Handled = true;
                                         if (cmdImagen.Enabled && cmdImagen.Visible)
-                                                cmdImagen_Click(sender, e);
+                                                cmdImagen.PerformClick();
                                         break;
 
                                 case Keys.F5:
                                         e.Handled = true;
                                         if (cmdImagenQuitar.Enabled && cmdImagenQuitar.Visible)
-                                                cmdImagenQuitar_Click(sender, e);
+                                                cmdImagenQuitar.PerformClick();
                                         break;
                         }
                 }

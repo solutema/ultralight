@@ -76,7 +76,6 @@ namespace Lui.Forms
                         // 
                         this.Controls.Add(this.TextBox1);
                         this.Name = "TextBoxBase";
-                        this.Controls.SetChildIndex(this.TextBox1, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

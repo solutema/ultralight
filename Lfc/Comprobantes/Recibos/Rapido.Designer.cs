@@ -111,7 +111,7 @@ namespace Lfc.Comprobantes.Recibos
             this.Label3.Text = "Cuenta";
             this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtCliente
+            // EntradaCliente
             // 
             this.txtCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -125,7 +125,7 @@ namespace Lfc.Comprobantes.Recibos
             this.txtCliente.KeyField = "id_persona";
             this.txtCliente.Location = new System.Drawing.Point(104, 20);
             this.txtCliente.MaxLength = 200;
-            this.txtCliente.Name = "txtCliente";
+            this.txtCliente.Name = "EntradaCliente";
             this.txtCliente.Padding = new System.Windows.Forms.Padding(2);
             this.txtCliente.ReadOnly = false;
             this.txtCliente.Required = true;
@@ -191,12 +191,6 @@ namespace Lfc.Comprobantes.Recibos
             this.Controls.Add(this.Label5);
             this.Name = "Rapido";
             this.Text = "Recibo rápido";
-            this.Controls.SetChildIndex(this.Label5, 0);
-            this.Controls.SetChildIndex(this.txtCliente, 0);
-            this.Controls.SetChildIndex(this.Label3, 0);
-            this.Controls.SetChildIndex(this.txtCuenta, 0);
-            this.Controls.SetChildIndex(this.lblFecha1, 0);
-            this.Controls.SetChildIndex(this.txtImporte, 0);
             this.ResumeLayout(false);
 
         }

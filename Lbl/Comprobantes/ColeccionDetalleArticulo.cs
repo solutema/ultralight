@@ -52,7 +52,7 @@ namespace Lbl.Comprobantes
                 {
                         ColeccionDetalleArticulos Res = new ColeccionDetalleArticulos();
                         foreach (DetalleArticulo Det in this.List) {
-                                //TODO: debería clonar también Det
+                                // FIXME: debería clonar también Det
                                 Res.Add(Det);
                         }
                         return Res;

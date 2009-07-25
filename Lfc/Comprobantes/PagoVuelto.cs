@@ -119,7 +119,7 @@ namespace Lfc.Comprobantes
 			this.Label1.Text = "Importe a Cobrar";
 			this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// txtTotal
+			// EntradaTotal
 			// 
 			this.txtTotal.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.txtTotal.AutoNav = true;
@@ -130,7 +130,7 @@ namespace Lfc.Comprobantes
 			this.txtTotal.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.txtTotal.Location = new System.Drawing.Point(212, 92);
 			this.txtTotal.MaxLenght = 32767;
-			this.txtTotal.Name = "txtTotal";
+			this.txtTotal.Name = "EntradaTotal";
 			this.txtTotal.Prefijo = "$";
 			this.txtTotal.ReadOnly = true;
 			this.txtTotal.Size = new System.Drawing.Size(152, 32);
@@ -250,15 +250,6 @@ namespace Lfc.Comprobantes
 			this.Controls.Add(this.Label1);
 			this.Name = "PagoVuelto";
 			this.Text = "Pago: Cambio";
-			this.Controls.SetChildIndex(this.Label1, 0);
-			this.Controls.SetChildIndex(this.txtTotal, 0);
-			this.Controls.SetChildIndex(this.Label2, 0);
-			this.Controls.SetChildIndex(this.txtPago, 0);
-			this.Controls.SetChildIndex(this.Label3, 0);
-			this.Controls.SetChildIndex(this.txtCambio, 0);
-			this.Controls.SetChildIndex(this.PictureBox1, 0);
-			this.Controls.SetChildIndex(this.Label4, 0);
-			this.Controls.SetChildIndex(this.Label5, 0);
 			this.ResumeLayout(false);
 
 		}

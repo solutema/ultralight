@@ -174,10 +174,6 @@ namespace Lfc.Comprobantes.Compra
 			this.Name = "Crear";
 			this.Activated += new System.EventHandler(this.FormPedidosCrear_Activated);
 			this.Load += new System.EventHandler(this.Crear_Load);
-			this.Controls.SetChildIndex(this.cmdRequerimiento, 0);
-			this.Controls.SetChildIndex(this.cmdPedido, 0);
-			this.Controls.SetChildIndex(this.cmdRemito, 0);
-			this.Controls.SetChildIndex(this.cmdFactura, 0);
 			this.ResumeLayout(false);
 
 		}

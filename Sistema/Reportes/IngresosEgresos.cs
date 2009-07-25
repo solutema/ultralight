@@ -1271,7 +1271,7 @@ namespace Lazaro.Reportes
                                 case Keys.F8:
                                         e.Handled = true;
                                         if (PrintButton.Visible && PrintButton.Enabled) {
-                                                cmdImprimir_Click(sender, e);
+                                                PrintButton.PerformClick();
                                         }
                                         break;
                         }

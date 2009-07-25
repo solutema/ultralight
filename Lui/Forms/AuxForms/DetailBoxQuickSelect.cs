@@ -34,9 +34,9 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Lui.Forms
+namespace Lui.Forms.AuxForms
 {
-	internal partial class DetailBoxQuickSelect : System.Windows.Forms.Form
+	public partial class DetailBoxQuickSelect : System.Windows.Forms.Form
 	{
 
 		private string m_Table = "";
@@ -48,7 +48,7 @@ namespace Lui.Forms
 		private Lws.Workspace m_Workspace;
 		public System.Windows.Forms.Control ControlDestino;
 
-		internal bool CanCreate
+                public bool CanCreate
 		{
 			set
 			{
@@ -61,7 +61,7 @@ namespace Lui.Forms
 		}
 
 		[System.ComponentModel.Category("Datos")]
-		internal string Table
+		public string Table
 		{
 			get
 			{
@@ -75,7 +75,7 @@ namespace Lui.Forms
 		}
 
 		[System.ComponentModel.Category("Datos")]
-		internal string KeyField
+                public string KeyField
 		{
 			set
 			{
@@ -85,7 +85,7 @@ namespace Lui.Forms
 		}
 
 		[System.ComponentModel.Category("Datos")]
-		internal string DetailField
+                public string DetailField
 		{
 			set
 			{
@@ -95,7 +95,7 @@ namespace Lui.Forms
 		}
 
 		[System.ComponentModel.Category("Datos")]
-		internal string ExtraDetailFields
+                public string ExtraDetailFields
 		{
 			set
 			{
@@ -105,7 +105,7 @@ namespace Lui.Forms
 		}
 
 		[System.ComponentModel.Category("Datos")]
-		internal string Filter
+                public string Filter
 		{
 			set
 			{
@@ -156,7 +156,7 @@ namespace Lui.Forms
 		}
 
 
-                internal void Buscar(string valorInicial)
+                public void Buscar(string valorInicial)
                 {
                         Refrescar();
                         f_IgnoreEvents = true;
@@ -470,7 +470,7 @@ namespace Lui.Forms
 				case Keys.F6:
 					e.Handled = true;
 					if (cmdNuevo.Enabled && cmdNuevo.Visible)
-						cmdNuevo_Click(sender, e);
+						cmdNuevo.PerformClick();
 					break;
 			}
 		}

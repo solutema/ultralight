@@ -158,12 +158,18 @@ namespace Lfx.Data
 
                 }
 
+                public void CargarTagList()
+                {
+                        m_TagList = null;
+                }
+
                 public System.Collections.Generic.Dictionary<string, Lfx.Data.TagCollection> TagList
                 {
                         get
                         {
                                 if (m_TagList == null || m_TagList.Count == 0) {
-                                        m_TagList = new System.Collections.Generic.Dictionary<string, Data.TagCollection>();
+                                        if (m_TagList == null)
+                                                m_TagList = new System.Collections.Generic.Dictionary<string, Data.TagCollection>();
                                         if (this.TableList.Contains("sys_tags")) {
                                                 System.Data.IDataReader Rdr = this.DataBase.GetReader("SELECT * FROM sys_tags ORDER BY tablename");
                                                 while (Rdr.Read()) {
@@ -192,8 +198,9 @@ namespace Lfx.Data
                 {
                         get
                         {
-                                if (m_TableList == null) {
-                                        m_TableList = new System.Collections.Generic.List<string>();
+                                if (m_TableList == null || m_TableList.Count == 0) {
+                                        if (m_TableList == null)
+                                                m_TableList = new System.Collections.Generic.List<string>();
                                         System.Data.DataTable Tablas = null;
                                         switch (SqlMode) {
                                                 case Lfx.Data.SqlModes.MySql:

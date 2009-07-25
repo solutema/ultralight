@@ -40,8 +40,9 @@ namespace Lfc.Comprobantes.Compra
         {
 
                 internal string m_Tipo;
-                internal string m_Fecha; internal DateTime m_Fecha1; internal DateTime m_Fecha2;
-                internal int m_Proveedor; internal string m_Agrupar = "";
+                internal Lfx.Types.DateRange m_Fecha;
+                internal int m_Proveedor;
+                internal string m_Agrupar = "";
                 internal string Filtro;
 
                 #region Código generado por el Diseñador de Windows Forms
@@ -188,11 +189,6 @@ namespace Lfc.Comprobantes.Compra
                         this.Controls.Add(this.Label1);
                         this.Controls.Add(this.txtReporte);
                         this.Name = "FormPedidosListado";
-                        this.Controls.SetChildIndex(this.txtReporte, 0);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.txtAgrupar, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.txtMostrar, 0);
                         this.ResumeLayout(false);
 
                 }
@@ -239,25 +235,8 @@ namespace Lfc.Comprobantes.Compra
 
                                 Filtro += " AND total<>0";
 
-                                switch (m_Fecha) {
-                                        case "todo":
-                                                // Nada
-                                                break;
-                                        case "mesactual":
-                                                m_Fecha1 = new DateTime(System.DateTime.Now.Year, System.DateTime.Now.Month, 1);
-                                                m_Fecha2 = new DateTime(System.DateTime.Now.Year, System.DateTime.Now.Month, DateTime.DaysInMonth(System.DateTime.Now.Year, System.DateTime.Now.Month));
-                                                Filtro += " AND (fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha1).ToString() + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha2) + " 23:59:59')";
-                                                break;
-                                        case "mespasado":
-                                                DateTime MesPasado = System.DateTime.Now.AddMonths(-1);
-                                                m_Fecha1 = new DateTime(MesPasado.Year, MesPasado.Month, 1);
-                                                m_Fecha2 = new DateTime(MesPasado.Year, MesPasado.Month, DateTime.DaysInMonth(MesPasado.Year, MesPasado.Month));
-                                                Filtro += " AND (fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha1) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha2) + " 23:59:59')";
-                                                break;
-                                        case "fecha":
-                                                Filtro += " AND (fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha1) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha2) + " 23:59:59')";
-                                                break;
-                                }
+                                if (m_Fecha.HasRange)
+                                        Filtro += " AND (fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')";
 
 
                                 string TextoSql = null;
@@ -271,9 +250,9 @@ namespace Lfc.Comprobantes.Compra
                                 System.Data.DataTable TmpTabla = this.Workspace.DefaultDataBase.Select(TextoSql);
 
                                 ListingContent = new System.Text.StringBuilder();
-                                ListingContent.Append("LISTADO DE COMPROBANTES DE COMPRA - Fecha " + m_Fecha1);
-                                if (m_Fecha2 != m_Fecha1) {
-                                        ListingContent.Append(" al " + m_Fecha2);
+                                ListingContent.Append("LISTADO DE COMPROBANTES DE COMPRA - Fecha " + m_Fecha.From.ToString(Lfx.Types.Formatting.DateTime.DefaultDateFormat));
+                                if (m_Fecha.From != m_Fecha.To) {
+                                        ListingContent.Append(" al " + m_Fecha.To.ToString(Lfx.Types.Formatting.DateTime.DefaultDateFormat));
                                 }
 
                                 ListingContent.Append(Environment.NewLine);
@@ -337,9 +316,15 @@ namespace Lfc.Comprobantes.Compra
                                         Renglon.Append(Lfx.Types.Formatting.FormatDate(row["fecha"]) + " ");
                                         Renglon.Append(System.Convert.ToString(row["tipo_fac"]).PadRight(3).Substring(0, 3) + " ");
                                         Renglon.Append(System.Convert.ToString(row["numero"]).PadRight(13).Substring(0, 13) + " ");
-                                        Lfx.Data.Row Proveedor = this.Workspace.DefaultDataBase.Row("personas", "id_persona", System.Convert.ToInt32(row["id_proveedor"]));
-                                        Renglon.Append(System.Convert.ToString(Proveedor["nombre_visible"]).PadRight(25).Substring(0, 25) + " ");
-                                        Renglon.Append(System.Convert.ToString(Proveedor["cuit"]).PadRight(13).Substring(0, 13) + " ");
+                                        int ProveedorId = System.Convert.ToInt32(row["id_cliente"]);
+                                        if (ProveedorId != 0) {
+                                                Lfx.Data.Row Proveedor = this.Workspace.DefaultDataBase.Row("personas", "id_persona", ProveedorId);
+                                                Renglon.Append(System.Convert.ToString(Proveedor["nombre_visible"]).PadRight(25).Substring(0, 25) + " ");
+                                                Renglon.Append(System.Convert.ToString(Proveedor["cuit"]).PadRight(13).Substring(0, 13) + " ");
+                                        } else {
+                                                Renglon.Append("".PadRight(25).Substring(0, 25) + " ");
+                                                Renglon.Append("".PadRight(13).Substring(0, 13) + " ");
+                                        }
                                         Renglon.Append(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(row["total"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces).PadLeft(10));
                                         dTotal += System.Convert.ToDouble(row["total"]);
                                         dSubTotal += System.Convert.ToDouble(row["total"]);

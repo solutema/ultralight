@@ -370,7 +370,7 @@ namespace Lfc.Personas
                                         case Keys.F2:
                                                 e.Handled = true;
                                                 if (cmdAcceso.Enabled && cmdAcceso.Visible)
-                                                        this.cmdAcceso_Click(sender, e);
+                                                        cmdAcceso.PerformClick();
                                                 break;
                                 }
 

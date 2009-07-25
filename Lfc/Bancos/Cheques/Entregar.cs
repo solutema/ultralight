@@ -290,17 +290,6 @@ namespace Lfc.Bancos.Cheques
 			this.Controls.Add(this.txtConcepto);
 			this.Name = "Entregar";
 			this.Text = "Entrega de cheque(s)";
-			this.Controls.SetChildIndex(this.txtConcepto, 0);
-			this.Controls.SetChildIndex(this.label3, 0);
-			this.Controls.SetChildIndex(this.Label4, 0);
-			this.Controls.SetChildIndex(this.txtObs, 0);
-			this.Controls.SetChildIndex(this.label5, 0);
-			this.Controls.SetChildIndex(this.lblLabel1, 0);
-			this.Controls.SetChildIndex(this.txtCantidad, 0);
-			this.Controls.SetChildIndex(this.Label1, 0);
-			this.Controls.SetChildIndex(this.txtSubTotal, 0);
-			this.Controls.SetChildIndex(this.gDetailBox1, 0);
-			this.Controls.SetChildIndex(this.label2, 0);
 			this.ResumeLayout(false);
 
 		}

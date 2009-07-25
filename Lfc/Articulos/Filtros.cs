@@ -498,7 +498,6 @@ namespace Lfc.Articulos
                 this.Controls.Add(this.tableLayoutPanel1);
                 this.Name = "Filtros";
                 this.Text = "Artículos: Filtros";
-                this.Controls.SetChildIndex(this.tableLayoutPanel1, 0);
                 this.tableLayoutPanel1.ResumeLayout(false);
                 this.panel1.ResumeLayout(false);
                 this.ResumeLayout(false);

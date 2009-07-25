@@ -364,21 +364,6 @@ namespace Lfc.Cuentas
                         this.Controls.Add(this.txtDestino);
                         this.Controls.Add(this.Label3);
                         this.Name = "FormCuentaCajaMovim";
-                        this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.txtDestino, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.txtImporte, 0);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.txtConcepto, 0);
-                        this.Controls.SetChildIndex(this.Label5, 0);
-                        this.Controls.SetChildIndex(this.txtComprob, 0);
-                        this.Controls.SetChildIndex(this.Label4, 0);
-                        this.Controls.SetChildIndex(this.txtObs, 0);
-                        this.Controls.SetChildIndex(this.Label6, 0);
-                        this.Controls.SetChildIndex(this.txtOrigen, 0);
-                        this.Controls.SetChildIndex(this.lblImporteDestino, 0);
-                        this.Controls.SetChildIndex(this.txtImporteDestino, 0);
-                        this.Controls.SetChildIndex(this.label7, 0);
                         this.ResumeLayout(false);
 
                 }

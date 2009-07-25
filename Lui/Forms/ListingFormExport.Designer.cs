@@ -140,10 +140,6 @@ namespace Lui.Forms
                         this.Name = "ListingFormExport";
                         this.Text = "Exportar Datos";
                         this.Load += new System.EventHandler(this.FormTablaInicioExportar_Load);
-                        this.Controls.SetChildIndex(this.cmdHTML, 0);
-                        this.Controls.SetChildIndex(this.cmdExcel, 0);
-                        this.Controls.SetChildIndex(this.label1, 0);
-                        this.Controls.SetChildIndex(this.cmdImprimir, 0);
                         this.ResumeLayout(false);
 
 		}

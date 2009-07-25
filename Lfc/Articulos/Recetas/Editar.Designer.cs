@@ -318,19 +318,6 @@ namespace Lfc.Articulos.Recetas
 			this.Controls.Add(this.Label5);
 			this.Name = "Editar";
 			this.Text = "Artículo compuesto";
-			this.Controls.SetChildIndex(this.Label5, 0);
-			this.Controls.SetChildIndex(this.txtNombre, 0);
-			this.Controls.SetChildIndex(this.txtDescripcion, 0);
-			this.Controls.SetChildIndex(this.Label13, 0);
-			this.Controls.SetChildIndex(this.label19, 0);
-			this.Controls.SetChildIndex(this.txtUnidad, 0);
-			this.Controls.SetChildIndex(this.Articulos, 0);
-			this.Controls.SetChildIndex(this.Label2, 0);
-			this.Controls.SetChildIndex(this.txtCategoria, 0);
-			this.Controls.SetChildIndex(this.Label15, 0);
-			this.Controls.SetChildIndex(this.txtDestacado, 0);
-			this.Controls.SetChildIndex(this.Label10, 0);
-			this.Controls.SetChildIndex(this.txtPVP, 0);
 			this.ResumeLayout(false);
 
 		}

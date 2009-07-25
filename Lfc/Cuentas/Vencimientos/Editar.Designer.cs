@@ -433,14 +433,6 @@ namespace Lfc.Cuentas.Vencimientos
                         this.Controls.Add(this.lblLabel1);
                         this.Name = "Editar";
                         this.Text = "Vencimiento";
-                        this.Controls.SetChildIndex(this.lblLabel1, 0);
-                        this.Controls.SetChildIndex(this.EntradaNombre, 0);
-                        this.Controls.SetChildIndex(this.frame1, 0);
-                        this.Controls.SetChildIndex(this.frame2, 0);
-                        this.Controls.SetChildIndex(this.EntradaEstado, 0);
-                        this.Controls.SetChildIndex(this.label7, 0);
-                        this.Controls.SetChildIndex(this.label8, 0);
-                        this.Controls.SetChildIndex(this.EntradaObs, 0);
                         this.frame1.ResumeLayout(false);
                         this.frame1.PerformLayout();
                         this.frame2.ResumeLayout(false);

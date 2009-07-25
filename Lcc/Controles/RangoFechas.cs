@@ -50,6 +50,21 @@ namespace Lcc.Controles
                 [EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public override string Text
+                {
+                        get
+                        {
+                                return "";
+                        }
+                        set
+                        {
+                                base.Text = "";
+                        }
+                }
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public Lfx.Types.DateRangeTypes TipoDeRango
                 {
                         get

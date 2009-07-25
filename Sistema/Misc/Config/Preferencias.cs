@@ -102,7 +102,7 @@ namespace Lazaro.Misc.Config
 				if (txtImpresionPredetImpresora.Text.IndexOf(System.IO.Path.DirectorySeparatorChar.ToString() + System.IO.Path.DirectorySeparatorChar.ToString()) == -1
 							&& (txtImpresionPredetImpresora.Text.Length < 7 || txtImpresionPredetImpresora.Text.Substring(0, 7) != "fiscal:")
                                                         && txtImpresionPredetImpresora.Text != "(Predeterminada)")
-					txtImpresionPredetImpresora.Text = System.IO.Path.DirectorySeparatorChar.ToString() + System.IO.Path.DirectorySeparatorChar.ToString() + Lfx.Environment.SystemInformation.ComputerName + System.IO.Path.DirectorySeparatorChar.ToString() + txtImpresionPredetImpresora.Text;
+                                        txtImpresionPredetImpresora.Text = System.IO.Path.DirectorySeparatorChar.ToString() + System.IO.Path.DirectorySeparatorChar.ToString() + System.Environment.MachineName.ToUpperInvariant() + System.IO.Path.DirectorySeparatorChar.ToString() + txtImpresionPredetImpresora.Text;
 			}
 		}
 
@@ -129,7 +129,7 @@ namespace Lazaro.Misc.Config
 
 		private void lvImpresionComprob_DoubleClick(object sender, System.EventArgs e)
 		{
-			cmdImpresionPredetImpresoraBrowse_Click(sender, e);
+			txtImpresionPredetImpresoraBrowse.PerformClick();
 		}
 
 
@@ -295,11 +295,11 @@ namespace Lazaro.Misc.Config
 			this.Workspace.CurrentConfig.Company.Name = txtEmpresaNombre.Text;
 			this.Workspace.CurrentConfig.Company.CUIT = txtEmpresaCUIT.Text;
 			this.Workspace.CurrentConfig.Company.SituacionTributaria = txtEmpresaSituacion.TextInt;
-                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Backup.Tipo", txtBackup.TextKey, Lfx.Environment.SystemInformation.ComputerName);
+                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Backup.Tipo", txtBackup.TextKey, System.Environment.MachineName.ToUpperInvariant());
                         if (EntradaModoPantalla.TextKey == "*")
-                                this.Workspace.CurrentConfig.DeleteGlobalSetting("Sistema", "Apariencia.ModoPantalla", Lfx.Environment.SystemInformation.ComputerName);
+                                this.Workspace.CurrentConfig.DeleteGlobalSetting("Sistema", "Apariencia.ModoPantalla", System.Environment.MachineName.ToUpperInvariant());
                         else
-                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Apariencia.ModoPantalla", EntradaModoPantalla.TextKey, Lfx.Environment.SystemInformation.ComputerName);
+                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Apariencia.ModoPantalla", EntradaModoPantalla.TextKey, System.Environment.MachineName.ToUpperInvariant());
 
 			GuardarImpresorasPredet();
 

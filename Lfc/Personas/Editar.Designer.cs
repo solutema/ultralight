@@ -144,7 +144,7 @@ namespace Lfc.Personas
                         this.EntradaEmail.Prefijo = "";
                         this.EntradaEmail.ReadOnly = false;
                         this.EntradaEmail.SelectOnFocus = true;
-                        this.EntradaEmail.Size = new System.Drawing.Size(316, 24);
+                        this.EntradaEmail.Size = new System.Drawing.Size(315, 24);
                         this.EntradaEmail.Sufijo = "";
                         this.EntradaEmail.TabIndex = 7;
                         this.EntradaEmail.TextRaw = "";
@@ -172,7 +172,7 @@ namespace Lfc.Personas
                         this.EntradaTelefono.Prefijo = "";
                         this.EntradaTelefono.ReadOnly = false;
                         this.EntradaTelefono.SelectOnFocus = true;
-                        this.EntradaTelefono.Size = new System.Drawing.Size(316, 24);
+                        this.EntradaTelefono.Size = new System.Drawing.Size(315, 24);
                         this.EntradaTelefono.Sufijo = "";
                         this.EntradaTelefono.TabIndex = 5;
                         this.EntradaTelefono.TextRaw = "";
@@ -200,7 +200,7 @@ namespace Lfc.Personas
                         this.EntradaCiudad.ReadOnly = false;
                         this.EntradaCiudad.Required = true;
                         this.EntradaCiudad.SelectOnFocus = false;
-                        this.EntradaCiudad.Size = new System.Drawing.Size(316, 24);
+                        this.EntradaCiudad.Size = new System.Drawing.Size(315, 24);
                         this.EntradaCiudad.TabIndex = 9;
                         this.EntradaCiudad.Table = "ciudades";
                         this.EntradaCiudad.TeclaDespuesDeEnter = "{tab}";
@@ -231,7 +231,7 @@ namespace Lfc.Personas
                         this.EntradaDomicilio.Prefijo = "";
                         this.EntradaDomicilio.ReadOnly = false;
                         this.EntradaDomicilio.SelectOnFocus = false;
-                        this.EntradaDomicilio.Size = new System.Drawing.Size(316, 24);
+                        this.EntradaDomicilio.Size = new System.Drawing.Size(315, 24);
                         this.EntradaDomicilio.Sufijo = "";
                         this.EntradaDomicilio.TabIndex = 1;
                         this.EntradaDomicilio.TextRaw = "";
@@ -314,7 +314,7 @@ namespace Lfc.Personas
                         this.EntradaApellido.Prefijo = "";
                         this.EntradaApellido.ReadOnly = false;
                         this.EntradaApellido.SelectOnFocus = true;
-                        this.EntradaApellido.Size = new System.Drawing.Size(336, 24);
+                        this.EntradaApellido.Size = new System.Drawing.Size(335, 24);
                         this.EntradaApellido.Sufijo = "";
                         this.EntradaApellido.TabIndex = 3;
                         this.EntradaApellido.TextRaw = "";
@@ -343,7 +343,7 @@ namespace Lfc.Personas
                         this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = true;
-                        this.EntradaNombre.Size = new System.Drawing.Size(336, 24);
+                        this.EntradaNombre.Size = new System.Drawing.Size(335, 24);
                         this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         this.EntradaNombre.TextRaw = "";
@@ -399,7 +399,7 @@ namespace Lfc.Personas
                         this.EntradaRazonSocial.Prefijo = "";
                         this.EntradaRazonSocial.ReadOnly = false;
                         this.EntradaRazonSocial.SelectOnFocus = true;
-                        this.EntradaRazonSocial.Size = new System.Drawing.Size(231, 24);
+                        this.EntradaRazonSocial.Size = new System.Drawing.Size(230, 24);
                         this.EntradaRazonSocial.Sufijo = "";
                         this.EntradaRazonSocial.TabIndex = 1;
                         this.EntradaRazonSocial.TextRaw = "";
@@ -516,7 +516,7 @@ namespace Lfc.Personas
                         this.Frame1.Name = "Frame1";
                         this.Frame1.Padding = new System.Windows.Forms.Padding(2);
                         this.Frame1.ReadOnly = false;
-                        this.Frame1.Size = new System.Drawing.Size(420, 145);
+                        this.Frame1.Size = new System.Drawing.Size(419, 145);
                         this.Frame1.TabIndex = 0;
                         this.Frame1.Text = "Personas Físicas";
                         this.Frame1.ToolTipText = "";
@@ -536,11 +536,11 @@ namespace Lfc.Personas
                         this.Frame2.Controls.Add(this.EntradaTipoFac);
                         this.Frame2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Frame2.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.Frame2.Location = new System.Drawing.Point(429, 3);
+                        this.Frame2.Location = new System.Drawing.Point(428, 3);
                         this.Frame2.Name = "Frame2";
                         this.Frame2.Padding = new System.Windows.Forms.Padding(2);
                         this.Frame2.ReadOnly = false;
-                        this.Frame2.Size = new System.Drawing.Size(343, 145);
+                        this.Frame2.Size = new System.Drawing.Size(342, 145);
                         this.Frame2.TabIndex = 1;
                         this.Frame2.Text = "Personas Jurídicas";
                         this.Frame2.ToolTipText = "";
@@ -584,7 +584,7 @@ namespace Lfc.Personas
                         this.EntradaSituacion.ReadOnly = false;
                         this.EntradaSituacion.Required = true;
                         this.EntradaSituacion.SelectOnFocus = false;
-                        this.EntradaSituacion.Size = new System.Drawing.Size(215, 24);
+                        this.EntradaSituacion.Size = new System.Drawing.Size(214, 24);
                         this.EntradaSituacion.TabIndex = 5;
                         this.EntradaSituacion.Table = "situaciones";
                         this.EntradaSituacion.TeclaDespuesDeEnter = "{tab}";
@@ -647,7 +647,7 @@ namespace Lfc.Personas
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.Required = true;
                         this.EntradaTipo.SelectOnFocus = false;
-                        this.EntradaTipo.Size = new System.Drawing.Size(255, 24);
+                        this.EntradaTipo.Size = new System.Drawing.Size(254, 24);
                         this.EntradaTipo.TabIndex = 5;
                         this.EntradaTipo.Table = "personas_tipos";
                         this.EntradaTipo.TeclaDespuesDeEnter = "{tab}";
@@ -687,7 +687,7 @@ namespace Lfc.Personas
                         this.EntradaGrupo.ReadOnly = false;
                         this.EntradaGrupo.Required = false;
                         this.EntradaGrupo.SelectOnFocus = false;
-                        this.EntradaGrupo.Size = new System.Drawing.Size(255, 24);
+                        this.EntradaGrupo.Size = new System.Drawing.Size(254, 24);
                         this.EntradaGrupo.TabIndex = 1;
                         this.EntradaGrupo.Table = "personas_grupos";
                         this.EntradaGrupo.TeclaDespuesDeEnter = "{tab}";
@@ -750,7 +750,7 @@ namespace Lfc.Personas
                         this.EntradaLimiteCredito.Prefijo = "$";
                         this.EntradaLimiteCredito.ReadOnly = false;
                         this.EntradaLimiteCredito.SelectOnFocus = true;
-                        this.EntradaLimiteCredito.Size = new System.Drawing.Size(195, 24);
+                        this.EntradaLimiteCredito.Size = new System.Drawing.Size(194, 24);
                         this.EntradaLimiteCredito.Sufijo = "";
                         this.EntradaLimiteCredito.TabIndex = 7;
                         this.EntradaLimiteCredito.Text = "0.00";
@@ -823,7 +823,7 @@ namespace Lfc.Personas
                         this.EntradaDomicilioTrabajo.Prefijo = "";
                         this.EntradaDomicilioTrabajo.ReadOnly = false;
                         this.EntradaDomicilioTrabajo.SelectOnFocus = false;
-                        this.EntradaDomicilioTrabajo.Size = new System.Drawing.Size(316, 24);
+                        this.EntradaDomicilioTrabajo.Size = new System.Drawing.Size(315, 24);
                         this.EntradaDomicilioTrabajo.Sufijo = "";
                         this.EntradaDomicilioTrabajo.TabIndex = 3;
                         this.EntradaDomicilioTrabajo.TextRaw = "";
@@ -861,7 +861,7 @@ namespace Lfc.Personas
         "En plan de pagos|5",
         "Suspendido|10",
         "Susp. permanen.|100"};
-                        this.EntradaEstadoCredito.Size = new System.Drawing.Size(195, 24);
+                        this.EntradaEstadoCredito.Size = new System.Drawing.Size(194, 24);
                         this.EntradaEstadoCredito.TabIndex = 9;
                         this.EntradaEstadoCredito.Table = null;
                         this.EntradaEstadoCredito.Text = "Susp. permanen.";
@@ -900,7 +900,7 @@ namespace Lfc.Personas
                         this.EntradaCbu.Prefijo = "";
                         this.EntradaCbu.ReadOnly = false;
                         this.EntradaCbu.SelectOnFocus = true;
-                        this.EntradaCbu.Size = new System.Drawing.Size(267, 24);
+                        this.EntradaCbu.Size = new System.Drawing.Size(266, 24);
                         this.EntradaCbu.Sufijo = "";
                         this.EntradaCbu.TabIndex = 13;
                         this.EntradaCbu.TextRaw = "";
@@ -937,7 +937,7 @@ namespace Lfc.Personas
                         this.EntradaNumeroCuenta.Prefijo = "";
                         this.EntradaNumeroCuenta.ReadOnly = false;
                         this.EntradaNumeroCuenta.SelectOnFocus = true;
-                        this.EntradaNumeroCuenta.Size = new System.Drawing.Size(195, 24);
+                        this.EntradaNumeroCuenta.Size = new System.Drawing.Size(194, 24);
                         this.EntradaNumeroCuenta.Sufijo = "";
                         this.EntradaNumeroCuenta.TabIndex = 11;
                         this.EntradaNumeroCuenta.TextRaw = "";
@@ -975,7 +975,7 @@ namespace Lfc.Personas
                         this.frame3.Name = "frame3";
                         this.frame3.Padding = new System.Windows.Forms.Padding(2);
                         this.frame3.ReadOnly = false;
-                        this.frame3.Size = new System.Drawing.Size(420, 198);
+                        this.frame3.Size = new System.Drawing.Size(419, 198);
                         this.frame3.TabIndex = 2;
                         this.frame3.Text = "Datos de Contacto";
                         this.frame3.ToolTipText = "";
@@ -1000,11 +1000,11 @@ namespace Lfc.Personas
                         this.frame4.Controls.Add(this.Label16);
                         this.frame4.Controls.Add(this.Label14);
                         this.frame4.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.frame4.Location = new System.Drawing.Point(429, 154);
+                        this.frame4.Location = new System.Drawing.Point(428, 154);
                         this.frame4.Name = "frame4";
                         this.frame4.Padding = new System.Windows.Forms.Padding(2);
                         this.frame4.ReadOnly = false;
-                        this.frame4.Size = new System.Drawing.Size(343, 226);
+                        this.frame4.Size = new System.Drawing.Size(342, 226);
                         this.frame4.TabIndex = 3;
                         this.frame4.Text = "Otros datos";
                         this.frame4.ToolTipText = "";
@@ -1030,7 +1030,7 @@ namespace Lfc.Personas
                         this.EntradaSubGrupo.ReadOnly = false;
                         this.EntradaSubGrupo.Required = false;
                         this.EntradaSubGrupo.SelectOnFocus = false;
-                        this.EntradaSubGrupo.Size = new System.Drawing.Size(255, 24);
+                        this.EntradaSubGrupo.Size = new System.Drawing.Size(254, 24);
                         this.EntradaSubGrupo.TabIndex = 3;
                         this.EntradaSubGrupo.Table = "personas_grupos";
                         this.EntradaSubGrupo.TeclaDespuesDeEnter = "{tab}";
@@ -1061,7 +1061,7 @@ namespace Lfc.Personas
                         this.EntradaObs.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaObs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaObs.Location = new System.Drawing.Point(429, 386);
+                        this.EntradaObs.Location = new System.Drawing.Point(428, 386);
                         this.EntradaObs.MaxLenght = 32767;
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
@@ -1070,7 +1070,7 @@ namespace Lfc.Personas
                         this.EntradaObs.Prefijo = "";
                         this.EntradaObs.ReadOnly = false;
                         this.EntradaObs.SelectOnFocus = true;
-                        this.EntradaObs.Size = new System.Drawing.Size(343, 114);
+                        this.EntradaObs.Size = new System.Drawing.Size(342, 114);
                         this.EntradaObs.Sufijo = "";
                         this.EntradaObs.TabIndex = 5;
                         this.EntradaObs.TextRaw = "";
@@ -1134,7 +1134,7 @@ namespace Lfc.Personas
                         this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
                         this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
                         this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-                        this.tableLayoutPanel1.Size = new System.Drawing.Size(775, 500);
+                        this.tableLayoutPanel1.Size = new System.Drawing.Size(773, 500);
                         this.tableLayoutPanel1.TabIndex = 0;
                         // 
                         // Tags
@@ -1147,7 +1147,7 @@ namespace Lfc.Personas
                         this.Tags.Location = new System.Drawing.Point(4, 386);
                         this.Tags.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Tags.Name = "Tags";
-                        this.Tags.Size = new System.Drawing.Size(418, 162);
+                        this.Tags.Size = new System.Drawing.Size(417, 162);
                         this.Tags.TabIndex = 4;
                         this.Tags.Text = "Atributos especiales";
                         // 
@@ -1167,18 +1167,18 @@ namespace Lfc.Personas
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(792, 473);
+                        this.Controls.Add(this.cmdAcceso);
                         this.Controls.Add(this.EntradaNombreVisible);
                         this.Controls.Add(this.ContenedorScroll);
                         this.Controls.Add(this.Label4);
-                        this.Controls.Add(this.cmdAcceso);
                         this.Name = "Editar";
                         this.Text = "Clientes: Editar";
                         this.WorkspaceChanged += new System.EventHandler(this.FormClientesEditar_WorkspaceChanged);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormClientesEditar_KeyDown);
-                        this.Controls.SetChildIndex(this.cmdAcceso, 0);
                         this.Controls.SetChildIndex(this.Label4, 0);
                         this.Controls.SetChildIndex(this.ContenedorScroll, 0);
                         this.Controls.SetChildIndex(this.EntradaNombreVisible, 0);
+                        this.Controls.SetChildIndex(this.cmdAcceso, 0);
                         this.Frame1.ResumeLayout(false);
                         this.Frame1.PerformLayout();
                         this.Frame2.ResumeLayout(false);

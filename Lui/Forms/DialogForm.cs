@@ -54,15 +54,12 @@ namespace Lui.Forms
 		{
 			Lfx.Types.OperationResult res = Ok();
 
-			if (res.Success == true)
-			{
+			if (res.Success == true) {
 				this.DialogResult = DialogResult.OK;
 				this.Close();
-			}
-			else
-			{
-				Lui.Forms.MessageBox.Show(res.Message, "Aviso");
-			}
+			} else if (res.Message != null) {
+                                Lui.Forms.MessageBox.Show(res.Message, "Aviso");
+                        }
 		}
 
 		private void DialogForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -71,13 +68,13 @@ namespace Lui.Forms
 			{
 				e.Handled = true;
 				if (CancelCommandButton.Enabled && CancelCommandButton.Visible)
-					CancelCommandButton_Click(sender, e);
+					CancelCommandButton.PerformClick();
 			}
 			else if (e.KeyCode == Keys.F9)
 			{
 				e.Handled = true;
 				if (OkButton.Enabled && OkButton.Visible)
-					OkButton_Click(sender, e);
+					OkButton.PerformClick();
 			}
 		}
 

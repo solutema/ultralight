@@ -285,16 +285,6 @@ namespace Lfc.Tareas
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
                         this.Text = "Novedad: Cargar";
                         this.WorkspaceChanged += new System.EventHandler(this.Novedad_WorkspaceChanged);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.Label4, 0);
-                        this.Controls.SetChildIndex(this.Label5, 0);
-                        this.Controls.SetChildIndex(this.txtTecnico, 0);
-                        this.Controls.SetChildIndex(this.txtDescripcion, 0);
-                        this.Controls.SetChildIndex(this.txtCondicion, 0);
-                        this.Controls.SetChildIndex(this.txtTicket, 0);
-                        this.Controls.SetChildIndex(this.txtMinutos, 0);
                         this.ResumeLayout(false);
 
                 }

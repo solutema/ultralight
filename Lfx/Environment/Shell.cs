@@ -41,7 +41,10 @@ namespace Lfx.Environment
                         System.Diagnostics.Process NuevoProceso = new System.Diagnostics.Process();
                         NuevoProceso.StartInfo = new System.Diagnostics.ProcessStartInfo(command, paramsIdent);
                         NuevoProceso.StartInfo.WindowStyle = windowStyle;
-			NuevoProceso.StartInfo.UseShellExecute = true;
+                        if (command.IndexOf(".exe", StringComparison.OrdinalIgnoreCase) < 0)
+                                NuevoProceso.StartInfo.UseShellExecute = true;
+                        else
+                                NuevoProceso.StartInfo.UseShellExecute = false;
 			NuevoProceso.Start();
 
                         if (wait)
@@ -60,6 +63,33 @@ namespace Lfx.Environment
                         NuevoProceso.WaitForExit();
 			string Res = NuevoProceso.StandardOutput.ReadToEnd();
 			return Res.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.None);
+                }
+
+                public static void Reboot()
+                {
+                        string[] ParametrosAPasar = System.Environment.GetCommandLineArgs();
+                        ParametrosAPasar[0] = "";
+                        string Params = string.Join(" ", ParametrosAPasar).Trim();
+
+                        string ExeName;
+                        if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + "Cargador.exe"))
+                                ExeName = Lfx.Environment.Folders.ApplicationFolder + "Cargador.exe";
+                        else
+                                ExeName = Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe";
+
+                        System.Diagnostics.Process NuevoProceso = new System.Diagnostics.Process();
+                        if (Lfx.Environment.SystemInformation.RunTime == Lfx.Environment.SystemInformation.RunTimes.DotNet) {
+                                NuevoProceso.StartInfo = new System.Diagnostics.ProcessStartInfo(ExeName, Params);
+                        } else {
+                                string MonoName = Lfx.Environment.SystemInformation.Platform == SystemInformation.Platforms.Windows ? "mono.exe" : "/usr/bin/mono";
+                                NuevoProceso.StartInfo = new System.Diagnostics.ProcessStartInfo(MonoName, @"""" + ExeName + @""" " + Params);
+                        }
+
+                        NuevoProceso.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+                        NuevoProceso.StartInfo.UseShellExecute = false;
+                        //NuevoProceso.StartInfo.Verb = "runas";
+                        NuevoProceso.Start();
+                        System.Environment.Exit(0);
                 }
         }
 }

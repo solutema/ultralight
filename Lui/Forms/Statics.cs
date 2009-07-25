@@ -35,6 +35,6 @@ namespace Lui.Forms
 {
         public static class Statics
         {
-                internal static DetailBoxQuickSelect DetailBoxQuickSelect = null;
+                internal static AuxForms.DetailBoxQuickSelect DetailBoxQuickSelect = null;
         }
 }

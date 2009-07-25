@@ -367,20 +367,6 @@ namespace Lfc.Sucursales
 			this.Controls.Add(this.Label1);
 			this.Name = "FormSucursalesEditar";
 			this.Text = "Editar: Sucursales";
-			this.Controls.SetChildIndex(this.Label1, 0);
-			this.Controls.SetChildIndex(this.txtNombre, 0);
-			this.Controls.SetChildIndex(this.label2, 0);
-			this.Controls.SetChildIndex(this.txtDireccion, 0);
-			this.Controls.SetChildIndex(this.label3, 0);
-			this.Controls.SetChildIndex(this.txtTelefono, 0);
-			this.Controls.SetChildIndex(this.Label9, 0);
-			this.Controls.SetChildIndex(this.txtCiudad, 0);
-			this.Controls.SetChildIndex(this.label4, 0);
-			this.Controls.SetChildIndex(this.txtSituacionOrigen, 0);
-			this.Controls.SetChildIndex(this.label5, 0);
-			this.Controls.SetChildIndex(this.txtCuentaCaja, 0);
-			this.Controls.SetChildIndex(this.label6, 0);
-			this.Controls.SetChildIndex(this.txtCuentaCheques, 0);
 			this.ResumeLayout(false);
 
 		}

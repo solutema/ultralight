@@ -62,7 +62,6 @@ namespace Lazaro.Principal
                         this.components = new System.ComponentModel.Container();
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BarraInferior));
                         this.PanelReloj = new System.Windows.Forms.Panel();
-                        this.PingStatus = new System.Windows.Forms.Label();
                         this.RelojFecha = new System.Windows.Forms.Label();
                         this.RelojHora = new System.Windows.Forms.Label();
                         this.PanelArticulo = new System.Windows.Forms.Panel();
@@ -79,6 +78,7 @@ namespace Lazaro.Principal
                         this.AyudaTexto = new System.Windows.Forms.Label();
                         this.TimerReloj = new System.Windows.Forms.Timer(this.components);
                         this.PanelPersona = new System.Windows.Forms.Panel();
+                        this.EnlaceComentarios = new System.Windows.Forms.LinkLabel();
                         this.PersonaNombre = new System.Windows.Forms.LinkLabel();
                         this.label3 = new System.Windows.Forms.Label();
                         this.PersonaGrupo = new System.Windows.Forms.Label();
@@ -102,7 +102,6 @@ namespace Lazaro.Principal
                         this.PanelReloj.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.PanelReloj.BackColor = System.Drawing.SystemColors.ControlDark;
-                        this.PanelReloj.Controls.Add(this.PingStatus);
                         this.PanelReloj.Controls.Add(this.RelojFecha);
                         this.PanelReloj.Controls.Add(this.RelojHora);
                         this.PanelReloj.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -111,14 +110,6 @@ namespace Lazaro.Principal
                         this.PanelReloj.Name = "PanelReloj";
                         this.PanelReloj.Size = new System.Drawing.Size(74, 48);
                         this.PanelReloj.TabIndex = 0;
-                        // 
-                        // PingStatus
-                        // 
-                        this.PingStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.PingStatus.Location = new System.Drawing.Point(65, 3);
-                        this.PingStatus.Name = "PingStatus";
-                        this.PingStatus.Size = new System.Drawing.Size(6, 6);
-                        this.PingStatus.TabIndex = 3;
                         // 
                         // RelojFecha
                         // 
@@ -305,6 +296,7 @@ namespace Lazaro.Principal
                         this.PanelPersona.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.PanelPersona.Controls.Add(this.EnlaceComentarios);
                         this.PanelPersona.Controls.Add(this.PersonaNombre);
                         this.PanelPersona.Controls.Add(this.label3);
                         this.PanelPersona.Controls.Add(this.PersonaGrupo);
@@ -319,6 +311,20 @@ namespace Lazaro.Principal
                         this.PanelPersona.Name = "PanelPersona";
                         this.PanelPersona.Size = new System.Drawing.Size(718, 48);
                         this.PanelPersona.TabIndex = 2;
+                        // 
+                        // EnlaceComentarios
+                        // 
+                        this.EnlaceComentarios.AutoEllipsis = true;
+                        this.EnlaceComentarios.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EnlaceComentarios.Location = new System.Drawing.Point(612, 32);
+                        this.EnlaceComentarios.Name = "EnlaceComentarios";
+                        this.EnlaceComentarios.Size = new System.Drawing.Size(106, 16);
+                        this.EnlaceComentarios.TabIndex = 14;
+                        this.EnlaceComentarios.TabStop = true;
+                        this.EnlaceComentarios.Text = "Comentarios...";
+                        this.EnlaceComentarios.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.EnlaceComentarios.UseMnemonic = false;
+                        this.EnlaceComentarios.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.EnlaceEtiquetas_LinkClicked);
                         // 
                         // PersonaNombre
                         // 
@@ -491,7 +497,7 @@ namespace Lazaro.Principal
 		private System.Windows.Forms.Label PersonaGrupo;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.LinkLabel PersonaNombre;
-        private System.Windows.Forms.Timer TimerSlowLink;
-        public System.Windows.Forms.Label PingStatus;
+                private System.Windows.Forms.Timer TimerSlowLink;
+        private System.Windows.Forms.LinkLabel EnlaceComentarios;
 	}
 }

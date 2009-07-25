@@ -216,14 +216,6 @@ namespace Lfc.Cuentas.Corriente
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.Label1);
                         this.Name = "FormCuentaCorrienteAjuste";
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.txtImporte, 0);
-                        this.Controls.SetChildIndex(this.EntradaConcepto, 0);
-                        this.Controls.SetChildIndex(this.Label4, 0);
-                        this.Controls.SetChildIndex(this.txtObs, 0);
-                        this.Controls.SetChildIndex(this.label5, 0);
-                        this.Controls.SetChildIndex(this.txtDireccion, 0);
                         this.ResumeLayout(false);
 
                 }

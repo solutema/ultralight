@@ -150,9 +150,6 @@ namespace Lfc.Cuentas
                         this.Controls.Add(this.Label1);
                         this.Controls.Add(this.txtReporte);
                         this.Name = "FormCuentaCajaListadoIE";
-                        this.Controls.SetChildIndex(this.txtReporte, 0);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.txtAgrupar, 0);
                         this.ResumeLayout(false);
 
                 }

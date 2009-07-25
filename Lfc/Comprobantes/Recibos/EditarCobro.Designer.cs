@@ -95,7 +95,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.Controls.Add(this.Cobro);
                         this.Name = "EditarCobro";
                         this.Text = "Editar Cobro";
-                        this.Controls.SetChildIndex(this.Cobro, 0);
                         this.ResumeLayout(false);
 
                 }

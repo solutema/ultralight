@@ -117,9 +117,6 @@ namespace Lui.Forms
 			this.Name = "Note";
 			this.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.Size = new System.Drawing.Size(320, 160);
-			this.Controls.SetChildIndex(this.LabelText, 0);
-			this.Controls.SetChildIndex(this.LabelTitle, 0);
-			this.Controls.SetChildIndex(this.label1, 0);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

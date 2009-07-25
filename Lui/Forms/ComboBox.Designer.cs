@@ -108,9 +108,6 @@ namespace Lui.Forms
                         this.Leave += new System.EventHandler(this.ComboBox_Leave);
                         this.Enter += new System.EventHandler(this.ComboBox_Enter);
                         this.SizeChanged += new System.EventHandler(this.ComboBox_SizeChanged);
-                        this.Controls.SetChildIndex(this.ItemList, 0);
-                        this.Controls.SetChildIndex(this.TextBox1, 0);
-                        this.Controls.SetChildIndex(this.ImagenMasMenos, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

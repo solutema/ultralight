@@ -100,6 +100,14 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+                public bool Anulado
+                {
+                        get
+                        {
+                                return this.Estado == 90;
+                        }
+                }
+
                 public override string ToString()
                 {
                         string Res = this.Tipo.Nombre;
@@ -178,16 +186,22 @@ namespace Lbl.Comprobantes
                                 // Pagos en efectivo
                                 System.Data.DataTable TablaPagos = DataView.DataBase.Select("SELECT * FROM cuentas_movim WHERE id_cuenta=" + this.Workspace.CurrentConfig.Company.CajaDiaria.ToString() + " AND id_recibo=" + Id.ToString());
                                 foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
-                                        if (this.DePago)
-                                                Pagos.Add(new Pago(this.DataView, FormasDePago.Efectivo, Math.Abs(System.Convert.ToDouble(Pago["importe"]))));
-                                        else
-                                                Cobros.Add(new Cobro(this.DataView, FormasDePago.Efectivo, Math.Abs(System.Convert.ToDouble(Pago["importe"]))));
+                                        if (this.DePago) {
+                                                Pago Pg = new Pago(this.DataView, FormasDePago.Efectivo, Math.Abs(System.Convert.ToDouble(Pago["importe"])));
+                                                Pg.Recibo = this;
+                                                Pagos.Add(Pg);
+                                        } else {
+                                                Cobro Cb = new Cobro(this.DataView, FormasDePago.Efectivo, Math.Abs(System.Convert.ToDouble(Pago["importe"])));
+                                                Cb.Recibo = this;
+                                                Cobros.Add(Cb);
+                                        }
                                 }
 
                                 // Pagos con cheque
                                 TablaPagos = this.DataView.DataBase.Select("SELECT id_cheque FROM bancos_cheques WHERE id_recibo=" + Id.ToString());
                                 foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
                                         Bancos.Cheque Ch = new Lbl.Bancos.Cheque(DataView, System.Convert.ToInt32(Pago["id_cheque"]));
+                                        Ch.Recibo = this;
                                         if (this.DePago)
                                                 Pagos.Add(new Pago(Ch));
                                         else
@@ -198,6 +212,7 @@ namespace Lbl.Comprobantes
                                 TablaPagos = this.DataView.DataBase.Select("SELECT id_cupon FROM tarjetas_cupones WHERE id_recibo=" + Id.ToString());
                                 foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
                                         Tarjetas.Cupon Cp = new Lbl.Tarjetas.Cupon(DataView, System.Convert.ToInt32(Pago["id_cupon"]));
+                                        Cp.Recibo = this;
                                         Cobros.Add(new Cobro(Cp));
                                 }
 
@@ -206,10 +221,12 @@ namespace Lbl.Comprobantes
                                 foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
                                         if (this.DePago) {
                                                 Pago Pg = new Pago(this.DataView, FormasDePago.CuentaRegular, Math.Abs(System.Convert.ToDouble(Pago["importe"])));
+                                                Pg.Recibo = this;
                                                 Pg.CuentaOrigen = new Cuentas.CuentaRegular(DataView, System.Convert.ToInt32(Pago["id_cuenta"]));
                                                 Pagos.Add(Pg);
                                         } else {
                                                 Cobro Cb = new Cobro(this.DataView, FormasDePago.CuentaRegular, System.Convert.ToDouble(Pago["importe"]));
+                                                Cb.Recibo = this;
                                                 Cb.CuentaDestino = new Cuentas.CuentaRegular(DataView, System.Convert.ToInt32(Pago["id_cuenta"]));
                                                 Cobros.Add(Cb);
                                         }
@@ -352,9 +369,31 @@ namespace Lbl.Comprobantes
 
                         // Doy las facturas por canceladas
                         double TotalACancelar = this.Importe;
+
+                        if (this.Facturas == null || this.Facturas.Count == 0) {
+                                // No se especificaron facturas. Busco facturas a cancelar.
+                                System.Data.DataTable FacturasConSaldo = this.DataView.DataBase.Select("SELECT id_factura,total,cancelado FROM facturas WHERE impresa>0 AND anulada=0 AND numero>0 AND tipo_fac IN ('A', 'B', 'C', 'E', 'M', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND id_formapago IN (1, 3, 99) AND cancelado<total AND id_cliente=" + this.Cliente.Id.ToString() + " ORDER BY id_factura");
+
+                                double ImporteRestante = this.Importe;
+
+                                foreach (System.Data.DataRow Factura in FacturasConSaldo.Rows) {
+                                        double SaldoFactura = System.Convert.ToDouble(Factura["total"]) - System.Convert.ToDouble(Factura["cancelado"]);
+                                        double ImporteASaldar = SaldoFactura;
+
+                                        if (ImporteASaldar > Math.Abs(ImporteRestante))
+                                                ImporteASaldar = Math.Abs(ImporteRestante);
+
+                                        this.Facturas.Add(new ComprobanteConArticulos(DataView, System.Convert.ToInt32(Factura["id_factura"])));
+                                        ImporteRestante += ImporteASaldar;
+
+                                        if (ImporteRestante >= 0)
+                                                break;
+                                }
+                        }
+
                         if (this.Facturas != null && this.Facturas.Count > 0) {
                                 // Si hay una lista de facturas, las cancelo
-                                foreach (Comprobantes.Factura Fact in this.Facturas) {
+                                foreach (Comprobantes.ComprobanteConArticulos Fact in this.Facturas) {
                                         // Calculo cuanto queda por cancelar en esta factura
                                         double ImportePendiente = Fact.Total - Fact.ImporteCancelado;
 
@@ -379,15 +418,8 @@ namespace Lbl.Comprobantes
                                         if (TotalACancelar == 0)
                                                 break;
                                 }
-                        } else {
-                                // Si no se especificaron facturas,
-                                // dejo que CtaCteMovim cancele las más viejas y/o acredite el sobrante
-                                Cuentas.CuentaCorriente CtaCte = new Lbl.Cuentas.CuentaCorriente(this.DataView, Cliente.Id);
-                                Lfx.Types.OperationResult ResultadoMovim = CtaCte.Movimiento(true, this.Concepto, "Cancelación s/" + this.ToString(), this.DePago ? this.Importe : -this.Importe, string.Empty, null, this, this.CancelaCosas);
-                                if (ResultadoMovim.Success != true)
-                                        return ResultadoMovim;
-                                TotalACancelar -= this.Importe;
                         }
+
                         if (TotalACancelar > 0) {
                                 Cuentas.CuentaCorriente CtaCte = new Lbl.Cuentas.CuentaCorriente(this.DataView, Cliente.Id);
                                 Lfx.Types.OperationResult ResultadoCtaCte = CtaCte.Movimiento(true, this.Concepto, "Saldo a favor s/" + this.ToString(), this.DePago ? TotalACancelar : -TotalACancelar, string.Empty, null, this, this.CancelaCosas);
@@ -411,6 +443,27 @@ namespace Lbl.Comprobantes
                         if (Res.Success)
                                 this.DataView.DataBase.Execute("UPDATE recibos SET impreso=1 WHERE id_recibo=" + this.Id.ToString());
                         return Res;
+                }
+
+                public void Anular()
+                {
+                        if (this.Existe && this.Anulado == false) {
+                                // Marco el recibo como anulado
+                                Lfx.Data.SqlUpdateBuilder Act = new Lfx.Data.SqlUpdateBuilder(this.TablaDatos);
+                                Act.Fields.AddWithValue("estado", 90);
+                                Act.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
+                                this.DataView.Execute(Act);
+
+                                if (this.DePago) {
+                                        foreach (Cobro Cb in this.Cobros) {
+                                                Cb.Anular();
+                                        }
+                                } else {
+                                        foreach (Pago Pg in this.Pagos) {
+                                                Pg.Anular();
+                                        }
+                                }
+                        }
                 }
         }
 }

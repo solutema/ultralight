@@ -480,28 +480,6 @@ namespace Lfc.Articulos
                         this.Name = "Movimiento";
                         this.Text = "Artículos: Entrada y Salida";
                         this.WorkspaceChanged += new System.EventHandler(this.FormArticulosMovim_WorkspaceChanged);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.Label4, 0);
-                        this.Controls.SetChildIndex(this.txtMovimiento, 0);
-                        this.Controls.SetChildIndex(this.txtCantidad, 0);
-                        this.Controls.SetChildIndex(this.txtObs, 0);
-                        this.Controls.SetChildIndex(this.lblDesdeSituacion, 0);
-                        this.Controls.SetChildIndex(this.lblHaciaSituacion, 0);
-                        this.Controls.SetChildIndex(this.txtStockActual, 0);
-                        this.Controls.SetChildIndex(this.txtStockResult, 0);
-                        this.Controls.SetChildIndex(this.Label7, 0);
-                        this.Controls.SetChildIndex(this.txtDesdeSituacion, 0);
-                        this.Controls.SetChildIndex(this.Label8, 0);
-                        this.Controls.SetChildIndex(this.txtHaciaSituacion, 0);
-                        this.Controls.SetChildIndex(this.txtStockActual2, 0);
-                        this.Controls.SetChildIndex(this.txtStockResult2, 0);
-                        this.Controls.SetChildIndex(this.lblStockFlecha, 0);
-                        this.Controls.SetChildIndex(this.lblStockFlecha2, 0);
-                        this.Controls.SetChildIndex(this.Label5, 0);
-                        this.Controls.SetChildIndex(this.Label6, 0);
-                        this.Controls.SetChildIndex(this.EntradaArticulo, 0);
                         this.ResumeLayout(false);
 
 		}

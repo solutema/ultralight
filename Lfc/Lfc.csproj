@@ -197,6 +197,12 @@
     <Compile Include="Cuentas\Vencimientos\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Etiquetas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Etiquetas.Designer.cs">
+      <DependentUpon>Etiquetas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Personas\AltaDuplicada.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -560,6 +566,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Cuentas\Vencimientos\Editar.resx">
       <DependentUpon>Editar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Etiquetas.resx">
+      <DependentUpon>Etiquetas.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Personas\AltaDuplicada.resx">

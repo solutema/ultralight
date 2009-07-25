@@ -61,6 +61,13 @@ namespace Lbl.Tarjetas
                         this.Cargar();
 		}
 
+                public Cupon(Lws.Data.DataView dataView, Lbl.Comprobantes.ComprobanteConArticulos factura)
+                        : this(dataView)
+                {
+                        m_ItemId = dataView.DataBase.FieldInt("SELECT MAX(id_cupon) FROM tarjetas_cupones WHERE id_factura=" + factura.Id.ToString());
+                        this.Cargar();
+                }
+
 		public Cupon(Lws.Data.DataView dataView, double importe, Tarjetas.Tarjeta tarjeta, Tarjetas.Plan plan, string numero, string autorizacion)
 			: this(dataView)
 		{
@@ -156,6 +163,14 @@ namespace Lbl.Tarjetas
                         set
                         {
                                 this.Registro["importe"] = value;
+                        }
+                }
+
+                public bool Anulado
+                {
+                        get
+                        {
+                                return this.Estado == ((int)(Lbl.Tarjetas.Estado.Anulado));
                         }
                 }
 
@@ -303,5 +318,16 @@ namespace Lbl.Tarjetas
 
 			return new Lfx.Types.SuccessOperationResult();
 		}
+
+                public void Anular()
+                {
+                        if (this.Anulado == false) {
+                                // Marco el cheque como anulado
+                                Lfx.Data.SqlUpdateBuilder Act = new Lfx.Data.SqlUpdateBuilder(this.TablaDatos);
+                                Act.Fields.AddWithValue("estado", 1);
+                                Act.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
+                                this.DataView.Execute(Act);
+                        }
+                }
 	}
 }

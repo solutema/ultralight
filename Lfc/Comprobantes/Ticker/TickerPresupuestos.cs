@@ -570,7 +570,7 @@ namespace Lfc.Comprobantes.Ticker
                                 lblDescuento.Text = Presupuesto.txtDescuento.Text + "%";
                         else
                                 lblDescuento.Text = "-";
-                        lblTotal.Text = Lfx.Types.Currency.CurrencySymbol + " " + Presupuesto.txtTotal.Text;
+                        lblTotal.Text = Lfx.Types.Currency.CurrencySymbol + " " + Presupuesto.EntradaTotal.Text;
                 }
 
 

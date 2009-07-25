@@ -185,7 +185,7 @@
             Clases referentes al manejo de tipos.
             </summary>
         </member>
-        <member name="T:Lfx.Data.Providers.MySqlProvider">
+        <member name="T:Lfx.Data.Providers.MySql">
             <summary>
             Proveedor compatible con MySql Connector/NET versión 6. Requiere la presencia de MySql.Data.dll en el directorio del programa.
             </summary>

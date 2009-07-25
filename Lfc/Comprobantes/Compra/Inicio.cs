@@ -43,8 +43,7 @@ namespace Lfc.Comprobantes.Compra
 
 		public string m_Tipo = "PD";
 		public int m_Proveedor, m_Estado = -1;
-		internal string m_Fecha = "ultimos30";
-		internal DateTime? m_Fecha1, m_Fecha2;
+		private Lfx.Types.DateRange m_Fecha = new Lfx.Types.DateRange("mes-0");
 
         	public Inicio()
 		{
@@ -118,12 +117,11 @@ namespace Lfc.Comprobantes.Compra
 		public override Lfx.Types.OperationResult OnPrint(bool selectPrinter)
 		{
 			Lfc.Comprobantes.Compra.Listado OFormListado = new Lfc.Comprobantes.Compra.Listado();
+                        OFormListado.Workspace = this.Workspace;
                         OFormListado.MdiParent = this.MdiParent;
 			OFormListado.m_Tipo = m_Tipo;
 			OFormListado.m_Proveedor = m_Proveedor;
 			OFormListado.m_Fecha = m_Fecha;
-			OFormListado.m_Fecha1 = m_Fecha1.Value;
-			OFormListado.m_Fecha2 = m_Fecha2.Value;
 			OFormListado.Show();
 			OFormListado.RefreshList();
 			return new Lfx.Types.SuccessOperationResult();
@@ -161,18 +159,14 @@ namespace Lfc.Comprobantes.Compra
 				OFiltros.Workspace = this.Workspace;
 				OFiltros.txtTipo.TextKey = m_Tipo;
 				OFiltros.txtProveedor.Text = m_Proveedor.ToString();
-				OFiltros.txtFecha.TextKey = m_Fecha;
-				OFiltros.txtFecha1.Text = Lfx.Types.Formatting.FormatDate(m_Fecha1);
-				OFiltros.txtFecha2.Text = Lfx.Types.Formatting.FormatDate(m_Fecha2);
+				OFiltros.EntradaFechas.Rango = m_Fecha;
 				OFiltros.txtEstado.TextKey = m_Estado.ToString();
 				OFiltros.ShowDialog();
 				if (OFiltros.DialogResult == DialogResult.OK)
 				{
 					m_Tipo = OFiltros.txtTipo.TextKey;
 					m_Proveedor = OFiltros.txtProveedor.TextInt;
-					m_Fecha = OFiltros.txtFecha.TextKey;
-					m_Fecha1 = Lfx.Types.Parsing.ParseDate(OFiltros.txtFecha1.Text);
-					m_Fecha2 = Lfx.Types.Parsing.ParseDate(OFiltros.txtFecha2.Text);
+					m_Fecha = OFiltros.EntradaFechas.Rango;
 					m_Estado = Lfx.Types.Parsing.ParseInt(OFiltros.txtEstado.TextKey);
 					this.RefreshList();
 					filtrarReturn.Success = true;
@@ -225,31 +219,8 @@ namespace Lfc.Comprobantes.Compra
 			if (m_Estado >= 0)
 				FiltroTemp += " AND (facturas.estado=" + m_Estado.ToString() + ")";
 
-			switch (m_Fecha)
-			{
-				case "todo":
-					// Nada
-					break;
-				case "mesactual":
-					m_Fecha1 = new DateTime(System.DateTime.Now.Year, System.DateTime.Now.Month, 1);
-					m_Fecha2 = new DateTime(System.DateTime.Now.Year, System.DateTime.Now.Month, DateTime.DaysInMonth(System.DateTime.Now.Year, System.DateTime.Now.Month), 23, 59, 59);
-					FiltroTemp += " AND (facturas.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateTimeSql(m_Fecha1.Value) + "' AND '" + Lfx.Types.Formatting.FormatDateTimeSql(m_Fecha2.Value) + "')";
-					break;
-				case "mespasado":
-					DateTime MesPasado = System.DateTime.Now.AddMonths(-1);
-					m_Fecha1 = new DateTime(MesPasado.Year, MesPasado.Month, 1);
-					m_Fecha2 = new DateTime(MesPasado.Year, MesPasado.Month, DateTime.DaysInMonth(MesPasado.Year, MesPasado.Month));
-					FiltroTemp += " AND (facturas.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha1.Value) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha2.Value) + " 23:59:59')";
-					break;
-                                case "ultimos30":
-                                        m_Fecha1 = System.DateTime.Now.AddMonths(-1);
-                                        m_Fecha2 = System.DateTime.Now;
-                                        FiltroTemp += " AND (facturas.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha1.Value) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha2.Value) + " 23:59:59')";
-                                        break;
-				case "fecha":
-					FiltroTemp += " AND (facturas.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha1.Value) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha2.Value) + " 23:59:59')";
-					break;
-			}
+                        if (m_Fecha.HasRange)
+                                FiltroTemp += " AND (facturas.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')";
 
 			this.CurrentFilter = FiltroTemp;
 			base.RefreshList();

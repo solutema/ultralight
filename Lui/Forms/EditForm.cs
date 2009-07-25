@@ -244,7 +244,7 @@ namespace Lui.Forms
 					case Keys.F9:
 						e.Handled = true;
 						if (SaveButton.Enabled && SaveButton.Visible)
-                                                        this.SaveButton_Click(sender, e);
+                                                        SaveButton.PerformClick();
 						break;
 
 					case Keys.Escape:

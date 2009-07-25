@@ -161,10 +161,6 @@ namespace Lfc.Articulos.Rubros
 			this.Controls.Add(this.Label5);
 			this.Name = "Editar";
 			this.Text = "Artículos: Rubros: Editar";
-			this.Controls.SetChildIndex(this.Label5, 0);
-			this.Controls.SetChildIndex(this.txtNombre, 0);
-			this.Controls.SetChildIndex(this.txtAlicuota, 0);
-			this.Controls.SetChildIndex(this.label9, 0);
 			this.ResumeLayout(false);
 
 		}

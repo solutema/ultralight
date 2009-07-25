@@ -133,30 +133,26 @@ namespace Lfc.Articulos
                         switch (e.KeyCode) {
                                 case Keys.F1:
                                         e.Handled = true;
-
                                         if (BotonInfoCosto.Enabled && BotonInfoCosto.Visible)
-                                                cmdInfo_Click(sender, e);
+                                                BotonInfoCosto.PerformClick();
                                         break;
 
                                 case Keys.F4:
                                         e.Handled = true;
-
                                         if (BotonSeleccionarImagen.Enabled && BotonSeleccionarImagen.Visible)
-                                                cmdImagen_Click(sender, e);
+                                                BotonSeleccionarImagen.PerformClick();
                                         break;
 
                                 case Keys.F5:
                                         e.Handled = true;
-
                                         if (BotonQuitarImagen.Enabled && BotonQuitarImagen.Visible)
-                                                cmdImagenQuitar_Click(sender, e);
+                                                BotonQuitarImagen.PerformClick();
                                         break;
 
                                 case Keys.F7:
                                         e.Handled = true;
-
                                         if (cmdDescripcion.Enabled && cmdDescripcion.Visible)
-                                                cmdDescripcion_Click(sender, e);
+                                                cmdDescripcion.PerformClick();
                                         break;
                         }
                 }
@@ -205,6 +201,9 @@ namespace Lfc.Articulos
 
                 private void txtCostoMargen_TextChanged(System.Object sender, System.EventArgs e)
                 {
+                        if (this.Workspace == null)
+                                return;
+
                         if (Lfx.Types.Parsing.ParseCurrency(EntradaCosto.Text) < 0)
                                 EntradaCosto.ErrorText = "El costo no debería ser menor que cero.";
                         else
@@ -212,7 +211,7 @@ namespace Lfc.Articulos
 
                         if (IgnorarCostoTextChanged <= 0) {
                                 if (Lfx.Types.Strings.IsNumericInt(EntradaMargen.TextKey)) {
-                                        Lfx.Data.Row Margen = this.CachedRow.DataView.Tables["margenes"].FastRows[Lfx.Types.Parsing.ParseInt(EntradaMargen.TextKey)];
+                                        Lfx.Data.Row Margen = this.DataView.Tables["margenes"].FastRows[Lfx.Types.Parsing.ParseInt(EntradaMargen.TextKey)];
 
                                         if (Margen != null) {
                                                 double dPVP = Lfx.Types.Parsing.ParseCurrency(EntradaCosto.Text);

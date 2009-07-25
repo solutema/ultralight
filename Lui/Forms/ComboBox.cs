@@ -406,7 +406,8 @@ namespace Lui.Forms
                         if (ItemList.Visible) {
                                 ItemList.Items.Clear();
                                 for (int i = m_SetDataText.GetLowerBound(0); i <= m_SetDataText.GetUpperBound(0); i++) {
-                                        ItemList.Items.Add(m_SetDataText[i]);
+                                        if (m_SetDataText[i] != null)
+                                                ItemList.Items.Add(m_SetDataText[i]);
                                         if (m_SetDataText[i] == this.Text)
                                                 ItemList.SelectedIndex = ItemList.Items.Count - 1;
                                 }

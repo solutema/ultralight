@@ -58,7 +58,7 @@ namespace Lazaro.Charts
 		private System.Windows.Forms.PictureBox pictureBox8;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.PictureBox pictureBox9;
-		internal Lui.Forms.Button cmdPorDiaDelMes;
+		internal Lui.Forms.Button BotonPorDiaDelMes;
 		private Lui.Forms.Chart ChartMes;
                 private Label label5;
                 private PictureBox pictureBox5;
@@ -118,7 +118,7 @@ namespace Lazaro.Charts
                         this.label8 = new System.Windows.Forms.Label();
                         this.pictureBox8 = new System.Windows.Forms.PictureBox();
                         this.ChartMes = new Lui.Forms.Chart();
-                        this.cmdPorDiaDelMes = new Lui.Forms.Button();
+                        this.BotonPorDiaDelMes = new Lui.Forms.Button();
                         this.label9 = new System.Windows.Forms.Label();
                         this.pictureBox9 = new System.Windows.Forms.PictureBox();
                         this.label5 = new System.Windows.Forms.Label();
@@ -355,24 +355,24 @@ namespace Lazaro.Charts
                         this.ChartMes.Title = "Comparativa por Día del Mes";
                         this.ChartMes.VerticalGrid = true;
                         // 
-                        // cmdPorDiaDelMes
+                        // BotonPorDiaDelMes
                         // 
-                        this.cmdPorDiaDelMes.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdPorDiaDelMes.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdPorDiaDelMes.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdPorDiaDelMes.Image = null;
-                        this.cmdPorDiaDelMes.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdPorDiaDelMes.Location = new System.Drawing.Point(48, 480);
-                        this.cmdPorDiaDelMes.Name = "cmdPorDiaDelMes";
-                        this.cmdPorDiaDelMes.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdPorDiaDelMes.ReadOnly = false;
-                        this.cmdPorDiaDelMes.Size = new System.Drawing.Size(100, 40);
-                        this.cmdPorDiaDelMes.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
-                        this.cmdPorDiaDelMes.Subtext = "";
-                        this.cmdPorDiaDelMes.TabIndex = 17;
-                        this.cmdPorDiaDelMes.Text = "Mostrar";
-                        this.cmdPorDiaDelMes.ToolTipText = "";
-                        this.cmdPorDiaDelMes.Click += new System.EventHandler(this.cmdPorDiaDelMes_Click);
+                        this.BotonPorDiaDelMes.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonPorDiaDelMes.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonPorDiaDelMes.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonPorDiaDelMes.Image = null;
+                        this.BotonPorDiaDelMes.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonPorDiaDelMes.Location = new System.Drawing.Point(48, 480);
+                        this.BotonPorDiaDelMes.Name = "BotonPorDiaDelMes";
+                        this.BotonPorDiaDelMes.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonPorDiaDelMes.ReadOnly = false;
+                        this.BotonPorDiaDelMes.Size = new System.Drawing.Size(100, 40);
+                        this.BotonPorDiaDelMes.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
+                        this.BotonPorDiaDelMes.Subtext = "";
+                        this.BotonPorDiaDelMes.TabIndex = 17;
+                        this.BotonPorDiaDelMes.Text = "Mostrar";
+                        this.BotonPorDiaDelMes.ToolTipText = "";
+                        this.BotonPorDiaDelMes.Click += new System.EventHandler(this.BotonPorDiaDelMes_Click);
                         // 
                         // label9
                         // 
@@ -467,7 +467,7 @@ namespace Lazaro.Charts
                         this.Controls.Add(this.label8);
                         this.Controls.Add(this.pictureBox8);
                         this.Controls.Add(this.ChartMes);
-                        this.Controls.Add(this.cmdPorDiaDelMes);
+                        this.Controls.Add(this.BotonPorDiaDelMes);
                         this.Controls.Add(this.lvAnual);
                         this.Controls.Add(this.label4);
                         this.Controls.Add(this.pictureBox4);
@@ -718,7 +718,7 @@ namespace Lazaro.Charts
 			ChartRent.Redraw();
 		}
 
-		private void cmdPorDiaDelMes_Click(object sender, System.EventArgs e)
+		private void BotonPorDiaDelMes_Click(object sender, System.EventArgs e)
 		{
 			ChartMes.Title = "Facturación Por Día del Mes";
 			ChartMes.GraphicType = Lui.Forms.Chart.GraphicTypes.Lines;

@@ -156,7 +156,7 @@ namespace Lfc.Tareas
                         this.Label4.Text = "Total";
                         this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
                         // 
-                        // txtTotal
+                        // EntradaTotal
                         // 
                         this.txtTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.txtTotal.AutoNav = true;
@@ -167,7 +167,7 @@ namespace Lfc.Tareas
                         this.txtTotal.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.txtTotal.Location = new System.Drawing.Point(440, 280);
                         this.txtTotal.MaxLenght = 32767;
-                        this.txtTotal.Name = "txtTotal";
+                        this.txtTotal.Name = "EntradaTotal";
                         this.txtTotal.Prefijo = "$";
                         this.txtTotal.ReadOnly = true;
                         this.txtTotal.Size = new System.Drawing.Size(144, 32);
@@ -250,14 +250,6 @@ namespace Lfc.Tareas
                         this.Controls.Add(this.lblTitulo);
                         this.Controls.Add(this.ProductArray);
                         this.Name = "Articulos";
-                        this.Controls.SetChildIndex(this.ProductArray, 0);
-                        this.Controls.SetChildIndex(this.lblTitulo, 0);
-                        this.Controls.SetChildIndex(this.txtTotal, 0);
-                        this.Controls.SetChildIndex(this.Label4, 0);
-                        this.Controls.SetChildIndex(this.Label5, 0);
-                        this.Controls.SetChildIndex(this.txtSubTotal, 0);
-                        this.Controls.SetChildIndex(this.Label6, 0);
-                        this.Controls.SetChildIndex(this.txtDescuento, 0);
                         this.ResumeLayout(false);
 
                 }

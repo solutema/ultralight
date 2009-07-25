@@ -97,6 +97,7 @@ namespace Lbl.Personas
                         Comando.Fields.AddWithValue("apellido", this.Apellido);
                         Comando.Fields.AddWithValue("razon_social", this.RazonSocial);
                         Comando.Fields.AddWithValue("nombre_visible", this.Nombre);
+                        Comando.Fields.AddWithValue("contrasena", this.Contrasena);
                         if (this.TipoDocumento == 0)
                                 Comando.Fields.AddWithValue("id_tipo_doc", null);
                         else
@@ -343,6 +344,18 @@ namespace Lbl.Personas
                                 this.Registro["email"] = value;
                         }
 		}
+
+                public string Contrasena
+                {
+                        get
+                        {
+                                return this.FieldString("contrasena");
+                        }
+                        set
+                        {
+                                this.Registro["contrasena"] = value;
+                        }
+                }
 
 		public DateTime? FechaNacimiento
 		{

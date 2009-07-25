@@ -28,12 +28,9 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections;
 using System.Data;
-using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
-using System.Collections.Generic;
 using System.Net.Mail;
 using System.Security.Permissions;
 
@@ -59,78 +56,6 @@ namespace Lazaro
                         return Lfx.Types.Formatting.FormatDateAndTime(InfoArchivo.LastWriteTime);
                 }
 
-
-                /// <summary>
-                /// Guarda registro de un error, intentando hacer un stack trace sobre el error.
-                /// Guarda copia del error en el portapapeles y en el
-                /// registro de sucesos de Windows NT, en un archivo de texto (mediante llamada a GLog)
-                /// y también muestra el error en pantalla.
-                /// </summary>   
-                public static void ErrorLog(string Mensaje, string Extra)
-                {
-                        System.Text.StringBuilder ErrorText = new System.Text.StringBuilder();
-                        ErrorText.Append("*** ERROR" + Environment.NewLine);
-                        ErrorText.Append("Fecha: " + Lfx.Types.Formatting.FormatDateAndTime(System.DateTime.Now) + Environment.NewLine);
-                        ErrorText.Append("Estación: " + Lfx.Environment.SystemInformation.ComputerName + Environment.NewLine);
-                        ErrorText.Append("Mensaje: " + Mensaje + Environment.NewLine);
-                        ErrorText.Append("Extra: " + Extra + Environment.NewLine);
-
-                        System.Text.StringBuilder SysExtra = new System.Text.StringBuilder();
-
-                        try {
-                                // Intento ver la pila de llamadas
-                                StackTrace st = new StackTrace();
-                                SysExtra.Append("StackTrace:");
-
-                                for (int i = 1; i <= st.FrameCount; i++) {
-                                        StackFrame sf = st.GetFrame(i);
-                                        SysExtra.Append(" " + sf.GetMethod().Name);
-
-                                        try {
-                                                SysExtra.Append("(" + sf.GetFileLineNumber().ToString() + ")");
-                                        }
-                                        catch {
-                                                // Falló al agregar el número de línea. No lo pongo y listo
-                                        }
-                                }
-
-                                SysExtra.Append(Environment.NewLine);
-                        }
-                        catch {
-                                // Nada
-                        }
-
-                        ErrorText.Append("SysExtra: " + SysExtra.ToString() + Environment.NewLine);
-
-                        try {
-                                // Guardo en el Portapapeles
-                                Clipboard.SetDataObject(ErrorText);
-                                // Y en un archivo de texto
-                                GLog(ErrorText.ToString());
-                        }
-                        catch {
-                                // Nada
-                        }
-
-                        try {
-                                OperatingSystem osInfo = System.Environment.OSVersion;
-
-                                if (osInfo.Platform == PlatformID.Win32NT && osInfo.Version.Major >= 4) {
-                                        // Uso el registro de sucesos sólo si es NT (4 o superior)
-                                        EventLog ev = new EventLog("Application", System.Environment.MachineName, "Lazaro");
-                                        ev.WriteEntry(ErrorText.ToString(), System.Diagnostics.EventLogEntryType.Error);
-                                        ev.Close();
-                                }
-                        }
-                        catch {
-                                // En fin...
-                        }
-
-                        if (System.Diagnostics.Debugger.IsAttached) {
-                                Lui.Forms.MessageBox.Show(ErrorText.ToString(), "Error Grave");
-                        }
-                }
-
                 // Función: TareasEnCurso
                 // Descripción:
                 //    Devuelve la cantidad de tareas actualmente en ejecucin
@@ -141,19 +66,6 @@ namespace Lazaro
                         return Aplicacion.FormularioPrincipal.MdiChildren.Length;
                 }
 
-                // Sub: GLog
-                // Descripción:
-                //    Escribe un evento en el archivo lazaro.log en la carpeta del programa
-                //    (A diferencia de GDBLog que lo hace en la tabla sys_log)
-                //    Se utiliza para registrar errores y comportamentos anormales
-                public static void GLog(string sCadena)
-                {
-                        System.IO.BinaryWriter wr = new System.IO.BinaryWriter(new System.IO.FileStream(Lfx.Environment.Folders.ApplicationDataFolder + "lazaro.log", System.IO.FileMode.Append));
-                        wr.Write((System.DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss") + " " + sCadena + Environment.NewLine).ToCharArray());
-                        wr.Close();
-                }
-
-
                 // Función Main()
                 // Descripción: Punto de entrada principal del programa
                 //    Hace la conexión a la base de datos y llama a IniciarNormal o IniciarFiscal
@@ -161,7 +73,14 @@ namespace Lazaro
                 [STAThread, SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.ControlAppDomain)]
                 public static int Main(string[] args)
                 {
+                        System.Console.WriteLine("RunTime: " + Lfx.Environment.SystemInformation.RunTime.ToString() + " en " + Lfx.Environment.SystemInformation.Platform.ToString());
                         System.Console.WriteLine("Codificación: " + System.Text.Encoding.Default.BodyName);
+                        string[] ArchivosNuevos = System.IO.Directory.GetFiles(Lfx.Environment.Folders.ApplicationFolder, "*.new", System.IO.SearchOption.AllDirectories);
+                        if (ArchivosNuevos.Length > 0) {
+                                System.Console.WriteLine("Existen actualizaciones pendientes. Ejecutando Cargador");
+                                Lfx.Environment.Shell.Reboot();
+                        }
+
                         if (System.Text.Encoding.Default.BodyName != "iso-8859-1"
                                 && System.Text.Encoding.Default.BodyName != "utf-8") {
                                 System.Windows.Forms.MessageBox.Show("Sólo se permiten las codificaciones ISO-8859-1 (Latin-1) y UTF-8.", "Error");
@@ -256,7 +175,7 @@ namespace Lazaro
                                 }
                         } while (true);
 
-                        //TODO: verificar la presencia de los frameworks correspondientes
+                        // FIXME: verificar la presencia de los frameworks correspondientes
                         /* 
                         if (Lfx.Environment.SystemInformation.RunTime == Lfx.Environment.SystemInformation.RunTimes.DotNet) {
                                 bool TieneDotNet35 = false;
@@ -367,21 +286,21 @@ namespace Lazaro
 
                         OFormIngreso.ShowDialog();
 
-                        if (Lws.Workspace.Master.DefaultDataBase.SlowLink == false && Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Backup.Tipo", "0") == "2") {
-                                string FechaActual = System.DateTime.Now.ToString("yyyy-MM-dd");
-                                string FechaBackup = Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Backup.Ultimo", "");
-                                if (FechaActual != FechaBackup) {
-                                        int Articulos = Lws.Workspace.Master.DefaultDataBase.FieldInt("SELECT COUNT(id_articulo) FROM articulos");
-                                        if (Articulos > 0) {
-                                                //Hago un backup automático, una vez por día, siempre que haya al menos 1 artículo en la BD
-                                                //Esto es para evitar hacer backup de una BD vacía
-                                                Aplicacion.Exec("BACKUP NOW");
-                                                Lws.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema", "Backup.Ultimo", FechaActual);
+                        if (Lws.Workspace.Master.CurrentUser.UserId > 0) {
+                                if (Lws.Workspace.Master.DefaultDataBase.SlowLink == false && Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Backup.Tipo", "0") == "2") {
+                                        string FechaActual = System.DateTime.Now.ToString("yyyy-MM-dd");
+                                        string FechaBackup = Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Backup.Ultimo", "");
+                                        if (FechaActual != FechaBackup) {
+                                                int Articulos = Lws.Workspace.Master.DefaultDataBase.FieldInt("SELECT COUNT(id_articulo) FROM articulos");
+                                                if (Articulos > 0) {
+                                                        //Hago un backup automático, una vez por día, siempre que haya al menos 1 artículo en la BD
+                                                        //Esto es para evitar hacer backup de una BD vacía
+                                                        Aplicacion.Exec("BACKUP NOW");
+                                                        Lws.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema", "Backup.Ultimo", FechaActual);
+                                                }
                                         }
                                 }
-                        }
 
-                        if (Lws.Workspace.Master.CurrentUser.UserId > 0) {
                                 // Mostrar el formulario
                                 Aplicacion.FormularioPrincipal = new Principal.Inicio();
                                 Aplicacion.FormularioPrincipal.Workspace = Lws.Workspace.Master;
@@ -412,18 +331,21 @@ namespace Lazaro
                 public static object Exec(string comando, string estacion)
                 {
                         if (estacion == null || estacion.Length == 0)
-                                estacion = Lfx.Environment.SystemInformation.ComputerName;
+                                estacion = System.Environment.MachineName.ToUpperInvariant();
 
                         string SubComando = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpperInvariant();
 
                         switch (SubComando) {
                                 case "LIC":
                                         Lfx.Lic.Licenciar(@"C:\Lazaro\Sistema");
+                                        Lfx.Lic.Licenciar(@"C:\Lazaro\Componentes\RunComponent");
+                                        Lfx.Lic.Licenciar(@"C:\Lazaro\Componentes\ServidorFiscal");
                                         Lfx.Lic.Licenciar(@"C:\Lazaro\Lfx");
                                         Lfx.Lic.Licenciar(@"C:\Lazaro\Lbl");
                                         Lfx.Lic.Licenciar(@"C:\Lazaro\Lws");
                                         Lfx.Lic.Licenciar(@"C:\Lazaro\Lui");
                                         Lfx.Lic.Licenciar(@"C:\Lazaro\Lfc");
+                                        Lfx.Lic.Licenciar(@"C:\Lazaro\Cargador");
                                         break;
 
                                 case "ERROR":
@@ -446,15 +368,7 @@ namespace Lazaro
 
                                 case "REBOOT":
                                         Config.Terminar();
-
-                                        string[] ParametrosAPasar = Environment.GetCommandLineArgs();
-                                        ParametrosAPasar[0] = "";
-                                        string Params = string.Join(" ", ParametrosAPasar).Trim();
-                                        if (Lfx.Environment.SystemInformation.RunTime == Lfx.Environment.SystemInformation.RunTimes.DotNet)
-                                                Lfx.Environment.Shell.Execute(System.Reflection.Assembly.GetExecutingAssembly().Location, Params, ProcessWindowStyle.Normal, false);
-                                        else
-                                                Lfx.Environment.Shell.Execute("mono", @"""" + System.Reflection.Assembly.GetExecutingAssembly().Location + @""" " + Params, ProcessWindowStyle.Normal, false);
-                                        System.Environment.Exit(0);
+                                        Lfx.Environment.Shell.Reboot();
                                         break;
 
                                 case "CALC":
@@ -595,8 +509,8 @@ namespace Lazaro
                                         if (Lui.Login.LoginData.ValidateAccess(Lws.Workspace.Master.CurrentUser, "documents.create") && Lui.Login.LoginData.Access(Lws.Workspace.Master.CurrentUser, "documents.write")) {
                                                 string SubComandoAnular = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
 
-                                                Lfc.Comprobantes.Facturas.Anular OFormFacturaAnular = new Lfc.Comprobantes.Facturas.Anular();
-                                                OFormFacturaAnular.Workspace = Lws.Workspace.Master;
+                                                Lfc.Comprobantes.Facturas.Anular FormularioFacturaAnular = new Lfc.Comprobantes.Facturas.Anular();
+                                                FormularioFacturaAnular.Workspace = Lws.Workspace.Master;
 
                                                 switch (SubComandoAnular) {
                                                         case "FACTURA":
@@ -606,16 +520,16 @@ namespace Lazaro
 
                                                         case "B":
                                                         case "FB":
-                                                                OFormFacturaAnular.txtTipo.Text = "B";
+                                                                FormularioFacturaAnular.EntradaTipo.Text = "B";
                                                                 break;
 
                                                         case "A":
                                                         case "FA":
-                                                                OFormFacturaAnular.txtTipo.Text = "A";
+                                                                FormularioFacturaAnular.EntradaTipo.Text = "A";
                                                                 break;
                                                 }
 
-                                                OFormFacturaAnular.ShowDialog(Aplicacion.FormularioPrincipal);
+                                                FormularioFacturaAnular.ShowDialog(Aplicacion.FormularioPrincipal);
                                         }
                                         break;
 
@@ -1471,10 +1385,18 @@ namespace Lazaro
                         System.Windows.Forms.Application.DoEvents();
 
                         System.Text.StringBuilder Texto = new System.Text.StringBuilder();
-                        Texto.AppendLine("Lugar   :" + ex.Source);
-                        Texto.AppendLine("Equipo  :" + Lfx.Environment.SystemInformation.ComputerName);
-                        Texto.AppendLine("Plataf. :" + Lfx.Environment.SystemInformation.Platform);
-                        Texto.AppendLine("RunTime :" + Lfx.Environment.SystemInformation.RunTime);
+                        Texto.AppendLine("Lugar   : " + ex.Source);
+                        try {
+                                System.Diagnostics.StackTrace Traza = new System.Diagnostics.StackTrace(ex, true);
+                                Texto.AppendLine("Línea   : " + Traza.GetFrame(0).GetFileLineNumber());
+                                Texto.AppendLine("Columna : " + Traza.GetFrame(0).GetFileColumnNumber());
+                        }
+                        catch {
+                                //Nada
+                        }
+                        Texto.AppendLine("Equipo  : " + System.Environment.MachineName.ToUpperInvariant());
+                        Texto.AppendLine("Plataf. : " + Lfx.Environment.SystemInformation.Platform);
+                        Texto.AppendLine("RunTime : " + Lfx.Environment.SystemInformation.RunTime);
                         Texto.AppendLine("Excepción no controlada: " + ex.ToString());
                         Texto.AppendLine("");
 
@@ -1489,19 +1411,30 @@ namespace Lazaro
                                 Texto.AppendLine(DirItem.Name + " versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(DirItem.FullName).ProductVersion + " del " + new System.IO.FileInfo(DirItem.FullName).LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
                         }
 
+                        Texto.AppendLine("Traza:");
+                        Texto.AppendLine(ex.StackTrace);
+
                         MailMessage Mensaje = new MailMessage();
                         Mensaje.To.Add(new MailAddress("error@sistemalazaro.com.ar"));
-                        Mensaje.From = new MailAddress(Lws.Workspace.Master.CurrentUser.UserCompleteName + " en " + Lws.Workspace.Master.CurrentConfig.Company.Name + "<" + Lws.Workspace.Master.CurrentUser.UserId.ToString() + "@" + Lfx.Environment.SystemInformation.ComputerName + ">");
-                        Mensaje.Subject = ex.Message;
+                        Mensaje.From = new MailAddress(Lws.Workspace.Master.CurrentUser.UserId.ToString() + "@" + System.Environment.MachineName.ToUpperInvariant(), Lws.Workspace.Master.CurrentUser.UserCompleteName + " en " + Lws.Workspace.Master.CurrentConfig.Company.Name);
+                        try {
+                                //No sé por qué, pero una vez dió un error al poner el asunto
+                                Mensaje.Subject = ex.Message;
+                        }
+                        catch {
+                                Mensaje.Subject = "Excepción no controlada";
+                                Texto.Insert(0, ex.Message + System.Environment.NewLine);
+                        }
+
                         Mensaje.Body = Texto.ToString();
 
                         SmtpClient Cliente = new SmtpClient("mail.sistemalazaro.com.ar");
                         try {
                                 Cliente.Send(Mensaje);
-                                FormularioError.EtiquetaDescripcion.Text = "Se envió un reporte de error. Haga clic en Continuar para continuar.";
+                                FormularioError.EtiquetaDescripcion.Text = "Se envió un reporte de error. Haga clic en Continuar.";
                         }
                         catch (Exception ExSnd) {
-                                FormularioError.EtiquetaDescripcion.Text = "No se puedo enviar el reporte de error (" + ExSnd.Message + "). Haga clic en Continuar para continuar.";
+                                FormularioError.EtiquetaDescripcion.Text = "No se puedo enviar el reporte de error (" + ExSnd.Message + "). Haga clic en Continuar.";
                         }
 
                         FormularioError.BotonCerrar.Visible = true;

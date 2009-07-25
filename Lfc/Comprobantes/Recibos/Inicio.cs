@@ -38,8 +38,7 @@ namespace Lfc.Comprobantes.Recibos
 {
 	public class Inicio : Lui.Forms.ListingForm
 	{
-		protected internal string m_Fecha = "mesactual";
-		protected internal string m_Fecha1, m_Fecha2;
+		protected internal Lfx.Types.DateRange m_Fecha = new Lfx.Types.DateRange("mes-0");
 		protected internal int m_Sucursal, m_Cliente, m_Tipo = 0;
 		protected internal double Total = 0;
                 protected internal Label Label2;
@@ -120,7 +119,7 @@ namespace Lfc.Comprobantes.Recibos
 			this.Label2.Text = "Total";
 			this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// txtTotal
+			// EntradaTotal
 			// 
 			this.txtTotal.AutoNav = true;
 			this.txtTotal.AutoTab = true;
@@ -129,7 +128,7 @@ namespace Lfc.Comprobantes.Recibos
 			this.txtTotal.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.txtTotal.Location = new System.Drawing.Point(44, 60);
 			this.txtTotal.MaxLenght = 32767;
-			this.txtTotal.Name = "txtTotal";
+			this.txtTotal.Name = "EntradaTotal";
 			this.txtTotal.Padding = new System.Windows.Forms.Padding(2);
 			this.txtTotal.ReadOnly = true;
 			this.txtTotal.Size = new System.Drawing.Size(88, 20);
@@ -147,9 +146,6 @@ namespace Lfc.Comprobantes.Recibos
 			this.Controls.Add(this.Label2);
 			this.Name = "Inicio";
 			this.Text = "Recibos: Listado";
-			this.Controls.SetChildIndex(this.Listado, 0);
-			this.Controls.SetChildIndex(this.Label2, 0);
-			this.Controls.SetChildIndex(this.txtTotal, 0);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -186,46 +182,39 @@ namespace Lfc.Comprobantes.Recibos
 		}
 
 
-		public override Lfx.Types.OperationResult OnFilter()
-		{
-			Lfx.Types.OperationResult filtrarReturn = base.OnFilter();
+                public override Lfx.Types.OperationResult OnFilter()
+                {
+                        Lfx.Types.OperationResult filtrarReturn = base.OnFilter();
 
-			if (filtrarReturn.Success == true)
-			{
-				Comprobantes.Recibos.Filtros OFiltros = new Comprobantes.Recibos.Filtros();
+                        if (filtrarReturn.Success == true) {
+                                Comprobantes.Recibos.Filtros OFiltros = new Comprobantes.Recibos.Filtros();
 
-                                OFiltros.txtTipo.TextKey = m_Tipo.ToString();
-				OFiltros.txtSucursal.TextInt = m_Sucursal;
-				OFiltros.txtCliente.TextInt = m_Cliente;
-				OFiltros.txtVendedor.TextInt = m_Vendedor;
-				OFiltros.txtFecha.TextKey = m_Fecha;
-				OFiltros.txtFecha1.Text = m_Fecha1;
-				OFiltros.txtFecha2.Text = m_Fecha2;
-				OFiltros.Owner = this;
-				OFiltros.ShowDialog();
+                                OFiltros.Workspace = this.Workspace;
+                                OFiltros.EntradaTipo.TextKey = m_Tipo.ToString();
+                                OFiltros.txtSucursal.TextInt = m_Sucursal;
+                                OFiltros.txtCliente.TextInt = m_Cliente;
+                                OFiltros.txtVendedor.TextInt = m_Vendedor;
+                                OFiltros.EntradaFechas.Rango = m_Fecha;
+                                OFiltros.Owner = this;
+                                OFiltros.ShowDialog();
 
-				if (OFiltros.DialogResult == DialogResult.OK)
-				{
-                                        m_Tipo = Lfx.Types.Parsing.ParseInt(OFiltros.txtTipo.TextKey);
-					m_Sucursal = OFiltros.txtSucursal.TextInt;
-					m_Cliente = OFiltros.txtCliente.TextInt;
-					m_Vendedor = OFiltros.txtVendedor.TextInt;
-					m_Fecha = OFiltros.txtFecha.TextKey;
-					m_Fecha1 = OFiltros.txtFecha1.Text;
-					m_Fecha2 = OFiltros.txtFecha2.Text;
+                                if (OFiltros.DialogResult == DialogResult.OK) {
+                                        m_Tipo = Lfx.Types.Parsing.ParseInt(OFiltros.EntradaTipo.TextKey);
+                                        m_Sucursal = OFiltros.txtSucursal.TextInt;
+                                        m_Cliente = OFiltros.txtCliente.TextInt;
+                                        m_Vendedor = OFiltros.txtVendedor.TextInt;
+                                        m_Fecha = OFiltros.EntradaFechas.Rango;
 
-					this.RefreshList();
-					filtrarReturn.Success = true;
-				}
-				else
-				{
-					filtrarReturn.Success = false;
-				}
-				OFiltros = null;
-			}
+                                        this.RefreshList();
+                                        filtrarReturn.Success = true;
+                                } else {
+                                        filtrarReturn.Success = false;
+                                }
+                                OFiltros = null;
+                        }
 
-			return filtrarReturn;
-		}
+                        return filtrarReturn;
+                }
 
 		public override void BeginRefreshList()
 		{
@@ -254,30 +243,8 @@ namespace Lfc.Comprobantes.Recibos
                                 else
                                         FiltroTemp += " AND recibos.tipo_fac='RCP'";
 
-				switch (m_Fecha)
-				{
-					case "todo":
-						// Nada
-						break;
-
-					case "mesactual":
-						m_Fecha1 = Lfx.Types.Formatting.FormatDate(new DateTime(System.DateTime.Now.Year, System.DateTime.Now.Month, 1));
-						m_Fecha2 = Lfx.Types.Formatting.FormatDate(new DateTime(System.DateTime.Now.Year, System.DateTime.Now.Month, DateTime.DaysInMonth(System.DateTime.Now.Year, System.DateTime.Now.Month)));
-						FiltroTemp += " AND (fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha1).ToString() + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha2).ToString() + " 23:59:59')";
-						break;
-
-					case "mespasado":
-						DateTime MesPasado = System.DateTime.Now.AddMonths(-1);
-
-						m_Fecha1 = Lfx.Types.Formatting.FormatDate(new DateTime(MesPasado.Year, MesPasado.Month, 1));
-						m_Fecha2 = Lfx.Types.Formatting.FormatDate(new DateTime(MesPasado.Year, MesPasado.Month, DateTime.DaysInMonth(MesPasado.Year, MesPasado.Month)));
-						FiltroTemp += " AND (fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha1).ToString() + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha2).ToString() + " 23:59:59')";
-						break;
-
-					case "fecha":
-						FiltroTemp += " AND (fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha1).ToString() + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha2).ToString() + " 23:59:59')";
-						break;
-				}
+                                if (m_Fecha.HasRange)
+                                        FiltroTemp += " AND (fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')";
 			}
 
 			this.CurrentFilter = FiltroTemp;

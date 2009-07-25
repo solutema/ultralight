@@ -1233,7 +1233,7 @@ namespace Lfc.Articulos
                         this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
                         this.flowLayoutPanel1.Name = "flowLayoutPanel1";
                         this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(4);
-                        this.flowLayoutPanel1.Size = new System.Drawing.Size(913, 470);
+                        this.flowLayoutPanel1.Size = new System.Drawing.Size(913, 530);
                         this.flowLayoutPanel1.TabIndex = 0;
                         // 
                         // Frame4
@@ -1282,6 +1282,7 @@ namespace Lfc.Articulos
                         // etiquetas1
                         // 
                         this.etiquetas1.AutoHeight = false;
+                        this.etiquetas1.AutoNav = true;
                         this.etiquetas1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.etiquetas1.Location = new System.Drawing.Point(11, 29);
                         this.etiquetas1.Name = "etiquetas1";
@@ -1295,13 +1296,13 @@ namespace Lfc.Articulos
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(913, 530);
-                        this.Controls.Add(this.flowLayoutPanel1);
                         this.Controls.Add(this.cmdDescripcion);
+                        this.Controls.Add(this.flowLayoutPanel1);
                         this.Name = "Editar";
                         this.WorkspaceChanged += new System.EventHandler(this.FormArticulosEditar_WorkspaceChanged);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormArticulosEditar_KeyDown);
-                        this.Controls.SetChildIndex(this.cmdDescripcion, 0);
                         this.Controls.SetChildIndex(this.flowLayoutPanel1, 0);
+                        this.Controls.SetChildIndex(this.cmdDescripcion, 0);
                         this.Frame3.ResumeLayout(false);
                         this.Frame3.PerformLayout();
                         ((System.ComponentModel.ISupportInitialize)(this.EntradaImagen)).EndInit();

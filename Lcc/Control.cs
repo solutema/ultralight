@@ -12,6 +12,13 @@ namespace Lcc
                 private bool m_AutoHeight = true;
                 private bool m_ReadOnly = false;
 
+		public LccControl()
+			: base()
+		{
+			// Necesario para admitir el Diseñador de Windows Forms
+			InitializeComponent();
+		}
+		
                 #region Propiedades
 
                 [EditorBrowsable(EditorBrowsableState.Always), Browsable(true), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]

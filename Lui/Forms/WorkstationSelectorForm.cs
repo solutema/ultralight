@@ -124,7 +124,6 @@ namespace Lui.Forms
                         this.Controls.Add(this.lvItems);
                         this.Name = "SeleccionarEstacion";
                         this.WorkspaceChanged += new System.EventHandler(this.SeleccionarEstacion_WorkspaceChanged);
-                        this.Controls.SetChildIndex(this.lvItems, 0);
                         this.ResumeLayout(false);
 
 		}
@@ -147,13 +146,13 @@ namespace Lui.Forms
 		private void SeleccionarEstacion_WorkspaceChanged(object sender, System.EventArgs e)
 		{
 			lvItems.Items.Clear();
-			ListViewItem itm = lvItems.Items.Add(new ListViewItem (new string[] {Lfx.Environment.SystemInformation.ComputerName, "Este equipo"}));
-			itm.Selected = (this.Estacion == Lfx.Environment.SystemInformation.ComputerName);
+			ListViewItem itm = lvItems.Items.Add(new ListViewItem (new string[] {System.Environment.MachineName.ToUpperInvariant(), "Este equipo"}));
+			itm.Selected = (this.Estacion == System.Environment.MachineName.ToUpperInvariant());
 
 			System.Data.DataTable Estaciones = this.Workspace.DefaultDataBase.Select("SELECT DISTINCT estacion FROM sys_config ORDER BY estacion");
 			foreach(System.Data.DataRow RowEstacion in Estaciones.Rows)
 			{
-				if((string)RowEstacion["estacion"] != "*" && (string)RowEstacion["estacion"] != Lfx.Environment.SystemInformation.ComputerName)
+				if((string)RowEstacion["estacion"] != "*" && (string)RowEstacion["estacion"] != System.Environment.MachineName.ToUpperInvariant())
 				{
 					itm = lvItems.Items.Add(new ListViewItem (new string[] {(string)RowEstacion["estacion"], (string)RowEstacion["estacion"]}));
 					itm.Selected = (this.Estacion == (string)RowEstacion["estacion"]);

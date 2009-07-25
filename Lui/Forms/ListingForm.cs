@@ -49,6 +49,9 @@ namespace Lui.Forms
 		private string m_Relations = "";
 		private string m_SearchText = "";
 		private object m_CurrentFilter;
+                
+                private int[] m_Labels = null;
+                private string m_LabelField = null;
 
                 public ListingForm()
                         : base()
@@ -60,6 +63,30 @@ namespace Lui.Forms
                         Listado.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
                         Listado.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
                         Listado.ForeColor = Lws.Config.Display.CurrentTemplate.ControlText;
+                }
+
+                public int[] Labels
+                {
+                        get
+                        {
+                                return m_Labels;
+                        }
+                        set
+                        {
+                                m_Labels = value;
+                        }
+                }
+
+                public string LabelField
+                {
+                        get
+                        {
+                                return m_LabelField;
+                        }
+                        set
+                        {
+                                m_LabelField = value;
+                        }
                 }
 
 		public Lfx.Data.FormField[] FormFields
@@ -326,6 +353,21 @@ namespace Lui.Forms
 				Lfx.Data.SqlWhereBuilder WhereCompleto = new Lfx.Data.SqlWhereBuilder();
 				WhereCompleto.AndOr = Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandAnd;
 
+                                if (m_Labels != null) {
+                                        if (m_LabelField == null || m_LabelField.Length == 0)
+                                                m_LabelField = this.m_KeyField.ColumnName;
+                                        if (m_Labels.Length == 1) {
+                                                // Ids negativos sólo cuando hay una sola etiqueta
+                                                if (m_Labels[0] > 0)
+                                                        WhereCompleto.Conditions.Add(m_LabelField + " IN (SELECT item_id FROM sys_labels_values WHERE id_label=" + m_Labels[0].ToString() + ")");
+                                                else
+                                                        WhereCompleto.Conditions.Add(m_LabelField + " NOT IN (SELECT item_id FROM sys_labels_values WHERE id_label=" + (-m_Labels[0]).ToString() + ")");
+                                        } else if (m_Labels.Length > 1) {
+                                                string[] LabelsString = Array.ConvertAll<int, string>(m_Labels, new Converter<int, string>(Convert.ToString));
+                                                WhereCompleto.Conditions.Add(m_LabelField + " IN (SELECT item_id FROM sys_labels_values WHERE id_label IN (" + string.Join(",", LabelsString) + "))");
+                                        }
+                                }
+
 				if (WhereBuscarTexto.Conditions.Count > 0)
 					WhereCompleto.Conditions.Add(WhereBuscarTexto);
 
@@ -544,7 +586,7 @@ namespace Lui.Forms
 					case Keys.F2:
 						e.Handled = true;
 						if (BotonFiltrar.Enabled && BotonFiltrar.Visible)
-							BotonFiltrar_Click(sender, e);
+							BotonFiltrar.PerformClick();
 						break;
 
 					case Keys.F3:
@@ -556,7 +598,7 @@ namespace Lui.Forms
 					case Keys.F6:
 						e.Handled = true;
 						if (BotonCrear.Enabled && BotonCrear.Visible)
-							BotonCrear_Click(sender, e);
+							BotonCrear.PerformClick();
 						break;
 
 					case Keys.F8:
@@ -623,10 +665,9 @@ namespace Lui.Forms
 
 		private void ListingForm_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
 		{
-			if (e.KeyChar == (char)System.Windows.Forms.Keys.Escape)
-			{
+			if (e.KeyChar == (char)System.Windows.Forms.Keys.Escape) {
 				e.Handled = true;
-				BotonCancelar_Click(sender, e);
+				BotonCancelar.PerformClick();
 			}
 		}
 

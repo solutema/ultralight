@@ -34,6 +34,9 @@
                         // 
                         // Lista
                         // 
+                        this.Lista.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                                    | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.Lista.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.Lista.CheckBoxes = true;
                         this.Lista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -43,9 +46,10 @@
                         this.Lista.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
                         this.Lista.LabelWrap = false;
                         this.Lista.Location = new System.Drawing.Point(2, 2);
+                        this.Lista.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
                         this.Lista.MultiSelect = false;
                         this.Lista.Name = "Lista";
-                        this.Lista.Size = new System.Drawing.Size(316, 196);
+                        this.Lista.Size = new System.Drawing.Size(237, 170);
                         this.Lista.TabIndex = 0;
                         this.Lista.UseCompatibleStateImageBehavior = false;
                         this.Lista.View = System.Windows.Forms.View.Details;
@@ -61,14 +65,13 @@
                         // 
                         // Etiquetas
                         // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.Controls.Add(this.Lista);
+                        this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
                         this.Name = "Etiquetas";
-                        this.Size = new System.Drawing.Size(320, 200);
-                        this.Controls.SetChildIndex(this.Lista, 0);
+                        this.Size = new System.Drawing.Size(240, 173);
                         this.ResumeLayout(false);
-                        this.PerformLayout();
 
                 }
 

@@ -129,7 +129,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.CancelCommandButton.Location = new System.Drawing.Point(434, 8);
                         // 
-                        // txtTipo
+                        // EntradaTipo
                         // 
                         this.txtTipo.AutoNav = true;
                         this.txtTipo.AutoTab = true;
@@ -138,7 +138,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.txtTipo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.txtTipo.Location = new System.Drawing.Point(108, 24);
                         this.txtTipo.MaxLenght = 32767;
-                        this.txtTipo.Name = "txtTipo";
+                        this.txtTipo.Name = "EntradaTipo";
                         this.txtTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTipo.ReadOnly = false;
                         this.txtTipo.SetData = new string[] {
@@ -528,31 +528,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.Controls.Add(this.label1);
                         this.Controls.Add(this.Label15);
                         this.Name = "EditarCampo";
-                        this.Controls.SetChildIndex(this.Label15, 0);
-                        this.Controls.SetChildIndex(this.label1, 0);
-                        this.Controls.SetChildIndex(this.label2, 0);
-                        this.Controls.SetChildIndex(this.label3, 0);
-                        this.Controls.SetChildIndex(this.txtTipo, 0);
-                        this.Controls.SetChildIndex(this.txtTexto, 0);
-                        this.Controls.SetChildIndex(this.txtX, 0);
-                        this.Controls.SetChildIndex(this.txtY, 0);
-                        this.Controls.SetChildIndex(this.label4, 0);
-                        this.Controls.SetChildIndex(this.txtFuente, 0);
-                        this.Controls.SetChildIndex(this.label6, 0);
-                        this.Controls.SetChildIndex(this.label5, 0);
-                        this.Controls.SetChildIndex(this.txtW, 0);
-                        this.Controls.SetChildIndex(this.txtH, 0);
-                        this.Controls.SetChildIndex(this.txtFuenteTamano, 0);
-                        this.Controls.SetChildIndex(this.label7, 0);
-                        this.Controls.SetChildIndex(this.txtAlign, 0);
-                        this.Controls.SetChildIndex(this.txtLineAlign, 0);
-                        this.Controls.SetChildIndex(this.label8, 0);
-                        this.Controls.SetChildIndex(this.txtAnchoBorde, 0);
-                        this.Controls.SetChildIndex(this.ColorFondo, 0);
-                        this.Controls.SetChildIndex(this.ColorTexto, 0);
-                        this.Controls.SetChildIndex(this.ColorBorde, 0);
-                        this.Controls.SetChildIndex(this.label9, 0);
-                        this.Controls.SetChildIndex(this.txtWrap, 0);
                         this.ResumeLayout(false);
 
 		}

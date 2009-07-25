@@ -120,8 +120,6 @@ namespace Lui.Forms
                         this.Text = "Espacio de trabajo";
                         this.Activated += new System.EventHandler(this.WorkspaceSelectorForm_Activated);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WorkspaceSelectorForm_KeyDown);
-                        this.Controls.SetChildIndex(this.label1, 0);
-                        this.Controls.SetChildIndex(this.Espacios, 0);
                         this.ResumeLayout(false);
 
 		}
@@ -181,7 +179,7 @@ namespace Lui.Forms
 					case Keys.Return:
 						e.Handled = true;
 						if (OkButton.Enabled && OkButton.Visible)
-							OkButton_Click(sender, e);
+							OkButton.PerformClick();
 						break;
 				}
 			}

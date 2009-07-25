@@ -315,16 +315,6 @@ namespace Lazaro.Misc.Backup
 			this.Controls.Add(this.cmdBackup);
 			this.Name = "Manager";
 			this.Text = "Administrador de Copias de Respaldo";
-			this.Controls.SetChildIndex(this.cmdBackup, 0);
-			this.Controls.SetChildIndex(this.Label1, 0);
-			this.Controls.SetChildIndex(this.lvItems, 0);
-			this.Controls.SetChildIndex(this.Label2, 0);
-			this.Controls.SetChildIndex(this.cmdEliminar, 0);
-			this.Controls.SetChildIndex(this.cmdRestaurar, 0);
-			this.Controls.SetChildIndex(this.PictureBox1, 0);
-			this.Controls.SetChildIndex(this.cmdWeb, 0);
-			this.Controls.SetChildIndex(this.cmdCopiar, 0);
-			this.Controls.SetChildIndex(this.note1, 0);
 			((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();

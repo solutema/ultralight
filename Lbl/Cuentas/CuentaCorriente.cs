@@ -94,7 +94,7 @@ namespace Lbl.Cuentas
                         if (cancelaCosas && importeDebito < 0) {
                                 // Débito negativo... es un crédito
                                 // Cancelo saldos de facturas que haya en cta. cte. pendientes de pago
-                                System.Data.DataTable FacturasConSaldo = this.DataView.DataBase.Select("SELECT id_factura,total,cancelado FROM facturas WHERE impresa>0 AND anulada=0 AND numero>0 AND tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND id_formapago IN (1, 3, 99) AND cancelado<total AND id_cliente=" + m_ItemId.ToString() + " ORDER BY id_factura");
+                                System.Data.DataTable FacturasConSaldo = this.DataView.DataBase.Select("SELECT id_factura,total,cancelado FROM facturas WHERE impresa>0 AND anulada=0 AND numero>0 AND tipo_fac IN ('A', 'B', 'C', 'E', 'M', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND id_formapago IN (1, 3, 99) AND cancelado<total AND id_cliente=" + m_ItemId.ToString() + " ORDER BY id_factura");
 
                                 double ImporteRestante = importeDebito;
 
@@ -109,7 +109,6 @@ namespace Lbl.Cuentas
                                         Act.Fields.AddWithValue("cancelado", System.Convert.ToDouble(Factura["cancelado"]) + ImporteASaldar);
                                         Act.WhereClause = new Lfx.Data.SqlWhereBuilder("id_factura", System.Convert.ToInt32(Factura["id_factura"]));
                                         this.DataView.Execute(Act);
-                                        //this.DataView.DataBase.Execute("UPDATE facturas SET cancelado=cancelado+" + Lfx.Types.Formatting.FormatCurrency(ImporteASaldar, this.DataView.Workspace.CurrentConfig.Currency.DecimalPlaces) + " WHERE id_factura=" + Factura["id_factura"].ToString());
                                         ImporteRestante += ImporteASaldar;
 
                                         if (ImporteRestante >= 0)

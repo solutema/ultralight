@@ -270,10 +270,6 @@ namespace Lfc.Articulos
                         this.Name = "VerMovimientos";
                         this.Text = "Artículos: Detalle de Entrada y Salida";
                         this.Activated += new System.EventHandler(this.FormArticulosMovimDetalles_Activated);
-                        this.Controls.SetChildIndex(this.lvItems, 0);
-                        this.Controls.SetChildIndex(this.lvPedidos, 0);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
                         this.ResumeLayout(false);
 
 		}

@@ -341,7 +341,7 @@ namespace Lbl.Comprobantes.Impresion
 			// Si prefiere una impresora, la selecciono
 			if (Impresora != null && Impresora.Length > 0)
 			{
-				// TODO: Esta comprobación debera hacerla mucho antes
+                                // FIXME: Esta comprobación debera hacerla mucho antes
 				foreach (string sNombreImpresora in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
 				{
 					if (sNombreImpresora == Impresora)

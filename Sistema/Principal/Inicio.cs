@@ -50,14 +50,12 @@ namespace Lazaro.Principal
 
                 private static System.Collections.Hashtable MenuItemInfoTable = null;
                 public Lws.Workspace Workspace = null;
-                System.Net.NetworkInformation.Ping Ping = new System.Net.NetworkInformation.Ping();
 
                 public Inicio()
                 {
                         InitializeComponent();
 
                         BarraInferior.Workspace = this.Workspace;
-                        Ping.PingCompleted += new System.Net.NetworkInformation.PingCompletedEventHandler(PingCompletedCallback);
                 }
 
                 private void FormPrincipal_Load(object sender, EventArgs e)
@@ -124,9 +122,8 @@ namespace Lazaro.Principal
                                 else if (ActualizarAhora == 2)
                                 {
                                         // Actualizar desde la web
-                                        System.Threading.Thread ThreadActualizador = null;
-                                        ThreadActualizador = new System.Threading.Thread(new System.Threading.ThreadStart(Actualizador.Actualizador.DescargarActualizaciones));
-                                        ThreadActualizador.Start();
+                                        System.Threading.Thread TareaActualizador = new System.Threading.Thread(new System.Threading.ThreadStart(Actualizador.Actualizador.ActualizarAplicacion));
+                                        TareaActualizador.Start();
                                 }
                                 if (Aplicacion.ReinicioPendiente && Aplicacion.TareasEnCurso() == 0)
                                 {
@@ -137,7 +134,7 @@ namespace Lazaro.Principal
                                         DialogResult Respuesta = Pregunta.ShowDialog();
                                         if (Respuesta == DialogResult.OK)
                                         {
-                                                int EstacionFiscal = this.Workspace.DefaultDataBase.FieldInt("SELECT id_pv FROM pvs WHERE estacion='" + Lfx.Environment.SystemInformation.ComputerName + "' AND tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString());
+                                                int EstacionFiscal = this.Workspace.DefaultDataBase.FieldInt("SELECT id_pv FROM pvs WHERE estacion='" + System.Environment.MachineName.ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString());
                                                 if (EstacionFiscal > 0)
                                                         this.Workspace.DefaultScheduler.AddTask("REBOOT", "fiscal" + EstacionFiscal.ToString(), "*");
 
@@ -148,43 +145,12 @@ namespace Lazaro.Principal
                         }
                 }
 
-                private void PingCompletedCallback(object sender, System.Net.NetworkInformation.PingCompletedEventArgs e)
-                {
-
-                        if (e.Cancelled || e.Error != null)
-                        {
-                                System.Console.WriteLine(e.Error.ToString());
-                                BarraInferior.PingStatus.BackColor = System.Drawing.Color.Red;
-                        }
-                        else
-                        {
-                                System.Net.NetworkInformation.PingReply Reply = e.Reply;
-                                if (Reply.RoundtripTime < 250)
-                                        BarraInferior.PingStatus.BackColor = System.Drawing.Color.Green;
-                                else if (Reply.RoundtripTime < 500)
-                                        BarraInferior.PingStatus.BackColor = System.Drawing.Color.Yellow;
-                                else
-                                        BarraInferior.PingStatus.BackColor = System.Drawing.Color.DarkRed;
-                        }
-
-                }
-
                 private void TimerReloj_Tick(object sender, EventArgs e)
                 {
                         TimerReloj.Enabled = false;
 
                         if (this.Visible)
                         {
-				if (Lfx.Environment.SystemInformation.Platform == Lfx.Environment.SystemInformation.Platforms.Windows)
-				{
-					//Hago ping al servidor
-					try
-					{
-						Ping.SendAsync(this.Workspace.DefaultDataBase.ServerName, 950, new byte[] { 0x01, 0x02 });
-					}
-					catch { }
-				}
-
                                 //Ejecuto tareas del programador
                                 Lws.Services.Task ProximaTarea = null;
                                 //En conexiones lentas, 1 vez por minuto
@@ -315,7 +281,8 @@ namespace Lazaro.Principal
                         int FormId = ((int)e.Button.Tag);
                         bool Encontre = false;
                         foreach (Form Frm in this.MdiChildren) {
-                                if ((Frm as Lui.Forms.ChildForm).Uid == FormId) {
+                                Lui.Forms.ChildForm Frm2 = Frm as Lui.Forms.ChildForm;
+                                if (Frm2 != null && Frm2.Uid == FormId) {
                                         Encontre = true;
                                         Frm.Visible = true;
                                         Frm.Show();
@@ -513,7 +480,6 @@ namespace Lazaro.Principal
                         ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu.&Sistema");
                         ItmInfo.Text = Lfx.Types.Strings.SimplifyText(ItmTmp.Text);
                         AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
-
 
                         System.Xml.XmlDocument MenuXml = new XmlDocument();
                         MenuXml.Load(Funciones.ObtenerRecurso(@"Data.menu.xml"));

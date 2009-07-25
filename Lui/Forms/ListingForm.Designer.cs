@@ -317,10 +317,10 @@ namespace Lui.Forms
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(768, 480);
                         this.Controls.Add(this.EtiquetaCantidad);
-                        this.Controls.Add(this.PanelBotonera);
                         this.Controls.Add(this.Listado);
                         this.Controls.Add(this.EntradaBuscar);
                         this.Controls.Add(this.EtiquetaBuscar);
+                        this.Controls.Add(this.PanelBotonera);
                         this.KeyPreview = true;
                         this.Name = "ListingForm";
                         this.Text = "Listado";

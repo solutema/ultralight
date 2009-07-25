@@ -195,8 +195,6 @@
                         this.Controls.Add(this.PanelCombos);
                         this.Name = "RangoFechas";
                         this.Size = new System.Drawing.Size(445, 62);
-                        this.Controls.SetChildIndex(this.PanelCombos, 0);
-                        this.Controls.SetChildIndex(this.PanelFechas, 0);
                         this.PanelCombos.ResumeLayout(false);
                         this.PanelFechas.ResumeLayout(false);
                         this.ResumeLayout(false);

@@ -269,14 +269,6 @@ namespace Lfc.Personas
 			this.Name = "EditarAccesos";
 			this.Text = "Editar Accesos";
 			this.Load += new System.EventHandler(this.EditarAccesos_Load);
-			this.Controls.SetChildIndex(this.Accesos, 0);
-			this.Controls.SetChildIndex(this.Label6, 0);
-			this.Controls.SetChildIndex(this.txtAcceso, 0);
-			this.Controls.SetChildIndex(this.label1, 0);
-			this.Controls.SetChildIndex(this.txtContrasena, 0);
-			this.Controls.SetChildIndex(this.SubItems, 0);
-			this.Controls.SetChildIndex(this.txtSubItems, 0);
-			this.Controls.SetChildIndex(this.lblNombreAcceso, 0);
 			this.ResumeLayout(false);
 
 		}

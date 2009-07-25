@@ -84,7 +84,7 @@ namespace Lfc.Bancos.Chequeras
                         this.BotonImprimir.DockPadding.All = 2;
                         this.BotonImprimir.Name = "PrintButton";
                         // 
-                        // txtTotal
+                        // EntradaTotal
                         // 
                         this.txtTotal.AutoNav = true;
                         this.txtTotal.AutoTab = true;
@@ -94,7 +94,7 @@ namespace Lfc.Bancos.Chequeras
                         this.txtTotal.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.txtTotal.Location = new System.Drawing.Point(8, 92);
                         this.txtTotal.MaxLenght = 32767;
-                        this.txtTotal.Name = "txtTotal";
+                        this.txtTotal.Name = "EntradaTotal";
                         this.txtTotal.ReadOnly = false;
                         this.txtTotal.Size = new System.Drawing.Size(128, 28);
                         this.txtTotal.TabIndex = 52;
@@ -108,8 +108,6 @@ namespace Lfc.Bancos.Chequeras
                         this.ClientSize = new System.Drawing.Size(692, 473);
                         this.Controls.Add(this.txtTotal);
                         this.Name = "Inicio";
-                        this.Controls.SetChildIndex(this.txtTotal, 0);
-                        this.Controls.SetChildIndex(this.Listado, 0);
                         this.ResumeLayout(false);
 
                 }

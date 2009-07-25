@@ -137,7 +137,7 @@ namespace Lbl.Comprobantes.Impresion
                                 case "CÓDIGOS":
                                         Res = null;
                                         for (int i = 0; i < ComprobConArt.Articulos.Count; i++) {
-                                                //TODO: que imprima el código seleccionado por el usuario, no siempre el autonumérico
+                                                // FIXME: que imprima el código seleccionado por el usuario, no siempre el autonumérico
                                                 if (Res == null)
                                                         Res = ComprobConArt.Articulos[i].IdArticulo.ToString();
                                                 else

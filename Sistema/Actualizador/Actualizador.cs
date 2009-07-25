@@ -36,7 +36,6 @@ using System.Windows.Forms;
 
 namespace Lazaro.Actualizador
 {
-
 	/// <summary>
 	/// Actualizador de sistema Lázaro (actualiza desde web o base de datos).
 	/// Desde web:
@@ -53,28 +52,29 @@ namespace Lazaro.Actualizador
 	/// Actualiza desde la tabla "sys_asl", que es el caché de las últimas
 	/// versiones descargadas de la web.
 	/// </summary>
-	public class Actualizador
+	public static class Actualizador
 	{
-		public static int ArchivosActualizados;
-		public static string MensajeError = null;
-                protected internal static Lws.Data.DataView m_DataView = null;
-
-		public static void DescargarActualizaciones()
+                public static int ArchivosActualizados;
+                public static string MensajeError = null;
+                private static Lws.Data.DataView m_DataView = null;
+                
+                public static void ActualizarAplicacion()
 		{
 			ActualizarAplicacionDesdeWeb(false, null);
 		}
 
 
-		public static bool HuboError()
+                public static bool HuboError()
 		{
 			return MensajeError != null;
 		}
 
 
-		public static int ActualizarAplicacionDesdeBD()
+                public static int ActualizarAplicacionDesdeBD()
 		{
                         return ActualizarAplicacionDesdeBD(string.Empty);
 		}
+
 
                 public static Lws.Data.DataView GetDataView()
                 {
@@ -83,7 +83,8 @@ namespace Lazaro.Actualizador
                         return m_DataView;
                 }
 
-		public static int ActualizarAplicacionDesdeBD(string nombreCarpeta)
+
+                public static int ActualizarAplicacionDesdeBD(string nombreCarpeta)
 		{
 			try
 			{
@@ -105,7 +106,8 @@ namespace Lazaro.Actualizador
 			}
 		}
 
-		public static int ActualizarAplicacionDesdeWeb(bool ignorarControlDeColisiones, Estado formularioEstado)
+
+                public static int ActualizarAplicacionDesdeWeb(bool ignorarControlDeColisiones, Estado formularioEstado)
 		{
 			// Me fijo si ya hay alguien descargando las actualizaciones
                         string FechaInicioActualizacion = Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString(null, "Sistema.Actualizaciones.InicioDescarga", string.Empty);
@@ -115,7 +117,7 @@ namespace Lazaro.Actualizador
 			if (ignorarControlDeColisiones || string.Compare(FechaInicioActualizacion, FechaInicioActualizacionMax) < 0)
 			{
                                 Lws.Workspace.Master.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.Actualizaciones.InicioDescarga", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "*");
-                                Lws.Workspace.Master.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.Actualizaciones.EstacionDescarga", Lfx.Environment.SystemInformation.ComputerName, "*");
+                                Lws.Workspace.Master.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.Actualizaciones.EstacionDescarga", System.Environment.MachineName.ToUpperInvariant(), "*");
 
 				string aslURL = Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString(null, "Sistema.Actualizaciones.URLNLWC", "http://www.sistemalazaro.com.ar/aslnlwc/");
 				if (aslURL.Length == 0)
@@ -213,7 +215,8 @@ namespace Lazaro.Actualizador
                         return ArchivosActualizados;
 		}
 
-		public static bool ActualizarArchivoDesdeBD(Lfx.Data.Row Archivo, bool IgnorarFecha, string nombreCarpeta)
+
+                public static bool ActualizarArchivoDesdeBD(Lfx.Data.Row Archivo, bool IgnorarFecha, string nombreCarpeta)
 		{
 			string FechaNueva = "1901-01-02";
 			string FechaArchivo = "1901-01-01";
@@ -222,12 +225,14 @@ namespace Lazaro.Actualizador
 			if (CarpetaTrabajo[CarpetaTrabajo.Length - 1] != System.IO.Path.DirectorySeparatorChar)
 				CarpetaTrabajo += System.IO.Path.DirectorySeparatorChar;
 
+                        string NombreArchivo = Archivo["nombre"].ToString();
+
 			if (IgnorarFecha == false)
 			{
 				FechaNueva = System.Convert.ToString(Archivo["fecha"]);
 				try
 				{
-					FechaArchivo = Lfx.Types.Formatting.FormatDateTimeSql(new System.IO.FileInfo(CarpetaTrabajo + System.Convert.ToString(Archivo["nombre"])).LastWriteTime);
+					FechaArchivo = Lfx.Types.Formatting.FormatDateTimeSql(new System.IO.FileInfo(CarpetaTrabajo + NombreArchivo).LastWriteTime);
 				}
 				catch (Exception ex)
 				{
@@ -240,29 +245,24 @@ namespace Lazaro.Actualizador
 			{
 				try
 				{
-                                        Lfx.Environment.Folders.EnsurePathExists(System.IO.Path.GetDirectoryName(CarpetaTrabajo + System.Convert.ToString(Archivo["nombre"])));
+                                        Lfx.Environment.Folders.EnsurePathExists(System.IO.Path.GetDirectoryName(CarpetaTrabajo + NombreArchivo));
 
-					if (System.IO.File.Exists(CarpetaTrabajo + System.Convert.ToString(Archivo["nombre"]) + ".new"))
-						System.IO.File.Delete(CarpetaTrabajo + System.Convert.ToString(Archivo["nombre"]) + ".new");
+					if (System.IO.File.Exists(CarpetaTrabajo + NombreArchivo + ".new"))
+						System.IO.File.Delete(CarpetaTrabajo + NombreArchivo + ".new");
 
                                         Archivo = GetDataView().DataBase.FirstRowFromSelect("SELECT nombre, fecha, contenido FROM sys_asl WHERE nombre='" + nombreCarpeta + Archivo["nombre"] + "'");
 
-					System.IO.BinaryWriter wr = new System.IO.BinaryWriter(System.IO.File.OpenWrite(CarpetaTrabajo + System.Convert.ToString(Archivo["nombre"]) + ".new"), System.Text.Encoding.Default);
+					System.IO.BinaryWriter wr = new System.IO.BinaryWriter(System.IO.File.OpenWrite(CarpetaTrabajo + NombreArchivo + ".new"), System.Text.Encoding.Default);
 					wr.Write(((byte[])(Archivo["contenido"])));
 					wr.Close();
 
-					string ArchivoBak = CarpetaTrabajo + Archivo["nombre"].ToString() + ".bak." + System.DateTime.Now.ToString("yyyyMMddHHmmss");
-					BorrarBaksViejos(CarpetaTrabajo, System.Convert.ToString(Archivo["nombre"]));
-					if (System.IO.File.Exists(CarpetaTrabajo + System.Convert.ToString(Archivo["nombre"])))
-						System.IO.File.Move(CarpetaTrabajo + System.Convert.ToString(Archivo["nombre"]), ArchivoBak);
-
-					System.IO.File.Move(CarpetaTrabajo + System.Convert.ToString(Archivo["nombre"]) + ".new", CarpetaTrabajo + System.Convert.ToString(Archivo["nombre"]));
-                                        System.Console.WriteLine("Actualización BD de " + System.Convert.ToString(Archivo["nombre"]));
+                                        System.Console.WriteLine("Actualización BD de " + NombreArchivo);
+                                        
 					if (string.Compare(FechaNueva, "1950-00-00 00:00:00") > 0)
 					{
 						try
 						{
-							System.IO.FileInfo LazaroFileInfo = new System.IO.FileInfo(CarpetaTrabajo + System.Convert.ToString(Archivo["nombre"]));
+							System.IO.FileInfo LazaroFileInfo = new System.IO.FileInfo(CarpetaTrabajo + NombreArchivo + ".new");
 							DateTime FechaNuevaD = Lfx.Types.Parsing.ParseSqlDateTime(FechaNueva);
 							LazaroFileInfo.LastWriteTime = FechaNuevaD;
 							LazaroFileInfo.CreationTime = FechaNuevaD;
@@ -274,9 +274,6 @@ namespace Lazaro.Actualizador
 						}
 					}
 
-                                        if (Archivo["nombre"].ToString() == "Upgrade.exe")
-                                                Lfx.Environment.Shell.Execute(CarpetaTrabajo + Archivo["nombre"].ToString(), "/verysilent", ProcessWindowStyle.Normal, false);
-
 					return true;
 				}
 				catch (Exception ex)
@@ -284,7 +281,7 @@ namespace Lazaro.Actualizador
 					// No se puede conectar al servidor de actualizaciones
 					// OFormActualizador.Close()
 					Aplicacion.ExceptionHandler(ex);
-					MensajeError = "Existe una nueva versión del archivo " + System.Convert.ToString(Archivo["nombre"]) + ", pero el sistema no puede actualizarlo automáticamente. Por favor actualice la aplicación manualmente.";
+					MensajeError = "Existe una nueva versión del archivo " + NombreArchivo + ", pero el sistema no puede actualizar automáticamente. Por favor actualice la aplicación manualmente.";
 					return false;
 				}
 			}
@@ -350,53 +347,39 @@ namespace Lazaro.Actualizador
                                         //ChecksumContenido = Funciones.MD5(Contenido);
 
                                         if (ChecksumNuevo == null || ChecksumNuevo == "0" || ChecksumNuevo == ChecksumContenido) {
-                                                if (System.IO.File.Exists(CarpetaTrabajo + NombreArchivo + ".new"))
-                                                        System.IO.File.Delete(CarpetaTrabajo + NombreArchivo + ".new");
+                                                if (System.IO.File.Exists(CarpetaTrabajo + NombreArchivo + ".new" + Compresion))
+                                                        System.IO.File.Delete(CarpetaTrabajo + NombreArchivo + ".new" + Compresion);
 
-                                                System.Console.Write("Guardando como " + CarpetaTrabajo + NombreArchivo + ".new: ");
-                                                System.IO.BinaryWriter wr = new System.IO.BinaryWriter(System.IO.File.OpenWrite(CarpetaTrabajo + NombreArchivo + ".new"), System.Text.Encoding.Default);
+                                                System.Console.Write("Guardando como " + CarpetaTrabajo + NombreArchivo + ".new" + Compresion + ": ");
+                                                System.IO.BinaryWriter wr = new System.IO.BinaryWriter(System.IO.File.OpenWrite(CarpetaTrabajo + NombreArchivo + ".new" + Compresion), System.Text.Encoding.Default);
                                                 wr.Write(Contenido);
                                                 wr.Close();
                                                 System.Console.WriteLine("ok.");
 
-                                                string ArchivoBak = CarpetaTrabajo + NombreArchivo + ".bak." + System.DateTime.Now.ToString("yyyyMMddHHmmss");
-                                                BorrarBaksViejos(CarpetaTrabajo, NombreArchivo);
-                                                if (System.IO.File.Exists(CarpetaTrabajo + NombreArchivo)) {
-                                                        System.Console.Write("Renombrando archivo viejo: ");
-                                                        System.IO.File.Move(CarpetaTrabajo + NombreArchivo, ArchivoBak);
-                                                        System.Console.WriteLine(ArchivoBak);
-                                                }
-
                                                 if (Compresion == ".bz2") {
                                                         // Si está comprimido, descomprimo
-                                                        Lfx.FileFormats.Compression.Archive ArchivoComprimido = new Lfx.FileFormats.Compression.Archive(CarpetaTrabajo + NombreArchivo + ".new", Lfx.FileFormats.Compression.ArchiveTypes.BZip2);
-                                                        System.Console.Write("Descomprimiendo " + ArchivoComprimido.ArchiveFileName);
-                                                        ArchivoComprimido.Extract(NombreArchivo, CarpetaTrabajo);
+                                                        Lfx.FileFormats.Compression.Archive ArchivoComprimido = new Lfx.FileFormats.Compression.Archive(CarpetaTrabajo + NombreArchivo + ".new" + Compresion, Lfx.FileFormats.Compression.ArchiveTypes.BZip2);
+                                                        System.Console.Write("Descomprimiendo " + ArchivoComprimido.ArchiveFileName + ": ");
+                                                        ArchivoComprimido.Extract(NombreArchivo + ".new", CarpetaTrabajo);
                                                         if (System.IO.File.Exists(CarpetaTrabajo + NombreArchivo)) {
                                                                 System.Console.WriteLine("ok.");
-                                                                // Se descomprimí ok. Borro el .new
-                                                                System.IO.File.Delete(CarpetaTrabajo + NombreArchivo + ".new");
+                                                                // Se descomprimí ok. Borro el .new.bz2
+                                                                System.IO.File.Delete(CarpetaTrabajo + NombreArchivo + ".new" + Compresion);
                                                                 // Y cargo el contenido del archivo descomprimido, para tener
-                                                                System.IO.FileStream ArchivoStream = new System.IO.FileStream(CarpetaTrabajo + NombreArchivo, System.IO.FileMode.Open, System.IO.FileAccess.Read);
+                                                                System.IO.FileStream ArchivoStream = new System.IO.FileStream(CarpetaTrabajo + NombreArchivo + ".new", System.IO.FileMode.Open, System.IO.FileAccess.Read);
                                                                 Contenido = new byte[ArchivoStream.Length];
                                                                 ArchivoStream.Read(Contenido, 0, System.Convert.ToInt32(ArchivoStream.Length));
                                                                 ArchivoStream.Close();
                                                         } else {
                                                                 System.Console.WriteLine("error.");
-                                                                // Vulevo al .bak
-                                                                System.IO.File.Move(ArchivoBak, CarpetaTrabajo + NombreArchivo);
-                                                                // System.IO.File.Delete(CarpetaTrabajo & sArchivo & ".new")
                                                                 MensajeError = "No se puede descomprimir " + NombreArchivo;
                                                                 return false;
                                                         }
-                                                } else {
-                                                        // De lo contrario, renombro
-                                                        System.IO.File.Move(CarpetaTrabajo + NombreArchivo + ".new", CarpetaTrabajo + NombreArchivo);
                                                 }
 
                                                 if (string.Compare(FechaNueva, "1950-00-00 00:00:00") > 0) {
                                                         try {
-                                                                System.IO.FileInfo LazaroFileInfo = new System.IO.FileInfo(CarpetaTrabajo + NombreArchivo);
+                                                                System.IO.FileInfo LazaroFileInfo = new System.IO.FileInfo(CarpetaTrabajo + NombreArchivo + ".new");
                                                                 DateTime FechaNuevaD = Lfx.Types.Parsing.ParseSqlDateTime(FechaNueva);
                                                                 LazaroFileInfo.LastWriteTime = FechaNuevaD;
                                                                 LazaroFileInfo.CreationTime = FechaNuevaD;
@@ -410,7 +393,7 @@ namespace Lazaro.Actualizador
                                                 actualizarArchivoDesdeWebReturn = true;
 
                                                 // Lo publico en la BD
-                                                if (Lws.Workspace.Master.SlowLink == false && Lfx.Environment.SystemInformation.DesignMode == false) {
+                                                if (NombreArchivo != "version.xml" && Lws.Workspace.Master.SlowLink == false && Lfx.Environment.SystemInformation.DesignMode == false) {
                                                         Lws.Workspace.Master.DefaultDataView.DataBase.Execute("DELETE FROM sys_asl WHERE nombre='" + nombreCarpeta + NombreArchivo.ToLower() + "'");
                                                         Lfx.Data.SqlInsertBuilder InsertarArchivo = new Lfx.Data.SqlInsertBuilder(GetDataView().DataBase, "sys_asl");
                                                         InsertarArchivo.Fields.AddWithValue("nombre", nombreCarpeta + NombreArchivo);
@@ -420,8 +403,12 @@ namespace Lazaro.Actualizador
                                                         Lws.Workspace.Master.DefaultDataView.Execute(InsertarArchivo);
                                                 }
 
-                                                if (NombreArchivo == "Upgrade.exe")
-                                                        Lfx.Environment.Shell.Execute(CarpetaTrabajo + NombreArchivo, "/verysilent", ProcessWindowStyle.Normal, false);
+                                                if (NombreArchivo == "version.xml" || NombreArchivo == "Cargador.exe") {
+                                                        // version.xml y Cargador.exe se actualizan de inmediato
+                                                        if (System.IO.File.Exists(CarpetaTrabajo + NombreArchivo))
+                                                                System.IO.File.Delete(CarpetaTrabajo + NombreArchivo);
+                                                        System.IO.File.Move(CarpetaTrabajo + NombreArchivo + ".new", CarpetaTrabajo + NombreArchivo);
+                                                }
                                         } else {
                                                 MensajeError = "Existe una nueva versión del archivo " + NombreArchivo + ", pero el sistema no puede actualizarlo automáticamente. Por favor actualice la aplicación manualmente." + Environment.NewLine + "La descripción extendida del error es: la suma de verificación no concuerda.";
                                         }
@@ -435,25 +422,8 @@ namespace Lazaro.Actualizador
                         return actualizarArchivoDesdeWebReturn;
                 }
 
-		private static void BorrarBaksViejos(string carpeta, string nombreArchivo)
-		{
-			string ArchivoBakMasViejoADejar = nombreArchivo + ".bak." + System.DateTime.Now.AddDays(-1).ToString("yyyyMMddHHmmss");
-			string[] ArchivosBak = System.IO.Directory.GetFiles(carpeta, "*.bak.*");
-			foreach (string Archivo in ArchivosBak)
-			{
-				if (System.IO.Path.GetFileName(Archivo).CompareTo(ArchivoBakMasViejoADejar) < 0)
-					try
-					{
-						System.IO.File.Delete(Archivo);
-					}
-					catch
-					{
-						//No pude borrar el bak. No pasa nada
-					}
-			}
-		}
 
-		private static byte[] NetGet(string Archivo)
+                private static byte[] NetGet(string Archivo)
 		{
 			try
 			{

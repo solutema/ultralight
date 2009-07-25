@@ -291,7 +291,7 @@ namespace Lfc.Bancos.Cheques
                                 case Keys.F5:
                                         e.Handled = true;
                                         if (DepositarPagar.Visible && DepositarPagar.Enabled)
-                                                DepositarPagar_Click(sender, e);
+                                                DepositarPagar.PerformClick();
                                         break;
                         }
                 }

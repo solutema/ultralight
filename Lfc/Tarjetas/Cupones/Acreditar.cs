@@ -129,7 +129,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
                         // 
-                        // txtFormaPago
+                        // EntradaFormaPago
                         // 
                         this.txtFormaPago.AutoNav = true;
                         this.txtFormaPago.AutoTab = true;
@@ -137,7 +137,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.txtFormaPago.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtFormaPago.Location = new System.Drawing.Point(188, 256);
                         this.txtFormaPago.MaxLenght = 32767;
-                        this.txtFormaPago.Name = "txtFormaPago";
+                        this.txtFormaPago.Name = "EntradaFormaPago";
                         this.txtFormaPago.Padding = new System.Windows.Forms.Padding(2);
                         this.txtFormaPago.ReadOnly = false;
                         this.txtFormaPago.SetData = new string[] {
@@ -398,7 +398,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.Label5.Text = "(Comisiones normales de las tarjetas)";
                         this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtTotal
+                        // EntradaTotal
                         // 
                         this.txtTotal.AutoNav = true;
                         this.txtTotal.AutoTab = true;
@@ -407,7 +407,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.txtTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtTotal.Location = new System.Drawing.Point(188, 220);
                         this.txtTotal.MaxLenght = 32767;
-                        this.txtTotal.Name = "txtTotal";
+                        this.txtTotal.Name = "EntradaTotal";
                         this.txtTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTotal.Prefijo = "$";
                         this.txtTotal.ReadOnly = false;
@@ -443,15 +443,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.Controls.Add(this.Frame1);
                         this.Name = "Acreditar";
                         this.Text = "Tarjetas de Crédito y Débito: Acreditación";
-                        this.Controls.SetChildIndex(this.Frame1, 0);
-                        this.Controls.SetChildIndex(this.Label11, 0);
-                        this.Controls.SetChildIndex(this.txtFormaPago, 0);
-                        this.Controls.SetChildIndex(this.lblLabel1, 0);
-                        this.Controls.SetChildIndex(this.txtCupones, 0);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.txtSubTotal, 0);
-                        this.Controls.SetChildIndex(this.Label8, 0);
-                        this.Controls.SetChildIndex(this.txtTotal, 0);
                         this.Frame1.ResumeLayout(false);
                         this.Frame1.PerformLayout();
                         this.ResumeLayout(false);

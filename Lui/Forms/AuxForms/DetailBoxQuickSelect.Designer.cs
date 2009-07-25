@@ -27,7 +27,7 @@
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 
-namespace Lui.Forms
+namespace Lui.Forms.AuxForms
 {
 	partial class DetailBoxQuickSelect
 	{

@@ -240,7 +240,7 @@ namespace Lfc.Bancos.Cheques
                         this.Label3.Text = "De la siguiente cuenta";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtTotal
+                        // EntradaTotal
                         // 
                         this.txtTotal.AutoNav = true;
                         this.txtTotal.AutoTab = true;
@@ -249,7 +249,7 @@ namespace Lfc.Bancos.Cheques
                         this.txtTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtTotal.Location = new System.Drawing.Point(212, 196);
                         this.txtTotal.MaxLenght = 32767;
-                        this.txtTotal.Name = "txtTotal";
+                        this.txtTotal.Name = "EntradaTotal";
                         this.txtTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTotal.Prefijo = "$";
                         this.txtTotal.ReadOnly = false;
@@ -285,17 +285,6 @@ namespace Lfc.Bancos.Cheques
                         this.Controls.Add(this.lblLabel1);
                         this.Controls.Add(this.label7);
                         this.Name = "Pagar";
-                        this.Controls.SetChildIndex(this.label7, 0);
-                        this.Controls.SetChildIndex(this.lblLabel1, 0);
-                        this.Controls.SetChildIndex(this.txtCantidad, 0);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.txtSubTotal, 0);
-                        this.Controls.SetChildIndex(this.label4, 0);
-                        this.Controls.SetChildIndex(this.txtImpuestos, 0);
-                        this.Controls.SetChildIndex(this.Label8, 0);
-                        this.Controls.SetChildIndex(this.txtTotal, 0);
-                        this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.EntradaCuentaOrigen, 0);
                         this.ResumeLayout(false);
 
 		}
@@ -348,7 +337,7 @@ namespace Lfc.Bancos.Cheques
 			if(aceptarReturn.Success == true)
 			{
 				//double ImporteOrigen = Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text);
-				//double ImporteDestino = Lfx.Types.Parsing.ParseCurrency(txtTotal.Text);
+				//double ImporteDestino = Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text);
 				double Impuestos = Lfx.Types.Parsing.ParseCurrency(txtImpuestos.Text);
 
 				this.DataView.BeginTransaction();

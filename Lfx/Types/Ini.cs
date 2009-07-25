@@ -33,7 +33,7 @@ using System.Text;
 
 namespace Lfx.Types
 {
-	//TODO: deprecated
+        // FIXME: deprecated
 	public static class Ini
 	{
 		public static string GetSection(string sIni, string sSectionName)

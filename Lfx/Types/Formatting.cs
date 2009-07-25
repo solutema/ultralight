@@ -374,6 +374,29 @@ namespace Lfx.Types
 			return numero.ToString("#,##0." + "0000000000".Substring(0, decimales), System.Globalization.CultureInfo.InvariantCulture); //.Replace(",", "'").Replace(".", ",");
 		}
 
+                public static string FormatShortestDateAndTime(System.DateTime fecha)
+                {
+                        string Res = "";
+                        if (fecha.Year == System.DateTime.Now.Year) {
+                                if (fecha.Month == System.DateTime.Now.Month) {
+                                        if (fecha.Day == System.DateTime.Now.Day) {
+                                                Res += "hoy, " + fecha.ToString("HH:mm");
+                                        } else if (fecha.Day == System.DateTime.Now.AddDays(-1).Day) {
+                                                Res += "ayer, " + fecha.ToString("HH:mm");
+                                        } else if (System.DateTime.Now.Day - fecha.Day < 7) {
+                                                Res += fecha.ToString(@"dddd d");
+                                        } else {
+                                                Res += fecha.ToString(@"dd ""de"" MMMM");
+                                        }
+                                } else {
+                                        Res += fecha.ToString(@"dd ""de"" MMMM");
+                                }
+                        } else {
+                                Res += fecha.ToString(@"dd ""de"" MMMM ""de"" yyyy");
+                        }
+                        return Res;
+                }
+
 		public static string FormatDateAndTime(object fecha)
 		{
 			string formatearFechaYHoraReturn = null;

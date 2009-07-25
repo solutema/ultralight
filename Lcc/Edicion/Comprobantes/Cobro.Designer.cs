@@ -32,14 +32,14 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelImporte = new System.Windows.Forms.Panel();
                         this.PanelCheque = new System.Windows.Forms.Panel();
                         this.EntradaEmisor = new Lui.Forms.TextBox();
-                        this.label2 = new System.Windows.Forms.Label();
                         this.EntradaFechaCobro = new Lui.Forms.TextBox();
-                        this.label3 = new System.Windows.Forms.Label();
-                        this.label6 = new System.Windows.Forms.Label();
                         this.EntradaFechaEmision = new Lui.Forms.TextBox();
                         this.EntradaNumeroCheque = new Lui.Forms.TextBox();
-                        this.lblFecha1 = new System.Windows.Forms.Label();
                         this.EntradaBanco = new Lui.Forms.DetailBox();
+                        this.label2 = new System.Windows.Forms.Label();
+                        this.label3 = new System.Windows.Forms.Label();
+                        this.label6 = new System.Windows.Forms.Label();
+                        this.lblFecha1 = new System.Windows.Forms.Label();
                         this.label5 = new System.Windows.Forms.Label();
                         this.PanelTitulo = new System.Windows.Forms.Panel();
                         this.FrameTitulo = new Lui.Forms.Frame();
@@ -123,9 +123,9 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelImporte.Controls.Add(this.EntradaImporte);
                         this.PanelImporte.Controls.Add(this.label1);
                         this.PanelImporte.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelImporte.Location = new System.Drawing.Point(2, 72);
+                        this.PanelImporte.Location = new System.Drawing.Point(0, 70);
                         this.PanelImporte.Name = "PanelImporte";
-                        this.PanelImporte.Size = new System.Drawing.Size(456, 30);
+                        this.PanelImporte.Size = new System.Drawing.Size(460, 30);
                         this.PanelImporte.TabIndex = 2;
                         // 
                         // PanelCheque
@@ -141,9 +141,9 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelCheque.Controls.Add(this.lblFecha1);
                         this.PanelCheque.Controls.Add(this.label5);
                         this.PanelCheque.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelCheque.Location = new System.Drawing.Point(2, 134);
+                        this.PanelCheque.Location = new System.Drawing.Point(0, 132);
                         this.PanelCheque.Name = "PanelCheque";
-                        this.PanelCheque.Size = new System.Drawing.Size(456, 166);
+                        this.PanelCheque.Size = new System.Drawing.Size(460, 166);
                         this.PanelCheque.TabIndex = 4;
                         this.PanelCheque.Visible = false;
                         // 
@@ -168,21 +168,12 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaEmisor.Prefijo = "";
                         this.EntradaEmisor.ReadOnly = false;
                         this.EntradaEmisor.SelectOnFocus = true;
-                        this.EntradaEmisor.Size = new System.Drawing.Size(316, 24);
+                        this.EntradaEmisor.Size = new System.Drawing.Size(320, 24);
                         this.EntradaEmisor.Sufijo = "";
                         this.EntradaEmisor.TabIndex = 1;
                         this.EntradaEmisor.TextRaw = "";
                         this.EntradaEmisor.TipWhenBlank = "";
                         this.EntradaEmisor.ToolTipText = "Estado para esta chequera.";
-                        // 
-                        // label2
-                        // 
-                        this.label2.Location = new System.Drawing.Point(0, 32);
-                        this.label2.Name = "label2";
-                        this.label2.Size = new System.Drawing.Size(140, 24);
-                        this.label2.TabIndex = 2;
-                        this.label2.Text = "Banco";
-                        this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaFechaCobro
                         // 
@@ -210,24 +201,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFechaCobro.TipWhenBlank = "";
                         this.EntradaFechaCobro.ToolTipText = "";
                         this.EntradaFechaCobro.Enter += new System.EventHandler(this.EntradaFechaCobro_Enter);
-                        // 
-                        // label3
-                        // 
-                        this.label3.Location = new System.Drawing.Point(0, 64);
-                        this.label3.Name = "label3";
-                        this.label3.Size = new System.Drawing.Size(140, 24);
-                        this.label3.TabIndex = 4;
-                        this.label3.Text = "Número";
-                        this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // label6
-                        // 
-                        this.label6.Location = new System.Drawing.Point(0, 128);
-                        this.label6.Name = "label6";
-                        this.label6.Size = new System.Drawing.Size(140, 24);
-                        this.label6.TabIndex = 8;
-                        this.label6.Text = "Fecha de cobro";
-                        this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaFechaEmision
                         // 
@@ -282,15 +255,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaNumeroCheque.TipWhenBlank = "";
                         this.EntradaNumeroCheque.ToolTipText = "Estado para esta chequera.";
                         // 
-                        // lblFecha1
-                        // 
-                        this.lblFecha1.Location = new System.Drawing.Point(0, 96);
-                        this.lblFecha1.Name = "lblFecha1";
-                        this.lblFecha1.Size = new System.Drawing.Size(140, 24);
-                        this.lblFecha1.TabIndex = 6;
-                        this.lblFecha1.Text = "Fecha de emisión";
-                        this.lblFecha1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
                         // EntradaBanco
                         // 
                         this.EntradaBanco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -312,7 +276,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaBanco.ReadOnly = false;
                         this.EntradaBanco.Required = true;
                         this.EntradaBanco.SelectOnFocus = false;
-                        this.EntradaBanco.Size = new System.Drawing.Size(316, 24);
+                        this.EntradaBanco.Size = new System.Drawing.Size(320, 24);
                         this.EntradaBanco.TabIndex = 3;
                         this.EntradaBanco.Table = "bancos";
                         this.EntradaBanco.TeclaDespuesDeEnter = "{tab}";
@@ -321,6 +285,42 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaBanco.TextInt = 0;
                         this.EntradaBanco.TipWhenBlank = "";
                         this.EntradaBanco.ToolTipText = "";
+                        // 
+                        // label2
+                        // 
+                        this.label2.Location = new System.Drawing.Point(0, 32);
+                        this.label2.Name = "label2";
+                        this.label2.Size = new System.Drawing.Size(140, 24);
+                        this.label2.TabIndex = 2;
+                        this.label2.Text = "Banco";
+                        this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // label3
+                        // 
+                        this.label3.Location = new System.Drawing.Point(0, 64);
+                        this.label3.Name = "label3";
+                        this.label3.Size = new System.Drawing.Size(140, 24);
+                        this.label3.TabIndex = 4;
+                        this.label3.Text = "Número";
+                        this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // label6
+                        // 
+                        this.label6.Location = new System.Drawing.Point(0, 128);
+                        this.label6.Name = "label6";
+                        this.label6.Size = new System.Drawing.Size(140, 24);
+                        this.label6.TabIndex = 8;
+                        this.label6.Text = "Fecha de cobro";
+                        this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // lblFecha1
+                        // 
+                        this.lblFecha1.Location = new System.Drawing.Point(0, 96);
+                        this.lblFecha1.Name = "lblFecha1";
+                        this.lblFecha1.Size = new System.Drawing.Size(140, 24);
+                        this.lblFecha1.TabIndex = 6;
+                        this.lblFecha1.Text = "Fecha de emisión";
+                        this.lblFecha1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // label5
                         // 
@@ -335,9 +335,9 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.PanelTitulo.Controls.Add(this.FrameTitulo);
                         this.PanelTitulo.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelTitulo.Location = new System.Drawing.Point(2, 38);
+                        this.PanelTitulo.Location = new System.Drawing.Point(0, 36);
                         this.PanelTitulo.Name = "PanelTitulo";
-                        this.PanelTitulo.Size = new System.Drawing.Size(456, 34);
+                        this.PanelTitulo.Size = new System.Drawing.Size(460, 34);
                         this.PanelTitulo.TabIndex = 1;
                         // 
                         // FrameTitulo
@@ -349,7 +349,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.FrameTitulo.Name = "FrameTitulo";
                         this.FrameTitulo.Padding = new System.Windows.Forms.Padding(2);
                         this.FrameTitulo.ReadOnly = false;
-                        this.FrameTitulo.Size = new System.Drawing.Size(456, 32);
+                        this.FrameTitulo.Size = new System.Drawing.Size(460, 32);
                         this.FrameTitulo.TabIndex = 0;
                         this.FrameTitulo.TabStop = false;
                         this.FrameTitulo.Text = "frame1";
@@ -360,9 +360,9 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelCuenta.Controls.Add(this.label9);
                         this.PanelCuenta.Controls.Add(this.EntradaCuenta);
                         this.PanelCuenta.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelCuenta.Location = new System.Drawing.Point(2, 300);
+                        this.PanelCuenta.Location = new System.Drawing.Point(0, 298);
                         this.PanelCuenta.Name = "PanelCuenta";
-                        this.PanelCuenta.Size = new System.Drawing.Size(456, 56);
+                        this.PanelCuenta.Size = new System.Drawing.Size(460, 56);
                         this.PanelCuenta.TabIndex = 5;
                         this.PanelCuenta.Visible = false;
                         // 
@@ -395,7 +395,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCuenta.ReadOnly = false;
                         this.EntradaCuenta.Required = true;
                         this.EntradaCuenta.SelectOnFocus = false;
-                        this.EntradaCuenta.Size = new System.Drawing.Size(316, 24);
+                        this.EntradaCuenta.Size = new System.Drawing.Size(320, 24);
                         this.EntradaCuenta.TabIndex = 1;
                         this.EntradaCuenta.Table = "cuentas";
                         this.EntradaCuenta.TeclaDespuesDeEnter = "{tab}";
@@ -409,9 +409,9 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.PanelEfectivo.Controls.Add(this.label8);
                         this.PanelEfectivo.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelEfectivo.Location = new System.Drawing.Point(2, 356);
+                        this.PanelEfectivo.Location = new System.Drawing.Point(0, 354);
                         this.PanelEfectivo.Name = "PanelEfectivo";
-                        this.PanelEfectivo.Size = new System.Drawing.Size(456, 32);
+                        this.PanelEfectivo.Size = new System.Drawing.Size(460, 32);
                         this.PanelEfectivo.TabIndex = 6;
                         this.PanelEfectivo.Visible = false;
                         // 
@@ -439,9 +439,9 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelTarjeta.Controls.Add(this.Label15);
                         this.PanelTarjeta.Controls.Add(this.Label16);
                         this.PanelTarjeta.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelTarjeta.Location = new System.Drawing.Point(2, 388);
+                        this.PanelTarjeta.Location = new System.Drawing.Point(0, 386);
                         this.PanelTarjeta.Name = "PanelTarjeta";
-                        this.PanelTarjeta.Size = new System.Drawing.Size(456, 166);
+                        this.PanelTarjeta.Size = new System.Drawing.Size(460, 166);
                         this.PanelTarjeta.TabIndex = 7;
                         this.PanelTarjeta.Visible = false;
                         // 
@@ -594,7 +594,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaPlan.ReadOnly = false;
                         this.EntradaPlan.Required = false;
                         this.EntradaPlan.SelectOnFocus = true;
-                        this.EntradaPlan.Size = new System.Drawing.Size(316, 24);
+                        this.EntradaPlan.Size = new System.Drawing.Size(320, 24);
                         this.EntradaPlan.TabIndex = 3;
                         this.EntradaPlan.Table = "tarjetas_planes";
                         this.EntradaPlan.TeclaDespuesDeEnter = "{tab}";
@@ -626,7 +626,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaTarjeta.ReadOnly = false;
                         this.EntradaTarjeta.Required = true;
                         this.EntradaTarjeta.SelectOnFocus = true;
-                        this.EntradaTarjeta.Size = new System.Drawing.Size(316, 24);
+                        this.EntradaTarjeta.Size = new System.Drawing.Size(320, 24);
                         this.EntradaTarjeta.TabIndex = 1;
                         this.EntradaTarjeta.Table = "tarjetas";
                         this.EntradaTarjeta.TeclaDespuesDeEnter = "{tab}";
@@ -682,9 +682,9 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelObs.Controls.Add(this.EntradaObs);
                         this.PanelObs.Controls.Add(this.Label20);
                         this.PanelObs.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelObs.Location = new System.Drawing.Point(2, 554);
+                        this.PanelObs.Location = new System.Drawing.Point(0, 552);
                         this.PanelObs.Name = "PanelObs";
-                        this.PanelObs.Size = new System.Drawing.Size(456, 58);
+                        this.PanelObs.Size = new System.Drawing.Size(460, 58);
                         this.PanelObs.TabIndex = 8;
                         // 
                         // EntradaObs
@@ -702,14 +702,14 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaObs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaObs.Location = new System.Drawing.Point(140, 0);
                         this.EntradaObs.MaxLenght = 32767;
-                        this.EntradaObs.MultiLine = false;
+                        this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.PasswordChar = '\0';
                         this.EntradaObs.Prefijo = "";
                         this.EntradaObs.ReadOnly = false;
                         this.EntradaObs.SelectOnFocus = true;
-                        this.EntradaObs.Size = new System.Drawing.Size(316, 52);
+                        this.EntradaObs.Size = new System.Drawing.Size(320, 52);
                         this.EntradaObs.Sufijo = "";
                         this.EntradaObs.TabIndex = 1;
                         this.EntradaObs.TextRaw = "";
@@ -729,9 +729,9 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.PanelCuentaCorriente.Controls.Add(this.label7);
                         this.PanelCuentaCorriente.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelCuentaCorriente.Location = new System.Drawing.Point(2, 102);
+                        this.PanelCuentaCorriente.Location = new System.Drawing.Point(0, 100);
                         this.PanelCuentaCorriente.Name = "PanelCuentaCorriente";
-                        this.PanelCuentaCorriente.Size = new System.Drawing.Size(456, 32);
+                        this.PanelCuentaCorriente.Size = new System.Drawing.Size(460, 32);
                         this.PanelCuentaCorriente.TabIndex = 3;
                         this.PanelCuentaCorriente.Visible = false;
                         // 
@@ -750,9 +750,9 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelFormaDePago.Controls.Add(this.label12);
                         this.PanelFormaDePago.Controls.Add(this.EntradaFormaDePago);
                         this.PanelFormaDePago.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelFormaDePago.Location = new System.Drawing.Point(2, 2);
+                        this.PanelFormaDePago.Location = new System.Drawing.Point(0, 0);
                         this.PanelFormaDePago.Name = "PanelFormaDePago";
-                        this.PanelFormaDePago.Size = new System.Drawing.Size(456, 36);
+                        this.PanelFormaDePago.Size = new System.Drawing.Size(460, 36);
                         this.PanelFormaDePago.TabIndex = 0;
                         this.PanelFormaDePago.Visible = false;
                         // 
@@ -814,9 +814,9 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.PanelSeparadorInferior.BackColor = System.Drawing.SystemColors.ControlDark;
                         this.PanelSeparadorInferior.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelSeparadorInferior.Location = new System.Drawing.Point(2, 612);
+                        this.PanelSeparadorInferior.Location = new System.Drawing.Point(0, 610);
                         this.PanelSeparadorInferior.Name = "PanelSeparadorInferior";
-                        this.PanelSeparadorInferior.Size = new System.Drawing.Size(456, 2);
+                        this.PanelSeparadorInferior.Size = new System.Drawing.Size(460, 2);
                         this.PanelSeparadorInferior.TabIndex = 9;
                         // 
                         // Cobro
@@ -833,16 +833,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.Controls.Add(this.PanelFormaDePago);
                         this.Name = "Cobro";
                         this.Size = new System.Drawing.Size(460, 629);
-                        this.Controls.SetChildIndex(this.PanelFormaDePago, 0);
-                        this.Controls.SetChildIndex(this.PanelTitulo, 0);
-                        this.Controls.SetChildIndex(this.PanelImporte, 0);
-                        this.Controls.SetChildIndex(this.PanelCuentaCorriente, 0);
-                        this.Controls.SetChildIndex(this.PanelCheque, 0);
-                        this.Controls.SetChildIndex(this.PanelCuenta, 0);
-                        this.Controls.SetChildIndex(this.PanelEfectivo, 0);
-                        this.Controls.SetChildIndex(this.PanelTarjeta, 0);
-                        this.Controls.SetChildIndex(this.PanelObs, 0);
-                        this.Controls.SetChildIndex(this.PanelSeparadorInferior, 0);
                         this.PanelImporte.ResumeLayout(false);
                         this.PanelCheque.ResumeLayout(false);
                         this.PanelTitulo.ResumeLayout(false);
@@ -853,7 +843,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelCuentaCorriente.ResumeLayout(false);
                         this.PanelFormaDePago.ResumeLayout(false);
                         this.ResumeLayout(false);
-                        this.PerformLayout();
 
                 }
 

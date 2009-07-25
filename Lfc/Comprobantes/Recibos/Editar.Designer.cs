@@ -120,6 +120,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // EntradaVendedor
                         // 
+                        this.EntradaVendedor.AutoHeight = false;
                         this.EntradaVendedor.AutoTab = true;
                         this.EntradaVendedor.CanCreate = true;
                         this.EntradaVendedor.DetailField = "nombre_visible";
@@ -135,6 +136,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaVendedor.ReadOnly = false;
                         this.EntradaVendedor.Required = true;
+                        this.EntradaVendedor.SelectOnFocus = true;
                         this.EntradaVendedor.Size = new System.Drawing.Size(200, 24);
                         this.EntradaVendedor.TabIndex = 5;
                         this.EntradaVendedor.Table = "personas";
@@ -156,23 +158,33 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // EntradaNumero
                         // 
+                        this.EntradaNumero.AutoHeight = false;
                         this.EntradaNumero.AutoNav = true;
                         this.EntradaNumero.AutoTab = true;
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaNumero.DecimalPlaces = -1;
                         this.EntradaNumero.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaNumero.Location = new System.Drawing.Point(124, 52);
                         this.EntradaNumero.MaxLenght = 32767;
+                        this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaNumero.PasswordChar = '\0';
+                        this.EntradaNumero.Prefijo = "";
                         this.EntradaNumero.ReadOnly = false;
+                        this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(100, 24);
+                        this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 3;
+                        this.EntradaNumero.TextRaw = "";
                         this.EntradaNumero.TipWhenBlank = "";
                         this.EntradaNumero.ToolTipText = "";
                         // 
                         // frmFacturas
                         // 
+                        this.frmFacturas.AutoHeight = false;
                         this.frmFacturas.Controls.Add(this.Label3);
                         this.frmFacturas.Controls.Add(this.ListaFacturas);
                         this.frmFacturas.Controls.Add(this.EtiquetaFacturasImporte);
@@ -266,6 +278,7 @@ namespace Lfc.Comprobantes.Recibos
                         // BotonAgregarFactura
                         // 
                         this.BotonAgregarFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonAgregarFactura.AutoHeight = false;
                         this.BotonAgregarFactura.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonAgregarFactura.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonAgregarFactura.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -286,6 +299,7 @@ namespace Lfc.Comprobantes.Recibos
                         // BotonQuitarFactura
                         // 
                         this.BotonQuitarFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonQuitarFactura.AutoHeight = false;
                         this.BotonQuitarFactura.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonQuitarFactura.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonQuitarFactura.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -306,6 +320,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Frame1
                         // 
+                        this.Frame1.AutoHeight = false;
                         this.Frame1.Controls.Add(this.ListaValores);
                         this.Frame1.Controls.Add(this.BotonAgregarValor);
                         this.Frame1.Controls.Add(this.BotonQuitarValor);
@@ -373,6 +388,7 @@ namespace Lfc.Comprobantes.Recibos
                         // BotonAgregarValor
                         // 
                         this.BotonAgregarValor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonAgregarValor.AutoHeight = false;
                         this.BotonAgregarValor.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonAgregarValor.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonAgregarValor.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -393,6 +409,7 @@ namespace Lfc.Comprobantes.Recibos
                         // BotonQuitarValor
                         // 
                         this.BotonQuitarValor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonQuitarValor.AutoHeight = false;
                         this.BotonQuitarValor.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonQuitarValor.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonQuitarValor.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -445,10 +462,12 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         this.EntradaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaCliente.AutoHeight = false;
                         this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.CanCreate = true;
                         this.EntradaCliente.DetailField = "nombre_visible";
                         this.EntradaCliente.ExtraDetailFields = null;
+                        this.EntradaCliente.Filter = "";
                         this.EntradaCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCliente.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCliente.FreeTextCode = "";
@@ -459,6 +478,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCliente.ReadOnly = false;
                         this.EntradaCliente.Required = true;
+                        this.EntradaCliente.SelectOnFocus = true;
                         this.EntradaCliente.Size = new System.Drawing.Size(104, 24);
                         this.EntradaCliente.TabIndex = 7;
                         this.EntradaCliente.Table = "personas";
@@ -472,6 +492,7 @@ namespace Lfc.Comprobantes.Recibos
                         // PrintButton
                         // 
                         this.PrintButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.PrintButton.AutoHeight = false;
                         this.PrintButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.PrintButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.PrintButton.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -506,18 +527,27 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         this.EntradaConceptoTexto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaConceptoTexto.AutoHeight = false;
                         this.EntradaConceptoTexto.AutoNav = true;
                         this.EntradaConceptoTexto.AutoTab = true;
                         this.EntradaConceptoTexto.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaConceptoTexto.DecimalPlaces = -1;
                         this.EntradaConceptoTexto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaConceptoTexto.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaConceptoTexto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaConceptoTexto.Location = new System.Drawing.Point(124, 80);
                         this.EntradaConceptoTexto.MaxLenght = 32767;
+                        this.EntradaConceptoTexto.MultiLine = false;
                         this.EntradaConceptoTexto.Name = "EntradaConceptoTexto";
                         this.EntradaConceptoTexto.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaConceptoTexto.PasswordChar = '\0';
+                        this.EntradaConceptoTexto.Prefijo = "";
                         this.EntradaConceptoTexto.ReadOnly = false;
+                        this.EntradaConceptoTexto.SelectOnFocus = true;
                         this.EntradaConceptoTexto.Size = new System.Drawing.Size(232, 24);
+                        this.EntradaConceptoTexto.Sufijo = "";
                         this.EntradaConceptoTexto.TabIndex = 9;
+                        this.EntradaConceptoTexto.TextRaw = "";
                         this.EntradaConceptoTexto.TipWhenBlank = "";
                         this.EntradaConceptoTexto.ToolTipText = "";
                         // 
@@ -552,18 +582,27 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // EntradaPV
                         // 
+                        this.EntradaPV.AutoHeight = false;
                         this.EntradaPV.AutoNav = true;
                         this.EntradaPV.AutoTab = true;
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaPV.DecimalPlaces = -1;
                         this.EntradaPV.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPV.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaPV.Location = new System.Drawing.Point(88, 52);
                         this.EntradaPV.MaxLenght = 32767;
+                        this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaPV.PasswordChar = '\0';
+                        this.EntradaPV.Prefijo = "";
                         this.EntradaPV.ReadOnly = false;
+                        this.EntradaPV.SelectOnFocus = true;
                         this.EntradaPV.Size = new System.Drawing.Size(32, 24);
+                        this.EntradaPV.Sufijo = "";
                         this.EntradaPV.TabIndex = 2;
+                        this.EntradaPV.TextRaw = "";
                         this.EntradaPV.TipWhenBlank = "";
                         this.EntradaPV.ToolTipText = "";
                         // 
@@ -580,10 +619,12 @@ namespace Lfc.Comprobantes.Recibos
                         // EntradaConcepto
                         // 
                         this.EntradaConcepto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaConcepto.AutoHeight = false;
                         this.EntradaConcepto.AutoTab = true;
                         this.EntradaConcepto.CanCreate = true;
                         this.EntradaConcepto.DetailField = "nombre";
                         this.EntradaConcepto.ExtraDetailFields = null;
+                        this.EntradaConcepto.Filter = "";
                         this.EntradaConcepto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaConcepto.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaConcepto.FreeTextCode = "";
@@ -594,6 +635,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConcepto.ReadOnly = false;
                         this.EntradaConcepto.Required = true;
+                        this.EntradaConcepto.SelectOnFocus = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(216, 24);
                         this.EntradaConcepto.TabIndex = 11;
                         this.EntradaConcepto.Table = "cuentas_conceptos";
@@ -608,6 +650,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(692, 473);
+                        this.Controls.Add(this.PrintButton);
                         this.Controls.Add(this.label7);
                         this.Controls.Add(this.EntradaConcepto);
                         this.Controls.Add(this.EntradaConceptoTexto);
@@ -618,7 +661,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.Controls.Add(this.TablaCentral);
                         this.Controls.Add(this.label6);
                         this.Controls.Add(this.EtiquetaTitulo);
-                        this.Controls.Add(this.PrintButton);
                         this.Controls.Add(this.EntradaCliente);
                         this.Controls.Add(this.Label1);
                         this.Controls.Add(this.EntradaVendedor);
@@ -629,7 +671,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.Controls.SetChildIndex(this.EntradaVendedor, 0);
                         this.Controls.SetChildIndex(this.Label1, 0);
                         this.Controls.SetChildIndex(this.EntradaCliente, 0);
-                        this.Controls.SetChildIndex(this.PrintButton, 0);
                         this.Controls.SetChildIndex(this.EtiquetaTitulo, 0);
                         this.Controls.SetChildIndex(this.label6, 0);
                         this.Controls.SetChildIndex(this.TablaCentral, 0);
@@ -640,6 +681,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.Controls.SetChildIndex(this.EntradaConceptoTexto, 0);
                         this.Controls.SetChildIndex(this.EntradaConcepto, 0);
                         this.Controls.SetChildIndex(this.label7, 0);
+                        this.Controls.SetChildIndex(this.PrintButton, 0);
                         this.frmFacturas.ResumeLayout(false);
                         this.frmFacturas.PerformLayout();
                         this.Frame1.ResumeLayout(false);

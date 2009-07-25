@@ -41,11 +41,8 @@ namespace Lfc.Comprobantes
                 protected internal string m_Tipo = "FNCND", m_Letra = "*";
                 protected internal Lfx.Types.DateRange m_Fechas;
                 protected internal string m_Estado = "0";
-                protected internal int m_Sucursal, m_FormaPago;
-                protected internal int m_Cliente, m_Vendedor;
-                protected internal int m_Anuladas = 1;
-                protected internal int m_PV = 0;
-                private System.Collections.Hashtable CacheVendedores = new System.Collections.Hashtable();
+                protected internal int m_Sucursal, m_FormaPago, m_Cliente, m_Vendedor, m_Anuladas = 1, m_PV = 0;
+                protected internal double m_MontoDesde = 0, m_MontoHasta = 0;
 
                 public Inicio()
                         : base()
@@ -111,6 +108,10 @@ namespace Lfc.Comprobantes
                         FormListado.m_Vendedor = m_Vendedor;
                         FormListado.m_Sucursal = m_Sucursal;
                         FormListado.m_Anuladas = m_Anuladas;
+                        FormListado.m_PV = m_PV;
+                        FormListado.m_FormaPago = m_FormaPago;
+                        FormListado.m_MontoDesde = m_MontoDesde;
+                        FormListado.m_MontoHasta = m_MontoHasta;
 
                         if (m_Estado == "0")
                                 FormListado.m_Estado = "3";
@@ -141,6 +142,8 @@ namespace Lfc.Comprobantes
                                 FormFiltros.EntradaFechas.Rango = m_Fechas;
                                 FormFiltros.txtEstado.TextKey = m_Estado;
                                 FormFiltros.txtAnuladas.TextKey = m_Anuladas.ToString();
+                                FormFiltros.EntradaMontoDesde.Text = Lfx.Types.Formatting.FormatCurrency(m_MontoDesde, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                FormFiltros.EntradaMontoHasta.Text = Lfx.Types.Formatting.FormatCurrency(m_MontoHasta, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                                 FormFiltros.Owner = this;
                                 FormFiltros.ShowDialog();
 
@@ -154,6 +157,8 @@ namespace Lfc.Comprobantes
                                         m_Anuladas = Lfx.Types.Parsing.ParseInt(FormFiltros.txtAnuladas.TextKey);
                                         m_Tipo = FormFiltros.txtTipo.TextKey;
                                         m_PV = Lfx.Types.Parsing.ParseInt(FormFiltros.txtPV.Text);
+                                        m_MontoDesde = Lfx.Types.Parsing.ParseCurrency(FormFiltros.EntradaMontoDesde.Text);
+                                        m_MontoHasta = Lfx.Types.Parsing.ParseCurrency(FormFiltros.EntradaMontoHasta.Text);
                                         m_Letra = FormFiltros.txtLetra.TextKey;
 
                                         this.RefreshList();
@@ -305,6 +310,13 @@ namespace Lfc.Comprobantes
                         if (m_Anuladas == 0)
                                 FiltroTemp += " AND anulada=0";
 
+                        if(m_MontoDesde != 0 && m_MontoHasta != 0)
+                                FiltroTemp += " AND total BETWEEN " + Lfx.Types.Formatting.FormatCurrencySql(m_MontoDesde) + " AND " + Lfx.Types.Formatting.FormatCurrencySql(m_MontoHasta);
+                        else if(m_MontoDesde != 0)
+                                FiltroTemp += " AND total>=" + Lfx.Types.Formatting.FormatCurrencySql(m_MontoDesde);
+                        else if (m_MontoHasta != 0)
+                                FiltroTemp += " AND total<=" + Lfx.Types.Formatting.FormatCurrencySql(m_MontoHasta);
+
                         this.CurrentFilter = FiltroTemp;
                 }
 
@@ -344,10 +356,12 @@ namespace Lfc.Comprobantes
                                         itm.ForeColor = System.Drawing.Color.Red;
                                 }
 
-                                string IdVendedor = itm.SubItems[9].Text;
-                                if (CacheVendedores[IdVendedor] == null)
-                                        CacheVendedores[IdVendedor] = this.Workspace.DefaultDataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + IdVendedor);
-                                itm.SubItems[9].Text = CacheVendedores[IdVendedor].ToString();
+                                int IdVendedor = Lfx.Types.Parsing.ParseInt(itm.SubItems[9].Text);
+                                if (IdVendedor > 0) {
+                                        Lfx.Data.Row Vend = this.DataView.Tables["personas"].FastRows[IdVendedor];
+                                        if (Vend != null)
+                                                itm.SubItems[9].Text = Vend.Fields["nombre_visible"].Value.ToString();
+                                }
                         }
 
                         txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(dTotal, this.Workspace.CurrentConfig.Currency.DecimalPlaces);

@@ -238,32 +238,32 @@ namespace Lfc.Tarjetas.Cupones
 					case Keys.Escape:
 						e.Handled = true;
 						if (CancelCommandButton.Enabled && CancelCommandButton.Visible)
-							cmdCancelar_Click(sender, e);
+							CancelCommandButton.PerformClick();
 						break;
 					case Keys.F2:
 						e.Handled = true;
 						if (FilterButton.Enabled && FilterButton.Visible)
-							cmdFiltros_Click(sender, e);
+							FilterButton.PerformClick();
 						break;
 					case Keys.F4:
 						e.Handled = true;
 						if (cmdAcreditar.Enabled && cmdAcreditar.Visible)
-							BotonAcreditar_Click(sender, e);
+							cmdAcreditar.PerformClick();
 						break;
 					case Keys.F6:
 						e.Handled = true;
 						if (cmdAnular.Enabled && cmdAnular.Visible)
-							cmdAnular_Click(sender, e);
+							cmdAnular.PerformClick();
 						break;
 					case Keys.F9:
 						e.Handled = true;
 						if (cmdMostrar.Enabled && cmdMostrar.Visible)
-							cmdMostrar_Click(sender, e);
+							cmdMostrar.PerformClick();
 						break;
 					case Keys.F8:
 						e.Handled = true;
 						if (PrintButton.Enabled && PrintButton.Visible)
-							cmdImprimir_Click(sender, e);
+							PrintButton.PerformClick();
 						break;
 				}
 

@@ -191,12 +191,6 @@ namespace Lfc.Bancos.Chequeras
                         this.Controls.Add(this.Label7);
                         this.Name = "Filtros";
                         this.Text = "Filtros";
-                        this.Controls.SetChildIndex(this.Label7, 0);
-                        this.Controls.SetChildIndex(this.EntradaEstado, 0);
-                        this.Controls.SetChildIndex(this.EntradaBanco, 0);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.EntradaCuenta, 0);
-                        this.Controls.SetChildIndex(this.lblCuenta, 0);
                         this.ResumeLayout(false);
 
                 }

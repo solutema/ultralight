@@ -257,9 +257,6 @@ namespace Lui.Forms
 			this.FontChanged += new System.EventHandler(this.DetailBox_FontChanged);
 			this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DetailBox_KeyPress);
 			this.ForeColorChanged += new System.EventHandler(this.DetailBox_ForeColorChanged);
-			this.Controls.SetChildIndex(this.Label1, 0);
-			this.Controls.SetChildIndex(this.txtFreeText, 0);
-			this.Controls.SetChildIndex(this.TextBox1, 0);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -556,7 +553,7 @@ namespace Lui.Forms
 		{
 			RowMisses = 0;
 			if(Lui.Forms.Statics.DetailBoxQuickSelect == null)
-				Lui.Forms.Statics.DetailBoxQuickSelect = new DetailBoxQuickSelect();
+				Lui.Forms.Statics.DetailBoxQuickSelect = new Lui.Forms.AuxForms.DetailBoxQuickSelect();
 
                         Lui.Forms.Statics.DetailBoxQuickSelect.Owner = this.ParentForm;
 			Lui.Forms.Statics.DetailBoxQuickSelect.Table = m_Table;

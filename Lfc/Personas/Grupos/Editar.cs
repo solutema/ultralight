@@ -233,14 +233,6 @@ namespace Lfc.Personas.Grupos
                         this.Controls.Add(this.txtNombre);
                         this.Controls.Add(this.Label1);
                         this.Name = "Editar";
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.txtNombre, 0);
-                        this.Controls.SetChildIndex(this.label4, 0);
-                        this.Controls.SetChildIndex(this.txtDescuento, 0);
-                        this.Controls.SetChildIndex(this.label2, 0);
-                        this.Controls.SetChildIndex(this.txtPredet, 0);
-                        this.Controls.SetChildIndex(this.Label16, 0);
-                        this.Controls.SetChildIndex(this.txtGrupo, 0);
                         this.ResumeLayout(false);
 
 		}

@@ -43,6 +43,7 @@ namespace Lazaro.Principal
                 private Lws.Data.DataView m_DataView;
 		private int ItemActual, ItemSolicitado;
 		private string TablaActual, TablaSolicitada;
+                private Lbl.ElementoDeDatos ElementoActual = null;
 
 		public BarraInferior()
 		{
@@ -122,6 +123,7 @@ namespace Lazaro.Principal
 					PanelAyuda.Visible = false;
 					PanelPersona.Visible = false;
                                         Lbl.Articulos.Articulo Art = new Lbl.Articulos.Articulo(this.DataView, ItemSolicitado);
+                                        ElementoActual = Art;
                                         if (Art.Existe) {
                                                 ItemActual = ItemSolicitado;
                                                 TablaActual = TablaSolicitada;
@@ -148,6 +150,7 @@ namespace Lazaro.Principal
 					PanelAyuda.Visible = false;
 					PanelArticulo.Visible = false;
                                         Lbl.Personas.Persona Per = new Lbl.Personas.Persona(this.DataView, ItemSolicitado);
+                                        ElementoActual = Per;
                                         if (Per.Existe) {
                                                 ItemActual = ItemSolicitado;
                                                 TablaActual = TablaSolicitada;
@@ -160,8 +163,7 @@ namespace Lazaro.Principal
                                                         PersonaGrupo.Text = Per.Grupo.ToString();
                                                 else
                                                         PersonaGrupo.Text = "-";
-                                                Lbl.Cuentas.CuentaCorriente CtaCte = new Lbl.Cuentas.CuentaCorriente(this.DataView, ItemActual);
-                                                double Saldo = CtaCte.Saldo();
+                                                double Saldo = Per.CuentaCorriente.Saldo();
                                                 if (Saldo > 0) {
                                                         PersonaComentario.Text = "Esta persona registra saldo impago en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
                                                         PersonaComentario.BackColor = System.Drawing.Color.Tomato;
@@ -199,6 +201,16 @@ namespace Lazaro.Principal
                 private void PersonaNombre_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
                         Aplicacion.Exec("EDITAR " + TablaActual + " " + ItemActual.ToString());
+                }
+
+                private void EnlaceEtiquetas_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                {
+                        if (ElementoActual != null) {
+                                Lfc.Etiquetas FormularioEtiquetas = new Lfc.Etiquetas();
+                                FormularioEtiquetas.Workspace = this.Workspace;
+                                FormularioEtiquetas.Elemento = ElementoActual;
+                                FormularioEtiquetas.Show();
+                        }
                 }
 	}
 }

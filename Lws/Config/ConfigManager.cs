@@ -236,7 +236,7 @@ namespace Lws.Config
 			string Busco;
 
 			//Busco una variable para la estación
-                        Busco = (terminalName == null ? Lfx.Environment.SystemInformation.ComputerName : terminalName) + "//" + CompleteSettingName;
+                        Busco = (terminalName == null ? System.Environment.MachineName.ToUpperInvariant() : terminalName) + "//" + CompleteSettingName;
 			if(sucursal == 0 && SysConfigCache.Contains(Busco)) {
                                 string Res = (string)SysConfigCache[Busco];
                                 if (Res.Length > 0)
@@ -291,7 +291,7 @@ namespace Lws.Config
 				ConfigDB = m_Workspace.GetDataBase();
 
 			if(terminalName == null || terminalName.Length == 0)
-				terminalName = Lfx.Environment.SystemInformation.ComputerName;
+                                terminalName = System.Environment.MachineName.ToUpperInvariant();
 
 			string CompleteSettingName = (sectionName==null||sectionName.Length==0?"":(sectionName+@".")) + settingName;
                         Lfx.Data.SqlDeleteBuilder DeleteCommand = new Lfx.Data.SqlDeleteBuilder("sys_config");
@@ -348,8 +348,8 @@ namespace Lws.Config
 			if(ConfigDB == null)
 				ConfigDB = m_Workspace.GetDataBase();
 
-			if(terminalName == null || terminalName.Length == 0) 
-				terminalName = Lfx.Environment.SystemInformation.ComputerName;
+			if(terminalName == null || terminalName.Length == 0)
+                                terminalName = System.Environment.MachineName.ToUpperInvariant();
 
                         string CurrentValue = ReadGlobalSettingString(sectionName, settingName, null, terminalName, 0);
 			string CompleteSettingName = (sectionName==null||sectionName.Length==0?"":(sectionName+@".")) + settingName;

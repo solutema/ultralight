@@ -196,12 +196,6 @@ namespace Lfc.Articulos
 			this.Controls.Add(this.label19);
 			this.Name = "Rendimiento";
 			this.Text = "Rendimiento";
-			this.Controls.SetChildIndex(this.label19, 0);
-			this.Controls.SetChildIndex(this.label1, 0);
-			this.Controls.SetChildIndex(this.label2, 0);
-			this.Controls.SetChildIndex(this.txtRendimiento, 0);
-			this.Controls.SetChildIndex(this.txtUnidad, 0);
-			this.Controls.SetChildIndex(this.txtUnidadRend, 0);
 			this.ResumeLayout(false);
 
 		}

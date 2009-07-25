@@ -39,10 +39,7 @@ namespace Lfc.Personas
         public partial class Inicio : Lui.Forms.ListingForm
         {
                 public int m_Tipo;
-                private int m_Ciudad;
-                private int m_Grupo;
-                private int m_Situacion;
-                private int m_EstadoCredito = -1;
+                private int m_Ciudad, m_Grupo, m_SubGrupo, m_Situacion, m_EstadoCredito = -1;
 
                 public Inicio()
                 {
@@ -127,18 +124,41 @@ namespace Lfc.Personas
                 {
                         Lfc.Personas.Filtros FormFiltros = new Lfc.Personas.Filtros();
                         FormFiltros.Workspace = this.Workspace;
-                        FormFiltros.txtTipo.TextInt = m_Tipo;
-                        FormFiltros.txtSituacion.TextInt = m_Situacion;
-                        FormFiltros.txtGrupo.TextInt = m_Grupo;
-                        FormFiltros.txtCiudad.TextInt = m_Ciudad;
-                        FormFiltros.txtEstadoCredito.TextKey = m_EstadoCredito.ToString();
+                        FormFiltros.EntradaTipo.TextInt = m_Tipo;
+                        FormFiltros.EntradaSituacion.TextInt = m_Situacion;
+                        FormFiltros.EntradaGrupo.TextInt = m_Grupo;
+                        FormFiltros.EntradaSubGrupo.TextInt = m_SubGrupo;
+                        FormFiltros.EntradaCiudad.TextInt = m_Ciudad;
+                        FormFiltros.EntradaEstadoCredito.TextKey = m_EstadoCredito.ToString();
+
+                        string[] Etiquetas = new string[1];
+                        int i = 0;
+                        Etiquetas[i++] = "Todas|0";
+                        foreach (Lfx.Data.Row Lab in this.DataView.Tables["sys_labels"].FastRows) {
+                                if (Lab["tablas"].ToString() == this.DataTableName) {
+                                        if (Etiquetas.Length < (i + 1))
+                                                Array.Resize<string>(ref Etiquetas, i + 2);
+
+                                        Etiquetas[i++] = Lab["nombre"].ToString() + "|" + Lab["id_label"].ToString();
+                                        Etiquetas[i++] = "No " + Lab["nombre"].ToString() + "|" + (-((int)(Lab["id_label"]))).ToString();
+                                }
+                        }
+                        FormFiltros.EntradaEtiquetas.SetData = Etiquetas;
+                        if (this.Labels != null && this.Labels.Length > 0)
+                                FormFiltros.EntradaEtiquetas.TextKey = this.Labels[0].ToString();
 
                         if (FormFiltros.ShowDialog() == DialogResult.OK) {
-                                m_Tipo = FormFiltros.txtTipo.TextInt;
-                                m_Situacion = FormFiltros.txtSituacion.TextInt;
-                                m_Grupo = FormFiltros.txtGrupo.TextInt;
-                                m_Ciudad = FormFiltros.txtCiudad.TextInt;
-                                m_EstadoCredito = Lfx.Types.Parsing.ParseInt(FormFiltros.txtEstadoCredito.TextKey);
+                                m_Tipo = FormFiltros.EntradaTipo.TextInt;
+                                m_Situacion = FormFiltros.EntradaSituacion.TextInt;
+                                m_Grupo = FormFiltros.EntradaGrupo.TextInt;
+                                m_SubGrupo = FormFiltros.EntradaSubGrupo.TextInt;
+                                m_Ciudad = FormFiltros.EntradaCiudad.TextInt;
+                                m_EstadoCredito = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstadoCredito.TextKey);
+                                if (FormFiltros.EntradaEtiquetas.TextKey == "0")
+                                        this.Labels = null;
+                                else
+                                        this.Labels = new int[] { Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEtiquetas.TextKey) };
+                                
                                 FormFiltros = null;
                                 this.RefreshList();
                                 return new Lfx.Types.SuccessOperationResult();

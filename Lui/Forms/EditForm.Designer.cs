@@ -35,7 +35,6 @@ namespace Lui.Forms
 
                 private void InitializeComponent()
                 {
-                        //System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditForm));
                         this.SaveButton = new Lui.Forms.Button();
                         this.CancelCommandButton = new Lui.Forms.Button();
                         this.LowerPanel = new System.Windows.Forms.Panel();
@@ -45,11 +44,13 @@ namespace Lui.Forms
                         // SaveButton
                         // 
                         this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.SaveButton.AutoHeight = false;
+                        this.SaveButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.SaveButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.SaveButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.SaveButton.Image = null;
                         this.SaveButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.SaveButton.Location = new System.Drawing.Point(468, 10);
+                        this.SaveButton.Location = new System.Drawing.Point(544, 10);
                         this.SaveButton.Name = "SaveButton";
                         this.SaveButton.Padding = new System.Windows.Forms.Padding(2);
                         this.SaveButton.ReadOnly = false;
@@ -64,11 +65,13 @@ namespace Lui.Forms
                         // CancelCommandButton
                         // 
                         this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.CancelCommandButton.AutoHeight = false;
+                        this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.CancelCommandButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.CancelCommandButton.Image = null;
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.CancelCommandButton.Location = new System.Drawing.Point(580, 10);
+                        this.CancelCommandButton.Location = new System.Drawing.Point(656, 10);
                         this.CancelCommandButton.Name = "CancelCommandButton";
                         this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(2);
                         this.CancelCommandButton.ReadOnly = false;
@@ -85,23 +88,24 @@ namespace Lui.Forms
                         this.LowerPanel.Controls.Add(this.CancelCommandButton);
                         this.LowerPanel.Controls.Add(this.SaveButton);
                         this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-                        this.LowerPanel.Location = new System.Drawing.Point(0, 413);
+                        this.LowerPanel.Location = new System.Drawing.Point(0, 420);
                         this.LowerPanel.Name = "LowerPanel";
-                        this.LowerPanel.Size = new System.Drawing.Size(692, 60);
+                        this.LowerPanel.Size = new System.Drawing.Size(768, 60);
                         this.LowerPanel.TabIndex = 103;
                         // 
                         // EditForm
                         // 
-                        this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+                        this.ClientSize = new System.Drawing.Size(768, 480);
                         this.Controls.Add(this.LowerPanel);
                         this.KeyPreview = true;
                         this.Name = "EditForm";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
                         this.Text = "Editar";
+                        this.Load += new System.EventHandler(this.FormTablaEditar_Load);
                         this.SizeChanged += new System.EventHandler(this.EditForm_SizeChanged);
                         this.Closing += new System.ComponentModel.CancelEventHandler(this.FormTablaEditar_Closing);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormTablaEditar_KeyDown);
-                        this.Load += new System.EventHandler(this.FormTablaEditar_Load);
                         this.LowerPanel.ResumeLayout(false);
                         this.ResumeLayout(false);
 

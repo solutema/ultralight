@@ -58,10 +58,31 @@ namespace Lazaro.Misc
 
 		private void cmdAceptar_Click(object sender, System.EventArgs e)
 		{
+                        if (txtUsuario.TextInt == 1) {
+                                string[] EstacionesAdministrador = Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Ingreso.Administrador.Estaciones", "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                                bool Puede = false;
+                                if (EstacionesAdministrador.Length == 0) {
+                                        Puede = true;
+                                } else {
+                                        foreach (string Estacion in EstacionesAdministrador) {
+                                                if (Estacion.ToUpperInvariant() == System.Environment.MachineName.ToUpperInvariant()) {
+                                                        Puede = true;
+                                                        break;
+                                                }
+                                        }
+                                }
+
+                                if (Puede == false) {
+                                        System.Threading.Thread.Sleep(800);
+                                        this.Workspace.ActionLog("LOGON.FAIL", "", txtUsuario.TextInt, "Estación no permitida.");
+                                        MessageBox.Show("No se permite el acceso como Administrador desde este equipo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                        return;
+                                }
+                        }
 			Lfx.Data.Row row = Lws.Workspace.Master.DefaultDataBase.FirstRowFromSelect("SELECT id_persona, nombre, nombre_visible FROM personas WHERE id_persona=" + txtUsuario.TextInt.ToString() + " AND contrasena='" + Lws.Workspace.Master.DefaultDataBase.EscapeString(txtContrasena.Text) + "'");
 			if(row == null) {
 				System.Threading.Thread.Sleep(800);
-				this.Workspace.ActionLog("LOGON.FAIL", "Usuario " + Lws.Workspace.Master.DefaultDataBase.EscapeString(txtUsuario.Text));
+                                this.Workspace.ActionLog("LOGON.FAIL", "", txtUsuario.TextInt, "Usuario o contraseña incorrecto.");
 				MessageBox.Show("El nombre de usuario o la contraseña son incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				txtContrasena.Focus();
 			} else {
@@ -70,8 +91,8 @@ namespace Lazaro.Misc
 				this.Workspace.CurrentUser.UserId = System.Convert.ToInt32(row["id_persona"]);
 				this.Workspace.CurrentUser.UserName = System.Convert.ToString(row["nombre"]).ToLower();
 				this.Workspace.CurrentUser.UserCompleteName = System.Convert.ToString(row["nombre_visible"]);
-				this.Workspace.CurrentConfig.WriteGlobalSetting(null, "Sistema.Ingreso.UltimoUsuario", System.Convert.ToString(Lws.Workspace.Master.CurrentUser.UserId), Lfx.Environment.SystemInformation.ComputerName);
-				this.Workspace.CurrentConfig.WriteGlobalSetting(null, "Sistema.Ingreso.UltimoIngreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), Lfx.Environment.SystemInformation.ComputerName);
+				this.Workspace.CurrentConfig.WriteGlobalSetting(null, "Sistema.Ingreso.UltimoUsuario", System.Convert.ToString(Lws.Workspace.Master.CurrentUser.UserId), System.Environment.MachineName.ToUpperInvariant());
+				this.Workspace.CurrentConfig.WriteGlobalSetting(null, "Sistema.Ingreso.UltimoIngreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), System.Environment.MachineName.ToUpperInvariant());
 				this.Workspace.ActionLog("LOGON", "");
 				this.Close();
 			}

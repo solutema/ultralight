@@ -49,12 +49,12 @@ namespace Lws.Services
 
                 public bool AddTask(string commandString)
                 {
-                        return AddTask(commandString, "lazaro", Lfx.Environment.SystemInformation.ComputerName);
+                        return AddTask(commandString, "lazaro", System.Environment.MachineName.ToUpperInvariant());
                 }
 
                 public bool AddTask(string commandString, string component)
                 {
-                        return AddTask(commandString, component, Lfx.Environment.SystemInformation.ComputerName);
+                        return AddTask(commandString, component, System.Environment.MachineName.ToUpperInvariant());
                 }
 
                 public DateTime LastGetTask
@@ -78,10 +78,10 @@ namespace Lws.Services
                 public bool AddTask(string commandString, string component, string terminalName)
                 {
                         if (terminalName.Length == 0)
-                                terminalName = Lfx.Environment.SystemInformation.ComputerName;
+                                terminalName = System.Environment.MachineName.ToUpperInvariant();
 
                         Lfx.Data.SqlInsertBuilder Comando = new Lfx.Data.SqlInsertBuilder(m_Workspace.DefaultDataBase, "sys_programador");
-                        Comando.Fields.AddWithValue("crea_estacion", Lfx.Environment.SystemInformation.ComputerName);
+                        Comando.Fields.AddWithValue("crea_estacion", System.Environment.MachineName.ToUpperInvariant());
                         Comando.Fields.AddWithValue("crea_usuario", m_Workspace.CurrentUser.UserCompleteName);
                         Comando.Fields.AddWithValue("estacion", terminalName);
                         Comando.Fields.AddWithValue("comando", commandString);
@@ -108,7 +108,7 @@ namespace Lws.Services
                                 string Sql = "SELECT * FROM sys_programador WHERE estado=0";
 
                                 Sql += " AND componente IN ('" + component + "', NULL)";
-                                Sql += " AND estacion IN ('*', '" + this.DataView.DataBase.EscapeString(Lfx.Environment.SystemInformation.ComputerName) + "')";
+                                Sql += " AND estacion IN ('*', '" + this.DataView.DataBase.EscapeString(System.Environment.MachineName.ToUpperInvariant()) + "')";
 
                                 Lfx.Data.Row TaskRow = this.DataView.DataBase.FirstRowFromSelect(Sql);
 

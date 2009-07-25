@@ -52,7 +52,7 @@ namespace Lazaro.Misc
 			if (e.KeyCode == Keys.Escape)
 			{
 				e.Handled = true;
-				OkButton_Click(sender, null);
+				OkButton.PerformClick();
 			}
 		}
 
@@ -61,7 +61,7 @@ namespace Lazaro.Misc
 		{
 			ListaComponentes.BackColor = this.BackColor;
 
-                        EtiquetaUsuario.Text = Lws.Workspace.Master.CurrentUser.UserId.ToString() + " (" + Lws.Workspace.Master.CurrentUser.UserCompleteName + ") / " + Lfx.Environment.SystemInformation.ComputerName;
+                        EtiquetaUsuario.Text = Lws.Workspace.Master.CurrentUser.UserId.ToString() + " (" + Lws.Workspace.Master.CurrentUser.UserCompleteName + ") / " + System.Environment.MachineName;
 
                         ListaComponentes.Items.Add("Lazaro versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").ProductVersion + " del " + new System.IO.FileInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
                         System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ApplicationFolder);
@@ -135,12 +135,12 @@ namespace Lazaro.Misc
 			Actualizador.Estado OFormActualizador = new Actualizador.Estado();
 			OFormActualizador.TopMost = true;
 			OFormActualizador.Show();
-			Actualizador.Actualizador.ActualizarAplicacionDesdeWeb(true, OFormActualizador);
+                        Actualizador.Actualizador.ActualizarAplicacion();
 			OFormActualizador.Close();
 			OFormActualizador = null;
-			if (Actualizador.Actualizador.HuboError())
-				Lui.Forms.MessageBox.Show(Actualizador.Actualizador.MensajeError, "Error");
-			else if (Actualizador.Actualizador.ArchivosActualizados == 0)
+                        if (Actualizador.Actualizador.HuboError())
+                                Lui.Forms.MessageBox.Show(Actualizador.Actualizador.MensajeError, "Error");
+                        else if (Actualizador.Actualizador.ArchivosActualizados == 0)
 				Lui.Forms.MessageBox.Show("Ya está utilizando la versión más nueva disponible.", "Actualizar");
 		}
 

@@ -49,10 +49,10 @@ namespace Lfc.Comprobantes
                 {
                         this.ProductArray = new Lui.Forms.ProductArray();
                         this.Label3 = new System.Windows.Forms.Label();
-                        this.txtCliente = new Lui.Forms.DetailBox();
+                        this.EntradaCliente = new Lui.Forms.DetailBox();
                         this.Label1 = new System.Windows.Forms.Label();
-                        this.txtVendedor = new Lui.Forms.DetailBox();
-                        this.txtTotal = new Lui.Forms.TextBox();
+                        this.EntradaVendedor = new Lui.Forms.DetailBox();
+                        this.EntradaTotal = new Lui.Forms.TextBox();
                         this.Label4 = new System.Windows.Forms.Label();
                         this.Label5 = new System.Windows.Forms.Label();
                         this.txtSubTotal = new Lui.Forms.TextBox();
@@ -120,34 +120,37 @@ namespace Lfc.Comprobantes
                         this.Label3.Text = "Cliente";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtCliente
+                        // EntradaCliente
                         // 
-                        this.txtCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtCliente.AutoTab = true;
-                        this.txtCliente.CanCreate = true;
-                        this.txtCliente.DetailField = "nombre_visible";
-                        this.txtCliente.ExtraDetailFields = null;
-                        this.txtCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtCliente.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtCliente.FreeTextCode = "";
-                        this.txtCliente.KeyField = "id_persona";
-                        this.txtCliente.Location = new System.Drawing.Point(356, 52);
-                        this.txtCliente.MaxLength = 200;
-                        this.txtCliente.Name = "txtCliente";
-                        this.txtCliente.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtCliente.ReadOnly = false;
-                        this.txtCliente.Required = true;
-                        this.txtCliente.Size = new System.Drawing.Size(264, 24);
-                        this.txtCliente.TabIndex = 4;
-                        this.txtCliente.Table = "personas";
-                        this.txtCliente.TeclaDespuesDeEnter = "{tab}";
-                        this.txtCliente.Text = "0";
-                        this.txtCliente.TextDetail = "";
-                        this.txtCliente.TextInt = 0;
-                        this.txtCliente.TipWhenBlank = "";
-                        this.txtCliente.ToolTipText = "";
-                        this.txtCliente.TextChanged += new System.EventHandler(this.txtCliente_TextChanged);
+                        this.EntradaCliente.AutoHeight = false;
+                        this.EntradaCliente.AutoTab = true;
+                        this.EntradaCliente.CanCreate = true;
+                        this.EntradaCliente.DetailField = "nombre_visible";
+                        this.EntradaCliente.ExtraDetailFields = null;
+                        this.EntradaCliente.Filter = "";
+                        this.EntradaCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaCliente.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaCliente.FreeTextCode = "";
+                        this.EntradaCliente.KeyField = "id_persona";
+                        this.EntradaCliente.Location = new System.Drawing.Point(356, 52);
+                        this.EntradaCliente.MaxLength = 200;
+                        this.EntradaCliente.Name = "EntradaCliente";
+                        this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCliente.ReadOnly = false;
+                        this.EntradaCliente.Required = true;
+                        this.EntradaCliente.SelectOnFocus = true;
+                        this.EntradaCliente.Size = new System.Drawing.Size(264, 24);
+                        this.EntradaCliente.TabIndex = 4;
+                        this.EntradaCliente.Table = "personas";
+                        this.EntradaCliente.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaCliente.Text = "0";
+                        this.EntradaCliente.TextDetail = "";
+                        this.EntradaCliente.TextInt = 0;
+                        this.EntradaCliente.TipWhenBlank = "";
+                        this.EntradaCliente.ToolTipText = "";
+                        this.EntradaCliente.TextChanged += new System.EventHandler(this.txtCliente_TextChanged);
                         // 
                         // Label1
                         // 
@@ -159,53 +162,63 @@ namespace Lfc.Comprobantes
                         this.Label1.Text = "Vendedor";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtVendedor
+                        // EntradaVendedor
                         // 
-                        this.txtVendedor.AutoTab = true;
-                        this.txtVendedor.CanCreate = true;
-                        this.txtVendedor.DetailField = "nombre_visible";
-                        this.txtVendedor.ExtraDetailFields = null;
-                        this.txtVendedor.Filter = "(tipo&4)=4";
-                        this.txtVendedor.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtVendedor.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtVendedor.FreeTextCode = "";
-                        this.txtVendedor.KeyField = "id_persona";
-                        this.txtVendedor.Location = new System.Drawing.Point(80, 52);
-                        this.txtVendedor.MaxLength = 200;
-                        this.txtVendedor.Name = "txtVendedor";
-                        this.txtVendedor.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtVendedor.ReadOnly = false;
-                        this.txtVendedor.Required = true;
-                        this.txtVendedor.Size = new System.Drawing.Size(212, 24);
-                        this.txtVendedor.TabIndex = 2;
-                        this.txtVendedor.Table = "personas";
-                        this.txtVendedor.TeclaDespuesDeEnter = "{tab}";
-                        this.txtVendedor.Text = "0";
-                        this.txtVendedor.TextDetail = "";
-                        this.txtVendedor.TextInt = 0;
-                        this.txtVendedor.TipWhenBlank = "";
-                        this.txtVendedor.ToolTipText = "";
+                        this.EntradaVendedor.AutoHeight = false;
+                        this.EntradaVendedor.AutoTab = true;
+                        this.EntradaVendedor.CanCreate = true;
+                        this.EntradaVendedor.DetailField = "nombre_visible";
+                        this.EntradaVendedor.ExtraDetailFields = null;
+                        this.EntradaVendedor.Filter = "(tipo&4)=4";
+                        this.EntradaVendedor.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaVendedor.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaVendedor.FreeTextCode = "";
+                        this.EntradaVendedor.KeyField = "id_persona";
+                        this.EntradaVendedor.Location = new System.Drawing.Point(80, 52);
+                        this.EntradaVendedor.MaxLength = 200;
+                        this.EntradaVendedor.Name = "EntradaVendedor";
+                        this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaVendedor.ReadOnly = false;
+                        this.EntradaVendedor.Required = true;
+                        this.EntradaVendedor.SelectOnFocus = true;
+                        this.EntradaVendedor.Size = new System.Drawing.Size(212, 24);
+                        this.EntradaVendedor.TabIndex = 2;
+                        this.EntradaVendedor.Table = "personas";
+                        this.EntradaVendedor.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaVendedor.Text = "0";
+                        this.EntradaVendedor.TextDetail = "";
+                        this.EntradaVendedor.TextInt = 0;
+                        this.EntradaVendedor.TipWhenBlank = "";
+                        this.EntradaVendedor.ToolTipText = "";
                         // 
-                        // txtTotal
+                        // EntradaTotal
                         // 
-                        this.txtTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtTotal.AutoNav = true;
-                        this.txtTotal.AutoTab = true;
-                        this.txtTotal.DataType = Lui.Forms.DataTypes.Money;
-                        this.txtTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtTotal.Location = new System.Drawing.Point(540, 376);
-                        this.txtTotal.MaxLenght = 32767;
-                        this.txtTotal.Name = "txtTotal";
-                        this.txtTotal.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtTotal.Prefijo = "$";
-                        this.txtTotal.ReadOnly = false;
-                        this.txtTotal.Size = new System.Drawing.Size(144, 32);
-                        this.txtTotal.TabIndex = 41;
-                        this.txtTotal.Text = "0.00";
-                        this.txtTotal.TipWhenBlank = "";
-                        this.txtTotal.ToolTipText = "";
-                        this.txtTotal.TextChanged += new System.EventHandler(this.txtTotal_TextChanged);
+                        this.EntradaTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaTotal.AutoHeight = false;
+                        this.EntradaTotal.AutoNav = true;
+                        this.EntradaTotal.AutoTab = true;
+                        this.EntradaTotal.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaTotal.DecimalPlaces = -1;
+                        this.EntradaTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaTotal.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaTotal.Location = new System.Drawing.Point(540, 376);
+                        this.EntradaTotal.MaxLenght = 32767;
+                        this.EntradaTotal.MultiLine = false;
+                        this.EntradaTotal.Name = "EntradaTotal";
+                        this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTotal.PasswordChar = '\0';
+                        this.EntradaTotal.Prefijo = "$";
+                        this.EntradaTotal.ReadOnly = false;
+                        this.EntradaTotal.SelectOnFocus = true;
+                        this.EntradaTotal.Size = new System.Drawing.Size(144, 32);
+                        this.EntradaTotal.Sufijo = "";
+                        this.EntradaTotal.TabIndex = 41;
+                        this.EntradaTotal.Text = "0.00";
+                        this.EntradaTotal.TextRaw = "0.00";
+                        this.EntradaTotal.TipWhenBlank = "";
+                        this.EntradaTotal.ToolTipText = "";
+                        this.EntradaTotal.TextChanged += new System.EventHandler(this.txtTotal_TextChanged);
                         // 
                         // Label4
                         // 
@@ -231,21 +244,29 @@ namespace Lfc.Comprobantes
                         // txtSubTotal
                         // 
                         this.txtSubTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.txtSubTotal.AutoHeight = false;
                         this.txtSubTotal.AutoNav = true;
                         this.txtSubTotal.AutoTab = true;
                         this.txtSubTotal.DataType = Lui.Forms.DataTypes.Money;
+                        this.txtSubTotal.DecimalPlaces = -1;
                         this.txtSubTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.txtSubTotal.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtSubTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtSubTotal.Location = new System.Drawing.Point(72, 356);
                         this.txtSubTotal.MaxLenght = 32767;
+                        this.txtSubTotal.MultiLine = false;
                         this.txtSubTotal.Name = "txtSubTotal";
                         this.txtSubTotal.Padding = new System.Windows.Forms.Padding(2);
+                        this.txtSubTotal.PasswordChar = '\0';
                         this.txtSubTotal.Prefijo = "$";
                         this.txtSubTotal.ReadOnly = true;
+                        this.txtSubTotal.SelectOnFocus = true;
                         this.txtSubTotal.Size = new System.Drawing.Size(92, 24);
+                        this.txtSubTotal.Sufijo = "";
                         this.txtSubTotal.TabIndex = 22;
                         this.txtSubTotal.TabStop = false;
                         this.txtSubTotal.Text = "0.00";
+                        this.txtSubTotal.TextRaw = "0.00";
                         this.txtSubTotal.TipWhenBlank = "";
                         this.txtSubTotal.ToolTipText = "";
                         this.txtSubTotal.TextChanged += new System.EventHandler(this.CambioValores);
@@ -253,20 +274,28 @@ namespace Lfc.Comprobantes
                         // txtDescuento
                         // 
                         this.txtDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.txtDescuento.AutoHeight = false;
                         this.txtDescuento.AutoNav = true;
                         this.txtDescuento.AutoTab = true;
                         this.txtDescuento.DataType = Lui.Forms.DataTypes.Float;
+                        this.txtDescuento.DecimalPlaces = -1;
                         this.txtDescuento.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.txtDescuento.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtDescuento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtDescuento.Location = new System.Drawing.Point(232, 356);
                         this.txtDescuento.MaxLenght = 32767;
+                        this.txtDescuento.MultiLine = false;
                         this.txtDescuento.Name = "txtDescuento";
                         this.txtDescuento.Padding = new System.Windows.Forms.Padding(2);
+                        this.txtDescuento.PasswordChar = '\0';
+                        this.txtDescuento.Prefijo = "";
                         this.txtDescuento.ReadOnly = false;
+                        this.txtDescuento.SelectOnFocus = true;
                         this.txtDescuento.Size = new System.Drawing.Size(76, 24);
                         this.txtDescuento.Sufijo = "%";
                         this.txtDescuento.TabIndex = 24;
                         this.txtDescuento.Text = "0.00";
+                        this.txtDescuento.TextRaw = "0.00";
                         this.txtDescuento.TipWhenBlank = "";
                         this.txtDescuento.ToolTipText = "";
                         this.txtDescuento.TextChanged += new System.EventHandler(this.CambioValores);
@@ -284,20 +313,28 @@ namespace Lfc.Comprobantes
                         // txtInteres
                         // 
                         this.txtInteres.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.txtInteres.AutoHeight = false;
                         this.txtInteres.AutoNav = true;
                         this.txtInteres.AutoTab = true;
                         this.txtInteres.DataType = Lui.Forms.DataTypes.Float;
+                        this.txtInteres.DecimalPlaces = -1;
                         this.txtInteres.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.txtInteres.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtInteres.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtInteres.Location = new System.Drawing.Point(232, 384);
                         this.txtInteres.MaxLenght = 32767;
+                        this.txtInteres.MultiLine = false;
                         this.txtInteres.Name = "txtInteres";
                         this.txtInteres.Padding = new System.Windows.Forms.Padding(2);
+                        this.txtInteres.PasswordChar = '\0';
+                        this.txtInteres.Prefijo = "";
                         this.txtInteres.ReadOnly = false;
+                        this.txtInteres.SelectOnFocus = true;
                         this.txtInteres.Size = new System.Drawing.Size(76, 24);
                         this.txtInteres.Sufijo = "%";
                         this.txtInteres.TabIndex = 26;
                         this.txtInteres.Text = "0.00";
+                        this.txtInteres.TextRaw = "0.00";
                         this.txtInteres.TipWhenBlank = "";
                         this.txtInteres.ToolTipText = "";
                         this.txtInteres.TextChanged += new System.EventHandler(this.CambioValores);
@@ -315,19 +352,28 @@ namespace Lfc.Comprobantes
                         // txtCuotas
                         // 
                         this.txtCuotas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.txtCuotas.AutoHeight = false;
                         this.txtCuotas.AutoNav = true;
                         this.txtCuotas.AutoTab = true;
                         this.txtCuotas.DataType = Lui.Forms.DataTypes.Integer;
+                        this.txtCuotas.DecimalPlaces = -1;
                         this.txtCuotas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.txtCuotas.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtCuotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtCuotas.Location = new System.Drawing.Point(52, 0);
                         this.txtCuotas.MaxLenght = 2;
+                        this.txtCuotas.MultiLine = false;
                         this.txtCuotas.Name = "txtCuotas";
                         this.txtCuotas.Padding = new System.Windows.Forms.Padding(2);
+                        this.txtCuotas.PasswordChar = '\0';
+                        this.txtCuotas.Prefijo = "";
                         this.txtCuotas.ReadOnly = false;
+                        this.txtCuotas.SelectOnFocus = true;
                         this.txtCuotas.Size = new System.Drawing.Size(32, 24);
+                        this.txtCuotas.Sufijo = "";
                         this.txtCuotas.TabIndex = 28;
                         this.txtCuotas.Text = "0";
+                        this.txtCuotas.TextRaw = "0";
                         this.txtCuotas.TipWhenBlank = "";
                         this.txtCuotas.ToolTipText = "";
                         this.txtCuotas.TextChanged += new System.EventHandler(this.CambioValores);
@@ -345,21 +391,29 @@ namespace Lfc.Comprobantes
                         // txtValorCuota
                         // 
                         this.txtValorCuota.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.txtValorCuota.AutoHeight = false;
                         this.txtValorCuota.AutoNav = true;
                         this.txtValorCuota.AutoTab = true;
                         this.txtValorCuota.DataType = Lui.Forms.DataTypes.Money;
+                        this.txtValorCuota.DecimalPlaces = -1;
                         this.txtValorCuota.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.txtValorCuota.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtValorCuota.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtValorCuota.Location = new System.Drawing.Point(108, 0);
                         this.txtValorCuota.MaxLenght = 32767;
+                        this.txtValorCuota.MultiLine = false;
                         this.txtValorCuota.Name = "txtValorCuota";
                         this.txtValorCuota.Padding = new System.Windows.Forms.Padding(2);
+                        this.txtValorCuota.PasswordChar = '\0';
                         this.txtValorCuota.Prefijo = "$";
                         this.txtValorCuota.ReadOnly = true;
+                        this.txtValorCuota.SelectOnFocus = true;
                         this.txtValorCuota.Size = new System.Drawing.Size(80, 24);
+                        this.txtValorCuota.Sufijo = "";
                         this.txtValorCuota.TabIndex = 30;
                         this.txtValorCuota.TabStop = false;
                         this.txtValorCuota.Text = "0.00";
+                        this.txtValorCuota.TextRaw = "0.00";
                         this.txtValorCuota.TipWhenBlank = "";
                         this.txtValorCuota.ToolTipText = "";
                         // 
@@ -376,6 +430,8 @@ namespace Lfc.Comprobantes
                         // PrintButton
                         // 
                         this.PrintButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.PrintButton.AutoHeight = false;
+                        this.PrintButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.PrintButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.PrintButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.PrintButton.Image = null;
@@ -395,6 +451,8 @@ namespace Lfc.Comprobantes
                         // cmdObs
                         // 
                         this.cmdObs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.cmdObs.AutoHeight = false;
+                        this.cmdObs.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.cmdObs.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.cmdObs.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.cmdObs.Image = null;
@@ -414,6 +472,8 @@ namespace Lfc.Comprobantes
                         // cmdConvertir
                         // 
                         this.cmdConvertir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.cmdConvertir.AutoHeight = false;
+                        this.cmdConvertir.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.cmdConvertir.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.cmdConvertir.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.cmdConvertir.Image = null;
@@ -441,6 +501,8 @@ namespace Lfc.Comprobantes
                         // cmdMasDatos
                         // 
                         this.cmdMasDatos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.cmdMasDatos.AutoHeight = false;
+                        this.cmdMasDatos.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.cmdMasDatos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.cmdMasDatos.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.cmdMasDatos.Image = null;
@@ -484,19 +546,28 @@ namespace Lfc.Comprobantes
                         // txtPV
                         // 
                         this.txtPV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.txtPV.AutoHeight = false;
                         this.txtPV.AutoNav = true;
                         this.txtPV.AutoTab = true;
                         this.txtPV.DataType = Lui.Forms.DataTypes.Integer;
+                        this.txtPV.DecimalPlaces = -1;
                         this.txtPV.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.txtPV.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtPV.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtPV.Location = new System.Drawing.Point(652, 52);
                         this.txtPV.MaxLenght = 2;
+                        this.txtPV.MultiLine = false;
                         this.txtPV.Name = "txtPV";
                         this.txtPV.Padding = new System.Windows.Forms.Padding(2);
+                        this.txtPV.PasswordChar = '\0';
+                        this.txtPV.Prefijo = "";
                         this.txtPV.ReadOnly = false;
+                        this.txtPV.SelectOnFocus = true;
                         this.txtPV.Size = new System.Drawing.Size(32, 24);
+                        this.txtPV.Sufijo = "";
                         this.txtPV.TabIndex = 6;
                         this.txtPV.Text = "0";
+                        this.txtPV.TextRaw = "0";
                         this.txtPV.TipWhenBlank = "";
                         this.txtPV.ToolTipText = "";
                         // 
@@ -514,18 +585,18 @@ namespace Lfc.Comprobantes
                         // 
                         // Editar
                         // 
-                        this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(692, 473);
+                        this.Controls.Add(this.PrintButton);
+                        this.Controls.Add(this.cmdObs);
+                        this.Controls.Add(this.cmdMasDatos);
+                        this.Controls.Add(this.cmdConvertir);
                         this.Controls.Add(this.PnlCuotas);
                         this.Controls.Add(this.txtPV);
                         this.Controls.Add(this.label2);
                         this.Controls.Add(this.lblTitulo);
-                        this.Controls.Add(this.cmdMasDatos);
-                        this.Controls.Add(this.txtCliente);
+                        this.Controls.Add(this.EntradaCliente);
                         this.Controls.Add(this.txtComprobanteID);
-                        this.Controls.Add(this.cmdConvertir);
-                        this.Controls.Add(this.cmdObs);
-                        this.Controls.Add(this.PrintButton);
                         this.Controls.Add(this.txtInteres);
                         this.Controls.Add(this.Label7);
                         this.Controls.Add(this.txtDescuento);
@@ -533,10 +604,10 @@ namespace Lfc.Comprobantes
                         this.Controls.Add(this.txtSubTotal);
                         this.Controls.Add(this.Label5);
                         this.Controls.Add(this.Label4);
-                        this.Controls.Add(this.txtTotal);
+                        this.Controls.Add(this.EntradaTotal);
                         this.Controls.Add(this.Label3);
                         this.Controls.Add(this.Label1);
-                        this.Controls.Add(this.txtVendedor);
+                        this.Controls.Add(this.EntradaVendedor);
                         this.Controls.Add(this.ProductArray);
                         this.Name = "Editar";
                         this.Text = "Comprobante";
@@ -544,10 +615,10 @@ namespace Lfc.Comprobantes
                         this.WorkspaceChanged += new System.EventHandler(this.FormComprobanteEditar_WorkspaceChanged);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormComprobanteEditar_KeyDown);
                         this.Controls.SetChildIndex(this.ProductArray, 0);
-                        this.Controls.SetChildIndex(this.txtVendedor, 0);
+                        this.Controls.SetChildIndex(this.EntradaVendedor, 0);
                         this.Controls.SetChildIndex(this.Label1, 0);
                         this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.txtTotal, 0);
+                        this.Controls.SetChildIndex(this.EntradaTotal, 0);
                         this.Controls.SetChildIndex(this.Label4, 0);
                         this.Controls.SetChildIndex(this.Label5, 0);
                         this.Controls.SetChildIndex(this.txtSubTotal, 0);
@@ -555,16 +626,16 @@ namespace Lfc.Comprobantes
                         this.Controls.SetChildIndex(this.txtDescuento, 0);
                         this.Controls.SetChildIndex(this.Label7, 0);
                         this.Controls.SetChildIndex(this.txtInteres, 0);
-                        this.Controls.SetChildIndex(this.PrintButton, 0);
-                        this.Controls.SetChildIndex(this.cmdObs, 0);
-                        this.Controls.SetChildIndex(this.cmdConvertir, 0);
                         this.Controls.SetChildIndex(this.txtComprobanteID, 0);
-                        this.Controls.SetChildIndex(this.txtCliente, 0);
-                        this.Controls.SetChildIndex(this.cmdMasDatos, 0);
+                        this.Controls.SetChildIndex(this.EntradaCliente, 0);
                         this.Controls.SetChildIndex(this.lblTitulo, 0);
                         this.Controls.SetChildIndex(this.label2, 0);
                         this.Controls.SetChildIndex(this.txtPV, 0);
                         this.Controls.SetChildIndex(this.PnlCuotas, 0);
+                        this.Controls.SetChildIndex(this.cmdConvertir, 0);
+                        this.Controls.SetChildIndex(this.cmdMasDatos, 0);
+                        this.Controls.SetChildIndex(this.cmdObs, 0);
+                        this.Controls.SetChildIndex(this.PrintButton, 0);
                         this.PnlCuotas.ResumeLayout(false);
                         this.ResumeLayout(false);
                         this.PerformLayout();
@@ -573,10 +644,10 @@ namespace Lfc.Comprobantes
 
                 public Lui.Forms.ProductArray ProductArray;
                 internal System.Windows.Forms.Label Label3;
-                public Lui.Forms.DetailBox txtCliente;
+                public Lui.Forms.DetailBox EntradaCliente;
                 internal System.Windows.Forms.Label Label1;
-                internal Lui.Forms.DetailBox txtVendedor;
-                internal Lui.Forms.TextBox txtTotal;
+                internal Lui.Forms.DetailBox EntradaVendedor;
+                internal Lui.Forms.TextBox EntradaTotal;
                 internal System.Windows.Forms.Label Label4;
                 internal System.Windows.Forms.Label Label5;
                 internal Lui.Forms.TextBox txtSubTotal;

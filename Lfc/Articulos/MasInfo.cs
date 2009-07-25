@@ -295,16 +295,6 @@ namespace Lfc.Articulos
                         this.Controls.Add(this.Label1);
                         this.Name = "MasInfo";
                         this.Text = "Artículo: Info";
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.txtFechaCreado, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.txtFechaPrecio, 0);
-                        this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.txtCostoUlt, 0);
-                        this.Controls.SetChildIndex(this.Label4, 0);
-                        this.Controls.SetChildIndex(this.txtCostoProm, 0);
-                        this.Controls.SetChildIndex(this.lvItems, 0);
-                        this.Controls.SetChildIndex(this.Label5, 0);
                         this.ResumeLayout(false);
 
 		}

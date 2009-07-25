@@ -133,7 +133,7 @@ namespace Lfc.Articulos
                 {
                         if (e.KeyChar == (char)System.Windows.Forms.Keys.Escape) {
                                 e.Handled = true;
-                                cmdCancelar_Click(sender, e);
+                                CancelCommandButton.PerformClick();
                         }
                 }
         }

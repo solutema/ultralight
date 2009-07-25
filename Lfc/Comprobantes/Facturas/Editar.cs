@@ -95,7 +95,7 @@ namespace Lfc.Comprobantes.Facturas
 
                         if (this.Tipo.EsFactura || this.Tipo.EsTicket)
                         {
-                                txtTipo.SetData = new string[] {
+                                EntradaTipo.SetData = new string[] {
                                         "Factura A|A",
                                         "Factura B|B",
                                         "Factura C|C",
@@ -103,12 +103,12 @@ namespace Lfc.Comprobantes.Facturas
                                         "Factura E|E",
                                         "Ticket|T"
                                 };
-                                txtFormaPago.TextInt = ((int)(Res.FormaDePago));
-                                txtFormaPago.Visible = true;
+                                EntradaFormaPago.TextInt = ((int)(Res.FormaDePago));
+                                EntradaFormaPago.Visible = true;
                         }
                         else if (this.Tipo.EsNotaCredito || this.Tipo.EsNotaDebito)
                         {
-                                txtTipo.SetData = new string[] {
+                                EntradaTipo.SetData = new string[] {
                                         "Nota Créd. A|NCA",
                                         "Nota Créd. B|NCB",
                                         "Nota Créd. C|NCC",
@@ -121,24 +121,24 @@ namespace Lfc.Comprobantes.Facturas
                                         "Nota Déb. M|NDM"
 
                                 };
-                                txtFormaPago.TextInt = 3;
-                                txtFormaPago.Visible = false;
+                                EntradaFormaPago.TextInt = 3;
+                                EntradaFormaPago.Visible = false;
                         }
 
-                        txtTipo.TextKey = Res.Tipo.Nomenclatura;
-                        txtRemito.Text = Res.NumeroRemito.ToString();
-                        cmdPago.Visible = EsCancelable();    
+                        EntradaTipo.TextKey = Res.Tipo.Nomenclatura;
+                        EntradaRemito.Text = Res.NumeroRemito.ToString();
+                        BotonPago.Visible = EsCancelable();    
                 }
 
                 public override Lbl.ElementoDeDatos ToRow()
                 {
                         Lbl.Comprobantes.ComprobanteConArticulos Res = base.ToRow() as Lbl.Comprobantes.ComprobanteConArticulos;
                         //Agrego campos propios de esta instancia
-                        if (txtFormaPago.TextInt > 0)
-                                Res.FormaDePago = (Lbl.Comprobantes.FormasDePago)txtFormaPago.TextInt;
+                        if (EntradaFormaPago.TextInt > 0)
+                                Res.FormaDePago = (Lbl.Comprobantes.FormasDePago)EntradaFormaPago.TextInt;
                         else
                                 Res.FormaDePago = Lbl.Comprobantes.FormasDePago.Ninguna;
-                        Res.NumeroRemito = Lfx.Types.Parsing.ParseInt(txtRemito.Text);
+                        Res.NumeroRemito = Lfx.Types.Parsing.ParseInt(EntradaRemito.Text);
 
                         return Res;
                 }
@@ -152,11 +152,6 @@ namespace Lfc.Comprobantes.Facturas
 			set
 			{
                                 base.ReadOnly = value;
-
-                                if (this.ReadOnly)
-					cmdPago.Visible = EsCancelable();
-				else
-					cmdPago.Visible = false;
 			}
 		}
 
@@ -181,7 +176,7 @@ namespace Lfc.Comprobantes.Facturas
                         Lbl.Comprobantes.ComprobanteConArticulos Registro = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
                         Registro.FormaDePago = (Lbl.Comprobantes.FormasDePago)(this.Workspace.CurrentConfig.ReadGlobalSettingInt(null, "Sistema.Documentos.FormaPagoPredet", 0));
                         this.FromRow(Registro);
-                        txtTipo.TextKey = this.Tipo.Nomenclatura;
+                        EntradaTipo.TextKey = this.Tipo.Nomenclatura;
 
                         return Res;
 		}
@@ -275,16 +270,16 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                         }
                                         Registro.Cargar();
                                         PrintButton.Visible = false;
-                                        cmdPago.Visible = EsCancelable();
+                                        BotonPago.Visible = EsCancelable();
                                         switch (Registro.FormaDePago) {
                                                 case Lbl.Comprobantes.FormasDePago.Efectivo:
                                                         //El pago lo asentó la rutina de impresión
                                                         //EditarPago();
                                                         //Yo sólo muestro la ventanita de calcular el cambio
-                                                        cmdPago.Visible = EsCancelable();
+                                                        BotonPago.Visible = EsCancelable();
                                                         Comprobantes.PagoVuelto OFormVuelto = new Comprobantes.PagoVuelto();
                                                         OFormVuelto.Workspace = this.Workspace;
-                                                        OFormVuelto.Total = Lfx.Types.Parsing.ParseCurrency(txtTotal.Text);
+                                                        OFormVuelto.Total = Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text);
                                                         OFormVuelto.ShowDialog();
                                                         break;
                                                 case Lbl.Comprobantes.FormasDePago.Cheque:
@@ -309,12 +304,12 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                         }
                 }
 
-		private void txtTipo_TextChanged(object sender, System.EventArgs e)
+		private void EntradaTipo_TextChanged(object sender, System.EventArgs e)
 		{
-                        this.Tipo = new Lbl.Comprobantes.Tipo(this.CachedRow.DataView, txtTipo.TextKey);
+                        this.Tipo = new Lbl.Comprobantes.Tipo(this.CachedRow.DataView, EntradaTipo.TextKey);
 		}
 
-		private void cmdPago_Click(object sender, System.EventArgs e)
+		private void BotonPago_Click(object sender, System.EventArgs e)
 		{
 			EditarPago(false);
 		}
@@ -324,7 +319,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
 			switch(e.KeyCode) {
 				case Keys.F2:
 					e.Handled = true;
-                                        if (cmdPago.Visible && cmdPago.Enabled)
+                                        if (BotonPago.Visible && BotonPago.Enabled)
                                                 EditarPago(e.Shift);
 					break;
 			}
@@ -340,15 +335,20 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                         if (PasarACtaCte && this.CachedRow.Existe && Factura.ImporteCancelado < Factura.Total && Factura.FormaDePago != Lbl.Comprobantes.FormasDePago.CuentaCorriente) {
                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("¿Desea pasar el saldo impago de esta factura a Cuenta Corriente?", "Pasar a cuenta corriente");
                                 if (Pregunta.ShowDialog() == DialogResult.OK) {
+                                        Factura.DataView.BeginTransaction();
                                         Factura.FormaDePago = Lbl.Comprobantes.FormasDePago.CuentaCorriente;
-                                        txtFormaPago.TextInt = 3;
+                                        EntradaFormaPago.TextInt = 3;
                                         Factura.DataView.DataBase.FieldInt("UPDATE facturas SET id_formapago=3 WHERE id_factura=" + this.CachedRow.Id.ToString());
-                                        Lbl.Cuentas.CuentaCorriente Cta = new Lbl.Cuentas.CuentaCorriente(Factura.DataView, Factura.Cliente.Id);
+                                        Lbl.Cuentas.CuentaCorriente Cta = Factura.Cliente.CuentaCorriente;
                                         Cta.Movimiento(true, 11000, "Saldo a Cta. Cte. s/" + Factura.ToString(), Factura.ImporteImpago, "", Factura.Id, 0, false);
+                                        Factura.DataView.Commit();
+                                        return new Lfx.Types.SuccessOperationResult();
+                                } else {
+                                        return new Lfx.Types.CancelOperationResult();
                                 }
                         }
                         
-			switch(txtFormaPago.TextInt) {
+			switch(EntradaFormaPago.TextInt) {
 				case 1:
 				case 3:
 				case 99:
@@ -367,7 +367,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
 				case 4:
 				case 5:
 				case 6:
-                                        Lbl.Comprobantes.FormasDePago FormaPago = ((Lbl.Comprobantes.FormasDePago)(Lfx.Types.Parsing.ParseInt(txtFormaPago.Text)));
+                                        Lbl.Comprobantes.FormasDePago FormaPago = ((Lbl.Comprobantes.FormasDePago)(Lfx.Types.Parsing.ParseInt(EntradaFormaPago.Text)));
 
 					Comprobantes.Recibos.EditarCobro FormularioEditarPago = new Comprobantes.Recibos.EditarCobro();
 					FormularioEditarPago.Workspace = this.Workspace;
@@ -389,10 +389,10 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
 
                                                                 //Esto ahora lo hace Cheque.Guardar()
                                                                 //Lbl.Cuentas.CuentaRegular CuentaCheques = new Lbl.Cuentas.CuentaRegular(Factura.DataView, this.Workspace.CurrentConfig.Company.CuentaCheques);
-                                                                //CuentaCheques.Movimiento(true, 11000, "Cobro s/" + this.CachedRow.ToString(), 0, Lfx.Types.Parsing.ParseCurrency(txtTotal.Text), "Cheque Nº " + MiCobro.Cheque.Numero, this.CachedRow.Id, 0, "");
-                                                                Factura.DataView.DataBase.Execute("UPDATE facturas SET cancelado=" + Lfx.Types.Formatting.FormatCurrencySql(Lfx.Types.Parsing.ParseCurrency(txtTotal.Text)) + " WHERE id_factura=" + this.CachedRow.Id.ToString());
+                                                                //CuentaCheques.Movimiento(true, 11000, "Cobro s/" + this.CachedRow.ToString(), 0, Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text), "Cheque Nº " + MiCobro.Cheque.Numero, this.CachedRow.Id, 0, "");
+                                                                Factura.DataView.DataBase.Execute("UPDATE facturas SET cancelado=" + Lfx.Types.Formatting.FormatCurrencySql(Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text)) + " WHERE id_factura=" + this.CachedRow.Id.ToString());
                                                                 Factura.DataView.Commit();
-								cmdPago.Visible = false;
+								BotonPago.Visible = false;
 								break;
 							case Lbl.Comprobantes.FormasDePago.Tarjeta:
                                                         case Lbl.Comprobantes.FormasDePago.TarjetaDeDebito:
@@ -401,23 +401,23 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                                                 CuponCredito.Concepto = new Lbl.Cuentas.Concepto(Factura.DataView, 11000);
                                                                 CuponCredito.ConceptoTexto = "Cobro s/" + this.CachedRow.ToString();
                                                                 
-                                                                if (txtVendedor.TextInt > 0)
-                                                                        CuponCredito.Vendedor = new Lbl.Personas.Persona(Factura.DataView, txtVendedor.TextInt);
+                                                                if (EntradaVendedor.TextInt > 0)
+                                                                        CuponCredito.Vendedor = new Lbl.Personas.Persona(Factura.DataView, EntradaVendedor.TextInt);
 
                                                                 CuponCredito.Factura = Factura;
                                                                 CuponCredito.Guardar();
 
-                                                                Factura.DataView.DataBase.Execute("UPDATE facturas SET cancelado=" + Lfx.Types.Formatting.FormatCurrencySql(Lfx.Types.Parsing.ParseCurrency(txtTotal.Text)) + " WHERE id_factura=" + this.CachedRow.Id.ToString());
+                                                                Factura.DataView.DataBase.Execute("UPDATE facturas SET cancelado=" + Lfx.Types.Formatting.FormatCurrencySql(Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text)) + " WHERE id_factura=" + this.CachedRow.Id.ToString());
                                                                 Factura.DataView.Commit();
-								cmdPago.Visible = false;
+								BotonPago.Visible = false;
 								break;
 							case Lbl.Comprobantes.FormasDePago.CuentaRegular:
                                                                 Factura.DataView.BeginTransaction();
                                                                 Lbl.Cuentas.CuentaRegular CuentaDeposito = MiCobro.CuentaDestino;
-                                                                CuentaDeposito.Movimiento(true, 11000, "Cobro s/" + this.CachedRow.ToString(), txtCliente.TextInt, MiCobro.Importe, MiCobro.Obs, this.CachedRow.Id, 0, "");
-                                                                Factura.DataView.DataBase.Execute("UPDATE facturas SET cancelado=" + Lfx.Types.Formatting.FormatCurrencySql(Lfx.Types.Parsing.ParseCurrency(txtTotal.Text)) + " WHERE id_factura=" + this.CachedRow.Id.ToString());
+                                                                CuentaDeposito.Movimiento(true, 11000, "Cobro s/" + this.CachedRow.ToString(), EntradaCliente.TextInt, MiCobro.Importe, MiCobro.Obs, this.CachedRow.Id, 0, "");
+                                                                Factura.DataView.DataBase.Execute("UPDATE facturas SET cancelado=" + Lfx.Types.Formatting.FormatCurrencySql(Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text)) + " WHERE id_factura=" + this.CachedRow.Id.ToString());
                                                                 Factura.DataView.Commit();
-								cmdPago.Visible = false;
+								BotonPago.Visible = false;
 								break;
 						}
 
@@ -425,7 +425,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
 						return new Lfx.Types.SuccessOperationResult();
 					}
 					FormularioEditarPago = null;
-					cmdPago.Visible = false;
+					BotonPago.Visible = false;
 					break;
 				default:
 					Lui.Forms.MessageBox.Show("Este tipo de pago no se puede editar.", "Error");
@@ -439,17 +439,17 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
 		internal bool EsCancelable()
 		{
                         Lbl.Comprobantes.ComprobanteConArticulos Registro = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
-			if(Registro.ImporteImpago == 0) {
-				return false;
-			} else {
-                                return (Registro.Impreso && Registro.Existe && Registro.FormaDePago != Lbl.Comprobantes.FormasDePago.Efectivo);
-			}
+                        if (Registro == null || Registro.ImporteImpago == 0) {
+                                return false;
+                        } else {
+                                return (Registro.Impreso && Registro.Existe && (Registro.FormaDePago != Lbl.Comprobantes.FormasDePago.Efectivo));
+                        }
 		}
 
 
-		private void txtRemito_TextChanged(object sender, System.EventArgs e)
+		private void EntradaRemito_TextChanged(object sender, System.EventArgs e)
 		{
-			int RemitoId = Lfx.Types.Parsing.ParseInt(txtRemito.Text);
+			int RemitoId = Lfx.Types.Parsing.ParseInt(EntradaRemito.Text);
 			if(RemitoId > 0) {
 				Lfx.Data.Row Remito = this.Workspace.DefaultDataBase.FirstRowFromSelect("SELECT * FROM facturas WHERE tipo_fac='R' AND numero=" + RemitoId.ToString() + " AND impresa>0 AND anulada=0");
 				if(Remito == null)
@@ -462,20 +462,20 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
 		}
 
 
-		private void txtFormaPago_Leave(object sender, System.EventArgs e)
+		private void EntradaFormaPago_Leave(object sender, System.EventArgs e)
 		{
-			if(txtFormaPago.TextInt == 99)
-				txtFormaPago.TextInt = 3;
-                        if (txtFormaPago.TextInt == 5)
-                                txtFormaPago.TextInt = 4;
+			if(EntradaFormaPago.TextInt == 99)
+				EntradaFormaPago.TextInt = 3;
+                        if (EntradaFormaPago.TextInt == 5)
+                                EntradaFormaPago.TextInt = 4;
 		}
 
 		private void Editar_Activated(object sender, System.EventArgs e)
 		{
-			if(txtCliente.TextInt > 0 && txtFormaPago.TextInt > 0)
+			if(EntradaCliente.TextInt > 0 && EntradaFormaPago.TextInt > 0)
 				ProductArray.Focus();
-			else if(txtCliente.TextInt > 0)
-				txtFormaPago.Focus();
+			else if(EntradaCliente.TextInt > 0)
+				EntradaFormaPago.Focus();
 		}
 
                 [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -489,8 +489,8 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                         {
                                 base.Tipo = value;
                                 PnlFormaPago.Visible = value.EsFactura || value.EsTicket;
-                                if (txtTipo.TextKey != value.Nomenclatura)
-                                        txtTipo.TextKey = value.Nomenclatura;
+                                if (EntradaTipo.TextKey != value.Nomenclatura)
+                                        EntradaTipo.TextKey = value.Nomenclatura;
                         }
                 }
 	}

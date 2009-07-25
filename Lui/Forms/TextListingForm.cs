@@ -124,19 +124,19 @@ namespace Lui.Forms
 				case Keys.F7:
 					e.Handled = true;
 					if (cmdCopiar.Enabled && cmdCopiar.Visible)
-						cmdCopiar_Click(sender, e);
+						cmdCopiar.PerformClick();
 					break;
 
 				case Keys.F8:
 					e.Handled = true;
 					if (PrintButton.Enabled && PrintButton.Visible)
-						cmdImprimir_Click(sender, e);
+						PrintButton.PerformClick();
 					break;
 
 				case Keys.F9:
 					e.Handled = true;
 					if (cmdMostrar.Enabled && cmdMostrar.Visible)
-						cmdMostrar_Click(sender, e);
+						cmdMostrar.PerformClick();
 					break;
 
 				case Keys.Escape:

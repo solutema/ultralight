@@ -153,14 +153,17 @@ namespace Lui.Forms
                 internal void Export(Lfx.FileFormats.Office.Spreadsheet.SaveFormats Tipo)
 		{
 			string FileName = this.GetFileName(Tipo);
-			if(FileName.Length > 0)
-			{
-                                if(this.Report == null)
+                        if (FileName.Length > 0) {
+                                if (this.Report == null)
                                         this.Report = this.ToWorkbook();
-                                this.Report.SaveTo(FileName, Tipo);
-				this.DialogResult = DialogResult.OK;
-				this.Close();
-			}
+                                try {
+                                        this.Report.SaveTo(FileName, Tipo);
+                                        this.DialogResult = DialogResult.OK;
+                                        this.Close();
+                                } catch (Exception ex) {
+                                        Lui.Forms.MessageBox.Show(ex.Message, "Error");
+                                }
+                        }
 		}
 
                 internal void Print()

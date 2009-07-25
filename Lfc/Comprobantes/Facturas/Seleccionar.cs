@@ -161,7 +161,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.Label2.Text = "Número";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtTipo
+                        // EntradaTipo
                         // 
                         this.txtTipo.AutoNav = true;
                         this.txtTipo.AutoTab = true;
@@ -169,7 +169,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.txtTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtTipo.Location = new System.Drawing.Point(84, 68);
                         this.txtTipo.MaxLenght = 32767;
-                        this.txtTipo.Name = "txtTipo";
+                        this.txtTipo.Name = "EntradaTipo";
                         this.txtTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTipo.ReadOnly = false;
                         this.txtTipo.SetData = new string[] {
@@ -241,7 +241,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.Label8.Text = "Vendedor";
                         this.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtVendedor
+                        // EntradaVendedor
                         // 
                         this.txtVendedor.AutoTab = true;
                         this.txtVendedor.CanCreate = true;
@@ -254,7 +254,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.txtVendedor.KeyField = "id_persona";
                         this.txtVendedor.Location = new System.Drawing.Point(84, 40);
                         this.txtVendedor.MaxLength = 200;
-                        this.txtVendedor.Name = "txtVendedor";
+                        this.txtVendedor.Name = "EntradaVendedor";
                         this.txtVendedor.Padding = new System.Windows.Forms.Padding(2);
                         this.txtVendedor.ReadOnly = false;
                         this.txtVendedor.Required = false;
@@ -336,7 +336,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.ColumnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
                         this.ColumnHeader5.Width = 86;
                         // 
-                        // txtCliente
+                        // EntradaCliente
                         // 
                         this.txtCliente.AutoTab = true;
                         this.txtCliente.CanCreate = true;
@@ -348,7 +348,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.txtCliente.KeyField = "id_persona";
                         this.txtCliente.Location = new System.Drawing.Point(84, 12);
                         this.txtCliente.MaxLength = 200;
-                        this.txtCliente.Name = "txtCliente";
+                        this.txtCliente.Name = "EntradaCliente";
                         this.txtCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCliente.ReadOnly = false;
                         this.txtCliente.Required = false;
@@ -381,18 +381,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.Controls.Add(this.Label1);
                         this.Name = "FormSeleccionarFactura";
                         this.Text = "Seleccionar Factura";
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.txtTipo, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.txtNumero, 0);
-                        this.Controls.SetChildIndex(this.lblAviso, 0);
-                        this.Controls.SetChildIndex(this.txtPV, 0);
-                        this.Controls.SetChildIndex(this.Label7, 0);
-                        this.Controls.SetChildIndex(this.txtVendedor, 0);
-                        this.Controls.SetChildIndex(this.Label8, 0);
-                        this.Controls.SetChildIndex(this.Label4, 0);
-                        this.Controls.SetChildIndex(this.lvItems, 0);
-                        this.Controls.SetChildIndex(this.txtCliente, 0);
                         this.ResumeLayout(false);
 
                 }
@@ -530,7 +518,7 @@ namespace Lfc.Comprobantes.Facturas
                                 case Keys.Return:
                                         e.Handled = true;
                                         if (OkButton.Visible && OkButton.Enabled)
-                                                OkButton_Click(sender, e);
+                                                OkButton.PerformClick();
                                         break;
                         }
                 }

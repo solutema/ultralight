@@ -78,6 +78,8 @@ namespace Lfx.Types
                                         case "dia-1":
                                         case "dia-2":
                                         case "dia-3":
+                                        case "dia-4":
+                                        case "dia-5":
                                         case "dia":
                                                 return DateRangeTypes.Day;
 
@@ -106,7 +108,7 @@ namespace Lfx.Types
                                                 return DateRangeTypes.Range;
 
                                         default:
-                                                throw new Exception("DateRange: representación inválida");
+                                                throw new Exception("DateRange: representación inválida (" + this.Rep + ")");
                                 }
                         }
                 }

@@ -92,7 +92,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.Controls.Add(this.Pago);
                         this.Name = "EditarPago";
                         this.Text = "Editar Pago";
-                        this.Controls.SetChildIndex(this.Pago, 0);
                         this.ResumeLayout(false);
 
                 }

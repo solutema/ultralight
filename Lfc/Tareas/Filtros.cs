@@ -106,7 +106,7 @@ namespace Lfc.Tareas
                         // 
                         this.CancelCommandButton.Location = new System.Drawing.Point(474, 8);
                         // 
-                        // txtCliente
+                        // EntradaCliente
                         // 
                         this.txtCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
@@ -122,7 +122,7 @@ namespace Lfc.Tareas
                         this.txtCliente.KeyField = "id_persona";
                         this.txtCliente.Location = new System.Drawing.Point(97, 33);
                         this.txtCliente.MaxLength = 200;
-                        this.txtCliente.Name = "txtCliente";
+                        this.txtCliente.Name = "EntradaCliente";
                         this.txtCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCliente.ReadOnly = false;
                         this.txtCliente.Required = false;
@@ -334,7 +334,6 @@ namespace Lfc.Tareas
                         this.Controls.Add(this.tableLayoutPanel1);
                         this.Name = "Filtros";
                         this.Text = "Tickets: Filtros";
-                        this.Controls.SetChildIndex(this.tableLayoutPanel1, 0);
                         this.tableLayoutPanel1.ResumeLayout(false);
                         this.ResumeLayout(false);
 

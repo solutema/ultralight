@@ -125,11 +125,6 @@ namespace Lui.Forms
                         this.Load += new System.EventHandler(this.YesNoDialog_Load);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.YesNoDialogForm_KeyDown);
                         this.BackColorChanged += new System.EventHandler(this.YesNoDialog_BackColorChanged);
-                        this.Controls.SetChildIndex(this.pctExclamation, 0);
-                        this.Controls.SetChildIndex(this.pctInformation, 0);
-                        this.Controls.SetChildIndex(this.pctQuestion, 0);
-                        this.Controls.SetChildIndex(this.DialogCaption, 0);
-                        this.Controls.SetChildIndex(this.DialogText, 0);
                         ((System.ComponentModel.ISupportInitialize)(this.pctQuestion)).EndInit();
                         ((System.ComponentModel.ISupportInitialize)(this.pctExclamation)).EndInit();
                         ((System.ComponentModel.ISupportInitialize)(this.pctInformation)).EndInit();

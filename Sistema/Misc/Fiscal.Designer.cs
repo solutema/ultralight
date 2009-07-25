@@ -233,15 +233,6 @@ namespace Lazaro.Misc
                         this.Text = "Impresora Fiscal: Panel de Control";
                         this.Load += new System.EventHandler(this.Fiscal_Load);
                         this.WorkspaceChanged += new System.EventHandler(this.Fiscal_WorkspaceChanged);
-                        this.Controls.SetChildIndex(this.lblCierreZ, 0);
-                        this.Controls.SetChildIndex(this.cmdCierreZ, 0);
-                        this.Controls.SetChildIndex(this.label1, 0);
-                        this.Controls.SetChildIndex(this.txtPV, 0);
-                        this.Controls.SetChildIndex(this.cmdReiniciar, 0);
-                        this.Controls.SetChildIndex(this.label2, 0);
-                        this.Controls.SetChildIndex(this.lblUltimoCierreZ, 0);
-                        this.Controls.SetChildIndex(this.lblEstadoServidor, 0);
-                        this.Controls.SetChildIndex(this.cmdIniciarDetener, 0);
                         this.ResumeLayout(false);
 
                 }

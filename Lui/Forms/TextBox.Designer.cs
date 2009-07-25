@@ -195,8 +195,6 @@ namespace Lui.Forms
                         this.Controls.Add(this.lblSufijo);
                         this.Name = "TextBox";
                         this.Size = new System.Drawing.Size(384, 40);
-                        this.Controls.SetChildIndex(this.lblSufijo, 0);
-                        this.Controls.SetChildIndex(this.lblPrefijo, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

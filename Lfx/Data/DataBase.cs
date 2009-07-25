@@ -90,7 +90,7 @@ namespace Lfx.Data
                                                 System.Console.Write("Detectando driver ODBC: ");
                                                 switch (Lfx.Environment.SystemInformation.Platform) {
                                                         case Lfx.Environment.SystemInformation.Platforms.Windows:
-                                                                //TODO: detectar la instalación en el registro, no la presencia del archivo
+                                                                // FIXME: detectar la instalación en el registro, no la presencia del archivo
                                                                 //      ya que podría haber quedado un archivo huérfano o
                                                                 //      el archivo myodbc5.dll podría tratarse de MyODBC 5.x (no necesariamente del 5.1)
                                                                 if (System.IO.File.Exists(Lfx.Environment.Folders.WindowsSystemFolder + "myodbc3.dll"))
@@ -576,7 +576,7 @@ namespace Lfx.Data
 
                 public void SetConstraints(System.Collections.Generic.Dictionary<string, ConstraintDefinition> newConstraints, bool deleteOnly)
                 {
-                        //TODO: "DROP FOREIGN KEY" puede ser léxico MySQL. MySQL puede soportar en un futuro la sintáxis "DROP CONSTRAINT" que es más estándar
+                        // FIXME: "DROP FOREIGN KEY" puede ser léxico MySQL. MySQL puede soportar en un futuro la sintáxis "DROP CONSTRAINT" que es más estándar
 
                         System.Collections.Generic.Dictionary<string, ConstraintDefinition> CurrentConstraints = this.GetConstraints();
                         string Sql = null;
@@ -733,8 +733,7 @@ namespace Lfx.Data
                                 m_Closing = true;
                                 try {
                                         DbConnection.Close();
-                                }
-                                catch {
+                                } catch {
                                         if (Lfx.Environment.SystemInformation.DesignMode)
                                                 throw;
                                 }
@@ -805,7 +804,7 @@ namespace Lfx.Data
                 }
 
 
-                //TODO: Debería ser private o no existir
+                // FIXME: Debería ser private o no existir
                 public int Execute(string sqlCommand)
                 {
                         sqlCommand = sqlCommand.Trim(new char[] { ' ', (char)13, (char)10, (char)9 });
@@ -1012,7 +1011,7 @@ namespace Lfx.Data
                         if (this.IsOpen() == false)
                                 this.Open();
 
-                        //TODO: se puede eliminar el uso de DataAdapter, con el siguiente código
+                        // FIXME: se puede eliminar el uso de DataAdapter, con el siguiente código
                         /*
                         System.Data.DataTable Res = new System.Data.DataTable();
                         System.Data.IDataReader Lector = this.GetReader(selectCommand);
@@ -1269,8 +1268,12 @@ namespace Lfx.Data
                 {
                         get
                         {
-                                System.Data.ConnectionState TempCS = this.DbConnection.State;
-                                return TempCS;
+                                if (this.DbConnection != null) {
+                                        System.Data.ConnectionState TempCS = this.DbConnection.State;
+                                        return TempCS;
+                                } else {
+                                        return System.Data.ConnectionState.Closed;
+                                }
                         }
                 }
 

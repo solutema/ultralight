@@ -171,7 +171,7 @@ namespace Lfc.Cuentas.Conceptos
 			this.txtDireccion.TextKey = "0";
 			this.txtDireccion.ToolTipText = "";
 			// 
-			// txtTipo
+			// EntradaTipo
 			// 
 			this.txtTipo.AutoNav = true;
 			this.txtTipo.AutoTab = true;
@@ -180,7 +180,7 @@ namespace Lfc.Cuentas.Conceptos
 			this.txtTipo.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.txtTipo.Location = new System.Drawing.Point(100, 112);
 			this.txtTipo.MaxLenght = 32767;
-			this.txtTipo.Name = "txtTipo";
+			this.txtTipo.Name = "EntradaTipo";
 			this.txtTipo.ReadOnly = false;
 			this.txtTipo.SetData = new string[] {
 													"Ninguno|0",
@@ -242,14 +242,6 @@ namespace Lfc.Cuentas.Conceptos
 			this.Controls.Add(this.Label1);
 			this.Name = "FormCuentaConceptosEditar";
 			this.Text = "Editar: Conceptos";
-			this.Controls.SetChildIndex(this.Label1, 0);
-			this.Controls.SetChildIndex(this.Label2, 0);
-			this.Controls.SetChildIndex(this.Label3, 0);
-			this.Controls.SetChildIndex(this.txtNombre, 0);
-			this.Controls.SetChildIndex(this.txtDireccion, 0);
-			this.Controls.SetChildIndex(this.txtTipo, 0);
-			this.Controls.SetChildIndex(this.label4, 0);
-			this.Controls.SetChildIndex(this.txtCodigo, 0);
 			this.ResumeLayout(false);
 
 		}

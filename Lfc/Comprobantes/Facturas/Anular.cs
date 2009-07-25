@@ -75,7 +75,7 @@ namespace Lfc.Comprobantes.Facturas
 		// Puede modificarse utilizando el Diseñador de Windows Forms. 
 		// No lo modifique con el editor de código.
 		internal System.Windows.Forms.Label Label1;
-                public Lui.Forms.ComboBox txtTipo;
+                public Lui.Forms.ComboBox EntradaTipo;
 		internal Lui.Forms.TextBox txtNumero;
 		internal System.Windows.Forms.Label Label2;
 		internal System.Windows.Forms.Label Label3;
@@ -94,7 +94,7 @@ namespace Lfc.Comprobantes.Facturas
 		private void InitializeComponent()
 		{
                         this.Label1 = new System.Windows.Forms.Label();
-                        this.txtTipo = new Lui.Forms.ComboBox();
+                        this.EntradaTipo = new Lui.Forms.ComboBox();
                         this.txtNumero = new Lui.Forms.TextBox();
                         this.Label2 = new System.Windows.Forms.Label();
                         this.txtFecha = new Lui.Forms.TextBox();
@@ -128,27 +128,27 @@ namespace Lfc.Comprobantes.Facturas
                         this.Label1.Text = "Tipo";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtTipo
+                        // EntradaTipo
                         // 
-                        this.txtTipo.AutoNav = true;
-                        this.txtTipo.AutoTab = true;
-                        this.txtTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtTipo.Location = new System.Drawing.Point(88, 20);
-                        this.txtTipo.MaxLenght = 32767;
-                        this.txtTipo.Name = "txtTipo";
-                        this.txtTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtTipo.ReadOnly = false;
-                        this.txtTipo.SetData = new string[] {
+                        this.EntradaTipo.AutoNav = true;
+                        this.EntradaTipo.AutoTab = true;
+                        this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaTipo.Location = new System.Drawing.Point(88, 20);
+                        this.EntradaTipo.MaxLenght = 32767;
+                        this.EntradaTipo.Name = "EntradaTipo";
+                        this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTipo.ReadOnly = false;
+                        this.EntradaTipo.SetData = new string[] {
         "Comprobante A|A",
         "Comprobante B|B"};
-                        this.txtTipo.Size = new System.Drawing.Size(196, 24);
-                        this.txtTipo.TabIndex = 1;
-                        this.txtTipo.Text = "Comprobante B";
-                        this.txtTipo.TextKey = "B";
-                        this.txtTipo.TipWhenBlank = "";
-                        this.txtTipo.ToolTipText = "";
-                        this.txtTipo.TextChanged += new System.EventHandler(this.txtNumeroTipoPV_TextChanged);
+                        this.EntradaTipo.Size = new System.Drawing.Size(196, 24);
+                        this.EntradaTipo.TabIndex = 1;
+                        this.EntradaTipo.Text = "Comprobante B";
+                        this.EntradaTipo.TextKey = "B";
+                        this.EntradaTipo.TipWhenBlank = "";
+                        this.EntradaTipo.ToolTipText = "";
+                        this.EntradaTipo.TextChanged += new System.EventHandler(this.txtNumeroTipoPV_TextChanged);
                         // 
                         // txtNumero
                         // 
@@ -233,7 +233,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.Label5.Text = "Importe";
                         this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtCliente
+                        // EntradaCliente
                         // 
                         this.txtCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
@@ -244,7 +244,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.txtCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtCliente.Location = new System.Drawing.Point(88, 196);
                         this.txtCliente.MaxLenght = 32767;
-                        this.txtCliente.Name = "txtCliente";
+                        this.txtCliente.Name = "EntradaCliente";
                         this.txtCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCliente.ReadOnly = true;
                         this.txtCliente.Size = new System.Drawing.Size(476, 24);
@@ -357,26 +357,10 @@ namespace Lfc.Comprobantes.Facturas
                         this.Controls.Add(this.Label3);
                         this.Controls.Add(this.txtNumero);
                         this.Controls.Add(this.Label2);
-                        this.Controls.Add(this.txtTipo);
+                        this.Controls.Add(this.EntradaTipo);
                         this.Controls.Add(this.Label1);
                         this.Name = "Anular";
                         this.Text = "Anular Factura";
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.txtTipo, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.txtNumero, 0);
-                        this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.txtFecha, 0);
-                        this.Controls.SetChildIndex(this.Label5, 0);
-                        this.Controls.SetChildIndex(this.txtImporte, 0);
-                        this.Controls.SetChildIndex(this.Label4, 0);
-                        this.Controls.SetChildIndex(this.txtCliente, 0);
-                        this.Controls.SetChildIndex(this.Label6, 0);
-                        this.Controls.SetChildIndex(this.txtTipoPago, 0);
-                        this.Controls.SetChildIndex(this.lblAviso, 0);
-                        this.Controls.SetChildIndex(this.lblTipoComprob, 0);
-                        this.Controls.SetChildIndex(this.txtPV, 0);
-                        this.Controls.SetChildIndex(this.Label7, 0);
                         this.ResumeLayout(false);
 
 		}
@@ -391,7 +375,7 @@ namespace Lfc.Comprobantes.Facturas
 			{
 				string TipoReal = "";
 
-				switch (txtTipo.TextKey)
+				switch (EntradaTipo.TextKey)
 				{
 					case "A":
 						TipoReal = "'A', 'NCA', 'NDA'";
@@ -409,7 +393,7 @@ namespace Lfc.Comprobantes.Facturas
 						ProximosNumeros[PV] = this.Workspace.DefaultDataBase.FieldInt("SELECT MAX(numero) FROM facturas WHERE tipo_fac IN (" + TipoReal + ") AND impresa>0 AND pv=" + PV.ToString()) + 1;
 
 					if (Lfx.Types.Parsing.ParseInt(txtNumero.Text) == ((int)(ProximosNumeros[PV]))) {
-						lblAviso.Text = "El comprobante " + txtTipo.TextKey + " " + PV.ToString("0000") + "-" + Lfx.Types.Parsing.ParseInt(txtNumero.Text).ToString("00000000") + " aun no fue confeccionado, pero es el próximo a ser impreso. Si lo anula, el sistema salteará dicho comprobante.";
+						lblAviso.Text = "El comprobante " + EntradaTipo.TextKey + " " + PV.ToString("0000") + "-" + Lfx.Types.Parsing.ParseInt(txtNumero.Text).ToString("00000000") + " aun no fue confeccionado, pero es el próximo a ser impreso. Si lo anula, el sistema salteará dicho comprobante.";
 						txtFecha.Text = "";
 						lblTipoComprob.Text = "";
 						txtImporte.Text = "";
@@ -419,7 +403,7 @@ namespace Lfc.Comprobantes.Facturas
 					}
 					else
 					{
-						lblAviso.Text = "El comprobante " + txtTipo.TextKey + " " + PV.ToString("0000") + "-" + Lfx.Types.Parsing.ParseInt(txtNumero.Text).ToString("00000000") + " aun no fue confeccionado y no puede anularse.";
+						lblAviso.Text = "El comprobante " + EntradaTipo.TextKey + " " + PV.ToString("0000") + "-" + Lfx.Types.Parsing.ParseInt(txtNumero.Text).ToString("00000000") + " aun no fue confeccionado y no puede anularse.";
 						txtFecha.Text = "";
 						lblTipoComprob.Text = "";
 						txtImporte.Text = "";
@@ -492,7 +476,7 @@ namespace Lfc.Comprobantes.Facturas
 				int m_Id = 0;
 				string TipoReal = "";
 
-				switch (txtTipo.TextKey)
+				switch (EntradaTipo.TextKey)
 				{
 					case "A":
 						TipoReal = "'A', 'NCA', 'NDA'";
@@ -508,8 +492,8 @@ namespace Lfc.Comprobantes.Facturas
                                 if (IdFactura == 0) {
                                         // Es una factura que todava no existe
                                         // Tengo que crear la factura y anularla
-                                        DataView.DataBase.Execute("INSERT INTO facturas (tipo_fac, id_formapago, id_sucursal, pv, fecha, id_vendedor, id_cliente, obs, impresa, anulada) VALUES ('" + txtTipo.TextKey + "', 3, " + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString() + ", " + txtPV.Text + ", NOW(), " + this.Workspace.CurrentUser.UserId.ToString() + ", " + this.Workspace.CurrentUser.UserId.ToString() + ", 'Comprobante anulado antes de ser impreso.', 1, 1)");
-                                        m_Id = DataView.DataBase.FieldInt("SELECT MAX(id_factura) AS id_factura FROM facturas WHERE tipo_fac='" + txtTipo.TextKey + "'");
+                                        DataView.DataBase.Execute("INSERT INTO facturas (tipo_fac, id_formapago, id_sucursal, pv, fecha, id_vendedor, id_cliente, obs, impresa, anulada) VALUES ('" + EntradaTipo.TextKey + "', 3, " + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString() + ", " + txtPV.Text + ", NOW(), " + this.Workspace.CurrentUser.UserId.ToString() + ", " + this.Workspace.CurrentUser.UserId.ToString() + ", 'Comprobante anulado antes de ser impreso.', 1, 1)");
+                                        m_Id = DataView.DataBase.FieldInt("SELECT MAX(id_factura) AS id_factura FROM facturas WHERE tipo_fac='" + EntradaTipo.TextKey + "'");
                                         Lbl.Comprobantes.Numerador.Numerar(DataView, m_Id);
                                         Lui.Forms.MessageBox.Show("Se anuló el comprobante " + Lbl.Comprobantes.Comprobante.NumeroCompleto(DataView, m_Id) + ". Recuerde archivar ambas copias.", "Aviso");
                                 } else {

@@ -64,14 +64,6 @@ namespace Lfx.Environment
 	/// </summary>
 	public class SystemInformation
 	{
-		public static string ComputerName
-		{
-			get
-			{
-				return System.Windows.Forms.SystemInformation.ComputerName.ToUpper();
-			}
-		}
-
 		public enum Platforms
 		{
 			Windows,

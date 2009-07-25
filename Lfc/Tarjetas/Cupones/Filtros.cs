@@ -288,7 +288,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.Label15.Text = "Plan";
                         this.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtCliente
+                        // EntradaCliente
                         // 
                         this.txtCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
@@ -304,7 +304,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.txtCliente.KeyField = "id_persona";
                         this.txtCliente.Location = new System.Drawing.Point(85, 123);
                         this.txtCliente.MaxLength = 200;
-                        this.txtCliente.Name = "txtCliente";
+                        this.txtCliente.Name = "EntradaCliente";
                         this.txtCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCliente.ReadOnly = false;
                         this.txtCliente.Required = false;
@@ -433,7 +433,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.Controls.Add(this.tableLayoutPanel1);
                         this.Name = "Filtros";
                         this.Text = "Tarjetas: Filtros";
-                        this.Controls.SetChildIndex(this.tableLayoutPanel1, 0);
                         this.panel1.ResumeLayout(false);
                         this.tableLayoutPanel1.ResumeLayout(false);
                         this.ResumeLayout(false);

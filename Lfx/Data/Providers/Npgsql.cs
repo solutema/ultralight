@@ -40,10 +40,10 @@ namespace Lfx.Data.Providers
                 public Npgsql() :
                         base("Npgsql",
                         "Npgsql",
-                        "Npgsql.NpgsqlConnection",
-                        "Npgsql.NpgsqlCommand",
-                        "Npgsql.NpgsqlDataAdapter",
-                        "Npgsql.NpgsqlParameter")
+                        "NpgsqlConnection",
+                        "NpgsqlCommand",
+                        "NpgsqlDataAdapter",
+                        "NpgsqlParameter")
                 {
                 }
         }

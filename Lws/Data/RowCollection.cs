@@ -93,7 +93,8 @@ namespace Lws.Data
                                 if (Table.DataView.DataBase.InTransaction || Table.Cacheable == false) {
 					//No uso el caché si hay una transacción activa o se esta tabla no es cacheable
                                         Lfx.Data.Row NewRow = this.Table.DataView.DataBase.Row(this.Table.Name, this.Table.PrimaryKey, id) as Lfx.Data.Row;
-                                        NewRow.Table = this.Table;
+					if (NewRow != null)
+                                        	NewRow.Table = this.Table;
                                         return NewRow;
                                 } else if (this.Contains(id) == false) {
                                         Lfx.Data.Row NewRow = this.Table.DataView.DataBase.Row(this.Table.Name, this.Table.PrimaryKey, id);

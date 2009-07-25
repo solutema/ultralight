@@ -139,7 +139,7 @@ namespace Lfc.Pvs
 			this.txtPV.TipWhenBlank = "";
 			this.txtPV.ToolTipText = "";
 			// 
-			// txtTipo
+			// EntradaTipo
 			// 
 			this.txtTipo.AutoNav = true;
 			this.txtTipo.AutoTab = true;
@@ -147,7 +147,7 @@ namespace Lfc.Pvs
 			this.txtTipo.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.txtTipo.Location = new System.Drawing.Point(160, 76);
 			this.txtTipo.MaxLenght = 32767;
-			this.txtTipo.Name = "txtTipo";
+			this.txtTipo.Name = "EntradaTipo";
 			this.txtTipo.Padding = new System.Windows.Forms.Padding(2);
 			this.txtTipo.ReadOnly = false;
 			this.txtTipo.SetData = new string[] {
@@ -422,24 +422,6 @@ namespace Lfc.Pvs
 			this.Controls.Add(this.Label3);
 			this.Controls.Add(this.txtPV);
 			this.Name = "Editar";
-			this.Controls.SetChildIndex(this.txtPV, 0);
-			this.Controls.SetChildIndex(this.Label3, 0);
-			this.Controls.SetChildIndex(this.Label16, 0);
-			this.Controls.SetChildIndex(this.txtTipo, 0);
-			this.Controls.SetChildIndex(this.txtEstacion, 0);
-			this.Controls.SetChildIndex(this.label1, 0);
-			this.Controls.SetChildIndex(this.label2, 0);
-			this.Controls.SetChildIndex(this.txtCarga, 0);
-			this.Controls.SetChildIndex(this.cmdEstacionSeleccionar, 0);
-			this.Controls.SetChildIndex(this.label4, 0);
-			this.Controls.SetChildIndex(this.txtSucursal, 0);
-			this.Controls.SetChildIndex(this.label5, 0);
-			this.Controls.SetChildIndex(this.label6, 0);
-			this.Controls.SetChildIndex(this.label7, 0);
-			this.Controls.SetChildIndex(this.txtModelo, 0);
-			this.Controls.SetChildIndex(this.txtPuerto, 0);
-			this.Controls.SetChildIndex(this.txtBps, 0);
-			this.Controls.SetChildIndex(this.note1, 0);
 			this.ResumeLayout(false);
 
 		}

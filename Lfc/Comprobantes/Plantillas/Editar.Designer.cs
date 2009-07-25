@@ -592,7 +592,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.Controls.Add(this.TabControl);
                         this.Name = "Editar";
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Editar_KeyDown);
-                        this.Controls.SetChildIndex(this.TabControl, 0);
                         this.TabControl.ResumeLayout(false);
                         this.TabGeneral.ResumeLayout(false);
                         this.TabCampos.ResumeLayout(false);

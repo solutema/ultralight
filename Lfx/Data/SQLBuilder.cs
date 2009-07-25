@@ -412,10 +412,51 @@ namespace Lfx.Data
                 InsertOrReplace
         }
 
+        public class SqlBuilkInsertBuilder : System.Collections.CollectionBase
+        {
+                public SqlBuilkInsertBuilder()
+                {
+                }
+
+                public virtual int Add(SqlInsertBuilder cmd)
+                {
+                        return this.List.Add(cmd);
+                }
+
+                public virtual SqlInsertBuilder this[int index]
+                {
+                        get
+                        {
+                                return (SqlInsertBuilder)this.List[index];
+                        }
+                        set
+                        {
+                                this[index] = value;
+                        }
+                }
+
+                public override string ToString()
+                {
+                        System.Text.StringBuilder Res= null;
+                        foreach (SqlInsertBuilder cmd in this.List) {
+                                if (Res == null) {
+                                        Res = new System.Text.StringBuilder();
+                                        Res.AppendLine(cmd.ToString());
+                                } else {
+                                        Res.Append(", ");
+                                        Res.AppendLine(cmd.ToString(true));
+                                }
+                        }
+                        if (Res == null)
+                                return "";
+                        else
+                                return Res.ToString();
+                }
+        }
+
 	public class SqlInsertBuilder :
                 SqlTableCommandBuilder
         {
-                public InsertTypes InsertType = InsertTypes.Insert;
                 public SqlInsertBuilder()
                         : base() { }
 		
@@ -475,14 +516,15 @@ namespace Lfx.Data
                                 }
 
                         }
-                        if (this.InsertType == InsertTypes.InsertOrReplace)
-                                baseCommand.CommandText = "REPLACE INTO";
-                        else
-                                baseCommand.CommandText = "INSERT INTO";
-                        baseCommand.CommandText += @" """ + this.Tables + @""" (" + FieldList.ToString() + ") VALUES (" + ParamList.ToString() + ")";
+                        baseCommand.CommandText += @"INSERT INTO """ + this.Tables + @""" (" + FieldList.ToString() + ") VALUES (" + ParamList.ToString() + ")";
                 }
 
-                public string SqlText(Data.SqlModes sqlMode)
+                private string SqlText(Data.SqlModes sqlMode)
+                {
+                        return this.SqlText(sqlMode, false);
+                }
+
+                private string SqlText(Data.SqlModes sqlMode, bool valuesOnly)
                 {
                         System.Text.StringBuilder FieldList = new System.Text.StringBuilder();
                         System.Text.StringBuilder ParamList = new System.Text.StringBuilder();
@@ -497,7 +539,7 @@ namespace Lfx.Data
                                 if (ThisField.FieldValue == null || ThisField.FieldValue == DBNull.Value) {
                                         ParamValue = "NULL";
                                 } else {
-                                        string Tipo = ThisField.FieldValue.GetType().Name;
+                                        string Tipo = ThisField.FieldValue.GetType().Name.Replace("System.", "");
                                         switch (Tipo) {
                                                 case "Lfx.Data.SqlFunctions":
                                                         switch (((Lfx.Data.SqlFunctions)(ThisField.FieldValue))) {
@@ -508,15 +550,18 @@ namespace Lfx.Data
                                                                         throw new NotImplementedException();
                                                         }
                                                         break;
-                                                case "System.Single":
-                                                case "System.Decimal":
-                                                case "System.Double":
+                                                case "DateTime":
+                                                        ParamValue = "'" + System.Convert.ToDateTime(ThisField.FieldValue).ToString(Lfx.Types.Formatting.DateTime.SqlDateTimeFormat) + "'";
+                                                        break;
+                                                case "Single":
+                                                case "Decimal":
+                                                case "Double":
                                                         ParamValue = Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDouble(ThisField.FieldValue));
                                                         break;
-                                                case "System.Integer":
-                                                case "System.Int16":
-                                                case "System.Int32":
-                                                case "System.Int64":
+                                                case "Integer":
+                                                case "Int16":
+                                                case "Int32":
+                                                case "Int64":
                                                         ParamValue = System.Convert.ToInt32(ThisField.FieldValue).ToString();
                                                         break;
                                                 default:
@@ -529,21 +574,30 @@ namespace Lfx.Data
                                         ParamList.Append(ParamValue);
                                 else
                                         ParamList.Append(", " + ParamValue);
-
                         }
 
-                        return @"INSERT INTO """ + this.Tables + @""" (" + FieldList.ToString() + ") VALUES (" + ParamList.ToString() + ")";
+                        if (valuesOnly)
+                                return "(" + ParamList.ToString() + ")";
+                        else
+                                return @"INSERT INTO """ + this.Tables + @""" (" + FieldList.ToString() + ") VALUES (" + ParamList.ToString() + ")";
                 }
 
 		public override string ToString()
 		{
 			return this.SqlText(this.SqlMode);
 		}
+
+                protected internal string ToString(bool valuesOnly)
+                {
+                        return this.SqlText(this.SqlMode, valuesOnly);
+                }
         }
 
         public class SqlDeleteBuilder :
             SqlTableCommandBuilder
         {
+                public bool Truncate = false;
+
                 public SqlDeleteBuilder()
                         : base() { }
 
@@ -567,8 +621,8 @@ namespace Lfx.Data
 
                         if (WhereClause != null) {
                                 Command += " WHERE " + WhereClause.ToString();
-                        } else {
-				throw new InvalidOperationException("SqlDeleteBuilder necesita una cláusula Where");
+                        } else if (Truncate == false) {
+				throw new InvalidOperationException("SqlDeleteBuilder necesita una cláusula Where o Truncate = true.");
 			}
 
                         return Command;
@@ -576,10 +630,7 @@ namespace Lfx.Data
 
                 public override void SetupDbCommand(ref System.Data.IDbCommand baseCommand)
                 {
-                        if (WhereClause == null)
-                                throw new InvalidOperationException("SqlDeleteBuilder necesita una cláusula Where");
-
-                        baseCommand.CommandText = "DELETE FROM " + this.Tables + " WHERE " + WhereClause.ToString();
+                        baseCommand.CommandText = this.ToString();
                 }
         }
 
@@ -1039,7 +1090,7 @@ namespace Lfx.Data
                                         switch (m_Mode)
                                         {
                                                 case Lfx.Data.SqlModes.MySql:
-                                                        // TODO: Parece que el SOUNDS LIKE no funciona bien en MySql
+                                                        // FIXME: Parece que el SOUNDS LIKE no funciona bien en MySql
                                                         // Result = LeftValue.Replace("%", "") & " SOUNDS LIKE " & RightValue.Replace("%", "")
                                                         Result = LeftValue + " LIKE " + RightValue;
                                                         break;

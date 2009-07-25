@@ -130,7 +130,9 @@ namespace Lfc.Bancos.Chequeras
                         itm.SubItems[2].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[2].Text).ToString("0000");
                         itm.SubItems[3].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[3].Text).ToString("00000000");
                         itm.SubItems[4].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[4].Text).ToString("00000000");
-                        itm.SubItems[5].Text = this.DataView.Tables["cuentas"].FastRows[Lfx.Types.Parsing.ParseInt(itm.SubItems[5].Text)].Fields["nombre"].ToString();
+                        int IdCuenta = Lfx.Types.Parsing.ParseInt(itm.SubItems[5].Text);
+                        if (IdCuenta > 0)
+                                itm.SubItems[5].Text = this.DataView.Tables["cuentas"].FastRows[IdCuenta].Fields["nombre"].ToString();
 		}
 
 		public override Lfx.Types.OperationResult OnEdit(int lCodigo)

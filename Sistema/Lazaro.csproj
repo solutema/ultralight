@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
@@ -280,6 +280,11 @@
     <None Include="Resources\edit-copy.png" />
     <None Include="Resources\edit-undo.png" />
     <None Include="Lazaro.snk" />
+    <EmbeddedResource Include="Data\menu.xml" />
+    <EmbeddedResource Include="Misc\ErrorGlobal.resx">
+      <DependentUpon>ErrorGlobal.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lbl\Lbl.csproj">
@@ -326,13 +331,6 @@
     <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
       <Visible>False</Visible>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Data\menu.xml" />
-    <EmbeddedResource Include="Misc\ErrorGlobal.resx">
-      <DependentUpon>ErrorGlobal.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

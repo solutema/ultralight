@@ -74,6 +74,7 @@ namespace Lui.Forms
                         // OkButton
                         // 
                         this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.OkButton.AutoHeight = false;
                         this.OkButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.OkButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -94,6 +95,7 @@ namespace Lui.Forms
                         // CancelCommandButton
                         // 
                         this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.CancelCommandButton.AutoHeight = false;
                         this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.CancelCommandButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;

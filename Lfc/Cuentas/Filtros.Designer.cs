@@ -343,7 +343,6 @@ namespace Lfc.Cuentas
                         this.Controls.Add(this.tableLayoutPanel1);
                         this.Name = "Filtros";
                         this.Text = "Cuenta: Filtros";
-                        this.Controls.SetChildIndex(this.tableLayoutPanel1, 0);
                         this.tableLayoutPanel1.ResumeLayout(false);
                         this.ResumeLayout(false);
 

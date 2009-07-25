@@ -38,9 +38,8 @@ namespace Lfc.Cuentas
 {
         public partial class Inicio : Lui.Forms.AccountForm
         {
-                public int m_Cuenta = 999, m_Concepto, m_TipoConcepto;
+                public int m_Cuenta = 999, m_Concepto, m_TipoConcepto, m_Direccion;
                 public string m_ConceptoStr;
-                public int m_Direccion;
 
                 public Inicio()
                         : base()
@@ -128,15 +127,16 @@ namespace Lfc.Cuentas
                                         ItemList.Items.Clear();
 
                                         Transporte = 0;
+                                        System.DateTime FechaFrom = m_Fechas.HasRange ? m_Fechas.From : new System.DateTime(1900, 1, 1);
                                         if (m_Cuenta == 0) {
                                                 // Calculo el transporte combinado de todas las cuentas
                                                 DataTable Cuentas = this.Workspace.DefaultDataBase.Select("SELECT id_cuenta FROM cuentas");
                                                 foreach (System.Data.DataRow Cuenta in Cuentas.Rows) {
-                                                        Transporte += Math.Round(this.Workspace.DefaultDataBase.FieldDouble("SELECT saldo FROM " + m_Tabla + " WHERE  id_cuenta=" + Cuenta["id_cuenta"].ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.From).ToString() + " 00:00:00' ORDER BY id_movim DESC"), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                                        Transporte += Math.Round(this.Workspace.DefaultDataBase.FieldDouble("SELECT saldo FROM " + m_Tabla + " WHERE  id_cuenta=" + Cuenta["id_cuenta"].ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom).ToString() + " 00:00:00' ORDER BY id_movim DESC"), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                                                 }
                                         } else {
                                                 // Calculo el transporte de una cuenta
-                                                Transporte = Math.Round(this.Workspace.DefaultDataBase.FieldDouble("SELECT saldo FROM " + m_Tabla + " WHERE  id_cuenta=" + m_Cuenta.ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.From) + " 00:00:00' ORDER BY id_movim DESC LIMIT 1"), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                                Transporte = Math.Round(this.Workspace.DefaultDataBase.FieldDouble("SELECT saldo FROM " + m_Tabla + " WHERE  id_cuenta=" + m_Cuenta.ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom) + " 00:00:00' ORDER BY id_movim DESC LIMIT 1"), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                                         }
                                         Saldo = Transporte;
                                         if (Movimientos.Rows.Count > 0) {
@@ -339,22 +339,22 @@ namespace Lfc.Cuentas
                                 case Keys.F3:
                                         e.Handled = true;
                                         if (cmdIngreso.Enabled && cmdIngreso.Visible)
-                                                cmdIngreso_Click(sender, e);
+                                                cmdIngreso.PerformClick();
                                         break;
                                 case Keys.F4:
                                         e.Handled = true;
                                         if (cmdEgreso.Enabled && cmdEgreso.Visible)
-                                                cmdEgreso_Click(sender, e);
+                                                cmdEgreso.PerformClick();
                                         break;
                                 case Keys.F5:
                                         e.Handled = true;
                                         if (cmdMovim.Enabled && cmdMovim.Visible)
-                                                cmdMovim_Click(sender, e);
+                                                cmdMovim.PerformClick();
                                         break;
                                 case Keys.F7:
                                         e.Handled = true;
                                         if (cmdArqueo.Enabled && cmdArqueo.Visible)
-                                                cmdArqueo_Click(sender, e);
+                                                cmdArqueo.PerformClick();
                                         break;
                         }
 

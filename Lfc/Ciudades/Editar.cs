@@ -205,12 +205,6 @@ namespace Lfc.Ciudades
 			this.Controls.Add(this.Label1);
 			this.Name = "Editar";
 			this.Text = "Editar: Ciudades";
-			this.Controls.SetChildIndex(this.Label1, 0);
-			this.Controls.SetChildIndex(this.Label2, 0);
-			this.Controls.SetChildIndex(this.txtNombre, 0);
-			this.Controls.SetChildIndex(this.txtCP, 0);
-			this.Controls.SetChildIndex(this.Label9, 0);
-			this.Controls.SetChildIndex(this.txtParent, 0);
 			this.ResumeLayout(false);
 
 		}

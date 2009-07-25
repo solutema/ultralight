@@ -216,12 +216,6 @@ namespace Lfc.Comprobantes
                         this.Controls.Add(this.lblDesdeSituacion);
                         this.Controls.Add(this.txtDesdeSituacion);
                         this.Name = "FormComprobanteMasDatos";
-                        this.Controls.SetChildIndex(this.txtDesdeSituacion, 0);
-                        this.Controls.SetChildIndex(this.lblDesdeSituacion, 0);
-                        this.Controls.SetChildIndex(this.txtHaciaSituacion, 0);
-                        this.Controls.SetChildIndex(this.lblHaciaSituacion, 0);
-                        this.Controls.SetChildIndex(this.label1, 0);
-                        this.Controls.SetChildIndex(this.txtBloqueada, 0);
                         this.ResumeLayout(false);
 
                 }

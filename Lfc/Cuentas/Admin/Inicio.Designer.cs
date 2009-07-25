@@ -73,7 +73,7 @@ namespace Lfc.Cuentas.Admin
                         // 
                         this.Listado.Size = new System.Drawing.Size(646, 566);
                         // 
-                        // txtTotal
+                        // EntradaTotal
                         // 
                         this.txtTotal.AutoNav = true;
                         this.txtTotal.AutoTab = true;
@@ -82,7 +82,7 @@ namespace Lfc.Cuentas.Admin
                         this.txtTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtTotal.Location = new System.Drawing.Point(32, 140);
                         this.txtTotal.MaxLenght = 32767;
-                        this.txtTotal.Name = "txtTotal";
+                        this.txtTotal.Name = "EntradaTotal";
                         this.txtTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTotal.Prefijo = "$";
                         this.txtTotal.ReadOnly = true;
@@ -139,11 +139,6 @@ namespace Lfc.Cuentas.Admin
                         this.Controls.Add(this.txtTotal);
                         this.Name = "Inicio";
                         this.Text = "Cuentas: Listado";
-                        this.Controls.SetChildIndex(this.txtTotal, 0);
-                        this.Controls.SetChildIndex(this.Listado, 0);
-                        this.Controls.SetChildIndex(this.txtActivos, 0);
-                        this.Controls.SetChildIndex(this.label2, 0);
-                        this.Controls.SetChildIndex(this.label3, 0);
                         this.ResumeLayout(false);
 
                 }

@@ -202,13 +202,15 @@ namespace Lcc.Edicion.Comprobantes
                                         if (this.ElementoCobro.FormaDePago != Lbl.Comprobantes.FormasDePago.Cheque)
                                                 throw new InvalidOperationException();
 
-                                        if (this.ElementoCobro.Cheque.Banco != null)
-                                                EntradaBanco.TextInt = this.ElementoCobro.Cheque.Banco.Id;
-                                        else
-                                                EntradaBanco.TextInt = 0;
-                                        EntradaFechaCobro.Text = Lfx.Types.Formatting.FormatDate(this.ElementoCobro.Cheque.FechaCobro);
-                                        EntradaFechaEmision.Text = Lfx.Types.Formatting.FormatDate(this.ElementoCobro.Cheque.FechaEmision);
-                                        EntradaNumeroCheque.Text = this.ElementoCobro.Cheque.Numero.ToString();
+                                        if (this.ElementoCobro.Cheque != null) {
+                                                if (this.ElementoCobro.Cheque.Banco != null)
+                                                        EntradaBanco.TextInt = this.ElementoCobro.Cheque.Banco.Id;
+                                                else
+                                                        EntradaBanco.TextInt = 0;
+                                                EntradaFechaCobro.Text = Lfx.Types.Formatting.FormatDate(this.ElementoCobro.Cheque.FechaCobro);
+                                                EntradaFechaEmision.Text = Lfx.Types.Formatting.FormatDate(this.ElementoCobro.Cheque.FechaEmision);
+                                                EntradaNumeroCheque.Text = this.ElementoCobro.Cheque.Numero.ToString();
+                                        }
                                         break;
                                 case Lbl.Comprobantes.FormasDePago.CuentaRegular:
                                         if (this.ElementoCobro.CuentaDestino != null)

@@ -41,9 +41,8 @@ namespace Lfc.Comprobantes
 		internal string m_Tipo = "F", m_Letra = "*";
 		internal Lfx.Types.DateRange m_Fechas;
 		internal string m_Estado = "";
-		internal int m_Sucursal = 0;
-		internal int m_Cliente, m_Vendedor;
-		internal int m_Anuladas = 1;
+                internal int m_Sucursal = 0, m_Cliente, m_Vendedor, m_Anuladas = 1, m_PV = 0, m_FormaPago;
+                internal double m_MontoDesde = 0, m_MontoHasta = 0;
 		internal string m_Agrupar = "";
                 internal Lfx.FileFormats.Office.Spreadsheet.Sheet ReportSheet;
 
@@ -123,8 +122,14 @@ namespace Lfc.Comprobantes
                         if (m_Vendedor > 0)
                                 FiltroSql += " AND (facturas.id_vendedor='" + m_Vendedor.ToString() + "')";
 
+                        if (m_FormaPago > 0)
+                                FiltroSql += " AND (facturas.id_formapago='" + m_FormaPago.ToString() + "')";
+
 			if(m_Sucursal > 0)
                                 FiltroSql += " AND (facturas.id_sucursal='" + m_Sucursal.ToString() + "')";
+
+                        if (m_PV > 0)
+                                FiltroSql += " AND (facturas.pv='" + m_PV.ToString() + "')";
 
                         FiltroSql += " AND facturas.total<>0";
 
@@ -150,7 +155,14 @@ namespace Lfc.Comprobantes
 			}
 
 			if(m_Anuladas == 0)
-                                FiltroSql += " AND anulada=0";
+                                FiltroSql += " AND facturas.anulada=0";
+
+                        if (m_MontoDesde != 0 && m_MontoHasta != 0)
+                                FiltroSql += " AND facturas.total BETWEEN " + Lfx.Types.Formatting.FormatCurrencySql(m_MontoDesde) + " AND " + Lfx.Types.Formatting.FormatCurrencySql(m_MontoHasta);
+                        else if (m_MontoDesde != 0)
+                                FiltroSql += " AND facturas.total>=" + Lfx.Types.Formatting.FormatCurrencySql(m_MontoDesde);
+                        else if (m_MontoHasta != 0)
+                                FiltroSql += " AND facturas.total<=" + Lfx.Types.Formatting.FormatCurrencySql(m_MontoHasta);
 
                         return FiltroSql;
 		}

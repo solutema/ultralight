@@ -242,14 +242,6 @@ namespace Lfc.Articulos.Marcas
 			this.Controls.Add(this.txtNombre);
 			this.Controls.Add(this.Label5);
 			this.Name = "Editar";
-			this.Controls.SetChildIndex(this.Label5, 0);
-			this.Controls.SetChildIndex(this.txtNombre, 0);
-			this.Controls.SetChildIndex(this.Label12, 0);
-			this.Controls.SetChildIndex(this.txtURL, 0);
-			this.Controls.SetChildIndex(this.Label14, 0);
-			this.Controls.SetChildIndex(this.txtProveedor, 0);
-			this.Controls.SetChildIndex(this.Label13, 0);
-			this.Controls.SetChildIndex(this.txtObs, 0);
 			this.ResumeLayout(false);
 
 		}

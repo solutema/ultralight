@@ -325,12 +325,16 @@ namespace Lfc.Comprobantes.Compra
 				switch (e.KeyCode)
 				{
 					case Keys.F4:
-						if (cmdConvertir.Enabled && cmdConvertir.Visible)
-							cmdConvertir_Click(sender, e);
+						if (cmdConvertir.Enabled && cmdConvertir.Visible) {
+							e.Handled = true;
+							cmdConvertir.PerformClick();
+						}
 						break;
 					case Keys.F7:
-						if (cmdObs.Enabled && cmdObs.Visible)
-							cmdObs_Click(sender, e);
+						if (cmdObs.Enabled && cmdObs.Visible) {
+							e.Handled = true;
+							cmdObs.PerformClick();
+						}
 						break;
 				}
 			}

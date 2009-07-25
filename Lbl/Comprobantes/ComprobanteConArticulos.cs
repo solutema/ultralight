@@ -36,6 +36,7 @@ namespace Lbl.Comprobantes
 	public class ComprobanteConArticulos : Comprobante
 	{
                 private ColeccionDetalleArticulos m_Articulos = null, m_ArticulosOriginales = null;
+                private ColeccionRecibos m_Recibos = null;
                 
                 //Heredar constructor
                 public ComprobanteConArticulos(Lws.Data.DataView dataView) : base(dataView) { }
@@ -66,6 +67,14 @@ namespace Lbl.Comprobantes
                 public override Lfx.Types.OperationResult Crear()
                 {
                         return this.Crear("B");
+                }
+
+                public bool Anulado
+                {
+                        get
+                        {
+                                return System.Convert.ToBoolean(this.FieldInt("anulada"));
+                        }
                 }
 
                 public Lfx.Types.OperationResult Crear(string tipo, bool compra)
@@ -109,6 +118,14 @@ namespace Lbl.Comprobantes
 
                 public void Anular()
                 {
+                        this.Anular(true);
+                }
+
+                public void Anular(bool anularPagos)
+                {
+                        if (this.Anulado)
+                                return;
+
                         if (this.Tipo.EsNotaDebito) {
                                 Lbl.Cuentas.CuentaCorriente CtaCteDeb = new Lbl.Cuentas.CuentaCorriente(DataView, this.Cliente.Id);
                                 CtaCteDeb.Movimiento(true, 11000, "Anulación Comprob. " + this.ToString(), -this.Total, "", this.Id, 0, true);
@@ -117,43 +134,54 @@ namespace Lbl.Comprobantes
                                 CtaCteCred.Movimiento(true, 11000, "Anulación Comprob. " + this.ToString(), this.Total, "", this.Id, 0, true);
                         } else if (this.Tipo.EsFactura) {
                                 Lbl.Articulos.Stock.MoverStockFactura(this, false);
-                                switch (this.FormaDePago) {
-                                        case Lbl.Comprobantes.FormasDePago.Efectivo:
-                                                // Hago un egreso de caja
-                                                Lbl.Cuentas.CuentaRegular Caja = new Lbl.Cuentas.CuentaRegular(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
-                                                Caja.Movimiento(true, 11000, "Anulación Comprob. " + this.ToString(), this.Cliente.Id, -this.ImporteCancelado, "", this.Id, 0, "");
-                                                break;
+                                if (anularPagos) {
+                                        switch (this.FormaDePago) {
+                                                case Lbl.Comprobantes.FormasDePago.Efectivo:
+                                                        // Hago un egreso de caja
+                                                        Lbl.Cuentas.CuentaRegular Caja = new Lbl.Cuentas.CuentaRegular(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
+                                                        Caja.Movimiento(true, 11000, "Anulación Comprob. " + this.ToString(), this.Cliente.Id, -this.ImporteCancelado, "", this.Id, 0, "");
+                                                        break;
 
-                                        case Lbl.Comprobantes.FormasDePago.Cheque:
-                                                // TODO: quitar el cheque?
-                                                break;
+                                                case Lbl.Comprobantes.FormasDePago.Cheque:
+                                                        Lbl.Bancos.Cheque Cheque = new Lbl.Bancos.Cheque(DataView, this);
+                                                        if (Cheque != null && Cheque.Existe)
+                                                                Cheque.Anular();
+                                                        break;
 
-                                        case Lbl.Comprobantes.FormasDePago.CuentaCorriente:
-                                                // Anulo, slamente por el monto cancelado.
-                                                // Si la factura estaba impaga, no anulo nada
-                                                if (this.ImporteCancelado > 0) {
-                                                        Lbl.Cuentas.CuentaCorriente CtaCteFac = new Lbl.Cuentas.CuentaCorriente(DataView, this.Cliente.Id);
-                                                        CtaCteFac.Movimiento(true, new Lbl.Cuentas.Concepto(this.DataView, 11000), "Anulación Comprob. " + this.ToString(), -this.ImporteCancelado, "", this, null, false);
-                                                }
-                                                break;
+                                                case Lbl.Comprobantes.FormasDePago.CuentaCorriente:
+                                                        // Anulo los recibos que se le hayan hecho
+                                                        if (this.Recibos != null && this.Recibos.Count > 0) {
+                                                                foreach (Recibo Rec in this.Recibos) {
+                                                                        Rec.Anular();
+                                                                }
+                                                        }
+                                                        
+                                                        if (this.ImporteCancelado < this.Total) {
+                                                                // Y quedaba algo por cancelar, anulo ese saldo en la cuenta corriente
+                                                                Lbl.Cuentas.CuentaCorriente CtaCteFac = new Lbl.Cuentas.CuentaCorriente(DataView, this.Cliente.Id);
+                                                                CtaCteFac.Movimiento(true, new Lbl.Cuentas.Concepto(this.DataView, 11000), "Anulación Comprob. " + this.ToString(), -(this.Total - this.ImporteCancelado), "", this, null, false);
+                                                        }
+                                                        break;
 
-                                        case Lbl.Comprobantes.FormasDePago.Tarjeta:
-                                        case Lbl.Comprobantes.FormasDePago.TarjetaDeDebito:
-                                                // TODO: anular el cupón?
-                                                break;
+                                                case Lbl.Comprobantes.FormasDePago.Tarjeta:
+                                                case Lbl.Comprobantes.FormasDePago.TarjetaDeDebito:
+                                                        Lbl.Tarjetas.Cupon Cupon = new Lbl.Tarjetas.Cupon(DataView, this);
+                                                        if (Cupon != null && Cupon.Existe)
+                                                                Cupon.Anular();
+                                                        break;
 
-                                        case FormasDePago.CuentaRegular:
-                                                // TODO: deshacer el movimiento?
-                                                break;
+                                                case FormasDePago.CuentaRegular:
+                                                        // FIXME: deshacer el movimiento?
+                                                        break;
+                                        }
                                 }
                         }
 
                         // Marco la factura como anulada
-                        Lfx.Data.SqlUpdateBuilder Act = new Lfx.Data.SqlUpdateBuilder("facturas");
+                        Lfx.Data.SqlUpdateBuilder Act = new Lfx.Data.SqlUpdateBuilder(this.TablaDatos);
                         Act.Fields.AddWithValue("anulada", 1);
-                        Act.WhereClause = new Lfx.Data.SqlWhereBuilder("id_factura", this.Id);
+                        Act.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
                         this.DataView.Execute(Act);
-                        //DataView.DataBase.Execute("UPDATE facturas SET anulada=1 WHERE id_factura=" + this.Id.ToString());
                 }
 
 		public double SubTotal
@@ -418,6 +446,23 @@ namespace Lbl.Comprobantes
 				return m_Articulos;
 			}
 		}
+
+                public ColeccionRecibos Recibos
+                {
+                        get
+                        {
+                                if (m_Recibos == null || m_Recibos.Count == 0) {
+                                        m_Recibos = new ColeccionRecibos();
+                                        if (this.Existe) {
+                                                System.Data.DataTable Recs = this.DataView.DataBase.Select("SELECT id_recibo FROM recibos_facturas WHERE id_factura=" + this.Id.ToString());
+                                                foreach (System.Data.DataRow Rec in Recs.Rows) {
+                                                        m_Recibos.Add(new Recibo(DataView, System.Convert.ToInt32(Rec["id_recibo"])));
+                                                }
+                                        }
+                                }
+                                return m_Recibos;
+                        }
+                }
 
 		public Lfx.Types.OperationResult CancelarImporte(double importe)
 		{

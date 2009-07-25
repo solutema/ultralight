@@ -61,14 +61,14 @@ namespace Lws.Config
                                         res = PreferredPrinter("Listados");
                                 }
                         }
-                        if (res != null && res.Length > Lfx.Environment.SystemInformation.ComputerName.Length + 3 && string.Compare(res.Substring(0, Lfx.Environment.SystemInformation.ComputerName.Length + 3), System.Convert.ToString(System.IO.Path.DirectorySeparatorChar) + System.IO.Path.DirectorySeparatorChar + Lfx.Environment.SystemInformation.ComputerName + System.IO.Path.DirectorySeparatorChar, true) == 0) {
+                        if (res != null && res.Length > System.Environment.MachineName.ToUpperInvariant().Length + 3 && string.Compare(res.Substring(0, System.Environment.MachineName.ToUpperInvariant().Length + 3), System.Convert.ToString(System.IO.Path.DirectorySeparatorChar) + System.IO.Path.DirectorySeparatorChar + System.Environment.MachineName.ToUpperInvariant() + System.IO.Path.DirectorySeparatorChar, true) == 0) {
                                 // Si el nombre de la impresora incluye el nombre de la PC
                                 // y resulta que es esta misma PC, asumo que es una impresora local
                                 // y le quito el nombre de la estación
 
                                 // Por ejemplo, si la impresora es "\\Oficina1\hp1010", la dejo
                                 // en "hp1010" cuando imprimo desde "Oficina1"
-                                res = res.Substring(Lfx.Environment.SystemInformation.ComputerName.Length + 3, res.Length - (Lfx.Environment.SystemInformation.ComputerName.Length + 3));
+                                res = res.Substring(System.Environment.MachineName.ToUpperInvariant().Length + 3, res.Length - (System.Environment.MachineName.ToUpperInvariant().Length + 3));
                         }
                         return res;
                 }

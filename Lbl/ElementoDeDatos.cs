@@ -102,13 +102,12 @@ namespace Lbl
                                         if (m_Registro != null) {
                                                 m_Registro.IsNew = false;
                                                 m_Registro.IsModified = false;
+						m_RegistroOriginal = m_Registro.Clone();
+						this.OnLoad();
                                         } else {
                                                 m_Registro = new Lfx.Data.Row();
+						m_RegistroOriginal = m_Registro.Clone();
                                         }
-                                        m_RegistroOriginal = m_Registro.Clone();
-
-                                        if (m_Registro != null)
-                                                this.OnLoad();
                                 }
 				return m_Registro;
 			}
@@ -211,7 +210,7 @@ namespace Lbl
                         get
                         {
                                 if (m_Imagen == null && m_ImagenCambio == false) {
-                                        // TODO: Para los artículos sin imagen, evitar hacer esta consulta cada vez que se accede a la propiedad
+                                        // FIXME: Para los artículos sin imagen, evitar hacer esta consulta cada vez que se accede a la propiedad
                                         Lfx.Data.Row Imagen = DataView.DataBase.Row(this.TablaImagenes, "imagen", this.CampoId, this.Id);
 
                                         if (Imagen != null && Imagen["imagen"] != null && ((byte[])(Imagen["imagen"])).Length > 5) {
@@ -273,7 +272,6 @@ namespace Lbl
                                 foreach (ElementoDeDatos El in ListaEtiquetas) {
                                         Lfx.Data.SqlInsertBuilder CrearEtiquetas = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, "sys_labels_values");
                                         CrearEtiquetas.Fields.AddWithValue("id_label", El.Id);
-                                        CrearEtiquetas.Fields.AddWithValue("tabla", this.TablaDatos);
                                         CrearEtiquetas.Fields.AddWithValue("item_id", this.Id);
                                         this.DataView.Execute(CrearEtiquetas);
                                 }
@@ -514,7 +512,7 @@ namespace Lbl
                         {
                                 if (m_Etiquetas == null) {
                                         m_Etiquetas = new ColeccionDeEtiquetas();
-                                        System.Data.IDataReader EtiquetasElem = this.DataView.DataBase.GetReader("SELECT id_label FROM sys_labels_values WHERE tabla='" + this.TablaDatos + " ' AND item_id=" + this.Id.ToString());
+                                        System.Data.IDataReader EtiquetasElem = this.DataView.DataBase.GetReader("SELECT id_label FROM sys_labels_values WHERE id_label IN (SELECT id_label FROM sys_labels WHERE tablas='" + this.TablaDatos + "') AND item_id=" + this.Id.ToString());
                                         while (EtiquetasElem.Read()) {
                                                 m_Etiquetas.Add(new Etiqueta(this.DataView, EtiquetasElem.GetInt32(0)));
                                         }

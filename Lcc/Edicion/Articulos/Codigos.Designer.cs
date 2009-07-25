@@ -190,7 +190,6 @@
                         this.Controls.Add(this.tableLayoutPanel1);
                         this.Name = "Codigos";
                         this.Size = new System.Drawing.Size(636, 57);
-                        this.Controls.SetChildIndex(this.tableLayoutPanel1, 0);
                         this.campo1.ResumeLayout(false);
                         this.campo1.PerformLayout();
                         this.campo2.ResumeLayout(false);

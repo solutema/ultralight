@@ -84,6 +84,8 @@ namespace Lws
                                                 Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MySql;
                                                 break;
                                         case "myodbc":
+                                                // FIXME: eliminar esto que se usó momentáneamente para migrar a todos de MyODBC a MySQL Connector/NET.
+                                                // this.CurrentConfig.WriteLocalSetting("Data", "ConnectionType", "mysql");
                                                 Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MyOdbc;
                                                 break;
                                         case "npgsql":
@@ -185,7 +187,7 @@ namespace Lws
 			{
 				Lfx.Data.SqlInsertBuilder Comando = new Lfx.Data.SqlInsertBuilder(this.DefaultDataBase, "sys_log");
 				Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
-				Comando.Fields.AddWithValue("estacion", Lfx.Environment.SystemInformation.ComputerName);
+				Comando.Fields.AddWithValue("estacion", System.Environment.MachineName.ToUpperInvariant());
 				Comando.Fields.AddWithValue("usuario", this.CurrentUser.UserId);
 				Comando.Fields.AddWithValue("comando", command);
 				Comando.Fields.AddWithValue("tabla", table);

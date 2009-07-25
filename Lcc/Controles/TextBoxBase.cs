@@ -36,6 +36,18 @@ namespace Lcc.Controles
                         base.OnKeyDown(e);
                 }
 
+                public override bool AutoSize
+                {
+                        get
+                        {
+                                return false;
+                        }
+                        set
+                        {
+                                base.AutoSize = false;
+                        }
+                }
+
                 /// <summary>
                 /// Indica si el control permite navegación mejorada.
                 /// </summary>

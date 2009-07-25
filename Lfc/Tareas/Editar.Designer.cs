@@ -113,7 +113,7 @@ namespace Lfc.Tareas
                         this.Label1.Text = "Cliente";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtCliente
+                        // EntradaCliente
                         // 
                         this.txtCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
@@ -129,7 +129,7 @@ namespace Lfc.Tareas
                         this.txtCliente.KeyField = "id_persona";
                         this.txtCliente.Location = new System.Drawing.Point(92, 8);
                         this.txtCliente.MaxLength = 200;
-                        this.txtCliente.Name = "txtCliente";
+                        this.txtCliente.Name = "EntradaCliente";
                         this.txtCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCliente.ReadOnly = false;
                         this.txtCliente.Required = true;
@@ -858,42 +858,6 @@ namespace Lfc.Tareas
                         this.Text = "Tareas: Editar";
                         this.Activated += new System.EventHandler(this.FormTicketsEditar_Activated);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormTicketsEditar_KeyDown);
-                        this.Controls.SetChildIndex(this.Label15, 0);
-                        this.Controls.SetChildIndex(this.Label8, 0);
-                        this.Controls.SetChildIndex(this.Label9, 0);
-                        this.Controls.SetChildIndex(this.Label10, 0);
-                        this.Controls.SetChildIndex(this.Label12, 0);
-                        this.Controls.SetChildIndex(this.Label13, 0);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.txtCliente, 0);
-                        this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.txtTarea, 0);
-                        this.Controls.SetChildIndex(this.Label4, 0);
-                        this.Controls.SetChildIndex(this.txtTecnico, 0);
-                        this.Controls.SetChildIndex(this.Label5, 0);
-                        this.Controls.SetChildIndex(this.txtAsunto, 0);
-                        this.Controls.SetChildIndex(this.Label6, 0);
-                        this.Controls.SetChildIndex(this.Label7, 0);
-                        this.Controls.SetChildIndex(this.txtDescripcion, 0);
-                        this.Controls.SetChildIndex(this.txtEntregaEstimada, 0);
-                        this.Controls.SetChildIndex(this.txtEntregaLimite, 0);
-                        this.Controls.SetChildIndex(this.txtPresupuesto, 0);
-                        this.Controls.SetChildIndex(this.Label11, 0);
-                        this.Controls.SetChildIndex(this.txtObs, 0);
-                        this.Controls.SetChildIndex(this.Frame2, 0);
-                        this.Controls.SetChildIndex(this.lvHistorial, 0);
-                        this.Controls.SetChildIndex(this.cmdNovedad, 0);
-                        this.Controls.SetChildIndex(this.cmdArticulos, 0);
-                        this.Controls.SetChildIndex(this.txtEstado, 0);
-                        this.Controls.SetChildIndex(this.cmdFacturar, 0);
-                        this.Controls.SetChildIndex(this.txtFechaIngreso, 0);
-                        this.Controls.SetChildIndex(this.txtComprobante, 0);
-                        this.Controls.SetChildIndex(this.txtComprobanteId, 0);
-                        this.Controls.SetChildIndex(this.txtNumero, 0);
-                        this.Controls.SetChildIndex(this.txtPresupuesto2, 0);
-                        this.Controls.SetChildIndex(this.Label14, 0);
-                        this.Controls.SetChildIndex(this.txtPrioridad, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

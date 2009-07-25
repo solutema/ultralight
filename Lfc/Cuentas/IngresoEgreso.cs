@@ -360,18 +360,6 @@ namespace Lfc.Cuentas
                         this.Name = "IngresoEgreso";
                         this.Text = "Cuenta: Movimiento";
                         this.WorkspaceChanged += new System.EventHandler(this.FormCuentaCajaIngreso_WorkspaceChanged);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.txtImporte, 0);
-                        this.Controls.SetChildIndex(this.txtConcepto, 0);
-                        this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.txtComprob, 0);
-                        this.Controls.SetChildIndex(this.Label4, 0);
-                        this.Controls.SetChildIndex(this.txtObs, 0);
-                        this.Controls.SetChildIndex(this.Label5, 0);
-                        this.Controls.SetChildIndex(this.txtPersona, 0);
-                        this.Controls.SetChildIndex(this.label6, 0);
-                        this.Controls.SetChildIndex(this.txtCuenta, 0);
                         this.ResumeLayout(false);
 
                 }

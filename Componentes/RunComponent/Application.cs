@@ -1,5 +1,8 @@
 using System;
+using System.Diagnostics;
+using System.Net.Mail;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace RunComponent
 {
@@ -16,6 +19,9 @@ namespace RunComponent
 			//Console.WriteLine("    Ejecuta un componente Lfx fuera del entorno del sistema Lázaro.");
                         //Console.WriteLine("    Copyright © 2004-2009 Carrea Ernesto, Martínez Miguel");
 			//Console.WriteLine("");
+                        System.Windows.Forms.Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(ThreadExceptionHandler);
+                        AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
+                        System.Windows.Forms.Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 
 			string ComponentName = null, FunctionName = null;
 			if(args.Length == 2)
@@ -66,5 +72,71 @@ namespace RunComponent
 				Console.WriteLine("        Si no se especifica NombreComponente, se asume el nombre de este ejecutable.");
 			}
 		}
+
+                public static void ThreadExceptionHandler(object sender, System.Threading.ThreadExceptionEventArgs e)
+                {
+                        ExceptionHandler(e.Exception);
+                }
+
+                private static void GlobalExceptionHandler(object sender, UnhandledExceptionEventArgs args)
+                {
+                        ExceptionHandler(args.ExceptionObject as Exception);
+                }
+
+                public static void ExceptionHandler(Exception ex)
+                {
+                        System.Text.StringBuilder Texto = new System.Text.StringBuilder();
+                        Texto.AppendLine("Lugar   : " + ex.Source);
+                        try {
+                                System.Diagnostics.StackTrace Traza = new System.Diagnostics.StackTrace(ex, true);
+                                Texto.AppendLine("Línea   : " + Traza.GetFrame(0).GetFileLineNumber());
+                                Texto.AppendLine("Columna : " + Traza.GetFrame(0).GetFileColumnNumber());
+                        }
+                        catch {
+                                //Nada
+                        }
+                        Texto.AppendLine("Equipo  : " + System.Environment.MachineName.ToUpperInvariant());
+                        Texto.AppendLine("Plataf. : " + Lfx.Environment.SystemInformation.Platform);
+                        Texto.AppendLine("RunTime : " + Lfx.Environment.SystemInformation.RunTime);
+                        Texto.AppendLine("Excepción no controlada: " + ex.ToString());
+                        Texto.AppendLine("");
+
+                        Texto.AppendLine("Lazaro versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").ProductVersion + " del " + new System.IO.FileInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
+                        System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ApplicationFolder);
+                        foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.dll")) {
+                                Texto.AppendLine(DirItem.Name + " versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(DirItem.FullName).ProductVersion + " del " + new System.IO.FileInfo(DirItem.FullName).LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
+                        }
+
+                        Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ComponentsFolder);
+                        foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.dll")) {
+                                Texto.AppendLine(DirItem.Name + " versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(DirItem.FullName).ProductVersion + " del " + new System.IO.FileInfo(DirItem.FullName).LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
+                        }
+
+                        Texto.AppendLine("Traza:");
+                        Texto.AppendLine(ex.StackTrace);
+
+                        MailMessage Mensaje = new MailMessage();
+                        Mensaje.To.Add(new MailAddress("error@sistemalazaro.com.ar"));
+                        Mensaje.From = new MailAddress(Lws.Workspace.Master.CurrentUser.UserId.ToString() + "@" + System.Environment.MachineName.ToUpperInvariant(), Lws.Workspace.Master.CurrentUser.UserCompleteName + " en " + Lws.Workspace.Master.CurrentConfig.Company.Name);
+                        try {
+                                //No sé por qué, pero una vez dió un error al poner el asunto
+                                Mensaje.Subject = ex.Message;
+                        }
+                        catch {
+                                Mensaje.Subject = "Excepción no controlada";
+                                Texto.Insert(0, ex.Message + System.Environment.NewLine);
+                        }
+
+                        Mensaje.Body = Texto.ToString();
+
+                        SmtpClient Cliente = new SmtpClient("mail.sistemalazaro.com.ar");
+                        try {
+                                Cliente.Send(Mensaje);
+                        }
+                        catch {
+                                // Nada
+                        }
+
+                }
 	}
 }

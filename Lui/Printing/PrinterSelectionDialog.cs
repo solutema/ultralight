@@ -133,7 +133,6 @@ namespace Lui.Printing
 			this.Name = "PrinterSelectionDialog";
 			this.Text = "Seleccionar Impresora";
 			this.Activated += new System.EventHandler(this.FormSeleccionarImpresora_Activated);
-			this.Controls.SetChildIndex(this.lvItems, 0);
 			this.ResumeLayout(false);
 
 		}

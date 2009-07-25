@@ -417,7 +417,6 @@ namespace Lui.Forms
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(768, 480);
-                        this.Controls.Add(this.LowerPanel);
                         this.Controls.Add(this.ItemList);
                         this.Controls.Add(this.EtiquetaTitulo);
                         this.Controls.Add(this.Label4);
@@ -428,6 +427,7 @@ namespace Lui.Forms
                         this.Controls.Add(this.Label3);
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.Label1);
+                        this.Controls.Add(this.LowerPanel);
                         this.KeyPreview = true;
                         this.Name = "AccountForm";
                         this.Text = "Cuenta";

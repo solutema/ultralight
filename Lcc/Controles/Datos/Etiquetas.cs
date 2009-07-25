@@ -10,8 +10,6 @@ namespace Lcc.Controles.Datos
 {
         public partial class Etiquetas : ControlDatos
         {
-                private string Tabla = null;
-
                 public Etiquetas()
                 {
                         InitializeComponent();
@@ -27,21 +25,21 @@ namespace Lcc.Controles.Datos
                         set
                         {
                                 base.Elemento = value;
-                                if (m_Elemento.TablaDatos != Tabla) {
-                                        //Cargo tags para la nueva tabla
-                                        Lista.SuspendLayout();
-                                        Lista.Items.Clear();
-                                        Lws.Data.Table TablaEtiquetas =  this.DataView.Tables["sys_labels"];
-                                        TablaEtiquetas.FastRows.LoadAll();
-                                        foreach(Lfx.Data.Row Rw in TablaEtiquetas.FastRows) {
-                                                Lbl.Etiqueta Eti = new Lbl.Etiqueta(Rw);
+                                //Cargo tags para la nueva tabla
+                                Lista.SuspendLayout();
+                                Lista.Items.Clear();
+                                Lws.Data.Table TablaEtiquetas = this.DataView.Tables["sys_labels"];
+                                TablaEtiquetas.FastRows.LoadAll();
+                                foreach (Lfx.Data.Row Rw in TablaEtiquetas.FastRows) {
+                                        Lbl.Etiqueta Eti = new Lbl.Etiqueta(Rw);
+                                        if (Eti.TablaDatos == m_Elemento.TablaDatos) {
                                                 ListViewItem Itm = Lista.Items.Add(Eti.Id.ToString());
                                                 Itm.SubItems.Add(Eti.Nombre);
                                                 if (Elemento.Etiquetas.Contains(Eti.Id))
                                                         Itm.Checked = true;
                                         }
-                                        Lista.ResumeLayout();
                                 }
+                                Lista.ResumeLayout();
                         }
                 }
 

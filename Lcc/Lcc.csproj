@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -67,6 +67,12 @@
     </Compile>
     <Compile Include="Control.Designer.cs">
       <DependentUpon>Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\Datos\Comentarios.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\Datos\Comentarios.Designer.cs">
+      <DependentUpon>Comentarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Controles\Datos\ControlDatos.cs">
       <SubType>UserControl</SubType>
@@ -180,6 +186,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controles\Datos\Campo.resx">
       <DependentUpon>Campo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\Datos\Comentarios.resx">
+      <DependentUpon>Comentarios.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controles\Encabezado.resx">

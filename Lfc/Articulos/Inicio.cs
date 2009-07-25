@@ -207,7 +207,7 @@ namespace Lfc.Articulos
                                 switch (e.KeyCode) {
                                         case Keys.F5:
                                                 if (cmdMovim.Visible && cmdMovim.Enabled)
-                                                        cmdMovim_Click(sender, e);
+                                                        cmdMovim.PerformClick();
                                                 break;
                                 }
                         }

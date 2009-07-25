@@ -60,6 +60,7 @@ namespace Lfc.Cuentas
                         // cmdIngreso
                         // 
                         this.cmdIngreso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.cmdIngreso.AutoHeight = false;
                         this.cmdIngreso.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.cmdIngreso.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.cmdIngreso.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -80,6 +81,7 @@ namespace Lfc.Cuentas
                         // cmdEgreso
                         // 
                         this.cmdEgreso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.cmdEgreso.AutoHeight = false;
                         this.cmdEgreso.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.cmdEgreso.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.cmdEgreso.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -100,6 +102,7 @@ namespace Lfc.Cuentas
                         // cmdMovim
                         // 
                         this.cmdMovim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.cmdMovim.AutoHeight = false;
                         this.cmdMovim.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.cmdMovim.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.cmdMovim.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -120,6 +123,7 @@ namespace Lfc.Cuentas
                         // cmdArqueo
                         // 
                         this.cmdArqueo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.cmdArqueo.AutoHeight = false;
                         this.cmdArqueo.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.cmdArqueo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.cmdArqueo.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -141,10 +145,10 @@ namespace Lfc.Cuentas
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(768, 480);
-                        this.Controls.Add(this.cmdArqueo);
                         this.Controls.Add(this.cmdMovim);
-                        this.Controls.Add(this.cmdEgreso);
                         this.Controls.Add(this.cmdIngreso);
+                        this.Controls.Add(this.cmdEgreso);
+                        this.Controls.Add(this.cmdArqueo);
                         this.Name = "Inicio";
                         this.Activated += new System.EventHandler(this.FormCuentaCaja_Activated);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormCuentaCaja_KeyDown);
@@ -154,10 +158,10 @@ namespace Lfc.Cuentas
                         this.Controls.SetChildIndex(this.EtiquetaTransporte, 0);
                         this.Controls.SetChildIndex(this.EtiquetaTitulo, 0);
                         this.Controls.SetChildIndex(this.ItemList, 0);
-                        this.Controls.SetChildIndex(this.cmdIngreso, 0);
-                        this.Controls.SetChildIndex(this.cmdEgreso, 0);
-                        this.Controls.SetChildIndex(this.cmdMovim, 0);
                         this.Controls.SetChildIndex(this.cmdArqueo, 0);
+                        this.Controls.SetChildIndex(this.cmdEgreso, 0);
+                        this.Controls.SetChildIndex(this.cmdIngreso, 0);
+                        this.Controls.SetChildIndex(this.cmdMovim, 0);
                         this.ResumeLayout(false);
 
                 }

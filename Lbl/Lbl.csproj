@@ -85,6 +85,7 @@
     <Compile Include="Bancos\Chequera.cs" />
     <Compile Include="ColeccionDeElementos.cs" />
     <Compile Include="Comprobantes\ColeccionComprobanteConArticulos.cs" />
+    <Compile Include="Comprobantes\ColeccionRecibos.cs" />
     <Compile Include="Comprobantes\ColeccionDetalleArticulo.cs" />
     <Compile Include="Comprobantes\DetalleArticulo.cs" />
     <Compile Include="Comprobantes\Comprobante.cs" />

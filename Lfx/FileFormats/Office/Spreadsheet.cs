@@ -54,7 +54,7 @@ namespace Lfx.FileFormats.Office.Spreadsheet
                 {
                         internal static string GetPath()
                         {
-                                //TODO: versión Linux
+                                // FIXME: versión Linux
                                 string Res = null;
                                 RegistryKey ProgKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\OpenOffice.org\OpenOffice.org", false);
                                 if (ProgKey != null) {

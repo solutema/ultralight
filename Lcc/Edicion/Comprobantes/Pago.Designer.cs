@@ -695,16 +695,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.Controls.Add(this.PanelFormaDePago);
                         this.Name = "Pago";
                         this.Size = new System.Drawing.Size(460, 629);
-                        this.Controls.SetChildIndex(this.PanelFormaDePago, 0);
-                        this.Controls.SetChildIndex(this.PanelTitulo, 0);
-                        this.Controls.SetChildIndex(this.PanelImporte, 0);
-                        this.Controls.SetChildIndex(this.PanelCuentaCorriente, 0);
-                        this.Controls.SetChildIndex(this.PanelCheque, 0);
-                        this.Controls.SetChildIndex(this.PanelCuenta, 0);
-                        this.Controls.SetChildIndex(this.PanelEfectivo, 0);
-                        this.Controls.SetChildIndex(this.PanelTarjeta, 0);
-                        this.Controls.SetChildIndex(this.PanelObs, 0);
-                        this.Controls.SetChildIndex(this.PanelSeparadorInferior, 0);
                         this.PanelImporte.ResumeLayout(false);
                         this.PanelCheque.ResumeLayout(false);
                         this.PanelTitulo.ResumeLayout(false);

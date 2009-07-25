@@ -149,9 +149,6 @@ namespace Lui.Forms
 			//base, no this!
 			base.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button_KeyDown);
 			this.DoubleClick += new System.EventHandler(this.Button_DoubleClick);
-			this.Controls.SetChildIndex(this.MainText, 0);
-			this.Controls.SetChildIndex(this.SubText, 0);
-			this.Controls.SetChildIndex(this.IconPicture, 0);
 			this.ResumeLayout(false);
 
 		}
@@ -468,5 +465,17 @@ namespace Lui.Forms
                                 e.Graphics.DrawRectangle(new System.Drawing.Pen(Lws.Config.Display.CurrentTemplate.ButtonBorder), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
                         }
                 }
+		
+		protected override bool ProcessMnemonic (char charCode)
+		{
+			if (this.Enabled && this.Visible && IsMnemonic(charCode, this.Text)) {
+				this.Focus();
+				this.PerformClick();
+				return true;
+			} else {
+				return base.ProcessMnemonic (charCode);
+			}
+		}
+
 	}
 }

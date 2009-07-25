@@ -245,17 +245,17 @@ namespace Lfc.Tareas
                                 case Keys.F4:
                                         e.Handled = true;
                                         if (cmdFacturar.Enabled && cmdFacturar.Visible)
-                                                cmdFacturar_Click(sender, e);
+                                                cmdFacturar.PerformClick();
                                         break;
                                 case Keys.F5:
                                         e.Handled = true;
                                         if (cmdArticulos.Enabled && cmdArticulos.Visible)
-                                                cmdArticulos_Click(sender, e);
+                                                cmdArticulos.PerformClick();
                                         break;
                                 case Keys.F6:
                                         e.Handled = true;
                                         if (cmdNovedad.Enabled && cmdNovedad.Visible)
-                                                cmdNovedad_Click(sender, e);
+                                                cmdNovedad.PerformClick();
                                         break;
                         }
 
@@ -294,8 +294,8 @@ namespace Lfc.Tareas
                                 if (this.Save().Success == true) {
                                         FacturaNueva.Create("B");
 
-                                        FacturaNueva.txtCliente.Text = txtCliente.Text;
-                                        FacturaNueva.txtVendedor.Text = txtTecnico.Text;
+                                        FacturaNueva.EntradaCliente.Text = txtCliente.Text;
+                                        FacturaNueva.EntradaVendedor.Text = txtTecnico.Text;
                                         ((Lbl.Comprobantes.Comprobante)FacturaNueva.CachedRow).Obs = txtTarea.TextDetail + " s/tarea #" + m_Id.ToString();
 
                                         System.Data.DataTable Articulos = this.Workspace.DefaultDataBase.Select("SELECT * FROM tickets_articulos WHERE id_ticket=" + m_Id.ToString() + " ORDER BY orden");

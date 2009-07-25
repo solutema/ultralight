@@ -357,7 +357,7 @@ namespace Lfc.Comprobantes.Plantillas
                 {
                         if (CampoSeleccionado != null) {
                                 EditarCampo FormEditarCampo = new EditarCampo();
-                                //FormEditarCampo.txtTipo.TextKey = SelectedField.Attributes["type"].Value;
+                                //FormEditarCampo.EntradaTipo.TextKey = SelectedField.Attributes["type"].Value;
                                 FormEditarCampo.txtX.Text = CampoSeleccionado.Rectangle.X.ToString();
                                 FormEditarCampo.txtY.Text = CampoSeleccionado.Rectangle.Y.ToString();
                                 FormEditarCampo.txtW.Text = CampoSeleccionado.Rectangle.Width.ToString();
@@ -517,7 +517,7 @@ namespace Lfc.Comprobantes.Plantillas
                 private void Editar_KeyDown(object sender, KeyEventArgs e)
                 {
                         if (e.KeyCode == Keys.Delete && e.Alt == false && e.Control == false && e.Shift == false) {
-                                cmdQuitar_Click(sender, null);
+                                cmdQuitar.PerformClick();
                         }
                 }
         }

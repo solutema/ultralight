@@ -52,6 +52,13 @@ namespace Lbl.Bancos
                         this.Cargar();
 		}
 
+                public Cheque(Lws.Data.DataView dataView, Lbl.Comprobantes.ComprobanteConArticulos factura)
+                        : this(dataView)
+                {
+                        m_ItemId = dataView.DataBase.FieldInt("SELECT MAX(id_cheque) FROM bancos_cheques WHERE id_factura=" + factura.Id.ToString());
+                        this.Cargar();
+                }
+
 		public Cheque(Lws.Data.DataView dataView, double importe, int numero, string emisor, DateTime? fechaEmision, DateTime? fechaCobro, Bancos.Banco banco)
 			: this(dataView)
 		{
@@ -212,6 +219,14 @@ namespace Lbl.Bancos
                         }
                 }
 
+                public bool Anulado
+                {
+                        get
+                        {
+                                return this.Estado == 90;
+                        }
+                }
+
 		public override Lfx.Types.OperationResult Guardar()
 		{
 			Lfx.Data.SqlTableCommandBuilder Comando;
@@ -292,5 +307,27 @@ namespace Lbl.Bancos
 
                         return base.Guardar();
 		}
+
+                public void Anular()
+                {
+                        if (this.Anulado == false) {
+                                // Marco el cheque como anulado
+                                Lfx.Data.SqlUpdateBuilder Act = new Lfx.Data.SqlUpdateBuilder(this.TablaDatos);
+                                Act.Fields.AddWithValue("estado", 90);
+                                Act.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
+                                this.DataView.Execute(Act);
+
+                                if (this.Emitido == false) {
+                                        //Asiento en la cuenta cheques, sólo para cheques de cobro
+                                        Cuentas.CuentaRegular CuentaCheques = new Lbl.Cuentas.CuentaRegular(this.DataView, this.DataView.Workspace.CurrentConfig.Company.CuentaCheques);
+                                        Lbl.Personas.Persona UsarCliente = this.Cliente;
+                                        if (UsarCliente == null && this.Factura != null)
+                                                UsarCliente = this.Factura.Cliente;
+                                        if (UsarCliente == null && this.Recibo != null)
+                                                UsarCliente = this.Recibo.Cliente;
+                                        Lfx.Types.OperationResult Res = CuentaCheques.Movimiento(true, this.Concepto, "Anulación " + this.ToString(), UsarCliente, this.Importe, null, this.Factura, this.Recibo, "");
+                                }
+                        }
+                }
 	}
 }
