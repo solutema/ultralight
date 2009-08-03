@@ -42,8 +42,18 @@ namespace Cargador
                 {
                         AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
 
-                        string[] ArchivosNuevos = System.IO.Directory.GetFiles(ApplicationFolder, "*.new", System.IO.SearchOption.AllDirectories);
+                        string CarpetaDescarga = ApplicationDataFolder + "Updates" + System.IO.Path.DirectorySeparatorChar;
+                        if (System.IO.Directory.Exists(CarpetaDescarga) == false)
+                                System.IO.Directory.CreateDirectory(CarpetaDescarga);
+
+                        string CarpetaTrabajo = ApplicationFolder;
+                        if (System.IO.Directory.Exists(CarpetaTrabajo) == false)
+                            System.IO.Directory.CreateDirectory(CarpetaTrabajo);
+
+                        string[] ArchivosNuevos = System.IO.Directory.GetFiles(CarpetaDescarga, "*.new", System.IO.SearchOption.AllDirectories);
                         if (ArchivosNuevos.Length > 0) {
+                                if (IsUacActive && IsAdministrator == false)
+                                        Elevate();
                                 System.Console.WriteLine("Se van a actualizar " + ArchivosNuevos.Length.ToString() + " archivos.");
                                 // Espero 1 segundo por si algún proceso todavía está corriendo.
                                 System.Threading.Thread.Sleep(1000);
@@ -51,7 +61,8 @@ namespace Cargador
                         foreach (string ArchivoNuevo in ArchivosNuevos) {
                                 if (ArchivoNuevo.Length > 4) {
                                         System.Console.WriteLine("Actualizando " + ArchivoNuevo);
-                                        string NombreFinal = ArchivoNuevo.Substring(0, ArchivoNuevo.Length - 4);
+                                        string NombreFinal = CarpetaTrabajo + ArchivoNuevo.Substring(CarpetaDescarga.Length, ArchivoNuevo.Length - CarpetaDescarga.Length - 4);
+
                                         // Si existe, lo renombro bak
                                         if (System.IO.File.Exists(NombreFinal)) {
                                                 // Si existe un bak, lo borro
@@ -62,6 +73,7 @@ namespace Cargador
                                         }
 
                                         // Y ahora renombro el nuevo a .bak
+                                        System.Console.WriteLine("  en " + NombreFinal);
                                         System.IO.File.Move(ArchivoNuevo, NombreFinal);
                                 } else {
                                         System.Console.WriteLine("Ignorando " + ArchivoNuevo);
@@ -79,13 +91,34 @@ namespace Cargador
                         if (RunTime == RunTimes.DotNet) {
                                 NuevoProceso.StartInfo = new System.Diagnostics.ProcessStartInfo(ExeName, Params);
                         } else {
-                                string MonoName = Platform == Platforms.Windows ? "mono.exe" : "mono";
-                                NuevoProceso.StartInfo = new System.Diagnostics.ProcessStartInfo("mono.exe", @"""" + ExeName + @""" " + Params);
+                                string MonoName = Platform == Platforms.Windows ? "mono.exe" : "/usr/bin/mono";
+                                NuevoProceso.StartInfo = new System.Diagnostics.ProcessStartInfo(MonoName, @"""" + ExeName + @""" " + Params);
                         }
 
                         NuevoProceso.StartInfo.UseShellExecute = false;
-                        //NuevoProceso.StartInfo.Verb = "runas";
                         NuevoProceso.Start();
+                }
+
+                public static void Elevate()
+                {
+                        string[] ParametrosAPasar = System.Environment.GetCommandLineArgs();
+                        ParametrosAPasar[0] = "";
+                        string Params = string.Join(" ", ParametrosAPasar).Trim();
+                        string ExeName = "Cargador.exe";
+
+                        System.Diagnostics.Process NuevoProceso = new System.Diagnostics.Process();
+                        if (RunTime == RunTimes.DotNet) {
+                                NuevoProceso.StartInfo = new System.Diagnostics.ProcessStartInfo(ExeName, Params);
+                        } else {
+                                string MonoName = Platform == Platforms.Windows ? "mono.exe" : "/usr/bin/mono";
+                                NuevoProceso.StartInfo = new System.Diagnostics.ProcessStartInfo(MonoName, @"""" + ExeName + @""" " + Params);
+                        }
+
+                        NuevoProceso.StartInfo.UseShellExecute = true;
+                        NuevoProceso.StartInfo.Verb = "runas";
+                        NuevoProceso.Start();
+
+                        System.Environment.Exit(0);
                 }
 
                 public static string ApplicationFolder
@@ -96,6 +129,18 @@ namespace Cargador
                                 if (Result[Result.Length - 1] != System.IO.Path.DirectorySeparatorChar)
                                         Result += System.IO.Path.DirectorySeparatorChar;
                                 return Result;
+                        }
+                }
+
+                public static string ApplicationDataFolder
+                {
+                        get
+                        {
+                                string CompletePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData)
+                                        + System.IO.Path.DirectorySeparatorChar + "Lazaro" + System.IO.Path.DirectorySeparatorChar;
+                                if (!System.IO.Directory.Exists(CompletePath))
+                                        System.IO.Directory.CreateDirectory(CompletePath);
+                                return CompletePath;
                         }
                 }
 
@@ -133,6 +178,36 @@ namespace Cargador
                                         return Platforms.Unix;
                                 else
                                         return Platforms.Other;
+                        }
+                }
+
+                public static bool IsUacActive
+                {
+                        get
+                        {
+                                if (Platform == Platforms.Windows) {
+                                        // Es Windows
+                                        if (System.Environment.OSVersion.Version.Major >= 6) {
+                                                // Es Windows Vista o superior
+                                                int Uac = System.Convert.ToInt32(Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "EnableLUA", 0));
+                                                return Uac != 0;
+                                        } else {
+                                                return false;
+                                        }
+                                } else {
+                                        return false;
+                                }
+                        }
+                }
+
+                private static bool IsAdministrator
+                {
+                        get
+                        {
+                                System.Security.Principal.WindowsIdentity wi = System.Security.Principal.WindowsIdentity.GetCurrent();
+                                System.Security.Principal.WindowsPrincipal wp = new System.Security.Principal.WindowsPrincipal(wi);
+
+                                return wp.IsInRole(System.Security.Principal.WindowsBuiltInRole.Administrator);
                         }
                 }
 

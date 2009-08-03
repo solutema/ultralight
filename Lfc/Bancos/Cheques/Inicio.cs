@@ -43,7 +43,7 @@ namespace Lfc.Bancos.Cheques
                 protected internal int m_Banco, m_Cliente, m_Sucursal;
                 protected internal bool m_Emitidos = false;
                 protected internal double Total = 0, SinCobrar = 0;
-                protected internal Lfx.Types.DateRange m_Fechas = new Lfx.Types.DateRange("*");
+                protected internal Lfx.Types.DateRange m_Fechas = new Lfx.Types.DateRange("mes-0");
 
                 public Inicio()
                 {

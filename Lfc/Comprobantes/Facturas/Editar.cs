@@ -211,6 +211,9 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                         //Si es factura B de más de $ 1000, debe llevar el Nº de DNI
                                         if (Registro.Total >= 1000 && Registro.Cliente.NumeroDocumento.Length < 5 && Registro.Cliente.CUIT.Length < 5)
                                                 return new Lfx.Types.OperationResult(false, @"Para facturas tipo ""B"" de $ 1.000 o más, debe proporcionar el número de DNI del cliente.");
+                                        //Si es factura B de más de $ 1000, debe llevar domicilio
+                                        if (Registro.Total >= 1000 && Registro.Cliente.Domicilio.Length < 1)
+                                            return new Lfx.Types.OperationResult(false, @"Para facturas tipo ""B"" de $ 1.000 o más, debe proporcionar el domicilio del cliente.");
                                 }
 
                                 if (ProductArray.ShowStock && this.Tipo.MueveStock && Registro.HayStock() == false) {

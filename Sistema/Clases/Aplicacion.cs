@@ -278,6 +278,8 @@ namespace Lazaro
                                         Aplicacion.Exec("REBOOT");
                                         System.Environment.Exit(0);
                                 }
+                        //} else {
+                        //        Actualizador.Actualizador.ActualizarAplicacionDesdeBD();
                         }
 
                         if (Aplicacion.CUIT == null || Aplicacion.CUIT.Length == 0 || Aplicacion.CUIT == "00-00000000-0") {

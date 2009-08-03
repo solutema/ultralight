@@ -806,24 +806,24 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
 
                         switch (Fac.Cliente.SituacionTributaria.Id) {
                                 case 1:
-                                        ClienteNumDoc = Fac.Cliente.NumeroDocumento.Replace("-", "");
+                                        ClienteNumDoc = Fac.Cliente.NumeroDocumento.Replace("-", "").Replace(" ", "").Replace(".", "");
                                         ClienteTipoDoc = "DNI";
                                         break;
                                 case 2:
                                         ClienteTipoDoc = "CUIT";
-                                        ClienteNumDoc = Fac.Cliente.CUIT.Replace("-", "");
+                                        ClienteNumDoc = Fac.Cliente.CUIT.Replace("-", "").Replace(" ", "").Replace(".", "");
                                         break;
                                 case 3:
                                         ClienteTipoDoc = "CUIT";
-                                        ClienteNumDoc = Fac.Cliente.CUIT.Replace("-", "");
+                                        ClienteNumDoc = Fac.Cliente.CUIT.Replace("-", "").Replace(" ", "").Replace(".", "");
                                         break;
                                 case 4:
                                         ClienteTipoDoc = "CUIT";
-                                        ClienteNumDoc = Fac.Cliente.CUIT.Replace("-", "");
+                                        ClienteNumDoc = Fac.Cliente.CUIT.Replace("-", "").Replace(" ", "").Replace(".", "");
                                         break;
                                 case 5:
                                         ClienteTipoDoc = "CUIT";
-                                        ClienteNumDoc = Fac.Cliente.CUIT.Replace("-", "");
+                                        ClienteNumDoc = Fac.Cliente.CUIT.Replace("-", "").Replace(" ", "").Replace(".", "");
                                         break;
                         }
 

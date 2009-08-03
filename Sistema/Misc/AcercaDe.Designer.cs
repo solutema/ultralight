@@ -61,7 +61,7 @@ namespace Lazaro.Misc
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(534, 16);
                         this.Label1.TabIndex = 2;
-                        this.Label1.Text = "Copyright © 2004-2009 Carrea Ernesto, Martínez Miguel";
+                        this.Label1.Text = "Copyright © 2004-2009 South Bridge S.R.L. Todos los derechos reservados.";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label2
@@ -73,7 +73,7 @@ namespace Lazaro.Misc
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(534, 16);
                         this.Label2.TabIndex = 4;
-                        this.Label2.Text = "Todos los derechos reservados.";
+                        this.Label2.Text = "www.sistemalazaro.com.ar";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label3

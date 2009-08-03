@@ -355,7 +355,9 @@ namespace Lfc.Comprobantes
                         NuevoComprob.MdiParent = this.MdiParent;
                         NuevoComprob.ControlDestino = txtComprobanteID;
 
-                        if (this.Save().Success == true) {
+                        Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
+
+                        if (Comprob.Impreso || this.Save().Success == true) {
                                 NuevoComprob.Create(tipoComprob);
                                 ((Lbl.Comprobantes.ComprobanteConArticulos)(NuevoComprob.CachedRow)).ComprobanteOriginal = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
 

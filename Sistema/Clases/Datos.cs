@@ -108,8 +108,8 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro.", 
 				Lws.Data.DataView DataView = Lws.Workspace.Master.GetDataView(true);
                                 VerificarVersionDB(DataView, false, false);
                                 DataView.DataBase.Execute("DELETE FROM sys_asl WHERE nombre='version.xml'");
-                                DataView.DataBase.Execute("UPDATE articulos_movim SET fecha='1900-01-01' WHERE fecha IS NULL");
-                                DataView.DataBase.Execute("UPDATE personas SET contrasena_fecha=NOW() WHERE contrasena_fecha IS NULL OR contrasena_fecha='0000-00-00 00:00:00'");
+                                DataView.DataBase.Execute("UPDATE personas SET contrasena=NULL WHERE contrasena=''");
+                                DataView.DataBase.Execute("UPDATE ciudades SET fecha='1900-01-01' WHERE fecha=''");
 				DataView.Dispose();
 			}
 			return iniciarReturn;

@@ -50,7 +50,7 @@ namespace Lazaro.Reportes
                         double PasivosCuentas = 0;
 			
 			Lws.Data.DataView CuentasDataView = this.Workspace.GetDataView(false);
-                        System.Data.IDataReader Cuentas = CuentasDataView.DataBase.GetReader("SELECT  * FROM cuentas WHERE estado>0");
+                        System.Data.IDataReader Cuentas = CuentasDataView.DataBase.GetReader("SELECT * FROM cuentas WHERE estado>0");
                         while(Cuentas.Read()) {
                                 Lbl.Cuentas.CuentaRegular Cta = new Lbl.Cuentas.CuentaRegular(DataView, System.Convert.ToInt32(Cuentas["id_cuenta"]));
                                 double Saldo = Cta.Saldo();
@@ -73,11 +73,14 @@ namespace Lazaro.Reportes
 
                         double FuturosTarjetas = 0.92 * DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM tarjetas_cupones WHERE estado IN (0, 10)");
                                                 //Tarjetas resta el 8% (estimado) de comisiones
+                        double Facturas = DataView.DataBase.FieldDouble("SELECT SUM(total)-SUM(cancelado) FROM facturas WHERE tipo_fac IN ('A', 'B', 'C', 'E', 'M') AND impresa>0 AND numero>0 AND anulada=0 AND fecha >= '" + Lfx.Types.Formatting.FormatDateSql(DateTime.Now.AddYears(-2)) + "'");
+                        txtCC.Text = Lfx.Types.Formatting.FormatCurrency(Facturas, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+
                         double FuturosPedidos = DataView.DataBase.FieldDouble("SELECT SUM(total-gastosenvio) FROM facturas WHERE tipo_fac='PD' AND anulada=0 AND compra>0 AND estado=50");
                         txtFuturosTarjetas.Text = Lfx.Types.Formatting.FormatCurrency(FuturosTarjetas, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                         txtFuturosPedidos.Text = Lfx.Types.Formatting.FormatCurrency(FuturosPedidos, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                         
-                        double Futuros = FuturosTarjetas + FuturosPedidos;
+                        double Futuros = FuturosTarjetas + FuturosPedidos + Facturas;
                         txtFuturosSubtotal.Text = Lfx.Types.Formatting.FormatCurrency(Futuros, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
 
                         txtActivosActualesFuturos.Text = Lfx.Types.Formatting.FormatCurrency(Activos + Futuros, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
@@ -93,6 +96,16 @@ namespace Lazaro.Reportes
 
                         txtPatrimonioActual.Text = Lfx.Types.Formatting.FormatCurrency(Activos - Pasivos, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                         txtPatrimonioFuturo.Text = Lfx.Types.Formatting.FormatCurrency(Activos + Futuros - Pasivos, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                }
+
+                private void label14_Click(object sender, EventArgs e)
+                {
+
+                }
+
+                private void textBox1_TextChanged(object sender, EventArgs e)
+                {
+
                 }
         }
 }

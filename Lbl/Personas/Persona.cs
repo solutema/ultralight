@@ -97,7 +97,10 @@ namespace Lbl.Personas
                         Comando.Fields.AddWithValue("apellido", this.Apellido);
                         Comando.Fields.AddWithValue("razon_social", this.RazonSocial);
                         Comando.Fields.AddWithValue("nombre_visible", this.Nombre);
-                        Comando.Fields.AddWithValue("contrasena", this.Contrasena);
+                        if (this.Contrasena == null || this.Contrasena.Length == 0)
+                                Comando.Fields.AddWithValue("contrasena", null);
+                        else
+                                Comando.Fields.AddWithValue("contrasena", this.Contrasena);
                         if (this.TipoDocumento == 0)
                                 Comando.Fields.AddWithValue("id_tipo_doc", null);
                         else

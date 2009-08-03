@@ -187,7 +187,8 @@
 		<Column name="cp" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
 		<Column name="parent" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
 		<Column name="ca" datatype="Integer" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
-		<Index table="ciudades" name="ciudades_cp" columns="cp" unique="0" primary="0" />
+    <Column name="fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
+    <Index table="ciudades" name="ciudades_cp" columns="cp" unique="0" primary="0" />
 		<Index table="ciudades" name="PRIMARY" columns="id_ciudad" unique="1" primary="1" />
 	</Table>
 	<Table name="ctacte">
@@ -382,7 +383,7 @@
 		<Column name="apellido" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
 		<Column name="razon_social" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
 		<Column name="nombre_visible" datatype="VarChar" nullable="0" primary_key="0" lenght="200" precision="0" default="" />
-		<Column name="contrasena" datatype="VarChar" nullable="0" primary_key="0" lenght="20" precision="0" default="" />
+		<Column name="contrasena" datatype="VarChar" nullable="1" primary_key="0" lenght="20" precision="0" default="" />
     <Column name="contrasena_fecha" datatype="DateTime" nullable="0" primary_key="0" lenght="0" precision="0" default="" />
     <Column name="id_tipo_doc" datatype="Integer" nullable="1" primary_key="0" lenght="0" precision="0" default="" />
 		<Column name="num_doc" datatype="VarChar" nullable="0" primary_key="0" lenght="50" precision="0" default="" />
