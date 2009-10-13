@@ -448,5 +448,10 @@ namespace Lfc.Personas
                                 EntradaSubGrupo.Filter = "parent=" + EntradaGrupo.TextInt.ToString();
                         }
                 }
+
+                private void EntradaEmail_Leave(object sender, EventArgs e)
+                {
+                        EntradaEmail.Text = EntradaEmail.Text.Replace(" ", "").Replace("/", ", ").Replace(";", ", ");
+                }
         }
 }

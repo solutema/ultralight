@@ -226,14 +226,12 @@ namespace Lbl.Comprobantes
 		public static string NumeroCompleto(Lws.Data.DataView dataView, int iId)
 		{
 			// Toma el Id de factura y devuelve el tipo y número (por ejemplo: B 0001-00000135)
-			string NombreTabla = "facturas";
-
-			Lfx.Data.Row TmpFactura = dataView.DataBase.Row(NombreTabla, "tipo_fac, pv, numero", "id_factura", iId);
+                        Lfx.Data.Row TmpFactura = dataView.Tables["facturas"].FastRows[iId]; //dataView.DataBase.Row("facturas", "tipo_fac, pv, numero", "id_factura", iId);
 
 			if (TmpFactura == null)
 				return "";
 			else
-				return (string)TmpFactura["tipo_fac"] + " " + System.Convert.ToInt32(TmpFactura["pv"]).ToString("0000") + "-" + System.Convert.ToInt32(TmpFactura["numero"]).ToString("00000000");
+				return (string)TmpFactura["tipo_fac"].ToString() + " " + System.Convert.ToInt32(TmpFactura["pv"]).ToString("0000") + "-" + System.Convert.ToInt32(TmpFactura["numero"]).ToString("00000000");
 		}
 
 		public static string NombreCompletoRecibo(Lws.Data.DataView dataView, int iId)

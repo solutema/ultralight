@@ -53,7 +53,7 @@ namespace Lfc.Tareas
                 {
                         Lbl.Tareas.Tarea Tarea = new Lbl.Tareas.Tarea(this.DataView);
                         Tarea.Crear();
-                        Tarea.Encargado = new Lbl.Personas.Persona(Tarea.DataView, this.Workspace.CurrentUser.UserId);
+                        Tarea.Encargado = new Lbl.Personas.Persona(Tarea.DataView, this.Workspace.CurrentUser.Id);
                         Tarea.Estado = 1;
                         Tarea.Tipo = new Lbl.Tareas.Tipo(Tarea.DataView, 1);
                         this.FromRow(Tarea);
@@ -195,11 +195,24 @@ namespace Lfc.Tareas
                 public override Lfx.Types.OperationResult Save()
                 {
                         bool Existia = this.CachedRow.Existe;
+                        int EstadoOriginal = this.CachedRow.Estado;
+
                         Lfx.Types.OperationResult ResultadoGuardar = base.Save();
 
                         if (ResultadoGuardar.Success) {
-                                if (Existia == false)
+                                if (Existia == false) {
                                         Lui.Forms.MessageBox.Show("Acaba de crear y guardar la Tarea Nº " + m_Id.ToString(), "Tarea Nº " + m_Id.ToString());
+                                } else if (this.CachedRow.Estado != EstadoOriginal) {
+                                        Lbl.Tareas.Tarea Tar = this.CachedRow as Lbl.Tareas.Tarea;
+                                        Lfx.Data.SqlInsertBuilder InsertarNovedad = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, "tickets_eventos");
+                                        InsertarNovedad.Fields.AddWithValue("id_ticket", Tar.Id);
+                                        InsertarNovedad.Fields.AddWithValue("id_tecnico", this.Workspace.CurrentUser.Id);
+                                        InsertarNovedad.Fields.AddWithValue("minutos_tecnico", 0);
+                                        InsertarNovedad.Fields.AddWithValue("privado", 1);
+                                        InsertarNovedad.Fields.AddWithValue("descripcion", "Est:" + Tar.Estado.ToString());
+                                        InsertarNovedad.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
+                                        DataView.Execute(InsertarNovedad);
+                                }
                         }
                         return ResultadoGuardar;
                 }

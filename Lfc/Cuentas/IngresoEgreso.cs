@@ -431,7 +431,7 @@ namespace Lfc.Cuentas
 
                 private void FormCuentaCajaIngreso_WorkspaceChanged(object sender, EventArgs e)
                 {
-                        txtPersona.Text = this.Workspace.CurrentUser.UserId.ToString();
+                        txtPersona.Text = this.Workspace.CurrentUser.Id.ToString();
                 }
         }
 }

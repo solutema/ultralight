@@ -67,14 +67,11 @@ namespace Lfc.Cuentas
 
                 public override Lfx.Data.SqlSelectBuilder SelectCommand()
                 {
-                        m_SelectCommand = new Lfx.Data.SqlSelectBuilder("cuentas_movim, personas");
-                        m_SelectCommand.JoinOn = "cuentas_movim.id_cliente=personas.id_persona";
+                        m_SelectCommand = new Lfx.Data.SqlSelectBuilder("cuentas_movim");
+                        m_SelectCommand.Joins.Add(new Lfx.Data.Join("personas", "cuentas_movim.id_cliente=personas.id_persona"));
                         m_SelectCommand.Fields = "cuentas_movim.id_movim, cuentas_movim.id_cuenta, cuentas_movim.id_concepto, cuentas_movim.concepto, cuentas_movim.fecha, cuentas_movim.importe, cuentas_movim.saldo, cuentas_movim.comprob, cuentas_movim.id_factura, cuentas_movim.id_recibo, cuentas_movim.obs, personas.nombre_visible";
-                        m_SelectCommand.JoinType = Lfx.Data.JoinTypes.LeftJoin;
-                        if (m_TipoConcepto > 0) {
-                                m_SelectCommand.Tables += ",cuentas_conceptos";
-                                m_SelectCommand.JoinOn += ",cuentas_movim.id_concepto=cuentas_conceptos.id_concepto";
-                        }
+                        if (m_TipoConcepto > 0)
+                                m_SelectCommand.Joins.Add(new Lfx.Data.Join("cuentas_conceptos", "cuentas_movim.id_concepto=cuentas_conceptos.id_concepto"));
 
                         string TextoWhere;
 
@@ -386,7 +383,7 @@ namespace Lfc.Cuentas
                         Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
                         if (Pregunta.ShowDialog() == DialogResult.OK) {
                                 Lbl.Cuentas.CuentaRegular Cuenta = new Lbl.Cuentas.CuentaRegular(this.Workspace.DefaultDataView, m_Cuenta);
-                                Cuenta.Movimiento(false, 0, "Arqueo - Saldo: " + EtiquetaSaldo.Text, 0, 0, this.Workspace.CurrentUser.UserCompleteName, 0, 0, "");
+                                Cuenta.Movimiento(false, 0, "Arqueo - Saldo: " + EtiquetaSaldo.Text, 0, 0, this.Workspace.CurrentUser.CompleteName, 0, 0, "");
                                 this.RefreshList();
                         } else {
                                 Lui.Forms.MessageBox.Show("Verifique el saldo de la cuenta y si es necesario realice un ajuste.", "Arqueo");

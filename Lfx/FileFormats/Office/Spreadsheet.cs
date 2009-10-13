@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -321,28 +321,31 @@ namespace Lfx.FileFormats.Office.Spreadsheet
 
                 public System.Windows.Forms.ListView ToListView(System.Windows.Forms.ListView initialListView)
                 {
-                        initialListView.Items.Clear();
-                        initialListView.Columns.Clear();
-
                         initialListView.SuspendLayout();
+                        initialListView.BeginUpdate();
+
+                        initialListView.Items.Clear();
                         initialListView.View = System.Windows.Forms.View.Details;
                         initialListView.FullRowSelect = true;
                         initialListView.GridLines = true;
-                        
+
                         if (this.BackColor != System.Drawing.Color.Empty)
                                 initialListView.BackColor = this.BackColor;
                         if (this.ForeColor != System.Drawing.Color.Empty)
                                 initialListView.ForeColor = this.ForeColor;
 
-                        foreach (ColumnHeader ch in this.ColumnHeaders) {
-                                System.Windows.Forms.ColumnHeader Col = initialListView.Columns.Add(ch.Text, ch.Width);
-                                switch(ch.TextAlignment){
-                                        case System.Drawing.StringAlignment.Near:
-                                                Col.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-                                                break;
-                                        case System.Drawing.StringAlignment.Far:
-                                                Col.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-                                                break;
+                        if (this.ColumnHeaders != null) {
+                                initialListView.Columns.Clear();
+                                foreach (ColumnHeader ch in this.ColumnHeaders) {
+                                        System.Windows.Forms.ColumnHeader Col = initialListView.Columns.Add(ch.Text, ch.Width);
+                                        switch (ch.TextAlignment) {
+                                                case Lfx.Types.StringAlignment.Near:
+                                                        Col.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+                                                        break;
+                                                case Lfx.Types.StringAlignment.Far:
+                                                        Col.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+                                                        break;
+                                        }
                                 }
                         }
 
@@ -362,7 +365,7 @@ namespace Lfx.FileFormats.Office.Spreadsheet
                                                         case "System.Single":
                                                         case "System.Decimal":
                                                         case "System.Double":
-                                                                CellString += Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(cl.Content), 2);
+                                                                CellString += Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(cl.Content), 2);
                                                                 break;
                                                         case "System.Integer":
                                                         case "System.Int16":
@@ -390,6 +393,7 @@ namespace Lfx.FileFormats.Office.Spreadsheet
                                 }
                                 initialListView.Items.Add(Itm);
                         }
+                        initialListView.EndUpdate();
                         initialListView.ResumeLayout();
                         
                         return initialListView;
@@ -536,7 +540,7 @@ namespace Lfx.FileFormats.Office.Spreadsheet
 	{
 		public string Text = null;
 		public int Width = 0;
-                public System.Drawing.StringAlignment TextAlignment = System.Drawing.StringAlignment.Near;
+                public Lfx.Types.StringAlignment TextAlignment = Lfx.Types.StringAlignment.Near;
 
 		public ColumnHeader(string text)
 		{
@@ -550,7 +554,7 @@ namespace Lfx.FileFormats.Office.Spreadsheet
 			this.Width = width;
 		}
 
-                public ColumnHeader(string text, int width, System.Drawing.StringAlignment textAlignment)
+                public ColumnHeader(string text, int width, Lfx.Types.StringAlignment textAlignment)
                         : this(text, width)
                 {
                         this.TextAlignment = textAlignment;

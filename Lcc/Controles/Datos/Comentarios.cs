@@ -48,14 +48,14 @@ namespace Lcc.Controles.Datos
                         InsertarComentario.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
                         InsertarComentario.Fields.AddWithValue("tablas", this.Elemento.TablaDatos);
                         InsertarComentario.Fields.AddWithValue("item_id", this.Elemento.Id);
-                        InsertarComentario.Fields.AddWithValue("id_persona", this.Workspace.CurrentUser.UserId);
+                        InsertarComentario.Fields.AddWithValue("id_persona", this.Workspace.CurrentUser.Id);
                         InsertarComentario.Fields.AddWithValue("obs", EntradaComentario.Text);
                         this.Elemento.DataView.Execute(InsertarComentario);
 
                         ListaComentarios.BeginUpdate();
                         ListViewItem Itm = ListaComentarios.Items.Insert(0, new ListViewItem(new System.Random().Next().ToString()));
                         Itm.SubItems.Add(Lfx.Types.Formatting.FormatShortestDateAndTime(System.DateTime.Now));
-                        Itm.SubItems.Add(this.Workspace.CurrentUser.UserCompleteName);
+                        Itm.SubItems.Add(this.Workspace.CurrentUser.CompleteName);
                         Itm.SubItems.Add(EntradaComentario.Text);
                         ListaComentarios.EndUpdate();
 

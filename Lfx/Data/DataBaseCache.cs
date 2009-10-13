@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -171,7 +171,7 @@ namespace Lfx.Data
                                         if (m_TagList == null)
                                                 m_TagList = new System.Collections.Generic.Dictionary<string, Data.TagCollection>();
                                         if (this.TableList.Contains("sys_tags")) {
-                                                System.Data.IDataReader Rdr = this.DataBase.GetReader("SELECT * FROM sys_tags ORDER BY tablename");
+                                                System.Data.IDataReader Rdr = this.DataBase.GetReader("SELECT tablename,fieldname,label,fieldtype,fieldnullable FROM sys_tags ORDER BY tablename");
                                                 while (Rdr.Read()) {
                                                         string TableName = Rdr["tablename"].ToString();
                                                         if (m_TagList.ContainsKey(TableName) == false)

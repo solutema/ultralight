@@ -120,6 +120,7 @@ namespace Lbl.Personas
                                 Comando.Fields.AddWithValue("id_ciudad", this.Ciudad.Id);
                         Comando.Fields.AddWithValue("telefono", this.Telefono);
                         Comando.Fields.AddWithValue("email", this.Email);
+                        Comando.Fields.AddWithValue("url", this.Url);
                         Comando.Fields.AddWithValue("obs", this.Obs);
                         Comando.Fields.AddWithValue("estado", this.Estado);
                         Comando.Fields.AddWithValue("limitecredito", this.LimiteCredito);
@@ -348,6 +349,18 @@ namespace Lbl.Personas
                         }
 		}
 
+                public string Url
+                {
+                        get
+                        {
+                                return this.FieldString("url");
+                        }
+                        set
+                        {
+                                this.Registro["url"] = value;
+                        }
+                }
+
                 public string Contrasena
                 {
                         get
@@ -360,7 +373,7 @@ namespace Lbl.Personas
                         }
                 }
 
-		public DateTime? FechaNacimiento
+                public Lfx.Types.LDateTime FechaNacimiento
 		{
 			get
 			{

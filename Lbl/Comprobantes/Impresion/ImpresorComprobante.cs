@@ -78,11 +78,6 @@ namespace Lbl.Comprobantes.Impresion
                         this.DocumentName = Comprobante.ToString();
                 }
 
-                protected override void OnEndPrint(PrintEventArgs e)
-                {
-                        base.OnEndPrint(e);
-                }
-
                 public virtual Lfx.Types.OperationResult Imprimir(string nombreImpresora)
                 {
 			if (this.Comprobante != null)

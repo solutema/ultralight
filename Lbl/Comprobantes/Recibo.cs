@@ -40,7 +40,7 @@ namespace Lbl.Comprobantes
                         : base(dataView)
                 {
                         this.Crear();
-                        this.Vendedor = new Personas.Persona(dataView, dataView.Workspace.CurrentUser.UserId);
+                        this.Vendedor = new Personas.Persona(dataView, dataView.Workspace.CurrentUser.Id);
                 }
 
                 public Recibo(Lws.Data.DataView dataView, Personas.Persona cliente)
@@ -97,6 +97,18 @@ namespace Lbl.Comprobantes
                         set
                         {
                                 this.Registro["concepto"] = value;
+                        }
+                }
+
+                public DateTime Fecha
+                {
+                        get
+                        {
+                                return this.FieldDateTime("fecha").Value;
+                        }
+                        set
+                        {
+                                this.Registro["fecha"] = value;
                         }
                 }
 
@@ -422,7 +434,7 @@ namespace Lbl.Comprobantes
 
                         if (TotalACancelar > 0) {
                                 Cuentas.CuentaCorriente CtaCte = new Lbl.Cuentas.CuentaCorriente(this.DataView, Cliente.Id);
-                                Lfx.Types.OperationResult ResultadoCtaCte = CtaCte.Movimiento(true, this.Concepto, "Saldo a favor s/" + this.ToString(), this.DePago ? TotalACancelar : -TotalACancelar, string.Empty, null, this, this.CancelaCosas);
+                                Lfx.Types.OperationResult ResultadoCtaCte = CtaCte.Movimiento(true, this.Concepto, "Saldo s/" + this.ToString(), this.DePago ? TotalACancelar : -TotalACancelar, this.Obs, null, this, this.CancelaCosas);
                                 if (ResultadoCtaCte.Success != true)
                                         return ResultadoCtaCte;
 
@@ -455,13 +467,49 @@ namespace Lbl.Comprobantes
                                 this.DataView.Execute(Act);
 
                                 if (this.DePago) {
-                                        foreach (Cobro Cb in this.Cobros) {
-                                                Cb.Anular();
-                                        }
-                                } else {
                                         foreach (Pago Pg in this.Pagos) {
                                                 Pg.Anular();
                                         }
+                                } else {
+                                        foreach (Cobro Cb in this.Cobros) {
+                                                Cb.Anular();
+                                        }
+                                }
+
+                                // Doy las facturas por canceladas
+                                double TotalACancelar = this.Importe;
+
+                                //"Descancelo" facturas
+                                if (this.Facturas != null && this.Facturas.Count > 0) {
+                                        // Si hay una lista de facturas, las descancelo
+                                        foreach (Comprobantes.ComprobanteConArticulos Fact in this.Facturas) {
+                                                // Calculo cuanto queda por cancelar en esta factura
+                                                double ImportePendiente = Fact.ImporteCancelado;
+
+                                                // Intento cancelar todo
+                                                double Cancelando = ImportePendiente;
+
+                                                // Si se acab la plata, hago un pago parcial
+                                                if (Cancelando > TotalACancelar)
+                                                        Cancelando = TotalACancelar;
+
+                                                // Si alcanzo a cancelar algo, lo asiento
+                                                if (Cancelando > 0) {
+                                                        if (Fact.FormaDePago == FormasDePago.CuentaCorriente) {
+                                                                this.Cliente.CuentaCorriente.Movimiento(true, 30000, "Anulación de " + this.ToString(), this.DePago ? -Cancelando : Cancelando, this.Obs, Fact.Id, this.Id, false);
+                                                        }
+                                                        this.DataView.DataBase.Execute("UPDATE facturas SET cancelado=cancelado-" + Lfx.Types.Formatting.FormatCurrencySql(Cancelando) + " WHERE id_factura=" + Fact.Id.ToString());
+                                                }
+
+                                                TotalACancelar = TotalACancelar - Cancelando;
+                                                if (TotalACancelar == 0)
+                                                        break;
+                                        }
+                                }
+
+                                if (TotalACancelar > 0) {
+                                        this.Cliente.CuentaCorriente.Movimiento(true, this.Concepto, "Anulación de " + this.ToString(), this.DePago ? -TotalACancelar : TotalACancelar, string.Empty, null, this, false);
+                                        TotalACancelar = 0;
                                 }
                         }
                 }

@@ -40,7 +40,7 @@ namespace Lbl.Comprobantes
                         : base(dataView)
                 {
                         this.Crear();
-                        this.Vendedor = new Personas.Persona(dataView, dataView.Workspace.CurrentUser.UserId);
+                        this.Vendedor = new Personas.Persona(dataView, dataView.Workspace.CurrentUser.Id);
                 }
 
                 public ReciboDePago(Lws.Data.DataView dataView, Personas.Persona cliente)

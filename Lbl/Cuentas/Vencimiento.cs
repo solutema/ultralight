@@ -122,6 +122,9 @@ namespace Lbl.Cuentas
                 {
                         get
                         {
+                                if (this.FieldString("frecuencia") == null)
+                                        return Frecuencias.Unica;
+
                                 switch (this.FieldString("frecuencia").ToUpperInvariant()) {
                                         case "UNICA":
                                                 return Frecuencias.Unica;
@@ -151,7 +154,7 @@ namespace Lbl.Cuentas
                         }
                 }
 
-                public DateTime? FechaInicio
+                public Lfx.Types.LDateTime FechaInicio
                 {
                         get
                         {
@@ -163,7 +166,7 @@ namespace Lbl.Cuentas
                         }
                 }
 
-                public DateTime? FechaProxima
+                public Lfx.Types.LDateTime FechaProxima
                 {
                         get
                         {
@@ -175,7 +178,7 @@ namespace Lbl.Cuentas
                         }
                 }
 
-                public DateTime? FechaFin
+                public Lfx.Types.LDateTime FechaFin
                 {
                         get
                         {

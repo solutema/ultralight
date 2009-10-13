@@ -228,7 +228,7 @@ namespace Lui.Forms.AuxForms
 						}
 
 						if (m_Table == "articulos")
-							TextoSql += " ORDER BY destacado DESC, " + m_DetailField;
+							TextoSql += " ORDER BY IF(stock_actual+pedido>0,0,1), " + m_DetailField;
 						else
 							TextoSql += " ORDER BY " + m_DetailField;
 

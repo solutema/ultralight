@@ -57,8 +57,7 @@ namespace Lfc.Comprobantes.Recibos
 
 			// agregar código de constructor después de llamar a InitializeComponent
 			DataTableName = "recibos";
-			ExtraDataTableNames = "personas";
-			Relations = "recibos.id_cliente=personas.id_persona";
+			this.Joins.Add(new Lfx.Data.Join("personas", "recibos.id_cliente=personas.id_persona"));
                         KeyField = new Lfx.Data.FormField("recibos.id_recibo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
 			OrderBy = "recibos.fecha DESC";
 			FormFields = new Lfx.Data.FormField[]
@@ -70,7 +69,8 @@ namespace Lfc.Comprobantes.Recibos
 				new Lfx.Data.FormField("0", "Facturas", Lfx.Data.InputFieldTypes.Text, 160),
 				new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 240),
 				new Lfx.Data.FormField("recibos.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
-				new Lfx.Data.FormField("recibos.obs", "Obs.", Lfx.Data.InputFieldTypes.Memo, 320)
+				new Lfx.Data.FormField("recibos.obs", "Obs.", Lfx.Data.InputFieldTypes.Memo, 320),
+                                new Lfx.Data.FormField("recibos.estado", "Estado", Lfx.Data.InputFieldTypes.Integer, 0)
 			};
 		}
 
@@ -159,6 +159,9 @@ namespace Lfc.Comprobantes.Recibos
 			Total += Lfx.Types.Parsing.ParseCurrency(itm.SubItems[4].Text);
 			if (this.Workspace.SlowLink == false)
 				itm.SubItems[5].Text = Lbl.Comprobantes.Comprobante.FacturasDeUnRecibo(this.DataView, Lfx.Types.Parsing.ParseInt(itm.Text));
+
+                        if (itm.SubItems[9].Text == "90")
+                                itm.Font = new Font(itm.Font, FontStyle.Strikeout);
 		}
 
 		public override void EndRefreshList()

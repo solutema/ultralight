@@ -43,7 +43,8 @@ namespace Lui.Forms
                 private Lws.Data.DataView m_DataView = null;
 		public event System.EventHandler WorkspaceChanged;
 
-		public Form() : base()
+		public Form()
+                        : base()
 		{
 			InitializeComponent();
 		}

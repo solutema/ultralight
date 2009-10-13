@@ -60,7 +60,7 @@ namespace Lui.Login
 
 		public static bool Access(Lws.LoginData loginData, string accessName, string itemId)
 		{
-			string Sql = "SELECT id_acceso FROM sys_accesslist WHERE id_persona=" + loginData.UserId.ToString() + " AND id_acceso LIKE '" + accessName.Replace('*', '%') + "'";
+			string Sql = "SELECT id_acceso FROM sys_accesslist WHERE id_persona=" + loginData.Id.ToString() + " AND id_acceso LIKE '" + accessName.Replace('*', '%') + "'";
 			if(itemId != null && itemId.Length > 0)
 				Sql += " AND (item='" + itemId + "' OR item='*')";
 
@@ -68,7 +68,7 @@ namespace Lui.Login
 			if(Accesos.Rows.Count > 0) {
 				return true;
 			} else {
-                                Accesos = loginData.Workspace.DefaultDataView.DataBase.Select("SELECT id_acceso FROM sys_accesslist WHERE id_persona=" + loginData.UserId.ToString() + " AND id_acceso='global.total' AND item='*'");
+                                Accesos = loginData.Workspace.DefaultDataView.DataBase.Select("SELECT id_acceso FROM sys_accesslist WHERE id_persona=" + loginData.Id.ToString() + " AND id_acceso='global.total' AND item='*'");
 				if(Accesos.Rows.Count > 0)
 					return true;
 				else

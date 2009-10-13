@@ -285,7 +285,7 @@ namespace Lbl
                                         if (this.m_RegistroOriginal != null && this.m_RegistroOriginal.Fields != null)
                                                 ValorOriginal = this.m_RegistroOriginal[Fl.ColumnName];
 
-                                        if (ObjectEquals(ValorOriginal, ValorNuevo) == false) {
+                                        if (Lfx.Types.Object.ObjectsEqualByValue(ValorOriginal, ValorNuevo) == false) {
                                                 if (Extra1 == null)
                                                         Extra1 = "";
                                                 else
@@ -327,52 +327,6 @@ namespace Lbl
 			this.m_Registro.IsNew = false;
 			
                         return new Lfx.Types.SuccessOperationResult();
-		}
-
-		/// <summary>
-		/// Compara dos objetos para ver si son iguales en cuanto a su valor.
-                /// Se utiliza para hacer una lista de los campos modificados para guardar en el log.
-		/// </summary>
-		private bool ObjectEquals(object val1, object val2)
-		{
-
-			object a = val1, b = val2;
-
-			//Convierto booleanos a enteros para poder comparar False == 0
-			//Convierto enums a enteros, por la misma razón
-
-                        if (val1 == null)
-                                return val2 == null;
-
-                        if (val2 == null)
-                                return val1 == null;
-
-			if (val1 is bool)
-				a = (bool)val1 ? 1 : 0;
-			else if (val1.GetType().IsEnum)
-				a = (int)val1;
-			
-			if (val2 is bool)
-				b = (bool)val2 ? 1 : 0;
-			else if (val2.GetType().IsEnum)
-				b = (int)val2;
-			
-			if((a is short || a is int || a is long)
-			   && (b is short || b is int || b is long)) {
-				return System.Convert.ToInt64(a) == System.Convert.ToInt64(b);
-			} else if(b is double && a is double) {
-				return System.Convert.ToDouble(a) == System.Convert.ToDouble(b);
-			} else if(b is decimal && a is decimal) {
-				return System.Convert.ToDecimal(a) == System.Convert.ToDecimal(b);
-                        } else if ((b is decimal && a is double) || (b is double && a is decimal)) {
-                                return System.Convert.ToDecimal(a) == System.Convert.ToDecimal(b);
-			} else if(a is DateTime && b is DateTime) {
-				return System.Convert.ToDateTime(a) == System.Convert.ToDateTime(b);
-                        } else if (a is string && b is string) {
-                                return string.Equals(a as string, b as string, StringComparison.CurrentCulture);
-			} else {
-				return System.Convert.ToString(a) == System.Convert.ToString(b);
-			}
 		}
 
                 /// <summary>
@@ -443,12 +397,14 @@ namespace Lbl
 			        return System.Convert.ToDouble(this.Registro[fieldName]);
 		}
 
-		protected DateTime? FieldDateTime(string fieldName)
+                protected Lfx.Types.LDateTime FieldDateTime(string fieldName)
 		{
 			if(this.Registro[fieldName] == null)
 				return null;
+                        if (this.Registro[fieldName] is Lfx.Types.LDateTime)
+                                return this.Registro[fieldName] as Lfx.Types.LDateTime;
 			else
-				return System.Convert.ToDateTime(this.Registro[fieldName]);
+				return new Lfx.Types.LDateTime(System.Convert.ToDateTime(this.Registro[fieldName]));
 		}
 
 		public override string ToString()

@@ -44,8 +44,6 @@ namespace Lfc.Ciudades
 		public Editar()
 			: base()
 		{
-
-
 			// This call is required by the Windows Form Designer.
 			InitializeComponent();
 

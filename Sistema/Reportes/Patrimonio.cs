@@ -71,7 +71,7 @@ namespace Lazaro.Reportes
                         double Activos = ActivosCuentas + ActivosStock;
                         txtActivosSubtotal.Text = Lfx.Types.Formatting.FormatCurrency(Activos, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
 
-                        double FuturosTarjetas = 0.92 * DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM tarjetas_cupones WHERE estado IN (0, 10)");
+                        double FuturosTarjetas = 0.92 * DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM tarjetas_cupones WHERE estado=10 OR (estado=0 AND fecha>DATE_SUB(NOW(), INTERVAL 45 DAY))");
                                                 //Tarjetas resta el 8% (estimado) de comisiones
                         double Facturas = DataView.DataBase.FieldDouble("SELECT SUM(total)-SUM(cancelado) FROM facturas WHERE tipo_fac IN ('A', 'B', 'C', 'E', 'M') AND impresa>0 AND numero>0 AND anulada=0 AND fecha >= '" + Lfx.Types.Formatting.FormatDateSql(DateTime.Now.AddYears(-2)) + "'");
                         txtCC.Text = Lfx.Types.Formatting.FormatCurrency(Facturas, this.Workspace.CurrentConfig.Currency.DecimalPlaces);

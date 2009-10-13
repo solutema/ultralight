@@ -152,26 +152,28 @@ INSERT INTO cuentas_conceptos ("id_concepto","nombre","es","grupo","fijo") VALUE
 INSERT INTO cuentas_conceptos ("id_concepto","nombre","es","grupo","fijo") VALUES (26030,'Devoluciones',0,260,1);
 INSERT INTO cuentas_conceptos ("id_concepto","nombre","es","grupo","fijo") VALUES (30000,'Ajustes y movimientos',0,300,1);
 
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('1','Factura A','A','1','1','999','0','1','0','0');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('2','Factura B','B','1','1','999','0','1','0','0');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('3','Factura C','C','1','1','999','0','1','0','0');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('4','Factura E','E','1','1','999','0','1','0','0');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('5','Factura M','M','1','1','999','0','1','0','0');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('11','Nota de Crédito A','NCA','1','999','1','0','1','0','0');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('12','Nota de Crédito B','NCB','1','999','1','0','1','0','0');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('13','Nota de Crédito C','NCC','1','999','1','0','1','0','0');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('14','Nota de Crédito E','NCE','1','999','1','0','1','0','0');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('15','Nota de Crédito M','NCM','1','999','1','0','1','0','0');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('21','Nota de Débito A','NDA','1','1','999','0','1','0','0');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('22','Nota de Débito B','NDB','1','1','999','0','1','0','0');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('23','Nota de Débito C','NDC','1','1','999','0','1','0','0');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('24','Nota de Débito E','NDE','1','1','999','0','1','0','0');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('25','Nota de Débito M','NDM','1','1','999','0','1','0','0');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('31','Ticket','T','1','1','999','0','1','0','0');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('41','Remito','R','1','1','999','0','1','1','0');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('51','Presupuesto','PS','0',NULL,NULL,'1','1','0','1');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('53','Recibo de Cobro','RC','0',NULL,NULL,'1','0','1','0');
-insert into documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) values('54','Recibo de Pago','RCP','0',NULL,NULL,'0','0','1','0');
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (1,'Factura A','A',1,1,999,0,1,0,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (2,'Factura B','B',1,1,999,0,1,0,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (3,'Factura C','C',1,1,999,0,1,0,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (4,'Factura E','E',1,1,999,0,1,0,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (5,'Factura M','M',1,1,999,0,1,0,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (11,'Nota de Crédito A','NCA',1,999,1,0,1,0,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (12,'Nota de Crédito B','NCB',1,999,1,0,1,0,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (13,'Nota de Crédito C','NCC',1,999,1,0,1,0,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (14,'Nota de Crédito E','NCE',1,999,1,0,1,0,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (15,'Nota de Crédito M','NCM',1,999,1,0,1,0,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (21,'Nota de Débito A','NDA',1,1,999,0,1,0,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (22,'Nota de Débito B','NDB',1,1,999,0,1,0,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (23,'Nota de Débito C','NDC',1,1,999,0,1,0,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (24,'Nota de Débito E','NDE',1,1,999,0,1,0,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (25,'Nota de Débito M','NDM',1,1,999,0,1,0,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (31,'Ticket','T',1,1,999,0,1,0,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (41,'Remito','R',1,1,999,0,1,1,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (51,'Presupuesto','PS',0,NULL,NULL,1,1,0,1);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (53,'Recibo de Cobro','RC',0,NULL,NULL,1,0,1,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (54,'Recibo de Pago','RCP',0,NULL,NULL,0,0,1,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (55,'Nota de Pedido','NP',0,NULL,NULL,0,0,0,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (56,'Pedido','PD',0,NULL,NULL,0,0,0,0);
 
 INSERT INTO formaspago (id_formapago, nombre, estado) VALUES (1, 'Efectivo', 1);
 INSERT INTO formaspago (id_formapago, nombre, estado) VALUES (2, 'Cheque', 1);
@@ -224,65 +226,66 @@ INSERT INTO cuentas (id_cuenta, id_banco, numero, nombre, tipo, id_moneda) VALUE
 INSERT INTO sucursales (id_sucursal, nombre, id_ciudad, id_cuenta_caja, id_cuenta_cheques) VALUES (1, 'Sucursal 1', 1, 999, 1001);
 
 
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('accounts','Cuentas','0',NULL);
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('accounts.admin','Administrar cuentas','1','accounts');
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('accounts.read','Ver cuentas','2','accounts');
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('accounts.write','Hacer movimientos','2','accounts');
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('ctacte','Cuentas corrientes','0',NULL);
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('ctacte.read','Ver cuentas corrientes','2','ctacte');
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('ctacte.write','Hacer movimientos','2','ctacte');
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('documents','Comprobantes','0',NULL);
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('documents.create','Crear comprobantes','2','documents');
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('documents.print','Imprimir comprobantes','2','documents');
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('documents.read','Ver comprobantes','2','documents');
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('documents.write','Modificar comprobantes','2','documents');
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('global','General','0',NULL);
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('global.admin','Administrar el sistema','1','global');
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('global.backup','Copias de respaldo','1','global');
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('global.total','Acceso total','1','global');
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('people','Personas','0',NULL);
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('people.access','Editar permisos','1','people');
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('people.create','Crear personas','2','people');
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('people.read','Ver personas','2','people');
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('people.write','Modificar personas','2','people');
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('products','Artículos','0',NULL);
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('products.create','Crear artículos','2','products');
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('products.read','Ver artículos','2','products');
-insert into "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") values('products.write','Modificar artículos','2','products');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('accounts','Cuentas',0,NULL);
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('accounts.admin','Administrar cuentas',1,'accounts');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('accounts.read','Ver cuentas','2','accounts');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('accounts.write','Hacer movimientos','2','accounts');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('ctacte','Cuentas corrientes',0,NULL);
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('ctacte.read','Ver cuentas corrientes','2','ctacte');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('ctacte.write','Hacer movimientos','2','ctacte');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('documents','Comprobantes',0,NULL);
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('documents.create','Crear comprobantes','2','documents');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('documents.print','Imprimir comprobantes','2','documents');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('documents.read','Ver comprobantes','2','documents');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('documents.write','Modificar comprobantes','2','documents');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('documents.delete','Anular comprobantes','2','documents');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('global','General',0,NULL);
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('global.admin','Administrar el sistema',1,'global');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('global.backup','Copias de respaldo',1,'global');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('global.total','Acceso total',1,'global');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('people','Personas',0,NULL);
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('people.access','Editar permisos',1,'people');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('people.create','Crear personas','2','people');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('people.read','Ver personas','2','people');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('people.write','Modificar personas','2','people');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('products','Artículos',0,NULL);
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('products.create','Crear artículos','2','products');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('products.read','Ver artículos','2','products');
+INSERT INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('products.write','Modificar artículos','2','products');
 INSERT INTO sys_accessbase (id_acceso, nombre, tipo, parent) VALUES ('bancos', 'Bancos', 0, NULL);
 INSERT INTO sys_accessbase (id_acceso, nombre, tipo, parent) VALUES ('chequeras.read', 'Ver chequeras', 1, 'bancos');
 INSERT INTO sys_accessbase (id_acceso, nombre, tipo, parent) VALUES ('chequeras.create', 'Crear chequeras', 1, 'bancos');
 INSERT INTO sys_accessbase (id_acceso, nombre, tipo, parent) VALUES ('chequeras.write', 'Modificar chequeras', 1, 'bancos');
 
 
-INSERT INTO "sys_accesslist" VALUES ('global.total', '1', '*');
+INSERT INTO "sys_accesslist" VALUES ('global.total', 1, '*');
 
 
-insert into "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") values('1','1','Mastercard','5.0000','0',NULL,'21');
-insert into "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") values('2','1','Visa','5.0000','0',NULL,'21');
-insert into "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") values('3','1','American Express','5.0000','0',NULL,'21');
-insert into "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") values('4','1','Carta Franca','5.0000','0',NULL,'21');
-insert into "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") values('5','1','Cabal','5.0000','0',NULL,'21');
-insert into "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") values('6','1','Naranja','5.0000','0',NULL,'21');
-insert into "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") values('7','2','Visa Electrón','0.0000','0',NULL,'21');
-insert into "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") values('8','2','Maestro','0.0000','0',NULL,'21');
-insert into "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") values('98','2','Otra Tarjeta de Débito','0.0000','0',NULL,'21');
-insert into "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") values('99','1','Otra Tarjeta de Crédito','5.0000','0',NULL,'21');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES (1,1,'Mastercard','5.0000',0,NULL,'21');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES ('2',1,'Visa','5.0000',0,NULL,'21');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES ('3',1,'American Express','5.0000',0,NULL,'21');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES ('4',1,'Carta Franca','5.0000',0,NULL,'21');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES ('5',1,'Cabal','5.0000',0,NULL,'21');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES ('6',1,'Naranja','5.0000',0,NULL,'21');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES ('7','2','Visa Electrón','0.0000',0,NULL,'21');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES ('8','2','Maestro','0.0000',0,NULL,'21');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES ('98','2','Otra Tarjeta de Débito','0.0000',0,NULL,'21');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES ('99',1,'Otra Tarjeta de Crédito','5.0000',0,NULL,'21');
 
 
-insert into "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") values(1,NULL,'1 cuota sin interés','1','0.00000000','0.00000000');
-insert into "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") values(2,NULL,'2 cuotas sin interés','2','0.00000000','0.00000000');
-insert into "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") values(3,NULL,'3 cuotas sin interés','3','0.00000000','0.00000000');
-insert into "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") values(4,NULL,'4 cuotas','4','0.00000000','0.00000000');
-insert into "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") values(5,NULL,'5 cuotas','5','0.00000000','0.00000000');
-insert into "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") values(6,NULL,'6 cuotas sin interés','6','0.00000000','0.00000000');
-insert into "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") values(7,NULL,'7 cuotas','7','0.00000000','0.00000000');
-insert into "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") values(8,NULL,'8 cuotas','8','0.00000000','0.00000000');
-insert into "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") values(9,NULL,'9 cuotas sin interés','9','0.00000000','0.00000000');
-insert into "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") values(11,NULL,'11 cuotas','11','0.00000000','0.00000000');
-insert into "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") values(12,NULL,'12 cuotas sin interés','12','0.00000000','0.00000000');
-insert into "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") values(99,NULL,'Desconocido','1','0.00000000','0.00000000');
-insert into "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") values(100,NULL,'Plan Zeta','0','0.00000000','0.00000000');
+INSERT INTO "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") VALUES (1,NULL,'1 cuota sin interés',1,'0.00000000','0.00000000');
+INSERT INTO "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") VALUES (2,NULL,'2 cuotas sin interés','2','0.00000000','0.00000000');
+INSERT INTO "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") VALUES (3,NULL,'3 cuotas sin interés','3','0.00000000','0.00000000');
+INSERT INTO "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") VALUES (4,NULL,'4 cuotas','4','0.00000000','0.00000000');
+INSERT INTO "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") VALUES (5,NULL,'5 cuotas','5','0.00000000','0.00000000');
+INSERT INTO "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") VALUES (6,NULL,'6 cuotas sin interés','6','0.00000000','0.00000000');
+INSERT INTO "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") VALUES (7,NULL,'7 cuotas','7','0.00000000','0.00000000');
+INSERT INTO "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") VALUES (8,NULL,'8 cuotas','8','0.00000000','0.00000000');
+INSERT INTO "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") VALUES (9,NULL,'9 cuotas sin interés','9','0.00000000','0.00000000');
+INSERT INTO "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") VALUES (11,NULL,'11 cuotas','11','0.00000000','0.00000000');
+INSERT INTO "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") VALUES (12,NULL,'12 cuotas sin interés','12','0.00000000','0.00000000');
+INSERT INTO "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") VALUES (99,NULL,'Desconocido',1,'0.00000000','0.00000000');
+INSERT INTO "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") VALUES (100,NULL,'Plan Zeta',0,'0.00000000','0.00000000');
 
 
 INSERT INTO pvs (id_pv, id_sucursal, tipo, estacion) VALUES (1, 1, 1, '');
@@ -294,11 +297,11 @@ INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*'
 INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Moneda.Decimales', '2', 0);
 INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Moneda.DecimalesCosto', '2', 0);
 INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Moneda.DecimalesFinal', '2', 0);
-INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Moneda.Redondeo', '0', 0);
-INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.CodigoPredet', '1', 0);
-INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.Decimales', '0', 0);
-INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.DepositoPredet', '1', 0);
-INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.Multideposito', '1', 0);
+INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Moneda.Redondeo', 0, 0);
+INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.CodigoPredet', 1, 0);
+INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.Decimales', 0, 0);
+INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.DepositoPredet', 1, 0);
+INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.Multideposito', 1, 0);
 
 
 
@@ -308,5 +311,5 @@ INSERT INTO sys_plantillas (id_plantilla,codigo,nombre,definicion) values (3,'RC
 INSERT INTO sys_plantillas (id_plantilla,codigo,nombre,definicion) values (4,'RCP','Recibo de Pago','<Plantilla Copias="1" Membrete="0" Fuente="Bitstream Vera Serif" TamanoFuente="10"><Campo Valor="Recibo Nº {Numero}" X="70" Y="320" Ancho="1600" Alto="130" Alineacion="Center" AlineacionRenglon="Center" AnchoBorde="1" ColorBorde="-4144960" ColorFondo="16777215" ColorTexto="-16777216" Wrap="0" Fuente="Bitstream Vera Serif" TamanoFuente="18" /><Campo Valor="{Valores}" X="70" Y="790" Ancho="1600" Alto="600" Alineacion="Near" AlineacionRenglon="Near" AnchoBorde="1" ColorBorde="-4144960" ColorFondo="16777215" ColorTexto="-16777216" Wrap="0" Fuente="Bitstream Vera Sans Mono" TamanoFuente="9" /><Campo Valor="Recibimos de: {Cliente}" X="70" Y="550" Ancho="1600" Alto="60" Alineacion="Near" AlineacionRenglon="Center" AnchoBorde="0" ColorBorde="16777215" ColorFondo="16777215" ColorTexto="-16777216" Wrap="0" /><Campo Valor="La cantidad de: {Total}" X="70" Y="720" Ancho="1600" Alto="70" Alineacion="Near" AlineacionRenglon="Center" AnchoBorde="0" ColorBorde="-8355712" ColorFondo="-2368553" ColorTexto="-16777216" Wrap="0" /><Campo Valor="Fecha: {Fecha}" X="70" Y="490" Ancho="1600" Alto="60" Alineacion="Near" AlineacionRenglon="Center" AnchoBorde="0" ColorBorde="16777215" ColorFondo="16777215" ColorTexto="-16777216" Wrap="0" /><Campo Valor="{Empresa}" X="80" Y="70" Ancho="1580" Alto="130" Alineacion="Center" AlineacionRenglon="Center" AnchoBorde="0" ColorBorde="16777215" ColorFondo="-1053468" ColorTexto="-6862080" Wrap="0" Fuente="Bitstream Vera Sans" TamanoFuente="18" /><Campo Valor="{Empresa.Domicilio} - Tel. {Empresa.Telefono} - {Empresa.Ciudad}" X="80" Y="220" Ancho="1580" Alto="70" Alineacion="Center" AlineacionRenglon="Center" AnchoBorde="0" ColorBorde="16777215" ColorFondo="16777215" ColorTexto="-16777216" Wrap="0" /><Campo Valor="Son pesos {SonPesos}.-" X="70" Y="1430" Ancho="1600" Alto="150" Alineacion="Near" AlineacionRenglon="Near" AnchoBorde="0" ColorBorde="16777215" ColorFondo="16777215" ColorTexto="-16777216" Wrap="0" /><Campo Valor="CUIT/DNI: {Cliente.Documento}" X="70" Y="620" Ancho="1600" Alto="60" Alineacion="Near" AlineacionRenglon="Center" AnchoBorde="0" ColorBorde="16777215" ColorFondo="16777215" ColorTexto="-16777216" Wrap="0" /><Campo Valor="" X="70" Y="60" Ancho="1600" Alto="240" Alineacion="Near" AlineacionRenglon="Near" AnchoBorde="5" ColorBorde="-32768" ColorFondo="16777215" ColorTexto="-16777216" Wrap="0" /><Campo Valor="{Vendedor}" X="870" Y="2280" Ancho="800" Alto="70" Alineacion="Center" AlineacionRenglon="Center" AnchoBorde="0" ColorBorde="16777215" ColorFondo="16777215" ColorTexto="-16777216" Wrap="0" /><Campo Valor="" X="870" Y="2260" Ancho="800" Alto="1" Alineacion="Near" AlineacionRenglon="Near" AnchoBorde="1" ColorBorde="-16777216" ColorFondo="16777215" ColorTexto="-16777216" Wrap="0" /><Campo Valor="{espejo}" X="1670" Y="0" Ancho="1830" Alto="2500" Alineacion="Near" AlineacionRenglon="Near" AnchoBorde="0" ColorBorde="16777215" ColorFondo="16777215" ColorTexto="-16777216" Wrap="0" /><Campo Valor="En concepto de: {concepto}" X="70" Y="1610" Ancho="1600" Alto="380" Alineacion="Near" AlineacionRenglon="Near" AnchoBorde="0" ColorBorde="16777215" ColorFondo="16777215" ColorTexto="-16777216" Wrap="0" /></Plantilla>');
 
 
-INSERT INTO "sys_tags" ("fieldtype", "label", "fieldname", "tablename", "id_tag", "fieldnullable", "fielddefault") VALUES ('text','Extra1','extra1','personas','1','0',NULL);
+INSERT INTO "sys_tags" ("fieldtype", "label", "fieldname", "tablename", "id_tag", "fieldnullable", "fielddefault") VALUES ('text','Extra1','extra1','personas',1,0,NULL);
 

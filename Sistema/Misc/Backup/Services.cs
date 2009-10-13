@@ -292,9 +292,9 @@ namespace Lazaro.Misc.Backup
 			Escribidor.WriteLine("Empresa=" + Lws.Workspace.Master.CurrentConfig.Company.Name);
 			Escribidor.WriteLine("EspacioTrabajo=" + Lws.Workspace.Master.Name);
 			Escribidor.WriteLine("FechaYHora=" + System.DateTime.Now.ToString("dd-MM-yyyy") + " a las " + System.DateTime.Now.ToString("HH:mm:ss"));
-			Escribidor.WriteLine("Usuario=" + Lws.Workspace.Master.CurrentUser.UserCompleteName);
+			Escribidor.WriteLine("Usuario=" + Lws.Workspace.Master.CurrentUser.CompleteName);
 			Escribidor.WriteLine("Estación=" + System.Environment.MachineName.ToUpperInvariant());
-			Escribidor.WriteLine("Versión Aplic=" + Aplicacion.Version() + " del " + Aplicacion.BuildDate());
+			Escribidor.WriteLine("VersiónLazaro=" + Aplicacion.Version() + " del " + Aplicacion.BuildDate());
 			Escribidor.WriteLine("");
 			Escribidor.WriteLine("Por favor no modifique ni elimine este archivo.");
 			Escribidor.Close();

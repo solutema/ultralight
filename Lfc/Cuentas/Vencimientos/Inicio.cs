@@ -67,10 +67,10 @@ namespace Lfc.Cuentas.Vencimientos
                         switch (Lfx.Types.Parsing.ParseInt(item.SubItems[6].Text)) {
                                 case 1:
                                         item.SubItems[6].Text = "Activo";
-                                        DateTime? Vencimiento = Lfx.Types.Parsing.ParseDate(item.SubItems[4].Text);
-                                        if (Vencimiento.HasValue && Vencimiento <= DateTime.Now)
+                                        Lfx.Types.LDateTime Vencimiento = Lfx.Types.Parsing.ParseDate(item.SubItems[4].Text);
+                                        if (Vencimiento != null && Vencimiento <= DateTime.Now)
                                                 item.ForeColor = System.Drawing.Color.Red;
-                                        else if (Vencimiento.HasValue && Vencimiento <= DateTime.Now.AddDays(5))
+                                        else if (Vencimiento != null && Vencimiento <= DateTime.Now.AddDays(5))
                                                 item.ForeColor = System.Drawing.Color.Orange;
                                         break;
                                 case 2:

@@ -32,7 +32,7 @@ namespace Lcc.Controles.Datos
                                 TablaEtiquetas.FastRows.LoadAll();
                                 foreach (Lfx.Data.Row Rw in TablaEtiquetas.FastRows) {
                                         Lbl.Etiqueta Eti = new Lbl.Etiqueta(Rw);
-                                        if (Eti.TablaDatos == m_Elemento.TablaDatos) {
+                                        if (Eti.TablaReferencia == m_Elemento.TablaDatos) {
                                                 ListViewItem Itm = Lista.Items.Add(Eti.Id.ToString());
                                                 Itm.SubItems.Add(Eti.Nombre);
                                                 if (Elemento.Etiquetas.Contains(Eti.Id))

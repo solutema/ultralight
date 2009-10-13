@@ -43,33 +43,36 @@ namespace Lazaro
                 public static bool ReinicioPendiente;
                 public static string CUIT = "";
 
+                /// <summary>
+                /// Obtiene la versión del ejecutable principal.
+                /// </summary>
                 public static string Version()
                 {
-                        // Obtiene la versión del ejecutable
                         return System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).ProductVersion;
                 }
 
+                /// <summary>
+                /// Obtiene la fecha del ejecutable principal.
+                /// </summary>
                 public static string BuildDate()
                 {
-                        // Obtiene la fecha del ejecutable
                         System.IO.FileInfo InfoArchivo = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
                         return Lfx.Types.Formatting.FormatDateAndTime(InfoArchivo.LastWriteTime);
                 }
 
-                // Función: TareasEnCurso
-                // Descripción:
-                //    Devuelve la cantidad de tareas actualmente en ejecucin
-                //    Por el momento, es una versión muy simplificada que simplemente cuenta
-                //    la cantidad de formularios MDI abiertos.
-                public static int TareasEnCurso()
+                /// <summary>
+                /// Obtiene un stream a un recurso.
+                /// </summary>
+                /// <param name="nombre">Nombre del recurso, incluyendo el espacio de nombres.</param>
+                public static System.IO.Stream ObtenerRecurso(string nombre)
                 {
-                        return Aplicacion.FormularioPrincipal.MdiChildren.Length;
+                        string Espacio = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name.ToString();
+                        return System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(Espacio + "." + nombre);
                 }
 
-                // Función Main()
-                // Descripción: Punto de entrada principal del programa
-                //    Hace la conexión a la base de datos y llama a IniciarNormal o IniciarFiscal
-                //    dependiente de si está en modo modo normal o servidor fiscal
+                /// <summary>
+                /// Punto de entrada principal del programa. Hace la conexión a la base de datos y llama a IniciarNormal.
+                /// </summary>
                 [STAThread, SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.ControlAppDomain)]
                 public static int Main(string[] args)
                 {
@@ -83,7 +86,7 @@ namespace Lazaro
 
                         if (System.Text.Encoding.Default.BodyName != "iso-8859-1"
                                 && System.Text.Encoding.Default.BodyName != "utf-8") {
-                                System.Windows.Forms.MessageBox.Show("Sólo se permiten las codificaciones ISO-8859-1 (Latin-1) y UTF-8.", "Error");
+                                System.Windows.Forms.MessageBox.Show("La códificación " + System.Text.Encoding.Default.BodyName.ToUpperInvariant() + " no es válida. Sólo se permiten las codificaciones ISO-8859-1 (Latin-1) y UTF-8.", "Error");
                                 System.Windows.Forms.Application.Exit();
                         }
 
@@ -264,11 +267,9 @@ namespace Lazaro
                         }
                 }
 
-                // Función: IniciarFiscal
-                // Descripción:
-                //    Inicia el programa en modo servidor normal (pide usuario y contraseña y
-                //    crea una ventana principal, con men, etc.)
-                //    Opuesto a IniciarServidorFiscal
+                /// <summary>
+                /// Inicia el programa
+                /// </summary>
                 private static Lfx.Types.OperationResult IniciarNormal()
                 {
                         if (Lfx.Environment.SystemInformation.DesignMode == false) {
@@ -290,7 +291,12 @@ namespace Lazaro
                                         Aplicacion.Exec("REBOOT");
                                 else
                                         Aplicacion.Exec("QUIT");
+                        } else if (Lws.Workspace.Master.CurrentConfig.Company.Email.Length <= 5) {
+                                string Email = Lui.Forms.InputBox.ShowInputBox("Por favor escriba la dirección de correo electrónico (e-mail) de la empresa. Si desea ingresar al sistema sin escribir la dirección ahora, haga clic en Cancelar.", Lws.Workspace.Master.CurrentConfig.Company.Name, "");
+                                if (Email != null && Email.Length > 5)
+                                        Lws.Workspace.Master.CurrentConfig.Company.Email = Email;
                         }
+
 
                         System.DateTime FechaServidor = System.Convert.ToDateTime(Lws.Workspace.Master.DefaultDataBase.FirstRowFromSelect("SELECT NOW()")[0]);
                         System.TimeSpan Diferencia = FechaServidor - System.DateTime.Now;
@@ -310,7 +316,39 @@ namespace Lazaro
 
                         OFormIngreso.ShowDialog();
 
-                        if (Lws.Workspace.Master.CurrentUser.UserId > 0) {
+                        /**** Esta runtina hace que los saldos de los resumenes reflejen los saldos en cta. cte.
+                        Lws.Data.DataView Dat = Lws.Workspace.Master.GetDataView(true);
+                        Dat.BeginTransaction();
+                        System.Data.DataTable Personas = Dat.DataBase.Select(@"SELECT id_persona,nombre_visible,(SELECT ctacte.saldo FROM ctacte WHERE id_cliente=personas.id_persona ORDER BY id_movim DESC LIMIT 1) AS sal 
+                                FROM personas
+                                WHERE id_grupo=1
+                                AND (SELECT ctacte.saldo FROM ctacte WHERE id_cliente=personas.id_persona ORDER BY id_movim DESC LIMIT 1)>0");
+                        foreach (System.Data.DataRow Pers in Personas.Rows) {
+                                int ClienteId = System.Convert.ToInt32(Pers["id_persona"]);
+                                double Saldo = System.Convert.ToDouble(Pers["sal"]);
+                                System.Data.DataTable Resumenes = Dat.DataBase.Select(@"SELECT id_resumen, id_persona, tipo, importe, cancelado
+                                                FROM ventas_resumenes
+                                                WHERE tipo=1 AND id_persona=" + ClienteId.ToString() + @"
+                                                        AND obs NOT LIKE 'Resumen extra%'
+                                                ORDER BY id_resumen DESC");
+                                foreach(System.Data.DataRow Resu in Resumenes.Rows) {
+                                        int ResumenId = System.Convert.ToInt32(Resu["id_resumen"]);
+                                        double Importe = System.Convert.ToDouble(Resu["importe"]);
+                                        double Cancelado = System.Convert.ToDouble(Resu["cancelado"]);
+                                        if (Cancelado >= Saldo) {
+                                                Cancelado -= Saldo;
+                                                Dat.DataBase.Execute("UPDATE ventas_resumenes SET cancelado=" + Lfx.Types.Formatting.FormatCurrencySql(Cancelado) + " WHERE id_resumen=" + ResumenId.ToString());
+                                                break;
+                                        } else {
+                                                Saldo -= Cancelado;
+                                                Cancelado = 0;
+                                                Dat.DataBase.Execute("UPDATE ventas_resumenes SET cancelado=0" + " WHERE id_resumen=" + ResumenId.ToString());
+                                        }
+                                }
+                        }
+                        Dat.Commit(); */
+
+                        if (Lws.Workspace.Master.CurrentUser.Id > 0) {
                                 if (Lws.Workspace.Master.DefaultDataBase.SlowLink == false && Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Backup.Tipo", "0") == "2") {
                                         string FechaActual = System.DateTime.Now.ToString("yyyy-MM-dd");
                                         string FechaBackup = Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Backup.Ultimo", "");
@@ -345,7 +383,7 @@ namespace Lazaro
 		/// <returns>
 		/// Normalmente devuelve un formulario, que es el resultado del comando.
                 /// Por ejemplo, el comando "EDITAR ARTICULO 132" devuelve un formulario tipo
-                /// FormArticuloEditar donde se está editando el artículo.
+                /// Lfc.Articulos.Editar donde se está editando el artículo.
 		/// </returns>
                 public static object Exec(string comando)
                 {
@@ -360,6 +398,26 @@ namespace Lazaro
                         string SubComando = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpperInvariant();
 
                         switch (SubComando) {
+                                case "REPO":
+                                        Lfx.Data.SqlSelectBuilder Sel = new Lfx.Data.SqlSelectBuilder("facturas_detalle");
+                                        Sel.Fields = "personas.id_persona,personas.nombre_visible,facturas.fecha,facturas.total";
+                                        Sel.Joins.Add(new Lfx.Data.Join("facturas", "facturas_detalle.id_factura=facturas.id_factura"));
+                                        Sel.Joins.Add(new Lfx.Data.Join("personas", "facturas.id_cliente=personas.id_persona"));
+                                        Sel.WhereClause = new Lfx.Data.SqlWhereBuilder("facturas.fecha BETWEEN '2009-09-01' AND '2009-09-30'");
+
+                                        Lbl.Reportes.Reporte Rep = new Lbl.Reportes.Reporte(Lws.Workspace.Master.GetDataView(false), Sel);
+                                        Rep.Grupings.Add(new Lfx.Data.Grouping(Lfx.Data.GroupingTypes.Distinct, "personas.id_persona"));
+                                        Rep.Grupings.Add(new Lfx.Data.Grouping(Lfx.Data.GroupingTypes.Count, "facturas.fecha"));
+                                        Rep.Grupings.Add(new Lfx.Data.Grouping(Lfx.Data.GroupingTypes.Sum, "facturas.total"));
+                                        Rep.Fields.Add(new Lfx.Data.FormField("personas.nombre_visible", "Cliente"));
+                                        Rep.Fields.Add(new Lfx.Data.FormField("facturas.fecha", "Fecha"));
+                                        Rep.Fields.Add(new Lfx.Data.FormField("facturas.total", "Total"));
+
+                                        Lfc.Reportes.Reporte RepForm = new Lfc.Reportes.Reporte();
+                                        RepForm.MdiParent = FormularioPrincipal;
+                                        RepForm.ReporteAMostrar = Rep;
+                                        RepForm.Show();
+                                        break;
                                 case "LIC":
                                         Lfx.Lic.Licenciar(@"C:\Lazaro\Sistema");
                                         Lfx.Lic.Licenciar(@"C:\Lazaro\Componentes\RunComponent");
@@ -420,15 +478,6 @@ namespace Lazaro
                                                                 break;
                                                 }
                                         }
-                                        break;
-
-                                case "BUSCAR":
-                                        Form OFormSuperBuscador = BuscarVentana("Misc.SuperBuscador.Inicio");
-                                        if (OFormSuperBuscador == null)
-                                                OFormSuperBuscador = new Misc.SuperBuscador.Inicio();
-                                        if (!Aplicacion.Flotante)
-                                                OFormSuperBuscador.MdiParent = Aplicacion.FormularioPrincipal;
-                                        OFormSuperBuscador.Show();
                                         break;
 
                                 case "CONFIG":
@@ -530,30 +579,23 @@ namespace Lazaro
                                         break;
 
                                 case "ANULAR":
-                                        if (Lui.Login.LoginData.ValidateAccess(Lws.Workspace.Master.CurrentUser, "documents.create") && Lui.Login.LoginData.Access(Lws.Workspace.Master.CurrentUser, "documents.write")) {
+                                        if (Lui.Login.LoginData.ValidateAccess(Lws.Workspace.Master.CurrentUser, "documents.delete")) {
                                                 string SubComandoAnular = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
-
-                                                Lfc.Comprobantes.Facturas.Anular FormularioFacturaAnular = new Lfc.Comprobantes.Facturas.Anular();
-                                                FormularioFacturaAnular.Workspace = Lws.Workspace.Master;
 
                                                 switch (SubComandoAnular) {
                                                         case "FACTURA":
                                                         case "FACT":
-                                                                // Nada
+                                                                Lfc.Comprobantes.Facturas.Anular FormularioFacturaAnular = new Lfc.Comprobantes.Facturas.Anular();
+                                                                FormularioFacturaAnular.Workspace = Lws.Workspace.Master;
+                                                                FormularioFacturaAnular.ShowDialog(Aplicacion.FormularioPrincipal);
                                                                 break;
 
-                                                        case "B":
-                                                        case "FB":
-                                                                FormularioFacturaAnular.EntradaTipo.Text = "B";
-                                                                break;
-
-                                                        case "A":
-                                                        case "FA":
-                                                                FormularioFacturaAnular.EntradaTipo.Text = "A";
+                                                        case "RECIBO":
+                                                                Lfc.Comprobantes.Recibos.Anular FormularioReciboAnular = new Lfc.Comprobantes.Recibos.Anular();
+                                                                FormularioReciboAnular.Workspace = Lws.Workspace.Master;
+                                                                FormularioReciboAnular.ShowDialog(Aplicacion.FormularioPrincipal);
                                                                 break;
                                                 }
-
-                                                FormularioFacturaAnular.ShowDialog(Aplicacion.FormularioPrincipal);
                                         }
                                         break;
 
@@ -581,11 +623,11 @@ namespace Lazaro
                                                 FormularioCaja.m_Cuenta = Lws.Workspace.Master.CurrentConfig.Company.CajaDiaria;
 
                                                 if (SubComandoCaja.Length > 0) {
-                                                        DateTime? Fecha = Lfx.Types.Parsing.ParseDate(SubComandoCaja);
-                                                        if (Fecha.HasValue) {
+                                                        Lfx.Types.LDateTime Fecha = Lfx.Types.Parsing.ParseDate(SubComandoCaja);
+                                                        if (Fecha != null) {
                                                                 FormularioCaja.m_Fechas = new Lfx.Types.DateRange("dia");
-                                                                FormularioCaja.m_Fechas.From = Fecha.Value;
-                                                                FormularioCaja.m_Fechas.To = Fecha.Value;
+                                                                FormularioCaja.m_Fechas.From = Fecha;
+                                                                FormularioCaja.m_Fechas.To = Fecha;
                                                         }
                                                 }
 
@@ -669,8 +711,6 @@ namespace Lazaro
                                         Lws.Workspace.Master.ActionLog("QUIT", "");
                                         if (Aplicacion.FormularioPrincipal != null)
                                                 Aplicacion.FormularioPrincipal.Close();
-                                        Lws.Workspace.Master.CurrentConfig.WriteGlobalSetting("", "Sistema.Ingreso.UltimoEgreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "");
-                                        System.Environment.Exit(0);
                                         break;
 
                                 default:
@@ -1193,7 +1233,7 @@ namespace Lazaro
                                                         return OFormNovedad;
 
                                                 default:
-                                                        // Vuelvo a poner el token que quit del comando
+                                                        // Vuelvo a poner el token que quité del comando
                                                         comando = SubComandoTicket + " " + comando;
                                                         FormularioDeEdicion = new Lfc.Tareas.Editar();
                                                         break;
@@ -1259,15 +1299,15 @@ namespace Lazaro
                         return FormularioDeEdicion;
                 }
 
-                // Función: BuscarVentana
-                // Parámetros:
-                //    sNombre     El nombre de la ventana a buscar
-                // Descripción:
-                //    Busca una ventana por nombre entre los MDI children del formulario principal
-                private static Form BuscarVentana(string sNombre)
+                /// <summary>
+                /// Busca una ventana por nombre entre los MDI children del formulario principal
+                /// </summary>
+                /// <param name="nombre">El nombre de la ventana a buscar.</param>
+                /// <returns>Una referencia a la ventana, o null si no se encontró.</returns>
+                private static Form BuscarVentana(string nombre)
                 {
                         foreach (System.Windows.Forms.Form TmpForm in Aplicacion.FormularioPrincipal.MdiChildren) {
-                                if (TmpForm.Name == sNombre) {
+                                if (TmpForm.Name == nombre) {
                                         return TmpForm;
                                 }
                         }
@@ -1336,7 +1376,9 @@ namespace Lazaro
 
                                 return TmpFormularioNuevo;
                         }
-                        catch {
+                        catch (Exception ex) {
+                                if (Lfx.Environment.SystemInformation.DesignMode)
+                                        throw ex;
                                 return null;
                         }
                 }
@@ -1386,24 +1428,79 @@ namespace Lazaro
 
                                 return TmpFormularioNuevo;
                         }
-                        catch {
+                        catch (Exception ex) {
+                                if (Lfx.Environment.SystemInformation.DesignMode)
+                                        throw ex;
                                 return null;
                         }
                 }
 
                 public static void ThreadExceptionHandler(object sender, System.Threading.ThreadExceptionEventArgs e)
                 {
-                        ExceptionHandler(e.Exception);
+                        GenericExceptionHandler(e.Exception);
                 }
 
                 private static void GlobalExceptionHandler(object sender, UnhandledExceptionEventArgs args)
                 {
-                        ExceptionHandler(args.ExceptionObject as Exception);
+                        GenericExceptionHandler(args.ExceptionObject as Exception);
+                        Application.Exit();
                 }
 
-                public static void ExceptionHandler(Exception ex)
+                public static void GenericExceptionHandler(Exception ex)
                 {
-                        Misc.ErrorGlobal FormularioError = new Lazaro.Misc.ErrorGlobal();
+                        if (ex is System.Drawing.Printing.InvalidPrinterException) {
+                                KnownExceptionHandler(ex);
+                        } else if (ex.Source == "MySql.Data") {
+                                Exception ex2 = ex;
+                                bool Found = false;
+                                while (ex2 != null) {
+                                        if (string.Compare(ex2.Message,"Reading from the stream has failed.", true) == 0
+                                                || string.Compare(ex2.Message, "Connection unexpectedly terminated.", true) == 0) {
+                                                KnownExceptionHandler(ex, "Error de comunicación con el servidor");
+                                                Found = true;
+                                                break;
+                                        }
+                                        ex2 = ex2.InnerException;
+                                }
+                                if(Found == false)
+                                        UnknownExceptionHandler(ex);
+                        } else if (string.Compare(ex.Message, "El servidor RPC no está disponible", true) == 0) {
+                                KnownExceptionHandler(ex, "La impresora no está disponible");
+                        } else {
+                                UnknownExceptionHandler(ex);
+                        }
+                }
+
+
+                public static void KnownExceptionHandler(Exception ex)
+                {
+                        KnownExceptionHandler(ex, null);
+                }
+
+                /// <summary>
+                /// Manejador de excepciones conocidas. Presenta una ventana con el error. Se utiliza para excepciones como InvalidPrinterException.
+                /// </summary>
+                /// <param name="ex">La excepción a reportar.</param>
+                /// <param name="mensajeDescriptivo">Una mejor descripción de la excepción que el mensaje orginal.</param>
+                public static void KnownExceptionHandler(Exception ex, string mensajeDescriptivo)
+                {
+                        Errores.ExcepcionControlada FormularioError = new Errores.ExcepcionControlada();
+                        if (mensajeDescriptivo == null)
+                                FormularioError.EtiquetaDescripcion.Text = ex.Message;
+                        else
+                                FormularioError.EtiquetaDescripcion.Text = mensajeDescriptivo;
+                        FormularioError.EtiquetaMasInformacion.Text = ex.ToString();
+                        FormularioError.Show();
+                        FormularioError.Refresh();
+                }
+
+                /// <summary>
+                /// Manejador de excepciones desconocidas. Presenta una ventana con el error y envía un informe por correo electrónico.
+                /// </summary>
+                /// <param name="ex">La excepción a reportar.</param>
+                public static void UnknownExceptionHandler(Exception ex)
+                {
+                        Errores.ExcepcionNoControlada FormularioError = new Errores.ExcepcionNoControlada();
                         FormularioError.Show();
                         FormularioError.Refresh();
                         System.Windows.Forms.Application.DoEvents();
@@ -1440,7 +1537,7 @@ namespace Lazaro
 
                         MailMessage Mensaje = new MailMessage();
                         Mensaje.To.Add(new MailAddress("error@sistemalazaro.com.ar"));
-                        Mensaje.From = new MailAddress(Lws.Workspace.Master.CurrentConfig.Company.Email, Lws.Workspace.Master.CurrentUser.UserCompleteName + " en " + Lws.Workspace.Master.CurrentConfig.Company.Name);
+                        Mensaje.From = new MailAddress(Lws.Workspace.Master.CurrentConfig.Company.Email, Lws.Workspace.Master.CurrentUser.CompleteName + " en " + Lws.Workspace.Master.CurrentConfig.Company.Name);
                         try {
                                 //No sé por qué, pero una vez dió un error al poner el asunto
                                 Mensaje.Subject = ex.Message;

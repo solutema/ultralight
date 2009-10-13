@@ -53,7 +53,7 @@ namespace Lui.Login
 
 		public bool Revalidate()
 		{
-			return this.ValidateAs(this.Workspace.CurrentUser.UserId);
+			return this.ValidateAs(this.Workspace.CurrentUser.Id);
 		}
 
 		public bool ValidateAs(int userId)
@@ -64,7 +64,7 @@ namespace Lui.Login
 					LabelExplain.Text = "La operación que intenta realizar requiere por motivos de seguridad que escriba la contraseña de Administrador.";
 				else
 					LabelExplain.Text = Explain;
-			} else if(userId != this.Workspace.CurrentUser.UserId) {
+			} else if(userId != this.Workspace.CurrentUser.Id) {
 				this.Titulo.Text = "Para continuar, por favor la contraseña del usuario.";
 				if(Explain == null)
 					this.LabelExplain.Text = "La operación que intenta realizar requiere por motivos de seguridad que escribir la contraseña de un usuario con permiso.";

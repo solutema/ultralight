@@ -177,28 +177,41 @@ namespace Lui.Forms
                         if (this.CachedRow != null) {
                                 WasNew = !this.CachedRow.Existe;
                                 this.CachedRow = this.ToRow();
-                                this.CachedRow.Guardar();
-                                m_Id = this.CachedRow.Id;
-                                m_Nuevo = false;
+                                bool WasInTransaction = this.CachedRow.DataView.InTransaction;
+                                if (WasInTransaction == false)
+                                        this.CachedRow.DataView.BeginTransaction();
+                                ValidateResult = this.CachedRow.Guardar();
+                                if (ValidateResult.Success) {
+                                        if (WasInTransaction == false)
+                                                this.CachedRow.DataView.Commit();
+                                        m_Id = this.CachedRow.Id;
+                                        m_Nuevo = false;
+                                } else {
+                                        if (WasInTransaction == false)
+                                                this.CachedRow.DataView.RollBack();
+                                        Lui.Forms.MessageBox.Show(ValidateResult.Message, "Error al guardar");
+                                }
                         } else if(Lfx.Environment.SystemInformation.DesignMode) {
                                 // Devolver error para detectar código viejo (que no use CachedRow, ToFrom() y FromRow())
                                 System.Console.WriteLine("Código obsoleto en " + this.Name);
                         }
 
-			SetControlsChanged(this.Controls, false);
+                        if (ValidateResult.Success) {
+                                SetControlsChanged(this.Controls, false);
 
-                        if (WasNew && ControlDestino != null) {
-                                ControlDestino.Text = m_Id.ToString();
-                                ControlDestino.Focus();
+                                if (WasNew && ControlDestino != null) {
+                                        ControlDestino.Text = m_Id.ToString();
+                                        ControlDestino.Focus();
+                                }
+
+                                if (FormOpener != null) {
+                                        FormOpener.Focus();
+                                        FormOpener.Activate();
+                                }
+
+                                this.DialogResult = DialogResult.OK;
                         }
-
-                        if (FormOpener != null) {
-                                FormOpener.Focus();
-                                FormOpener.Activate();
-                        }
-
-			this.DialogResult = DialogResult.OK;
-			return new Lfx.Types.SuccessOperationResult();
+                        return ValidateResult;
 		}
 
 		public virtual Lfx.Types.OperationResult Cancel()

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{06B1A167-AAC4-468A-A763-9C99E52B2CB3}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -94,17 +94,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Errores\ExcepcionControlada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Errores\ExcepcionControlada.Designer.cs">
+      <DependentUpon>ExcepcionControlada.cs</DependentUpon>
+    </Compile>
     <Compile Include="Misc\AcercaDe.Designer.cs">
       <DependentUpon>AcercaDe.cs</DependentUpon>
     </Compile>
     <Compile Include="Misc\Config\Preferencias.Designer.cs">
       <DependentUpon>Preferencias.cs</DependentUpon>
     </Compile>
-    <Compile Include="Misc\ErrorGlobal.cs">
+    <Compile Include="Errores\ExcepcionNoControlada.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Misc\ErrorGlobal.Designer.cs">
-      <DependentUpon>ErrorGlobal.cs</DependentUpon>
+    <Compile Include="Errores\ExcepcionNoControlada.Designer.cs">
+      <DependentUpon>ExcepcionNoControlada.cs</DependentUpon>
     </Compile>
     <Compile Include="Misc\Fiscal.Designer.cs">
       <DependentUpon>Fiscal.cs</DependentUpon>
@@ -120,7 +126,6 @@
     <Compile Include="Clases\Aplicacion.cs" />
     <Compile Include="Clases\Config.cs" />
     <Compile Include="Clases\Datos.cs" />
-    <Compile Include="Clases\Funciones.cs" />
     <Compile Include="Principal\BarraInferior.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -164,20 +169,8 @@
     <Compile Include="Misc\FormImagen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Misc\SuperBuscador\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Misc\SuperBuscador\Inicio.Designer.cs">
-      <DependentUpon>Inicio.cs</DependentUpon>
-    </Compile>
     <Compile Include="Misc\Ingreso.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Misc\SuperBuscador\Resultado.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Misc\SuperBuscador\Resultado.Designer.cs">
-      <DependentUpon>Resultado.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
@@ -198,6 +191,9 @@
     <EmbeddedResource Include="Data\dbdata.sql" />
     <EmbeddedResource Include="Data\db_upd18_post.sql" />
     <EmbeddedResource Include="Data\db_upd19_post.sql" />
+    <EmbeddedResource Include="Errores\ExcepcionControlada.resx">
+      <DependentUpon>ExcepcionControlada.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Principal\BarraInferior.resx">
       <DependentUpon>BarraInferior.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -246,16 +242,8 @@
       <DependentUpon>FormImagen.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Misc\SuperBuscador\Inicio.resx">
-      <DependentUpon>Inicio.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Misc\Ingreso.resx">
       <DependentUpon>Ingreso.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Misc\SuperBuscador\Resultado.resx">
-      <DependentUpon>Resultado.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -281,8 +269,8 @@
     <None Include="Resources\edit-undo.png" />
     <None Include="Lazaro.snk" />
     <EmbeddedResource Include="Data\menu.xml" />
-    <EmbeddedResource Include="Misc\ErrorGlobal.resx">
-      <DependentUpon>ErrorGlobal.cs</DependentUpon>
+    <EmbeddedResource Include="Errores\ExcepcionNoControlada.resx">
+      <DependentUpon>ExcepcionNoControlada.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

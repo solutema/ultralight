@@ -38,10 +38,10 @@ namespace Lbl.Bancos
 		//Heredar constructor
 		public Banco(Lws.Data.DataView dataView) : base(dataView) { }
 
-		public Banco(Lws.Data.DataView dataView, int IdBanco)
+		public Banco(Lws.Data.DataView dataView, int idBanco)
 			: this(dataView)
 		{
-			m_ItemId = IdBanco;
+			m_ItemId = idBanco;
 		}
 
 		public override string TablaDatos

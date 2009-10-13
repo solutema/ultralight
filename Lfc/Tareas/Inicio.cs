@@ -47,8 +47,7 @@ namespace Lfc.Tareas
 
                         // agregar código de constructor después de llamar a InitializeComponent
                         DataTableName = "tickets";
-                        ExtraDataTableNames = "personas";
-                        Relations = "tickets.id_persona=personas.id_persona";
+                        this.Joins.Add(new Lfx.Data.Join("personas", "tickets.id_persona=personas.id_persona"));
                         KeyField = new Lfx.Data.FormField("tickets.id_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64);
                         FormFields = new Lfx.Data.FormField[]
 			{

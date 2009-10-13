@@ -33,6 +33,14 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
+        public enum RequiereNS
+        {
+                Nunca = 0,
+                ParaIngresar = 1,
+                ParaEgresar = 2,
+                ParaIngresarOEgresar = 3
+        }
+
 	public class Categoria : ElementoDeDatos
 	{
 		public Categoria(Lws.Data.DataView dataView) : base(dataView) { }
@@ -95,6 +103,18 @@ namespace Lbl.Articulos
 			}
 		}
 
+                public RequiereNS RequiereNS
+                {
+                        get
+                        {
+                                return ((RequiereNS)(this.FieldInt("requierens")));
+                        }
+                        set
+                        {
+                                this.Registro["requierens"] = (int)value;
+                        }
+                }
+
 		public override Lfx.Types.OperationResult Guardar()
                 {
 			Lfx.Data.SqlTableCommandBuilder Comando;
@@ -110,6 +130,7 @@ namespace Lbl.Articulos
                         Comando.Fields.AddWithValue("nombresing", this.NombreSingular);
                         Comando.Fields.AddWithValue("stock_minimo", this.StockMinimo);
                         Comando.Fields.AddWithValue("web", this.PublicacionWeb);
+                        Comando.Fields.AddWithValue("requierens", ((int)(this.RequiereNS)));
                         Comando.Fields.AddWithValue("obs", this.Obs);
 
 			this.AgregarTags(Comando);

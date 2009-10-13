@@ -328,7 +328,7 @@ namespace Lfc.Tareas
 
                 private void Novedad_WorkspaceChanged(object sender, System.EventArgs e)
                 {
-                        txtTecnico.TextInt = this.Workspace.CurrentUser.UserId;
+                        txtTecnico.TextInt = this.Workspace.CurrentUser.Id;
                         txtCondicion.TextKey = "0";
                 }
         }

@@ -399,11 +399,11 @@ namespace Lfc.Cuentas
                                 double Importe = Lfx.Types.Parsing.ParseCurrency(txtImporte.Text);
                                 DataView.BeginTransaction();
                                 Lbl.Cuentas.CuentaRegular CuentaOrigen = new Lbl.Cuentas.CuentaRegular(DataView, iOrigen);
-                                CuentaOrigen.Movimiento(false, txtConcepto.TextInt, txtConcepto.TextDetail, this.Workspace.CurrentUser.UserId, -Importe, txtObs.Text, 0, 0, txtComprob.Text);
+                                CuentaOrigen.Movimiento(false, txtConcepto.TextInt, txtConcepto.TextDetail, this.Workspace.CurrentUser.Id, -Importe, txtObs.Text, 0, 0, txtComprob.Text);
                                 if (txtImporteDestino.Visible)
                                         Importe = Lfx.Types.Parsing.ParseCurrency(txtImporteDestino.Text);
                                 Lbl.Cuentas.CuentaRegular CuentaDestino = new Lbl.Cuentas.CuentaRegular(DataView, iDestino);
-                                CuentaDestino.Movimiento(false, txtConcepto.TextInt, txtConcepto.TextDetail, this.Workspace.CurrentUser.UserId, Importe, txtObs.Text, 0, 0, txtComprob.Text);
+                                CuentaDestino.Movimiento(false, txtConcepto.TextInt, txtConcepto.TextDetail, this.Workspace.CurrentUser.Id, Importe, txtObs.Text, 0, 0, txtComprob.Text);
                                 DataView.Commit();
                         }
                         return aceptarReturn;

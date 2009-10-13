@@ -60,6 +60,7 @@ namespace Lazaro.Principal
 
                 private void FormPrincipal_Load(object sender, EventArgs e)
                 {
+                        this.Workspace.AvoidWinForms = false;
                         this.CargarMenuPrincipal();
 
                         //De forma predeterminada, se usa modo maximizado
@@ -125,7 +126,7 @@ namespace Lazaro.Principal
                                         System.Threading.Thread TareaActualizador = new System.Threading.Thread(new System.Threading.ThreadStart(Actualizador.Actualizador.ActualizarAplicacion));
                                         TareaActualizador.Start();
                                 }
-                                if (Aplicacion.ReinicioPendiente && Aplicacion.TareasEnCurso() == 0)
+                                if (Aplicacion.ReinicioPendiente && Aplicacion.FormularioPrincipal.MdiChildren.Length == 0)
                                 {
                                         Aplicacion.ReinicioPendiente = false;
                                         // Si hay actualizaciones pendientes y no se está relizando una tarea
@@ -189,7 +190,7 @@ namespace Lazaro.Principal
                                         }
                                         break;
                                 case Keys.I:
-                                        if (e.Control == true && e.Alt == true && this.Workspace.CurrentUser.UserId == 1)
+                                        if (e.Control == true && e.Alt == true && this.Workspace.CurrentUser.Id == 1)
                                         {
                                                 e.Handled = true;
                                                 System.Windows.Forms.OpenFileDialog DialogoArchivo = new System.Windows.Forms.OpenFileDialog();
@@ -209,12 +210,9 @@ namespace Lazaro.Principal
                                                         {
                                                                 string Comando = Datos.GetNextCommand(ref SqlActualizacion);
                                                                 System.Windows.Forms.Clipboard.SetDataObject(Comando, true);
-                                                                try
-                                                                {
+                                                                try {
                                                                         ConexionActualizar.Execute(Comando);
-                                                                }
-                                                                catch (Exception ex)
-                                                                {
+                                                                } catch (Exception ex) {
                                                                         System.Windows.Forms.MessageBox.Show(Comando + System.Environment.NewLine + System.Environment.NewLine + ex.Message, "Lazaro.Datos.Iniciar");
                                                                 }
                                                         }
@@ -267,12 +265,15 @@ namespace Lazaro.Principal
 
                 private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
                 {
-                        if (this.Visible)
-                        {
+                        if (this.Visible) {
                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Está a punto de cerrar completamente la aplicación.", "¿Desea cerrar el sistema Lázaro?");
                                 Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
-                                if (Pregunta.ShowDialog() != DialogResult.OK)
+                                if (Pregunta.ShowDialog() != DialogResult.OK) {
                                         e.Cancel = true;
+                                } else {
+                                        Lws.Workspace.Master.CurrentConfig.WriteGlobalSetting("", "Sistema.Ingreso.UltimoEgreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "");
+                                        System.Environment.Exit(0);
+                                }
                         }
                 }
 
@@ -482,7 +483,7 @@ namespace Lazaro.Principal
                         AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
 
                         System.Xml.XmlDocument MenuXml = new XmlDocument();
-                        MenuXml.Load(Funciones.ObtenerRecurso(@"Data.menu.xml"));
+                        MenuXml.Load(Aplicacion.ObtenerRecurso(@"Data.menu.xml"));
                         CargarMenuXml(MenuXml.GetElementsByTagName("Menu").Item(0), Aplicacion.FormularioPrincipal.MainMenu, "Menu");
 
                         CargarMenuComponentes();

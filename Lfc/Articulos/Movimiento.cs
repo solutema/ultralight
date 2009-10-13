@@ -442,7 +442,7 @@ namespace Lfc.Articulos
                         this.EntradaArticulo.Name = "EntradaArticulo";
                         this.EntradaArticulo.Precio = Lui.Forms.Product.Precios.PVP;
                         this.EntradaArticulo.Required = true;
-                        this.EntradaArticulo.Serials = "";
+                        this.EntradaArticulo.Series = "";
                         this.EntradaArticulo.ShowPrice = false;
                         this.EntradaArticulo.ShowStock = false;
                         this.EntradaArticulo.Size = new System.Drawing.Size(496, 24);
@@ -522,7 +522,7 @@ namespace Lfc.Articulos
 					Destino = new Lbl.Articulos.Situacion(DataView, txtHaciaSituacion.TextInt);
 				else
 					Destino = null;
-				Art.MoverStock(Cantidad, txtObs.Text, Origen, Destino);
+				Art.MoverStock(Cantidad, txtObs.Text, Origen, Destino, null);
 				DataView.Commit();
 			}
 

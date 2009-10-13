@@ -776,7 +776,7 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                         }
 
                         string ClienteTipoDoc = "DNI";
-                        string ClienteNumDoc = Fac.Cliente.NumeroDocumento.Replace("-", "");
+                        string ClienteNumDoc = Fac.Cliente.NumeroDocumento.Replace("-", "").Replace(".", "");
 
                         switch (Fac.Cliente.TipoDocumento) {
                                 case 1:
@@ -1017,7 +1017,7 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
 
                         // *** Imprimir Detalles
                         System.Data.DataTable
-                                Detalles = this.DataView.DataBase.Select("SELECT * FROM facturas_detalle WHERE id_factura=" + Fac.Id.ToString());
+                                Detalles = this.DataView.DataBase.Select("SELECT id_articulo,nombre,cantidad,precio FROM facturas_detalle WHERE id_factura=" + Fac.Id.ToString());
 
                         foreach (System.Data.DataRow Detalle in Detalles.Rows) {
                                 string StrCodigo = m_Workspace.CurrentConfig.Products.DefaultCode();
@@ -1030,7 +1030,6 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                                 if (StrCodigo.Length > 0)
                                         StrCodigo = "(" + StrCodigo + ") ";
 
-                                //string ItemNombre = StrCodigo + System.Convert.ToString(Detalle["nombre"]);
                                 string ItemNombre = System.Convert.ToString(Detalle["nombre"]);
 
                                 switch (ModeloImpresora) {

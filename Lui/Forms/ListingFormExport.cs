@@ -104,43 +104,46 @@ namespace Lui.Forms
 
 					int FieldNum = KeyField == null ? i : i + 1;
 
-					if(ThisField.Width > 28)
+                                        if (ThisField.Width > 28)
 					{
-						string TextoSubItem;
-						TextoSubItem = Registro[FieldNum].ToString();
+                                                if (Registro[FieldNum] is DBNull) {
+                                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(""));
+                                                } else {
+                                                        string TextoSubItem;
+                                                        TextoSubItem = Registro[FieldNum].ToString();
 
-						switch(ThisField.DataType)
-						{
-                                                        case Lfx.Data.InputFieldTypes.Text:
-                                                        case Lfx.Data.InputFieldTypes.Memo:
-								Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(TextoSubItem));
-								break;
-                                                        case Lfx.Data.InputFieldTypes.Serial:
-                                                        case Lfx.Data.InputFieldTypes.Integer:
-								Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToInt32(Registro[FieldNum])));
-								break;
-                                                        case Lfx.Data.InputFieldTypes.Numeric:
-                                                        case Lfx.Data.InputFieldTypes.Currency:
-								Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToDouble(Registro[FieldNum])));
-								break;
-                                                        case Lfx.Data.InputFieldTypes.DateTime:
-                                                        case Lfx.Data.InputFieldTypes.Date:
-								Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToDateTime(Registro[FieldNum])));
-								break;
-                                                        case Lfx.Data.InputFieldTypes.Bool:
-                                                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToBoolean(Registro[FieldNum])));
-                                                                break;
-                                                        case Lfx.Data.InputFieldTypes.Binary:
-                                                        case Lfx.Data.InputFieldTypes.Image:
-                                                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Registro[FieldNum]));
-                                                                break;
-							default:
-								if(Lfx.Types.Strings.IsNumericFloat(TextoSubItem))
-									Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToDouble(Registro[FieldNum])));
-								else
-									Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(TextoSubItem));
-								break;
-						}
+                                                        switch (ThisField.DataType) {
+                                                                case Lfx.Data.InputFieldTypes.Text:
+                                                                case Lfx.Data.InputFieldTypes.Memo:
+                                                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(TextoSubItem));
+                                                                        break;
+                                                                case Lfx.Data.InputFieldTypes.Serial:
+                                                                case Lfx.Data.InputFieldTypes.Integer:
+                                                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToInt32(Registro[FieldNum])));
+                                                                        break;
+                                                                case Lfx.Data.InputFieldTypes.Numeric:
+                                                                case Lfx.Data.InputFieldTypes.Currency:
+                                                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToDouble(Registro[FieldNum])));
+                                                                        break;
+                                                                case Lfx.Data.InputFieldTypes.DateTime:
+                                                                case Lfx.Data.InputFieldTypes.Date:
+                                                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToDateTime(Registro[FieldNum])));
+                                                                        break;
+                                                                case Lfx.Data.InputFieldTypes.Bool:
+                                                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToBoolean(Registro[FieldNum])));
+                                                                        break;
+                                                                case Lfx.Data.InputFieldTypes.Binary:
+                                                                case Lfx.Data.InputFieldTypes.Image:
+                                                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Registro[FieldNum]));
+                                                                        break;
+                                                                default:
+                                                                        if (Lfx.Types.Strings.IsNumericFloat(TextoSubItem))
+                                                                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToDouble(Registro[FieldNum])));
+                                                                        else
+                                                                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(TextoSubItem));
+                                                                        break;
+                                                        }
+                                                }
 					}
 				}
 				Planilla.Sheets[0].Rows.Add(Reng);

@@ -80,7 +80,7 @@ namespace Lazaro.Principal
                 this.BarraTareas.Location = new System.Drawing.Point(0, 0);
                 this.BarraTareas.Name = "BarraTareas";
                 this.BarraTareas.ShowToolTips = true;
-                this.BarraTareas.Size = new System.Drawing.Size(1016, 28);
+                this.BarraTareas.Size = new System.Drawing.Size(950, 28);
                 this.BarraTareas.TabIndex = 4;
                 this.BarraTareas.TextAlign = System.Windows.Forms.ToolBarTextAlign.Right;
                 this.BarraTareas.Wrappable = false;
@@ -97,17 +97,17 @@ namespace Lazaro.Principal
                 // 
                 this.BarraInferior.Dock = System.Windows.Forms.DockStyle.Bottom;
                 this.BarraInferior.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.BarraInferior.Location = new System.Drawing.Point(0, 682);
+                this.BarraInferior.Location = new System.Drawing.Point(0, 385);
                 this.BarraInferior.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                 this.BarraInferior.Name = "BarraInferior";
-                this.BarraInferior.Size = new System.Drawing.Size(1016, 52);
+                this.BarraInferior.Size = new System.Drawing.Size(950, 52);
                 this.BarraInferior.TabIndex = 8;
                 // 
                 // Inicio
                 // 
                 this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
                 this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                this.ClientSize = new System.Drawing.Size(1016, 734);
+                this.ClientSize = new System.Drawing.Size(950, 437);
                 this.Controls.Add(this.BarraInferior);
                 this.Controls.Add(this.BarraTareas);
                 this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -131,6 +131,6 @@ namespace Lazaro.Principal
         internal System.Windows.Forms.MainMenu MainMenu;
 		public System.Windows.Forms.ToolBar BarraTareas;
 		private System.Windows.Forms.ImageList BarraTareasImagenes;
-		private BarraInferior BarraInferior;
+                private BarraInferior BarraInferior;
     }
 }

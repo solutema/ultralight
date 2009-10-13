@@ -171,6 +171,7 @@ namespace Lfc.Comprobantes
                                 ProductArray.ChildControls[i].TextDetail = Registro.Articulos[i].Nombre;
                                 ProductArray.ChildControls[i].Cantidad = Registro.Articulos[i].Cantidad;
                                 ProductArray.ChildControls[i].Unitario = Registro.Articulos[i].Unitario;
+                                ProductArray.ChildControls[i].Series = Registro.Articulos[i].Series;
                         }
 
                         if (Registro.Estado == 1)
@@ -205,6 +206,7 @@ namespace Lfc.Comprobantes
                                         Art.Nombre = ProductArray.ChildControls[i].TextDetail;
                                         Art.Cantidad = ProductArray.ChildControls[i].Cantidad;
                                         Art.Unitario = ProductArray.ChildControls[i].Unitario;
+                                        Art.Series = ProductArray.ChildControls[i].Series;
                                         Res.Articulos.Add(Art);
                                 }
                         }
@@ -259,20 +261,20 @@ namespace Lfc.Comprobantes
                                 switch (e.KeyCode) {
                                         case Keys.F4:
                                                 e.Handled = true;
-                                                if (cmdConvertir.Enabled && cmdConvertir.Visible)
-                                                        cmdConvertir.PerformClick();
+                                                if (BotonConvertir.Enabled && BotonConvertir.Visible)
+                                                        BotonConvertir.PerformClick();
                                                 break;
 
                                         case Keys.F5:
                                                 e.Handled = true;
-                                                if (cmdMasDatos.Enabled && cmdMasDatos.Visible)
-                                                        cmdMasDatos.PerformClick();
+                                                if (BotonMasDatos.Enabled && BotonMasDatos.Visible)
+                                                        BotonMasDatos.PerformClick();
                                                 break;
 
                                         case Keys.F7:
                                                 e.Handled = true;
-                                                if (cmdObs.Enabled && cmdObs.Visible)
-                                                        cmdObs.PerformClick();
+                                                if (BotonObs.Enabled && BotonObs.Visible)
+                                                        BotonObs.PerformClick();
                                                 break;
 
                                         case Keys.F8:
@@ -284,7 +286,7 @@ namespace Lfc.Comprobantes
                         }
                 }
 
-		private void cmdObs_Click(object sender, System.EventArgs e)
+		private void BotonObs_Click(object sender, System.EventArgs e)
 		{
                         Lui.Forms.AuxForms.TextEdit EditarObs = new Lui.Forms.AuxForms.TextEdit();
 			if (CachedRow.Obs != null)
@@ -301,7 +303,7 @@ namespace Lfc.Comprobantes
                         }
 		}
 
-		private void cmdConvertir_Click(object sender, System.EventArgs e)
+		private void BotonConvertir_Click(object sender, System.EventArgs e)
 		{
 			Comprobantes.Convertir FormConvertir = new Comprobantes.Convertir();
                         FormConvertir.OrigenTipo = this.Tipo.Nomenclatura;
@@ -415,7 +417,7 @@ namespace Lfc.Comprobantes
 			return new Lfx.Types.SuccessOperationResult();
 		}
 
-                private void cmdImprimir_Click(object sender, System.EventArgs e)
+                private void BotonImprimir_Click(object sender, System.EventArgs e)
                 {
                         Lfx.Types.OperationResult Res = Print((Control.ModifierKeys & Keys.Shift) == Keys.Shift);
 
@@ -445,7 +447,8 @@ namespace Lfc.Comprobantes
                                                 break;
                                 }
                         } else {
-                                Lui.Forms.MessageBox.Show(Res.Message, "Aviso");
+                                if (Res.Message != null && Res.Message.Length > 0)
+                                        Lui.Forms.MessageBox.Show(Res.Message, "Aviso");
                         }
                 }
 
@@ -483,7 +486,7 @@ namespace Lfc.Comprobantes
                         }
                 }
 
-		private void cmdMasDatos_Click(System.Object sender, System.EventArgs e)
+		private void BotonMasDatos_Click(System.Object sender, System.EventArgs e)
 		{
                         Lbl.Comprobantes.Comprobante Registro = this.CachedRow as Lbl.Comprobantes.Comprobante;
 			Comprobantes.FormComprobanteMasDatos OFormMasDatos = new Comprobantes.FormComprobanteMasDatos();

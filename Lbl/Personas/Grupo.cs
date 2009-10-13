@@ -35,6 +35,8 @@ namespace Lbl.Personas
 {
 	public class Grupo : ElementoDeDatos
 	{
+                private Grupo m_Parent = null;
+
 		public Grupo(Lws.Data.DataView dataView) : base(dataView) { }
 
 		public Grupo(Lws.Data.DataView dataView, int idGrupo)
@@ -58,5 +60,29 @@ namespace Lbl.Personas
 				return "id_grupo";
 			}
 		}
+
+                public override void OnLoad()
+                {
+                        base.OnLoad();
+
+                        m_Parent = null;
+                }
+
+                public Grupo Parent
+                {
+                        get
+                        {
+                                if(m_Parent == null && this.FieldInt("parent") != 0)
+                                        m_Parent = new Grupo(this.DataView, this.FieldInt("parent"));
+
+                                return m_Parent;
+                        }
+                        set
+                        {
+                                m_Parent = value;
+                                if (value != null)
+                                        this.Registro["parent"] = value.Id;
+                        }
+                }
 	}
 }

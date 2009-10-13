@@ -65,6 +65,8 @@
       <Opcion Nombre="&amp;Recibo Rápido" Funcion="CREAR RECIBO_RAPIDO" />
       <Opcion Nombre="-" Funcion="" />
       <Opcion Nombre="Nuevo Recibo de Pago" Funcion="CREAR RECIBO_PAGO" />
+      <Opcion Nombre="-" Funcion="" />
+      <Opcion Nombre="&amp;Anular" Funcion="ANULAR RECIBO" />
     </Opcion>
     <Opcion Nombre="Re&amp;mitos" Funcion="">
       <Opcion Nombre="&amp;Listado" Funcion="LISTADO COMPROBANTES R" />

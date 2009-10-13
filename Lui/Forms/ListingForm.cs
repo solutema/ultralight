@@ -45,8 +45,7 @@ namespace Lui.Forms
 		private string m_DataTableName;
 		private Lfx.Data.FormField m_KeyField;
 		private string m_OrderBy = null;
-		private string m_ExtraDataTableNames;
-		private string m_Relations = "";
+                private System.Collections.Generic.List<Lfx.Data.Join> m_Joins = new System.Collections.Generic.List<Lfx.Data.Join>();
 		private string m_SearchText = "";
 		private object m_CurrentFilter;
                 
@@ -189,7 +188,19 @@ namespace Lui.Forms
 			}
 		}
 
-		public string ExtraDataTableNames
+                public System.Collections.Generic.List<Lfx.Data.Join> Joins
+                {
+                        get
+                        {
+                                return this.m_Joins;
+                        }
+                        set
+                        {
+                                this.m_Joins = value;
+                        }
+                }
+
+		/* public string ExtraDataTableNames
 		{
 			get
 			{
@@ -211,7 +222,7 @@ namespace Lui.Forms
 			{
 				m_Relations = value;
 			}
-		}
+		} */
 
 		public string OrderBy
 		{
@@ -307,17 +318,14 @@ namespace Lui.Forms
 		{
 			if (m_DataTableName != null)
 			{
+                                Lfx.Data.SqlSelectBuilder ComandoSelect = new Lfx.Data.SqlSelectBuilder(this.DataView.DataBase.SqlMode);
+
 				// Genero la lista de tablas, con JOIN y todo
 				string ListaTablas = null;
 				ListaTablas = m_DataTableName;
 
-				if (m_ExtraDataTableNames != null)
-				{
-					ListaTablas += " LEFT JOIN " + m_ExtraDataTableNames;
-
-					if (m_Relations != null && m_Relations.Length > 0)
-						ListaTablas += " ON " + m_Relations;
-				}
+                                if (m_Joins != null && m_Joins.Count > 0)
+                                        ComandoSelect.Joins = m_Joins;
 
 				// Genero la lista de campos
 				string ListaCampos = m_KeyField.ColumnName;
@@ -384,7 +392,6 @@ namespace Lui.Forms
 					}
 				}
 
-				Lfx.Data.SqlSelectBuilder ComandoSelect = new Lfx.Data.SqlSelectBuilder(this.DataView.DataBase.SqlMode);
 				ComandoSelect.Tables = ListaTablas;
 				ComandoSelect.Fields = ListaCampos;
 				ComandoSelect.WhereClause = WhereCompleto;
@@ -464,7 +471,10 @@ namespace Lui.Forms
 								break;
 
                                                         case Lfx.Data.InputFieldTypes.Numeric:
-								Itm.SubItems.Add(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Registro[ii])));
+                                                                if (Registro[ii] == null || Registro[ii] is DBNull)
+                                                                        Itm.SubItems.Add("");
+                                                                else
+                                                                        Itm.SubItems.Add(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Registro[ii])));
 								break;
 
                                                         case Lfx.Data.InputFieldTypes.Date:

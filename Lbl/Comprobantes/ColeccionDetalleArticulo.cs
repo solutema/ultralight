@@ -141,6 +141,22 @@ namespace Lbl.Comprobantes
                         return Res;
                 }
 
+                public string Series
+                {
+                        get
+                        {
+                                StringBuilder Res = new StringBuilder();
+                                foreach (Lbl.Comprobantes.DetalleArticulo Art in this.List) {
+                                        if (Art.Series != null)
+                                                Res.AppendLine(Art.Series);
+                                }
+                                if (Res.Length > 0)
+                                        return Res.ToString();
+                                else
+                                        return null;
+                        }
+                }
+
                 public override string ToString()
                 {
                         string Res = null;

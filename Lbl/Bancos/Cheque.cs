@@ -59,7 +59,7 @@ namespace Lbl.Bancos
                         this.Cargar();
                 }
 
-		public Cheque(Lws.Data.DataView dataView, double importe, int numero, string emisor, DateTime? fechaEmision, DateTime? fechaCobro, Bancos.Banco banco)
+                public Cheque(Lws.Data.DataView dataView, double importe, int numero, string emisor, Lfx.Types.LDateTime fechaEmision, Lfx.Types.LDateTime fechaCobro, Bancos.Banco banco)
 			: this(dataView)
 		{
 			this.Importe = importe;
@@ -195,7 +195,7 @@ namespace Lbl.Bancos
                         }
                 }
 
-                public DateTime? FechaEmision
+                public Lfx.Types.LDateTime FechaEmision
                 {
                         get
                         {
@@ -207,7 +207,7 @@ namespace Lbl.Bancos
                         }
                 }
 
-                public DateTime? FechaCobro
+                public Lfx.Types.LDateTime FechaCobro
                 {
                         get
                         {

@@ -46,7 +46,7 @@ namespace ServidorFiscal
 
 		public override object Create(bool wait)
 		{
-                        this.Workspace.CurrentUser.UserId = 1;
+                        this.Workspace.CurrentUser.Id = 1;
 			FormEstado = new FiscalStatus();
 			FormEstado.Workspace = this.Workspace;
 			FormEstado.ServidorAsociado = this;

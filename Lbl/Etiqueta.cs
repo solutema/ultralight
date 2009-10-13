@@ -72,6 +72,14 @@ namespace Lbl
                         Res.FromRow(row);
                         return Res;
                 }
+
+                public string TablaReferencia
+                {
+                        get
+                        {
+                                return this.FieldString("tablas");
+                        }
+                }
         }
 
         public class ColeccionDeEtiquetas : ColeccionDeElementos

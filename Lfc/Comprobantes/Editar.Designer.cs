@@ -65,10 +65,10 @@ namespace Lfc.Comprobantes
                         this.txtValorCuota = new Lui.Forms.TextBox();
                         this.Label9 = new System.Windows.Forms.Label();
                         this.PrintButton = new Lui.Forms.Button();
-                        this.cmdObs = new Lui.Forms.Button();
-                        this.cmdConvertir = new Lui.Forms.Button();
+                        this.BotonObs = new Lui.Forms.Button();
+                        this.BotonConvertir = new Lui.Forms.Button();
                         this.txtComprobanteID = new System.Windows.Forms.TextBox();
-                        this.cmdMasDatos = new Lui.Forms.Button();
+                        this.BotonMasDatos = new Lui.Forms.Button();
                         this.lblTitulo = new System.Windows.Forms.Label();
                         this.label2 = new System.Windows.Forms.Label();
                         this.txtPV = new Lui.Forms.TextBox();
@@ -446,49 +446,49 @@ namespace Lfc.Comprobantes
                         this.PrintButton.TabIndex = 53;
                         this.PrintButton.Text = "Imprimir";
                         this.PrintButton.ToolTipText = "";
-                        this.PrintButton.Click += new System.EventHandler(this.cmdImprimir_Click);
+                        this.PrintButton.Click += new System.EventHandler(this.BotonImprimir_Click);
                         // 
-                        // cmdObs
+                        // BotonObs
                         // 
-                        this.cmdObs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.cmdObs.AutoHeight = false;
-                        this.cmdObs.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdObs.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdObs.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdObs.Image = null;
-                        this.cmdObs.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdObs.Location = new System.Drawing.Point(208, 420);
-                        this.cmdObs.Name = "cmdObs";
-                        this.cmdObs.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdObs.ReadOnly = false;
-                        this.cmdObs.Size = new System.Drawing.Size(96, 44);
-                        this.cmdObs.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
-                        this.cmdObs.Subtext = "F7";
-                        this.cmdObs.TabIndex = 52;
-                        this.cmdObs.Text = "Observac.";
-                        this.cmdObs.ToolTipText = "";
-                        this.cmdObs.Click += new System.EventHandler(this.cmdObs_Click);
+                        this.BotonObs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonObs.AutoHeight = false;
+                        this.BotonObs.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonObs.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonObs.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonObs.Image = null;
+                        this.BotonObs.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonObs.Location = new System.Drawing.Point(208, 420);
+                        this.BotonObs.Name = "BotonObs";
+                        this.BotonObs.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonObs.ReadOnly = false;
+                        this.BotonObs.Size = new System.Drawing.Size(96, 44);
+                        this.BotonObs.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
+                        this.BotonObs.Subtext = "F7";
+                        this.BotonObs.TabIndex = 52;
+                        this.BotonObs.Text = "Observac.";
+                        this.BotonObs.ToolTipText = "";
+                        this.BotonObs.Click += new System.EventHandler(this.BotonObs_Click);
                         // 
-                        // cmdConvertir
+                        // BotonConvertir
                         // 
-                        this.cmdConvertir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.cmdConvertir.AutoHeight = false;
-                        this.cmdConvertir.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdConvertir.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdConvertir.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdConvertir.Image = null;
-                        this.cmdConvertir.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdConvertir.Location = new System.Drawing.Point(8, 420);
-                        this.cmdConvertir.Name = "cmdConvertir";
-                        this.cmdConvertir.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdConvertir.ReadOnly = false;
-                        this.cmdConvertir.Size = new System.Drawing.Size(96, 44);
-                        this.cmdConvertir.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
-                        this.cmdConvertir.Subtext = "F4";
-                        this.cmdConvertir.TabIndex = 50;
-                        this.cmdConvertir.Text = "Convertir";
-                        this.cmdConvertir.ToolTipText = "";
-                        this.cmdConvertir.Click += new System.EventHandler(this.cmdConvertir_Click);
+                        this.BotonConvertir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonConvertir.AutoHeight = false;
+                        this.BotonConvertir.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonConvertir.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonConvertir.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonConvertir.Image = null;
+                        this.BotonConvertir.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonConvertir.Location = new System.Drawing.Point(8, 420);
+                        this.BotonConvertir.Name = "BotonConvertir";
+                        this.BotonConvertir.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonConvertir.ReadOnly = false;
+                        this.BotonConvertir.Size = new System.Drawing.Size(96, 44);
+                        this.BotonConvertir.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
+                        this.BotonConvertir.Subtext = "F4";
+                        this.BotonConvertir.TabIndex = 50;
+                        this.BotonConvertir.Text = "Convertir";
+                        this.BotonConvertir.ToolTipText = "";
+                        this.BotonConvertir.Click += new System.EventHandler(this.BotonConvertir_Click);
                         // 
                         // txtComprobanteID
                         // 
@@ -498,26 +498,26 @@ namespace Lfc.Comprobantes
                         this.txtComprobanteID.TabIndex = 52;
                         this.txtComprobanteID.Visible = false;
                         // 
-                        // cmdMasDatos
+                        // BotonMasDatos
                         // 
-                        this.cmdMasDatos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.cmdMasDatos.AutoHeight = false;
-                        this.cmdMasDatos.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdMasDatos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdMasDatos.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdMasDatos.Image = null;
-                        this.cmdMasDatos.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdMasDatos.Location = new System.Drawing.Point(108, 420);
-                        this.cmdMasDatos.Name = "cmdMasDatos";
-                        this.cmdMasDatos.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdMasDatos.ReadOnly = false;
-                        this.cmdMasDatos.Size = new System.Drawing.Size(96, 44);
-                        this.cmdMasDatos.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
-                        this.cmdMasDatos.Subtext = "F5";
-                        this.cmdMasDatos.TabIndex = 51;
-                        this.cmdMasDatos.Text = "Más Datos";
-                        this.cmdMasDatos.ToolTipText = "";
-                        this.cmdMasDatos.Click += new System.EventHandler(this.cmdMasDatos_Click);
+                        this.BotonMasDatos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonMasDatos.AutoHeight = false;
+                        this.BotonMasDatos.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonMasDatos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonMasDatos.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonMasDatos.Image = null;
+                        this.BotonMasDatos.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonMasDatos.Location = new System.Drawing.Point(108, 420);
+                        this.BotonMasDatos.Name = "BotonMasDatos";
+                        this.BotonMasDatos.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonMasDatos.ReadOnly = false;
+                        this.BotonMasDatos.Size = new System.Drawing.Size(96, 44);
+                        this.BotonMasDatos.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
+                        this.BotonMasDatos.Subtext = "F5";
+                        this.BotonMasDatos.TabIndex = 51;
+                        this.BotonMasDatos.Text = "Más Datos";
+                        this.BotonMasDatos.ToolTipText = "";
+                        this.BotonMasDatos.Click += new System.EventHandler(this.BotonMasDatos_Click);
                         // 
                         // lblTitulo
                         // 
@@ -588,9 +588,9 @@ namespace Lfc.Comprobantes
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(692, 473);
                         this.Controls.Add(this.PrintButton);
-                        this.Controls.Add(this.cmdObs);
-                        this.Controls.Add(this.cmdMasDatos);
-                        this.Controls.Add(this.cmdConvertir);
+                        this.Controls.Add(this.BotonObs);
+                        this.Controls.Add(this.BotonMasDatos);
+                        this.Controls.Add(this.BotonConvertir);
                         this.Controls.Add(this.PnlCuotas);
                         this.Controls.Add(this.txtPV);
                         this.Controls.Add(this.label2);
@@ -632,9 +632,9 @@ namespace Lfc.Comprobantes
                         this.Controls.SetChildIndex(this.label2, 0);
                         this.Controls.SetChildIndex(this.txtPV, 0);
                         this.Controls.SetChildIndex(this.PnlCuotas, 0);
-                        this.Controls.SetChildIndex(this.cmdConvertir, 0);
-                        this.Controls.SetChildIndex(this.cmdMasDatos, 0);
-                        this.Controls.SetChildIndex(this.cmdObs, 0);
+                        this.Controls.SetChildIndex(this.BotonConvertir, 0);
+                        this.Controls.SetChildIndex(this.BotonMasDatos, 0);
+                        this.Controls.SetChildIndex(this.BotonObs, 0);
                         this.Controls.SetChildIndex(this.PrintButton, 0);
                         this.PnlCuotas.ResumeLayout(false);
                         this.ResumeLayout(false);
@@ -660,10 +660,10 @@ namespace Lfc.Comprobantes
                 internal Lui.Forms.TextBox txtValorCuota;
                 internal System.Windows.Forms.Label Label9;
                 internal Lui.Forms.Button PrintButton;
-                internal Lui.Forms.Button cmdObs;
-                internal Lui.Forms.Button cmdConvertir;
+                internal Lui.Forms.Button BotonObs;
+                internal Lui.Forms.Button BotonConvertir;
                 internal System.Windows.Forms.TextBox txtComprobanteID;
-                internal Lui.Forms.Button cmdMasDatos;
+                internal Lui.Forms.Button BotonMasDatos;
                 internal System.Windows.Forms.Label lblTitulo;
                 internal System.Windows.Forms.Label label2;
                 internal Lui.Forms.TextBox txtPV;

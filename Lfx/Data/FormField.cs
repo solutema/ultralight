@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -72,6 +72,24 @@ namespace Lfx.Data
 				m_Label = value;
 			}
 		}
+
+                public Lfx.Types.StringAlignment Alignment
+                {
+                        get
+                        {
+                                switch(this.DataType) {
+                                        case InputFieldTypes.Currency:
+                                        case InputFieldTypes.Numeric:
+                                        case InputFieldTypes.Serial:
+                                        case InputFieldTypes.Integer:
+                                        case InputFieldTypes.Date:
+                                        case InputFieldTypes.DateTime:
+                                                return Lfx.Types.StringAlignment.Far;
+                                        default:
+                                                return Lfx.Types.StringAlignment.Near;
+                                }
+                        }
+                }
 
                 public override string ToString()
                 {

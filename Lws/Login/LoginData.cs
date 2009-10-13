@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,9 +38,9 @@ namespace Lws
 	/// </summary>
 	public class LoginData
 	{
-		public int UserId;
+		public int Id;
 		public string UserName;
-		public string UserCompleteName;
+		public string CompleteName;
 		private Lws.Workspace m_Workspace;
 
 		public LoginData(Lws.Workspace workSpace)

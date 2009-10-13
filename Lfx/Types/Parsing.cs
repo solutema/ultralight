@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -61,7 +61,7 @@ namespace Lfx.Types
                 /// <summary>
                 /// Interpreta un valor de fecha en varios formatos diferentes. Devuelve null para cadenas vacías o fechas inválidas.
                 /// </summary>
-                public static DateTime? ParseDate(string fecha)
+                public static LDateTime ParseDate(string fecha)
                 {
                         // Toma una fecha DD-MM-YYYY y devuelve un Date
                         string FechaTemp = fecha.Replace("  ", " ").Replace("/", "-").Trim();
@@ -71,11 +71,13 @@ namespace Lfx.Types
 					"dd-MM-yyyy",
 					"d-M-yyyy",
 					"dd-MM-yy",
-					"d-M-yy"
+					"d-M-yy",
+                                        "yyyyMMdd",
+                                        "yyMMdd",
 				};
 
                         try {
-                                return DateTime.ParseExact(FechaTemp, FormatosAceptados, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AllowWhiteSpaces);
+                                return new LDateTime(DateTime.ParseExact(FechaTemp, FormatosAceptados, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AllowWhiteSpaces));
                         } catch {
                                 return null;
                         }

@@ -122,7 +122,7 @@ namespace Lui.Forms
 			}
 		}
 
-		public string Serials
+		public string Series
 		{
 			get
 			{
@@ -131,8 +131,12 @@ namespace Lui.Forms
 			set
 			{
 				m_Serials = value;
-				LabelSerials.Text = "NS: " + m_Serials.Replace(System.Environment.NewLine, ", ");
-				LabelSerials.Visible = (m_Serials != null && m_Serials.Length > 1);
+                                if (m_Serials == null) {
+                                        LabelSerials.Visible = false;
+                                } else {
+                                        LabelSerials.Text = "NS: " + m_Serials.Replace(System.Environment.NewLine, ", ");
+                                        LabelSerials.Visible = m_Serials.Length > 1;
+                                }
 			}
 		}
 
@@ -548,7 +552,7 @@ namespace Lui.Forms
 			EditarSeries.Text = "Números de serie";
 			EditarSeries.txtText.Font = new Font("Bitstream Vera Sans Mono", EditarSeries.txtText.Font.Size);
 			if (EditarSeries.ShowDialog() == DialogResult.OK)
-				this.Serials = EditarSeries.EditText;
+				this.Series = EditarSeries.EditText;
 			EditarSeries.Close();
 			EditarSeries = null;
 		}

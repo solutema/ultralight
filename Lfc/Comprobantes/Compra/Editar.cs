@@ -144,7 +144,7 @@ namespace Lfc.Comprobantes.Compra
                                                 ArticulosCantidadesOriginales.Add(Art.IdArticulo, Art.Cantidad);
 				}
 
-				EntradaProductos.ChildControls[i].Serials = Art.Series;
+				EntradaProductos.ChildControls[i].Series = Art.Series;
 				EntradaProductos.ChildControls[i].TextDetail = Art.Nombre;
 				EntradaProductos.ChildControls[i].Cantidad = Art.Cantidad;
 				EntradaProductos.ChildControls[i].Tag = "0";
@@ -168,7 +168,7 @@ namespace Lfc.Comprobantes.Compra
                                 Res.ComprobanteOriginal = null;
                         else
                                 Res.ComprobanteOriginal = new Lbl.Comprobantes.ComprobanteConArticulos(Res.DataView, m_FacturaIdOrig);
-                        Res.Vendedor = new Lbl.Personas.Persona(Res.DataView, this.Workspace.CurrentUser.UserId);
+                        Res.Vendedor = new Lbl.Personas.Persona(Res.DataView, this.Workspace.CurrentUser.Id);
                         if (EntradaProveedor.TextInt == 0)
                                 Res.Cliente = null;
                         else
@@ -199,7 +199,7 @@ namespace Lfc.Comprobantes.Compra
                                         Art.Nombre = EntradaProductos.ChildControls[i].TextDetail;
                                         Art.Cantidad = EntradaProductos.ChildControls[i].Cantidad;
                                         Art.Unitario = EntradaProductos.ChildControls[i].Unitario;
-                                        Art.Series = EntradaProductos.ChildControls[i].Serials;
+                                        Art.Series = EntradaProductos.ChildControls[i].Series;
                                         Res.Articulos.Add(Art);
                                 }
                         }
@@ -307,7 +307,7 @@ namespace Lfc.Comprobantes.Compra
 				for (int i = 0; i <= EntradaProductos.Count - 1; i++)
 				{
 					FormularioEdicion.EntradaProductos.ChildControls[i].Text = EntradaProductos.ChildControls[i].Text;
-					FormularioEdicion.EntradaProductos.ChildControls[i].Serials = EntradaProductos.ChildControls[i].Serials;
+					FormularioEdicion.EntradaProductos.ChildControls[i].Series = EntradaProductos.ChildControls[i].Series;
 					FormularioEdicion.EntradaProductos.ChildControls[i].TextDetail = EntradaProductos.ChildControls[i].TextDetail;
 					FormularioEdicion.EntradaProductos.ChildControls[i].Cantidad = EntradaProductos.ChildControls[i].Cantidad;
 					FormularioEdicion.EntradaProductos.ChildControls[i].Unitario = EntradaProductos.ChildControls[i].Unitario;

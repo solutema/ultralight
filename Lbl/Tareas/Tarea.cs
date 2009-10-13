@@ -98,7 +98,7 @@ namespace Lbl.Tareas
                         }
                 }
 
-                public DateTime? Fecha
+                public Lfx.Types.LDateTime Fecha
                 {
                         get
                         {
@@ -110,7 +110,7 @@ namespace Lbl.Tareas
                         }
                 }
 
-                public DateTime? FechaEstimada
+                public Lfx.Types.LDateTime FechaEstimada
                 {
                         get
                         {
@@ -122,7 +122,7 @@ namespace Lbl.Tareas
                         }
                 }
 
-                public DateTime? FechaLimite
+                public Lfx.Types.LDateTime FechaLimite
                 {
                         get
                         {
@@ -158,7 +158,7 @@ namespace Lbl.Tareas
                 public override Lfx.Types.OperationResult Crear()
                 {
                         Lfx.Types.OperationResult Res = base.Crear();
-                        this.Encargado = new Lbl.Personas.Persona(this.DataView, this.Workspace.CurrentUser.UserId);
+                        this.Encargado = new Lbl.Personas.Persona(this.DataView, this.Workspace.CurrentUser.Id);
                         return Res;
                 }
 

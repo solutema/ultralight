@@ -239,14 +239,12 @@ namespace Lui.Forms
 
                 private void MenuItemPegar_Click(System.Object sender, System.EventArgs e)
                 {
-                        string DatosPortapapeles;
                         try {
-                                DatosPortapapeles = System.Convert.ToString(Clipboard.GetDataObject().GetData(DataFormats.Text, true));
-                        } finally {
-                                DatosPortapapeles = null;
-                        }
-                        if (DatosPortapapeles != null)
+                                string DatosPortapapeles = System.Convert.ToString(Clipboard.GetDataObject().GetData(DataFormats.Text, true));
                                 this.Text = DatosPortapapeles;
+                        } catch {
+                                // Nada
+                        }
                 }
 
 
@@ -371,7 +369,7 @@ namespace Lui.Forms
 			Lfx.Data.SqlInsertBuilder Comando = new Lfx.Data.SqlInsertBuilder(this.Workspace.DefaultDataView.DataBase, "sys_quickpaste");
 			Comando.Fields.AddWithValue("texto", this.Text);
 			Comando.Fields.AddWithValue("estacion", System.Environment.MachineName.ToUpperInvariant());
-			Comando.Fields.AddWithValue("usuario", this.Workspace.CurrentUser.UserId);
+			Comando.Fields.AddWithValue("usuario", this.Workspace.CurrentUser.Id);
 			Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
 			this.Workspace.DefaultDataView.Execute(Comando);
 		}
@@ -409,7 +407,11 @@ namespace Lui.Forms
                         string Res = null;
                         switch (m_DataType) {
                                 case DataTypes.Integer:
-                                        Res = System.Convert.ToInt32(Lfx.Types.Evaluator.EvaluateDouble(Dato)).ToString();
+                                        double Eval = Lfx.Types.Evaluator.EvaluateDouble(Dato);
+                                        if (Eval > int.MaxValue || Eval < int.MinValue)
+                                                Res = "0";
+                                        else
+                                                Res = System.Convert.ToInt32(Eval).ToString();
                                         break;
                                 case DataTypes.Float:
                                         if (m_DecimalPlaces == -1)
@@ -432,7 +434,7 @@ namespace Lui.Forms
                                         Res = Lfx.Types.Formatting.FormatDateAndTime(Dato);
                                         break;
                                 default:
-                                        Res = Dato;
+                                        Res = Lfx.Types.Strings.UnixToWindows(Dato);
                                         break;
                         }
 

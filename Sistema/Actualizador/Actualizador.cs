@@ -98,6 +98,8 @@ namespace Lazaro.Actualizador
                                 return ArchivosActualizados;
                         } catch (Exception ex) {
                                 System.Console.WriteLine("ActualizarAplicacionDesdeBD: " + ex.Message);
+                                if (Lfx.Environment.SystemInformation.DesignMode)
+                                        throw ex;
                                 return 0;
                         }
                 }
@@ -135,10 +137,10 @@ namespace Lazaro.Actualizador
                                 ArchivoVersion.Attributes["name"].Value = "version.xml";
                                 ActualizarArchivoDesdeWeb(aslURL, ArchivoVersion, true, string.Empty);
 
-                                if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + "version.xml") == false)
+                                if (System.IO.File.Exists(Lfx.Environment.Folders.UpdatesFolder + "version.xml") == false)
                                         return 0;
 
-                                VersionXml.Load(Lfx.Environment.Folders.ApplicationDataFolder + "Updates" + System.IO.Path.DirectorySeparatorChar + "version.xml");
+                                VersionXml.Load(Lfx.Environment.Folders.UpdatesFolder + "version.xml");
                                 System.Xml.XmlNode VersionInfo = VersionXml.SelectSingleNode("/VersionInfo");
 
                                 //Importo los nodos de los archivos {nombre_componente}.ver como si formaran parte de version.xml
@@ -147,10 +149,12 @@ namespace Lazaro.Actualizador
                                         //Ignoro archivos ocultos
                                         if ((DirItem.Attributes & System.IO.FileAttributes.Hidden) != System.IO.FileAttributes.Hidden) {
                                                 System.Xml.XmlDocument VersionComponente = new System.Xml.XmlDocument();
-                                                if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationDataFolder + "Updates" + System.IO.Path.DirectorySeparatorChar + DirItem.Name))
-                                                        VersionComponente.Load(Lfx.Environment.Folders.ApplicationDataFolder + "Updates" + System.IO.Path.DirectorySeparatorChar + DirItem.Name);
-                                                else
+                                                string VerFileName = Lfx.Environment.Folders.UpdatesFolder + "Components" + System.IO.Path.DirectorySeparatorChar + DirItem.Name;;
+                                                if (System.IO.File.Exists(VerFileName))
+                                                        VersionComponente.Load(VerFileName);
+                                                else if (System.IO.File.Exists(Lfx.Environment.Folders.ComponentsFolder + DirItem.Name))
                                                         VersionComponente.Load(Lfx.Environment.Folders.ComponentsFolder + DirItem.Name);
+                                                
                                                 System.Xml.XmlNode NodoComponente = VersionComponente.SelectSingleNode("/VersionInfo/Component[@name='" + System.IO.Path.GetFileNameWithoutExtension(DirItem.Name) + "']");
                                                 string URLComponente;
                                                 if (NodoComponente.Attributes["url"] == null)
@@ -160,7 +164,7 @@ namespace Lazaro.Actualizador
 
                                                 ArchivoVersion.Attributes["name"].Value = DirItem.Name;
                                                 if (ActualizarArchivoDesdeWeb(URLComponente, ArchivoVersion, true, "Components/")) {
-                                                        VersionComponente.Load(Lfx.Environment.Folders.ComponentsFolder + DirItem.Name);
+                                                        VersionComponente.Load(VerFileName);
                                                         NodoComponente = VersionComponente.SelectSingleNode("/VersionInfo/Component[@name='" + System.IO.Path.GetFileNameWithoutExtension(DirItem.Name) + "']");
                                                         VersionInfo.AppendChild(VersionXml.ImportNode(NodoComponente, true));
                                                 } else {
@@ -185,7 +189,7 @@ namespace Lazaro.Actualizador
                                                         if (Archivo.Attributes["name"] != null && Archivo.Attributes["name"].Value != null) {
                                                                 string nombreCarpeta = string.Empty;
                                                                 if (nombreComponente != "Core")
-                                                                        nombreCarpeta = "Components/";
+                                                                        nombreCarpeta = "Components" + System.IO.Path.DirectorySeparatorChar;
                                                                 if (formularioEstado != null)
                                                                         formularioEstado.lblOperacion.Text = "Descargando archivos...";
                                                                 if (ActualizarArchivoDesdeWeb(URLComponente, Archivo, false, nombreCarpeta))
@@ -214,7 +218,7 @@ namespace Lazaro.Actualizador
                         if (CarpetaTrabajo[CarpetaTrabajo.Length - 1] != System.IO.Path.DirectorySeparatorChar)
                                 CarpetaTrabajo += System.IO.Path.DirectorySeparatorChar;
 
-                        string CarpetaDescarga = Lfx.Environment.Folders.ApplicationDataFolder + "Updates" + System.IO.Path.DirectorySeparatorChar + nombreCarpeta;
+                        string CarpetaDescarga = Lfx.Environment.Folders.UpdatesFolder + nombreCarpeta;
                         if (System.IO.Directory.Exists(CarpetaDescarga) == false)
                                 System.IO.Directory.CreateDirectory(CarpetaDescarga);
 
@@ -226,6 +230,8 @@ namespace Lazaro.Actualizador
                                         FechaArchivo = Lfx.Types.Formatting.FormatDateTimeSql(new System.IO.FileInfo(CarpetaTrabajo + NombreArchivo).LastWriteTime);
                                 } catch (Exception ex) {
                                         System.Console.WriteLine("ActualizarArchivoDesdeBD: CambiarFecha: " + ex.Message);
+                                        if (Lfx.Environment.SystemInformation.DesignMode)
+                                                throw ex;
                                         FechaArchivo = string.Empty;
                                 }
                         }
@@ -237,31 +243,36 @@ namespace Lazaro.Actualizador
                                         if (System.IO.File.Exists(CarpetaDescarga + NombreArchivo + ".new"))
                                                 System.IO.File.Delete(CarpetaDescarga + NombreArchivo + ".new");
 
-                                        Archivo = GetDataView().DataBase.FirstRowFromSelect("SELECT nombre, fecha, contenido FROM sys_asl WHERE nombre='" + nombreCarpeta + Archivo["nombre"] + "'");
+                                        Archivo = GetDataView().DataBase.FirstRowFromSelect("SELECT nombre, fecha, contenido FROM sys_asl WHERE nombre='" + (nombreCarpeta + Archivo["nombre"]).Replace("\\", "/") + "'");
 
-                                        System.IO.BinaryWriter wr = new System.IO.BinaryWriter(System.IO.File.OpenWrite(CarpetaDescarga + NombreArchivo + ".new"), System.Text.Encoding.Default);
-                                        wr.Write(((byte[])(Archivo["contenido"])));
-                                        wr.Close();
+                                        if (Archivo != null && Archivo["contenido"] != null) {
+                                                System.IO.BinaryWriter wr = new System.IO.BinaryWriter(System.IO.File.OpenWrite(CarpetaDescarga + NombreArchivo + ".new"), System.Text.Encoding.Default);
+                                                wr.Write(((byte[])(Archivo["contenido"])));
+                                                wr.Close();
 
-                                        System.Console.WriteLine("Actualización BD de " + NombreArchivo);
+                                                System.Console.WriteLine("Actualización BD de " + NombreArchivo);
 
-                                        if (string.Compare(FechaNueva, "1950-00-00 00:00:00") > 0) {
-                                                try {
-                                                        System.IO.FileInfo LazaroFileInfo = new System.IO.FileInfo(CarpetaDescarga + NombreArchivo + ".new");
-                                                        DateTime FechaNuevaD = Lfx.Types.Parsing.ParseSqlDateTime(FechaNueva);
-                                                        LazaroFileInfo.LastWriteTime = FechaNuevaD;
-                                                        LazaroFileInfo.CreationTime = FechaNuevaD;
-                                                } catch (Exception ex) {
-                                                        System.Console.WriteLine("ActualizarArchivoDesdeBD: CambiarFecha: " + ex.Message);
-                                                        // No pude poner la fecha del archivo... estoy en un problema?
+                                                if (string.Compare(FechaNueva, "1950-00-00 00:00:00") > 0) {
+                                                        try {
+                                                                System.IO.FileInfo LazaroFileInfo = new System.IO.FileInfo(CarpetaDescarga + NombreArchivo + ".new");
+                                                                DateTime FechaNuevaD = Lfx.Types.Parsing.ParseSqlDateTime(FechaNueva);
+                                                                LazaroFileInfo.LastWriteTime = FechaNuevaD;
+                                                                LazaroFileInfo.CreationTime = FechaNuevaD;
+                                                        } catch (Exception ex) {
+                                                                System.Console.WriteLine("ActualizarArchivoDesdeBD: CambiarFecha: " + ex.Message);
+                                                                if (Lfx.Environment.SystemInformation.DesignMode)
+                                                                        throw ex;
+                                                                // No pude poner la fecha del archivo... estoy en un problema?
+                                                        }
                                                 }
+                                                return true;
+                                        } else {
+                                                return false;
                                         }
-
-                                        return true;
                                 } catch (Exception ex) {
                                         // No se puede conectar al servidor de actualizaciones
                                         // OFormActualizador.Close()
-                                        Aplicacion.ExceptionHandler(ex);
+                                        Aplicacion.GenericExceptionHandler(ex);
                                         MensajeError = "Existe una nueva versión del archivo " + NombreArchivo + ", pero el sistema no puede actualizar automáticamente. Por favor actualice la aplicación manualmente.";
                                         return false;
                                 }
@@ -278,7 +289,7 @@ namespace Lazaro.Actualizador
                         if (CarpetaTrabajo[CarpetaTrabajo.Length - 1] != System.IO.Path.DirectorySeparatorChar && CarpetaTrabajo[CarpetaTrabajo.Length - 1] != '/')
                                 CarpetaTrabajo += System.IO.Path.DirectorySeparatorChar;
 
-                        string CarpetaDescarga = Lfx.Environment.Folders.ApplicationDataFolder + "Updates" + System.IO.Path.DirectorySeparatorChar + nombreCarpeta;
+                        string CarpetaDescarga = Lfx.Environment.Folders.UpdatesFolder + nombreCarpeta;
                         if (System.IO.Directory.Exists(CarpetaDescarga) == false)
                                 System.IO.Directory.CreateDirectory(CarpetaDescarga);
 
@@ -291,11 +302,10 @@ namespace Lazaro.Actualizador
                         if (FechaNueva == null || FechaNueva.Length == 0)
                                 FechaNueva = "1901-01-01 00:00:00";
 
-                        try {
+                        if (System.IO.File.Exists(CarpetaTrabajo + NombreArchivo))
                                 FechaArchivo = Lfx.Types.Formatting.FormatDateTimeSql(System.IO.File.GetLastWriteTime(CarpetaTrabajo + NombreArchivo));
-                        } catch {
+                        else
                                 FechaArchivo = string.Empty;
-                        }
 
                         if (IgnorarFecha || string.Compare(FechaNueva, FechaArchivo) > 0) {
                                 try {
@@ -304,8 +314,8 @@ namespace Lazaro.Actualizador
                                         System.Windows.Forms.Application.DoEvents();
 
                                         byte[] Contenido = null;
-                                        if (NombreArchivo != "version.xml" && NombreArchivo != "ICSharpCode.SharpZipLib.dll") {
-                                                // Intento descargar el archivo comprimido, salvo que sea version.txt o SharpZipLib
+                                        if (NombreArchivo != "version.xml" && NombreArchivo != "ICSharpCode.SharpZipLib.dll" && System.IO.Path.GetExtension(NombreArchivo).ToUpperInvariant() != ".VER") {
+                                                // Intento descargar el archivo comprimido, salvo que sea version.txt o SharpZipLib o un .ver
                                                 Compresion = ".bz2";
                                                 Contenido = NetGet(aslURL + nombreCarpeta + NombreArchivo + Compresion);
                                         }
@@ -368,24 +378,26 @@ namespace Lazaro.Actualizador
                                                                 LazaroFileInfo.CreationTime = FechaNuevaD;
                                                                 LazaroFileInfo = null;
                                                         } catch (Exception ex) {
-                                                                Aplicacion.ExceptionHandler(ex);
+                                                                Aplicacion.GenericExceptionHandler(ex);
                                                                 // No pude poner la fecha del archivo... estoy en un problema?
+                                                                if (Lfx.Environment.SystemInformation.DesignMode)
+                                                                        throw ex;
                                                         }
                                                 }
                                                 actualizarArchivoDesdeWebReturn = true;
 
                                                 // Lo publico en la BD
                                                 if (NombreArchivo != "version.xml" && Lws.Workspace.Master.SlowLink == false && Lfx.Environment.SystemInformation.DesignMode == false) {
-                                                        Lws.Workspace.Master.DefaultDataView.DataBase.Execute("DELETE FROM sys_asl WHERE nombre='" + nombreCarpeta + NombreArchivo.ToLower() + "'");
+                                                        Lws.Workspace.Master.DefaultDataView.DataBase.Execute("DELETE FROM sys_asl WHERE nombre='" + (nombreCarpeta + NombreArchivo).Replace("\\", "/") + "'");
                                                         Lfx.Data.SqlInsertBuilder InsertarArchivo = new Lfx.Data.SqlInsertBuilder(GetDataView().DataBase, "sys_asl");
-                                                        InsertarArchivo.Fields.AddWithValue("nombre", nombreCarpeta + NombreArchivo);
+                                                        InsertarArchivo.Fields.AddWithValue("nombre", (nombreCarpeta + NombreArchivo).Replace("\\", "/"));
                                                         InsertarArchivo.Fields.AddWithValue("fecha", FechaNueva);
                                                         InsertarArchivo.Fields.AddWithValue("checksum", ChecksumContenido);
                                                         InsertarArchivo.Fields.AddWithValue("contenido", Contenido);
                                                         Lws.Workspace.Master.DefaultDataView.Execute(InsertarArchivo);
                                                 }
 
-                                                if (NombreArchivo == "version.xml" || (NombreArchivo.Length > 4 && NombreArchivo.Substring(NombreArchivo.Length-4,4) == ".ver")) {
+                                                if (NombreArchivo == "version.xml" || System.IO.Path.GetExtension(NombreArchivo).ToUpperInvariant() == ".VER") {
                                                         // version.xml no queda como .new
                                                         if (System.IO.File.Exists(CarpetaDescarga + NombreArchivo))
                                                                 System.IO.File.Delete(CarpetaDescarga + NombreArchivo);
@@ -437,6 +449,8 @@ namespace Lazaro.Actualizador
                                 return Contenido;
                         } catch (Exception ex) {
                                 System.Console.WriteLine(ex.Message);
+                                if (Lfx.Environment.SystemInformation.DesignMode)
+                                        throw ex;
                                 return null;
                         }
                 }

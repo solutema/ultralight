@@ -51,8 +51,7 @@ namespace Lfc.Comprobantes.Compra
 
 			// agregar código de constructor después de llamar a InitializeComponent
 			DataTableName = "facturas";
-			ExtraDataTableNames = "facturas_detalle";
-			Relations = "facturas.id_factura=facturas_detalle.id_factura";
+			this.Joins.Add(new Lfx.Data.Join("facturas_detalle", "facturas.id_factura=facturas_detalle.id_factura"));
                         KeyField = new Lfx.Data.FormField("facturas.id_factura", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
 			GroupBy = KeyField;
 			OrderBy = "facturas.fecha DESC";

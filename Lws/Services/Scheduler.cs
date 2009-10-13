@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -82,7 +82,7 @@ namespace Lws.Services
 
                         Lfx.Data.SqlInsertBuilder Comando = new Lfx.Data.SqlInsertBuilder(m_Workspace.DefaultDataBase, "sys_programador");
                         Comando.Fields.AddWithValue("crea_estacion", System.Environment.MachineName.ToUpperInvariant());
-                        Comando.Fields.AddWithValue("crea_usuario", m_Workspace.CurrentUser.UserCompleteName);
+                        Comando.Fields.AddWithValue("crea_usuario", m_Workspace.CurrentUser.CompleteName);
                         Comando.Fields.AddWithValue("estacion", terminalName);
                         Comando.Fields.AddWithValue("comando", commandString);
                         Comando.Fields.AddWithValue("componente", component);

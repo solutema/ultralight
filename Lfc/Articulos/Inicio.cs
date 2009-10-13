@@ -94,12 +94,11 @@ namespace Lfc.Articulos
                         if (m_Situacion > 0) {
                                 FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("articulos_stock.id_situacion", m_Situacion));
                                 FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("articulos_stock.cantidad", Lfx.Data.SqlCommandBuilder.SqlOperands.NotEquals, 0));
-                                ExtraDataTableNames = "articulos_stock";
-                                Relations = "articulos.id_articulo=articulos_stock.id_articulo";
+                                this.Joins.Clear();
+                                this.Joins.Add(new Lfx.Data.Join("articulos_stock", "articulos.id_articulo=articulos_stock.id_articulo"));
                                 this.FormFields[3] = new Lfx.Data.FormField("articulos_stock.cantidad", "Stock", Lfx.Data.InputFieldTypes.Numeric, 120);
                         } else {
-                                ExtraDataTableNames = null;
-                                Relations = null;
+                                this.Joins.Clear();
                                 this.FormFields[3] = new Lfx.Data.FormField("articulos.stock_actual", "Stock", Lfx.Data.InputFieldTypes.Numeric, 120);
                         }
 
@@ -133,16 +132,22 @@ namespace Lfc.Articulos
                         base.RefreshList();
 
                         string SelectValorizacion = "SELECT SUM(costo*stock_actual) FROM articulos";
-                        if (ExtraDataTableNames != null && Relations != null)
-                                SelectValorizacion += " LEFT JOIN " + ExtraDataTableNames + " ON " + Relations;
+                        if (this.Joins != null && this.Joins.Count > 0) {
+                                foreach (Lfx.Data.Join Jo in this.Joins) {
+                                        SelectValorizacion += Jo.ToString();
+                                }
+                        }
                         if (FiltroWhere.Conditions.Count > 0)
                                 SelectValorizacion += " WHERE " + FiltroWhere.ToString();
                         double Valorizacion = this.Workspace.DefaultDataBase.FieldDouble(SelectValorizacion);
                         txtValorCosto.Text = Lfx.Types.Formatting.FormatCurrency(Valorizacion, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto);
 
                         SelectValorizacion = "SELECT SUM(pvp*stock_actual) FROM articulos";
-                        if (ExtraDataTableNames != null && Relations != null)
-                                SelectValorizacion += " LEFT JOIN " + ExtraDataTableNames + " ON " + Relations;
+                        if (this.Joins != null && this.Joins.Count > 0) {
+                                foreach (Lfx.Data.Join Jo in this.Joins) {
+                                        SelectValorizacion += Jo.ToString();
+                                }
+                        }
                         if (FiltroWhere.Conditions.Count > 0)
                                 SelectValorizacion += " WHERE " + FiltroWhere.ToString();
                         Valorizacion = this.Workspace.DefaultDataBase.FieldDouble(SelectValorizacion);

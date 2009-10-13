@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{56F39851-6542-405C-9F47-E8414B757EF6}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -125,6 +125,7 @@
     <Compile Include="Personas\EstadoCredito.cs" />
     <Compile Include="Personas\Grupo.cs" />
     <Compile Include="Personas\SituacionTributaria.cs" />
+    <Compile Include="Reportes\Reporte.cs" />
     <Compile Include="Tareas\Tarea.cs" />
     <Compile Include="Tareas\Tipo.cs" />
     <Compile Include="Tarjetas\Cupon.cs" />

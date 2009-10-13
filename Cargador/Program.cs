@@ -56,7 +56,7 @@ namespace Cargador
                                         Elevate();
                                 System.Console.WriteLine("Se van a actualizar " + ArchivosNuevos.Length.ToString() + " archivos.");
                                 // Espero 1 segundo por si algún proceso todavía está corriendo.
-                                System.Threading.Thread.Sleep(1000);
+                                System.Threading.Thread.Sleep(1500);
                         }
                         foreach (string ArchivoNuevo in ArchivosNuevos) {
                                 if (ArchivoNuevo.Length > 4) {

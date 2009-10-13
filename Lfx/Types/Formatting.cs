@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -441,9 +441,9 @@ namespace Lfx.Types
 			return formatearNumeroSqlReturn;
 		}
 
-                public static string FormatDateSql(System.DateTime? Fecha)
+                public static string FormatDateSql(System.DateTime Fecha)
                 {
-                        return Fecha.Value.ToString(Formatting.DateTime.SqlDateFormat);
+                        return Fecha.ToString(Formatting.DateTime.SqlDateFormat);
                 }
 
                 public static string FormatDateSql(string Fecha)
@@ -502,6 +502,8 @@ namespace Lfx.Types
                                 return string.Empty;
                         } else if (fecha is System.DateTime) {
                                 return FormatDate(System.Convert.ToDateTime(fecha).ToString(DateTime.DefaultDateFormat));
+                        } else if (fecha is LDateTime) {
+                                return FormatDate(((LDateTime)(fecha)).Value);
                         } else if (fecha is Nullable<System.DateTime>) {
                                 System.DateTime? fechaNullable = fecha as System.DateTime?;
                                 if (fechaNullable.HasValue)

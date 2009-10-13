@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BC643FE8-57FF-4E26-AAF2-19B229BE9B16}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -97,6 +97,7 @@
     <Compile Include="Data\ConstraintDefinition.cs" />
     <Compile Include="Data\DataBaseCache.cs" />
     <Compile Include="Data\Field.cs" />
+    <Compile Include="Data\Grouping.cs" />
     <Compile Include="Data\IndexDefinition.cs" />
     <Compile Include="Data\Providers\Npgsql.cs" />
     <Compile Include="Data\Row.cs" />
@@ -131,6 +132,8 @@
     <Compile Include="Types\Currency.cs" />
     <Compile Include="Types\Formatting.cs" />
     <Compile Include="Types\Ini.cs" />
+    <Compile Include="Types\LDateTime.cs" />
+    <Compile Include="Types\Object.cs" />
     <Compile Include="Types\OperationResult.cs" />
     <Compile Include="Types\Parsing.cs" />
     <Compile Include="Types\Strings.cs" />

@@ -42,7 +42,7 @@ namespace Lazaro
 
                 /// <summary>
                 /// Carga una configuración rápida de cosas mínimas que hacen falta antes de conectar al servidor.
-                ///  ATENCIÓN: No incorporar aquí comandos que necesiten de una conexión al servidor o de FormPrincipal porque todava no existen!
+                ///  ATENCIÓN: No incorporar aquí comandos que necesiten de una conexión al servidor o del formulario Principal porque todavía no existen.
                 ///  Mantener esta función pequeña y sencilla.
                 /// </summary>
 		public static void PreIniciar()
@@ -52,7 +52,7 @@ namespace Lazaro
 
 		/// <summary>
                 /// Aquí se carga el resto de la configuración.
-                /// A diferencia de ModuloConfig_PreIniciar(), este procedimiento espera que haya una conexión activa al servidor de base de datos.
+                /// A diferencia de PreIniciar(), este procedimiento espera que haya una conexión activa al servidor de base de datos.
 		/// </summary>
 		public static Lfx.Types.OperationResult Iniciar()
 		{
@@ -66,7 +66,7 @@ namespace Lazaro
 
 		public static void Terminar()
 		{
-			//Nada
+			
 		}
 	}
 }

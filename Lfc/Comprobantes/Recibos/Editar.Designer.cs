@@ -535,7 +535,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaConceptoTexto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaConceptoTexto.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaConceptoTexto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaConceptoTexto.Location = new System.Drawing.Point(124, 80);
+                        this.EntradaConceptoTexto.Location = new System.Drawing.Point(96, 80);
                         this.EntradaConceptoTexto.MaxLenght = 32767;
                         this.EntradaConceptoTexto.MultiLine = false;
                         this.EntradaConceptoTexto.Name = "EntradaConceptoTexto";
@@ -544,7 +544,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaConceptoTexto.Prefijo = "";
                         this.EntradaConceptoTexto.ReadOnly = false;
                         this.EntradaConceptoTexto.SelectOnFocus = true;
-                        this.EntradaConceptoTexto.Size = new System.Drawing.Size(232, 24);
+                        this.EntradaConceptoTexto.Size = new System.Drawing.Size(280, 24);
                         this.EntradaConceptoTexto.Sufijo = "";
                         this.EntradaConceptoTexto.TabIndex = 9;
                         this.EntradaConceptoTexto.TextRaw = "";
@@ -555,9 +555,9 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         this.label6.Location = new System.Drawing.Point(12, 80);
                         this.label6.Name = "label6";
-                        this.label6.Size = new System.Drawing.Size(116, 24);
+                        this.label6.Size = new System.Drawing.Size(84, 24);
                         this.label6.TabIndex = 8;
-                        this.label6.Text = "En concepto de";
+                        this.label6.Text = "Descipción";
                         this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // TablaCentral
@@ -609,11 +609,11 @@ namespace Lfc.Comprobantes.Recibos
                         // label7
                         // 
                         this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label7.Location = new System.Drawing.Point(372, 80);
+                        this.label7.Location = new System.Drawing.Point(388, 80);
                         this.label7.Name = "label7";
-                        this.label7.Size = new System.Drawing.Size(92, 24);
+                        this.label7.Size = new System.Drawing.Size(76, 24);
                         this.label7.TabIndex = 10;
-                        this.label7.Text = "Movimiento";
+                        this.label7.Text = "Concepto";
                         this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaConcepto

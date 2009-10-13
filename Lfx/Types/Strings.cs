@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -154,6 +154,14 @@ namespace Lfx.Types
 
                                 return Res.ToString();
                         }
+                }
+
+                /// <summary>
+                /// Convierte o unifica fines de línea en formato Windows (CR+LF).
+                /// </summary>
+                public static string UnixToWindows(string str)
+                {
+                        return str.Replace(Lfx.Types.ControlChars.CrLf, Lfx.Types.ControlChars.Lf.ToString()).Replace(Lfx.Types.ControlChars.Lf.ToString(), Lfx.Types.ControlChars.CrLf);
                 }
 
 

@@ -303,6 +303,14 @@ namespace Lbl.Articulos
 			}
 		}
 
+                public RequiereNS RequiereNS
+                {
+                        get
+                        {
+                                return this.Categoria == null ? RequiereNS.Nunca : this.Categoria.RequiereNS;
+                        }
+                }
+
 		public double StockActual()
 		{
 			return this.FieldDouble("stock_actual");
@@ -314,7 +322,7 @@ namespace Lbl.Articulos
 		}
 
 		
-		public void MoverStock(double cantidad, string obs, Situacion situacionOrigen, Situacion situacionDestino)
+		public void MoverStock(double cantidad, string obs, Situacion situacionOrigen, Situacion situacionDestino, string series)
 		{
 			if (this.ControlaStock)
 			{
@@ -342,7 +350,7 @@ namespace Lbl.Articulos
 					this.DataView.DataBase.Execute("UPDATE articulos SET stock_actual=stock_actual+(" + Lfx.Types.Formatting.FormatNumberSql(CantidadMovida, this.DataView.Workspace.CurrentConfig.Products.StockDecimalPlaces) + ") WHERE id_articulo=" + this.Id.ToString());
 
                                 if (this.Cuenta != null && this.Cuenta.Existe)
-                                        this.Cuenta.Movimiento(true, 30000, "Movimiento de stock de artículo " + this.ToString(), this.Workspace.CurrentUser.UserId, this.PVP * cantidad, Obs, 0, 0, string.Empty);
+                                        this.Cuenta.Movimiento(true, 30000, "Movimiento de stock de artículo " + this.ToString(), this.Workspace.CurrentUser.Id, this.PVP * cantidad, Obs, 0, 0, string.Empty);
 			}
 
 			double Saldo = this.DataView.DataBase.FieldDouble("SELECT stock_actual FROM articulos WHERE id_articulo=" + this.Id.ToString());
@@ -361,6 +369,7 @@ namespace Lbl.Articulos
 				Comando.Fields.AddWithValue("haciasituacion", Lfx.Data.DataBase.ConvertZeroToDBNull(situacionDestino.Id));
 			Comando.Fields.AddWithValue("saldo", Saldo);
 			Comando.Fields.AddWithValue("obs", obs);
+                        Comando.Fields.AddWithValue("series", series);
 			
 			this.DataView.Execute(Comando);
 		}
@@ -524,7 +533,7 @@ namespace Lbl.Articulos
                                         else
                                                 Comando.Fields.AddWithValue("id_margen", this.Margen.Id);
                                         Comando.Fields.AddWithValue("pvp", this.PVP);
-                                        Comando.Fields.AddWithValue("id_persona", this.Workspace.CurrentUser.UserId);
+                                        Comando.Fields.AddWithValue("id_persona", this.Workspace.CurrentUser.Id);
                                         this.DataView.Execute(Comando);
                                 }
                         }

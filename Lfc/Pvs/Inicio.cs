@@ -45,8 +45,7 @@ namespace Lfc.Pvs
 
 			DataTableName = "pvs";
                         KeyField = new Lfx.Data.FormField("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-			ExtraDataTableNames = "sucursales";
-			Relations = "pvs.id_sucursal=sucursales.id_sucursal";
+                        this.Joins.Add(new Lfx.Data.Join("sucursales", "pvs.id_sucursal=sucursales.id_sucursal"));
 			FormFields = new Lfx.Data.FormField[]
 			{
 				new Lfx.Data.FormField("pvs.id_pv", "PV", Lfx.Data.InputFieldTypes.Serial, 96),

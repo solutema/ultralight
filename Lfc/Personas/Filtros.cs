@@ -160,7 +160,7 @@ namespace Lfc.Personas
                         this.Label1.Location = new System.Drawing.Point(3, 120);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(128, 24);
-                        this.Label1.TabIndex = 6;
+                        this.Label1.TabIndex = 8;
                         this.Label1.Text = "Ciudad";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -186,7 +186,7 @@ namespace Lfc.Personas
                         this.EntradaSituacion.Required = false;
                         this.EntradaSituacion.SelectOnFocus = false;
                         this.EntradaSituacion.Size = new System.Drawing.Size(308, 24);
-                        this.EntradaSituacion.TabIndex = 5;
+                        this.EntradaSituacion.TabIndex = 7;
                         this.EntradaSituacion.Table = "situaciones";
                         this.EntradaSituacion.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaSituacion.Text = "0";
@@ -200,7 +200,7 @@ namespace Lfc.Personas
                         this.Label2.Location = new System.Drawing.Point(3, 90);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(128, 24);
-                        this.Label2.TabIndex = 4;
+                        this.Label2.TabIndex = 6;
                         this.Label2.Text = "Situación";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -267,7 +267,7 @@ namespace Lfc.Personas
                         this.EntradaCiudad.Required = false;
                         this.EntradaCiudad.SelectOnFocus = false;
                         this.EntradaCiudad.Size = new System.Drawing.Size(308, 24);
-                        this.EntradaCiudad.TabIndex = 7;
+                        this.EntradaCiudad.TabIndex = 9;
                         this.EntradaCiudad.Table = "ciudades";
                         this.EntradaCiudad.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCiudad.Text = "0";
@@ -299,7 +299,7 @@ namespace Lfc.Personas
         "En plan de pagos|5",
         "Suspendido|10"};
                         this.EntradaEstadoCredito.Size = new System.Drawing.Size(308, 24);
-                        this.EntradaEstadoCredito.TabIndex = 9;
+                        this.EntradaEstadoCredito.TabIndex = 11;
                         this.EntradaEstadoCredito.Table = null;
                         this.EntradaEstadoCredito.Text = "Normal";
                         this.EntradaEstadoCredito.TextKey = "0";
@@ -312,7 +312,7 @@ namespace Lfc.Personas
                         this.label21.Location = new System.Drawing.Point(3, 150);
                         this.label21.Name = "label21";
                         this.label21.Size = new System.Drawing.Size(128, 24);
-                        this.label21.TabIndex = 8;
+                        this.label21.TabIndex = 10;
                         this.label21.Text = "Estado de crédito";
                         this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -370,7 +370,7 @@ namespace Lfc.Personas
                         this.EntradaSubGrupo.Required = false;
                         this.EntradaSubGrupo.SelectOnFocus = false;
                         this.EntradaSubGrupo.Size = new System.Drawing.Size(308, 24);
-                        this.EntradaSubGrupo.TabIndex = 51;
+                        this.EntradaSubGrupo.TabIndex = 5;
                         this.EntradaSubGrupo.Table = "personas_grupos";
                         this.EntradaSubGrupo.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaSubGrupo.Text = "0";
@@ -384,7 +384,7 @@ namespace Lfc.Personas
                         this.label6.Location = new System.Drawing.Point(3, 60);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(128, 24);
-                        this.label6.TabIndex = 51;
+                        this.label6.TabIndex = 4;
                         this.label6.Text = "Sub-grupo";
                         this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -409,7 +409,7 @@ namespace Lfc.Personas
         "Todas|*",
         "Ninguna|-"};
                         this.EntradaEtiquetas.Size = new System.Drawing.Size(308, 24);
-                        this.EntradaEtiquetas.TabIndex = 11;
+                        this.EntradaEtiquetas.TabIndex = 13;
                         this.EntradaEtiquetas.Table = null;
                         this.EntradaEtiquetas.Text = "Todas";
                         this.EntradaEtiquetas.TextKey = "*";
@@ -422,7 +422,7 @@ namespace Lfc.Personas
                         this.label5.Location = new System.Drawing.Point(3, 180);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(128, 24);
-                        this.label5.TabIndex = 10;
+                        this.label5.TabIndex = 12;
                         this.label5.Text = "Etiqueta";
                         this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -444,10 +444,12 @@ namespace Lfc.Personas
                 private void EntradaGrupo_TextChanged(object sender, EventArgs e)
                 {
                         if (EntradaGrupo.TextInt != 0) {
-                                EntradaSubGrupo.Filter = "parent=" + EntradaGrupo.TextInt;
+                                EntradaSubGrupo.Filter = "parent=" + EntradaGrupo.TextInt.ToString();
+                                EntradaSubGrupo.Enabled = true;
                         } else {
                                 EntradaSubGrupo.Filter = "0";
                                 EntradaSubGrupo.TextInt = 0;
+                                EntradaSubGrupo.Enabled = false;
                         }
                 }
         }

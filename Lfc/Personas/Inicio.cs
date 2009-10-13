@@ -46,8 +46,8 @@ namespace Lfc.Personas
                         InitializeComponent();
 
                         DataTableName = "personas";
-                        ExtraDataTableNames = "personas_grupos";
-                        Relations = "personas_grupos.id_grupo=personas.id_grupo";
+                        this.Joins.Add(new Lfx.Data.Join("personas_grupos", "personas_grupos.id_grupo=personas.id_grupo"));
+                        this.Joins.Add(new Lfx.Data.Join("ciudades", "personas.id_ciudad=ciudades.id_ciudad"));
                         OrderBy = "personas.nombre_visible";
                         KeyField = new Lfx.Data.FormField("personas.id_persona", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80);
                         FormFields = new Lfx.Data.FormField[]
@@ -58,7 +58,8 @@ namespace Lfc.Personas
 				new Lfx.Data.FormField("personas.num_doc", "Núm. Doc.", Lfx.Data.InputFieldTypes.Text, 120),
 				new Lfx.Data.FormField("personas.cuit", "CUIT", Lfx.Data.InputFieldTypes.Text, 120),
                                 new Lfx.Data.FormField("personas_grupos.nombre", "Grupo", Lfx.Data.InputFieldTypes.Text, 120),
-                                new Lfx.Data.FormField("personas.id_subgrupo", "Sub-grupo", Lfx.Data.InputFieldTypes.Text, 120)
+                                new Lfx.Data.FormField("personas.id_subgrupo", "Sub-grupo", Lfx.Data.InputFieldTypes.Text, 120),
+                                new Lfx.Data.FormField("ciudades.nombre", "Ciudad", Lfx.Data.InputFieldTypes.Text, 120)
 			};
                         ExtraSearchFields = new Lfx.Data.FormField[]
 			{
@@ -104,7 +105,9 @@ namespace Lfc.Personas
                         if (m_Tipo > 0)
                                 TextoSql += " AND (personas.tipo&" + m_Tipo.ToString() + "=" + m_Tipo.ToString() + " OR personas.tipo=0)";
 
-                        if (m_Grupo > 0)
+                        if (m_SubGrupo > 0)
+                                TextoSql += " AND personas.id_subgrupo=" + m_SubGrupo.ToString();
+                        else if (m_Grupo > 0)
                                 TextoSql += " AND personas.id_grupo=" + m_Grupo.ToString();
 
                         if (m_Situacion > 0)

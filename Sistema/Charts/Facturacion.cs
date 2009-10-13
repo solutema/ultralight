@@ -72,8 +72,6 @@ namespace Lazaro.Charts
 		{
 			// Llamada necesaria para el Diseñador de Windows Forms.
 			InitializeComponent();
-
-			
 		}
 
 		/// <summary>
@@ -697,7 +695,7 @@ namespace Lazaro.Charts
 			lvAnualMonto.Text = System.DateTime.Now.Year.ToString();
 			for(int mes = 1; mes <=12; mes++) 
 			{
-				ListViewItem Item = lvAnual.Items.Add(Lazaro.Funciones.NombreMes(mes));
+                                ListViewItem Item = lvAnual.Items.Add(new System.DateTime(System.DateTime.Now.Year, mes, 1).ToString("MMMM"));
 				if(Chart.Series[3].Elements[mes-1] != null) 
 				{
 					Item.SubItems.Add(new ListViewItem.ListViewSubItem(Item, Lfx.Types.Formatting.FormatCurrencyForPrint(Chart.Series[3].Elements[mes-1].Value, 0)));

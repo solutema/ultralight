@@ -61,7 +61,7 @@ namespace Lazaro.Misc
 		{
 			ListaComponentes.BackColor = this.BackColor;
 
-                        EtiquetaUsuario.Text = Lws.Workspace.Master.CurrentUser.UserId.ToString() + " (" + Lws.Workspace.Master.CurrentUser.UserCompleteName + ") / " + System.Environment.MachineName;
+                        EtiquetaUsuario.Text = Lws.Workspace.Master.CurrentUser.Id.ToString() + " (" + Lws.Workspace.Master.CurrentUser.CompleteName + ") / " + System.Environment.MachineName;
 
                         ListaComponentes.Items.Add("Lazaro versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").ProductVersion + " del " + new System.IO.FileInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
                         System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ApplicationFolder);

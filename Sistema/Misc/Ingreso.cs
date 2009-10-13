@@ -88,10 +88,10 @@ namespace Lazaro.Misc
 			} else {
 				OkButton.Text = "Ingresando...";
 				OkButton.Refresh();
-				this.Workspace.CurrentUser.UserId = System.Convert.ToInt32(row["id_persona"]);
+				this.Workspace.CurrentUser.Id = System.Convert.ToInt32(row["id_persona"]);
 				this.Workspace.CurrentUser.UserName = System.Convert.ToString(row["nombre"]).ToLower();
-				this.Workspace.CurrentUser.UserCompleteName = System.Convert.ToString(row["nombre_visible"]);
-				this.Workspace.CurrentConfig.WriteGlobalSetting(null, "Sistema.Ingreso.UltimoUsuario", System.Convert.ToString(Lws.Workspace.Master.CurrentUser.UserId), System.Environment.MachineName.ToUpperInvariant());
+				this.Workspace.CurrentUser.CompleteName = System.Convert.ToString(row["nombre_visible"]);
+				this.Workspace.CurrentConfig.WriteGlobalSetting(null, "Sistema.Ingreso.UltimoUsuario", System.Convert.ToString(Lws.Workspace.Master.CurrentUser.Id), System.Environment.MachineName.ToUpperInvariant());
 				this.Workspace.CurrentConfig.WriteGlobalSetting(null, "Sistema.Ingreso.UltimoIngreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), System.Environment.MachineName.ToUpperInvariant());
 				this.Workspace.ActionLog("LOGON", "");
 				this.Close();

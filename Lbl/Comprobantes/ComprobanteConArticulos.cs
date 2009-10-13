@@ -92,7 +92,7 @@ namespace Lbl.Comprobantes
                 {
                         Lfx.Types.OperationResult Res = base.Crear();
                         if (Res.Success) {
-                                this.Vendedor = new Lbl.Personas.Persona(this.DataView, this.Workspace.CurrentUser.UserId);
+                                this.Vendedor = new Lbl.Personas.Persona(this.DataView, this.Workspace.CurrentUser.Id);
 
                                 this.Tipo = new Tipo(this.DataView, tipo);
                                 this.Tipo.Cargar();
@@ -256,18 +256,18 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-		public DateTime? Fecha
+                public Lfx.Types.LDateTime Fecha
 		{
 			get
 			{
                                 if (Registro["fecha"] == null || Registro["fecha"] is DBNull)
                                         return null;
                                 else
-                                        return System.Convert.ToDateTime(Registro["fecha"]);
+                                        return new Lfx.Types.LDateTime(System.Convert.ToDateTime(Registro["fecha"]));
 			}
                         set
                         {
-                                if (value.HasValue)
+                                if (value != null)
                                         Registro["fecha"] = value.Value;
                                 else
                                         Registro["fecha"] = null;
@@ -480,6 +480,13 @@ namespace Lbl.Comprobantes
 			if (this.Impreso && this.Numero > 0 && this.Tipo.PermiteImprimirVariasVeces == false)
 				return new Lfx.Types.FailureOperationResult("El comprobante ya fue impreso.");
 
+                        if (this.Tipo.MueveStock && this.Compra == false) {
+                                // Comprobantes de venta mueven stock al imprimir
+                                Lfx.Types.OperationResult Res = this.VerificarSeries();
+                                if (Res.Success == false)
+                                        return Res;
+                        }
+
 			// Busco el punto de venta para este tipo de comprobante en particular
 			if (this.PV == 0)
                                 this.PV = Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos." + this.Tipo + ".PV", 0);
@@ -598,6 +605,7 @@ namespace Lbl.Comprobantes
                         Comando.Fields.AddWithValue("impresa", this.Impreso ? 1 : 0);
                         Comando.Fields.AddWithValue("compra", this.Compra ? 1 : 0);
                         Comando.Fields.AddWithValue("estado", this.Estado);
+                        Comando.Fields.AddWithValue("series", this.Articulos.Series);
 
 			this.AgregarTags(Comando);
 
@@ -609,6 +617,13 @@ namespace Lbl.Comprobantes
                         this.GuardarDetalle();
 
                         if (this.Compra) {
+                                if (this.Tipo.MueveStock) {
+                                        // Comprobantes de compra mueven stock al guardar
+                                        Lfx.Types.OperationResult Res = VerificarSeries();
+                                        if (Res.Success == false)
+                                                return Res;
+                                }
+
                                 if (this.Tipo.EsFactura && this.FormaDePago == FormasDePago.CuentaCorriente) {
                                         double DiferenciaMonto;
                                         if (this.m_RegistroOriginal == null)
@@ -624,10 +639,10 @@ namespace Lbl.Comprobantes
                                         foreach (DetalleArticulo Det in Diferencia) {
                                                 if (Det.Articulo != null) {
                                                         if (Det.Cantidad > 0)
-                                                                Det.Articulo.MoverStock(Det.Cantidad, "Movimiento s/Compr. Proveed. " + this.ToString() + " de " + this.Cliente.Nombre, new Lbl.Articulos.Situacion(DataView, 998), this.SituacionDestino);
+                                                                Det.Articulo.MoverStock(Det.Cantidad, "Movimiento s/Compr. Proveed. " + this.ToString() + " de " + this.Cliente.Nombre, new Lbl.Articulos.Situacion(DataView, 998), this.SituacionDestino, Det.Series);
                                                         else
                                                                 //Cantidad negativa. Hago el movimiento con cantidad positiva, pero en sentido inverso
-                                                                Det.Articulo.MoverStock(-Det.Cantidad, "Movimiento s/Compr. Proveed. " + this.ToString() + " de " + this.Cliente.Nombre, this.SituacionDestino, new Lbl.Articulos.Situacion(DataView, 998));
+                                                                Det.Articulo.MoverStock(-Det.Cantidad, "Movimiento s/Compr. Proveed. " + this.ToString() + " de " + this.Cliente.Nombre, this.SituacionDestino, new Lbl.Articulos.Situacion(DataView, 998), Det.Series);
                                                 }
                                         }
                                 }
@@ -668,6 +683,21 @@ namespace Lbl.Comprobantes
                         }
 
                         return base.Guardar();
+                }
+
+                public Lfx.Types.OperationResult VerificarSeries()
+                {
+                        foreach (Lbl.Comprobantes.DetalleArticulo Art in this.Articulos) {
+                                if (Art.Articulo != null && Art.Articulo.RequiereNS != Lbl.Articulos.RequiereNS.Nunca)
+                                        if (Art.Series == null) {
+                                                return new Lfx.Types.FailureOperationResult("Debe ingresar el número de serie del artículo '" + Art.Nombre + "' para poder realizar movimientos de stock.");
+                                        } else {
+                                                string[] Series = Art.Series.Split(new string[] { Lfx.Types.ControlChars.CrLf }, StringSplitOptions.RemoveEmptyEntries);
+                                                if (Series.Length < Art.Cantidad)
+                                                        return new Lfx.Types.FailureOperationResult("Debe ingresar el número de serie de todos los artículos '" + Art.Nombre + "' para poder realizar movimientos de stock.");
+                                        }
+                        }
+                        return new Lfx.Types.SuccessOperationResult();
                 }
 
                 private void GuardarDetalle()

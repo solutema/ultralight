@@ -54,12 +54,14 @@ namespace Lbl.Articulos
                                                 Det.Articulo.MoverStock(Det.Cantidad,
                                                         NombreMovim + " s/comprob. " + comprobante.ToString(),
                                                         comprobante.SituacionOrigen,
-                                                        comprobante.SituacionDestino);
+                                                        comprobante.SituacionDestino,
+                                                        Det.Series);
                                         } else {
                                                 Det.Articulo.MoverStock(Det.Cantidad,
                                                         NombreMovim + " s/comprob. " + comprobante.ToString(),
                                                         comprobante.SituacionDestino,
-                                                        comprobante.SituacionOrigen);
+                                                        comprobante.SituacionOrigen,
+                                                        Det.Series);
                                         }
 				}
 			}

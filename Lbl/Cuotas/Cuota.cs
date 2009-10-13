@@ -37,6 +37,7 @@ namespace Lbl.Cuotas
 	public enum Estados
 	{
 		Nueva = 0,
+                Autorizada = 1,
 		Precancelada = 5,
 		EnResumen = 10,
 		Anulada = 90,
@@ -141,7 +142,7 @@ namespace Lbl.Cuotas
                 {
                         get
                         {
-                                return (Estados)System.Convert.ToInt32(Registro["estado"]);
+                                return ((Estados)(this.FieldInt("estado")));
                         }
                         set
                         {
@@ -177,7 +178,7 @@ namespace Lbl.Cuotas
                 {
                         get
                         {
-                                return System.Convert.ToInt32(Registro["cuotas"]);
+                                return this.FieldInt("cuotas");
                         }
                         set
                         {
@@ -185,11 +186,15 @@ namespace Lbl.Cuotas
                         }
                 }
 
-                        public int Autorizacion
+                public int Autorizacion
                 {
                         get
                         {
-                                return System.Convert.ToInt32(Registro["autorizacion"]);
+                                return this.FieldInt("autorizacion");
+                        }
+                        set
+                        {
+                                this.Registro["autorizacion"] = value;
                         }
                 }
 

@@ -175,6 +175,11 @@
             Convierte una matriz de enteros en una cadena conteniendo todos los elementos separados por comas (u otro separador)
             </summary>
         </member>
+        <member name="M:Lfx.Types.Strings.UnixToWindows(System.String)">
+            <summary>
+            Convierte o unifica fines de línea en formato Windows (CR+LF).
+            </summary>
+        </member>
         <member name="M:Lfx.Types.Strings.StrReverse(System.String)">
             <summary>
             Invierte una cadena, caracter por caracter
@@ -185,7 +190,7 @@
             Clases referentes al manejo de tipos.
             </summary>
         </member>
-        <member name="T:Lfx.Data.Providers.MySql">
+        <member name="T:Lfx.Data.Providers.MySqlProvider">
             <summary>
             Proveedor compatible con MySql Connector/NET versión 6. Requiere la presencia de MySql.Data.dll en el directorio del programa.
             </summary>

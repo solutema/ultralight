@@ -52,8 +52,7 @@ namespace Lfc.Comprobantes
                         m_Fechas = new Lfx.Types.DateRange("mes-0");
                         DataTableName = "facturas";
                         KeyField = new Lfx.Data.FormField("facturas.id_factura", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        ExtraDataTableNames = "personas";
-                        Relations = "facturas.id_cliente=personas.id_persona";
+                        this.Joins.Add(new Lfx.Data.Join("personas", "facturas.id_cliente=personas.id_persona"));
                         FormFields = new Lfx.Data.FormField[]
 			{
 				new Lfx.Data.FormField("facturas.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 40),
@@ -68,6 +67,7 @@ namespace Lfc.Comprobantes
 				new Lfx.Data.FormField("facturas.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 160)
 			};
                         OrderBy = "facturas.id_factura DESC";
+                        ExtraSearchFields = new Lfx.Data.FormField[] { new Lfx.Data.FormField("series", "Series") };
 
                         BotonFiltrar.Visible = true;
                         BotonImprimir.Visible = true;

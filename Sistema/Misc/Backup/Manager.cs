@@ -73,8 +73,7 @@ namespace Lazaro.Misc.Backup
 		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
 		// Puede modificarse utilizando el Diseñador de Windows Forms. 
 		// No lo modifique con el editor de código.
-		internal Lui.Forms.Button cmdBackup;
-		internal System.Windows.Forms.Label Label1;
+                internal Lui.Forms.Button cmdBackup;
 		internal System.Windows.Forms.Label Label2;
                 internal Lui.Forms.ListView lvItems;
 		internal System.Windows.Forms.ColumnHeader FechaYHora;
@@ -82,242 +81,213 @@ namespace Lazaro.Misc.Backup
 		internal System.Windows.Forms.ColumnHeader Carpeta;
 		internal Lui.Forms.Button cmdEliminar;
 		internal Lui.Forms.Button cmdRestaurar;
-		internal System.Windows.Forms.ColumnHeader Numero;
-		internal Lui.Forms.Button cmdWeb;
+                internal System.Windows.Forms.ColumnHeader Numero;
 		internal Lui.Forms.Button cmdCopiar;
-		private Lui.Forms.Note note1;
-		internal System.Windows.Forms.PictureBox PictureBox1;
+                private Lui.Forms.Note note1;
 
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
-			this.cmdBackup = new Lui.Forms.Button();
-			this.Label1 = new System.Windows.Forms.Label();
+                        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
+                        this.cmdBackup = new Lui.Forms.Button();
                         this.lvItems = new Lui.Forms.ListView();
-			this.Carpeta = new System.Windows.Forms.ColumnHeader();
-			this.Numero = new System.Windows.Forms.ColumnHeader();
-			this.FechaYHora = new System.Windows.Forms.ColumnHeader();
-			this.Usuario = new System.Windows.Forms.ColumnHeader();
-			this.Label2 = new System.Windows.Forms.Label();
-			this.cmdEliminar = new Lui.Forms.Button();
-			this.cmdRestaurar = new Lui.Forms.Button();
-			this.PictureBox1 = new System.Windows.Forms.PictureBox();
-			this.cmdWeb = new Lui.Forms.Button();
-			this.cmdCopiar = new Lui.Forms.Button();
-			this.note1 = new Lui.Forms.Note();
-			((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
-			this.SuspendLayout();
-			// 
-			// OkButton
-			// 
-			this.OkButton.Location = new System.Drawing.Point(385, 8);
-			// 
-			// CancelCommandButton
-			// 
-			this.CancelCommandButton.Location = new System.Drawing.Point(493, 8);
-			// 
-			// cmdBackup
-			// 
-			this.cmdBackup.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.cmdBackup.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.cmdBackup.Image = null;
-			this.cmdBackup.ImagePos = Lui.Forms.ImagePositions.Top;
-			this.cmdBackup.Location = new System.Drawing.Point(144, 25);
-			this.cmdBackup.Name = "cmdBackup";
-			this.cmdBackup.Padding = new System.Windows.Forms.Padding(2);
-			this.cmdBackup.ReadOnly = false;
-			this.cmdBackup.Size = new System.Drawing.Size(108, 36);
-			this.cmdBackup.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-			this.cmdBackup.Subtext = "F8";
-			this.cmdBackup.TabIndex = 0;
-			this.cmdBackup.Text = "Respaldar";
-			this.cmdBackup.ToolTipText = "";
-			this.cmdBackup.Click += new System.EventHandler(this.cmdBackup_Click);
-			// 
-			// Label1
-			// 
-			this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-				    | System.Windows.Forms.AnchorStyles.Right)));
-			this.Label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.Label1.Location = new System.Drawing.Point(12, 88);
-			this.Label1.Name = "Label1";
-			this.Label1.Size = new System.Drawing.Size(577, 22);
-			this.Label1.TabIndex = 1;
-			this.Label1.Text = "Para hacer una copia de respaldo ahora, haga clic en el botón \"Respaldar\".";
-			this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// lvItems
-			// 
-			this.lvItems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.lvItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.lvItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+                        this.Carpeta = new System.Windows.Forms.ColumnHeader();
+                        this.Numero = new System.Windows.Forms.ColumnHeader();
+                        this.FechaYHora = new System.Windows.Forms.ColumnHeader();
+                        this.Usuario = new System.Windows.Forms.ColumnHeader();
+                        this.Label2 = new System.Windows.Forms.Label();
+                        this.cmdEliminar = new Lui.Forms.Button();
+                        this.cmdRestaurar = new Lui.Forms.Button();
+                        this.cmdCopiar = new Lui.Forms.Button();
+                        this.note1 = new Lui.Forms.Note();
+                        this.SuspendLayout();
+                        // 
+                        // OkButton
+                        // 
+                        this.OkButton.Location = new System.Drawing.Point(554, 8);
+                        // 
+                        // CancelCommandButton
+                        // 
+                        this.CancelCommandButton.Location = new System.Drawing.Point(674, 8);
+                        // 
+                        // cmdBackup
+                        // 
+                        this.cmdBackup.AutoHeight = false;
+                        this.cmdBackup.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.cmdBackup.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.cmdBackup.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.cmdBackup.Image = ((System.Drawing.Image)(resources.GetObject("cmdBackup.Image")));
+                        this.cmdBackup.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.cmdBackup.Location = new System.Drawing.Point(20, 16);
+                        this.cmdBackup.Name = "cmdBackup";
+                        this.cmdBackup.Padding = new System.Windows.Forms.Padding(2);
+                        this.cmdBackup.ReadOnly = false;
+                        this.cmdBackup.Size = new System.Drawing.Size(632, 68);
+                        this.cmdBackup.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
+                        this.cmdBackup.Subtext = "Haga clic aquí para dejar en este equipo una copia completa de los datos del sist" +
+                            "ema.";
+                        this.cmdBackup.TabIndex = 0;
+                        this.cmdBackup.Text = "Crear una Copia de Respaldo ahora";
+                        this.cmdBackup.ToolTipText = "";
+                        this.cmdBackup.Click += new System.EventHandler(this.cmdBackup_Click);
+                        // 
+                        // lvItems
+                        // 
+                        this.lvItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                                    | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.lvItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                        this.lvItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Carpeta,
             this.Numero,
             this.FechaYHora,
             this.Usuario});
-			this.lvItems.FullRowSelect = true;
-			this.lvItems.GridLines = true;
-			this.lvItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-			this.lvItems.HideSelection = false;
-			this.lvItems.Location = new System.Drawing.Point(12, 148);
-			this.lvItems.Name = "lvItems";
-			this.lvItems.Size = new System.Drawing.Size(456, 144);
-			this.lvItems.TabIndex = 3;
-			this.lvItems.UseCompatibleStateImageBehavior = false;
-			this.lvItems.View = System.Windows.Forms.View.Details;
-			// 
-			// Carpeta
-			// 
-			this.Carpeta.Text = "Carpeta";
-			this.Carpeta.Width = 0;
-			// 
-			// Numero
-			// 
-			this.Numero.Text = "#";
-			this.Numero.Width = 30;
-			// 
-			// FechaYHora
-			// 
-			this.FechaYHora.Text = "Fecha y Hora";
-			this.FechaYHora.Width = 204;
-			// 
-			// Usuario
-			// 
-			this.Usuario.Text = "Usuario";
-			this.Usuario.Width = 171;
-			// 
-			// Label2
-			// 
-			this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.Label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.Label2.Location = new System.Drawing.Point(12, 125);
-			this.Label2.Name = "Label2";
-			this.Label2.Size = new System.Drawing.Size(456, 20);
-			this.Label2.TabIndex = 2;
-			this.Label2.Text = "Copias de respaldo presentes en el sistema:";
-			this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// cmdEliminar
-			// 
-			this.cmdEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.cmdEliminar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.cmdEliminar.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.cmdEliminar.Image = null;
-			this.cmdEliminar.ImagePos = Lui.Forms.ImagePositions.Top;
-			this.cmdEliminar.Location = new System.Drawing.Point(481, 148);
-			this.cmdEliminar.Name = "cmdEliminar";
-			this.cmdEliminar.Padding = new System.Windows.Forms.Padding(2);
-			this.cmdEliminar.ReadOnly = false;
-			this.cmdEliminar.Size = new System.Drawing.Size(108, 36);
-			this.cmdEliminar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-			this.cmdEliminar.Subtext = "F3";
-			this.cmdEliminar.TabIndex = 4;
-			this.cmdEliminar.Text = "Eliminar";
-			this.cmdEliminar.ToolTipText = "";
-			this.cmdEliminar.Click += new System.EventHandler(this.cmdEliminar_Click);
-			// 
-			// cmdRestaurar
-			// 
-			this.cmdRestaurar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.cmdRestaurar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.cmdRestaurar.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.cmdRestaurar.Image = null;
-			this.cmdRestaurar.ImagePos = Lui.Forms.ImagePositions.Top;
-			this.cmdRestaurar.Location = new System.Drawing.Point(481, 192);
-			this.cmdRestaurar.Name = "cmdRestaurar";
-			this.cmdRestaurar.Padding = new System.Windows.Forms.Padding(2);
-			this.cmdRestaurar.ReadOnly = false;
-			this.cmdRestaurar.Size = new System.Drawing.Size(108, 36);
-			this.cmdRestaurar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-			this.cmdRestaurar.Subtext = "F6";
-			this.cmdRestaurar.TabIndex = 5;
-			this.cmdRestaurar.Text = "Restaurar";
-			this.cmdRestaurar.ToolTipText = "";
-			this.cmdRestaurar.Click += new System.EventHandler(this.cmdRestaurar_Click);
-			// 
-			// PictureBox1
-			// 
-			this.PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox1.Image")));
-			this.PictureBox1.Location = new System.Drawing.Point(12, 12);
-			this.PictureBox1.Name = "PictureBox1";
-			this.PictureBox1.Size = new System.Drawing.Size(126, 64);
-			this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-			this.PictureBox1.TabIndex = 51;
-			this.PictureBox1.TabStop = false;
-			// 
-			// cmdWeb
-			// 
-			this.cmdWeb.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.cmdWeb.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.cmdWeb.Image = null;
-			this.cmdWeb.ImagePos = Lui.Forms.ImagePositions.Top;
-			this.cmdWeb.Location = new System.Drawing.Point(416, 8);
-			this.cmdWeb.Name = "cmdWeb";
-			this.cmdWeb.Padding = new System.Windows.Forms.Padding(2);
-			this.cmdWeb.ReadOnly = false;
-			this.cmdWeb.Size = new System.Drawing.Size(176, 28);
-			this.cmdWeb.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-			this.cmdWeb.Subtext = "Esc";
-			this.cmdWeb.TabIndex = 10;
-			this.cmdWeb.Text = "Exportar para la Web";
-			this.cmdWeb.ToolTipText = "";
-			this.cmdWeb.Visible = false;
-			this.cmdWeb.Click += new System.EventHandler(this.cmdWeb_Click);
-			// 
-			// cmdCopiar
-			// 
-			this.cmdCopiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.cmdCopiar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.cmdCopiar.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.cmdCopiar.Image = null;
-			this.cmdCopiar.ImagePos = Lui.Forms.ImagePositions.Top;
-			this.cmdCopiar.Location = new System.Drawing.Point(481, 236);
-			this.cmdCopiar.Name = "cmdCopiar";
-			this.cmdCopiar.Padding = new System.Windows.Forms.Padding(2);
-			this.cmdCopiar.ReadOnly = false;
-			this.cmdCopiar.Size = new System.Drawing.Size(108, 36);
-			this.cmdCopiar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-			this.cmdCopiar.Subtext = "F6";
-			this.cmdCopiar.TabIndex = 6;
-			this.cmdCopiar.Text = "Examinar";
-			this.cmdCopiar.ToolTipText = "";
-			this.cmdCopiar.Click += new System.EventHandler(this.cmdCopiar_Click);
-			// 
-			// note1
-			// 
-			this.note1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-			this.note1.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.note1.Location = new System.Drawing.Point(12, 304);
-			this.note1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.note1.Name = "note1";
-			this.note1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.note1.ReadOnly = false;
-			this.note1.Size = new System.Drawing.Size(580, 72);
-			this.note1.TabIndex = 52;
-			this.note1.Text = "Se mantienen automáticamente las últimas 7 copias de respaldo. La copia en letra " +
-			    "negrita es la más reciente.";
-			this.note1.Title = "Información";
-			this.note1.ToolTipText = "";
-			// 
-			// Manager
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
-			this.ClientSize = new System.Drawing.Size(601, 447);
-			this.Controls.Add(this.note1);
-			this.Controls.Add(this.cmdCopiar);
-			this.Controls.Add(this.cmdWeb);
-			this.Controls.Add(this.PictureBox1);
-			this.Controls.Add(this.cmdRestaurar);
-			this.Controls.Add(this.cmdEliminar);
-			this.Controls.Add(this.Label2);
-			this.Controls.Add(this.lvItems);
-			this.Controls.Add(this.Label1);
-			this.Controls.Add(this.cmdBackup);
-			this.Name = "Manager";
-			this.Text = "Administrador de Copias de Respaldo";
-			((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
-			this.ResumeLayout(false);
-			this.PerformLayout();
+                        this.lvItems.FullRowSelect = true;
+                        this.lvItems.GridLines = true;
+                        this.lvItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+                        this.lvItems.HideSelection = false;
+                        this.lvItems.Location = new System.Drawing.Point(24, 120);
+                        this.lvItems.Name = "lvItems";
+                        this.lvItems.Size = new System.Drawing.Size(628, 176);
+                        this.lvItems.TabIndex = 3;
+                        this.lvItems.UseCompatibleStateImageBehavior = false;
+                        this.lvItems.View = System.Windows.Forms.View.Details;
+                        // 
+                        // Carpeta
+                        // 
+                        this.Carpeta.Text = "Carpeta";
+                        this.Carpeta.Width = 0;
+                        // 
+                        // Numero
+                        // 
+                        this.Numero.Text = "#";
+                        this.Numero.Width = 30;
+                        // 
+                        // FechaYHora
+                        // 
+                        this.FechaYHora.Text = "Fecha y Hora";
+                        this.FechaYHora.Width = 204;
+                        // 
+                        // Usuario
+                        // 
+                        this.Usuario.Text = "Usuario";
+                        this.Usuario.Width = 171;
+                        // 
+                        // Label2
+                        // 
+                        this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.Label2.Location = new System.Drawing.Point(24, 96);
+                        this.Label2.Name = "Label2";
+                        this.Label2.Size = new System.Drawing.Size(628, 20);
+                        this.Label2.TabIndex = 2;
+                        this.Label2.Text = "Copias de respaldo presentes en el sistema:";
+                        this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // cmdEliminar
+                        // 
+                        this.cmdEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.cmdEliminar.AutoHeight = false;
+                        this.cmdEliminar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.cmdEliminar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.cmdEliminar.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.cmdEliminar.Image = null;
+                        this.cmdEliminar.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.cmdEliminar.Location = new System.Drawing.Point(660, 196);
+                        this.cmdEliminar.Name = "cmdEliminar";
+                        this.cmdEliminar.Padding = new System.Windows.Forms.Padding(2);
+                        this.cmdEliminar.ReadOnly = false;
+                        this.cmdEliminar.Size = new System.Drawing.Size(108, 28);
+                        this.cmdEliminar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.cmdEliminar.Subtext = "F3";
+                        this.cmdEliminar.TabIndex = 4;
+                        this.cmdEliminar.Text = "Eliminar";
+                        this.cmdEliminar.ToolTipText = "";
+                        this.cmdEliminar.Click += new System.EventHandler(this.cmdEliminar_Click);
+                        // 
+                        // cmdRestaurar
+                        // 
+                        this.cmdRestaurar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.cmdRestaurar.AutoHeight = false;
+                        this.cmdRestaurar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.cmdRestaurar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.cmdRestaurar.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.cmdRestaurar.Image = null;
+                        this.cmdRestaurar.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.cmdRestaurar.Location = new System.Drawing.Point(660, 232);
+                        this.cmdRestaurar.Name = "cmdRestaurar";
+                        this.cmdRestaurar.Padding = new System.Windows.Forms.Padding(2);
+                        this.cmdRestaurar.ReadOnly = false;
+                        this.cmdRestaurar.Size = new System.Drawing.Size(108, 28);
+                        this.cmdRestaurar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.cmdRestaurar.Subtext = "F6";
+                        this.cmdRestaurar.TabIndex = 5;
+                        this.cmdRestaurar.Text = "Restaurar";
+                        this.cmdRestaurar.ToolTipText = "";
+                        this.cmdRestaurar.Click += new System.EventHandler(this.cmdRestaurar_Click);
+                        // 
+                        // cmdCopiar
+                        // 
+                        this.cmdCopiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.cmdCopiar.AutoHeight = false;
+                        this.cmdCopiar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.cmdCopiar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.cmdCopiar.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.cmdCopiar.Image = null;
+                        this.cmdCopiar.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.cmdCopiar.Location = new System.Drawing.Point(660, 268);
+                        this.cmdCopiar.Name = "cmdCopiar";
+                        this.cmdCopiar.Padding = new System.Windows.Forms.Padding(2);
+                        this.cmdCopiar.ReadOnly = false;
+                        this.cmdCopiar.Size = new System.Drawing.Size(108, 28);
+                        this.cmdCopiar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.cmdCopiar.Subtext = "F6";
+                        this.cmdCopiar.TabIndex = 6;
+                        this.cmdCopiar.Text = "Examinar";
+                        this.cmdCopiar.ToolTipText = "";
+                        this.cmdCopiar.Click += new System.EventHandler(this.cmdCopiar_Click);
+                        // 
+                        // note1
+                        // 
+                        this.note1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.note1.AutoHeight = false;
+                        this.note1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.note1.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.note1.Location = new System.Drawing.Point(24, 308);
+                        this.note1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+                        this.note1.Name = "note1";
+                        this.note1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+                        this.note1.ReadOnly = false;
+                        this.note1.Size = new System.Drawing.Size(748, 56);
+                        this.note1.TabIndex = 52;
+                        this.note1.TabStop = false;
+                        this.note1.Text = "Se mantienen automáticamente las últimas 7 copias de respaldo. La copia en letra " +
+                            "negrita es la más reciente.";
+                        this.note1.Title = "Información";
+                        this.note1.ToolTipText = "";
+                        // 
+                        // Manager
+                        // 
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+                        this.ClientSize = new System.Drawing.Size(794, 452);
+                        this.Controls.Add(this.note1);
+                        this.Controls.Add(this.cmdCopiar);
+                        this.Controls.Add(this.Label2);
+                        this.Controls.Add(this.cmdRestaurar);
+                        this.Controls.Add(this.cmdEliminar);
+                        this.Controls.Add(this.lvItems);
+                        this.Controls.Add(this.cmdBackup);
+                        this.Name = "Manager";
+                        this.Text = "Administrador de Copias de Respaldo";
+                        this.Controls.SetChildIndex(this.cmdBackup, 0);
+                        this.Controls.SetChildIndex(this.lvItems, 0);
+                        this.Controls.SetChildIndex(this.cmdEliminar, 0);
+                        this.Controls.SetChildIndex(this.cmdRestaurar, 0);
+                        this.Controls.SetChildIndex(this.Label2, 0);
+                        this.Controls.SetChildIndex(this.cmdCopiar, 0);
+                        this.Controls.SetChildIndex(this.note1, 0);
+                        this.ResumeLayout(false);
 
 		}
 
@@ -390,48 +360,6 @@ namespace Lazaro.Misc.Backup
 				{
 					Misc.Backup.Services.Restore(NombreCarpeta);
 				}
-			}
-		}
-
-		private void cmdWeb_Click(object sender, System.EventArgs e)
-		{
-			SaveFileDialog DialogoGuardar = new SaveFileDialog();
-			DialogoGuardar.Filter = "Archivos SQL|*.sql|Todos los archivos|*.*";
-			DialogoGuardar.CheckPathExists = true;
-			DialogoGuardar.OverwritePrompt = true;
-			DialogoGuardar.FileName = "web";
-			if (DialogoGuardar.ShowDialog() == DialogResult.OK)
-			{
-				string NombreArchivo = DialogoGuardar.FileName;
-
-				System.IO.StreamWriter Writer = new System.IO.StreamWriter(NombreArchivo, false, System.Text.Encoding.Default);
-
-				// Exportar artículos
-				Writer.Write("DELETE FROM articulos;" + Environment.NewLine);
-				Lfx.Data.SqlSelectBuilder ComandoSelect = new Lfx.Data.SqlSelectBuilder(Lfx.Data.SqlModes.MySql);
-				ComandoSelect.Tables = "articulos";
-				ComandoSelect.Fields = "id_articulo,id_marca,modelo,serie,nombre,url,descripcion,descripcion2,id_cat_articulo,pvp,stock_actual,pedido,destacado,web";
-				Misc.Backup.Services.ExportTable(ComandoSelect, false, Writer);
-
-				ComandoSelect = new Lfx.Data.SqlSelectBuilder(Lfx.Data.SqlModes.MySql);
-				ComandoSelect.Tables = "articulos_imagenes";
-				Misc.Backup.Services.ExportBlobs(ComandoSelect, System.IO.Path.GetDirectoryName(NombreArchivo));
-
-				// Exportar cat_articulos
-				Writer.Write("DELETE FROM cat_articulos;" + Environment.NewLine);
-				ComandoSelect = new Lfx.Data.SqlSelectBuilder(Lfx.Data.SqlModes.MySql);
-				ComandoSelect.Tables = "cat_articulos";
-				ComandoSelect.Fields = "id_cat_articulo,nombre,imagen,web";
-				Misc.Backup.Services.ExportTable(ComandoSelect, false, Writer);
-
-				// Exportar marcas
-				Writer.Write("DELETE FROM marcas;" + Environment.NewLine);
-				ComandoSelect = new Lfx.Data.SqlSelectBuilder(Lfx.Data.SqlModes.MySql);
-				ComandoSelect.Tables = "marcas";
-				ComandoSelect.Fields = "id_marca,nombre,url";
-                                Misc.Backup.Services.ExportTable(ComandoSelect, false, Writer);
-
-				Writer.Close();
 			}
 		}
 

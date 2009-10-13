@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -41,6 +41,7 @@ namespace Lfx.Data
                 private bool m_EnableRecover = false, m_Closing = false;
                 protected System.Data.IDbConnection DbConnection;
                 protected bool m_InTransaction = false;
+                public bool AvoidWinForms = true;               // Evitar utilizar Windows Forms, para aplicaciones de consola
 
                 public DataBase()
                 {
@@ -57,10 +58,8 @@ namespace Lfx.Data
                 {
                         m_EnableRecover = false;
 
-                        if (DbConnection != null) {
-                                if (DbConnection.State != System.Data.ConnectionState.Closed && DbConnection.State != System.Data.ConnectionState.Broken)
-                                        return false;
-                        }
+                        if (DbConnection != null && DbConnection.State != System.Data.ConnectionState.Closed && DbConnection.State != System.Data.ConnectionState.Broken)
+                                return false;
 
                         System.Text.StringBuilder ConnectionString = new System.Text.StringBuilder();
 
@@ -77,6 +76,7 @@ namespace Lfx.Data
                                         ConnectionString.Append("Convert Zero Datetime=true;");
                                         ConnectionString.Append("Connection Timeout=60;");
                                         ConnectionString.Append("Default Command Timeout=900;");
+                                        ConnectionString.Append("KeepAlive=25;");
                                         if (Lfx.Data.DataBaseCache.DefaultCache.SlowLink)
                                                 ConnectionString.Append("Compress=true;");
                                         Lfx.Data.DataBaseCache.DefaultCache.OdbcDriver = null;
@@ -143,7 +143,7 @@ namespace Lfx.Data
                         DbConnection = Lfx.Data.DataBaseCache.DefaultCache.Provider.GetConnection();
                         DbConnection.ConnectionString = ConnectionString.ToString();
                         Data.Forms.Connecting StatusForm = null;
-                        if (Lfx.Data.DataBaseCache.DefaultCache.SlowLink && showProgress) {
+                        if (Lfx.Data.DataBaseCache.DefaultCache.SlowLink && showProgress && AvoidWinForms == false) {
                                 StatusForm = new Data.Forms.Connecting();
                                 StatusForm.Show();
                                 StatusForm.Refresh();
@@ -151,14 +151,14 @@ namespace Lfx.Data
                         try {
                                 DbConnection.Open();
                         } catch {
-                                if (Lfx.Data.DataBaseCache.DefaultCache.SlowLink && showProgress) {
+                                if (StatusForm != null) {
                                         StatusForm.Close();
                                         StatusForm = null;
                                 }
                                 throw;
                         }
 
-                        if (Lfx.Data.DataBaseCache.DefaultCache.SlowLink && showProgress) {
+                        if (StatusForm != null) {
                                 StatusForm.Close();
                                 StatusForm = null;
                         }
@@ -186,6 +186,14 @@ namespace Lfx.Data
                         get
                         {
                                 return Lfx.Data.DataBaseCache.DefaultCache.ServerName;
+                        }
+                }
+
+                public DateTime ServerDateTime
+                {
+                        get
+                        {
+                                return this.FieldDateTime("SELECT NOW()", DateTime.Now);
                         }
                 }
 
@@ -294,12 +302,15 @@ namespace Lfx.Data
                                                 this.Execute(this.CustomizeSql(Sql));
                                 }
 
+                                /*
+                                 * NO DROPEAR COLUMNAS DESCONOCIDAS
                                 foreach (Data.ColumnDefinition FieldDef in CurrentTableDef.Columns.Values) {
                                         if (newTableDef.Columns.ContainsKey(FieldDef.Name) == false) {
                                                 string Sql = "ALTER TABLE \"" + newTableDef.Name + "\" DROP \"" + FieldDef.Name + "\"";
                                                 this.Execute(this.CustomizeSql(Sql));
                                         }
                                 }
+                                */
                         }
 
                         //Índices
@@ -696,10 +707,13 @@ namespace Lfx.Data
 
                                 System.Threading.Thread.Sleep(500);
 
-                                Data.Forms.LostConnection ErrorMsg = new Data.Forms.LostConnection();
-                                ErrorMsg.StatusLabel.Text = ex.Message;
-                                ErrorMsg.Show();
-                                ErrorMsg.Refresh();
+                                Data.Forms.LostConnection ErrorForm = null;
+                                if (AvoidWinForms == false) {
+                                        ErrorForm = new Data.Forms.LostConnection();
+                                        ErrorForm.StatusLabel.Text = ex.Message;
+                                        ErrorForm.Show();
+                                        ErrorForm.Refresh();
+                                }
                                 int intentos = 10;
                                 while (DbConnection.State != System.Data.ConnectionState.Open && intentos-- > 0) {
                                         try {
@@ -709,7 +723,8 @@ namespace Lfx.Data
                                                 System.Threading.Thread.Sleep(1000);
                                         }
                                 }
-                                ErrorMsg.Close();
+                                if (ErrorForm != null)
+                                        ErrorForm.Close();
                                 m_EnableRecover = true;
                                 return false;
                         } else {
@@ -729,16 +744,20 @@ namespace Lfx.Data
 
                 public bool Close()
                 {
-                        if (DbConnection != null && DbConnection.State == System.Data.ConnectionState.Open) {
+                        if (DbConnection != null) {
                                 m_Closing = true;
                                 try {
-                                        DbConnection.Close();
+                                        if (DbConnection.State == System.Data.ConnectionState.Open)
+                                                DbConnection.Close();
+                                        DbConnection.Dispose();
+                                        DbConnection = null;
                                 } catch {
                                         if (Lfx.Environment.SystemInformation.DesignMode)
                                                 throw;
                                 }
                                 m_Closing = false;
                         }
+
                         return false;
                 }
 
@@ -833,8 +852,7 @@ namespace Lfx.Data
                                         int Res = command.ExecuteNonQuery();
                                         command.Dispose();
                                         return Res;
-                                }
-                                catch (Exception ex) {
+                                } catch (Exception ex) {
                                         if (this.TryToRecover(ex)) {
                                                 LogError("----------------------------------------------------------------------------");
                                                 LogError(ex.Message);
@@ -915,6 +933,15 @@ namespace Lfx.Data
                                 return 0;
                         else
                                 return System.Convert.ToInt32(Res);
+                }
+
+                public DateTime FieldDateTime(string selectCommand, DateTime defaultValue)
+                {
+                        object Res = this.ExecuteScalar(selectCommand);
+                        if (Res == null || Res is DBNull)
+                                return defaultValue;
+                        else
+                                return System.Convert.ToDateTime(Res);
                 }
 
                 public double FieldDouble(SqlSelectBuilder selectCommand)

@@ -178,13 +178,13 @@ namespace Lcc.Controles
                 {
                         get
                         {
-                                DateTime? Desde =Lfx.Types.Parsing.ParseDate(EntradaDesde.Text);
-                                DateTime? Hasta = Lfx.Types.Parsing.ParseDate(EntradaHasta.Text);
-                                if (Desde.HasValue)
+                                Lfx.Types.LDateTime Desde = Lfx.Types.Parsing.ParseDate(EntradaDesde.Text);
+                                Lfx.Types.LDateTime Hasta = Lfx.Types.Parsing.ParseDate(EntradaHasta.Text);
+                                if (Desde != null)
                                         m_Rango.From = Desde.Value;
-                                if (Hasta.HasValue)
+                                if (Hasta != null)
                                         m_Rango.To = Hasta.Value;
-                                else if(Desde.HasValue)
+                                else if(Desde != null)
                                         m_Rango.To = Desde.Value;
                                 return m_Rango;
                         }
@@ -217,15 +217,15 @@ namespace Lcc.Controles
 
                 private void EntradaDesde_TextChanged(object sender, EventArgs e)
                 {
-                        DateTime? Fecha = Lfx.Types.Parsing.ParseDate(EntradaDesde.Text);
-                        if (Fecha.HasValue)
+                        Lfx.Types.LDateTime Fecha = Lfx.Types.Parsing.ParseDate(EntradaDesde.Text);
+                        if (Fecha != null)
                                 m_Rango.From = Fecha.Value;
                 }
 
                 private void EntradaHasta_TextChanged(object sender, EventArgs e)
                 {
-                        DateTime? Fecha = Lfx.Types.Parsing.ParseDate(EntradaHasta.Text);
-                        if (Fecha.HasValue)
+                        Lfx.Types.LDateTime Fecha = Lfx.Types.Parsing.ParseDate(EntradaHasta.Text);
+                        if (Fecha != null)
                                 m_Rango.To = Fecha.Value;
                 }
 

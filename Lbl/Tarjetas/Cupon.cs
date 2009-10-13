@@ -130,7 +130,7 @@ namespace Lbl.Tarjetas
                         }
                 }
 
-                public DateTime? FechaPresentacion
+                public Lfx.Types.LDateTime FechaPresentacion
                 {
                         get
                         {
@@ -142,7 +142,7 @@ namespace Lbl.Tarjetas
                         }
                 }
 
-                public DateTime? FechaAcreditacion
+                public Lfx.Types.LDateTime FechaAcreditacion
                 {
                         get
                         {
@@ -300,12 +300,12 @@ namespace Lbl.Tarjetas
 			Comando.Fields.AddWithValue("importe", this.Importe);
 			Comando.Fields.AddWithValue("obs", this.Obs);
 
-                        if (this.FechaAcreditacion.HasValue)
+                        if (this.FechaAcreditacion != null)
                                 Comando.Fields.AddWithValue("fecha_acred", this.FechaAcreditacion.Value);
                         else
                                 Comando.Fields.AddWithValue("fecha_acred", null);
 
-                        if (this.FechaPresentacion.HasValue)
+                        if (this.FechaPresentacion != null)
                                 Comando.Fields.AddWithValue("fecha_pres", this.FechaPresentacion.Value);
                         else
                                 Comando.Fields.AddWithValue("fecha_pres", null);

@@ -85,7 +85,7 @@
                         this.EntradaComentario.AutoHeight = true;
                         this.EntradaComentario.AutoNav = true;
                         this.EntradaComentario.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaComentario.Location = new System.Drawing.Point(0, 232);
+                        this.EntradaComentario.Location = new System.Drawing.Point(0, 234);
                         this.EntradaComentario.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaComentario.Name = "EntradaComentario";
                         this.EntradaComentario.SelectOnFocus = true;
@@ -104,12 +104,12 @@
                         this.BotonAgregar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonAgregar.Location = new System.Drawing.Point(468, 232);
+                        this.BotonAgregar.Location = new System.Drawing.Point(468, 234);
                         this.BotonAgregar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.BotonAgregar.Name = "BotonAgregar";
                         this.BotonAgregar.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                         this.BotonAgregar.ReadOnly = false;
-                        this.BotonAgregar.Size = new System.Drawing.Size(85, 28);
+                        this.BotonAgregar.Size = new System.Drawing.Size(85, 24);
                         this.BotonAgregar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonAgregar.Subtext = "Tecla";
                         this.BotonAgregar.TabIndex = 1;

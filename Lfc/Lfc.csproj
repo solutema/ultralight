@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F17DC014-DB1E-4278-820C-EA49B2B92C79}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -71,8 +71,14 @@
     <Compile Include="Articulos\Categorias\Editar.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Articulos\Categorias\Editar.Designer.cs">
+      <DependentUpon>Editar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Articulos\Categorias\Inicio.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Articulos\Categorias\Inicio.Designer.cs">
+      <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
     <Compile Include="Articulos\Editar.cs">
       <SubType>Form</SubType>
@@ -160,6 +166,18 @@
     </Compile>
     <Compile Include="Comprobantes\Compra\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comprobantes\Facturas\SaldoEnCuentaCorriente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprobantes\Facturas\SaldoEnCuentaCorriente.Designer.cs">
+      <DependentUpon>SaldoEnCuentaCorriente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comprobantes\Recibos\Anular.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprobantes\Recibos\Anular.Designer.cs">
+      <DependentUpon>Anular.cs</DependentUpon>
     </Compile>
     <Compile Include="Comprobantes\Recibos\EditarPago.cs">
       <SubType>Form</SubType>
@@ -404,6 +422,12 @@
     <Compile Include="Pvs\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reportes\Reporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Reporte.Designer.cs">
+      <DependentUpon>Reporte.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sucursales\Editar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -555,6 +579,12 @@
     <EmbeddedResource Include="Ciudades\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprobantes\Facturas\SaldoEnCuentaCorriente.resx">
+      <DependentUpon>SaldoEnCuentaCorriente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprobantes\Recibos\Anular.resx">
+      <DependentUpon>Anular.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprobantes\Recibos\EditarPago.resx">
       <DependentUpon>EditarPago.cs</DependentUpon>
@@ -787,6 +817,9 @@
     <EmbeddedResource Include="Pvs\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Reporte.resx">
+      <DependentUpon>Reporte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sucursales\Editar.resx">
       <DependentUpon>Editar.cs</DependentUpon>

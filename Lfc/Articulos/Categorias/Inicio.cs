@@ -36,91 +36,28 @@ using System.Windows.Forms;
 
 namespace Lfc.Articulos.Categorias
 {
-        public class Inicio : Lui.Forms.ListingForm
+        public partial class Inicio : Lui.Forms.ListingForm
         {
                 internal string m_Stock = "*";
 
-                #region Código generado por el Diseñador de Windows Forms
-
                 public Inicio()
-                        :
-                    base()
+                        : base()
                 {
-
-                        // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
 
-                        // agregar código de constructor después de llamar a InitializeComponent
-			DataTableName = "cat_articulos";
+                        DataTableName = "cat_articulos";
                         KeyField = new Lfx.Data.FormField("cat_articulos.id_cat_articulo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        Joins.Add(new Lfx.Data.Join("articulos", "cat_articulos.id_cat_articulo"));
+                        GroupBy = KeyField;
                         OrderBy = "cat_articulos.nombre";
-			FormFields = new Lfx.Data.FormField[]
+                        FormFields = new Lfx.Data.FormField[]
 			{
 				new Lfx.Data.FormField("cat_articulos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 				new Lfx.Data.FormField("cat_articulos.stock_minimo", "Stock Mín", Lfx.Data.InputFieldTypes.Numeric, 96),
-				new Lfx.Data.FormField("0", "Stock Act", Lfx.Data.InputFieldTypes.Numeric, 96),
-				new Lfx.Data.FormField("0", "Pedidos", Lfx.Data.InputFieldTypes.Numeric, 96),
-				new Lfx.Data.FormField("0", "Faltante", Lfx.Data.InputFieldTypes.Numeric, 96),
+				new Lfx.Data.FormField("cat_articulos.cache_stock_actual", "Stock Act", Lfx.Data.InputFieldTypes.Numeric, 96)
 			};
                         BotonFiltrar.Visible = true;
                 }
-
-                // Limpiar los recursos que se estén utilizando.
-                protected override void Dispose(bool disposing)
-                {
-                        if (disposing)
-                        {
-                                if (components != null)
-                                {
-                                        components.Dispose();
-                                }
-                        }
-
-                        base.Dispose(disposing);
-                }
-
-                // Requerido por el Diseñador de Windows Forms
-                private System.ComponentModel.Container components = null;
-
-                // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
-                // Puede modificarse utilizando el Diseñador de Windows Forms. 
-                // No lo modifique con el editor de código.
-
-                private void InitializeComponent()
-                {
-                        this.SuspendLayout();
-                        // 
-                        // lvItems
-                        // 
-                        this.Listado.Name = "lvItems";
-                        this.Listado.Size = new System.Drawing.Size(546, 466);
-                        // 
-                        // CreateButton
-                        // 
-                        this.BotonCrear.DockPadding.All = 2;
-                        this.BotonCrear.Name = "CreateButton";
-                        // 
-                        // FiltersButton
-                        // 
-                        this.BotonFiltrar.DockPadding.All = 2;
-                        this.BotonFiltrar.Name = "FiltersButton";
-                        // 
-                        // PrintButton
-                        // 
-                        this.BotonImprimir.DockPadding.All = 2;
-                        this.BotonImprimir.Name = "PrintButton";
-                        // 
-                        // Inicio
-                        // 
-                        this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
-                        this.ClientSize = new System.Drawing.Size(692, 473);
-                        this.Name = "Inicio";
-                        this.Text = "Artículos: Categorías";
-                        this.ResumeLayout(false);
-
-                }
-
-                #endregion
 
                 public override Lfx.Types.OperationResult OnCreate()
                 {
@@ -164,26 +101,12 @@ namespace Lfc.Articulos.Categorias
 
                 public override void Fill(Lfx.Data.SqlSelectBuilder sqlCommand)
                 {
+                        this.DataView.DataBase.Execute("UPDATE cat_articulos SET cache_stock_actual=(SELECT SUM(stock_actual) FROM articulos WHERE articulos.id_cat_articulo=cat_articulos.id_cat_articulo)");
                         base.Fill(sqlCommand);
 
-                        foreach (System.Windows.Forms.ListViewItem itm in Listado.Items)
-                        {
-                                if (this.Workspace.SlowLink == false)
-                                {
-                                        itm.SubItems[3].Text = this.Workspace.DefaultDataBase.FieldInt("SELECT SUM(articulos.stock_actual) AS stock_actual FROM articulos, cat_articulos WHERE articulos.id_cat_articulo=cat_articulos.id_cat_articulo AND articulos.id_cat_articulo=" + itm.Text).ToString();
-                                        itm.SubItems[4].Text = this.Workspace.DefaultDataBase.FieldInt("SELECT SUM(articulos.pedido) AS pedidos FROM articulos, cat_articulos WHERE articulos.id_cat_articulo=cat_articulos.id_cat_articulo AND articulos.id_cat_articulo=" + itm.Text).ToString();
-                                }
-
-                                if (Lfx.Types.Parsing.ParseStock(itm.SubItems[3].Text) + Lfx.Types.Parsing.ParseStock(itm.SubItems[4].Text) < Lfx.Types.Parsing.ParseStock(itm.SubItems[2].Text))
-                                {
+                        foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
+                                if (Lfx.Types.Parsing.ParseStock(itm.SubItems[3].Text) < Lfx.Types.Parsing.ParseStock(itm.SubItems[2].Text))
                                         itm.ForeColor = System.Drawing.Color.Red;
-                                        itm.SubItems[5].Text = Lfx.Types.Formatting.FormatNumber(Lfx.Types.Parsing.ParseDouble(itm.SubItems[2].Text) - (Lfx.Types.Parsing.ParseDouble(itm.SubItems[3].Text) + Lfx.Types.Parsing.ParseDouble(itm.SubItems[4].Text)), this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
-                                }
-                                else if (Lfx.Types.Parsing.ParseStock(itm.SubItems[3].Text) < Lfx.Types.Parsing.ParseStock(itm.SubItems[2].Text))
-                                {
-                                        itm.ForeColor = System.Drawing.Color.DarkGreen;
-                                }
-                                this.Refresh();
                         }
                 }
         }

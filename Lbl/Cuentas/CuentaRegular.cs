@@ -78,7 +78,7 @@ namespace Lbl.Cuentas
 			Comando.Fields.AddWithValue("auto", auto ? (int)1 : (int)0);
 			Comando.Fields.AddWithValue("id_concepto", Lfx.Data.DataBase.ConvertZeroToDBNull(idConcepto));
 			Comando.Fields.AddWithValue("concepto", concepto);
-                        Comando.Fields.AddWithValue("id_persona", this.Workspace.CurrentUser.UserId);
+                        Comando.Fields.AddWithValue("id_persona", this.Workspace.CurrentUser.Id);
 			Comando.Fields.AddWithValue("id_cliente", Lfx.Data.DataBase.ConvertZeroToDBNull(idCliente));
 			Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
 			Comando.Fields.AddWithValue("importe", importe);

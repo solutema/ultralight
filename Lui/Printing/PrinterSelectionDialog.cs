@@ -163,13 +163,13 @@ namespace Lui.Printing
 
 			foreach(string Impresora in System.Drawing.Printing.PrinterSettings.InstalledPrinters) {
 				ListViewItem Itm = lvItems.Items.Add(Impresora);
-				if(Impresora.Substring(0, 2) == @"\\" && Impresora.IndexOf(@"|") == -1) {
-					string NombreImpresora = Impresora.Substring(2, Impresora.Length - 2);
-					string Estacion = Lfx.Types.Strings.GetNextToken(ref NombreImpresora, @"\");
-					Itm.SubItems.Add(NombreImpresora + " en " + Lfx.Types.Strings.ULCase(Estacion) + " (impresora remota)");
-				} else {
-					Itm.SubItems.Add(Impresora + " (impresora local)");
-				}
+                                if (Impresora.Length > 1 && Impresora.Substring(0, 2) == @"\\" && Impresora.IndexOf(@"|") == -1) {
+                                        string NombreImpresora = Impresora.Substring(2, Impresora.Length - 2);
+                                        string Estacion = Lfx.Types.Strings.GetNextToken(ref NombreImpresora, @"\");
+                                        Itm.SubItems.Add(NombreImpresora + " en " + Lfx.Types.Strings.ULCase(Estacion) + " (impresora remota)");
+                                } else {
+                                        Itm.SubItems.Add(Impresora + " (impresora local)");
+                                }
 
 				if(Impresora == m_Resultado) {
 					if(lvItems.SelectedItems.Count > 0)

@@ -104,10 +104,12 @@ namespace Lfc.Cuentas.Corriente
                         ItemList.Columns[7].Width = 0;
                         ItemList.Columns[8].Width = 0;
 
-                        m_SelectCommand = new Lfx.Data.SqlSelectBuilder("personas, ctacte");
-                        m_SelectCommand.Fields = "personas.id_persona, personas.nombre_visible, SUM(importe) AS saldo";
+                        m_SelectCommand = new Lfx.Data.SqlSelectBuilder("personas");
+                        m_SelectCommand.Joins.Clear();
+                        m_SelectCommand.Joins.Add(new Lfx.Data.Join("ctacte", "personas.id_persona=ctacte.id_cliente"));
+                        m_SelectCommand.Fields = "personas.id_persona, personas.nombre_visible, SUM(ctacte.importe) AS saldo";
 
-                        string Where = "personas.id_persona=ctacte.id_cliente";
+                        string Where = "1";
                         if (m_Fechas != null && m_Fechas.HasRange)
                                 Where += " AND fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.To) + " 23:59:59'";
                         if (m_Grupo != 0)
@@ -126,7 +128,7 @@ namespace Lfc.Cuentas.Corriente
                         double Total = 0;
                         DataTable Clientes = this.Workspace.DefaultDataBase.Select(this.SelectCommand());
                         foreach (System.Data.DataRow Cliente in Clientes.Rows) {
-                                if (System.Convert.ToDouble(Cliente["saldo"]) != 0) {
+                                if (Cliente["saldo"] != DBNull.Value && System.Convert.ToDouble(Cliente["saldo"]) != 0) {
                                         ListViewItem itm = ItemList.Items.Add(System.Convert.ToString(Cliente["id_persona"]));
                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "fecha"));
                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Cliente["nombre_visible"])));
@@ -164,19 +166,20 @@ namespace Lfc.Cuentas.Corriente
                 {
                         m_FormFields = new Lfx.Data.FormField[]
 			{
-				new Lfx.Data.FormField("id_movim", "Cód.", Lfx.Data.InputFieldTypes.Integer, 0),
-				new Lfx.Data.FormField("fecha", "Fecha", Lfx.Data.InputFieldTypes.DateTime, 96),
-				new Lfx.Data.FormField("concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
-				new Lfx.Data.FormField("importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 120),
+				new Lfx.Data.FormField("ctacte.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Integer, 0),
+				new Lfx.Data.FormField("ctacte.fecha", "Fecha", Lfx.Data.InputFieldTypes.DateTime, 96),
+				new Lfx.Data.FormField("ctacte.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
+				new Lfx.Data.FormField("ctacte.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 120),
 				new Lfx.Data.FormField("0", "0", Lfx.Data.InputFieldTypes.Text, 0),
-				new Lfx.Data.FormField("saldo", "saldo", Lfx.Data.InputFieldTypes.Currency, 120),
-				new Lfx.Data.FormField("id_factura", "Comprobante", Lfx.Data.InputFieldTypes.Text, 0),
-				new Lfx.Data.FormField("obs", "Obs.", Lfx.Data.InputFieldTypes.Memo, 320)
+				new Lfx.Data.FormField("ctacte.saldo", "saldo", Lfx.Data.InputFieldTypes.Currency, 120),
+				new Lfx.Data.FormField("ctacte.id_factura", "Comprobante", Lfx.Data.InputFieldTypes.Text, 0),
+				new Lfx.Data.FormField("ctacte.id_persona", "Persona", Lfx.Data.InputFieldTypes.Text, 160),
+                                new Lfx.Data.FormField("ctacte.obs", "Obs.", Lfx.Data.InputFieldTypes.Memo, 320)
 			};
 
                         m_SelectCommand = new Lfx.Data.SqlSelectBuilder("ctacte");
 
-                        m_SelectCommand.Fields = "ctacte.id_movim, ctacte.fecha, ctacte.concepto, ctacte.importe, 0, ctacte.saldo, ctacte.id_factura, ctacte.obs";
+                        m_SelectCommand.Fields = "ctacte.id_movim, ctacte.fecha, ctacte.concepto, ctacte.importe, 0, ctacte.saldo, ctacte.id_factura, ctacte.id_cliente, ctacte.obs";
                         string TextoWhere = "1";
                         if (m_Fechas.HasRange)
                                 TextoWhere += " AND ctacte.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.To) + " 23:59:59'";

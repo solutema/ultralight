@@ -160,6 +160,11 @@ namespace Lfc.Comprobantes.Recibos
                                 validarReturn.Success = false;
                                 validarReturn.Message = "Por favor seleccione un cliente válido." + Environment.NewLine;
                         }
+
+                        if (EntradaConcepto.TextInt <= 0) {
+                                validarReturn.Success = false;
+                                validarReturn.Message = "Por favor seleccione un concepto para el movimiento." + Environment.NewLine;
+                        }
                         
                         if (this.DePago == false && Rec.Cobros.ImporteTotal() <= 0) {
                                 validarReturn.Success = false;
@@ -598,7 +603,7 @@ namespace Lfc.Comprobantes.Recibos
 
                 private void FormReciboEditar_WorkspaceChanged(object sender, System.EventArgs e)
                 {
-                        EntradaVendedor.TextInt = this.Workspace.CurrentUser.UserId;
+                        EntradaVendedor.TextInt = this.Workspace.CurrentUser.Id;
                 }
 
         }

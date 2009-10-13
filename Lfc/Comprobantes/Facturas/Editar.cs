@@ -58,6 +58,7 @@ namespace Lfc.Comprobantes.Facturas
 
 			if(validarReturn.Success == true) {
                                 Lbl.Comprobantes.ComprobanteConArticulos Registro = this.ToRow() as Lbl.Comprobantes.ComprobanteConArticulos;
+                                Registro.Cliente.Cargar();
 
 				if(Registro.NumeroRemito > 0) {
                                         Lfx.Data.Row Remito = this.Workspace.DefaultDataBase.FirstRowFromSelect("SELECT * FROM facturas WHERE tipo_fac='R' AND numero=" + Registro.NumeroRemito.ToString() + " AND impresa>0 AND anulada=0");
@@ -223,17 +224,37 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                                 return new Lfx.Types.OperationResult(false, "No se imprimir el comprobante por falta de existencias.");
                                 }
 
-                                if (Registro.Cliente.Id != 999 && Registro.FormaDePago == Lbl.Comprobantes.FormasDePago.CuentaCorriente && (Registro.Tipo.EsFactura || Registro.Tipo.EsNotaDebito)) {
-                                        double LimiteCredito = Registro.Cliente.LimiteCredito;
-                                        Lbl.Cuentas.CuentaCorriente CtaCte = new Lbl.Cuentas.CuentaCorriente(Registro.DataView, Registro.Cliente.Id);
+                                if (Registro.Cliente.Id != 999 && (Registro.Tipo.EsFactura || Registro.Tipo.EsNotaDebito)) {
+                                        if (Registro.FormaDePago == Lbl.Comprobantes.FormasDePago.CuentaCorriente) {
+                                                double LimiteCredito = Registro.Cliente.LimiteCredito;
 
-                                        if (LimiteCredito == 0)
-                                                LimiteCredito = Lfx.Types.Parsing.ParseCurrency(this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Cuentas.LimiteCreditoPredet", "0"));
+                                                if (LimiteCredito == 0)
+                                                        LimiteCredito = Lfx.Types.Parsing.ParseCurrency(this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Cuentas.LimiteCreditoPredet", "0"));
 
-                                        double Saldo = CtaCte.Saldo();
-                                        if ((Registro.Total + Saldo) > LimiteCredito)
-                                                return new Lfx.Types.OperationResult(false, "El valor de la factura y/o el saldo en cuenta corriente supera el Límite de Crédito de este cliente.");
+                                                double Saldo = Registro.Cliente.CuentaCorriente.Saldo();
+                                                if ((Registro.Total + Saldo) > LimiteCredito)
+                                                        return new Lfx.Types.OperationResult(false, "El valor de la factura y/o el saldo en cuenta corriente supera el Límite de Crédito de este cliente.");
+                                        } else {
+                                                if (Registro.Cliente.CuentaCorriente.Saldo() < 0) {
+                                                        SaldoEnCuentaCorriente FormularioError = new SaldoEnCuentaCorriente();
+
+                                                        switch (FormularioError.ShowDialog()) {
+                                                                case DialogResult.Yes:
+                                                                        //Corregir el problema
+                                                                        this.EntradaFormaPago.TextInt = 3;
+                                                                        Registro.FormaDePago = Lbl.Comprobantes.FormasDePago.CuentaCorriente;
+                                                                        break;
+                                                                case DialogResult.No:
+                                                                        //Continuar. No corregir el problema.
+                                                                        break;
+                                                                default:
+                                                                        //Cancelar y volver a la edición.
+                                                                        return new Lfx.Types.OperationResult(false);
+                                                        }
+                                                }
+                                        }
                                 }
+                                        
 
                                 this.Save();
                                 Registro = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;

@@ -54,6 +54,10 @@ namespace Lazaro.Reportes
                 internal System.Windows.Forms.Label label24;
                 internal Label label4;
                 internal Label label8;
+                internal Label label12;
+                internal Label label14;
+                internal Lui.Forms.TextBox txtGestionCobro;
+                internal Lui.Forms.Button cmdGestionCobro;
                 internal Lui.Forms.Button PorTipo;
 
                 #region Código generado por el Diseñador de Windows Forms
@@ -181,6 +185,10 @@ namespace Lazaro.Reportes
                         this.label24 = new System.Windows.Forms.Label();
                         this.label4 = new System.Windows.Forms.Label();
                         this.label8 = new System.Windows.Forms.Label();
+                        this.label12 = new System.Windows.Forms.Label();
+                        this.label14 = new System.Windows.Forms.Label();
+                        this.txtGestionCobro = new Lui.Forms.TextBox();
+                        this.cmdGestionCobro = new Lui.Forms.Button();
                         this.SuspendLayout();
                         // 
                         // Label1
@@ -203,7 +211,7 @@ namespace Lazaro.Reportes
                         // 
                         // Label3
                         // 
-                        this.Label3.Location = new System.Drawing.Point(16, 400);
+                        this.Label3.Location = new System.Drawing.Point(16, 428);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(172, 24);
                         this.Label3.TabIndex = 10;
@@ -212,7 +220,7 @@ namespace Lazaro.Reportes
                         // 
                         // Label5
                         // 
-                        this.Label5.Location = new System.Drawing.Point(16, 192);
+                        this.Label5.Location = new System.Drawing.Point(16, 220);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(172, 24);
                         this.Label5.TabIndex = 16;
@@ -221,7 +229,7 @@ namespace Lazaro.Reportes
                         // 
                         // Label6
                         // 
-                        this.Label6.Location = new System.Drawing.Point(16, 220);
+                        this.Label6.Location = new System.Drawing.Point(16, 248);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(172, 24);
                         this.Label6.TabIndex = 19;
@@ -230,7 +238,7 @@ namespace Lazaro.Reportes
                         // 
                         // Label7
                         // 
-                        this.Label7.Location = new System.Drawing.Point(16, 248);
+                        this.Label7.Location = new System.Drawing.Point(16, 276);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(172, 24);
                         this.Label7.TabIndex = 22;
@@ -304,7 +312,7 @@ namespace Lazaro.Reportes
                         this.txtGastosFijos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtGastosFijos.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtGastosFijos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtGastosFijos.Location = new System.Drawing.Point(188, 192);
+                        this.txtGastosFijos.Location = new System.Drawing.Point(188, 220);
                         this.txtGastosFijos.MaxLenght = 32767;
                         this.txtGastosFijos.MultiLine = false;
                         this.txtGastosFijos.Name = "txtGastosFijos";
@@ -332,7 +340,7 @@ namespace Lazaro.Reportes
                         this.txtGastosVariables.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtGastosVariables.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtGastosVariables.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtGastosVariables.Location = new System.Drawing.Point(188, 220);
+                        this.txtGastosVariables.Location = new System.Drawing.Point(188, 248);
                         this.txtGastosVariables.MaxLenght = 32767;
                         this.txtGastosVariables.MultiLine = false;
                         this.txtGastosVariables.Name = "txtGastosVariables";
@@ -360,7 +368,7 @@ namespace Lazaro.Reportes
                         this.txtOtrosEgresos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtOtrosEgresos.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtOtrosEgresos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtOtrosEgresos.Location = new System.Drawing.Point(188, 248);
+                        this.txtOtrosEgresos.Location = new System.Drawing.Point(188, 276);
                         this.txtOtrosEgresos.MaxLenght = 32767;
                         this.txtOtrosEgresos.MultiLine = false;
                         this.txtOtrosEgresos.Name = "txtOtrosEgresos";
@@ -386,7 +394,7 @@ namespace Lazaro.Reportes
                         this.cmdGastosFijos.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.cmdGastosFijos.Image = null;
                         this.cmdGastosFijos.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdGastosFijos.Location = new System.Drawing.Point(296, 192);
+                        this.cmdGastosFijos.Location = new System.Drawing.Point(296, 220);
                         this.cmdGastosFijos.Name = "cmdGastosFijos";
                         this.cmdGastosFijos.Padding = new System.Windows.Forms.Padding(2);
                         this.cmdGastosFijos.ReadOnly = false;
@@ -406,7 +414,7 @@ namespace Lazaro.Reportes
                         this.cmdGastosVariables.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.cmdGastosVariables.Image = null;
                         this.cmdGastosVariables.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdGastosVariables.Location = new System.Drawing.Point(296, 220);
+                        this.cmdGastosVariables.Location = new System.Drawing.Point(296, 248);
                         this.cmdGastosVariables.Name = "cmdGastosVariables";
                         this.cmdGastosVariables.Padding = new System.Windows.Forms.Padding(2);
                         this.cmdGastosVariables.ReadOnly = false;
@@ -426,7 +434,7 @@ namespace Lazaro.Reportes
                         this.cmdOtrosEgresos.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.cmdOtrosEgresos.Image = null;
                         this.cmdOtrosEgresos.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdOtrosEgresos.Location = new System.Drawing.Point(296, 248);
+                        this.cmdOtrosEgresos.Location = new System.Drawing.Point(296, 276);
                         this.cmdOtrosEgresos.Name = "cmdOtrosEgresos";
                         this.cmdOtrosEgresos.Padding = new System.Windows.Forms.Padding(2);
                         this.cmdOtrosEgresos.ReadOnly = false;
@@ -460,7 +468,7 @@ namespace Lazaro.Reportes
                         this.lvItems.Location = new System.Drawing.Point(352, 8);
                         this.lvItems.MultiSelect = false;
                         this.lvItems.Name = "lvItems";
-                        this.lvItems.Size = new System.Drawing.Size(332, 460);
+                        this.lvItems.Size = new System.Drawing.Size(332, 522);
                         this.lvItems.TabIndex = 37;
                         this.lvItems.UseCompatibleStateImageBehavior = false;
                         this.lvItems.View = System.Windows.Forms.View.Details;
@@ -513,7 +521,7 @@ namespace Lazaro.Reportes
                         this.txtCobros.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtCobros.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtCobros.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtCobros.Location = new System.Drawing.Point(188, 344);
+                        this.txtCobros.Location = new System.Drawing.Point(188, 372);
                         this.txtCobros.MaxLenght = 32767;
                         this.txtCobros.MultiLine = false;
                         this.txtCobros.Name = "txtCobros";
@@ -534,7 +542,7 @@ namespace Lazaro.Reportes
                         // Label10
                         // 
                         this.Label10.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.Label10.Location = new System.Drawing.Point(16, 344);
+                        this.Label10.Location = new System.Drawing.Point(16, 372);
                         this.Label10.Name = "Label10";
                         this.Label10.Size = new System.Drawing.Size(172, 24);
                         this.Label10.TabIndex = 4;
@@ -549,7 +557,7 @@ namespace Lazaro.Reportes
                         this.cmdCobros.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.cmdCobros.Image = null;
                         this.cmdCobros.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdCobros.Location = new System.Drawing.Point(296, 344);
+                        this.cmdCobros.Location = new System.Drawing.Point(296, 372);
                         this.cmdCobros.Name = "cmdCobros";
                         this.cmdCobros.Padding = new System.Windows.Forms.Padding(2);
                         this.cmdCobros.ReadOnly = false;
@@ -571,7 +579,7 @@ namespace Lazaro.Reportes
                         this.txtDiferenciaNeta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtDiferenciaNeta.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtDiferenciaNeta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtDiferenciaNeta.Location = new System.Drawing.Point(188, 292);
+                        this.txtDiferenciaNeta.Location = new System.Drawing.Point(188, 320);
                         this.txtDiferenciaNeta.MaxLenght = 32767;
                         this.txtDiferenciaNeta.MultiLine = false;
                         this.txtDiferenciaNeta.Name = "txtDiferenciaNeta";
@@ -591,7 +599,7 @@ namespace Lazaro.Reportes
                         // 
                         // Label9
                         // 
-                        this.Label9.Location = new System.Drawing.Point(16, 292);
+                        this.Label9.Location = new System.Drawing.Point(16, 320);
                         this.Label9.Name = "Label9";
                         this.Label9.Size = new System.Drawing.Size(172, 24);
                         this.Label9.TabIndex = 25;
@@ -608,7 +616,7 @@ namespace Lazaro.Reportes
                         this.txtDiferenciaBruta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtDiferenciaBruta.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtDiferenciaBruta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtDiferenciaBruta.Location = new System.Drawing.Point(188, 132);
+                        this.txtDiferenciaBruta.Location = new System.Drawing.Point(188, 160);
                         this.txtDiferenciaBruta.MaxLenght = 32767;
                         this.txtDiferenciaBruta.MultiLine = false;
                         this.txtDiferenciaBruta.Name = "txtDiferenciaBruta";
@@ -628,7 +636,7 @@ namespace Lazaro.Reportes
                         // 
                         // Label11
                         // 
-                        this.Label11.Location = new System.Drawing.Point(16, 132);
+                        this.Label11.Location = new System.Drawing.Point(16, 160);
                         this.Label11.Name = "Label11";
                         this.Label11.Size = new System.Drawing.Size(172, 24);
                         this.Label11.TabIndex = 32;
@@ -638,14 +646,14 @@ namespace Lazaro.Reportes
                         // Label13
                         // 
                         this.Label13.BackColor = System.Drawing.Color.Silver;
-                        this.Label13.Location = new System.Drawing.Point(8, 280);
+                        this.Label13.Location = new System.Drawing.Point(8, 308);
                         this.Label13.Name = "Label13";
                         this.Label13.Size = new System.Drawing.Size(280, 2);
                         this.Label13.TabIndex = 27;
                         // 
                         // Label15
                         // 
-                        this.Label15.Location = new System.Drawing.Point(4, 132);
+                        this.Label15.Location = new System.Drawing.Point(4, 160);
                         this.Label15.Name = "Label15";
                         this.Label15.Size = new System.Drawing.Size(12, 24);
                         this.Label15.TabIndex = 37;
@@ -654,7 +662,7 @@ namespace Lazaro.Reportes
                         // 
                         // Label16
                         // 
-                        this.Label16.Location = new System.Drawing.Point(4, 192);
+                        this.Label16.Location = new System.Drawing.Point(4, 220);
                         this.Label16.Name = "Label16";
                         this.Label16.Size = new System.Drawing.Size(12, 24);
                         this.Label16.TabIndex = 11;
@@ -663,7 +671,7 @@ namespace Lazaro.Reportes
                         // 
                         // Label17
                         // 
-                        this.Label17.Location = new System.Drawing.Point(4, 220);
+                        this.Label17.Location = new System.Drawing.Point(4, 248);
                         this.Label17.Name = "Label17";
                         this.Label17.Size = new System.Drawing.Size(12, 24);
                         this.Label17.TabIndex = 15;
@@ -672,7 +680,7 @@ namespace Lazaro.Reportes
                         // 
                         // Label18
                         // 
-                        this.Label18.Location = new System.Drawing.Point(4, 248);
+                        this.Label18.Location = new System.Drawing.Point(4, 276);
                         this.Label18.Name = "Label18";
                         this.Label18.Size = new System.Drawing.Size(12, 24);
                         this.Label18.TabIndex = 23;
@@ -681,7 +689,7 @@ namespace Lazaro.Reportes
                         // 
                         // Label20
                         // 
-                        this.Label20.Location = new System.Drawing.Point(4, 292);
+                        this.Label20.Location = new System.Drawing.Point(4, 320);
                         this.Label20.Name = "Label20";
                         this.Label20.Size = new System.Drawing.Size(12, 24);
                         this.Label20.TabIndex = 28;
@@ -754,7 +762,7 @@ namespace Lazaro.Reportes
                         // lblDiferenciaBrutaPct
                         // 
                         this.lblDiferenciaBrutaPct.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.lblDiferenciaBrutaPct.Location = new System.Drawing.Point(296, 132);
+                        this.lblDiferenciaBrutaPct.Location = new System.Drawing.Point(296, 160);
                         this.lblDiferenciaBrutaPct.Name = "lblDiferenciaBrutaPct";
                         this.lblDiferenciaBrutaPct.Size = new System.Drawing.Size(48, 24);
                         this.lblDiferenciaBrutaPct.TabIndex = 34;
@@ -764,7 +772,7 @@ namespace Lazaro.Reportes
                         // lblDiferenciaNetaPct
                         // 
                         this.lblDiferenciaNetaPct.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.lblDiferenciaNetaPct.Location = new System.Drawing.Point(296, 292);
+                        this.lblDiferenciaNetaPct.Location = new System.Drawing.Point(296, 320);
                         this.lblDiferenciaNetaPct.Name = "lblDiferenciaNetaPct";
                         this.lblDiferenciaNetaPct.Size = new System.Drawing.Size(48, 24);
                         this.lblDiferenciaNetaPct.TabIndex = 27;
@@ -780,7 +788,7 @@ namespace Lazaro.Reportes
                         this.PrintButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.PrintButton.Image = null;
                         this.PrintButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.PrintButton.Location = new System.Drawing.Point(8, 436);
+                        this.PrintButton.Location = new System.Drawing.Point(8, 498);
                         this.PrintButton.Name = "PrintButton";
                         this.PrintButton.Padding = new System.Windows.Forms.Padding(2);
                         this.PrintButton.ReadOnly = false;
@@ -801,7 +809,7 @@ namespace Lazaro.Reportes
                         this.ChartButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.ChartButton.Image = null;
                         this.ChartButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.ChartButton.Location = new System.Drawing.Point(112, 436);
+                        this.ChartButton.Location = new System.Drawing.Point(112, 498);
                         this.ChartButton.Name = "ChartButton";
                         this.ChartButton.Padding = new System.Windows.Forms.Padding(2);
                         this.ChartButton.ReadOnly = false;
@@ -822,7 +830,7 @@ namespace Lazaro.Reportes
                         this.PorTipo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.PorTipo.Image = null;
                         this.PorTipo.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.PorTipo.Location = new System.Drawing.Point(216, 436);
+                        this.PorTipo.Location = new System.Drawing.Point(216, 498);
                         this.PorTipo.Name = "PorTipo";
                         this.PorTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.PorTipo.ReadOnly = false;
@@ -844,7 +852,7 @@ namespace Lazaro.Reportes
                         this.txtCompraMateriales.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtCompraMateriales.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtCompraMateriales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtCompraMateriales.Location = new System.Drawing.Point(188, 400);
+                        this.txtCompraMateriales.Location = new System.Drawing.Point(188, 428);
                         this.txtCompraMateriales.MaxLenght = 32767;
                         this.txtCompraMateriales.MultiLine = false;
                         this.txtCompraMateriales.Name = "txtCompraMateriales";
@@ -879,7 +887,7 @@ namespace Lazaro.Reportes
                         this.cmdCostoCapital.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.cmdCostoCapital.Image = null;
                         this.cmdCostoCapital.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdCostoCapital.Location = new System.Drawing.Point(296, 164);
+                        this.cmdCostoCapital.Location = new System.Drawing.Point(296, 192);
                         this.cmdCostoCapital.Name = "cmdCostoCapital";
                         this.cmdCostoCapital.Padding = new System.Windows.Forms.Padding(2);
                         this.cmdCostoCapital.ReadOnly = false;
@@ -901,7 +909,7 @@ namespace Lazaro.Reportes
                         this.txtCostoCapital.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtCostoCapital.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtCostoCapital.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtCostoCapital.Location = new System.Drawing.Point(188, 164);
+                        this.txtCostoCapital.Location = new System.Drawing.Point(188, 192);
                         this.txtCostoCapital.MaxLenght = 32767;
                         this.txtCostoCapital.MultiLine = false;
                         this.txtCostoCapital.Name = "txtCostoCapital";
@@ -921,7 +929,7 @@ namespace Lazaro.Reportes
                         // 
                         // label26
                         // 
-                        this.label26.Location = new System.Drawing.Point(4, 164);
+                        this.label26.Location = new System.Drawing.Point(4, 192);
                         this.label26.Name = "label26";
                         this.label26.Size = new System.Drawing.Size(12, 24);
                         this.label26.TabIndex = 53;
@@ -930,7 +938,7 @@ namespace Lazaro.Reportes
                         // 
                         // label27
                         // 
-                        this.label27.Location = new System.Drawing.Point(16, 164);
+                        this.label27.Location = new System.Drawing.Point(16, 192);
                         this.label27.Name = "label27";
                         this.label27.Size = new System.Drawing.Size(172, 24);
                         this.label27.TabIndex = 13;
@@ -945,7 +953,7 @@ namespace Lazaro.Reportes
                         this.cmdCostoMateriales.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.cmdCostoMateriales.Image = null;
                         this.cmdCostoMateriales.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdCostoMateriales.Location = new System.Drawing.Point(296, 400);
+                        this.cmdCostoMateriales.Location = new System.Drawing.Point(296, 428);
                         this.cmdCostoMateriales.Name = "cmdCostoMateriales";
                         this.cmdCostoMateriales.Padding = new System.Windows.Forms.Padding(2);
                         this.cmdCostoMateriales.ReadOnly = false;
@@ -965,7 +973,7 @@ namespace Lazaro.Reportes
                         this.cmdIngresosOtros.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.cmdIngresosOtros.Image = null;
                         this.cmdIngresosOtros.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdIngresosOtros.Location = new System.Drawing.Point(296, 372);
+                        this.cmdIngresosOtros.Location = new System.Drawing.Point(296, 400);
                         this.cmdIngresosOtros.Name = "cmdIngresosOtros";
                         this.cmdIngresosOtros.Padding = new System.Windows.Forms.Padding(2);
                         this.cmdIngresosOtros.ReadOnly = false;
@@ -987,7 +995,7 @@ namespace Lazaro.Reportes
                         this.txtIngresosOtros.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtIngresosOtros.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtIngresosOtros.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtIngresosOtros.Location = new System.Drawing.Point(188, 372);
+                        this.txtIngresosOtros.Location = new System.Drawing.Point(188, 400);
                         this.txtIngresosOtros.MaxLenght = 32767;
                         this.txtIngresosOtros.MultiLine = false;
                         this.txtIngresosOtros.Name = "txtIngresosOtros";
@@ -1008,7 +1016,7 @@ namespace Lazaro.Reportes
                         // label24
                         // 
                         this.label24.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.label24.Location = new System.Drawing.Point(16, 372);
+                        this.label24.Location = new System.Drawing.Point(16, 400);
                         this.label24.Name = "label24";
                         this.label24.Size = new System.Drawing.Size(172, 24);
                         this.label24.TabIndex = 7;
@@ -1018,7 +1026,7 @@ namespace Lazaro.Reportes
                         // label4
                         // 
                         this.label4.BackColor = System.Drawing.Color.Silver;
-                        this.label4.Location = new System.Drawing.Point(12, 124);
+                        this.label4.Location = new System.Drawing.Point(12, 152);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(280, 1);
                         this.label4.TabIndex = 69;
@@ -1032,10 +1040,80 @@ namespace Lazaro.Reportes
                         this.label8.Text = "-";
                         this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         // 
+                        // label12
+                        // 
+                        this.label12.Location = new System.Drawing.Point(4, 124);
+                        this.label12.Name = "label12";
+                        this.label12.Size = new System.Drawing.Size(12, 24);
+                        this.label12.TabIndex = 73;
+                        this.label12.Text = "-";
+                        this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        // 
+                        // label14
+                        // 
+                        this.label14.Location = new System.Drawing.Point(16, 124);
+                        this.label14.Name = "label14";
+                        this.label14.Size = new System.Drawing.Size(172, 24);
+                        this.label14.TabIndex = 71;
+                        this.label14.Text = "Gestión de Cobro";
+                        this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // txtGestionCobro
+                        // 
+                        this.txtGestionCobro.AutoHeight = false;
+                        this.txtGestionCobro.AutoNav = true;
+                        this.txtGestionCobro.AutoTab = true;
+                        this.txtGestionCobro.DataType = Lui.Forms.DataTypes.Money;
+                        this.txtGestionCobro.DecimalPlaces = -1;
+                        this.txtGestionCobro.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.txtGestionCobro.ForceCase = Lui.Forms.TextCasing.None;
+                        this.txtGestionCobro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.txtGestionCobro.Location = new System.Drawing.Point(188, 124);
+                        this.txtGestionCobro.MaxLenght = 32767;
+                        this.txtGestionCobro.MultiLine = false;
+                        this.txtGestionCobro.Name = "txtGestionCobro";
+                        this.txtGestionCobro.Padding = new System.Windows.Forms.Padding(2);
+                        this.txtGestionCobro.PasswordChar = '\0';
+                        this.txtGestionCobro.Prefijo = "";
+                        this.txtGestionCobro.ReadOnly = true;
+                        this.txtGestionCobro.SelectOnFocus = true;
+                        this.txtGestionCobro.Size = new System.Drawing.Size(104, 24);
+                        this.txtGestionCobro.Sufijo = "";
+                        this.txtGestionCobro.TabIndex = 72;
+                        this.txtGestionCobro.TabStop = false;
+                        this.txtGestionCobro.Text = "0.00";
+                        this.txtGestionCobro.TextRaw = "0.00";
+                        this.txtGestionCobro.TipWhenBlank = "";
+                        this.txtGestionCobro.ToolTipText = "";
+                        // 
+                        // cmdGestionCobro
+                        // 
+                        this.cmdGestionCobro.AutoHeight = false;
+                        this.cmdGestionCobro.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.cmdGestionCobro.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.cmdGestionCobro.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.cmdGestionCobro.Image = null;
+                        this.cmdGestionCobro.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.cmdGestionCobro.Location = new System.Drawing.Point(296, 124);
+                        this.cmdGestionCobro.Name = "cmdGestionCobro";
+                        this.cmdGestionCobro.Padding = new System.Windows.Forms.Padding(2);
+                        this.cmdGestionCobro.ReadOnly = false;
+                        this.cmdGestionCobro.Size = new System.Drawing.Size(28, 24);
+                        this.cmdGestionCobro.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.cmdGestionCobro.Subtext = "";
+                        this.cmdGestionCobro.TabIndex = 74;
+                        this.cmdGestionCobro.Text = "...";
+                        this.cmdGestionCobro.ToolTipText = "";
+                        this.cmdGestionCobro.Click += new System.EventHandler(this.cmdGestionCobro_Click);
+                        // 
                         // IngresosEgresos
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(692, 473);
+                        this.ClientSize = new System.Drawing.Size(692, 535);
+                        this.Controls.Add(this.cmdGestionCobro);
+                        this.Controls.Add(this.label12);
+                        this.Controls.Add(this.label14);
+                        this.Controls.Add(this.txtGestionCobro);
                         this.Controls.Add(this.label8);
                         this.Controls.Add(this.label4);
                         this.Controls.Add(this.cmdIngresosOtros);
@@ -1103,17 +1181,20 @@ namespace Lazaro.Reportes
 
                         double Costo = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM facturas, facturas_detalle WHERE facturas.id_factura=facturas_detalle.id_factura AND facturas.tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND facturas.impresa AND facturas.numero>0 AND facturas.anulada=0 AND facturas_detalle.precio>0 AND facturas.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                         double CostoNotasCredito = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM facturas, facturas_detalle WHERE facturas.id_factura=facturas_detalle.id_factura AND facturas.tipo_fac IN ('NCA', 'NCB', 'NCC') AND facturas.impresa AND facturas.numero>0 AND facturas.anulada=0 AND facturas.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        
+                        double GestionCobro = -this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE id_concepto=24010 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 
                         double Facturacion = Facturas - NotasCredito;
                         txtFacturacion.Text = Lfx.Types.Formatting.FormatCurrency(Facturacion, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                         txtFacturacion.Tag = "Facturas: " + Lfx.Types.Formatting.FormatCurrency(Facturas, this.Workspace.CurrentConfig.Currency.DecimalPlaces) + " - Notas de Crédito: " + Lfx.Types.Formatting.FormatCurrency(NotasCredito, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                         txtCosto.Text = Lfx.Types.Formatting.FormatCurrency(Costo - CostoNotasCredito, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                         txtCosto.Tag = "Facturas: " + Lfx.Types.Formatting.FormatCurrency(Costo, this.Workspace.CurrentConfig.Currency.DecimalPlaces) + " - Notas de Crédito: " + Lfx.Types.Formatting.FormatCurrency(CostoNotasCredito, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtDiferenciaBruta.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtFacturacion.Text) - Lfx.Types.Parsing.ParseCurrency(txtCosto.Text), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtGestionCobro.Text = Lfx.Types.Formatting.FormatCurrency(GestionCobro, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtDiferenciaBruta.Text = Lfx.Types.Formatting.FormatCurrency(Facturacion - Costo + CostoNotasCredito - GestionCobro, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
 
                         txtCostoCapital.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=220) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                         txtGastosFijos.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=230) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtGastosVariables.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=240) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtGastosVariables.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=240) AND id_concepto NOT IN (24010) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                         txtOtrosEgresos.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE importe<0 AND id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND id_concepto<>26030 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
 
                         if (Facturacion == 0)
@@ -1184,7 +1265,7 @@ namespace Lazaro.Reportes
 
                 private void cmdGastosVariables_Click(object sender, System.EventArgs e)
                 {
-                        MostrarDetalles("SELECT * FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=240) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        MostrarDetalles("SELECT * FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=240) AND id_concepto NOT IN (24010) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                 }
 
 
@@ -1423,6 +1504,11 @@ namespace Lazaro.Reportes
                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "-"));
 
                         return Monto;
+                }
+
+                private void cmdGestionCobro_Click(object sender, EventArgs e)
+                {
+                        MostrarDetalles("SELECT * FROM cuentas_movim WHERE id_concepto=24010 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                 }
         }
 }
