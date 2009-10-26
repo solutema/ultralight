@@ -116,6 +116,7 @@
   </Opcion>
   <Opcion Nombre="&amp;Varios" Funcion="">
     <Opcion Nombre="Reporte de Ingresos y Gastos" Funcion="REPORTE RENTABILIDAD" />
+    <Opcion Nombre="Reporte de Estado Patrimonial" Funcion="REPORTE PATRIMONIO" />
     <Opcion Nombre="Tablas" Funcion="">
       <Opcion Nombre="&amp;Ciudades" Funcion="LISTADO CIUDADES" />
       <Opcion Nombre="Sucursales" Funcion="LISTADO SUCURSALES" />

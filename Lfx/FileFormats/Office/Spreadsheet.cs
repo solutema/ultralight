@@ -328,6 +328,7 @@ namespace Lfx.FileFormats.Office.Spreadsheet
                         initialListView.View = System.Windows.Forms.View.Details;
                         initialListView.FullRowSelect = true;
                         initialListView.GridLines = true;
+                        initialListView.Groups.Clear();
 
                         if (this.BackColor != System.Drawing.Color.Empty)
                                 initialListView.BackColor = this.BackColor;
@@ -349,53 +350,69 @@ namespace Lfx.FileFormats.Office.Spreadsheet
                                 }
                         }
 
+                        System.Windows.Forms.ListViewGroup LastGroup = null;
+
                         foreach (Row rw in this.Rows) {
-                                System.Windows.Forms.ListViewItem Itm = new System.Windows.Forms.ListViewItem();
+                                if (rw is HeaderRow) {
+                                        LastGroup = new System.Windows.Forms.ListViewGroup(rw.Cells[0].Content.ToString());
+                                        initialListView.Groups.Add(LastGroup);
+                                } else {
+                                        System.Windows.Forms.ListViewItem Itm = new System.Windows.Forms.ListViewItem();
 
-                                if (rw.BackColor != System.Drawing.Color.Empty)
-                                        Itm.BackColor = rw.BackColor;
-                                if (rw.ForeColor != System.Drawing.Color.Empty)
-                                        Itm.ForeColor = rw.ForeColor;
-
-                                int i = 0;
-                                foreach (Cell cl in rw.Cells) {
-                                        string CellString = "";
-                                        if (cl.Content != null) {
-                                                switch (cl.Content.GetType().ToString()) {
-                                                        case "System.Single":
-                                                        case "System.Decimal":
-                                                        case "System.Double":
-                                                                CellString += Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(cl.Content), 2);
-                                                                break;
-                                                        case "System.Integer":
-                                                        case "System.Int16":
-                                                        case "System.Int32":
-                                                        case "System.Int64":
-                                                                CellString += cl.Content.ToString();
-                                                                break;
-                                                        case "System.DateTime":
-                                                                DateTime clContent = (DateTime)cl.Content;
-                                                                if (clContent.Hour == 0 && clContent.Minute == 0 && clContent.Second == 0)
-                                                                        CellString += clContent.ToString(Lfx.Types.Formatting.DateTime.DefaultDateFormat);
-                                                                else
-                                                                        CellString += clContent.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat);
-                                                                break;
-                                                        case "System.String":
-                                                                CellString += cl.Content.ToString();
-                                                                break;
-                                                }
+                                        if (rw is AggregationRow) {
+                                                //Itm.BackColor = System.Drawing.Color.LightGray;
+                                                Itm.Font = new System.Drawing.Font(Itm.Font, System.Drawing.FontStyle.Bold);
                                         }
-                                        if (i == 0)
-                                                Itm.Text = CellString;
-                                        else
-                                                Itm.SubItems.Add(CellString);
-                                        i++;
+
+                                        if (LastGroup != null) {
+                                                Itm.Group = LastGroup;
+                                        }
+
+                                        if (rw.BackColor != System.Drawing.Color.Empty)
+                                                Itm.BackColor = rw.BackColor;
+                                        if (rw.ForeColor != System.Drawing.Color.Empty)
+                                                Itm.ForeColor = rw.ForeColor;
+
+                                        int i = 0;
+                                        foreach (Cell cl in rw.Cells) {
+                                                string CellString = "";
+                                                if (cl.Content != null) {
+                                                        switch (cl.Content.GetType().ToString()) {
+                                                                case "System.Single":
+                                                                case "System.Decimal":
+                                                                case "System.Double":
+                                                                        CellString += Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(cl.Content), 2);
+                                                                        break;
+                                                                case "System.Integer":
+                                                                case "System.Int16":
+                                                                case "System.Int32":
+                                                                case "System.Int64":
+                                                                        CellString += cl.Content.ToString();
+                                                                        break;
+                                                                case "System.DateTime":
+                                                                        DateTime clContent = (DateTime)cl.Content;
+                                                                        if (clContent.Hour == 0 && clContent.Minute == 0 && clContent.Second == 0)
+                                                                                CellString += clContent.ToString(Lfx.Types.Formatting.DateTime.DefaultDateFormat);
+                                                                        else
+                                                                                CellString += clContent.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat);
+                                                                        break;
+                                                                case "System.String":
+                                                                        CellString += cl.Content.ToString();
+                                                                        break;
+                                                        }
+                                                }
+                                                if (i == 0)
+                                                        Itm.Text = CellString;
+                                                else
+                                                        Itm.SubItems.Add(CellString);
+                                                i++;
+                                        }
+                                        initialListView.Items.Add(Itm);
                                 }
-                                initialListView.Items.Add(Itm);
                         }
                         initialListView.EndUpdate();
                         initialListView.ResumeLayout();
-                        
+
                         return initialListView;
                 }
 
@@ -534,6 +551,21 @@ namespace Lfx.FileFormats.Office.Spreadsheet
 
 			return Result.ToString();
 		}
+
+                public void Sort(int column, bool ascending)
+                {
+                        if (ascending) {
+                                this.Rows.Sort(delegate(Row r1, Row r2)
+                                {
+                                        return r1.Cells[column].CompareTo(r2.Cells[column]);
+                                });
+                        } else {
+                                this.Rows.Sort(delegate(Row r1, Row r2)
+                                {
+                                        return r2.Cells[column].CompareTo(r1.Cells[column]);
+                                });
+                        }
+                }
 	}
 
 	public class ColumnHeader
@@ -580,7 +612,20 @@ namespace Lfx.FileFormats.Office.Spreadsheet
                 }
 	}
 
-	public class Cell
+        public class HeaderRow : Row
+        {
+                public HeaderRow(string text)
+                        : base()
+                {
+                        this.Cells.Add(new Cell(text));
+                }
+        }
+
+        public class AggregationRow : Row
+        {
+        }
+
+	public class Cell : System.IComparable<Cell>
 	{
 		public object Content = null;
 		public object Formula = null;
@@ -595,6 +640,12 @@ namespace Lfx.FileFormats.Office.Spreadsheet
 			this.Formula = formula;
 		}
 
+                public Cell(Formula formula, object altContent)
+                {
+                        this.Formula = formula;
+                        this.Content = altContent;
+                }
+
                 public override string ToString()
                 {
                         if (this.Content != null)
@@ -603,6 +654,20 @@ namespace Lfx.FileFormats.Office.Spreadsheet
                                 return this.Formula.ToString();
                         else
                                 return "(empty cell)";
+                }
+
+                public int CompareTo(Cell cl2)
+                {
+                        if (this.Content == null || cl2.Content == null)
+                                return 0;
+                        else if (this.Content is double && cl2.Content is double)
+                                return ((double)(this.Content)).CompareTo(cl2.Content);
+                        else if (this.Content is int && cl2.Content is int)
+                                return ((int)(this.Content)).CompareTo(cl2.Content);
+                        else if (this.Content is string && cl2.Content is string)
+                                return ((string)(this.Content)).CompareTo(cl2.Content);
+                        else
+                                return 0;
                 }
 	}
 

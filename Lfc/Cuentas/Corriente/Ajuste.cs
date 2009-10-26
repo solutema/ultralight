@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,6 +38,8 @@ namespace Lfc.Cuentas.Corriente
 {
         public partial class FormCuentaCorrienteAjuste : Lui.Forms.DialogForm
         {
+                protected internal double SaldoActual = 0;
+
                 public FormCuentaCorrienteAjuste()
                 {
                         InitializeComponent();
@@ -45,10 +47,13 @@ namespace Lfc.Cuentas.Corriente
 
                 private void txtImporte_TextChanged(object sender, System.EventArgs e)
                 {
-                        if (Lfx.Types.Parsing.ParseCurrency(txtImporte.Text) < 0 && txtDireccion.TextKey != "0")
+                        double Importe = Lfx.Types.Parsing.ParseCurrency(txtImporte.Text);
+                        if (Importe < 0 && txtDireccion.TextKey != "0")
                                 txtDireccion.TextKey = "0";
-                        else if (Lfx.Types.Parsing.ParseCurrency(txtImporte.Text) > 0 && txtDireccion.TextKey != "1")
+                        else if (Importe > 0 && txtDireccion.TextKey != "1")
                                 txtDireccion.TextKey = "1";
+
+                        EntradaNuevoSaldo.Text = Lfx.Types.Formatting.FormatCurrency(SaldoActual + Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                 }
 
                 private void txtDireccion_TextChanged(object sender, System.EventArgs e)

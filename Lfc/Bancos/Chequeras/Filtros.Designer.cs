@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -129,7 +129,7 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaCuenta.Name = "EntradaCuenta";
                         this.EntradaCuenta.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCuenta.ReadOnly = false;
-                        this.EntradaCuenta.Required = true;
+                        this.EntradaCuenta.Required = false;
                         this.EntradaCuenta.SelectOnFocus = false;
                         this.EntradaCuenta.Size = new System.Drawing.Size(280, 24);
                         this.EntradaCuenta.TabIndex = 5;

@@ -63,6 +63,7 @@ namespace Lfc.Reportes
                         this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
                         this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
                         this.BotonActualizar = new Lui.Forms.Button();
+                        this.EntradaExpandirGrupos = new Lui.Forms.ComboBox();
                         this.SuspendLayout();
                         // 
                         // ListViewReporte
@@ -80,12 +81,13 @@ namespace Lfc.Reportes
                         this.ListViewReporte.Location = new System.Drawing.Point(12, 44);
                         this.ListViewReporte.Name = "ListViewReporte";
                         this.ListViewReporte.Size = new System.Drawing.Size(744, 424);
-                        this.ListViewReporte.TabIndex = 0;
+                        this.ListViewReporte.TabIndex = 2;
                         this.ListViewReporte.UseCompatibleStateImageBehavior = false;
                         this.ListViewReporte.View = System.Windows.Forms.View.Details;
                         // 
                         // BotonActualizar
                         // 
+                        this.BotonActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonActualizar.AutoHeight = false;
                         this.BotonActualizar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonActualizar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
@@ -103,11 +105,39 @@ namespace Lfc.Reportes
                         this.BotonActualizar.ToolTipText = "";
                         this.BotonActualizar.Click += new System.EventHandler(this.BotonActualizar_Click);
                         // 
+                        // EntradaExpandirGrupos
+                        // 
+                        this.EntradaExpandirGrupos.AutoHeight = false;
+                        this.EntradaExpandirGrupos.AutoNav = true;
+                        this.EntradaExpandirGrupos.AutoTab = true;
+                        this.EntradaExpandirGrupos.DetailField = null;
+                        this.EntradaExpandirGrupos.Filter = null;
+                        this.EntradaExpandirGrupos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaExpandirGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaExpandirGrupos.KeyField = null;
+                        this.EntradaExpandirGrupos.Location = new System.Drawing.Point(124, 12);
+                        this.EntradaExpandirGrupos.MaxLenght = 32767;
+                        this.EntradaExpandirGrupos.Name = "EntradaExpandirGrupos";
+                        this.EntradaExpandirGrupos.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaExpandirGrupos.ReadOnly = false;
+                        this.EntradaExpandirGrupos.SetData = new string[] {
+        "Mostrar detalles|1",
+        "Sólo subtotales|0"};
+                        this.EntradaExpandirGrupos.Size = new System.Drawing.Size(148, 24);
+                        this.EntradaExpandirGrupos.TabIndex = 0;
+                        this.EntradaExpandirGrupos.Table = null;
+                        this.EntradaExpandirGrupos.Text = "Sólo subtotales";
+                        this.EntradaExpandirGrupos.TextKey = "0";
+                        this.EntradaExpandirGrupos.TextRaw = "Sólo subtotales";
+                        this.EntradaExpandirGrupos.TipWhenBlank = "";
+                        this.EntradaExpandirGrupos.ToolTipText = "";
+                        // 
                         // Reporte
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(768, 480);
+                        this.Controls.Add(this.EntradaExpandirGrupos);
                         this.Controls.Add(this.BotonActualizar);
                         this.Controls.Add(this.ListViewReporte);
                         this.Name = "Reporte";
@@ -125,5 +155,6 @@ namespace Lfc.Reportes
                 private System.Windows.Forms.ColumnHeader columnHeader3;
                 private System.Windows.Forms.ColumnHeader columnHeader4;
                 private System.Windows.Forms.ColumnHeader columnHeader5;
+                internal Lui.Forms.ComboBox EntradaExpandirGrupos;
         }
 }

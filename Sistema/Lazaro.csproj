@@ -103,6 +103,12 @@
     <Compile Include="Misc\AcercaDe.Designer.cs">
       <DependentUpon>AcercaDe.cs</DependentUpon>
     </Compile>
+    <Compile Include="Misc\Backup\Manager.Designer.cs">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\Backup\Restore.Designer.cs">
+      <DependentUpon>Restore.cs</DependentUpon>
+    </Compile>
     <Compile Include="Misc\Config\Preferencias.Designer.cs">
       <DependentUpon>Preferencias.cs</DependentUpon>
     </Compile>
@@ -264,6 +270,7 @@
     <None Include="app.config" />
     <EmbeddedResource Include="Data\db_upd20_post.sql" />
     <EmbeddedResource Include="Data\db_upd21_post.sql" />
+    <EmbeddedResource Include="Data\db_upd22_post.sql" />
     <None Include="Resources\contact-new.png" />
     <None Include="Resources\edit-copy.png" />
     <None Include="Resources\edit-undo.png" />

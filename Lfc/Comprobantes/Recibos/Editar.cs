@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -314,7 +314,7 @@ namespace Lfc.Comprobantes.Recibos
                                 Comprobantes.Recibos.EditarPago FormularioEditarPago = new Comprobantes.Recibos.EditarPago();
                                 FormularioEditarPago.Workspace = this.Workspace;
                                 FormularioEditarPago.Owner = this;
-                                FormularioEditarPago.Pago.FromPago(new Lbl.Comprobantes.Pago(this.DataView, Lbl.Comprobantes.FormasDePago.Efectivo));
+                                FormularioEditarPago.Pago.FromPago(new Lbl.Comprobantes.Pago(this.DataView, Lbl.Comprobantes.TipoFormasDePago.Efectivo));
                                 FormularioEditarPago.Pago.ObsVisible = false;
 
                                 if (FormularioEditarPago.ShowDialog() == DialogResult.OK) {
@@ -327,7 +327,7 @@ namespace Lfc.Comprobantes.Recibos
                                 Comprobantes.Recibos.EditarCobro FormularioEditarCobro = new Comprobantes.Recibos.EditarCobro();
                                 FormularioEditarCobro.Workspace = this.Workspace;
                                 FormularioEditarCobro.Owner = this;
-                                FormularioEditarCobro.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.DataView, Lbl.Comprobantes.FormasDePago.Efectivo));
+                                FormularioEditarCobro.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.DataView, Lbl.Comprobantes.TipoFormasDePago.Efectivo));
                                 FormularioEditarCobro.Cobro.ObsVisible = false;
 
                                 if (FormularioEditarCobro.ShowDialog() == DialogResult.OK) {
@@ -348,20 +348,20 @@ namespace Lfc.Comprobantes.Recibos
                         if (this.DePago) {
                                 foreach (Lbl.Comprobantes.Pago Pg in Rec.Pagos) {
                                         ListViewItem itm = ListaValores.Items.Add(Pg.GetHashCode().ToString());
-                                        switch (Pg.FormaDePago) {
-                                                case Lbl.Comprobantes.FormasDePago.Efectivo:
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Efectivo"));
+                                        switch (Pg.FormaDePago.Tipo) {
+                                                case Lbl.Comprobantes.TipoFormasDePago.Efectivo:
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Pg.FormaDePago.ToString()));
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
                                                         break;
-                                                case Lbl.Comprobantes.FormasDePago.Cheque:
-                                                        itm.SubItems.Add("Cheque");
+                                                case Lbl.Comprobantes.TipoFormasDePago.Cheque:
+                                                        itm.SubItems.Add(Pg.FormaDePago.ToString());
                                                         itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
                                                         itm.SubItems.Add(Pg.ToString());
                                                         break;
-                                                case Lbl.Comprobantes.FormasDePago.CuentaRegular:
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Débito de Cuenta"));
+                                                case Lbl.Comprobantes.TipoFormasDePago.CuentaRegular:
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Pg.FormaDePago.ToString()));
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Débito desde Cuenta " + Pg.CuentaOrigen.ToString()));
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Débito desde " + Pg.CuentaOrigen.ToString()));
                                                         break;
                                         }
                                 }
@@ -369,30 +369,25 @@ namespace Lfc.Comprobantes.Recibos
                         } else {
                                 foreach (Lbl.Comprobantes.Cobro Cb in Rec.Cobros) {
                                         ListViewItem itm = ListaValores.Items.Add(Cb.GetHashCode().ToString());
-                                        switch (Cb.FormaDePago) {
-                                                case Lbl.Comprobantes.FormasDePago.Efectivo:
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Efectivo"));
+                                        switch (Cb.FormaDePago.Tipo) {
+                                                case Lbl.Comprobantes.TipoFormasDePago.Efectivo:
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Cb.FormaDePago.ToString()));
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Cb.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
                                                         break;
-                                                case Lbl.Comprobantes.FormasDePago.Cheque:
-                                                        itm.SubItems.Add("Cheque");
+                                                case Lbl.Comprobantes.TipoFormasDePago.Cheque:
+                                                        itm.SubItems.Add(Cb.FormaDePago.ToString());
                                                         itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Cb.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
                                                         itm.SubItems.Add(Cb.ToString());
                                                         break;
-                                                case Lbl.Comprobantes.FormasDePago.Tarjeta:
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Tarjeta de Crédito"));
+                                                case Lbl.Comprobantes.TipoFormasDePago.Tarjeta:
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Cb.FormaDePago.ToString()));
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Cb.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Cupón Nº " + Cb.Cupon.Numero + " de " + Cb.Cupon.Tarjeta.ToString()));
                                                         break;
-                                                case Lbl.Comprobantes.FormasDePago.TarjetaDeDebito:
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Tarjeta de Débito"));
+                                                case Lbl.Comprobantes.TipoFormasDePago.CuentaRegular:
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Cb.FormaDePago.ToString()));
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Cb.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Cupón Nº " + Cb.Cupon.Numero + " de " + Cb.Cupon.Tarjeta.ToString()));
-                                                        break;
-                                                case Lbl.Comprobantes.FormasDePago.CuentaRegular:
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Acreditación en Cuenta"));
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Cb.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Depósito en Cuenta " + Cb.CuentaDestino.ToString()));
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Depósito en " + Cb.CuentaDestino.ToString()));
                                                         break;
                                         }
                                 }

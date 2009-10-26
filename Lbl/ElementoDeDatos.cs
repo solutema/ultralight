@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -185,11 +185,21 @@ namespace Lbl
 			}
 			set
 			{
-                                if (value != null && value.Length >= 2 && value.Substring(value.Length - 2, 2) == Lfx.Types.ControlChars.CrLf)
-                                        //Quito el CrLf al final
-                                        this.Registro["obs"] = value.Substring(0, value.Length - 2);
-                                else
-                                        this.Registro["obs"] = value;
+                                string NuevaObs = value;
+
+                                if (NuevaObs != null) {
+                                        if (NuevaObs.Length >= 2 && NuevaObs.Substring(NuevaObs.Length - 2, 2) == Lfx.Types.ControlChars.CrLf)
+                                                //Quito el CrLf al final
+                                                NuevaObs = NuevaObs.Substring(0, NuevaObs.Length - 2);
+                                        else if (NuevaObs.Length >= 1 && NuevaObs.Substring(NuevaObs.Length - 1, 1) == Lfx.Types.ControlChars.Lf.ToString())
+                                                //Quito el Lf al final (para Unix)
+                                                NuevaObs = NuevaObs.Substring(0, NuevaObs.Length - 1);
+
+                                        if (NuevaObs.Length > 5 && NuevaObs.Substring(0, 5) == " /// ")
+                                                NuevaObs = NuevaObs.Substring(5, NuevaObs.Length - 5);
+                                }
+
+                                this.Registro["obs"] = NuevaObs;
 			}
 		}
 

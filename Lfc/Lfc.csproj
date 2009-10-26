@@ -200,6 +200,9 @@
     <Compile Include="Cuentas\Filtros.Designer.cs">
       <DependentUpon>Filtros.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cuentas\IngresoEgreso.Designer.cs">
+      <DependentUpon>IngresoEgreso.cs</DependentUpon>
+    </Compile>
     <Compile Include="Cuentas\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>

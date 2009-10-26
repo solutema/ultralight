@@ -33,31 +33,29 @@ using System.Text;
 
 namespace Lfx.Data
 {
-        public enum GroupingTypes
+        public enum AggregationFunctions
         {
                 Distinct,
                 Sum,
                 Count
         }
 
-        public class Grouping
+        public class Aggregate
         {
                 public Lfx.Data.FormField Field;
-                public GroupingTypes Type = GroupingTypes.Distinct;
+                public AggregationFunctions Function = AggregationFunctions.Distinct;
 
-                public object LastValue = null;
                 public double Sum;
                 public int Count;
 
-                public Grouping(GroupingTypes groupingType, string fieldName)
+                public Aggregate(AggregationFunctions groupingType, string fieldName)
                 {
-                        this.Type = groupingType;
+                        this.Function = groupingType;
                         this.Field = new FormField(fieldName, fieldName);
                 }
 
                 public void Reset()
                 {
-                        this.LastValue = null;
                         this.ResetCounters();
                 }
 
@@ -70,7 +68,23 @@ namespace Lfx.Data
 
                 public override string ToString()
                 {
-                        return this.Type.ToString() + " on " + this.Field.ToString();
+                        return this.Function.ToString() + " on " + this.Field.ToString();
+                }
+        }
+
+        public class Grouping
+        {
+                public Lfx.Data.FormField Field;
+                public object LastValue = null;
+
+                public Grouping(string fieldName)
+                {
+                        this.Field = new FormField(fieldName, fieldName);
+                }
+
+                public void Reset()
+                {
+                        this.LastValue = null;
                 }
         }
 }

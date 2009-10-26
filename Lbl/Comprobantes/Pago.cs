@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ namespace Lbl.Comprobantes
 {
         public class Pago : ElementoDeDatos
         {
-                public FormasDePago FormaDePago;
+                public Lbl.Comprobantes.FormaDePago FormaDePago;
                 private double m_Importe = 0;
                 public Cuentas.CuentaRegular CuentaOrigen;
                 public Bancos.Cheque Cheque;
@@ -46,20 +46,27 @@ namespace Lbl.Comprobantes
                 //Heredar constructor
                 public Pago(Lws.Data.DataView dataView) : base(dataView) { }
 
-                public Pago(Lws.Data.DataView dataView, FormasDePago formaDePago)
+                public Pago(Lws.Data.DataView dataView, Lbl.Comprobantes.FormaDePago formaDePago)
                         : this(dataView)
                 {
                         this.FormaDePago = formaDePago;
                 }
 
-                public Pago(Lws.Data.DataView dataView, FormasDePago formaDePago, double importe)
+                public Pago(Lws.Data.DataView dataView, Lbl.Comprobantes.TipoFormasDePago tipoFormaDePago)
+                        : this(dataView)
+                {
+                        FormaDePago = new FormaDePago(dataView, tipoFormaDePago);
+                        FormaDePago.Cargar();
+                }
+
+                public Pago(Lws.Data.DataView dataView, Lbl.Comprobantes.TipoFormasDePago formaDePago, double importe)
                         : this(dataView, formaDePago)
                 {
                         this.Importe = importe;
                 }
 
                 public Pago(Bancos.Cheque cheque)
-                        : this(cheque.DataView, FormasDePago.Cheque)
+                        : this(cheque.DataView, TipoFormasDePago.Cheque)
                 {
                         this.Cheque = cheque;
                 }
@@ -68,8 +75,8 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                switch (FormaDePago) {
-                                        case FormasDePago.Cheque:
+                                switch (FormaDePago.Tipo) {
+                                        case TipoFormasDePago.Cheque:
                                                 if (Cheque == null)
                                                         return 0;
                                                 else
@@ -80,8 +87,8 @@ namespace Lbl.Comprobantes
                         }
                         set
                         {
-                                switch (FormaDePago) {
-                                        case FormasDePago.Cheque:
+                                switch (FormaDePago.Tipo) {
+                                        case TipoFormasDePago.Cheque:
                                                 Cheque.Importe = value;
                                                 break;
                                         default:
@@ -106,16 +113,16 @@ namespace Lbl.Comprobantes
                                         Factura = Recibo.Facturas[0];
                         }
 
-                        switch (this.FormaDePago) {
-                                case FormasDePago.Efectivo:
+                        switch (this.FormaDePago.Tipo) {
+                                case TipoFormasDePago.Efectivo:
                                         Lbl.Cuentas.CuentaRegular Caja = new Lbl.Cuentas.CuentaRegular(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
                                         Caja.Movimiento(true, this.Concepto, DescripConcepto, Cliente, this.Importe, null, Factura, this.Recibo, null);
                                         break;
-                                case FormasDePago.Cheque:
+                                case TipoFormasDePago.Cheque:
                                         if (this.Cheque != null)
                                                 this.Cheque.Anular();
                                         break;
-                                case FormasDePago.CuentaRegular:
+                                case TipoFormasDePago.CuentaRegular:
                                         this.CuentaOrigen.Movimiento(true, this.Concepto, DescripConcepto, Cliente, this.Importe, null, Factura, this.Recibo, null);
                                         break;
                         }
@@ -123,17 +130,17 @@ namespace Lbl.Comprobantes
 
                 public override string ToString()
                 {
-                        switch (FormaDePago) {
-                                case FormasDePago.Efectivo:
+                        switch (FormaDePago.Tipo) {
+                                case TipoFormasDePago.Efectivo:
                                         return "Efectivo";
-                                case FormasDePago.CuentaCorriente:
+                                case TipoFormasDePago.CuentaCorriente:
                                         return "Cuenta Corriente";
-                                case FormasDePago.Cheque:
+                                case TipoFormasDePago.Cheque:
                                         if (Cheque == null)
                                                 return "Cheque";
                                         else
                                                 return Cheque.ToString();
-                                case FormasDePago.CuentaRegular:
+                                case TipoFormasDePago.CuentaRegular:
                                         if (CuentaOrigen == null)
                                                 return "Débito de cuenta";
                                         else

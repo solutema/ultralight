@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ namespace Lbl.Comprobantes
 {
         public class Cobro : ElementoDeDatos
         {
-                public FormasDePago FormaDePago;
+                public Lbl.Comprobantes.FormaDePago FormaDePago;
                 private double m_Importe = 0;
                 public Cuentas.CuentaRegular CuentaDestino;
                 public Tarjetas.Cupon Cupon;
@@ -47,26 +47,48 @@ namespace Lbl.Comprobantes
                 //Heredar constructor
                 public Cobro(Lws.Data.DataView dataView) : base(dataView) { }
 
-                public Cobro(Lws.Data.DataView dataView, FormasDePago formaDePago)
+                public Cobro(Lws.Data.DataView dataView, Lbl.Comprobantes.FormaDePago formaDePago)
                         : this(dataView)
                 {
-                        this.FormaDePago = formaDePago;
+                        FormaDePago = formaDePago;
                 }
 
-                public Cobro(Lws.Data.DataView dataView, FormasDePago formaDePago, double importe)
+                public Cobro(Lws.Data.DataView dataView, Lbl.Comprobantes.TipoFormasDePago tipoFormaDePago)
+                        : this(dataView)
+                {
+                        switch(tipoFormaDePago) {
+                                case TipoFormasDePago.Efectivo:
+                                        FormaDePago = new FormaDePago(dataView, 1);
+                                        break;
+                                case TipoFormasDePago.Cheque:
+                                        FormaDePago = new FormaDePago(dataView, 2);
+                                        break;
+                                case TipoFormasDePago.CuentaCorriente:
+                                        FormaDePago = new FormaDePago(dataView, 3);
+                                        break;
+                                case TipoFormasDePago.Tarjeta:
+                                        FormaDePago = new FormaDePago(dataView, 4);
+                                        break;
+                                case TipoFormasDePago.CuentaRegular:
+                                        FormaDePago = new FormaDePago(dataView, 6);
+                                        break;
+                        }
+                }
+
+                public Cobro(Lws.Data.DataView dataView, Lbl.Comprobantes.TipoFormasDePago formaDePago, double importe)
                         : this(dataView, formaDePago)
                 {
                         this.Importe = importe;
                 }
 
                 public Cobro(Bancos.Cheque cheque)
-                        : this(cheque.DataView, FormasDePago.Cheque)
+                        : this(cheque.DataView, TipoFormasDePago.Cheque)
                 {
                         this.Cheque = cheque;
                 }
 
                 public Cobro(Tarjetas.Cupon cupon)
-                        : this(cupon.DataView, FormasDePago.Tarjeta)
+                        : this(cupon.DataView, cupon.FormaDePago)
                 {
                         this.Cupon = cupon;
                 }
@@ -75,14 +97,13 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                switch (FormaDePago) {
-                                        case FormasDePago.Cheque:
+                                switch (FormaDePago.Tipo) {
+                                        case TipoFormasDePago.Cheque:
                                                 if (Cheque == null)
                                                         return 0;
                                                 else
                                                         return Cheque.Importe;
-                                        case FormasDePago.Tarjeta:
-                                        case FormasDePago.TarjetaDeDebito:
+                                        case TipoFormasDePago.Tarjeta:
                                                 if (Cupon == null)
                                                         return 0;
                                                 else
@@ -93,12 +114,11 @@ namespace Lbl.Comprobantes
                         }
                         set
                         {
-                                switch (FormaDePago) {
-                                        case FormasDePago.Cheque:
+                                switch (FormaDePago.Tipo) {
+                                        case TipoFormasDePago.Cheque:
                                                 Cheque.Importe = value;
                                                 break;
-                                        case FormasDePago.Tarjeta:
-                                        case FormasDePago.TarjetaDeDebito:
+                                        case TipoFormasDePago.Tarjeta:
                                                 Cupon.Importe = value;
                                                 break;
                                         default:
@@ -123,20 +143,20 @@ namespace Lbl.Comprobantes
                                         Factura = Recibo.Facturas[0];
                         }
 
-                        switch (this.FormaDePago) {
-                                case FormasDePago.Efectivo:
+                        switch (FormaDePago.Tipo) {
+                                case TipoFormasDePago.Efectivo:
                                         Lbl.Cuentas.CuentaRegular Caja = new Lbl.Cuentas.CuentaRegular(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
                                         Caja.Movimiento(true, this.Concepto, DescripConcepto, Cliente, -this.Importe, "", Factura, this.Recibo, "");
                                         break;
-                                case FormasDePago.Cheque:
+                                case TipoFormasDePago.Cheque:
                                         if (this.Cheque != null)
                                                 this.Cheque.Anular();
                                         break;
-                                case FormasDePago.Tarjeta:
+                                case TipoFormasDePago.Tarjeta:
                                         if (this.Cupon != null)
                                                 this.Cupon.Anular();
                                         break;
-                                case FormasDePago.CuentaRegular:
+                                case TipoFormasDePago.CuentaRegular:
                                         this.CuentaDestino.Movimiento(true, this.Concepto, DescripConcepto, Cliente, -this.Importe, null, Factura, this.Recibo, null);
                                         break;
                         }
@@ -144,23 +164,22 @@ namespace Lbl.Comprobantes
 
                 public override string ToString()
                 {
-                        switch (FormaDePago) {
-                                case FormasDePago.Efectivo:
+                        switch (FormaDePago.Tipo) {
+                                case TipoFormasDePago.Efectivo:
                                         return "Efectivo";
-                                case FormasDePago.CuentaCorriente:
+                                case TipoFormasDePago.CuentaCorriente:
                                         return "Cuenta Corriente";
-                                case FormasDePago.Cheque:
+                                case TipoFormasDePago.Cheque:
                                         if (Cheque == null)
                                                 return "Cheque";
                                         else
                                                 return Cheque.ToString();
-                                case FormasDePago.CuentaRegular:
+                                case TipoFormasDePago.CuentaRegular:
                                         if (CuentaDestino == null)
                                                 return "Acreditación en cuenta";
                                         else
                                                 return "Acreditación en " + CuentaDestino.ToString();
-                                case FormasDePago.Tarjeta:
-                                case FormasDePago.TarjetaDeDebito:
+                                case TipoFormasDePago.Tarjeta:
                                         return Cupon.ToString();
                                 default:
                                         return "No especificado";

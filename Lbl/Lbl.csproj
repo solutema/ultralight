@@ -91,7 +91,7 @@
     <Compile Include="Comprobantes\Comprobante.cs" />
     <Compile Include="Comprobantes\ComprobanteConArticulos.cs" />
     <Compile Include="Comprobantes\Factura.cs" />
-    <Compile Include="Comprobantes\FormasDePago.cs" />
+    <Compile Include="Comprobantes\FormaDePago.cs" />
     <Compile Include="Comprobantes\Impresion\Campo.cs" />
     <Compile Include="Comprobantes\Impresion\DocumentoDeTexto.cs" />
     <Compile Include="Comprobantes\Impresion\Fiscal.cs" />
@@ -125,6 +125,7 @@
     <Compile Include="Personas\EstadoCredito.cs" />
     <Compile Include="Personas\Grupo.cs" />
     <Compile Include="Personas\SituacionTributaria.cs" />
+    <Compile Include="Charts\Charts.cs" />
     <Compile Include="Reportes\Reporte.cs" />
     <Compile Include="Tareas\Tarea.cs" />
     <Compile Include="Tareas\Tipo.cs" />

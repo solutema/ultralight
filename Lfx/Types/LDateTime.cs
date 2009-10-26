@@ -52,6 +52,11 @@ namespace Lfx.Types
                         return new LDateTime(dateTimeValue);
                 }
 
+                public override string ToString()
+                {
+                        return this.Value.ToString();
+                }
+
                 public override bool Equals(object obj)
                 {
                         if (object.ReferenceEquals(obj, null))

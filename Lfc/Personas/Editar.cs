@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -265,7 +265,7 @@ namespace Lfc.Personas
                                 EntradaTipoFac.TextKey = System.Convert.ToString(Cliente.Registro["tipo_fac"]);
                         EntradaTipoFac.ReadOnly = NegarEdicionAvanzada;
 
-                        EntradaTipo.TextInt = Lfx.Data.DataBase.ConvertDBNullToZero(Cliente.Registro["tipo"]);
+                        EntradaTipo.TextInt = Cliente.Tipo;
                         EntradaTipo.ReadOnly = NegarEdicionAvanzada;
                         if (Cliente.Grupo == null)
                                 EntradaGrupo.TextInt = 0;
@@ -285,17 +285,17 @@ namespace Lfc.Personas
                         EntradaTelefono.Text = Cliente.Telefono;
                         EntradaEmail.Text = Cliente.Email;
 
-                        EntradaLimiteCredito.Text = Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Cliente.Registro["limitecredito"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        EntradaLimiteCredito.Text = Lfx.Types.Formatting.FormatCurrency(Cliente.LimiteCredito, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                         EntradaLimiteCredito.ReadOnly = NegarEdicionAvanzada;
                         if (Cliente.Registro["fechanac"] == null || Cliente.Registro["fechanac"] is DBNull)
                                 EntradaFechaNac.Text = "";
                         else
-                                EntradaFechaNac.Text = Lfx.Types.Formatting.FormatDate(Cliente.Registro["fechanac"]);
+                                EntradaFechaNac.Text = Lfx.Types.Formatting.FormatDate(Cliente.FechaNacimiento);
                         EntradaFechaNac.ReadOnly = NegarEdicionAvanzada;
 
-                        EntradaEstadoCredito.TextKey = System.Convert.ToString(Cliente.Registro["estadocredito"]);
+                        EntradaEstadoCredito.TextKey = ((int)(Cliente.EstadoCredito)).ToString();
                         EntradaEstadoCredito.ReadOnly = NegarEdicionAvanzada;
-                        EntradaNumeroCuenta.Text = System.Convert.ToString(Cliente.Registro["numerocuenta"]);
+                        EntradaNumeroCuenta.Text = Cliente.NumeroCuenta;
                         EntradaNumeroCuenta.ReadOnly = NegarEdicionAvanzada;
 
                         string CBU = System.Convert.ToString(Cliente.Registro["cbu"]);

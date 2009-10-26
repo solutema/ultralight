@@ -76,6 +76,7 @@ namespace Lfx.Data
                                         ConnectionString.Append("Convert Zero Datetime=true;");
                                         ConnectionString.Append("Connection Timeout=60;");
                                         ConnectionString.Append("Default Command Timeout=900;");
+                                        ConnectionString.Append("Allow User Variables=True;");
                                         ConnectionString.Append("KeepAlive=25;");
                                         if (Lfx.Data.DataBaseCache.DefaultCache.SlowLink)
                                                 ConnectionString.Append("Compress=true;");
@@ -1062,6 +1063,15 @@ namespace Lfx.Data
                         }
                         Lector.Close();
                         return Res; */
+
+                        /*      Esto detecta SELECT con WHERE que no encuentren índices apropiados
+                        if (Lfx.Environment.SystemInformation.DesignMode && selectCommand.Length > 7 && selectCommand.Substring(0, 7) == "SELECT " && selectCommand.IndexOf(" WHERE ") >= 0) {
+                                System.Data.DataTable Explain = Select("EXPLAIN " + selectCommand);
+                                foreach (System.Data.DataRow Rw in Explain.Rows) {
+                                        if (Rw["key"] is DBNull)
+                                                System.Console.WriteLine(selectCommand);
+                                }
+                        } */
                        
                         System.Data.IDbDataAdapter Adaptador = Lfx.Data.DataBaseCache.DefaultCache.Provider.GetAdapter(selectCommand, this.DbConnection);
                         System.Data.DataSet Lector = new System.Data.DataSet();

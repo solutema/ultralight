@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@ namespace Lfc.Comprobantes.Compra
 
                         Lbl.Comprobantes.ComprobanteConArticulos NewRow = new Lbl.Comprobantes.ComprobanteConArticulos(this.DataView);
                         NewRow.Crear(CrearTipo, true);
-                        NewRow.FormaDePago = Lbl.Comprobantes.FormasDePago.CuentaCorriente;
+                        NewRow.FormaDePago = new Lbl.Comprobantes.FormaDePago(this.DataView, Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente);
 
                         this.FromRow(NewRow);
 
@@ -114,7 +114,7 @@ namespace Lfc.Comprobantes.Compra
                                 EntradaProveedor.TextInt = Fac.Cliente.Id;
                         else
                                 EntradaProveedor.TextInt = 0;
-                        EntradaFormaPago.TextKey = ((int)(Fac.FormaDePago)).ToString();
+                        EntradaFormaPago.TextKey = Fac.FormaDePago.Id.ToString();
 			EntradaPV.Text = Fac.PV.ToString("0000");
                         EntradaNumero.Text = Fac.Numero.ToString("00000000");
 
@@ -163,7 +163,7 @@ namespace Lfc.Comprobantes.Compra
                         Lbl.Comprobantes.ComprobanteConArticulos Res = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
                         Res.Compra = true;
                         Res.Fecha = Lfx.Types.Parsing.ParseDate(EntradaFecha.Text);
-                        Res.FormaDePago = ((Lbl.Comprobantes.FormasDePago)Lfx.Types.Parsing.ParseInt(EntradaFormaPago.TextKey));
+                        Res.FormaDePago = new Lbl.Comprobantes.FormaDePago(Res.DataView, Lfx.Types.Parsing.ParseInt(EntradaFormaPago.TextKey));
                         if(m_FacturaIdOrig == 0)
                                 Res.ComprobanteOriginal = null;
                         else

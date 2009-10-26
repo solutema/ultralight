@@ -12,7 +12,7 @@ using System.Security.Permissions;
 [assembly: AssemblyTitle("Lázaro")]
 [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyDescription("Sistema de gestión comercial Lázaro")]
-[assembly: AssemblyCompany("Carrea Ernesto, Martínez Miguel")]
+[assembly: AssemblyCompany("South Bridge SRL")]
 [assembly: AssemblyProduct("Lázaro")]
 [assembly: AssemblyCopyright("Copyright © 2004-2009 Carrea Ernesto, Martínez Miguel")]
 [assembly: AssemblyTrademark("")]

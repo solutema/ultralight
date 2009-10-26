@@ -35,9 +35,12 @@ INSERT INTO ciudades (id_ciudad, nombre, cp, parent, ca) VALUES (35, 'Tierra del
 INSERT INTO ciudades (id_ciudad, nombre, cp, parent, ca) VALUES (36, 'Tucumán', 'T', NULL, 0);
 
 
-INSERT INTO monedas (id_moneda, nombre, signo, cotizacion) VALUES (1, 'Dólares', 'USD', 1);
-INSERT INTO monedas (id_moneda, nombre, signo, cotizacion) VALUES (2, 'Euros', 'E', 0.7972);
-INSERT INTO monedas (id_moneda, nombre, signo, cotizacion) VALUES (3, 'Pesos', '$', 2.92);
+INSERT INTO monedas (id_moneda, nombre, signo, cotizacion, iso) VALUES (1, 'Dólares', 'USD', 1, 'USD');
+INSERT INTO monedas (id_moneda, nombre, signo, cotizacion, iso) VALUES (2, 'Euros', '€', 1, 'EUR');
+INSERT INTO monedas (id_moneda, nombre, signo, cotizacion, iso) VALUES (3, 'Pesos Argentinos', '$', 1, 'ARS');
+INSERT INTO monedas (id_moneda, nombre, signo, cotizacion, iso) VALUES (4, 'Pesos Uruguayos', 'UYU', 1, 'UYU');
+INSERT INTO monedas (id_moneda, nombre, signo, cotizacion, iso) VALUES (5, 'Pesos Chilenos', 'CLP', 1, 'CLP');
+INSERT INTO monedas (id_moneda, nombre, signo, cotizacion, iso) VALUES (6, 'Reales', 'BRL', 1, 'BRL');
 
 INSERT INTO alicuotas (id_alicuota, porcentaje, nombre) VALUES (1, 21, 'IVA 21%');
 INSERT INTO alicuotas (id_alicuota, porcentaje, nombre) VALUES (2, 10.5, 'IVA 10.5%');
@@ -104,8 +107,7 @@ INSERT INTO bancos (id_banco, nombre, estado) VALUES (23, 'HSBC Bank Argentina',
 INSERT INTO bancos (id_banco, nombre, estado) VALUES (24, 'Banco Patagonia', 1);
 INSERT INTO bancos (id_banco, nombre, estado) VALUES (25, 'The Bank of New York', 1);
 INSERT INTO bancos (id_banco, nombre, estado) VALUES (26, 'Banco Santa Cruz', 1);
-INSERT INTO bancos (id_banco, nombre, estado) VALUES (99, 'Otro', 1);
-INSERT INTO bancos (id_banco, nombre, estado) VALUES (100, 'Banco de la Provincia de Tierra del Fuego', 1);
+INSERT INTO bancos (id_banco, nombre, estado) VALUES (99, 'Otro Banco', 1);
 
 INSERT INTO cuentas_conceptos ("id_concepto","nombre","es","grupo","fijo") VALUES (10000,'Ingresos',0,100,1);
 INSERT INTO cuentas_conceptos ("id_concepto","nombre","es","grupo","fijo") VALUES (11000,'Ingresos por facturación',0,110,1);
@@ -175,11 +177,21 @@ INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorig
 INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (55,'Nota de Pedido','NP',0,NULL,NULL,0,0,0,0);
 INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (56,'Pedido','PD',0,NULL,NULL,0,0,0,0);
 
-INSERT INTO formaspago (id_formapago, nombre, estado) VALUES (1, 'Efectivo', 1);
-INSERT INTO formaspago (id_formapago, nombre, estado) VALUES (2, 'Cheque', 1);
-INSERT INTO formaspago (id_formapago, nombre, estado) VALUES (3, 'Cuenta Corriente', 1);
-INSERT INTO formaspago (id_formapago, nombre, estado) VALUES (4, 'Tarjeta', 1);
-INSERT INTO formaspago (id_formapago, nombre, estado) VALUES (6, 'Depósito en Cuenta', 1);
+INSERT INTO "formaspago" ("id_formapago", "nombre", "estado", "tipo", "id_cuenta", "descuento", "retencion", "autopres", "autoacred", "dias_acred", "pagos", "adelantacuotas") VALUES ('1','Efectivo','1','1','999','0.0000','0.0000','0','1','0','1','0');
+INSERT INTO "formaspago" ("id_formapago", "nombre", "estado", "tipo", "id_cuenta", "descuento", "retencion", "autopres", "autoacred", "dias_acred", "pagos", "adelantacuotas") VALUES ('2','Cheque','1','2',NULL,'0.0000','0.0000','0','1','0','1','0');
+INSERT INTO "formaspago" ("id_formapago", "nombre", "estado", "tipo", "id_cuenta", "descuento", "retencion", "autopres", "autoacred", "dias_acred", "pagos", "adelantacuotas") VALUES ('3','Cuenta Corriente','1','3',NULL,'0.0000','0.0000','0','1','0','0','0');
+INSERT INTO "formaspago" ("id_formapago", "nombre", "estado", "tipo", "id_cuenta", "descuento", "retencion", "autopres", "autoacred", "dias_acred", "pagos", "adelantacuotas") VALUES ('4','Otra Tarjeta de Crédito','1','4',NULL,'0.0000','3.0000','1','0','3','0','0');
+INSERT INTO "formaspago" ("id_formapago", "nombre", "estado", "tipo", "id_cuenta", "descuento", "retencion", "autopres", "autoacred", "dias_acred", "pagos", "adelantacuotas") VALUES ('5','Otra Tarjeta de Débito','1','4',NULL,'0.0000','1.5000','1','0','3','0','0');
+INSERT INTO "formaspago" ("id_formapago", "nombre", "estado", "tipo", "id_cuenta", "descuento", "retencion", "autopres", "autoacred", "dias_acred", "pagos", "adelantacuotas") VALUES ('6','Depósito en Cuenta','1','6',NULL,'0.0000','0.0000','0','1','0','1','0');
+INSERT INTO "formaspago" ("id_formapago", "nombre", "estado", "tipo", "id_cuenta", "descuento", "retencion", "autopres", "autoacred", "dias_acred", "pagos", "adelantacuotas") VALUES ('101','MasterCard','1','4',NULL,'0.0000','3.0000','1','0','3','0','0');
+INSERT INTO "formaspago" ("id_formapago", "nombre", "estado", "tipo", "id_cuenta", "descuento", "retencion", "autopres", "autoacred", "dias_acred", "pagos", "adelantacuotas") VALUES ('102','Visa','1','4',NULL,'0.0000','4.0000','1','0','3','0','0');
+INSERT INTO "formaspago" ("id_formapago", "nombre", "estado", "tipo", "id_cuenta", "descuento", "retencion", "autopres", "autoacred", "dias_acred", "pagos", "adelantacuotas") VALUES ('103','American Express','1','4',NULL,'0.0000','3.0000','1','0','3','0','0');
+INSERT INTO "formaspago" ("id_formapago", "nombre", "estado", "tipo", "id_cuenta", "descuento", "retencion", "autopres", "autoacred", "dias_acred", "pagos", "adelantacuotas") VALUES ('104','Carta Franca','1','4',NULL,'0.0000','3.0000','1','0','3','0','0');
+INSERT INTO "formaspago" ("id_formapago", "nombre", "estado", "tipo", "id_cuenta", "descuento", "retencion", "autopres", "autoacred", "dias_acred", "pagos", "adelantacuotas") VALUES ('105','Cabal','1','4',NULL,'0.0000','3.0000','1','0','3','0','0');
+INSERT INTO "formaspago" ("id_formapago", "nombre", "estado", "tipo", "id_cuenta", "descuento", "retencion", "autopres", "autoacred", "dias_acred", "pagos", "adelantacuotas") VALUES ('106','Naranja','1','4',NULL,'0.0000','3.0000','1','0','21','0','0');
+INSERT INTO "formaspago" ("id_formapago", "nombre", "estado", "tipo", "id_cuenta", "descuento", "retencion", "autopres", "autoacred", "dias_acred", "pagos", "adelantacuotas") VALUES ('107','Visa Electrón','1','4',NULL,'0.0000','1.5000','1','0','3','0','0');
+INSERT INTO "formaspago" ("id_formapago", "nombre", "estado", "tipo", "id_cuenta", "descuento", "retencion", "autopres", "autoacred", "dias_acred", "pagos", "adelantacuotas") VALUES ('108','Maestro','1','4',NULL,'0.0000','1.5000','1','0','3','0','0');
+INSERT INTO "formaspago" ("id_formapago", "nombre", "estado", "tipo", "id_cuenta", "descuento", "retencion", "autopres", "autoacred", "dias_acred", "pagos", "adelantacuotas") VALUES ('109','Actual','1','4',NULL,'0.0000','3.0000','1','0','3','0','0');
 
 INSERT INTO margenes (id_margen, nombre, sumar, porcentaje, porcentaje2, porcentaje3, sumar2, predet, obs, estado) VALUES (1, '0%', 0, 0, 0, 0, 0, 0, '', 1);
 INSERT INTO margenes (id_margen, nombre, sumar, porcentaje, porcentaje2, porcentaje3, sumar2, predet, obs, estado) VALUES (2, '30%', 0, 30, 0, 0, 0, 1, '', 1);
@@ -202,11 +214,6 @@ INSERT INTO tickets_estados VALUES (90, 'Cancelado');
 INSERT INTO tickets_tipos VALUES (1, 'Cita', '', 1);
 INSERT INTO tickets_tipos VALUES (2, 'Reunión', '', 1);
 INSERT INTO tickets_tipos VALUES (99, 'Otra', '', 1);
-
-
-
-
-
 
 
 
@@ -261,16 +268,16 @@ INSERT INTO sys_accessbase (id_acceso, nombre, tipo, parent) VALUES ('chequeras.
 INSERT INTO "sys_accesslist" VALUES ('global.total', 1, '*');
 
 
-INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES (1,1,'Mastercard','5.0000',0,NULL,'21');
-INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES ('2',1,'Visa','5.0000',0,NULL,'21');
-INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES ('3',1,'American Express','5.0000',0,NULL,'21');
-INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES ('4',1,'Carta Franca','5.0000',0,NULL,'21');
-INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES ('5',1,'Cabal','5.0000',0,NULL,'21');
-INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES ('6',1,'Naranja','5.0000',0,NULL,'21');
-INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES ('7','2','Visa Electrón','0.0000',0,NULL,'21');
-INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES ('8','2','Maestro','0.0000',0,NULL,'21');
-INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES ('98','2','Otra Tarjeta de Débito','0.0000',0,NULL,'21');
-INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autoacred", "id_cuenta", "dias_normal") VALUES ('99',1,'Otra Tarjeta de Crédito','5.0000',0,NULL,'21');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autopres", "autoacred", "anticipa", "id_cuenta", "dias_normal", "dias_anticipada") VALUES ('4','1','Otra Tarjeta de Crédito','3.0000','1','0','0','1013','21','2');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autopres", "autoacred", "anticipa", "id_cuenta", "dias_normal", "dias_anticipada") VALUES ('5','2','Otra Tarjeta de Débito','0.0000','1','0','0','1013','21','2');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autopres", "autoacred", "anticipa", "id_cuenta", "dias_normal", "dias_anticipada") VALUES ('101','1','Mastercard','3.0000','1','0','1','1013','21','2');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autopres", "autoacred", "anticipa", "id_cuenta", "dias_normal", "dias_anticipada") VALUES ('102','1','Visa','5.4300','1','0','1','1013','18','2');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autopres", "autoacred", "anticipa", "id_cuenta", "dias_normal", "dias_anticipada") VALUES ('103','1','American Express','3.0000','1','0','0','1013','21','0');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autopres", "autoacred", "anticipa", "id_cuenta", "dias_normal", "dias_anticipada") VALUES ('104','1','Carta Franca','3.0000','1','0','0','1013','21','0');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autopres", "autoacred", "anticipa", "id_cuenta", "dias_normal", "dias_anticipada") VALUES ('105','1','Cabal','3.0000','1','0','0','1013','21','0');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autopres", "autoacred", "anticipa", "id_cuenta", "dias_normal", "dias_anticipada") VALUES ('106','1','Naranja','3.0000','1','0','0','1013','21','2');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autopres", "autoacred", "anticipa", "id_cuenta", "dias_normal", "dias_anticipada") VALUES ('107','2','Visa Electrón','1.5000','1','0','1','1013','2','2');
+INSERT INTO "tarjetas" ("id_tarjeta", "credeb", "nombre", "comision", "autopres", "autoacred", "anticipa", "id_cuenta", "dias_normal", "dias_anticipada") VALUES ('108','2','Maestro','1.5000','1','0','1','1013','2','2');
 
 
 INSERT INTO "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") VALUES (1,NULL,'1 cuota sin interés',1,'0.00000000','0.00000000');

@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ namespace Lazaro
 {
         public class Datos
         {
-                const int VersionUltima = 20;
+                const int VersionUltima = 21;
 
                 /// <summary>
                 /// Inicia una conexión con la base de datos y verifica si la versión de la la misma es la última disponible. En caso contrario la actualiza.
@@ -158,19 +158,22 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                 {
                         try {
                                 System.IO.Stream RecursoActualizacion = Aplicacion.ObtenerRecurso(archivo);
-                                System.IO.StreamReader Lector = new System.IO.StreamReader(RecursoActualizacion, System.Text.Encoding.Default);
-                                string SqlActualizacion = dataView.DataBase.CustomizeSql(Lector.ReadToEnd());
-                                do {
-                                        string Comando = Datos.GetNextCommand(ref SqlActualizacion);
-                                        try {
-                                                dataView.DataBase.Execute(Comando);
-                                        } catch (Exception ex) {
-                                                if (Lfx.Environment.SystemInformation.DesignMode)
-                                                        throw ex;
-                                                Aplicacion.GenericExceptionHandler(ex);
+                                if (RecursoActualizacion != null) {
+                                        System.IO.StreamReader Lector = new System.IO.StreamReader(RecursoActualizacion, System.Text.Encoding.Default);
+                                        string SqlActualizacion = dataView.DataBase.CustomizeSql(Lector.ReadToEnd());
+                                        dataView.DataBase.Execute(SqlActualizacion);
+                                        /* do {
+                                                string Comando = Datos.GetNextCommand(ref SqlActualizacion);
+                                                try {
+                                                        dataView.DataBase.Execute(Comando);
+                                                } catch (Exception ex) {
+                                                        if (Lfx.Environment.SystemInformation.DesignMode)
+                                                                throw ex;
+                                                        Aplicacion.GenericExceptionHandler(ex);
+                                                }
                                         }
+                                        while (SqlActualizacion.Length > 0); */
                                 }
-                                while (SqlActualizacion.Length > 0);
                         } catch (Exception ex) {
                                 if (Lfx.Environment.SystemInformation.DesignMode)
                                         throw;
@@ -218,11 +221,6 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                         if (MustEnableConstraints)
                                 dataView.DataBase.EnableConstraints(true);
 
-                        // TODO: eliminar
-                        dataView.DataBase.Execute("UPDATE recibos SET fecha='1900-01-01' WHERE fecha<'1900-01-01'");
-                        if (dataView.Tables.ContainsKey("sys_menu"))
-                                dataView.DataBase.Execute("DROP TABLE sys_menu");
-
                         Progreso.Dispose();
                 }
 
@@ -251,6 +249,16 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                         RecursoSql = Aplicacion.ObtenerRecurso(@"Data.dbdata.sql");
                         Lector = new System.IO.StreamReader(RecursoSql, System.Text.Encoding.UTF8);
                         Sql = dataView.DataBase.CustomizeSql(Lector.ReadToEnd());
+                        Lector.Close();
+
+                        // Si hay archivos adicionales de datos para la carga inicial, los incluyo
+                        // Estos suelen tener datos personalizados de esta instalación en partícular
+                        if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + "default.alf")) {
+                                Lector = new System.IO.StreamReader(Lfx.Environment.Folders.ApplicationFolder + "default.alf", System.Text.Encoding.UTF8);
+                                Sql += Lfx.Types.ControlChars.CrLf;
+                                Sql += dataView.DataBase.CustomizeSql(Lector.ReadToEnd());
+                                Lector.Close();
+                        }
 
                         OProgreso.Operacion = "Carga inicial de datos...";
                         OProgreso.Max = Sql.Length;

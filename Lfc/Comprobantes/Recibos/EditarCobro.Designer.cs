@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -102,7 +102,5 @@ namespace Lfc.Comprobantes.Recibos
                 #endregion
 
                 public Lcc.Edicion.Comprobantes.Cobro Cobro;
-
-
         }
 }

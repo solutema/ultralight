@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -103,8 +103,8 @@ namespace Lbl.Comprobantes.Impresion
                                 } else if (ComprobConArt.Tipo.EsFactura) {
                                         //Asiento el pago (sólo efectivo y cta. cte.)
                                         //El resto de los pagos los maneja el formulario desde donde se mandó a imprimir
-                                        switch (ComprobConArt.FormaDePago) {
-                                                case FormasDePago.Efectivo:
+                                        switch (ComprobConArt.FormaDePago.Tipo) {
+                                                case TipoFormasDePago.Efectivo:
                                                         if (ComprobConArt.ImporteImpago > 0) {
                                                                 Lbl.Cuentas.CuentaRegular Caja = new Lbl.Cuentas.CuentaRegular(this.DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
                                                                 Caja.Movimiento(true,
@@ -119,7 +119,7 @@ namespace Lbl.Comprobantes.Impresion
 								ComprobConArt.CancelarImporte(ComprobConArt.ImporteImpago);
                                                         }
                                                         break;
-                                                case FormasDePago.CuentaCorriente:
+                                                case TipoFormasDePago.CuentaCorriente:
                                                         CtaCte.IngresarComprobante(ComprobConArt, 0);
                                                         break;
                                         }

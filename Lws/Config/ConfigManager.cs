@@ -46,7 +46,6 @@ namespace Lws.Config
                 public Lws.Config.PrintersConfig Printing;
                 public Lws.Config.CompanyConfig Company;
 
-		//TODO: que se vacíe cada tanto
 		private Lfx.Data.DataBase ConfigDB;
                 private System.Collections.Hashtable SysConfigCache = null;
                 private System.DateTime SysConfigCacheLastRefresh;

@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -403,15 +403,16 @@ namespace Lazaro
                                         Sel.Fields = "personas.id_persona,personas.nombre_visible,facturas.fecha,facturas.total";
                                         Sel.Joins.Add(new Lfx.Data.Join("facturas", "facturas_detalle.id_factura=facturas.id_factura"));
                                         Sel.Joins.Add(new Lfx.Data.Join("personas", "facturas.id_cliente=personas.id_persona"));
-                                        Sel.WhereClause = new Lfx.Data.SqlWhereBuilder("facturas.fecha BETWEEN '2009-09-01' AND '2009-09-30'");
+                                        Sel.WhereClause = new Lfx.Data.SqlWhereBuilder("facturas.fecha BETWEEN '2009-09-01' AND '2009-09-30' AND facturas.compra=0 AND facturas.numero>0 AND facturas.tipo_fac IN ('A', 'B', 'C', 'M', 'E')");
 
                                         Lbl.Reportes.Reporte Rep = new Lbl.Reportes.Reporte(Lws.Workspace.Master.GetDataView(false), Sel);
-                                        Rep.Grupings.Add(new Lfx.Data.Grouping(Lfx.Data.GroupingTypes.Distinct, "personas.id_persona"));
-                                        Rep.Grupings.Add(new Lfx.Data.Grouping(Lfx.Data.GroupingTypes.Count, "facturas.fecha"));
-                                        Rep.Grupings.Add(new Lfx.Data.Grouping(Lfx.Data.GroupingTypes.Sum, "facturas.total"));
-                                        Rep.Fields.Add(new Lfx.Data.FormField("personas.nombre_visible", "Cliente"));
-                                        Rep.Fields.Add(new Lfx.Data.FormField("facturas.fecha", "Fecha"));
-                                        Rep.Fields.Add(new Lfx.Data.FormField("facturas.total", "Total"));
+                                        Rep.Grouping = new Lfx.Data.Grouping("personas.nombre_visible");
+                                        Rep.Aggregates.Add(new Lfx.Data.Aggregate(Lfx.Data.AggregationFunctions.Count, "facturas.fecha"));
+                                        Rep.Aggregates.Add(new Lfx.Data.Aggregate(Lfx.Data.AggregationFunctions.Sum, "facturas.total"));
+                                        Rep.Fields.Add(new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 320));
+                                        Rep.Fields.Add(new Lfx.Data.FormField("facturas.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 100));
+                                        Rep.Fields.Add(new Lfx.Data.FormField("facturas.total", "Total", Lfx.Data.InputFieldTypes.Currency, 120));
+                                        Rep.ExpandGroups = false;
 
                                         Lfc.Reportes.Reporte RepForm = new Lfc.Reportes.Reporte();
                                         RepForm.MdiParent = FormularioPrincipal;
@@ -1159,7 +1160,9 @@ namespace Lazaro
                                 case "E":
                                 case "M":
                                 case "NC":
+                                case "NC*":
                                 case "ND":
+                                case "ND*":
                                 case "NCA":
                                 case "NCB":
                                 case "NCC":

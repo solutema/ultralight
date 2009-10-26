@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -409,7 +409,7 @@ namespace Lfc.Tarjetas.Cupones
 				{
 					dTotalAcreditar = Lfx.Types.Parsing.ParseCurrency(FormularioAcreditacion.txtTotal.Text);
 					dGestionDeCobro = Total - dTotalAcreditar;
-                                        FormularioPago.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.DataView, ((Lbl.Comprobantes.FormasDePago)(Lfx.Types.Parsing.ParseInt(FormularioAcreditacion.txtFormaPago.TextKey)))));
+                                        FormularioPago.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.DataView, ((Lbl.Comprobantes.TipoFormasDePago)(Lfx.Types.Parsing.ParseInt(FormularioAcreditacion.txtFormaPago.TextKey)))));
                                         FormularioPago.Cobro.FormaDePagoEditable = false;
 					FormularioPago.Cobro.Importe = dTotalAcreditar;
 					FormularioPago.Cobro.ImporteEditable = false;
@@ -449,20 +449,20 @@ namespace Lfc.Tarjetas.Cupones
 
 				// Acreditar el dinero
                                 Lbl.Comprobantes.Cobro MiCobro = FormularioPago.Cobro.ToCobro(DataView);
-				switch (FormularioPago.Cobro.FormaDePago)
+				switch (FormularioPago.Cobro.FormaDePago.Tipo)
 				{
-					case Lbl.Comprobantes.FormasDePago.Efectivo:
+                                        case Lbl.Comprobantes.TipoFormasDePago.Efectivo:
 						Lbl.Cuentas.CuentaRegular CajaDiaria = new Lbl.Cuentas.CuentaRegular(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
 						CajaDiaria.Movimiento(true, 11000, "Acreditación Tarjetas", 0, Total, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
 						CajaDiaria.Movimiento(true, 24010, "Gestión de Cobro Tarjetas", 0, -dGestionDeCobro, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
 						break;
-					case Lbl.Comprobantes.FormasDePago.Cheque:
+                                        case Lbl.Comprobantes.TipoFormasDePago.Cheque:
                                                 Lbl.Bancos.Cheque Cheque = MiCobro.Cheque;
                                                 Cheque.Concepto = new Lbl.Cuentas.Concepto(DataView, 11000);
                                                 Cheque.ConceptoTexto = "Acreditación Tarjetas";
                                                 Cheque.Guardar();
 						break;
-					case Lbl.Comprobantes.FormasDePago.CuentaRegular:
+                                        case Lbl.Comprobantes.TipoFormasDePago.CuentaRegular:
                                                 MiCobro.CuentaDestino.Movimiento(true, 11000, "Acreditación Tarjetas", 0, Total, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
                                                 MiCobro.CuentaDestino.Movimiento(true, 24010, "Gestión de Cobro Tarjetas", 0, -dGestionDeCobro, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
 						break;

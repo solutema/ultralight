@@ -85,8 +85,8 @@ namespace Lws
                                                 Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MySql;
                                                 break;
                                         case "myodbc":
-                                                // FIXME: eliminar esto que se usó momentáneamente para migrar a todos de MyODBC a MySQL Connector/NET.
-                                                // this.CurrentConfig.WriteLocalSetting("Data", "ConnectionType", "mysql");
+                                                // FIXME: eliminar esto que se usa momentáneamente para migrar a todos de MyODBC a MySQL Connector/NET.
+                                                this.CurrentConfig.WriteLocalSetting("Data", "ConnectionType", "mysql");
                                                 Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MyOdbc;
                                                 break;
                                         case "npgsql":

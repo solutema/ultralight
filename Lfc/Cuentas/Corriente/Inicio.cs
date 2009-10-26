@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -357,6 +357,7 @@ namespace Lfc.Cuentas.Corriente
                                 FormCuentaCorrienteAjuste OAjuste = new FormCuentaCorrienteAjuste();
                                 OAjuste.Owner = this;
                                 OAjuste.Workspace = this.Workspace;
+                                OAjuste.SaldoActual = Lfx.Types.Parsing.ParseCurrency(EtiquetaSaldo.Text);
                                 if (OAjuste.ShowDialog() == DialogResult.OK) {
                                         double Importe = Lfx.Types.Parsing.ParseCurrency(OAjuste.txtImporte.Text);
                                         if (Importe == 0) {

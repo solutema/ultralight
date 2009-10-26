@@ -302,6 +302,20 @@ namespace Lfx.Data
 
                         return Command.ToString();
                 }
+
+                public SqlSelectBuilder Clone()
+                {
+                        SqlSelectBuilder Res = ((SqlSelectBuilder)(this.MemberwiseClone()));
+                        if (this.WhereClause != null)
+                                Res.WhereClause = this.WhereClause.Clone();
+                        if (this.HavingClause != null)
+                                Res.HavingClause = this.HavingClause.Clone();
+                        if (this.Joins != null) {
+                                Res.Joins = new System.Collections.Generic.List<Join>();
+                                Res.Joins.AddRange(this.Joins);
+                        }
+                        return Res;
+                }
         }
 
         public class SqlUpdateBuilder :
@@ -765,6 +779,16 @@ namespace Lfx.Data
                         } else {
                                 return "";
                         }
+                }
+
+                public SqlWhereBuilder Clone()
+                {
+                        SqlWhereBuilder Res = ((SqlWhereBuilder)(this.MemberwiseClone()));
+                        if (this.Conditions != null) {
+                                Res.Conditions = new ArrayList();
+                                Res.Conditions.AddRange(this.Conditions);
+                        }
+                        return Res;
                 }
         }
 

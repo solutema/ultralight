@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -64,6 +64,8 @@ namespace Lfc.Cuentas.Corriente
                         this.Label4 = new System.Windows.Forms.Label();
                         this.txtDireccion = new Lui.Forms.ComboBox();
                         this.label5 = new System.Windows.Forms.Label();
+                        this.EntradaNuevoSaldo = new Lui.Forms.TextBox();
+                        this.label3 = new System.Windows.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -78,10 +80,12 @@ namespace Lfc.Cuentas.Corriente
                         // 
                         this.EntradaConcepto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaConcepto.AutoHeight = false;
                         this.EntradaConcepto.AutoTab = true;
                         this.EntradaConcepto.CanCreate = true;
                         this.EntradaConcepto.DetailField = "nombre";
                         this.EntradaConcepto.ExtraDetailFields = null;
+                        this.EntradaConcepto.Filter = "";
                         this.EntradaConcepto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaConcepto.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaConcepto.FreeTextCode = "*";
@@ -106,20 +110,28 @@ namespace Lfc.Cuentas.Corriente
                         // 
                         // txtImporte
                         // 
+                        this.txtImporte.AutoHeight = false;
                         this.txtImporte.AutoNav = true;
                         this.txtImporte.AutoTab = true;
                         this.txtImporte.DataType = Lui.Forms.DataTypes.Money;
+                        this.txtImporte.DecimalPlaces = -1;
                         this.txtImporte.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.txtImporte.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtImporte.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtImporte.Location = new System.Drawing.Point(120, 56);
                         this.txtImporte.MaxLenght = 32767;
+                        this.txtImporte.MultiLine = false;
                         this.txtImporte.Name = "txtImporte";
                         this.txtImporte.Padding = new System.Windows.Forms.Padding(2);
+                        this.txtImporte.PasswordChar = '\0';
                         this.txtImporte.Prefijo = "$";
                         this.txtImporte.ReadOnly = false;
+                        this.txtImporte.SelectOnFocus = true;
                         this.txtImporte.Size = new System.Drawing.Size(128, 24);
+                        this.txtImporte.Sufijo = "";
                         this.txtImporte.TabIndex = 3;
                         this.txtImporte.Text = "0.00";
+                        this.txtImporte.TextRaw = "0.00";
                         this.txtImporte.TipWhenBlank = "";
                         this.txtImporte.ToolTipText = "";
                         this.txtImporte.TextChanged += new System.EventHandler(this.txtImporte_TextChanged);
@@ -146,20 +158,27 @@ namespace Lfc.Cuentas.Corriente
                         // 
                         this.txtObs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.txtObs.AutoHeight = false;
                         this.txtObs.AutoNav = true;
                         this.txtObs.AutoTab = true;
                         this.txtObs.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.txtObs.DecimalPlaces = -1;
                         this.txtObs.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.txtObs.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtObs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtObs.Location = new System.Drawing.Point(120, 120);
                         this.txtObs.MaxLenght = 32767;
                         this.txtObs.MultiLine = true;
                         this.txtObs.Name = "txtObs";
                         this.txtObs.Padding = new System.Windows.Forms.Padding(2);
+                        this.txtObs.PasswordChar = '\0';
+                        this.txtObs.Prefijo = "";
                         this.txtObs.ReadOnly = false;
                         this.txtObs.SelectOnFocus = false;
                         this.txtObs.Size = new System.Drawing.Size(496, 92);
+                        this.txtObs.Sufijo = "";
                         this.txtObs.TabIndex = 7;
+                        this.txtObs.TextRaw = "";
                         this.txtObs.TipWhenBlank = "";
                         this.txtObs.ToolTipText = "";
                         // 
@@ -174,10 +193,14 @@ namespace Lfc.Cuentas.Corriente
                         // 
                         // txtDireccion
                         // 
+                        this.txtDireccion.AutoHeight = false;
                         this.txtDireccion.AutoNav = true;
                         this.txtDireccion.AutoTab = true;
+                        this.txtDireccion.DetailField = null;
+                        this.txtDireccion.Filter = null;
                         this.txtDireccion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtDireccion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.txtDireccion.KeyField = null;
                         this.txtDireccion.Location = new System.Drawing.Point(120, 88);
                         this.txtDireccion.MaxLenght = 32767;
                         this.txtDireccion.Name = "txtDireccion";
@@ -188,8 +211,10 @@ namespace Lfc.Cuentas.Corriente
         "Crédito|0"};
                         this.txtDireccion.Size = new System.Drawing.Size(128, 24);
                         this.txtDireccion.TabIndex = 5;
+                        this.txtDireccion.Table = null;
                         this.txtDireccion.Text = "Débito";
                         this.txtDireccion.TextKey = "1";
+                        this.txtDireccion.TextRaw = "Débito";
                         this.txtDireccion.TipWhenBlank = "";
                         this.txtDireccion.ToolTipText = "";
                         this.txtDireccion.TextChanged += new System.EventHandler(this.txtDireccion_TextChanged);
@@ -203,10 +228,49 @@ namespace Lfc.Cuentas.Corriente
                         this.label5.Text = "Dirección";
                         this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
+                        // EntradaNuevoSaldo
+                        // 
+                        this.EntradaNuevoSaldo.AutoHeight = false;
+                        this.EntradaNuevoSaldo.AutoNav = true;
+                        this.EntradaNuevoSaldo.AutoTab = true;
+                        this.EntradaNuevoSaldo.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaNuevoSaldo.DecimalPlaces = -1;
+                        this.EntradaNuevoSaldo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaNuevoSaldo.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaNuevoSaldo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaNuevoSaldo.Location = new System.Drawing.Point(376, 56);
+                        this.EntradaNuevoSaldo.MaxLenght = 32767;
+                        this.EntradaNuevoSaldo.MultiLine = false;
+                        this.EntradaNuevoSaldo.Name = "EntradaNuevoSaldo";
+                        this.EntradaNuevoSaldo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaNuevoSaldo.PasswordChar = '\0';
+                        this.EntradaNuevoSaldo.Prefijo = "$";
+                        this.EntradaNuevoSaldo.ReadOnly = true;
+                        this.EntradaNuevoSaldo.SelectOnFocus = true;
+                        this.EntradaNuevoSaldo.Size = new System.Drawing.Size(128, 24);
+                        this.EntradaNuevoSaldo.Sufijo = "";
+                        this.EntradaNuevoSaldo.TabIndex = 52;
+                        this.EntradaNuevoSaldo.TabStop = false;
+                        this.EntradaNuevoSaldo.Text = "0.00";
+                        this.EntradaNuevoSaldo.TextRaw = "0.00";
+                        this.EntradaNuevoSaldo.TipWhenBlank = "";
+                        this.EntradaNuevoSaldo.ToolTipText = "";
+                        // 
+                        // label3
+                        // 
+                        this.label3.Location = new System.Drawing.Point(280, 56);
+                        this.label3.Name = "label3";
+                        this.label3.Size = new System.Drawing.Size(96, 24);
+                        this.label3.TabIndex = 51;
+                        this.label3.Text = "Nuevo Saldo";
+                        this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
                         // FormCuentaCorrienteAjuste
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(634, 375);
+                        this.Controls.Add(this.EntradaNuevoSaldo);
+                        this.Controls.Add(this.label3);
                         this.Controls.Add(this.txtDireccion);
                         this.Controls.Add(this.label5);
                         this.Controls.Add(this.txtObs);
@@ -216,6 +280,16 @@ namespace Lfc.Cuentas.Corriente
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.Label1);
                         this.Name = "FormCuentaCorrienteAjuste";
+                        this.Controls.SetChildIndex(this.Label1, 0);
+                        this.Controls.SetChildIndex(this.Label2, 0);
+                        this.Controls.SetChildIndex(this.txtImporte, 0);
+                        this.Controls.SetChildIndex(this.EntradaConcepto, 0);
+                        this.Controls.SetChildIndex(this.Label4, 0);
+                        this.Controls.SetChildIndex(this.txtObs, 0);
+                        this.Controls.SetChildIndex(this.label5, 0);
+                        this.Controls.SetChildIndex(this.txtDireccion, 0);
+                        this.Controls.SetChildIndex(this.label3, 0);
+                        this.Controls.SetChildIndex(this.EntradaNuevoSaldo, 0);
                         this.ResumeLayout(false);
 
                 }
@@ -231,5 +305,7 @@ namespace Lfc.Cuentas.Corriente
                 internal System.Windows.Forms.Label Label4;
                 internal System.Windows.Forms.Label label5;
                 internal Lui.Forms.ComboBox txtDireccion;
+                internal Lui.Forms.TextBox EntradaNuevoSaldo;
+                internal System.Windows.Forms.Label label3;
         }
 }

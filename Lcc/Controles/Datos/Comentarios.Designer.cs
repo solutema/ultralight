@@ -119,8 +119,7 @@
                         // 
                         // Comentarios
                         // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+                        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
                         this.Controls.Add(this.BotonAgregar);
                         this.Controls.Add(this.EntradaComentario);
                         this.Controls.Add(this.ListaComentarios);

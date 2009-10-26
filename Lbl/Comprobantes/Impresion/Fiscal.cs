@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -121,7 +121,8 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
 
 		HasarDocumentoFiscalAbrir = 0X40,
 		HasarDocumentoSetDatosCliente = 0X62,
-		HasarDocumentoFiscalItem = 0X42,
+                HasarDocumentoFiscalTexto = 0X41,
+                HasarDocumentoFiscalItem = 0X42,
 		HasarDocumentoFiscalDescuentoGeneral = 0X54,
 		HasarDocumentoFiscalDevolucionesYRecargos = 0X6D,
 		HasarDocumentoFiscalPago = 0X44,
@@ -1016,43 +1017,44 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                         }
 
                         // *** Imprimir Detalles
-                        System.Data.DataTable
-                                Detalles = this.DataView.DataBase.Select("SELECT id_articulo,nombre,cantidad,precio FROM facturas_detalle WHERE id_factura=" + Fac.Id.ToString());
+                        //System.Data.DataTable
+                        //        Detalles = this.DataView.DataBase.Select("SELECT id_articulo,nombre,cantidad,precio,series FROM facturas_detalle WHERE id_factura=" + Fac.Id.ToString());
 
-                        foreach (System.Data.DataRow Detalle in Detalles.Rows) {
+                        foreach (Lbl.Comprobantes.DetalleArticulo Detalle in Fac.Articulos) {
                                 string StrCodigo = m_Workspace.CurrentConfig.Products.DefaultCode();
 
-                                if (StrCodigo == "id_articulo")
-                                        StrCodigo = Lfx.Data.DataBase.ConvertDBNullToZero(Detalle["id_articulo"]).ToString();
-                                else
-                                        StrCodigo = this.DataView.DataBase.FieldString("SELECT " + StrCodigo + " FROM articulos WHERE id_articulo=" + Lfx.Data.DataBase.ConvertDBNullToZero(Detalle["id_articulo"]).ToString());
+                                if (Detalle.Articulo != null) {
+                                        if (StrCodigo == "id_articulo")
+                                                StrCodigo = Detalle.Articulo.Id.ToString();
+                                        else
+                                                StrCodigo = this.DataView.DataBase.FieldString("SELECT " + StrCodigo + " FROM articulos WHERE id_articulo=" + Detalle.Articulo.Id.ToString());
+                                }
 
                                 if (StrCodigo.Length > 0)
                                         StrCodigo = "(" + StrCodigo + ") ";
 
-                                string ItemNombre = System.Convert.ToString(Detalle["nombre"]);
+                                double Cantidad = Detalle.Cantidad;
+                                double Unitario = Detalle.Unitario;
+
+                                //Si es cantidad negativa, pongo precio negativo y cantidad positiva
+                                if (Cantidad < 0) {
+                                        Cantidad = -Cantidad;
+                                        Unitario = -Unitario;
+                                }
+
+                                string ItemNombre = Detalle.Nombre;
 
                                 switch (ModeloImpresora) {
                                         case Modelos.EpsonGenerico:
                                         case Modelos.Emulacion:
                                                 string ParametroSumaResta = "M";
-
-                                                double EpsonCantidad = System.Convert.ToDouble(Detalle["cantidad"]);
-                                                double EpsonPrecio = System.Convert.ToDouble(Detalle["precio"]);
-
-                                                //Si es cantidad negativa, pongo precio negativo y cantidad positiva
-                                                if (EpsonCantidad < 0) {
-                                                        EpsonCantidad = -EpsonCantidad;
-                                                        EpsonPrecio = -EpsonPrecio;
-                                                }
-
-                                                if (EpsonPrecio < 0)
+                                                if (Unitario < 0)
                                                         ParametroSumaResta = "R";
 
                                                 ComandoAEnviar = new ComandoFiscal(CodigosComandosFiscales.EpsonDocumentoFiscalItem,
                                                         FiscalizarTexto(ItemNombre).PadRight(54).Substring(0, 54),
-                                                        FormatearNumeroEpson(EpsonCantidad, 3).PadLeft(8, '0'),
-                                                        FormatearNumeroEpson(Math.Abs(EpsonPrecio), 2).PadLeft(9, '0'),
+                                                        FormatearNumeroEpson(Cantidad, 3).PadLeft(8, '0'),
+                                                        FormatearNumeroEpson(Math.Abs(Unitario), 2).PadLeft(9, '0'),
                                                         "0000",
                                                         ParametroSumaResta,
                                                         "00001",
@@ -1065,21 +1067,37 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                                                 Res = Enviar(ComandoAEnviar);
                                                 break;
                                         case Modelos.HasarGenerico:
-                                                string ParametroSumaRestaHasar = "M";
+                                                 if (Detalle.Series != null && Detalle.Series.Length > 0) {
+                                                        ComandoAEnviar = new ComandoFiscal(CodigosComandosFiscales.HasarDocumentoFiscalTexto,
+                                                                FiscalizarTexto(Detalle.Series, 50),
+                                                                "0"
+                                                                );
+                                                        Res = Enviar(ComandoAEnviar);
+                                                        if (Res.Error != ErroresFiscales.Ok) {
+                                                                Res.Lugar = "DocumentoFiscalText";
+                                                                return Res;
+                                                        }
+                                                }
 
-                                                if (System.Convert.ToDouble(Detalle["precio"]) < 0)
-                                                        ParametroSumaRestaHasar = "m";
-
-                                                ComandoAEnviar = new ComandoFiscal(CodigosComandosFiscales.HasarDocumentoFiscalItem,
-                                                        FiscalizarTexto(ItemNombre, 50),
-                                                        FormatearNumeroHasar(System.Convert.ToDouble(Detalle["cantidad"]), 3),
-                                                        FormatearNumeroHasar(Math.Abs(System.Convert.ToDouble(Detalle["precio"])), 2),
-                                                        "0.0", /* IVA */
-                                                        ParametroSumaRestaHasar,
-                                                        "0.0", /* Impuestos Internos */
-                                                        "0", /* Campo Display */
-                                                        "B" /* Precio total o base */
-                                                        );
+                                                 if (Unitario < 0) {
+                                                        ComandoAEnviar = new ComandoFiscal(CodigosComandosFiscales.HasarDocumentoFiscalDescuentoGeneral,
+                                                                FiscalizarTexto(ItemNombre, 50),
+                                                                FormatearNumeroHasar(Math.Abs(Unitario), 2),
+                                                                "m",
+                                                                "0",
+                                                                "T");
+                                                } else {
+                                                        ComandoAEnviar = new ComandoFiscal(CodigosComandosFiscales.HasarDocumentoFiscalItem,
+                                                                FiscalizarTexto(ItemNombre, 50),
+                                                                FormatearNumeroHasar(Cantidad, 3),
+                                                                FormatearNumeroHasar(Unitario, 2),
+                                                                "0.0", /* IVA */
+                                                                "M",
+                                                                "0.0", /* Impuestos Interno s */
+                                                                "0", /* Campo Display */
+                                                                "B" /* Precio total o base */
+                                                                );
+                                                }
                                                 Res = Enviar(ComandoAEnviar);
                                                 break;
                                 }
@@ -1181,71 +1199,25 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                         }
 
                         // Pago
-                        switch (Fac.FormaDePago) {
-                                case FormasDePago.Efectivo:
-                                        switch (ModeloImpresora) {
-                                                case Modelos.EpsonGenerico:
-                                                case Modelos.Emulacion:
-                                                        ComandoAEnviar = new ComandoFiscal(CodigosComandosFiscales.EpsonDocumentoFiscalPagosYDescuentos,
-                                                                "Efectivo",
-                                                                FormatearNumeroEpson(Fac.Total, 2).PadLeft(12, '0'),
-                                                                "T");
-                                                        Res = Enviar(ComandoAEnviar);
-                                                        break;
-                                                case Modelos.HasarGenerico:
-                                                        ComandoAEnviar = new ComandoFiscal(CodigosComandosFiscales.HasarDocumentoFiscalPago,
-                                                                "Efectivo",
-                                                                FormatearNumeroHasar(Fac.Total, 2),
-                                                                "T",
-                                                                "1");
-                                                        Res = Enviar(ComandoAEnviar);
-                                                        break;
-                                        }
+                        switch (ModeloImpresora) {
+                                case Modelos.EpsonGenerico:
+                                case Modelos.Emulacion:
+                                        ComandoAEnviar = new ComandoFiscal(CodigosComandosFiscales.EpsonDocumentoFiscalPagosYDescuentos,
+                                                FiscalizarTexto(Fac.FormaDePago.ToString(), 50),
+                                                FormatearNumeroEpson(Fac.Total, 2).PadLeft(12, '0'),
+                                                "T");
+                                        Res = Enviar(ComandoAEnviar);
                                         break;
-
-                                case FormasDePago.Cheque:
-                                        switch (ModeloImpresora) {
-                                                case Modelos.EpsonGenerico:
-                                                case Modelos.Emulacion:
-                                                        ComandoAEnviar = new ComandoFiscal(CodigosComandosFiscales.EpsonDocumentoFiscalPagosYDescuentos,
-                                                                "Cheque",
-                                                                FormatearNumeroEpson(Fac.Total, 2).PadLeft(12, '0'),
-                                                                "T");
-                                                        Res = Enviar(ComandoAEnviar);
-                                                        break;
-                                                case Modelos.HasarGenerico:
-                                                        ComandoAEnviar = new ComandoFiscal(CodigosComandosFiscales.HasarDocumentoFiscalPago,
-                                                                "Cheuqe",
-                                                                FormatearNumeroHasar(Fac.Total, 2),
-                                                                "T",
-                                                                "0");
-                                                        Res = Enviar(ComandoAEnviar);
-                                                        break;
-                                        }
-
-                                        break;
-
-                                case FormasDePago.CuentaCorriente:
-                                        switch (ModeloImpresora) {
-                                                case Modelos.EpsonGenerico:
-                                                case Modelos.Emulacion:
-                                                        ComandoAEnviar = new ComandoFiscal(CodigosComandosFiscales.EpsonDocumentoFiscalPagosYDescuentos,
-                                                                "CUENTA CORRIENTE",
-                                                                FormatearNumeroEpson(Fac.Total, 2).PadLeft(12, '0'),
-                                                                "T");
-                                                        Res = Enviar(ComandoAEnviar);
-                                                        break;
-                                                case Modelos.HasarGenerico:
-                                                        ComandoAEnviar = new ComandoFiscal(CodigosComandosFiscales.HasarDocumentoFiscalPago,
-                                                                "Cuenta Corriente",
-                                                                FormatearNumeroHasar(Fac.Total, 2),
-                                                                "T",
-                                                                "0");
-                                                        Res = Enviar(ComandoAEnviar);
-                                                        break;
-                                        }
+                                case Modelos.HasarGenerico:
+                                        ComandoAEnviar = new ComandoFiscal(CodigosComandosFiscales.HasarDocumentoFiscalPago,
+                                                FiscalizarTexto(Fac.FormaDePago.ToString(), 50),
+                                                FormatearNumeroHasar(Fac.Total, 2),
+                                                "T",
+                                                "0");
+                                        Res = Enviar(ComandoAEnviar);
                                         break;
                         }
+                                       
 
                         if (Res.Error != ErroresFiscales.Ok) {
                                 Res.Lugar = "DocumentoFiscalPagosYDescuentos:Pago";
@@ -1283,8 +1255,8 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
 
                                         //Asiento el pago (sólo efectivo y cta. cte.)
                                         //El resto de los pagos los maneja el formulario desde donde se mandó a imprimir
-                                        switch (Fac.FormaDePago) {
-                                                case FormasDePago.Efectivo:
+                                        switch (Fac.FormaDePago.Tipo) {
+                                                case TipoFormasDePago.Efectivo:
                                                         if (Fac.ImporteImpago > 0) {
                                                                 Cuentas.CuentaRegular CajaDiaria = new Lbl.Cuentas.CuentaRegular(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
                                                                 CajaDiaria.Movimiento(true,
@@ -1299,7 +1271,7 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
 								Fac.CancelarImporte(Fac.ImporteImpago);
                                                         }
                                                         break;
-                                                case FormasDePago.CuentaCorriente:
+                                                case TipoFormasDePago.CuentaCorriente:
                                                         Cuentas.CuentaCorriente CtaCte = new Lbl.Cuentas.CuentaCorriente(DataView, Fac.Cliente.Id);
                                                         CtaCte.IngresarComprobante(Fac, 0);
                                                         break;

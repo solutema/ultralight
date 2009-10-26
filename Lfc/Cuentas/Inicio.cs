@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -310,6 +310,7 @@ namespace Lfc.Cuentas
                                 Cuentas.IngresoEgreso FormularioIngreso = new Cuentas.IngresoEgreso();
                                 FormularioIngreso.Workspace = this.Workspace;
                                 FormularioIngreso.Cuenta = m_Cuenta;
+                                FormularioIngreso.SaldoActual = Lfx.Types.Parsing.ParseCurrency(EtiquetaSaldo.Text);
                                 FormularioIngreso.Ingreso = true;
                                 if (FormularioIngreso.ShowDialog() == DialogResult.OK)
                                         this.RefreshList();
@@ -323,6 +324,7 @@ namespace Lfc.Cuentas
                                 Cuentas.IngresoEgreso FormularioEgreso = new Cuentas.IngresoEgreso();
                                 FormularioEgreso.Workspace = this.Workspace;
                                 FormularioEgreso.Cuenta = m_Cuenta;
+                                FormularioEgreso.SaldoActual = Lfx.Types.Parsing.ParseCurrency(EtiquetaSaldo.Text);
                                 FormularioEgreso.Ingreso = false;
                                 if (FormularioEgreso.ShowDialog() == DialogResult.OK)
                                         this.RefreshList();

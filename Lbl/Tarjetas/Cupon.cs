@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -127,6 +127,22 @@ namespace Lbl.Tarjetas
                         set
                         {
                                 this.Registro["autorizacion"] = value;
+                        }
+                }
+
+                /// <summary>
+                /// Devulve la forma de pago asociada con esta tarjeta o "Otra Tarjeta de Crédito" si no se encuentra ninguna.
+                /// </summary>
+                public Lbl.Comprobantes.FormaDePago FormaDePago
+                {
+                        get
+                        {
+                                Lbl.Comprobantes.FormaDePago Res = new Lbl.Comprobantes.FormaDePago(this.DataView, this.Tarjeta.Id);
+                                if (Res.Existe == false)
+                                        return new Lbl.Comprobantes.FormaDePago(this.DataView, 4);
+                                else
+                                        return Res;
+
                         }
                 }
 

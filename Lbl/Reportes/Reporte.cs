@@ -40,8 +40,10 @@ namespace Lbl.Reportes
                 public string Titulo = "Reporte";
 
                 public Lfx.Data.SqlSelectBuilder SelectCommand;
-                public System.Collections.Generic.List<Lfx.Data.Grouping> Grupings = new List<Lfx.Data.Grouping>();
+                public Lfx.Data.Grouping Grouping = null;
+                public System.Collections.Generic.List<Lfx.Data.Aggregate> Aggregates = new List<Lfx.Data.Aggregate>();
                 public System.Collections.Generic.List<Lfx.Data.FormField> Fields = new List<Lfx.Data.FormField>();
+                public bool ExpandGroups = true;
 
                 public Reporte(Lws.Data.DataView dataView, Lfx.Data.SqlSelectBuilder selectCommand)
                 {
@@ -53,67 +55,95 @@ namespace Lbl.Reportes
                 {
                         Lfx.FileFormats.Office.Spreadsheet.Sheet Res = new Lfx.FileFormats.Office.Spreadsheet.Sheet(Titulo);
 
-                        foreach (Lfx.Data.Grouping Agru in this.Grupings) {
+                        foreach (Lfx.Data.Aggregate Agru in this.Aggregates) {
                                 Agru.Reset();
                         }
 
                         foreach (Lfx.Data.FormField Field in this.Fields) {
                                 Res.ColumnHeaders.Add(new ColumnHeader(Field.Label, Field.Width, Field.Alignment));
                         }
-                        
-                        System.Data.DataTable Tabla = DataView.DataBase.Select(this.SelectCommand);
+
+                        if (this.Grouping != null)
+                                this.Grouping.Reset();
+
+                        Lfx.Data.SqlSelectBuilder Sel = this.SelectCommand.Clone();
+                        if (this.Grouping != null) {
+                                if (Sel.Order == null || Sel.Order.Length == 0)
+                                        Sel.Order = this.Grouping.Field.ColumnName;
+                                else
+                                        Sel.Order = this.Grouping.Field.ColumnName + "," + Sel.Order;
+                        }
+
+                        System.Data.DataTable Tabla = DataView.DataBase.Select(Sel);
                         foreach (System.Data.DataRow Registro in Tabla.Rows) {
-                                Lfx.FileFormats.Office.Spreadsheet.Row Renglon = new Lfx.FileFormats.Office.Spreadsheet.Row();
-                                if (Grupings != null) {
-                                        foreach (Lfx.Data.Grouping Agru in this.Grupings) {
-                                                string ColName = Lfx.Data.DataBase.GetFieldName(Agru.Field.ColumnName);
-                                                switch (Agru.Type) {
-                                                        case Lfx.Data.GroupingTypes.Distinct:
-                                                                if (Lfx.Types.Object.ObjectsEqualByValue(Agru.LastValue, Registro[ColName]) == false) {
-                                                                        // Agrego un renglón de subtotales
-                                                                        if (Agru.LastValue != null) {
-                                                                                Lfx.FileFormats.Office.Spreadsheet.Row SubTotales = new Lfx.FileFormats.Office.Spreadsheet.Row();
-                                                                                for (int i = 0; i < Tabla.Columns.Count; i++) {
-                                                                                        foreach (Lfx.Data.Grouping SubtAgru in this.Grupings) {
-                                                                                                if (Lfx.Data.DataBase.GetFieldName(SubtAgru.Field.ColumnName) == Tabla.Columns[i].ColumnName) {
-                                                                                                        switch (SubtAgru.Type) {
-                                                                                                                case Lfx.Data.GroupingTypes.Count:
-                                                                                                                        SubTotales.Cells.Add(new Cell(SubtAgru.Count));
-                                                                                                                        break;
-                                                                                                                case Lfx.Data.GroupingTypes.Sum:
-                                                                                                                        SubTotales.Cells.Add(new Cell(SubtAgru.Sum));
-                                                                                                                        break;
-                                                                                                                default:
-                                                                                                                        SubTotales.Cells.Add(new Cell(""));
-                                                                                                                        break;
-                                                                                                        }
-                                                                                                } else {
-                                                                                                        SubTotales.Cells.Add(new Cell(""));
-                                                                                                }
-                                                                                        }
+                                if (this.Grouping != null && Lfx.Types.Object.ObjectsEqualByValue(this.Grouping.LastValue, Registro[Lfx.Data.DataBase.GetFieldName(this.Grouping.Field.ColumnName)]) == false) {
+                                        // Agrego un renglón de subtotales
+                                        if (this.Grouping.LastValue != null) {
+                                                Lfx.FileFormats.Office.Spreadsheet.Row SubTotales;
+                                                if (this.ExpandGroups)
+                                                        SubTotales = new Lfx.FileFormats.Office.Spreadsheet.AggregationRow();
+                                                else
+                                                        SubTotales = new Lfx.FileFormats.Office.Spreadsheet.Row();
+                                                for (int i = 0; i < this.Fields.Count; i++) {
+                                                        Lfx.FileFormats.Office.Spreadsheet.Cell FuncCell = null;
+                                                        if (this.Grouping != null && this.Fields[i].ColumnName == this.Grouping.Field.ColumnName && this.ExpandGroups == false) {
+                                                                FuncCell = new Cell(this.Grouping.LastValue);
+                                                        } else {
+                                                                foreach (Lfx.Data.Aggregate SubtAgru in this.Aggregates) {
+                                                                        if (SubtAgru.Field.ColumnName == this.Fields[i].ColumnName) {
+                                                                                switch (SubtAgru.Function) {
+                                                                                        case Lfx.Data.AggregationFunctions.Count:
+                                                                                                FuncCell = new Cell(SubtAgru.Count);
+                                                                                                SubtAgru.ResetCounters();
+                                                                                                break;
+                                                                                        case Lfx.Data.AggregationFunctions.Sum:
+                                                                                                FuncCell = new Cell(SubtAgru.Sum);
+                                                                                                SubtAgru.ResetCounters();
+                                                                                                break;
+                                                                                        default:
+                                                                                                FuncCell = new Cell("#undef#");
+                                                                                                SubtAgru.ResetCounters();
+                                                                                                break;
                                                                                 }
-                                                                                SubTotales.BackColor = System.Drawing.Color.LightBlue;
-                                                                                Res.Rows.Add(SubTotales);
                                                                         }
-                                                                        Agru.LastValue = Registro[ColName];
-                                                                        Agru.ResetCounters();
                                                                 }
-                                                                break;
-                                                        case Lfx.Data.GroupingTypes.Count:
-                                                                Agru.Count++;
-                                                                break;
-                                                        case Lfx.Data.GroupingTypes.Sum:
-                                                                Agru.Sum += System.Convert.ToDouble(Registro[Lfx.Data.DataBase.GetFieldName(Agru.Field.ColumnName)]);
-                                                                break;
-                                                } 
+                                                        }
+                                                        if (FuncCell != null)
+                                                                SubTotales.Cells.Add(FuncCell);
+                                                        else
+                                                                SubTotales.Cells.Add(new Cell(""));
+                                                }
+                                                Res.Rows.Add(SubTotales);
                                         }
+                                        this.Grouping.LastValue = Registro[Lfx.Data.DataBase.GetFieldName(this.Grouping.Field.ColumnName)];
+
+                                        // Agrego un encabezado
+                                        if (ExpandGroups)
+                                                Res.Rows.Add(new Lfx.FileFormats.Office.Spreadsheet.HeaderRow(Registro[Lfx.Data.DataBase.GetFieldName(this.Grouping.Field.ColumnName)].ToString()));
                                 }
 
-                                foreach (Lfx.Data.FormField Field in this.Fields) {
-                                        Lfx.FileFormats.Office.Spreadsheet.Cell Celda = new Cell(Registro[Lfx.Data.DataBase.GetFieldName(Field.ColumnName)]);
-                                        Renglon.Cells.Add(Celda);
+                                if (Aggregates != null) {
+                                        // Calculo las funciones de agregación
+                                        foreach (Lfx.Data.Aggregate Agru in this.Aggregates) {
+                                                string ColName = Lfx.Data.DataBase.GetFieldName(Agru.Field.ColumnName);
+                                                switch (Agru.Function) {
+                                                        case Lfx.Data.AggregationFunctions.Count:
+                                                                Agru.Count++;
+                                                                break;
+                                                        case Lfx.Data.AggregationFunctions.Sum:
+                                                                Agru.Sum += System.Convert.ToDouble(Registro[Lfx.Data.DataBase.GetFieldName(Agru.Field.ColumnName)]);
+                                                                break;
+                                                }
+                                        }
                                 }
-                                Res.Rows.Add(Renglon);
+                                if (ExpandGroups) {
+                                        Lfx.FileFormats.Office.Spreadsheet.Row Renglon = new Lfx.FileFormats.Office.Spreadsheet.Row();
+                                        foreach (Lfx.Data.FormField Field in this.Fields) {
+                                                Lfx.FileFormats.Office.Spreadsheet.Cell Celda = new Cell(Registro[Lfx.Data.DataBase.GetFieldName(Field.ColumnName)]);
+                                                Renglon.Cells.Add(Celda);
+                                        }
+                                        Res.Rows.Add(Renglon);
+                                }
                         }
 
                         return Res;

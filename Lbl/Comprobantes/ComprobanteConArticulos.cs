@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,6 +37,7 @@ namespace Lbl.Comprobantes
 	{
                 private ColeccionDetalleArticulos m_Articulos = null, m_ArticulosOriginales = null;
                 private ColeccionRecibos m_Recibos = null;
+                private Lbl.Comprobantes.FormaDePago m_FormaDePago = null;
                 
                 //Heredar constructor
                 public ComprobanteConArticulos(Lws.Data.DataView dataView) : base(dataView) { }
@@ -135,20 +136,20 @@ namespace Lbl.Comprobantes
                         } else if (this.Tipo.EsFactura) {
                                 Lbl.Articulos.Stock.MoverStockFactura(this, false);
                                 if (anularPagos) {
-                                        switch (this.FormaDePago) {
-                                                case Lbl.Comprobantes.FormasDePago.Efectivo:
+                                        switch (this.FormaDePago.Tipo) {
+                                                case TipoFormasDePago.Efectivo:
                                                         // Hago un egreso de caja
                                                         Lbl.Cuentas.CuentaRegular Caja = new Lbl.Cuentas.CuentaRegular(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
                                                         Caja.Movimiento(true, 11000, "Anulación Comprob. " + this.ToString(), this.Cliente.Id, -this.ImporteCancelado, "", this.Id, 0, "");
                                                         break;
 
-                                                case Lbl.Comprobantes.FormasDePago.Cheque:
+                                                case TipoFormasDePago.Cheque:
                                                         Lbl.Bancos.Cheque Cheque = new Lbl.Bancos.Cheque(DataView, this);
                                                         if (Cheque != null && Cheque.Existe)
                                                                 Cheque.Anular();
                                                         break;
 
-                                                case Lbl.Comprobantes.FormasDePago.CuentaCorriente:
+                                                case TipoFormasDePago.CuentaCorriente:
                                                         // Anulo los recibos que se le hayan hecho
                                                         if (this.Recibos != null && this.Recibos.Count > 0) {
                                                                 foreach (Recibo Rec in this.Recibos) {
@@ -163,15 +164,10 @@ namespace Lbl.Comprobantes
                                                         }
                                                         break;
 
-                                                case Lbl.Comprobantes.FormasDePago.Tarjeta:
-                                                case Lbl.Comprobantes.FormasDePago.TarjetaDeDebito:
+                                                case TipoFormasDePago.Tarjeta:
                                                         Lbl.Tarjetas.Cupon Cupon = new Lbl.Tarjetas.Cupon(DataView, this);
                                                         if (Cupon != null && Cupon.Existe)
                                                                 Cupon.Anular();
-                                                        break;
-
-                                                case FormasDePago.CuentaRegular:
-                                                        // FIXME: deshacer el movimiento?
                                                         break;
                                         }
                                 }
@@ -364,18 +360,17 @@ namespace Lbl.Comprobantes
                         }
 		}
 
-		public FormasDePago FormaDePago
+		public Lbl.Comprobantes.FormaDePago FormaDePago
 		{
 			get
 			{
-                                if (this.FieldInt("id_formapago") == 0)
-                                        return FormasDePago.Ninguna;
-                                else
-                                        return (FormasDePago)(this.FieldInt("id_formapago"));
+                                if (m_FormaDePago == null && this.FieldInt("id_formapago") != 0)
+                                        m_FormaDePago = new FormaDePago(this.DataView, this.FieldInt("id_formapago"));
+                                return m_FormaDePago;
 			}
 			set
 			{
-				this.Registro["id_formapago"] = (int)value;
+                                m_FormaDePago = value;
 			}
 		}
 
@@ -572,7 +567,10 @@ namespace Lbl.Comprobantes
                                 Comando.Fields.AddWithValue("fecha", this.Fecha);
                         }
 
-                        Comando.Fields.AddWithValue("id_formapago", Lfx.Data.DataBase.ConvertZeroToDBNull(System.Convert.ToInt32(this.FormaDePago)));
+                        if(this.FormaDePago == null)
+                                Comando.Fields.AddWithValue("id_formapago", null);
+                        else
+                                Comando.Fields.AddWithValue("id_formapago", FormaDePago.Id);
                         if (this.Vendedor == null)
                                 Comando.Fields.AddWithValue("id_vendedor", DBNull.Value);
                         else
@@ -624,7 +622,7 @@ namespace Lbl.Comprobantes
                                                 return Res;
                                 }
 
-                                if (this.Tipo.EsFactura && this.FormaDePago == FormasDePago.CuentaCorriente) {
+                                if (this.Tipo.EsFactura && this.FormaDePago.Tipo == TipoFormasDePago.CuentaCorriente) {
                                         double DiferenciaMonto;
                                         if (this.m_RegistroOriginal == null)
                                                 DiferenciaMonto = -this.Total;

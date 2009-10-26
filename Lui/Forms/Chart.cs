@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -128,7 +128,7 @@ namespace Lui.Forms
                 private bool m_VerticalGrid = true;
                 public GraphicTypes GraphicType = GraphicTypes.Lines;
                 private System.Windows.Forms.PictureBox ChartPic;
-                public System.Collections.Generic.List<ChartSerie> Series = null;
+                public System.Collections.Generic.List<Lbl.Charts.Serie> Series = null;
 
                 private System.Windows.Forms.Label TitleLabel;
                 private double CacheMax;
@@ -162,9 +162,9 @@ namespace Lui.Forms
                         double Max = double.MinValue;
                         for (int i = 0; i < Series.Count; i++) {
                                 if (Series[i] != null && Series[i].Elements != null) {
-                                        foreach (ChartElement Element in Series[i].Elements) {
-                                                if (Element != null && Element.Value > Max)
-                                                        Max = Element.Value;
+                                        foreach (Lbl.Charts.Element El in Series[i].Elements) {
+                                                if (El != null && El.Value > Max)
+                                                        Max = El.Value;
                                         }
                                 }
                         }
@@ -240,7 +240,7 @@ namespace Lui.Forms
                         }
                 }
 
-                private void DrawSerie(ChartSerie DrawSerie, System.Drawing.Graphics Canvas, System.Drawing.Size Size)
+                private void DrawSerie(Lbl.Charts.Serie DrawSerie, System.Drawing.Graphics Canvas, System.Drawing.Size Size)
                 {
 
                         switch (GraphicType) {
@@ -253,7 +253,7 @@ namespace Lui.Forms
                         }
                 }
 
-                private void DrawLines(ChartSerie Serie, System.Drawing.Graphics Canvas, System.Drawing.Size Size)
+                private void DrawLines(Lbl.Charts.Serie Serie, System.Drawing.Graphics Canvas, System.Drawing.Size Size)
                 {
                         Canvas.DrawLine(System.Drawing.Pens.WhiteSmoke, 0, Size.Height - 1, 2000, Size.Height - 1);
                         if (Serie.Elements == null)
@@ -262,9 +262,9 @@ namespace Lui.Forms
                         int ElementNumber = 1;
                         System.Drawing.PointF LastPoint = new PointF(0, 65000);
                         float ElementWidth = Size.Width / (Serie.Elements.Length - 1);
-                        foreach (ChartElement Element in Serie.Elements) {
-                                if (Element != null) {
-                                        PointF ThisPoint = new PointF(ElementWidth * (ElementNumber - 1), Size.Height - (int)(Element.Value / CacheMax * Size.Height));
+                        foreach (Lbl.Charts.Element El in Serie.Elements) {
+                                if (El != null) {
+                                        PointF ThisPoint = new PointF(ElementWidth * (ElementNumber - 1), Size.Height - (int)(El.Value / CacheMax * Size.Height));
                                         if (ElementNumber == 1)
                                                 LastPoint = ThisPoint;
 
@@ -275,7 +275,7 @@ namespace Lui.Forms
                         }
                 }
 
-                private static void DrawPie(ChartSerie Serie, System.Drawing.Graphics Canvas, System.Drawing.Size Size)
+                private static void DrawPie(Lbl.Charts.Serie Serie, System.Drawing.Graphics Canvas, System.Drawing.Size Size)
                 {
                         double Sum = Serie.GetSum();
 
@@ -289,16 +289,16 @@ namespace Lui.Forms
                         }
 
                         float LastAngle = 0;
-                        foreach (ChartElement Element in Serie.Elements) {
-                                float ElementAngle = (float)(Element.Value / Sum * 360);
+                        foreach (Lbl.Charts.Element El in Serie.Elements) {
+                                float ElementAngle = (float)(El.Value / Sum * 360);
 
                                 Canvas.FillPie(System.Drawing.Brushes.Tomato, PieRect, LastAngle, LastAngle + ElementAngle);
                                 LastAngle += ElementAngle;
                         }
 
                         LastAngle = 0;
-                        foreach (ChartElement Element in Serie.Elements) {
-                                float ElementAngle = (float)(Element.Value / Sum * 360);
+                        foreach (Lbl.Charts.Element El in Serie.Elements) {
+                                float ElementAngle = (float)(El.Value / Sum * 360);
 
                                 Canvas.DrawPie(System.Drawing.Pens.Black, PieRect, LastAngle, LastAngle + ElementAngle);
                                 LastAngle += ElementAngle;
@@ -315,59 +315,6 @@ namespace Lui.Forms
                         this.Invalidate();
                 }
 
-                public class ChartSerie
-                {
-                        public ChartElement[] Elements = null;
-                        public string Name = null;
-                        public System.Drawing.Color Color = System.Drawing.Color.Black;
-
-                        public ChartSerie(string name, ChartElement[] elements)
-                        {
-                                this.Name = name;
-                                this.Elements = elements;
-                                System.Random r = new System.Random();
-                                this.Color = System.Drawing.Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
-                        }
-
-                        public ChartSerie(string name, ChartElement[] elements, System.Drawing.Color color)
-                        {
-                                this.Name = name;
-                                this.Elements = elements;
-                                this.Color = color;
-                        }
-
-                        public ChartSerie()
-                        {
-                                System.Random r = new System.Random();
-                                this.Color = System.Drawing.Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
-                        }
-
-                        public double GetSum()
-                        {
-                                double Sum = 0;
-                                foreach (ChartElement Element in Elements) {
-                                        if (Element != null)
-                                                Sum += Element.Value;
-                                }
-                                return Sum;
-                        }
-                }
-
-                public class ChartElement
-                {
-                        public double Value = 0;
-                        public string Label = null;
-
-                        public ChartElement()
-                        {
-                        }
-
-                        public ChartElement(double value, string label)
-                        {
-                                this.Value = value;
-                                this.Label = label;
-                        }
-                }
 
                 private void ChartPic_Paint(object sender, PaintEventArgs e)
                 {

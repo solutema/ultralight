@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -499,22 +499,22 @@ namespace Lazaro.Charts
                 public void RentabilidadAnual(int anio, Lui.Forms.Chart Chrt)
                 {
                         if (Chrt.Series == null)
-                                Chrt.Series = new System.Collections.Generic.List<Lui.Forms.Chart.ChartSerie>();
+                                Chrt.Series = new System.Collections.Generic.List<Lbl.Charts.Serie>();
 
-                        Lui.Forms.Chart.ChartElement[] ElFacturacion = new Lui.Forms.Chart.ChartElement[12];
-                        Lui.Forms.Chart.ChartElement[] ElCosto = new Lui.Forms.Chart.ChartElement[12];
-                        Lui.Forms.Chart.ChartElement[] ElGastos = new Lui.Forms.Chart.ChartElement[12];
-                        Lui.Forms.Chart.ChartElement[] ElRentabilidad = new Lui.Forms.Chart.ChartElement[12];
+                        Lbl.Charts.Element[] ElFacturacion = new Lbl.Charts.Element[12];
+                        Lbl.Charts.Element[] ElCosto = new Lbl.Charts.Element[12];
+                        Lbl.Charts.Element[] ElGastos = new Lbl.Charts.Element[12];
+                        Lbl.Charts.Element[] ElRentabilidad = new Lbl.Charts.Element[12];
 
                         for (int mes = 1; mes <= 12; mes++) {
 
                                 if (anio > DateTime.Now.Year || (anio == DateTime.Now.Year && mes > DateTime.Now.Month)) {
                                         //Nada ?
                                 } else {
-                                        ElFacturacion[mes - 1] = new Lui.Forms.Chart.ChartElement();
-                                        ElCosto[mes - 1] = new Lui.Forms.Chart.ChartElement();
-                                        ElGastos[mes - 1] = new Lui.Forms.Chart.ChartElement();
-                                        ElRentabilidad[mes - 1] = new Lui.Forms.Chart.ChartElement();
+                                        ElFacturacion[mes - 1] = new Lbl.Charts.Element();
+                                        ElCosto[mes - 1] = new Lbl.Charts.Element();
+                                        ElGastos[mes - 1] = new Lbl.Charts.Element();
+                                        ElRentabilidad[mes - 1] = new Lbl.Charts.Element();
 
                                         string Fecha1Sql = anio.ToString("0000") + "-" + mes.ToString("00") + "-01";
                                         string Fecha2Sql = anio.ToString("0000") + "-" + mes.ToString("00") + "-31";
@@ -535,9 +535,9 @@ namespace Lazaro.Charts
                                 }
 
                         }
-                        Lui.Forms.Chart.ChartSerie Serie1 = new Lui.Forms.Chart.ChartSerie();
-                        Lui.Forms.Chart.ChartSerie Serie2 = new Lui.Forms.Chart.ChartSerie();
-                        Lui.Forms.Chart.ChartSerie Serie3 = new Lui.Forms.Chart.ChartSerie();
+                        Lbl.Charts.Serie Serie1 = new Lbl.Charts.Serie("Facturación");
+                        Lbl.Charts.Serie Serie2 = new Lbl.Charts.Serie("Gastos");
+                        Lbl.Charts.Serie Serie3 = new Lbl.Charts.Serie("Rentabilidad");
 
                         Serie1.Elements = ElFacturacion;
                         Serie2.Elements = ElGastos;
@@ -558,9 +558,9 @@ namespace Lazaro.Charts
                         Chrt.Series.Add(Serie3);
                 }
 
-		private Lui.Forms.Chart.ChartElement[] FacturacionAnual(int anio, bool costo, int sucursal)
+		private Lbl.Charts.Element[] FacturacionAnual(int anio, bool costo, int sucursal)
 		{
-			Lui.Forms.Chart.ChartElement[] Elements = new Lui.Forms.Chart.ChartElement[12];
+                        Lbl.Charts.Element[] Elements = new Lbl.Charts.Element[12];
 
 			for(int mes = 1; mes <= 12; mes++) 
 			{
@@ -594,7 +594,7 @@ namespace Lazaro.Charts
 
 					if(ValoresSuma != 0)
 					{
-						Elements[mes-1] = new Lui.Forms.Chart.ChartElement();
+                                                Elements[mes - 1] = new Lbl.Charts.Element();
 						Elements[mes-1].Value = ValoresSuma - ValoresResta;
 					}
 					else
@@ -607,9 +607,9 @@ namespace Lazaro.Charts
 		}
 
 
-                private Lui.Forms.Chart.ChartElement[] FacturacionMensual(int anio, int mes, int sucursal)
+                private Lbl.Charts.Element[] FacturacionMensual(int anio, int mes, int sucursal)
 		{
-			Lui.Forms.Chart.ChartElement[] Elements = new Lui.Forms.Chart.ChartElement[31];
+                        Lbl.Charts.Element[] Elements = new Lbl.Charts.Element[31];
 
 			for(int dia = 1; dia <= 31; dia++) 
 			{
@@ -647,7 +647,7 @@ namespace Lazaro.Charts
 
 					if(ValoresSuma != 0)
 					{
-						Elements[dia-1] = new Lui.Forms.Chart.ChartElement();
+                                                Elements[dia - 1] = new Lbl.Charts.Element();
 						Elements[dia-1].Value = ValoresSuma - ValoresResta;
 					}
 					else
@@ -665,29 +665,29 @@ namespace Lazaro.Charts
 		{
 			Chart.Title = "Facturación Por Mes";
 			Chart.GraphicType = Lui.Forms.Chart.GraphicTypes.Lines;
-			
-			Chart.Series = new System.Collections.Generic.List<Lui.Forms.Chart.ChartSerie>(4);
-                        Chart.Series.Add(new Lui.Forms.Chart.ChartSerie());
-                        Chart.Series.Add(new Lui.Forms.Chart.ChartSerie());
-                        Chart.Series.Add(new Lui.Forms.Chart.ChartSerie());
-                        Chart.Series.Add(new Lui.Forms.Chart.ChartSerie());
 
-			Chart.Series[0] = new Lui.Forms.Chart.ChartSerie();
+                        Chart.Series = new System.Collections.Generic.List<Lbl.Charts.Serie>();
+                        Chart.Series.Add(new Lbl.Charts.Serie(""));
+                        Chart.Series.Add(new Lbl.Charts.Serie(""));
+                        Chart.Series.Add(new Lbl.Charts.Serie(""));
+                        Chart.Series.Add(new Lbl.Charts.Serie(""));
+
+                        Chart.Series[0] = new Lbl.Charts.Serie("");
 			Chart.Series[0].Color = System.Drawing.Color.Gainsboro;
 			Chart.Series[0].Elements = FacturacionAnual(System.DateTime.Now.Year - 2, false, 0);
 			Chart.Redraw();
-			
-			Chart.Series[1] = new Lui.Forms.Chart.ChartSerie();
+
+                        Chart.Series[1] = new Lbl.Charts.Serie("");
 			Chart.Series[1].Color = System.Drawing.Color.Silver;
 			Chart.Series[1].Elements = FacturacionAnual(System.DateTime.Now.Year - 1, false, 0);
 			Chart.Redraw();
 
-			Chart.Series[2] = new Lui.Forms.Chart.ChartSerie();
+                        Chart.Series[2] = new Lbl.Charts.Serie("");
 			Chart.Series[2].Color = System.Drawing.Color.DarkGreen;
 			Chart.Series[2].Elements = FacturacionAnual(System.DateTime.Now.Year, true, 0);
 			Chart.Redraw();
 
-			Chart.Series[3] = new Lui.Forms.Chart.ChartSerie();
+                        Chart.Series[3] = new Lbl.Charts.Serie("");
 			Chart.Series[3].Color = System.Drawing.Color.Green;
 			Chart.Series[3].Elements = FacturacionAnual(System.DateTime.Now.Year, false, 0);
 
@@ -720,22 +720,22 @@ namespace Lazaro.Charts
 		{
 			ChartMes.Title = "Facturación Por Día del Mes";
 			ChartMes.GraphicType = Lui.Forms.Chart.GraphicTypes.Lines;
-			
-			ChartMes.Series = new System.Collections.Generic.List<Lui.Forms.Chart.ChartSerie>();
-                        ChartMes.Series.Add(new Lui.Forms.Chart.ChartSerie());
-                        ChartMes.Series.Add(new Lui.Forms.Chart.ChartSerie());
-                        ChartMes.Series.Add(new Lui.Forms.Chart.ChartSerie());
 
-			ChartMes.Series[0] = new Lui.Forms.Chart.ChartSerie();
+                        ChartMes.Series = new System.Collections.Generic.List<Lbl.Charts.Serie>();
+                        ChartMes.Series.Add(new Lbl.Charts.Serie(""));
+                        ChartMes.Series.Add(new Lbl.Charts.Serie(""));
+                        ChartMes.Series.Add(new Lbl.Charts.Serie(""));
+
+                        ChartMes.Series[0] = new Lbl.Charts.Serie("");
 			ChartMes.Series[0].Color = System.Drawing.Color.Gainsboro;
 			ChartMes.Series[0].Elements = FacturacionMensual(System.DateTime.Now.AddMonths(-2).Year, System.DateTime.Now.AddMonths(-2).Month, 1);
 			ChartMes.Redraw();
-			
-			ChartMes.Series[1] = new Lui.Forms.Chart.ChartSerie();
+
+                        ChartMes.Series[1] = new Lbl.Charts.Serie("");
 			ChartMes.Series[1].Color = System.Drawing.Color.Silver;
 			ChartMes.Series[1].Elements = FacturacionMensual(System.DateTime.Now.AddMonths(-1).Year, System.DateTime.Now.AddMonths(-1).Month, 1);
 
-			ChartMes.Series[2] = new Lui.Forms.Chart.ChartSerie();
+                        ChartMes.Series[2] = new Lbl.Charts.Serie("");
 			ChartMes.Series[2].Color = System.Drawing.Color.Green;
 			ChartMes.Series[2].Elements = FacturacionMensual(0, 0, 1);
 

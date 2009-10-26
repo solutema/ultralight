@@ -1,4 +1,4 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2009 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -324,7 +324,6 @@ namespace Lui.Forms
                         this.KeyPreview = true;
                         this.Name = "ListingForm";
                         this.Text = "Listado";
-                        this.Shown += new System.EventHandler(this.ListingForm_Shown);
                         this.Activated += new System.EventHandler(this.ListingForm_Activated);
                         this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ListingForm_KeyPress);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListingForm_KeyDown);
