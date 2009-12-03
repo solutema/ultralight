@@ -51,8 +51,7 @@
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>Lfx.xml</DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <NoWarn>0168,0169,0649,1591</NoWarn>
@@ -100,6 +99,7 @@
     <Compile Include="Data\Grouping.cs" />
     <Compile Include="Data\IndexDefinition.cs" />
     <Compile Include="Data\Providers\Npgsql.cs" />
+    <Compile Include="Data\Relation.cs" />
     <Compile Include="Data\Row.cs" />
     <Compile Include="Data\Table.cs" />
     <Compile Include="Data\TableStructure.cs" />

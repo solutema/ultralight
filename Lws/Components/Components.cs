@@ -31,6 +31,9 @@ using System;
 
 namespace Lws.Components
 {
+        /// <summary>
+        /// Enumera los tipos de componentes.
+        /// </summary>
 	public enum ComponentTypes
 	{
 		Executable,

@@ -422,15 +422,6 @@ namespace Lazaro.Misc.Backup
 
 				FormularioProgreso.Operacion = "Eliminando datos actuales...";
                                 Lws.Data.DataView DataView = Lws.Workspace.Master.GetDataView(true);
-                                DataView.DataBase.BeginTransaction();
-                                DataView.DataBase.EnableConstraints(false);
-
-				// Vaciar todas las tablas
-                                foreach (string Tabla in Lfx.Data.DataBaseCache.DefaultCache.TableList) {
-                                        Lfx.Data.SqlDeleteBuilder DelCmd = new Lfx.Data.SqlDeleteBuilder(Tabla);
-                                        DelCmd.Truncate = true;
-                                        DataView.Execute(DelCmd);
-				}
 
                                 FormularioProgreso.Operacion = "Acomodando estructuras...";
                                 Lfx.Data.DataBaseCache.DefaultCache.TagList.Clear();
@@ -438,10 +429,13 @@ namespace Lazaro.Misc.Backup
                                 Lfx.Data.DataBaseCache.DefaultCache.CargarEstructuraDesdeXml(BackupPath + Carpeta + "dbstruct.xml");
                                 Datos.VerificarVersionDB(DataView, true, true);
 
-                                // Vuelvo a vaciar todas las tablas, por si VerificarVersionDB() volvió a escribir cosas
+                                DataView.DataBase.BeginTransaction();
+                                DataView.DataBase.EnableConstraints(false);
+
+                                // Vaciar todas las tablas
                                 foreach (string Tabla in Lfx.Data.DataBaseCache.DefaultCache.TableList) {
                                         Lfx.Data.SqlDeleteBuilder DelCmd = new Lfx.Data.SqlDeleteBuilder(Tabla);
-                                        DelCmd.Truncate = true;
+                                        DelCmd.EnableDeleleteWithoutWhere = true;
                                         DataView.Execute(DelCmd);
                                 }
 

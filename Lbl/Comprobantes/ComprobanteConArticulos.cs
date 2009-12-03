@@ -159,8 +159,7 @@ namespace Lbl.Comprobantes
                                                         
                                                         if (this.ImporteCancelado < this.Total) {
                                                                 // Y quedaba algo por cancelar, anulo ese saldo en la cuenta corriente
-                                                                Lbl.Cuentas.CuentaCorriente CtaCteFac = new Lbl.Cuentas.CuentaCorriente(DataView, this.Cliente.Id);
-                                                                CtaCteFac.Movimiento(true, new Lbl.Cuentas.Concepto(this.DataView, 11000), "Anulación Comprob. " + this.ToString(), -(this.Total - this.ImporteCancelado), "", this, null, false);
+                                                                this.Cliente.CuentaCorriente.Movimiento(true, new Lbl.Cuentas.Concepto(this.DataView, 11000), "Anulación Comprob. " + this.ToString(), -this.ImporteCancelado, "", this, null, false);
                                                         }
                                                         break;
 
@@ -622,7 +621,7 @@ namespace Lbl.Comprobantes
                                                 return Res;
                                 }
 
-                                if (this.Tipo.EsFactura && this.FormaDePago.Tipo == TipoFormasDePago.CuentaCorriente) {
+                                if (this.Tipo.EsFactura && this.FormaDePago != null && this.FormaDePago.Tipo == TipoFormasDePago.CuentaCorriente) {
                                         double DiferenciaMonto;
                                         if (this.m_RegistroOriginal == null)
                                                 DiferenciaMonto = -this.Total;

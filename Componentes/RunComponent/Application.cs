@@ -17,7 +17,7 @@ namespace RunComponent
 
                         //Console.WriteLine("RunComponent");
                         //Console.WriteLine("    Ejecuta un componente Lfx fuera del entorno del sistema Lázaro.");
-                        //Console.WriteLine("    Copyright © 2004-2009 Carrea Ernesto, Martínez Miguel");
+                        //Console.WriteLine("    Copyright 2004-2009 South Bridge S.R.L.");
                         //Console.WriteLine("");
                         System.Windows.Forms.Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(ThreadExceptionHandler);
                         AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);

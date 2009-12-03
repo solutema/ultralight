@@ -94,7 +94,7 @@ namespace Lfx.Data
                         return false;
                 }
 
-		public override string ToString ()
+		public override string ToString()
 		{
 			string Res = "FieldCollection[" + this.Count.ToString() + "] = {";
 			string FlList = null;

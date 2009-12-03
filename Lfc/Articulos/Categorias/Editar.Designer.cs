@@ -80,6 +80,8 @@ namespace Lfc.Articulos.Categorias
                         this.cmdImagen = new Lui.Forms.Button();
                         this.pctImagen = new System.Windows.Forms.PictureBox();
                         this.Frame3 = new Lui.Forms.Frame();
+                        this.EntradaGarantia = new Lui.Forms.TextBox();
+                        this.label20 = new System.Windows.Forms.Label();
                         this.Frame1.SuspendLayout();
                         this.Frame2.SuspendLayout();
                         ((System.ComponentModel.ISupportInitialize)(this.pctImagen)).BeginInit();
@@ -249,6 +251,8 @@ namespace Lfc.Articulos.Categorias
                         this.Frame1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.Frame1.AutoHeight = false;
+                        this.Frame1.Controls.Add(this.EntradaGarantia);
+                        this.Frame1.Controls.Add(this.label20);
                         this.Frame1.Controls.Add(this.EntradaRequiereNS);
                         this.Frame1.Controls.Add(this.label8);
                         this.Frame1.Controls.Add(this.EntradaRubro);
@@ -267,7 +271,7 @@ namespace Lfc.Articulos.Categorias
                         this.Frame1.Name = "Frame1";
                         this.Frame1.Padding = new System.Windows.Forms.Padding(2);
                         this.Frame1.ReadOnly = false;
-                        this.Frame1.Size = new System.Drawing.Size(676, 216);
+                        this.Frame1.Size = new System.Drawing.Size(676, 236);
                         this.Frame1.TabIndex = 0;
                         this.Frame1.Text = "Detalles";
                         this.Frame1.ToolTipText = "";
@@ -395,7 +399,7 @@ namespace Lfc.Articulos.Categorias
                         this.Frame2.Controls.Add(this.Label6);
                         this.Frame2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Frame2.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.Frame2.Location = new System.Drawing.Point(8, 228);
+                        this.Frame2.Location = new System.Drawing.Point(8, 252);
                         this.Frame2.Name = "Frame2";
                         this.Frame2.Padding = new System.Windows.Forms.Padding(2);
                         this.Frame2.ReadOnly = false;
@@ -582,7 +586,7 @@ namespace Lfc.Articulos.Categorias
                         this.Frame3.Controls.Add(this.pctImagen);
                         this.Frame3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Frame3.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.Frame3.Location = new System.Drawing.Point(364, 228);
+                        this.Frame3.Location = new System.Drawing.Point(364, 252);
                         this.Frame3.Name = "Frame3";
                         this.Frame3.Padding = new System.Windows.Forms.Padding(2);
                         this.Frame3.ReadOnly = false;
@@ -590,6 +594,42 @@ namespace Lfc.Articulos.Categorias
                         this.Frame3.TabIndex = 2;
                         this.Frame3.Text = "Imagen";
                         this.Frame3.ToolTipText = "";
+                        // 
+                        // EntradaGarantia
+                        // 
+                        this.EntradaGarantia.AutoHeight = false;
+                        this.EntradaGarantia.AutoNav = true;
+                        this.EntradaGarantia.AutoTab = true;
+                        this.EntradaGarantia.DataType = Lui.Forms.DataTypes.Integer;
+                        this.EntradaGarantia.DecimalPlaces = -1;
+                        this.EntradaGarantia.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaGarantia.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaGarantia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaGarantia.Location = new System.Drawing.Point(152, 208);
+                        this.EntradaGarantia.MaxLenght = 32767;
+                        this.EntradaGarantia.MultiLine = false;
+                        this.EntradaGarantia.Name = "EntradaGarantia";
+                        this.EntradaGarantia.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaGarantia.PasswordChar = '\0';
+                        this.EntradaGarantia.Prefijo = "";
+                        this.EntradaGarantia.ReadOnly = false;
+                        this.EntradaGarantia.SelectOnFocus = true;
+                        this.EntradaGarantia.Size = new System.Drawing.Size(104, 24);
+                        this.EntradaGarantia.Sufijo = "meses";
+                        this.EntradaGarantia.TabIndex = 13;
+                        this.EntradaGarantia.Text = "0";
+                        this.EntradaGarantia.TextRaw = "0";
+                        this.EntradaGarantia.TipWhenBlank = "";
+                        this.EntradaGarantia.ToolTipText = "Precio de costo o de compra.";
+                        // 
+                        // label20
+                        // 
+                        this.label20.Location = new System.Drawing.Point(8, 208);
+                        this.label20.Name = "label20";
+                        this.label20.Size = new System.Drawing.Size(144, 24);
+                        this.label20.TabIndex = 12;
+                        this.label20.Text = "Garantía";
+                        this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Editar
                         // 
@@ -643,5 +683,7 @@ namespace Lfc.Articulos.Categorias
                 internal System.Windows.Forms.Label label9;
                 internal Lui.Forms.ComboBox EntradaRequiereNS;
                 internal System.Windows.Forms.Label label8;
+                internal Lui.Forms.TextBox EntradaGarantia;
+                internal System.Windows.Forms.Label label20;
         }
 }

@@ -48,6 +48,9 @@ namespace Lui.Forms
                 private System.Collections.Generic.List<Lfx.Data.Join> m_Joins = new System.Collections.Generic.List<Lfx.Data.Join>();
 		private string m_SearchText = "";
 		private object m_CurrentFilter;
+                private bool Virtual = false;
+                private ListViewItem[] VirtualModeCache = null;
+                private ListViewItem SelectedItem = null;
                 
                 private int[] m_Labels = null;
                 private string m_LabelField = null;
@@ -62,6 +65,7 @@ namespace Lui.Forms
                         Listado.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
                         Listado.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
                         Listado.ForeColor = Lws.Config.Display.CurrentTemplate.ControlText;
+                        Listado.VirtualMode = this.Virtual;
                 }
 
                 public int[] Labels
@@ -295,7 +299,14 @@ namespace Lui.Forms
 		{
                         this.LoadColumns();
                         this.BeginRefreshList();
-			this.Fill(this.SelectCommand());
+                        if (this.Virtual) {
+                                this.Listado.VirtualMode = true;
+                                this.Listado.VirtualListSize = this.DataView.DataBase.FieldInt(this.SelectCommand(true));
+                                VirtualModeCache = new ListViewItem[this.Listado.VirtualListSize];
+                        } else {
+                                this.Listado.VirtualMode = false;
+                                this.Fill(this.SelectCommand(false));
+                        }
                         this.EndRefreshList();
 		}
 
@@ -314,52 +325,51 @@ namespace Lui.Forms
 				return sCampo;
 		}
 
-		private Lfx.Data.SqlSelectBuilder SelectCommand()
-		{
-			if (m_DataTableName != null)
-			{
+                private Lfx.Data.SqlSelectBuilder SelectCommand(bool forCount)
+                {
+                        if (m_DataTableName != null) {
                                 Lfx.Data.SqlSelectBuilder ComandoSelect = new Lfx.Data.SqlSelectBuilder(this.DataView.DataBase.SqlMode);
 
-				// Genero la lista de tablas, con JOIN y todo
-				string ListaTablas = null;
-				ListaTablas = m_DataTableName;
+                                // Genero la lista de tablas, con JOIN y todo
+                                string ListaTablas = null;
+                                ListaTablas = m_DataTableName;
 
                                 if (m_Joins != null && m_Joins.Count > 0)
                                         ComandoSelect.Joins = m_Joins;
 
-				// Genero la lista de campos
-				string ListaCampos = m_KeyField.ColumnName;
-				foreach(Lfx.Data.FormField CurField in m_FormFields)
-					ListaCampos  += "," + CurField.ColumnName;
+                                string ListaCampos;
+                                if (forCount) {
+                                        ListaCampos = "COUNT(" + m_KeyField.ColumnName + ") AS row_count";
+                                } else {
+                                        // Genero la lista de campos
+                                        ListaCampos = m_KeyField.ColumnName;
+                                        foreach (Lfx.Data.FormField CurField in m_FormFields)
+                                                ListaCampos += "," + CurField.ColumnName;
+                                }
 
-				// Genero las condiciones del WHERE
-				Lfx.Data.SqlWhereBuilder WhereBuscarTexto = new Lfx.Data.SqlWhereBuilder();
-				WhereBuscarTexto.AndOr = Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandOr;
+                                // Genero las condiciones del WHERE
+                                Lfx.Data.SqlWhereBuilder WhereBuscarTexto = new Lfx.Data.SqlWhereBuilder();
+                                WhereBuscarTexto.AndOr = Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandOr;
 
-				if (m_SearchText != null && m_SearchText.Length > 0)
-				{
-					if (Lfx.Types.Strings.IsNumericInt(m_SearchText))
-						WhereBuscarTexto.Conditions.Add(new Lfx.Data.SqlCondition(m_KeyField.ColumnName, Lfx.Types.Parsing.ParseInt(m_SearchText).ToString()));
+                                if (m_SearchText != null && m_SearchText.Length > 0) {
+                                        if (Lfx.Types.Strings.IsNumericInt(m_SearchText))
+                                                WhereBuscarTexto.Conditions.Add(new Lfx.Data.SqlCondition(m_KeyField.ColumnName, Lfx.Types.Parsing.ParseInt(m_SearchText).ToString()));
 
-					if (m_FormFields != null)
-					{
-						foreach(Lfx.Data.FormField CurField in m_FormFields)
-						{
-							if(CurField.ColumnName.IndexOf(" AS ") == -1 && CurField.ColumnName.IndexOf("(") == -1)
-								WhereBuscarTexto.Conditions.Add(new Lfx.Data.SqlCondition(CurField.ColumnName, Lfx.Data.SqlCommandBuilder.SqlOperands.InsensitiveLike, "%" + m_SearchText + "%"));
-						}
-					}
-					if (m_ExtraSearchFields != null)
-					{
-						foreach(Lfx.Data.FormField CurField in m_ExtraSearchFields)
-						{
-							WhereBuscarTexto.Conditions.Add(new Lfx.Data.SqlCondition(CurField.ColumnName, Lfx.Data.SqlCommandBuilder.SqlOperands.InsensitiveLike, "%" + m_SearchText + "%"));
-						}
-					}
-				}
+                                        if (m_FormFields != null) {
+                                                foreach (Lfx.Data.FormField CurField in m_FormFields) {
+                                                        if (CurField.ColumnName.IndexOf(" AS ") == -1 && CurField.ColumnName.IndexOf("(") == -1)
+                                                                WhereBuscarTexto.Conditions.Add(new Lfx.Data.SqlCondition(CurField.ColumnName, Lfx.Data.SqlCommandBuilder.SqlOperands.InsensitiveLike, "%" + m_SearchText + "%"));
+                                                }
+                                        }
+                                        if (m_ExtraSearchFields != null) {
+                                                foreach (Lfx.Data.FormField CurField in m_ExtraSearchFields) {
+                                                        WhereBuscarTexto.Conditions.Add(new Lfx.Data.SqlCondition(CurField.ColumnName, Lfx.Data.SqlCommandBuilder.SqlOperands.InsensitiveLike, "%" + m_SearchText + "%"));
+                                                }
+                                        }
+                                }
 
-				Lfx.Data.SqlWhereBuilder WhereCompleto = new Lfx.Data.SqlWhereBuilder();
-				WhereCompleto.AndOr = Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandAnd;
+                                Lfx.Data.SqlWhereBuilder WhereCompleto = new Lfx.Data.SqlWhereBuilder();
+                                WhereCompleto.AndOr = Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandAnd;
 
                                 if (m_Labels != null) {
                                         if (m_LabelField == null || m_LabelField.Length == 0)
@@ -376,61 +386,64 @@ namespace Lui.Forms
                                         }
                                 }
 
-				if (WhereBuscarTexto.Conditions.Count > 0)
-					WhereCompleto.Conditions.Add(WhereBuscarTexto);
+                                if (WhereBuscarTexto.Conditions.Count > 0)
+                                        WhereCompleto.Conditions.Add(WhereBuscarTexto);
 
-				if(m_CurrentFilter != null)
-				{
-					if(m_CurrentFilter is string)
-					{
-						if(System.Convert.ToString(m_CurrentFilter).Length > 0)
-							WhereCompleto.Conditions.Add(m_CurrentFilter);
-					}
-					else
-					{
-						WhereCompleto.Conditions.Add(m_CurrentFilter);
-					}
-				}
+                                if (m_CurrentFilter != null) {
+                                        if (m_CurrentFilter is string) {
+                                                if (System.Convert.ToString(m_CurrentFilter).Length > 0)
+                                                        WhereCompleto.Conditions.Add(m_CurrentFilter);
+                                        } else {
+                                                WhereCompleto.Conditions.Add(m_CurrentFilter);
+                                        }
+                                }
 
-				ComandoSelect.Tables = ListaTablas;
-				ComandoSelect.Fields = ListaCampos;
-				ComandoSelect.WhereClause = WhereCompleto;
-				if(m_Agrupar != null)
-					ComandoSelect.Group = m_Agrupar.ColumnName;
+                                ComandoSelect.Tables = ListaTablas;
+                                ComandoSelect.Fields = ListaCampos;
+                                ComandoSelect.WhereClause = WhereCompleto;
+                                if (m_Agrupar != null)
+                                        ComandoSelect.Group = m_Agrupar.ColumnName;
 
-				ComandoSelect.Order = m_OrderBy;
-				return ComandoSelect;
-			}
-			else
-			{
-				return null;
-			}
-		}
+                                ComandoSelect.Order = m_OrderBy;
+                                return ComandoSelect;
+                        } else {
+                                return null;
+                        }
+                }
 
-		public virtual void Fill(Lfx.Data.SqlSelectBuilder command)
+                public virtual void Fill(Lfx.Data.SqlSelectBuilder command)
+                {
+                        this.Fill(command, 0);
+                }
+
+		public virtual void Fill(Lfx.Data.SqlSelectBuilder command, int virtualModeOffset)
 		{
         		if (this.Workspace == null || command == null)
 				return;
-
-			if (this.Workspace.SlowLink)
-				command.Limit = 1000 > m_Limit ? 1000 : m_Limit;
-			else
-				command.Limit = m_Limit;
 
 			System.Data.DataTable Tabla = this.DataView.DataBase.Select(command);
 
 			ListViewItem CurItem = null;
 
-			if (Listado.SelectedItems.Count > 0)
-				CurItem = (ListViewItem)Listado.SelectedItems[0].Clone();
-			else
-				CurItem = null;
+                        if (this.Virtual == false) {
+                                if (command.Window == null) {
+                                        if (this.Workspace.SlowLink)
+                                                command.Window = new Lfx.Data.Window(1000 > m_Limit ? 1000 : m_Limit);
+                                        else if (m_Limit > 0)
+                                                command.Window = new Lfx.Data.Window(m_Limit);
+                                        else
+                                                command.Window = null;
+                                }
 
-			Lui.Forms.ProgressForm Progreso = null;
+                                if (Listado.SelectedItems.Count > 0)
+                                        CurItem = (ListViewItem)Listado.SelectedItems[0].Clone();
+                                else
+                                        CurItem = null;
 
-			this.SuspendLayout();
-			Listado.BeginUpdate();
-			Listado.Items.Clear();
+                                this.SuspendLayout();
+                                Listado.BeginUpdate();
+                                Listado.Items.Clear();
+                        }
 
 			if (Tabla != null && Tabla.Rows.Count > 0)
 			{
@@ -439,7 +452,7 @@ namespace Lui.Forms
 				foreach(System.Data.DataRow Registro in Tabla.Rows)
 				{
 					int ii;
-					ListViewItem Itm = Listado.Items.Add(System.Convert.ToInt32(Registro[NombreCampoId]).ToString("000000"));
+					ListViewItem Itm = new ListViewItem(System.Convert.ToInt32(Registro[NombreCampoId]).ToString("000000"));
 
 					for (int i = 0; i < m_FormFields.Length; i++)
 					{
@@ -538,29 +551,39 @@ namespace Lui.Forms
 						}
 					}
 
-					ItemAdded(Itm);
-
-					if (CurItem != null && Itm.Text == CurItem.Text)
+                                        if (this.Virtual) {
+                                                if (Itm.SubItems.Count < Listado.Columns.Count) {
+                                                        for (int i = Itm.SubItems.Count; i < Listado.Columns.Count; i++) {
+                                                                Itm.SubItems.Add("");
+                                                        }
+                                                }
+                                                VirtualModeCache[virtualModeOffset++] = Itm;
+                                        } else {
+                                                Listado.Items.Add(Itm);
+                                                ItemAdded(Itm);
+                                                if (CurItem != null && Itm.Text == CurItem.Text)
 						CurItem = Itm;
+                                        }
 				}
 			}
 
-			if (Progreso != null)
-				Progreso.Dispose();
+                        if (this.Virtual == false) {
+                                Listado.EndUpdate();
 
-			Listado.EndUpdate();
+                                if (Listado.Items.Count > 0 && Listado.SelectedItems.Count == 0) {
+                                        Listado.Items[0].Focused = true;
+                                        Listado.Items[0].Selected = true;
+                                }
 
-                        if (Listado.Items.Count > 0 && Listado.SelectedItems.Count == 0) {
-                                Listado.Items[0].Focused = true;
-                                Listado.Items[0].Selected = true;
+                                if (Listado.Items.Count == m_Limit)
+                                        EtiquetaCantidad.Text = "";
+                                else
+                                        EtiquetaCantidad.Text = Listado.Items.Count.ToString() + " ítem";
+
+                                this.ResumeLayout();
+                        } else {
+                                EtiquetaCantidad.Text = VirtualModeCache.Length.ToString() + " ítem";
                         }
-
-			if(Listado.Items.Count == m_Limit)
-				EtiquetaCantidad.Text = "";
-			else
-				EtiquetaCantidad.Text = Listado.Items.Count.ToString() + " ítem";
-
-			this.ResumeLayout();
 
 			if (CurItem != null)
 			{
@@ -633,7 +656,7 @@ namespace Lui.Forms
 							e.Handled = true;
 							ListingFormExport Exportar = new ListingFormExport();
 							Exportar.Workspace = this.Workspace;
-							Exportar.SelectCommand = this.SelectCommand();
+							Exportar.SelectCommand = this.SelectCommand(false);
 							Exportar.KeyField = this.KeyField;
 							Exportar.FormFields = this.FormFields;
 							Exportar.Nombre = this.Text.Replace(":", "");
@@ -709,7 +732,7 @@ namespace Lui.Forms
                 {
                         get
                         {
-                                if (Listado.SelectedItems.Count > 0)
+                                if (SelectedItem != null)
                                         return Lfx.Types.Parsing.ParseInt(Listado.SelectedItems[0].Text);
                                 else
                                         return 0;
@@ -726,14 +749,22 @@ namespace Lui.Forms
 			OnPrint(false);
 		}
 
-		private void Listado_SelectedIndexChanged(object sender, System.EventArgs e)
-		{
-                        if (this.Visible && Listado.SelectedItems.Count > 0)
-                                this.ItemSelected(Listado.SelectedItems[0]);
-		}
+                private void Listado_SelectedIndexChanged(object sender, System.EventArgs e)
+                {
+                        if (this.Virtual) {
+                                ListViewItemSelectionChangedEventArgs ee = e as ListViewItemSelectionChangedEventArgs;
+                                if (ee != null && this.Visible && ee.IsSelected)
+                                        this.ItemSelected(ee.Item);
+                        } else if (this.Listado.SelectedItems.Count > 0) {
+                                this.ItemSelected(this.Listado.SelectedItems[0]);
+                        } else {
+                                SelectedItem = null;
+                        }
+                }
 
                 public virtual void ItemSelected(ListViewItem itm)
                 {
+                        this.SelectedItem = itm;
                         this.Workspace.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", m_DataTableName, itm.Text });
                 }
 
@@ -808,6 +839,29 @@ namespace Lui.Forms
                         //Sólo refresco en conexiones rápidas o cuando son menos de 200 elementos
                         if (this.Visible && (this.Workspace.SlowLink == false || this.Listado.Items.Count < 200))
                                 this.RefreshList();
+                }
+
+                private void Listado_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
+                {
+                        if (VirtualModeCache[e.ItemIndex] == null) {
+                                Lfx.Data.SqlSelectBuilder Sel = this.SelectCommand(false);
+                                Sel.Window = new Lfx.Data.Window(e.ItemIndex, 50);
+                                this.Fill(Sel, e.ItemIndex);
+                        }
+                        e.Item = VirtualModeCache[e.ItemIndex];
+                }
+
+                private void Listado_CacheVirtualItems(object sender, CacheVirtualItemsEventArgs e)
+                {
+                        Lfx.Data.SqlSelectBuilder Sel = this.SelectCommand(false);
+                        Sel.Window = new Lfx.Data.Window(e.StartIndex, e.EndIndex - e.StartIndex);
+                        for (int i = e.StartIndex; i < e.EndIndex; i++) {
+                                if(VirtualModeCache[i] == null) {
+                                        this.Fill(Sel, e.StartIndex);
+                                        break;
+                                }
+
+                        }
                 }
 	}
 }

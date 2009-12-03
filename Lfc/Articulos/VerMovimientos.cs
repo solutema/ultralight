@@ -276,12 +276,12 @@ namespace Lfc.Articulos
 
 		#endregion
 
-		public void Mostrar(int ArticuloId)
+		public void Mostrar(Lbl.Articulos.Articulo articulo)
 		{
 			lvItems.BeginUpdate();
 			lvItems.Items.Clear();
 
-			System.Data.DataTable Detalles = this.Workspace.DefaultDataBase.Select("SELECT id_movim, id_articulo, desdesituacion, haciasituacion, cantidad, fecha, saldo, obs FROM articulos_movim WHERE id_articulo=" + ArticuloId.ToString() + " ORDER BY fecha");
+                        System.Data.DataTable Detalles = this.Workspace.DefaultDataBase.Select("SELECT id_movim, id_articulo, desdesituacion, haciasituacion, cantidad, fecha, saldo, obs FROM articulos_movim WHERE id_articulo=" + articulo.Id.ToString() + " ORDER BY fecha");
 
 			ListViewItem itm = null;
 			foreach (System.Data.DataRow Detalle in Detalles.Rows)
@@ -330,7 +330,7 @@ namespace Lfc.Articulos
 					AND facturas.compra=1
 					AND facturas.tipo_fac='PD'
 				    AND facturas.estado=50
-					AND facturas_detalle.id_articulo=" + ArticuloId.ToString() + @"
+					AND facturas_detalle.id_articulo=" + articulo.Id.ToString() + @"
 				ORDER BY facturas.fecha");
 
 			itm = null;

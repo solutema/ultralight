@@ -35,27 +35,74 @@ namespace Lfx.Data
         {
                 Undefined,
                 ODBC,
-                MyOdbc,         //MySQL Connector/ODBC
-                MySql,          //MySQL Connector/NET
+                MyOdbc,         // MySQL Connector/ODBC, obsoleto
+                MySql,          // MySQL Connector/NET
                 Npgsql,
                 MSSql,
                 Oracle,
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public enum InputFieldTypes
         {
+                /// <summary>
+                /// Número entero de 32 bits que indica un identificador de registro autonumérico.
+                /// </summary>
                 Serial,
+                /// <summary>
+                /// Número entero de 32 bits que indica un identificador de registro relacionado con otra tabla.
+                /// </summary>
                 Relation,
+                /// <summary>
+                /// Numero entero de 32 bits.
+                /// </summary>
                 Integer,
+                /// <summary>
+                /// Numero de doble precisión.
+                /// </summary>
                 Numeric,
-                Text,
-                Memo,
+                /// <summary>
+                /// Numero que indica un valor monetario.
+                /// </summary>
                 Currency,
+                /// <summary>
+                /// Texto de largo variable de hasta 200 caracteres.
+                /// </summary>
+                Text,
+                /// <summary>
+                /// Texto de largo variable de largo extendido.
+                /// </summary>
+                Memo,
+                /// <summary>
+                /// Fecha.
+                /// </summary>
                 Date,
+                /// <summary>
+                /// Fecha y hora.
+                /// </summary>
                 DateTime,
+                /// <summary>
+                /// Imagen (normalmente JPEG).
+                /// </summary>
                 Image,
+                /// <summary>
+                /// Datos binarios.
+                /// </summary>
                 Binary,
-                Bool
+                /// <summary>
+                /// Valor booleano que indica si/no (normalmente se traduce a un entero pequeño 1/0).
+                /// </summary>
+                Bool,
+                /// <summary>
+                /// Número entero comprendido dentro un conjunto determinado, cada uno asociado con una etiqueta.
+                /// </summary>
+                NumericSet,
+                /// <summary>
+                /// Valor alfanumérico comprendido dentro un conjunto determinado, cada uno asociado con una etiqueta.
+                /// </summary>
+                AlphanumericSet
         }
 
         public enum DbTypes

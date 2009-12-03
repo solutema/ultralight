@@ -282,6 +282,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lazaro.Forms\Lazaro.Forms.csproj">
+      <Project>{65AD7811-6304-4ABF-9DF4-1CBA15297684}</Project>
+      <Name>Lazaro.Forms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lbl\Lbl.csproj">
       <Project>{56F39851-6542-405C-9F47-E8414B757EF6}</Project>
       <Name>Lbl</Name>

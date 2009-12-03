@@ -39,6 +39,7 @@ namespace Lfc.Articulos.Categorias
         public partial class Inicio : Lui.Forms.ListingForm
         {
                 internal string m_Stock = "*";
+                internal double m_ValorizacionCostoTotal = 0;
 
                 public Inicio()
                         : base()
@@ -54,7 +55,9 @@ namespace Lfc.Articulos.Categorias
 			{
 				new Lfx.Data.FormField("cat_articulos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 				new Lfx.Data.FormField("cat_articulos.stock_minimo", "Stock Mín", Lfx.Data.InputFieldTypes.Numeric, 96),
-				new Lfx.Data.FormField("cat_articulos.cache_stock_actual", "Stock Act", Lfx.Data.InputFieldTypes.Numeric, 96)
+				new Lfx.Data.FormField("cat_articulos.cache_stock_actual", "Stock Act", Lfx.Data.InputFieldTypes.Numeric, 96),
+                                new Lfx.Data.FormField("cat_articulos.cache_costo", "Valorización", Lfx.Data.InputFieldTypes.Numeric, 96),
+                                new Lfx.Data.FormField("cat_articulos.cache_costo", "Valorización %", Lfx.Data.InputFieldTypes.Numeric, 96)
 			};
                         BotonFiltrar.Visible = true;
                 }
@@ -101,13 +104,25 @@ namespace Lfc.Articulos.Categorias
 
                 public override void Fill(Lfx.Data.SqlSelectBuilder sqlCommand)
                 {
-                        this.DataView.DataBase.Execute("UPDATE cat_articulos SET cache_stock_actual=(SELECT SUM(stock_actual) FROM articulos WHERE articulos.id_cat_articulo=cat_articulos.id_cat_articulo)");
+                        this.DataView.DataBase.Execute("UPDATE cat_articulos SET cache_stock_actual=(SELECT SUM(stock_actual) FROM articulos WHERE articulos.id_cat_articulo=cat_articulos.id_cat_articulo), cache_costo=(SELECT SUM(stock_actual*costo) FROM articulos WHERE articulos.id_cat_articulo=cat_articulos.id_cat_articulo)");
+                        m_ValorizacionCostoTotal = this.DataView.DataBase.FieldDouble("SELECT SUM(cache_costo) FROM cat_articulos");
                         base.Fill(sqlCommand);
 
                         foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
                                 if (Lfx.Types.Parsing.ParseStock(itm.SubItems[3].Text) < Lfx.Types.Parsing.ParseStock(itm.SubItems[2].Text))
                                         itm.ForeColor = System.Drawing.Color.Red;
                         }
+                }
+
+                public override void ItemAdded(ListViewItem item)
+                {
+                        double ValPct;
+                        if (m_ValorizacionCostoTotal <= 0)
+                                ValPct = 0;
+                        else
+                                ValPct = Lfx.Types.Parsing.ParseDouble(item.SubItems[5].Text) / m_ValorizacionCostoTotal * 100;
+                        item.SubItems[5].Text = Lfx.Types.Formatting.FormatNumber(ValPct, 2);
+                        base.ItemAdded(item);
                 }
         }
 }

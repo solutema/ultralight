@@ -40,6 +40,7 @@ namespace Lfc.Articulos
                         this.BotonQuitarImagen = new Lui.Forms.Button();
                         this.BotonSeleccionarImagen = new Lui.Forms.Button();
                         this.Frame2 = new Lui.Forms.Frame();
+                        this.BotonArticuloVerConformación = new Lui.Forms.Button();
                         this.BotonUnidad = new Lui.Forms.Button();
                         this.EntradaUnidad = new Lui.Forms.ComboBox();
                         this.label19 = new System.Windows.Forms.Label();
@@ -47,17 +48,19 @@ namespace Lfc.Articulos
                         this.Label8 = new System.Windows.Forms.Label();
                         this.EntradaCosto = new Lui.Forms.TextBox();
                         this.EntradaUsaStock = new Lui.Forms.ComboBox();
-                        this.EntradaStockMinimo = new Lui.Forms.TextBox();
-                        this.Label11 = new System.Windows.Forms.Label();
                         this.Label7 = new System.Windows.Forms.Label();
                         this.Label6 = new System.Windows.Forms.Label();
+                        this.EntradaStockMinimo = new Lui.Forms.TextBox();
+                        this.Label11 = new System.Windows.Forms.Label();
                         this.BotonInfoCosto = new Lui.Forms.Button();
                         this.EntradaPvp = new Lui.Forms.TextBox();
-                        this.BotonArticuloVerMovimientos = new Lui.Forms.Button();
                         this.Label10 = new System.Windows.Forms.Label();
                         this.EntradaStockActual = new Lui.Forms.TextBox();
+                        this.BotonArticuloVerMovimientos = new Lui.Forms.Button();
                         this.Label9 = new System.Windows.Forms.Label();
                         this.Frame1 = new Lui.Forms.Frame();
+                        this.EntradaGarantia = new Lui.Forms.TextBox();
+                        this.label20 = new System.Windows.Forms.Label();
                         this.EntradaCuenta = new Lui.Forms.DetailBox();
                         this.label17 = new System.Windows.Forms.Label();
                         this.EntradaProveedor = new Lui.Forms.DetailBox();
@@ -121,7 +124,7 @@ namespace Lfc.Articulos
                         this.Frame3.Controls.Add(this.BotonSeleccionarImagen);
                         this.Frame3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Frame3.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.Frame3.Location = new System.Drawing.Point(467, 340);
+                        this.Frame3.Location = new System.Drawing.Point(467, 370);
                         this.Frame3.Name = "Frame3";
                         this.Frame3.Padding = new System.Windows.Forms.Padding(2);
                         this.Frame3.ReadOnly = false;
@@ -183,6 +186,7 @@ namespace Lfc.Articulos
                         // Frame2
                         // 
                         this.Frame2.AutoHeight = false;
+                        this.Frame2.Controls.Add(this.BotonArticuloVerConformación);
                         this.Frame2.Controls.Add(this.BotonUnidad);
                         this.Frame2.Controls.Add(this.EntradaUnidad);
                         this.Frame2.Controls.Add(this.label19);
@@ -190,26 +194,47 @@ namespace Lfc.Articulos
                         this.Frame2.Controls.Add(this.Label8);
                         this.Frame2.Controls.Add(this.EntradaCosto);
                         this.Frame2.Controls.Add(this.EntradaUsaStock);
-                        this.Frame2.Controls.Add(this.EntradaStockMinimo);
-                        this.Frame2.Controls.Add(this.Label11);
                         this.Frame2.Controls.Add(this.Label7);
                         this.Frame2.Controls.Add(this.Label6);
+                        this.Frame2.Controls.Add(this.EntradaStockMinimo);
+                        this.Frame2.Controls.Add(this.Label11);
                         this.Frame2.Controls.Add(this.BotonInfoCosto);
                         this.Frame2.Controls.Add(this.EntradaPvp);
-                        this.Frame2.Controls.Add(this.BotonArticuloVerMovimientos);
                         this.Frame2.Controls.Add(this.Label10);
                         this.Frame2.Controls.Add(this.EntradaStockActual);
+                        this.Frame2.Controls.Add(this.BotonArticuloVerMovimientos);
                         this.Frame2.Controls.Add(this.Label9);
                         this.Frame2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Frame2.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.Frame2.Location = new System.Drawing.Point(7, 340);
+                        this.Frame2.Location = new System.Drawing.Point(7, 370);
                         this.Frame2.Name = "Frame2";
                         this.Frame2.Padding = new System.Windows.Forms.Padding(2);
                         this.Frame2.ReadOnly = false;
-                        this.Frame2.Size = new System.Drawing.Size(454, 168);
+                        this.Frame2.Size = new System.Drawing.Size(454, 199);
                         this.Frame2.TabIndex = 1;
                         this.Frame2.Text = "Precio y Stock";
                         this.Frame2.ToolTipText = "";
+                        // 
+                        // BotonArticuloVerConformación
+                        // 
+                        this.BotonArticuloVerConformación.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonArticuloVerConformación.AutoHeight = false;
+                        this.BotonArticuloVerConformación.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonArticuloVerConformación.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonArticuloVerConformación.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonArticuloVerConformación.Image = null;
+                        this.BotonArticuloVerConformación.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonArticuloVerConformación.Location = new System.Drawing.Point(332, 160);
+                        this.BotonArticuloVerConformación.Name = "BotonArticuloVerConformación";
+                        this.BotonArticuloVerConformación.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonArticuloVerConformación.ReadOnly = false;
+                        this.BotonArticuloVerConformación.Size = new System.Drawing.Size(112, 28);
+                        this.BotonArticuloVerConformación.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonArticuloVerConformación.Subtext = "";
+                        this.BotonArticuloVerConformación.TabIndex = 17;
+                        this.BotonArticuloVerConformación.Text = "Conformación";
+                        this.BotonArticuloVerConformación.ToolTipText = "Ver conformación del stock";
+                        this.BotonArticuloVerConformación.Click += new System.EventHandler(this.BotonArticuloVerConformación_Click);
                         // 
                         // BotonUnidad
                         // 
@@ -375,44 +400,6 @@ namespace Lfc.Articulos
                         this.EntradaUsaStock.TipWhenBlank = "";
                         this.EntradaUsaStock.ToolTipText = "¿El artículo usa control de stock?";
                         // 
-                        // EntradaStockMinimo
-                        // 
-                        this.EntradaStockMinimo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaStockMinimo.AutoHeight = false;
-                        this.EntradaStockMinimo.AutoNav = true;
-                        this.EntradaStockMinimo.AutoTab = true;
-                        this.EntradaStockMinimo.DataType = Lui.Forms.DataTypes.Float;
-                        this.EntradaStockMinimo.DecimalPlaces = -1;
-                        this.EntradaStockMinimo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaStockMinimo.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaStockMinimo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaStockMinimo.Location = new System.Drawing.Point(330, 132);
-                        this.EntradaStockMinimo.MaxLenght = 32767;
-                        this.EntradaStockMinimo.MultiLine = false;
-                        this.EntradaStockMinimo.Name = "EntradaStockMinimo";
-                        this.EntradaStockMinimo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaStockMinimo.PasswordChar = '\0';
-                        this.EntradaStockMinimo.Prefijo = "";
-                        this.EntradaStockMinimo.ReadOnly = false;
-                        this.EntradaStockMinimo.SelectOnFocus = true;
-                        this.EntradaStockMinimo.Size = new System.Drawing.Size(88, 24);
-                        this.EntradaStockMinimo.Sufijo = "";
-                        this.EntradaStockMinimo.TabIndex = 16;
-                        this.EntradaStockMinimo.Text = "0.00";
-                        this.EntradaStockMinimo.TextRaw = "0.00";
-                        this.EntradaStockMinimo.TipWhenBlank = "";
-                        this.EntradaStockMinimo.ToolTipText = "Stock mínimo o crítico";
-                        // 
-                        // Label11
-                        // 
-                        this.Label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label11.Location = new System.Drawing.Point(234, 132);
-                        this.Label11.Name = "Label11";
-                        this.Label11.Size = new System.Drawing.Size(96, 24);
-                        this.Label11.TabIndex = 15;
-                        this.Label11.Text = "Stock Mínimo";
-                        this.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
                         // Label7
                         // 
                         this.Label7.Location = new System.Drawing.Point(8, 100);
@@ -430,6 +417,44 @@ namespace Lfc.Articulos
                         this.Label6.TabIndex = 0;
                         this.Label6.Text = "Costo";
                         this.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EntradaStockMinimo
+                        // 
+                        this.EntradaStockMinimo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaStockMinimo.AutoHeight = false;
+                        this.EntradaStockMinimo.AutoNav = true;
+                        this.EntradaStockMinimo.AutoTab = true;
+                        this.EntradaStockMinimo.DataType = Lui.Forms.DataTypes.Float;
+                        this.EntradaStockMinimo.DecimalPlaces = -1;
+                        this.EntradaStockMinimo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaStockMinimo.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaStockMinimo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaStockMinimo.Location = new System.Drawing.Point(100, 164);
+                        this.EntradaStockMinimo.MaxLenght = 32767;
+                        this.EntradaStockMinimo.MultiLine = false;
+                        this.EntradaStockMinimo.Name = "EntradaStockMinimo";
+                        this.EntradaStockMinimo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaStockMinimo.PasswordChar = '\0';
+                        this.EntradaStockMinimo.Prefijo = "";
+                        this.EntradaStockMinimo.ReadOnly = false;
+                        this.EntradaStockMinimo.SelectOnFocus = true;
+                        this.EntradaStockMinimo.Size = new System.Drawing.Size(96, 24);
+                        this.EntradaStockMinimo.Sufijo = "";
+                        this.EntradaStockMinimo.TabIndex = 16;
+                        this.EntradaStockMinimo.Text = "0.00";
+                        this.EntradaStockMinimo.TextRaw = "0.00";
+                        this.EntradaStockMinimo.TipWhenBlank = "";
+                        this.EntradaStockMinimo.ToolTipText = "Stock mínimo o crítico";
+                        // 
+                        // Label11
+                        // 
+                        this.Label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label11.Location = new System.Drawing.Point(4, 164);
+                        this.Label11.Name = "Label11";
+                        this.Label11.Size = new System.Drawing.Size(96, 24);
+                        this.Label11.TabIndex = 15;
+                        this.Label11.Text = "Stock Mínimo";
+                        this.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // BotonInfoCosto
                         // 
@@ -481,28 +506,6 @@ namespace Lfc.Articulos
                             "definido a continuación";
                         this.EntradaPvp.TextChanged += new System.EventHandler(this.txtPVP_TextChanged);
                         // 
-                        // BotonArticuloVerMovimientos
-                        // 
-                        this.BotonArticuloVerMovimientos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonArticuloVerMovimientos.AutoHeight = false;
-                        this.BotonArticuloVerMovimientos.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonArticuloVerMovimientos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonArticuloVerMovimientos.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.BotonArticuloVerMovimientos.Image = null;
-                        this.BotonArticuloVerMovimientos.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonArticuloVerMovimientos.Location = new System.Drawing.Point(418, 100);
-                        this.BotonArticuloVerMovimientos.Name = "BotonArticuloVerMovimientos";
-                        this.BotonArticuloVerMovimientos.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonArticuloVerMovimientos.ReadOnly = false;
-                        this.BotonArticuloVerMovimientos.Size = new System.Drawing.Size(28, 24);
-                        this.BotonArticuloVerMovimientos.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.BotonArticuloVerMovimientos.Subtext = "";
-                        this.BotonArticuloVerMovimientos.TabIndex = 11;
-                        this.BotonArticuloVerMovimientos.Text = "...";
-                        this.BotonArticuloVerMovimientos.ToolTipText = "Ver historial de movimientos de stock";
-                        this.BotonArticuloVerMovimientos.Click += new System.EventHandler(this.cmdArticulosMovimDetalles_Click);
-                        this.BotonArticuloVerMovimientos.GotFocus += new System.EventHandler(this.cmdArticulosMovimDetalles_GotFocus);
-                        // 
                         // Label10
                         // 
                         this.Label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -533,7 +536,7 @@ namespace Lfc.Articulos
                         this.EntradaStockActual.Prefijo = "";
                         this.EntradaStockActual.ReadOnly = true;
                         this.EntradaStockActual.SelectOnFocus = true;
-                        this.EntradaStockActual.Size = new System.Drawing.Size(88, 24);
+                        this.EntradaStockActual.Size = new System.Drawing.Size(114, 24);
                         this.EntradaStockActual.Sufijo = "";
                         this.EntradaStockActual.TabIndex = 10;
                         this.EntradaStockActual.TabStop = false;
@@ -542,6 +545,28 @@ namespace Lfc.Articulos
                         this.EntradaStockActual.TipWhenBlank = "";
                         this.EntradaStockActual.ToolTipText = "";
                         this.EntradaStockActual.TextChanged += new System.EventHandler(this.txtStockActual_TextChanged);
+                        // 
+                        // BotonArticuloVerMovimientos
+                        // 
+                        this.BotonArticuloVerMovimientos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonArticuloVerMovimientos.AutoHeight = false;
+                        this.BotonArticuloVerMovimientos.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonArticuloVerMovimientos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonArticuloVerMovimientos.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonArticuloVerMovimientos.Image = null;
+                        this.BotonArticuloVerMovimientos.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonArticuloVerMovimientos.Location = new System.Drawing.Point(332, 128);
+                        this.BotonArticuloVerMovimientos.Name = "BotonArticuloVerMovimientos";
+                        this.BotonArticuloVerMovimientos.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonArticuloVerMovimientos.ReadOnly = false;
+                        this.BotonArticuloVerMovimientos.Size = new System.Drawing.Size(112, 28);
+                        this.BotonArticuloVerMovimientos.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonArticuloVerMovimientos.Subtext = "";
+                        this.BotonArticuloVerMovimientos.TabIndex = 11;
+                        this.BotonArticuloVerMovimientos.Text = "Historial";
+                        this.BotonArticuloVerMovimientos.ToolTipText = "Ver historial de movimientos de stock";
+                        this.BotonArticuloVerMovimientos.Click += new System.EventHandler(this.BotonArticuloVerMovimientos_Click);
+                        this.BotonArticuloVerMovimientos.GotFocus += new System.EventHandler(this.cmdArticulosMovimDetalles_GotFocus);
                         // 
                         // Label9
                         // 
@@ -558,6 +583,8 @@ namespace Lfc.Articulos
                         this.Frame1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.Frame1.AutoHeight = false;
+                        this.Frame1.Controls.Add(this.EntradaGarantia);
+                        this.Frame1.Controls.Add(this.label20);
                         this.Frame1.Controls.Add(this.EntradaCuenta);
                         this.Frame1.Controls.Add(this.label17);
                         this.Frame1.Controls.Add(this.EntradaProveedor);
@@ -596,10 +623,46 @@ namespace Lfc.Articulos
                         this.Frame1.Name = "Frame1";
                         this.Frame1.Padding = new System.Windows.Forms.Padding(2);
                         this.Frame1.ReadOnly = false;
-                        this.Frame1.Size = new System.Drawing.Size(881, 327);
+                        this.Frame1.Size = new System.Drawing.Size(881, 357);
                         this.Frame1.TabIndex = 0;
                         this.Frame1.Text = "Detalles de Artículo";
                         this.Frame1.ToolTipText = "";
+                        // 
+                        // EntradaGarantia
+                        // 
+                        this.EntradaGarantia.AutoHeight = false;
+                        this.EntradaGarantia.AutoNav = true;
+                        this.EntradaGarantia.AutoTab = true;
+                        this.EntradaGarantia.DataType = Lui.Forms.DataTypes.Integer;
+                        this.EntradaGarantia.DecimalPlaces = -1;
+                        this.EntradaGarantia.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaGarantia.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaGarantia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaGarantia.Location = new System.Drawing.Point(84, 328);
+                        this.EntradaGarantia.MaxLenght = 32767;
+                        this.EntradaGarantia.MultiLine = false;
+                        this.EntradaGarantia.Name = "EntradaGarantia";
+                        this.EntradaGarantia.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaGarantia.PasswordChar = '\0';
+                        this.EntradaGarantia.Prefijo = "";
+                        this.EntradaGarantia.ReadOnly = false;
+                        this.EntradaGarantia.SelectOnFocus = true;
+                        this.EntradaGarantia.Size = new System.Drawing.Size(104, 24);
+                        this.EntradaGarantia.Sufijo = "meses";
+                        this.EntradaGarantia.TabIndex = 32;
+                        this.EntradaGarantia.Text = "0";
+                        this.EntradaGarantia.TextRaw = "0";
+                        this.EntradaGarantia.TipWhenBlank = "";
+                        this.EntradaGarantia.ToolTipText = "Precio de costo o de compra.";
+                        // 
+                        // label20
+                        // 
+                        this.label20.Location = new System.Drawing.Point(8, 328);
+                        this.label20.Name = "label20";
+                        this.label20.Size = new System.Drawing.Size(76, 24);
+                        this.label20.TabIndex = 31;
+                        this.label20.Text = "Garantía";
+                        this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaCuenta
                         // 
@@ -1233,7 +1296,7 @@ namespace Lfc.Articulos
                         this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
                         this.flowLayoutPanel1.Name = "flowLayoutPanel1";
                         this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(4);
-                        this.flowLayoutPanel1.Size = new System.Drawing.Size(913, 530);
+                        this.flowLayoutPanel1.Size = new System.Drawing.Size(913, 470);
                         this.flowLayoutPanel1.TabIndex = 0;
                         // 
                         // Frame4
@@ -1242,7 +1305,7 @@ namespace Lfc.Articulos
                         this.Frame4.Controls.Add(this.EntradaTags);
                         this.Frame4.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.Frame4.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.Frame4.Location = new System.Drawing.Point(7, 514);
+                        this.Frame4.Location = new System.Drawing.Point(7, 575);
                         this.Frame4.Name = "Frame4";
                         this.Frame4.Padding = new System.Windows.Forms.Padding(2);
                         this.Frame4.ReadOnly = false;
@@ -1270,7 +1333,7 @@ namespace Lfc.Articulos
                         this.frame5.AutoHeight = false;
                         this.frame5.Controls.Add(this.etiquetas1);
                         this.frame5.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.frame5.Location = new System.Drawing.Point(466, 514);
+                        this.frame5.Location = new System.Drawing.Point(466, 575);
                         this.frame5.Name = "frame5";
                         this.frame5.Padding = new System.Windows.Forms.Padding(2);
                         this.frame5.ReadOnly = false;
@@ -1285,6 +1348,7 @@ namespace Lfc.Articulos
                         this.etiquetas1.AutoNav = true;
                         this.etiquetas1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.etiquetas1.Location = new System.Drawing.Point(11, 29);
+                        this.etiquetas1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
                         this.etiquetas1.Name = "etiquetas1";
                         this.etiquetas1.Padding = new System.Windows.Forms.Padding(2);
                         this.etiquetas1.ReadOnly = false;
@@ -1382,5 +1446,8 @@ namespace Lfc.Articulos
                 internal System.Windows.Forms.Label label17;
                 private Lui.Forms.Frame frame5;
                 private Lcc.Controles.Datos.Etiquetas etiquetas1;
+                internal Lui.Forms.TextBox EntradaGarantia;
+                internal System.Windows.Forms.Label label20;
+                internal Lui.Forms.Button BotonArticuloVerConformación;
         }
 }

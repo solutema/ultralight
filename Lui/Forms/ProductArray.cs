@@ -54,6 +54,7 @@ namespace Lui.Forms
 
 		public event System.EventHandler TotalChanged;
 		public new event System.EventHandler TextChanged;
+                public event System.EventHandler AskForSerials;
 
 		#region Código generado por el Diseñador de Windows Forms
 
@@ -432,6 +433,7 @@ namespace Lui.Forms
 			ctrl.PrecioCantidadChanged += new System.EventHandler(Product_PrecioCantidadChanged);
 			ctrl.Leave += new System.EventHandler(Product_Leave);
 			ctrl.SizeChanged += new System.EventHandler(Product_SizeChanged);
+                        ctrl.AskForSerials += new System.EventHandler(Product_AskForSerials);
 			this.ResumeLayout();
 		}
 
@@ -442,6 +444,12 @@ namespace Lui.Forms
                         this.ChildControls.RemoveAt(iIndex);
 		}
 
+
+                private void Product_AskForSerials(object sender, System.EventArgs e)
+                {
+                        if (this.AskForSerials != null)
+                                this.AskForSerials(sender, null);
+                }
 
 		private void ProductArray_Enter(object sender, System.EventArgs e)
 		{

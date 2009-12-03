@@ -74,10 +74,10 @@ namespace Lfx.Data
                                         if (Lfx.Data.DataBaseCache.DefaultCache.Provider == null)
                                                 Lfx.Data.DataBaseCache.DefaultCache.Provider = new Lfx.Data.Providers.MySqlProvider();
                                         ConnectionString.Append("Convert Zero Datetime=true;");
-                                        ConnectionString.Append("Connection Timeout=60;");
+                                        //ConnectionString.Append("Connection Timeout=60;");
                                         ConnectionString.Append("Default Command Timeout=900;");
                                         ConnectionString.Append("Allow User Variables=True;");
-                                        ConnectionString.Append("KeepAlive=25;");
+                                        //ConnectionString.Append("KeepAlive=25;");
                                         if (Lfx.Data.DataBaseCache.DefaultCache.SlowLink)
                                                 ConnectionString.Append("Compress=true;");
                                         Lfx.Data.DataBaseCache.DefaultCache.OdbcDriver = null;
@@ -240,6 +240,31 @@ namespace Lfx.Data
                         }
                 }
 
+                public void CheckDataBase()
+                {
+                        foreach (string Tabla in Lfx.Data.DataBaseCache.DefaultCache.TableList) {
+                                CheckTable(Tabla);
+                        }
+
+                        // Actualizo los saldos de stock, se acuerdo a stock_movim
+                        this.Execute(@"UPDATE articulos SET stock_actual=(SELECT saldo FROM articulos_movim WHERE 
+	                        articulos_movim.id_articulo=articulos.id_articulo
+	                        ORDER BY id_movim DESC
+	                        LIMIT 1) WHERE control_stock<>0");
+                        this.Execute(@"UPDATE articulos SET stock_actual=0 WHERE control_stock=0");
+
+                        // TODO: verificar saldos de cuentas y cuentas corrientes
+                }
+
+                public void CheckTable(string tableName)
+                {
+                        Data.TableStructure CurrentTableDef = this.GetTableStructure(tableName, true);
+                        foreach (Lfx.Data.ConstraintDefinition Cons in CurrentTableDef.Constraints.Values) {
+                                // Elimino valores 0 (los pongo en NULL)
+                                this.Execute("UPDATE " + tableName + " SET " + Cons.Column + "=NULL WHERE " + Cons.Column + "=0");
+                        }
+                }
+
                 public void SetTableStructure(Data.TableStructure newTableDef)
                 {
                         Data.TableStructure CurrentTableDef = this.GetTableStructure(newTableDef.Name, false);
@@ -261,7 +286,7 @@ namespace Lfx.Data
                                                         //Existe el campo, pero no es igual... hay que modificarlo
                                                         if (this.AccessMode == AccessModes.Npgsql) {
                                                                 Sql = string.Empty;
-                                                                if (CurrentFieldDef.FieldType != NewFieldDef.FieldType)
+                                                                if (CurrentFieldDef.FieldType != NewFieldDef.FieldType || CurrentFieldDef.Lenght != NewFieldDef.Lenght || CurrentFieldDef.Precision != NewFieldDef.Precision)
                                                                         Sql += ", ALTER COLUMN \"" + NewFieldDef.Name + "\" TYPE " + NewFieldDef.SqlType();
                                                                 if (CurrentFieldDef.Nullable != NewFieldDef.Nullable) {
                                                                         if (NewFieldDef.Nullable)
@@ -368,7 +393,11 @@ namespace Lfx.Data
                                         Sql = "ALTER TABLE \"" + index.TableName + "\" ADD " + index.SqlDefinition();
                                         break;
                         }
-                        this.Execute(Sql);
+                        try {
+                                this.Execute(Sql);
+                        } catch {
+                                // TODO: esto lo ignoro por problemas con PostgreSQL
+                        }
                 }
 
                 public void DropIndex(Data.IndexDefinition index)
@@ -454,6 +483,7 @@ namespace Lfx.Data
 
                                 if (!(Columna["COLUMN_DEFAULT"] == null || Columna["COLUMN_DEFAULT"] is DBNull)) {
                                         FieldDef.DefaultValue = Columna["COLUMN_DEFAULT"].ToString();
+
                                         switch (FieldDef.FieldType) {
                                                 case DbTypes.Integer:
                                                 case DbTypes.SmallInt:
@@ -463,18 +493,32 @@ namespace Lfx.Data
                                                         break;
                                                 case DbTypes.DateTime:
                                                         if (FieldDef.DefaultValue == "0000-00-00 00:00:00")
-                                                                FieldDef.DefaultValue = string.Empty;
+                                                                FieldDef.DefaultValue = null;
                                                         break;
                                         }
 
                                         //Quito castings de PostgreSQL
-                                        if (FieldDef.DefaultValue.EndsWith("::character varying"))
-                                                FieldDef.DefaultValue = FieldDef.DefaultValue.Substring(0, FieldDef.DefaultValue.Length - 19);
-                                        else if (FieldDef.DefaultValue.EndsWith("::text"))
-                                                FieldDef.DefaultValue = FieldDef.DefaultValue.Substring(0, FieldDef.DefaultValue.Length - 6);
+                                        if (FieldDef.DefaultValue != null) {
+                                                if (FieldDef.DefaultValue.EndsWith("::character varying"))
+                                                        FieldDef.DefaultValue = FieldDef.DefaultValue.Substring(0, FieldDef.DefaultValue.Length - 19);
+                                                else if (FieldDef.DefaultValue.EndsWith("::text"))
+                                                        FieldDef.DefaultValue = FieldDef.DefaultValue.Substring(0, FieldDef.DefaultValue.Length - 6);
 
-                                        if (FieldDef.DefaultValue.StartsWith("'") && FieldDef.DefaultValue.EndsWith("'"))
-                                                FieldDef.DefaultValue = FieldDef.DefaultValue.Substring(1, FieldDef.DefaultValue.Length - 2);	//Quito comillas
+                                                if (FieldDef.DefaultValue.StartsWith("'") && FieldDef.DefaultValue.EndsWith("'"))
+                                                        FieldDef.DefaultValue = FieldDef.DefaultValue.Substring(1, FieldDef.DefaultValue.Length - 2);	//Quito comillas
+                                        }
+                                } else {
+                                        switch (FieldDef.FieldType) {
+                                                case DbTypes.Text:
+                                                case DbTypes.Blob:
+                                                case DbTypes.DateTime:
+                                                        // No pueden tener default value
+                                                        FieldDef.DefaultValue = null;
+                                                        break;
+                                                default:
+                                                        FieldDef.DefaultValue = "NULL";
+                                                        break;
+                                        }
                                 }
 
                                 //Es la clave autonumérica?
@@ -494,7 +538,8 @@ namespace Lfx.Data
                         }
 
                         //Indices
-                        if (this.AccessMode == AccessModes.Npgsql)
+                        if (this.AccessMode == AccessModes.Npgsql) {
+                                /*
                                 Sql = @"SELECT a.table_catalog, a.table_schema, a.table_name, a.constraint_name AS INDEX_NAME, a.constraint_type, array_to_string(array(SELECT column_name::varchar FROM information_schema.key_column_usage WHERE constraint_name = a.constraint_name ORDER BY ordinal_position), ', ') as column_list, c.table_name, c.column_name
 					FROM information_schema.table_constraints a 
 					INNER JOIN information_schema.key_column_usage b
@@ -507,13 +552,27 @@ namespace Lfx.Data
 						 a.constraint_name, a.constraint_type, 
 						 c.table_name, c.column_name
 					ORDER BY a.table_catalog, a.table_schema, a.table_name, 
-						 a.constraint_name";
-                        else
+						 a.constraint_name"; */
+                                Sql = @"SELECT pg_attribute.attname AS COLUMN_NAME, pg_attribute.attnum,
+	pg_class.relname AS TABLE_NAME,
+	(CASE pg_index.indisunique WHEN 't' THEN 0 ELSE 1 END) AS NON_UNIQUE,
+	(CASE pg_index.indisprimary WHEN 't' THEN 'PRIMARY KEY' ELSE '' END) AS CONSTRAINT_TYPE,
+	(SELECT relname FROM pg_class WHERE pg_class.oid=pg_index.indexrelid) AS INDEX_NAME,
+	pg_index.indexrelid,pg_class.relfilenode
+     FROM pg_index
+LEFT JOIN pg_class
+       ON pg_index.indrelid  = pg_class.oid
+LEFT JOIN pg_attribute
+       ON pg_attribute.attrelid = pg_class.oid
+      AND pg_attribute.attnum = ANY(indkey)
+    WHERE pg_class.relname = '" + tableName + @"'";
+                        } else {
                                 Sql = @"SELECT NON_UNIQUE, INDEX_NAME, seq_in_index, COLUMN_NAME, collation, cardinality, sub_part, packed, nullable, index_type, comment
 					FROM information_schema.STATISTICS
 					WHERE table_schema = '" + this.DbConnection.Database + @"'
 					AND table_name = '" + tableName + @"'
 					ORDER BY index_name, seq_in_index";
+                        }
 
                         System.Data.DataTable Indexes = this.Select(Sql);
 
@@ -524,17 +583,30 @@ namespace Lfx.Data
 
                                         if (TableDef.Indexes.ContainsKey(IndexName)) {
                                                 //Es un índice existente... agrego el campo
+                                                string ColName = Index["COLUMN_NAME"].ToString();
                                                 System.Array.Resize(ref TableDef.Indexes[IndexName].Columns, TableDef.Indexes[IndexName].Columns.Length + 1);
-                                                TableDef.Indexes[IndexName].Columns[TableDef.Indexes[IndexName].Columns.Length - 1] = Index["COLUMN_NAME"].ToString();
+                                                TableDef.Indexes[IndexName].Columns[TableDef.Indexes[IndexName].Columns.Length - 1] = ColName;
+                                                // Y marco la columna como primaria en la definición de la tabla
+                                                switch (this.AccessMode) {
+                                                        case AccessModes.MyOdbc:
+                                                        case AccessModes.MySql:
+                                                                if (IndexName.ToUpperInvariant() == "PRIMARY")
+                                                                        TableDef.Columns[ColName].PrimaryKey = true;
+                                                                break;
+                                                        case AccessModes.Npgsql:
+                                                                if (Index["CONSTRAINT_TYPE"].ToString() == "PRIMARY KEY")
+                                                                        TableDef.Columns[ColName].PrimaryKey = true;
+                                                                break;
+                                                }
                                         } else {
                                                 //Es un índice nuevo
                                                 Data.IndexDefinition NewIndex = new IndexDefinition(tableName);
                                                 NewIndex.Name = Index["INDEX_NAME"].ToString();
-                                                NewIndex.Columns = new string[] { Index["COLUMN_NAME"].ToString() };
+                                                NewIndex.Columns = Index["COLUMN_NAME"].ToString().Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                                                NewIndex.Unique = System.Convert.ToInt32(Index["NON_UNIQUE"]) == 0;
                                                 switch (this.AccessMode) {
                                                         case AccessModes.MyOdbc:
                                                         case AccessModes.MySql:
-                                                                NewIndex.Unique = System.Convert.ToInt32(Index["NON_UNIQUE"]) == 0;
                                                                 if (IndexName.ToUpperInvariant() == "PRIMARY")
                                                                         NewIndex.Primary = true;
                                                                 break;
@@ -544,6 +616,12 @@ namespace Lfx.Data
                                                                 break;
                                                 }
                                                 TableDef.Indexes.Add(NewIndex.Name, NewIndex);
+                                                if (NewIndex.Primary) {
+                                                        // Pongo las columnas como primarias en la definición de la tabla
+                                                        for (int i = 0; i < NewIndex.Columns.Length; i++) {
+                                                                TableDef.Columns[NewIndex.Columns[i]].PrimaryKey = true;
+                                                        }
+                                                }
                                         }
                                 }
                         }

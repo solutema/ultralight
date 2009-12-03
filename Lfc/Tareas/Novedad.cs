@@ -117,6 +117,7 @@ namespace Lfc.Tareas
                         // 
                         this.txtTecnico.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.txtTecnico.AutoHeight = false;
                         this.txtTecnico.AutoTab = true;
                         this.txtTecnico.CanCreate = true;
                         this.txtTecnico.DetailField = "nombre_visible";
@@ -132,6 +133,7 @@ namespace Lfc.Tareas
                         this.txtTecnico.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTecnico.ReadOnly = false;
                         this.txtTecnico.Required = true;
+                        this.txtTecnico.SelectOnFocus = true;
                         this.txtTecnico.Size = new System.Drawing.Size(540, 24);
                         this.txtTecnico.TabIndex = 9;
                         this.txtTecnico.Table = "personas";
@@ -146,18 +148,27 @@ namespace Lfc.Tareas
                         // 
                         this.txtDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.txtDescripcion.AutoHeight = false;
                         this.txtDescripcion.AutoNav = true;
                         this.txtDescripcion.AutoTab = true;
                         this.txtDescripcion.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.txtDescripcion.DecimalPlaces = -1;
                         this.txtDescripcion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.txtDescripcion.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtDescripcion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtDescripcion.Location = new System.Drawing.Point(84, 44);
                         this.txtDescripcion.MaxLenght = 32767;
+                        this.txtDescripcion.MultiLine = true;
                         this.txtDescripcion.Name = "txtDescripcion";
                         this.txtDescripcion.Padding = new System.Windows.Forms.Padding(2);
+                        this.txtDescripcion.PasswordChar = '\0';
+                        this.txtDescripcion.Prefijo = "";
                         this.txtDescripcion.ReadOnly = false;
+                        this.txtDescripcion.SelectOnFocus = true;
                         this.txtDescripcion.Size = new System.Drawing.Size(540, 124);
+                        this.txtDescripcion.Sufijo = "";
                         this.txtDescripcion.TabIndex = 3;
+                        this.txtDescripcion.TextRaw = "";
                         this.txtDescripcion.TipWhenBlank = "";
                         this.txtDescripcion.ToolTipText = "";
                         // 
@@ -172,18 +183,27 @@ namespace Lfc.Tareas
                         // 
                         // txtMinutos
                         // 
+                        this.txtMinutos.AutoHeight = false;
                         this.txtMinutos.AutoNav = true;
                         this.txtMinutos.AutoTab = true;
                         this.txtMinutos.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.txtMinutos.DecimalPlaces = -1;
                         this.txtMinutos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.txtMinutos.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtMinutos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtMinutos.Location = new System.Drawing.Point(336, 180);
                         this.txtMinutos.MaxLenght = 32767;
+                        this.txtMinutos.MultiLine = false;
                         this.txtMinutos.Name = "txtMinutos";
                         this.txtMinutos.Padding = new System.Windows.Forms.Padding(2);
+                        this.txtMinutos.PasswordChar = '\0';
+                        this.txtMinutos.Prefijo = "";
                         this.txtMinutos.ReadOnly = false;
+                        this.txtMinutos.SelectOnFocus = true;
                         this.txtMinutos.Size = new System.Drawing.Size(76, 24);
+                        this.txtMinutos.Sufijo = "";
                         this.txtMinutos.TabIndex = 5;
+                        this.txtMinutos.TextRaw = "";
                         this.txtMinutos.TipWhenBlank = "";
                         this.txtMinutos.ToolTipText = "";
                         // 
@@ -191,10 +211,14 @@ namespace Lfc.Tareas
                         // 
                         this.txtCondicion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.txtCondicion.AutoHeight = false;
                         this.txtCondicion.AutoNav = true;
                         this.txtCondicion.AutoTab = true;
+                        this.txtCondicion.DetailField = null;
+                        this.txtCondicion.Filter = null;
                         this.txtCondicion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtCondicion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.txtCondicion.KeyField = null;
                         this.txtCondicion.Location = new System.Drawing.Point(84, 180);
                         this.txtCondicion.MaxLenght = 32767;
                         this.txtCondicion.Name = "txtCondicion";
@@ -205,8 +229,10 @@ namespace Lfc.Tareas
         "Interna|1"};
                         this.txtCondicion.Size = new System.Drawing.Size(168, 24);
                         this.txtCondicion.TabIndex = 7;
+                        this.txtCondicion.Table = null;
                         this.txtCondicion.Text = "Publica";
                         this.txtCondicion.TextKey = "0";
+                        this.txtCondicion.TextRaw = "Publica";
                         this.txtCondicion.TipWhenBlank = "";
                         this.txtCondicion.ToolTipText = "";
                         // 
@@ -232,10 +258,12 @@ namespace Lfc.Tareas
                         // 
                         this.txtTicket.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.txtTicket.AutoHeight = false;
                         this.txtTicket.AutoTab = true;
                         this.txtTicket.CanCreate = true;
                         this.txtTicket.DetailField = "nombre";
                         this.txtTicket.ExtraDetailFields = null;
+                        this.txtTicket.Filter = "";
                         this.txtTicket.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtTicket.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.txtTicket.FreeTextCode = "";
@@ -246,6 +274,7 @@ namespace Lfc.Tareas
                         this.txtTicket.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTicket.ReadOnly = false;
                         this.txtTicket.Required = true;
+                        this.txtTicket.SelectOnFocus = true;
                         this.txtTicket.Size = new System.Drawing.Size(540, 24);
                         this.txtTicket.TabIndex = 1;
                         this.txtTicket.Table = "tickets";
@@ -285,6 +314,16 @@ namespace Lfc.Tareas
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
                         this.Text = "Novedad: Cargar";
                         this.WorkspaceChanged += new System.EventHandler(this.Novedad_WorkspaceChanged);
+                        this.Controls.SetChildIndex(this.Label1, 0);
+                        this.Controls.SetChildIndex(this.Label2, 0);
+                        this.Controls.SetChildIndex(this.Label3, 0);
+                        this.Controls.SetChildIndex(this.Label4, 0);
+                        this.Controls.SetChildIndex(this.Label5, 0);
+                        this.Controls.SetChildIndex(this.txtTecnico, 0);
+                        this.Controls.SetChildIndex(this.txtDescripcion, 0);
+                        this.Controls.SetChildIndex(this.txtCondicion, 0);
+                        this.Controls.SetChildIndex(this.txtTicket, 0);
+                        this.Controls.SetChildIndex(this.txtMinutos, 0);
                         this.ResumeLayout(false);
 
                 }

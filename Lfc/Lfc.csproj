@@ -128,6 +128,12 @@
     <Compile Include="Articulos\Rubros\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Articulos\VerConformacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Articulos\VerConformacion.Designer.cs">
+      <DependentUpon>VerConformacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Articulos\VerMovimientos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,7 @@
     <Compile Include="Bancos\Cheques\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ciudades\Edit.cs" />
     <Compile Include="Ciudades\Editar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +173,12 @@
     </Compile>
     <Compile Include="Comprobantes\Compra\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comprobantes\EditSerials.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprobantes\EditSerials.Designer.cs">
+      <DependentUpon>EditSerials.cs</DependentUpon>
     </Compile>
     <Compile Include="Comprobantes\Facturas\SaldoEnCuentaCorriente.cs">
       <SubType>Form</SubType>
@@ -477,6 +490,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lazaro.Forms\Lazaro.Forms.csproj">
+      <Project>{65AD7811-6304-4ABF-9DF4-1CBA15297684}</Project>
+      <Name>Lazaro.Forms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lbl\Lbl.csproj">
       <Project>{56F39851-6542-405C-9F47-E8414B757EF6}</Project>
       <Name>Lbl</Name>
@@ -563,6 +580,9 @@
       <DependentUpon>Inicio.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Articulos\VerConformacion.resx">
+      <DependentUpon>VerConformacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Articulos\VerMovimientos.resx">
       <DependentUpon>VerMovimientos.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -582,6 +602,9 @@
     <EmbeddedResource Include="Ciudades\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprobantes\EditSerials.resx">
+      <DependentUpon>EditSerials.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprobantes\Facturas\SaldoEnCuentaCorriente.resx">
       <DependentUpon>SaldoEnCuentaCorriente.cs</DependentUpon>

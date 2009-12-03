@@ -53,6 +53,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentation>true</GenerateDocumentation>
     <RunWithWarnings>false</RunWithWarnings>
+    <DocumentationFile>Lbl.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -67,6 +68,7 @@
     <RootNamespace>Lbl</RootNamespace>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>Lbl.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -76,6 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Articulos\ArticulosItem.cs" />
     <Compile Include="Articulos\Categoria.cs" />
     <Compile Include="Articulos\Marca.cs" />
     <Compile Include="Articulos\Margen.cs" />

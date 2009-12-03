@@ -350,10 +350,12 @@ namespace Lfx.Types
 			return readTextFileReturn;
 		}
 
+                /// <summary>
+                /// Quita acentos y otros caracteres no estándar.
+                /// </summary>
 		public static string SimplifyText(string sTexto)
 		{
-			//Quita acentos y otros caracteres raros
-			string res = sTexto;
+                        string res = sTexto;
 			res = res.Replace("&", "");
 			res = res.Replace("á", "a");
 			res = res.Replace("é", "e");
@@ -369,7 +371,7 @@ namespace Lfx.Types
 			res = res.Replace("Ú", "U");
 			res = res.Replace("Ü", "U");
 			res = res.Replace("Ñ", "n");
-			res = res.Replace(" ", "_");
+                        res = res.Replace(" ", "_");
 			return res;
 		}
 	}

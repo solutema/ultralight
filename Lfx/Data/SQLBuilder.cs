@@ -78,6 +78,8 @@ namespace Lfx.Data
                         SensitiveNotLike,
                         InsensitiveNotLike,
                         SoundsLike,
+                        In,
+                        NotIn
                 }
 
                 internal SqlModes m_Mode = SqlModes.Ansi;
@@ -225,13 +227,34 @@ namespace Lfx.Data
                 }
         }
 
+        public class Window
+        {
+                public int Offset = 0;
+                public int Limit = 0;
+
+                public Window(int limit)
+                        : this (0, limit)
+                {
+                }
+
+                public Window(int offset, int limit)
+                {
+                        this.Offset = offset;
+                        this.Limit = limit;
+                }
+
+                public override string ToString()
+                {
+                        return "LIMIT " + this.Limit.ToString() + " OFFSET " + this.Offset.ToString();
+                }
+        }
+
         // Comando SELECT
         public class SqlSelectBuilder
             : SqlTableCommandBuilder
         {
                 public new string Fields = "*";
-                public int Limit;
-                public int Offset;
+                public Window Window = null;
                 public string Order = null;
                 public string Group = "";
                 public System.Collections.Generic.List<Join> Joins = new System.Collections.Generic.List<Join>();
@@ -252,10 +275,16 @@ namespace Lfx.Data
                         System.Text.StringBuilder Command = new System.Text.StringBuilder();
 
                         Command.Append("SELECT ");
-
-                        if (Limit > 0 && this.SqlMode == Lfx.Data.SqlModes.MSSql)
-                                Command.Append(" TOP " + Limit.ToString(System.Globalization.CultureInfo.InvariantCulture));
-
+                        if (this.Window != null && this.Window.Limit > 0)
+                                switch (this.SqlMode) {
+                                        case SqlModes.MySql:
+                                        case SqlModes.PostgreSql:
+                                                //Nada. Se hace con LIMIT x OFFSET y
+                                                break;
+                                        default:
+                                                Command.Append("ROW_NUMBER() OVER (ORDER BY key ASC) AS window_function_rownum, ");
+                                                break;
+                                }
                         Command.Append(Fields);
 
                         if (Tables != null && Tables.Length > 0) {
@@ -292,12 +321,28 @@ namespace Lfx.Data
                         if (Order != null && Order.Length > 0)
                                 Command.Append(" ORDER BY " + Order);
 
-                        if ((Limit > 0 || Offset > 0) && (this.SqlMode == SqlModes.MySql || this.SqlMode == SqlModes.PostgreSql)) {
-                                if (Limit > 0)
-                                        Command.Append(" LIMIT " + Limit.ToString(System.Globalization.CultureInfo.InvariantCulture));
-
-                                if (Offset > 0)
-                                        Command.Append(" OFFSET " + Limit.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                        if (this.Window != null && this.Window.Limit > 0) {
+                                switch (this.SqlMode) {
+                                        case SqlModes.MySql:
+                                        case SqlModes.PostgreSql:
+                                                Command.Append(" LIMIT " + this.Window.Limit.ToString());
+                                                if (this.Window.Offset > 0)
+                                                        Command.Append(" OFFSET " + this.Window.Offset.ToString());
+                                                break;
+                                        case SqlModes.Oracle:
+                                                // Casi lo mismo que el estándar, pero sin AS ... ya que Oracle no soporta ni requiere etiquetar las subconsultas
+                                                Command.Insert(0, "SELECT * FROM (");
+                                                Command.Append(") WHERE window_function_rownum>" + this.Window.Limit.ToString());
+                                                if (this.Window.Offset > 0)
+                                                        Command.Append(" AND window_function_rownum <=(" + this.Window.Offset.ToString() + "+" + this.Window.Limit.ToString() + ")");
+                                                break;
+                                        default:
+                                                Command.Insert(0, "SELECT * FROM (");
+                                                Command.Append(") AS window_function WHERE window_function_rownum>" + this.Window.Limit.ToString());
+                                                if (this.Window.Offset > 0)
+                                                        Command.Append(" AND window_function_rownum <=(" + this.Window.Offset.ToString() + "+" + this.Window.Limit.ToString() + ")");
+                                                break;
+                                }
                         }
 
                         return Command.ToString();
@@ -354,6 +399,8 @@ namespace Lfx.Data
                                                 default:
                                                         throw new NotImplementedException();
                                         }
+                                } else if (ThisField.FieldValue is Lfx.Data.SqlExpression) {
+                                        FieldParam = ThisField.FieldValue.ToString();
                                 } else {
                                         if (baseCommand.Connection is System.Data.Odbc.OdbcConnection)
                                                 FieldParam = "?";
@@ -405,6 +452,9 @@ namespace Lfx.Data
                                                                 default:
                                                                         throw new NotImplementedException();
                                                         }
+                                                        break;
+                                                case "Lfx.Data.SqlLiteral":
+                                                        ParamValue = ThisField.FieldValue.ToString();
                                                         break;
                                                 case "System.Single":
                                                 case "System.Decimal":
@@ -520,6 +570,8 @@ namespace Lfx.Data
                                                 default:
                                                         throw new NotImplementedException();
                                         }
+                                } else if (ThisField.FieldValue is Lfx.Data.SqlExpression) {
+                                        FieldParam = ThisField.FieldValue.ToString();
                                 } else {
                                         if (baseCommand.Connection is System.Data.Odbc.OdbcConnection)
                                                 FieldParam = "?";
@@ -581,6 +633,9 @@ namespace Lfx.Data
                                                                         throw new NotImplementedException();
                                                         }
                                                         break;
+                                                case "Lfx.Data.SqlLiteral":
+                                                        ParamValue = ThisField.FieldValue.ToString();
+                                                        break;
                                                 case "Lfx.Data.LDateTime":
                                                         ParamValue = "'" + ((Lfx.Types.LDateTime)(ThisField.FieldValue)).Value.ToString(Lfx.Types.Formatting.DateTime.SqlDateTimeFormat) + "'";
                                                         break;
@@ -630,7 +685,7 @@ namespace Lfx.Data
         public class SqlDeleteBuilder :
             SqlTableCommandBuilder
         {
-                public bool Truncate = false;
+                public bool EnableDeleleteWithoutWhere = false;
 
                 public SqlDeleteBuilder()
                         : base() { }
@@ -655,7 +710,7 @@ namespace Lfx.Data
 
                         if (WhereClause != null) {
                                 Command += " WHERE " + WhereClause.ToString();
-                        } else if (Truncate == false) {
+                        } else if (EnableDeleleteWithoutWhere == false) {
                                 throw new InvalidOperationException("SqlDeleteBuilder necesita una cláusula Where o Truncate = true.");
                         }
 
@@ -690,6 +745,12 @@ namespace Lfx.Data
                         : base()
                 {
                         this.Conditions = new System.Collections.ArrayList();
+                }
+
+                public SqlWhereBuilder(OperandsAndOr andOr)
+                        : this()
+                {
+                        this.AndOr = andOr;
                 }
 
                 public SqlWhereBuilder(string Condition)
@@ -1123,6 +1184,14 @@ namespace Lfx.Data
                                                         Result = LeftValue + " LIKE " + RightValue;
                                                         break;
                                         }
+                                        break;
+
+                                case SqlCommandBuilder.SqlOperands.In:
+                                        Result = LeftValue + " IN (" + RightValue + ")";
+                                        break;
+
+                                case SqlCommandBuilder.SqlOperands.NotIn:
+                                        Result = LeftValue + " NOT IN (" + RightValue + ")";
                                         break;
                         }
 

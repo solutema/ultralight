@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Lws</name>
+    </assembly>
+    <members>
+        <member name="T:Lws.Workspace">
+            <summary>
+            Proporciona un espacio de trabajo que incluye acceso a los datos y a la configuración.
+            </summary>
+        </member>
+        <member name="M:Lws.Workspace.CommandLog(System.Int32,System.String)">
+            <summary>
+            Log de comandos SQL (normalmente a la consola). Sólo para depuración.
+            </summary>
+        </member>
+        <member name="M:Lws.Workspace.ActionLog(System.String,System.String)">
+            <summary>
+            Escribe un evento en la tabla sys_log. Se utiliza para registrar operaciones de datos (altas, bajas, ingresos, egresos, etc.)
+            </summary>
+        </member>
+        <member name="M:Lws.Workspace.NotifyTableChange(System.String,System.Int32)">
+            <summary>
+            Notifica sobre un cambio de una tabla de datos
+            </summary>
+        </member>
+        <member name="T:Lws.Workspace.RunTimeServices">
+            <summary>
+            Proporciona servicios de comunicación inter-proceso (entre el Lfx, la aplicación principal y los componentes)
+            </summary>
+        </member>
+        <member name="T:Lws.Components.Component">
+            <summary>
+            Esqueleto del componente.
+            </summary>
+        </member>
+        <member name="T:Lws.Config.ConfigManager">
+            <summary>
+            Maneja los parámetros de configuración
+            </summary>
+        </member>
+        <member name="T:Lws.LoginData">
+            <summary>
+            Proporciona acceso a la información sobre el usuario
+            </summary>
+        </member>
+        <member name="T:Lws.Data.DataView">
+            <summary>
+            Proporciona una vista de datos de nivel medio (abstracción baja). Permite acceder a los registros y operar con los datos sin escribir directamente en SQL.
+            Vea Lfx.Data.DataBase para acceso de bajo nivel a los datos o Lbl.* para para acceso de alto nivel a los datos.
+            </summary>
+        </member>
+        <member name="T:Lws.Components.ComponentTypes">
+            <summary>
+            Enumera los tipos de componentes.
+            </summary>
+        </member>
+        <member name="T:Lws.Components.ComponentManager">
+            <summary>
+            Infraestructura para el manejo de componentes.
+            </summary>
+        </member>
+        <member name="T:Lws.Services.Scheduler">
+            <summary>
+            Programador de tareas
+            </summary>
+        </member>
+    </members>
+</doc>

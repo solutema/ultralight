@@ -117,5 +117,15 @@ namespace Lfx.Data
                 {
                         return base.Equals(obj);
                 }
+
+                public override string ToString()
+                {
+                        string Res = this.Name + ": " + this.TableName + " (" + string.Join(",", this.Columns) + ")";
+                        if (this.Primary)
+                                Res += " primary";
+                        if (this.Primary)
+                                Res += " unique";
+                        return Res;
+                }
         }
 }

@@ -353,7 +353,7 @@ namespace Lfc.Bancos.Cheques
 					else
                                                 ChequesNum += ", " + NumeroCheque;
 
-                                        CuentaOrigen.Movimiento(true, System.Convert.ToInt32(Cheque["id_concepto"]), Cheque["concepto"].ToString(), 0, -System.Convert.ToDouble(Cheque["importe"]), "Pago de cheque Nº " + NumeroCheque, 0, 0, "");
+                                        CuentaOrigen.Movimiento(true, Lfx.Data.DataBase.ConvertDBNullToZero(Cheque["id_concepto"]), Cheque["concepto"].ToString(), Lfx.Data.DataBase.ConvertDBNullToZero(Cheque["id_cliente"]), -System.Convert.ToDouble(Cheque["importe"]), "Pago de cheque Nº " + NumeroCheque, 0, Lfx.Data.DataBase.ConvertDBNullToZero(Cheque["id_recibo"]), "");
 					DataView.DataBase.Execute("UPDATE bancos_cheques SET estado=10 WHERE id_cheque=" + System.Convert.ToInt32(Cheque["id_cheque"]).ToString());
 				}                
 

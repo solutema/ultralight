@@ -67,7 +67,9 @@ namespace Lfc.Comprobantes
 				new Lfx.Data.FormField("facturas.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 160)
 			};
                         OrderBy = "facturas.id_factura DESC";
-                        ExtraSearchFields = new Lfx.Data.FormField[] { new Lfx.Data.FormField("series", "Series") };
+                        ExtraSearchFields = new Lfx.Data.FormField[] {
+                                new Lfx.Data.FormField("series", "Series")
+                        };
 
                         BotonFiltrar.Visible = true;
                         BotonImprimir.Visible = true;
@@ -334,7 +336,7 @@ namespace Lfc.Comprobantes
                         double dPendiente = 0;
 
                         foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
-                                if (itm.SubItems[7].Text != "1" && itm.SubItems[6].Text != "0") {
+                                if (itm.SubItems[7].Text != "Si" && itm.SubItems[6].Text != "No") {
                                         // SubItems(7) == 1 significa que el comprobante está anulado
                                         // SubItems(6) != 0 significa que el comprobante está impreso
                                         if (itm.SubItems[1].Text.Length >= 2 && itm.SubItems[1].Text.Substring(0, 2) == "NC")

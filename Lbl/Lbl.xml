@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Lbl</name>
+    </assembly>
+    <members>
+        <member name="T:Lbl.ElementoDeDatos">
+            <summary>
+            Proporciona acceso a los datos con alto nivel de abstracción.
+            Normalmente refleja un registro de la base de datos como un objeto con propiedades y métodos.
+            </summary>
+        </member>
+        <member name="M:Lbl.ElementoDeDatos.Crear">
+            <summary>
+            Crea un nuevo elemento, con sus valores predeterminados.
+            </summary>
+        </member>
+        <member name="M:Lbl.ElementoDeDatos.Guardar">
+            <summary>
+            Guarda los cambios en la base de datos.
+            </summary>
+        </member>
+        <member name="M:Lbl.ElementoDeDatos.AgregarTags(Lfx.Data.SqlCommandBuilder)">
+            <summary>
+            Agrega los campos personalizados (tags) al comando, antes de guardar.
+            </summary>
+            <param name="comando">El parámetro al cual agregar los campos.</param>
+        </member>
+        <member name="M:Lbl.ElementoDeDatos.Cargar">
+            <summary>
+            Carga el elemento desde la base de datos.
+            </summary>
+        </member>
+        <member name="M:Lbl.ElementoDeDatos.Cargar(System.Int32)">
+            <summary>
+            Carga un elemento por su Id desde la base de datos.
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.Existe">
+            <summary>
+            Devuelve Verdadero si el elemento existe en la base de datos.
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.Etiquetas">
+            <summary>
+            Devuelve o establece una colección de etiquetas del elemento.
+            </summary>
+        </member>
+        <member name="T:Lbl.ColeccionDeElementos">
+            <summary>
+            Una colección de ElementosDeDatos.
+            </summary>
+        </member>
+        <member name="M:Lbl.ColeccionDeElementos.Contains(System.Int32)">
+            <summary>
+            Busca un elemento por su Id.
+            </summary>
+        </member>
+        <member name="M:Lbl.ColeccionDeElementos.Add(Lbl.ElementoDeDatos)">
+            <summary>
+            Agrega un elemento a la colección.
+            </summary>
+        </member>
+        <member name="M:Lbl.ColeccionDeElementos.RemoveById(System.Int32)">
+            <summary>
+            Elimina un elemento por su Id.
+            </summary>
+        </member>
+        <member name="M:Lbl.ColeccionDeElementos.Clone">
+            <summary>
+            Devuelve una nueva colección, conteniendo los mismos elementos.
+            </summary>
+        </member>
+        <member name="M:Lbl.ColeccionDeElementos.Agregados(Lbl.ColeccionDeElementos)">
+            <summary>
+            Devuelve una colección de elementos nuevos, en comparación con una colección original.
+            </summary>
+            <param name="original">La colección original.</param>
+            <returns>La colección de los elementos presentes en esta colección, pero no en la original.</returns>
+        </member>
+        <member name="M:Lbl.ColeccionDeElementos.Quitados(Lbl.ColeccionDeElementos)">
+            <summary>
+            Devuelve una colección de elementos faltantes, en comparación con una colección original.
+            </summary>
+            <param name="original">La colección original.</param>
+            <returns>La colección de los elementos no presentes en esta colección, pero si en la original.</returns>
+        </member>
+        <member name="M:Lbl.Comprobantes.ColeccionDetalleArticulos.Unificar">
+            <summary>
+            Unifica la lista de articulos. Cuando un artículo aparece 2 o más veces, que una sola instancia
+            con la sumatoria de las cantidades (Si la lista consta de "2 manzanas, 3 naranjas y 1 manzana",
+            esta función devuelve "3 manzanas y 3 naranjas").
+            </summary>
+        </member>
+        <member name="M:Lbl.Comprobantes.ColeccionDetalleArticulos.Diferencia(Lbl.Comprobantes.ColeccionDetalleArticulos)">
+            <summary>
+            Hace una lista de movimientos necesarios para convertir "original" en "this".
+            </summary>
+        </member>
+        <member name="T:Lbl.Comprobantes.Impresion.Fiscal.Modelos">
+            <summary>
+            Impresión mediante controlador fiscal.
+            </summary>
+            
+        </member>
+        <member name="P:Lbl.Comprobantes.Tipo.LetraSola">
+            <summary>
+            Devuelve sólamente la letra (A, B, C, E o M, independientemente de que sea NCA, NDE, etc.)
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.Tipo.Nomenclatura">
+            <summary>
+            La nomenclatura del tipo de comprobante (A, B, NCA, NDE, etc.)
+            </summary>
+        </member>
+        <member name="P:Lbl.Tarjetas.Cupon.FormaDePago">
+            <summary>
+            Devulve la forma de pago asociada con esta tarjeta o "Otra Tarjeta de Crédito" si no se encuentra ninguna.
+            </summary>
+        </member>
+    </members>
+</doc>

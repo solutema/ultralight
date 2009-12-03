@@ -91,9 +91,11 @@ namespace Lazaro
                         }
 
                         Application.EnableVisualStyles();
-                        Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(ThreadExceptionHandler);
-                        AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
-                        Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+                        if (Lfx.Environment.SystemInformation.DesignMode == false) {
+                                Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(ThreadExceptionHandler);
+                                AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
+                                Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+                        }
 
                         if (System.IO.File.Exists("ICSharpCode.SharpZipLib.dll") == false || System.IO.File.Exists("MySql.Data.dll") == false) {
                                 Actualizador.Estado Estado = new Lazaro.Actualizador.Estado();
@@ -419,6 +421,7 @@ namespace Lazaro
                                         RepForm.ReporteAMostrar = Rep;
                                         RepForm.Show();
                                         break;
+
                                 case "LIC":
                                         Lfx.Lic.Licenciar(@"C:\Lazaro\Sistema");
                                         Lfx.Lic.Licenciar(@"C:\Lazaro\Componentes\RunComponent");
@@ -434,13 +437,25 @@ namespace Lazaro
                                 case "ERROR":
                                         throw new InvalidOperationException("Error de Prueba");
 
-                                case "CHKDB":
+                                case "CHECK":
                                         string SubComandoDbCheck = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpperInvariant();
-					Lws.Data.DataView DataViewChk = Lws.Workspace.Master.GetDataView(true);
-                                        if (SubComandoDbCheck == "DFK")
-                                                DataViewChk.DataBase.EmptyConstraints();
-                                        Datos.VerificarVersionDB(DataViewChk, true, false);
-					DataViewChk.Dispose();
+                                        switch (SubComandoDbCheck) {
+                                                case "ALL":
+                                                case "":
+                                                        Exec("CHECK STRUCT", estacion);
+                                                        Exec("CHECK DATA", estacion);
+                                                        break;
+                                                case "DATA":
+                                                        Lws.Workspace.Master.DefaultDataBase.CheckDataBase();
+                                                        break;
+                                                case "STRUCT":
+                                                        Lws.Data.DataView DataViewChk = Lws.Workspace.Master.GetDataView(true);
+                                                        if (SubComandoDbCheck == "DFK")
+                                                                DataViewChk.DataBase.EmptyConstraints();
+                                                        Datos.VerificarVersionDB(DataViewChk, true, false);
+                                                        DataViewChk.Dispose();
+                                                        break;
+                                        }
                                         break;
 
                                 case "VER":
@@ -1458,7 +1473,8 @@ namespace Lazaro
                                 bool Found = false;
                                 while (ex2 != null) {
                                         if (string.Compare(ex2.Message,"Reading from the stream has failed.", true) == 0
-                                                || string.Compare(ex2.Message, "Connection unexpectedly terminated.", true) == 0) {
+                                                || string.Compare(ex2.Message, "Connection unexpectedly terminated.", true) == 0
+                                                || string.Compare(ex2.Message, "Se ha forzado la interrupción de una conexión existente por el host remoto", true) == 0) {
                                                 KnownExceptionHandler(ex, "Error de comunicación con el servidor");
                                                 Found = true;
                                                 break;

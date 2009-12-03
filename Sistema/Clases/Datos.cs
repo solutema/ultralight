@@ -115,8 +115,10 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                         bool MustCommit = false;
 
                         if (dataView.DataBase.InTransaction == false) {
-                                dataView.DataBase.BeginTransaction();
-                                MustCommit = true;
+                                //dataView.DataBase.BeginTransaction();
+                                //MustCommit = true;
+                        } else {
+                                System.Console.WriteLine("Ya estoy en una transacción.");
                         }
 
                         if (VersionUltima < VersionActual) {

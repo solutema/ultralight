@@ -109,6 +109,7 @@ namespace Lfc.Comprobantes
                         this.ProductArray.TabIndex = 20;
                         this.ProductArray.Workspace = null;
                         this.ProductArray.TotalChanged += new System.EventHandler(this.ProductArray_TotalChanged);
+                        this.ProductArray.AskForSerials += new System.EventHandler(this.ProductArray_AskForSerials);
                         // 
                         // Label3
                         // 

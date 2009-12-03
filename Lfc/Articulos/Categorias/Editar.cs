@@ -61,6 +61,7 @@ namespace Lfc.Articulos.Categorias
                                 EntradaItemStock.Text = Lfx.Types.Formatting.FormatStock(this.Workspace.DefaultDataBase.FieldDouble("SELECT COUNT(id_articulo) FROM articulos WHERE stock_actual>0 AND id_cat_articulo=" + lId.ToString()));
                                 EntradaStockActual.Text = Lfx.Types.Formatting.FormatStock(this.Workspace.DefaultDataBase.FieldDouble("SELECT SUM(stock_actual) FROM articulos WHERE id_cat_articulo=" + lId.ToString()));
                                 EntradaCosto.Text = Lfx.Types.Formatting.FormatStock(this.Workspace.DefaultDataBase.FieldDouble("SELECT SUM(costo) FROM articulos WHERE id_cat_articulo=" + lId.ToString()));
+                                EntradaGarantia.Text = Registro["garantia"].ToString();
 
                                 if (Registro["imagen"] != null && ((byte[])(Registro["imagen"])).Length > 5) {
                                         byte[] ByteArr = ((byte[])(Registro["imagen"]));
@@ -91,6 +92,7 @@ namespace Lfc.Articulos.Categorias
 	                        Cat.StockMinimo = Lfx.Types.Parsing.ParseStock(EntradaStockMinimo.Text);
 	                        Cat.PublicacionWeb = Lfx.Types.Parsing.ParseInt(EntradaWeb.TextKey);
                                 Cat.RequiereNS = ((Lbl.Articulos.RequiereNS)(Lfx.Types.Parsing.ParseInt(EntradaRequiereNS.TextKey)));
+                                Cat.Garantia = Lfx.Types.Parsing.ParseInt(EntradaGarantia.Text);
 				Cat.Guardar();
 				m_Id = Cat.Id;
 				

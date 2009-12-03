@@ -109,12 +109,116 @@ namespace Lfx.Data
                                 foreach (System.Xml.XmlNode ColumnaXml in ColumnasXml) {
                                         Lfx.Data.ColumnDefinition Columna = new Lfx.Data.ColumnDefinition();
                                         Columna.Name = ColumnaXml.Attributes["name"].Value;
-                                        Columna.FieldType = Lfx.Data.Types.FromSQLType(ColumnaXml.Attributes["datatype"].Value);
-                                        Columna.Nullable = System.Convert.ToBoolean(Lfx.Types.Parsing.ParseInt(ColumnaXml.Attributes["nullable"].Value));
-                                        Columna.PrimaryKey = System.Convert.ToBoolean(Lfx.Types.Parsing.ParseInt(ColumnaXml.Attributes["primary_key"].Value));
-                                        Columna.Lenght = Lfx.Types.Parsing.ParseInt(ColumnaXml.Attributes["lenght"].Value);
-                                        Columna.Precision = Lfx.Types.Parsing.ParseInt(ColumnaXml.Attributes["precision"].Value);
-                                        Columna.DefaultValue = ColumnaXml.Attributes["default"].Value;
+
+                                        if (ColumnaXml.Attributes["inputtype"] != null) {
+                                                switch(ColumnaXml.Attributes["inputtype"].Value){
+                                                        case "AlphanumericSet":
+                                                                Columna.InputFieldType = InputFieldTypes.AlphanumericSet;
+                                                                break;
+                                                        case "Binary":
+                                                                Columna.InputFieldType = InputFieldTypes.Binary;
+                                                                break;
+                                                        case "Bool":
+                                                                Columna.InputFieldType = InputFieldTypes.Bool;
+                                                                break;
+                                                        case "Currency":
+                                                                Columna.InputFieldType = InputFieldTypes.Currency;
+                                                                break;
+                                                        case "Date":
+                                                                Columna.InputFieldType = InputFieldTypes.Date;
+                                                                break;
+                                                        case "DateTime":
+                                                                Columna.InputFieldType = InputFieldTypes.DateTime;
+                                                                break;
+                                                        case "Image":
+                                                                Columna.InputFieldType = InputFieldTypes.Image;
+                                                                break;
+                                                        case "Integer":
+                                                                Columna.InputFieldType = InputFieldTypes.Integer;
+                                                                break;
+                                                        case "Memo":
+                                                                Columna.InputFieldType = InputFieldTypes.Memo;
+                                                                break;
+                                                        case "Numeric":
+                                                                Columna.InputFieldType = InputFieldTypes.Numeric;
+                                                                break;
+                                                        case "NumericSet":
+                                                                Columna.InputFieldType = InputFieldTypes.NumericSet;
+                                                                break;
+                                                        case "Relation":
+                                                                Columna.InputFieldType = InputFieldTypes.Relation;
+                                                                Columna.Relation = new Relation(Columna.Name, ColumnaXml.Attributes["relation_table"].Value, ColumnaXml.Attributes["relation_key"].Value, ColumnaXml.Attributes["relation_detail"].Value);
+                                                                break;
+                                                        case "Serial":
+                                                                Columna.InputFieldType = InputFieldTypes.Serial;
+                                                                break;
+                                                        case "Text":
+                                                                Columna.InputFieldType = InputFieldTypes.Text;
+                                                                break;
+                                                        default:
+                                                                throw new NotImplementedException("Lfx.Data.DataBaseCache.CargarEstructuraDesdeXml: Falta implementar " + ColumnaXml.Attributes["inputtype"].Value);
+                                                }
+                                        } else {
+                                                Columna.FieldType = Lfx.Data.Types.FromSQLType(ColumnaXml.Attributes["datatype"].Value);
+                                        }
+
+                                        if (ColumnaXml.Attributes["label"] != null)
+                                                Columna.Label = ColumnaXml.Attributes["label"].Value;
+
+                                        if (ColumnaXml.Attributes["section"] != null)
+                                                Columna.Section = ColumnaXml.Attributes["section"].Value;
+
+                                        if (ColumnaXml.Attributes["required"] != null && ColumnaXml.Attributes["required"].Value == "!")
+                                                Columna.Required = true;
+                                        else
+                                                Columna.Required = false;
+
+                                        if (ColumnaXml.Attributes["nullable"] == null)
+                                                Columna.Nullable = false;
+                                        else if (ColumnaXml.Attributes["nullable"].Value == "1")
+                                                Columna.Nullable = true;
+                                        else
+                                                Columna.Nullable = false;
+
+                                        if (ColumnaXml.Attributes["primary_key"] != null)
+                                                Columna.PrimaryKey = System.Convert.ToBoolean(Lfx.Types.Parsing.ParseInt(ColumnaXml.Attributes["primary_key"].Value));
+                                        
+                                        if (ColumnaXml.Attributes["lenght"] != null)
+                                                Columna.Lenght = Lfx.Types.Parsing.ParseInt(ColumnaXml.Attributes["lenght"].Value);
+                                        
+                                        if (ColumnaXml.Attributes["precision"] != null)
+                                                Columna.Precision = Lfx.Types.Parsing.ParseInt(ColumnaXml.Attributes["precision"].Value);
+                                        
+                                        if (ColumnaXml.Attributes["default"] != null && ColumnaXml.Attributes["default"].Value.Length > 0) {
+                                                Columna.DefaultValue = ColumnaXml.Attributes["default"].Value;
+                                        } else {
+                                                switch(Columna.FieldType) {
+                                                        case DbTypes.VarChar:
+                                                                Columna.DefaultValue = "";
+                                                                break;
+                                                        case DbTypes.Text:
+                                                        case DbTypes.Blob:
+                                                                Columna.DefaultValue = null;
+                                                                break;
+                                                        case DbTypes.Currency:
+                                                        case DbTypes.Integer:
+                                                        case DbTypes.NonExactDecimal:
+                                                        case DbTypes.Numeric:
+                                                        case DbTypes.Serial:
+                                                        case DbTypes.SmallInt:
+                                                                if (Columna.Nullable)
+                                                                        Columna.DefaultValue = "NULL";
+                                                                else
+                                                                        Columna.DefaultValue = "0";
+                                                                break;
+                                                        case DbTypes.DateTime:
+                                                                Columna.DefaultValue = null;
+                                                                break;
+                                                        default:
+                                                                Columna.DefaultValue = "";
+                                                                break;
+                                                }
+                                        }
                                         Tabla.Columns.Add(Columna.Name, Columna);
                                 }
 
@@ -149,7 +253,7 @@ namespace Lfx.Data
                                         Indice.Name = IndiceXml.Attributes["name"].Value;
                                         Indice.Unique = System.Convert.ToBoolean(Lfx.Types.Parsing.ParseInt(IndiceXml.Attributes["unique"].Value));
                                         Indice.Primary = System.Convert.ToBoolean(Lfx.Types.Parsing.ParseInt(IndiceXml.Attributes["primary"].Value));
-                                        Indice.Columns = new string[] { IndiceXml.Attributes["columns"].Value };
+                                        Indice.Columns = IndiceXml.Attributes["columns"].Value.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                                         Tabla.Indexes.Add(Indice.Name, Indice);
                                 }
 

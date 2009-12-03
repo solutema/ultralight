@@ -91,6 +91,18 @@ namespace Lbl.Articulos
 			}
 		}
 
+                public int Garantia
+                {
+                        get
+                        {
+                                return this.FieldInt("garantia");
+                        }
+                        set
+                        {
+                                Registro["garantia"] = value;
+                        }
+                }
+
 		public int PublicacionWeb
 		{
 			get
@@ -132,6 +144,7 @@ namespace Lbl.Articulos
                         Comando.Fields.AddWithValue("web", this.PublicacionWeb);
                         Comando.Fields.AddWithValue("requierens", ((int)(this.RequiereNS)));
                         Comando.Fields.AddWithValue("obs", this.Obs);
+                        Comando.Fields.AddWithValue("garantia", this.Garantia);
 
 			this.AgregarTags(Comando);
 

@@ -190,15 +190,6 @@ namespace Lfc.Articulos
                         }
                 }
 
-                private void cmdArticulosMovimDetalles_Click(object sender, System.EventArgs e)
-                {
-                        Articulos.VerMovimientos OFormArticulosMovimDetalles = new Articulos.VerMovimientos();
-                        OFormArticulosMovimDetalles.Workspace = this.Workspace;
-                        OFormArticulosMovimDetalles.MdiParent = this.MdiParent;
-                        OFormArticulosMovimDetalles.Mostrar(m_Id);
-                        OFormArticulosMovimDetalles.Show();
-                }
-
                 private void txtCostoMargen_TextChanged(System.Object sender, System.EventArgs e)
                 {
                         if (this.Workspace == null)
@@ -490,6 +481,7 @@ namespace Lfc.Articulos
                         Rendimiento = Res.Rendimiento;
                         UnidadRendimiento = Res.UnidadRendimiento;
                         EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatNumber(Res.StockMinimo, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
+                        EntradaGarantia.Text = Res.Garantia.ToString();
                         EntradaImagen.Image = Res.Imagen;
                         this.EntradaTags.Registro = Res;
                         EntradaImagen.Tag = "*";
@@ -549,6 +541,7 @@ namespace Lfc.Articulos
                         Res.Rendimiento = Rendimiento;
                         Res.UnidadRendimiento = UnidadRendimiento;
                         Res.Estado = 1;
+                        Res.Garantia = Lfx.Types.Parsing.ParseInt(EntradaGarantia.Text);
                         Res.Publicacion = ((Lbl.Articulos.Publicacion)Lfx.Types.Parsing.ParseInt(EntradaWeb.TextKey));
                         EntradaTags.ActualizarRegistro(Res);
 
@@ -563,6 +556,25 @@ namespace Lfc.Articulos
                         }
 
                         return base.ToRow();
+                }
+
+
+                private void BotonArticuloVerMovimientos_Click(object sender, System.EventArgs e)
+                {
+                        Articulos.VerMovimientos FormularioDetalles = new Articulos.VerMovimientos();
+                        FormularioDetalles.Workspace = this.Workspace;
+                        FormularioDetalles.MdiParent = this.MdiParent;
+                        FormularioDetalles.Mostrar(this.CachedRow as Lbl.Articulos.Articulo);
+                        FormularioDetalles.Show();
+                }
+
+                private void BotonArticuloVerConformación_Click(object sender, EventArgs e)
+                {
+                        Articulos.VerConformacion FormularioDetalles = new Articulos.VerConformacion();
+                        FormularioDetalles.Workspace = this.Workspace;
+                        FormularioDetalles.MdiParent = this.MdiParent;
+                        FormularioDetalles.Mostrar(this.CachedRow as Lbl.Articulos.Articulo);
+                        FormularioDetalles.Show();
                 }
         }
 }

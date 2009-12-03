@@ -135,6 +135,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProductos.TabIndex = 13;
                         this.EntradaProductos.Workspace = null;
                         this.EntradaProductos.TotalChanged += new System.EventHandler(this.RecalcularTotal);
+                        this.EntradaProductos.AskForSerials += new System.EventHandler(this.EntradaProductos_AskForSerials);
                         // 
                         // Label2
                         // 

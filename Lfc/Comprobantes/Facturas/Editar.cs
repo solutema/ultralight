@@ -236,7 +236,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                 }
 
                                 if (Registro.Cliente.Id != 999 && (Registro.Tipo.EsFactura || Registro.Tipo.EsNotaDebito)) {
-                                        if (Registro.FormaDePago.Tipo == Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente) {
+                                        if (Registro.FormaDePago != null && Registro.FormaDePago.Tipo == Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente) {
                                                 double LimiteCredito = Registro.Cliente.LimiteCredito;
 
                                                 if (LimiteCredito == 0)
@@ -383,9 +383,19 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                                 Factura.FormaDePago = MiCobro.FormaDePago;
                                                 EntradaFormaPago.TextInt = MiCobro.Id;
                                                 Factura.DataView.DataBase.FieldInt("UPDATE facturas SET id_formapago=" + MiCobro.FormaDePago.Id.ToString() + " WHERE id_factura=" + Factura.Id.ToString());
-                                                if (MiCobro.FormaDePago.Tipo == Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente)
+                                                if (MiCobro.FormaDePago.Tipo == Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente) {
                                                         // Si la nueva forma de pago es cta. cte., asiento el saldo
+                                                        // Y uso saldo a favor, si lo hay
+                                                        double Saldo = Factura.Cliente.CuentaCorriente.Saldo();
                                                         Factura.Cliente.CuentaCorriente.Movimiento(true, 11000, "Saldo a Cta. Cte. s/" + Factura.ToString(), Factura.ImporteImpago, "", Factura.Id, 0, false);
+                                                        if (Saldo < 0) {
+                                                                Saldo = Math.Abs(Saldo);
+                                                                if (Saldo > Factura.Total)
+                                                                        Factura.CancelarImporte(Factura.Total);
+                                                                else
+                                                                        Factura.CancelarImporte(Saldo);
+                                                        }
+                                                }
                                                 Factura.DataView.Commit();
                                         }
                                         switch (Factura.FormaDePago.Tipo) {

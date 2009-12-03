@@ -189,7 +189,6 @@ namespace Lui.Forms
                                 } else {
                                         if (WasInTransaction == false)
                                                 this.CachedRow.DataView.RollBack();
-                                        Lui.Forms.MessageBox.Show(ValidateResult.Message, "Error al guardar");
                                 }
                         } else if(Lfx.Environment.SystemInformation.DesignMode) {
                                 // Devolver error para detectar código viejo (que no use CachedRow, ToFrom() y FromRow())

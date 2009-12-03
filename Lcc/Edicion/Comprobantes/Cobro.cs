@@ -331,7 +331,7 @@ namespace Lcc.Edicion.Comprobantes
                         }
                 }
 
-                private void EntradaTarjeta_TextChanged(object sender, EventArgs e)
+                /* private void EntradaTarjeta_TextChanged(object sender, EventArgs e)
                 {
                         Lfx.Data.Row Tarjeta = this.Workspace.DefaultDataView.Tables["tarjetas"].FastRows[this.FormaDePago.Id];
                         if (Tarjeta != null) {
@@ -340,7 +340,7 @@ namespace Lcc.Edicion.Comprobantes
                         } else {
                                 EntradaPlan.Filter = null;
                         }
-                }
+                } */
 
                 private void EntradaPlan_TextChanged(object sender, EventArgs e)
                 {

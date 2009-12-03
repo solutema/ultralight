@@ -588,5 +588,24 @@ namespace Lfc.Comprobantes
                                 }
                         }
                 }
+
+                private void ProductArray_AskForSerials(object sender, EventArgs e)
+                {
+                        Lui.Forms.Product Prod = ((Lui.Forms.Product)(sender));
+                        int IdArticulo = Prod.TextInt;
+                        double Cant = Prod.Cantidad;
+
+                        Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
+
+                        EditSerials Editar = new EditSerials();
+                        Editar.Workspace = this.Workspace;
+                        Editar.Articulo = new Lbl.Articulos.Articulo(this.DataView, IdArticulo);
+                        Editar.Cantidad = System.Convert.ToInt32(Cant);
+                        Editar.Situacion = Comprob.SituacionOrigen;
+                        Editar.Series = Prod.Series;
+                        if (Editar.ShowDialog() == DialogResult.OK) {
+                                Prod.Series = Editar.Series;
+                        }
+                }
 	}
 }

@@ -114,7 +114,10 @@ namespace Lfc.Comprobantes.Compra
                                 EntradaProveedor.TextInt = Fac.Cliente.Id;
                         else
                                 EntradaProveedor.TextInt = 0;
-                        EntradaFormaPago.TextKey = Fac.FormaDePago.Id.ToString();
+                        if (Fac.FormaDePago != null)
+                                EntradaFormaPago.TextKey = Fac.FormaDePago.Id.ToString();
+                        else
+                                EntradaFormaPago.TextKey = "0";
 			EntradaPV.Text = Fac.PV.ToString("0000");
                         EntradaNumero.Text = Fac.Numero.ToString("00000000");
 
@@ -163,7 +166,10 @@ namespace Lfc.Comprobantes.Compra
                         Lbl.Comprobantes.ComprobanteConArticulos Res = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
                         Res.Compra = true;
                         Res.Fecha = Lfx.Types.Parsing.ParseDate(EntradaFecha.Text);
-                        Res.FormaDePago = new Lbl.Comprobantes.FormaDePago(Res.DataView, Lfx.Types.Parsing.ParseInt(EntradaFormaPago.TextKey));
+                        if (EntradaFormaPago.TextKey != "0")
+                                Res.FormaDePago = new Lbl.Comprobantes.FormaDePago(Res.DataView, Lfx.Types.Parsing.ParseInt(EntradaFormaPago.TextKey));
+                        else
+                                Res.FormaDePago = null;
                         if(m_FacturaIdOrig == 0)
                                 Res.ComprobanteOriginal = null;
                         else
@@ -363,5 +369,24 @@ namespace Lfc.Comprobantes.Compra
 			if (Lfx.Types.Parsing.ParseInt(EntradaNumero.Text) > 0)
 				EntradaNumero.Text = Lfx.Types.Parsing.ParseInt(EntradaNumero.Text).ToString("00000000");
 		}
+
+                private void EntradaProductos_AskForSerials(object sender, EventArgs e)
+                {
+                        Lui.Forms.Product Prod = ((Lui.Forms.Product)(sender));
+                        int IdArticulo = Prod.TextInt;
+                        double Cant = Prod.Cantidad;
+
+                        Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
+
+                        EditSerials Editar = new EditSerials();
+                        Editar.Workspace = this.Workspace;
+                        Editar.Articulo = new Lbl.Articulos.Articulo(this.DataView, IdArticulo);
+                        Editar.Cantidad = System.Convert.ToInt32(Cant);
+                        Editar.Situacion = Comprob.SituacionOrigen;
+                        Editar.Series = Prod.Series;
+                        if (Editar.ShowDialog() == DialogResult.OK) {
+                                Prod.Series = Editar.Series;
+                        }
+                }
 	}
 }

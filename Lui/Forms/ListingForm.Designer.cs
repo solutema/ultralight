@@ -243,9 +243,11 @@ namespace Lui.Forms
                         this.Listado.SelectedIndexChanged += new System.EventHandler(this.Listado_SelectedIndexChanged);
                         this.Listado.DoubleClick += new System.EventHandler(this.Listado_DoubleClick);
                         this.Listado.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.Listado_ColumnClick);
+                        this.Listado.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.Listado_RetrieveVirtualItem);
                         this.Listado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Listado_KeyPress);
+                        this.Listado.CacheVirtualItems += new System.Windows.Forms.CacheVirtualItemsEventHandler(this.Listado_CacheVirtualItems);
                         this.Listado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Listado_KeyDown);
-                        // 
+                        //
                         // id
                         // 
                         this.id.Text = "Cód";

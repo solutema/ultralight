@@ -9,7 +9,7 @@ using System.Security.Permissions;
 
 #endregion
 
-[assembly: AssemblyTitle("Cargador")]
+[assembly: AssemblyTitle("Cargador Lázaro")]
 [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyDescription("Cargador Lázaro")]
 [assembly: AssemblyCompany("Carrea Ernesto, Martínez Miguel")]

@@ -75,15 +75,6 @@ namespace Lazaro.Misc
                                 ListaComponentes.Items.Add(DirItem.Name + " versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(DirItem.FullName).ProductVersion + " del " + new System.IO.FileInfo(DirItem.FullName).LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
 			}
 
-                        //Versión de MyODBC, sólo en Windows
-                        if(Lfx.Environment.SystemInformation.Platform == Lfx.Environment.SystemInformation.Platforms.Windows)
-                        {
-				if(System.IO.File.Exists(Lfx.Environment.Folders.WindowsSystemFolder + "myodbc3.dll"))
-					ListaComponentes.Items.Add("MySQL ODBC versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(Lfx.Environment.Folders.WindowsSystemFolder + "myodbc3.dll").ProductVersion);
-                                if(System.IO.File.Exists(Lfx.Environment.Folders.WindowsSystemFolder + "myodbc5.dll"))
-                                        ListaComponentes.Items.Add("MySQL ODBC versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(Lfx.Environment.Folders.WindowsSystemFolder + "myodbc5.dll").ProductVersion);
-                        }
-
                         //Versión del Framework
                         switch (Lfx.Environment.SystemInformation.RunTime) {
                                 case Lfx.Environment.SystemInformation.RunTimes.DotNet:

@@ -246,19 +246,6 @@ namespace Lfc.Cuentas.Corriente
                         EtiquetaIngresos.Text = Lfx.Types.Formatting.FormatCurrency(dIngresos, Workspace.CurrentConfig.Currency.DecimalPlaces);
                         EtiquetaEgresos.Text = Lfx.Types.Formatting.FormatCurrency(dEgresos, Workspace.CurrentConfig.Currency.DecimalPlaces);
                         EtiquetaSaldo.Text = Lfx.Types.Formatting.FormatCurrency(dTransporte + dIngresos - dEgresos, Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        /* if (Math.Round(dTransporte + dIngresos - dEgresos, Workspace.CurrentConfig.Currency.DecimalPlaces) != Math.Round(UltimoSaldo, Workspace.CurrentConfig.Currency.DecimalPlaces))
-                        {
-                                lvItems.EndUpdate();
-                                System.Data.DataTable Cta = this.Workspace.DefaultDataBase.Select("SELECT id_movim, importe FROM ctacte WHERE id_cliente=" + m_Cliente.ToString() + " ORDER BY id_movim");
-                                double RecalcSaldo = 0;
-                                foreach (System.Data.DataRow Movim in Cta.Rows)
-                                {
-                                        RecalcSaldo += System.Convert.ToDouble(Movim["importe"]);
-                                        this.Workspace.DefaultDataBase.Execute("UPDATE ctacte SET saldo=" + Lfx.Types.Formatting.FormatCurrencySql(RecalcSaldo) + " WHERE id_movim=" + Movim["id_movim"].ToString());
-                                }
-                                this.MostrarCliente();
-                                return;
-                        } */
 
                         ItemList.EndUpdate();
                         ItemList.Focus();
@@ -345,6 +332,17 @@ namespace Lfc.Cuentas.Corriente
                                         if (cmdAjuste.Enabled && cmdAjuste.Visible) {
                                                 cmdAjuste.PerformClick();
                                         }
+                                        break;
+
+                                case Keys.F6:
+                                        System.Data.DataTable Cta = this.Workspace.DefaultDataBase.Select("SELECT id_movim, importe FROM ctacte WHERE id_cliente=" + m_Cliente.ToString() + " ORDER BY id_movim");
+                                        double RecalcSaldo = 0;
+                                        foreach (System.Data.DataRow Movim in Cta.Rows)
+                                        {
+                                                RecalcSaldo += System.Convert.ToDouble(Movim["importe"]);
+                                                this.Workspace.DefaultDataBase.Execute("UPDATE ctacte SET saldo=" + Lfx.Types.Formatting.FormatCurrencySql(RecalcSaldo) + " WHERE id_movim=" + Movim["id_movim"].ToString());
+                                        }
+                                        // this.MostrarCliente();
                                         break;
                         }
 

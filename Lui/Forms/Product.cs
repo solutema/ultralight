@@ -66,6 +66,7 @@ namespace Lui.Forms
 		public new event System.EventHandler TextChanged;
 		public new event System.Windows.Forms.KeyEventHandler KeyDown;
 		public event System.EventHandler PrecioCantidadChanged;
+                public event System.EventHandler AskForSerials;
 
                 public Product()
                         : base()
@@ -537,24 +538,11 @@ namespace Lui.Forms
 			}
 			if (e.Alt == false && e.Control == true && e.Shift == false)
 			{
-				if (e.KeyCode == Keys.S)
-				{
-					this.EditSerials();
-				}
+                                if (e.KeyCode == Keys.S) {
+                                        if (this.AskForSerials != null)
+                                                this.AskForSerials(this, null);
+                                }
 			}
-		}
-
-
-		public void EditSerials()
-		{
-			Lui.Forms.AuxForms.TextEdit EditarSeries = new Lui.Forms.AuxForms.TextEdit();
-			EditarSeries.EditText = m_Serials;
-			EditarSeries.Text = "Números de serie";
-			EditarSeries.txtText.Font = new Font("Bitstream Vera Sans Mono", EditarSeries.txtText.Font.Size);
-			if (EditarSeries.ShowDialog() == DialogResult.OK)
-				this.Series = EditarSeries.EditText;
-			EditarSeries.Close();
-			EditarSeries = null;
 		}
 
 		private void txtUnitario_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -616,7 +604,8 @@ namespace Lui.Forms
 					System.Windows.Forms.SendKeys.Send("{tab}");
 					break;
 				default:
-					if (null != KeyDown) KeyDown(sender, e);
+                                        if (KeyDown != null)
+                                                KeyDown(sender, e);
 					break;
 			}
 		}
