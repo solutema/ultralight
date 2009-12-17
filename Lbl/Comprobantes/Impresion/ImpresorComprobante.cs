@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -187,12 +187,12 @@ namespace Lbl.Comprobantes.Impresion
                                                 else
                                                         return this.Comprobante.Cliente.DomicilioLaboral;
                                         case "CLIENTE.DOCUMENTO":
-                                                if (this.Comprobante.Cliente.CUIT != null && this.Comprobante.Cliente.CUIT.Length > 0)
-                                                        return this.Comprobante.Cliente.CUIT;
+                                                if (this.Comprobante.Cliente.Cuit != null && this.Comprobante.Cliente.Cuit.Length > 0)
+                                                        return this.Comprobante.Cliente.Cuit;
                                                 else
                                                         return this.Comprobante.Cliente.NumeroDocumento;
                                         case "CUIT":
-                                                return this.Comprobante.Cliente.CUIT;
+                                                return this.Comprobante.Cliente.Cuit;
                                         case "IVA":
                                                 return this.Comprobante.Cliente.SituacionTributaria.ToString();
                                         case "CLIENTE.ID":

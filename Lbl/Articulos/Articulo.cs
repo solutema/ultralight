@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -641,7 +641,7 @@ namespace Lbl.Articulos
                                         this.DataView.DataBase.Execute("DELETE FROM " + this.TablaImagenes + " WHERE " + this.CampoId + "=" + this.Id.ToString());
 
                                         Lfx.Data.SqlInsertBuilder InsertarImagen = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, this.TablaImagenes);
-                                        InsertarImagen.Fields.AddWithValue("id_articulo", this.Id);
+                                        InsertarImagen.Fields.AddWithValue(this.CampoId, this.Id);
                                         InsertarImagen.Fields.AddWithValue("imagen", ImagenBytes);
                                         this.DataView.Execute(InsertarImagen);
                                 }

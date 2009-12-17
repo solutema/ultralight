@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -117,11 +117,6 @@ namespace Lbl.Comprobantes
                         return Res;
                 }
 
-                public void Anular()
-                {
-                        this.Anular(true);
-                }
-
                 public void Anular(bool anularPagos)
                 {
                         if (this.Anulado)
@@ -150,15 +145,22 @@ namespace Lbl.Comprobantes
                                                         break;
 
                                                 case TipoFormasDePago.CuentaCorriente:
-                                                        // Anulo los recibos que se le hayan hecho
+                                                        /* 
+                                                         * Esto anulaba los pagos realizados
+                                                         * pero en cuenta corriente eso no debería ser así
                                                         if (this.Recibos != null && this.Recibos.Count > 0) {
                                                                 foreach (Recibo Rec in this.Recibos) {
                                                                         Rec.Anular();
                                                                 }
                                                         }
-                                                        
                                                         if (this.ImporteCancelado < this.Total) {
-                                                                // Y quedaba algo por cancelar, anulo ese saldo en la cuenta corriente
+                                                                // Y si quedaba algo por cancelar, anulo ese saldo en la cuenta corriente
+                                                                this.Cliente.CuentaCorriente.Movimiento(true, new Lbl.Cuentas.Concepto(this.DataView, 11000), "Anulación Comprob. " + this.ToString(), -this.ImporteCancelado, "", this, null, false);
+                                                        }
+                                                        
+                                                        */
+                                                        if (this.ImporteCancelado < this.Total) {
+                                                                // Quito el saldo paga de la cuenta corriente
                                                                 this.Cliente.CuentaCorriente.Movimiento(true, new Lbl.Cuentas.Concepto(this.DataView, 11000), "Anulación Comprob. " + this.ToString(), -this.ImporteCancelado, "", this, null, false);
                                                         }
                                                         break;
