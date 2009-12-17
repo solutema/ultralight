@@ -3,7 +3,7 @@
         <Column name="id_alicuota" datatype="Serial" nullable="0" primary_key="1" />
         <Column name="porcentaje" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
         <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" />
-        <Column name="importe_minimo" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="importe_minimo" inputtype="Currency" default="0" />
         <Index table="alicuotas" name="PRIMARY" columns="id_alicuota" unique="1" primary="1" />
     </Table>
     <Table name="articulos">
@@ -29,13 +29,13 @@
         <Column name="unidad_stock" datatype="VarChar" nullable="1" lenght="50" />
         <Column name="rendimiento" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
         <Column name="unidad_rend" datatype="VarChar" nullable="1" lenght="50" />
-        <Column name="costo" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="costo" inputtype="Currency" default="0" />
         <Column name="id_margen" datatype="Integer" nullable="1" />
-        <Column name="pvp" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
-        <Column name="pvp2" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
-        <Column name="pvp3" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
-        <Column name="pvp4" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
-        <Column name="pvp5" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="pvp" inputtype="Currency" default="0" />
+        <Column name="pvp2" inputtype="Currency" default="0" />
+        <Column name="pvp3" inputtype="Currency" default="0" />
+        <Column name="pvp4" inputtype="Currency" default="0" />
+        <Column name="pvp5" inputtype="Currency" default="0" />
         <Column name="obs" datatype="Text" nullable="1" />
         <Column name="estado" datatype="SmallInt" nullable="0" default="0" />
         <Column name="destacado" datatype="SmallInt" nullable="0" default="0" />
@@ -83,9 +83,9 @@
     <Table name="articulos_precios">
         <Column name="id_articulo" datatype="Integer" nullable="0" default="0" />
         <Column name="fecha" datatype="DateTime" nullable="0" />
-        <Column name="costo" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="costo" inputtype="Currency" default="0" />
         <Column name="id_margen" datatype="Integer" nullable="1" />
-        <Column name="pvp" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="pvp" inputtype="Currency" default="0" />
         <Column name="id_persona" datatype="Integer" nullable="1" />
         <Index table="articulos_precios" name="articulos_precios_id_articulo" columns="id_articulo" unique="0" primary="0" />
         <Index table="articulos_precios" name="articulos_precios_id_margen" columns="id_margen" unique="0" primary="0" />
@@ -147,7 +147,7 @@
         <Column name="id_factura" datatype="Integer" nullable="1" />
         <Column name="id_recibo" datatype="Integer" nullable="1" />
         <Column name="emitido" datatype="SmallInt" nullable="0" default="0" />
-        <Column name="importe" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="importe" inputtype="Currency" default="0" />
         <Column name="fechaemision" datatype="DateTime" nullable="0" />
         <Column name="id_cliente" datatype="Integer" nullable="1" />
         <Column name="emitidopor" datatype="VarChar" nullable="1" lenght="200" />
@@ -215,13 +215,13 @@
         <Column name="concepto" datatype="VarChar" nullable="0" lenght="200" />
         <Column name="id_cliente" datatype="Integer" nullable="0" default="0" />
         <Column name="fecha" datatype="DateTime" nullable="0" />
-        <Column name="importe" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
-        <Column name="saldo" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="importe" inputtype="Currency" default="0" />
+        <Column name="saldo" inputtype="Currency" default="0" />
         <Column name="id_factura" datatype="Integer" nullable="1" />
         <Column name="id_recibo" datatype="Integer" nullable="1" />
         <Column name="comprob" datatype="VarChar" nullable="0" lenght="200" />
         <Column name="obs" datatype="Text" nullable="1" />
-        <Column name="pagado" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <DeprecaredColumn name="pagado" inputtype="Currency" default="0" />
         <Index table="ctacte" name="ctacte_id_cliente" columns="id_cliente" unique="0" primary="0" />
         <Index table="ctacte" name="ctacte_id_concepto" columns="id_concepto" unique="0" primary="0" />
         <Index table="ctacte" name="ctacte_id_factura" columns="id_factura" unique="0" primary="0" />
@@ -261,8 +261,8 @@
         <Column name="id_factura" datatype="Integer" nullable="1" />
         <Column name="id_recibo" datatype="Integer" nullable="1" />
         <Column name="fecha" datatype="DateTime" nullable="0" />
-        <Column name="importe" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
-        <Column name="saldo" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="importe" inputtype="Currency" default="0" />
+        <Column name="saldo" inputtype="Currency" default="0" />
         <Column name="auto" datatype="SmallInt" nullable="0" default="0" />
         <Column name="id_concepto" datatype="Integer" nullable="1" />
         <Column name="concepto" datatype="VarChar" nullable="0" lenght="200" />
@@ -308,23 +308,23 @@
         <Column name="fecha" datatype="DateTime" nullable="0" />
         <Column name="id_vendedor" datatype="Integer" nullable="1" />
         <Column name="id_cliente" datatype="Integer" nullable="1" />
-        <Column name="subtotal" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="subtotal" inputtype="Currency" default="0" />
         <Column name="descuento" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
         <Column name="interes" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
         <Column name="cuotas" datatype="SmallInt" nullable="0" default="0" />
-        <Column name="total" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
-        <Column name="totalreal" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="total" inputtype="Currency" default="0" />
+        <Column name="totalreal" inputtype="Currency" default="0" />
         <Column name="obs" datatype="Text" nullable="1" />
         <Column name="impresa" datatype="SmallInt" nullable="0" default="0" />
         <Column name="anulada" datatype="SmallInt" nullable="0" default="0" />
-        <Column name="cancelado" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="cancelado" inputtype="Currency" default="0" />
         <Column name="remito" datatype="Integer" nullable="0" default="0" />
         <Column name="plantilla" datatype="SmallInt" nullable="0" default="0" />
         <Column name="id_sucursal" datatype="Integer" nullable="0" default="0" />
         <Column name="estado" datatype="Integer" nullable="0" />
         <Column name="nombremodelo" datatype="VarChar" nullable="1" lenght="200" />
-        <Column name="gastosenvio" datatype="Numeric" nullable="0" lenght="14" precision="4" />
-        <Column name="otrosgastos" datatype="Numeric" nullable="0" lenght="14" precision="4" />
+        <Column name="gastosenvio" inputtype="Currency" />
+        <Column name="otrosgastos" inputtype="Currency" />
         <Column name="compra" datatype="Integer" nullable="0" />
         <Column name="series" datatype="Text" nullable="1" />
         <Index table="facturas" name="facturas_id_cliente" columns="id_cliente" unique="0" primary="0" />
@@ -348,9 +348,9 @@
         <Column name="descripcion" datatype="Text" nullable="0" />
         <Column name="cantidad" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
         <Column name="cantidad_movida" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
-        <Column name="precio" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
-        <Column name="costo" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
-        <Column name="importe" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="precio" inputtype="Currency" default="0" />
+        <Column name="costo" inputtype="Currency" default="0" />
+        <Column name="importe" inputtype="Currency" default="0" />
         <Column name="recargo" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
         <Column name="series" datatype="Text" nullable="1" />
         <Index table="facturas_detalle" name="facturas_detalle_id_articulo" columns="id_articulo" unique="0" primary="0" />
@@ -389,11 +389,11 @@
     <Table name="margenes">
         <Column name="id_margen" datatype="Serial" nullable="0" primary_key="1" />
         <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" />
-        <Column name="sumar" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="sumar" inputtype="Currency" default="0" />
         <Column name="porcentaje" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
         <Column name="porcentaje2" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
         <Column name="porcentaje3" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
-        <Column name="sumar2" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="sumar2" inputtype="Currency" default="0" />
         <Column name="predet" datatype="SmallInt" nullable="0" default="0" />
         <Column name="obs" datatype="Text" nullable="1" />
         <Column name="estado" datatype="SmallInt" nullable="0" default="0" />
@@ -404,7 +404,7 @@
         <Column name="nombre" datatype="VarChar" nullable="0" lenght="50" />
         <Column name="signo" datatype="VarChar" nullable="0" lenght="50" />
         <Column name="iso" datatype="VarChar" nullable="0" lenght="50" />
-        <Column name="cotizacion" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="cotizacion" inputtype="Currency" default="0" />
         <Index table="monedas" name="PRIMARY" columns="id_moneda" unique="1" primary="1" />
     </Table>
     <Table name="personas">
@@ -430,7 +430,7 @@
         <Column name="email" datatype="VarChar" nullable="0" lenght="200" />
         <Column name="url" datatype="VarChar" nullable="1" lenght="200" />
         <Column name="tipo_fac" datatype="VarChar" nullable="1" lenght="1" />
-        <Column name="limitecredito" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="limitecredito" inputtype="Currency" default="0" />
         <Column name="fechanac" datatype="DateTime" nullable="1" />
         <Column name="fechaalta" datatype="DateTime" nullable="1" />
         <Column name="numerocuenta" datatype="VarChar" nullable="0" lenght="200" />
@@ -465,6 +465,12 @@
         <Column name="fecha" datatype="DateTime" nullable="1" />
         <Index table="personas_grupos" name="PRIMARY" columns="id_grupo" unique="1" primary="1" />
         <Index table="personas_grupos" name="personas_grupos_parent" columns="parent" unique="0" primary="0" />
+    </Table>
+    <Table name="personas_imagenes">
+        <Column name="id_persona" datatype="Integer" nullable="0" primary_key="1" default="0" />
+        <Column name="imagen" datatype="Blob" nullable="1" />
+        <Index table="personas_imagenes" name="PRIMARY" columns="id_persona" unique="1" primary="1" />
+        <Index table="personas_imagenes" name="personas_imagenes_id_persona" columns="id_persona" unique="0" primary="0" />
     </Table>
     <Table name="personas_tipos">
         <Column name="id_tipo_persona" datatype="Integer" nullable="0" primary_key="1" default="0" />
@@ -504,7 +510,7 @@
         <Column name="fecha" datatype="DateTime" nullable="0" />
         <Column name="id_cliente" datatype="Integer" nullable="1" />
         <Column name="id_vendedor" datatype="Integer" nullable="1" />
-        <Column name="total" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="total" inputtype="Currency" default="0" />
         <Column name="id_sucursal" datatype="Integer" nullable="0" />
         <Column name="obs" datatype="Text" nullable="1" />
         <Column name="estado" datatype="SmallInt" nullable="0" default="0" />
@@ -518,7 +524,7 @@
     <Table name="recibos_facturas">
         <Column name="id_recibo" datatype="Integer" nullable="0" primary_key="1" default="0" />
         <Column name="id_factura" datatype="Integer" nullable="0" primary_key="1" default="0" />
-        <Column name="importe" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="importe" inputtype="Currency" default="0" />
         <Index table="recibos_facturas" name="PRIMARY" columns="id_factura,id_recibo" unique="1" primary="1" />
         <Index table="recibos_facturas" name="recibos_facturas_id_recibo" columns="id_recibo" unique="0" primary="0" />
         <Index table="recibos_facturas" name="recibos_facturas_id_factura" columns="id_factura" unique="0" primary="0" />
@@ -681,7 +687,7 @@
         <Column name="fecha" datatype="DateTime" nullable="0" />
         <Column name="fecha_pres" datatype="DateTime" nullable="1" />
         <Column name="fecha_acred" datatype="DateTime" nullable="1" />
-        <Column name="importe" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="importe" inputtype="Currency" default="0" />
         <Column name="importe_pagado" datatype="Integer" nullable="0" />
         <Column name="estado" datatype="SmallInt" nullable="0" default="0" />
         <Column name="obs" datatype="Text" nullable="1" />
@@ -711,9 +717,9 @@
         <Column name="acreditacion" datatype="DateTime" nullable="0" />
         <Column name="cuponinicio" datatype="Integer" nullable="1" />
         <Column name="cuponfin" datatype="Integer" nullable="1" />
-        <Column name="subtotal" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
-        <Column name="comision" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
-        <Column name="total" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="subtotal" inputtype="Currency" default="0" />
+        <Column name="comision" inputtype="Currency" default="0" />
+        <Column name="total" inputtype="Currency" default="0" />
         <Column name="acreditado" datatype="SmallInt" nullable="0" default="0" />
         <Index table="tarjetas_presentaciones" name="PRIMARY" columns="id_presentacion" unique="1" primary="1" />
     </Table>
@@ -728,7 +734,7 @@
         <Column name="id_tipo_ticket" datatype="Integer" nullable="1" />
         <Column name="minutos_tecnico" datatype="Integer" nullable="0" default="0" />
         <Column name="id_tecnico_recibe" datatype="Integer" nullable="1" />
-        <Column name="presupuesto" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="presupuesto" inputtype="Currency" default="0" />
         <Column name="articulos_descuento" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
         <Column name="presupuesto_aprobado" datatype="SmallInt" nullable="0" default="0" />
         <Column name="entrega_estimada" datatype="DateTime" nullable="1" />
@@ -755,7 +761,7 @@
         <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" />
         <Column name="orden" datatype="SmallInt" nullable="0" default="0" />
         <Column name="cantidad" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
-        <Column name="precio" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="precio" inputtype="Currency" default="0" />
         <Index table="tickets_articulos" name="PRIMARY" columns="id_ticket,id_articulo" unique="1" primary="1" />
         <Index table="tickets_articulos" name="tickets_articulos_id_ticket" columns="id_ticket" unique="0" primary="0" />
         <Index table="tickets_articulos" name="tickets_articulos_id_articulo" columns="id_articulo" unique="0" primary="0" />
@@ -800,7 +806,7 @@
         <Column name="repetir" datatype="Integer" nullable="0" default="0" />
         <Column name="ocurrencia" datatype="Integer" nullable="0" default="0" />
         <Column name="id_concepto" datatype="Integer" nullable="1" />
-        <Column name="importe" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="importe" inputtype="Currency" default="0" />
         <Column name="estado" datatype="SmallInt" nullable="0" default="0" />
         <Column name="obs" datatype="Text" nullable="1" />
         <Column name="fecha" datatype="DateTime" nullable="0" />
@@ -817,14 +823,14 @@
         <Column name="id_comercio" datatype="Integer" nullable="0" />
         <Column name="cuota" datatype="Integer" nullable="0" default="0" />
         <Column name="cuotas" datatype="Integer" nullable="0" default="0" />
-        <Column name="importe" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="importe" inputtype="Currency" default="0" />
         <Column name="vencimiento" datatype="DateTime" nullable="1" />
         <Column name="estado" datatype="SmallInt" nullable="0" default="0" />
         <Column name="estado_com" datatype="SmallInt" nullable="0" default="0" />
         <Column name="plandepagos" datatype="SmallInt" nullable="0" default="0" />
         <Column name="id_recibo" datatype="Integer" nullable="1" />
-        <Column name="total" datatype="Numeric" nullable="0" lenght="14" precision="4" />
-        <Column name="total_bruto" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="total" inputtype="Currency" />
+        <Column name="total_bruto" inputtype="Currency" default="0" />
         <Column name="obs" datatype="Text" nullable="1" />
         <Index table="ventas_cuotas" name="PRIMARY" columns="id_cuota" unique="1" primary="1" />
         <Index table="ventas_cuotas" name="ventas_cuotas_id_comercio" columns="id_comercio" unique="0" primary="0" />
@@ -840,8 +846,8 @@
         <Column name="id_factura" datatype="Integer" nullable="1" />
         <Column name="tipo" datatype="Integer" nullable="0" />
         <Column name="id_persona" datatype="Integer" nullable="0" />
-        <Column name="importe" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
-        <Column name="cancelado" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="importe" inputtype="Currency" default="0" />
+        <Column name="cancelado" inputtype="Currency" default="0" />
         <Column name="vencimiento" datatype="DateTime" nullable="1" />
         <Column name="obs" datatype="Text" nullable="1" />
         <Index table="ventas_resumenes" name="PRIMARY" columns="id_resumen" unique="1" primary="1" />
@@ -859,9 +865,9 @@
         <Column name="detalle" datatype="VarChar" nullable="0" lenght="200" />
         <Column name="cuota" datatype="Integer" nullable="0" />
         <Column name="cuotas" datatype="Integer" nullable="0" />
-        <Column name="importe" datatype="Numeric" nullable="0" lenght="14" precision="4" />
-        <Column name="total" datatype="Numeric" nullable="0" lenght="14" precision="4" />
-        <Column name="total_bruto" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="importe" inputtype="Currency" />
+        <Column name="total" inputtype="Currency" />
+        <Column name="total_bruto" inputtype="Currency" default="0" />
         <Index table="ventas_resumenes_detalles" name="ventas_resumenes_detalles_id_resumen" columns="id_resumen" unique="0" primary="0" />
         <Index table="ventas_resumenes_detalles" name="ventas_resumenes_detalles_id_persona" columns="id_persona" unique="0" primary="0" />
         <Index table="ventas_resumenes_detalles" name="ventas_resumenes_detalles_prefijo_operacion" columns="prefijo,operacion" unique="0" primary="0" />
@@ -927,6 +933,7 @@
     <Constraint name="personas_eventos_id_persona" table="personas_eventos" column="id_persona" reference_table="personas" reference_column="id_persona" />
     <Constraint name="personas_eventos_id_creador" table="personas_eventos" column="id_creador" reference_table="personas" reference_column="id_persona" />
     <Constraint name="personas_grupos_parent" table="personas_grupos" column="parent" reference_table="personas_grupos" reference_column="id_grupo" />
+    <Constraint name="personas_imagenes_id_persona" table="personas_imagenes" column="id_persona" reference_table="personas" reference_column="id_persona" />
     <Constraint name="pvs_id_sucursal" table="pvs" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" />
     <Constraint name="recibos_id_cliente" table="recibos" column="id_cliente" reference_table="personas" reference_column="id_persona" />
     <Constraint name="recibos_id_vendedor" table="recibos" column="id_vendedor" reference_table="personas" reference_column="id_persona" />

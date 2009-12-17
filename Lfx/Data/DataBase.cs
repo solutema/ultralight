@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,10 +38,10 @@ namespace Lfx.Data
         /// </summary>
         public class DataBase : IDisposable
         {
-                private bool m_EnableRecover = false, m_Closing = false;
+                private bool m_Closing = false;
                 protected System.Data.IDbConnection DbConnection;
                 protected bool m_InTransaction = false;
-                public bool AvoidWinForms = true;               // Evitar utilizar Windows Forms, para aplicaciones de consola
+                public bool EnableRecover = false;
 
                 public DataBase()
                 {
@@ -51,12 +51,7 @@ namespace Lfx.Data
 
                 public bool Open()
                 {
-                        return this.Open(true);
-                }
-
-                public bool Open(bool showProgress)
-                {
-                        m_EnableRecover = false;
+                        EnableRecover = false;
 
                         if (DbConnection != null && DbConnection.State != System.Data.ConnectionState.Closed && DbConnection.State != System.Data.ConnectionState.Broken)
                                 return false;
@@ -78,6 +73,14 @@ namespace Lfx.Data
                                         ConnectionString.Append("Default Command Timeout=900;");
                                         ConnectionString.Append("Allow User Variables=True;");
                                         //ConnectionString.Append("KeepAlive=25;");
+                                        switch (System.Text.Encoding.Default.BodyName) {
+                                                case "utf-8":
+                                                        ConnectionString.Append("charset=utf8;");
+                                                        break;
+                                                case "iso-8859-1":
+                                                        ConnectionString.Append("charset=latin1;");
+                                                        break;
+                                        }
                                         if (Lfx.Data.DataBaseCache.DefaultCache.SlowLink)
                                                 ConnectionString.Append("Compress=true;");
                                         Lfx.Data.DataBaseCache.DefaultCache.OdbcDriver = null;
@@ -143,30 +146,15 @@ namespace Lfx.Data
 
                         DbConnection = Lfx.Data.DataBaseCache.DefaultCache.Provider.GetConnection();
                         DbConnection.ConnectionString = ConnectionString.ToString();
-                        Data.Forms.Connecting StatusForm = null;
-                        if (Lfx.Data.DataBaseCache.DefaultCache.SlowLink && showProgress && AvoidWinForms == false) {
-                                StatusForm = new Data.Forms.Connecting();
-                                StatusForm.Show();
-                                StatusForm.Refresh();
-                        }
                         try {
                                 DbConnection.Open();
                         } catch {
-                                if (StatusForm != null) {
-                                        StatusForm.Close();
-                                        StatusForm = null;
-                                }
                                 throw;
                         }
 
-                        if (StatusForm != null) {
-                                StatusForm.Close();
-                                StatusForm = null;
-                        }
-
-                        m_EnableRecover = false;
+                        EnableRecover = false;
                         this.SetupServer(this.DbConnection);
-                        m_EnableRecover = true;
+                        EnableRecover = true;
 
                         if (DbConnection is System.Data.Odbc.OdbcConnection) {
                                 System.Data.Odbc.OdbcConnection OdbcConnection = DbConnection as System.Data.Odbc.OdbcConnection;
@@ -242,7 +230,10 @@ namespace Lfx.Data
 
                 public void CheckDataBase()
                 {
+                        this.Execute("ALTER DATABASE " + this.DataBaseName + " charset=utf8");
+
                         foreach (string Tabla in Lfx.Data.DataBaseCache.DefaultCache.TableList) {
+                                this.Execute("ALTER TABLE " + Tabla + " CONVERT TO CHARACTER SET utf8");
                                 CheckTable(Tabla);
                         }
 
@@ -259,6 +250,28 @@ namespace Lfx.Data
                 public void CheckTable(string tableName)
                 {
                         Data.TableStructure CurrentTableDef = this.GetTableStructure(tableName, true);
+                        foreach (Lfx.Data.ColumnDefinition Col in CurrentTableDef.Columns.Values) {
+                                if (Col.FieldType == DbTypes.VarChar || Col.FieldType == DbTypes.Text) {
+                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã¡', 'á')");
+                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã©', 'é')");
+                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã­', 'í')");
+                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã³', 'ó')");
+                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ãº', 'ú')");
+                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã¼', 'ü')");
+                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã±', 'ñ')");
+                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã‰', 'É')");
+                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã“', 'Ó')");
+                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ãš', 'Ú')");
+                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã\\‘', 'Ñ')");
+                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Âº', 'º')");
+                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Â¿', '¿')");
+                                        
+                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã‚º', 'º')");
+                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'ÃƒÂ±', 'ñ')");
+                                        //a=Ã¡, e=Ã©, i=Ã­, o=Ã³, u=Ãº, N=Ã‘, ?=Â¿, u=Ã¼, A=Ã, E=Ã‰, I=Ã, O=Ã“, U=Ãš, Ã‚º=º
+                                }
+                        }
+
                         foreach (Lfx.Data.ConstraintDefinition Cons in CurrentTableDef.Constraints.Values) {
                                 // Elimino valores 0 (los pongo en NULL)
                                 this.Execute("UPDATE " + tableName + " SET " + Cons.Column + "=NULL WHERE " + Cons.Column + "=0");
@@ -468,8 +481,12 @@ namespace Lfx.Data
                                                 FieldDef.Lenght = System.Convert.ToInt32(Columna["CHARACTER_MAXIMUM_LENGTH"]);
                                                 break;
                                         case Lfx.Data.DbTypes.Numeric:
-                                                FieldDef.Lenght = 14;
-                                                FieldDef.Precision = 4;
+                                                FieldDef.Lenght = System.Convert.ToInt32(Columna["NUMERIC_PRECISION"]);
+                                                if (FieldDef.Lenght == 0)
+                                                        FieldDef.Lenght = 14;
+                                                FieldDef.Precision = System.Convert.ToInt32(Columna["NUMERIC_SCALE"]);
+                                                if (FieldDef.Precision == 0)
+                                                        FieldDef.Precision = 4;
                                                 break;
                                 }
                                 string COLUMN_TYPE = (this.AccessMode == AccessModes.Npgsql) ? "DATA_TYPE" : "COLUMN_TYPE";
@@ -754,7 +771,7 @@ LEFT JOIN pg_attribute
                                         int intentos = 10;
                                         while (this.DbConnection.State != System.Data.ConnectionState.Open && intentos-- > 0) {
                                                 try {
-                                                        this.Open(false);
+                                                        this.Open();
                                                 }
                                                 catch {
                                                         System.Threading.Thread.Sleep(1000);
@@ -770,41 +787,34 @@ LEFT JOIN pg_attribute
 
                 private bool TryToRecover(Exception ex)
                 {
-                        if (m_EnableRecover &&
+                        if (EnableRecover == true && m_InTransaction == false &&
                                 (ex.Message.IndexOf("server has gone away", StringComparison.InvariantCultureIgnoreCase) >= 0
                                 || ex.Message.IndexOf("se ha desactivado la conexión", StringComparison.InvariantCultureIgnoreCase) >= 0
+                                || ex.Message.IndexOf("Fatal error encountered during command execution", StringComparison.InvariantCultureIgnoreCase) >= 0
+                                || ex.Message.IndexOf("Connection must be valid and open", StringComparison.InvariantCultureIgnoreCase) >= 0
                                 || ex.Message.IndexOf("el estado actual de la conexión es cerrada", StringComparison.InvariantCultureIgnoreCase) >= 0
                                 )) {
 
                                 if (this.IsOpen())
                                         return false;
 
-                                m_EnableRecover = false;
+                                EnableRecover = false;
 
                                 if (DbConnection.State != System.Data.ConnectionState.Closed)
                                         this.Close();
 
                                 System.Threading.Thread.Sleep(500);
 
-                                Data.Forms.LostConnection ErrorForm = null;
-                                if (AvoidWinForms == false) {
-                                        ErrorForm = new Data.Forms.LostConnection();
-                                        ErrorForm.StatusLabel.Text = ex.Message;
-                                        ErrorForm.Show();
-                                        ErrorForm.Refresh();
-                                }
                                 int intentos = 10;
                                 while (DbConnection.State != System.Data.ConnectionState.Open && intentos-- > 0) {
                                         try {
-                                                this.Open(false);
+                                                this.Open();
                                         }
                                         catch (Exception ex2) {
                                                 System.Threading.Thread.Sleep(1000);
                                         }
                                 }
-                                if (ErrorForm != null)
-                                        ErrorForm.Close();
-                                m_EnableRecover = true;
+                                EnableRecover = true;
                                 return false;
                         } else {
                                 return true;
@@ -1093,6 +1103,7 @@ LEFT JOIN pg_attribute
                         System.Data.IDbCommand Cmd = this.GetCommand(selectCommand);
                         while (true) {
                                 try {
+                                        Cmd.Connection = this.DbConnection;
                                         System.Data.IDataReader Rdr = Cmd.ExecuteReader(System.Data.CommandBehavior.SingleResult);
                                         return Rdr;
                                 }

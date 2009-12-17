@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -251,7 +251,7 @@ namespace Lfc.Personas
 
                         EntradaRazonSocial.Text = Cliente.RazonSocial;
                         EntradaRazonSocial.ReadOnly = NegarEdicionAvanzada;
-                        EntradaCuit.Text = Cliente.CUIT;
+                        EntradaCuit.Text = Cliente.Cuit;
                         EntradaCuit.ReadOnly = NegarEdicionAvanzada;
 
                         if (Cliente.SituacionTributaria == null)
@@ -306,11 +306,12 @@ namespace Lfc.Personas
                         EntradaCbu.ReadOnly = NegarEdicionAvanzada;
                         EntradaObs.Text = System.Convert.ToString(Cliente.Registro["obs"]);
                         EntradaObs.ReadOnly = NegarEdicionAvanzada;
-                        this.Tags.Registro = Cliente;
-                        Tags.Enabled = !NegarEdicionAvanzada;
+                        
+                        EntradaTags.Elemento = Cliente;
+                        EntradaTags.Enabled = !NegarEdicionAvanzada;
 
                         this.Text = "Clientes: " + EntradaNombreVisible.Text;
-                        cmdAcceso.Visible = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.access");
+                        BotonAcceso.Visible = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.access");
                         SaveButton.Visible = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.basicwrite") || !NegarEdicionAvanzada;
                 }
 
@@ -369,15 +370,15 @@ namespace Lfc.Personas
                                 switch (e.KeyCode) {
                                         case Keys.F2:
                                                 e.Handled = true;
-                                                if (cmdAcceso.Enabled && cmdAcceso.Visible)
-                                                        cmdAcceso.PerformClick();
+                                                if (BotonAcceso.Enabled && BotonAcceso.Visible)
+                                                        BotonAcceso.PerformClick();
                                                 break;
                                 }
 
                         }
                 }
 
-                private void cmdAcceso_Click(object sender, System.EventArgs e)
+                private void BotonAcceso_Click(object sender, System.EventArgs e)
                 {
                         if (m_Id == 1) {
                                 Lui.Forms.MessageBox.Show("No puede editar el acceso del usuario Administrador.", "Error");
@@ -406,7 +407,7 @@ namespace Lfc.Personas
                         Res.Nombre = EntradaNombreVisible.Text;
                         Res.TipoDocumento = EntradaTipoDoc.TextInt;
                         Res.NumeroDocumento = EntradaNumDoc.Text;
-                        Res.CUIT = EntradaCuit.Text;
+                        Res.Cuit = EntradaCuit.Text;
                         if (EntradaSituacion.TextInt == 0)
                                 Res.SituacionTributaria = null;
                         else
@@ -433,7 +434,7 @@ namespace Lfc.Personas
                         Res.Cbu = EntradaCbu.Text.Replace("-", "").Replace(" ", "").Replace("/", "").Replace(".", "");
                         Res.EstadoCredito = ((Lbl.Personas.EstadoCredito)(Lfx.Types.Parsing.ParseInt(EntradaEstadoCredito.TextKey)));
 
-                        Tags.ActualizarRegistro(Res);
+                        EntradaTags.ActualizarElemento();
 
                         return base.ToRow();
                 }

@@ -114,12 +114,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Data.cs" />
     <Compile Include="Data\DataBase.cs" />
-    <Compile Include="Data\Forms\Connecting.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Data\Forms\LostConnection.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Data\SQLBuilder.cs" />
     <Compile Include="Environment\Folders.cs" />
     <Compile Include="Environment\Shell.cs" />
@@ -138,14 +132,6 @@
     <Compile Include="Types\Parsing.cs" />
     <Compile Include="Types\Strings.cs" />
     <Compile Include="Types\Types.cs" />
-    <EmbeddedResource Include="Data\Forms\Connecting.resx">
-      <DependentUpon>Connecting.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Data\Forms\LostConnection.resx">
-      <DependentUpon>LostConnection.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Printing\TextPrint.resx">
       <DependentUpon>TextPrint.cs</DependentUpon>
       <SubType>Designer</SubType>

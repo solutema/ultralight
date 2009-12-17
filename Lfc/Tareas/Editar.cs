@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -160,7 +160,7 @@ namespace Lfc.Tareas
                                 }
                         }
 
-                        System.Data.DataTable Eventos = this.Workspace.DefaultDataBase.Select("SELECT tickets_eventos.fecha, tickets_eventos.descripcion, personas.nombre FROM tickets_eventos, personas WHERE tickets_eventos.privado=0 AND tickets_eventos.id_tecnico=personas.id_persona AND id_ticket=" + m_Id.ToString() + " ORDER BY fecha");
+                        System.Data.DataTable Eventos = this.Workspace.DefaultDataBase.Select("SELECT tickets_eventos.fecha, tickets_eventos.descripcion, personas.nombre FROM tickets_eventos, personas WHERE tickets_eventos.privado=0 AND tickets_eventos.id_tecnico=personas.id_persona AND id_ticket=" + m_Id.ToString() + " ORDER BY id_evento DESC");
                         if (Eventos.Rows.Count > 0) {
                                 ImprimirItem.ParesAgregar("Historial", "", 1);
                                 foreach (System.Data.DataRow Evento in Eventos.Rows) {

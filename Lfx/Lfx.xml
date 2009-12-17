@@ -121,48 +121,6 @@
             Toma "tabla.campo" y devulve "campo"
             </summary>
         </member>
-        <member name="T:Lfx.Data.Forms.Connecting">
-            <summary>
-            Descripción breve de Connecting.
-            </summary>
-        </member>
-        <member name="F:Lfx.Data.Forms.Connecting.components">
-            <summary>
-            Variable del diseñador requerida.
-            </summary>
-        </member>
-        <member name="M:Lfx.Data.Forms.Connecting.Dispose(System.Boolean)">
-            <summary>
-            Limpiar los recursos que se estén utilizando.
-            </summary>
-        </member>
-        <member name="M:Lfx.Data.Forms.Connecting.InitializeComponent">
-            <summary>
-            Método necesario para admitir el Diseñador. No se puede modificar
-            el contenido del método con el editor de código.
-            </summary>
-        </member>
-        <member name="T:Lfx.Data.Forms.LostConnection">
-            <summary>
-            Descripción breve de LostConnection.
-            </summary>
-        </member>
-        <member name="F:Lfx.Data.Forms.LostConnection.components">
-            <summary>
-            Variable del diseñador requerida.
-            </summary>
-        </member>
-        <member name="M:Lfx.Data.Forms.LostConnection.Dispose(System.Boolean)">
-            <summary>
-            Limpiar los recursos que se estén utilizando.
-            </summary>
-        </member>
-        <member name="M:Lfx.Data.Forms.LostConnection.InitializeComponent">
-            <summary>
-            Método necesario para admitir el Diseñador. No se puede modificar
-            el contenido del método con el editor de código.
-            </summary>
-        </member>
         <member name="T:Lfx.Data.SqlCommandBuilder">
             <summary>
             Esta clase y sus derivadas se utilizan para evitar escribir los comandos SQL como literales de texto.

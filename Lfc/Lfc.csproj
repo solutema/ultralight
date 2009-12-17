@@ -180,6 +180,9 @@
     <Compile Include="Comprobantes\EditSerials.Designer.cs">
       <DependentUpon>EditSerials.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comprobantes\Facturas\Anular.Designer.cs">
+      <DependentUpon>Anular.cs</DependentUpon>
+    </Compile>
     <Compile Include="Comprobantes\Facturas\SaldoEnCuentaCorriente.cs">
       <SubType>Form</SubType>
     </Compile>

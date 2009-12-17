@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -87,7 +87,6 @@ namespace Lfx.Environment
 
                         NuevoProceso.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
                         NuevoProceso.StartInfo.UseShellExecute = false;
-                        //NuevoProceso.StartInfo.Verb = "runas";
                         NuevoProceso.Start();
                         System.Environment.Exit(0);
                 }

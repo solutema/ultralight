@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -89,7 +89,7 @@ namespace Lfc.Comprobantes.Facturas
 
 
                                 if (Registro.Cliente.SituacionTributaria != null && (Registro.Cliente.SituacionTributaria.Id == 2 || Registro.Cliente.SituacionTributaria.Id == 3)) {
-                                        if (Lfx.Types.Strings.ValidCUIT(Registro.Cliente.CUIT) == false) {
+                                        if (Lfx.Types.Strings.ValidCUIT(Registro.Cliente.Cuit) == false) {
                                                 validarReturn.Success = false;
                                                 validarReturn.Message += "El cliente debe tener una CUIT válida." + Environment.NewLine;
                                         }
@@ -217,11 +217,11 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                 }
 
                                 if (Registro.Tipo.LetraSola.ToUpperInvariant() == "A") {
-                                        if (Registro.Cliente.CUIT.Length < 5)
+                                        if (Registro.Cliente.Cuit.Length < 5)
                                                 return new Lfx.Types.OperationResult(false, @"Debe proporcionar el número de CUIT del cliente.");
                                 } else if (Registro.Tipo.LetraSola.ToUpperInvariant() == "B") {
                                         //Si es factura B de más de $ 1000, debe llevar el Nº de DNI
-                                        if (Registro.Total >= 1000 && Registro.Cliente.NumeroDocumento.Length < 5 && Registro.Cliente.CUIT.Length < 5)
+                                        if (Registro.Total >= 1000 && Registro.Cliente.NumeroDocumento.Length < 5 && Registro.Cliente.Cuit.Length < 5)
                                                 return new Lfx.Types.OperationResult(false, @"Para facturas tipo ""B"" de $ 1.000 o más, debe proporcionar el número de DNI del cliente.");
                                         //Si es factura B de más de $ 1000, debe llevar domicilio
                                         if (Registro.Total >= 1000 && Registro.Cliente.Domicilio.Length < 1)

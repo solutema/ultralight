@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -223,10 +223,12 @@ namespace Lfx.Data
                         if (object.ReferenceEquals(f1, null) || object.ReferenceEquals(f2, null))
                                 return false;
 
+                        string s1 = f1.ToString(), s2 = f2.ToString();
+
                         return f1.PrimaryKey == f2.PrimaryKey
                                 && f1.Unsigned == f2.Unsigned
                                 && f1.Nullable == f2.Nullable
-                                && f1.ToString() == f2.ToString();
+                                && s1 == s2;
                 }
 
                 public static bool operator !=(ColumnDefinition f1, ColumnDefinition f2)

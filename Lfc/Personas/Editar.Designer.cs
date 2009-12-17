@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -84,7 +84,7 @@ namespace Lfc.Personas
                         this.Label14 = new System.Windows.Forms.Label();
                         this.EntradaGrupo = new Lui.Forms.DetailBox();
                         this.Label16 = new System.Windows.Forms.Label();
-                        this.cmdAcceso = new Lui.Forms.Button();
+                        this.BotonAcceso = new Lui.Forms.Button();
                         this.EntradaLimiteCredito = new Lui.Forms.TextBox();
                         this.label17 = new System.Windows.Forms.Label();
                         this.EntradaFechaNac = new Lui.Forms.TextBox();
@@ -105,7 +105,7 @@ namespace Lfc.Personas
                         this.EntradaNombreVisible = new Lui.Forms.TextBox();
                         this.Label4 = new System.Windows.Forms.Label();
                         this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-                        this.Tags = new Lui.Forms.FieldTags();
+                        this.EntradaTags = new Lui.Forms.FieldTags();
                         this.ContenedorScroll = new System.Windows.Forms.Panel();
                         this.Frame1.SuspendLayout();
                         this.Frame2.SuspendLayout();
@@ -708,27 +708,27 @@ namespace Lfc.Personas
                         this.Label16.Text = "Grupo";
                         this.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // cmdAcceso
+                        // BotonAcceso
                         // 
-                        this.cmdAcceso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.cmdAcceso.AutoHeight = false;
-                        this.cmdAcceso.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdAcceso.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdAcceso.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdAcceso.Image = null;
-                        this.cmdAcceso.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdAcceso.Location = new System.Drawing.Point(24, 422);
-                        this.cmdAcceso.Name = "cmdAcceso";
-                        this.cmdAcceso.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdAcceso.ReadOnly = false;
-                        this.cmdAcceso.Size = new System.Drawing.Size(104, 44);
-                        this.cmdAcceso.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
-                        this.cmdAcceso.Subtext = "F2";
-                        this.cmdAcceso.TabIndex = 100;
-                        this.cmdAcceso.Text = "Accesos";
-                        this.cmdAcceso.ToolTipText = "";
-                        this.cmdAcceso.Visible = false;
-                        this.cmdAcceso.Click += new System.EventHandler(this.cmdAcceso_Click);
+                        this.BotonAcceso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonAcceso.AutoHeight = false;
+                        this.BotonAcceso.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonAcceso.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonAcceso.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonAcceso.Image = null;
+                        this.BotonAcceso.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonAcceso.Location = new System.Drawing.Point(24, 422);
+                        this.BotonAcceso.Name = "BotonAcceso";
+                        this.BotonAcceso.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonAcceso.ReadOnly = false;
+                        this.BotonAcceso.Size = new System.Drawing.Size(104, 44);
+                        this.BotonAcceso.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
+                        this.BotonAcceso.Subtext = "F2";
+                        this.BotonAcceso.TabIndex = 100;
+                        this.BotonAcceso.Text = "Accesos";
+                        this.BotonAcceso.ToolTipText = "";
+                        this.BotonAcceso.Visible = false;
+                        this.BotonAcceso.Click += new System.EventHandler(this.BotonAcceso_Click);
                         // 
                         // EntradaLimiteCredito
                         // 
@@ -1071,7 +1071,7 @@ namespace Lfc.Personas
                         this.EntradaObs.Prefijo = "";
                         this.EntradaObs.ReadOnly = false;
                         this.EntradaObs.SelectOnFocus = true;
-                        this.EntradaObs.Size = new System.Drawing.Size(343, 114);
+                        this.EntradaObs.Size = new System.Drawing.Size(343, 166);
                         this.EntradaObs.Sufijo = "";
                         this.EntradaObs.TabIndex = 5;
                         this.EntradaObs.TextRaw = "";
@@ -1121,7 +1121,7 @@ namespace Lfc.Personas
                         this.tableLayoutPanel1.ColumnCount = 2;
                         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
                         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-                        this.tableLayoutPanel1.Controls.Add(this.Tags, 0, 2);
+                        this.tableLayoutPanel1.Controls.Add(this.EntradaTags, 0, 2);
                         this.tableLayoutPanel1.Controls.Add(this.frame4, 1, 1);
                         this.tableLayoutPanel1.Controls.Add(this.frame3, 0, 1);
                         this.tableLayoutPanel1.Controls.Add(this.Frame2, 1, 0);
@@ -1135,22 +1135,22 @@ namespace Lfc.Personas
                         this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
                         this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
                         this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-                        this.tableLayoutPanel1.Size = new System.Drawing.Size(775, 500);
+                        this.tableLayoutPanel1.Size = new System.Drawing.Size(775, 552);
                         this.tableLayoutPanel1.TabIndex = 0;
                         // 
-                        // Tags
+                        // EntradaTags
                         // 
-                        this.Tags.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        this.EntradaTags.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Tags.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
-                        this.Tags.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.Tags.Location = new System.Drawing.Point(4, 386);
-                        this.Tags.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-                        this.Tags.Name = "Tags";
-                        this.Tags.Size = new System.Drawing.Size(418, 162);
-                        this.Tags.TabIndex = 4;
-                        this.Tags.Text = "Atributos especiales";
+                        this.EntradaTags.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaTags.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EntradaTags.Location = new System.Drawing.Point(4, 386);
+                        this.EntradaTags.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+                        this.EntradaTags.Name = "EntradaTags";
+                        this.EntradaTags.Size = new System.Drawing.Size(418, 166);
+                        this.EntradaTags.TabIndex = 4;
+                        this.EntradaTags.Text = "Atributos especiales";
                         // 
                         // ContenedorScroll
                         // 
@@ -1168,7 +1168,7 @@ namespace Lfc.Personas
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(792, 473);
-                        this.Controls.Add(this.cmdAcceso);
+                        this.Controls.Add(this.BotonAcceso);
                         this.Controls.Add(this.EntradaNombreVisible);
                         this.Controls.Add(this.ContenedorScroll);
                         this.Controls.Add(this.Label4);
@@ -1179,7 +1179,7 @@ namespace Lfc.Personas
                         this.Controls.SetChildIndex(this.Label4, 0);
                         this.Controls.SetChildIndex(this.ContenedorScroll, 0);
                         this.Controls.SetChildIndex(this.EntradaNombreVisible, 0);
-                        this.Controls.SetChildIndex(this.cmdAcceso, 0);
+                        this.Controls.SetChildIndex(this.BotonAcceso, 0);
                         this.Frame1.ResumeLayout(false);
                         this.Frame1.PerformLayout();
                         this.Frame2.ResumeLayout(false);
@@ -1225,7 +1225,7 @@ namespace Lfc.Personas
                 internal System.Windows.Forms.Label Label15;
                 internal Lui.Forms.ComboBox EntradaTipoFac;
                 internal System.Windows.Forms.Label Label16;
-                internal Lui.Forms.Button cmdAcceso;
+                internal Lui.Forms.Button BotonAcceso;
                 internal Lui.Forms.TextBox EntradaLimiteCredito;
                 internal System.Windows.Forms.Label label17;
                 internal System.Windows.Forms.Label label18;
@@ -1245,7 +1245,7 @@ namespace Lfc.Personas
                 internal Lui.Forms.TextBox EntradaNombreVisible;
                 internal Label Label4;
                 private TableLayoutPanel tableLayoutPanel1;
-                private Lui.Forms.FieldTags Tags;
+                private Lui.Forms.FieldTags EntradaTags;
                 private Panel ContenedorScroll;
                 internal Lui.Forms.DetailBox EntradaSubGrupo;
                 internal Label label13;

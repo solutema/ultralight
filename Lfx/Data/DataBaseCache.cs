@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -114,46 +114,64 @@ namespace Lfx.Data
                                                 switch(ColumnaXml.Attributes["inputtype"].Value){
                                                         case "AlphanumericSet":
                                                                 Columna.InputFieldType = InputFieldTypes.AlphanumericSet;
+                                                                Columna.FieldType = DbTypes.VarChar;
                                                                 break;
                                                         case "Binary":
                                                                 Columna.InputFieldType = InputFieldTypes.Binary;
+                                                                Columna.FieldType = DbTypes.Blob;
                                                                 break;
                                                         case "Bool":
                                                                 Columna.InputFieldType = InputFieldTypes.Bool;
+                                                                Columna.FieldType = DbTypes.SmallInt;
                                                                 break;
                                                         case "Currency":
                                                                 Columna.InputFieldType = InputFieldTypes.Currency;
+                                                                Columna.FieldType = DbTypes.Currency;
+                                                                Columna.Lenght = 14;
+                                                                Columna.Precision = 4;
                                                                 break;
                                                         case "Date":
                                                                 Columna.InputFieldType = InputFieldTypes.Date;
+                                                                Columna.FieldType = DbTypes.DateTime;
                                                                 break;
                                                         case "DateTime":
                                                                 Columna.InputFieldType = InputFieldTypes.DateTime;
+                                                                Columna.FieldType = DbTypes.DateTime;
                                                                 break;
                                                         case "Image":
                                                                 Columna.InputFieldType = InputFieldTypes.Image;
+                                                                Columna.FieldType = DbTypes.Blob;
                                                                 break;
                                                         case "Integer":
                                                                 Columna.InputFieldType = InputFieldTypes.Integer;
+                                                                Columna.FieldType = DbTypes.Integer;
                                                                 break;
                                                         case "Memo":
                                                                 Columna.InputFieldType = InputFieldTypes.Memo;
+                                                                Columna.FieldType = DbTypes.Text;
                                                                 break;
                                                         case "Numeric":
                                                                 Columna.InputFieldType = InputFieldTypes.Numeric;
+                                                                Columna.FieldType = DbTypes.Numeric;
+                                                                Columna.Lenght = 14;
+                                                                Columna.Precision = 4;
                                                                 break;
                                                         case "NumericSet":
                                                                 Columna.InputFieldType = InputFieldTypes.NumericSet;
+                                                                Columna.FieldType = DbTypes.SmallInt;
                                                                 break;
                                                         case "Relation":
                                                                 Columna.InputFieldType = InputFieldTypes.Relation;
                                                                 Columna.Relation = new Relation(Columna.Name, ColumnaXml.Attributes["relation_table"].Value, ColumnaXml.Attributes["relation_key"].Value, ColumnaXml.Attributes["relation_detail"].Value);
+                                                                Columna.FieldType = DbTypes.Integer;
                                                                 break;
                                                         case "Serial":
                                                                 Columna.InputFieldType = InputFieldTypes.Serial;
+                                                                Columna.FieldType = DbTypes.Serial;
                                                                 break;
                                                         case "Text":
                                                                 Columna.InputFieldType = InputFieldTypes.Text;
+                                                                Columna.FieldType = DbTypes.VarChar;
                                                                 break;
                                                         default:
                                                                 throw new NotImplementedException("Lfx.Data.DataBaseCache.CargarEstructuraDesdeXml: Falta implementar " + ColumnaXml.Attributes["inputtype"].Value);
@@ -161,6 +179,12 @@ namespace Lfx.Data
                                         } else {
                                                 Columna.FieldType = Lfx.Data.Types.FromSQLType(ColumnaXml.Attributes["datatype"].Value);
                                         }
+
+                                        if (ColumnaXml.Attributes["lenght"] != null)
+                                                Columna.Lenght = Lfx.Types.Parsing.ParseInt(ColumnaXml.Attributes["lenght"].Value);
+
+                                        if (ColumnaXml.Attributes["precision"] != null)
+                                                Columna.Precision = Lfx.Types.Parsing.ParseInt(ColumnaXml.Attributes["precision"].Value);
 
                                         if (ColumnaXml.Attributes["label"] != null)
                                                 Columna.Label = ColumnaXml.Attributes["label"].Value;
@@ -182,13 +206,7 @@ namespace Lfx.Data
 
                                         if (ColumnaXml.Attributes["primary_key"] != null)
                                                 Columna.PrimaryKey = System.Convert.ToBoolean(Lfx.Types.Parsing.ParseInt(ColumnaXml.Attributes["primary_key"].Value));
-                                        
-                                        if (ColumnaXml.Attributes["lenght"] != null)
-                                                Columna.Lenght = Lfx.Types.Parsing.ParseInt(ColumnaXml.Attributes["lenght"].Value);
-                                        
-                                        if (ColumnaXml.Attributes["precision"] != null)
-                                                Columna.Precision = Lfx.Types.Parsing.ParseInt(ColumnaXml.Attributes["precision"].Value);
-                                        
+                                                                                
                                         if (ColumnaXml.Attributes["default"] != null && ColumnaXml.Attributes["default"].Value.Length > 0) {
                                                 Columna.DefaultValue = ColumnaXml.Attributes["default"].Value;
                                         } else {
@@ -239,6 +257,35 @@ namespace Lfx.Data
                                                 }
                                                 Columna.Nullable = Tg.Nullable;
                                                 Columna.PrimaryKey = false;
+
+                                                if (Columna.Nullable) {
+                                                        if (Tg.DefaultValue == null || Tg.DefaultValue is DBNull)
+                                                                Columna.DefaultValue = "NULL";
+                                                        else
+                                                                Columna.DefaultValue = Tg.DefaultValue.ToString();
+                                                } else {
+                                                        switch (Columna.FieldType) {
+                                                                case DbTypes.VarChar:
+                                                                        Columna.DefaultValue = "";
+                                                                        break;
+                                                                case DbTypes.Text:
+                                                                case DbTypes.Blob:
+                                                                        Columna.DefaultValue = "";
+                                                                        break;
+                                                                case DbTypes.Currency:
+                                                                case DbTypes.Integer:
+                                                                case DbTypes.NonExactDecimal:
+                                                                case DbTypes.Numeric:
+                                                                case DbTypes.Serial:
+                                                                case DbTypes.SmallInt:
+                                                                        Columna.DefaultValue = "0";
+                                                                        break;
+                                                                default:
+                                                                        Columna.DefaultValue = "";
+                                                                        break;
+                                                        }
+                                                }
+
                                                 if (Tabla.Columns.ContainsKey(Tg.FieldName))
                                                         Tabla.Columns[Columna.Name] = Columna;
                                                 else
@@ -259,7 +306,6 @@ namespace Lfx.Data
 
                                 this.m_TableStructures.Add(Tabla.Name, Tabla);
                         }
-
                 }
 
                 public void CargarTagList()
@@ -275,7 +321,7 @@ namespace Lfx.Data
                                         if (m_TagList == null)
                                                 m_TagList = new System.Collections.Generic.Dictionary<string, Data.TagCollection>();
                                         if (this.TableList.Contains("sys_tags")) {
-                                                System.Data.IDataReader Rdr = this.DataBase.GetReader("SELECT tablename,fieldname,label,fieldtype,fieldnullable FROM sys_tags ORDER BY tablename");
+                                                System.Data.IDataReader Rdr = this.DataBase.GetReader("SELECT tablename,fieldname,label,fieldtype,fieldnullable,fielddefault FROM sys_tags ORDER BY tablename");
                                                 while (Rdr.Read()) {
                                                         string TableName = Rdr["tablename"].ToString();
                                                         if (m_TagList.ContainsKey(TableName) == false)
@@ -286,6 +332,9 @@ namespace Lfx.Data
                                                         Data.Tag NewTag = new Data.Tag(TableName, Rdr["fieldname"].ToString(), Rdr["label"].ToString());
                                                         NewTag.FieldType = Lfx.Data.Types.FromSQLType(Rdr["fieldtype"].ToString());
                                                         NewTag.Nullable = System.Convert.ToBoolean(Rdr["fieldnullable"]);
+                                                        NewTag.DefaultValue = Rdr["fielddefault"];
+                                                        if (NewTag.DefaultValue is DBNull)
+                                                                NewTag.DefaultValue = null;
                                                         CurrentCol.Add(NewTag);
                                                 }
                                                 Rdr.Close();
