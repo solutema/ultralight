@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -78,6 +78,7 @@ namespace Lazaro
                 {
                         System.Console.WriteLine("RunTime: " + Lfx.Environment.SystemInformation.RunTime.ToString() + " en " + Lfx.Environment.SystemInformation.Platform.ToString());
                         System.Console.WriteLine("Codificación: " + System.Text.Encoding.Default.BodyName);
+
                         string[] ArchivosNuevos = System.IO.Directory.GetFiles(Lfx.Environment.Folders.ApplicationFolder, "*.new", System.IO.SearchOption.AllDirectories);
                         if (ArchivosNuevos.Length > 0) {
                                 System.Console.WriteLine("Existen actualizaciones pendientes. Ejecutando Cargador");
@@ -99,7 +100,7 @@ namespace Lazaro
 
                         if (System.IO.File.Exists("ICSharpCode.SharpZipLib.dll") == false || System.IO.File.Exists("MySql.Data.dll") == false) {
                                 Actualizador.Estado Estado = new Lazaro.Actualizador.Estado();
-                                Estado.LabelEstado.Text = "Se están descargando algunos archivos necesarios para el funcionamiento del sistema.";
+                                Estado.EtiquetaEstado.Text = "Se están descargando algunos archivos necesarios para el funcionamiento del sistema.";
                                 Estado.Show();
                                 Estado.Refresh();
 
@@ -196,32 +197,8 @@ namespace Lazaro
                                 }
                         } while (true);
 
-                        // FIXME: verificar la presencia de los frameworks correspondientes
-                        /* 
-                        if (Lfx.Environment.SystemInformation.RunTime == Lfx.Environment.SystemInformation.RunTimes.DotNet) {
-                                bool TieneDotNet35 = false;
-                                try {
-                                        Microsoft.Win32.RegistryKey LocalMachine = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v3.5", false);
-                                        object Installed = LocalMachine.GetValue("Install");
-                                        if (System.Convert.ToInt32(Installed) == 1)
-                                                TieneDotNet35 = true;
-                                }
-                                catch (Exception ex) {
-                                        System.Console.WriteLine(ex.Message);
-                                        TieneDotNet35 = false;
-                                }
-
-                                if (TieneDotNet35 == false) {
-                                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("No se encontró la versión 3.5 de Microsoft .NET Framework. Este componente es necesario para utilizar el sistema Lázaro. ¿Desea descargarlo ahora?", "Componentes requeridos");
-                                        if (Pregunta.ShowDialog() == DialogResult.OK) {
-                                                Lfx.Environment.Shell.Execute("http://www.sistemalazaro.com.ar/aslnlwc/lazarosetup.exe", "", ProcessWindowStyle.Normal, false);
-                                                return 0;
-                                        }
-                                }
-                        }
-                        */
-
                         Config.Iniciar();
+                        Lws.Workspace.Master.DefaultDataBase.EnableRecover = true;
 
                         Lfx.Types.OperationResult ResultadoInicio = new Lfx.Types.SuccessOperationResult();
 
@@ -437,6 +414,13 @@ namespace Lazaro
                                 case "ERROR":
                                         throw new InvalidOperationException("Error de Prueba");
 
+                                case "TEST":
+                                        Misc.Form1 Frm = new Lazaro.Misc.Form1();
+                                        Frm.Workspace = Lws.Workspace.Master;
+                                        Frm.MdiParent = FormularioPrincipal;
+                                        Frm.Show();
+                                        break;
+
                                 case "CHECK":
                                         string SubComandoDbCheck = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpperInvariant();
                                         switch (SubComandoDbCheck) {
@@ -603,7 +587,9 @@ namespace Lazaro
                                                         case "FACT":
                                                                 Lfc.Comprobantes.Facturas.Anular FormularioFacturaAnular = new Lfc.Comprobantes.Facturas.Anular();
                                                                 FormularioFacturaAnular.Workspace = Lws.Workspace.Master;
-                                                                FormularioFacturaAnular.ShowDialog(Aplicacion.FormularioPrincipal);
+                                                                if (!Aplicacion.Flotante)
+                                                                        FormularioFacturaAnular.MdiParent = Aplicacion.FormularioPrincipal;
+                                                                FormularioFacturaAnular.Show();
                                                                 break;
 
                                                         case "RECIBO":

@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ namespace Lui.Forms
 {
         public partial class FieldTags : FieldGroup
         {
-                private Lbl.ElementoDeDatos m_Registro;
+                protected Lbl.ElementoDeDatos m_Elemento;
 
                 public FieldTags()
                 {
@@ -47,38 +47,48 @@ namespace Lui.Forms
                 }
 
                 [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public Lbl.ElementoDeDatos Registro
+                public Lbl.ElementoDeDatos Elemento
                 {
                         get
                         {
-                                this.ActualizarRegistro(m_Registro);
-                                return m_Registro;
+                                return m_Elemento;
                         }
                         set
                         {
-                                m_Registro = value;
-                                this.FieldContainer.Controls.Clear();
-                                //Tomos los tags del registro
-                                Lws.Data.Table Tabla = new Lws.Data.Table(m_Registro.DataView, m_Registro.TablaDatos);
-                                Tabla.DataView = this.Workspace.DefaultDataView;
-                                if (Tabla.Tags != null) {
-                                        foreach (Lfx.Data.Tag Tg in Tabla.Tags) {
-                                                Field Fld = new Field();
-                                                Fld.FieldName = Tg.FieldName;
-                                                Fld.Text = Tg.Label;
-                                                //Fld.FieldType = Tg.FieldType;
-                                                Fld.FieldValue = m_Registro.Registro[Tg.FieldName];
-                                                this.FieldContainer.Controls.Add(Fld);
-                                        }
+                                m_Elemento = value;
+                                this.ActualizarControl();
+                        }
+                }
+
+                /// <summary>
+                /// Actualiza el control con los datos del elemento.
+                /// </summary>
+                public virtual void ActualizarControl()
+                {
+                        this.FieldContainer.Controls.Clear();
+                        //Tomos los tags del registro
+                        Lws.Data.Table Tabla = new Lws.Data.Table(m_Elemento.DataView, m_Elemento.TablaDatos);
+                        Tabla.DataView = this.Workspace.DefaultDataView;
+                        if (Tabla.Tags != null) {
+                                foreach (Lfx.Data.Tag Tg in Tabla.Tags) {
+                                        Field Fld = new Field();
+                                        Fld.FieldName = Tg.FieldName;
+                                        Fld.Text = Tg.Label;
+                                        //Fld.FieldType = Tg.FieldType;
+                                        Fld.FieldValue = m_Elemento.Registro[Tg.FieldName];
+                                        this.FieldContainer.Controls.Add(Fld);
                                 }
                         }
                 }
 
-                public void ActualizarRegistro(Lbl.ElementoDeDatos registro)
+                /// <summary>
+                /// Actualiza el elemento con los datos del control.
+                /// </summary>
+                public virtual void ActualizarElemento()
                 {
                         foreach (System.Windows.Forms.Control Ctl in FieldContainer.Controls) {
                                 if (Ctl is Field) {
-                                        registro.Registro[((Field)Ctl).FieldName] = ((Field)Ctl).FieldValue;
+                                        this.Elemento.Registro[((Field)Ctl).FieldName] = ((Field)Ctl).FieldValue;
                                 }
                         }
                 }

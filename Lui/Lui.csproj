@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FD8409C3-35CF-4F30-8898-F4CC17FC35D6}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -75,6 +75,12 @@
     </Compile>
     <Compile Include="Forms\Bracket.Designer.cs">
       <DependentUpon>Bracket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ChildDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ChildDialogForm.designer.cs">
+      <DependentUpon>ChildDialogForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ComboBox.cs">
       <SubType>UserControl</SubType>
@@ -168,6 +174,9 @@
     </Compile>
     <Compile Include="Forms\Note.Designer.cs">
       <DependentUpon>Note.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OrientedLabel.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\Product.cs">
       <SubType>UserControl</SubType>
@@ -302,6 +311,9 @@
     <EmbeddedResource Include="Forms\Bracket.resx">
       <DependentUpon>Bracket.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ChildDialogForm.resx">
+      <DependentUpon>ChildDialogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ComboBox.resx">
       <DependentUpon>ComboBox.cs</DependentUpon>

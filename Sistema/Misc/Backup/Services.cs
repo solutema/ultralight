@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -432,13 +432,6 @@ namespace Lazaro.Misc.Backup
                                 DataView.DataBase.BeginTransaction();
                                 DataView.DataBase.EnableConstraints(false);
 
-                                // Vaciar todas las tablas
-                                foreach (string Tabla in Lfx.Data.DataBaseCache.DefaultCache.TableList) {
-                                        Lfx.Data.SqlDeleteBuilder DelCmd = new Lfx.Data.SqlDeleteBuilder(Tabla);
-                                        DelCmd.EnableDeleleteWithoutWhere = true;
-                                        DataView.Execute(DelCmd);
-                                }
-
 				FormularioProgreso.Operacion = "Incorporando tablas de datos...";
                                 BackupStreamReader Lector = new BackupStreamReader(BackupPath + Carpeta + "dbdata.lbd");
 
@@ -456,6 +449,10 @@ namespace Lazaro.Misc.Backup
                                                         TablaActual = Lector.ReadPrefixedString4();
                                                         EndTable = false;
                                                         FormularioProgreso.Operacion = "Cargando " + TablaActual;
+
+                                                        Lfx.Data.SqlDeleteBuilder DelCmd = new Lfx.Data.SqlDeleteBuilder(TablaActual);
+                                                        DelCmd.EnableDeleleteWithoutWhere = true;
+                                                        DataView.Execute(DelCmd);
                                                         break;
                                                 case ":FDL":
                                                         ListaCampos = Lector.ReadPrefixedString4().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);

@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -204,30 +204,6 @@ namespace Lui.Forms
                         }
                 }
 
-		/* public string ExtraDataTableNames
-		{
-			get
-			{
-				return m_ExtraDataTableNames;
-			}
-			set
-			{
-				m_ExtraDataTableNames = value;
-			}
-		}
-
-		public string Relations
-		{
-			get
-			{
-				return m_Relations;
-			}
-			set
-			{
-				m_Relations = value;
-			}
-		} */
-
 		public string OrderBy
 		{
 			get
@@ -424,6 +400,7 @@ namespace Lui.Forms
 			System.Data.DataTable Tabla = this.DataView.DataBase.Select(command);
 
 			ListViewItem CurItem = null;
+                        System.Collections.Generic.List<int> CheckedItems = null;
 
                         if (this.Virtual == false) {
                                 if (command.Window == null) {
@@ -440,6 +417,13 @@ namespace Lui.Forms
                                 else
                                         CurItem = null;
 
+                                if (Listado.CheckedItems != null && Listado.CheckedItems.Count > 0) {
+                                        CheckedItems = new System.Collections.Generic.List<int>();
+                                        foreach (ListViewItem Itm in Listado.CheckedItems) {
+                                                CheckedItems.Add(Lfx.Types.Parsing.ParseInt(Itm.Text));
+                                        }
+                                }
+
                                 this.SuspendLayout();
                                 Listado.BeginUpdate();
                                 Listado.Items.Clear();
@@ -452,7 +436,10 @@ namespace Lui.Forms
 				foreach(System.Data.DataRow Registro in Tabla.Rows)
 				{
 					int ii;
-					ListViewItem Itm = new ListViewItem(System.Convert.ToInt32(Registro[NombreCampoId]).ToString("000000"));
+                                        int ItemId = System.Convert.ToInt32(Registro[NombreCampoId]);
+                                        ListViewItem Itm = new ListViewItem(ItemId.ToString("000000"));
+                                        if (CheckedItems != null && CheckedItems.Contains(ItemId))
+                                                Itm.Checked = true;
 
 					for (int i = 0; i < m_FormFields.Length; i++)
 					{

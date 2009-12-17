@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -60,7 +60,6 @@ namespace Lazaro.Principal
 
                 private void FormPrincipal_Load(object sender, EventArgs e)
                 {
-                        this.Workspace.AvoidWinForms = false;
                         this.CargarMenuPrincipal();
 
                         //De forma predeterminada, se usa modo maximizado

@@ -121,6 +121,12 @@
     <Compile Include="Misc\Fiscal.Designer.cs">
       <DependentUpon>Fiscal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Misc\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Misc\Ingreso.Designer.cs">
       <DependentUpon>Ingreso.cs</DependentUpon>
     </Compile>
@@ -199,6 +205,9 @@
     <EmbeddedResource Include="Data\db_upd19_post.sql" />
     <EmbeddedResource Include="Errores\ExcepcionControlada.resx">
       <DependentUpon>ExcepcionControlada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal\BarraInferior.resx">
       <DependentUpon>BarraInferior.cs</DependentUpon>

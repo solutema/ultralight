@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -124,10 +124,7 @@ namespace Lazaro.Actualizador
                                         aslURL += "/";
 
                                 if (formularioEstado != null)
-                                        formularioEstado.lblOperacion.Text = "Contactando al servidor...";
-
-                                if (formularioEstado != null)
-                                        formularioEstado.lblOperacion.Text = "Descargando información de versiones...";
+                                        formularioEstado.TextoOperacion = "Contactando al servidor...";
 
                                 System.Xml.XmlDocument VersionXml = new System.Xml.XmlDocument();
 
@@ -191,7 +188,7 @@ namespace Lazaro.Actualizador
                                                                 if (nombreComponente != "Core")
                                                                         nombreCarpeta = "Components" + System.IO.Path.DirectorySeparatorChar;
                                                                 if (formularioEstado != null)
-                                                                        formularioEstado.lblOperacion.Text = "Descargando archivos...";
+                                                                        formularioEstado.TextoOperacion = "Descargando archivos...";
                                                                 if (ActualizarArchivoDesdeWeb(URLComponente, Archivo, false, nombreCarpeta))
                                                                         ArchivosActualizados++;
                                                         }
@@ -422,9 +419,15 @@ namespace Lazaro.Actualizador
                         return actualizarArchivoDesdeWebReturn;
                 }
 
-                public static void NetGet(string url, string archivo)
+
+                /// <summary>
+                /// Descarga un archivo desde una URI y lo guarda en el disco.
+                /// </summary>
+                /// <param name="uri">La URI del archivo a descargar.</param>
+                /// <param name="archivo">El nombre del archivo en el disco.</param>
+                public static void NetGet(string uri, string archivo)
                 {
-                        byte[] Contenido = NetGet(url);
+                        byte[] Contenido = NetGet(uri);
 
                         if (Contenido != null) {
                                 System.IO.BinaryWriter wr = new System.IO.BinaryWriter(System.IO.File.OpenWrite(archivo), System.Text.Encoding.Default);
@@ -433,16 +436,29 @@ namespace Lazaro.Actualizador
                         }
                 }
 
-                private static byte[] NetGet(string url)
+                /// <summary>
+                /// Descarga un archivo desde una URI.
+                /// </summary>
+                /// <param name="uri">La URI del archivo a descargar.</param>
+                /// <returns>Una matriz de bytes con el contenido del archivo descargado.</returns>
+                private static byte[] NetGet(string uri)
                 {
                         try {
-                                System.Console.Write("Descargando " + url + ": ");
+                                System.Console.Write("Descargando " + uri + ": ");
                                 System.Net.WebRequest Solicitud = null;
-                                Solicitud = System.Net.WebRequest.CreateDefault(new System.Uri(url));
+                                Solicitud = System.Net.WebRequest.CreateDefault(new System.Uri(uri));
                                 System.Net.WebResponse Respuesta = Solicitud.GetResponse();
                                 byte[] Contenido = new byte[Respuesta.ContentLength];
+                                int ReadPos = 0;
                                 System.IO.StreamReader Lector = new System.IO.StreamReader(Respuesta.GetResponseStream(), System.Text.Encoding.Default);
-                                Contenido = System.Text.Encoding.Default.GetBytes(Lector.ReadToEnd());
+                                while (Lector.EndOfStream == false) {
+                                        char[] BufferChar = new char[2048];
+                                        int Leido = Lector.Read(BufferChar, 0, BufferChar.Length);
+                                        byte[] BufferBytes = Lector.CurrentEncoding.GetBytes(BufferChar, 0, Leido);
+                                        Array.Copy(BufferBytes, 0, Contenido, ReadPos, Leido);
+                                        ReadPos += Leido;
+                                        System.Windows.Forms.Application.DoEvents();
+                                }
                                 Lector.Close();
                                 Respuesta.Close();
                                 System.Console.WriteLine("ok.");

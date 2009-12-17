@@ -61,7 +61,7 @@ namespace Lazaro.Misc
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(534, 16);
                         this.Label1.TabIndex = 2;
-                        this.Label1.Text = "Copyright © 2004-2009 South Bridge S.R.L. Todos los derechos reservados.";
+                        this.Label1.Text = "Copyright © 2004-2010 South Bridge S.R.L. Todos los derechos reservados.";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label2

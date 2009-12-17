@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -59,16 +59,16 @@ namespace Lazaro.Actualizador
                 private System.ComponentModel.Container components = null;
 
                 internal System.Windows.Forms.PictureBox PictureBox1;
-                public Label LabelEstado;
+                public Label EtiquetaEstado;
                 internal Lui.Forms.ProgressBar GProgressBar1;
-                internal System.Windows.Forms.Label lblOperacion;
+                internal System.Windows.Forms.Label EtiquetaOperacion;
 
                 private void InitializeComponent()
                 {
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Estado));
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
-                        this.lblOperacion = new System.Windows.Forms.Label();
-                        this.LabelEstado = new System.Windows.Forms.Label();
+                        this.EtiquetaOperacion = new System.Windows.Forms.Label();
+                        this.EtiquetaEstado = new System.Windows.Forms.Label();
                         this.GProgressBar1 = new Lui.Forms.ProgressBar();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
                         this.SuspendLayout();
@@ -85,22 +85,22 @@ namespace Lazaro.Actualizador
                         // 
                         // lblOperacion
                         // 
-                        this.lblOperacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.lblOperacion.Location = new System.Drawing.Point(88, 64);
-                        this.lblOperacion.Name = "lblOperacion";
-                        this.lblOperacion.Size = new System.Drawing.Size(364, 20);
-                        this.lblOperacion.TabIndex = 2;
-                        this.lblOperacion.Text = "Puede demorar varios minutos.";
-                        this.lblOperacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaOperacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaOperacion.Location = new System.Drawing.Point(88, 64);
+                        this.EtiquetaOperacion.Name = "lblOperacion";
+                        this.EtiquetaOperacion.Size = new System.Drawing.Size(364, 20);
+                        this.EtiquetaOperacion.TabIndex = 2;
+                        this.EtiquetaOperacion.Text = "Puede demorar varios minutos.";
+                        this.EtiquetaOperacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // LabelEstado
                         // 
-                        this.LabelEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.LabelEstado.Location = new System.Drawing.Point(88, 20);
-                        this.LabelEstado.Name = "LabelEstado";
-                        this.LabelEstado.Size = new System.Drawing.Size(364, 32);
-                        this.LabelEstado.TabIndex = 3;
-                        this.LabelEstado.Text = "Por favor aguarde mientras se verifica si existe una nueva versión del sistema.";
+                        this.EtiquetaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaEstado.Location = new System.Drawing.Point(88, 20);
+                        this.EtiquetaEstado.Name = "LabelEstado";
+                        this.EtiquetaEstado.Size = new System.Drawing.Size(364, 32);
+                        this.EtiquetaEstado.TabIndex = 3;
+                        this.EtiquetaEstado.Text = "Por favor aguarde mientras se verifica si existe una nueva versión del sistema.";
                         // 
                         // GProgressBar1
                         // 
@@ -120,8 +120,8 @@ namespace Lazaro.Actualizador
                         this.ClientSize = new System.Drawing.Size(474, 138);
                         this.ControlBox = false;
                         this.Controls.Add(this.GProgressBar1);
-                        this.Controls.Add(this.LabelEstado);
-                        this.Controls.Add(this.lblOperacion);
+                        this.Controls.Add(this.EtiquetaEstado);
+                        this.Controls.Add(this.EtiquetaOperacion);
                         this.Controls.Add(this.PictureBox1);
                         this.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -137,5 +137,18 @@ namespace Lazaro.Actualizador
 
                 #endregion
 
+                public string TextoOperacion
+                {
+                        get
+                        {
+                                return EtiquetaOperacion.Text;
+                        }
+                        set
+                        {
+                                EtiquetaOperacion.Text = value;
+                                EtiquetaOperacion.Refresh();
+                        }
+
+                }
         }
 }

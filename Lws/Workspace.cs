@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -50,7 +50,6 @@ namespace Lws
 		public LoginData CurrentUser;
 		public int DataBaseCount = 0;
 		public bool DebugMode = false;
-                public bool AvoidWinForms = true;               // Evitar utilizar Windows Forms, para aplicaciones de consola
 
 		public Workspace()
 			: this("default")
@@ -140,7 +139,6 @@ namespace Lws
                         {
                                 if (m_DataView == null) {
                                         m_DataView = new Lws.Data.DataView(this);
-                                        m_DataBase.AvoidWinForms = this.AvoidWinForms;
                                         m_DataView.DataBase = this.DefaultDataBase;
                                 }
                                 return m_DataView;
@@ -150,7 +148,6 @@ namespace Lws
                 internal Lfx.Data.DataBase GetDataBase()
 		{
                         Lfx.Data.DataBase Res = new Lfx.Data.DataBase();
-                        Res.AvoidWinForms = this.AvoidWinForms;
                         LastDataBaseHandle++;
                         Res.Open();
                         return Res;

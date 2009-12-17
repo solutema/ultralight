@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -78,9 +78,16 @@ namespace Lws.Config
 			set
 			{
 				CONFIGFILENAME = value;
-				//Si no tiene ruta, asumo la carpeta de la aplicación
-				if(!System.IO.Path.IsPathRooted(CONFIGFILENAME)) 
-					CONFIGFILENAME = Lfx.Environment.Folders.ApplicationDataFolder + CONFIGFILENAME;
+
+                                if (!System.IO.Path.IsPathRooted(CONFIGFILENAME)) {
+                                        // Si no tiene ruta, busco en la carpeta de datos
+                                        // o junto al ejecutable (para aplicaciones portables)
+                                        if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationDataFolder + CONFIGFILENAME)) {
+                                                CONFIGFILENAME = Lfx.Environment.Folders.ApplicationDataFolder + CONFIGFILENAME;
+                                        } else if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + CONFIGFILENAME)) {
+                                                CONFIGFILENAME = Lfx.Environment.Folders.ApplicationFolder + CONFIGFILENAME;
+                                        }
+                                }
 			}
 		}
 

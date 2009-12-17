@@ -14,7 +14,7 @@ using System.Security.Permissions;
 [assembly: AssemblyDescription("Lázaro Workspace versión 1.0")]
 [assembly: AssemblyCompany("South Bridge SRL")]
 [assembly: AssemblyProduct("Lázaro")]
-[assembly: AssemblyCopyright("Copyright 2004-2009 South Bridge S.R.L.")]
+[assembly: AssemblyCopyright("Copyright 2004-2010 South Bridge S.R.L.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: System.Runtime.InteropServices.ComVisible(false)]
