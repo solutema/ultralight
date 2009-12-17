@@ -35,7 +35,6 @@
                         this.EntradaTipoDeRango.AutoTab = true;
                         this.EntradaTipoDeRango.DetailField = null;
                         this.EntradaTipoDeRango.Filter = null;
-                        this.EntradaTipoDeRango.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaTipoDeRango.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaTipoDeRango.KeyField = null;
                         this.EntradaTipoDeRango.Location = new System.Drawing.Point(0, 0);
@@ -67,7 +66,6 @@
                         this.EntradaDesde.AutoTab = true;
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaDesde.DecimalPlaces = -1;
-                        this.EntradaDesde.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDesde.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaDesde.Location = new System.Drawing.Point(120, 8);
@@ -94,7 +92,6 @@
                         this.EntradaHasta.AutoTab = true;
                         this.EntradaHasta.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaHasta.DecimalPlaces = -1;
-                        this.EntradaHasta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaHasta.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaHasta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaHasta.Location = new System.Drawing.Point(292, 8);
@@ -123,7 +120,6 @@
                         this.EntradaRango.AutoTab = true;
                         this.EntradaRango.DetailField = null;
                         this.EntradaRango.Filter = null;
-                        this.EntradaRango.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaRango.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaRango.KeyField = null;
                         this.EntradaRango.Location = new System.Drawing.Point(128, 0);

@@ -85,7 +85,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaImporte.AutoTab = true;
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Money;
                         this.EntradaImporte.DecimalPlaces = -1;
-                        this.EntradaImporte.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporte.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaImporte.Location = new System.Drawing.Point(140, 0);
@@ -157,7 +156,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFechaCobro.AutoTab = true;
                         this.EntradaFechaCobro.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaFechaCobro.DecimalPlaces = -1;
-                        this.EntradaFechaCobro.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFechaCobro.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaCobro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaFechaCobro.Location = new System.Drawing.Point(140, 96);
@@ -202,7 +200,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFechaEmision.AutoTab = true;
                         this.EntradaFechaEmision.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaFechaEmision.DecimalPlaces = -1;
-                        this.EntradaFechaEmision.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFechaEmision.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaEmision.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaFechaEmision.Location = new System.Drawing.Point(140, 64);
@@ -229,7 +226,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaNumeroCheque.AutoTab = true;
                         this.EntradaNumeroCheque.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaNumeroCheque.DecimalPlaces = -1;
-                        this.EntradaNumeroCheque.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNumeroCheque.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumeroCheque.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaNumeroCheque.Location = new System.Drawing.Point(140, 32);
@@ -268,7 +264,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaBanco.DetailField = "nombre";
                         this.EntradaBanco.ExtraDetailFields = null;
                         this.EntradaBanco.Filter = "";
-                        this.EntradaBanco.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaBanco.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.KeyField = "id_banco";
@@ -302,7 +297,6 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.FrameTitulo.AutoHeight = false;
                         this.FrameTitulo.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.FrameTitulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.FrameTitulo.Location = new System.Drawing.Point(0, 0);
                         this.FrameTitulo.Name = "FrameTitulo";
                         this.FrameTitulo.Padding = new System.Windows.Forms.Padding(2);
@@ -342,7 +336,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCuenta.DetailField = "nombre";
                         this.EntradaCuenta.ExtraDetailFields = null;
                         this.EntradaCuenta.Filter = "";
-                        this.EntradaCuenta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCuenta.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCuenta.FreeTextCode = "";
                         this.EntradaCuenta.KeyField = "id_cuenta";
@@ -408,7 +401,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaAutorizacion.AutoTab = true;
                         this.EntradaAutorizacion.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaAutorizacion.DecimalPlaces = -1;
-                        this.EntradaAutorizacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaAutorizacion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaAutorizacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaAutorizacion.Location = new System.Drawing.Point(140, 100);
@@ -434,7 +426,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCupon.AutoTab = true;
                         this.EntradaCupon.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaCupon.DecimalPlaces = -1;
-                        this.EntradaCupon.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCupon.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCupon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaCupon.Location = new System.Drawing.Point(140, 68);
@@ -460,7 +451,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaInteres.AutoTab = true;
                         this.EntradaInteres.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaInteres.DecimalPlaces = -1;
-                        this.EntradaInteres.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaInteres.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaInteres.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaInteres.Location = new System.Drawing.Point(368, 60);
@@ -483,7 +473,6 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         // Label14
                         // 
-                        this.Label14.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label14.Location = new System.Drawing.Point(300, 28);
                         this.Label14.Name = "Label14";
                         this.Label14.Size = new System.Drawing.Size(68, 24);
@@ -498,7 +487,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCuotas.AutoTab = true;
                         this.EntradaCuotas.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaCuotas.DecimalPlaces = -1;
-                        this.EntradaCuotas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCuotas.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCuotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaCuotas.Location = new System.Drawing.Point(228, 28);
@@ -521,7 +509,6 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         // label4
                         // 
-                        this.label4.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label4.Location = new System.Drawing.Point(156, 28);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(72, 24);
@@ -539,7 +526,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaPlan.DetailField = "nombre";
                         this.EntradaPlan.ExtraDetailFields = null;
                         this.EntradaPlan.Filter = "";
-                        this.EntradaPlan.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaPlan.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaPlan.FreeTextCode = "";
                         this.EntradaPlan.KeyField = "id_plan";
@@ -563,7 +549,6 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         // Label10
                         // 
-                        this.Label10.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label10.Location = new System.Drawing.Point(0, 100);
                         this.Label10.Name = "Label10";
                         this.Label10.Size = new System.Drawing.Size(136, 24);
@@ -573,7 +558,6 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         // Label11
                         // 
-                        this.Label11.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label11.Location = new System.Drawing.Point(0, 68);
                         this.Label11.Name = "Label11";
                         this.Label11.Size = new System.Drawing.Size(136, 24);
@@ -583,7 +567,6 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         // Label15
                         // 
-                        this.Label15.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label15.Location = new System.Drawing.Point(0, 0);
                         this.Label15.Name = "Label15";
                         this.Label15.Size = new System.Drawing.Size(136, 24);
@@ -611,7 +594,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaObs.AutoTab = true;
                         this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaObs.DecimalPlaces = -1;
-                        this.EntradaObs.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaObs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaObs.Location = new System.Drawing.Point(140, 0);
@@ -680,7 +662,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFormaDePago.DetailField = "nombre";
                         this.EntradaFormaDePago.ExtraDetailFields = null;
                         this.EntradaFormaDePago.Filter = "pagos=1";
-                        this.EntradaFormaDePago.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFormaDePago.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFormaDePago.FreeTextCode = "";
                         this.EntradaFormaDePago.KeyField = "id_formapago";
@@ -704,7 +685,6 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         // label13
                         // 
-                        this.label13.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label13.Location = new System.Drawing.Point(0, 32);
                         this.label13.Name = "label13";
                         this.label13.Size = new System.Drawing.Size(456, 20);

@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lcc
+namespace Lcc.Vista
 {
-        public partial class LccControl
+        public partial class ControlVista
         {
                 private void InitializeComponent()
                 {
                         this.SuspendLayout();
                         // 
-                        // LccControl
+                        // ControlVista
                         // 
-                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.Name = "LccControl";
+                        this.BackColor = System.Drawing.SystemColors.Window;
+                        this.Name = "ControlVista";
+                        this.Size = new System.Drawing.Size(480, 200);
                         this.ResumeLayout(false);
-
                 }
         }
 }

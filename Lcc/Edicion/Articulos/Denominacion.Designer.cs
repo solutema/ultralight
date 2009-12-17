@@ -71,7 +71,6 @@
                         this.EntradaCategoria.Dock = System.Windows.Forms.DockStyle.Right;
                         this.EntradaCategoria.ExtraDetailFields = null;
                         this.EntradaCategoria.Filter = "";
-                        this.EntradaCategoria.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaCategoria.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCategoria.FreeTextCode = "";
                         this.EntradaCategoria.KeyField = "id_cat_articulo";
@@ -115,7 +114,6 @@
                         this.EntradaMarca.Dock = System.Windows.Forms.DockStyle.Right;
                         this.EntradaMarca.ExtraDetailFields = null;
                         this.EntradaMarca.Filter = "";
-                        this.EntradaMarca.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaMarca.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaMarca.FreeTextCode = "";
                         this.EntradaMarca.KeyField = "id_marca";
@@ -158,7 +156,6 @@
                         this.EntradaModelo.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaModelo.DecimalPlaces = -1;
                         this.EntradaModelo.Dock = System.Windows.Forms.DockStyle.Right;
-                        this.EntradaModelo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaModelo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaModelo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaModelo.Location = new System.Drawing.Point(67, 0);
@@ -199,7 +196,6 @@
                         this.EntradaSerie.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaSerie.DecimalPlaces = -1;
                         this.EntradaSerie.Dock = System.Windows.Forms.DockStyle.Right;
-                        this.EntradaSerie.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaSerie.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaSerie.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaSerie.Location = new System.Drawing.Point(67, 0);
@@ -240,7 +236,6 @@
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
                         this.EntradaNombre.Dock = System.Windows.Forms.DockStyle.Right;
-                        this.EntradaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaNombre.Location = new System.Drawing.Point(67, 0);
@@ -281,7 +276,6 @@
                         this.EntradaDescripcion.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaDescripcion.DecimalPlaces = -1;
                         this.EntradaDescripcion.Dock = System.Windows.Forms.DockStyle.Right;
-                        this.EntradaDescripcion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaDescripcion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDescripcion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaDescripcion.Location = new System.Drawing.Point(67, 0);

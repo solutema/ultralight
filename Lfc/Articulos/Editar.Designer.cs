@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,10 +35,6 @@ namespace Lfc.Articulos
 
                 private void InitializeComponent()
                 {
-                        this.Frame3 = new Lui.Forms.Frame();
-                        this.EntradaImagen = new System.Windows.Forms.PictureBox();
-                        this.BotonQuitarImagen = new Lui.Forms.Button();
-                        this.BotonSeleccionarImagen = new Lui.Forms.Button();
                         this.Frame2 = new Lui.Forms.Frame();
                         this.BotonArticuloVerConformación = new Lui.Forms.Button();
                         this.BotonUnidad = new Lui.Forms.Button();
@@ -95,12 +91,11 @@ namespace Lfc.Articulos
                         this.EntradaDescripcion = new Lui.Forms.TextBox();
                         this.cmdDescripcion = new Lui.Forms.Button();
                         this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+                        this.EntradaImagen = new Lcc.Edicion.Imagen();
                         this.Frame4 = new Lui.Forms.Frame();
                         this.EntradaTags = new Lui.Forms.FieldTags();
                         this.frame5 = new Lui.Forms.Frame();
-                        this.etiquetas1 = new Lcc.Controles.Datos.Etiquetas();
-                        this.Frame3.SuspendLayout();
-                        ((System.ComponentModel.ISupportInitialize)(this.EntradaImagen)).BeginInit();
+                        this.EntradaEtiquetas = new Lcc.Controles.Datos.Etiquetas();
                         this.Frame2.SuspendLayout();
                         this.Frame1.SuspendLayout();
                         this.flowLayoutPanel1.SuspendLayout();
@@ -115,73 +110,6 @@ namespace Lfc.Articulos
                         // CancelCommandButton
                         // 
                         this.CancelCommandButton.Location = new System.Drawing.Point(805, 7);
-                        // 
-                        // Frame3
-                        // 
-                        this.Frame3.AutoHeight = false;
-                        this.Frame3.Controls.Add(this.EntradaImagen);
-                        this.Frame3.Controls.Add(this.BotonQuitarImagen);
-                        this.Frame3.Controls.Add(this.BotonSeleccionarImagen);
-                        this.Frame3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.Frame3.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.Frame3.Location = new System.Drawing.Point(467, 370);
-                        this.Frame3.Name = "Frame3";
-                        this.Frame3.Padding = new System.Windows.Forms.Padding(2);
-                        this.Frame3.ReadOnly = false;
-                        this.Frame3.Size = new System.Drawing.Size(292, 168);
-                        this.Frame3.TabIndex = 2;
-                        this.Frame3.Text = "Imagen";
-                        this.Frame3.ToolTipText = "";
-                        // 
-                        // EntradaImagen
-                        // 
-                        this.EntradaImagen.BackColor = System.Drawing.Color.White;
-                        this.EntradaImagen.Location = new System.Drawing.Point(10, 30);
-                        this.EntradaImagen.Name = "EntradaImagen";
-                        this.EntradaImagen.Size = new System.Drawing.Size(160, 120);
-                        this.EntradaImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-                        this.EntradaImagen.TabIndex = 100;
-                        this.EntradaImagen.TabStop = false;
-                        // 
-                        // BotonQuitarImagen
-                        // 
-                        this.BotonQuitarImagen.AutoHeight = false;
-                        this.BotonQuitarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonQuitarImagen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonQuitarImagen.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.BotonQuitarImagen.Image = null;
-                        this.BotonQuitarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonQuitarImagen.Location = new System.Drawing.Point(178, 118);
-                        this.BotonQuitarImagen.Name = "BotonQuitarImagen";
-                        this.BotonQuitarImagen.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonQuitarImagen.ReadOnly = false;
-                        this.BotonQuitarImagen.Size = new System.Drawing.Size(108, 32);
-                        this.BotonQuitarImagen.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
-                        this.BotonQuitarImagen.Subtext = "F5";
-                        this.BotonQuitarImagen.TabIndex = 99;
-                        this.BotonQuitarImagen.Text = "Quitar";
-                        this.BotonQuitarImagen.ToolTipText = "";
-                        this.BotonQuitarImagen.Click += new System.EventHandler(this.cmdImagenQuitar_Click);
-                        // 
-                        // BotonSeleccionarImagen
-                        // 
-                        this.BotonSeleccionarImagen.AutoHeight = false;
-                        this.BotonSeleccionarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonSeleccionarImagen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonSeleccionarImagen.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.BotonSeleccionarImagen.Image = null;
-                        this.BotonSeleccionarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonSeleccionarImagen.Location = new System.Drawing.Point(178, 82);
-                        this.BotonSeleccionarImagen.Name = "BotonSeleccionarImagen";
-                        this.BotonSeleccionarImagen.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonSeleccionarImagen.ReadOnly = false;
-                        this.BotonSeleccionarImagen.Size = new System.Drawing.Size(108, 32);
-                        this.BotonSeleccionarImagen.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
-                        this.BotonSeleccionarImagen.Subtext = "F4";
-                        this.BotonSeleccionarImagen.TabIndex = 98;
-                        this.BotonSeleccionarImagen.Text = "Seleccionar";
-                        this.BotonSeleccionarImagen.ToolTipText = "";
-                        this.BotonSeleccionarImagen.Click += new System.EventHandler(this.cmdImagen_Click);
                         // 
                         // Frame2
                         // 
@@ -1289,7 +1217,7 @@ namespace Lfc.Articulos
                         this.flowLayoutPanel1.AutoScroll = true;
                         this.flowLayoutPanel1.Controls.Add(this.Frame1);
                         this.flowLayoutPanel1.Controls.Add(this.Frame2);
-                        this.flowLayoutPanel1.Controls.Add(this.Frame3);
+                        this.flowLayoutPanel1.Controls.Add(this.EntradaImagen);
                         this.flowLayoutPanel1.Controls.Add(this.Frame4);
                         this.flowLayoutPanel1.Controls.Add(this.frame5);
                         this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1298,6 +1226,17 @@ namespace Lfc.Articulos
                         this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(4);
                         this.flowLayoutPanel1.Size = new System.Drawing.Size(913, 470);
                         this.flowLayoutPanel1.TabIndex = 0;
+                        // 
+                        // EntradaImagen
+                        // 
+                        this.EntradaImagen.AutoHeight = true;
+                        this.EntradaImagen.AutoNav = true;
+                        this.EntradaImagen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaImagen.Location = new System.Drawing.Point(467, 370);
+                        this.EntradaImagen.Name = "EntradaImagen";
+                        this.EntradaImagen.ReadOnly = false;
+                        this.EntradaImagen.Size = new System.Drawing.Size(349, 197);
+                        this.EntradaImagen.TabIndex = 3;
                         // 
                         // Frame4
                         // 
@@ -1331,30 +1270,30 @@ namespace Lfc.Articulos
                         // frame5
                         // 
                         this.frame5.AutoHeight = false;
-                        this.frame5.Controls.Add(this.etiquetas1);
+                        this.frame5.Controls.Add(this.EntradaEtiquetas);
                         this.frame5.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.frame5.Location = new System.Drawing.Point(466, 575);
                         this.frame5.Name = "frame5";
                         this.frame5.Padding = new System.Windows.Forms.Padding(2);
                         this.frame5.ReadOnly = false;
-                        this.frame5.Size = new System.Drawing.Size(380, 184);
+                        this.frame5.Size = new System.Drawing.Size(380, 178);
                         this.frame5.TabIndex = 4;
                         this.frame5.Text = "Etiquetas";
                         this.frame5.ToolTipText = "";
                         // 
                         // etiquetas1
                         // 
-                        this.etiquetas1.AutoHeight = false;
-                        this.etiquetas1.AutoNav = true;
-                        this.etiquetas1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.etiquetas1.Location = new System.Drawing.Point(11, 29);
-                        this.etiquetas1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-                        this.etiquetas1.Name = "etiquetas1";
-                        this.etiquetas1.Padding = new System.Windows.Forms.Padding(2);
-                        this.etiquetas1.ReadOnly = false;
-                        this.etiquetas1.Size = new System.Drawing.Size(364, 137);
-                        this.etiquetas1.TabIndex = 1;
-                        this.etiquetas1.Text = "etiquetas1";
+                        this.EntradaEtiquetas.AutoHeight = false;
+                        this.EntradaEtiquetas.AutoNav = true;
+                        this.EntradaEtiquetas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EntradaEtiquetas.Location = new System.Drawing.Point(11, 29);
+                        this.EntradaEtiquetas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+                        this.EntradaEtiquetas.Name = "etiquetas1";
+                        this.EntradaEtiquetas.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEtiquetas.ReadOnly = false;
+                        this.EntradaEtiquetas.Size = new System.Drawing.Size(364, 137);
+                        this.EntradaEtiquetas.TabIndex = 1;
+                        this.EntradaEtiquetas.Text = "etiquetas1";
                         // 
                         // Editar
                         // 
@@ -1367,9 +1306,6 @@ namespace Lfc.Articulos
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormArticulosEditar_KeyDown);
                         this.Controls.SetChildIndex(this.flowLayoutPanel1, 0);
                         this.Controls.SetChildIndex(this.cmdDescripcion, 0);
-                        this.Frame3.ResumeLayout(false);
-                        this.Frame3.PerformLayout();
-                        ((System.ComponentModel.ISupportInitialize)(this.EntradaImagen)).EndInit();
                         this.Frame2.ResumeLayout(false);
                         this.Frame2.PerformLayout();
                         this.Frame1.ResumeLayout(false);
@@ -1391,9 +1327,6 @@ namespace Lfc.Articulos
                 internal Lui.Forms.ComboBox EntradaUnidad;
                 internal System.Windows.Forms.Label label19;
                 internal Lui.Forms.Button BotonUnidad;
-                internal Lui.Forms.Button BotonQuitarImagen;
-                internal System.Windows.Forms.PictureBox EntradaImagen;
-                internal Lui.Forms.Button BotonSeleccionarImagen;
                 internal System.Windows.Forms.Label Label15;
                 internal Lui.Forms.TextBox EntradaCodigo4;
                 internal System.Windows.Forms.Label EtiquetaCodigo4;
@@ -1409,7 +1342,6 @@ namespace Lfc.Articulos
                 internal System.Windows.Forms.Label Label13;
                 internal Lui.Forms.TextBox EntradaUrl;
                 internal System.Windows.Forms.Label Label12;
-                internal Lui.Forms.Frame Frame3;
                 internal Lui.Forms.TextBox EntradaStockMinimo;
                 internal System.Windows.Forms.Label Label11;
                 internal Lui.Forms.TextBox EntradaPvp;
@@ -1445,9 +1377,10 @@ namespace Lfc.Articulos
                 internal Lui.Forms.DetailBox EntradaCuenta;
                 internal System.Windows.Forms.Label label17;
                 private Lui.Forms.Frame frame5;
-                private Lcc.Controles.Datos.Etiquetas etiquetas1;
+                private Lcc.Controles.Datos.Etiquetas EntradaEtiquetas;
                 internal Lui.Forms.TextBox EntradaGarantia;
                 internal System.Windows.Forms.Label label20;
                 internal Lui.Forms.Button BotonArticuloVerConformación;
+                private Lcc.Edicion.Imagen EntradaImagen;
         }
 }

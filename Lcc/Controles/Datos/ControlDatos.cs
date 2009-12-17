@@ -42,20 +42,6 @@ namespace Lcc.Controles.Datos
                 {
                 }
 
-                /// <summary>
-                /// Actualiza el elemento con los datos del control.
-                /// </summary>
-                public virtual void ActualizarElemento()
-                {
-                }
-
-                /// <summary>
-                /// Valida los datos del control.
-                /// </summary>
-                public virtual Lfx.Types.OperationResult ValidarControl()
-                {
-                        return new Lfx.Types.SuccessOperationResult();
-                }
 
                 [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public Lws.Data.DataView DataView

@@ -1,4 +1,4 @@
-// Copyright 2004-2009 South Bridge S.R.L.
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -56,7 +56,7 @@ namespace Lfc.Articulos
                         Lbl.Articulos.Articulo Articulo = new Lbl.Articulos.Articulo(this.DataView);
                         Articulo.Crear();
                         Articulo.Tipo = Lbl.Articulos.Tipos.Regular;
-                        EntradaTags.Registro = Articulo;
+                        EntradaTags.Elemento = Articulo;
 
                         this.FromRow(Articulo);
                         return new Lfx.Types.SuccessOperationResult();
@@ -65,7 +65,7 @@ namespace Lfc.Articulos
                 public override Lui.Printing.ItemPrint FormatForPrinting(Lui.Printing.ItemPrint ImprimirItem)
                 {
                         ImprimirItem.Titulo = EntradaNombre.Text;
-                        ImprimirItem.Imagen = EntradaImagen.Image;
+                        ImprimirItem.Imagen = EntradaImagen.Elemento.Imagen;
                         ImprimirItem.ParesAgregar(EtiquetaCodigo1.Text, EntradaCodigo1.Text, 1);
                         ImprimirItem.ParesAgregar(EtiquetaCodigo2.Text, EntradaCodigo2.Text, 1);
                         ImprimirItem.ParesAgregar(EtiquetaCodigo3.Text, EntradaCodigo3.Text, 1);
@@ -137,45 +137,11 @@ namespace Lfc.Articulos
                                                 BotonInfoCosto.PerformClick();
                                         break;
 
-                                case Keys.F4:
-                                        e.Handled = true;
-                                        if (BotonSeleccionarImagen.Enabled && BotonSeleccionarImagen.Visible)
-                                                BotonSeleccionarImagen.PerformClick();
-                                        break;
-
-                                case Keys.F5:
-                                        e.Handled = true;
-                                        if (BotonQuitarImagen.Enabled && BotonQuitarImagen.Visible)
-                                                BotonQuitarImagen.PerformClick();
-                                        break;
-
                                 case Keys.F7:
                                         e.Handled = true;
                                         if (cmdDescripcion.Enabled && cmdDescripcion.Visible)
                                                 cmdDescripcion.PerformClick();
                                         break;
-                        }
-                }
-
-                private void cmdImagenQuitar_Click(object sender, System.EventArgs e)
-                {
-                        EntradaImagen.Image = null;
-                        EntradaImagen.Tag = "";
-                        this.CachedRow.Imagen = null;
-                }
-
-                private void cmdImagen_Click(object sender, System.EventArgs e)
-                {
-                        OpenFileDialog Abrir = new OpenFileDialog();
-                        Abrir.Filter = "Archivos JPEG|*.jpg";
-                        Abrir.Multiselect = false;
-                        Abrir.ValidateNames = true;
-
-                        if (Abrir.ShowDialog() == DialogResult.OK) {
-                                EntradaImagen.SizeMode = PictureBoxSizeMode.StretchImage;
-                                EntradaImagen.Image = Image.FromFile(Abrir.FileName);
-                                this.CachedRow.Imagen = EntradaImagen.Image;
-                                EntradaImagen.Tag = Abrir.FileName;
                         }
                 }
 
@@ -430,130 +396,120 @@ namespace Lfc.Articulos
                 {
                         base.FromRow(row);
 
-                        Lbl.Articulos.Articulo Res = row as Lbl.Articulos.Articulo;
+                        Lbl.Articulos.Articulo Item = row as Lbl.Articulos.Articulo;
 
-                        EntradaCodigo1.Text = Res.Codigo1;
-                        EntradaCodigo2.Text = Res.Codigo2;
-                        EntradaCodigo3.Text = Res.Codigo3;
-                        EntradaCodigo4.Text = Res.Codigo4;
-                        if (Res.Categoria == null)
+                        EntradaCodigo1.Text = Item.Codigo1;
+                        EntradaCodigo2.Text = Item.Codigo2;
+                        EntradaCodigo3.Text = Item.Codigo3;
+                        EntradaCodigo4.Text = Item.Codigo4;
+                        if (Item.Categoria == null)
                                 EntradaCategoria.TextInt = 0;
                         else
-                                EntradaCategoria.TextInt = Res.Categoria.Id;
-                        if (Res.Marca == null)
+                                EntradaCategoria.TextInt = Item.Categoria.Id;
+                        if (Item.Marca == null)
                                 EntradaMarca.TextInt = 0;
                         else
-                                EntradaMarca.TextInt = Res.Marca.Id;
+                                EntradaMarca.TextInt = Item.Marca.Id;
 
-                        if (Res.Cuenta == null)
+                        if (Item.Cuenta == null)
                                 EntradaCuenta.TextInt = 0;
                         else
-                                EntradaCuenta.TextInt = Res.Cuenta.Id;
+                                EntradaCuenta.TextInt = Item.Cuenta.Id;
 
-                        EntradaModelo.Text = Res.Modelo;
-                        EntradaSerie.Text = Res.Serie;
-                        EntradaNombre.Text = Res.Nombre;
-                        EntradaUrl.Text = Res.Url;
-                        if (Res.Proveedor == null)
+                        EntradaModelo.Text = Item.Modelo;
+                        EntradaSerie.Text = Item.Serie;
+                        EntradaNombre.Text = Item.Nombre;
+                        EntradaUrl.Text = Item.Url;
+                        if (Item.Proveedor == null)
                                 EntradaProveedor.TextInt = 0;
                         else
-                                EntradaProveedor.TextInt = Res.Proveedor.Id;
-                        EntradaDescripcion.Text = Res.Descripcion;
-                        EntradaDescripcion2.Text = Res.Descripcion2;
-                        EntradaDestacado.TextKey = Res.Destacado ? "1" : "0";
-                        EntradaWeb.TextKey = System.Convert.ToInt32(Res.Destacado).ToString();
+                                EntradaProveedor.TextInt = Item.Proveedor.Id;
+                        EntradaDescripcion.Text = Item.Descripcion;
+                        EntradaDescripcion2.Text = Item.Descripcion2;
+                        EntradaDestacado.TextKey = Item.Destacado ? "1" : "0";
+                        EntradaWeb.TextKey = System.Convert.ToInt32(Item.Destacado).ToString();
 
                         IgnorarCostoTextChanged++;
-                        EntradaCosto.Text = Lfx.Types.Formatting.FormatCurrency(Res.Costo, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto);
-                        if (Res.Margen == null) {
+                        EntradaCosto.Text = Lfx.Types.Formatting.FormatCurrency(Item.Costo, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto);
+                        if (Item.Margen == null) {
                                 EntradaMargen.TextKey = "";
                                 EntradaMargen.Text = "Otro";
                         } else {
-                                EntradaMargen.TextKey = Res.Margen.Id.ToString();
+                                EntradaMargen.TextKey = Item.Margen.Id.ToString();
                         }
-                        EntradaPvp.Text = Lfx.Types.Formatting.FormatCurrency(Res.PVP, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto);
+                        EntradaPvp.Text = Lfx.Types.Formatting.FormatCurrency(Item.PVP, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto);
 
                         IgnorarCostoTextChanged--;
 
-                        EntradaUsaStock.TextKey = Res.ControlaStock ? "1" : "0";
-                        EntradaStockActual.Text = Lfx.Types.Formatting.FormatNumber(Res.StockActual(), this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
-                        EntradaUnidad.TextKey = Res.Unidad;
-                        Rendimiento = Res.Rendimiento;
-                        UnidadRendimiento = Res.UnidadRendimiento;
-                        EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatNumber(Res.StockMinimo, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
-                        EntradaGarantia.Text = Res.Garantia.ToString();
-                        EntradaImagen.Image = Res.Imagen;
-                        this.EntradaTags.Registro = Res;
-                        EntradaImagen.Tag = "*";
-                        etiquetas1.Elemento = row;
+                        EntradaUsaStock.TextKey = Item.ControlaStock ? "1" : "0";
+                        EntradaStockActual.Text = Lfx.Types.Formatting.FormatNumber(Item.StockActual(), this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
+                        EntradaUnidad.TextKey = Item.Unidad;
+                        Rendimiento = Item.Rendimiento;
+                        UnidadRendimiento = Item.UnidadRendimiento;
+                        EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatNumber(Item.StockMinimo, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
+                        EntradaGarantia.Text = Item.Garantia.ToString();
+                        EntradaImagen.Elemento = Item;
+                        EntradaTags.Elemento = Item;
+                        EntradaEtiquetas.Elemento = Item;
 
                         SaveButton.Visible = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "products.write");
 
                         if (this.CachedRow.Existe)
-                                this.Text = "Artículos: " + Res.Nombre;
+                                this.Text = "Artículos: " + Item.Nombre;
                         else
                                 this.Text = "Artículos: Nuevo";
                 }
 
                 public override Lbl.ElementoDeDatos ToRow()
                 {
-                        Lbl.Articulos.Articulo Res = this.CachedRow as Lbl.Articulos.Articulo;
+                        Lbl.Articulos.Articulo Item = this.CachedRow as Lbl.Articulos.Articulo;
 
-                        Res.Codigo1 = EntradaCodigo1.Text;
-                        Res.Codigo2 = EntradaCodigo2.Text;
-                        Res.Codigo3 = EntradaCodigo3.Text;
-                        Res.Codigo4 = EntradaCodigo4.Text;
+                        Item.Codigo1 = EntradaCodigo1.Text;
+                        Item.Codigo2 = EntradaCodigo2.Text;
+                        Item.Codigo3 = EntradaCodigo3.Text;
+                        Item.Codigo4 = EntradaCodigo4.Text;
                         if (EntradaCategoria.TextInt != 0)
-                                Res.Categoria = new Lbl.Articulos.Categoria(Res.DataView, EntradaCategoria.TextInt);
+                                Item.Categoria = new Lbl.Articulos.Categoria(Item.DataView, EntradaCategoria.TextInt);
                         else
-                                Res.Categoria = null;
+                                Item.Categoria = null;
                         if (EntradaMarca.TextInt != 0)
-                                Res.Marca = new Lbl.Articulos.Marca(Res.DataView, EntradaMarca.TextInt);
+                                Item.Marca = new Lbl.Articulos.Marca(Item.DataView, EntradaMarca.TextInt);
                         else
-                                Res.Marca = null;
+                                Item.Marca = null;
                         if (EntradaCuenta.TextInt != 0)
-                                Res.Cuenta = new Lbl.Cuentas.CuentaRegular(Res.DataView, EntradaCuenta.TextInt);
+                                Item.Cuenta = new Lbl.Cuentas.CuentaRegular(Item.DataView, EntradaCuenta.TextInt);
                         else
-                                Res.Cuenta = null;
+                                Item.Cuenta = null;
 
-                        Res.Modelo = EntradaModelo.Text;
-                        Res.Serie = EntradaSerie.Text;
-                        Res.Nombre = EntradaNombre.Text;
-                        Res.Url = EntradaUrl.Text;
+                        Item.Modelo = EntradaModelo.Text;
+                        Item.Serie = EntradaSerie.Text;
+                        Item.Nombre = EntradaNombre.Text;
+                        Item.Url = EntradaUrl.Text;
                         if (EntradaProveedor.TextInt != 0)
-                                Res.Proveedor = new Lbl.Personas.Persona(Res.DataView, EntradaProveedor.TextInt);
+                                Item.Proveedor = new Lbl.Personas.Persona(Item.DataView, EntradaProveedor.TextInt);
                         else
-                                Res.Proveedor = null;
-                        Res.Descripcion = EntradaDescripcion.Text;
-                        Res.Descripcion2 = EntradaDescripcion2.Text;
-                        Res.Destacado = Lfx.Types.Parsing.ParseInt(EntradaDestacado.TextKey) != 0;
-                        Res.Costo = Lfx.Types.Parsing.ParseCurrency(EntradaCosto.Text);
+                                Item.Proveedor = null;
+                        Item.Descripcion = EntradaDescripcion.Text;
+                        Item.Descripcion2 = EntradaDescripcion2.Text;
+                        Item.Destacado = Lfx.Types.Parsing.ParseInt(EntradaDestacado.TextKey) != 0;
+                        Item.Costo = Lfx.Types.Parsing.ParseCurrency(EntradaCosto.Text);
 
                         if (Lfx.Types.Parsing.ParseInt(EntradaMargen.TextKey) != 0)
-                                Res.Margen = new Lbl.Articulos.Margen(Res.DataView, Lfx.Types.Parsing.ParseInt(EntradaMargen.TextKey));
+                                Item.Margen = new Lbl.Articulos.Margen(Item.DataView, Lfx.Types.Parsing.ParseInt(EntradaMargen.TextKey));
                         else
-                                Res.Margen = null;
+                                Item.Margen = null;
 
-                        Res.PVP = Lfx.Types.Parsing.ParseCurrency(EntradaPvp.Text);
-                        Res.ControlaStock = Lfx.Types.Parsing.ParseInt(EntradaUsaStock.TextKey) != 0;
-                        Res.StockMinimo = Lfx.Types.Parsing.ParseStock(EntradaStockMinimo.Text);
-                        Res.Unidad = EntradaUnidad.TextKey;
-                        Res.Rendimiento = Rendimiento;
-                        Res.UnidadRendimiento = UnidadRendimiento;
-                        Res.Estado = 1;
-                        Res.Garantia = Lfx.Types.Parsing.ParseInt(EntradaGarantia.Text);
-                        Res.Publicacion = ((Lbl.Articulos.Publicacion)Lfx.Types.Parsing.ParseInt(EntradaWeb.TextKey));
-                        EntradaTags.ActualizarRegistro(Res);
-
-                        if (EntradaImagen.Tag.ToString() == "*") {
-                                // Queda la que está
-                        } else if (EntradaImagen.Tag.ToString().Length == 0) {
-                                // Quitar imagen actual
-                                Res.Imagen = null;
-                        } else {
-                                // Cargar imagen nueva
-                                Res.Imagen = EntradaImagen.Image;
-                        }
+                        Item.PVP = Lfx.Types.Parsing.ParseCurrency(EntradaPvp.Text);
+                        Item.ControlaStock = Lfx.Types.Parsing.ParseInt(EntradaUsaStock.TextKey) != 0;
+                        Item.StockMinimo = Lfx.Types.Parsing.ParseStock(EntradaStockMinimo.Text);
+                        Item.Unidad = EntradaUnidad.TextKey;
+                        Item.Rendimiento = Rendimiento;
+                        Item.UnidadRendimiento = UnidadRendimiento;
+                        Item.Estado = 1;
+                        Item.Garantia = Lfx.Types.Parsing.ParseInt(EntradaGarantia.Text);
+                        Item.Publicacion = ((Lbl.Articulos.Publicacion)Lfx.Types.Parsing.ParseInt(EntradaWeb.TextKey));
+                        EntradaTags.ActualizarElemento();
+                        EntradaImagen.ActualizarElemento();
 
                         return base.ToRow();
                 }

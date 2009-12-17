@@ -101,7 +101,6 @@
                         this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonAgregar.AutoHeight = false;
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonAgregar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregar.Location = new System.Drawing.Point(468, 234);
@@ -123,7 +122,6 @@
                         this.Controls.Add(this.BotonAgregar);
                         this.Controls.Add(this.EntradaComentario);
                         this.Controls.Add(this.ListaComentarios);
-                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "Comentarios";
                         this.Size = new System.Drawing.Size(552, 260);
