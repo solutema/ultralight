@@ -1,4 +1,5 @@
 SET FOREIGN_KEY_CHECKS=0;
+
 UPDATE facturas SET id_formapago=4 WHERE id_formapago=5;
 UPDATE formaspago SET nombre='Tarjeta' WHERE id_formapago=4;
 DELETE FROM formaspago WHERE id_formapago=5;

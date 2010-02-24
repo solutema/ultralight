@@ -170,7 +170,7 @@ namespace Lfc.Bancos.Cheques
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.EntradaTotal);
                         this.Name = "Inicio";
-                        this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormCuentaCheques_KeyDown);
+                        this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Inicio_KeyDown);
                         this.Controls.SetChildIndex(this.EntradaTotal, 0);
                         this.Controls.SetChildIndex(this.Label2, 0);
                         this.Controls.SetChildIndex(this.DepositarPagar, 0);

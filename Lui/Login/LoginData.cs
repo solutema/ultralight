@@ -37,10 +37,10 @@ namespace Lui.Login
 	{
 		public static bool ValidateAccess(Lws.LoginData loginData, string accessName)
 		{
-			return ValidateAccess(loginData,accessName, null);
+			return ValidateAccess(loginData,accessName, 0);
 		}
 
-		public static bool ValidateAccess(Lws.LoginData loginData, string accessName, string itemId)
+		public static bool ValidateAccess(Lws.LoginData loginData, string accessName, int itemId)
 		{
 			bool Tiene = Access(loginData,accessName, itemId);
 			if(Tiene == false)
@@ -50,30 +50,12 @@ namespace Lui.Login
 
 		public static bool Access(Lws.LoginData loginData, string accessName)
 		{
-			return Access(loginData,accessName, null);
+			return Access(loginData,accessName, 0);
 		}
 
 		public static bool Access(Lws.LoginData loginData, string accessName, int itemId)
 		{
-			return Access(loginData,accessName, itemId.ToString());
-		}
-
-		public static bool Access(Lws.LoginData loginData, string accessName, string itemId)
-		{
-			string Sql = "SELECT id_acceso FROM sys_accesslist WHERE id_persona=" + loginData.Id.ToString() + " AND id_acceso LIKE '" + accessName.Replace('*', '%') + "'";
-			if(itemId != null && itemId.Length > 0)
-				Sql += " AND (item='" + itemId + "' OR item='*')";
-
-			System.Data.DataTable Accesos = loginData.Workspace.DefaultDataView.DataBase.Select(Sql);
-			if(Accesos.Rows.Count > 0) {
-				return true;
-			} else {
-                                Accesos = loginData.Workspace.DefaultDataView.DataBase.Select("SELECT id_acceso FROM sys_accesslist WHERE id_persona=" + loginData.Id.ToString() + " AND id_acceso='global.total' AND item='*'");
-				if(Accesos.Rows.Count > 0)
-					return true;
-				else
-					return false;
-			}
+                        return loginData.AccessList.HasAccess(accessName, itemId);
 		}
 
 		public static bool RevalidateAccess(Lws.LoginData loginData)

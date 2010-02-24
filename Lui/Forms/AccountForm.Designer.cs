@@ -410,7 +410,7 @@ namespace Lui.Forms
                         this.EtiquetaTitulo.Name = "EtiquetaTitulo";
                         this.EtiquetaTitulo.Size = new System.Drawing.Size(188, 44);
                         this.EtiquetaTitulo.TabIndex = 0;
-                        this.EtiquetaTitulo.Text = "Cuenta";
+                        this.EtiquetaTitulo.Text = "Caja";
                         this.EtiquetaTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         // 
                         // AccountForm
@@ -430,9 +430,9 @@ namespace Lui.Forms
                         this.Controls.Add(this.LowerPanel);
                         this.KeyPreview = true;
                         this.Name = "AccountForm";
-                        this.Text = "Cuenta";
-                        this.Activated += new System.EventHandler(this.FormCuenta_Activated);
-                        this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormCuenta_KeyDown);
+                        this.Text = "Caja";
+                        this.Activated += new System.EventHandler(this.AccountForm_Activated);
+                        this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AccountForm_KeyDown);
                         this.LowerPanel.ResumeLayout(false);
                         this.ResumeLayout(false);
 

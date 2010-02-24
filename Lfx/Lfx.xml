@@ -4,6 +4,21 @@
         <name>Lfx</name>
     </assembly>
     <members>
+        <member name="T:Lfx.Cpx.DataMatchCompareCommand">
+            <summary>
+            Matches the data on the magnetic stripe before writing.
+            </summary>
+        </member>
+        <member name="T:Lfx.Cpx.EmbossAndEncodeCommand1">
+            <summary>
+            150i CPX Protocol/Setup Manual, 2-14 en adelante
+            </summary>
+        </member>
+        <member name="T:Lfx.Cpx.EmbossAndEncodeCommand2">
+            <summary>
+            150i CPX Protocol/Setup Manual, 2-14 en adelante
+            </summary>
+        </member>
         <member name="P:Lfx.Data.DataBaseCache.TableList">
             <summary>
             Obtiene una lista de tablas actualmente presente en la base de datos (puede no coincidir con dbstruct.xml)

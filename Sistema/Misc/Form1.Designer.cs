@@ -65,10 +65,10 @@ namespace Lazaro.Misc
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.editForm1.BackColor = System.Drawing.Color.White;
-                        this.editForm1.Location = new System.Drawing.Point(16, 14);
+                        this.editForm1.Location = new System.Drawing.Point(8, 8);
                         this.editForm1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.editForm1.Name = "editForm1";
-                        this.editForm1.Size = new System.Drawing.Size(631, 313);
+                        this.editForm1.Size = new System.Drawing.Size(656, 332);
                         this.editForm1.TabIndex = 0;
                         // 
                         // Form1
@@ -80,7 +80,7 @@ namespace Lazaro.Misc
                         this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "Form1";
                         this.Text = "Form1";
-                        this.Load += new System.EventHandler(this.Form1_Load);
+                        this.WorkspaceChanged += new System.EventHandler(this.Form1_WorkspaceChanged);
                         this.ResumeLayout(false);
 
                 }

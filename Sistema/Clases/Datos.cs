@@ -38,7 +38,7 @@ namespace Lazaro
 {
         public class Datos
         {
-                const int VersionUltima = 21;
+                const int VersionUltima = 22;
 
                 /// <summary>
                 /// Inicia una conexión con la base de datos y verifica si la versión de la la misma es la última disponible. En caso contrario la actualiza.
@@ -95,9 +95,9 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                         }
 
                         if (Lfx.Environment.SystemInformation.DesignMode == false) {
-                                Lws.Data.DataView DataView = Lws.Workspace.Master.GetDataView(true);
-                                VerificarVersionDB(DataView, false, false);
-                                DataView.Dispose();
+                                Lws.Data.DataView DataViewVerif = Lws.Workspace.Master.GetDataView(true);
+                                VerificarVersionDB(DataViewVerif, false, false);
+                                DataViewVerif.Dispose();
                         }
                         return iniciarReturn;
                 }
@@ -158,13 +158,13 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
 
                 private static void InyectarSqlDesdeRecurso(Lws.Data.DataView dataView, string archivo)
                 {
-                        try {
+                        //try {
                                 System.IO.Stream RecursoActualizacion = Aplicacion.ObtenerRecurso(archivo);
                                 if (RecursoActualizacion != null) {
                                         System.IO.StreamReader Lector = new System.IO.StreamReader(RecursoActualizacion, System.Text.Encoding.Default);
                                         string SqlActualizacion = dataView.DataBase.CustomizeSql(Lector.ReadToEnd());
-                                        dataView.DataBase.Execute(SqlActualizacion);
-                                        /* do {
+                                        //dataView.DataBase.Execute(SqlActualizacion);
+                                        do {
                                                 string Comando = Datos.GetNextCommand(ref SqlActualizacion);
                                                 try {
                                                         dataView.DataBase.Execute(Comando);
@@ -174,13 +174,14 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                                                         Aplicacion.GenericExceptionHandler(ex);
                                                 }
                                         }
-                                        while (SqlActualizacion.Length > 0); */
+                                        while (SqlActualizacion.Length > 0);
+                                        RecursoActualizacion.Close();
                                 }
-                        } catch (Exception ex) {
-                                if (Lfx.Environment.SystemInformation.DesignMode)
-                                        throw;
-                                Aplicacion.GenericExceptionHandler(ex);
-                        }
+                        //} catch (Exception ex) {
+                        //        if (Lfx.Environment.SystemInformation.DesignMode)
+                        //                throw ex;
+                        //        Aplicacion.GenericExceptionHandler(ex);
+                        //}
                 }
 
                 /// <summary>
@@ -252,6 +253,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                         Lector = new System.IO.StreamReader(RecursoSql, System.Text.Encoding.UTF8);
                         Sql = dataView.DataBase.CustomizeSql(Lector.ReadToEnd());
                         Lector.Close();
+                        RecursoSql.Close();
 
                         // Si hay archivos adicionales de datos para la carga inicial, los incluyo
                         // Estos suelen tener datos personalizados de esta instalación en partícular

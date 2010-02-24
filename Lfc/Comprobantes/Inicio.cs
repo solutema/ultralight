@@ -50,23 +50,23 @@ namespace Lfc.Comprobantes
                         InitializeComponent();
 
                         m_Fechas = new Lfx.Types.DateRange("mes-0");
-                        DataTableName = "facturas";
-                        KeyField = new Lfx.Data.FormField("facturas.id_factura", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        this.Joins.Add(new Lfx.Data.Join("personas", "facturas.id_cliente=personas.id_persona"));
+                        DataTableName = "comprob";
+                        KeyField = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        this.Joins.Add(new Lfx.Data.Join("personas", "comprob.id_cliente=personas.id_persona"));
                         FormFields = new Lfx.Data.FormField[]
 			{
-				new Lfx.Data.FormField("facturas.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 40),
-				new Lfx.Data.FormField("facturas.numero", "Número", Lfx.Data.InputFieldTypes.Integer, 96, "00000000"),
-				new Lfx.Data.FormField("facturas.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
+				new Lfx.Data.FormField("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 40),
+				new Lfx.Data.FormField("comprob.numero", "Número", Lfx.Data.InputFieldTypes.Integer, 96, "00000000"),
+				new Lfx.Data.FormField("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
 				new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 320),
-				new Lfx.Data.FormField("facturas.total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
-				new Lfx.Data.FormField("facturas.impresa", "Impresa", Lfx.Data.InputFieldTypes.Bool, 0),
-				new Lfx.Data.FormField("facturas.anulada", "Anulada", Lfx.Data.InputFieldTypes.Bool, 0),
-				new Lfx.Data.FormField("facturas.total-facturas.cancelado", "Pendiente", Lfx.Data.InputFieldTypes.Currency, 96),
-				new Lfx.Data.FormField("facturas.id_vendedor", "Vendedor", Lfx.Data.InputFieldTypes.Relation, 160),
-				new Lfx.Data.FormField("facturas.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 160)
+				new Lfx.Data.FormField("comprob.total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
+				new Lfx.Data.FormField("comprob.impresa", "Impresa", Lfx.Data.InputFieldTypes.Bool, 0),
+				new Lfx.Data.FormField("comprob.anulada", "Anulada", Lfx.Data.InputFieldTypes.Bool, 0),
+				new Lfx.Data.FormField("comprob.total-comprob.cancelado", "Pendiente", Lfx.Data.InputFieldTypes.Currency, 96),
+				new Lfx.Data.FormField("comprob.id_vendedor", "Vendedor", Lfx.Data.InputFieldTypes.Relation, 160),
+				new Lfx.Data.FormField("comprob.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 160)
 			};
-                        OrderBy = "facturas.id_factura DESC";
+                        OrderBy = "comprob.id_comprob DESC";
                         ExtraSearchFields = new Lfx.Data.FormField[] {
                                 new Lfx.Data.FormField("series", "Series")
                         };
@@ -224,71 +224,71 @@ namespace Lfc.Comprobantes
                                 case "NC":
                                         Listado.Columns[8].Width = 80;
                                         if (m_Letra == "*")
-                                                FiltroTemp += " AND facturas.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM')";
+                                                FiltroTemp += " AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM')";
                                         else
-                                                FiltroTemp += " AND facturas.tipo_fac='NC" + m_Letra + "'";
+                                                FiltroTemp += " AND comprob.tipo_fac='NC" + m_Letra + "'";
                                         break;
 
                                 case "ND":
                                         Listado.Columns[8].Width = 80;
                                         if (m_Letra == "*")
-                                                FiltroTemp += " AND facturas.tipo_fac IN ('NDA', 'NDB', 'NDC', 'NDE', 'NDM')";
+                                                FiltroTemp += " AND comprob.tipo_fac IN ('NDA', 'NDB', 'NDC', 'NDE', 'NDM')";
                                         else
-                                                FiltroTemp += " AND facturas.tipo_fac='ND" + m_Letra + "'";
+                                                FiltroTemp += " AND comprob.tipo_fac='ND" + m_Letra + "'";
                                         break;
 
                                 case "NCD":
                                         Listado.Columns[8].Width = 80;
                                         if (m_Letra == "*")
-                                                FiltroTemp += " AND facturas.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM')";
+                                                FiltroTemp += " AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM')";
                                         else
-                                                FiltroTemp += " AND (facturas.tipo_fac='NC" + m_Letra + "' OR facturas.tipo_fac='ND" + m_Letra + "')";
+                                                FiltroTemp += " AND (comprob.tipo_fac='NC" + m_Letra + "' OR comprob.tipo_fac='ND" + m_Letra + "')";
                                         break;
 
                                 case "F":
                                         Listado.Columns[8].Width = 80;
                                         if (m_Letra == "*")
-                                                FiltroTemp += " AND facturas.tipo_fac IN ('A', 'B', 'C', 'E', 'M')";
+                                                FiltroTemp += " AND comprob.tipo_fac IN ('A', 'B', 'C', 'E', 'M')";
                                         else
-                                                FiltroTemp += " AND facturas.tipo_fac='" + m_Letra + "'";
+                                                FiltroTemp += " AND comprob.tipo_fac='" + m_Letra + "'";
                                         break;
 
                                 case "T":
                                         Listado.Columns[8].Width = 80;
-                                        FiltroTemp += " AND facturas.tipo_fac='T'";
+                                        FiltroTemp += " AND comprob.tipo_fac='T'";
                                         break;
 
                                 case "FNCND":
                                         Listado.Columns[8].Width = 0;
                                         if (m_Letra == "*")
-                                                FiltroTemp += " AND facturas.tipo_fac IN ('A', 'B', 'C', 'E', 'M', 'NCA', 'NCB', 'NCC', 'NCE', 'NCM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM')";
+                                                FiltroTemp += " AND comprob.tipo_fac IN ('A', 'B', 'C', 'E', 'M', 'NCA', 'NCB', 'NCC', 'NCE', 'NCM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM')";
                                         else
-                                                FiltroTemp += " AND (facturas.tipo_fac='" + m_Letra + "' OR facturas.tipo_fac='NC" + m_Letra + "' OR facturas.tipo_fac='ND" + m_Letra + "')";
+                                                FiltroTemp += " AND (comprob.tipo_fac='" + m_Letra + "' OR comprob.tipo_fac='NC" + m_Letra + "' OR comprob.tipo_fac='ND" + m_Letra + "')";
                                         break;
 
                                 default:
                                         if (m_Letra == "*")
-                                                FiltroTemp += " AND facturas.tipo_fac='" + m_Tipo + "'";
+                                                FiltroTemp += " AND comprob.tipo_fac='" + m_Tipo + "'";
                                         else
-                                                FiltroTemp += " AND facturas.tipo_fac='" + m_Tipo + m_Letra + "'";
+                                                FiltroTemp += " AND comprob.tipo_fac='" + m_Tipo + m_Letra + "'";
                                         break;
                         }
 
                         if (m_Vendedor > 0)
-                                FiltroTemp += " AND (facturas.id_vendedor='" + m_Vendedor.ToString() + "')";
+                                FiltroTemp += " AND (comprob.id_vendedor='" + m_Vendedor.ToString() + "')";
 
                         if (SearchText != null && SearchText.Length == 0) {
                                 if (m_Sucursal > 0)
-                                        FiltroTemp += " AND (facturas.id_sucursal='" + m_Sucursal.ToString() + "')";
+                                        FiltroTemp += " AND (comprob.id_sucursal='" + m_Sucursal.ToString() + "')";
 
                                 if (m_FormaPago > 0)
-                                        FiltroTemp += " AND (facturas.id_formapago='" + m_FormaPago.ToString() + "')";
+                                        FiltroTemp += " AND (comprob.id_formapago='" + m_FormaPago.ToString() + "')";
 
                                 if (m_Cliente > 0)
-                                        FiltroTemp += " AND (facturas.id_cliente='" + m_Cliente.ToString() + "')";
+                                        FiltroTemp += " AND (comprob.id_cliente='" + m_Cliente.ToString() + "')";
 
                                 if (m_PV > 0)
-                                        FiltroTemp += " AND (facturas.pv='" + m_PV.ToString() + "')";
+                                        FiltroTemp += " AND (comprob.pv='" + m_PV.ToString() + "')";
 
                                 if (m_Fechas.HasRange)
                                         FiltroTemp += " AND (fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.To) + " 23:59:59')";
@@ -324,7 +324,7 @@ namespace Lfc.Comprobantes
 
                 public override Lfx.Types.OperationResult OnEdit(int lCodigo)
                 {
-                        string sTipo = this.Workspace.DefaultDataBase.FieldString("SELECT tipo_fac FROM facturas WHERE id_factura=" + lCodigo.ToString());
+                        string sTipo = this.Workspace.DefaultDataBase.FieldString("SELECT tipo_fac FROM comprob WHERE id_comprob=" + lCodigo.ToString());
                         this.Workspace.RunTime.Execute("EDITAR " + sTipo + " " + lCodigo.ToString());
                         return new Lfx.Types.SuccessOperationResult();
                 }

@@ -154,7 +154,7 @@ namespace Lazaro.Misc.Config
 			foreach (string Comprob in Comprobs)
 			{
 				ListViewItem Itm = lvImpresionComprob.Items.Add(Comprob);
-				Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lbl.Comprobantes.Comprobante.NombreTipo(Comprob)));
+				Itm.SubItems.Add(Lbl.Comprobantes.Comprobante.NombreTipo(Comprob));
 				string ImpresoraPreferida = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos." + Comprob + ".Impresora", "");
 
 				if (ImpresoraPreferida == "*")
@@ -162,20 +162,20 @@ namespace Lazaro.Misc.Config
 				else if (ImpresoraPreferida != null && ImpresoraPreferida.Length == 0)
 					ImpresoraPreferida = "(Predeterminada)";
 
-				Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, ImpresoraPreferida));
+				Itm.SubItems.Add(ImpresoraPreferida);
 
 				string ImpresoraCarga = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos." + Comprob + ".Carga", "");
 
 				switch (ImpresoraCarga)
 				{
 					case "auto":
-						Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, "Automática"));
+						Itm.SubItems.Add("Automática");
 						break;
 					case "manual":
-						Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, "Manual"));
+						Itm.SubItems.Add("Manual");
 						break;
 					default:
-						Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, "(Predeterminada)"));
+						Itm.SubItems.Add("(Predeterminada)");
 						break;
 				}
 			}

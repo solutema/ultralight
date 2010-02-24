@@ -374,5 +374,21 @@ namespace Lfx.Types
                         res = res.Replace(" ", "_");
 			return res;
 		}
+
+                public static bool Like(string text, string patterns)
+                {
+                        if (patterns == null)
+                                return false;
+
+                        string[] Patterns = patterns.Split(new string[] { ";", System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                        foreach (string Pattern in Patterns) {
+                                string RegExSafePattern = System.Text.RegularExpressions.Regex.Escape(Pattern);
+                                string FinalRegExPattern = RegExSafePattern.Replace(@"\*", ".+").Replace(@"\?", ".");
+                                System.Text.RegularExpressions.Regex RegExPattern = new System.Text.RegularExpressions.Regex("^" + FinalRegExPattern + "$");
+                                if (RegExPattern.IsMatch(text))
+                                        return true;
+                        }
+                        return false;
+                }
 	}
 }

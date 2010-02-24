@@ -324,19 +324,19 @@ namespace Lfc.Articulos
 
 			lvPedidos.BeginUpdate();
 			lvPedidos.Items.Clear();
-			System.Data.DataTable Pedidos = this.Workspace.DefaultDataBase.Select(@"SELECT facturas.id_factura, facturas.fecha, facturas.id_cliente, facturas.tipo_fac, facturas.numero, facturas_detalle.cantidad, facturas_detalle.precio, facturas.estado
-				FROM facturas, facturas_detalle
-				WHERE facturas.id_factura=facturas_detalle.id_factura
-					AND facturas.compra=1
-					AND facturas.tipo_fac='PD'
-				    AND facturas.estado=50
-					AND facturas_detalle.id_articulo=" + articulo.Id.ToString() + @"
-				ORDER BY facturas.fecha");
+			System.Data.DataTable Pedidos = this.Workspace.DefaultDataBase.Select(@"SELECT comprob.id_comprob, comprob.fecha, comprob.id_cliente, comprob.tipo_fac, comprob.numero, comprob_detalle.cantidad, comprob_detalle.precio, comprob.estado
+				FROM comprob, comprob_detalle
+				WHERE comprob.id_comprob=comprob_detalle.id_comprob
+					AND comprob.compra=1
+					AND comprob.tipo_fac='PD'
+				    AND comprob.estado=50
+					AND comprob_detalle.id_articulo=" + articulo.Id.ToString() + @"
+				ORDER BY comprob.fecha");
 
 			itm = null;
 			foreach (System.Data.DataRow Pedido in Pedidos.Rows)
 			{
-				itm = lvPedidos.Items.Add(System.Convert.ToString(Pedido["id_factura"]));
+				itm = lvPedidos.Items.Add(System.Convert.ToString(Pedido["id_comprob"]));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, this.Workspace.DefaultDataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + Lfx.Data.DataBase.ConvertDBNullToZero(Pedido["id_cliente"]).ToString())));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Pedido["numero"])));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatDateAndTime(System.Convert.ToDateTime(Pedido["fecha"]))));

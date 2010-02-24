@@ -81,10 +81,10 @@ namespace Lfc.Bancos.Chequeras
                                 EntradaBanco.TextInt = Res.Banco.Id;
                         EntradaDesde.Text = Res.Desde.ToString();
                         EntradaHasta.Text = Res.Hasta.ToString();
-                        if (Res.Cuenta == null)
-                                EntradaCuenta.TextInt = 0;
+                        if (Res.Caja == null)
+                                EntradaCaja.TextInt = 0;
                         else
-                                EntradaCuenta.TextInt = Res.Cuenta.Id;
+                                EntradaCaja.TextInt = Res.Caja.Id;
                         EntradaTitular.Text = Res.Titular;
                         EntradaEstado.TextKey = Res.Estado.ToString();
                         if (Res.Sucursal == null)
@@ -93,9 +93,9 @@ namespace Lfc.Bancos.Chequeras
                                 EntradaSucursal.TextInt = Res.Sucursal.Id;
 
                         if (Res.Existe)
-                                EntradaCuenta.Filter = null;
+                                EntradaCaja.Filter = null;
                         else
-                                EntradaCuenta.Filter = "estado=1";
+                                EntradaCaja.Filter = "estado=1";
 
                         SaveButton.Visible = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "chequeras.write");
 
@@ -114,10 +114,10 @@ namespace Lfc.Bancos.Chequeras
                         else
                                 Res.Banco = new Lbl.Bancos.Banco(Res.DataView, EntradaBanco.TextInt);
 
-                        if (EntradaCuenta.TextInt == 0)
-                                Res.Cuenta = null;
+                        if (EntradaCaja.TextInt == 0)
+                                Res.Caja = null;
                         else
-                                Res.Cuenta = new Lbl.Cuentas.CuentaRegular(Res.DataView, EntradaCuenta.TextInt);
+                                Res.Caja = new Lbl.Cajas.Caja(Res.DataView, EntradaCaja.TextInt);
 
                         if (EntradaSucursal.TextInt == 0)
                                 Res.Sucursal = null;

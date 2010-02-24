@@ -41,23 +41,13 @@ namespace Lws
 		public int Id;
 		public string UserName;
 		public string CompleteName;
-		private Lws.Workspace m_Workspace;
+		public Lws.Workspace Workspace;
+                public Lws.Access.AccessList AccessList;
 
-		public LoginData(Lws.Workspace workSpace)
+		public LoginData(Lws.Workspace workspace)
 		{
-			m_Workspace = workSpace;
-		}
-
-		public Lws.Workspace Workspace
-		{
-			get
-			{
-				return m_Workspace;
-			}
-			set
-			{
-				m_Workspace = value;
-			}
+			Workspace = workspace;
+                        this.AccessList = new Access.AccessList(workspace);
 		}
 	}
 }

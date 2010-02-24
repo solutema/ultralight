@@ -33,7 +33,7 @@ using System.Text;
 
 namespace Lws.Data
 {
-        public class RowCollection : System.Collections.CollectionBase
+        public class RowCollection : System.Collections.Generic.Dictionary<int, Lfx.Data.Row>
         {
                 protected Table Table;
 
@@ -53,10 +53,10 @@ namespace Lws.Data
                                 Lfx.Data.Row NewRow = (Lfx.Data.Row)Rw;
                                 NewRow.Table = this.Table;
                                 int id = System.Convert.ToInt32(NewRow.Fields[this.Table.PrimaryKey].Value);
-                                if (this.Contains(id))
+                                if (this.ContainsKey(id))
                                         this[id] = NewRow;
                                 else
-                                        this.List.Add(NewRow);
+                                        this.Add(System.Convert.ToInt32(NewRow[this.Table.PrimaryKey]), NewRow);
                         }
                         LoadAll_Loaded = true;
                 }
@@ -68,7 +68,7 @@ namespace Lws.Data
                         return base.GetEnumerator();
                 }
 
-                public bool Contains(int id)
+                /* public bool Contains(int id)
                 {
                         foreach (Lfx.Data.Row Rw in this.List) {
                                 if(System.Convert.ToInt32(Rw.Fields[this.Table.PrimaryKey].Value) == id)
@@ -85,8 +85,8 @@ namespace Lws.Data
                         }
                         return null;    //Or throw?
                 }
-
-                public Lfx.Data.Row this[int id]
+                */
+                public new Lfx.Data.Row this[int id]
                 {
                         get
                         {
@@ -96,38 +96,51 @@ namespace Lws.Data
 					if (NewRow != null)
                                         	NewRow.Table = this.Table;
                                         return NewRow;
-                                } else if (this.Contains(id) == false) {
+                                } else if (this.ContainsKey(id) == false) {
                                         Lfx.Data.Row NewRow = this.Table.DataView.DataBase.Row(this.Table.Name, this.Table.PrimaryKey, id);
                                         if (NewRow != null) {
                                                 NewRow.Table = this.Table;
-                                                this.List.Add(NewRow);
+                                                this.Add(id, NewRow);
                                         }
                                         return NewRow;
                                 } else {
-                                        return this.GetById(id);
+                                        return ((Lfx.Data.Row)(base[id]));
                                 }
                         }
                         set
                         {
                                 this.RemoveFromCache(id);
-                                this.List.Add(value);
+                                this.Add(id, value);
                         }
+                }
+
+                public Lfx.Data.Row Select(string fieldName, object value)
+                {
+                        if(fieldName == this.Table.PrimaryKey)
+                                return this[(int)value];
+                        
+                        foreach(Lfx.Data.Row Rw in this.Values) {
+                                if (Rw[fieldName] == value)
+                                        return Rw;
+                        }
+                        return null;
                 }
 
 		public void ClearCache()
 		{
-			this.List.Clear();
+			this.Clear();
                         LoadAll_Loaded = false;
 		}
 
                 public void RemoveFromCache(int id)
                 {
-                        foreach (Lfx.Data.Row Rw in this.List) {
+                        this.Remove(id);
+                        /* foreach (Lfx.Data.Row Rw in this.List) {
                                 if (System.Convert.ToInt32(Rw.Fields[this.Table.PrimaryKey].Value) == id) {
                                         this.List.Remove(Rw);
                                         return;
                                 }
-                        }
+                        } */
                 }
         }
 }

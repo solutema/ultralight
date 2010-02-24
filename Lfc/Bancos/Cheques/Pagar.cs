@@ -50,7 +50,7 @@ namespace Lfc.Bancos.Cheques
 		internal System.Windows.Forms.Label Label3;
 		internal Lui.Forms.TextBox txtTotal;
                 internal System.Windows.Forms.Label Label8;
-                public Lui.Forms.DetailBox EntradaCuentaOrigen;
+                public Lui.Forms.DetailBox EntradaCajaOrigen;
 		private System.ComponentModel.IContainer components = null;
 
 		public Pagar()
@@ -87,7 +87,7 @@ namespace Lfc.Bancos.Cheques
                         this.Label1 = new System.Windows.Forms.Label();
                         this.txtCantidad = new Lui.Forms.TextBox();
                         this.lblLabel1 = new System.Windows.Forms.Label();
-                        this.EntradaCuentaOrigen = new Lui.Forms.DetailBox();
+                        this.EntradaCajaOrigen = new Lui.Forms.DetailBox();
                         this.Label3 = new System.Windows.Forms.Label();
                         this.txtTotal = new Lui.Forms.TextBox();
                         this.Label8 = new System.Windows.Forms.Label();
@@ -200,32 +200,32 @@ namespace Lfc.Bancos.Cheques
                         this.lblLabel1.Text = "Pago de";
                         this.lblLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaCuentaOrigen
+                        // EntradaCajaOrigen
                         // 
-                        this.EntradaCuentaOrigen.AutoTab = true;
-                        this.EntradaCuentaOrigen.CanCreate = false;
-                        this.EntradaCuentaOrigen.DetailField = "nombre";
-                        this.EntradaCuentaOrigen.ExtraDetailFields = null;
-                        this.EntradaCuentaOrigen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaCuentaOrigen.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaCuentaOrigen.FreeTextCode = "";
-                        this.EntradaCuentaOrigen.KeyField = "id_cuenta";
-                        this.EntradaCuentaOrigen.Location = new System.Drawing.Point(212, 232);
-                        this.EntradaCuentaOrigen.MaxLength = 200;
-                        this.EntradaCuentaOrigen.Name = "EntradaCuentaOrigen";
-                        this.EntradaCuentaOrigen.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCuentaOrigen.ReadOnly = false;
-                        this.EntradaCuentaOrigen.Required = true;
-                        this.EntradaCuentaOrigen.SelectOnFocus = false;
-                        this.EntradaCuentaOrigen.Size = new System.Drawing.Size(308, 24);
-                        this.EntradaCuentaOrigen.TabIndex = 12;
-                        this.EntradaCuentaOrigen.Table = "cuentas";
-                        this.EntradaCuentaOrigen.TeclaDespuesDeEnter = "{tab}";
-                        this.EntradaCuentaOrigen.Text = "0";
-                        this.EntradaCuentaOrigen.TextDetail = "";
-                        this.EntradaCuentaOrigen.TextInt = 0;
-                        this.EntradaCuentaOrigen.TipWhenBlank = "";
-                        this.EntradaCuentaOrigen.ToolTipText = "";
+                        this.EntradaCajaOrigen.AutoTab = true;
+                        this.EntradaCajaOrigen.CanCreate = false;
+                        this.EntradaCajaOrigen.DetailField = "nombre";
+                        this.EntradaCajaOrigen.ExtraDetailFields = null;
+                        this.EntradaCajaOrigen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaCajaOrigen.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaCajaOrigen.FreeTextCode = "";
+                        this.EntradaCajaOrigen.KeyField = "id_caja";
+                        this.EntradaCajaOrigen.Location = new System.Drawing.Point(212, 232);
+                        this.EntradaCajaOrigen.MaxLength = 200;
+                        this.EntradaCajaOrigen.Name = "EntradaCajaOrigen";
+                        this.EntradaCajaOrigen.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCajaOrigen.ReadOnly = false;
+                        this.EntradaCajaOrigen.Required = true;
+                        this.EntradaCajaOrigen.SelectOnFocus = false;
+                        this.EntradaCajaOrigen.Size = new System.Drawing.Size(308, 24);
+                        this.EntradaCajaOrigen.TabIndex = 12;
+                        this.EntradaCajaOrigen.Table = "cajas";
+                        this.EntradaCajaOrigen.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaCajaOrigen.Text = "0";
+                        this.EntradaCajaOrigen.TextDetail = "";
+                        this.EntradaCajaOrigen.TextInt = 0;
+                        this.EntradaCajaOrigen.TipWhenBlank = "";
+                        this.EntradaCajaOrigen.ToolTipText = "";
                         // 
                         // Label3
                         // 
@@ -270,7 +270,7 @@ namespace Lfc.Bancos.Cheques
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(594, 375);
-                        this.Controls.Add(this.EntradaCuentaOrigen);
+                        this.Controls.Add(this.EntradaCajaOrigen);
                         this.Controls.Add(this.Label3);
                         this.Controls.Add(this.txtTotal);
                         this.Controls.Add(this.Label8);
@@ -321,7 +321,7 @@ namespace Lfc.Bancos.Cheques
 		public override Lfx.Types.OperationResult Ok()
 		{
 			Lfx.Types.OperationResult aceptarReturn = new Lfx.Types.SuccessOperationResult();
-			if(EntradaCuentaOrigen.TextInt <= 0)
+			if(EntradaCajaOrigen.TextInt <= 0)
 			{
 				aceptarReturn.Success = false;
 				aceptarReturn.Message += "Debe especificar la cuenta de origen." + Environment.NewLine;
@@ -341,7 +341,7 @@ namespace Lfc.Bancos.Cheques
 				
 				string ChequesNum = null;
 				System.Data.DataTable TablaCheques = DataView.DataBase.Select("SELECT * FROM bancos_cheques WHERE id_cheque IN (" + ChequesIds + ")");
-				Lbl.Cuentas.CuentaRegular CuentaOrigen = new Lbl.Cuentas.CuentaRegular(DataView, EntradaCuentaOrigen.TextInt);
+				Lbl.Cajas.Caja CajaOrigen = new Lbl.Cajas.Caja(DataView, EntradaCajaOrigen.TextInt);
 				foreach(System.Data.DataRow Cheque in TablaCheques.Rows)
 				{
                                         string NumeroCheque = Cheque["numero"].ToString();
@@ -353,12 +353,12 @@ namespace Lfc.Bancos.Cheques
 					else
                                                 ChequesNum += ", " + NumeroCheque;
 
-                                        CuentaOrigen.Movimiento(true, Lfx.Data.DataBase.ConvertDBNullToZero(Cheque["id_concepto"]), Cheque["concepto"].ToString(), Lfx.Data.DataBase.ConvertDBNullToZero(Cheque["id_cliente"]), -System.Convert.ToDouble(Cheque["importe"]), "Pago de cheque Nº " + NumeroCheque, 0, Lfx.Data.DataBase.ConvertDBNullToZero(Cheque["id_recibo"]), "");
+                                        CajaOrigen.Movimiento(true, Lfx.Data.DataBase.ConvertDBNullToZero(Cheque["id_concepto"]), Cheque["concepto"].ToString(), Lfx.Data.DataBase.ConvertDBNullToZero(Cheque["id_cliente"]), -System.Convert.ToDouble(Cheque["importe"]), "Pago de cheque Nº " + NumeroCheque, 0, Lfx.Data.DataBase.ConvertDBNullToZero(Cheque["id_recibo"]), "");
 					DataView.DataBase.Execute("UPDATE bancos_cheques SET estado=10 WHERE id_cheque=" + System.Convert.ToInt32(Cheque["id_cheque"]).ToString());
 				}                
 
 				if(Impuestos != 0)
-					CuentaOrigen.Movimiento(true, 23030, "Impuestos Cheques", 0, -Impuestos, "Cheques Nº " + ChequesNum, 0, 0, "");
+					CajaOrigen.Movimiento(true, 23030, "Impuestos Cheques", 0, -Impuestos, "Cheques Nº " + ChequesNum, 0, 0, "");
 
 				this.DataView.Commit();
 			}

@@ -390,7 +390,7 @@ namespace Lfc.Comprobantes.Facturas
 
                 private void txtVendedorClienteTipoPVNumero_TextChanged(System.Object sender, System.EventArgs e)
                 {
-                        string Sql = "SELECT * FROM facturas WHERE id_formapago>0";
+                        string Sql = "SELECT * FROM comprob WHERE id_formapago>0";
                         if (txtVendedor.TextInt > 0)
                                 Sql += " AND id_vendedor=" + txtVendedor.TextInt.ToString();
 
@@ -444,7 +444,7 @@ namespace Lfc.Comprobantes.Facturas
                         lvItems.BeginUpdate();
                         lvItems.Items.Clear();
                         foreach (System.Data.DataRow Factura in Facturas.Rows) {
-                                ListViewItem Itm = lvItems.Items.Add(System.Convert.ToString(Factura["id_factura"]));
+                                ListViewItem Itm = lvItems.Items.Add(System.Convert.ToString(Factura["id_comprob"]));
                                 Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatDate(Factura["fecha"])));
                                 Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, System.Convert.ToString(Factura["tipo_fac"])));
                                 Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, System.Convert.ToInt32(Factura["pv"]).ToString("0000") + "-" + System.Convert.ToInt32(Factura["numero"]).ToString("00000000")));
@@ -469,11 +469,11 @@ namespace Lfc.Comprobantes.Facturas
                         ListViewItem Itm = null;
                         if (lvItems.SelectedItems.Count > 0) {
                                 Itm = lvItems.SelectedItems[0];
-                                Factura = this.Workspace.DefaultDataBase.Row("facturas", "id_factura", Lfx.Types.Parsing.ParseInt(Itm.Text));
+                                Factura = this.Workspace.DefaultDataBase.Row("comprob", "id_comprob", Lfx.Types.Parsing.ParseInt(Itm.Text));
                         }
 
                         if (Factura != null) {
-                                FacturaId = System.Convert.ToInt32(Factura["id_factura"]);
+                                FacturaId = System.Convert.ToInt32(Factura["id_comprob"]);
                                 if (System.Convert.ToInt32(Factura["anulada"]) != 0 && AceptarAnuladas == false) {
                                         lblAviso.Text = "Esta factura fue anulada.";
                                         OkButton.Visible = false;

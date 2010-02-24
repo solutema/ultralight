@@ -90,11 +90,13 @@ namespace Lazaro.Principal
                         this.PersonaTelefono = new System.Windows.Forms.Label();
                         this.label2 = new System.Windows.Forms.Label();
                         this.TimerSlowLink = new System.Windows.Forms.Timer(this.components);
+                        this.PersonaImagen = new System.Windows.Forms.PictureBox();
                         this.PanelReloj.SuspendLayout();
                         this.PanelArticulo.SuspendLayout();
                         this.PanelAyuda.SuspendLayout();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
                         this.PanelPersona.SuspendLayout();
+                        ((System.ComponentModel.ISupportInitialize)(this.PersonaImagen)).BeginInit();
                         this.SuspendLayout();
                         // 
                         // PanelReloj
@@ -296,6 +298,7 @@ namespace Lazaro.Principal
                         this.PanelPersona.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.PanelPersona.Controls.Add(this.PersonaImagen);
                         this.PanelPersona.Controls.Add(this.EnlaceComentarios);
                         this.PanelPersona.Controls.Add(this.PersonaNombre);
                         this.PanelPersona.Controls.Add(this.label3);
@@ -330,7 +333,7 @@ namespace Lazaro.Principal
                         // 
                         this.PersonaNombre.AutoEllipsis = true;
                         this.PersonaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.PersonaNombre.Location = new System.Drawing.Point(0, 0);
+                        this.PersonaNombre.Location = new System.Drawing.Point(54, 2);
                         this.PersonaNombre.Name = "PersonaNombre";
                         this.PersonaNombre.Size = new System.Drawing.Size(250, 16);
                         this.PersonaNombre.TabIndex = 12;
@@ -343,7 +346,7 @@ namespace Lazaro.Principal
                         // 
                         this.label3.AutoEllipsis = true;
                         this.label3.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.label3.Location = new System.Drawing.Point(250, 32);
+                        this.label3.Location = new System.Drawing.Point(304, 34);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(62, 16);
                         this.label3.TabIndex = 10;
@@ -354,7 +357,7 @@ namespace Lazaro.Principal
                         // 
                         this.PersonaGrupo.AutoEllipsis = true;
                         this.PersonaGrupo.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.PersonaGrupo.Location = new System.Drawing.Point(310, 30);
+                        this.PersonaGrupo.Location = new System.Drawing.Point(364, 32);
                         this.PersonaGrupo.Name = "PersonaGrupo";
                         this.PersonaGrupo.Size = new System.Drawing.Size(232, 16);
                         this.PersonaGrupo.TabIndex = 11;
@@ -366,7 +369,7 @@ namespace Lazaro.Principal
                         this.PersonaComentario.AutoEllipsis = true;
                         this.PersonaComentario.BackColor = System.Drawing.SystemColors.Control;
                         this.PersonaComentario.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.PersonaComentario.Location = new System.Drawing.Point(0, 14);
+                        this.PersonaComentario.Location = new System.Drawing.Point(54, 16);
                         this.PersonaComentario.Name = "PersonaComentario";
                         this.PersonaComentario.Size = new System.Drawing.Size(248, 32);
                         this.PersonaComentario.TabIndex = 9;
@@ -379,7 +382,7 @@ namespace Lazaro.Principal
                         // 
                         this.label1.AutoEllipsis = true;
                         this.label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.label1.Location = new System.Drawing.Point(250, 16);
+                        this.label1.Location = new System.Drawing.Point(304, 18);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(62, 16);
                         this.label1.TabIndex = 8;
@@ -390,7 +393,7 @@ namespace Lazaro.Principal
                         // 
                         this.PersonaEmail.AutoEllipsis = true;
                         this.PersonaEmail.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.PersonaEmail.Location = new System.Drawing.Point(310, 16);
+                        this.PersonaEmail.Location = new System.Drawing.Point(364, 18);
                         this.PersonaEmail.Name = "PersonaEmail";
                         this.PersonaEmail.Size = new System.Drawing.Size(232, 16);
                         this.PersonaEmail.TabIndex = 9;
@@ -401,7 +404,7 @@ namespace Lazaro.Principal
                         // 
                         this.label4.AutoEllipsis = true;
                         this.label4.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.label4.Location = new System.Drawing.Point(250, 0);
+                        this.label4.Location = new System.Drawing.Point(304, 2);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(62, 16);
                         this.label4.TabIndex = 3;
@@ -412,7 +415,7 @@ namespace Lazaro.Principal
                         // 
                         this.PersonaDomicilio.AutoEllipsis = true;
                         this.PersonaDomicilio.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.PersonaDomicilio.Location = new System.Drawing.Point(310, 0);
+                        this.PersonaDomicilio.Location = new System.Drawing.Point(364, 2);
                         this.PersonaDomicilio.Name = "PersonaDomicilio";
                         this.PersonaDomicilio.Size = new System.Drawing.Size(232, 16);
                         this.PersonaDomicilio.TabIndex = 4;
@@ -425,7 +428,7 @@ namespace Lazaro.Principal
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.PersonaTelefono.AutoEllipsis = true;
                         this.PersonaTelefono.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.PersonaTelefono.Location = new System.Drawing.Point(606, 0);
+                        this.PersonaTelefono.Location = new System.Drawing.Point(654, 2);
                         this.PersonaTelefono.Name = "PersonaTelefono";
                         this.PersonaTelefono.Size = new System.Drawing.Size(110, 16);
                         this.PersonaTelefono.TabIndex = 6;
@@ -436,7 +439,7 @@ namespace Lazaro.Principal
                         // 
                         this.label2.AutoEllipsis = true;
                         this.label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.label2.Location = new System.Drawing.Point(542, 0);
+                        this.label2.Location = new System.Drawing.Point(596, 2);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(64, 16);
                         this.label2.TabIndex = 5;
@@ -447,6 +450,15 @@ namespace Lazaro.Principal
                         // 
                         this.TimerSlowLink.Interval = 1000;
                         this.TimerSlowLink.Tick += new System.EventHandler(this.TimerSlowLink_Tick);
+                        // 
+                        // PersonaImagen
+                        // 
+                        this.PersonaImagen.Location = new System.Drawing.Point(0, 0);
+                        this.PersonaImagen.Name = "PersonaImagen";
+                        this.PersonaImagen.Size = new System.Drawing.Size(52, 48);
+                        this.PersonaImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+                        this.PersonaImagen.TabIndex = 15;
+                        this.PersonaImagen.TabStop = false;
                         // 
                         // BarraInferior
                         // 
@@ -464,6 +476,7 @@ namespace Lazaro.Principal
                         this.PanelAyuda.ResumeLayout(false);
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
                         this.PanelPersona.ResumeLayout(false);
+                        ((System.ComponentModel.ISupportInitialize)(this.PersonaImagen)).EndInit();
                         this.ResumeLayout(false);
 
 		}
@@ -499,5 +512,6 @@ namespace Lazaro.Principal
 		private System.Windows.Forms.LinkLabel PersonaNombre;
                 private System.Windows.Forms.Timer TimerSlowLink;
         private System.Windows.Forms.LinkLabel EnlaceComentarios;
+        private System.Windows.Forms.PictureBox PersonaImagen;
 	}
 }

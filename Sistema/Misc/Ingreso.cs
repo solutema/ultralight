@@ -58,7 +58,7 @@ namespace Lazaro.Misc
 
 		private void cmdAceptar_Click(object sender, System.EventArgs e)
 		{
-                        if (txtUsuario.TextInt == 1) {
+                        if (txtUsuario.TextInt == 1 && Lfx.Environment.SystemInformation.DesignMode == false) {
                                 string[] EstacionesAdministrador = Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Ingreso.Administrador.Estaciones", "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                                 bool Puede = false;
                                 if (EstacionesAdministrador.Length == 0) {

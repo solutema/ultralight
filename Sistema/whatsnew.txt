@@ -1,0 +1,18 @@
+﻿*** 2010-02-02
+
+* El menú "Cuentas" ahora se llama "Cajas". Todas las referencias a la palabra "Cuenta" fueron cambiadas por la palabra "Caja".
+
+*** 2010-02-05
+
+* Ahora se puede adjuntar una imágen a una persona.
+* Captura de imágenes desde dispositivos WIA, como una cámara de fotos o un escáner.
+* Se agregó una opción de recorte al incorporar imágenes.
+
+*** 2010-02-06
+
+* Se incorporó un sistema de notificación de novedades.
+* Numerosas mejoras de velocidad. Especialmente en conexiones lentas.
+
+*** 2010-02-17
+
+* Se incorporaron las tarjetas Nativa y Actual.

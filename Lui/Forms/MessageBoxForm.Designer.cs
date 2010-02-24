@@ -58,36 +58,24 @@ namespace Lui.Forms
         private void InitializeComponent()
         {
                 System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MessageBoxForm));
-                this.label1 = new System.Windows.Forms.Label();
                 this.OkButton = new Lui.Forms.Button();
                 this.LowerPanel = new System.Windows.Forms.Panel();
                 this.pictureBox1 = new System.Windows.Forms.PictureBox();
+                this.MessageText = new System.Windows.Forms.TextBox();
                 this.LowerPanel.SuspendLayout();
                 ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
                 this.SuspendLayout();
                 // 
-                // label1
-                // 
-                this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                            | System.Windows.Forms.AnchorStyles.Left)
-                            | System.Windows.Forms.AnchorStyles.Right)));
-                this.label1.Location = new System.Drawing.Point(84, 20);
-                this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-                this.label1.Name = "label1";
-                this.label1.Size = new System.Drawing.Size(381, 181);
-                this.label1.TabIndex = 2;
-                this.label1.Text = "label1";
-                this.label1.UseMnemonic = false;
-                // 
                 // OkButton
                 // 
                 this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                this.OkButton.AutoHeight = false;
                 this.OkButton.DialogResult = System.Windows.Forms.DialogResult.None;
                 this.OkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
                 this.OkButton.Image = null;
                 this.OkButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                this.OkButton.Location = new System.Drawing.Point(359, 8);
+                this.OkButton.Location = new System.Drawing.Point(369, 8);
                 this.OkButton.Name = "OkButton";
                 this.OkButton.Padding = new System.Windows.Forms.Padding(2);
                 this.OkButton.ReadOnly = false;
@@ -103,9 +91,9 @@ namespace Lui.Forms
                 // 
                 this.LowerPanel.Controls.Add(this.OkButton);
                 this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-                this.LowerPanel.Location = new System.Drawing.Point(0, 213);
+                this.LowerPanel.Location = new System.Drawing.Point(0, 221);
                 this.LowerPanel.Name = "LowerPanel";
-                this.LowerPanel.Size = new System.Drawing.Size(474, 61);
+                this.LowerPanel.Size = new System.Drawing.Size(484, 61);
                 this.LowerPanel.TabIndex = 4;
                 // 
                 // pictureBox1
@@ -117,16 +105,33 @@ namespace Lui.Forms
                 this.pictureBox1.TabIndex = 5;
                 this.pictureBox1.TabStop = false;
                 // 
+                // MessageText
+                // 
+                this.MessageText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                            | System.Windows.Forms.AnchorStyles.Left)
+                            | System.Windows.Forms.AnchorStyles.Right)));
+                this.MessageText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                this.MessageText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                this.MessageText.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.MessageText.Location = new System.Drawing.Point(84, 16);
+                this.MessageText.Multiline = true;
+                this.MessageText.Name = "MessageText";
+                this.MessageText.ReadOnly = true;
+                this.MessageText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+                this.MessageText.ShortcutsEnabled = false;
+                this.MessageText.Size = new System.Drawing.Size(386, 188);
+                this.MessageText.TabIndex = 999;
+                this.MessageText.TabStop = false;
+                // 
                 // MessageBoxForm
                 // 
                 this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
                 this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                this.ClientSize = new System.Drawing.Size(474, 274);
+                this.ClientSize = new System.Drawing.Size(484, 282);
+                this.Controls.Add(this.MessageText);
                 this.Controls.Add(this.pictureBox1);
                 this.Controls.Add(this.LowerPanel);
-                this.Controls.Add(this.label1);
                 this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                 this.KeyPreview = true;
                 this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                 this.Name = "MessageBoxForm";
@@ -137,14 +142,15 @@ namespace Lui.Forms
                 this.LowerPanel.ResumeLayout(false);
                 ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
                 this.ResumeLayout(false);
+                this.PerformLayout();
 
         }
 
         #endregion
 
-        public System.Windows.Forms.Label label1;
         public Lui.Forms.Button OkButton;
 	    private System.Windows.Forms.Panel LowerPanel;
-	    private System.Windows.Forms.PictureBox pictureBox1;
+            private System.Windows.Forms.PictureBox pictureBox1;
+            protected internal System.Windows.Forms.TextBox MessageText;
     }
 }

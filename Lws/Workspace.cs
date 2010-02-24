@@ -37,12 +37,11 @@ namespace Lws
 	public class Workspace
 	{
                 public static Lws.Workspace Master;
+                public static Lws.Data.TableCollection MasterTableCollection = null;
 
 		private string m_Name;
                 private Lws.Data.DataView m_DataView = null;
                 private Lfx.Data.DataBase m_DataBase = null;
-
-		protected int LastDataBaseHandle = 0;
 
 		public Lws.Config.ConfigManager CurrentConfig;
 		public Services.Scheduler DefaultScheduler;
@@ -148,7 +147,6 @@ namespace Lws
                 internal Lfx.Data.DataBase GetDataBase()
 		{
                         Lfx.Data.DataBase Res = new Lfx.Data.DataBase();
-                        LastDataBaseHandle++;
                         Res.Open();
                         return Res;
 		}

@@ -82,10 +82,10 @@ namespace Lws.Config
                                 if (!System.IO.Path.IsPathRooted(CONFIGFILENAME)) {
                                         // Si no tiene ruta, busco en la carpeta de datos
                                         // o junto al ejecutable (para aplicaciones portables)
-                                        if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationDataFolder + CONFIGFILENAME)) {
-                                                CONFIGFILENAME = Lfx.Environment.Folders.ApplicationDataFolder + CONFIGFILENAME;
-                                        } else if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + CONFIGFILENAME)) {
+                                        if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + CONFIGFILENAME)) {
                                                 CONFIGFILENAME = Lfx.Environment.Folders.ApplicationFolder + CONFIGFILENAME;
+                                        } else {
+                                                CONFIGFILENAME = Lfx.Environment.Folders.ApplicationDataFolder + CONFIGFILENAME;
                                         }
                                 }
 			}

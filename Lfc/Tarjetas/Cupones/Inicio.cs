@@ -186,19 +186,19 @@ namespace Lfc.Tarjetas.Cupones
                 internal virtual Lfx.Types.OperationResult Filtrar()
                 {
                         Lfx.Types.OperationResult filtrarReturn = new Lfx.Types.SuccessOperationResult();
-                        Lfc.Tarjetas.Cupones.Filtros OFormCuentaTarjetasFiltros = new Lfc.Tarjetas.Cupones.Filtros();
-                        OFormCuentaTarjetasFiltros.Workspace = this.Workspace;
-                        OFormCuentaTarjetasFiltros.txtTarjeta.Text = m_Tarjeta.ToString();
-                        OFormCuentaTarjetasFiltros.txtPlan.Text = m_Plan.ToString();
-                        OFormCuentaTarjetasFiltros.txtEstado.TextKey = m_Estado.ToString();
-                        OFormCuentaTarjetasFiltros.txtCliente.Text = m_Cliente.ToString();
-                        OFormCuentaTarjetasFiltros.EntradaFechas.Rango = m_Fecha;
-                        if (OFormCuentaTarjetasFiltros.ShowDialog() == DialogResult.OK) {
-                                m_Tarjeta = OFormCuentaTarjetasFiltros.txtTarjeta.TextInt;
-                                m_Plan = OFormCuentaTarjetasFiltros.txtPlan.TextInt;
-                                m_Estado = Lfx.Types.Parsing.ParseInt(OFormCuentaTarjetasFiltros.txtEstado.TextKey);
-                                m_Cliente = OFormCuentaTarjetasFiltros.txtCliente.TextInt;
-                                m_Fecha = OFormCuentaTarjetasFiltros.EntradaFechas.Rango;
+                        Lfc.Tarjetas.Cupones.Filtros FormFiltros = new Lfc.Tarjetas.Cupones.Filtros();
+                        FormFiltros.Workspace = this.Workspace;
+                        FormFiltros.txtTarjeta.Text = m_Tarjeta.ToString();
+                        FormFiltros.txtPlan.Text = m_Plan.ToString();
+                        FormFiltros.txtEstado.TextKey = m_Estado.ToString();
+                        FormFiltros.txtCliente.Text = m_Cliente.ToString();
+                        FormFiltros.EntradaFechas.Rango = m_Fecha;
+                        if (FormFiltros.ShowDialog() == DialogResult.OK) {
+                                m_Tarjeta = FormFiltros.txtTarjeta.TextInt;
+                                m_Plan = FormFiltros.txtPlan.TextInt;
+                                m_Estado = Lfx.Types.Parsing.ParseInt(FormFiltros.txtEstado.TextKey);
+                                m_Cliente = FormFiltros.txtCliente.TextInt;
+                                m_Fecha = FormFiltros.EntradaFechas.Rango;
                                 this.RefreshList();
                                 filtrarReturn.Success = true;
                         } else {
@@ -229,7 +229,7 @@ namespace Lfc.Tarjetas.Cupones
 		}
 
 
-		private void FormCuenta_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+		private void Inicio_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
 		{
 			if (e.Alt == false && e.Control == false)
 			{
@@ -413,8 +413,8 @@ namespace Lfc.Tarjetas.Cupones
                                         FormularioPago.Cobro.FormaDePagoEditable = false;
 					FormularioPago.Cobro.Importe = dTotalAcreditar;
 					FormularioPago.Cobro.ImporteEditable = false;
-                                        if (Tarjeta != null && Tarjeta.Cuenta != null)
-                                                FormularioPago.Cobro.EntradaCuenta.TextInt = Tarjeta.Cuenta.Id;
+                                        if (Tarjeta != null && Tarjeta.Caja != null)
+                                                FormularioPago.Cobro.EntradaCaja.TextInt = Tarjeta.Caja.Id;
 					FormularioPago.Cobro.Obs = "Cupones Nº " + Cupones.ToString();
                                         FormularioPago.Cobro.ObsEditable = false;
 					if (FormularioPago.ShowDialog() == DialogResult.OK)
@@ -452,19 +452,19 @@ namespace Lfc.Tarjetas.Cupones
 				switch (FormularioPago.Cobro.FormaDePago.Tipo)
 				{
                                         case Lbl.Comprobantes.TipoFormasDePago.Efectivo:
-						Lbl.Cuentas.CuentaRegular CajaDiaria = new Lbl.Cuentas.CuentaRegular(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
+						Lbl.Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
 						CajaDiaria.Movimiento(true, 11000, "Acreditación Tarjetas", 0, Total, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
 						CajaDiaria.Movimiento(true, 24010, "Gestión de Cobro Tarjetas", 0, -dGestionDeCobro, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
 						break;
                                         case Lbl.Comprobantes.TipoFormasDePago.Cheque:
                                                 Lbl.Bancos.Cheque Cheque = MiCobro.Cheque;
-                                                Cheque.Concepto = new Lbl.Cuentas.Concepto(DataView, 11000);
+                                                Cheque.Concepto = new Lbl.Cajas.Concepto(DataView, 11000);
                                                 Cheque.ConceptoTexto = "Acreditación Tarjetas";
                                                 Cheque.Guardar();
 						break;
-                                        case Lbl.Comprobantes.TipoFormasDePago.CuentaRegular:
-                                                MiCobro.CuentaDestino.Movimiento(true, 11000, "Acreditación Tarjetas", 0, Total, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
-                                                MiCobro.CuentaDestino.Movimiento(true, 24010, "Gestión de Cobro Tarjetas", 0, -dGestionDeCobro, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
+                                        case Lbl.Comprobantes.TipoFormasDePago.Caja:
+                                                MiCobro.CajaDestino.Movimiento(true, 11000, "Acreditación Tarjetas", 0, Total, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
+                                                MiCobro.CajaDestino.Movimiento(true, 24010, "Gestión de Cobro Tarjetas", 0, -dGestionDeCobro, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
 						break;
 				}
 

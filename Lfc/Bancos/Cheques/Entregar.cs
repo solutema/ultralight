@@ -132,7 +132,7 @@ namespace Lfc.Bancos.Cheques
 			this.txtConcepto.SelectOnFocus = false;
 			this.txtConcepto.Size = new System.Drawing.Size(404, 24);
 			this.txtConcepto.TabIndex = 8;
-			this.txtConcepto.Table = "cuentas_conceptos";
+			this.txtConcepto.Table = "conceptos";
 			this.txtConcepto.TeclaDespuesDeEnter = "{tab}";
 			this.txtConcepto.Text = "0";
 			this.txtConcepto.TextDetail = "";

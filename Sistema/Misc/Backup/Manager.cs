@@ -65,9 +65,9 @@ namespace Lazaro.Misc.Backup
 					Itm.Font = new Font(Itm.Font, FontStyle.Bold);
 					Itm.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataareaActive;
 				}
-				Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, System.Convert.ToString(i)));
-				Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Ini.ReadString(ArchivoIni, "", "FechaYHora")));
-				Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Ini.ReadString(ArchivoIni, "", "Usuario")));
+				Itm.SubItems.Add(System.Convert.ToString(i));
+				Itm.SubItems.Add(Lfx.Types.Ini.ReadString(ArchivoIni, "", "FechaYHora"));
+				Itm.SubItems.Add(Lfx.Types.Ini.ReadString(ArchivoIni, "", "Usuario"));
 				i++;
 			}
 			lvItems.Sorting = SortOrder.Descending;

@@ -718,15 +718,15 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                                 return new RespuestaFiscal(ErroresFiscales.Ok);
 
                         // Asiento los precios de costo de los artículos de la factura (con fines estadsticos)
-                        System.Data.DataTable ArticulosDetalle = DataView.DataBase.Select("SELECT facturas_detalle.id_factura_detalle, facturas_detalle.id_articulo, articulos.costo FROM facturas_detalle, articulos WHERE facturas_detalle.id_articulo=articulos.id_articulo AND id_factura=" + Fac.Id.ToString());
+                        System.Data.DataTable ArticulosDetalle = DataView.DataBase.Select("SELECT comprob_detalle.id_comprob_detalle, comprob_detalle.id_articulo, articulos.costo FROM comprob_detalle, articulos WHERE comprob_detalle.id_articulo=articulos.id_articulo AND id_comprob=" + Fac.Id.ToString());
 
                         foreach (System.Data.DataRow Art in ArticulosDetalle.Rows) {
                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(Art["id_articulo"]) > 0) {
-                                        Lfx.Data.SqlUpdateBuilder Act = new Lfx.Data.SqlUpdateBuilder("facturas_detalle");
+                                        Lfx.Data.SqlUpdateBuilder Act = new Lfx.Data.SqlUpdateBuilder("comprob_detalle");
                                         Act.Fields.AddWithValue("costo", System.Convert.ToDouble(Art["costo"]));
-                                        Act.WhereClause = new Lfx.Data.SqlWhereBuilder("id_factura_detalle", System.Convert.ToInt32(Art["id_factura_detalle"]));
+                                        Act.WhereClause = new Lfx.Data.SqlWhereBuilder("id_comprob_detalle", System.Convert.ToInt32(Art["id_comprob_detalle"]));
                                         this.DataView.Execute(Act);
-                                        //this.DataView.DataBase.Execute("UPDATE facturas_detalle SET costo=" + Lfx.Types.Formatting.FormatCurrencySql(System.Convert.ToDouble(Art["costo"])).ToString() + " WHERE id_factura_detalle=" + Art["id_factura_detalle"].ToString());
+                                        //this.DataView.DataBase.Execute("UPDATE comprob_detalle SET costo=" + Lfx.Types.Formatting.FormatCurrencySql(System.Convert.ToDouble(Art["costo"])).ToString() + " WHERE id_comprob_detalle=" + Art["id_comprob_detalle"].ToString());
                                 }
                         }
 
@@ -1018,7 +1018,7 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
 
                         // *** Imprimir Detalles
                         //System.Data.DataTable
-                        //        Detalles = this.DataView.DataBase.Select("SELECT id_articulo,nombre,cantidad,precio,series FROM facturas_detalle WHERE id_factura=" + Fac.Id.ToString());
+                        //        Detalles = this.DataView.DataBase.Select("SELECT id_articulo,nombre,cantidad,precio,series FROM comprob_detalle WHERE id_comprob=" + Fac.Id.ToString());
 
                         foreach (Lbl.Comprobantes.DetalleArticulo Detalle in Fac.Articulos) {
                                 string StrCodigo = m_Workspace.CurrentConfig.Products.DefaultCode();
@@ -1247,7 +1247,7 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                                         DataView.BeginTransaction();
 
                                         //Marco la factura como impresa
-                                        DataView.DataBase.Execute("UPDATE facturas SET impresa=1, estado=1, numero=" + Res.NumeroComprobante.ToString() + " WHERE id_factura=" + Fac.Id.ToString());
+                                        DataView.DataBase.Execute("UPDATE comprob SET impresa=1, estado=1, numero=" + Res.NumeroComprobante.ToString() + " WHERE id_comprob=" + Fac.Id.ToString());
                                         Fac.Cargar();
 
                                         //Resto el stock si corresponde
@@ -1258,7 +1258,7 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                                         switch (Fac.FormaDePago.Tipo) {
                                                 case TipoFormasDePago.Efectivo:
                                                         if (Fac.ImporteImpago > 0) {
-                                                                Cuentas.CuentaRegular CajaDiaria = new Lbl.Cuentas.CuentaRegular(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
+                                                                Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
                                                                 CajaDiaria.Movimiento(true,
                                                                         11000,
                                                                         "Cobro " + Fac.ToString(),
@@ -1272,7 +1272,7 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                                                         }
                                                         break;
                                                 case TipoFormasDePago.CuentaCorriente:
-                                                        Cuentas.CuentaCorriente CtaCte = new Lbl.Cuentas.CuentaCorriente(DataView, Fac.Cliente.Id);
+                                                        Cajas.CuentaCorriente CtaCte = new Lbl.Cajas.CuentaCorriente(DataView, Fac.Cliente.Id);
                                                         CtaCte.IngresarComprobante(Fac, 0);
                                                         break;
                                         }

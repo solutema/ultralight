@@ -547,7 +547,8 @@ namespace Lazaro.Misc.Config
                         // 
                         this.Label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label6.Location = new System.Drawing.Point(12, 87);
+                        this.Label6.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.Label6.Location = new System.Drawing.Point(12, 56);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(500, 29);
                         this.Label6.TabIndex = 3;
@@ -560,7 +561,7 @@ namespace Lazaro.Misc.Config
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.lblServidorCumple.Location = new System.Drawing.Point(12, 36);
                         this.lblServidorCumple.Name = "lblServidorCumple";
-                        this.lblServidorCumple.Size = new System.Drawing.Size(500, 51);
+                        this.lblServidorCumple.Size = new System.Drawing.Size(500, 20);
                         this.lblServidorCumple.TabIndex = 2;
                         this.lblServidorCumple.Text = "Esta PC no cumple con los requisitos.";
                         // 
@@ -585,7 +586,7 @@ namespace Lazaro.Misc.Config
                         this.PanelServidorNoInstalado.Controls.Add(this.lblHeader4);
                         this.PanelServidorNoInstalado.Location = new System.Drawing.Point(8, 215);
                         this.PanelServidorNoInstalado.Name = "PanelServidorNoInstalado";
-                        this.PanelServidorNoInstalado.Size = new System.Drawing.Size(520, 117);
+                        this.PanelServidorNoInstalado.Size = new System.Drawing.Size(520, 85);
                         this.PanelServidorNoInstalado.TabIndex = 11;
                         // 
                         // PictureBox1
@@ -602,6 +603,7 @@ namespace Lazaro.Misc.Config
                         // 
                         this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label7.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label7.Location = new System.Drawing.Point(76, 41);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(447, 32);
@@ -613,6 +615,7 @@ namespace Lazaro.Misc.Config
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(534, 487);
+                        this.Controls.Add(this.PanelServidorNoInstalado);
                         this.Controls.Add(this.label7);
                         this.Controls.Add(this.PictureBox1);
                         this.Controls.Add(this.LowerPanel);
@@ -624,7 +627,6 @@ namespace Lazaro.Misc.Config
                         this.Controls.Add(this.lblHeader1);
                         this.Controls.Add(this.Label27);
                         this.Controls.Add(this.lblServidor);
-                        this.Controls.Add(this.PanelServidorNoInstalado);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "ConfigBD";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

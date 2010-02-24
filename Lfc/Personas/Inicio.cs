@@ -120,6 +120,10 @@ namespace Lfc.Personas
                                 TextoSql += " AND (personas.id_ciudad=" + m_Ciudad.ToString() + " OR personas.id_ciudad IS NULL)";
 
                         CurrentFilter = TextoSql;
+
+                        // Cargo la tabla en memoria, ya que la voy a usar mucho
+                        this.DataView.Tables["personas_grupos"].PreLoad();
+
                         base.RefreshList();
                 }
 
@@ -137,7 +141,7 @@ namespace Lfc.Personas
                         string[] Etiquetas = new string[1];
                         int i = 0;
                         Etiquetas[i++] = "Todas|0";
-                        foreach (Lfx.Data.Row Lab in this.DataView.Tables["sys_labels"].FastRows) {
+                        foreach (Lfx.Data.Row Lab in this.DataView.Tables["sys_labels"].FastRows.Values) {
                                 if (Lab["tablas"].ToString() == this.DataTableName) {
                                         if (Etiquetas.Length < (i + 1))
                                                 Array.Resize<string>(ref Etiquetas, i + 2);

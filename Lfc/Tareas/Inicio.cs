@@ -121,6 +121,9 @@ namespace Lfc.Tareas
 					break;
 			}
 
+                        // Cargo la tabla en memoria, ya que la voy a usar mucho
+                        this.DataView.Tables["tickets_estados"].PreLoad();
+
 			this.CurrentFilter = TextoSql;
 			base.BeginRefreshList();
 		}

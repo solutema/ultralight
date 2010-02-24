@@ -40,6 +40,12 @@ namespace Lws.Data
                         this.DataView = dataView;
                 }
 
+                public new void Add(Table table)
+                {
+                        table.DataView = this.DataView;
+                        base.Add(table);
+                }
+
 		public Table this[string name]
 		{
 			get

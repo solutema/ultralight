@@ -37,9 +37,9 @@ namespace Lbl.Comprobantes
         {
                 public Lbl.Comprobantes.FormaDePago FormaDePago;
                 private double m_Importe = 0;
-                public Cuentas.CuentaRegular CuentaOrigen;
+                public Cajas.Caja CajaOrigen;
                 public Bancos.Cheque Cheque;
-                public Cuentas.Concepto Concepto;
+                public Cajas.Concepto Concepto;
                 public string ConceptoTexto;
                 public Comprobantes.Recibo Recibo;
 
@@ -115,15 +115,15 @@ namespace Lbl.Comprobantes
 
                         switch (this.FormaDePago.Tipo) {
                                 case TipoFormasDePago.Efectivo:
-                                        Lbl.Cuentas.CuentaRegular Caja = new Lbl.Cuentas.CuentaRegular(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
+                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
                                         Caja.Movimiento(true, this.Concepto, DescripConcepto, Cliente, this.Importe, null, Factura, this.Recibo, null);
                                         break;
                                 case TipoFormasDePago.Cheque:
                                         if (this.Cheque != null)
                                                 this.Cheque.Anular();
                                         break;
-                                case TipoFormasDePago.CuentaRegular:
-                                        this.CuentaOrigen.Movimiento(true, this.Concepto, DescripConcepto, Cliente, this.Importe, null, Factura, this.Recibo, null);
+                                case TipoFormasDePago.Caja:
+                                        this.CajaOrigen.Movimiento(true, this.Concepto, DescripConcepto, Cliente, this.Importe, null, Factura, this.Recibo, null);
                                         break;
                         }
                 }
@@ -140,11 +140,11 @@ namespace Lbl.Comprobantes
                                                 return "Cheque";
                                         else
                                                 return Cheque.ToString();
-                                case TipoFormasDePago.CuentaRegular:
-                                        if (CuentaOrigen == null)
+                                case TipoFormasDePago.Caja:
+                                        if (CajaOrigen == null)
                                                 return "Débito de cuenta";
                                         else
-                                                return "Débito de " + CuentaOrigen.ToString();
+                                                return "Débito de " + CajaOrigen.ToString();
                                 default:
                                         return "No especificado";
                         }

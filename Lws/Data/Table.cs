@@ -55,6 +55,11 @@ namespace Lws.Data
 			}
 		}
 
+                public void PreLoad()
+                {
+                        this.FastRows.LoadAll();
+                }
+
                 public Lfx.Data.TagCollection Tags
                 {
 			get

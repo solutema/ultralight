@@ -43,7 +43,7 @@ namespace Lfc.Bancos.Cheques
                 protected internal int m_Banco, m_Cliente, m_Sucursal;
                 protected internal bool m_Emitidos = false;
                 protected internal double Total = 0, SinCobrar = 0;
-                protected internal Lfx.Types.DateRange m_Fechas = new Lfx.Types.DateRange("mes-0");
+                protected internal Lfx.Types.DateRange m_Fechas = new Lfx.Types.DateRange("*");
 
                 public Inicio()
                 {
@@ -54,7 +54,6 @@ namespace Lfc.Bancos.Cheques
                         OrderBy = "bancos_cheques.fecha DESC";
                         FormFields = new Lfx.Data.FormField[]
 			{
-                                new Lfx.Data.FormField("bancos_cheques.prefijo", "Prefijo", Lfx.Data.InputFieldTypes.Text, 80),
 				new Lfx.Data.FormField("bancos_cheques.numero", "Número", Lfx.Data.InputFieldTypes.Text, 120),
 				new Lfx.Data.FormField("bancos_cheques.fechaemision", "Fecha Emision", Lfx.Data.InputFieldTypes.Date, 96),
 				new Lfx.Data.FormField("bancos_cheques.emitidopor", "Emitido por", Lfx.Data.InputFieldTypes.Text, 120),
@@ -122,43 +121,42 @@ namespace Lfc.Bancos.Cheques
 
                 public override void ItemAdded(ListViewItem itm)
                 {
-                        itm.SubItems[1].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[1].Text).ToString("0000");
-                        itm.SubItems[2].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[2].Text).ToString("00000000");
+                        itm.SubItems[1].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[1].Text).ToString("00000000");
                         
-                        Total += Lfx.Types.Parsing.ParseCurrency(itm.SubItems[5].Text);
-                        itm.SubItems[8].Text = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM bancos WHERE id_banco=" + Lfx.Types.Parsing.ParseInt(itm.SubItems[8].Text).ToString());
+                        Total += Lfx.Types.Parsing.ParseCurrency(itm.SubItems[4].Text);
+                        itm.SubItems[7].Text = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM bancos WHERE id_banco=" + Lfx.Types.Parsing.ParseInt(itm.SubItems[7].Text).ToString());
                         
-                        switch (itm.SubItems[9].Text) {
+                        switch (itm.SubItems[8].Text) {
                                 case "0":
                                 case "-":
                                 case "":
                                         if (m_Emitidos)
-                                                itm.SubItems[9].Text = "A pagar";
+                                                itm.SubItems[8].Text = "A pagar";
                                         else
-                                                itm.SubItems[9].Text = "A cobrar";
-                                        if (string.Compare(Lfx.Types.Formatting.FormatDateTimeSql(itm.SubItems[6].Text).ToString(), Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now).ToString()) <= 0)
+                                                itm.SubItems[8].Text = "A cobrar";
+                                        if (string.Compare(Lfx.Types.Formatting.FormatDateTimeSql(itm.SubItems[5].Text).ToString(), Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now).ToString()) <= 0)
                                                 itm.ForeColor = System.Drawing.Color.Green;
                                         else
                                                 itm.ForeColor = System.Drawing.Color.Black;
-                                        SinCobrar += Lfx.Types.Parsing.ParseCurrency(itm.SubItems[5].Text);
+                                        SinCobrar += Lfx.Types.Parsing.ParseCurrency(itm.SubItems[4].Text);
                                         break;
                                 case "5":
-                                        itm.SubItems[9].Text = "Depositado";
-                                        SinCobrar += Lfx.Types.Parsing.ParseCurrency(itm.SubItems[5].Text);
+                                        itm.SubItems[8].Text = "Depositado";
+                                        SinCobrar += Lfx.Types.Parsing.ParseCurrency(itm.SubItems[4].Text);
                                         break;
                                 case "10":
                                         if (m_Emitidos)
-                                                itm.SubItems[9].Text = "Pagado";
+                                                itm.SubItems[8].Text = "Pagado";
                                         else
-                                                itm.SubItems[9].Text = "Cobrado";
+                                                itm.SubItems[8].Text = "Cobrado";
                                         itm.ForeColor = System.Drawing.Color.Gray;
                                         break;
                                 case "11":
-                                        itm.SubItems[9].Text = "Entregado";
+                                        itm.SubItems[8].Text = "Entregado";
                                         itm.ForeColor = System.Drawing.Color.Gray;
                                         break;
                                 case "90":
-                                        itm.SubItems[9].Text = "Anulado";
+                                        itm.SubItems[8].Text = "Anulado";
                                         itm.ForeColor = System.Drawing.Color.Gray;
                                         itm.Font = new Font(itm.Font, FontStyle.Strikeout);
                                         break;
@@ -258,7 +256,7 @@ namespace Lfc.Bancos.Cheques
                         System.Text.StringBuilder ListaChequesId = new System.Text.StringBuilder();
 
                         foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
-                                if (itm.Checked && (itm.SubItems[9].Text == "A cobrar" || itm.SubItems[9].Text == "Depositado")) {
+                                if (itm.Checked && (itm.SubItems[8].Text == "A cobrar" || itm.SubItems[8].Text == "Depositado")) {
                                         Cantidad++;
                                         Lfx.Data.Row Cheque = this.Workspace.DefaultDataBase.Row("bancos_cheques", "id_cheque", Lfx.Types.Parsing.ParseInt(itm.Text));
                                         Total += System.Convert.ToDouble(Cheque["importe"]);
@@ -285,7 +283,7 @@ namespace Lfc.Bancos.Cheques
                         }
                 }
 
-                private void FormCuentaCheques_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+                private void Inicio_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
                 {
                         switch (e.KeyCode) {
                                 case Keys.F5:
@@ -304,7 +302,7 @@ namespace Lfc.Bancos.Cheques
                                 if (Codigos == null) {
                                         Lui.Forms.MessageBox.Show("Debe seleccionar uno o más cheques.", "Error");
                                 } else {
-                                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Al depositar un cheque en una cuenta bancaria propia, puede marcarlo como depositado para control interno.\nSirve sólamente para depositos en cuentas propias. Para depósitos en cuentas de terceros utilice la opción 'Efectivizar'.", "¿Desea marcar los cheques seleccionados como depositados?");
+                                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Al depositar un cheque en una cuenta bancaria propia, puede marcarlo como depositado para control interno.\nSirve sólamente para depositos en cajas propias. Para depósitos en cajas de terceros utilice la opción 'Efectivizar'.", "¿Desea marcar los cheques seleccionados como depositados?");
                                         if (Pregunta.ShowDialog() == DialogResult.OK) {
                                                 this.Workspace.DefaultDataBase.Execute("UPDATE bancos_cheques SET estado=5 WHERE estado=0 AND id_cheque IN (" + Lfx.Types.Strings.Ints2CSV(Codigos, ",") + ")");
                                                 this.RefreshList();
@@ -319,20 +317,20 @@ namespace Lfc.Bancos.Cheques
 
                 private Lfx.Types.OperationResult Pagar()
                 {
-                        int IdCuentaOrigen = 0;
+                        int IdCajaOrigen = 0;
                         System.Collections.ArrayList Cheques = new System.Collections.ArrayList();
                         foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
-                                if (itm.Checked && (itm.SubItems[9].Text == "A pagar")) {
+                                if (itm.Checked && (itm.SubItems[8].Text == "A pagar")) {
                                         Cheques.Add(itm.Text);
-                                        if (IdCuentaOrigen == 0)
-                                                IdCuentaOrigen = this.Workspace.DefaultDataBase.FieldInt("SELECT id_cuenta FROM chequeras WHERE (SELECT numero FROM bancos_cheques WHERE id_cheque=" + itm.Text + ") BETWEEN desde AND hasta AND estado=1");
+                                        if (IdCajaOrigen == 0)
+                                                IdCajaOrigen = this.Workspace.DefaultDataBase.FieldInt("SELECT id_caja FROM chequeras WHERE (SELECT numero FROM bancos_cheques WHERE id_cheque=" + itm.Text + ") BETWEEN desde AND hasta AND estado=1");
                                 }
                         }
 
                         if (Cheques.Count > 0) {
                                 Bancos.Cheques.Pagar FormPagar = new Bancos.Cheques.Pagar();
                                 FormPagar.Workspace = this.Workspace;
-                                FormPagar.EntradaCuentaOrigen.TextInt = IdCuentaOrigen;
+                                FormPagar.EntradaCajaOrigen.TextInt = IdCajaOrigen;
                                 if (FormPagar.Mostrar(Cheques) == DialogResult.OK) {
                                         this.RefreshList();
                                         return new Lfx.Types.SuccessOperationResult();

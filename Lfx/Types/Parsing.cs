@@ -140,6 +140,8 @@ namespace Lfx.Types
                 /// </summary>
                 public static int ParseInt(string valor)
                 {
+                        if (valor == null || valor.Length == 0)
+                                return 0;
                         double Resultado = 0;
                         double.TryParse(valor, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out Resultado);
                         if (Resultado > int.MaxValue)

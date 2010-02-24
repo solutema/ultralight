@@ -55,7 +55,7 @@ namespace Lfc.Bancos.Cheques
 		public override Lfx.Types.OperationResult Ok()
 		{
 			Lfx.Types.OperationResult aceptarReturn = new Lfx.Types.SuccessOperationResult();
-			if (txtCuentaDestino.TextInt <= 0)
+			if (EntradaCajaDestino.TextInt <= 0)
 			{
 				aceptarReturn.Success = false;
 				aceptarReturn.Message += "Debe especificar la cuenta de destino." + Environment.NewLine;
@@ -74,16 +74,16 @@ namespace Lfc.Bancos.Cheques
 
 				DataView.BeginTransaction();
 
-				Lbl.Cuentas.CuentaRegular CuentaCheques = new Lbl.Cuentas.CuentaRegular(DataView, this.Workspace.CurrentConfig.Company.CuentaCheques);
-				CuentaCheques.Movimiento(true, 30000, "Efectivización de Cheques", 0, -ImporteOrigen, "Cheques Nº " + ListaCheques, 0, 0, "");
+				Lbl.Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(DataView, this.Workspace.CurrentConfig.Company.CajaCheques);
+				CajaCheques.Movimiento(true, 30000, "Efectivización de Cheques", 0, -ImporteOrigen, "Cheques Nº " + ListaCheques, 0, 0, "");
 
-				Lbl.Cuentas.CuentaRegular CuentaDestino = new Lbl.Cuentas.CuentaRegular(DataView, txtCuentaDestino.TextInt);
-				CuentaDestino.Movimiento(true, 30000, "Efectivización de Cheques", 0, ImporteDestino, "Cheques Nº " + ListaCheques, 0, 0, "");
+				Lbl.Cajas.Caja CajaDestino = new Lbl.Cajas.Caja(DataView, EntradaCajaDestino.TextInt);
+				CajaDestino.Movimiento(true, 30000, "Efectivización de Cheques", 0, ImporteDestino, "Cheques Nº " + ListaCheques, 0, 0, "");
 
 				if (GestionDeCobro != 0)
-					CuentaDestino.Movimiento(true, 24010, "Gestion de Cobro Cheques", 0, -GestionDeCobro, "Cheques Nº " + ListaCheques, 0, 0, "");
+					CajaDestino.Movimiento(true, 24010, "Gestion de Cobro Cheques", 0, -GestionDeCobro, "Cheques Nº " + ListaCheques, 0, 0, "");
 				if (Impuestos != 0)
-					CuentaDestino.Movimiento(true, 23030, "Impuestos Cheques", 0, -Impuestos, "Cheques Nº " + ListaCheques, 0, 0, "");
+					CajaDestino.Movimiento(true, 23030, "Impuestos Cheques", 0, -Impuestos, "Cheques Nº " + ListaCheques, 0, 0, "");
 
 				string sCheque = Lfx.Types.Strings.GetNextToken(ref ListaChequesId, ",");
 				do

@@ -58,8 +58,8 @@ namespace Lfc.Bancos.Chequeras
                 {
                         this.EntradaEstado = new Lui.Forms.ComboBox();
                         this.Label7 = new System.Windows.Forms.Label();
-                        this.lblCuenta = new System.Windows.Forms.Label();
-                        this.EntradaCuenta = new Lui.Forms.DetailBox();
+                        this.LabelCaja = new System.Windows.Forms.Label();
+                        this.EntradaCaja = new Lui.Forms.DetailBox();
                         this.Label1 = new System.Windows.Forms.Label();
                         this.EntradaBanco = new Lui.Forms.DetailBox();
                         this.SuspendLayout();
@@ -103,43 +103,43 @@ namespace Lfc.Bancos.Chequeras
                         this.Label7.Text = "Estado";
                         this.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // lblCuenta
+                        // LabelCaja
                         // 
-                        this.lblCuenta.Location = new System.Drawing.Point(20, 84);
-                        this.lblCuenta.Name = "lblCuenta";
-                        this.lblCuenta.Size = new System.Drawing.Size(120, 24);
-                        this.lblCuenta.TabIndex = 4;
-                        this.lblCuenta.Text = "Cuenta";
-                        this.lblCuenta.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.LabelCaja.Location = new System.Drawing.Point(20, 84);
+                        this.LabelCaja.Name = "LabelCaja";
+                        this.LabelCaja.Size = new System.Drawing.Size(120, 24);
+                        this.LabelCaja.TabIndex = 4;
+                        this.LabelCaja.Text = "Caja";
+                        this.LabelCaja.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaCuenta
+                        // EntradaCaja
                         // 
-                        this.EntradaCuenta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaCaja.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaCuenta.AutoTab = true;
-                        this.EntradaCuenta.CanCreate = true;
-                        this.EntradaCuenta.DetailField = "nombre";
-                        this.EntradaCuenta.ExtraDetailFields = null;
-                        this.EntradaCuenta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaCuenta.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaCuenta.FreeTextCode = "";
-                        this.EntradaCuenta.KeyField = "id_cuenta";
-                        this.EntradaCuenta.Location = new System.Drawing.Point(140, 84);
-                        this.EntradaCuenta.MaxLength = 200;
-                        this.EntradaCuenta.Name = "EntradaCuenta";
-                        this.EntradaCuenta.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCuenta.ReadOnly = false;
-                        this.EntradaCuenta.Required = false;
-                        this.EntradaCuenta.SelectOnFocus = false;
-                        this.EntradaCuenta.Size = new System.Drawing.Size(280, 24);
-                        this.EntradaCuenta.TabIndex = 5;
-                        this.EntradaCuenta.Table = "cuentas";
-                        this.EntradaCuenta.TeclaDespuesDeEnter = "{tab}";
-                        this.EntradaCuenta.Text = "0";
-                        this.EntradaCuenta.TextDetail = "";
-                        this.EntradaCuenta.TextInt = 0;
-                        this.EntradaCuenta.TipWhenBlank = "";
-                        this.EntradaCuenta.ToolTipText = "";
+                        this.EntradaCaja.AutoTab = true;
+                        this.EntradaCaja.CanCreate = true;
+                        this.EntradaCaja.DetailField = "nombre";
+                        this.EntradaCaja.ExtraDetailFields = null;
+                        this.EntradaCaja.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaCaja.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaCaja.FreeTextCode = "";
+                        this.EntradaCaja.KeyField = "id_caja";
+                        this.EntradaCaja.Location = new System.Drawing.Point(140, 84);
+                        this.EntradaCaja.MaxLength = 200;
+                        this.EntradaCaja.Name = "EntradaCaja";
+                        this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCaja.ReadOnly = false;
+                        this.EntradaCaja.Required = false;
+                        this.EntradaCaja.SelectOnFocus = false;
+                        this.EntradaCaja.Size = new System.Drawing.Size(280, 24);
+                        this.EntradaCaja.TabIndex = 5;
+                        this.EntradaCaja.Table = "cajas";
+                        this.EntradaCaja.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaCaja.Text = "0";
+                        this.EntradaCaja.TextDetail = "";
+                        this.EntradaCaja.TextInt = 0;
+                        this.EntradaCaja.TipWhenBlank = "";
+                        this.EntradaCaja.ToolTipText = "";
                         // 
                         // Label1
                         // 
@@ -183,8 +183,8 @@ namespace Lfc.Bancos.Chequeras
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(436, 331);
-                        this.Controls.Add(this.lblCuenta);
-                        this.Controls.Add(this.EntradaCuenta);
+                        this.Controls.Add(this.LabelCaja);
+                        this.Controls.Add(this.EntradaCaja);
                         this.Controls.Add(this.Label1);
                         this.Controls.Add(this.EntradaBanco);
                         this.Controls.Add(this.EntradaEstado);
@@ -199,8 +199,8 @@ namespace Lfc.Bancos.Chequeras
 
                 internal Lui.Forms.ComboBox EntradaEstado;
                 private System.Windows.Forms.Label Label7;
-                private System.Windows.Forms.Label lblCuenta;
-                internal Lui.Forms.DetailBox EntradaCuenta;
+                private System.Windows.Forms.Label LabelCaja;
+                internal Lui.Forms.DetailBox EntradaCaja;
                 private System.Windows.Forms.Label Label1;
                 internal Lui.Forms.DetailBox EntradaBanco;
                 private System.ComponentModel.IContainer components = null;

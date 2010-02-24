@@ -79,6 +79,7 @@ namespace Lbl.Cuotas
                 public override Lfx.Types.OperationResult Crear()
                 {
                         Lfx.Types.OperationResult Res = base.Crear();
+                        this.Fecha = DateTime.Now;
                         if (Res.Success) {
                                 for (int i = 1; i < 120; i++) {
                                         EstadosCuotas[i] = Estados.Nueva;

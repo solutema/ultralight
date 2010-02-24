@@ -72,7 +72,7 @@ namespace Lfc.Comprobantes.Facturas
                                 Registro.Cliente.Cargar();
 
 				if(Registro.NumeroRemito > 0) {
-                                        Lfx.Data.Row Remito = this.Workspace.DefaultDataBase.FirstRowFromSelect("SELECT * FROM facturas WHERE tipo_fac='R' AND numero=" + Registro.NumeroRemito.ToString() + " AND impresa>0 AND anulada=0");
+                                        Lfx.Data.Row Remito = this.Workspace.DefaultDataBase.FirstRowFromSelect("SELECT * FROM comprob WHERE tipo_fac='R' AND numero=" + Registro.NumeroRemito.ToString() + " AND impresa>0 AND anulada=0");
 					if(Remito == null) {
 						validarReturn.Success = false;
 						validarReturn.Message += "El número de Remito no es válido." + Environment.NewLine;
@@ -222,10 +222,10 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                 } else if (Registro.Tipo.LetraSola.ToUpperInvariant() == "B") {
                                         //Si es factura B de más de $ 1000, debe llevar el Nº de DNI
                                         if (Registro.Total >= 1000 && Registro.Cliente.NumeroDocumento.Length < 5 && Registro.Cliente.Cuit.Length < 5)
-                                                return new Lfx.Types.OperationResult(false, @"Para facturas tipo ""B"" de $ 1.000 o más, debe proporcionar el número de DNI del cliente.");
+                                                return new Lfx.Types.OperationResult(false, @"Para comprob tipo ""B"" de $ 1.000 o más, debe proporcionar el número de DNI del cliente.");
                                         //Si es factura B de más de $ 1000, debe llevar domicilio
                                         if (Registro.Total >= 1000 && Registro.Cliente.Domicilio.Length < 1)
-                                            return new Lfx.Types.OperationResult(false, @"Para facturas tipo ""B"" de $ 1.000 o más, debe proporcionar el domicilio del cliente.");
+                                            return new Lfx.Types.OperationResult(false, @"Para comprob tipo ""B"" de $ 1.000 o más, debe proporcionar el domicilio del cliente.");
                                 }
 
                                 if (ProductArray.ShowStock && this.Tipo.MueveStock && Registro.HayStock() == false) {
@@ -283,10 +283,10 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                                         System.DateTime FinEspera = System.DateTime.Now.AddSeconds(90);
 
                                                         //Espero hasta que la factura está impresa o hasta que pasen X segundos
-                                                        while (System.DateTime.Now < FinEspera && Registro.DataView.DataBase.FieldInt("SELECT numero FROM facturas WHERE id_factura=" + this.CachedRow.Id.ToString()) == 0) {
+                                                        while (System.DateTime.Now < FinEspera && Registro.DataView.DataBase.FieldInt("SELECT numero FROM comprob WHERE id_comprob=" + this.CachedRow.Id.ToString()) == 0) {
                                                                 Lfx.Environment.Threading.Sleep(1000, true);
                                                         }
-                                                        int Numero = Registro.DataView.DataBase.FieldInt("SELECT numero FROM facturas WHERE impresa<>0 AND id_factura=" + this.CachedRow.Id);
+                                                        int Numero = Registro.DataView.DataBase.FieldInt("SELECT numero FROM comprob WHERE impresa<>0 AND id_comprob=" + this.CachedRow.Id);
                                                         if (Numero == 0) {
                                                                 //Dió un timeout y no se imprimió.
                                                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("El servidor fiscal está demorando mucho para imprimir el comprobante. Debe asegurarse de que el servidor fiscal está cargado y configurado correctamente.", "¿Desea seguir esperando?");
@@ -327,7 +327,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                                 case Lbl.Comprobantes.TipoFormasDePago.Tarjeta:
                                                         EditarPago(false);
                                                         break;
-                                                case Lbl.Comprobantes.TipoFormasDePago.CuentaRegular:
+                                                case Lbl.Comprobantes.TipoFormasDePago.Caja:
                                                         EditarPago(false);
                                                         break;
                                         }
@@ -382,7 +382,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                                 Factura.DataView.BeginTransaction();
                                                 Factura.FormaDePago = MiCobro.FormaDePago;
                                                 EntradaFormaPago.TextInt = MiCobro.Id;
-                                                Factura.DataView.DataBase.FieldInt("UPDATE facturas SET id_formapago=" + MiCobro.FormaDePago.Id.ToString() + " WHERE id_factura=" + Factura.Id.ToString());
+                                                Factura.DataView.DataBase.FieldInt("UPDATE comprob SET id_formapago=" + MiCobro.FormaDePago.Id.ToString() + " WHERE id_comprob=" + Factura.Id.ToString());
                                                 if (MiCobro.FormaDePago.Tipo == Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente) {
                                                         // Si la nueva forma de pago es cta. cte., asiento el saldo
                                                         // Y uso saldo a favor, si lo hay
@@ -401,9 +401,9 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                         switch (Factura.FormaDePago.Tipo) {
                                                 case Lbl.Comprobantes.TipoFormasDePago.Efectivo:
                                                         Factura.DataView.BeginTransaction();
-                                                        Lbl.Cuentas.CuentaRegular CajaDiaria = new Lbl.Cuentas.CuentaRegular(Factura.DataView, Lws.Workspace.Master.CurrentConfig.Company.CajaDiaria);
-                                                        CajaDiaria.Movimiento(true, new Lbl.Cuentas.Concepto(Factura.DataView, 11000), Factura.ToString(), Factura.Cliente, Factura.ImporteImpago, Factura.Obs, Factura, null, null);
-                                                        Factura.DataView.DataBase.Execute("UPDATE facturas SET cancelado=" + Lfx.Types.Formatting.FormatCurrencySql(Factura.Total) + " WHERE id_factura=" + Factura.Id.ToString());
+                                                        Lbl.Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(Factura.DataView, Lws.Workspace.Master.CurrentConfig.Company.CajaDiaria);
+                                                        CajaDiaria.Movimiento(true, new Lbl.Cajas.Concepto(Factura.DataView, 11000), Factura.ToString(), Factura.Cliente, Factura.ImporteImpago, Factura.Obs, Factura, null, null);
+                                                        Factura.DataView.DataBase.Execute("UPDATE comprob SET cancelado=" + Lfx.Types.Formatting.FormatCurrencySql(Factura.Total) + " WHERE id_comprob=" + Factura.Id.ToString());
                                                         Factura.DataView.Commit();
                                                         break;
                                                 case Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente:
@@ -412,18 +412,18 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                                 case Lbl.Comprobantes.TipoFormasDePago.Cheque:
                                                         Factura.DataView.BeginTransaction();
                                                         Lbl.Bancos.Cheque Cheque = MiCobro.Cheque;
-                                                        Cheque.Concepto = new Lbl.Cuentas.Concepto(Factura.DataView, 11000);
+                                                        Cheque.Concepto = new Lbl.Cajas.Concepto(Factura.DataView, 11000);
                                                         Cheque.ConceptoTexto = "Cobro s/" + this.CachedRow.ToString();
                                                         Cheque.Factura = Factura;
                                                         Cheque.Guardar();
-                                                        Factura.DataView.DataBase.Execute("UPDATE facturas SET cancelado=" + Lfx.Types.Formatting.FormatCurrencySql(Factura.Total) + " WHERE id_factura=" + Factura.Id.ToString());
+                                                        Factura.DataView.DataBase.Execute("UPDATE comprob SET cancelado=" + Lfx.Types.Formatting.FormatCurrencySql(Factura.Total) + " WHERE id_comprob=" + Factura.Id.ToString());
                                                         Factura.DataView.Commit();
                                                         BotonPago.Visible = false;
                                                         break;
                                                 case Lbl.Comprobantes.TipoFormasDePago.Tarjeta:
                                                         Factura.DataView.BeginTransaction();
                                                         Lbl.Tarjetas.Cupon CuponCredito = MiCobro.Cupon;
-                                                        CuponCredito.Concepto = new Lbl.Cuentas.Concepto(Factura.DataView, 11000);
+                                                        CuponCredito.Concepto = new Lbl.Cajas.Concepto(Factura.DataView, 11000);
                                                         CuponCredito.ConceptoTexto = "Cobro s/" + Factura.ToString();
 
                                                         if (EntradaVendedor.TextInt > 0)
@@ -432,15 +432,15 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                                         CuponCredito.Factura = Factura;
                                                         CuponCredito.Guardar();
 
-                                                        Factura.DataView.DataBase.Execute("UPDATE facturas SET cancelado=" + Lfx.Types.Formatting.FormatCurrencySql(Factura.Total) + " WHERE id_factura=" + Factura.Id.ToString());
+                                                        Factura.DataView.DataBase.Execute("UPDATE comprob SET cancelado=" + Lfx.Types.Formatting.FormatCurrencySql(Factura.Total) + " WHERE id_comprob=" + Factura.Id.ToString());
                                                         Factura.DataView.Commit();
                                                         BotonPago.Visible = false;
                                                         break;
-                                                case Lbl.Comprobantes.TipoFormasDePago.CuentaRegular:
+                                                case Lbl.Comprobantes.TipoFormasDePago.Caja:
                                                         Factura.DataView.BeginTransaction();
-                                                        Lbl.Cuentas.CuentaRegular CuentaDeposito = MiCobro.CuentaDestino;
-                                                        CuentaDeposito.Movimiento(true, new Lbl.Cuentas.Concepto(Factura.DataView, 11000), "Cobro s/" + Factura.ToString(), Factura.Cliente, MiCobro.Importe, MiCobro.Obs, Factura, null, null);
-                                                        Factura.DataView.DataBase.Execute("UPDATE facturas SET cancelado=" + Lfx.Types.Formatting.FormatCurrencySql(Factura.Total) + " WHERE id_factura=" + Factura.Id.ToString());
+                                                        Lbl.Cajas.Caja CajaDeposito = MiCobro.CajaDestino;
+                                                        CajaDeposito.Movimiento(true, new Lbl.Cajas.Concepto(Factura.DataView, 11000), "Cobro s/" + Factura.ToString(), Factura.Cliente, MiCobro.Importe, MiCobro.Obs, Factura, null, null);
+                                                        Factura.DataView.DataBase.Execute("UPDATE comprob SET cancelado=" + Lfx.Types.Formatting.FormatCurrencySql(Factura.Total) + " WHERE id_comprob=" + Factura.Id.ToString());
                                                         Factura.DataView.Commit();
                                                         BotonPago.Visible = false;
                                                         break;
@@ -488,7 +488,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
 		{
 			int RemitoId = Lfx.Types.Parsing.ParseInt(EntradaRemito.Text);
 			if(RemitoId > 0) {
-				Lfx.Data.Row Remito = this.Workspace.DefaultDataBase.FirstRowFromSelect("SELECT * FROM facturas WHERE tipo_fac='R' AND numero=" + RemitoId.ToString() + " AND impresa>0 AND anulada=0");
+				Lfx.Data.Row Remito = this.Workspace.DefaultDataBase.FirstRowFromSelect("SELECT * FROM comprob WHERE tipo_fac='R' AND numero=" + RemitoId.ToString() + " AND impresa>0 AND anulada=0");
 				if(Remito == null)
 					ProductArray.ShowStock = true;
 				else

@@ -62,7 +62,7 @@ namespace Lfc.Bancos.Cheques
                 internal Lui.Forms.TextBox txtTotal;
                 internal System.Windows.Forms.Label Label8;
                 internal System.Windows.Forms.Label Label3;
-                internal Lui.Forms.DetailBox txtCuentaDestino;
+                internal Lui.Forms.DetailBox EntradaCajaDestino;
                 internal Lui.Forms.TextBox txtCantidad;
 
                 private void InitializeComponent()
@@ -76,7 +76,7 @@ namespace Lfc.Bancos.Cheques
                         this.txtTotal = new Lui.Forms.TextBox();
                         this.Label8 = new System.Windows.Forms.Label();
                         this.Label3 = new System.Windows.Forms.Label();
-                        this.txtCuentaDestino = new Lui.Forms.DetailBox();
+                        this.EntradaCajaDestino = new Lui.Forms.DetailBox();
                         this.txtImpuestos = new Lui.Forms.TextBox();
                         this.label4 = new System.Windows.Forms.Label();
                         this.label5 = new System.Windows.Forms.Label();
@@ -219,34 +219,34 @@ namespace Lfc.Bancos.Cheques
                         this.Label3.Text = "En la siguiente cuenta";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtCuentaDestino
+                        // EntradaCajaDestino
                         // 
-                        this.txtCuentaDestino.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaCajaDestino.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtCuentaDestino.AutoTab = true;
-                        this.txtCuentaDestino.CanCreate = false;
-                        this.txtCuentaDestino.DetailField = "nombre";
-                        this.txtCuentaDestino.ExtraDetailFields = null;
-                        this.txtCuentaDestino.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtCuentaDestino.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtCuentaDestino.FreeTextCode = "";
-                        this.txtCuentaDestino.KeyField = "id_cuenta";
-                        this.txtCuentaDestino.Location = new System.Drawing.Point(212, 232);
-                        this.txtCuentaDestino.MaxLength = 200;
-                        this.txtCuentaDestino.Name = "txtCuentaDestino";
-                        this.txtCuentaDestino.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtCuentaDestino.ReadOnly = false;
-                        this.txtCuentaDestino.Required = true;
-                        this.txtCuentaDestino.SelectOnFocus = false;
-                        this.txtCuentaDestino.Size = new System.Drawing.Size(348, 24);
-                        this.txtCuentaDestino.TabIndex = 12;
-                        this.txtCuentaDestino.Table = "cuentas";
-                        this.txtCuentaDestino.TeclaDespuesDeEnter = "{tab}";
-                        this.txtCuentaDestino.Text = "0";
-                        this.txtCuentaDestino.TextDetail = "";
-                        this.txtCuentaDestino.TextInt = 0;
-                        this.txtCuentaDestino.TipWhenBlank = "";
-                        this.txtCuentaDestino.ToolTipText = "";
+                        this.EntradaCajaDestino.AutoTab = true;
+                        this.EntradaCajaDestino.CanCreate = false;
+                        this.EntradaCajaDestino.DetailField = "nombre";
+                        this.EntradaCajaDestino.ExtraDetailFields = null;
+                        this.EntradaCajaDestino.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaCajaDestino.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaCajaDestino.FreeTextCode = "";
+                        this.EntradaCajaDestino.KeyField = "id_caja";
+                        this.EntradaCajaDestino.Location = new System.Drawing.Point(212, 232);
+                        this.EntradaCajaDestino.MaxLength = 200;
+                        this.EntradaCajaDestino.Name = "EntradaCajaDestino";
+                        this.EntradaCajaDestino.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCajaDestino.ReadOnly = false;
+                        this.EntradaCajaDestino.Required = true;
+                        this.EntradaCajaDestino.SelectOnFocus = false;
+                        this.EntradaCajaDestino.Size = new System.Drawing.Size(348, 24);
+                        this.EntradaCajaDestino.TabIndex = 12;
+                        this.EntradaCajaDestino.Table = "cajas";
+                        this.EntradaCajaDestino.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaCajaDestino.Text = "0";
+                        this.EntradaCajaDestino.TextDetail = "";
+                        this.EntradaCajaDestino.TextInt = 0;
+                        this.EntradaCajaDestino.TipWhenBlank = "";
+                        this.EntradaCajaDestino.ToolTipText = "";
                         // 
                         // txtImpuestos
                         // 
@@ -297,7 +297,7 @@ namespace Lfc.Bancos.Cheques
                         this.Controls.Add(this.label5);
                         this.Controls.Add(this.txtImpuestos);
                         this.Controls.Add(this.label4);
-                        this.Controls.Add(this.txtCuentaDestino);
+                        this.Controls.Add(this.EntradaCajaDestino);
                         this.Controls.Add(this.Label3);
                         this.Controls.Add(this.txtTotal);
                         this.Controls.Add(this.Label8);

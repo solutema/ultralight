@@ -68,8 +68,8 @@ namespace Lfc.Comprobantes.Presupuestos
 		{
 			base.OnBeginPrint(ev);
 			// Abro el Comprobante
-			m_Comprob = this.Workspace.DefaultDataBase.Row("facturas", "id_factura", m_IdComprob);
-			m_Detalle = this.Workspace.DefaultDataBase.Select("SELECT * FROM facturas_detalle WHERE id_factura=" + m_IdComprob.ToString());
+			m_Comprob = this.Workspace.DefaultDataBase.Row("comprob", "id_comprob", m_IdComprob);
+			m_Detalle = this.Workspace.DefaultDataBase.Select("SELECT * FROM comprob_detalle WHERE id_comprob=" + m_IdComprob.ToString());
 			m_Cliente = this.Workspace.DefaultDataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + m_Comprob["id_cliente"].ToString());
 			m_Vendedor = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM personas WHERE id_persona=" + m_Comprob["id_vendedor"].ToString());
 			m_Pagina = 0;

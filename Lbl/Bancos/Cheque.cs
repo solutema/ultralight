@@ -37,7 +37,7 @@ namespace Lbl.Bancos
 	{
                 public Bancos.Banco Banco;
                 public Lbl.Comprobantes.Recibo Recibo;
-                public Lbl.Cuentas.Concepto Concepto;
+                public Lbl.Cajas.Concepto Concepto;
                 public Lbl.Personas.Persona Cliente;
                 public Lbl.Bancos.Chequera Chequera;
                 public Lbl.Comprobantes.ComprobanteConArticulos Factura;
@@ -55,7 +55,7 @@ namespace Lbl.Bancos
                 public Cheque(Lws.Data.DataView dataView, Lbl.Comprobantes.ComprobanteConArticulos factura)
                         : this(dataView)
                 {
-                        m_ItemId = dataView.DataBase.FieldInt("SELECT MAX(id_cheque) FROM bancos_cheques WHERE id_factura=" + factura.Id.ToString());
+                        m_ItemId = dataView.DataBase.FieldInt("SELECT MAX(id_cheque) FROM bancos_cheques WHERE id_comprob=" + factura.Id.ToString());
                         this.Cargar();
                 }
 
@@ -95,7 +95,7 @@ namespace Lbl.Bancos
                                         this.Banco = null;
 
                                 if (this.FieldInt("id_concepto") > 0)
-                                        this.Concepto = new Cuentas.Concepto(this.DataView, this.FieldInt("id_concepto"));
+                                        this.Concepto = new Cajas.Concepto(this.DataView, this.FieldInt("id_concepto"));
                                 else
                                         this.Concepto = null;
 
@@ -114,8 +114,8 @@ namespace Lbl.Bancos
                                 else
                                         this.Cliente = null;
 
-                                if (this.FieldInt("id_factura") > 0)
-                                        this.Factura = new Comprobantes.Factura(this.DataView, this.FieldInt("id_factura"));
+                                if (this.FieldInt("id_comprob") > 0)
+                                        this.Factura = new Comprobantes.Factura(this.DataView, this.FieldInt("id_comprob"));
                                 else
                                         this.Factura = null;
                         }
@@ -279,9 +279,9 @@ namespace Lbl.Bancos
                                 Comando.Fields.AddWithValue("id_cliente", this.Cliente.Id);
                         
                         if (this.Factura == null)
-                                Comando.Fields.AddWithValue("id_factura", null);
+                                Comando.Fields.AddWithValue("id_comprob", null);
                         else
-                                Comando.Fields.AddWithValue("id_factura", this.Factura.Id);
+                                Comando.Fields.AddWithValue("id_comprob", this.Factura.Id);
 
 			Comando.Fields.AddWithValue("importe", this.Importe);
 			Comando.Fields.AddWithValue("fechaemision", this.FechaEmision);
@@ -296,13 +296,13 @@ namespace Lbl.Bancos
 
                         if (this.Emitido == false) {
                                 //Asiento en la cuenta cheques, sólo para cheques de cobro
-                                Cuentas.CuentaRegular CuentaCheques = new Lbl.Cuentas.CuentaRegular(this.DataView, this.DataView.Workspace.CurrentConfig.Company.CuentaCheques);
+                                Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(this.DataView, this.DataView.Workspace.CurrentConfig.Company.CajaCheques);
                                 Lbl.Personas.Persona UsarCliente = this.Cliente;
                                 if (UsarCliente == null && this.Factura != null)
                                         UsarCliente = this.Factura.Cliente;
                                 if (UsarCliente == null && this.Recibo != null)
                                         UsarCliente = this.Recibo.Cliente;
-                                Lfx.Types.OperationResult Res = CuentaCheques.Movimiento(true, this.Concepto, this.ConceptoTexto, UsarCliente, this.Importe, this.ToString(), this.Factura, this.Recibo, "");
+                                Lfx.Types.OperationResult Res = CajaCheques.Movimiento(true, this.Concepto, this.ConceptoTexto, UsarCliente, this.Importe, this.ToString(), this.Factura, this.Recibo, "");
                         }
 
                         return base.Guardar();
@@ -319,13 +319,13 @@ namespace Lbl.Bancos
 
                                 if (this.Emitido == false) {
                                         //Asiento en la cuenta cheques, sólo para cheques de cobro
-                                        Cuentas.CuentaRegular CuentaCheques = new Lbl.Cuentas.CuentaRegular(this.DataView, this.DataView.Workspace.CurrentConfig.Company.CuentaCheques);
+                                        Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(this.DataView, this.DataView.Workspace.CurrentConfig.Company.CajaCheques);
                                         Lbl.Personas.Persona UsarCliente = this.Cliente;
                                         if (UsarCliente == null && this.Factura != null)
                                                 UsarCliente = this.Factura.Cliente;
                                         if (UsarCliente == null && this.Recibo != null)
                                                 UsarCliente = this.Recibo.Cliente;
-                                        Lfx.Types.OperationResult Res = CuentaCheques.Movimiento(true, this.Concepto, "Anulación " + this.ToString(), UsarCliente, this.Importe, null, this.Factura, this.Recibo, "");
+                                        Lfx.Types.OperationResult Res = CajaCheques.Movimiento(true, this.Concepto, "Anulación " + this.ToString(), UsarCliente, this.Importe, null, this.Factura, this.Recibo, "");
                                 }
                         }
                 }

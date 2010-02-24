@@ -36,62 +36,63 @@ using System.Windows.Forms;
 
 namespace Lfc.Articulos
 {
-	public class Movimiento : Lui.Forms.DialogForm
-	{
+        public class Movimiento : Lui.Forms.DialogForm
+        {
 
-		#region Código generado por el Diseñador de Windows Forms
+                #region Código generado por el Diseñador de Windows Forms
 
-		public Movimiento() : base()
-		{
+                public Movimiento()
+                        : base()
+                {
 
-			// Necesario para admitir el Diseñador de Windows Forms
-			InitializeComponent();
+                        // Necesario para admitir el Diseñador de Windows Forms
+                        InitializeComponent();
 
-			// agregar código de constructor después de llamar a InitializeComponent
+                        // agregar código de constructor después de llamar a InitializeComponent
 
-		}
+                }
 
-		// Limpiar los recursos que se estén utilizando.
-		protected override void Dispose(bool disposing)
-		{
+                // Limpiar los recursos que se estén utilizando.
+                protected override void Dispose(bool disposing)
+                {
                         if (disposing && (components != null)) {
                                 components.Dispose();
                         }
 
-			base.Dispose(disposing);
-		}
+                        base.Dispose(disposing);
+                }
 
-		// Requerido por el Diseñador de Windows Forms
-		private System.ComponentModel.Container components = null;
+                // Requerido por el Diseñador de Windows Forms
+                private System.ComponentModel.Container components = null;
 
-		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
-		// Puede modificarse utilizando el Diseñador de Windows Forms. 
-		// No lo modifique con el editor de código.
-		internal System.Windows.Forms.Label Label1;
-		internal System.Windows.Forms.Label Label2;
-		internal System.Windows.Forms.Label Label3;
-		internal System.Windows.Forms.Label Label4;
+                // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
+                // Puede modificarse utilizando el Diseñador de Windows Forms. 
+                // No lo modifique con el editor de código.
+                internal System.Windows.Forms.Label Label1;
+                internal System.Windows.Forms.Label Label2;
+                internal System.Windows.Forms.Label Label3;
+                internal System.Windows.Forms.Label Label4;
                 internal Lui.Forms.ComboBox txtMovimiento;
-		internal Lui.Forms.TextBox txtCantidad;
-		internal Lui.Forms.TextBox txtObs;
-		internal Lui.Forms.TextBox txtStockActual;
-		internal Lui.Forms.TextBox txtStockResult;
-		internal Lui.Forms.DetailBox txtDesdeSituacion;
-		internal System.Windows.Forms.Label Label7;
-		internal Lui.Forms.DetailBox txtHaciaSituacion;
-		internal System.Windows.Forms.Label Label8;
-		internal Lui.Forms.TextBox txtStockResult2;
-		internal Lui.Forms.TextBox txtStockActual2;
-		internal System.Windows.Forms.Label lblDesdeSituacion;
-		internal System.Windows.Forms.Label lblHaciaSituacion;
-		internal System.Windows.Forms.Label Label5;
-		internal System.Windows.Forms.Label Label6;
-		public Lui.Forms.Product EntradaArticulo;
-		internal System.Windows.Forms.Label lblStockFlecha2;
-		internal System.Windows.Forms.Label lblStockFlecha;
+                internal Lui.Forms.TextBox txtCantidad;
+                internal Lui.Forms.TextBox txtObs;
+                internal Lui.Forms.TextBox txtStockActual;
+                internal Lui.Forms.TextBox txtStockResult;
+                internal Lui.Forms.DetailBox txtDesdeSituacion;
+                internal System.Windows.Forms.Label Label7;
+                internal Lui.Forms.DetailBox txtHaciaSituacion;
+                internal System.Windows.Forms.Label Label8;
+                internal Lui.Forms.TextBox txtStockResult2;
+                internal Lui.Forms.TextBox txtStockActual2;
+                internal System.Windows.Forms.Label lblDesdeSituacion;
+                internal System.Windows.Forms.Label lblHaciaSituacion;
+                internal System.Windows.Forms.Label Label5;
+                internal System.Windows.Forms.Label Label6;
+                public Lui.Forms.Product EntradaArticulo;
+                internal System.Windows.Forms.Label lblStockFlecha2;
+                internal System.Windows.Forms.Label lblStockFlecha;
 
-		private void InitializeComponent()
-		{
+                private void InitializeComponent()
+                {
                         this.Label1 = new System.Windows.Forms.Label();
                         this.Label2 = new System.Windows.Forms.Label();
                         this.Label3 = new System.Windows.Forms.Label();
@@ -482,154 +483,142 @@ namespace Lfc.Articulos
                         this.WorkspaceChanged += new System.EventHandler(this.FormArticulosMovim_WorkspaceChanged);
                         this.ResumeLayout(false);
 
-		}
+                }
 
-		#endregion
+                #endregion
 
-		public override Lfx.Types.OperationResult Ok()
-		{
-			Lfx.Types.OperationResult aceptarReturn = new Lfx.Types.SuccessOperationResult();
+                public override Lfx.Types.OperationResult Ok()
+                {
+                        Lfx.Types.OperationResult aceptarReturn = new Lfx.Types.SuccessOperationResult();
 
-			if (EntradaArticulo.TextInt <= 0)
-			{
-				aceptarReturn.Message += "Debe especificar el artículo." + Environment.NewLine;
-				aceptarReturn.Success = false;
-			}
+                        if (EntradaArticulo.TextInt <= 0) {
+                                aceptarReturn.Message += "Debe especificar el artículo." + Environment.NewLine;
+                                aceptarReturn.Success = false;
+                        }
 
-			if (txtDesdeSituacion.TextInt != txtDesdeSituacion.TextInt)
-			{
-				aceptarReturn.Message += @"Debe ""Desde"" y ""Hacia""." + Environment.NewLine;
-				aceptarReturn.Success = false;
-			}
+                        if (txtDesdeSituacion.TextInt != txtDesdeSituacion.TextInt) {
+                                aceptarReturn.Message += @"Debe ""Desde"" y ""Hacia""." + Environment.NewLine;
+                                aceptarReturn.Success = false;
+                        }
 
-			if (Lfx.Types.Parsing.ParseStock(txtCantidad.Text) <= 0)
-			{
-				aceptarReturn.Message += "Debe especificar la cantidad." + Environment.NewLine;
-				aceptarReturn.Success = false;
-			}
+                        if (Lfx.Types.Parsing.ParseStock(txtCantidad.Text) <= 0) {
+                                aceptarReturn.Message += "Debe especificar la cantidad." + Environment.NewLine;
+                                aceptarReturn.Success = false;
+                        }
 
-			if (aceptarReturn.Success == true)
-			{
-				DataView.BeginTransaction();
-				double Cantidad = Lfx.Types.Parsing.ParseDouble(txtCantidad.Text);
-				Lbl.Articulos.Articulo Art = new Lbl.Articulos.Articulo(DataView, EntradaArticulo.TextInt);
-				Lbl.Articulos.Situacion Origen, Destino;
-				if(txtDesdeSituacion.TextInt > 0)
-					Origen = new Lbl.Articulos.Situacion(DataView, txtDesdeSituacion.TextInt);
-				else
-					Origen = null;
-				if(txtHaciaSituacion.TextInt > 0)
-					Destino = new Lbl.Articulos.Situacion(DataView, txtHaciaSituacion.TextInt);
-				else
-					Destino = null;
-				Art.MoverStock(Cantidad, txtObs.Text, Origen, Destino, null);
-				DataView.Commit();
-			}
 
-			return aceptarReturn;
-		}
+                        Lbl.Articulos.Articulo Art = new Lbl.Articulos.Articulo(this.DataView, EntradaArticulo.TextInt);
+                        Art.Cargar();
+                        if (Art.RequiereNS) {
+                                aceptarReturn.Message += "No se pueden realizar movimientos manuales de artículos trazables. Debe confeccionar un Remito o una Factura." + Environment.NewLine;
+                                aceptarReturn.Success = false;
+                        }
 
-		private void txtArticulo_TextChanged(System.Object sender, System.EventArgs e)
-		{
-			MostrarStock();
-		}
+                        if (aceptarReturn.Success == true) {
+                                DataView.BeginTransaction();
+                                double Cantidad = Lfx.Types.Parsing.ParseDouble(txtCantidad.Text);
+                                Lbl.Articulos.Situacion Origen, Destino;
+                                if (txtDesdeSituacion.TextInt > 0)
+                                        Origen = new Lbl.Articulos.Situacion(DataView, txtDesdeSituacion.TextInt);
+                                else
+                                        Origen = null;
+                                if (txtHaciaSituacion.TextInt > 0)
+                                        Destino = new Lbl.Articulos.Situacion(DataView, txtHaciaSituacion.TextInt);
+                                else
+                                        Destino = null;
+                                Art.MoverStock(Cantidad, txtObs.Text, Origen, Destino, null);
+                                DataView.Commit();
+                        }
 
-		private void txtMovimiento_TextChanged(object sender, System.EventArgs e)
-		{
-			switch (txtMovimiento.TextKey)
-			{
-				case "e":
-					txtDesdeSituacion.TextInt = 998;
-					txtHaciaSituacion.TextInt = 1;
-					break;
+                        return aceptarReturn;
+                }
 
-				case "s":
-					txtDesdeSituacion.TextInt = 1;
-					txtHaciaSituacion.TextInt = 999;
-					break;
-			}
+                private void txtArticulo_TextChanged(System.Object sender, System.EventArgs e)
+                {
+                        MostrarStock();
+                }
 
-			MostrarStock();
-		}
+                private void txtMovimiento_TextChanged(object sender, System.EventArgs e)
+                {
+                        switch (txtMovimiento.TextKey) {
+                                case "e":
+                                        txtDesdeSituacion.TextInt = 998;
+                                        txtHaciaSituacion.TextInt = 1;
+                                        break;
 
-		private void txtDesdeHaciaSituacion_TextChanged(object sender, System.EventArgs e)
-		{
-			MostrarStock();
-			lblDesdeSituacion.Text = txtDesdeSituacion.TextDetail;
-			lblHaciaSituacion.Text = txtHaciaSituacion.TextDetail;
+                                case "s":
+                                        txtDesdeSituacion.TextInt = 1;
+                                        txtHaciaSituacion.TextInt = 999;
+                                        break;
+                        }
 
-			if (txtDesdeSituacion.TextInt == 1 && txtHaciaSituacion.TextInt == 999)
-			{
-				if (txtMovimiento.TextKey != "s")
-					txtMovimiento.TextKey = "s";
-			}
-			else if (txtDesdeSituacion.TextInt == 998 && txtHaciaSituacion.TextInt == 1)
-			{
-				if (txtMovimiento.TextKey != "e")
-					txtMovimiento.TextKey = "e";
-			}
-			else
-			{
-				txtMovimiento.TextKey = " ";
-			}
+                        MostrarStock();
+                }
 
-			txtStockActual.Visible = txtDesdeSituacion.TextInt > 0;
-			lblStockFlecha.Visible = txtDesdeSituacion.TextInt > 0;
-			txtStockResult.Visible = txtDesdeSituacion.TextInt > 0;
+                private void txtDesdeHaciaSituacion_TextChanged(object sender, System.EventArgs e)
+                {
+                        MostrarStock();
+                        lblDesdeSituacion.Text = txtDesdeSituacion.TextDetail;
+                        lblHaciaSituacion.Text = txtHaciaSituacion.TextDetail;
 
-			txtStockActual2.Visible = txtHaciaSituacion.TextInt > 0;
-			lblStockFlecha2.Visible = txtHaciaSituacion.TextInt > 0;
-			txtStockResult2.Visible = txtHaciaSituacion.TextInt > 0;
-		}
+                        if (txtDesdeSituacion.TextInt == 1 && txtHaciaSituacion.TextInt == 999) {
+                                if (txtMovimiento.TextKey != "s")
+                                        txtMovimiento.TextKey = "s";
+                        } else if (txtDesdeSituacion.TextInt == 998 && txtHaciaSituacion.TextInt == 1) {
+                                if (txtMovimiento.TextKey != "e")
+                                        txtMovimiento.TextKey = "e";
+                        } else {
+                                txtMovimiento.TextKey = " ";
+                        }
 
-		private void MostrarStock()
-		{
-			int ArticuloId = EntradaArticulo.TextInt;
+                        txtStockActual.Visible = txtDesdeSituacion.TextInt > 0;
+                        lblStockFlecha.Visible = txtDesdeSituacion.TextInt > 0;
+                        txtStockResult.Visible = txtDesdeSituacion.TextInt > 0;
 
-			if (ArticuloId > 0 && (txtDesdeSituacion.TextInt != txtHaciaSituacion.TextInt))
-			{
-				double Cantidad = Lfx.Types.Parsing.ParseStock(txtCantidad.Text);
-				double DesdeCantidad = this.Workspace.DefaultDataBase.FieldDouble("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + ArticuloId.ToString() + " AND id_situacion=" + txtDesdeSituacion.TextInt.ToString());
-				double HaciaCantidad = this.Workspace.DefaultDataBase.FieldDouble("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + ArticuloId.ToString() + " AND id_situacion=" + txtHaciaSituacion.TextInt.ToString());
+                        txtStockActual2.Visible = txtHaciaSituacion.TextInt > 0;
+                        lblStockFlecha2.Visible = txtHaciaSituacion.TextInt > 0;
+                        txtStockResult2.Visible = txtHaciaSituacion.TextInt > 0;
+                }
 
-				if (txtDesdeSituacion.TextInt < 998 || txtDesdeSituacion.TextInt > 999)
-				{
-					txtStockActual.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
-					txtStockResult.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad - Cantidad, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
-				}
-				else
-				{
-					txtStockActual.Text = "N/A";
-					txtStockResult.Text = "N/A";
-				}
+                private void MostrarStock()
+                {
+                        int ArticuloId = EntradaArticulo.TextInt;
 
-				if (txtHaciaSituacion.TextInt < 998 || txtHaciaSituacion.TextInt > 999)
-				{
-					txtStockActual2.Text = Lfx.Types.Formatting.FormatNumber(HaciaCantidad, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
-					txtStockResult2.Text = Lfx.Types.Formatting.FormatNumber(HaciaCantidad + Cantidad, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
-				}
-				else
-				{
-					txtStockActual2.Text = "N/A";
-					txtStockResult2.Text = "N/A";
-				}
-			}
-			else
-			{
-				txtStockActual.Text = "";
-				txtStockResult.Text = "";
-				txtStockActual2.Text = "";
-				txtStockResult2.Text = "";
-			}
-		}
+                        if (ArticuloId > 0 && (txtDesdeSituacion.TextInt != txtHaciaSituacion.TextInt)) {
+                                double Cantidad = Lfx.Types.Parsing.ParseStock(txtCantidad.Text);
+                                double DesdeCantidad = this.Workspace.DefaultDataBase.FieldDouble("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + ArticuloId.ToString() + " AND id_situacion=" + txtDesdeSituacion.TextInt.ToString());
+                                double HaciaCantidad = this.Workspace.DefaultDataBase.FieldDouble("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + ArticuloId.ToString() + " AND id_situacion=" + txtHaciaSituacion.TextInt.ToString());
 
-		private void FormArticulosMovim_WorkspaceChanged(object sender, System.EventArgs e)
-		{
-			txtDesdeSituacion.Visible = this.Workspace.CurrentConfig.Products.StockMultideposito;
-			txtHaciaSituacion.Visible = this.Workspace.CurrentConfig.Products.StockMultideposito;
-			Label7.Visible = this.Workspace.CurrentConfig.Products.StockMultideposito;
-			Label8.Visible = this.Workspace.CurrentConfig.Products.StockMultideposito;
-		}
+                                if (txtDesdeSituacion.TextInt < 998 || txtDesdeSituacion.TextInt > 999) {
+                                        txtStockActual.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
+                                        txtStockResult.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad - Cantidad, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
+                                } else {
+                                        txtStockActual.Text = "N/A";
+                                        txtStockResult.Text = "N/A";
+                                }
 
-	}
+                                if (txtHaciaSituacion.TextInt < 998 || txtHaciaSituacion.TextInt > 999) {
+                                        txtStockActual2.Text = Lfx.Types.Formatting.FormatNumber(HaciaCantidad, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
+                                        txtStockResult2.Text = Lfx.Types.Formatting.FormatNumber(HaciaCantidad + Cantidad, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
+                                } else {
+                                        txtStockActual2.Text = "N/A";
+                                        txtStockResult2.Text = "N/A";
+                                }
+                        } else {
+                                txtStockActual.Text = "";
+                                txtStockResult.Text = "";
+                                txtStockActual2.Text = "";
+                                txtStockResult2.Text = "";
+                        }
+                }
+
+                private void FormArticulosMovim_WorkspaceChanged(object sender, System.EventArgs e)
+                {
+                        txtDesdeSituacion.Visible = this.Workspace.CurrentConfig.Products.StockMultideposito;
+                        txtHaciaSituacion.Visible = this.Workspace.CurrentConfig.Products.StockMultideposito;
+                        Label7.Visible = this.Workspace.CurrentConfig.Products.StockMultideposito;
+                        Label8.Visible = this.Workspace.CurrentConfig.Products.StockMultideposito;
+                }
+
+        }
 }

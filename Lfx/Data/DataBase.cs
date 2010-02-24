@@ -41,10 +41,13 @@ namespace Lfx.Data
                 private bool m_Closing = false;
                 protected System.Data.IDbConnection DbConnection;
                 protected bool m_InTransaction = false;
-                public bool EnableRecover = false;
+                public bool EnableRecover = false, Debug = false;
+                private int Handle = 0;
+                private static int LastHandle = 0;
 
                 public DataBase()
                 {
+                        this.Handle = LastHandle++;
                         if (Lfx.Data.DataBaseCache.DefaultCache == null)
                                 Lfx.Data.DataBaseCache.DefaultCache = new DataBaseCache(this);
                 }
@@ -152,7 +155,6 @@ namespace Lfx.Data
                                 throw;
                         }
 
-                        EnableRecover = false;
                         this.SetupServer(this.DbConnection);
                         EnableRecover = true;
 
@@ -244,7 +246,7 @@ namespace Lfx.Data
 	                        LIMIT 1) WHERE control_stock<>0");
                         this.Execute(@"UPDATE articulos SET stock_actual=0 WHERE control_stock=0");
 
-                        // TODO: verificar saldos de cuentas y cuentas corrientes
+                        // TODO: verificar saldos de cajas y cajas corrientes
                 }
 
                 public void CheckTable(string tableName)
@@ -800,13 +802,13 @@ LEFT JOIN pg_attribute
 
                                 EnableRecover = false;
 
-                                if (DbConnection.State != System.Data.ConnectionState.Closed)
+                                if (DbConnection != null && DbConnection.State != System.Data.ConnectionState.Closed)
                                         this.Close();
 
                                 System.Threading.Thread.Sleep(500);
 
                                 int intentos = 10;
-                                while (DbConnection.State != System.Data.ConnectionState.Open && intentos-- > 0) {
+                                while ((DbConnection == null || DbConnection.State != System.Data.ConnectionState.Open) && intentos-- > 0) {
                                         try {
                                                 this.Open();
                                         }
@@ -940,8 +942,10 @@ LEFT JOIN pg_attribute
                                 try {
                                         int Res = command.ExecuteNonQuery();
                                         command.Dispose();
+                                        if (Debug)
+                                                System.Console.WriteLine(command.CommandText);
                                         return Res;
-                                } catch (Exception ex) {
+                                } catch (Exception ex)  {
                                         if (this.TryToRecover(ex)) {
                                                 LogError("----------------------------------------------------------------------------");
                                                 LogError(ex.Message);
@@ -993,6 +997,8 @@ LEFT JOIN pg_attribute
                         System.Data.IDbCommand Cmd = this.GetCommand(selectCommand);
                         while (true) {
                                 try {
+                                        if (Debug)
+                                                System.Console.WriteLine(this.Handle.ToString() + ": " + selectCommand);
                                         return Cmd.ExecuteScalar();
                                 }
                                 catch (Exception ex) {
@@ -1105,6 +1111,8 @@ LEFT JOIN pg_attribute
                                 try {
                                         Cmd.Connection = this.DbConnection;
                                         System.Data.IDataReader Rdr = Cmd.ExecuteReader(System.Data.CommandBehavior.SingleResult);
+                                        if (Debug)
+                                                System.Console.WriteLine(this.Handle.ToString() + ": " + selectCommand);
                                         return Rdr;
                                 }
                                 catch (Exception ex) {
@@ -1167,6 +1175,8 @@ LEFT JOIN pg_attribute
                         while (true) {
                                 try {
                                         Adaptador.Fill(Lector);
+                                        if (Debug)
+                                                System.Console.WriteLine(this.Handle.ToString() + ": " + selectCommand);
                                         break;
                                 }
                                 catch (Exception ex) {

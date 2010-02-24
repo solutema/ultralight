@@ -106,7 +106,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(296, 16);
                         this.Label3.TabIndex = 8;
-                        this.Label3.Text = "Este recibo cancela las siguientes facturas:";
+                        this.Label3.Text = "Este recibo cancela las siguientes comprob:";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label1
@@ -638,7 +638,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaConcepto.SelectOnFocus = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(216, 24);
                         this.EntradaConcepto.TabIndex = 11;
-                        this.EntradaConcepto.Table = "cuentas_conceptos";
+                        this.EntradaConcepto.Table = "conceptos";
                         this.EntradaConcepto.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaConcepto.Text = "0";
                         this.EntradaConcepto.TextDetail = "";

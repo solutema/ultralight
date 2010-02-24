@@ -394,7 +394,7 @@ namespace Lfc.Pvs
 			this.note1.ReadOnly = false;
 			this.note1.Size = new System.Drawing.Size(600, 72);
 			this.note1.TabIndex = 104;
-			this.note1.Text = "Si desea cambiar el punto de venta predeterminado para las facturas u otros docum" +
+			this.note1.Text = "Si desea cambiar el punto de venta predeterminado para las comprob u otros docum" +
 			    "entos, utilice la opción Preferencias del menú Sistema.";
 			this.note1.Title = "Información";
 			this.note1.ToolTipText = "";

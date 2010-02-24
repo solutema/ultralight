@@ -107,7 +107,7 @@ namespace Lui.Forms
 			OFormExportar.ShowDialog();
                 }
 
-		private void FormCuenta_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+		private void AccountForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
 		{
 			if (e.Alt == false)
 			{
@@ -175,7 +175,7 @@ namespace Lui.Forms
 		}
 
 
-		private void FormCuenta_Activated(object sender, System.EventArgs e)
+		private void AccountForm_Activated(object sender, System.EventArgs e)
 		{
 			this.RefreshList();
 		}

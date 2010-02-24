@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{605FD6A7-13A6-45A3-9C5D-DAF1CEF01DBB}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -81,6 +81,14 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Lfx, Version=1.0.3691.33299, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Sistema\bin\Lfx.dll</HintPath>
+    </Reference>
+    <Reference Include="Lws, Version=1.0.3691.33469, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Sistema\bin\Lws.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
@@ -109,14 +117,4 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Lfx\Lfx.csproj">
-      <Project>{BC643FE8-57FF-4E26-AAF2-19B229BE9B16}</Project>
-      <Name>Lfx</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Lws\Lws.csproj">
-      <Project>{16A55055-8770-457B-8D39-3D61955FAB7C}</Project>
-      <Name>Lws</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>

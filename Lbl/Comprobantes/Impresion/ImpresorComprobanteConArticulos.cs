@@ -45,13 +45,13 @@ namespace Lbl.Comprobantes.Impresion
 
                         if (this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.ActualizaCostoAlFacturar", 1) != 0) {
                                 // Asiento los precios de costo de los artículos de la factura (con fines estadsticos)
-                                System.Data.DataTable Detalle = this.DataView.DataBase.Select("SELECT facturas_detalle.id_factura_detalle, facturas_detalle.id_articulo, articulos.costo FROM facturas_detalle, articulos WHERE facturas_detalle.id_articulo=articulos.id_articulo AND id_factura=" + this.Comprobante.Id.ToString());
+                                System.Data.DataTable Detalle = this.DataView.DataBase.Select("SELECT comprob_detalle.id_comprob_detalle, comprob_detalle.id_articulo, articulos.costo FROM comprob_detalle, articulos WHERE comprob_detalle.id_articulo=articulos.id_articulo AND id_comprob=" + this.Comprobante.Id.ToString());
 
                                 foreach (System.Data.DataRow Art in Detalle.Rows) {
                                         if (Lfx.Data.DataBase.ConvertDBNullToZero(Art["id_articulo"]) > 0) {
-                                                Lfx.Data.SqlUpdateBuilder Act = new Lfx.Data.SqlUpdateBuilder("facturas_detalle");
+                                                Lfx.Data.SqlUpdateBuilder Act = new Lfx.Data.SqlUpdateBuilder("comprob_detalle");
                                                 Act.Fields.AddWithValue("costo", System.Convert.ToDouble(Art["costo"]));
-                                                Act.WhereClause = new Lfx.Data.SqlWhereBuilder("id_factura_detalle", System.Convert.ToInt32(Art["id_factura_detalle"]));
+                                                Act.WhereClause = new Lfx.Data.SqlWhereBuilder("id_comprob_detalle", System.Convert.ToInt32(Art["id_comprob_detalle"]));
                                                 this.DataView.Execute(Act);
                                         }
                                 }
@@ -80,11 +80,11 @@ namespace Lbl.Comprobantes.Impresion
                                 ComprobConArt.Fecha = System.DateTime.Now;
 
                                 //Marco la factura como impresa y actualizo la fecha
-                                Lfx.Data.SqlUpdateBuilder Act = new Lfx.Data.SqlUpdateBuilder("facturas");
+                                Lfx.Data.SqlUpdateBuilder Act = new Lfx.Data.SqlUpdateBuilder("comprob");
                                 Act.Fields.AddWithValue("impresa", ComprobConArt.Impreso ? 1 : 0);
                                 Act.Fields.AddWithValue("estado", ComprobConArt.Estado);
                                 Act.Fields.AddWithValue("fecha", ComprobConArt.Fecha);
-                                Act.WhereClause = new Lfx.Data.SqlWhereBuilder("id_factura", ComprobConArt.Id);
+                                Act.WhereClause = new Lfx.Data.SqlWhereBuilder("id_comprob", ComprobConArt.Id);
                                 this.DataView.Execute(Act);
 
                                 ComprobConArt.Guardar();
@@ -93,7 +93,7 @@ namespace Lbl.Comprobantes.Impresion
                                 if (ComprobConArt.Tipo.MueveStock)
                                         Lbl.Articulos.Stock.MoverStockComprobante(ComprobConArt);
 
-                                Lbl.Cuentas.CuentaCorriente CtaCte = new Lbl.Cuentas.CuentaCorriente(this.DataView, ComprobConArt.Cliente.Id);
+                                Lbl.Cajas.CuentaCorriente CtaCte = new Lbl.Cajas.CuentaCorriente(this.DataView, ComprobConArt.Cliente.Id);
 
                                 if (ComprobConArt.Tipo.EsNotaDebito) {
                                         CtaCte.Movimiento(true, 30000, ComprobConArt.ToString(), ComprobConArt.Total, ComprobConArt.Obs, ComprobConArt.Id, 0, true);
@@ -106,7 +106,7 @@ namespace Lbl.Comprobantes.Impresion
                                         switch (ComprobConArt.FormaDePago.Tipo) {
                                                 case TipoFormasDePago.Efectivo:
                                                         if (ComprobConArt.ImporteImpago > 0) {
-                                                                Lbl.Cuentas.CuentaRegular Caja = new Lbl.Cuentas.CuentaRegular(this.DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
+                                                                Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(this.DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
                                                                 Caja.Movimiento(true,
                                                                         11000,
                                                                         "Cobro Factura " + ComprobConArt.ToString(),
@@ -181,14 +181,14 @@ namespace Lbl.Comprobantes.Impresion
                                         }
                                         return Res;
                                 case "TOTAL":
-                                        return "$ " + Lfx.Types.Formatting.FormatCurrencyForPrint(ComprobConArt.Total, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
+                                        return Lfx.Types.Formatting.FormatCurrencyForPrint(ComprobConArt.Total, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
                                 case "IMPORTES":
                                         Res = null;
                                         for (int i = 0; i < ComprobConArt.Articulos.Count; i++) {
                                                 if (Res == null)
-                                                        Res = "$ " + Lfx.Types.Formatting.FormatCurrencyForPrint(ComprobConArt.Articulos[i].Unitario * ComprobConArt.Articulos[i].Cantidad, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
+                                                        Res = Lfx.Types.Formatting.FormatCurrencyForPrint(ComprobConArt.Articulos[i].Unitario * ComprobConArt.Articulos[i].Cantidad, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
                                                 else
-                                                        Res += "$ " + System.Environment.NewLine + Lfx.Types.Formatting.FormatCurrencyForPrint(ComprobConArt.Articulos[i].Unitario * ComprobConArt.Articulos[i].Cantidad, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
+                                                        Res += System.Environment.NewLine + Lfx.Types.Formatting.FormatCurrencyForPrint(ComprobConArt.Articulos[i].Unitario * ComprobConArt.Articulos[i].Cantidad, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
                                         }
                                         return Res;
                                 case "RECARGO":

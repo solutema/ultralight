@@ -117,7 +117,7 @@ namespace Lfc.Articulos
                 private void txtCategoriaMarcaModeloSerie_TextChanged(System.Object sender, System.EventArgs e)
                 {
                         if (CustomName == false) {
-                                string NombreSing = this.Workspace.DefaultDataBase.FieldString("SELECT nombresing FROM cat_articulos WHERE id_cat_articulo=" + EntradaCategoria.TextInt.ToString());
+                                string NombreSing = this.Workspace.DefaultDataBase.FieldString("SELECT nombresing FROM articulos_categorias WHERE id_categoria=" + EntradaCategoria.TextInt.ToString());
                                 string Texto = (NombreSing + " " + EntradaMarca.TextDetail + " " + EntradaModelo.Text + " " + EntradaSerie.Text).Trim();
                                 EntradaNombre.Text = Texto;
                         }
@@ -283,15 +283,15 @@ namespace Lfc.Articulos
                         if (m_Id > 0) {
                                 string Res = "";
 
-                                double PrecioUltComp = this.Workspace.DefaultDataBase.FieldDouble("SELECT facturas_detalle.precio FROM facturas, facturas_detalle WHERE facturas.id_factura=facturas_detalle.id_factura AND facturas.tipo_fac IN ('R', 'A', 'B', 'C', 'E', 'M') AND facturas.compra=1 AND id_articulo=" + m_Id.ToString() + " GROUP BY facturas.id_factura ORDER BY facturas_detalle.id_factura_detalle DESC");
-                                double PrecioUltFlete = this.Workspace.DefaultDataBase.FieldDouble("SELECT (facturas.gastosenvio+facturas.otrosgastos)*(facturas_detalle.precio/facturas.total) FROM facturas, facturas_detalle WHERE facturas.id_factura=facturas_detalle.id_factura AND facturas.tipo_fac IN ('R', 'A', 'B', 'C', 'E', 'M') AND facturas.compra=1 AND id_articulo=" + m_Id.ToString() + " GROUP BY facturas.id_factura ORDER BY facturas_detalle.id_factura_detalle DESC");
+                                double PrecioUltComp = this.Workspace.DefaultDataBase.FieldDouble("SELECT comprob_detalle.precio FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('R', 'A', 'B', 'C', 'E', 'M') AND comprob.compra=1 AND id_articulo=" + m_Id.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
+                                double PrecioUltFlete = this.Workspace.DefaultDataBase.FieldDouble("SELECT (comprob.gastosenvio+comprob.otrosgastos)*(comprob_detalle.precio/comprob.total) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('R', 'A', 'B', 'C', 'E', 'M') AND comprob.compra=1 AND id_articulo=" + m_Id.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
                                 Res += "Costo de la última compra (sin gastos): " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + Environment.NewLine;
                                 Res += "Costo de la última compra (con gastos): " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUltComp + PrecioUltFlete, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + Environment.NewLine;
 
                                 // Podra hacer esto con una subconsulta, pero la versión de MySql que estamos utilizando
                                 // no permite la cláusula LIMIT dentro de una subconsulta IN ()
                                 double PrecioUlt5Comps = 0;
-                                System.Data.DataTable UltimasCompras = this.Workspace.DefaultDataBase.Select("SELECT facturas_detalle.precio, facturas.id_factura FROM facturas, facturas_detalle WHERE facturas.id_factura=facturas_detalle.id_factura AND facturas.compra=1 AND facturas.tipo_fac IN ('R', 'A', 'B', 'C', 'E', 'M') AND facturas.compra=1 AND facturas_detalle.id_articulo=" + m_Id.ToString() + " ORDER BY facturas.fecha DESC LIMIT 5");
+                                System.Data.DataTable UltimasCompras = this.Workspace.DefaultDataBase.Select("SELECT comprob_detalle.precio, comprob.id_comprob FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'A', 'B', 'C', 'E', 'M') AND comprob.compra=1 AND comprob_detalle.id_articulo=" + m_Id.ToString() + " ORDER BY comprob.fecha DESC LIMIT 5");
 
                                 if (UltimasCompras.Rows.Count > 0) {
                                         foreach (System.Data.DataRow Compra in UltimasCompras.Rows) {
@@ -359,11 +359,11 @@ namespace Lfc.Articulos
                                 EtiquetaCodigo4.Text = Nombre["nombre"].ToString();
 
                         Lws.Data.Table TablaMargenes = this.Workspace.DefaultDataView.Tables["margenes"];
-                        TablaMargenes.FastRows.LoadAll();
+                        TablaMargenes.PreLoad();
                         int i = 0;
                         string[] ListaMargenes = new string[TablaMargenes.FastRows.Count + 1];
 
-                        foreach (Lfx.Data.Row Margen in TablaMargenes.FastRows) {
+                        foreach (Lfx.Data.Row Margen in TablaMargenes.FastRows.Values) {
                                 ListaMargenes[i] = System.Convert.ToString(Margen["nombre"]) + " (" + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Margen["porcentaje"]) + System.Convert.ToDouble(Margen["porcentaje2"]) + System.Convert.ToDouble(Margen["porcentaje3"]), 2) + "%)|" + System.Convert.ToInt32(Margen["id_margen"]);
                                 i++;
                         }
@@ -411,10 +411,10 @@ namespace Lfc.Articulos
                         else
                                 EntradaMarca.TextInt = Item.Marca.Id;
 
-                        if (Item.Cuenta == null)
-                                EntradaCuenta.TextInt = 0;
+                        if (Item.Caja == null)
+                                EntradaCaja.TextInt = 0;
                         else
-                                EntradaCuenta.TextInt = Item.Cuenta.Id;
+                                EntradaCaja.TextInt = Item.Caja.Id;
 
                         EntradaModelo.Text = Item.Modelo;
                         EntradaSerie.Text = Item.Serie;
@@ -476,10 +476,10 @@ namespace Lfc.Articulos
                                 Item.Marca = new Lbl.Articulos.Marca(Item.DataView, EntradaMarca.TextInt);
                         else
                                 Item.Marca = null;
-                        if (EntradaCuenta.TextInt != 0)
-                                Item.Cuenta = new Lbl.Cuentas.CuentaRegular(Item.DataView, EntradaCuenta.TextInt);
+                        if (EntradaCaja.TextInt != 0)
+                                Item.Caja = new Lbl.Cajas.Caja(Item.DataView, EntradaCaja.TextInt);
                         else
-                                Item.Cuenta = null;
+                                Item.Caja = null;
 
                         Item.Modelo = EntradaModelo.Text;
                         Item.Serie = EntradaSerie.Text;

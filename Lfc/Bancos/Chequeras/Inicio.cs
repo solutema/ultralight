@@ -46,7 +46,7 @@ namespace Lfc.Bancos.Chequeras
 		}
 		
 		private Estados m_Estado = Estados.Todos;
-                private int m_Banco = 0, m_Cuenta = 0;
+                private int m_Banco = 0, m_Caja = 0;
 
                 public Inicio()
                 {
@@ -61,7 +61,7 @@ namespace Lfc.Bancos.Chequeras
                                 new Lfx.Data.FormField("chequeras.prefijo", "Prefijo", Lfx.Data.InputFieldTypes.Integer, 90),
 				new Lfx.Data.FormField("chequeras.desde", "Desde", Lfx.Data.InputFieldTypes.Integer, 120),
 				new Lfx.Data.FormField("chequeras.hasta", "Hasta", Lfx.Data.InputFieldTypes.Integer, 120),
-				new Lfx.Data.FormField("chequeras.id_cuenta", "Cuenta", Lfx.Data.InputFieldTypes.Relation, 240),
+				new Lfx.Data.FormField("chequeras.id_caja", "Caja", Lfx.Data.InputFieldTypes.Relation, 240),
 				new Lfx.Data.FormField("chequeras.titular", "Titular", Lfx.Data.InputFieldTypes.Text, 240),
 				new Lfx.Data.FormField("chequeras.estado", "Estado", Lfx.Data.InputFieldTypes.Text,80),
 			};
@@ -75,13 +75,13 @@ namespace Lfc.Bancos.Chequeras
                                 FormularioFiltros.Workspace = this.Workspace;
                                 FormularioFiltros.EntradaEstado.TextKey = ((int)m_Estado).ToString();
                                 FormularioFiltros.EntradaBanco.TextInt = m_Banco;
-                                FormularioFiltros.EntradaCuenta.TextInt = m_Cuenta;
+                                FormularioFiltros.EntradaCaja.TextInt = m_Caja;
 
                                 FormularioFiltros.ShowDialog();
                                 if (FormularioFiltros.DialogResult == DialogResult.OK) {
                                         m_Estado = (Estados)Lfx.Types.Parsing.ParseInt(FormularioFiltros.EntradaEstado.TextKey);
                                         m_Banco = FormularioFiltros.EntradaBanco.TextInt;
-                                        m_Cuenta = FormularioFiltros.EntradaCuenta.TextInt;
+                                        m_Caja = FormularioFiltros.EntradaCaja.TextInt;
                                         RefreshList();
                                         filtrarReturn.Success = true;
                                 } else {
@@ -103,8 +103,8 @@ namespace Lfc.Bancos.Chequeras
                         if(m_Banco > 0)
                                 TextoSql += " AND id_banco=" + m_Banco.ToString();
 
-                        if (m_Cuenta > 0)
-                                TextoSql += " AND id_cuenta=" + m_Cuenta.ToString();
+                        if (m_Caja > 0)
+                                TextoSql += " AND id_caja=" + m_Caja.ToString();
 
 			CurrentFilter = TextoSql;
 			base.RefreshList();
@@ -130,9 +130,9 @@ namespace Lfc.Bancos.Chequeras
                         itm.SubItems[2].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[2].Text).ToString("0000");
                         itm.SubItems[3].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[3].Text).ToString("00000000");
                         itm.SubItems[4].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[4].Text).ToString("00000000");
-                        int IdCuenta = Lfx.Types.Parsing.ParseInt(itm.SubItems[5].Text);
-                        if (IdCuenta > 0)
-                                itm.SubItems[5].Text = this.DataView.Tables["cuentas"].FastRows[IdCuenta].Fields["nombre"].ToString();
+                        int IdCaja = Lfx.Types.Parsing.ParseInt(itm.SubItems[5].Text);
+                        if (IdCaja > 0)
+                                itm.SubItems[5].Text = this.DataView.Tables["cajas"].FastRows[IdCaja].Fields["nombre"].ToString();
 		}
 
 		public override Lfx.Types.OperationResult OnEdit(int lCodigo)

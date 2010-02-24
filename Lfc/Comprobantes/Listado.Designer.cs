@@ -68,16 +68,16 @@ namespace Lfc.Comprobantes
                     this.txtAgrupar.ReadOnly = false;
                     this.txtAgrupar.SetData = new string[] {
         "Sin Agrupar|*",
-        "Por Tipo de Comprobante|facturas.tipo_fac",
-        "Por Vendedor|facturas.id_vendedor",
-        "Por Cliente|facturas.id_cliente",
-        "Por Forma de Pago|facturas.id_formapago",
-        "Por Día de la Semana|DAYOFWEEK(facturas.fecha)",
-        "Por Día del Mes|DAYOFMONTH(facturas.fecha)",
+        "Por Tipo de Comprobante|comprob.tipo_fac",
+        "Por Vendedor|comprob.id_vendedor",
+        "Por Cliente|comprob.id_cliente",
+        "Por Forma de Pago|comprob.id_formapago",
+        "Por Día de la Semana|DAYOFWEEK(comprob.fecha)",
+        "Por Día del Mes|DAYOFMONTH(comprob.fecha)",
         "Por Marca|articulos.id_marca",
         "Por Proveedor|articulos.id_proveedor",
         "Por Artículo|articulos.id_articulo",
-        "Por Categoría|articulos.id_cat_articulo"};
+        "Por Categoría|articulos.id_categoria"};
                     this.txtAgrupar.Size = new System.Drawing.Size(196, 24);
                     this.txtAgrupar.TabIndex = 1;
                     this.txtAgrupar.Table = null;

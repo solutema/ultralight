@@ -39,7 +39,11 @@ namespace Lui.Forms
                 {
                         Lui.Forms.MessageBoxForm FormMessageBox = new Lui.Forms.MessageBoxForm();
                         FormMessageBox.Text = caption;
-                        FormMessageBox.label1.Text = message;
+                        FormMessageBox.MessageText.Text = message;
+                        if (message.Length > 400)
+                                FormMessageBox.MessageText.Font = new System.Drawing.Font(FormMessageBox.MessageText.Font.Name, 8);
+                        else if (message.Length > 300)
+                                FormMessageBox.MessageText.Font = new System.Drawing.Font(FormMessageBox.MessageText.Font.Name, 9);
                         FormMessageBox.ShowDialog();
                         FormMessageBox.Close();
                         FormMessageBox = null;

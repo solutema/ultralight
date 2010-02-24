@@ -50,7 +50,7 @@ namespace Lws.Config
                                 // busco alternativas
                                 if (sTipo == "NCA" || sTipo == "NDA") {
                                         // La impresora predeterminada para las notas de débito y 
-                                        // crédito "A" es la misma que para las facturas "A"
+                                        // crédito "A" es la misma que para las comprob "A"
                                         res = PreferredPrinter("A");
                                 } else if (sTipo == "NCB" || sTipo == "NDB") {
                                         // Lo mismo con las "B"
@@ -86,7 +86,7 @@ namespace Lws.Config
                                 // busco alternativas
                                 if (sTipo == "NCA" || sTipo == "NDA") {
                                         // La impresora predeterminada para las notas de débito y 
-                                        // crédito "A" es la misma que para las facturas "A"
+                                        // crédito "A" es la misma que para las comprob "A"
                                         res = PrinterFeed("A");
                                 } else if (sTipo == "NCB" || sTipo == "NDB") {
                                         // Lo mismo con las "B"

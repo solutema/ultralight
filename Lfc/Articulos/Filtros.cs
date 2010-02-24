@@ -148,7 +148,7 @@ namespace Lfc.Articulos
                 this.EntradaCategoria.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.EntradaCategoria.ForeColor = System.Drawing.SystemColors.ControlText;
                 this.EntradaCategoria.FreeTextCode = "";
-                this.EntradaCategoria.KeyField = "id_cat_articulo";
+                this.EntradaCategoria.KeyField = "id_categoria";
                 this.EntradaCategoria.Location = new System.Drawing.Point(97, 3);
                 this.EntradaCategoria.MaxLength = 200;
                 this.EntradaCategoria.Name = "EntradaCategoria";
@@ -158,7 +158,7 @@ namespace Lfc.Articulos
                 this.EntradaCategoria.SelectOnFocus = false;
                 this.EntradaCategoria.Size = new System.Drawing.Size(444, 24);
                 this.EntradaCategoria.TabIndex = 1;
-                this.EntradaCategoria.Table = "cat_articulos";
+                this.EntradaCategoria.Table = "articulos_categorias";
                 this.EntradaCategoria.TeclaDespuesDeEnter = "{tab}";
                 this.EntradaCategoria.Text = "0";
                 this.EntradaCategoria.TextDetail = "";

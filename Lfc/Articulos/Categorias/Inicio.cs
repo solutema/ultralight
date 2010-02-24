@@ -46,18 +46,18 @@ namespace Lfc.Articulos.Categorias
                 {
                         InitializeComponent();
 
-                        DataTableName = "cat_articulos";
-                        KeyField = new Lfx.Data.FormField("cat_articulos.id_cat_articulo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        Joins.Add(new Lfx.Data.Join("articulos", "cat_articulos.id_cat_articulo"));
+                        DataTableName = "articulos_categorias";
+                        KeyField = new Lfx.Data.FormField("articulos_categorias.id_categoria", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        Joins.Add(new Lfx.Data.Join("articulos", "articulos_categorias.id_categoria"));
                         GroupBy = KeyField;
-                        OrderBy = "cat_articulos.nombre";
+                        OrderBy = "articulos_categorias.nombre";
                         FormFields = new Lfx.Data.FormField[]
 			{
-				new Lfx.Data.FormField("cat_articulos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
-				new Lfx.Data.FormField("cat_articulos.stock_minimo", "Stock Mín", Lfx.Data.InputFieldTypes.Numeric, 96),
-				new Lfx.Data.FormField("cat_articulos.cache_stock_actual", "Stock Act", Lfx.Data.InputFieldTypes.Numeric, 96),
-                                new Lfx.Data.FormField("cat_articulos.cache_costo", "Valorización", Lfx.Data.InputFieldTypes.Numeric, 96),
-                                new Lfx.Data.FormField("cat_articulos.cache_costo", "Valorización %", Lfx.Data.InputFieldTypes.Numeric, 96)
+				new Lfx.Data.FormField("articulos_categorias.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+				new Lfx.Data.FormField("articulos_categorias.stock_minimo", "Stock Mín", Lfx.Data.InputFieldTypes.Numeric, 96),
+				new Lfx.Data.FormField("articulos_categorias.cache_stock_actual", "Stock Act", Lfx.Data.InputFieldTypes.Numeric, 96),
+                                new Lfx.Data.FormField("articulos_categorias.cache_costo", "Valorización", Lfx.Data.InputFieldTypes.Numeric, 96),
+                                new Lfx.Data.FormField("articulos_categorias.cache_costo", "Valorización %", Lfx.Data.InputFieldTypes.Numeric, 96)
 			};
                         BotonFiltrar.Visible = true;
                 }
@@ -90,7 +90,7 @@ namespace Lfc.Articulos.Categorias
                         switch (m_Stock)
                         {
                                 case "f":
-					CurrentFilter = "cat_articulos.stock_minimo>0 AND cat_articulos.stock_minimo>(SELECT SUM(articulos.stock_actual) FROM articulos WHERE cat_articulos.id_cat_articulo=id_cat_articulo)";
+					CurrentFilter = "articulos_categorias.stock_minimo>0 AND articulos_categorias.stock_minimo>(SELECT SUM(articulos.stock_actual) FROM articulos WHERE articulos_categorias.id_categoria=id_categoria)";
                                         break;
 
                                 default:
@@ -104,8 +104,8 @@ namespace Lfc.Articulos.Categorias
 
                 public override void Fill(Lfx.Data.SqlSelectBuilder sqlCommand)
                 {
-                        this.DataView.DataBase.Execute("UPDATE cat_articulos SET cache_stock_actual=(SELECT SUM(stock_actual) FROM articulos WHERE articulos.id_cat_articulo=cat_articulos.id_cat_articulo), cache_costo=(SELECT SUM(stock_actual*costo) FROM articulos WHERE articulos.id_cat_articulo=cat_articulos.id_cat_articulo)");
-                        m_ValorizacionCostoTotal = this.DataView.DataBase.FieldDouble("SELECT SUM(cache_costo) FROM cat_articulos");
+                        this.DataView.DataBase.Execute("UPDATE articulos_categorias SET cache_stock_actual=(SELECT SUM(stock_actual) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria), cache_costo=(SELECT SUM(stock_actual*costo) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria)");
+                        m_ValorizacionCostoTotal = this.DataView.DataBase.FieldDouble("SELECT SUM(cache_costo) FROM articulos_categorias");
                         base.Fill(sqlCommand);
 
                         foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {

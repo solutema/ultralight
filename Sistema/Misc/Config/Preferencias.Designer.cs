@@ -120,6 +120,8 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaNombre = new Lui.Forms.TextBox();
                         this.Label17 = new System.Windows.Forms.Label();
                         this.FrmGeneral = new Lui.Forms.Frame();
+                        this.EntradaEmpresaEmail = new Lui.Forms.TextBox();
+                        this.label28 = new System.Windows.Forms.Label();
                         this.EntradaModoPantalla = new Lui.Forms.ComboBox();
                         this.label27 = new System.Windows.Forms.Label();
                         this.txtBackup = new Lui.Forms.ComboBox();
@@ -174,8 +176,6 @@ namespace Lazaro.Misc.Config
                         this.txtPVR = new Lui.Forms.TextBox();
                         this.label12 = new System.Windows.Forms.Label();
                         this.FrmImpresion = new Lui.Forms.Frame();
-                        this.EntradaEmpresaEmail = new Lui.Forms.TextBox();
-                        this.label28 = new System.Windows.Forms.Label();
                         this.FrmGeneral.SuspendLayout();
                         this.FrmArticulos.SuspendLayout();
                         this.FrmComprobantes.SuspendLayout();
@@ -362,6 +362,41 @@ namespace Lazaro.Misc.Config
                         this.FrmGeneral.TabIndex = 0;
                         this.FrmGeneral.Text = "Generalidades";
                         this.FrmGeneral.ToolTipText = "";
+                        // 
+                        // EntradaEmpresaEmail
+                        // 
+                        this.EntradaEmpresaEmail.AutoHeight = false;
+                        this.EntradaEmpresaEmail.AutoNav = true;
+                        this.EntradaEmpresaEmail.AutoTab = true;
+                        this.EntradaEmpresaEmail.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaEmpresaEmail.DecimalPlaces = -1;
+                        this.EntradaEmpresaEmail.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaEmpresaEmail.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaEmpresaEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaEmpresaEmail.Location = new System.Drawing.Point(180, 120);
+                        this.EntradaEmpresaEmail.MaxLenght = 32767;
+                        this.EntradaEmpresaEmail.MultiLine = false;
+                        this.EntradaEmpresaEmail.Name = "EntradaEmpresaEmail";
+                        this.EntradaEmpresaEmail.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEmpresaEmail.PasswordChar = '\0';
+                        this.EntradaEmpresaEmail.Prefijo = "";
+                        this.EntradaEmpresaEmail.ReadOnly = false;
+                        this.EntradaEmpresaEmail.SelectOnFocus = true;
+                        this.EntradaEmpresaEmail.Size = new System.Drawing.Size(388, 24);
+                        this.EntradaEmpresaEmail.Sufijo = "";
+                        this.EntradaEmpresaEmail.TabIndex = 7;
+                        this.EntradaEmpresaEmail.TextRaw = "";
+                        this.EntradaEmpresaEmail.TipWhenBlank = "";
+                        this.EntradaEmpresaEmail.ToolTipText = "";
+                        // 
+                        // label28
+                        // 
+                        this.label28.Location = new System.Drawing.Point(16, 120);
+                        this.label28.Name = "label28";
+                        this.label28.Size = new System.Drawing.Size(160, 24);
+                        this.label28.TabIndex = 6;
+                        this.label28.Text = "Correo Electrónico";
+                        this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaModoPantalla
                         // 
@@ -627,7 +662,7 @@ namespace Lazaro.Misc.Config
                         this.Label9.Name = "Label9";
                         this.Label9.Size = new System.Drawing.Size(264, 24);
                         this.Label9.TabIndex = 14;
-                        this.Label9.Text = "(0 para utilizar el mismo que para facturas)";
+                        this.Label9.Text = "(0 para utilizar el mismo que para comprob)";
                         this.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // txtPVND
@@ -673,7 +708,7 @@ namespace Lazaro.Misc.Config
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(264, 24);
                         this.Label8.TabIndex = 11;
-                        this.Label8.Text = "(0 para utilizar el mismo que para facturas)";
+                        this.Label8.Text = "(0 para utilizar el mismo que para comprob)";
                         this.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label7
@@ -1281,7 +1316,7 @@ namespace Lazaro.Misc.Config
                         this.label11.Name = "label11";
                         this.label11.Size = new System.Drawing.Size(264, 24);
                         this.label11.TabIndex = 17;
-                        this.label11.Text = "(0 para utilizar el mismo que para facturas)";
+                        this.label11.Text = "(0 para utilizar el mismo que para comprob)";
                         this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // txtPVR
@@ -1346,41 +1381,6 @@ namespace Lazaro.Misc.Config
                         this.FrmImpresion.Text = "Impresión";
                         this.FrmImpresion.ToolTipText = "";
                         this.FrmImpresion.Visible = false;
-                        // 
-                        // EntradaEmpresaEmail
-                        // 
-                        this.EntradaEmpresaEmail.AutoHeight = false;
-                        this.EntradaEmpresaEmail.AutoNav = true;
-                        this.EntradaEmpresaEmail.AutoTab = true;
-                        this.EntradaEmpresaEmail.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaEmpresaEmail.DecimalPlaces = -1;
-                        this.EntradaEmpresaEmail.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaEmpresaEmail.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaEmpresaEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaEmpresaEmail.Location = new System.Drawing.Point(180, 120);
-                        this.EntradaEmpresaEmail.MaxLenght = 32767;
-                        this.EntradaEmpresaEmail.MultiLine = false;
-                        this.EntradaEmpresaEmail.Name = "EntradaEmpresaEmail";
-                        this.EntradaEmpresaEmail.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEmpresaEmail.PasswordChar = '\0';
-                        this.EntradaEmpresaEmail.Prefijo = "";
-                        this.EntradaEmpresaEmail.ReadOnly = false;
-                        this.EntradaEmpresaEmail.SelectOnFocus = true;
-                        this.EntradaEmpresaEmail.Size = new System.Drawing.Size(388, 24);
-                        this.EntradaEmpresaEmail.Sufijo = "";
-                        this.EntradaEmpresaEmail.TabIndex = 7;
-                        this.EntradaEmpresaEmail.TextRaw = "";
-                        this.EntradaEmpresaEmail.TipWhenBlank = "";
-                        this.EntradaEmpresaEmail.ToolTipText = "";
-                        // 
-                        // label28
-                        // 
-                        this.label28.Location = new System.Drawing.Point(16, 120);
-                        this.label28.Name = "label28";
-                        this.label28.Size = new System.Drawing.Size(160, 24);
-                        this.label28.TabIndex = 6;
-                        this.label28.Text = "Correo Electrónico";
-                        this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Preferencias
                         // 

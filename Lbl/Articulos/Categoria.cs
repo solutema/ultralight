@@ -33,14 +33,6 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
-        public enum RequiereNS
-        {
-                Nunca = 0,
-                ParaIngresar = 1,
-                ParaEgresar = 2,
-                ParaIngresarOEgresar = 3
-        }
-
 	public class Categoria : ElementoDeDatos
 	{
 		public Categoria(Lws.Data.DataView dataView) : base(dataView) { }
@@ -55,7 +47,7 @@ namespace Lbl.Articulos
 		{
 			get
 			{
-				return "cat_articulos";
+				return "articulos_categorias";
 			}
 		}
 
@@ -63,7 +55,7 @@ namespace Lbl.Articulos
 		{
 			get
 			{
-				return "id_cat_articulo";
+				return "id_categoria";
 			}
 		}
 
@@ -115,15 +107,15 @@ namespace Lbl.Articulos
 			}
 		}
 
-                public RequiereNS RequiereNS
+                public bool RequiereNS
                 {
                         get
                         {
-                                return ((RequiereNS)(this.FieldInt("requierens")));
+                                return this.FieldInt("requierens") != 0;
                         }
                         set
                         {
-                                this.Registro["requierens"] = (int)value;
+                                this.Registro["requierens"] = value ? 1 : 0;
                         }
                 }
 
@@ -142,7 +134,7 @@ namespace Lbl.Articulos
                         Comando.Fields.AddWithValue("nombresing", this.NombreSingular);
                         Comando.Fields.AddWithValue("stock_minimo", this.StockMinimo);
                         Comando.Fields.AddWithValue("web", this.PublicacionWeb);
-                        Comando.Fields.AddWithValue("requierens", ((int)(this.RequiereNS)));
+                        Comando.Fields.AddWithValue("requierens", this.RequiereNS ? 1 : 0);
                         Comando.Fields.AddWithValue("obs", this.Obs);
                         Comando.Fields.AddWithValue("garantia", this.Garantia);
 

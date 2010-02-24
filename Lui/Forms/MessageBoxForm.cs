@@ -37,32 +37,29 @@ using System.Windows.Forms;
 
 namespace Lui.Forms
 {
-    public partial class MessageBoxForm : Form
-    {
-        public MessageBoxForm()
+        public partial class MessageBoxForm : Form
         {
-            InitializeComponent();
+                public MessageBoxForm()
+                {
+                        InitializeComponent();
 
-	    LowerPanel.BackColor = Lws.Config.Display.CurrentTemplate.FooterBackground;
-        }
+                        LowerPanel.BackColor = Lws.Config.Display.CurrentTemplate.FooterBackground;
+                }
 
-        private void OkButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+                private void OkButton_Click(object sender, EventArgs e)
+                {
+                        this.Close();
+                }
 
-        private void MessageBoxForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Alt == false && e.Control == true && e.KeyCode == Keys.C)
-            {
-                System.Windows.Forms.Clipboard.SetData(System.Windows.Forms.DataFormats.StringFormat, label1.Text);
-                e.Handled = true;
-            }
-            else if (e.Alt == false && e.Control == false && e.KeyCode == Keys.Escape)
-            {
-                e.Handled = true;
-                this.Close();
-            }
+                private void MessageBoxForm_KeyDown(object sender, KeyEventArgs e)
+                {
+                        if (e.Alt == false && e.Control == true && e.KeyCode == Keys.C) {
+                                System.Windows.Forms.Clipboard.SetData(System.Windows.Forms.DataFormats.StringFormat, MessageText.Text);
+                                e.Handled = true;
+                        } else if (e.Alt == false && e.Control == false && e.KeyCode == Keys.Escape) {
+                                e.Handled = true;
+                                this.Close();
+                        }
+                }
         }
-    }
 }

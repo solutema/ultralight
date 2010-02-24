@@ -44,7 +44,7 @@ namespace Lazaro.Misc
                         InitializeComponent();
                 }
 
-                private void Form1_Load(object sender, EventArgs e)
+                private void Form1_WorkspaceChanged(object sender, EventArgs e)
                 {
                         Lbl.Entidades.Ciudad Rg = new Lbl.Entidades.Ciudad(this.DataView, 1);
                         Lfc.Ciudades.Edit Edt = new Lfc.Ciudades.Edit(Rg);

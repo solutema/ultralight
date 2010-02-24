@@ -92,6 +92,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cpx\CommandList.cs" />
+    <Compile Include="Cpx\CommandResponse.cs" />
+    <Compile Include="Cpx\Commands.cs" />
+    <Compile Include="Cpx\Printer.cs" />
     <Compile Include="Data\ColumnDefinition.cs" />
     <Compile Include="Data\ConstraintDefinition.cs" />
     <Compile Include="Data\DataBaseCache.cs" />
@@ -132,6 +136,7 @@
     <Compile Include="Types\Parsing.cs" />
     <Compile Include="Types\Strings.cs" />
     <Compile Include="Types\Types.cs" />
+    <EmbeddedResource Include="Data\dbstruct.xml" />
     <EmbeddedResource Include="Printing\TextPrint.resx">
       <DependentUpon>TextPrint.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -139,12 +144,8 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Sound\eep.wav" />
-    <EmbeddedResource Include="Resources\Sound\newbip.wav" />
-    <EmbeddedResource Include="Resources\Sound\quack.wav" />
     <Compile Include="Data\TagCollection.cs" />
     <Compile Include="Data\FieldCollection.cs" />
-    <EmbeddedResource Include="Data\dbstruct.xml" />
     <Compile Include="Data\Providers\MySql.cs" />
     <Compile Include="Data\Providers\Odbc.cs" />
     <Compile Include="Data\Providers\Provider.cs" />

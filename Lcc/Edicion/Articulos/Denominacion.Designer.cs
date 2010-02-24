@@ -73,7 +73,7 @@
                         this.EntradaCategoria.Filter = "";
                         this.EntradaCategoria.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCategoria.FreeTextCode = "";
-                        this.EntradaCategoria.KeyField = "id_cat_articulo";
+                        this.EntradaCategoria.KeyField = "id_categoria";
                         this.EntradaCategoria.Location = new System.Drawing.Point(67, 0);
                         this.EntradaCategoria.MaxLength = 200;
                         this.EntradaCategoria.Name = "EntradaCategoria";
@@ -83,7 +83,7 @@
                         this.EntradaCategoria.SelectOnFocus = false;
                         this.EntradaCategoria.Size = new System.Drawing.Size(430, 24);
                         this.EntradaCategoria.TabIndex = 10;
-                        this.EntradaCategoria.Table = "cat_articulos";
+                        this.EntradaCategoria.Table = "articulos_categorias";
                         this.EntradaCategoria.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCategoria.Text = "0";
                         this.EntradaCategoria.TextDetail = "";

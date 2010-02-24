@@ -223,7 +223,7 @@ namespace Lfc.Tareas
                         lvHistorial.BeginUpdate();
                         lvHistorial.Items.Clear();
 
-                        string TextoSql = "SELECT tickets_eventos.id_ticket, tickets_eventos.fecha, tickets_eventos.descripcion, personas.nombre FROM tickets_eventos, personas WHERE tickets_eventos.id_tecnico=personas.id_persona AND tickets_eventos.id_ticket IN (SELECT id_ticket FROM tickets WHERE id_persona=" + txtCliente.TextInt.ToString() + ") ORDER BY id_ticket DESC";
+                        string TextoSql = "SELECT tickets_eventos.id_ticket, tickets_eventos.fecha, tickets_eventos.descripcion, personas.nombre FROM tickets_eventos, personas WHERE tickets_eventos.id_tecnico=personas.id_persona AND tickets_eventos.id_ticket IN (SELECT id_ticket FROM tickets WHERE id_persona=" + txtCliente.TextInt.ToString() + ") ORDER BY tickets_eventos.id_evento DESC";
                         System.Data.DataTable Eventos = this.Workspace.DefaultDataBase.Select(TextoSql);
                         if (Eventos.Rows.Count > 0) {
 
@@ -298,13 +298,14 @@ namespace Lfc.Tareas
                         FacturaNueva.ControlDestino = txtComprobanteId;
 
                         int intComprobanteId = Lfx.Types.Parsing.ParseInt(txtComprobanteId.Text);
-                        bool bAnulada = System.Convert.ToBoolean(this.Workspace.DefaultDataBase.FieldInt("SELECT anulada FROM facturas WHERE id_factura=" + intComprobanteId.ToString()));
+                        bool bAnulada = System.Convert.ToBoolean(this.Workspace.DefaultDataBase.FieldInt("SELECT anulada FROM comprob WHERE id_comprob=" + intComprobanteId.ToString()));
 
                         if (intComprobanteId > 0 && bAnulada == false) {
                                 FacturaNueva.Edit(intComprobanteId);
                                 FacturaNueva.Show();
                         } else {
                                 if (this.Save().Success == true) {
+                                        txtEstado.Text = "50";
                                         FacturaNueva.Create("B");
 
                                         FacturaNueva.EntradaCliente.Text = txtCliente.Text;
@@ -334,7 +335,6 @@ namespace Lfc.Tareas
                                                 ((Lbl.Comprobantes.Comprobante)FacturaNueva.CachedRow).Obs += " - Descuento Sobre Artículos: " + Lfx.Types.Formatting.FormatNumber(Descuento) + "%";
                                         }
                                         FacturaNueva.Show();
-
                                 }
                         }
                 }
@@ -345,10 +345,10 @@ namespace Lfc.Tareas
                         if (intComprobanteId > 0) {
                                 txtComprobante.Text = Lbl.Comprobantes.Comprobante.NumeroCompleto(this.DataView, intComprobanteId);
                                 // Guardo el comprobante en la tarea (sólo si no tenía uno asociado)
-                                //this.Workspace.DefaultDataView.Execute("UPDATE tickets SET id_factura=" + intComprobanteId.ToString() + " WHERE id_factura=0 AND id_ticket=" + m_Id.ToString());
+                                //this.Workspace.DefaultDataView.Execute("UPDATE tickets SET id_comprob=" + intComprobanteId.ToString() + " WHERE id_comprob=0 AND id_ticket=" + m_Id.ToString());
                                 Lfx.Data.SqlUpdateBuilder Actual = new Lfx.Data.SqlUpdateBuilder("tickets");
-                                Actual.Fields.Add(new Lfx.Data.SqlField("id_factura", intComprobanteId));
-                                Actual.WhereClause = new Lfx.Data.SqlWhereBuilder("id_factura=0 AND id_ticket=" + m_Id.ToString());
+                                Actual.Fields.Add(new Lfx.Data.SqlField("id_comprob", intComprobanteId));
+                                Actual.WhereClause = new Lfx.Data.SqlWhereBuilder("id_comprob=0 AND id_ticket=" + m_Id.ToString());
                                 this.DataView.Execute(Actual);
                         } else {
                                 txtComprobante.Text = "";

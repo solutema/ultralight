@@ -36,7 +36,7 @@ namespace Lbl.Bancos
         public class Chequera : ElementoDeDatos
         {
                 public Bancos.Banco Banco;
-                public Lbl.Cuentas.CuentaRegular Cuenta;
+                public Lbl.Cajas.Caja Caja;
                 public Lbl.Entidades.Sucursal Sucursal;
 
                 //Heredar constructor
@@ -125,10 +125,10 @@ namespace Lbl.Bancos
                                 else
                                         this.Banco = null;
 
-                                if (this.FieldInt("id_cuenta") > 0)
-                                        this.Cuenta = new Cuentas.CuentaRegular(this.DataView, this.FieldInt("id_cuenta"));
+                                if (this.FieldInt("id_caja") > 0)
+                                        this.Caja = new Cajas.Caja(this.DataView, this.FieldInt("id_caja"));
                                 else
-                                        this.Cuenta = null;
+                                        this.Caja = null;
 
                                 if (this.FieldInt("id_sucursal") > 0)
                                         this.Sucursal = new Lbl.Entidades.Sucursal(this.DataView, this.FieldInt("id_sucursal"));
@@ -156,10 +156,10 @@ namespace Lbl.Bancos
                         Comando.Fields.AddWithValue("prefijo", this.Prefijo);
                         Comando.Fields.AddWithValue("desde", this.Desde);
                         Comando.Fields.AddWithValue("hasta", this.Hasta);
-                        if (this.Cuenta == null)
-                                Comando.Fields.AddWithValue("id_cuenta", null);
+                        if (this.Caja == null)
+                                Comando.Fields.AddWithValue("id_caja", null);
                         else
-                                Comando.Fields.AddWithValue("id_cuenta", this.Cuenta.Id);
+                                Comando.Fields.AddWithValue("id_caja", this.Caja.Id);
                         if (this.Sucursal == null)
                                 Comando.Fields.AddWithValue("id_sucursal", null);
                         else

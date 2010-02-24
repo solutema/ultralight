@@ -64,6 +64,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Access\Access.cs" />
+    <Compile Include="Access\AccessList.cs" />
     <Compile Include="Components\Component.cs" />
     <Compile Include="Components\Components.cs" />
     <Compile Include="Config\CompanyConfig.cs" />

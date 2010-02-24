@@ -46,8 +46,8 @@ namespace Lfc.Comprobantes.Recibos
 
 		public override Lfx.Types.OperationResult Ok()
 		{
-			if(txtCuenta.TextInt <= 0)
-				return new Lfx.Types.FailureOperationResult("Debe especificar la cuenta de destino");
+			if(EntradaCaja.TextInt <= 0)
+				return new Lfx.Types.FailureOperationResult("Debe especificar la Caja de destino");
 
 			if(Lfx.Types.Parsing.ParseCurrency(txtImporte.Text) <= 0)
 				return new Lfx.Types.FailureOperationResult("Debe especificar el importe");
@@ -57,8 +57,8 @@ namespace Lfc.Comprobantes.Recibos
 			Lbl.Personas.Persona Cliente = new Lbl.Personas.Persona(DataView, txtCliente.TextInt);
 			Lbl.Comprobantes.ReciboDeCobro Rec = new Lbl.Comprobantes.ReciboDeCobro(DataView, Cliente);
 			Rec.Crear();
-			Rec.Cobros.Add(new Lbl.Comprobantes.Cobro(DataView, Lbl.Comprobantes.TipoFormasDePago.CuentaRegular, Lfx.Types.Parsing.ParseCurrency(txtImporte.Text)));
-			Rec.Cobros[0].CuentaDestino = new Lbl.Cuentas.CuentaRegular(DataView, txtCuenta.TextInt);
+			Rec.Cobros.Add(new Lbl.Comprobantes.Cobro(DataView, Lbl.Comprobantes.TipoFormasDePago.Caja, Lfx.Types.Parsing.ParseCurrency(txtImporte.Text)));
+			Rec.Cobros[0].CajaDestino = new Lbl.Cajas.Caja(DataView, EntradaCaja.TextInt);
 			Rec.Vendedor = new Lbl.Personas.Persona(DataView, this.Workspace.CurrentUser.Id);
 			Lfx.Types.OperationResult Res = Rec.Guardar();
                         if (Res.Success) {
@@ -76,7 +76,7 @@ namespace Lfc.Comprobantes.Recibos
 		private void txtCliente_TextChanged(object sender, EventArgs e)
 		{
 			if(txtCliente.TextInt > 0)
-                                txtImporte.Text = Lfx.Types.Formatting.FormatCurrency(new Lbl.Cuentas.CuentaCorriente(this.Workspace.DefaultDataView, txtCliente.TextInt).Saldo(), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                txtImporte.Text = Lfx.Types.Formatting.FormatCurrency(new Lbl.Cajas.CuentaCorriente(this.Workspace.DefaultDataView, txtCliente.TextInt).Saldo(), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
 			else
 				txtImporte.Text = "0";
 		}

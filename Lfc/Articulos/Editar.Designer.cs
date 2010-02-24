@@ -57,7 +57,7 @@ namespace Lfc.Articulos
                         this.Frame1 = new Lui.Forms.Frame();
                         this.EntradaGarantia = new Lui.Forms.TextBox();
                         this.label20 = new System.Windows.Forms.Label();
-                        this.EntradaCuenta = new Lui.Forms.DetailBox();
+                        this.EntradaCaja = new Lui.Forms.DetailBox();
                         this.label17 = new System.Windows.Forms.Label();
                         this.EntradaProveedor = new Lui.Forms.DetailBox();
                         this.EntradaCategoria = new Lui.Forms.DetailBox();
@@ -513,7 +513,7 @@ namespace Lfc.Articulos
                         this.Frame1.AutoHeight = false;
                         this.Frame1.Controls.Add(this.EntradaGarantia);
                         this.Frame1.Controls.Add(this.label20);
-                        this.Frame1.Controls.Add(this.EntradaCuenta);
+                        this.Frame1.Controls.Add(this.EntradaCaja);
                         this.Frame1.Controls.Add(this.label17);
                         this.Frame1.Controls.Add(this.EntradaProveedor);
                         this.Frame1.Controls.Add(this.EntradaCategoria);
@@ -592,36 +592,36 @@ namespace Lfc.Articulos
                         this.label20.Text = "Garantía";
                         this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaCuenta
+                        // EntradaCaja
                         // 
-                        this.EntradaCuenta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaCaja.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaCuenta.AutoHeight = false;
-                        this.EntradaCuenta.AutoTab = true;
-                        this.EntradaCuenta.CanCreate = true;
-                        this.EntradaCuenta.DetailField = "nombre";
-                        this.EntradaCuenta.ExtraDetailFields = null;
-                        this.EntradaCuenta.Filter = "id_cuenta>999";
-                        this.EntradaCuenta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaCuenta.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaCuenta.FreeTextCode = "";
-                        this.EntradaCuenta.KeyField = "id_cuenta";
-                        this.EntradaCuenta.Location = new System.Drawing.Point(640, 296);
-                        this.EntradaCuenta.MaxLength = 200;
-                        this.EntradaCuenta.Name = "EntradaCuenta";
-                        this.EntradaCuenta.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCuenta.ReadOnly = false;
-                        this.EntradaCuenta.Required = false;
-                        this.EntradaCuenta.SelectOnFocus = false;
-                        this.EntradaCuenta.Size = new System.Drawing.Size(232, 24);
-                        this.EntradaCuenta.TabIndex = 30;
-                        this.EntradaCuenta.Table = "cuentas";
-                        this.EntradaCuenta.TeclaDespuesDeEnter = "{tab}";
-                        this.EntradaCuenta.Text = "0";
-                        this.EntradaCuenta.TextDetail = "";
-                        this.EntradaCuenta.TextInt = 0;
-                        this.EntradaCuenta.TipWhenBlank = "Sin especificar";
-                        this.EntradaCuenta.ToolTipText = "";
+                        this.EntradaCaja.AutoHeight = false;
+                        this.EntradaCaja.AutoTab = true;
+                        this.EntradaCaja.CanCreate = true;
+                        this.EntradaCaja.DetailField = "nombre";
+                        this.EntradaCaja.ExtraDetailFields = null;
+                        this.EntradaCaja.Filter = "id_caja>999";
+                        this.EntradaCaja.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaCaja.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaCaja.FreeTextCode = "";
+                        this.EntradaCaja.KeyField = "id_caja";
+                        this.EntradaCaja.Location = new System.Drawing.Point(640, 296);
+                        this.EntradaCaja.MaxLength = 200;
+                        this.EntradaCaja.Name = "EntradaCaja";
+                        this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCaja.ReadOnly = false;
+                        this.EntradaCaja.Required = false;
+                        this.EntradaCaja.SelectOnFocus = false;
+                        this.EntradaCaja.Size = new System.Drawing.Size(232, 24);
+                        this.EntradaCaja.TabIndex = 30;
+                        this.EntradaCaja.Table = "cajas";
+                        this.EntradaCaja.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaCaja.Text = "0";
+                        this.EntradaCaja.TextDetail = "";
+                        this.EntradaCaja.TextInt = 0;
+                        this.EntradaCaja.TipWhenBlank = "Sin especificar";
+                        this.EntradaCaja.ToolTipText = "";
                         // 
                         // label17
                         // 
@@ -629,7 +629,7 @@ namespace Lfc.Articulos
                         this.label17.Name = "label17";
                         this.label17.Size = new System.Drawing.Size(120, 24);
                         this.label17.TabIndex = 29;
-                        this.label17.Text = "Cuenta asociada";
+                        this.label17.Text = "Caja asociada";
                         this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaProveedor
@@ -673,7 +673,7 @@ namespace Lfc.Articulos
                         this.EntradaCategoria.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCategoria.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCategoria.FreeTextCode = "";
-                        this.EntradaCategoria.KeyField = "id_cat_articulo";
+                        this.EntradaCategoria.KeyField = "id_categoria";
                         this.EntradaCategoria.Location = new System.Drawing.Point(84, 68);
                         this.EntradaCategoria.MaxLength = 200;
                         this.EntradaCategoria.Name = "EntradaCategoria";
@@ -683,7 +683,7 @@ namespace Lfc.Articulos
                         this.EntradaCategoria.SelectOnFocus = false;
                         this.EntradaCategoria.Size = new System.Drawing.Size(292, 24);
                         this.EntradaCategoria.TabIndex = 9;
-                        this.EntradaCategoria.Table = "cat_articulos";
+                        this.EntradaCategoria.Table = "articulos_categorias";
                         this.EntradaCategoria.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCategoria.Text = "0";
                         this.EntradaCategoria.TextDetail = "";
@@ -1374,7 +1374,7 @@ namespace Lfc.Articulos
                 internal Lui.Forms.Button cmdDescripcion;
                 internal Lui.Forms.TextBox EntradaDescripcion2;
                 internal System.Windows.Forms.Label Label18;
-                internal Lui.Forms.DetailBox EntradaCuenta;
+                internal Lui.Forms.DetailBox EntradaCaja;
                 internal System.Windows.Forms.Label label17;
                 private Lui.Forms.Frame frame5;
                 private Lcc.Controles.Datos.Etiquetas EntradaEtiquetas;

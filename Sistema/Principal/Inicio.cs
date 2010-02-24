@@ -508,16 +508,16 @@ namespace Lazaro.Principal
 
                                         AgregarAlMenu(colgarDe, Itm, ItmInfo);
 
-                                        if (opcion.Attributes["Funcion"].Value == "CUENTAS" && Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "accounts.read")) {
-                                                DataTable Cuentas = this.Workspace.DefaultDataBase.Select("SELECT id_cuenta, nombre FROM cuentas WHERE estado>0 ORDER BY nombre");
+                                        if (opcion.Attributes["Funcion"].Value == "CAJAS" && Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "accounts.read")) {
+                                                DataTable Cajas = this.Workspace.DefaultDataBase.Select("SELECT id_caja, nombre FROM cajas WHERE estado>0 ORDER BY nombre");
 
-                                                foreach (System.Data.DataRow Cuenta in Cuentas.Rows) {
-                                                        MenuItem ItmH = new MenuItem(Cuenta["nombre"].ToString(), new System.EventHandler(MnuClick));
+                                                foreach (System.Data.DataRow Caja in Cajas.Rows) {
+                                                        MenuItem ItmH = new MenuItem(Caja["nombre"].ToString(), new System.EventHandler(MnuClick));
                                                         MenuItemInfo ItmInfoH = new MenuItemInfo();
                                                         ItmInfoH.Item = ItmH;
-                                                        ItmInfoH.Funcion = "CUENTA " + Cuenta["id_cuenta"].ToString();
+                                                        ItmInfoH.Funcion = "CAJA " + Caja["id_caja"].ToString();
                                                         ItmInfoH.ParentText = ItmInfo.Text;
-                                                        ItmInfoH.Text = Lfx.Types.Strings.SimplifyText(System.Convert.ToString(Cuenta["nombre"]));
+                                                        ItmInfoH.Text = Lfx.Types.Strings.SimplifyText(System.Convert.ToString(Caja["nombre"]));
                                                         AgregarAlMenu(Itm, ItmH, ItmInfoH);
                                                 }
                                         } else if (opcion.Attributes["Funcion"].Value == "LISTADO TICKETS") {

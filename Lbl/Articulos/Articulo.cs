@@ -52,7 +52,7 @@ namespace Lbl.Articulos
                 public Lbl.Personas.Persona Proveedor = null;
                 public Lbl.Articulos.Margen Margen = null;
                 public Lbl.Articulos.Marca Marca = null;
-                public Lbl.Cuentas.CuentaRegular Cuenta = null;
+                public Lbl.Cajas.Caja Caja = null;
                 private ColeccionItem m_ListaItem = null;
 
 		//Heredar constructor
@@ -316,11 +316,11 @@ namespace Lbl.Articulos
                         }
                 }
 
-                public RequiereNS RequiereNS
+                public bool RequiereNS
                 {
                         get
                         {
-                                return this.Categoria == null ? RequiereNS.Nunca : this.Categoria.RequiereNS;
+                                return this.Categoria == null ? false : this.Categoria.RequiereNS;
                         }
                 }
 
@@ -439,8 +439,8 @@ namespace Lbl.Articulos
                                         //this.DataView.DataBase.Execute("UPDATE articulos SET stock_actual=stock_actual+(" + Lfx.Types.Formatting.FormatNumberSql(CantidadMovida, this.DataView.Workspace.CurrentConfig.Products.StockDecimalPlaces) + ") WHERE id_articulo=" + this.Id.ToString());
                                 }
 
-                                if (this.Cuenta != null && this.Cuenta.Existe)
-                                        this.Cuenta.Movimiento(true, 30000, "Movimiento de stock de artículo " + this.ToString(), this.Workspace.CurrentUser.Id, this.PVP * cantidad, Obs, 0, 0, string.Empty);
+                                if (this.Caja != null && this.Caja.Existe)
+                                        this.Caja.Movimiento(true, 30000, "Movimiento de stock de artículo " + this.ToString(), this.Workspace.CurrentUser.Id, this.PVP * cantidad, Obs, 0, 0, string.Empty);
                         }
 
 			double Saldo = this.DataView.DataBase.FieldDouble("SELECT stock_actual FROM articulos WHERE id_articulo=" + this.Id.ToString());
@@ -481,7 +481,7 @@ namespace Lbl.Articulos
                         Lfx.Types.OperationResult Res = base.Crear();
                         this.Categoria = null;
                         this.Marca = null;
-                        this.Cuenta = null;
+                        this.Caja = null;
                         this.Margen = null;
                         this.Proveedor = null;
                         this.ControlaStock = true;
@@ -495,20 +495,20 @@ namespace Lbl.Articulos
                 {
                         base.OnLoad();
 
-                        if (Registro["id_cat_articulo"] == null)
+                        if (Registro["id_categoria"] == null)
                                 this.Categoria = null;
                         else
-                                this.Categoria = new Categoria(this.DataView, System.Convert.ToInt32(Registro["id_cat_articulo"]));
+                                this.Categoria = new Categoria(this.DataView, System.Convert.ToInt32(Registro["id_categoria"]));
 
                         if (Registro["id_marca"] == null)
                                 this.Marca = null;
                         else
                                 this.Marca = new Marca(this.DataView, System.Convert.ToInt32(Registro["id_marca"]));
 
-                        if (Registro["id_cuenta"] == null)
-                                this.Cuenta = null;
+                        if (Registro["id_caja"] == null)
+                                this.Caja = null;
                         else
-                                this.Cuenta = new Lbl.Cuentas.CuentaRegular(this.DataView, System.Convert.ToInt32(Registro["id_cuenta"]));
+                                this.Caja = new Lbl.Cajas.Caja(this.DataView, System.Convert.ToInt32(Registro["id_caja"]));
 
                         if (Registro["id_margen"] == null)
                                 this.Margen = null;
@@ -546,19 +546,19 @@ namespace Lbl.Articulos
                         Comando.Fields.AddWithValue("codigo4", this.Codigo4);
 
                         if (this.Categoria == null)
-                                Comando.Fields.AddWithValue("id_cat_articulo", DBNull.Value);
+                                Comando.Fields.AddWithValue("id_categoria", DBNull.Value);
                         else
-                                Comando.Fields.AddWithValue("id_cat_articulo", this.Categoria.Id);
+                                Comando.Fields.AddWithValue("id_categoria", this.Categoria.Id);
 
                         if (this.Marca == null)
                                 Comando.Fields.AddWithValue("id_marca", DBNull.Value);
                         else
                                 Comando.Fields.AddWithValue("id_marca", this.Marca.Id);
 
-                        if (this.Cuenta == null)
-                                Comando.Fields.AddWithValue("id_cuenta", DBNull.Value);
+                        if (this.Caja == null)
+                                Comando.Fields.AddWithValue("id_caja", DBNull.Value);
                         else
-                                Comando.Fields.AddWithValue("id_cuenta", this.Cuenta.Id);
+                                Comando.Fields.AddWithValue("id_caja", this.Caja.Id);
 
                         Comando.Fields.AddWithValue("modelo", this.Modelo);
                         Comando.Fields.AddWithValue("serie", this.Serie);
@@ -626,24 +626,6 @@ namespace Lbl.Articulos
                                         Comando.Fields.AddWithValue("pvp", this.PVP);
                                         Comando.Fields.AddWithValue("id_persona", this.Workspace.CurrentUser.Id);
                                         this.DataView.Execute(Comando);
-                                }
-                        }
-
-                        if (this.m_ImagenCambio) {
-                                if (this.Imagen == null) {
-                                        this.DataView.DataBase.Execute("DELETE FROM " + this.TablaImagenes + " WHERE " + this.CampoId + "=" + this.Id.ToString());
-                                } else {
-                                        // Cargar imagen nueva
-                                        System.IO.MemoryStream ByteStream = new System.IO.MemoryStream();
-                                        this.Imagen.Save(ByteStream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                                        byte[] ImagenBytes = ByteStream.ToArray();
-
-                                        this.DataView.DataBase.Execute("DELETE FROM " + this.TablaImagenes + " WHERE " + this.CampoId + "=" + this.Id.ToString());
-
-                                        Lfx.Data.SqlInsertBuilder InsertarImagen = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, this.TablaImagenes);
-                                        InsertarImagen.Fields.AddWithValue(this.CampoId, this.Id);
-                                        InsertarImagen.Fields.AddWithValue("imagen", ImagenBytes);
-                                        this.DataView.Execute(InsertarImagen);
                                 }
                         }
 

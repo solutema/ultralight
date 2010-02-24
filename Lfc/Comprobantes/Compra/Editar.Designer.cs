@@ -62,6 +62,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaFormaPago = new Lui.Forms.ComboBox();
                         this.EntradaOtrosGastos = new Lui.Forms.TextBox();
                         this.label9 = new System.Windows.Forms.Label();
+                        this.BotonImagen = new Lui.Forms.Button();
                         this.SuspendLayout();
                         // 
                         // SaveButton
@@ -603,10 +604,32 @@ namespace Lfc.Comprobantes.Compra
                         this.label9.Text = "Otros Gastos";
                         this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
+                        // BotonImagen
+                        // 
+                        this.BotonImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonImagen.AutoHeight = false;
+                        this.BotonImagen.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonImagen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonImagen.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonImagen.Image = null;
+                        this.BotonImagen.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonImagen.Location = new System.Drawing.Point(300, 421);
+                        this.BotonImagen.Name = "BotonImagen";
+                        this.BotonImagen.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonImagen.ReadOnly = false;
+                        this.BotonImagen.Size = new System.Drawing.Size(104, 44);
+                        this.BotonImagen.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
+                        this.BotonImagen.Subtext = "F6";
+                        this.BotonImagen.TabIndex = 104;
+                        this.BotonImagen.Text = "Imagen";
+                        this.BotonImagen.ToolTipText = "Ver las observaciones del comprobante.";
+                        this.BotonImagen.Click += new System.EventHandler(this.BotonImagen_Click);
+                        // 
                         // Editar
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(808, 473);
+                        this.Controls.Add(this.BotonImagen);
                         this.Controls.Add(this.cmdObs);
                         this.Controls.Add(this.cmdConvertir);
                         this.Controls.Add(this.EntradaOtrosGastos);
@@ -663,6 +686,7 @@ namespace Lfc.Comprobantes.Compra
                         this.Controls.SetChildIndex(this.EntradaOtrosGastos, 0);
                         this.Controls.SetChildIndex(this.cmdConvertir, 0);
                         this.Controls.SetChildIndex(this.cmdObs, 0);
+                        this.Controls.SetChildIndex(this.BotonImagen, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -696,5 +720,6 @@ namespace Lfc.Comprobantes.Compra
                 internal Lui.Forms.ComboBox EntradaFormaPago;
                 internal Lui.Forms.TextBox EntradaOtrosGastos;
                 internal System.Windows.Forms.Label label9;
+                internal Lui.Forms.Button BotonImagen;
         }
 }

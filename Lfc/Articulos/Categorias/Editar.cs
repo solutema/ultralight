@@ -47,7 +47,7 @@ namespace Lfc.Articulos.Categorias
 
                 public override Lfx.Types.OperationResult Edit(int lId)
                 {
-                        Lfx.Data.Row Registro = this.Workspace.DefaultDataBase.Row("cat_articulos", "id_cat_articulo", lId);
+                        Lfx.Data.Row Registro = this.Workspace.DefaultDataBase.Row("articulos_categorias", "id_categoria", lId);
 
                         if (Registro == null) {
                                 return new Lfx.Types.FailureOperationResult("El registro no existe.");
@@ -57,10 +57,10 @@ namespace Lfc.Articulos.Categorias
                                 EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatStock(System.Convert.ToDouble(Registro["stock_minimo"]));
                                 EntradaWeb.TextKey = System.Convert.ToInt32(Registro["web"]).ToString();
                                 EntradaRequiereNS.TextKey = System.Convert.ToInt32(Registro["requierens"]).ToString();
-                                EntradaItem.Text = Lfx.Types.Formatting.FormatStock(this.Workspace.DefaultDataBase.FieldDouble("SELECT COUNT(id_articulo) FROM articulos WHERE id_cat_articulo=" + lId.ToString()));
-                                EntradaItemStock.Text = Lfx.Types.Formatting.FormatStock(this.Workspace.DefaultDataBase.FieldDouble("SELECT COUNT(id_articulo) FROM articulos WHERE stock_actual>0 AND id_cat_articulo=" + lId.ToString()));
-                                EntradaStockActual.Text = Lfx.Types.Formatting.FormatStock(this.Workspace.DefaultDataBase.FieldDouble("SELECT SUM(stock_actual) FROM articulos WHERE id_cat_articulo=" + lId.ToString()));
-                                EntradaCosto.Text = Lfx.Types.Formatting.FormatStock(this.Workspace.DefaultDataBase.FieldDouble("SELECT SUM(costo) FROM articulos WHERE id_cat_articulo=" + lId.ToString()));
+                                EntradaItem.Text = Lfx.Types.Formatting.FormatStock(this.Workspace.DefaultDataBase.FieldDouble("SELECT COUNT(id_articulo) FROM articulos WHERE id_categoria=" + lId.ToString()));
+                                EntradaItemStock.Text = Lfx.Types.Formatting.FormatStock(this.Workspace.DefaultDataBase.FieldDouble("SELECT COUNT(id_articulo) FROM articulos WHERE stock_actual>0 AND id_categoria=" + lId.ToString()));
+                                EntradaStockActual.Text = Lfx.Types.Formatting.FormatStock(this.Workspace.DefaultDataBase.FieldDouble("SELECT SUM(stock_actual) FROM articulos WHERE id_categoria=" + lId.ToString()));
+                                EntradaCosto.Text = Lfx.Types.Formatting.FormatStock(this.Workspace.DefaultDataBase.FieldDouble("SELECT SUM(costo) FROM articulos WHERE id_categoria=" + lId.ToString()));
                                 EntradaGarantia.Text = Registro["garantia"].ToString();
 
                                 if (Registro["imagen"] != null && ((byte[])(Registro["imagen"])).Length > 5) {
@@ -91,7 +91,7 @@ namespace Lfc.Articulos.Categorias
 	                        Cat.NombreSingular = EntradaNombreSing.Text;
 	                        Cat.StockMinimo = Lfx.Types.Parsing.ParseStock(EntradaStockMinimo.Text);
 	                        Cat.PublicacionWeb = Lfx.Types.Parsing.ParseInt(EntradaWeb.TextKey);
-                                Cat.RequiereNS = ((Lbl.Articulos.RequiereNS)(Lfx.Types.Parsing.ParseInt(EntradaRequiereNS.TextKey)));
+                                Cat.RequiereNS = Lfx.Types.Parsing.ParseInt(EntradaRequiereNS.TextKey) != 0;
                                 Cat.Garantia = Lfx.Types.Parsing.ParseInt(EntradaGarantia.Text);
 				Cat.Guardar();
 				m_Id = Cat.Id;
@@ -104,13 +104,13 @@ namespace Lfc.Articulos.Categorias
 
                                         case "":
                                                 // Quitar imagen actual
-                                                DataView.DataBase.Execute("UPDATE cat_articulos SET imagen=NULL WHERE id_cat_articulo=" + m_Id.ToString());
+                                                DataView.DataBase.Execute("UPDATE articulos_categorias SET imagen=NULL WHERE id_categoria=" + m_Id.ToString());
                                                 break;
 
                                         default:
                                                 // Guardar imagen nueva
-                                                Lfx.Data.SqlInsertBuilder InsertarImagen = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, "cat_articulos");
-                                                InsertarImagen.Fields.AddWithValue("id_cat_articulo", m_Id);
+                                                Lfx.Data.SqlInsertBuilder InsertarImagen = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, "articulos_categorias");
+                                                InsertarImagen.Fields.AddWithValue("id_categoria", m_Id);
                                                 InsertarImagen.Fields.AddWithValue("imagen", pctImagen.Image);
                                                 DataView.Execute(InsertarImagen);
                                                 break;

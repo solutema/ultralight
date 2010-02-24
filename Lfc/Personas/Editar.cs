@@ -306,7 +306,9 @@ namespace Lfc.Personas
                         EntradaCbu.ReadOnly = NegarEdicionAvanzada;
                         EntradaObs.Text = System.Convert.ToString(Cliente.Registro["obs"]);
                         EntradaObs.ReadOnly = NegarEdicionAvanzada;
-                        
+
+                        EntradaImagen.Enabled = !NegarEdicionAvanzada;
+                        EntradaImagen.Elemento = Cliente;
                         EntradaTags.Elemento = Cliente;
                         EntradaTags.Enabled = !NegarEdicionAvanzada;
 
@@ -408,6 +410,7 @@ namespace Lfc.Personas
                         Res.TipoDocumento = EntradaTipoDoc.TextInt;
                         Res.NumeroDocumento = EntradaNumDoc.Text;
                         Res.Cuit = EntradaCuit.Text;
+
                         if (EntradaSituacion.TextInt == 0)
                                 Res.SituacionTributaria = null;
                         else
@@ -435,6 +438,7 @@ namespace Lfc.Personas
                         Res.EstadoCredito = ((Lbl.Personas.EstadoCredito)(Lfx.Types.Parsing.ParseInt(EntradaEstadoCredito.TextKey)));
 
                         EntradaTags.ActualizarElemento();
+                        EntradaImagen.ActualizarElemento();
 
                         return base.ToRow();
                 }

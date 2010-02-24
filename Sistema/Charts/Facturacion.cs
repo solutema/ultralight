@@ -519,14 +519,14 @@ namespace Lazaro.Charts
                                         string Fecha1Sql = anio.ToString("0000") + "-" + mes.ToString("00") + "-01";
                                         string Fecha2Sql = anio.ToString("0000") + "-" + mes.ToString("00") + "-31";
 
-                                        double Facturas = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM facturas WHERE tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double NotasCredito = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM facturas WHERE tipo_fac IN ('NCA', 'NCB', 'NCC') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double Costo = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM facturas, facturas_detalle WHERE facturas.id_factura=facturas_detalle.id_factura AND facturas.tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND facturas.impresa AND facturas.numero>0 AND facturas.anulada=0 AND facturas_detalle.precio>0 AND facturas.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double CostoNotasCredito = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM facturas, facturas_detalle WHERE facturas.id_factura=facturas_detalle.id_factura AND facturas.tipo_fac IN ('NCA', 'NCB', 'NCC') AND facturas.impresa AND facturas.numero>0 AND facturas.anulada=0 AND facturas.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double CostoCapital = this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=220) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double GastosFijos = this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=230) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double GastosVariables = this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=240) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double OtrosEgresos = this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE importe<0 AND id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND id_concepto<>26030 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        double Facturas = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        double NotasCredito = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('NCA', 'NCB', 'NCC') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        double Costo = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND comprob.impresa AND comprob.numero>0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        double CostoNotasCredito = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC') AND comprob.impresa AND comprob.numero>0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        double CostoCapital = this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=220) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        double GastosFijos = this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=230) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        double GastosVariables = this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=240) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        double OtrosEgresos = this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE importe<0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND id_concepto<>26030 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 
                                         ElFacturacion[mes - 1].Value = Facturas - NotasCredito;
                                         ElCosto[mes - 1].Value = Costo - CostoNotasCredito;
@@ -582,14 +582,14 @@ namespace Lazaro.Charts
 					if(costo == false) 
 					{
 						//Tomo la facturación
-						ValoresSuma = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM facturas WHERE " + WhereSuc + " tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-						ValoresResta = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM facturas WHERE " + WhereSuc + " tipo_fac IN ('NCA', 'NCB', 'NCC') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+						ValoresSuma = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+						ValoresResta = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('NCA', 'NCB', 'NCC') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 					}
 					else
 					{
 						//Tomo el costo de la facturación
-						ValoresSuma = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM facturas, facturas_detalle WHERE " + WhereSuc + " facturas.id_factura=facturas_detalle.id_factura AND facturas.tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND facturas.impresa AND facturas.numero>0 AND facturas.anulada=0 AND facturas_detalle.precio>0 AND facturas.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-						ValoresResta = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM facturas, facturas_detalle WHERE " + WhereSuc + " facturas.id_factura=facturas_detalle.id_factura AND facturas.tipo_fac IN ('NCA', 'NCB', 'NCC') AND facturas.impresa AND facturas.numero>0 AND facturas.anulada=0 AND facturas.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+						ValoresSuma = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE " + WhereSuc + " comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND comprob.impresa AND comprob.numero>0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+						ValoresResta = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE " + WhereSuc + " comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC') AND comprob.impresa AND comprob.numero>0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 					}
 
 					if(ValoresSuma != 0)
@@ -642,8 +642,8 @@ namespace Lazaro.Charts
 						WhereSuc = " id_sucursal=" + sucursal.ToString() + " AND ";
 
 					//Tomo la facturación
-                                        ValoresSuma = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM facturas WHERE " + WhereSuc + " tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        ValoresResta = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM facturas WHERE " + WhereSuc + " tipo_fac IN ('NCA', 'NCB', 'NCC') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        ValoresSuma = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        ValoresResta = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('NCA', 'NCB', 'NCC') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 
 					if(ValoresSuma != 0)
 					{
@@ -698,7 +698,7 @@ namespace Lazaro.Charts
                                 ListViewItem Item = lvAnual.Items.Add(new System.DateTime(System.DateTime.Now.Year, mes, 1).ToString("MMMM"));
 				if(Chart.Series[3].Elements[mes-1] != null) 
 				{
-					Item.SubItems.Add(new ListViewItem.ListViewSubItem(Item, Lfx.Types.Formatting.FormatCurrencyForPrint(Chart.Series[3].Elements[mes-1].Value, 0)));
+					Item.SubItems.Add(Lfx.Types.Formatting.FormatCurrencyForPrint(Chart.Series[3].Elements[mes-1].Value, 0));
 				}
 			}
 

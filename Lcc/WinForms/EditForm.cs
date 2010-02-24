@@ -98,6 +98,7 @@ namespace Lcc.WinForms
                                                         NewTxt.MinimumSize = new Size(10 * (MiCtl.MaxLenght > 60 ? 60 : MiCtl.MaxLenght), MinControlSize.Height);
                                                         NewTxt.MaximumSize = new Size(480, NormalControlSize.Height);
                                                         NewTxt.Size = new Size(NewTxt.MinimumSize.Height, NormalControlSize.Height); ;
+                                                        NewTxt.SelectOnFocus = false;
                                                         NewTxt.MaxLenght = MiCtl.MaxLenght;
                                                         NewTxt.Text = MiCtl.Value.ToString();
                                                         NewCtl = NewTxt;

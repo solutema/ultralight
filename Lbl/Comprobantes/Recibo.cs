@@ -65,6 +65,14 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+                public override string TablaImagenes
+                {
+                        get
+                        {
+                                return "recibos_imagenes";
+                        }
+                }
+
                 public override string CampoId
                 {
                         get
@@ -74,7 +82,7 @@ namespace Lbl.Comprobantes
                 }
 
                 public ColeccionComprobanteConArticulos Facturas = new ColeccionComprobanteConArticulos();
-                public Cuentas.Concepto Concepto;
+                public Cajas.Concepto Concepto;
                 public int PV;
                 public ColeccionDeCobros Cobros = new ColeccionDeCobros();
                 public ColeccionDePagos Pagos = new ColeccionDePagos();
@@ -175,7 +183,7 @@ namespace Lbl.Comprobantes
                                 this.Tipo = new Tipo(this.DataView, m_Registro["tipo_fac"].ToString());
 
                                 if (m_Registro["id_concepto"] != null)
-                                        this.Concepto = new Lbl.Cuentas.Concepto(this.DataView, this.FieldInt("id_concepto"));
+                                        this.Concepto = new Lbl.Cajas.Concepto(this.DataView, this.FieldInt("id_concepto"));
                                 else
                                         this.Concepto = null;
 
@@ -188,15 +196,15 @@ namespace Lbl.Comprobantes
                                 this.Cobros.Clear();
                                 this.Pagos.Clear();
 
-                                //Cargo facturas asociadas al recibo
-                                System.Data.DataTable TablaFacturas = DataView.DataBase.Select("SELECT * FROM recibos_facturas WHERE id_recibo=" + this.Id.ToString());
+                                //Cargo comprob asociadas al recibo
+                                System.Data.DataTable TablaFacturas = DataView.DataBase.Select("SELECT * FROM recibos_comprob WHERE id_recibo=" + this.Id.ToString());
                                 foreach (System.Data.DataRow Factura in TablaFacturas.Rows) {
-                                        Facturas.Add(new Factura(this.DataView, System.Convert.ToInt32(Factura["id_factura"])));
+                                        Facturas.Add(new Factura(this.DataView, System.Convert.ToInt32(Factura["id_comprob"])));
                                 }
 
-                                //Cargo pagos asociados al registro
+                                // Cargo pagos asociados al registro
                                 // Pagos en efectivo
-                                System.Data.DataTable TablaPagos = DataView.DataBase.Select("SELECT * FROM cuentas_movim WHERE id_cuenta=" + this.Workspace.CurrentConfig.Company.CajaDiaria.ToString() + " AND id_recibo=" + Id.ToString());
+                                System.Data.DataTable TablaPagos = DataView.DataBase.Select("SELECT * FROM cajas_movim WHERE id_caja=" + this.Workspace.CurrentConfig.Company.CajaDiaria.ToString() + " AND id_recibo=" + Id.ToString());
                                 foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
                                         if (this.DePago) {
                                                 Pago Pg = new Pago(this.DataView, TipoFormasDePago.Efectivo, Math.Abs(System.Convert.ToDouble(Pago["importe"])));
@@ -229,17 +237,17 @@ namespace Lbl.Comprobantes
                                 }
 
                                 // Acreditaciones en cuenta regular (excepto caja diaria)
-                                TablaPagos = this.DataView.DataBase.Select("SELECT * FROM cuentas_movim WHERE auto=1 AND id_cuenta<>" + this.Workspace.CurrentConfig.Company.CajaDiaria.ToString() + " AND id_cuenta<>" + this.Workspace.CurrentConfig.Company.CuentaCheques.ToString() + " AND id_recibo=" + Id.ToString());
+                                TablaPagos = this.DataView.DataBase.Select("SELECT * FROM cajas_movim WHERE auto=1 AND id_caja<>" + this.Workspace.CurrentConfig.Company.CajaDiaria.ToString() + " AND id_caja<>" + this.Workspace.CurrentConfig.Company.CajaCheques.ToString() + " AND id_recibo=" + Id.ToString());
                                 foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
                                         if (this.DePago) {
-                                                Pago Pg = new Pago(this.DataView, TipoFormasDePago.CuentaRegular, Math.Abs(System.Convert.ToDouble(Pago["importe"])));
+                                                Pago Pg = new Pago(this.DataView, TipoFormasDePago.Caja, Math.Abs(System.Convert.ToDouble(Pago["importe"])));
                                                 Pg.Recibo = this;
-                                                Pg.CuentaOrigen = new Cuentas.CuentaRegular(DataView, System.Convert.ToInt32(Pago["id_cuenta"]));
+                                                Pg.CajaOrigen = new Cajas.Caja(DataView, System.Convert.ToInt32(Pago["id_caja"]));
                                                 Pagos.Add(Pg);
                                         } else {
-                                                Cobro Cb = new Cobro(this.DataView, TipoFormasDePago.CuentaRegular, System.Convert.ToDouble(Pago["importe"]));
+                                                Cobro Cb = new Cobro(this.DataView, TipoFormasDePago.Caja, System.Convert.ToDouble(Pago["importe"]));
                                                 Cb.Recibo = this;
-                                                Cb.CuentaDestino = new Cuentas.CuentaRegular(DataView, System.Convert.ToInt32(Pago["id_cuenta"]));
+                                                Cb.CajaDestino = new Cajas.Caja(DataView, System.Convert.ToInt32(Pago["id_caja"]));
                                                 Cobros.Add(Cb);
                                         }
                                 }
@@ -253,10 +261,10 @@ namespace Lbl.Comprobantes
                                 //Concepto predeterminado para recibos
                                 if (this.DePago)
                                         //Compra de mercadería
-                                        this.Concepto = new Lbl.Cuentas.Concepto(this.DataView, 21000);
+                                        this.Concepto = new Lbl.Cajas.Concepto(this.DataView, 21000);
                                 else
                                         //Ingresos por facturación
-                                        this.Concepto = new Lbl.Cuentas.Concepto(this.DataView, 11000);
+                                        this.Concepto = new Lbl.Cajas.Concepto(this.DataView, 11000);
                         }
                         if (this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos." + this.Tipo.Nomenclatura + ".NumerarAlGuardar", 1) == 1)
                                 this.Numerar();
@@ -312,8 +320,8 @@ namespace Lbl.Comprobantes
                                 Pg.ConceptoTexto = this.ConceptoTexto;
                                 switch (Pg.FormaDePago.Tipo) {
                                         case TipoFormasDePago.Efectivo:
-                                                Cuentas.CuentaRegular CuentaCaja = new Cuentas.CuentaRegular(this.DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
-                                                Lfx.Types.OperationResult ResultadoEfect = CuentaCaja.Movimiento(true, this.Concepto, this.ConceptoTexto, Cliente, Pg.Importe, ObsPago, null, this, string.Empty);
+                                                Cajas.Caja CajaDiaria = new Cajas.Caja(this.DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
+                                                Lfx.Types.OperationResult ResultadoEfect = CajaDiaria.Movimiento(true, this.Concepto, this.ConceptoTexto, Cliente, Pg.Importe, ObsPago, null, this, string.Empty);
                                                 if (ResultadoEfect.Success == false)
                                                         return ResultadoEfect;
                                                 break;
@@ -338,9 +346,9 @@ namespace Lbl.Comprobantes
                                                 if (ResultadoCupon.Success == false)
                                                         return ResultadoCupon;
                                                 break;
-                                        case TipoFormasDePago.CuentaRegular:
-                                                Pg.CuentaDestino.DataView = this.DataView;
-                                                Lfx.Types.OperationResult ResultadoDeposito = Pg.CuentaDestino.Movimiento(true, Pg.Concepto, Pg.ConceptoTexto, this.Cliente, Pg.Importe, ObsPago, null, this, string.Empty);
+                                        case TipoFormasDePago.Caja:
+                                                Pg.CajaDestino.DataView = this.DataView;
+                                                Lfx.Types.OperationResult ResultadoDeposito = Pg.CajaDestino.Movimiento(true, Pg.Concepto, Pg.ConceptoTexto, this.Cliente, Pg.Importe, ObsPago, null, this, string.Empty);
                                                 if (ResultadoDeposito.Success != true)
                                                         return ResultadoDeposito;
                                                 break;
@@ -352,8 +360,8 @@ namespace Lbl.Comprobantes
                                 Pg.ConceptoTexto = this.ConceptoTexto;
                                 switch (Pg.FormaDePago.Tipo) {
                                         case TipoFormasDePago.Efectivo:
-                                                Cuentas.CuentaRegular CuentaCaja = new Cuentas.CuentaRegular(this.DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
-                                                Lfx.Types.OperationResult ResultadoEfect = CuentaCaja.Movimiento(true, Pg.Concepto, Pg.ConceptoTexto, this.Cliente, -Pg.Importe, ObsPago, null, this, string.Empty);
+                                                Cajas.Caja CajaDiaria = new Cajas.Caja(this.DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
+                                                Lfx.Types.OperationResult ResultadoEfect = CajaDiaria.Movimiento(true, Pg.Concepto, Pg.ConceptoTexto, this.Cliente, -Pg.Importe, ObsPago, null, this, string.Empty);
                                                 if (ResultadoEfect.Success == false)
                                                         return ResultadoEfect;
                                                 break;
@@ -369,21 +377,21 @@ namespace Lbl.Comprobantes
                                                 if (ResultadoCheque.Success == false)
                                                         return ResultadoCheque;
                                                 break;
-                                        case TipoFormasDePago.CuentaRegular:
-                                                Pg.CuentaOrigen.DataView = this.DataView;
-                                                Lfx.Types.OperationResult ResultadoDeposito = Pg.CuentaOrigen.Movimiento(true, Pg.Concepto, Pg.ConceptoTexto, this.Cliente, -Pg.Importe, ObsPago, null, this, string.Empty);
+                                        case TipoFormasDePago.Caja:
+                                                Pg.CajaOrigen.DataView = this.DataView;
+                                                Lfx.Types.OperationResult ResultadoDeposito = Pg.CajaOrigen.Movimiento(true, Pg.Concepto, Pg.ConceptoTexto, this.Cliente, -Pg.Importe, ObsPago, null, this, string.Empty);
                                                 if (ResultadoDeposito.Success != true)
                                                         return ResultadoDeposito;
                                                 break;
                                 }
                         }
 
-                        // Doy las facturas por canceladas
+                        // Doy las comprob por canceladas
                         double TotalACancelar = this.Importe;
 
                         if (this.Facturas == null || this.Facturas.Count == 0) {
-                                // No se especificaron facturas. Busco facturas a cancelar.
-                                System.Data.DataTable FacturasConSaldo = this.DataView.DataBase.Select("SELECT id_factura,total,cancelado FROM facturas WHERE impresa>0 AND anulada=0 AND numero>0 AND tipo_fac IN ('A', 'B', 'C', 'E', 'M', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND id_formapago IN (1, 3, 99) AND cancelado<total AND id_cliente=" + this.Cliente.Id.ToString() + " ORDER BY id_factura");
+                                // No se especificaron comprob. Busco comprob a cancelar.
+                                System.Data.DataTable FacturasConSaldo = this.DataView.DataBase.Select("SELECT id_comprob,total,cancelado FROM comprob WHERE impresa>0 AND anulada=0 AND numero>0 AND tipo_fac IN ('A', 'B', 'C', 'E', 'M', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND id_formapago IN (1, 3, 99) AND cancelado<total AND id_cliente=" + this.Cliente.Id.ToString() + " ORDER BY id_comprob");
 
                                 double ImporteRestante = this.Importe;
 
@@ -394,7 +402,7 @@ namespace Lbl.Comprobantes
                                         if (ImporteASaldar > Math.Abs(ImporteRestante))
                                                 ImporteASaldar = Math.Abs(ImporteRestante);
 
-                                        this.Facturas.Add(new ComprobanteConArticulos(DataView, System.Convert.ToInt32(Factura["id_factura"])));
+                                        this.Facturas.Add(new ComprobanteConArticulos(DataView, System.Convert.ToInt32(Factura["id_comprob"])));
                                         ImporteRestante += ImporteASaldar;
 
                                         if (ImporteRestante >= 0)
@@ -403,7 +411,7 @@ namespace Lbl.Comprobantes
                         }
 
                         if (this.Facturas != null && this.Facturas.Count > 0) {
-                                // Si hay una lista de facturas, las cancelo
+                                // Si hay una lista de comprob, las cancelo
                                 foreach (Comprobantes.ComprobanteConArticulos Fact in this.Facturas) {
                                         // Calculo cuanto queda por cancelar en esta factura
                                         double ImportePendiente = Fact.Total - Fact.ImporteCancelado;
@@ -417,12 +425,10 @@ namespace Lbl.Comprobantes
 
                                         // Si alcanzo a cancelar algo, lo asiento
                                         if (Cancelando > 0) {
-                                                this.DataView.DataBase.Execute("INSERT INTO recibos_facturas (id_recibo, id_factura, importe) VALUES (" + this.Id.ToString() + ", " + Fact.Id.ToString() + ", " + Lfx.Types.Formatting.FormatCurrencySql(Cancelando) + ")");
-                                                if (Fact.FormaDePago.Tipo == TipoFormasDePago.CuentaCorriente) {
-                                                        Cuentas.CuentaCorriente CtaCte = new Lbl.Cuentas.CuentaCorriente(this.DataView, this.Cliente.Id);
-                                                        CtaCte.Movimiento(true, 30000, "Cancelación s/" + this.ToString(), this.DePago ? Cancelando : -Cancelando, this.Obs, Fact.Id, this.Id, false);
-                                                }
-                                                this.DataView.DataBase.Execute("UPDATE facturas SET cancelado=cancelado+" + Lfx.Types.Formatting.FormatCurrencySql(Cancelando) + " WHERE id_factura=" + Fact.Id.ToString());
+                                                this.DataView.DataBase.Execute("INSERT INTO recibos_comprob (id_recibo, id_comprob, importe) VALUES (" + this.Id.ToString() + ", " + Fact.Id.ToString() + ", " + Lfx.Types.Formatting.FormatCurrencySql(Cancelando) + ")");
+                                                if (Fact.FormaDePago.Tipo == TipoFormasDePago.CuentaCorriente)
+                                                        this.Cliente.CuentaCorriente.Movimiento(true, 30000, "Cancelación s/" + this.ToString(), this.DePago ? Cancelando : -Cancelando, this.Obs, Fact.Id, this.Id, false);
+                                                this.DataView.DataBase.Execute("UPDATE comprob SET cancelado=cancelado+" + Lfx.Types.Formatting.FormatCurrencySql(Cancelando) + " WHERE id_comprob=" + Fact.Id.ToString());
                                         }
 
                                         TotalACancelar = TotalACancelar - Cancelando;
@@ -432,8 +438,7 @@ namespace Lbl.Comprobantes
                         }
 
                         if (TotalACancelar > 0) {
-                                Cuentas.CuentaCorriente CtaCte = new Lbl.Cuentas.CuentaCorriente(this.DataView, Cliente.Id);
-                                Lfx.Types.OperationResult ResultadoCtaCte = CtaCte.Movimiento(true, this.Concepto, "Saldo s/" + this.ToString(), this.DePago ? TotalACancelar : -TotalACancelar, this.Obs, null, this, this.CancelaCosas);
+                                Lfx.Types.OperationResult ResultadoCtaCte = Cliente.CuentaCorriente.Movimiento(true, this.Concepto, "Saldo s/" + this.ToString(), this.DePago ? TotalACancelar : -TotalACancelar, this.Obs, null, this, this.CancelaCosas);
                                 if (ResultadoCtaCte.Success != true)
                                         return ResultadoCtaCte;
 
@@ -475,12 +480,12 @@ namespace Lbl.Comprobantes
                                         }
                                 }
 
-                                // Doy las facturas por canceladas
+                                // Doy las comprob por canceladas
                                 double TotalACancelar = this.Importe;
 
-                                //"Descancelo" facturas
+                                //"Descancelo" comprob
                                 if (this.Facturas != null && this.Facturas.Count > 0) {
-                                        // Si hay una lista de facturas, las descancelo
+                                        // Si hay una lista de comprob, las descancelo
                                         foreach (Comprobantes.ComprobanteConArticulos Fact in this.Facturas) {
                                                 // Calculo cuanto queda por cancelar en esta factura
                                                 double ImportePendiente = Fact.ImporteCancelado;
@@ -494,10 +499,9 @@ namespace Lbl.Comprobantes
 
                                                 // Si alcanzo a cancelar algo, lo asiento
                                                 if (Cancelando > 0) {
-                                                        if (Fact.FormaDePago.Tipo == TipoFormasDePago.CuentaCorriente) {
+                                                        if (Fact.FormaDePago.Tipo == TipoFormasDePago.CuentaCorriente)
                                                                 this.Cliente.CuentaCorriente.Movimiento(true, 30000, "Anulación de " + this.ToString(), this.DePago ? -Cancelando : Cancelando, this.Obs, Fact.Id, this.Id, false);
-                                                        }
-                                                        this.DataView.DataBase.Execute("UPDATE facturas SET cancelado=cancelado-" + Lfx.Types.Formatting.FormatCurrencySql(Cancelando) + " WHERE id_factura=" + Fact.Id.ToString());
+                                                        this.DataView.DataBase.Execute("UPDATE comprob SET cancelado=cancelado-" + Lfx.Types.Formatting.FormatCurrencySql(Cancelando) + " WHERE id_comprob=" + Fact.Id.ToString());
                                                 }
 
                                                 TotalACancelar = TotalACancelar - Cancelando;

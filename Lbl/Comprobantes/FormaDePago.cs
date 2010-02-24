@@ -39,12 +39,12 @@ namespace Lbl.Comprobantes
                 Cheque = 2,
                 CuentaCorriente = 3,
                 Tarjeta = 4,
-                CuentaRegular = 6
+                Caja = 6
         }
 
         public class FormaDePago : ElementoDeDatos
         {
-                private Lbl.Cuentas.CuentaRegular m_Cuenta;
+                private Lbl.Cajas.Caja m_Caja;
 
                 //Heredar constructor
 		public FormaDePago(Lws.Data.DataView dataView) : base(dataView) { }
@@ -79,7 +79,7 @@ namespace Lbl.Comprobantes
 
                 public override Lfx.Types.OperationResult Crear()
                 {
-                        m_Cuenta = null;
+                        m_Caja = null;
                         return base.Crear();
                 }
 
@@ -87,10 +87,10 @@ namespace Lbl.Comprobantes
                 {
                         Lfx.Types.OperationResult Res = base.Cargar();
                         if (Res.Success) {
-                                if (Registro["id_cuenta"] == null)
-                                        m_Cuenta = null;
+                                if (Registro["id_caja"] == null)
+                                        m_Caja = null;
                                 else
-                                        m_Cuenta = new Lbl.Cuentas.CuentaRegular(this.DataView, System.Convert.ToInt32(Registro["id_cuenta"]));
+                                        m_Caja = new Lbl.Cajas.Caja(this.DataView, System.Convert.ToInt32(Registro["id_caja"]));
                         }
 
                         return Res;
@@ -180,17 +180,17 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                public Lbl.Cuentas.CuentaRegular Cuenta
+                public Lbl.Cajas.Caja Caja
                 {
                         get
                         {
-                                if (m_Cuenta == null && this.FieldInt("id_cuenta") > 0)
-                                        m_Cuenta = new Lbl.Cuentas.CuentaRegular(this.DataView, this.FieldInt("id_cuenta"));
-                                return m_Cuenta;
+                                if (m_Caja == null && this.FieldInt("id_caja") > 0)
+                                        m_Caja = new Lbl.Cajas.Caja(this.DataView, this.FieldInt("id_caja"));
+                                return m_Caja;
                         }
                         set
                         {
-                                m_Cuenta = value;
+                                m_Caja = value;
                         }
                 }
         }

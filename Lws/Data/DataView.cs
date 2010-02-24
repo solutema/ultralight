@@ -42,7 +42,7 @@ namespace Lws.Data
                 public int Handle = 0;
                 public static int LastHandle = 0;
                 public Lws.Workspace Workspace;
-                protected TableCollection m_Tables = null;
+                //protected TableCollection m_Tables = null;
                 public Lfx.Data.DataBase m_DataBase = null;
 
                 public DataView()
@@ -66,24 +66,24 @@ namespace Lws.Data
 		{
 			get
 			{
-				if(m_Tables == null) {
-					this.m_Tables = new TableCollection(this);
+                                if (Lws.Workspace.MasterTableCollection == null) {
+                                        Lws.Workspace.MasterTableCollection = new TableCollection(Lws.Workspace.Master.DefaultDataView);
                                         foreach (string TblName in Lfx.Data.DataBaseCache.DefaultCache.TableList) {
-						Table NewTable = new Table(this, TblName);
-						switch(TblName) {
-							case "sys_asl":
-							case "sys_log":
-							case "sys_programador":
-							case "sys_quickpaste":
-								NewTable.Cacheable = false;
-								break;
-						}
+                                                Table NewTable = new Table(Lws.Workspace.Master.DefaultDataView, TblName);
+                                                switch (TblName) {
+                                                        case "sys_asl":
+                                                        case "sys_log":
+                                                        case "sys_programador":
+                                                        case "sys_quickpaste":
+                                                                NewTable.Cacheable = false;
+                                                                break;
+                                                }
                                                 if (Lfx.Data.DataBaseCache.DefaultCache.TableStructures.ContainsKey(TblName) && Lfx.Data.DataBaseCache.DefaultCache.TableStructures[TblName].PrimaryKey != null)
                                                         NewTable.PrimaryKey = Lfx.Data.DataBaseCache.DefaultCache.TableStructures[TblName].PrimaryKey.Name;
-	                                	this.m_Tables.Add(NewTable);
-					}
-				}
-				return m_Tables;
+                                                Lws.Workspace.MasterTableCollection.Add(NewTable);
+                                        }
+                                }
+				return Lws.Workspace.MasterTableCollection;
 			}
 		}
 

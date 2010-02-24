@@ -44,6 +44,7 @@ namespace RunComponent
                                         System.Windows.Forms.MessageBox.Show(ex.Message, "Error");
                                 }
                                 if (Componente != null) {
+                                        Lws.Workspace.Master = new Lws.Workspace("default", false);
                                         Componente.Workspace = new Lws.Workspace("default");
                                         Componente.ExecutableName = System.Reflection.Assembly.GetExecutingAssembly().Location;
                                         Componente.CommandLineArgs = Environment.GetCommandLineArgs();

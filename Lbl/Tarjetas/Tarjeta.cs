@@ -43,7 +43,7 @@ namespace Lbl.Tarjetas
 
 	public class Tarjeta : ElementoDeDatos
 	{
-                public Lbl.Cuentas.CuentaRegular Cuenta;
+                public Lbl.Cajas.Caja Caja;
 
 		//Heredar constructor
 		public Tarjeta(Lws.Data.DataView dataView) : base(dataView) { }
@@ -148,10 +148,10 @@ namespace Lbl.Tarjetas
                 {
                         Lfx.Types.OperationResult Res = base.Cargar();
                         if (Res.Success) {
-                                if (Registro["id_cuenta"] == null)
-                                        this.Cuenta = null;
+                                if (Registro["id_caja"] == null)
+                                        this.Caja = null;
                                 else
-                                        this.Cuenta = new Lbl.Cuentas.CuentaRegular(this.DataView, System.Convert.ToInt32(Registro["id_cuenta"]));
+                                        this.Caja = new Lbl.Cajas.Caja(this.DataView, System.Convert.ToInt32(Registro["id_caja"]));
                         }
                         return base.Cargar();
                 }
@@ -170,10 +170,10 @@ namespace Lbl.Tarjetas
                         Comando.Fields.AddWithValue("credeb", ((int)(this.Tipo)));
                         Comando.Fields.AddWithValue("nombre", this.Nombre);
                         Comando.Fields.AddWithValue("comision", this.Comision);
-                        if (this.Cuenta == null)
-                                Comando.Fields.AddWithValue("id_cuenta", DBNull.Value);
+                        if (this.Caja == null)
+                                Comando.Fields.AddWithValue("id_caja", DBNull.Value);
                         else
-                                Comando.Fields.AddWithValue("id_cuenta", this.Cuenta.Id);
+                                Comando.Fields.AddWithValue("id_caja", this.Caja.Id);
 
 			this.AgregarTags(Comando);
 

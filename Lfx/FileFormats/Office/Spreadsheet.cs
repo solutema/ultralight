@@ -106,12 +106,14 @@ namespace Lfx.FileFormats.Office.Spreadsheet
 
                                         foreach (string Version in ProgKey.GetSubKeyNames()) {
                                                 RegistryKey ProgVersionKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Office\" + Version + @"\Excel\InstallRoot", false);
-                                                if (ProgVersionKey != null && ProgVersionKey.GetValue("Path") != null) {
-                                                        Res = System.IO.Path.GetDirectoryName(ProgVersionKey.GetValue("Path").ToString());
+                                                if (ProgVersionKey != null) {
+                                                        if (ProgVersionKey.GetValue("Path") != null) {
+                                                                Res = System.IO.Path.GetDirectoryName(ProgVersionKey.GetValue("Path").ToString());
+                                                                ProgVersionKey.Close();
+                                                                break;
+                                                        }
                                                         ProgVersionKey.Close();
-                                                        break;
                                                 }
-                                                ProgVersionKey.Close();
                                         }
                                         ProgKey.Close();
                                         if (Res != null && Res.Substring(Res.Length - 1, 1) != System.IO.Path.DirectorySeparatorChar.ToString())

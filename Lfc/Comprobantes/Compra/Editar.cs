@@ -324,27 +324,31 @@ namespace Lfc.Comprobantes.Compra
 		}
 
 
-		private void FormPedidosEditar_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-		{
-			if (e.Modifiers == Keys.None)
-			{
-				switch (e.KeyCode)
-				{
-					case Keys.F4:
-						if (cmdConvertir.Enabled && cmdConvertir.Visible) {
-							e.Handled = true;
-							cmdConvertir.PerformClick();
-						}
-						break;
-					case Keys.F7:
-						if (cmdObs.Enabled && cmdObs.Visible) {
-							e.Handled = true;
-							cmdObs.PerformClick();
-						}
-						break;
-				}
-			}
-		}
+                private void FormPedidosEditar_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+                {
+                        if (e.Modifiers == Keys.None) {
+                                switch (e.KeyCode) {
+                                        case Keys.F4:
+                                                if (cmdConvertir.Enabled && cmdConvertir.Visible) {
+                                                        e.Handled = true;
+                                                        cmdConvertir.PerformClick();
+                                                }
+                                                break;
+                                        case Keys.F6:
+                                                if (BotonImagen.Enabled && BotonImagen.Visible) {
+                                                        e.Handled = true;
+                                                        BotonImagen.PerformClick();
+                                                }
+                                                break;
+                                        case Keys.F7:
+                                                if (cmdObs.Enabled && cmdObs.Visible) {
+                                                        e.Handled = true;
+                                                        cmdObs.PerformClick();
+                                                }
+                                                break;
+                                }
+                        }
+                }
 
 
 		private void cmdObs_Click(object sender, System.EventArgs e)
@@ -386,6 +390,18 @@ namespace Lfc.Comprobantes.Compra
                         Editar.Series = Prod.Series;
                         if (Editar.ShowDialog() == DialogResult.OK) {
                                 Prod.Series = Editar.Series;
+                        }
+                }
+
+                private void BotonImagen_Click(object sender, EventArgs e)
+                {
+                        Lcc.Edicion.FormularioImagen CargarImagen = new Lcc.Edicion.FormularioImagen();
+                        CargarImagen.Workspace = this.Workspace;
+                        CargarImagen.EntradaImagen.Elemento = this.CachedRow;
+                        if (CargarImagen.ShowDialog() == DialogResult.OK) {
+                                CargarImagen.EntradaImagen.ActualizarElemento();
+                                CargarImagen.Dispose();
+                                CargarImagen = null;
                         }
                 }
 	}

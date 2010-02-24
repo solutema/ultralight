@@ -53,15 +53,23 @@ namespace Lbl.Comprobantes
 		{
 			get
 			{
-				return "facturas";
+				return "comprob";
 			}
 		}
+
+                public override string TablaImagenes
+                {
+                        get
+                        {
+                                return "comprob_imagenes";
+                        }
+                }
 
 		public override string CampoId
 		{
 			get
 			{
-				return "id_factura";
+				return "id_comprob";
 			}
 		}
 
@@ -123,10 +131,10 @@ namespace Lbl.Comprobantes
                                 return;
 
                         if (this.Tipo.EsNotaDebito) {
-                                Lbl.Cuentas.CuentaCorriente CtaCteDeb = new Lbl.Cuentas.CuentaCorriente(DataView, this.Cliente.Id);
+                                Lbl.Cajas.CuentaCorriente CtaCteDeb = new Lbl.Cajas.CuentaCorriente(DataView, this.Cliente.Id);
                                 CtaCteDeb.Movimiento(true, 11000, "Anulación Comprob. " + this.ToString(), -this.Total, "", this.Id, 0, true);
                         } else if (this.Tipo.EsNotaCredito) {
-                                Lbl.Cuentas.CuentaCorriente CtaCteCred = new Lbl.Cuentas.CuentaCorriente(DataView, this.Cliente.Id);
+                                Lbl.Cajas.CuentaCorriente CtaCteCred = new Lbl.Cajas.CuentaCorriente(DataView, this.Cliente.Id);
                                 CtaCteCred.Movimiento(true, 11000, "Anulación Comprob. " + this.ToString(), this.Total, "", this.Id, 0, true);
                         } else if (this.Tipo.EsFactura) {
                                 Lbl.Articulos.Stock.MoverStockFactura(this, false);
@@ -134,7 +142,7 @@ namespace Lbl.Comprobantes
                                         switch (this.FormaDePago.Tipo) {
                                                 case TipoFormasDePago.Efectivo:
                                                         // Hago un egreso de caja
-                                                        Lbl.Cuentas.CuentaRegular Caja = new Lbl.Cuentas.CuentaRegular(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
+                                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
                                                         Caja.Movimiento(true, 11000, "Anulación Comprob. " + this.ToString(), this.Cliente.Id, -this.ImporteCancelado, "", this.Id, 0, "");
                                                         break;
 
@@ -155,13 +163,13 @@ namespace Lbl.Comprobantes
                                                         }
                                                         if (this.ImporteCancelado < this.Total) {
                                                                 // Y si quedaba algo por cancelar, anulo ese saldo en la cuenta corriente
-                                                                this.Cliente.CuentaCorriente.Movimiento(true, new Lbl.Cuentas.Concepto(this.DataView, 11000), "Anulación Comprob. " + this.ToString(), -this.ImporteCancelado, "", this, null, false);
+                                                                this.Cliente.CuentaCorriente.Movimiento(true, new Lbl.Cajas.Concepto(this.DataView, 11000), "Anulación Comprob. " + this.ToString(), -this.ImporteCancelado, "", this, null, false);
                                                         }
                                                         
                                                         */
                                                         if (this.ImporteCancelado < this.Total) {
                                                                 // Quito el saldo paga de la cuenta corriente
-                                                                this.Cliente.CuentaCorriente.Movimiento(true, new Lbl.Cuentas.Concepto(this.DataView, 11000), "Anulación Comprob. " + this.ToString(), -this.ImporteCancelado, "", this, null, false);
+                                                                this.Cliente.CuentaCorriente.Movimiento(true, new Lbl.Cajas.Concepto(this.DataView, 11000), "Anulación Comprob. " + this.ToString(), -this.ImporteCancelado, "", this, null, false);
                                                         }
                                                         break;
 
@@ -303,7 +311,7 @@ namespace Lbl.Comprobantes
 			}
 			set
 			{
-				//this.DataView.DataBase.Execute("UPDATE facturas SET pv=" + value + " WHERE id_factura=" + this.Id.ToString());
+				//this.DataView.DataBase.Execute("UPDATE comprob SET pv=" + value + " WHERE id_comprob=" + this.Id.ToString());
 				Registro["pv"] = value;
 			}
 		}
@@ -333,7 +341,7 @@ namespace Lbl.Comprobantes
                         get
                         {
                                 double Redondeo = this.Workspace.CurrentConfig.Currency.Rounding;
-                                if (Redondeo == 0)
+                                if (this.Compra || Redondeo == 0)
                                         return Lfx.Types.Currency.Truncate(this.TotalReal, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                                 else
                                         return Lfx.Types.Currency.Truncate(Math.Floor(this.TotalReal / Redondeo) * Redondeo, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
@@ -425,9 +433,9 @@ namespace Lbl.Comprobantes
 				{
                                         m_Articulos = new ColeccionDetalleArticulos();
                                         if (this.Existe) {
-                                                System.Data.DataTable Arts = this.DataView.DataBase.Select("SELECT id_factura_detalle, id_articulo, orden, cantidad, precio, costo, nombre, descripcion FROM facturas_detalle WHERE id_factura=" + this.Id.ToString());
+                                                System.Data.DataTable Arts = this.DataView.DataBase.Select("SELECT id_comprob_detalle, id_articulo, orden, cantidad, precio, costo, nombre, descripcion FROM comprob_detalle WHERE id_comprob=" + this.Id.ToString());
                                                 foreach (System.Data.DataRow Art in Arts.Rows) {
-                                                        Comprobantes.DetalleArticulo DetArt = new DetalleArticulo(this.DataView, System.Convert.ToInt32(Art["id_factura_detalle"]));
+                                                        Comprobantes.DetalleArticulo DetArt = new DetalleArticulo(this.DataView, System.Convert.ToInt32(Art["id_comprob_detalle"]));
                                                         DetArt.IdArticulo = Lfx.Data.DataBase.ConvertDBNullToZero(Art["id_articulo"]);
                                                         DetArt.Orden = System.Convert.ToInt32(Art["orden"]);
                                                         DetArt.Cantidad = System.Convert.ToDouble(Art["cantidad"]);
@@ -450,7 +458,7 @@ namespace Lbl.Comprobantes
                                 if (m_Recibos == null || m_Recibos.Count == 0) {
                                         m_Recibos = new ColeccionRecibos();
                                         if (this.Existe) {
-                                                System.Data.DataTable Recs = this.DataView.DataBase.Select("SELECT id_recibo FROM recibos_facturas WHERE id_factura=" + this.Id.ToString());
+                                                System.Data.DataTable Recs = this.DataView.DataBase.Select("SELECT id_recibo FROM recibos_comprob WHERE id_comprob=" + this.Id.ToString());
                                                 foreach (System.Data.DataRow Rec in Recs.Rows) {
                                                         m_Recibos.Add(new Recibo(DataView, System.Convert.ToInt32(Rec["id_recibo"])));
                                                 }
@@ -465,7 +473,7 @@ namespace Lbl.Comprobantes
 			if(this.ImporteCancelado + importe > this.Total)
 				throw new InvalidOperationException("ComprobanteConArticulos.CancelarImporte: El importe a cancelar no puede ser mayor que el saldo impago");
 			this.ImporteCancelado += importe;
-			Lfx.Data.SqlUpdateBuilder Actualizar = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, "facturas", "id_factura=" + this.Id.ToString());
+			Lfx.Data.SqlUpdateBuilder Actualizar = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, "comprob", "id_comprob=" + this.Id.ToString());
 			Actualizar.Fields.AddWithValue("cancelado", this.ImporteCancelado);
 			this.DataView.Execute(Actualizar);
 			return new Lfx.Types.SuccessOperationResult();
@@ -611,7 +619,7 @@ namespace Lbl.Comprobantes
                         this.DataView.Execute(Comando);
 
                         if (this.Existe == false)
-                                this.m_ItemId = this.DataView.DataBase.FieldInt("SELECT MAX(id_factura) AS id_factura FROM facturas WHERE tipo_fac='" + this.Tipo.Nomenclatura + "'");
+                                this.m_ItemId = this.DataView.DataBase.FieldInt("SELECT MAX(id_comprob) AS id_comprob FROM comprob WHERE tipo_fac='" + this.Tipo.Nomenclatura + "'");
 
                         this.GuardarDetalle();
 
@@ -666,17 +674,17 @@ namespace Lbl.Comprobantes
                                         //Actualizo cantidades pedidas y a pedir
                                         DataView.DataBase.Execute(@"UPDATE articulos SET apedir=(
 							SELECT SUM(cantidad)
-							FROM facturas, facturas_detalle
-							WHERE facturas.id_factura=facturas_detalle.id_factura
-							AND facturas.compra=1
-							AND tipo_fac='NP' AND estado=50 AND facturas_detalle.id_articulo=articulos.id_articulo)
+							FROM comprob, comprob_detalle
+							WHERE comprob.id_comprob=comprob_detalle.id_comprob
+							AND comprob.compra=1
+							AND tipo_fac='NP' AND estado=50 AND comprob_detalle.id_articulo=articulos.id_articulo)
 						WHERE control_stock=1 AND id_articulo IN (" + ArtCsv + " )");
                                         DataView.DataBase.Execute(@"UPDATE articulos SET pedido=(
 							SELECT SUM(cantidad)
-							FROM facturas, facturas_detalle
-							WHERE facturas.id_factura=facturas_detalle.id_factura
-							AND facturas.compra=1
-							AND tipo_fac='PD' AND estado=50 AND facturas_detalle.id_articulo=articulos.id_articulo)
+							FROM comprob, comprob_detalle
+							WHERE comprob.id_comprob=comprob_detalle.id_comprob
+							AND comprob.compra=1
+							AND tipo_fac='PD' AND estado=50 AND comprob_detalle.id_articulo=articulos.id_articulo)
 						WHERE control_stock=1 AND id_articulo IN (" + ArtCsv + " )");
                                 }
                         }
@@ -687,7 +695,7 @@ namespace Lbl.Comprobantes
                 public Lfx.Types.OperationResult VerificarSeries()
                 {
                         foreach (Lbl.Comprobantes.DetalleArticulo Art in this.Articulos) {
-                                if (Art.Articulo != null && Art.Articulo.RequiereNS != Lbl.Articulos.RequiereNS.Nunca)
+                                if (Art.Articulo != null && Art.Articulo.RequiereNS)
                                         if (Art.Series == null) {
                                                 return new Lfx.Types.FailureOperationResult("Debe ingresar el número de serie del artículo '" + Art.Nombre + "' para poder realizar movimientos de stock.");
                                         } else {
@@ -701,13 +709,13 @@ namespace Lbl.Comprobantes
 
                 private void GuardarDetalle()
                 {
-                        this.DataView.DataBase.Execute("DELETE FROM facturas_detalle WHERE id_factura=" + this.Id.ToString());
+                        this.DataView.DataBase.Execute("DELETE FROM comprob_detalle WHERE id_comprob=" + this.Id.ToString());
 
                         int i = 1;
                         foreach (Lbl.Comprobantes.DetalleArticulo Art in m_Articulos) {
-                                Lfx.Data.SqlTableCommandBuilder Comando; Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, "facturas_detalle");
+                                Lfx.Data.SqlTableCommandBuilder Comando; Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, "comprob_detalle");
                                 Comando.Fields.AddWithValue("numero_factura", this.Numero);
-                                Comando.Fields.AddWithValue("id_factura", this.Id);
+                                Comando.Fields.AddWithValue("id_comprob", this.Id);
                                 Comando.Fields.AddWithValue("orden", i);
 
                                 if (Art.Articulo == null) {
@@ -729,7 +737,7 @@ namespace Lbl.Comprobantes
                                 Comando.Fields.AddWithValue("importe", Art.ImporteFinal);
                                 Comando.Fields.AddWithValue("series", Art.Series);
 
-                                this.AgregarTags(Comando, Art.Registro, "facturas_detalle");
+                                this.AgregarTags(Comando, Art.Registro, "comprob_detalle");
 
                                 this.DataView.Execute(Comando);
                                 i++;

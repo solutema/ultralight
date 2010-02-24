@@ -46,37 +46,37 @@ namespace Lazaro.Reportes
 
                 private void Patrimonio_WorkspaceChanged(object sender, EventArgs e)
                 {
-                        double ActivosCuentas = 0;
-                        double PasivosCuentas = 0;
+                        double ActivosCajas = 0;
+                        double PasivosCajas = 0;
 			
-			Lws.Data.DataView CuentasDataView = this.Workspace.GetDataView(false);
-                        System.Data.IDataReader Cuentas = CuentasDataView.DataBase.GetReader("SELECT * FROM cuentas WHERE estado>0");
-                        while(Cuentas.Read()) {
-                                Lbl.Cuentas.CuentaRegular Cta = new Lbl.Cuentas.CuentaRegular(DataView, System.Convert.ToInt32(Cuentas["id_cuenta"]));
+			Lws.Data.DataView CajasDataView = this.Workspace.GetDataView(false);
+                        System.Data.IDataReader Cajas = CajasDataView.DataBase.GetReader("SELECT * FROM cajas WHERE estado>0");
+                        while(Cajas.Read()) {
+                                Lbl.Cajas.Caja Cta = new Lbl.Cajas.Caja(DataView, System.Convert.ToInt32(Cajas["id_caja"]));
                                 double Saldo = Cta.Saldo();
                                 if (Saldo > 0)
-                                        ActivosCuentas += Saldo;
+                                        ActivosCajas += Saldo;
                                 else
-                                        PasivosCuentas += Math.Abs(Saldo);
+                                        PasivosCajas += Math.Abs(Saldo);
                         }
-                        Cuentas.Close();
-			CuentasDataView.Dispose();
+                        Cajas.Close();
+			CajasDataView.Dispose();
 
-                        txtActivosCuentas.Text = Lfx.Types.Formatting.FormatCurrency(ActivosCuentas, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtPasivosCuentas.Text = Lfx.Types.Formatting.FormatCurrency(PasivosCuentas, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        EntradaActivosCajas.Text = Lfx.Types.Formatting.FormatCurrency(ActivosCajas, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        EntradaPasivosCajas.Text = Lfx.Types.Formatting.FormatCurrency(PasivosCajas, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
 
                         double ActivosStock = DataView.DataBase.FieldDouble("SELECT SUM(costo*stock_actual) FROM articulos WHERE costo>0 AND stock_actual>0");
                         txtActivosStock.Text = Lfx.Types.Formatting.FormatCurrency(ActivosStock, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
 
-                        double Activos = ActivosCuentas + ActivosStock;
+                        double Activos = ActivosCajas + ActivosStock;
                         txtActivosSubtotal.Text = Lfx.Types.Formatting.FormatCurrency(Activos, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
 
                         double FuturosTarjetas = 0.92 * DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM tarjetas_cupones WHERE estado=10 OR (estado=0 AND fecha>DATE_SUB(NOW(), INTERVAL 45 DAY))");
                                                 //Tarjetas resta el 8% (estimado) de comisiones
-                        double Facturas = DataView.DataBase.FieldDouble("SELECT SUM(total)-SUM(cancelado) FROM facturas WHERE tipo_fac IN ('A', 'B', 'C', 'E', 'M') AND impresa>0 AND numero>0 AND anulada=0 AND fecha >= '" + Lfx.Types.Formatting.FormatDateSql(DateTime.Now.AddYears(-2)) + "'");
+                        double Facturas = DataView.DataBase.FieldDouble("SELECT SUM(total)-SUM(cancelado) FROM comprob WHERE tipo_fac IN ('A', 'B', 'C', 'E', 'M') AND impresa>0 AND numero>0 AND anulada=0 AND fecha >= '" + Lfx.Types.Formatting.FormatDateSql(DateTime.Now.AddYears(-2)) + "'");
                         txtCC.Text = Lfx.Types.Formatting.FormatCurrency(Facturas, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
 
-                        double FuturosPedidos = DataView.DataBase.FieldDouble("SELECT SUM(total-gastosenvio) FROM facturas WHERE tipo_fac='PD' AND anulada=0 AND compra>0 AND estado=50");
+                        double FuturosPedidos = DataView.DataBase.FieldDouble("SELECT SUM(total-gastosenvio) FROM comprob WHERE tipo_fac='PD' AND anulada=0 AND compra>0 AND estado=50");
                         txtFuturosTarjetas.Text = Lfx.Types.Formatting.FormatCurrency(FuturosTarjetas, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                         txtFuturosPedidos.Text = Lfx.Types.Formatting.FormatCurrency(FuturosPedidos, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                         
@@ -91,7 +91,7 @@ namespace Lazaro.Reportes
                         double PasivosStock = Math.Abs(DataView.DataBase.FieldDouble("SELECT SUM(costo*stock_actual) FROM articulos WHERE costo>0 AND stock_actual<0"));
                         txtPasivosStock.Text = Lfx.Types.Formatting.FormatCurrency(PasivosStock, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
 
-                        double Pasivos = PasivosCuentas + PasivosCheques + PasivosStock;
+                        double Pasivos = PasivosCajas + PasivosCheques + PasivosStock;
                         txtPasivosSubtotal.Text = Lfx.Types.Formatting.FormatCurrency(Pasivos, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
 
                         txtPatrimonioActual.Text = Lfx.Types.Formatting.FormatCurrency(Activos - Pasivos, this.Workspace.CurrentConfig.Currency.DecimalPlaces);

@@ -209,11 +209,11 @@ namespace Lfc.Comprobantes.Compra
                                                 break;
                                         case "NP":
                                         case "PD":
-                                                Filtro += " AND facturas.tipo_fac='" + m_Tipo + "'";
+                                                Filtro += " AND comprob.tipo_fac='" + m_Tipo + "'";
                                                 break;
                                         case "RP":
                                         case "R":
-                                                Filtro += " AND facturas.tipo_fac='R'";
+                                                Filtro += " AND comprob.tipo_fac='R'";
                                                 break;
                                         case "FP":
                                         case "A":
@@ -221,16 +221,16 @@ namespace Lfc.Comprobantes.Compra
                                         case "C":
                                         case "E":
                                         case "M":
-                                                Filtro += " AND facturas.tipo_fac IN ('A', 'B', 'C', 'E', 'M')";
+                                                Filtro += " AND comprob.tipo_fac IN ('A', 'B', 'C', 'E', 'M')";
                                                 break;
                                         default:
-                                                Filtro += " AND facturas.tipo_fac='" + m_Tipo + "'";
+                                                Filtro += " AND comprob.tipo_fac='" + m_Tipo + "'";
                                                 break;
                                 }
 
 
                                 if (m_Proveedor > 0)
-                                        Filtro += " AND (facturas.id_cliente='" + m_Proveedor.ToString() + "')";
+                                        Filtro += " AND (comprob.id_cliente='" + m_Proveedor.ToString() + "')";
 
 
                                 Filtro += " AND total<>0";
@@ -242,9 +242,9 @@ namespace Lfc.Comprobantes.Compra
                                 string TextoSql = null;
 
                                 if (m_Agrupar.Length > 0) {
-                                        TextoSql = "SELECT *, DAYOFWEEK(fecha), DAYOFMONTH(fecha) FROM facturas WHERE (" + Filtro + ") ORDER BY " + m_Agrupar + ", RIGHT(tipo_fac, 1), pv, numero";
+                                        TextoSql = "SELECT *, DAYOFWEEK(fecha), DAYOFMONTH(fecha) FROM comprob WHERE (" + Filtro + ") ORDER BY " + m_Agrupar + ", RIGHT(tipo_fac, 1), pv, numero";
                                 } else {
-                                        TextoSql = "SELECT * FROM facturas WHERE (" + Filtro + ") ORDER BY RIGHT(tipo_fac, 1), pv, numero";
+                                        TextoSql = "SELECT * FROM comprob WHERE (" + Filtro + ") ORDER BY RIGHT(tipo_fac, 1), pv, numero";
                                 }
 
                                 System.Data.DataTable TmpTabla = this.Workspace.DefaultDataBase.Select(TextoSql);

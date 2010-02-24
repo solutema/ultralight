@@ -81,14 +81,14 @@ namespace Lfc.Comprobantes.Facturas
                         int IdFactura = 0;
 
                         if(PV > 0 && Numero > 0)
-                                IdFactura = this.DataView.DataBase.FieldInt("SELECT id_factura FROM facturas WHERE tipo_fac IN (" + TipoReal + ") AND pv=" + PV.ToString() + " AND numero=" + Numero.ToString());
+                                IdFactura = this.DataView.DataBase.FieldInt("SELECT id_comprob FROM comprob WHERE tipo_fac IN (" + TipoReal + ") AND pv=" + PV.ToString() + " AND numero=" + Numero.ToString());
 
                         Lbl.Comprobantes.Factura Fac = null;
                         if (IdFactura > 0)
                                 Fac = new Lbl.Comprobantes.Factura(this.DataView, IdFactura);
 
                         if (Fac != null && Fac.Existe) {
-                                //Lfx.Data.Row row = this.Workspace.DefaultDataBase.FirstRowFromSelect("SELECT * FROM facturas WHERE tipo_fac IN (" + TipoReal + ") AND pv=" + PV.ToString() + " AND numero=" + Lfx.Types.Parsing.ParseInt(EntradaNumero.Text).ToString());
+                                //Lfx.Data.Row row = this.Workspace.DefaultDataBase.FirstRowFromSelect("SELECT * FROM comprob WHERE tipo_fac IN (" + TipoReal + ") AND pv=" + PV.ToString() + " AND numero=" + Lfx.Types.Parsing.ParseInt(EntradaNumero.Text).ToString());
                                 ComprobanteVistaPrevia.Elemento = Fac;
                                 ComprobanteVistaPrevia.Visible = true;
 
@@ -104,7 +104,7 @@ namespace Lfc.Comprobantes.Facturas
                                 }
                         } else {
                                 if (ProximosNumeros.ContainsKey(PV) == false)
-                                        ProximosNumeros[PV] = this.DataView.DataBase.FieldInt("SELECT MAX(numero) FROM facturas WHERE tipo_fac IN (" + TipoReal + ") AND impresa>0 AND pv=" + PV.ToString()) + 1;
+                                        ProximosNumeros[PV] = this.DataView.DataBase.FieldInt("SELECT MAX(numero) FROM comprob WHERE tipo_fac IN (" + TipoReal + ") AND impresa>0 AND pv=" + PV.ToString()) + 1;
 
                                 if (Numero == ((int)(ProximosNumeros[PV]))) {
                                         EtiquetaAviso.Text = "El comprobante " + EntradaTipo.TextKey + " " + PV.ToString("0000") + "-" + Numero.ToString("00000000") + " aun no fue impreso, pero es el próximo en el talonario. Si lo anula, el sistema salteará dicho comprobante.";
@@ -157,13 +157,13 @@ namespace Lfc.Comprobantes.Facturas
                                                 break;
 				}
 
-				int IdFactura = DataView.DataBase.FieldInt("SELECT id_factura FROM facturas WHERE tipo_fac IN (" + TipoReal + ") AND pv=" + PV.ToString() + " AND numero=" + Lfx.Types.Parsing.ParseInt(EntradaNumero.Text).ToString());
+				int IdFactura = DataView.DataBase.FieldInt("SELECT id_comprob FROM comprob WHERE tipo_fac IN (" + TipoReal + ") AND pv=" + PV.ToString() + " AND numero=" + Lfx.Types.Parsing.ParseInt(EntradaNumero.Text).ToString());
 
                                 if (IdFactura == 0) {
                                         // Es una factura que todava no existe
                                         // Tengo que crear la factura y anularla
-                                        DataView.DataBase.Execute("INSERT INTO facturas (tipo_fac, id_formapago, id_sucursal, pv, fecha, id_vendedor, id_cliente, obs, impresa, anulada) VALUES ('" + EntradaTipo.TextKey + "', 3, " + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString() + ", " + EntradaPV.Text + ", NOW(), " + this.Workspace.CurrentUser.Id.ToString() + ", " + this.Workspace.CurrentUser.Id.ToString() + ", 'Comprobante anulado antes de ser impreso.', 1, 1)");
-                                        m_Id = DataView.DataBase.FieldInt("SELECT MAX(id_factura) AS id_factura FROM facturas WHERE tipo_fac='" + EntradaTipo.TextKey + "'");
+                                        DataView.DataBase.Execute("INSERT INTO comprob (tipo_fac, id_formapago, id_sucursal, pv, fecha, id_vendedor, id_cliente, obs, impresa, anulada) VALUES ('" + EntradaTipo.TextKey + "', 3, " + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString() + ", " + EntradaPV.Text + ", NOW(), " + this.Workspace.CurrentUser.Id.ToString() + ", " + this.Workspace.CurrentUser.Id.ToString() + ", 'Comprobante anulado antes de ser impreso.', 1, 1)");
+                                        m_Id = DataView.DataBase.FieldInt("SELECT MAX(id_comprob) AS id_comprob FROM comprob WHERE tipo_fac='" + EntradaTipo.TextKey + "'");
                                         Lbl.Comprobantes.Numerador.Numerar(DataView, m_Id);
                                         Lui.Forms.MessageBox.Show("Se anuló el comprobante " + Lbl.Comprobantes.Comprobante.NumeroCompleto(DataView, m_Id) + ". Recuerde archivar ambas copias.", "Aviso");
                                 } else {

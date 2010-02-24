@@ -51,7 +51,7 @@ namespace Lbl.Tarjetas
 		public Tarjetas.Plan Plan;
                 public Lbl.Comprobantes.Recibo Recibo;
                 public Lbl.Comprobantes.ComprobanteConArticulos Factura; 
-                public Cuentas.Concepto Concepto;
+                public Cajas.Concepto Concepto;
                 public Personas.Persona Cliente, Vendedor;
 
 		public Cupon(Lws.Data.DataView dataView, int idCupon)
@@ -64,7 +64,7 @@ namespace Lbl.Tarjetas
                 public Cupon(Lws.Data.DataView dataView, Lbl.Comprobantes.ComprobanteConArticulos factura)
                         : this(dataView)
                 {
-                        m_ItemId = dataView.DataBase.FieldInt("SELECT MAX(id_cupon) FROM tarjetas_cupones WHERE id_factura=" + factura.Id.ToString());
+                        m_ItemId = dataView.DataBase.FieldInt("SELECT MAX(id_cupon) FROM tarjetas_cupones WHERE id_comprob=" + factura.Id.ToString());
                         this.Cargar();
                 }
 
@@ -208,13 +208,13 @@ namespace Lbl.Tarjetas
                                 else
                                         this.Recibo = null;
 
-                                if (Lfx.Data.DataBase.ConvertDBNullToZero(Registro["id_factura"]) > 0)
-                                        this.Factura = new Comprobantes.Factura(this.DataView, System.Convert.ToInt32(Registro["id_factura"]));
+                                if (Lfx.Data.DataBase.ConvertDBNullToZero(Registro["id_comprob"]) > 0)
+                                        this.Factura = new Comprobantes.Factura(this.DataView, System.Convert.ToInt32(Registro["id_comprob"]));
                                 else
                                         this.Factura = null;
 
                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(Registro["id_concepto"]) > 0)
-                                        this.Concepto = new Cuentas.Concepto(this.DataView, System.Convert.ToInt32(Registro["id_concepto"]));
+                                        this.Concepto = new Cajas.Concepto(this.DataView, System.Convert.ToInt32(Registro["id_concepto"]));
                                 else
                                         this.Concepto = null;
 
@@ -309,9 +309,9 @@ namespace Lbl.Tarjetas
                                 Comando.Fields.AddWithValue("id_recibo", null);
 
                         if (this.Factura == null)
-                                Comando.Fields.AddWithValue("id_factura", null);
+                                Comando.Fields.AddWithValue("id_comprob", null);
                         else
-                                Comando.Fields.AddWithValue("id_factura", this.Factura.Id);
+                                Comando.Fields.AddWithValue("id_comprob", this.Factura.Id);
 
 			Comando.Fields.AddWithValue("importe", this.Importe);
 			Comando.Fields.AddWithValue("obs", this.Obs);

@@ -29,8 +29,8 @@ namespace Lcc.Controles.Datos
                                 Lista.SuspendLayout();
                                 Lista.Items.Clear();
                                 Lws.Data.Table TablaEtiquetas = this.DataView.Tables["sys_labels"];
-                                TablaEtiquetas.FastRows.LoadAll();
-                                foreach (Lfx.Data.Row Rw in TablaEtiquetas.FastRows) {
+                                TablaEtiquetas.PreLoad();
+                                foreach (Lfx.Data.Row Rw in TablaEtiquetas.FastRows.Values) {
                                         Lbl.Etiqueta Eti = new Lbl.Etiqueta(Rw);
                                         if (Eti.TablaReferencia == m_Elemento.TablaDatos) {
                                                 ListViewItem Itm = Lista.Items.Add(Eti.Id.ToString());

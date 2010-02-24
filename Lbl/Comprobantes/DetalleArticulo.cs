@@ -48,7 +48,7 @@ namespace Lbl.Comprobantes
 		{
 			get
 			{
-				return "facturas_detalle";
+				return "comprob_detalle";
 			}
 		}
 
@@ -56,7 +56,7 @@ namespace Lbl.Comprobantes
 		{
 			get
 			{
-				return "id_factura_detalle";
+				return "id_comprob_detalle";
 			}
 		}
 

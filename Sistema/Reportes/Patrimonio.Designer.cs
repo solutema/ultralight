@@ -58,7 +58,7 @@ namespace Lazaro.Reportes
                 {
                     this.label1 = new System.Windows.Forms.Label();
                     this.note1 = new Lui.Forms.Note();
-                    this.txtActivosCuentas = new Lui.Forms.TextBox();
+                    this.EntradaActivosCajas = new Lui.Forms.TextBox();
                     this.txtFuturosTarjetas = new Lui.Forms.TextBox();
                     this.label2 = new System.Windows.Forms.Label();
                     this.txtActivosStock = new Lui.Forms.TextBox();
@@ -67,7 +67,7 @@ namespace Lazaro.Reportes
                     this.label4 = new System.Windows.Forms.Label();
                     this.txtPasivosCheques = new Lui.Forms.TextBox();
                     this.label7 = new System.Windows.Forms.Label();
-                    this.txtPasivosCuentas = new Lui.Forms.TextBox();
+                    this.EntradaPasivosCajas = new Lui.Forms.TextBox();
                     this.note2 = new Lui.Forms.Note();
                     this.label8 = new System.Windows.Forms.Label();
                     this.note3 = new Lui.Forms.Note();
@@ -96,7 +96,7 @@ namespace Lazaro.Reportes
                     this.label1.Name = "label1";
                     this.label1.Size = new System.Drawing.Size(232, 24);
                     this.label1.TabIndex = 0;
-                    this.label1.Text = "Dinero en cuentas";
+                    this.label1.Text = "Dinero en cajas";
                     this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                     this.label1.UseMnemonic = false;
                     // 
@@ -116,32 +116,32 @@ namespace Lazaro.Reportes
                     this.note1.Title = "Activos";
                     this.note1.ToolTipText = "";
                     // 
-                    // txtActivosCuentas
+                    // EntradaActivosCajas
                     // 
-                    this.txtActivosCuentas.AutoHeight = false;
-                    this.txtActivosCuentas.AutoNav = true;
-                    this.txtActivosCuentas.AutoTab = true;
-                    this.txtActivosCuentas.DataType = Lui.Forms.DataTypes.Money;
-                    this.txtActivosCuentas.DecimalPlaces = -1;
-                    this.txtActivosCuentas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                    this.txtActivosCuentas.ForceCase = Lui.Forms.TextCasing.None;
-                    this.txtActivosCuentas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                    this.txtActivosCuentas.Location = new System.Drawing.Point(268, 52);
-                    this.txtActivosCuentas.MaxLenght = 32767;
-                    this.txtActivosCuentas.MultiLine = false;
-                    this.txtActivosCuentas.Name = "txtActivosCuentas";
-                    this.txtActivosCuentas.Padding = new System.Windows.Forms.Padding(2);
-                    this.txtActivosCuentas.PasswordChar = '\0';
-                    this.txtActivosCuentas.Prefijo = "$";
-                    this.txtActivosCuentas.ReadOnly = true;
-                    this.txtActivosCuentas.SelectOnFocus = true;
-                    this.txtActivosCuentas.Size = new System.Drawing.Size(100, 24);
-                    this.txtActivosCuentas.Sufijo = "";
-                    this.txtActivosCuentas.TabIndex = 2;
-                    this.txtActivosCuentas.Text = "0.00";
-                    this.txtActivosCuentas.TextRaw = "0.00";
-                    this.txtActivosCuentas.TipWhenBlank = "";
-                    this.txtActivosCuentas.ToolTipText = "";
+                    this.EntradaActivosCajas.AutoHeight = false;
+                    this.EntradaActivosCajas.AutoNav = true;
+                    this.EntradaActivosCajas.AutoTab = true;
+                    this.EntradaActivosCajas.DataType = Lui.Forms.DataTypes.Money;
+                    this.EntradaActivosCajas.DecimalPlaces = -1;
+                    this.EntradaActivosCajas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                    this.EntradaActivosCajas.ForceCase = Lui.Forms.TextCasing.None;
+                    this.EntradaActivosCajas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                    this.EntradaActivosCajas.Location = new System.Drawing.Point(268, 52);
+                    this.EntradaActivosCajas.MaxLenght = 32767;
+                    this.EntradaActivosCajas.MultiLine = false;
+                    this.EntradaActivosCajas.Name = "EntradaActivosCajas";
+                    this.EntradaActivosCajas.Padding = new System.Windows.Forms.Padding(2);
+                    this.EntradaActivosCajas.PasswordChar = '\0';
+                    this.EntradaActivosCajas.Prefijo = "$";
+                    this.EntradaActivosCajas.ReadOnly = true;
+                    this.EntradaActivosCajas.SelectOnFocus = true;
+                    this.EntradaActivosCajas.Size = new System.Drawing.Size(100, 24);
+                    this.EntradaActivosCajas.Sufijo = "";
+                    this.EntradaActivosCajas.TabIndex = 2;
+                    this.EntradaActivosCajas.Text = "0.00";
+                    this.EntradaActivosCajas.TextRaw = "0.00";
+                    this.EntradaActivosCajas.TipWhenBlank = "";
+                    this.EntradaActivosCajas.ToolTipText = "";
                     // 
                     // txtFuturosTarjetas
                     // 
@@ -291,32 +291,32 @@ namespace Lazaro.Reportes
                     this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                     this.label7.UseMnemonic = false;
                     // 
-                    // txtPasivosCuentas
+                    // EntradaPasivosCajas
                     // 
-                    this.txtPasivosCuentas.AutoHeight = false;
-                    this.txtPasivosCuentas.AutoNav = true;
-                    this.txtPasivosCuentas.AutoTab = true;
-                    this.txtPasivosCuentas.DataType = Lui.Forms.DataTypes.Money;
-                    this.txtPasivosCuentas.DecimalPlaces = -1;
-                    this.txtPasivosCuentas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                    this.txtPasivosCuentas.ForceCase = Lui.Forms.TextCasing.None;
-                    this.txtPasivosCuentas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                    this.txtPasivosCuentas.Location = new System.Drawing.Point(268, 204);
-                    this.txtPasivosCuentas.MaxLenght = 32767;
-                    this.txtPasivosCuentas.MultiLine = false;
-                    this.txtPasivosCuentas.Name = "txtPasivosCuentas";
-                    this.txtPasivosCuentas.Padding = new System.Windows.Forms.Padding(2);
-                    this.txtPasivosCuentas.PasswordChar = '\0';
-                    this.txtPasivosCuentas.Prefijo = "$";
-                    this.txtPasivosCuentas.ReadOnly = true;
-                    this.txtPasivosCuentas.SelectOnFocus = true;
-                    this.txtPasivosCuentas.Size = new System.Drawing.Size(100, 24);
-                    this.txtPasivosCuentas.Sufijo = "";
-                    this.txtPasivosCuentas.TabIndex = 11;
-                    this.txtPasivosCuentas.Text = "0.00";
-                    this.txtPasivosCuentas.TextRaw = "0.00";
-                    this.txtPasivosCuentas.TipWhenBlank = "";
-                    this.txtPasivosCuentas.ToolTipText = "";
+                    this.EntradaPasivosCajas.AutoHeight = false;
+                    this.EntradaPasivosCajas.AutoNav = true;
+                    this.EntradaPasivosCajas.AutoTab = true;
+                    this.EntradaPasivosCajas.DataType = Lui.Forms.DataTypes.Money;
+                    this.EntradaPasivosCajas.DecimalPlaces = -1;
+                    this.EntradaPasivosCajas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                    this.EntradaPasivosCajas.ForceCase = Lui.Forms.TextCasing.None;
+                    this.EntradaPasivosCajas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                    this.EntradaPasivosCajas.Location = new System.Drawing.Point(268, 204);
+                    this.EntradaPasivosCajas.MaxLenght = 32767;
+                    this.EntradaPasivosCajas.MultiLine = false;
+                    this.EntradaPasivosCajas.Name = "EntradaPasivosCajas";
+                    this.EntradaPasivosCajas.Padding = new System.Windows.Forms.Padding(2);
+                    this.EntradaPasivosCajas.PasswordChar = '\0';
+                    this.EntradaPasivosCajas.Prefijo = "$";
+                    this.EntradaPasivosCajas.ReadOnly = true;
+                    this.EntradaPasivosCajas.SelectOnFocus = true;
+                    this.EntradaPasivosCajas.Size = new System.Drawing.Size(100, 24);
+                    this.EntradaPasivosCajas.Sufijo = "";
+                    this.EntradaPasivosCajas.TabIndex = 11;
+                    this.EntradaPasivosCajas.Text = "0.00";
+                    this.EntradaPasivosCajas.TextRaw = "0.00";
+                    this.EntradaPasivosCajas.TipWhenBlank = "";
+                    this.EntradaPasivosCajas.ToolTipText = "";
                     // 
                     // note2
                     // 
@@ -340,7 +340,7 @@ namespace Lazaro.Reportes
                     this.label8.Name = "label8";
                     this.label8.Size = new System.Drawing.Size(232, 24);
                     this.label8.TabIndex = 9;
-                    this.label8.Text = "Descubiertos en cuentas";
+                    this.label8.Text = "Descubiertos en cajas";
                     this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                     this.label8.UseMnemonic = false;
                     // 
@@ -705,7 +705,7 @@ namespace Lazaro.Reportes
                     this.Controls.Add(this.note3);
                     this.Controls.Add(this.txtPasivosCheques);
                     this.Controls.Add(this.label7);
-                    this.Controls.Add(this.txtPasivosCuentas);
+                    this.Controls.Add(this.EntradaPasivosCajas);
                     this.Controls.Add(this.note2);
                     this.Controls.Add(this.label8);
                     this.Controls.Add(this.txtFuturosPedidos);
@@ -714,7 +714,7 @@ namespace Lazaro.Reportes
                     this.Controls.Add(this.label3);
                     this.Controls.Add(this.txtFuturosTarjetas);
                     this.Controls.Add(this.label2);
-                    this.Controls.Add(this.txtActivosCuentas);
+                    this.Controls.Add(this.EntradaActivosCajas);
                     this.Controls.Add(this.note1);
                     this.Controls.Add(this.label1);
                     this.Name = "Patrimonio";
@@ -728,7 +728,7 @@ namespace Lazaro.Reportes
 
                 private System.Windows.Forms.Label label1;
                 private Lui.Forms.Note note1;
-                private Lui.Forms.TextBox txtActivosCuentas;
+                private Lui.Forms.TextBox EntradaActivosCajas;
                 private Lui.Forms.TextBox txtFuturosTarjetas;
                 private System.Windows.Forms.Label label2;
                 private Lui.Forms.TextBox txtActivosStock;
@@ -737,7 +737,7 @@ namespace Lazaro.Reportes
                 private System.Windows.Forms.Label label4;
                 private Lui.Forms.TextBox txtPasivosCheques;
                 private System.Windows.Forms.Label label7;
-                private Lui.Forms.TextBox txtPasivosCuentas;
+                private Lui.Forms.TextBox EntradaPasivosCajas;
                 private Lui.Forms.Note note2;
                 private System.Windows.Forms.Label label8;
                 private Lui.Forms.Note note3;

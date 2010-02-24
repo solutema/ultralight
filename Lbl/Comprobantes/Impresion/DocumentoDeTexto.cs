@@ -67,7 +67,7 @@ namespace Lbl.Comprobantes.Impresion
 				Factura[n] = System.String.Empty.PadLeft(256);
 
 			// Cargo el registro correspondiente a la factura y al cliente
-			Lfx.Data.Row RegistroFactura = dataView.DataBase.Row("facturas", "id_factura", lCodigo);
+			Lfx.Data.Row RegistroFactura = dataView.DataBase.Row("comprob", "id_comprob", lCodigo);
 			Lfx.Data.Row RegistroCliente = dataView.DataBase.Row("personas", "id_persona", System.Convert.ToInt32(RegistroFactura["id_cliente"]));
 
 			// Calculo el total real, tomando en cuenta el redondeo y los decimales
@@ -84,7 +84,7 @@ namespace Lbl.Comprobantes.Impresion
 			string strPrecios = null;
 			string strImportes = null;
 
-			System.Data.DataTable TablaArticulos = dataView.DataBase.Select("SELECT id_articulo, nombre, cantidad, precio, importe FROM facturas_detalle WHERE id_factura=" + lCodigo.ToString() + " ORDER BY orden");
+			System.Data.DataTable TablaArticulos = dataView.DataBase.Select("SELECT id_articulo, nombre, cantidad, precio, importe FROM comprob_detalle WHERE id_comprob=" + lCodigo.ToString() + " ORDER BY orden");
 
 			if (TablaArticulos.Rows.Count > 0)
 			{

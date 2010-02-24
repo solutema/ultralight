@@ -50,27 +50,27 @@ namespace Lfc.Comprobantes.Compra
 			InitializeComponent();
 
 			// agregar código de constructor después de llamar a InitializeComponent
-			DataTableName = "facturas";
-			this.Joins.Add(new Lfx.Data.Join("facturas_detalle", "facturas.id_factura=facturas_detalle.id_factura"));
-                        KeyField = new Lfx.Data.FormField("facturas.id_factura", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+			DataTableName = "comprob";
+			this.Joins.Add(new Lfx.Data.Join("comprob_detalle", "comprob.id_comprob=comprob_detalle.id_comprob"));
+                        KeyField = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
 			GroupBy = KeyField;
-			OrderBy = "facturas.fecha DESC";
+			OrderBy = "comprob.fecha DESC";
 			FormFields = new Lfx.Data.FormField[]
 			{
-				new Lfx.Data.FormField("facturas.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 28),
-				new Lfx.Data.FormField("facturas.pv", "PV", Lfx.Data.InputFieldTypes.Integer, 32),
-				new Lfx.Data.FormField("facturas.numero", "Número", Lfx.Data.InputFieldTypes.Integer, 100),
-				new Lfx.Data.FormField("facturas.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
-				new Lfx.Data.FormField("facturas.id_cliente", "Proveedor", Lfx.Data.InputFieldTypes.Relation, 160),
-				new Lfx.Data.FormField("facturas.total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
-                                new Lfx.Data.FormField("facturas.total-facturas.cancelado", "Pendiente", Lfx.Data.InputFieldTypes.Currency, 96),
-				new Lfx.Data.FormField("facturas.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 0),
-                                new Lfx.Data.FormField("facturas.id_formapago", "Pago", Lfx.Data.InputFieldTypes.Text, 0)
+				new Lfx.Data.FormField("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 28),
+				new Lfx.Data.FormField("comprob.pv", "PV", Lfx.Data.InputFieldTypes.Integer, 32),
+				new Lfx.Data.FormField("comprob.numero", "Número", Lfx.Data.InputFieldTypes.Integer, 100),
+				new Lfx.Data.FormField("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
+				new Lfx.Data.FormField("comprob.id_cliente", "Proveedor", Lfx.Data.InputFieldTypes.Relation, 160),
+				new Lfx.Data.FormField("comprob.total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
+                                new Lfx.Data.FormField("comprob.total-comprob.cancelado", "Pendiente", Lfx.Data.InputFieldTypes.Currency, 96),
+				new Lfx.Data.FormField("comprob.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 0),
+                                new Lfx.Data.FormField("comprob.id_formapago", "Pago", Lfx.Data.InputFieldTypes.Text, 0)
 			};
 			ExtraSearchFields = new Lfx.Data.FormField[]
 			{
-				new Lfx.Data.FormField("facturas_detalle.series", "Números de Serie", Lfx.Data.InputFieldTypes.Text, 0),
-				new Lfx.Data.FormField("facturas.obs", "Observaciones", Lfx.Data.InputFieldTypes.Memo, 0)
+				new Lfx.Data.FormField("comprob_detalle.series", "Números de Serie", Lfx.Data.InputFieldTypes.Text, 0),
+				new Lfx.Data.FormField("comprob.obs", "Observaciones", Lfx.Data.InputFieldTypes.Memo, 0)
 			};
 
 			BotonFiltrar.Visible = true;
@@ -186,18 +186,18 @@ namespace Lfc.Comprobantes.Compra
 			switch (m_Tipo)
 			{
 				case "NP":
-					FiltroTemp += " AND facturas.tipo_fac='NP'";
+					FiltroTemp += " AND comprob.tipo_fac='NP'";
                                         if (m_Estado == -1)
-                                                FiltroTemp += " AND (facturas.estado<=50)";
+                                                FiltroTemp += " AND (comprob.estado<=50)";
 					break;
 				case "PD":
-					FiltroTemp += " AND facturas.tipo_fac='PD'";
+					FiltroTemp += " AND comprob.tipo_fac='PD'";
                                         if (m_Estado == -1)
-                                                FiltroTemp += " AND (facturas.estado<=50)";
+                                                FiltroTemp += " AND (comprob.estado<=50)";
 					break;
 				
 				case "FP":
-                                        FiltroTemp += " AND facturas.tipo_fac IN ('A', 'B', 'C', 'E')";
+                                        FiltroTemp += " AND comprob.tipo_fac IN ('A', 'B', 'C', 'E')";
                                         break;
                                 case "R":
                                 case "A":
@@ -205,7 +205,7 @@ namespace Lfc.Comprobantes.Compra
                                 case "C":
                                 case "E":
                                 case "M":
-                                        FiltroTemp += " AND facturas.tipo_fac='" + m_Tipo +"'";
+                                        FiltroTemp += " AND comprob.tipo_fac='" + m_Tipo +"'";
                                         break;
                                 default:
 					// Nada
@@ -213,13 +213,13 @@ namespace Lfc.Comprobantes.Compra
 			}
 
 			if (m_Proveedor > 0)
-				FiltroTemp += " AND (facturas.id_cliente=" + m_Proveedor.ToString() + ")";
+				FiltroTemp += " AND (comprob.id_cliente=" + m_Proveedor.ToString() + ")";
 
 			if (m_Estado >= 0)
-				FiltroTemp += " AND (facturas.estado=" + m_Estado.ToString() + ")";
+				FiltroTemp += " AND (comprob.estado=" + m_Estado.ToString() + ")";
 
                         if (m_Fecha.HasRange)
-                                FiltroTemp += " AND (facturas.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')";
+                                FiltroTemp += " AND (comprob.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')";
 
 			this.CurrentFilter = FiltroTemp;
 			base.RefreshList();

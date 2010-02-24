@@ -41,7 +41,7 @@ namespace Lbl.Personas
 		public Entidades.Ciudad Ciudad;
 		public Grupo Grupo, SubGrupo;
 		public SituacionTributaria SituacionTributaria;
-                private Lbl.Cuentas.CuentaCorriente m_CuentaCorriente = null;
+                private Lbl.Cajas.CuentaCorriente m_CuentaCorriente = null;
 
 		public Persona(Lws.Data.DataView dataView, int idPersona)
 			:this(dataView, idPersona, true)
@@ -105,8 +105,8 @@ namespace Lbl.Personas
                                 Comando.Fields.AddWithValue("id_tipo_doc", null);
                         else
                                 Comando.Fields.AddWithValue("id_tipo_doc", this.TipoDocumento);
-                        Comando.Fields.AddWithValue("num_doc", this.NumeroDocumento);
-                        Comando.Fields.AddWithValue("cuit", this.Cuit);
+                        Comando.Fields.AddWithValue("num_doc", this.NumeroDocumento.Replace(".", "").Replace(",", "").Replace("-", "").Replace(" ", ""));
+                        Comando.Fields.AddWithValue("cuit", this.Cuit.Replace(".", "").Replace(",", "").Replace(" ", ""));
                         if (this.SituacionTributaria == null)
                                 Comando.Fields.AddWithValue("id_situacion", null);
                         else
@@ -135,24 +135,6 @@ namespace Lbl.Personas
 
                         if (this.Existe == false)
                                 m_ItemId = this.DataView.DataBase.FieldInt("SELECT MAX(" + this.CampoId + ") FROM " + this.TablaDatos);
-
-                        if (this.m_ImagenCambio) {
-                                if (this.Imagen == null) {
-                                        this.DataView.DataBase.Execute("DELETE FROM " + this.TablaImagenes + " WHERE " + this.CampoId + "=" + this.Id.ToString());
-                                } else {
-                                        // Cargar imagen nueva
-                                        System.IO.MemoryStream ByteStream = new System.IO.MemoryStream();
-                                        this.Imagen.Save(ByteStream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                                        byte[] ImagenBytes = ByteStream.ToArray();
-
-                                        this.DataView.DataBase.Execute("DELETE FROM " + this.TablaImagenes + " WHERE " + this.CampoId + "=" + this.Id.ToString());
-
-                                        Lfx.Data.SqlInsertBuilder InsertarImagen = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, this.TablaImagenes);
-                                        InsertarImagen.Fields.AddWithValue(this.CampoId, this.Id);
-                                        InsertarImagen.Fields.AddWithValue("imagen", ImagenBytes);
-                                        this.DataView.Execute(InsertarImagen);
-                                }
-                        }
 
                         return base.Guardar();
                 }
@@ -474,12 +456,12 @@ namespace Lbl.Personas
                         }
                 }
 
-                public Lbl.Cuentas.CuentaCorriente CuentaCorriente
+                public Lbl.Cajas.CuentaCorriente CuentaCorriente
                 {
                         get
                         {
                                 if (m_CuentaCorriente == null)
-                                        m_CuentaCorriente = new Lbl.Cuentas.CuentaCorriente(this.DataView, this.Id);
+                                        m_CuentaCorriente = new Lbl.Cajas.CuentaCorriente(this.DataView, this.Id);
                                 return m_CuentaCorriente;
                         }
                 }

@@ -106,11 +106,10 @@
     <Compile Include="Comprobantes\ReciboDePago.cs" />
     <Compile Include="Comprobantes\Remito.cs" />
     <Compile Include="Comprobantes\Tipo.cs" />
-    <Compile Include="Cuentas\Concepto.cs" />
-    <Compile Include="Cuentas\Cuenta.cs" />
-    <Compile Include="Cuentas\CuentaCorriente.cs" />
-    <Compile Include="Cuentas\CuentaRegular.cs" />
-    <Compile Include="Cuentas\Vencimiento.cs" />
+    <Compile Include="Cajas\Concepto.cs" />
+    <Compile Include="Cajas\CuentaCorriente.cs" />
+    <Compile Include="Cajas\Caja.cs" />
+    <Compile Include="Cajas\Vencimiento.cs" />
     <Compile Include="Cuotas\Cuota.cs" />
     <Compile Include="Cuotas\Resumen.cs" />
     <Compile Include="ElementoDeDatos.cs" />

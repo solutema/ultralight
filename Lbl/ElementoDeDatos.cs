@@ -91,8 +91,10 @@ namespace Lbl
                                 if (m_Registro == null) {
                                         m_Etiquetas = null;
                                         if (this.Id != 0) {
-                                                if (this.CampoId == this.DataView.Tables[this.TablaDatos].PrimaryKey)
-                                                        //Si estoy accediendo a través de una clave primaria puedo usar directamente DataView.Tables.FastRows, que es cacheable
+                                                if (this.CampoId == this.DataView.Tables[this.TablaDatos].PrimaryKey
+                                                                && this.DataView.DataBase.InTransaction == false)
+                                                        // Si estoy accediendo a través de una clave primaria y no estoy en una transacción
+                                                        // puedo usar directamente DataView.Tables.FastRows, que es cacheable
                                                         m_Registro = this.DataView.Tables[this.TablaDatos].FastRows[this.Id];
                                                 else
                                                         //De lo contrario uso DataBase.Row que termina en un SELECT común
@@ -221,7 +223,11 @@ namespace Lbl
                         {
                                 if (m_Imagen == null && m_ImagenCambio == false) {
                                         // FIXME: Para los artículos sin imagen, evitar hacer esta consulta cada vez que se accede a la propiedad
-                                        Lfx.Data.Row Imagen = DataView.DataBase.Row(this.TablaImagenes, "imagen", this.CampoId, this.Id);
+                                        Lfx.Data.Row Imagen = null;
+                                        if(DataView.Tables[this.TablaImagenes].PrimaryKey == null)
+                                                Imagen = DataView.DataBase.Row(this.TablaImagenes, "imagen", this.CampoId, this.Id);
+                                        else
+                                                Imagen = DataView.Tables[this.TablaImagenes].FastRows[this.Id];
 
                                         if (Imagen != null && Imagen["imagen"] != null && ((byte[])(Imagen["imagen"])).Length > 5) {
                                                 byte[] ByteArr = ((byte[])(Imagen["imagen"]));
@@ -266,6 +272,49 @@ namespace Lbl
                 /// </summary>
 		public virtual Lfx.Types.OperationResult Guardar()
 		{
+                        if (this.m_ImagenCambio) {
+                                if (this.Imagen == null) {
+                                        if (this.TablaImagenes == this.TablaDatos)
+                                                this.DataView.DataBase.Execute("UPDATE " + this.TablaImagenes + " SET imagen=NULL WHERE " + this.CampoId + "=" + this.Id.ToString());
+                                        else
+                                                this.DataView.DataBase.Execute("DELETE FROM " + this.TablaImagenes + " WHERE " + this.CampoId + "=" + this.Id.ToString());
+                                } else {
+                                        // Cargar imagen nueva
+                                        System.IO.MemoryStream ByteStream = new System.IO.MemoryStream();
+
+                                        System.Drawing.Imaging.ImageCodecInfo CodecInfo = null;
+                                        System.Drawing.Imaging.ImageCodecInfo[] Codecs = System.Drawing.Imaging.ImageCodecInfo.GetImageEncoders();
+                                        foreach (System.Drawing.Imaging.ImageCodecInfo Codec in Codecs) {
+                                                if (Codec.MimeType == "image/jpeg")
+                                                        CodecInfo = Codec;
+                                        }
+
+                                        if (CodecInfo == null) {
+                                                this.Imagen.Save(ByteStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                                        } else {
+                                                System.Drawing.Imaging.Encoder QualityEncoder = System.Drawing.Imaging.Encoder.Quality;
+                                                System.Drawing.Imaging.EncoderParameters EncoderParams = new System.Drawing.Imaging.EncoderParameters(1);
+                                                EncoderParams.Param[0] = new System.Drawing.Imaging.EncoderParameter(QualityEncoder, 33L);
+
+                                                this.Imagen.Save(ByteStream, CodecInfo, EncoderParams);
+                                        }
+                                        byte[] ImagenBytes = ByteStream.ToArray();
+
+                                        Lfx.Data.SqlTableCommandBuilder CambiarImagen;
+                                        if (this.TablaImagenes != this.TablaDatos) {
+                                                this.DataView.DataBase.Execute("DELETE FROM " + this.TablaImagenes + " WHERE " + this.CampoId + "=" + this.Id.ToString());
+                                                CambiarImagen = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, this.TablaImagenes);
+                                        } else {
+                                                CambiarImagen = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, this.TablaImagenes);
+                                                CambiarImagen.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
+                                        }
+                                        
+                                        CambiarImagen.Fields.AddWithValue(this.CampoId, this.Id);
+                                        CambiarImagen.Fields.AddWithValue("imagen", ImagenBytes);
+                                        this.DataView.Execute(CambiarImagen);
+                                }
+                        }
+
                         // Elimino las etiquetas que ya no están.
                         ColeccionDeElementos ListaEtiquetas = this.Etiquetas.Quitados(m_EtiquetasOriginal);
                         if (ListaEtiquetas != null && ListaEtiquetas.Count > 0) {

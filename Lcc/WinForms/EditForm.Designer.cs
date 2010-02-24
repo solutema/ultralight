@@ -31,7 +31,7 @@
                         this.LabelHeader = new System.Windows.Forms.Label();
                         this.DataArea = new System.Windows.Forms.TableLayoutPanel();
                         this.Body = new System.Windows.Forms.Panel();
-                        this.actionPanel1 = new Lcc.WinForms.ActionPanel();
+                        this.ActionPanel = new Lcc.WinForms.ActionPanel();
                         this.Header.SuspendLayout();
                         this.Body.SuspendLayout();
                         this.SuspendLayout();
@@ -44,7 +44,7 @@
                         this.Header.Controls.Add(this.LabelHeader);
                         this.Header.Location = new System.Drawing.Point(0, 0);
                         this.Header.Name = "Header";
-                        this.Header.Size = new System.Drawing.Size(640, 32);
+                        this.Header.Size = new System.Drawing.Size(637, 32);
                         this.Header.TabIndex = 0;
                         // 
                         // LabelHeader
@@ -57,7 +57,7 @@
                         this.LabelHeader.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
                         this.LabelHeader.Location = new System.Drawing.Point(4, 4);
                         this.LabelHeader.Name = "LabelHeader";
-                        this.LabelHeader.Size = new System.Drawing.Size(576, 24);
+                        this.LabelHeader.Size = new System.Drawing.Size(573, 24);
                         this.LabelHeader.TabIndex = 0;
                         this.LabelHeader.Text = "...";
                         this.LabelHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -69,14 +69,14 @@
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.DataArea.AutoSize = true;
                         this.DataArea.ColumnCount = 2;
-                        this.DataArea.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-                        this.DataArea.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+                        this.DataArea.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.46429F));
+                        this.DataArea.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.53571F));
                         this.DataArea.Location = new System.Drawing.Point(64, 8);
                         this.DataArea.Name = "DataArea";
                         this.DataArea.RowCount = 1;
                         this.DataArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
                         this.DataArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-                        this.DataArea.Size = new System.Drawing.Size(726, 32);
+                        this.DataArea.Size = new System.Drawing.Size(564, 32);
                         this.DataArea.TabIndex = 0;
                         // 
                         // Body
@@ -84,25 +84,27 @@
                         this.Body.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Body.AutoSize = true;
                         this.Body.Controls.Add(this.DataArea);
                         this.Body.Location = new System.Drawing.Point(0, 36);
                         this.Body.Name = "Body";
-                        this.Body.Size = new System.Drawing.Size(794, 296);
+                        this.Body.Size = new System.Drawing.Size(640, 277);
                         this.Body.TabIndex = 3;
                         // 
-                        // actionPanel1
+                        // ActionPanel
                         // 
-                        this.actionPanel1.Location = new System.Drawing.Point(0, 336);
-                        this.actionPanel1.Name = "actionPanel1";
-                        this.actionPanel1.Size = new System.Drawing.Size(640, 64);
-                        this.actionPanel1.TabIndex = 4;
+                        this.ActionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.ActionPanel.BackColor = System.Drawing.SystemColors.AppWorkspace;
+                        this.ActionPanel.Location = new System.Drawing.Point(0, 317);
+                        this.ActionPanel.Name = "ActionPanel";
+                        this.ActionPanel.Size = new System.Drawing.Size(637, 80);
+                        this.ActionPanel.TabIndex = 4;
                         // 
                         // EditForm
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.Controls.Add(this.actionPanel1);
+                        this.Controls.Add(this.ActionPanel);
                         this.Controls.Add(this.Body);
                         this.Controls.Add(this.Header);
                         this.Name = "EditForm";
@@ -111,7 +113,6 @@
                         this.Body.ResumeLayout(false);
                         this.Body.PerformLayout();
                         this.ResumeLayout(false);
-                        this.PerformLayout();
 
                 }
 
@@ -121,6 +122,6 @@
                 private System.Windows.Forms.TableLayoutPanel DataArea;
                 private System.Windows.Forms.Panel Body;
                 private System.Windows.Forms.Label LabelHeader;
-                private ActionPanel actionPanel1;
+                private ActionPanel ActionPanel;
         }
 }

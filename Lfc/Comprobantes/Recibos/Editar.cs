@@ -211,7 +211,7 @@ namespace Lfc.Comprobantes.Recibos
                         Rec.Vendedor = new Lbl.Personas.Persona(Rec.DataView, EntradaVendedor.TextInt);
                         Rec.ConceptoTexto = EntradaConceptoTexto.Text;
                         if (EntradaConcepto.TextInt > 0)
-                                Rec.Concepto = new Lbl.Cuentas.Concepto(Rec.DataView, EntradaConcepto.TextInt);
+                                Rec.Concepto = new Lbl.Cajas.Concepto(Rec.DataView, EntradaConcepto.TextInt);
                         else
                                 Rec.Concepto = null;
                         Rec.Obs = null;
@@ -358,10 +358,10 @@ namespace Lfc.Comprobantes.Recibos
                                                         itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
                                                         itm.SubItems.Add(Pg.ToString());
                                                         break;
-                                                case Lbl.Comprobantes.TipoFormasDePago.CuentaRegular:
+                                                case Lbl.Comprobantes.TipoFormasDePago.Caja:
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Pg.FormaDePago.ToString()));
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Débito desde " + Pg.CuentaOrigen.ToString()));
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Débito desde " + Pg.CajaOrigen.ToString()));
                                                         break;
                                         }
                                 }
@@ -384,10 +384,10 @@ namespace Lfc.Comprobantes.Recibos
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Cb.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Cupón Nº " + Cb.Cupon.Numero + " de " + Cb.Cupon.Tarjeta.ToString()));
                                                         break;
-                                                case Lbl.Comprobantes.TipoFormasDePago.CuentaRegular:
+                                                case Lbl.Comprobantes.TipoFormasDePago.Caja:
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Cb.FormaDePago.ToString()));
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Cb.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Depósito en " + Cb.CuentaDestino.ToString()));
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Depósito en " + Cb.CajaDestino.ToString()));
                                                         break;
                                         }
                                 }

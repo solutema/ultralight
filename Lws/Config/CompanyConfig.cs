@@ -117,21 +117,21 @@ namespace Lws.Config
                 {
                         get
                         {
-                                int CuentaCaja = ConfigManager.Workspace.DefaultDataBase.FieldInt("SELECT id_cuenta_caja FROM sucursales WHERE id_sucursal=" + ConfigManager.Company.CurrentBranch.ToString());
-                                if (CuentaCaja > 0)
-                                        return CuentaCaja;
+                                int IdCajaDiaria = ConfigManager.Workspace.DefaultDataBase.FieldInt("SELECT id_caja_diaria FROM sucursales WHERE id_sucursal=" + ConfigManager.Company.CurrentBranch.ToString());
+                                if (IdCajaDiaria > 0)
+                                        return IdCajaDiaria;
                                 else
                                         return 999;
                         }
                 }
 
-                public int CuentaCheques
+                public int CajaCheques
                 {
                         get
                         {
-                                int CuentaCheques = ConfigManager.Workspace.DefaultDataBase.FieldInt("SELECT id_cuenta_cheques FROM sucursales WHERE id_sucursal=" + ConfigManager.Company.CurrentBranch.ToString());
-                                if (CuentaCheques > 0)
-                                        return CuentaCheques;
+                                int IdCajaCheques = ConfigManager.Workspace.DefaultDataBase.FieldInt("SELECT id_caja_cheques FROM sucursales WHERE id_sucursal=" + ConfigManager.Company.CurrentBranch.ToString());
+                                if (IdCajaCheques > 0)
+                                        return IdCajaCheques;
                                 else
                                         return this.CajaDiaria;
                         }

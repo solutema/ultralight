@@ -50,6 +50,8 @@ namespace Lbl.Comprobantes
 		{
 			get
 			{
+                                if(m_Tipo == null && this.FieldString("tipo_fac") != null)
+                                        Tipo = new Tipo(this.DataView, this.FieldString("tipo_fac"));
                                 return m_Tipo;
 			}
                         set
@@ -85,11 +87,6 @@ namespace Lbl.Comprobantes
                         m_ComprobanteOriginal = null;
                         Lfx.Types.OperationResult Res = base.Cargar();
                         if (Res.Success) {
-                                if (this.FieldString("tipo_fac") == null)
-                                        Tipo = null;
-                                else
-                                        Tipo = new Tipo(this.DataView, this.FieldString("tipo_fac"));
-
                                 if (this.Registro["situacionorigen"] == null) {
                                         if(Tipo != null)
                                                 SituacionOrigen = Tipo.SituacionOrigen;
@@ -111,14 +108,14 @@ namespace Lbl.Comprobantes
 		public static string FacturasDeUnRecibo(Lws.Data.DataView dataView, int ReciboId)
 		{
 			System.Text.StringBuilder Facturas = new System.Text.StringBuilder();
-			System.Data.DataTable TablaFacturas = dataView.DataBase.Select("SELECT id_factura FROM recibos_facturas WHERE id_recibo=" + ReciboId.ToString());
+			System.Data.DataTable TablaFacturas = dataView.DataBase.Select("SELECT id_comprob FROM recibos_comprob WHERE id_recibo=" + ReciboId.ToString());
 
 			foreach (System.Data.DataRow Factura in TablaFacturas.Rows)
 			{
 				if (Facturas.Length == 0)
-					Facturas.Append(Lbl.Comprobantes.Comprobante.NumeroCompleto(dataView, Lfx.Data.DataBase.ConvertDBNullToZero(Factura["id_factura"])));
+					Facturas.Append(Lbl.Comprobantes.Comprobante.NumeroCompleto(dataView, Lfx.Data.DataBase.ConvertDBNullToZero(Factura["id_comprob"])));
 				else
-					Facturas.Append(", " + Lbl.Comprobantes.Comprobante.NumeroCompleto(dataView, Lfx.Data.DataBase.ConvertDBNullToZero(Factura["id_factura"])));
+					Facturas.Append(", " + Lbl.Comprobantes.Comprobante.NumeroCompleto(dataView, Lfx.Data.DataBase.ConvertDBNullToZero(Factura["id_comprob"])));
 			}
 
 			return Facturas.ToString();
@@ -226,7 +223,7 @@ namespace Lbl.Comprobantes
 		public static string NumeroCompleto(Lws.Data.DataView dataView, int iId)
 		{
 			// Toma el Id de factura y devuelve el tipo y número (por ejemplo: B 0001-00000135)
-                        Lfx.Data.Row TmpFactura = dataView.Tables["facturas"].FastRows[iId]; //dataView.DataBase.Row("facturas", "tipo_fac, pv, numero", "id_factura", iId);
+                        Lfx.Data.Row TmpFactura = dataView.Tables["comprob"].FastRows[iId]; //dataView.DataBase.Row("comprob", "tipo_fac, pv, numero", "id_comprob", iId);
 
 			if (TmpFactura == null)
 				return "";
@@ -252,10 +249,10 @@ namespace Lbl.Comprobantes
                         get
                         {
                                 if (m_ComprobanteOriginal == null) {
-                                        if (Registro["id_factura_orig"] == null)
+                                        if (Registro["id_comprob_orig"] == null)
                                                 m_ComprobanteOriginal = null;
                                         else
-                                                m_ComprobanteOriginal = new ComprobanteConArticulos(this.DataView, System.Convert.ToInt32(Registro["id_factura_orig"]));
+                                                m_ComprobanteOriginal = new ComprobanteConArticulos(this.DataView, System.Convert.ToInt32(Registro["id_comprob_orig"]));
                                 }
                                 return m_ComprobanteOriginal;
                         }

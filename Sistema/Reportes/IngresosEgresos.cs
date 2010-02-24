@@ -497,7 +497,7 @@ namespace Lazaro.Reportes
                         // 
                         // cuenta
                         // 
-                        this.cuenta.Text = "Cuenta";
+                        this.cuenta.Text = "Caja";
                         this.cuenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
                         this.cuenta.Width = 46;
                         // 
@@ -1176,13 +1176,13 @@ namespace Lazaro.Reportes
 
                 public void MostrarReporte()
                 {
-                        double Facturas = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM facturas WHERE tipo_fac IN ('A', 'B', 'C', 'E', 'M', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                        double NotasCredito = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM facturas WHERE tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        double Facturas = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('A', 'B', 'C', 'E', 'M', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        double NotasCredito = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 
-                        double Costo = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM facturas, facturas_detalle WHERE facturas.id_factura=facturas_detalle.id_factura AND facturas.tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND facturas.impresa AND facturas.numero>0 AND facturas.anulada=0 AND facturas_detalle.precio>0 AND facturas.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                        double CostoNotasCredito = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM facturas, facturas_detalle WHERE facturas.id_factura=facturas_detalle.id_factura AND facturas.tipo_fac IN ('NCA', 'NCB', 'NCC') AND facturas.impresa AND facturas.numero>0 AND facturas.anulada=0 AND facturas.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        double Costo = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND comprob.impresa AND comprob.numero>0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        double CostoNotasCredito = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC') AND comprob.impresa AND comprob.numero>0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                         
-                        double GestionCobro = -this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE id_concepto=24010 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        double GestionCobro = -this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto=24010 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 
                         double Facturacion = Facturas - NotasCredito;
                         txtFacturacion.Text = Lfx.Types.Formatting.FormatCurrency(Facturacion, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
@@ -1192,10 +1192,10 @@ namespace Lazaro.Reportes
                         txtGestionCobro.Text = Lfx.Types.Formatting.FormatCurrency(GestionCobro, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                         txtDiferenciaBruta.Text = Lfx.Types.Formatting.FormatCurrency(Facturacion - Costo + CostoNotasCredito - GestionCobro, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
 
-                        txtCostoCapital.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=220) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtGastosFijos.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=230) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtGastosVariables.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=240) AND id_concepto NOT IN (24010) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtOtrosEgresos.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE importe<0 AND id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND id_concepto<>26030 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtCostoCapital.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=220) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtGastosFijos.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=230) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtGastosVariables.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=240) AND id_concepto NOT IN (24010) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtOtrosEgresos.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE importe<0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND id_concepto<>26030 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
 
                         if (Facturacion == 0)
                                 lblDiferenciaBrutaPct.Text = "N/A";
@@ -1219,9 +1219,9 @@ namespace Lazaro.Reportes
 
 
                         //Ingresos y egresos
-                        txtCobros.Text = Lfx.Types.Formatting.FormatCurrency(Math.Abs(this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE (id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=110) OR id_concepto=26030 ) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtIngresosOtros.Text = Lfx.Types.Formatting.FormatCurrency(Math.Abs(this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE importe>0 AND id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtCompraMateriales.Text = Lfx.Types.Formatting.FormatCurrency(-this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=210) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'"), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtCobros.Text = Lfx.Types.Formatting.FormatCurrency(Math.Abs(this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE (id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=110) OR id_concepto=26030 ) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtIngresosOtros.Text = Lfx.Types.Formatting.FormatCurrency(Math.Abs(this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE importe>0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtCompraMateriales.Text = Lfx.Types.Formatting.FormatCurrency(-this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=210) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'"), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
 
                 }
 
@@ -1243,14 +1243,13 @@ namespace Lazaro.Reportes
 
                         System.Data.DataTable Detalles = this.DataView.DataBase.Select(Sql);
                         foreach (System.Data.DataRow Detalle in Detalles.Rows) {
-                                ListViewItem itm = null;
-                                itm = lvItems.Items.Add(System.Convert.ToString(Detalle["id_movim"]));
-                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatDate(Detalle["fecha"])));
-                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Detalle["concepto"])));
-                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Detalle["importe"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
-                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Detalle["id_cuenta"])));
-                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Detalle["comprob"])));
-                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Detalle["obs"])));
+                                ListViewItem itm = lvItems.Items.Add(System.Convert.ToString(Detalle["id_movim"]));
+                                itm.SubItems.Add(Lfx.Types.Formatting.FormatDate(Detalle["fecha"]));
+                                itm.SubItems.Add(System.Convert.ToString(Detalle["concepto"]));
+                                itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Detalle["importe"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces));
+                                itm.SubItems.Add(System.Convert.ToString(Detalle["id_caja"]));
+                                itm.SubItems.Add(System.Convert.ToString(Detalle["comprob"]));
+                                itm.SubItems.Add(System.Convert.ToString(Detalle["obs"]));
                         }
 
                         lvItems.EndUpdate();
@@ -1259,41 +1258,41 @@ namespace Lazaro.Reportes
 
                 private void cmdOtrosEgresos_Click(object sender, System.EventArgs e)
                 {
-                        MostrarDetalles("SELECT * FROM cuentas_movim WHERE importe<0 AND id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        MostrarDetalles("SELECT * FROM cajas_movim WHERE importe<0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                 }
 
 
                 private void cmdGastosVariables_Click(object sender, System.EventArgs e)
                 {
-                        MostrarDetalles("SELECT * FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=240) AND id_concepto NOT IN (24010) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        MostrarDetalles("SELECT * FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=240) AND id_concepto NOT IN (24010) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                 }
 
 
                 private void cmdCostoCapital_Click(object sender, System.EventArgs e)
                 {
-                        MostrarDetalles("SELECT * FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=220) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        MostrarDetalles("SELECT * FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=220) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                 }
 
                 private void cmdCostoMateriales_Click(object sender, System.EventArgs e)
                 {
-                        MostrarDetalles("SELECT * FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=210) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        MostrarDetalles("SELECT * FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=210) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                 }
 
 
                 private void cmdGastosFijos_Click(object sender, System.EventArgs e)
                 {
-                        MostrarDetalles("SELECT * FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=230) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        MostrarDetalles("SELECT * FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=230) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                 }
 
 
                 private void cmdCobros_Click(object sender, System.EventArgs e)
                 {
-                        MostrarDetalles("SELECT * FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=110) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        MostrarDetalles("SELECT * FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=110) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                 }
 
                 private void cmdIngresosOtros_Click(object sender, System.EventArgs e)
                 {
-                        MostrarDetalles("SELECT * FROM cuentas_movim WHERE importe>0 AND id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        MostrarDetalles("SELECT * FROM cajas_movim WHERE importe>0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                 }
 
 
@@ -1438,19 +1437,19 @@ namespace Lazaro.Reportes
 
                         ListViewItem itm = null;
                         itm = lvItems.Items.Add(System.Convert.ToString("total"));
-                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "-"));
-                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Total"));
-                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Resultado, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
-                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "-"));
-                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "-"));
-                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "-"));
+                        itm.SubItems.Add("-");
+                        itm.SubItems.Add("Total");
+                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Resultado, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
+                        itm.SubItems.Add("-");
+                        itm.SubItems.Add("-");
+                        itm.SubItems.Add("-");
 
                         lvItems.EndUpdate();
                 }
 
                 private double MostrarTipo(int idTipo)
                 {
-                        double Monto = this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cuentas_movim WHERE id_concepto IN (SELECT id_concepto FROM cuentas_conceptos WHERE grupo=" + idTipo.ToString() + ") AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        double Monto = this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=" + idTipo.ToString() + ") AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                         string NombreConcepto = "?";
                         switch (idTipo) {
                                 case 0:
@@ -1496,19 +1495,19 @@ namespace Lazaro.Reportes
 
                         ListViewItem itm = null;
                         itm = lvItems.Items.Add(System.Convert.ToString(idTipo.ToString()));
-                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "-"));
-                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, NombreConcepto));
-                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Monto, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
-                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "-"));
-                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "-"));
-                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "-"));
+                        itm.SubItems.Add("-");
+                        itm.SubItems.Add(NombreConcepto);
+                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Monto, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
+                        itm.SubItems.Add("-");
+                        itm.SubItems.Add("-");
+                        itm.SubItems.Add("-");
 
                         return Monto;
                 }
 
                 private void cmdGestionCobro_Click(object sender, EventArgs e)
                 {
-                        MostrarDetalles("SELECT * FROM cuentas_movim WHERE id_concepto=24010 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        MostrarDetalles("SELECT * FROM cajas_movim WHERE id_concepto=24010 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                 }
         }
 }

@@ -1,0 +1,72 @@
+﻿SET FOREIGN_KEY_CHECKS=0;
+
+ALTER TABLE articulos DROP FOREIGN KEY articulos_id_cat_articulo;
+ALTER TABLE articulos DROP FOREIGN KEY articulos_id_cuenta;
+ALTER TABLE bancos_cheques DROP FOREIGN KEY bancos_cheques_id_cuenta;
+ALTER TABLE bancos_cheques DROP FOREIGN KEY bancos_cheques_id_factura;
+ALTER TABLE cat_articulos DROP FOREIGN KEY cat_articulos_id_rubro;
+ALTER TABLE chequeras DROP FOREIGN KEY chequeras_id_cuenta;
+ALTER TABLE ctacte DROP FOREIGN KEY ctacte_id_factura;
+ALTER TABLE cuentas DROP FOREIGN KEY cuentas_id_moneda;
+ALTER TABLE cuentas DROP FOREIGN KEY cuentas_id_banco;
+ALTER TABLE cuentas_movim DROP FOREIGN KEY cuentas_movim_id_banco;
+ALTER TABLE cuentas_movim DROP FOREIGN KEY cuentas_movim_id_cliente;
+ALTER TABLE cuentas_movim DROP FOREIGN KEY cuentas_movim_id_cuenta;
+ALTER TABLE cuentas_movim DROP FOREIGN KEY cuentas_movim_id_factura;
+ALTER TABLE cuentas_movim DROP FOREIGN KEY cuentas_movim_id_recibo;
+ALTER TABLE cuentas_movim DROP FOREIGN KEY cuentas_movim_id_sucursal;
+ALTER TABLE cuentas_movim DROP FOREIGN KEY cuentas_movim_id_persona;
+ALTER TABLE facturas DROP FOREIGN KEY facturas_id_sucursal;
+ALTER TABLE facturas DROP FOREIGN KEY facturas_id_vendedor;
+ALTER TABLE facturas DROP FOREIGN KEY facturas_situaciondestino;
+ALTER TABLE facturas DROP FOREIGN KEY facturas_situacionorigen;
+ALTER TABLE facturas DROP FOREIGN KEY facturas_id_cliente;
+ALTER TABLE facturas DROP FOREIGN KEY facturas_id_factura_orig;
+ALTER TABLE facturas DROP FOREIGN KEY facturas_id_formapago;
+ALTER TABLE facturas_detalle DROP FOREIGN KEY facturas_detalle_id_articulo;
+ALTER TABLE facturas_detalle DROP FOREIGN KEY facturas_detalle_id_factura;
+ALTER TABLE formaspago DROP FOREIGN KEY formaspago_id_cuenta;
+ALTER TABLE recibos DROP FOREIGN KEY recibos_id_concepto;
+ALTER TABLE recibos_facturas DROP FOREIGN KEY recibos_facturas_id_factura;
+ALTER TABLE sucursales DROP FOREIGN KEY sucursales_id_cuenta_caja;
+ALTER TABLE sucursales DROP FOREIGN KEY sucursales_id_cuenta_cheques;
+ALTER TABLE tarjetas DROP FOREIGN KEY tarjetas_id_cuenta;
+ALTER TABLE tarjetas_cupones DROP FOREIGN KEY tarjetas_cupones_id_concepto;
+ALTER TABLE tarjetas_cupones DROP FOREIGN KEY tarjetas_cupones_id_factura;
+ALTER TABLE tickets DROP FOREIGN KEY tickets_id_factura;
+ALTER TABLE ventas_resumenes DROP FOREIGN KEY ventas_resumenes_id_factura;
+
+RENAME TABLE cat_articulos TO articulos_categorias;
+RENAME TABLE cuentas TO cajas;
+RENAME TABLE cuentas_movim TO cajas_movim;
+RENAME TABLE cuentas_conceptos TO conceptos;
+RENAME TABLE facturas_detalle TO comprob_detalle;
+RENAME TABLE facturas TO comprob;
+RENAME TABLE recibos_facturas TO recibos_comprob;
+
+ALTER TABLE articulos_categorias CHANGE id_cat_articulo id_categoria INTEGER;
+ALTER TABLE articulos CHANGE id_cat_articulo id_categoria INTEGER;
+
+ALTER TABLE cajas CHANGE id_cuenta id_caja INTEGER NOT NULL AUTO_INCREMENT;
+ALTER TABLE articulos CHANGE id_cuenta id_caja INTEGER;
+ALTER TABLE bancos_cheques CHANGE id_cuenta id_caja INTEGER;
+ALTER TABLE chequeras CHANGE id_cuenta id_caja INTEGER;
+ALTER TABLE cajas_movim CHANGE id_cuenta id_caja INTEGER;
+ALTER TABLE formaspago CHANGE id_cuenta id_caja INTEGER;
+ALTER TABLE sucursales CHANGE id_cuenta_caja id_caja_diaria INTEGER;
+ALTER TABLE sucursales CHANGE id_cuenta_cheques id_caja_cheques INTEGER;
+ALTER TABLE tarjetas CHANGE id_cuenta id_caja INTEGER;
+
+ALTER TABLE comprob CHANGE id_factura id_comprob INTEGER AUTO_INCREMENT;
+ALTER TABLE bancos_cheques CHANGE id_factura id_comprob INTEGER;
+ALTER TABLE ctacte CHANGE id_factura id_comprob INTEGER;
+ALTER TABLE cajas_movim CHANGE id_factura id_comprob INTEGER;
+ALTER TABLE comprob CHANGE id_factura_orig id_comprob_orig INTEGER;
+ALTER TABLE comprob_detalle CHANGE id_factura_detalle id_comprob_detalle INTEGER AUTO_INCREMENT;
+ALTER TABLE comprob_detalle CHANGE id_factura id_comprob INTEGER;
+ALTER TABLE recibos_comprob CHANGE id_factura id_comprob INTEGER;
+ALTER TABLE tarjetas_cupones CHANGE id_factura id_comprob INTEGER;
+ALTER TABLE tickets CHANGE id_factura id_comprob INTEGER;
+ALTER TABLE ventas_resumenes CHANGE id_factura id_comprob INTEGER;
+
+SET FOREIGN_KEY_CHECKS=1;

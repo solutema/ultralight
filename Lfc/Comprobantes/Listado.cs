@@ -79,91 +79,91 @@ namespace Lfc.Comprobantes
                         switch (m_Tipo) {
                                 case "NC":
                                         if (m_Letra == "*")
-                                                FiltroSql += " AND facturas.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM')";
+                                                FiltroSql += " AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM')";
                                         else
-                                                FiltroSql += " AND facturas.tipo_fac='NC" + m_Letra + "'";
+                                                FiltroSql += " AND comprob.tipo_fac='NC" + m_Letra + "'";
                                         break;
 
                                 case "ND":
                                         if (m_Letra == "*")
-                                                FiltroSql += " AND facturas.tipo_fac IN ('NDA', 'NDB', 'NDC', 'NDE', 'NDM')";
+                                                FiltroSql += " AND comprob.tipo_fac IN ('NDA', 'NDB', 'NDC', 'NDE', 'NDM')";
                                         else
-                                                FiltroSql += " AND facturas.tipo_fac='ND" + m_Letra + "'";
+                                                FiltroSql += " AND comprob.tipo_fac='ND" + m_Letra + "'";
                                         break;
 
                                 case "NCD":
                                         if (m_Letra == "*")
-                                                FiltroSql += " AND facturas.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM')";
+                                                FiltroSql += " AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM')";
                                         else
-                                                FiltroSql += " AND (facturas.tipo_fac='NC" + m_Letra + "' OR facturas.tipo_fac='ND" + m_Letra + "')";
+                                                FiltroSql += " AND (comprob.tipo_fac='NC" + m_Letra + "' OR comprob.tipo_fac='ND" + m_Letra + "')";
                                         break;
 
                                 case "F":
                                         if (m_Letra == "*")
-                                                FiltroSql += " AND facturas.tipo_fac IN ('A', 'B', 'C', 'E', 'M')";
+                                                FiltroSql += " AND comprob.tipo_fac IN ('A', 'B', 'C', 'E', 'M')";
                                         else
-                                                FiltroSql += " AND facturas.tipo_fac='" + m_Letra + "'";
+                                                FiltroSql += " AND comprob.tipo_fac='" + m_Letra + "'";
                                         break;
 
                                 case "T":
-                                        FiltroSql += " AND facturas.tipo_fac='T'";
+                                        FiltroSql += " AND comprob.tipo_fac='T'";
                                         break;
 
                                 default:
                                         if (m_Letra == "*")
-                                                FiltroSql += " AND facturas.tipo_fac IN ('A', 'B', 'C', 'E', 'M', 'NCA', 'NCB', 'NCC', 'NCE', 'NCM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM')";
+                                                FiltroSql += " AND comprob.tipo_fac IN ('A', 'B', 'C', 'E', 'M', 'NCA', 'NCB', 'NCC', 'NCE', 'NCM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM')";
                                         else
-                                                FiltroSql += " AND (facturas.tipo_fac='" + m_Letra + "' OR facturas.tipo_fac='NC" + m_Letra + "' OR facturas.tipo_fac='ND" + m_Letra + "')";
+                                                FiltroSql += " AND (comprob.tipo_fac='" + m_Letra + "' OR comprob.tipo_fac='NC" + m_Letra + "' OR comprob.tipo_fac='ND" + m_Letra + "')";
                                         break;
                         }
 
                         if (m_Cliente > 0)
-                                FiltroSql += " AND (facturas.id_cliente='" + m_Cliente.ToString() + "')";
+                                FiltroSql += " AND (comprob.id_cliente='" + m_Cliente.ToString() + "')";
 
                         if (m_Vendedor > 0)
-                                FiltroSql += " AND (facturas.id_vendedor='" + m_Vendedor.ToString() + "')";
+                                FiltroSql += " AND (comprob.id_vendedor='" + m_Vendedor.ToString() + "')";
 
                         if (m_FormaPago > 0)
-                                FiltroSql += " AND (facturas.id_formapago='" + m_FormaPago.ToString() + "')";
+                                FiltroSql += " AND (comprob.id_formapago='" + m_FormaPago.ToString() + "')";
 
                         if (m_Sucursal > 0)
-                                FiltroSql += " AND (facturas.id_sucursal='" + m_Sucursal.ToString() + "')";
+                                FiltroSql += " AND (comprob.id_sucursal='" + m_Sucursal.ToString() + "')";
 
                         if (m_PV > 0)
-                                FiltroSql += " AND (facturas.pv='" + m_PV.ToString() + "')";
+                                FiltroSql += " AND (comprob.pv='" + m_PV.ToString() + "')";
 
-                        FiltroSql += " AND facturas.total<>0";
+                        FiltroSql += " AND comprob.total<>0";
 
                         if (m_Fechas.HasRange)
-                                FiltroSql += " AND (facturas.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.To) + " 23:59:59')";
+                                FiltroSql += " AND (comprob.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.To) + " 23:59:59')";
 
                         switch (m_Estado) {
                                 case "0":
-                                        FiltroSql += " AND facturas.impresa=1 AND facturas.numero>0";
+                                        FiltroSql += " AND comprob.impresa=1 AND comprob.numero>0";
                                         break;
 
                                 case "1":
-                                        FiltroSql += " AND facturas.impresa=1 AND facturas.numero>0 AND (facturas.cancelado>=facturas.total)";
+                                        FiltroSql += " AND comprob.impresa=1 AND comprob.numero>0 AND (comprob.cancelado>=comprob.total)";
                                         break;
 
                                 case "2":
-                                        FiltroSql += " AND facturas.impresa=1 AND facturas.numero>0 AND (facturas.cancelado<facturas.total)";
+                                        FiltroSql += " AND comprob.impresa=1 AND comprob.numero>0 AND (comprob.cancelado<comprob.total)";
                                         break;
 
                                 case "3":
-                                        FiltroSql += " AND facturas.impresa=1 AND facturas.numero>0";
+                                        FiltroSql += " AND comprob.impresa=1 AND comprob.numero>0";
                                         break;
                         }
 
                         if (m_Anuladas == 0)
-                                FiltroSql += " AND facturas.anulada=0";
+                                FiltroSql += " AND comprob.anulada=0";
 
                         if (m_MontoDesde != 0 && m_MontoHasta != 0)
-                                FiltroSql += " AND facturas.total BETWEEN " + Lfx.Types.Formatting.FormatCurrencySql(m_MontoDesde) + " AND " + Lfx.Types.Formatting.FormatCurrencySql(m_MontoHasta);
+                                FiltroSql += " AND comprob.total BETWEEN " + Lfx.Types.Formatting.FormatCurrencySql(m_MontoDesde) + " AND " + Lfx.Types.Formatting.FormatCurrencySql(m_MontoHasta);
                         else if (m_MontoDesde != 0)
-                                FiltroSql += " AND facturas.total>=" + Lfx.Types.Formatting.FormatCurrencySql(m_MontoDesde);
+                                FiltroSql += " AND comprob.total>=" + Lfx.Types.Formatting.FormatCurrencySql(m_MontoDesde);
                         else if (m_MontoHasta != 0)
-                                FiltroSql += " AND facturas.total<=" + Lfx.Types.Formatting.FormatCurrencySql(m_MontoHasta);
+                                FiltroSql += " AND comprob.total<=" + Lfx.Types.Formatting.FormatCurrencySql(m_MontoHasta);
 
                         return FiltroSql;
                 }
@@ -173,9 +173,9 @@ namespace Lfc.Comprobantes
                         string TextoSql = null;
                         string FiltrosCompletos = null;
 
-                        FiltrosCompletos = "facturas.id_factura=facturas_detalle.id_factura AND facturas_detalle.id_articulo=articulos.id_articulo AND " + Filtros;
-                        TextoSql = "SELECT SUM(facturas_detalle.costo*cantidad) AS totalcosto, COUNT(facturas.id_factura) AS cantfact, SUM(facturas_detalle.importe*(1-facturas.descuento/100)*(1+facturas.interes/100)) AS total, SUM(facturas_detalle.cantidad) AS cantart, articulos.id_marca, articulos.id_proveedor, articulos.id_articulo, articulos.id_cat_articulo, DAYOFWEEK(facturas.fecha), DAYOFMONTH(facturas.fecha), MONTH(facturas.fecha)";
-                        TextoSql += " FROM facturas, facturas_detalle, articulos WHERE " + FiltrosCompletos;
+                        FiltrosCompletos = "comprob.id_comprob=comprob_detalle.id_comprob AND comprob_detalle.id_articulo=articulos.id_articulo AND " + Filtros;
+                        TextoSql = "SELECT SUM(comprob_detalle.costo*cantidad) AS totalcosto, COUNT(comprob.id_comprob) AS cantfact, SUM(comprob_detalle.importe*(1-comprob.descuento/100)*(1+comprob.interes/100)) AS total, SUM(comprob_detalle.cantidad) AS cantart, articulos.id_marca, articulos.id_proveedor, articulos.id_articulo, articulos.id_categoria, DAYOFWEEK(comprob.fecha), DAYOFMONTH(comprob.fecha), MONTH(comprob.fecha)";
+                        TextoSql += " FROM comprob, comprob_detalle, articulos WHERE " + FiltrosCompletos;
                         TextoSql += " GROUP BY " + m_Agrupar;
                         TextoSql += " ORDER BY total DESC";
 
@@ -198,7 +198,7 @@ namespace Lfc.Comprobantes
                         foreach (System.Data.DataRow row in TmpTabla.Rows) {
                                 Lfx.FileFormats.Office.Spreadsheet.Row Reng = new Lfx.FileFormats.Office.Spreadsheet.Row();
 
-                                FiltrosCompletos = "facturas.tipo_fac IN('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND facturas.id_factura=facturas_detalle.id_factura AND facturas_detalle.id_articulo=articulos.id_articulo AND " + Filtros;
+                                FiltrosCompletos = "comprob.tipo_fac IN('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND comprob.id_comprob=comprob_detalle.id_comprob AND comprob_detalle.id_articulo=articulos.id_articulo AND " + Filtros;
 
                                 switch (m_Agrupar) {
                                         case "articulos.id_marca":
@@ -213,13 +213,13 @@ namespace Lfc.Comprobantes
                                                 FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_articulo"]);
                                                 break;
 
-                                        case "articulos.id_cat_articulo":
-                                                FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_cat_articulo"]);
+                                        case "articulos.id_categoria":
+                                                FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_categoria"]);
                                                 break;
                                 }
 
-                                TotalNC = this.Workspace.DefaultDataBase.FieldDouble("SELECT SUM(facturas_detalle.importe*(1-facturas.descuento/100)*(1+facturas.interes/100)) AS total FROM facturas, facturas_detalle, articulos WHERE " + FiltrosCompletos + " GROUP BY facturas.id_factura");
-                                TotalNCCosto = this.Workspace.DefaultDataBase.FieldDouble("SELECT SUM(facturas_detalle.costo) AS total FROM facturas, facturas_detalle, articulos WHERE " + FiltrosCompletos + " GROUP BY " + m_Agrupar);
+                                TotalNC = this.Workspace.DefaultDataBase.FieldDouble("SELECT SUM(comprob_detalle.importe*(1-comprob.descuento/100)*(1+comprob.interes/100)) AS total FROM comprob, comprob_detalle, articulos WHERE " + FiltrosCompletos + " GROUP BY comprob.id_comprob");
+                                TotalNCCosto = this.Workspace.DefaultDataBase.FieldDouble("SELECT SUM(comprob_detalle.costo) AS total FROM comprob, comprob_detalle, articulos WHERE " + FiltrosCompletos + " GROUP BY " + m_Agrupar);
                                 string Detalle = null;
 
                                 switch (m_Agrupar) {
@@ -235,8 +235,8 @@ namespace Lfc.Comprobantes
                                                 Detalle = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM articulos WHERE id_articulo=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_articulo"]).ToString());
                                                 break;
 
-                                        case "articulos.id_cat_articulo":
-                                                Detalle = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM cat_articulos WHERE id_cat_articulo=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_cat_articulo"]).ToString());
+                                        case "articulos.id_categoria":
+                                                Detalle = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM articulos_categorias WHERE id_categoria=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_categoria"]).ToString());
                                                 break;
                                 }
 
@@ -281,22 +281,22 @@ namespace Lfc.Comprobantes
                         string TextoSql = null;
                         string ColumnaTotal = "total";
 
-                        // Filtros = "facturas.id_factura=facturas_detalle.id_factura AND facturas_detalle.id_articulo=articulos.id_articulo AND " & Filtros
+                        // Filtros = "comprob.id_comprob=comprob_detalle.id_comprob AND comprob_detalle.id_articulo=articulos.id_articulo AND " & Filtros
                         switch (m_Agrupar) {
                                 case "":
-                                        TextoSql = "SELECT facturas.*";
+                                        TextoSql = "SELECT comprob.*";
                                         break;
 
                                 default:
-                                        TextoSql = "SELECT facturas.*, DAYOFWEEK(facturas.fecha), DAYOFMONTH(facturas.fecha), MONTH(facturas.fecha), SUM(facturas.total) AS sumtotal";
+                                        TextoSql = "SELECT comprob.*, DAYOFWEEK(comprob.fecha), DAYOFMONTH(comprob.fecha), MONTH(comprob.fecha), SUM(comprob.total) AS sumtotal";
                                         break;
                         }
 
-                        TextoSql += " FROM facturas WHERE " + Filtros;
+                        TextoSql += " FROM comprob WHERE " + Filtros;
                         if (m_Agrupar.Length > 0)
                                 TextoSql += " GROUP BY " + m_Agrupar;
                         else
-                                TextoSql += " GROUP BY facturas.id_factura";
+                                TextoSql += " GROUP BY comprob.id_comprob";
                         TextoSql += " ORDER BY ";
 
                         if (m_Agrupar.Length > 0) {
@@ -304,7 +304,7 @@ namespace Lfc.Comprobantes
                                 ColumnaTotal = "sumtotal";
                         }
 
-                        TextoSql += "RIGHT(facturas.tipo_fac, 1), facturas.pv, facturas.numero";
+                        TextoSql += "RIGHT(comprob.tipo_fac, 1), comprob.pv, comprob.numero";
 
                         System.Data.DataTable TmpTabla = this.Workspace.DefaultDataBase.Select(TextoSql);
 
@@ -342,15 +342,15 @@ namespace Lfc.Comprobantes
                                         }
 
                                         switch (m_Agrupar) {
-                                                case "facturas.id_vendedor":
-                                                case "facturas.id_cliente":
+                                                case "comprob.id_vendedor":
+                                                case "comprob.id_cliente":
                                                         if (UltimoValorAgrupar.Length > 0)
                                                                 NombreGrupo = this.Workspace.DefaultDataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + UltimoValorAgrupar);
                                                         else
                                                                 NombreGrupo = "(Sin especificar)";
                                                         break;
 
-                                                case "facturas.id_formapago":
+                                                case "comprob.id_formapago":
                                                         if (UltimoValorAgrupar.Length > 0)
                                                                 NombreGrupo = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM formaspago WHERE id_formapago=" + UltimoValorAgrupar);
                                                         else
@@ -358,7 +358,7 @@ namespace Lfc.Comprobantes
 
                                                         break;
 
-                                                case "DAYOFWEEK(facturas.fecha)":
+                                                case "DAYOFWEEK(comprob.fecha)":
                                                         switch (System.Convert.ToInt32(row[Lfx.Data.DataBase.GetFieldName(m_Agrupar)])) {
                                                                 case 1:
                                                                         NombreGrupo = "Domingo";
@@ -384,11 +384,11 @@ namespace Lfc.Comprobantes
                                                         }
                                                         break;
 
-                                                case "DAYOFMONTH(facturas.fecha)":
+                                                case "DAYOFMONTH(comprob.fecha)":
                                                         NombreGrupo = System.Convert.ToDateTime(row["fecha"]).ToString("dd-MM-yyyy");
                                                         break;
 
-                                                case "MONTH(facturas.fecha)":
+                                                case "MONTH(comprob.fecha)":
                                                         NombreGrupo = System.Convert.ToDateTime(row["fecha"]).ToString("MMMM");
                                                         break;
 

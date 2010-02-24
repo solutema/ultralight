@@ -78,7 +78,7 @@ namespace Lbl.Comprobantes.Impresion
                                                                 Valores.AppendLine("Pago con Tarjeta         : " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
                                                                 Valores.AppendLine("                           cupón " + Pg.Cupon.ToString());
                                                                 break;
-                                                        case Lbl.Comprobantes.TipoFormasDePago.CuentaRegular:
+                                                        case Lbl.Comprobantes.TipoFormasDePago.Caja:
                                                                 Valores.AppendLine("Depósito en Cuenta       : " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
                                                                 break;
                                                 }

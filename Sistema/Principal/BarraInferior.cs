@@ -100,16 +100,13 @@ namespace Lazaro.Principal
 			TablaSolicitada = tabla;
 			ItemSolicitado = item;
 
-			if (this.Workspace.SlowLink)
-			{
-				//Reinicio el contador
-				TimerSlowLink.Stop();
-				TimerSlowLink.Start();
-			}
-			else
-			{
-				this.ActualizarBarra();
-			}
+                        if (this.Workspace.SlowLink) {
+                                //Reinicio el contador
+                                TimerSlowLink.Stop();
+                                TimerSlowLink.Start();
+                        } else {
+                                ActualizarBarra();
+                        }
 		}
 
 		private void ActualizarBarra()
@@ -175,6 +172,7 @@ namespace Lazaro.Principal
                                                 } else {
                                                         PersonaComentario.Visible = false;
                                                 }
+                                                PersonaImagen.Image = Per.Imagen;
                                                 PanelPersona.Visible = true;
                                         }
 					break;

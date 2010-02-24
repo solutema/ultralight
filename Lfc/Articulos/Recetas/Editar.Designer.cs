@@ -211,7 +211,7 @@ namespace Lfc.Articulos.Recetas
 			this.txtCategoria.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtCategoria.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.txtCategoria.FreeTextCode = "";
-			this.txtCategoria.KeyField = "id_cat_articulo";
+			this.txtCategoria.KeyField = "id_categoria";
 			this.txtCategoria.Location = new System.Drawing.Point(90, 25);
 			this.txtCategoria.MaxLength = 200;
 			this.txtCategoria.Name = "txtCategoria";
@@ -221,7 +221,7 @@ namespace Lfc.Articulos.Recetas
 			this.txtCategoria.SelectOnFocus = false;
 			this.txtCategoria.Size = new System.Drawing.Size(349, 24);
 			this.txtCategoria.TabIndex = 1;
-			this.txtCategoria.Table = "cat_articulos";
+			this.txtCategoria.Table = "articulos_categorias";
 			this.txtCategoria.TeclaDespuesDeEnter = "{tab}";
 			this.txtCategoria.Text = "0";
 			this.txtCategoria.TextDetail = "";

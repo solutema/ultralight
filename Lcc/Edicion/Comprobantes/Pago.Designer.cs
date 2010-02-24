@@ -41,9 +41,9 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaBanco = new Lui.Forms.DetailBox();
                         this.PanelTitulo = new System.Windows.Forms.Panel();
                         this.FrameTitulo = new Lui.Forms.Frame();
-                        this.PanelCuenta = new System.Windows.Forms.Panel();
+                        this.PanelCaja = new System.Windows.Forms.Panel();
                         this.label9 = new System.Windows.Forms.Label();
-                        this.EntradaCuenta = new Lui.Forms.DetailBox();
+                        this.EntradaCaja = new Lui.Forms.DetailBox();
                         this.PanelEfectivo = new System.Windows.Forms.Panel();
                         this.label8 = new System.Windows.Forms.Label();
                         this.PanelTarjeta = new System.Windows.Forms.Panel();
@@ -70,7 +70,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelImporte.SuspendLayout();
                         this.PanelCheque.SuspendLayout();
                         this.PanelTitulo.SuspendLayout();
-                        this.PanelCuenta.SuspendLayout();
+                        this.PanelCaja.SuspendLayout();
                         this.PanelEfectivo.SuspendLayout();
                         this.PanelTarjeta.SuspendLayout();
                         this.PanelObs.SuspendLayout();
@@ -307,16 +307,16 @@ namespace Lcc.Edicion.Comprobantes
                         this.FrameTitulo.Text = "frame1";
                         this.FrameTitulo.ToolTipText = "";
                         // 
-                        // PanelCuenta
+                        // PanelCaja
                         // 
-                        this.PanelCuenta.Controls.Add(this.label9);
-                        this.PanelCuenta.Controls.Add(this.EntradaCuenta);
-                        this.PanelCuenta.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelCuenta.Location = new System.Drawing.Point(0, 266);
-                        this.PanelCuenta.Name = "PanelCuenta";
-                        this.PanelCuenta.Size = new System.Drawing.Size(460, 56);
-                        this.PanelCuenta.TabIndex = 5;
-                        this.PanelCuenta.Visible = false;
+                        this.PanelCaja.Controls.Add(this.label9);
+                        this.PanelCaja.Controls.Add(this.EntradaCaja);
+                        this.PanelCaja.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.PanelCaja.Location = new System.Drawing.Point(0, 266);
+                        this.PanelCaja.Name = "PanelCaja";
+                        this.PanelCaja.Size = new System.Drawing.Size(460, 56);
+                        this.PanelCaja.TabIndex = 5;
+                        this.PanelCaja.Visible = false;
                         // 
                         // label9
                         // 
@@ -326,35 +326,35 @@ namespace Lcc.Edicion.Comprobantes
                         this.label9.TabIndex = 0;
                         this.label9.Text = "Pago mediante débito en la siguiente cuenta";
                         // 
-                        // EntradaCuenta
+                        // EntradaCaja
                         // 
-                        this.EntradaCuenta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaCaja.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaCuenta.AutoHeight = false;
-                        this.EntradaCuenta.AutoTab = true;
-                        this.EntradaCuenta.CanCreate = true;
-                        this.EntradaCuenta.DetailField = "nombre";
-                        this.EntradaCuenta.ExtraDetailFields = null;
-                        this.EntradaCuenta.Filter = "";
-                        this.EntradaCuenta.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaCuenta.FreeTextCode = "";
-                        this.EntradaCuenta.KeyField = "id_cuenta";
-                        this.EntradaCuenta.Location = new System.Drawing.Point(140, 20);
-                        this.EntradaCuenta.MaxLength = 200;
-                        this.EntradaCuenta.Name = "EntradaCuenta";
-                        this.EntradaCuenta.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCuenta.ReadOnly = false;
-                        this.EntradaCuenta.Required = true;
-                        this.EntradaCuenta.SelectOnFocus = false;
-                        this.EntradaCuenta.Size = new System.Drawing.Size(320, 24);
-                        this.EntradaCuenta.TabIndex = 1;
-                        this.EntradaCuenta.Table = "cuentas";
-                        this.EntradaCuenta.TeclaDespuesDeEnter = "{tab}";
-                        this.EntradaCuenta.Text = "0";
-                        this.EntradaCuenta.TextDetail = "";
-                        this.EntradaCuenta.TextInt = 0;
-                        this.EntradaCuenta.TipWhenBlank = "";
-                        this.EntradaCuenta.ToolTipText = "";
+                        this.EntradaCaja.AutoHeight = false;
+                        this.EntradaCaja.AutoTab = true;
+                        this.EntradaCaja.CanCreate = true;
+                        this.EntradaCaja.DetailField = "nombre";
+                        this.EntradaCaja.ExtraDetailFields = null;
+                        this.EntradaCaja.Filter = "";
+                        this.EntradaCaja.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaCaja.FreeTextCode = "";
+                        this.EntradaCaja.KeyField = "id_caja";
+                        this.EntradaCaja.Location = new System.Drawing.Point(140, 20);
+                        this.EntradaCaja.MaxLength = 200;
+                        this.EntradaCaja.Name = "EntradaCaja";
+                        this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCaja.ReadOnly = false;
+                        this.EntradaCaja.Required = true;
+                        this.EntradaCaja.SelectOnFocus = false;
+                        this.EntradaCaja.Size = new System.Drawing.Size(320, 24);
+                        this.EntradaCaja.TabIndex = 1;
+                        this.EntradaCaja.Table = "cajas";
+                        this.EntradaCaja.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaCaja.Text = "0";
+                        this.EntradaCaja.TextDetail = "";
+                        this.EntradaCaja.TextInt = 0;
+                        this.EntradaCaja.TipWhenBlank = "";
+                        this.EntradaCaja.ToolTipText = "";
                         // 
                         // PanelEfectivo
                         // 
@@ -716,7 +716,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.Controls.Add(this.PanelObs);
                         this.Controls.Add(this.PanelTarjeta);
                         this.Controls.Add(this.PanelEfectivo);
-                        this.Controls.Add(this.PanelCuenta);
+                        this.Controls.Add(this.PanelCaja);
                         this.Controls.Add(this.PanelCheque);
                         this.Controls.Add(this.PanelCuentaCorriente);
                         this.Controls.Add(this.PanelImporte);
@@ -727,7 +727,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelImporte.ResumeLayout(false);
                         this.PanelCheque.ResumeLayout(false);
                         this.PanelTitulo.ResumeLayout(false);
-                        this.PanelCuenta.ResumeLayout(false);
+                        this.PanelCaja.ResumeLayout(false);
                         this.PanelEfectivo.ResumeLayout(false);
                         this.PanelTarjeta.ResumeLayout(false);
                         this.PanelObs.ResumeLayout(false);
@@ -752,7 +752,7 @@ namespace Lcc.Edicion.Comprobantes
                 internal System.Windows.Forms.Label lblFecha1;
                 private System.Windows.Forms.Panel PanelTitulo;
                 private Lui.Forms.Frame FrameTitulo;
-                private System.Windows.Forms.Panel PanelCuenta;
+                private System.Windows.Forms.Panel PanelCaja;
                 private System.Windows.Forms.Panel PanelEfectivo;
                 private System.Windows.Forms.Label label8;
                 private System.Windows.Forms.Panel PanelTarjeta;
@@ -776,7 +776,7 @@ namespace Lcc.Edicion.Comprobantes
                 private System.Windows.Forms.Label label13;
                 private System.Windows.Forms.Label label12;
                 private System.Windows.Forms.Panel PanelSeparadorInferior;
-                public Lui.Forms.DetailBox EntradaCuenta;
+                public Lui.Forms.DetailBox EntradaCaja;
                 public Lui.Forms.DetailBox EntradaBanco;
                 internal Lui.Forms.DetailBox EntradaFormaDePago;
         }

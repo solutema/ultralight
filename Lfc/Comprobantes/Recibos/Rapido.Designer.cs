@@ -57,7 +57,7 @@ namespace Lfc.Comprobantes.Recibos
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtCuenta = new Lui.Forms.DetailBox();
+            this.EntradaCaja = new Lui.Forms.DetailBox();
             this.Label3 = new System.Windows.Forms.Label();
             this.txtCliente = new Lui.Forms.DetailBox();
             this.Label5 = new System.Windows.Forms.Label();
@@ -73,34 +73,34 @@ namespace Lfc.Comprobantes.Recibos
             // 
             this.CancelCommandButton.Location = new System.Drawing.Point(421, 8);
             // 
-            // txtCuenta
+            // EntradaCaja
             // 
-            this.txtCuenta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.EntradaCaja.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCuenta.AutoTab = true;
-            this.txtCuenta.CanCreate = false;
-            this.txtCuenta.DetailField = "nombre";
-            this.txtCuenta.ExtraDetailFields = null;
-            this.txtCuenta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCuenta.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtCuenta.FreeTextCode = "";
-            this.txtCuenta.KeyField = "id_cuenta";
-            this.txtCuenta.Location = new System.Drawing.Point(104, 160);
-            this.txtCuenta.MaxLength = 200;
-            this.txtCuenta.Name = "txtCuenta";
-            this.txtCuenta.Padding = new System.Windows.Forms.Padding(2);
-            this.txtCuenta.ReadOnly = false;
-            this.txtCuenta.Required = true;
-            this.txtCuenta.SelectOnFocus = false;
-            this.txtCuenta.Size = new System.Drawing.Size(404, 24);
-            this.txtCuenta.TabIndex = 5;
-            this.txtCuenta.Table = "cuentas";
-            this.txtCuenta.TeclaDespuesDeEnter = "{tab}";
-            this.txtCuenta.Text = "0";
-            this.txtCuenta.TextDetail = "";
-            this.txtCuenta.TextInt = 0;
-            this.txtCuenta.TipWhenBlank = "";
-            this.txtCuenta.ToolTipText = "";
+            this.EntradaCaja.AutoTab = true;
+            this.EntradaCaja.CanCreate = false;
+            this.EntradaCaja.DetailField = "nombre";
+            this.EntradaCaja.ExtraDetailFields = null;
+            this.EntradaCaja.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EntradaCaja.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.EntradaCaja.FreeTextCode = "";
+            this.EntradaCaja.KeyField = "id_caja";
+            this.EntradaCaja.Location = new System.Drawing.Point(104, 160);
+            this.EntradaCaja.MaxLength = 200;
+            this.EntradaCaja.Name = "EntradaCaja";
+            this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
+            this.EntradaCaja.ReadOnly = false;
+            this.EntradaCaja.Required = true;
+            this.EntradaCaja.SelectOnFocus = false;
+            this.EntradaCaja.Size = new System.Drawing.Size(404, 24);
+            this.EntradaCaja.TabIndex = 5;
+            this.EntradaCaja.Table = "cajas";
+            this.EntradaCaja.TeclaDespuesDeEnter = "{tab}";
+            this.EntradaCaja.Text = "0";
+            this.EntradaCaja.TextDetail = "";
+            this.EntradaCaja.TextInt = 0;
+            this.EntradaCaja.TipWhenBlank = "";
+            this.EntradaCaja.ToolTipText = "";
             // 
             // Label3
             // 
@@ -108,7 +108,7 @@ namespace Lfc.Comprobantes.Recibos
             this.Label3.Name = "Label3";
             this.Label3.Size = new System.Drawing.Size(84, 24);
             this.Label3.TabIndex = 4;
-            this.Label3.Text = "Cuenta";
+            this.Label3.Text = "Caja";
             this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // EntradaCliente
@@ -185,7 +185,7 @@ namespace Lfc.Comprobantes.Recibos
             this.ClientSize = new System.Drawing.Size(529, 293);
             this.Controls.Add(this.txtImporte);
             this.Controls.Add(this.lblFecha1);
-            this.Controls.Add(this.txtCuenta);
+            this.Controls.Add(this.EntradaCaja);
             this.Controls.Add(this.Label3);
             this.Controls.Add(this.txtCliente);
             this.Controls.Add(this.Label5);
@@ -197,7 +197,7 @@ namespace Lfc.Comprobantes.Recibos
 
         #endregion
 
-        internal Lui.Forms.DetailBox txtCuenta;
+        internal Lui.Forms.DetailBox EntradaCaja;
         internal System.Windows.Forms.Label Label3;
         internal Lui.Forms.DetailBox txtCliente;
         internal System.Windows.Forms.Label Label5;

@@ -508,7 +508,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.KeyPreview = true;
                         this.Name = "Inicio";
                         this.Text = "Tarjetas de Crédito y Débito";
-                        this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormCuenta_KeyDown);
+                        this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Inicio_KeyDown);
                         this.LowerPanel.ResumeLayout(false);
                         this.frame1.ResumeLayout(false);
                         this.frame1.PerformLayout();

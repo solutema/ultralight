@@ -58,7 +58,7 @@ namespace Lfc.Bancos.Cheques
                 {
                         this.EntradaEstado = new Lui.Forms.ComboBox();
                         this.Label7 = new System.Windows.Forms.Label();
-                        this.lblCuenta = new System.Windows.Forms.Label();
+                        this.LabelCaja = new System.Windows.Forms.Label();
                         this.EntradaPersona = new Lui.Forms.DetailBox();
                         this.Label1 = new System.Windows.Forms.Label();
                         this.EntradaBanco = new Lui.Forms.DetailBox();
@@ -109,14 +109,14 @@ namespace Lfc.Bancos.Cheques
                         this.Label7.Text = "Estado";
                         this.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // lblCuenta
+                        // LabelCaja
                         // 
-                        this.lblCuenta.Location = new System.Drawing.Point(20, 116);
-                        this.lblCuenta.Name = "lblCuenta";
-                        this.lblCuenta.Size = new System.Drawing.Size(88, 24);
-                        this.lblCuenta.TabIndex = 6;
-                        this.lblCuenta.Text = "Persona";
-                        this.lblCuenta.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.LabelCaja.Location = new System.Drawing.Point(20, 116);
+                        this.LabelCaja.Name = "LabelCaja";
+                        this.LabelCaja.Size = new System.Drawing.Size(88, 24);
+                        this.LabelCaja.TabIndex = 6;
+                        this.LabelCaja.Text = "Persona";
+                        this.LabelCaja.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaPersona
                         // 
@@ -257,7 +257,7 @@ namespace Lfc.Bancos.Cheques
                         this.Controls.Add(this.EntradaEstado);
                         this.Controls.Add(this.label3);
                         this.Controls.Add(this.label2);
-                        this.Controls.Add(this.lblCuenta);
+                        this.Controls.Add(this.LabelCaja);
                         this.Controls.Add(this.Label1);
                         this.Controls.Add(this.Label7);
                         this.Name = "Filtros";
@@ -269,7 +269,7 @@ namespace Lfc.Bancos.Cheques
 
                 internal Lui.Forms.ComboBox EntradaEstado;
                 private System.Windows.Forms.Label Label7;
-                private System.Windows.Forms.Label lblCuenta;
+                private System.Windows.Forms.Label LabelCaja;
                 internal Lui.Forms.DetailBox EntradaPersona;
                 private System.Windows.Forms.Label Label1;
                 internal Lui.Forms.DetailBox EntradaBanco;

@@ -106,6 +106,7 @@ namespace Lfc.Personas
                         this.Label4 = new System.Windows.Forms.Label();
                         this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
                         this.EntradaTags = new Lui.Forms.FieldTags();
+                        this.EntradaImagen = new Lcc.Edicion.Imagen();
                         this.ContenedorScroll = new System.Windows.Forms.Panel();
                         this.Frame1.SuspendLayout();
                         this.Frame2.SuspendLayout();
@@ -861,13 +862,13 @@ namespace Lfc.Personas
         "Normal|0",
         "En plan de pagos|5",
         "Suspendido|10",
-        "Susp. permanen.|100"};
+        "Suspend. permanente|100"};
                         this.EntradaEstadoCredito.Size = new System.Drawing.Size(195, 24);
                         this.EntradaEstadoCredito.TabIndex = 9;
                         this.EntradaEstadoCredito.Table = null;
-                        this.EntradaEstadoCredito.Text = "Susp. permanen.";
+                        this.EntradaEstadoCredito.Text = "Suspend. permanente";
                         this.EntradaEstadoCredito.TextKey = "100";
-                        this.EntradaEstadoCredito.TextRaw = "Susp. permanen.";
+                        this.EntradaEstadoCredito.TextRaw = "Suspend. permanente";
                         this.EntradaEstadoCredito.TipWhenBlank = "";
                         this.EntradaEstadoCredito.ToolTipText = "";
                         // 
@@ -1062,7 +1063,7 @@ namespace Lfc.Personas
                         this.EntradaObs.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaObs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaObs.Location = new System.Drawing.Point(429, 386);
+                        this.EntradaObs.Location = new System.Drawing.Point(3, 558);
                         this.EntradaObs.MaxLenght = 32767;
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
@@ -1071,7 +1072,7 @@ namespace Lfc.Personas
                         this.EntradaObs.Prefijo = "";
                         this.EntradaObs.ReadOnly = false;
                         this.EntradaObs.SelectOnFocus = true;
-                        this.EntradaObs.Size = new System.Drawing.Size(343, 166);
+                        this.EntradaObs.Size = new System.Drawing.Size(420, 78);
                         this.EntradaObs.Sufijo = "";
                         this.EntradaObs.TabIndex = 5;
                         this.EntradaObs.TextRaw = "";
@@ -1126,7 +1127,8 @@ namespace Lfc.Personas
                         this.tableLayoutPanel1.Controls.Add(this.frame3, 0, 1);
                         this.tableLayoutPanel1.Controls.Add(this.Frame2, 1, 0);
                         this.tableLayoutPanel1.Controls.Add(this.Frame1, 0, 0);
-                        this.tableLayoutPanel1.Controls.Add(this.EntradaObs, 1, 2);
+                        this.tableLayoutPanel1.Controls.Add(this.EntradaObs, 0, 3);
+                        this.tableLayoutPanel1.Controls.Add(this.EntradaImagen, 1, 2);
                         this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
                         this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
                         this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -1134,8 +1136,8 @@ namespace Lfc.Personas
                         this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
                         this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
                         this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-                        this.tableLayoutPanel1.Size = new System.Drawing.Size(775, 552);
+                        this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+                        this.tableLayoutPanel1.Size = new System.Drawing.Size(775, 640);
                         this.tableLayoutPanel1.TabIndex = 0;
                         // 
                         // EntradaTags
@@ -1151,6 +1153,18 @@ namespace Lfc.Personas
                         this.EntradaTags.Size = new System.Drawing.Size(418, 166);
                         this.EntradaTags.TabIndex = 4;
                         this.EntradaTags.Text = "Atributos especiales";
+                        // 
+                        // EntradaImagen
+                        // 
+                        this.EntradaImagen.AutoHeight = true;
+                        this.EntradaImagen.AutoNav = true;
+                        this.EntradaImagen.Dock = System.Windows.Forms.DockStyle.Fill;
+                        this.EntradaImagen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaImagen.Location = new System.Drawing.Point(429, 386);
+                        this.EntradaImagen.Name = "EntradaImagen";
+                        this.EntradaImagen.ReadOnly = false;
+                        this.EntradaImagen.Size = new System.Drawing.Size(343, 166);
+                        this.EntradaImagen.TabIndex = 6;
                         // 
                         // ContenedorScroll
                         // 
@@ -1249,6 +1263,7 @@ namespace Lfc.Personas
                 private Panel ContenedorScroll;
                 internal Lui.Forms.DetailBox EntradaSubGrupo;
                 internal Label label13;
+                private Lcc.Edicion.Imagen EntradaImagen;
 
         }
 }

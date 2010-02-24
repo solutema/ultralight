@@ -82,8 +82,8 @@ namespace Lfc.Sucursales
 		internal System.Windows.Forms.Label label4;
 		internal System.Windows.Forms.Label label5;
 		internal System.Windows.Forms.Label label6;
-		internal Lui.Forms.DetailBox txtCuentaCaja;
-		internal Lui.Forms.DetailBox txtCuentaCheques;
+		internal Lui.Forms.DetailBox EntradaCajaDiaria;
+		internal Lui.Forms.DetailBox EntradaCajaCheques;
 		internal Lui.Forms.TextBox txtNombre;
 
 		private void InitializeComponent()
@@ -98,9 +98,9 @@ namespace Lfc.Sucursales
 			this.Label9 = new System.Windows.Forms.Label();
 			this.txtSituacionOrigen = new Lui.Forms.DetailBox();
 			this.label4 = new System.Windows.Forms.Label();
-			this.txtCuentaCaja = new Lui.Forms.DetailBox();
+			this.EntradaCajaDiaria = new Lui.Forms.DetailBox();
 			this.label5 = new System.Windows.Forms.Label();
-			this.txtCuentaCheques = new Lui.Forms.DetailBox();
+			this.EntradaCajaCheques = new Lui.Forms.DetailBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
@@ -273,32 +273,32 @@ namespace Lfc.Sucursales
 			this.label4.Text = "Depósito";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// txtCuentaCaja
+                        // EntradaCajaDiaria
 			// 
-			this.txtCuentaCaja.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.txtCuentaCaja.AutoTab = true;
-			this.txtCuentaCaja.CanCreate = true;
-			this.txtCuentaCaja.DetailField = "nombre";
-			this.txtCuentaCaja.DockPadding.All = 2;
-			this.txtCuentaCaja.ExtraDetailFields = null;
-			this.txtCuentaCaja.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txtCuentaCaja.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtCuentaCaja.FreeTextCode = "";
-			this.txtCuentaCaja.KeyField = "id_cuenta";
-			this.txtCuentaCaja.Location = new System.Drawing.Point(228, 176);
-			this.txtCuentaCaja.MaxLength = 200;
-			this.txtCuentaCaja.Name = "txtCuentaCaja";
-			this.txtCuentaCaja.ReadOnly = false;
-			this.txtCuentaCaja.Required = true;
-			this.txtCuentaCaja.Size = new System.Drawing.Size(280, 24);
-			this.txtCuentaCaja.TabIndex = 11;
-			this.txtCuentaCaja.Table = "cuentas";
-			this.txtCuentaCaja.TeclaDespuesDeEnter = "{tab}";
-			this.txtCuentaCaja.Text = "0";
-			this.txtCuentaCaja.TextDetail = "";
-			this.txtCuentaCaja.TextInt = 0;
-			this.txtCuentaCaja.ToolTipText = "";
-			this.txtCuentaCaja.Workspace = null;
+			this.EntradaCajaDiaria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.EntradaCajaDiaria.AutoTab = true;
+			this.EntradaCajaDiaria.CanCreate = true;
+			this.EntradaCajaDiaria.DetailField = "nombre";
+			this.EntradaCajaDiaria.DockPadding.All = 2;
+			this.EntradaCajaDiaria.ExtraDetailFields = null;
+			this.EntradaCajaDiaria.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.EntradaCajaDiaria.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.EntradaCajaDiaria.FreeTextCode = "";
+			this.EntradaCajaDiaria.KeyField = "id_caja";
+			this.EntradaCajaDiaria.Location = new System.Drawing.Point(228, 176);
+			this.EntradaCajaDiaria.MaxLength = 200;
+                        this.EntradaCajaDiaria.Name = "EntradaCajaDiaria";
+			this.EntradaCajaDiaria.ReadOnly = false;
+			this.EntradaCajaDiaria.Required = true;
+			this.EntradaCajaDiaria.Size = new System.Drawing.Size(280, 24);
+			this.EntradaCajaDiaria.TabIndex = 11;
+			this.EntradaCajaDiaria.Table = "cajas";
+			this.EntradaCajaDiaria.TeclaDespuesDeEnter = "{tab}";
+			this.EntradaCajaDiaria.Text = "0";
+			this.EntradaCajaDiaria.TextDetail = "";
+			this.EntradaCajaDiaria.TextInt = 0;
+			this.EntradaCajaDiaria.ToolTipText = "";
+			this.EntradaCajaDiaria.Workspace = null;
 			// 
 			// label5
 			// 
@@ -310,32 +310,32 @@ namespace Lfc.Sucursales
 			this.label5.Text = "Caja Diaria";
 			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// txtCuentaCheques
+                        // EntradaCajaCheques
 			// 
-			this.txtCuentaCheques.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.txtCuentaCheques.AutoTab = true;
-			this.txtCuentaCheques.CanCreate = true;
-			this.txtCuentaCheques.DetailField = "nombre";
-			this.txtCuentaCheques.DockPadding.All = 2;
-			this.txtCuentaCheques.ExtraDetailFields = null;
-			this.txtCuentaCheques.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txtCuentaCheques.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtCuentaCheques.FreeTextCode = "";
-			this.txtCuentaCheques.KeyField = "id_cuenta";
-			this.txtCuentaCheques.Location = new System.Drawing.Point(228, 204);
-			this.txtCuentaCheques.MaxLength = 200;
-			this.txtCuentaCheques.Name = "txtCuentaCheques";
-			this.txtCuentaCheques.ReadOnly = false;
-			this.txtCuentaCheques.Required = true;
-			this.txtCuentaCheques.Size = new System.Drawing.Size(280, 24);
-			this.txtCuentaCheques.TabIndex = 13;
-			this.txtCuentaCheques.Table = "cuentas";
-			this.txtCuentaCheques.TeclaDespuesDeEnter = "{tab}";
-			this.txtCuentaCheques.Text = "0";
-			this.txtCuentaCheques.TextDetail = "";
-			this.txtCuentaCheques.TextInt = 0;
-			this.txtCuentaCheques.ToolTipText = "";
-			this.txtCuentaCheques.Workspace = null;
+			this.EntradaCajaCheques.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.EntradaCajaCheques.AutoTab = true;
+			this.EntradaCajaCheques.CanCreate = true;
+			this.EntradaCajaCheques.DetailField = "nombre";
+			this.EntradaCajaCheques.DockPadding.All = 2;
+			this.EntradaCajaCheques.ExtraDetailFields = null;
+			this.EntradaCajaCheques.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.EntradaCajaCheques.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.EntradaCajaCheques.FreeTextCode = "";
+			this.EntradaCajaCheques.KeyField = "id_caja";
+			this.EntradaCajaCheques.Location = new System.Drawing.Point(228, 204);
+			this.EntradaCajaCheques.MaxLength = 200;
+                        this.EntradaCajaCheques.Name = "EntradaCajaCheques";
+			this.EntradaCajaCheques.ReadOnly = false;
+			this.EntradaCajaCheques.Required = true;
+			this.EntradaCajaCheques.Size = new System.Drawing.Size(280, 24);
+			this.EntradaCajaCheques.TabIndex = 13;
+			this.EntradaCajaCheques.Table = "cajas";
+			this.EntradaCajaCheques.TeclaDespuesDeEnter = "{tab}";
+			this.EntradaCajaCheques.Text = "0";
+			this.EntradaCajaCheques.TextDetail = "";
+			this.EntradaCajaCheques.TextInt = 0;
+			this.EntradaCajaCheques.ToolTipText = "";
+			this.EntradaCajaCheques.Workspace = null;
 			// 
 			// label6
 			// 
@@ -351,9 +351,9 @@ namespace Lfc.Sucursales
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
 			this.ClientSize = new System.Drawing.Size(592, 373);
-			this.Controls.Add(this.txtCuentaCheques);
+			this.Controls.Add(this.EntradaCajaCheques);
 			this.Controls.Add(this.label6);
-			this.Controls.Add(this.txtCuentaCaja);
+			this.Controls.Add(this.EntradaCajaDiaria);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.txtSituacionOrigen);
 			this.Controls.Add(this.label4);
@@ -389,8 +389,8 @@ namespace Lfc.Sucursales
 				txtTelefono.Text = System.Convert.ToString(row["telefono"]);
 				txtCiudad.TextInt = Lfx.Data.DataBase.ConvertDBNullToZero(row["id_ciudad"]);
 				txtSituacionOrigen.TextInt = Lfx.Data.DataBase.ConvertDBNullToZero(row["situacionorigen"]);
-				txtCuentaCaja.TextInt = Lfx.Data.DataBase.ConvertDBNullToZero(row["id_cuenta_caja"]);
-				txtCuentaCheques.TextInt = Lfx.Data.DataBase.ConvertDBNullToZero(row["id_cuenta_cheques"]);
+				EntradaCajaDiaria.TextInt = Lfx.Data.DataBase.ConvertDBNullToZero(row["id_caja_diaria"]);
+				EntradaCajaCheques.TextInt = Lfx.Data.DataBase.ConvertDBNullToZero(row["id_caja_cheques"]);
 
 				m_Id = lId;
 				m_Nuevo = false;
@@ -424,8 +424,8 @@ namespace Lfc.Sucursales
 				Comando.Fields.AddWithValue("telefono", txtTelefono.Text);
 				Comando.Fields.AddWithValue("id_ciudad", txtCiudad.TextInt);
 				Comando.Fields.AddWithValue("situacionorigen", Lfx.Data.DataBase.ConvertZeroToDBNull(txtSituacionOrigen.TextInt));
-				Comando.Fields.AddWithValue("id_cuenta_caja", Lfx.Data.DataBase.ConvertZeroToDBNull(txtCuentaCaja.TextInt));
-				Comando.Fields.AddWithValue("id_cuenta_cheques", Lfx.Data.DataBase.ConvertZeroToDBNull(txtCuentaCheques.TextInt));
+				Comando.Fields.AddWithValue("id_caja_diaria", Lfx.Data.DataBase.ConvertZeroToDBNull(EntradaCajaDiaria.TextInt));
+				Comando.Fields.AddWithValue("id_caja_cheques", Lfx.Data.DataBase.ConvertZeroToDBNull(EntradaCajaCheques.TextInt));
 
                                 this.DataView.Execute(Comando);
                                 this.DataView.DataBase.Commit();

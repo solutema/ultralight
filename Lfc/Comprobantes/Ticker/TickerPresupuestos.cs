@@ -487,7 +487,7 @@ namespace Lfc.Comprobantes.Ticker
                 private System.Data.DataRow Articulo(int idArticulo)
                 {
                         if (TablaArticulos == null)
-                                TablaArticulos = this.Workspace.DefaultDataBase.Select("SELECT id_articulo, id_cat_articulo, nombre, descripcion FROM articulos");
+                                TablaArticulos = this.Workspace.DefaultDataBase.Select("SELECT id_articulo, id_categoria, nombre, descripcion FROM articulos");
 
                         if (TablaArticulos != null) {
                                 System.Data.DataRow[] Articulos = TablaArticulos.Select("id_articulo=" + idArticulo.ToString());

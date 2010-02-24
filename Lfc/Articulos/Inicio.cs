@@ -84,7 +84,7 @@ namespace Lfc.Articulos
                                 FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("id_marca", m_Marca));
 
                         if (m_Categoria > 0)
-                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("id_cat_articulo", m_Categoria));
+                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("id_categoria", m_Categoria));
 
                         if (m_PVPDesde != 0)
                                 FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("pvp", Lfx.Data.SqlCommandBuilder.SqlOperands.GreaterOrEqual, m_PVPDesde));
@@ -129,6 +129,7 @@ namespace Lfc.Articulos
                                         break;
                         }
                         this.CurrentFilter = FiltroWhere;
+
                         base.RefreshList();
 
                         string SelectValorizacion = "SELECT SUM(costo*stock_actual) FROM articulos";
@@ -220,6 +221,9 @@ namespace Lfc.Articulos
 
                 private void Inicio_WorkspaceChanged(object sender, EventArgs e)
                 {
+                        // Cargo la tabla en memoria
+                        this.DataView.Tables["articulos_codigos"].PreLoad();
+
                         Lfx.Data.Row CodRow = this.DataView.Tables["articulos_codigos"].FastRows[1];
                         string Cod1 = CodRow == null ? "Código 1" : CodRow["nombre"].ToString();
                         CodRow = this.DataView.Tables["articulos_codigos"].FastRows[2];

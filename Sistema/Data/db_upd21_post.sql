@@ -88,4 +88,5 @@ UPDATE formaspago SET id_cuenta=NULL WHERE id_cuenta=0;
 UPDATE facturas SET id_formapago=3 WHERE id_formapago=99;
 DELETE FROM formaspago WHERE id_formapago=99;
 
+
 SET FOREIGN_KEY_CHECKS=1;

@@ -121,7 +121,7 @@ namespace Lbl.Articulos
 				else
 				{
 					//Devuelve la imagen de la categoría, en lugar de la del artículo
-					int CategoriaArticulo = dataView.DataBase.FieldInt("SELECT id_cat_articulo FROM articulos WHERE id_articulo=" + productId.ToString());
+					int CategoriaArticulo = dataView.DataBase.FieldInt("SELECT id_categoria FROM articulos WHERE id_articulo=" + productId.ToString());
 					return CategoryImage(dataView, CategoriaArticulo, downloadImage);
 				}
 			}
@@ -146,7 +146,7 @@ namespace Lbl.Articulos
                                 || ((downloadImage == DownloadImage.PreferCacheOnSlowLinks && ImageInCache == false) || dataView.DataBase.SlowLink == false))
 			{
 				//Download image and save to cache
-				Lfx.Data.Row ImagenDB = dataView.DataBase.Row("cat_articulos", "imagen", "id_cat_articulo", categoryId);
+				Lfx.Data.Row ImagenDB = dataView.DataBase.Row("articulos_categorias", "imagen", "id_categoria", categoryId);
 
 				if(ImagenDB != null && ImagenDB["imagen"] != null && ((byte[])(ImagenDB["imagen"])).Length > 5)
 				{

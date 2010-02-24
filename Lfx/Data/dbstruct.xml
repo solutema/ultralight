@@ -14,14 +14,14 @@
         <Column name="codigo4" datatype="VarChar" nullable="0" lenght="50" />
         <Column name="tipo" datatype="SmallInt" nullable="0" default="0" />
         <Column name="id_marca" datatype="Integer" nullable="1" />
-        <Column name="id_cuenta" datatype="Integer" nullable="1" />
+        <Column name="id_caja" datatype="Integer" nullable="1" />
         <Column name="modelo" datatype="VarChar" nullable="0" lenght="200" />
         <Column name="serie" datatype="VarChar" nullable="0" lenght="200" />
         <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" />
         <Column name="url" datatype="VarChar" nullable="1" lenght="200" />
         <Column name="descripcion" datatype="Text" nullable="1" />
         <Column name="descripcion2" datatype="Text" nullable="1" />
-        <Column name="id_cat_articulo" datatype="Integer" nullable="1" />
+        <Column name="id_categoria" datatype="Integer" nullable="1" />
         <Column name="id_proveedor" datatype="Integer" nullable="1" />
         <Column name="control_stock" datatype="SmallInt" nullable="0" default="0" />
         <Column name="stock_actual" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
@@ -45,12 +45,29 @@
         <Column name="pedido" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
         <Column name="web" datatype="SmallInt" nullable="0" default="0" />
         <Column name="garantia" datatype="SmallInt" nullable="0" default="0" />
-        <Index table="articulos" name="articulos_id_cat_articulo" columns="id_cat_articulo" unique="0" primary="0" />
+        <Index table="articulos" name="articulos_id_categoria" columns="id_categoria" unique="0" primary="0" />
         <Index table="articulos" name="articulos_id_marca" columns="id_marca" unique="0" primary="0" />
-        <Index table="articulos" name="articulos_id_cuenta" columns="id_cuenta" unique="0" primary="0" />
+        <Index table="articulos" name="articulos_id_caja" columns="id_caja" unique="0" primary="0" />
         <Index table="articulos" name="articulos_id_margen" columns="id_margen" unique="0" primary="0" />
         <Index table="articulos" name="articulos_id_proveedor" columns="id_proveedor" unique="0" primary="0" />
         <Index table="articulos" name="PRIMARY" columns="id_articulo" unique="1" primary="1" />
+    </Table>
+    <Table name="articulos_categorias">
+        <Column name="id_categoria" datatype="Serial" nullable="0" primary_key="1" />
+        <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" />
+        <Column name="nombresing" datatype="VarChar" nullable="0" lenght="200" />
+        <Column name="stock_minimo" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+        <Column name="imagen" datatype="Blob" nullable="1" />
+        <Column name="obs" datatype="Text" nullable="1" />
+        <Column name="estado" datatype="SmallInt" nullable="0" default="0" />
+        <Column name="web" datatype="SmallInt" nullable="0" default="0" />
+        <Column name="requierens" datatype="SmallInt" nullable="0" default="0" />
+        <Column name="id_rubro" datatype="Integer" nullable="1" />
+        <Column name="cache_stock_actual" datatype="Numeric" nullable="1" lenght="14" precision="4" default="0" />
+        <Column name="cache_costo" datatype="Numeric" nullable="1" lenght="14" precision="4" default="0" />
+        <Column name="garantia" datatype="SmallInt" nullable="0" default="0" />
+        <Index table="articulos_categorias" name="articulos_categorias_id_rubro" columns="id_rubro" unique="0" primary="0" />
+        <Index table="articulos_categorias" name="PRIMARY" columns="id_categoria" unique="1" primary="1" />
     </Table>
     <Table name="articulos_codigos">
         <Column name="id_codigo" datatype="Serial" nullable="0" primary_key="1" />
@@ -143,8 +160,8 @@
         <Column name="numero" datatype="Integer" nullable="0" />
         <Column name="id_sucursal" datatype="Integer" nullable="1" />
         <Column name="id_chequera" datatype="Integer" nullable="1" />
-        <Column name="id_cuenta" datatype="Integer" nullable="1" />
-        <Column name="id_factura" datatype="Integer" nullable="1" />
+        <Column name="id_caja" datatype="Integer" nullable="1" />
+        <Column name="id_comprob" datatype="Integer" nullable="1" />
         <Column name="id_recibo" datatype="Integer" nullable="1" />
         <Column name="emitido" datatype="SmallInt" nullable="0" default="0" />
         <Column name="importe" inputtype="Currency" default="0" />
@@ -155,8 +172,8 @@
         <Column name="obs" datatype="Text" nullable="1" />
         <Column name="estado" datatype="SmallInt" nullable="0" default="0" />
         <Index table="bancos_cheques" name="bancos_cheques_id_concepto" columns="id_concepto" unique="0" primary="0" />
-        <Index table="bancos_cheques" name="bancos_cheques_id_cuenta" columns="id_cuenta" unique="0" primary="0" />
-        <Index table="bancos_cheques" name="bancos_cheques_id_factura" columns="id_factura" unique="0" primary="0" />
+        <Index table="bancos_cheques" name="bancos_cheques_id_caja" columns="id_caja" unique="0" primary="0" />
+        <Index table="bancos_cheques" name="bancos_cheques_id_comprob" columns="id_comprob" unique="0" primary="0" />
         <Index table="bancos_cheques" name="bancos_cheques_id_recibo" columns="id_recibo" unique="0" primary="0" />
         <Index table="bancos_cheques" name="bancos_cheques_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
         <Index table="bancos_cheques" name="bancos_cheques_id_cliente" columns="id_cliente" unique="0" primary="0" />
@@ -164,22 +181,21 @@
         <Index table="bancos_cheques" name="bancos_cheques_emitido_estado_fechaemision" columns="emitido,estado,fechaemision" unique="0" primary="0" />
         <Index table="bancos_cheques" name="PRIMARY" columns="id_cheque" unique="1" primary="1" />
     </Table>
-    <Table name="cat_articulos">
-        <Column name="id_cat_articulo" datatype="Serial" nullable="0" primary_key="1" />
-        <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" />
-        <Column name="nombresing" datatype="VarChar" nullable="0" lenght="200" />
-        <Column name="stock_minimo" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
-        <Column name="imagen" datatype="Blob" nullable="1" />
-        <Column name="obs" datatype="Text" nullable="1" />
-        <Column name="estado" datatype="SmallInt" nullable="0" default="0" />
-        <Column name="web" datatype="SmallInt" nullable="0" default="0" />
-        <Column name="requierens" datatype="SmallInt" nullable="0" default="0" />
-        <Column name="id_rubro" datatype="Integer" nullable="1" />
-        <Column name="cache_stock_actual" datatype="Numeric" nullable="1" lenght="14" precision="4" default="0" />
-        <Column name="cache_costo" datatype="Numeric" nullable="1" lenght="14" precision="4" default="0" />
-        <Column name="garantia" datatype="SmallInt" nullable="0" default="0" />
-        <Index table="cat_articulos" name="cat_articulos_id_rubro" columns="id_rubro" unique="0" primary="0" />
-        <Index table="cat_articulos" name="PRIMARY" columns="id_cat_articulo" unique="1" primary="1" />
+    <Table name="chat">
+        <Column name="id_msg" datatype="Serial" nullable="0" primary_key="1" />
+        <Column name="origen" inputtype="Text" label="Origen" nullable="0" lenght="200" />
+        <Column name="destino" inputtype="Text" label="Destino" nullable="1" lenght="200" />
+        <Column name="texto" inputtype="Text" label="Texto" nullable="0" lenght="200" />
+        <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="0" />
+        <Index table="chat" name="PRIMARY" columns="id_msg" unique="1" primary="1" />
+    </Table>
+    <Table name="chat_contacts">
+        <Column name="id_contact" datatype="Integer" nullable="0" primary_key="1" />
+        <Column name="id" datatype="Text" nullable="0" lenght="200" />
+        <Column name="nombre" inputtype="Text" label="Nombre" nullable="0" lenght="200" />
+        <Column name="estado" inputtype="Text" label="Estado" nullable="0" lenght="200" />
+        <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="0" />
+        <Index table="chat_contacts" name="PRIMARY" columns="id_contact" unique="1" primary="1" />
     </Table>
     <Table name="chequeras">
         <Column name="id_chequera" datatype="Serial" nullable="0" primary_key="1" />
@@ -187,21 +203,21 @@
         <Column name="prefijo" datatype="Integer" nullable="0" />
         <Column name="desde" datatype="Integer" nullable="0" />
         <Column name="hasta" datatype="Integer" nullable="0" />
-        <Column name="id_cuenta" datatype="Integer" nullable="1" default="0" />
+        <Column name="id_caja" datatype="Integer" nullable="1" default="0" />
         <Column name="titular" datatype="VarChar" nullable="0" lenght="50" />
         <Column name="obs" datatype="Text" nullable="1" />
         <Column name="estado" datatype="SmallInt" nullable="0" />
         <Column name="fecha" datatype="DateTime" nullable="0" />
         <Column name="id_sucursal" datatype="Integer" nullable="1" />
         <Index table="chequeras" name="chequeras_id_banco" columns="id_banco" unique="0" primary="0" />
-        <Index table="chequeras" name="chequeras_id_cuenta" columns="id_cuenta" unique="0" primary="0" />
+        <Index table="chequeras" name="chequeras_id_caja" columns="id_caja" unique="0" primary="0" />
         <Index table="chequeras" name="PRIMARY" columns="id_chequera" unique="1" primary="1" />
     </Table>
     <Table name="ciudades">
         <Column name="id_ciudad" datatype="Serial" nullable="0" primary_key="1" />
         <Column name="nombre" inputtype="Text" label="Nombre" required="1" nullable="0" lenght="200" />
         <Column name="cp" inputtype="Text" label="Código Postal" nullable="0" lenght="50" />
-        <Column name="parent" inputtype="Relation" Label="Provincia" nullable="1" 
+        <Column name="parent" inputtype="Relation" label="Provincia" nullable="1"
                 relation_table="ciudades" relation_key="id_ciudad" relation_detail="nombre" />
         <Column name="ca" datatype="Integer" nullable="0" />
         <Column name="fecha" datatype="DateTime" nullable="1" />
@@ -217,19 +233,19 @@
         <Column name="fecha" datatype="DateTime" nullable="0" />
         <Column name="importe" inputtype="Currency" default="0" />
         <Column name="saldo" inputtype="Currency" default="0" />
-        <Column name="id_factura" datatype="Integer" nullable="1" />
+        <Column name="id_comprob" datatype="Integer" nullable="1" />
         <Column name="id_recibo" datatype="Integer" nullable="1" />
         <Column name="comprob" datatype="VarChar" nullable="0" lenght="200" />
         <Column name="obs" datatype="Text" nullable="1" />
         <DeprecaredColumn name="pagado" inputtype="Currency" default="0" />
         <Index table="ctacte" name="ctacte_id_cliente" columns="id_cliente" unique="0" primary="0" />
         <Index table="ctacte" name="ctacte_id_concepto" columns="id_concepto" unique="0" primary="0" />
-        <Index table="ctacte" name="ctacte_id_factura" columns="id_factura" unique="0" primary="0" />
+        <Index table="ctacte" name="ctacte_id_comprob" columns="id_comprob" unique="0" primary="0" />
         <Index table="ctacte" name="ctacte_id_recibo" columns="id_recibo" unique="0" primary="0" />
         <Index table="ctacte" name="PRIMARY" columns="id_movim" unique="1" primary="1" />
     </Table>
-    <Table name="cuentas">
-        <Column name="id_cuenta" datatype="Serial" nullable="0" primary_key="1" />
+    <Table name="cajas">
+        <Column name="id_caja" datatype="Serial" nullable="0" primary_key="1" />
         <Column name="id_banco" datatype="Integer" nullable="1" />
         <Column name="numero" datatype="VarChar" nullable="0" lenght="200" />
         <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" />
@@ -239,26 +255,18 @@
         <Column name="cbu" datatype="VarChar" nullable="0" lenght="50" />
         <Column name="estado" datatype="SmallInt" nullable="0" default="1" />
         <Column name="fecha" datatype="DateTime" nullable="1" />
-        <Index table="cuentas" name="cuentas_id_banco" columns="id_banco" unique="0" primary="0" />
-        <Index table="cuentas" name="cuentas_id_moneda" columns="id_moneda" unique="0" primary="0" />
-        <Index table="cuentas" name="cuentas_estado" columns="estado" unique="0" primary="0" />
-        <Index table="cuentas" name="PRIMARY" columns="id_cuenta" unique="1" primary="1" />
+        <Index table="cajas" name="cajas_id_banco" columns="id_banco" unique="0" primary="0" />
+        <Index table="cajas" name="cajas_id_moneda" columns="id_moneda" unique="0" primary="0" />
+        <Index table="cajas" name="cajas_estado" columns="estado" unique="0" primary="0" />
+        <Index table="cajas" name="PRIMARY" columns="id_caja" unique="1" primary="1" />
     </Table>
-    <Table name="cuentas_conceptos">
-        <Column name="id_concepto" datatype="Serial" nullable="0" primary_key="1" />
-        <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" />
-        <Column name="es" datatype="SmallInt" nullable="0" default="0" />
-        <Column name="grupo" datatype="Integer" nullable="1" />
-        <Column name="fijo" datatype="Integer" nullable="0" />
-        <Index table="cuentas_conceptos" name="PRIMARY" columns="id_concepto" unique="1" primary="1" />
-    </Table>
-    <Table name="cuentas_movim">
+    <Table name="cajas_movim">
         <Column name="id_movim" datatype="Serial" nullable="0" primary_key="1" />
         <Column name="id_banco" datatype="Integer" nullable="1" />
-        <Column name="id_cuenta" datatype="Integer" nullable="0" default="0" />
+        <Column name="id_caja" datatype="Integer" nullable="0" default="0" />
         <Column name="id_persona" datatype="Integer" nullable="0" />
         <Column name="id_cliente" datatype="Integer" nullable="1" />
-        <Column name="id_factura" datatype="Integer" nullable="1" />
+        <Column name="id_comprob" datatype="Integer" nullable="1" />
         <Column name="id_recibo" datatype="Integer" nullable="1" />
         <Column name="fecha" datatype="DateTime" nullable="0" />
         <Column name="importe" inputtype="Currency" default="0" />
@@ -269,15 +277,23 @@
         <Column name="comprob" datatype="VarChar" nullable="1" lenght="200" />
         <Column name="obs" datatype="Text" nullable="1" />
         <Column name="id_sucursal" datatype="Integer" nullable="1" />
-        <Index table="cuentas_movim" name="cuentas_movim_id_banco" columns="id_banco" unique="0" primary="0" />
-        <Index table="cuentas_movim" name="cuentas_movim_id_cliente" columns="id_cliente" unique="0" primary="0" />
-        <Index table="cuentas_movim" name="cuentas_movim_id_concepto" columns="id_concepto" unique="0" primary="0" />
-        <Index table="cuentas_movim" name="cuentas_movim_id_cuenta" columns="id_cuenta" unique="0" primary="0" />
-        <Index table="cuentas_movim" name="cuentas_movim_id_factura" columns="id_factura" unique="0" primary="0" />
-        <Index table="cuentas_movim" name="cuentas_movim_id_recibo" columns="id_recibo" unique="0" primary="0" />
-        <Index table="cuentas_movim" name="cuentas_movim_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
-        <Index table="cuentas_movim" name="cuentas_movim_id_persona" columns="id_persona" unique="0" primary="0" />
-        <Index table="cuentas_movim" name="PRIMARY" columns="id_movim" unique="1" primary="1" />
+        <Index table="cajas_movim" name="cajas_movim_id_banco" columns="id_banco" unique="0" primary="0" />
+        <Index table="cajas_movim" name="cajas_movim_id_cliente" columns="id_cliente" unique="0" primary="0" />
+        <Index table="cajas_movim" name="cajas_movim_id_concepto" columns="id_concepto" unique="0" primary="0" />
+        <Index table="cajas_movim" name="cajas_movim_id_caja" columns="id_caja" unique="0" primary="0" />
+        <Index table="cajas_movim" name="cajas_movim_id_comprob" columns="id_comprob" unique="0" primary="0" />
+        <Index table="cajas_movim" name="cajas_movim_id_recibo" columns="id_recibo" unique="0" primary="0" />
+        <Index table="cajas_movim" name="cajas_movim_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
+        <Index table="cajas_movim" name="cajas_movim_id_persona" columns="id_persona" unique="0" primary="0" />
+        <Index table="cajas_movim" name="PRIMARY" columns="id_movim" unique="1" primary="1" />
+    </Table>
+    <Table name="conceptos">
+        <Column name="id_concepto" datatype="Serial" nullable="0" primary_key="1" />
+        <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" />
+        <Column name="es" datatype="SmallInt" nullable="0" default="0" />
+        <Column name="grupo" datatype="Integer" nullable="1" />
+        <Column name="fijo" datatype="Integer" nullable="0" />
+        <Index table="conceptos" name="PRIMARY" columns="id_concepto" unique="1" primary="1" />
     </Table>
     <Table name="documentos_tipos">
         <Column name="id_tipo" datatype="Serial" nullable="0" primary_key="1" />
@@ -296,9 +312,9 @@
         <Index table="documentos_tipos" name="documentos_tipos_situaciondestino" columns="situaciondestino" unique="0" primary="0" />
         <Index table="documentos_tipos" name="documentos_tipos_letra" columns="letra" unique="1" primary="0" />
     </Table>
-    <Table name="facturas">
-        <Column name="id_factura" datatype="Serial" nullable="0" primary_key="1" />
-        <Column name="id_factura_orig" datatype="Integer" nullable="1" />
+    <Table name="comprob">
+        <Column name="id_comprob" datatype="Serial" nullable="0" primary_key="1" />
+        <Column name="id_comprob_orig" datatype="Integer" nullable="1" />
         <Column name="id_formapago" datatype="Integer" nullable="1" />
         <Column name="tipo_fac" datatype="VarChar" nullable="0" lenght="3" />
         <Column name="pv" datatype="SmallInt" nullable="0" default="0" />
@@ -327,21 +343,21 @@
         <Column name="otrosgastos" inputtype="Currency" />
         <Column name="compra" datatype="Integer" nullable="0" />
         <Column name="series" datatype="Text" nullable="1" />
-        <Index table="facturas" name="facturas_id_cliente" columns="id_cliente" unique="0" primary="0" />
-        <Index table="facturas" name="facturas_id_factura_orig" columns="id_factura_orig" unique="0" primary="0" />
-        <Index table="facturas" name="facturas_id_formapago" columns="id_formapago" unique="0" primary="0" />
-        <Index table="facturas" name="facturas_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
-        <Index table="facturas" name="facturas_id_vendedor" columns="id_vendedor" unique="0" primary="0" />
-        <Index table="facturas" name="facturas_situaciondestino" columns="situaciondestino" unique="0" primary="0" />
-        <Index table="facturas" name="facturas_situacionorigen" columns="situacionorigen" unique="0" primary="0" />
-        <Index table="facturas" name="facturas_tipo_fac_pv_numero" columns="tipo_fac,pv,numero" unique="0" primary="0" />
-        <Index table="facturas" name="facturas_tipo_fac_fecha" columns="tipo_fac,fecha" unique="0" primary="0" />
-        <Index table="facturas" name="PRIMARY" columns="id_factura" unique="1" primary="1" />
+        <Index table="comprob" name="comprob_id_cliente" columns="id_cliente" unique="0" primary="0" />
+        <Index table="comprob" name="comprob_id_comprob_orig" columns="id_comprob_orig" unique="0" primary="0" />
+        <Index table="comprob" name="comprob_id_formapago" columns="id_formapago" unique="0" primary="0" />
+        <Index table="comprob" name="comprob_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
+        <Index table="comprob" name="comprob_id_vendedor" columns="id_vendedor" unique="0" primary="0" />
+        <Index table="comprob" name="comprob_situaciondestino" columns="situaciondestino" unique="0" primary="0" />
+        <Index table="comprob" name="comprob_situacionorigen" columns="situacionorigen" unique="0" primary="0" />
+        <Index table="comprob" name="comprob_tipo_fac_pv_numero" columns="tipo_fac,pv,numero" unique="0" primary="0" />
+        <Index table="comprob" name="comprob_tipo_fac_fecha" columns="tipo_fac,fecha" unique="0" primary="0" />
+        <Index table="comprob" name="PRIMARY" columns="id_comprob" unique="1" primary="1" />
     </Table>
-    <Table name="facturas_detalle">
-        <Column name="id_factura_detalle" datatype="Serial" nullable="0" primary_key="1" />
+    <Table name="comprob_detalle">
+        <Column name="id_comprob_detalle" datatype="Serial" nullable="0" primary_key="1" />
         <Column name="numero_factura" datatype="Integer" nullable="0" default="0" />
-        <Column name="id_factura" datatype="Integer" nullable="0" default="0" />
+        <Column name="id_comprob" datatype="Integer" nullable="0" default="0" />
         <Column name="orden" datatype="SmallInt" nullable="0" default="0" />
         <Column name="id_articulo" datatype="Integer" nullable="1" />
         <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" />
@@ -353,16 +369,22 @@
         <Column name="importe" inputtype="Currency" default="0" />
         <Column name="recargo" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
         <Column name="series" datatype="Text" nullable="1" />
-        <Index table="facturas_detalle" name="facturas_detalle_id_articulo" columns="id_articulo" unique="0" primary="0" />
-        <Index table="facturas_detalle" name="facturas_detalle_id_factura" columns="id_factura" unique="0" primary="0" />
-        <Index table="facturas_detalle" name="facturas_detalle_id_factura_id_articulo" columns="id_factura,id_articulo" unique="0" primary="0" />
-        <Index table="facturas_detalle" name="PRIMARY" columns="id_factura_detalle" unique="1" primary="1" />
+        <Index table="comprob_detalle" name="comprob_detalle_id_articulo" columns="id_articulo" unique="0" primary="0" />
+        <Index table="comprob_detalle" name="comprob_detalle_id_comprob" columns="id_comprob" unique="0" primary="0" />
+        <Index table="comprob_detalle" name="comprob_detalle_id_comprob_id_articulo" columns="id_comprob,id_articulo" unique="0" primary="0" />
+        <Index table="comprob_detalle" name="PRIMARY" columns="id_comprob_detalle" unique="1" primary="1" />
+    </Table>
+    <Table name="comprob_imagenes">
+        <Column name="id_comprob" datatype="Integer" nullable="0" primary_key="1" default="0" />
+        <Column name="imagen" datatype="Blob" nullable="1" />
+        <Index table="comprob_imagenes" name="PRIMARY" columns="id_comprob" unique="1" primary="1" />
+        <Index table="comprob_imagenes" name="comprob_imagenes_id_comprob" columns="id_comprob" unique="0" primary="0" />
     </Table>
     <Table name="formaspago">
         <Column name="id_formapago" datatype="Serial" nullable="0" primary_key="1" />
         <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" />
         <Column name="tipo" datatype="SmallInt" nullable="0" default="0" />
-        <Column name="id_cuenta" datatype="Integer" nullable="1" default="0" />
+        <Column name="id_caja" datatype="Integer" nullable="1" default="0" />
         <Column name="id_concepto" datatype="Integer" nullable="1" default="0" />
         <Column name="descuento" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
         <Column name="retencion" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
@@ -373,7 +395,7 @@
         <Column name="pagos" datatype="SmallInt" nullable="0" default="0" />
         <Column name="estado" datatype="SmallInt" nullable="0" default="0" />
         <Index table="formaspago" name="PRIMARY" columns="id_formapago" unique="1" primary="1" />
-        <Index table="formaspago" name="formaspago_id_cuenta" columns="id_cuenta" unique="0" primary="0" />
+        <Index table="formaspago" name="formaspago_id_caja" columns="id_caja" unique="0" primary="0" />
         <Index table="formaspago" name="formaspago_id_concepto" columns="id_concepto" unique="0" primary="0" />
     </Table>
     <Table name="marcas">
@@ -521,13 +543,19 @@
         <Index table="recibos" name="recibos_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
         <Index table="recibos" name="recibos_id_concepto" columns="id_concepto" unique="0" primary="0" />
     </Table>
-    <Table name="recibos_facturas">
+    <Table name="recibos_comprob">
         <Column name="id_recibo" datatype="Integer" nullable="0" primary_key="1" default="0" />
-        <Column name="id_factura" datatype="Integer" nullable="0" primary_key="1" default="0" />
+        <Column name="id_comprob" datatype="Integer" nullable="0" primary_key="1" default="0" />
         <Column name="importe" inputtype="Currency" default="0" />
-        <Index table="recibos_facturas" name="PRIMARY" columns="id_factura,id_recibo" unique="1" primary="1" />
-        <Index table="recibos_facturas" name="recibos_facturas_id_recibo" columns="id_recibo" unique="0" primary="0" />
-        <Index table="recibos_facturas" name="recibos_facturas_id_factura" columns="id_factura" unique="0" primary="0" />
+        <Index table="recibos_comprob" name="PRIMARY" columns="id_comprob,id_recibo" unique="1" primary="1" />
+        <Index table="recibos_comprob" name="recibos_comprob_id_recibo" columns="id_recibo" unique="0" primary="0" />
+        <Index table="recibos_comprob" name="recibos_comprob_id_comprob" columns="id_comprob" unique="0" primary="0" />
+    </Table>
+    <Table name="recibos_imagenes">
+        <Column name="id_recibo" datatype="Integer" nullable="0" primary_key="1" default="0" />
+        <Column name="imagen" datatype="Blob" nullable="1" />
+        <Index table="recibos_imagenes" name="PRIMARY" columns="id_recibo" unique="1" primary="1" />
+        <Index table="recibos_imagenes" name="recibos_imagenes_id_recibo" columns="id_recibo" unique="0" primary="0" />
     </Table>
     <Table name="situaciones">
         <Column name="id_situacion" datatype="Serial" nullable="0" primary_key="1" />
@@ -544,14 +572,14 @@
         <Column name="telefono" datatype="VarChar" nullable="0" lenght="200" />
         <Column name="id_ciudad" datatype="Integer" nullable="0" default="0" />
         <Column name="situacionorigen" datatype="Integer" nullable="1" />
-        <Column name="id_cuenta_caja" datatype="Integer" nullable="1" />
-        <Column name="id_cuenta_cheques" datatype="Integer" nullable="1" />
+        <Column name="id_caja_diaria" datatype="Integer" nullable="1" />
+        <Column name="id_caja_cheques" datatype="Integer" nullable="1" />
         <Column name="fecha" datatype="DateTime" nullable="1" />
         <Index table="sucursales" name="PRIMARY" columns="id_sucursal" unique="1" primary="1" />
         <Index table="sucursales" name="sucursales_id_ciudad" columns="id_ciudad" unique="0" primary="0" />
         <Index table="sucursales" name="sucursales_situacionorigen" columns="situacionorigen" unique="0" primary="0" />
-        <Index table="sucursales" name="sucursales_id_cuenta_caja" columns="id_cuenta_caja" unique="0" primary="0" />
-        <Index table="sucursales" name="sucursales_id_cuenta_cheques" columns="id_cuenta_cheques" unique="0" primary="0" />
+        <Index table="sucursales" name="sucursales_id_caja_diaria" columns="id_caja_diaria" unique="0" primary="0" />
+        <Index table="sucursales" name="sucursales_id_caja_cheques" columns="id_caja_cheques" unique="0" primary="0" />
     </Table>
     <Table name="sys_accessbase">
         <Column name="id_acceso" datatype="VarChar" nullable="0" primary_key="1" lenght="200" />
@@ -666,11 +694,11 @@
         <Column name="autopres" datatype="SmallInt" nullable="0" default="0" />
         <Column name="autoacred" datatype="SmallInt" nullable="0" default="0" />
         <Column name="anticipa" datatype="SmallInt" nullable="0" default="0" />
-        <Column name="id_cuenta" datatype="Integer" nullable="1" />
+        <Column name="id_caja" datatype="Integer" nullable="1" />
         <Column name="dias_normal" datatype="Integer" nullable="0" default="0" />
         <Column name="dias_anticipada" datatype="Integer" nullable="0" default="0" />
         <Index table="tarjetas" name="PRIMARY" columns="id_tarjeta" unique="1" primary="1" />
-        <Index table="tarjetas" name="tarjetas_id_cuenta" columns="id_cuenta" unique="0" primary="0" />
+        <Index table="tarjetas" name="tarjetas_id_caja" columns="id_caja" unique="0" primary="0" />
     </Table>
     <Table name="tarjetas_cupones">
         <Column name="id_cupon" datatype="Serial" nullable="0" primary_key="1" />
@@ -682,7 +710,7 @@
         <Column name="id_cliente" datatype="Integer" nullable="1" />
         <Column name="id_vendedor" datatype="Integer" nullable="1" />
         <Column name="id_plan" datatype="Integer" nullable="1" />
-        <Column name="id_factura" datatype="Integer" nullable="1" />
+        <Column name="id_comprob" datatype="Integer" nullable="1" />
         <Column name="id_recibo" datatype="Integer" nullable="1" />
         <Column name="fecha" datatype="DateTime" nullable="0" />
         <Column name="fecha_pres" datatype="DateTime" nullable="1" />
@@ -694,7 +722,7 @@
         <Index table="tarjetas_cupones" name="PRIMARY" columns="id_cupon" unique="1" primary="1" />
         <Index table="tarjetas_cupones" name="tarjetas_cupones_id_cliente" columns="id_cliente" unique="0" primary="0" />
         <Index table="tarjetas_cupones" name="tarjetas_cupones_id_concepto" columns="id_concepto" unique="0" primary="0" />
-        <Index table="tarjetas_cupones" name="tarjetas_cupones_id_factura" columns="id_factura" unique="0" primary="0" />
+        <Index table="tarjetas_cupones" name="tarjetas_cupones_id_comprob" columns="id_comprob" unique="0" primary="0" />
         <Index table="tarjetas_cupones" name="tarjetas_cupones_id_plan" columns="id_plan" unique="0" primary="0" />
         <Index table="tarjetas_cupones" name="tarjetas_cupones_id_recibo" columns="id_recibo" unique="0" primary="0" />
         <Index table="tarjetas_cupones" name="tarjetas_cupones_id_tarjeta" columns="id_tarjeta" unique="0" primary="0" />
@@ -726,7 +754,7 @@
     <Table name="tickets">
         <Column name="id_ticket" datatype="Serial" nullable="0" primary_key="1" />
         <Column name="id_persona" datatype="Integer" nullable="1" />
-        <Column name="id_factura" datatype="Integer" nullable="1" />
+        <Column name="id_comprob" datatype="Integer" nullable="1" />
         <Column name="fecha_ingreso" datatype="DateTime" nullable="0" />
         <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" />
         <Column name="descripcion" datatype="Text" nullable="1" />
@@ -747,7 +775,7 @@
         <Column name="estado" datatype="SmallInt" nullable="0" default="0" />
         <Column name="id_sucursal" datatype="Integer" nullable="0" default="0" />
         <Index table="tickets" name="PRIMARY" columns="id_ticket" unique="1" primary="1" />
-        <Index table="tickets" name="tickets_id_factura" columns="id_factura" unique="0" primary="0" />
+        <Index table="tickets" name="tickets_id_comprob" columns="id_comprob" unique="0" primary="0" />
         <Index table="tickets" name="tickets_id_persona" columns="id_persona" unique="0" primary="0" />
         <Index table="tickets" name="tickets_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
         <Index table="tickets" name="tickets_id_tecnico_entrega" columns="id_tecnico_entrega" unique="0" primary="0" />
@@ -843,7 +871,7 @@
     <Table name="ventas_resumenes">
         <Column name="id_resumen" datatype="Serial" nullable="0" primary_key="1" />
         <Column name="fecha" datatype="DateTime" nullable="0" />
-        <Column name="id_factura" datatype="Integer" nullable="1" />
+        <Column name="id_comprob" datatype="Integer" nullable="1" />
         <Column name="tipo" datatype="Integer" nullable="0" />
         <Column name="id_persona" datatype="Integer" nullable="0" />
         <Column name="importe" inputtype="Currency" default="0" />
@@ -854,7 +882,7 @@
         <Index table="ventas_resumenes" name="ventas_resumenes_id_persona" columns="id_persona" unique="0" primary="0" />
         <Index table="ventas_resumenes" name="ventas_resumenes_fecha" columns="fecha" unique="0" primary="0" />
         <Index table="ventas_resumenes" name="ventas_resumenes_vencimiento" columns="vencimiento" unique="0" primary="0" />
-        <Index table="ventas_resumenes" name="ventas_resumenes_id_factura" columns="id_factura" unique="0" primary="0" />
+        <Index table="ventas_resumenes" name="ventas_resumenes_id_comprob" columns="id_comprob" unique="0" primary="0" />
     </Table>
     <Table name="ventas_resumenes_detalles">
         <Column name="id_resumen" datatype="Integer" nullable="0" />
@@ -872,10 +900,11 @@
         <Index table="ventas_resumenes_detalles" name="ventas_resumenes_detalles_id_persona" columns="id_persona" unique="0" primary="0" />
         <Index table="ventas_resumenes_detalles" name="ventas_resumenes_detalles_prefijo_operacion" columns="prefijo,operacion" unique="0" primary="0" />
     </Table>
+
     <Constraint name="articulos_id_proveedor" table="articulos" column="id_proveedor" reference_table="personas" reference_column="id_persona" />
-    <Constraint name="articulos_id_cat_articulo" table="articulos" column="id_cat_articulo" reference_table="cat_articulos" reference_column="id_cat_articulo" />
+    <Constraint name="articulos_id_categoria" table="articulos" column="id_categoria" reference_table="articulos_categorias" reference_column="id_categoria" />
     <Constraint name="articulos_id_marca" table="articulos" column="id_marca" reference_table="marcas" reference_column="id_marca" />
-    <Constraint name="articulos_id_cuenta" table="articulos" column="id_cuenta" reference_table="cuentas" reference_column="id_cuenta" />
+    <Constraint name="articulos_id_caja" table="articulos" column="id_caja" reference_table="cajas" reference_column="id_caja" />
     <Constraint name="articulos_id_margen" table="articulos" column="id_margen" reference_table="margenes" reference_column="id_margen" />
     <Constraint name="articulos_codigos_id_proveedor" table="articulos_codigos" column="id_proveedor" reference_table="personas" reference_column="id_persona" />
     <Constraint name="articulos_imagenes_id_articulo" table="articulos_imagenes" column="id_articulo" reference_table="articulos" reference_column="id_articulo" />
@@ -888,43 +917,43 @@
     <Constraint name="articulos_rubros_id_alicuota" table="articulos_rubros" column="id_alicuota" reference_table="alicuotas" reference_column="id_alicuota" />
     <Constraint name="articulos_stock_id_articulo" table="articulos_stock" column="id_articulo" reference_table="articulos" reference_column="id_articulo" />
     <Constraint name="articulos_stock_id_situacion" table="articulos_stock" column="id_situacion" reference_table="articulos_situaciones" reference_column="id_situacion" />
-    <Constraint name="bancos_cheques_id_concepto" table="bancos_cheques" column="id_concepto" reference_table="cuentas_conceptos" reference_column="id_concepto" />
-    <Constraint name="bancos_cheques_id_cuenta" table="bancos_cheques" column="id_cuenta" reference_table="cuentas" reference_column="id_cuenta" />
-    <Constraint name="bancos_cheques_id_factura" table="bancos_cheques" column="id_factura" reference_table="facturas" reference_column="id_factura" />
+    <Constraint name="bancos_cheques_id_concepto" table="bancos_cheques" column="id_concepto" reference_table="conceptos" reference_column="id_concepto" />
+    <Constraint name="bancos_cheques_id_caja" table="bancos_cheques" column="id_caja" reference_table="cajas" reference_column="id_caja" />
+    <Constraint name="bancos_cheques_id_comprob" table="bancos_cheques" column="id_comprob" reference_table="comprob" reference_column="id_comprob" />
     <Constraint name="bancos_cheques_id_recibo" table="bancos_cheques" column="id_recibo" reference_table="recibos" reference_column="id_recibo" />
     <Constraint name="bancos_cheques_id_sucursal" table="bancos_cheques" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" />
     <Constraint name="bancos_cheques_id_cliente" table="bancos_cheques" column="id_cliente" reference_table="personas" reference_column="id_persona" />
     <Constraint name="bancos_cheques_id_chequera" table="bancos_cheques" column="id_chequera" reference_table="chequeras" reference_column="id_chequera" />
-    <Constraint name="cat_articulos_id_rubro" table="cat_articulos" column="id_rubro" reference_table="articulos_rubros" reference_column="id_rubro" />
+    <Constraint name="articulos_categorias_id_rubro" table="articulos_categorias" column="id_rubro" reference_table="articulos_rubros" reference_column="id_rubro" />
     <Constraint name="chequeras_id_banco" table="chequeras" column="id_banco" reference_table="bancos" reference_column="id_banco" />
-    <Constraint name="chequeras_id_cuenta" table="chequeras" column="id_cuenta" reference_table="cuentas" reference_column="id_cuenta" />
+    <Constraint name="chequeras_id_caja" table="chequeras" column="id_caja" reference_table="cajas" reference_column="id_caja" />
     <Constraint name="ctacte_id_cliente" table="ctacte" column="id_cliente" reference_table="personas" reference_column="id_persona" />
-    <Constraint name="ctacte_id_concepto" table="ctacte" column="id_concepto" reference_table="cuentas_conceptos" reference_column="id_concepto" />
-    <Constraint name="ctacte_id_factura" table="ctacte" column="id_factura" reference_table="facturas" reference_column="id_factura" />
+    <Constraint name="ctacte_id_concepto" table="ctacte" column="id_concepto" reference_table="conceptos" reference_column="id_concepto" />
+    <Constraint name="ctacte_id_comprob" table="ctacte" column="id_comprob" reference_table="comprob" reference_column="id_comprob" />
     <Constraint name="ctacte_id_recibo" table="ctacte" column="id_recibo" reference_table="recibos" reference_column="id_recibo" />
-    <Constraint name="cuentas_id_moneda" table="cuentas" column="id_moneda" reference_table="monedas" reference_column="id_moneda" />
-    <Constraint name="cuentas_id_banco" table="cuentas" column="id_banco" reference_table="bancos" reference_column="id_banco" />
-    <Constraint name="cuentas_movim_id_banco" table="cuentas_movim" column="id_banco" reference_table="bancos" reference_column="id_banco" />
-    <Constraint name="cuentas_movim_id_cliente" table="cuentas_movim" column="id_cliente" reference_table="personas" reference_column="id_persona" />
-    <Constraint name="cuentas_movim_id_concepto" table="cuentas_movim" column="id_concepto" reference_table="cuentas_conceptos" reference_column="id_concepto" />
-    <Constraint name="cuentas_movim_id_cuenta" table="cuentas_movim" column="id_cuenta" reference_table="cuentas" reference_column="id_cuenta" />
-    <Constraint name="cuentas_movim_id_factura" table="cuentas_movim" column="id_factura" reference_table="facturas" reference_column="id_factura" />
-    <Constraint name="cuentas_movim_id_recibo" table="cuentas_movim" column="id_recibo" reference_table="recibos" reference_column="id_recibo" />
-    <Constraint name="cuentas_movim_id_sucursal" table="cuentas_movim" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" />
-    <Constraint name="cuentas_movim_id_persona" table="cuentas_movim" column="id_persona" reference_table="personas" reference_column="id_persona" />
+    <Constraint name="cajas_id_moneda" table="cajas" column="id_moneda" reference_table="monedas" reference_column="id_moneda" />
+    <Constraint name="cajas_id_banco" table="cajas" column="id_banco" reference_table="bancos" reference_column="id_banco" />
+    <Constraint name="cajas_movim_id_banco" table="cajas_movim" column="id_banco" reference_table="bancos" reference_column="id_banco" />
+    <Constraint name="cajas_movim_id_cliente" table="cajas_movim" column="id_cliente" reference_table="personas" reference_column="id_persona" />
+    <Constraint name="cajas_movim_id_concepto" table="cajas_movim" column="id_concepto" reference_table="conceptos" reference_column="id_concepto" />
+    <Constraint name="cajas_movim_id_caja" table="cajas_movim" column="id_caja" reference_table="cajas" reference_column="id_caja" />
+    <Constraint name="cajas_movim_id_comprob" table="cajas_movim" column="id_comprob" reference_table="comprob" reference_column="id_comprob" />
+    <Constraint name="cajas_movim_id_recibo" table="cajas_movim" column="id_recibo" reference_table="recibos" reference_column="id_recibo" />
+    <Constraint name="cajas_movim_id_sucursal" table="cajas_movim" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" />
+    <Constraint name="cajas_movim_id_persona" table="cajas_movim" column="id_persona" reference_table="personas" reference_column="id_persona" />
     <Constraint name="documentos_tipos_situacionorigen" table="documentos_tipos" column="situacionorigen" reference_table="articulos_situaciones" reference_column="id_situacion" />
     <Constraint name="documentos_tipos_situaciondestino" table="documentos_tipos" column="situaciondestino" reference_table="articulos_situaciones" reference_column="id_situacion" />
-    <Constraint name="facturas_id_sucursal" table="facturas" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" />
-    <Constraint name="facturas_id_vendedor" table="facturas" column="id_vendedor" reference_table="personas" reference_column="id_persona" />
-    <Constraint name="facturas_situaciondestino" table="facturas" column="situaciondestino" reference_table="articulos_situaciones" reference_column="id_situacion" />
-    <Constraint name="facturas_situacionorigen" table="facturas" column="situacionorigen" reference_table="articulos_situaciones" reference_column="id_situacion" />
-    <Constraint name="facturas_id_cliente" table="facturas" column="id_cliente" reference_table="personas" reference_column="id_persona" />
-    <Constraint name="facturas_id_factura_orig" table="facturas" column="id_factura_orig" reference_table="facturas" reference_column="id_factura" />
-    <Constraint name="facturas_id_formapago" table="facturas" column="id_formapago" reference_table="formaspago" reference_column="id_formapago" />
-    <Constraint name="facturas_detalle_id_articulo" table="facturas_detalle" column="id_articulo" reference_table="articulos" reference_column="id_articulo" />
-    <Constraint name="facturas_detalle_id_factura" table="facturas_detalle" column="id_factura" reference_table="facturas" reference_column="id_factura" />
-    <Constraint name="formaspago_id_cuenta" table="formaspago" column="id_cuenta" reference_table="cuentas" reference_column="id_cuenta" />
-    <Constraint name="formaspago_id_concepto" table="formaspago" column="id_concepto" reference_table="cuentas_conceptos" reference_column="id_concepto" />
+    <Constraint name="comprob_id_sucursal" table="comprob" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" />
+    <Constraint name="comprob_id_vendedor" table="comprob" column="id_vendedor" reference_table="personas" reference_column="id_persona" />
+    <Constraint name="comprob_situaciondestino" table="comprob" column="situaciondestino" reference_table="articulos_situaciones" reference_column="id_situacion" />
+    <Constraint name="comprob_situacionorigen" table="comprob" column="situacionorigen" reference_table="articulos_situaciones" reference_column="id_situacion" />
+    <Constraint name="comprob_id_cliente" table="comprob" column="id_cliente" reference_table="personas" reference_column="id_persona" />
+    <Constraint name="comprob_id_comprob_orig" table="comprob" column="id_comprob_orig" reference_table="comprob" reference_column="id_comprob" />
+    <Constraint name="comprob_id_formapago" table="comprob" column="id_formapago" reference_table="formaspago" reference_column="id_formapago" />
+    <Constraint name="comprob_detalle_id_articulo" table="comprob_detalle" column="id_articulo" reference_table="articulos" reference_column="id_articulo" />
+    <Constraint name="comprob_detalle_id_comprob" table="comprob_detalle" column="id_comprob" reference_table="comprob" reference_column="id_comprob" />
+    <Constraint name="formaspago_id_caja" table="formaspago" column="id_caja" reference_table="cajas" reference_column="id_caja" />
+    <Constraint name="formaspago_id_concepto" table="formaspago" column="id_concepto" reference_table="conceptos" reference_column="id_concepto" />
     <Constraint name="marcas_id_proveedor" table="marcas" column="id_proveedor" reference_table="personas" reference_column="id_persona" />
     <Constraint name="personas_id_ciudad" table="personas" column="id_ciudad" reference_table="ciudades" reference_column="id_ciudad" />
     <Constraint name="personas_id_grupo" table="personas" column="id_grupo" reference_table="personas_grupos" reference_column="id_grupo" />
@@ -938,27 +967,27 @@
     <Constraint name="recibos_id_cliente" table="recibos" column="id_cliente" reference_table="personas" reference_column="id_persona" />
     <Constraint name="recibos_id_vendedor" table="recibos" column="id_vendedor" reference_table="personas" reference_column="id_persona" />
     <Constraint name="recibos_id_sucursal" table="recibos" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" />
-    <Constraint name="recibos_id_concepto" table="recibos" column="id_concepto" reference_table="cuentas_conceptos" reference_column="id_concepto" />
-    <Constraint name="recibos_facturas_id_factura" table="recibos_facturas" column="id_factura" reference_table="facturas" reference_column="id_factura" />
-    <Constraint name="recibos_facturas_id_recibo" table="recibos_facturas" column="id_recibo" reference_table="recibos" reference_column="id_recibo" />
+    <Constraint name="recibos_id_concepto" table="recibos" column="id_concepto" reference_table="conceptos" reference_column="id_concepto" />
+    <Constraint name="recibos_comprob_id_comprob" table="recibos_comprob" column="id_comprob" reference_table="comprob" reference_column="id_comprob" />
+    <Constraint name="recibos_comprob_id_recibo" table="recibos_comprob" column="id_recibo" reference_table="recibos" reference_column="id_recibo" />
     <Constraint name="sucursales_id_ciudad" table="sucursales" column="id_ciudad" reference_table="ciudades" reference_column="id_ciudad" />
     <Constraint name="sucursales_situacionorigen" table="sucursales" column="situacionorigen" reference_table="situaciones" reference_column="id_situacion" />
-    <Constraint name="sucursales_id_cuenta_caja" table="sucursales" column="id_cuenta_caja" reference_table="cuentas" reference_column="id_cuenta" />
-    <Constraint name="sucursales_id_cuenta_cheques" table="sucursales" column="id_cuenta_cheques" reference_table="cuentas" reference_column="id_cuenta" />
+    <Constraint name="sucursales_id_caja_diaria" table="sucursales" column="id_caja_diaria" reference_table="cajas" reference_column="id_caja" />
+    <Constraint name="sucursales_id_caja_cheques" table="sucursales" column="id_caja_cheques" reference_table="cajas" reference_column="id_caja" />
     <Constraint name="sys_accesslist_id_persona" table="sys_accesslist" column="id_persona" reference_table="personas" reference_column="id_persona" />
     <Constraint name="sys_comments_id_persona" table="sys_comments" column="id_persona" reference_table="personas" reference_column="id_persona" />
     <Constraint name="sys_labels_values_id_label" table="sys_labels_values" column="id_label" reference_table="sys_labels" reference_column="id_label" />
     <DisabledConstraint name="sys_config_id_sucursal" table="sys_config" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" />
-    <Constraint name="tarjetas_id_cuenta" table="tarjetas" column="id_cuenta" reference_table="cuentas" reference_column="id_cuenta" />
+    <Constraint name="tarjetas_id_caja" table="tarjetas" column="id_caja" reference_table="cajas" reference_column="id_caja" />
     <Constraint name="tarjetas_cupones_id_recibo" table="tarjetas_cupones" column="id_recibo" reference_table="recibos" reference_column="id_recibo" />
     <Constraint name="tarjetas_cupones_id_tarjeta" table="tarjetas_cupones" column="id_tarjeta" reference_table="tarjetas" reference_column="id_tarjeta" />
     <Constraint name="tarjetas_cupones_id_vendedor" table="tarjetas_cupones" column="id_vendedor" reference_table="personas" reference_column="id_persona" />
     <Constraint name="tarjetas_cupones_id_cliente" table="tarjetas_cupones" column="id_cliente" reference_table="personas" reference_column="id_persona" />
-    <Constraint name="tarjetas_cupones_id_concepto" table="tarjetas_cupones" column="id_concepto" reference_table="cuentas_conceptos" reference_column="id_concepto" />
-    <Constraint name="tarjetas_cupones_id_factura" table="tarjetas_cupones" column="id_factura" reference_table="facturas" reference_column="id_factura" />
+    <Constraint name="tarjetas_cupones_id_concepto" table="tarjetas_cupones" column="id_concepto" reference_table="conceptos" reference_column="id_concepto" />
+    <Constraint name="tarjetas_cupones_id_comprob" table="tarjetas_cupones" column="id_comprob" reference_table="comprob" reference_column="id_comprob" />
     <Constraint name="tarjetas_cupones_id_plan" table="tarjetas_cupones" column="id_plan" reference_table="tarjetas_planes" reference_column="id_plan" />
     <Constraint name="tarjetas_planes_id_tarjeta" table="tarjetas_planes" column="id_tarjeta" reference_table="tarjetas" reference_column="id_tarjeta" />
-    <Constraint name="tickets_id_factura" table="tickets" column="id_factura" reference_table="facturas" reference_column="id_factura" />
+    <Constraint name="tickets_id_comprob" table="tickets" column="id_comprob" reference_table="comprob" reference_column="id_comprob" />
     <Constraint name="tickets_id_persona" table="tickets" column="id_persona" reference_table="personas" reference_column="id_persona" />
     <Constraint name="tickets_id_sucursal" table="tickets" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" />
     <Constraint name="tickets_id_tecnico_entrega" table="tickets" column="id_tecnico_entrega" reference_table="personas" reference_column="id_persona" />
@@ -972,7 +1001,7 @@
     <Constraint name="ventas_cuotas_id_cliente" table="ventas_cuotas" column="id_cliente" reference_table="personas" reference_column="id_persona" />
     <Constraint name="ventas_cuotas_id_comercio" table="ventas_cuotas" column="id_comercio" reference_table="personas" reference_column="id_persona" />
     <Constraint name="ventas_cuotas_id_recibo" table="ventas_cuotas" column="id_recibo" reference_table="recibos" reference_column="id_recibo" />
-    <Constraint name="ventas_resumenes_id_factura" table="ventas_resumenes" column="id_factura" reference_table="facturas" reference_column="id_factura" />
+    <Constraint name="ventas_resumenes_id_comprob" table="ventas_resumenes" column="id_comprob" reference_table="comprob" reference_column="id_comprob" />
     <Constraint name="ventas_resumenes_id_persona" table="ventas_resumenes" column="id_persona" reference_table="personas" reference_column="id_persona" />
     <Constraint name="ventas_resumenes_detalles_id_resumen" table="ventas_resumenes_detalles" column="id_resumen" reference_table="ventas_resumenes" reference_column="id_resumen" />
     <Constraint name="ventas_resumenes_detalles_id_persona" table="ventas_resumenes_detalles" column="id_persona" reference_table="personas" reference_column="id_persona" />

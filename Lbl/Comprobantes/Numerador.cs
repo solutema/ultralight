@@ -39,7 +39,7 @@ namespace Lbl.Comprobantes
 		public static int Numerar(Lws.Data.DataView dataView, Lbl.Comprobantes.ComprobanteConArticulos comprobante)
 		{
                         int NumeroSiguienteComprob = ProximoNumero(dataView, comprobante);
-                        dataView.DataBase.Execute("UPDATE facturas SET numero=" + NumeroSiguienteComprob.ToString() + " WHERE id_factura=" + comprobante.Id.ToString());
+                        dataView.DataBase.Execute("UPDATE comprob SET numero=" + NumeroSiguienteComprob.ToString() + " WHERE id_comprob=" + comprobante.Id.ToString());
 			return NumeroSiguienteComprob;
 		}
 
@@ -52,7 +52,7 @@ namespace Lbl.Comprobantes
                 {
                         string TipoReal = "";
 
-                        // Las notas de crédito y débito comparten la numeración de las facturas
+                        // Las notas de crédito y débito comparten la numeración de las comprob
                         switch (comprobante.Tipo.Nomenclatura) {
                                 case "A":
                                 case "NCA":
@@ -89,7 +89,7 @@ namespace Lbl.Comprobantes
                                         break;
                         }
 
-                        return dataView.DataBase.FieldInt("SELECT MAX(numero) FROM facturas WHERE compra=0 AND pv=" + comprobante.PV.ToString() + " AND tipo_fac IN (" + TipoReal + ")") + 1;
+                        return dataView.DataBase.FieldInt("SELECT MAX(numero) FROM comprob WHERE compra=0 AND pv=" + comprobante.PV.ToString() + " AND tipo_fac IN (" + TipoReal + ")") + 1;
                 }
 	}
 }

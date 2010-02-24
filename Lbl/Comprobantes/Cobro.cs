@@ -37,10 +37,10 @@ namespace Lbl.Comprobantes
         {
                 public Lbl.Comprobantes.FormaDePago FormaDePago;
                 private double m_Importe = 0;
-                public Cuentas.CuentaRegular CuentaDestino;
+                public Cajas.Caja CajaDestino;
                 public Tarjetas.Cupon Cupon;
                 public Bancos.Cheque Cheque;
-                public Cuentas.Concepto Concepto;
+                public Cajas.Concepto Concepto;
                 public string ConceptoTexto;
                 public Comprobantes.Recibo Recibo;
 
@@ -69,7 +69,7 @@ namespace Lbl.Comprobantes
                                 case TipoFormasDePago.Tarjeta:
                                         FormaDePago = new FormaDePago(dataView, 4);
                                         break;
-                                case TipoFormasDePago.CuentaRegular:
+                                case TipoFormasDePago.Caja:
                                         FormaDePago = new FormaDePago(dataView, 6);
                                         break;
                         }
@@ -145,7 +145,7 @@ namespace Lbl.Comprobantes
 
                         switch (FormaDePago.Tipo) {
                                 case TipoFormasDePago.Efectivo:
-                                        Lbl.Cuentas.CuentaRegular Caja = new Lbl.Cuentas.CuentaRegular(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
+                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
                                         Caja.Movimiento(true, this.Concepto, DescripConcepto, Cliente, -this.Importe, "", Factura, this.Recibo, "");
                                         break;
                                 case TipoFormasDePago.Cheque:
@@ -156,8 +156,8 @@ namespace Lbl.Comprobantes
                                         if (this.Cupon != null)
                                                 this.Cupon.Anular();
                                         break;
-                                case TipoFormasDePago.CuentaRegular:
-                                        this.CuentaDestino.Movimiento(true, this.Concepto, DescripConcepto, Cliente, -this.Importe, null, Factura, this.Recibo, null);
+                                case TipoFormasDePago.Caja:
+                                        this.CajaDestino.Movimiento(true, this.Concepto, DescripConcepto, Cliente, -this.Importe, null, Factura, this.Recibo, null);
                                         break;
                         }
                 }
@@ -174,11 +174,11 @@ namespace Lbl.Comprobantes
                                                 return "Cheque";
                                         else
                                                 return Cheque.ToString();
-                                case TipoFormasDePago.CuentaRegular:
-                                        if (CuentaDestino == null)
+                                case TipoFormasDePago.Caja:
+                                        if (CajaDestino == null)
                                                 return "Acreditación en cuenta";
                                         else
-                                                return "Acreditación en " + CuentaDestino.ToString();
+                                                return "Acreditación en " + CajaDestino.ToString();
                                 case TipoFormasDePago.Tarjeta:
                                         return Cupon.ToString();
                                 default:
