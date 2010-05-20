@@ -337,7 +337,7 @@ namespace Lfc.Bancos.Cheques
 				//double ImporteDestino = Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text);
 				double Impuestos = Lfx.Types.Parsing.ParseCurrency(txtImpuestos.Text);
 
-				this.DataView.BeginTransaction();
+				this.DataView.BeginTransaction(true);
 				
 				string ChequesNum = null;
 				System.Data.DataTable TablaCheques = DataView.DataBase.Select("SELECT * FROM bancos_cheques WHERE id_cheque IN (" + ChequesIds + ")");

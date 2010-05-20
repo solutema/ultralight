@@ -164,6 +164,9 @@ namespace Lfx.Cpx
 
                 public override string ToString()
                 {
+                        if (this.CardOwner.Length > 23)
+                                this.CardOwner = this.CardOwner.Substring(0, 23);
+
                         string DataBlock = @"#DCC##CMP#;" + Track2 + @"?#GRD#0""
 " + CardNumber + @"""
 " + ExpDate + @"""

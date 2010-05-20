@@ -123,11 +123,11 @@ namespace Lfc.Comprobantes.Compra
         "Notas de Pedido|NP",
         "Pedidos|PD",
         "Remitos|R",
-        "Facturas A|A",
-        "Facturas B|B",
-        "Facturas C|C",
-        "Facturas E|E",
-        "Facturas M|M",
+        "Facturas A|FA",
+        "Facturas B|FB",
+        "Facturas C|FC",
+        "Facturas E|FE",
+        "Facturas M|FM",
         "Facturas (todas)|FP",
         "Todo|*"};
                         this.txtTipo.Size = new System.Drawing.Size(440, 24);

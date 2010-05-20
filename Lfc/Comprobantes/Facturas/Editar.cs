@@ -44,10 +44,13 @@ namespace Lfc.Comprobantes.Facturas
                 {
                         switch(tipo)
                         {
-                                case "NC*":
+                                case "F":
+                                        TipoPredet = "FB";
+                                        break;
+                                case "NC":
                                         TipoPredet = "NCB";
                                         break;
-                                case "ND*":
+                                case "ND":
                                         TipoPredet = "NDB";
                                         break;
                                 default:
@@ -107,11 +110,11 @@ namespace Lfc.Comprobantes.Facturas
                         if (this.Tipo.EsFactura || this.Tipo.EsTicket)
                         {
                                 EntradaTipo.SetData = new string[] {
-                                        "Factura A|A",
-                                        "Factura B|B",
-                                        "Factura C|C",
-                                        "Factura M|M",
-                                        "Factura E|E",
+                                        "Factura A|FA",
+                                        "Factura B|FB",
+                                        "Factura C|FC",
+                                        "Factura M|FM",
+                                        "Factura E|FE",
                                         "Ticket|T"
                                 };
                                 if (Res.FormaDePago == null)
@@ -169,7 +172,7 @@ namespace Lfc.Comprobantes.Facturas
 
 		public override Lfx.Types.OperationResult Edit(int iId)
 		{
-                        if (Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.write") == false)
+                        if (Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.read") == false)
                                 return new Lfx.Types.NoAccessOperationResult();
 
 			Lfx.Types.OperationResult ResultadoEditar = base.Edit(iId);
@@ -207,9 +210,9 @@ namespace Lfc.Comprobantes.Facturas
                                 else if (Registro.Cliente.SituacionTributaria == null)
                                         return new Lfx.Types.OperationResult(false, "El Cliente no tiene una Situación Tributaria definida.");
 
-                                if (Registro.Tipo.EsFacturaNCoND && Registro.Tipo.LetraSola != Registro.Cliente.TipoComprobantePredeterminado()) {
+                                if (Registro.Tipo.EsFacturaNCoND && Registro.Tipo.LetraSola != Registro.Cliente.LetraPredeterminada()) {
                                         Lui.Forms.YesNoDialog OPregunta = new Lui.Forms.YesNoDialog(@"La situación tributaria del cliente y el tipo de comprobante no se corresponden.
-Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería llevar un comprobante tipo " + Registro.Cliente.TipoComprobantePredeterminado() + @". No debería continuar con la impresión. 
+Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería llevar un comprobante tipo " + Registro.Cliente.LetraPredeterminada() + @". No debería continuar con la impresión. 
 ¿Desea continuar de todos modos?", "Tipo de comprobante incorrecto");
                                         OPregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
                                         if (OPregunta.ShowDialog() == DialogResult.Cancel)
@@ -219,7 +222,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                 if (Registro.Tipo.LetraSola.ToUpperInvariant() == "A") {
                                         if (Registro.Cliente.Cuit.Length < 5)
                                                 return new Lfx.Types.OperationResult(false, @"Debe proporcionar el número de CUIT del cliente.");
-                                } else if (Registro.Tipo.LetraSola.ToUpperInvariant() == "B") {
+                                } else if (Registro.Tipo.LetraSola == "B") {
                                         //Si es factura B de más de $ 1000, debe llevar el Nº de DNI
                                         if (Registro.Total >= 1000 && Registro.Cliente.NumeroDocumento.Length < 5 && Registro.Cliente.Cuit.Length < 5)
                                                 return new Lfx.Types.OperationResult(false, @"Para comprob tipo ""B"" de $ 1.000 o más, debe proporcionar el número de DNI del cliente.");
@@ -313,11 +316,10 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                                         //Yo sólo muestro la ventanita de calcular el cambio
                                                         BotonPago.Visible = EsCancelable();
                                                         Comprobantes.PagoVuelto OFormVuelto = new Comprobantes.PagoVuelto();
-                                                        OFormVuelto.Workspace = this.Workspace;
                                                         OFormVuelto.Total = Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text);
                                                         OFormVuelto.ShowDialog();
                                                         break;
-                                                case Lbl.Comprobantes.TipoFormasDePago.Cheque:
+                                                case Lbl.Comprobantes.TipoFormasDePago.ChequePropio:
                                                         EditarPago(false);
                                                         break;
                                                 case Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente:
@@ -367,9 +369,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                         if (Factura.FormaDePago.Tipo == Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente) {
                                 CrearReciboParaEstaFactura();
                         } else {
-
                                 Comprobantes.Recibos.EditarCobro FormularioEditarPago = new Comprobantes.Recibos.EditarCobro();
-                                FormularioEditarPago.Workspace = this.Workspace;
                                 FormularioEditarPago.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.DataView, Factura.FormaDePago));
                                 FormularioEditarPago.Cobro.FormaDePagoEditable = true;
                                 FormularioEditarPago.Cobro.Importe = Factura.Total;
@@ -409,7 +409,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                                 case Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente:
                                                         CrearReciboParaEstaFactura();
                                                         break;
-                                                case Lbl.Comprobantes.TipoFormasDePago.Cheque:
+                                                case Lbl.Comprobantes.TipoFormasDePago.ChequeTerceros:
                                                         Factura.DataView.BeginTransaction();
                                                         Lbl.Bancos.Cheque Cheque = MiCobro.Cheque;
                                                         Cheque.Concepto = new Lbl.Cajas.Concepto(Factura.DataView, 11000);
@@ -460,7 +460,6 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                 {
                         Lbl.Comprobantes.ComprobanteConArticulos Factura = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
                         Comprobantes.Recibos.Editar ReciboNuevo = new Comprobantes.Recibos.Editar();
-                        ReciboNuevo.Workspace = this.Workspace;
                         ReciboNuevo.MdiParent = this.MdiParent;
                         ReciboNuevo.Create();
                         ReciboNuevo.AgregarFactura(this.CachedRow.Id);

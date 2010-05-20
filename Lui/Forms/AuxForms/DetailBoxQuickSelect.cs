@@ -38,14 +38,12 @@ namespace Lui.Forms.AuxForms
 {
 	public partial class DetailBoxQuickSelect : System.Windows.Forms.Form
 	{
-
 		private string m_Table = "";
 		private string m_KeyField = "";
 		private string m_DetailField = "";
 		private string m_ExtraDetailFields = "";
 		private string m_Filter = "";
 		private bool f_IgnoreEvents;
-		private Lws.Workspace m_Workspace;
 		public System.Windows.Forms.Control ControlDestino;
 
                 public bool CanCreate
@@ -513,23 +511,8 @@ namespace Lui.Forms.AuxForms
 		{
 			get
 			{
-				//Busco un Workspace en mi parent
-				if (m_Workspace == null)
-					m_Workspace = FindMyWorkspace(this.Owner);
-				return m_Workspace;
+				return Lws.Workspace.Master;
 			}
-		}
-
-		private Lws.Workspace FindMyWorkspace(System.Windows.Forms.Control whereToFind)
-		{
-			if (whereToFind is Lui.Forms.Form)
-				return ((Lui.Forms.Form)whereToFind).Workspace;
-			else if (whereToFind is System.Windows.Forms.Form && ((Form)whereToFind).Owner != null)
-				return FindMyWorkspace(((Form)whereToFind).Owner);
-			else if (whereToFind != null && whereToFind.Parent != null)
-				return FindMyWorkspace(whereToFind.Parent);
-			else
-				return null;
 		}
 	}
 }

@@ -1176,11 +1176,11 @@ namespace Lazaro.Reportes
 
                 public void MostrarReporte()
                 {
-                        double Facturas = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('A', 'B', 'C', 'E', 'M', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        double Facturas = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                         double NotasCredito = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 
-                        double Costo = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND comprob.impresa AND comprob.numero>0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                        double CostoNotasCredito = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC') AND comprob.impresa AND comprob.numero>0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        double Costo = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND comprob.impresa>0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        double CostoNotasCredito = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND comprob.impresa>0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                         
                         double GestionCobro = -this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto=24010 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 
@@ -1412,7 +1412,6 @@ namespace Lazaro.Reportes
                 private void ChartButton_Click(object sender, System.EventArgs e)
                 {
                         Lazaro.Charts.Facturacion ChartFact = new Lazaro.Charts.Facturacion();
-                        ChartFact.Workspace = this.Workspace;
                         ChartFact.MdiParent = this.MdiParent;
                         ChartFact.Show();
                 }

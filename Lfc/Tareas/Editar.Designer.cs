@@ -79,10 +79,10 @@ namespace Lfc.Tareas
                         this.Tecnico = new System.Windows.Forms.ColumnHeader();
                         this.Fecha = new System.Windows.Forms.ColumnHeader();
                         this.Detalle = new System.Windows.Forms.ColumnHeader();
-                        this.cmdNovedad = new Lui.Forms.Button();
-                        this.cmdArticulos = new Lui.Forms.Button();
+                        this.BotonNovedad = new Lui.Forms.Button();
+                        this.BotonArticulos = new Lui.Forms.Button();
                         this.txtEstado = new Lui.Forms.DetailBox();
-                        this.cmdFacturar = new Lui.Forms.Button();
+                        this.BotonFacturar = new Lui.Forms.Button();
                         this.txtFechaIngreso = new Lui.Forms.TextBox();
                         this.Label12 = new System.Windows.Forms.Label();
                         this.txtComprobante = new Lui.Forms.TextBox();
@@ -113,7 +113,7 @@ namespace Lfc.Tareas
                         this.Label1.Text = "Cliente";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaCliente
+                        // txtCliente
                         // 
                         this.txtCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
@@ -129,7 +129,7 @@ namespace Lfc.Tareas
                         this.txtCliente.KeyField = "id_persona";
                         this.txtCliente.Location = new System.Drawing.Point(92, 8);
                         this.txtCliente.MaxLength = 200;
-                        this.txtCliente.Name = "EntradaCliente";
+                        this.txtCliente.Name = "txtCliente";
                         this.txtCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCliente.ReadOnly = false;
                         this.txtCliente.Required = true;
@@ -519,47 +519,47 @@ namespace Lfc.Tareas
                         this.Detalle.Text = "Detalle";
                         this.Detalle.Width = 650;
                         // 
-                        // cmdNovedad
+                        // BotonNovedad
                         // 
-                        this.cmdNovedad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.cmdNovedad.AutoHeight = false;
-                        this.cmdNovedad.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdNovedad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdNovedad.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdNovedad.Image = null;
-                        this.cmdNovedad.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdNovedad.Location = new System.Drawing.Point(228, 420);
-                        this.cmdNovedad.Name = "cmdNovedad";
-                        this.cmdNovedad.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdNovedad.ReadOnly = false;
-                        this.cmdNovedad.Size = new System.Drawing.Size(104, 44);
-                        this.cmdNovedad.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
-                        this.cmdNovedad.Subtext = "F6";
-                        this.cmdNovedad.TabIndex = 52;
-                        this.cmdNovedad.Text = "Novedad";
-                        this.cmdNovedad.ToolTipText = "";
-                        this.cmdNovedad.Click += new System.EventHandler(this.cmdNovedad_Click);
+                        this.BotonNovedad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonNovedad.AutoHeight = false;
+                        this.BotonNovedad.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonNovedad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonNovedad.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonNovedad.Image = null;
+                        this.BotonNovedad.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonNovedad.Location = new System.Drawing.Point(228, 420);
+                        this.BotonNovedad.Name = "BotonNovedad";
+                        this.BotonNovedad.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonNovedad.ReadOnly = false;
+                        this.BotonNovedad.Size = new System.Drawing.Size(104, 44);
+                        this.BotonNovedad.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
+                        this.BotonNovedad.Subtext = "F6";
+                        this.BotonNovedad.TabIndex = 52;
+                        this.BotonNovedad.Text = "Novedad";
+                        this.BotonNovedad.ToolTipText = "";
+                        this.BotonNovedad.Click += new System.EventHandler(this.BotonNovedad_Click);
                         // 
-                        // cmdArticulos
+                        // BotonArticulos
                         // 
-                        this.cmdArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.cmdArticulos.AutoHeight = false;
-                        this.cmdArticulos.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdArticulos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdArticulos.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdArticulos.Image = null;
-                        this.cmdArticulos.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdArticulos.Location = new System.Drawing.Point(120, 420);
-                        this.cmdArticulos.Name = "cmdArticulos";
-                        this.cmdArticulos.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdArticulos.ReadOnly = false;
-                        this.cmdArticulos.Size = new System.Drawing.Size(104, 44);
-                        this.cmdArticulos.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
-                        this.cmdArticulos.Subtext = "F5";
-                        this.cmdArticulos.TabIndex = 51;
-                        this.cmdArticulos.Text = "Artículos";
-                        this.cmdArticulos.ToolTipText = "";
-                        this.cmdArticulos.Click += new System.EventHandler(this.cmdArticulos_Click);
+                        this.BotonArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonArticulos.AutoHeight = false;
+                        this.BotonArticulos.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonArticulos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonArticulos.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonArticulos.Image = null;
+                        this.BotonArticulos.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonArticulos.Location = new System.Drawing.Point(120, 420);
+                        this.BotonArticulos.Name = "BotonArticulos";
+                        this.BotonArticulos.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonArticulos.ReadOnly = false;
+                        this.BotonArticulos.Size = new System.Drawing.Size(104, 44);
+                        this.BotonArticulos.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
+                        this.BotonArticulos.Subtext = "F5";
+                        this.BotonArticulos.TabIndex = 51;
+                        this.BotonArticulos.Text = "Artículos";
+                        this.BotonArticulos.ToolTipText = "";
+                        this.BotonArticulos.Click += new System.EventHandler(this.BotonArticulos_Click);
                         // 
                         // txtEstado
                         // 
@@ -591,26 +591,26 @@ namespace Lfc.Tareas
                         this.txtEstado.TipWhenBlank = "";
                         this.txtEstado.ToolTipText = "";
                         // 
-                        // cmdFacturar
+                        // BotonFacturar
                         // 
-                        this.cmdFacturar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.cmdFacturar.AutoHeight = false;
-                        this.cmdFacturar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdFacturar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdFacturar.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdFacturar.Image = null;
-                        this.cmdFacturar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdFacturar.Location = new System.Drawing.Point(12, 420);
-                        this.cmdFacturar.Name = "cmdFacturar";
-                        this.cmdFacturar.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdFacturar.ReadOnly = false;
-                        this.cmdFacturar.Size = new System.Drawing.Size(104, 44);
-                        this.cmdFacturar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
-                        this.cmdFacturar.Subtext = "F4";
-                        this.cmdFacturar.TabIndex = 50;
-                        this.cmdFacturar.Text = "Facturar";
-                        this.cmdFacturar.ToolTipText = "";
-                        this.cmdFacturar.Click += new System.EventHandler(this.cmdFacturar_Click);
+                        this.BotonFacturar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonFacturar.AutoHeight = false;
+                        this.BotonFacturar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonFacturar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonFacturar.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonFacturar.Image = null;
+                        this.BotonFacturar.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonFacturar.Location = new System.Drawing.Point(12, 420);
+                        this.BotonFacturar.Name = "BotonFacturar";
+                        this.BotonFacturar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonFacturar.ReadOnly = false;
+                        this.BotonFacturar.Size = new System.Drawing.Size(104, 44);
+                        this.BotonFacturar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
+                        this.BotonFacturar.Subtext = "F4";
+                        this.BotonFacturar.TabIndex = 50;
+                        this.BotonFacturar.Text = "Facturar";
+                        this.BotonFacturar.ToolTipText = "";
+                        this.BotonFacturar.Click += new System.EventHandler(this.BotonFacturar_Click);
                         // 
                         // txtFechaIngreso
                         // 
@@ -807,9 +807,9 @@ namespace Lfc.Tareas
                         // Label2
                         // 
                         this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label2.Location = new System.Drawing.Point(520, 4);
+                        this.Label2.Location = new System.Drawing.Point(516, 4);
                         this.Label2.Name = "Label2";
-                        this.Label2.Size = new System.Drawing.Size(28, 24);
+                        this.Label2.Size = new System.Drawing.Size(32, 24);
                         this.Label2.TabIndex = 104;
                         this.Label2.Text = "Nº";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -818,6 +818,9 @@ namespace Lfc.Tareas
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(692, 473);
+                        this.Controls.Add(this.BotonArticulos);
+                        this.Controls.Add(this.BotonFacturar);
+                        this.Controls.Add(this.BotonNovedad);
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.txtPrioridad);
                         this.Controls.Add(this.Label14);
@@ -826,10 +829,7 @@ namespace Lfc.Tareas
                         this.Controls.Add(this.txtComprobanteId);
                         this.Controls.Add(this.txtComprobante);
                         this.Controls.Add(this.txtFechaIngreso);
-                        this.Controls.Add(this.cmdFacturar);
                         this.Controls.Add(this.txtEstado);
-                        this.Controls.Add(this.cmdArticulos);
-                        this.Controls.Add(this.cmdNovedad);
                         this.Controls.Add(this.lvHistorial);
                         this.Controls.Add(this.Frame2);
                         this.Controls.Add(this.txtObs);
@@ -858,6 +858,42 @@ namespace Lfc.Tareas
                         this.Text = "Tareas: Editar";
                         this.Activated += new System.EventHandler(this.FormTicketsEditar_Activated);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormTicketsEditar_KeyDown);
+                        this.Controls.SetChildIndex(this.Label15, 0);
+                        this.Controls.SetChildIndex(this.Label8, 0);
+                        this.Controls.SetChildIndex(this.Label9, 0);
+                        this.Controls.SetChildIndex(this.Label10, 0);
+                        this.Controls.SetChildIndex(this.Label12, 0);
+                        this.Controls.SetChildIndex(this.Label13, 0);
+                        this.Controls.SetChildIndex(this.Label1, 0);
+                        this.Controls.SetChildIndex(this.txtCliente, 0);
+                        this.Controls.SetChildIndex(this.Label3, 0);
+                        this.Controls.SetChildIndex(this.txtTarea, 0);
+                        this.Controls.SetChildIndex(this.Label4, 0);
+                        this.Controls.SetChildIndex(this.txtTecnico, 0);
+                        this.Controls.SetChildIndex(this.Label5, 0);
+                        this.Controls.SetChildIndex(this.txtAsunto, 0);
+                        this.Controls.SetChildIndex(this.Label6, 0);
+                        this.Controls.SetChildIndex(this.Label7, 0);
+                        this.Controls.SetChildIndex(this.txtDescripcion, 0);
+                        this.Controls.SetChildIndex(this.txtEntregaEstimada, 0);
+                        this.Controls.SetChildIndex(this.txtEntregaLimite, 0);
+                        this.Controls.SetChildIndex(this.txtPresupuesto, 0);
+                        this.Controls.SetChildIndex(this.Label11, 0);
+                        this.Controls.SetChildIndex(this.txtObs, 0);
+                        this.Controls.SetChildIndex(this.Frame2, 0);
+                        this.Controls.SetChildIndex(this.lvHistorial, 0);
+                        this.Controls.SetChildIndex(this.txtEstado, 0);
+                        this.Controls.SetChildIndex(this.txtFechaIngreso, 0);
+                        this.Controls.SetChildIndex(this.txtComprobante, 0);
+                        this.Controls.SetChildIndex(this.txtComprobanteId, 0);
+                        this.Controls.SetChildIndex(this.txtNumero, 0);
+                        this.Controls.SetChildIndex(this.txtPresupuesto2, 0);
+                        this.Controls.SetChildIndex(this.Label14, 0);
+                        this.Controls.SetChildIndex(this.txtPrioridad, 0);
+                        this.Controls.SetChildIndex(this.Label2, 0);
+                        this.Controls.SetChildIndex(this.BotonNovedad, 0);
+                        this.Controls.SetChildIndex(this.BotonFacturar, 0);
+                        this.Controls.SetChildIndex(this.BotonArticulos, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -891,9 +927,9 @@ namespace Lfc.Tareas
                 internal Lui.Forms.ListView lvHistorial;
                 internal System.Windows.Forms.ColumnHeader Tecnico;
                 internal System.Windows.Forms.ColumnHeader Detalle;
-                internal Lui.Forms.Button cmdNovedad;
+                internal Lui.Forms.Button BotonNovedad;
                 internal Lui.Forms.DetailBox txtEstado;
-                internal Lui.Forms.Button cmdFacturar;
+                internal Lui.Forms.Button BotonFacturar;
                 internal System.Windows.Forms.Label Label12;
                 internal System.Windows.Forms.Label Label13;
                 internal Lui.Forms.TextBox txtFechaIngreso;
@@ -901,7 +937,7 @@ namespace Lfc.Tareas
                 internal System.Windows.Forms.TextBox txtComprobanteId;
                 internal Lui.Forms.TextBox txtNumero;
                 internal System.Windows.Forms.ColumnHeader Fecha;
-                internal Lui.Forms.Button cmdArticulos;
+                internal Lui.Forms.Button BotonArticulos;
                 internal Lui.Forms.TextBox txtPresupuesto2;
                 internal System.Windows.Forms.Label Label14;
                 internal System.Windows.Forms.Label Label15;

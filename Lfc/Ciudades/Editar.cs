@@ -244,7 +244,7 @@ namespace Lfc.Ciudades
 
 			if (ResultadoGuardar.Success == true)
 			{
-                                this.DataView.DataBase.BeginTransaction();
+                                this.DataView.BeginTransaction();
 
                                 Lfx.Data.SqlTableCommandBuilder Comando;
                                 if (m_Nuevo) {
@@ -263,7 +263,7 @@ namespace Lfc.Ciudades
                                 this.DataView.DataBase.Commit();
                                 
                                 if (m_Nuevo) {
-                                        m_Id = DataView.DataBase.FieldInt("SELECT MAX(id_ciudad) FROM ciudades");
+                                        m_Id = DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
                                         m_Nuevo = false;
                                         if (ControlDestino != null) {
                                                 ControlDestino.Text = m_Id.ToString();

@@ -462,7 +462,7 @@ namespace Lfc.Cajas.Admin
 
 			if (ResultadoGuardar.Success == true)
 			{
-                                DataView.DataBase.BeginTransaction();
+                                DataView.BeginTransaction();
 
                                 Lfx.Data.SqlTableCommandBuilder Comando;
                                 if (m_Nuevo) {
@@ -485,7 +485,7 @@ namespace Lfc.Cajas.Admin
                                 DataView.Execute(Comando);
 
                                 if (m_Nuevo) {
-                                        m_Id = DataView.DataBase.FieldInt("SELECT MAX(id_caja) FROM cajas WHERE nombre='" + DataView.DataBase.EscapeString(txtNombre.Text) + "'");
+                                        m_Id = DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
                                         m_Nuevo = false;
                                 }
 

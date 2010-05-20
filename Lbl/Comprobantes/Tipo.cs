@@ -50,6 +50,8 @@ namespace Lbl.Comprobantes
                         : this(dataView)
                 {
                         m_ItemId = dataView.DataBase.FieldInt("SELECT id_tipo FROM documentos_tipos WHERE letra='" + letraTipo + "'");
+                        if (m_ItemId == 0)
+                                throw new InvalidOperationException("No existe el tipo de documento " + letraTipo);
                 }
 
 		public override string TablaDatos
@@ -133,7 +135,49 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                return this.Nomenclatura.Replace("ND", "").Replace("NC", "");
+                                switch(this.Nomenclatura) {
+                                        case "FA":
+                                        case "NCA":
+                                        case "NDA":
+                                                return "A";
+                                        case "FB":
+                                        case "NCB":
+                                        case "NDB":
+                                                return "B";
+                                        case "FC":
+                                        case "NCC":
+                                        case "NDC":
+                                                return "C";
+                                        case "FE":
+                                        case "NCE":
+                                        case "NDE":
+                                                return "E";
+                                        case "FM":
+                                        case "NCM":
+                                        case "NDM":
+                                                return "M";
+                                        default:
+                                                return "";
+
+                                }
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve sólamente el tipo (F, NC, ND, sin letra A, B, etc.)
+                /// </summary>
+                public string TipoBase
+                {
+                        get
+                        {
+                                if (this.EsFactura)
+                                        return "F";
+                                else if (this.EsNotaCredito)
+                                        return "NC";
+                                else if (this.EsNotaDebito)
+                                        return "ND";
+                                else
+                                        return this.Nomenclatura;
                         }
                 }
 
@@ -176,6 +220,12 @@ namespace Lbl.Comprobantes
                                         case "C":
                                         case "E":
                                         case "M":
+                                        case "FA":
+                                        case "FB":
+                                        case "FC":
+                                        case "FE":
+                                        case "FM":
+                                        case "FP":
                                                 return true;
                                         default:
                                                 return false;
@@ -196,6 +246,14 @@ namespace Lbl.Comprobantes
                         get
                         {
                                 return this.Nomenclatura.ToUpperInvariant() == "R";
+                        }
+                }
+
+                public bool EsPedido
+                {
+                        get
+                        {
+                                return this.Nomenclatura.ToUpperInvariant() == "PD";
                         }
                 }
 
@@ -264,9 +322,6 @@ namespace Lbl.Comprobantes
                         this.AgregarTags(Comando);
 
                         this.DataView.Execute(Comando);
-
-                        if (this.Existe == false)
-                                m_ItemId = this.DataView.DataBase.FieldInt("SELECT MAX(" + this.CampoId + ") FROM " + this.TablaDatos);
 
                         return base.Guardar();
                 }

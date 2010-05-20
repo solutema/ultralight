@@ -106,9 +106,9 @@ namespace Lfc.Tareas
                         // 
                         // Label1
                         // 
-                        this.Label1.Location = new System.Drawing.Point(12, 212);
+                        this.Label1.Location = new System.Drawing.Point(20, 224);
                         this.Label1.Name = "Label1";
-                        this.Label1.Size = new System.Drawing.Size(72, 24);
+                        this.Label1.Size = new System.Drawing.Size(88, 24);
                         this.Label1.TabIndex = 8;
                         this.Label1.Text = "Persona";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -127,14 +127,14 @@ namespace Lfc.Tareas
                         this.txtTecnico.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.txtTecnico.FreeTextCode = "";
                         this.txtTecnico.KeyField = "id_persona";
-                        this.txtTecnico.Location = new System.Drawing.Point(84, 212);
+                        this.txtTecnico.Location = new System.Drawing.Point(96, 224);
                         this.txtTecnico.MaxLength = 200;
                         this.txtTecnico.Name = "txtTecnico";
                         this.txtTecnico.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTecnico.ReadOnly = false;
                         this.txtTecnico.Required = true;
                         this.txtTecnico.SelectOnFocus = true;
-                        this.txtTecnico.Size = new System.Drawing.Size(540, 24);
+                        this.txtTecnico.Size = new System.Drawing.Size(516, 24);
                         this.txtTecnico.TabIndex = 9;
                         this.txtTecnico.Table = "personas";
                         this.txtTecnico.TeclaDespuesDeEnter = "{tab}";
@@ -156,7 +156,7 @@ namespace Lfc.Tareas
                         this.txtDescripcion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtDescripcion.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtDescripcion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtDescripcion.Location = new System.Drawing.Point(84, 44);
+                        this.txtDescripcion.Location = new System.Drawing.Point(96, 56);
                         this.txtDescripcion.MaxLenght = 32767;
                         this.txtDescripcion.MultiLine = true;
                         this.txtDescripcion.Name = "txtDescripcion";
@@ -165,7 +165,7 @@ namespace Lfc.Tareas
                         this.txtDescripcion.Prefijo = "";
                         this.txtDescripcion.ReadOnly = false;
                         this.txtDescripcion.SelectOnFocus = true;
-                        this.txtDescripcion.Size = new System.Drawing.Size(540, 124);
+                        this.txtDescripcion.Size = new System.Drawing.Size(516, 124);
                         this.txtDescripcion.Sufijo = "";
                         this.txtDescripcion.TabIndex = 3;
                         this.txtDescripcion.TextRaw = "";
@@ -174,7 +174,7 @@ namespace Lfc.Tareas
                         // 
                         // Label2
                         // 
-                        this.Label2.Location = new System.Drawing.Point(268, 180);
+                        this.Label2.Location = new System.Drawing.Point(276, 192);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(68, 24);
                         this.Label2.TabIndex = 4;
@@ -191,7 +191,7 @@ namespace Lfc.Tareas
                         this.txtMinutos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtMinutos.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtMinutos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtMinutos.Location = new System.Drawing.Point(336, 180);
+                        this.txtMinutos.Location = new System.Drawing.Point(344, 192);
                         this.txtMinutos.MaxLenght = 32767;
                         this.txtMinutos.MultiLine = false;
                         this.txtMinutos.Name = "txtMinutos";
@@ -219,7 +219,7 @@ namespace Lfc.Tareas
                         this.txtCondicion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtCondicion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtCondicion.KeyField = null;
-                        this.txtCondicion.Location = new System.Drawing.Point(84, 180);
+                        this.txtCondicion.Location = new System.Drawing.Point(96, 192);
                         this.txtCondicion.MaxLenght = 32767;
                         this.txtCondicion.Name = "txtCondicion";
                         this.txtCondicion.Padding = new System.Windows.Forms.Padding(2);
@@ -227,7 +227,7 @@ namespace Lfc.Tareas
                         this.txtCondicion.SetData = new string[] {
         "Publica|0",
         "Interna|1"};
-                        this.txtCondicion.Size = new System.Drawing.Size(168, 24);
+                        this.txtCondicion.Size = new System.Drawing.Size(164, 24);
                         this.txtCondicion.TabIndex = 7;
                         this.txtCondicion.Table = null;
                         this.txtCondicion.Text = "Publica";
@@ -238,18 +238,18 @@ namespace Lfc.Tareas
                         // 
                         // Label3
                         // 
-                        this.Label3.Location = new System.Drawing.Point(12, 180);
+                        this.Label3.Location = new System.Drawing.Point(20, 192);
                         this.Label3.Name = "Label3";
-                        this.Label3.Size = new System.Drawing.Size(72, 24);
+                        this.Label3.Size = new System.Drawing.Size(88, 24);
                         this.Label3.TabIndex = 6;
                         this.Label3.Text = "Novedad";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label4
                         // 
-                        this.Label4.Location = new System.Drawing.Point(12, 44);
+                        this.Label4.Location = new System.Drawing.Point(20, 56);
                         this.Label4.Name = "Label4";
-                        this.Label4.Size = new System.Drawing.Size(72, 24);
+                        this.Label4.Size = new System.Drawing.Size(88, 24);
                         this.Label4.TabIndex = 2;
                         this.Label4.Text = "Asunto";
                         this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -268,14 +268,14 @@ namespace Lfc.Tareas
                         this.txtTicket.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.txtTicket.FreeTextCode = "";
                         this.txtTicket.KeyField = "id_ticket";
-                        this.txtTicket.Location = new System.Drawing.Point(84, 12);
+                        this.txtTicket.Location = new System.Drawing.Point(96, 24);
                         this.txtTicket.MaxLength = 200;
                         this.txtTicket.Name = "txtTicket";
                         this.txtTicket.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTicket.ReadOnly = false;
                         this.txtTicket.Required = true;
                         this.txtTicket.SelectOnFocus = true;
-                        this.txtTicket.Size = new System.Drawing.Size(540, 24);
+                        this.txtTicket.Size = new System.Drawing.Size(516, 24);
                         this.txtTicket.TabIndex = 1;
                         this.txtTicket.Table = "tickets";
                         this.txtTicket.TeclaDespuesDeEnter = "{tab}";
@@ -287,9 +287,9 @@ namespace Lfc.Tareas
                         // 
                         // Label5
                         // 
-                        this.Label5.Location = new System.Drawing.Point(12, 12);
+                        this.Label5.Location = new System.Drawing.Point(20, 24);
                         this.Label5.Name = "Label5";
-                        this.Label5.Size = new System.Drawing.Size(72, 24);
+                        this.Label5.Size = new System.Drawing.Size(88, 24);
                         this.Label5.TabIndex = 0;
                         this.Label5.Text = "Tarea";
                         this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -304,10 +304,10 @@ namespace Lfc.Tareas
                         this.Controls.Add(this.txtCondicion);
                         this.Controls.Add(this.txtDescripcion);
                         this.Controls.Add(this.txtTecnico);
+                        this.Controls.Add(this.Label2);
                         this.Controls.Add(this.Label5);
                         this.Controls.Add(this.Label4);
                         this.Controls.Add(this.Label3);
-                        this.Controls.Add(this.Label2);
                         this.Controls.Add(this.Label1);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "Novedad";
@@ -315,10 +315,10 @@ namespace Lfc.Tareas
                         this.Text = "Novedad: Cargar";
                         this.WorkspaceChanged += new System.EventHandler(this.Novedad_WorkspaceChanged);
                         this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
                         this.Controls.SetChildIndex(this.Label3, 0);
                         this.Controls.SetChildIndex(this.Label4, 0);
                         this.Controls.SetChildIndex(this.Label5, 0);
+                        this.Controls.SetChildIndex(this.Label2, 0);
                         this.Controls.SetChildIndex(this.txtTecnico, 0);
                         this.Controls.SetChildIndex(this.txtDescripcion, 0);
                         this.Controls.SetChildIndex(this.txtCondicion, 0);

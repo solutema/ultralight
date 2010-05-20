@@ -153,5 +153,12 @@ namespace Lfc.Comprobantes
                                 TextoLibre = true;
                         }
                 }
+
+                private void ListaSeries_KeyDown(object sender, KeyEventArgs e)
+                {
+                        if (e.KeyCode == Keys.Return && e.Control == false && e.Alt == false && e.Shift == false) {
+                                OkButton.PerformClick();
+                        }
+                }
         }
 }

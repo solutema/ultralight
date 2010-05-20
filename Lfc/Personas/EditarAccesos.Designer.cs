@@ -126,7 +126,6 @@ namespace Lfc.Personas
                         this.txtAcceso.Text = "Si";
                         this.txtAcceso.TextKey = "1";
                         this.txtAcceso.ToolTipText = "";
-                        this.txtAcceso.Workspace = null;
                         // 
                         // Label6
                         // 
@@ -154,7 +153,6 @@ namespace Lfc.Personas
                         this.txtContrasena.Size = new System.Drawing.Size(132, 24);
                         this.txtContrasena.TabIndex = 3;
                         this.txtContrasena.ToolTipText = "";
-                        this.txtContrasena.Workspace = null;
                         // 
                         // label1
                         // 
@@ -218,7 +216,6 @@ namespace Lfc.Personas
                         this.txtSubItems.TextKey = "1";
                         this.txtSubItems.ToolTipText = "";
                         this.txtSubItems.Visible = false;
-                        this.txtSubItems.Workspace = null;
                         this.txtSubItems.TextChanged += new System.EventHandler(this.txtSubItems_TextChanged);
                         // 
                         // lblNombreAcceso

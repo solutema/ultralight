@@ -38,7 +38,7 @@ namespace Lfc.Comprobantes.Compra
 {
 	public class Crear : Lui.Forms.DialogForm
 	{
-		public string TipoComprob = "";
+		public string TipoComprob = "FP";
 
 		#region Código generado por el Diseñador de Windows Forms
 
@@ -189,21 +189,21 @@ namespace Lfc.Comprobantes.Compra
 
 		private void cmdPedido_Click(object sender, System.EventArgs e)
 		{
-			TipoComprob = "PD";
+                        TipoComprob = "PD";
 			this.DialogResult = DialogResult.OK;
 			this.Hide();
 		}
 
 		private void cmdArribo_Click(System.Object sender, System.EventArgs e)
 		{
-			TipoComprob = "RP";
+                        TipoComprob = "PD";
 			this.DialogResult = DialogResult.OK;
 			this.Hide();
 		}
 
 		private void cmdFactura_Click(object sender, System.EventArgs e)
 		{
-			TipoComprob = "FP";
+                        TipoComprob = "FP";
 			this.DialogResult = DialogResult.OK;
 			this.Hide();
 		}
@@ -231,6 +231,11 @@ namespace Lfc.Comprobantes.Compra
                                 case "C":
                                 case "E":
                                 case "M":
+                                case "FA":
+                                case "FB":
+                                case "FC":
+                                case "FE":
+                                case "FM":
 					this.cmdFactura.Focus();
 					break;
 			}

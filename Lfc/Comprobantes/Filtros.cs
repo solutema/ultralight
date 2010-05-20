@@ -141,7 +141,7 @@ namespace Lfc.Comprobantes
                         // 
                         this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
                         // 
-                        // EntradaCliente
+                        // txtCliente
                         // 
                         this.txtCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
@@ -157,7 +157,7 @@ namespace Lfc.Comprobantes
                         this.txtCliente.KeyField = "id_persona";
                         this.txtCliente.Location = new System.Drawing.Point(137, 151);
                         this.txtCliente.MaxLength = 200;
-                        this.txtCliente.Name = "EntradaCliente";
+                        this.txtCliente.Name = "txtCliente";
                         this.txtCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCliente.ReadOnly = false;
                         this.txtCliente.Required = false;
@@ -228,7 +228,7 @@ namespace Lfc.Comprobantes
                         this.Label3.Text = "Estado";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaTipo
+                        // txtTipo
                         // 
                         this.txtTipo.AutoHeight = true;
                         this.txtTipo.AutoNav = true;
@@ -238,9 +238,9 @@ namespace Lfc.Comprobantes
                         this.txtTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtTipo.KeyField = null;
-                        this.txtTipo.Location = new System.Drawing.Point(93, 3);
+                        this.txtTipo.Location = new System.Drawing.Point(3, 3);
                         this.txtTipo.MaxLenght = 32767;
-                        this.txtTipo.Name = "EntradaTipo";
+                        this.txtTipo.Name = "txtTipo";
                         this.txtTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTipo.ReadOnly = false;
                         this.txtTipo.SetData = new string[] {
@@ -270,7 +270,7 @@ namespace Lfc.Comprobantes
                         this.Label4.Text = "Tipo";
                         this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaVendedor
+                        // txtVendedor
                         // 
                         this.txtVendedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
@@ -286,7 +286,7 @@ namespace Lfc.Comprobantes
                         this.txtVendedor.KeyField = "id_persona";
                         this.txtVendedor.Location = new System.Drawing.Point(137, 181);
                         this.txtVendedor.MaxLength = 200;
-                        this.txtVendedor.Name = "EntradaVendedor";
+                        this.txtVendedor.Name = "txtVendedor";
                         this.txtVendedor.Padding = new System.Windows.Forms.Padding(2);
                         this.txtVendedor.ReadOnly = false;
                         this.txtVendedor.Required = false;
@@ -386,7 +386,7 @@ namespace Lfc.Comprobantes
                         this.label7.Text = "Sucursal";
                         this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaFormaPago
+                        // txtFormaPago
                         // 
                         this.txtFormaPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
@@ -402,7 +402,7 @@ namespace Lfc.Comprobantes
                         this.txtFormaPago.KeyField = "id_formapago";
                         this.txtFormaPago.Location = new System.Drawing.Point(137, 33);
                         this.txtFormaPago.MaxLength = 200;
-                        this.txtFormaPago.Name = "EntradaFormaPago";
+                        this.txtFormaPago.Name = "txtFormaPago";
                         this.txtFormaPago.Padding = new System.Windows.Forms.Padding(2);
                         this.txtFormaPago.ReadOnly = false;
                         this.txtFormaPago.Required = false;
@@ -436,7 +436,7 @@ namespace Lfc.Comprobantes
                         this.txtLetra.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtLetra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtLetra.KeyField = null;
-                        this.txtLetra.Location = new System.Drawing.Point(3, 3);
+                        this.txtLetra.Location = new System.Drawing.Point(189, 3);
                         this.txtLetra.MaxLenght = 32767;
                         this.txtLetra.Name = "txtLetra";
                         this.txtLetra.Padding = new System.Windows.Forms.Padding(2);
@@ -662,8 +662,8 @@ namespace Lfc.Comprobantes
                         this.tableLayoutPanel2.ColumnCount = 2;
                         this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
                         this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-                        this.tableLayoutPanel2.Controls.Add(this.txtLetra, 0, 0);
-                        this.tableLayoutPanel2.Controls.Add(this.txtTipo, 1, 0);
+                        this.tableLayoutPanel2.Controls.Add(this.txtTipo, 0, 0);
+                        this.tableLayoutPanel2.Controls.Add(this.txtLetra, 1, 0);
                         this.tableLayoutPanel2.Location = new System.Drawing.Point(134, 88);
                         this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
                         this.tableLayoutPanel2.Name = "tableLayoutPanel2";

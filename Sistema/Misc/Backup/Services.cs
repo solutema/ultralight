@@ -429,7 +429,7 @@ namespace Lazaro.Misc.Backup
                                 Lfx.Data.DataBaseCache.DefaultCache.CargarEstructuraDesdeXml(BackupPath + Carpeta + "dbstruct.xml");
                                 Datos.VerificarVersionDB(DataView, true, true);
 
-                                DataView.DataBase.BeginTransaction();
+                                DataView.BeginTransaction();
                                 DataView.DataBase.EnableConstraints(false);
 
 				FormularioProgreso.Operacion = "Incorporando tablas de datos...";

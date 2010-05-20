@@ -48,7 +48,6 @@ namespace ServidorFiscal
 		{
                         this.Workspace.CurrentUser.Id = 1;
 			FormEstado = new FiscalStatus();
-			FormEstado.Workspace = this.Workspace;
 			FormEstado.ServidorAsociado = this;
 			this.FormEstado.lblVersion.Text = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).ProductVersion;
 
@@ -176,10 +175,10 @@ namespace ServidorFiscal
 			}
 
 			Watchdog.Stop();
-                        Lfx.Data.SqlUpdateBuilder Actualizar = new Lfx.Data.SqlUpdateBuilder(m_Workspace.DefaultDataBase, "pvs", new Lfx.Data.SqlWhereBuilder("id_pv", this.PV));
+                        Lfx.Data.SqlUpdateBuilder Actualizar = new Lfx.Data.SqlUpdateBuilder(this.Workspace.DefaultDataBase, "pvs", new Lfx.Data.SqlWhereBuilder("id_pv", this.PV));
                         Actualizar.Fields.AddWithValue("lsa", Lfx.Data.SqlFunctions.Now);
-                        m_Workspace.DefaultDataView.Execute(Actualizar);
-			Lws.Services.Task ProximaTarea = m_Workspace.DefaultScheduler.GetNextTask("fiscal" + this.PV.ToString());
+                        this.Workspace.DefaultDataView.Execute(Actualizar);
+                        Lws.Services.Task ProximaTarea = this.Workspace.DefaultScheduler.GetNextTask("fiscal" + this.PV.ToString());
 			if (ProximaTarea != null)
 			{
 				string Comando = ProximaTarea.Command;
@@ -212,9 +211,9 @@ namespace ServidorFiscal
 							if (SubComandoCierre == "Z" && ResultadoCierre.Error == Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Ok)
 							{
 								//Si hizo un cierre Z correctamente, actualizo la variable LCZ
-                                                                Actualizar = new Lfx.Data.SqlUpdateBuilder(m_Workspace.DefaultDataBase, "pvs", new Lfx.Data.SqlWhereBuilder("id_pv", this.PV));
+                                                                Actualizar = new Lfx.Data.SqlUpdateBuilder(this.Workspace.DefaultDataBase, "pvs", new Lfx.Data.SqlWhereBuilder("id_pv", this.PV));
                                                                 Actualizar.Fields.AddWithValue("ultimoz", Lfx.Data.SqlFunctions.Now);
-                                                                m_Workspace.DefaultDataView.Execute(Actualizar);
+                                                                this.Workspace.DefaultDataView.Execute(Actualizar);
 							}
 							if (ResultadoCierre.Error != Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Ok)
 							{
@@ -295,9 +294,9 @@ namespace ServidorFiscal
 		{
 			Programador.Stop();
                         if (this.PV != 0) {
-                                Lfx.Data.SqlUpdateBuilder Actualizar = new Lfx.Data.SqlUpdateBuilder(m_Workspace.DefaultDataBase, "pvs", new Lfx.Data.SqlWhereBuilder("id_pv", this.PV));
+                                Lfx.Data.SqlUpdateBuilder Actualizar = new Lfx.Data.SqlUpdateBuilder(this.Workspace.DefaultDataBase, "pvs", new Lfx.Data.SqlWhereBuilder("id_pv", this.PV));
                                 Actualizar.Fields.AddWithValue("lsa", null);
-                                m_Workspace.DefaultDataView.Execute(Actualizar);
+                                this.Workspace.DefaultDataView.Execute(Actualizar);
                         }
 
 			ConFiscal.Terminar();

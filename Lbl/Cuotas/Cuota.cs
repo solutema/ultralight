@@ -40,6 +40,7 @@ namespace Lbl.Cuotas
                 Autorizada = 1,
 		Precancelada = 5,
 		EnResumen = 10,
+                Pagada = 50,
 		Anulada = 90,
 		Historico = 100
 	}
@@ -229,8 +230,11 @@ namespace Lbl.Cuotas
                 {
                         get
                         {
-                                //Redondeo hacia abajo (100/6 = 16.66, no 16.67)
-                                return Math.Floor(this.ImporteTotal / this.Cuotas * 100) / 100;
+                                if (this.Cuotas == 1)
+                                        return this.ImporteTotal;
+                                else
+                                        //Redondeo hacia abajo (100/6 = 16.66, no 16.67)
+                                        return Math.Floor(this.ImporteTotal / this.Cuotas * 100) / 100;
                         }
                 }
 	}

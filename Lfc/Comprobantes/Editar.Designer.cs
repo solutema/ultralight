@@ -107,7 +107,6 @@ namespace Lfc.Comprobantes
                         this.ProductArray.ShowStock = true;
                         this.ProductArray.Size = new System.Drawing.Size(676, 240);
                         this.ProductArray.TabIndex = 20;
-                        this.ProductArray.Workspace = null;
                         this.ProductArray.TotalChanged += new System.EventHandler(this.ProductArray_TotalChanged);
                         this.ProductArray.AskForSerials += new System.EventHandler(this.ProductArray_AskForSerials);
                         // 
@@ -151,7 +150,7 @@ namespace Lfc.Comprobantes
                         this.EntradaCliente.TextInt = 0;
                         this.EntradaCliente.TipWhenBlank = "";
                         this.EntradaCliente.ToolTipText = "";
-                        this.EntradaCliente.TextChanged += new System.EventHandler(this.txtCliente_TextChanged);
+                        this.EntradaCliente.TextChanged += new System.EventHandler(this.EntradaCliente_TextChanged);
                         // 
                         // Label1
                         // 

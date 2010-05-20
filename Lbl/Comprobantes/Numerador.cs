@@ -55,33 +55,38 @@ namespace Lbl.Comprobantes
                         // Las notas de crédito y débito comparten la numeración de las comprob
                         switch (comprobante.Tipo.Nomenclatura) {
                                 case "A":
+                                case "FA":
                                 case "NCA":
                                 case "NDA":
-                                        TipoReal = "'A', 'NCA', 'NDA'";
+                                        TipoReal = "'FA', 'NCA', 'NDA'";
                                         break;
 
                                 case "B":
+                                case "FB":
                                 case "NCB":
                                 case "NDB":
-                                        TipoReal = "'B', 'NCB', 'NDB'";
+                                        TipoReal = "'FB', 'NCB', 'NDB'";
                                         break;
 
                                 case "C":
+                                case "FC":
                                 case "NCC":
                                 case "NDC":
-                                        TipoReal = "'C', 'NCC', 'NDC'";
+                                        TipoReal = "'FC', 'NCC', 'NDC'";
                                         break;
 
                                 case "E":
+                                case "FE":
                                 case "NCE":
                                 case "NDE":
-                                        TipoReal = "'E', 'NCE', 'NDE'";
+                                        TipoReal = "'FE', 'NCE', 'NDE'";
                                         break;
 
                                 case "M":
+                                case "FM":
                                 case "NCM":
                                 case "NDM":
-                                        TipoReal = "'M', 'NCM', 'NDM'";
+                                        TipoReal = "'FM', 'NCM', 'NDM'";
                                         break;
 
                                 default:

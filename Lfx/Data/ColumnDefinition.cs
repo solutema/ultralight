@@ -171,6 +171,17 @@ namespace Lfx.Data
                                                 else
                                                         Def += " DEFAULT '" + this.DefaultValue + "'";
                                                 break;
+                                        case DbTypes.Currency:
+                                        case DbTypes.Integer:
+                                        case DbTypes.Numeric:
+                                        case DbTypes.SmallInt:
+                                                if (this.DefaultValue == null)
+                                                        Def += " DEFAULT 0";	//Default to zero
+                                                else if (this.DefaultValue == "NULL")
+                                                        Def += " DEFAULT NULL";
+                                                else
+                                                        Def += " DEFAULT '" + this.DefaultValue + "'";
+                                                break;  
                                         default:
                                                 if (this.DefaultValue != null && this.DefaultValue.Length > 0)
                                                         Def += " DEFAULT " + this.DefaultValue;

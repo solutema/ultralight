@@ -187,7 +187,6 @@ namespace Lfc.Tarjetas.Cupones
                 {
                         Lfx.Types.OperationResult filtrarReturn = new Lfx.Types.SuccessOperationResult();
                         Lfc.Tarjetas.Cupones.Filtros FormFiltros = new Lfc.Tarjetas.Cupones.Filtros();
-                        FormFiltros.Workspace = this.Workspace;
                         FormFiltros.txtTarjeta.Text = m_Tarjeta.ToString();
                         FormFiltros.txtPlan.Text = m_Plan.ToString();
                         FormFiltros.txtEstado.TextKey = m_Estado.ToString();
@@ -276,7 +275,6 @@ namespace Lfc.Tarjetas.Cupones
                                                 if (e.Control == true && e.Shift == false && e.Alt == false) {
                                                         e.Handled = true;
                                                         Lui.Forms.ListingFormExport OFormExportar = new Lui.Forms.ListingFormExport();
-                                                        OFormExportar.Workspace = this.Workspace;
                                                         OFormExportar.Nombre = this.Text.Replace(":", "");
                                                         OFormExportar.SelectCommand = this.SelectCommand();
                                                         OFormExportar.FormFields = new Lfx.Data.FormField[] {
@@ -338,7 +336,6 @@ namespace Lfc.Tarjetas.Cupones
 		private void BotonAcreditar_Click(object sender, System.EventArgs e)
 		{
 			Lfc.Tarjetas.Cupones.Acreditar FormularioAcreditacion = new Lfc.Tarjetas.Cupones.Acreditar();
-                        FormularioAcreditacion.Workspace = this.Workspace;
 
 			Lui.Forms.ProgressForm Progreso = new Lui.Forms.ProgressForm();
 
@@ -402,7 +399,6 @@ namespace Lfc.Tarjetas.Cupones
 
 			bool bAceptar = false;
                         Lfc.Comprobantes.Recibos.EditarCobro FormularioPago = new Lfc.Comprobantes.Recibos.EditarCobro();
-			FormularioPago.Workspace = this.Workspace;
 			do
 			{
 				if (FormularioAcreditacion.ShowDialog() == DialogResult.OK)
@@ -432,7 +428,7 @@ namespace Lfc.Tarjetas.Cupones
 			while (true);
 			if (bAceptar)
 			{
-				DataView.BeginTransaction();
+				DataView.BeginTransaction(true);
 
 				Progreso.Titulo = "Asentando el Movimiento...";
 				Progreso.Progreso = 0;
@@ -456,7 +452,7 @@ namespace Lfc.Tarjetas.Cupones
 						CajaDiaria.Movimiento(true, 11000, "Acreditación Tarjetas", 0, Total, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
 						CajaDiaria.Movimiento(true, 24010, "Gestión de Cobro Tarjetas", 0, -dGestionDeCobro, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
 						break;
-                                        case Lbl.Comprobantes.TipoFormasDePago.Cheque:
+                                        case Lbl.Comprobantes.TipoFormasDePago.ChequePropio:
                                                 Lbl.Bancos.Cheque Cheque = MiCobro.Cheque;
                                                 Cheque.Concepto = new Lbl.Cajas.Concepto(DataView, 11000);
                                                 Cheque.ConceptoTexto = "Acreditación Tarjetas";

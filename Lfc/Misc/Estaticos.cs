@@ -35,6 +35,6 @@ namespace Lfc.Misc
 {
         public class Estaticos
         {
-                public static Lfc.Comprobantes.Ticker.TickerPresupuestos FormularioTickerPresupuestos;
+                //public static Lfc.Comprobantes.Ticker.TickerPresupuestos FormularioTickerPresupuestos;
         }
 }

@@ -42,7 +42,7 @@
       <Opcion Nombre="Listado Facturas &amp;B" Funcion="LISTADO COMPROBANTES F B" />
       <Opcion Nombre="Listado Tickets" Funcion="LISTADO COMPROBANTES T" />
       <Opcion Nombre="-" Funcion="" />
-      <Opcion Nombre="&amp;Nueva Factura" Funcion="CREAR B" />
+      <Opcion Nombre="&amp;Nueva Factura" Funcion="CREAR FB" />
       <Opcion Nombre="Nuevo &amp;Ticket" Funcion="CREAR T" />
       <Opcion Nombre="-" Funcion="" />
       <Opcion Nombre="&amp;Anular" Funcion="ANULAR FACTURA" />

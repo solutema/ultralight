@@ -52,6 +52,12 @@ namespace Lbl
 			this.DataView = dataView;
 		}
 
+                public ElementoDeDatos(Lws.Data.DataView dataView, int itemId)
+                        : this(dataView)
+                {
+                        m_ItemId = itemId;
+                }
+
                 public ElementoDeDatos(Lws.Data.DataView dataView, Lfx.Data.Row fromRow)
                         : this(dataView)
                 {
@@ -60,10 +66,7 @@ namespace Lbl
 
                 protected void FromRow(Lfx.Data.Row fromRow)
                 {
-                        m_Registro = fromRow;
-                        m_ItemId = System.Convert.ToInt32(m_Registro[this.CampoId]);
-                        m_RegistroOriginal = m_Registro.Clone();
-                        this.OnLoad();
+                        this.Cargar(fromRow);
                 }
 
 		#region Propiedades
@@ -90,26 +93,19 @@ namespace Lbl
 			{
                                 if (m_Registro == null) {
                                         m_Etiquetas = null;
+                                        Lfx.Data.Row Reg = null;
                                         if (this.Id != 0) {
                                                 if (this.CampoId == this.DataView.Tables[this.TablaDatos].PrimaryKey
                                                                 && this.DataView.DataBase.InTransaction == false)
                                                         // Si estoy accediendo a través de una clave primaria y no estoy en una transacción
                                                         // puedo usar directamente DataView.Tables.FastRows, que es cacheable
-                                                        m_Registro = this.DataView.Tables[this.TablaDatos].FastRows[this.Id];
+                                                        Reg = this.DataView.Tables[this.TablaDatos].FastRows[this.Id];
                                                 else
                                                         //De lo contrario uso DataBase.Row que termina en un SELECT común
-                                                        m_Registro = this.DataView.DataBase.Row(this.TablaDatos, this.CampoId, this.Id);
+                                                        Reg = this.DataView.DataBase.Row(this.TablaDatos, this.CampoId, this.Id);
                                         }
 
-                                        if (m_Registro != null) {
-                                                m_Registro.IsNew = false;
-                                                m_Registro.IsModified = false;
-						m_RegistroOriginal = m_Registro.Clone();
-						this.OnLoad();
-                                        } else {
-                                                m_Registro = new Lfx.Data.Row();
-						m_RegistroOriginal = m_Registro.Clone();
-                                        }
+                                        this.Cargar(Reg);
                                 }
 				return m_Registro;
 			}
@@ -272,6 +268,14 @@ namespace Lbl
                 /// </summary>
 		public virtual Lfx.Types.OperationResult Guardar()
 		{
+                        if (this.Id == 0) {
+                                // Acabo de insertar, averiguo mi propio id
+                                m_ItemId = this.DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
+                        } else {
+                                // Es un registro antiguo, lo elimino de la caché
+                                this.DataView.Tables[this.TablaDatos].FastRows.RemoveFromCache(this.Id);
+                        }
+
                         if (this.m_ImagenCambio) {
                                 if (this.Imagen == null) {
                                         if (this.TablaImagenes == this.TablaDatos)
@@ -304,12 +308,12 @@ namespace Lbl
                                         if (this.TablaImagenes != this.TablaDatos) {
                                                 this.DataView.DataBase.Execute("DELETE FROM " + this.TablaImagenes + " WHERE " + this.CampoId + "=" + this.Id.ToString());
                                                 CambiarImagen = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, this.TablaImagenes);
+                                                CambiarImagen.Fields.AddWithValue(this.CampoId, this.Id);
                                         } else {
                                                 CambiarImagen = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, this.TablaImagenes);
                                                 CambiarImagen.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
                                         }
                                         
-                                        CambiarImagen.Fields.AddWithValue(this.CampoId, this.Id);
                                         CambiarImagen.Fields.AddWithValue("imagen", ImagenBytes);
                                         this.DataView.Execute(CambiarImagen);
                                 }
@@ -338,7 +342,7 @@ namespace Lbl
 
 			string Extra1 = null;
                         try {
-                                //Intento generar una lista de cambios
+                                // Genero una lista de cambios
                                 foreach (Lfx.Data.Field Fl in this.m_Registro.Fields) {
                                         object ValorOriginal = null, ValorNuevo = this.m_Registro[Fl.ColumnName];
                                         if (this.m_RegistroOriginal != null && this.m_RegistroOriginal.Fields != null)
@@ -484,7 +488,7 @@ namespace Lbl
                         this.m_Etiquetas = null;
                         this.m_ImagenCambio = false;
                         this.m_Imagen = null;
-			Lfx.Data.Row Dummy = this.Registro;
+                        Lfx.Data.Row Dummy = this.Registro;
 
 			if (Dummy == null)
                                 return new Lfx.Types.FailureOperationResult("No se pudo cargar el registro");
@@ -501,20 +505,30 @@ namespace Lbl
 			return this.Cargar();
 		}
 
-		public void BeginTransaction()
-		{
-			DataView.DataBase.BeginTransaction();
-		}
+                /// <summary>
+                /// Carga un elemento por su Id desde un registro
+                /// </summary>
+                public Lfx.Types.OperationResult Cargar(Lfx.Data.Row row)
+                {
+                        this.m_Etiquetas = null;
+                        this.m_ImagenCambio = false;
+                        this.m_Imagen = null;
 
-		public void Commit()
-		{
-			DataView.DataBase.Commit();
-		}
+                        m_Registro = row;
+                        if (m_Registro != null) {
+                                m_ItemId = System.Convert.ToInt32(m_Registro[this.CampoId]);
+                                m_Registro.IsNew = false;
+                                m_Registro.IsModified = false;
+                                m_RegistroOriginal = m_Registro.Clone();
+                                this.OnLoad();
+                        } else {
+                                m_ItemId = 0;
+                                m_Registro = new Lfx.Data.Row();
+                                m_RegistroOriginal = m_Registro.Clone();
+                        }
 
-		public void RollBack()
-		{
-			DataView.DataBase.RollBack();
-		}
+                        return new Lfx.Types.SuccessOperationResult();
+                }
 
 		#endregion
                 

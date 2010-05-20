@@ -50,7 +50,6 @@ namespace Lui.Forms
 		private bool m_LockQuantity;
 		private int m_MaxLength = 200;
 		private Product.Precios m_Precio = Product.Precios.PVP;
-		private Lws.Workspace m_Workspace;
 
 		public event System.EventHandler TotalChanged;
 		public new event System.EventHandler TextChanged;
@@ -591,30 +590,7 @@ namespace Lui.Forms
 		{
 			get
 			{
-				//Busco un Workspace en mi parent
-				if (m_Workspace == null)
-					m_Workspace = FindMyWorkspace(this.Parent);
-				return m_Workspace;
-			}
-			set
-			{
-				m_Workspace = value;
-			}
-		}
-
-		private Lws.Workspace FindMyWorkspace(System.Windows.Forms.Control whereToFind)
-		{
-			if (whereToFind is Lui.Forms.Form)
-			{
-				return ((Lui.Forms.Form)whereToFind).Workspace;
-			}
-			else if (whereToFind != null && whereToFind.Parent != null)
-			{
-				return FindMyWorkspace(whereToFind.Parent);
-			}
-			else
-			{
-				return null;
+				return Lws.Workspace.Master;
 			}
 		}
 	}

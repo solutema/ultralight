@@ -104,14 +104,21 @@ namespace Lws.Data
 		
 		public int Execute(Lfx.Data.SqlTableCommandBuilder sqlCommand)
 		{
-                        if(sqlCommand is Lfx.Data.SqlUpdateBuilder || sqlCommand is Lfx.Data.SqlDeleteBuilder)
-                        	this.Tables[sqlCommand.Tables].FastRows.ClearCache();
+                        if (sqlCommand is Lfx.Data.SqlUpdateBuilder || sqlCommand is Lfx.Data.SqlDeleteBuilder) {
+                                if (this.Tables.ContainsKey(sqlCommand.Tables))
+                                        this.Tables[sqlCommand.Tables].FastRows.ClearCache();
+                        }
 			return this.DataBase.ExecuteCommand(sqlCommand);
 		}
 
-		public void BeginTransaction()
+                public void BeginTransaction()
+                {
+                        this.BeginTransaction(false);
+                }
+
+		public void BeginTransaction(bool serializable)
 		{
-			this.DataBase.BeginTransaction();
+			this.DataBase.BeginTransaction(serializable);
 		}
 
                 public bool InTransaction

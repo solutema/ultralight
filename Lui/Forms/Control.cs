@@ -50,7 +50,6 @@ namespace Lui.Forms
 		protected string m_ToolTipText = "";
 		protected System.Windows.Forms.ToolTip ToolTipBalloon;
 		protected string m_Error = "";
-		protected Lws.Workspace m_Workspace;
 
 		public enum BorderStyles
 		{
@@ -320,42 +319,8 @@ namespace Lui.Forms
 		{
 			get
 			{
-				//Busco un Workspace en mi parent
-				if (m_Workspace == null)
-				{
-					m_Workspace = FindMyWorkspace(this.ParentForm);
-					if (m_Workspace != null)
-						this.WorkspaceChanged();
-				}
-				return m_Workspace;
+                                return Lws.Workspace.Master;
 			}
-			set
-			{
-				m_Workspace = value;
-				this.WorkspaceChanged();
-			}
-		}
-
-		internal virtual void WorkspaceChanged()
-		{
-			return;
-		}
-
-		private Lws.Workspace FindMyWorkspace(System.Windows.Forms.Control whereToFind)
-		{
-                        if (whereToFind == null)
-                                return null;
-
-			if (whereToFind is Lui.Forms.Form)
-				return ((Lui.Forms.Form)whereToFind).Workspace;
-			else if (whereToFind is System.Windows.Forms.Form && ((Form)whereToFind).Owner != null)
-				return FindMyWorkspace(((Form)whereToFind).Owner);
-			else if (whereToFind.Parent != null)
-				return FindMyWorkspace(whereToFind.Parent);
-			else if (((Form)whereToFind).MdiParent != null)
-				return FindMyWorkspace(((Form)whereToFind).MdiParent);
-			else
-				return null;
 		}
 	}
 }

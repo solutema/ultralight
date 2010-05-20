@@ -79,6 +79,7 @@ namespace Lfc.Comprobantes
                         this.ListaSeries.TabIndex = 0;
                         this.ListaSeries.UseCompatibleStateImageBehavior = false;
                         this.ListaSeries.View = System.Windows.Forms.View.Details;
+                        this.ListaSeries.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListaSeries_KeyDown);
                         // 
                         // serie
                         // 

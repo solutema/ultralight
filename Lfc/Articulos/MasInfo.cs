@@ -315,13 +315,13 @@ namespace Lfc.Articulos
 					Lfx.Data.Row Art = this.Workspace.DefaultDataBase.Row("articulos", "id_articulo, fecha_creado, fecha_precio", "id_articulo", m_Articulo);
 					txtFechaCreado.Text = Lfx.Types.Formatting.FormatDate(Art["fecha_creado"]);
 					txtFechaPrecio.Text = Lfx.Types.Formatting.FormatDate(Art["fecha_precio"]);
-					double PrecioUltComp = this.Workspace.DefaultDataBase.FieldDouble("SELECT comprob_detalle.precio FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'A', 'B', 'C', 'E', 'M') AND comprob.compra=1 AND id_articulo=" + m_Articulo.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
+					double PrecioUltComp = this.Workspace.DefaultDataBase.FieldDouble("SELECT comprob_detalle.precio FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND id_articulo=" + m_Articulo.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
 					txtCostoUlt.Text = Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto);
 
 					// Podra hacer esto con una subconsulta, pero la versión de MySql que estamos utilizando
 					// no permite la cláusula LIMIT dentro de una subconsulta IN ()
 					PrecioUltComp = 0;
-					System.Data.DataTable UltimasCompras = this.Workspace.DefaultDataBase.Select("SELECT comprob_detalle.precio, comprob.id_comprob FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'A', 'B', 'C', 'E', 'M') AND comprob.compra=1 AND comprob_detalle.id_articulo=" + m_Articulo.ToString() + " ORDER BY comprob.fecha DESC LIMIT 5");
+					System.Data.DataTable UltimasCompras = this.Workspace.DefaultDataBase.Select("SELECT comprob_detalle.precio, comprob.id_comprob FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND comprob_detalle.id_articulo=" + m_Articulo.ToString() + " ORDER BY comprob.fecha DESC LIMIT 5");
 
 					if(UltimasCompras.Rows.Count > 0) {
 						foreach(System.Data.DataRow Compra in UltimasCompras.Rows) {

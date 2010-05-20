@@ -100,7 +100,6 @@ namespace Lfc.Bancos.Chequeras
                         this.txtTotal.TabIndex = 52;
                         this.txtTotal.Text = "0.00";
                         this.txtTotal.ToolTipText = "";
-                        this.txtTotal.Workspace = null;
                         // 
                         // Inicio
                         // 

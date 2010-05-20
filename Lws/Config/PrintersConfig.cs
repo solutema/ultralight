@@ -51,10 +51,10 @@ namespace Lws.Config
                                 if (sTipo == "NCA" || sTipo == "NDA") {
                                         // La impresora predeterminada para las notas de débito y 
                                         // crédito "A" es la misma que para las comprob "A"
-                                        res = PreferredPrinter("A");
+                                        res = PreferredPrinter("FA");
                                 } else if (sTipo == "NCB" || sTipo == "NDB") {
                                         // Lo mismo con las "B"
-                                        res = PreferredPrinter("B");
+                                        res = PreferredPrinter("FB");
                                 } else if (sTipo.Length >= 8 && sTipo.Substring(0, 8) == "Listado.") {
                                         // Si no hay impresora para este listado en particular,
                                         // busco la impresora definida para listados en general
@@ -87,10 +87,10 @@ namespace Lws.Config
                                 if (sTipo == "NCA" || sTipo == "NDA") {
                                         // La impresora predeterminada para las notas de débito y 
                                         // crédito "A" es la misma que para las comprob "A"
-                                        res = PrinterFeed("A");
+                                        res = PrinterFeed("FA");
                                 } else if (sTipo == "NCB" || sTipo == "NDB") {
                                         // Lo mismo con las "B"
-                                        res = PrinterFeed("B");
+                                        res = PrinterFeed("FB");
                                 } else if (sTipo.Length >= 8 && sTipo.Substring(0, 8) == "Listado.") {
                                         // Si no hay impresora para este listado en particular,
                                         // busco la impresora definida para listados en general

@@ -75,7 +75,7 @@ namespace Lbl.Comprobantes
 
                 public override Lfx.Types.OperationResult Crear()
                 {
-                        return this.Crear("B");
+                        return this.Crear("FB");
                 }
 
                 public bool Anulado
@@ -119,6 +119,14 @@ namespace Lbl.Comprobantes
                                         else if (Tipo.EsNotaDebito)
                                                 this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.ND.PV", 0);
                                 }
+
+                                if (this.PV /* still */ == 0)
+                                        this.PV = this.Workspace.DefaultDataBase.FieldInt("SELECT MIN(numero) FROM pvs WHERE CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.Nomenclatura + ",%' AND tipo>0");
+                                if (this.PV /* still */ == 0)
+                                        this.PV = this.Workspace.DefaultDataBase.FieldInt("SELECT MIN(numero) FROM pvs WHERE CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.TipoBase + ",%' AND tipo>0");
+                                if (this.PV /* still */ == 0)
+                                        this.PV = this.Workspace.DefaultDataBase.FieldInt("SELECT MIN(numero) FROM pvs WHERE CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.LetraSola + ",%' AND tipo>0");
+
                                 if (this.PV /* still */ == 0)
                                         this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.PV", 1);
                         }
@@ -146,27 +154,13 @@ namespace Lbl.Comprobantes
                                                         Caja.Movimiento(true, 11000, "Anulación Comprob. " + this.ToString(), this.Cliente.Id, -this.ImporteCancelado, "", this.Id, 0, "");
                                                         break;
 
-                                                case TipoFormasDePago.Cheque:
+                                                case TipoFormasDePago.ChequePropio:
                                                         Lbl.Bancos.Cheque Cheque = new Lbl.Bancos.Cheque(DataView, this);
                                                         if (Cheque != null && Cheque.Existe)
                                                                 Cheque.Anular();
                                                         break;
 
                                                 case TipoFormasDePago.CuentaCorriente:
-                                                        /* 
-                                                         * Esto anulaba los pagos realizados
-                                                         * pero en cuenta corriente eso no debería ser así
-                                                        if (this.Recibos != null && this.Recibos.Count > 0) {
-                                                                foreach (Recibo Rec in this.Recibos) {
-                                                                        Rec.Anular();
-                                                                }
-                                                        }
-                                                        if (this.ImporteCancelado < this.Total) {
-                                                                // Y si quedaba algo por cancelar, anulo ese saldo en la cuenta corriente
-                                                                this.Cliente.CuentaCorriente.Movimiento(true, new Lbl.Cajas.Concepto(this.DataView, 11000), "Anulación Comprob. " + this.ToString(), -this.ImporteCancelado, "", this, null, false);
-                                                        }
-                                                        
-                                                        */
                                                         if (this.ImporteCancelado < this.Total) {
                                                                 // Quito el saldo paga de la cuenta corriente
                                                                 this.Cliente.CuentaCorriente.Movimiento(true, new Lbl.Cajas.Concepto(this.DataView, 11000), "Anulación Comprob. " + this.ToString(), -this.ImporteCancelado, "", this, null, false);
@@ -609,7 +603,8 @@ namespace Lbl.Comprobantes
                         Comando.Fields.AddWithValue("gastosenvio", this.GastosDeEnvio);
                         Comando.Fields.AddWithValue("otrosgastos", this.OtrosGastos);
                         Comando.Fields.AddWithValue("obs", this.Obs);
-                        Comando.Fields.AddWithValue("impresa", this.Impreso ? 1 : 0);
+                        // Lo comprobantes de compra se marcan siempre como impresos
+                        Comando.Fields.AddWithValue("impresa", this.Compra ? 1 : (this.Impreso ? 1 : 0));
                         Comando.Fields.AddWithValue("compra", this.Compra ? 1 : 0);
                         Comando.Fields.AddWithValue("estado", this.Estado);
                         Comando.Fields.AddWithValue("series", this.Articulos.Series);
@@ -619,7 +614,7 @@ namespace Lbl.Comprobantes
                         this.DataView.Execute(Comando);
 
                         if (this.Existe == false)
-                                this.m_ItemId = this.DataView.DataBase.FieldInt("SELECT MAX(id_comprob) AS id_comprob FROM comprob WHERE tipo_fac='" + this.Tipo.Nomenclatura + "'");
+                                this.m_ItemId = this.DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
 
                         this.GuardarDetalle();
 
@@ -712,35 +707,44 @@ namespace Lbl.Comprobantes
                         this.DataView.DataBase.Execute("DELETE FROM comprob_detalle WHERE id_comprob=" + this.Id.ToString());
 
                         int i = 1;
-                        foreach (Lbl.Comprobantes.DetalleArticulo Art in m_Articulos) {
-                                Lfx.Data.SqlTableCommandBuilder Comando; Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, "comprob_detalle");
-                                Comando.Fields.AddWithValue("numero_factura", this.Numero);
-                                Comando.Fields.AddWithValue("id_comprob", this.Id);
-                                Comando.Fields.AddWithValue("orden", i);
+                        for (int Pasada = 1; Pasada <= 2; Pasada++) {
+                                foreach (Lbl.Comprobantes.DetalleArticulo Art in m_Articulos) {
+                                        // En la primera pasada, guardo sólo importes y cantidades positivos (o cero)
+                                        // en la segunda pasada, guardo sólo los negativos.
+                                        // De esa manera, los negativos siempre quedan últimos
+                                        // lo cual es un requerimiento de las fiscales Hasar.
+                                        if ((Pasada == 1 && Art.Cantidad >= 0 && Art.Unitario >= 0)
+                                                || (Pasada == 2 && (Art.Cantidad < 0 || Art.Unitario < 0))) {
+                                                Lfx.Data.SqlTableCommandBuilder Comando; Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, "comprob_detalle");
+                                                Comando.Fields.AddWithValue("numero_factura", this.Numero);
+                                                Comando.Fields.AddWithValue("id_comprob", this.Id);
+                                                Comando.Fields.AddWithValue("orden", i);
 
-                                if (Art.Articulo == null) {
-                                        Comando.Fields.AddWithValue("id_articulo", DBNull.Value);
-                                        Comando.Fields.AddWithValue("nombre", Art.Nombre);
-                                        Comando.Fields.AddWithValue("descripcion", "");
-                                } else {
-                                        Comando.Fields.AddWithValue("id_articulo", Art.Articulo.Id);
-                                        Comando.Fields.AddWithValue("nombre", Art.Nombre);
-                                        Comando.Fields.AddWithValue("descripcion", Art.Articulo.Descripcion);
+                                                if (Art.Articulo == null) {
+                                                        Comando.Fields.AddWithValue("id_articulo", DBNull.Value);
+                                                        Comando.Fields.AddWithValue("nombre", Art.Nombre);
+                                                        Comando.Fields.AddWithValue("descripcion", "");
+                                                } else {
+                                                        Comando.Fields.AddWithValue("id_articulo", Art.Articulo.Id);
+                                                        Comando.Fields.AddWithValue("nombre", Art.Nombre);
+                                                        Comando.Fields.AddWithValue("descripcion", Art.Articulo.Descripcion);
+                                                }
+
+                                                Comando.Fields.AddWithValue("cantidad", Art.Cantidad);
+                                                Comando.Fields.AddWithValue("precio", Art.Unitario);
+                                                if (Art.Costo == 0 && Art.Articulo != null)
+                                                        Comando.Fields.AddWithValue("costo", Art.Articulo.Costo);
+                                                else
+                                                        Comando.Fields.AddWithValue("costo", Art.Costo);
+                                                Comando.Fields.AddWithValue("importe", Art.ImporteFinal);
+                                                Comando.Fields.AddWithValue("series", Art.Series);
+
+                                                this.AgregarTags(Comando, Art.Registro, "comprob_detalle");
+
+                                                this.DataView.Execute(Comando);
+                                                i++;
+                                        }
                                 }
-
-                                Comando.Fields.AddWithValue("cantidad", Art.Cantidad);
-                                Comando.Fields.AddWithValue("precio", Art.Unitario);
-                                if(Art.Costo == 0 && Art.Articulo != null)
-                                        Comando.Fields.AddWithValue("costo", Art.Articulo.Costo);
-                                else
-                                        Comando.Fields.AddWithValue("costo", Art.Costo);
-                                Comando.Fields.AddWithValue("importe", Art.ImporteFinal);
-                                Comando.Fields.AddWithValue("series", Art.Series);
-
-                                this.AgregarTags(Comando, Art.Registro, "comprob_detalle");
-
-                                this.DataView.Execute(Comando);
-                                i++;
                         }
                 }
 	}

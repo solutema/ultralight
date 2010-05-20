@@ -76,6 +76,12 @@ namespace Lazaro
                 [STAThread, SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.ControlAppDomain)]
                 public static int Main(string[] args)
                 {
+                        System.Globalization.CultureInfo EsArCulture = new System.Globalization.CultureInfo("es-ar");
+                        Application.CurrentCulture = EsArCulture;
+                        System.Threading.Thread.CurrentThread.CurrentCulture = EsArCulture;
+                        System.Threading.Thread.CurrentThread.CurrentUICulture = EsArCulture;
+                        System.Threading.Thread.CurrentThread.Name = "Lázaro";
+
                         System.Console.WriteLine("RunTime: " + Lfx.Environment.SystemInformation.RunTime.ToString() + " en " + Lfx.Environment.SystemInformation.Platform.ToString());
                         System.Console.WriteLine("Codificación: " + System.Text.Encoding.Default.BodyName);
 
@@ -160,8 +166,6 @@ namespace Lazaro
 
                         Lws.Workspace.Master = new Lws.Workspace(NombreConfig, false);
 
-                        Config.PreIniciar();
-
                         if (ReconfigDB) {
                                 Misc.Config.ConfigBD OFormConfigBD = new Misc.Config.ConfigBD();
 
@@ -210,18 +214,14 @@ namespace Lazaro
                                 }
                         } while (true);
 
-                        Config.Iniciar();
+                        Aplicacion.CUIT = Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString(null, "Sistema.Empresa.CUIT", "");
+                        Lfx.Types.Currency.CurrencySymbol = Lws.Workspace.Master.DefaultDataBase.FieldString("SELECT signo FROM monedas WHERE id_moneda=" + Lfx.Types.Currency.DefaultCurrency.ToString());
+
                         Lws.Workspace.Master.DefaultDataBase.EnableRecover = true;
 
                         Lfx.Types.OperationResult ResultadoInicio = new Lfx.Types.SuccessOperationResult();
 
                         Lws.Workspace.Master.RunTime.IpcEvent += new Lws.Workspace.RunTimeServices.IpcEventHandler(Workspace_IpcEvent);
-
-                        if (Lws.Workspace.Master.CurrentConfig.Company.Email.Length <= 5) {
-                                string Email = Lui.Forms.InputBox.ShowInputBox("Por favor escriba la dirección de correo electrónico (e-mail) de la empresa. Si desea ingresar al sistema sin escribir la dirección ahora, haga clic en Cancelar.", Lws.Workspace.Master.CurrentConfig.Company.Name, "");
-                                if (Email != null && Email.Length > 5)
-                                        Lws.Workspace.Master.CurrentConfig.Company.Email = Email;
-                        }
 
                         ResultadoInicio = IniciarNormal();
 
@@ -277,7 +277,6 @@ namespace Lazaro
 
                         if (Aplicacion.CUIT == null || Aplicacion.CUIT.Length == 0 || Aplicacion.CUIT == "00-00000000-0") {
                                 Misc.Config.Preferencias FormConfig = new Misc.Config.Preferencias();
-                                FormConfig.Workspace = Lws.Workspace.Master;
                                 FormConfig.BotonSiguiente.Visible = false;
                                 if (FormConfig.ShowDialog() == DialogResult.OK)
                                         Aplicacion.Exec("REBOOT");
@@ -324,45 +323,50 @@ namespace Lazaro
                                 }
 
                                 // Mostrar qué hay de nuevo
-                                System.IO.StreamReader Whatsnew = new System.IO.StreamReader(ObtenerRecurso("whatsnew.txt"));
-                                string FechaWhatsnew = Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Usuario." + Lws.Workspace.Master.CurrentUser.Id.ToString(), "Whatsnew.Ultimo", "");
-                                System.Text.StringBuilder Mostrar = null;
-                                bool Mostrando = false;
-                                while (Whatsnew.EndOfStream == false) {
-                                        string Linea = Whatsnew.ReadLine();
-                                        if (Linea.Length > 4 && Linea.Substring(0, 4) == "*** ") {
-                                                string FechaLinea = Linea.Substring(4, Linea.Length - 4);
-                                                if (string.Compare(FechaLinea, FechaWhatsnew) > 0) {
-                                                        FechaWhatsnew = FechaLinea;
-                                                        Linea = Lfx.Types.Parsing.ParseDate(FechaLinea).Value.ToString(Lfx.Types.Formatting.DateTime.LongDateFormat) + ":";
-                                                        Mostrando = true;
+                                string FechaWhatsnew = Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Usuario." + Lws.Workspace.Master.CurrentUser.Id.ToString(), "Whatsnew.Ultimo", "firsttime");
+                                if (FechaWhatsnew == "firsttime") {
+                                        // Primera vez que entra. No muestro qué hay de nuevo (TODO: pero podría darle una bienvenida)
+                                        Lws.Workspace.Master.CurrentConfig.WriteGlobalSetting("Usuario." + Lws.Workspace.Master.CurrentUser.Id.ToString(), "Whatsnew.Ultimo", System.DateTime.Now.ToString("yyyy-MM-dd"));
+                                } else {
+                                        // Veo si hay novedades para mostrar
+                                        string FechaWhatsnewOriginal = FechaWhatsnew;
+                                        System.IO.StreamReader Whatsnew = new System.IO.StreamReader(ObtenerRecurso("whatsnew.txt"));
+                                        System.Text.StringBuilder Mostrar = null;
+                                        bool Mostrando = false;
+                                        while (Whatsnew.EndOfStream == false) {
+                                                string Linea = Whatsnew.ReadLine();
+                                                if (Linea.Length > 4 && Linea.Substring(0, 4) == "*** ") {
+                                                        string FechaLinea = Linea.Substring(4, Linea.Length - 4);
+                                                        if (string.Compare(FechaLinea, FechaWhatsnew) > 0) {
+                                                                FechaWhatsnew = FechaLinea;
+                                                                Linea = Lfx.Types.Parsing.ParseDate(FechaLinea).Value.ToString(Lfx.Types.Formatting.DateTime.LongDateFormat) + ":";
+                                                                Mostrando = true;
+                                                        }
                                                 }
-                                        }
 
-                                        if (Mostrando) {
-                                                if (Mostrar == null) {
-                                                        Mostrar = new System.Text.StringBuilder();
-                                                        Mostrar.AppendLine("Por favor tómese un momento para leer sobre las novedades incorporadas recientemente en el sistema Lázaro:");
-                                                        Mostrar.AppendLine("");
+                                                if (Mostrando) {
+                                                        if (Mostrar == null) {
+                                                                Mostrar = new System.Text.StringBuilder();
+                                                                Mostrar.AppendLine("Por favor tómese un momento para leer sobre las novedades incorporadas recientemente en el sistema Lázaro:");
+                                                                Mostrar.AppendLine("");
+                                                        }
+                                                        Mostrar.AppendLine(Linea.Replace("* ", "• "));
                                                 }
-                                                Mostrar.AppendLine(Linea.Replace("* ", "• "));
                                         }
-                                }
-                                Whatsnew.BaseStream.Close();
-                                Whatsnew.Close();
-                                if (Mostrar != null && Mostrar.Length > 0) {
-                                        Lui.Forms.MessageBox.Show(Mostrar.ToString(), "Novedades");
-                                        Lws.Workspace.Master.CurrentConfig.WriteGlobalSetting("Usuario." + Lws.Workspace.Master.CurrentUser.Id.ToString(), "Whatsnew.Ultimo", FechaWhatsnew);
+                                        Whatsnew.BaseStream.Close();
+                                        Whatsnew.Close();
+                                        if (Mostrar != null && Mostrar.Length > 0) {
+                                                Lui.Forms.MessageBox.Show(Mostrar.ToString(), "Novedades");
+                                                Lws.Workspace.Master.CurrentConfig.WriteGlobalSetting("Usuario." + Lws.Workspace.Master.CurrentUser.Id.ToString(), "Whatsnew.Ultimo", FechaWhatsnew);
+                                        }
                                 }
 
                                 // Mostrar el formulario
                                 Aplicacion.FormularioPrincipal = new Principal.Inicio();
-                                Aplicacion.FormularioPrincipal.Workspace = Lws.Workspace.Master;
                                 Aplicacion.FormularioPrincipal.Show();
                                 Application.Run(Aplicacion.FormularioPrincipal);
                         }
 
-                        Config.Terminar();
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
@@ -395,7 +399,7 @@ namespace Lazaro
                                         Sel.Fields = "personas.id_persona,personas.nombre_visible,comprob.fecha,comprob.total";
                                         Sel.Joins.Add(new Lfx.Data.Join("comprob", "comprob_detalle.id_comprob=comprob.id_comprob"));
                                         Sel.Joins.Add(new Lfx.Data.Join("personas", "comprob.id_cliente=personas.id_persona"));
-                                        Sel.WhereClause = new Lfx.Data.SqlWhereBuilder("comprob.fecha BETWEEN '2009-09-01' AND '2009-09-30' AND comprob.compra=0 AND comprob.numero>0 AND comprob.tipo_fac IN ('A', 'B', 'C', 'M', 'E')");
+                                        Sel.WhereClause = new Lfx.Data.SqlWhereBuilder("comprob.fecha BETWEEN '2009-09-01' AND '2009-09-30' AND comprob.compra=0 AND comprob.numero>0 AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FM', 'FE')");
 
                                         Lbl.Reportes.Reporte Rep = new Lbl.Reportes.Reporte(Lws.Workspace.Master.GetDataView(false), Sel);
                                         Rep.Grouping = new Lfx.Data.Grouping("personas.nombre_visible");
@@ -413,15 +417,26 @@ namespace Lazaro
                                         break;
 
                                 case "LIC":
-                                        Lfx.Lic.Licenciar(@"C:\Lazaro\Sistema");
-                                        Lfx.Lic.Licenciar(@"C:\Lazaro\Componentes\RunComponent");
-                                        Lfx.Lic.Licenciar(@"C:\Lazaro\Componentes\ServidorFiscal");
-                                        Lfx.Lic.Licenciar(@"C:\Lazaro\Lfx");
-                                        Lfx.Lic.Licenciar(@"C:\Lazaro\Lbl");
-                                        Lfx.Lic.Licenciar(@"C:\Lazaro\Lws");
-                                        Lfx.Lic.Licenciar(@"C:\Lazaro\Lui");
-                                        Lfx.Lic.Licenciar(@"C:\Lazaro\Lfc");
-                                        Lfx.Lic.Licenciar(@"C:\Lazaro\Cargador");
+                                        Lfx.Lic.Licenciar(@"..\");
+                                        Lfx.Lic.Licenciar(@"..\..\Componentes\RunComponent");
+                                        Lfx.Lic.Licenciar(@"..\..\Componentes\ServidorFiscal");
+                                        Lfx.Lic.Licenciar(@"..\..\Lazaro.Forms");
+                                        Lfx.Lic.Licenciar(@"..\..\Lfx");
+                                        Lfx.Lic.Licenciar(@"..\..\Lws");
+                                        Lfx.Lic.Licenciar(@"..\..\Lbl");
+                                        Lfx.Lic.Licenciar(@"..\..\Lui");
+                                        Lfx.Lic.Licenciar(@"..\..\Lcc");
+                                        Lfx.Lic.Licenciar(@"..\..\Lfc");
+                                        Lfx.Lic.Licenciar(@"..\..\Cargador");
+                                        break;
+
+                                case "HISTORIAL":
+                                        string Tabla = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim();
+                                        int Id = Lfx.Types.Parsing.ParseInt(Lfx.Types.Strings.GetNextToken(ref comando, " "));
+                                        Lui.Forms.EditHistory His = new Lui.Forms.EditHistory();
+                                        His.MdiParent = FormularioPrincipal;
+                                        His.Mostrar(Tabla, Id);
+                                        His.Show();
                                         break;
 
                                 case "ERROR":
@@ -429,7 +444,6 @@ namespace Lazaro
 
                                 case "TEST":
                                         Misc.Form1 Frm = new Lazaro.Misc.Form1();
-                                        Frm.Workspace = Lws.Workspace.Master;
                                         Frm.MdiParent = FormularioPrincipal;
                                         Frm.Show();
                                         break;
@@ -457,12 +471,10 @@ namespace Lazaro
 
                                 case "VER":
                                         Lazaro.Misc.AcercaDe OAcercaDe = new Lazaro.Misc.AcercaDe();
-                                        OAcercaDe.Workspace = Lws.Workspace.Master;
                                         OAcercaDe.ShowDialog();
                                         break;
 
                                 case "REBOOT":
-                                        Config.Terminar();
                                         Lfx.Environment.Shell.Reboot();
                                         break;
 
@@ -480,7 +492,6 @@ namespace Lazaro
                                                                 Misc.Backup.Manager OFormBackup = (Misc.Backup.Manager)BuscarVentana("Misc.Backup.Manager");
                                                                 if (OFormBackup == null)
                                                                         OFormBackup = new Misc.Backup.Manager();
-                                                                OFormBackup.Workspace = Lws.Workspace.Master;
                                                                 OFormBackup.ShowDialog(Aplicacion.FormularioPrincipal);
                                                                 break;
 
@@ -497,7 +508,6 @@ namespace Lazaro
                                         Misc.Config.Preferencias OFormConfig = (Misc.Config.Preferencias)BuscarVentana("Misc.Config.Preferencias");
                                         if (OFormConfig == null)
                                                 OFormConfig = new Misc.Config.Preferencias();
-                                        OFormConfig.Workspace = Lws.Workspace.Master;
                                         OFormConfig.ShowDialog(Aplicacion.FormularioPrincipal);
                                         break;
 
@@ -515,7 +525,6 @@ namespace Lazaro
                                                         Lazaro.Misc.Fiscal OFormFiscal = (Lazaro.Misc.Fiscal)BuscarVentana("Lazaro.Misc.Fiscal");
                                                         if (OFormFiscal == null)
                                                                 OFormFiscal = new Lazaro.Misc.Fiscal();
-                                                        OFormFiscal.Workspace = Lws.Workspace.Master;
                                                         OFormFiscal.ShowDialog();
                                                         break;
                                         }
@@ -533,7 +542,6 @@ namespace Lazaro
                                                 case "RENTABILIDAD":
                                                         if (Lui.Login.LoginData.ValidateAccess(Lws.Workspace.Master.CurrentUser, "global.total")) {
                                                                 Lazaro.Reportes.IngresosEgresos OFormRepRentabilidad = new Lazaro.Reportes.IngresosEgresos();
-                                                                OFormRepRentabilidad.Workspace = Lws.Workspace.Master;
                                                                 if (!Aplicacion.Flotante)
                                                                         OFormRepRentabilidad.MdiParent = Aplicacion.FormularioPrincipal;
                                                                 OFormRepRentabilidad.Show();
@@ -543,7 +551,6 @@ namespace Lazaro
                                                 case "PATRIMONIO":
                                                         if (Lui.Login.LoginData.ValidateAccess(Lws.Workspace.Master.CurrentUser, "global.total")) {
                                                                 Lazaro.Reportes.Patrimonio RepPatr = new Lazaro.Reportes.Patrimonio();
-                                                                RepPatr.Workspace = Lws.Workspace.Master;
                                                                 if (!Aplicacion.Flotante)
                                                                         RepPatr.MdiParent = Aplicacion.FormularioPrincipal;
                                                                 RepPatr.Show();
@@ -563,7 +570,7 @@ namespace Lazaro
                                                         int IdComprobante = Lfx.Types.Parsing.ParseInt(Lfx.Types.Strings.GetNextToken(ref comando, " "));
 
                                                         Lws.Data.DataView DataViewImprimir = Lws.Workspace.Master.GetDataView(true);
-                                                        DataViewImprimir.DataBase.BeginTransaction();
+                                                        DataViewImprimir.BeginTransaction(true);
                                                         Lbl.Comprobantes.ComprobanteConArticulos Comprob = new Lbl.Comprobantes.ComprobanteConArticulos(DataViewImprimir, IdComprobante);
 
                                                         Lfx.Types.OperationResult ResultadoImpresion = Comprob.Imprimir();
@@ -577,20 +584,6 @@ namespace Lazaro
                                         }
                                         break;
 
-                                case "TICKER":
-                                        string SubComandoTicker = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
-
-                                        switch (SubComandoTicker) {
-                                                case "MOSTRADOR":
-                                                        Lfc.Misc.Estaticos.FormularioTickerPresupuestos = new Lfc.Comprobantes.Ticker.TickerPresupuestos();
-                                                        Lfc.Misc.Estaticos.FormularioTickerPresupuestos.Workspace = Lws.Workspace.Master;
-                                                        Lfc.Misc.Estaticos.FormularioTickerPresupuestos.Workspace.RunTime.IpcEvent += new Lws.Workspace.RunTimeServices.IpcEventHandler(Lfc.Misc.Estaticos.FormularioTickerPresupuestos.Workspace_IpcEvent);
-                                                        Lfc.Misc.Estaticos.FormularioTickerPresupuestos.Show();
-                                                        break;
-                                        }
-
-                                        break;
-
                                 case "ANULAR":
                                         if (Lui.Login.LoginData.ValidateAccess(Lws.Workspace.Master.CurrentUser, "documents.delete")) {
                                                 string SubComandoAnular = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
@@ -599,7 +592,6 @@ namespace Lazaro
                                                         case "FACTURA":
                                                         case "FACT":
                                                                 Lfc.Comprobantes.Facturas.Anular FormularioFacturaAnular = new Lfc.Comprobantes.Facturas.Anular();
-                                                                FormularioFacturaAnular.Workspace = Lws.Workspace.Master;
                                                                 if (!Aplicacion.Flotante)
                                                                         FormularioFacturaAnular.MdiParent = Aplicacion.FormularioPrincipal;
                                                                 FormularioFacturaAnular.Show();
@@ -607,7 +599,6 @@ namespace Lazaro
 
                                                         case "RECIBO":
                                                                 Lfc.Comprobantes.Recibos.Anular FormularioReciboAnular = new Lfc.Comprobantes.Recibos.Anular();
-                                                                FormularioReciboAnular.Workspace = Lws.Workspace.Master;
                                                                 FormularioReciboAnular.ShowDialog(Aplicacion.FormularioPrincipal);
                                                                 break;
                                                 }
@@ -632,7 +623,6 @@ namespace Lazaro
                                                 string SubComandoCaja = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
 
                                                 Lfc.Cajas.Inicio FormularioCaja = new Lfc.Cajas.Inicio();
-                                                FormularioCaja.Workspace = Lws.Workspace.Master;
                                                 if (!Aplicacion.Flotante)
                                                         FormularioCaja.MdiParent = Aplicacion.FormularioPrincipal;
                                                 FormularioCaja.m_Caja = Lws.Workspace.Master.CurrentConfig.Company.CajaDiaria;
@@ -661,7 +651,6 @@ namespace Lazaro
                                                 if (CtaCte == null)
                                                         CtaCte = new Lfc.Cajas.Corriente.Inicio();
 
-                                                CtaCte.Workspace = Lws.Workspace.Master;
                                                 if (!Aplicacion.Flotante)
                                                         CtaCte.MdiParent = Aplicacion.FormularioPrincipal;
                                                 CtaCte.m_Cliente = Lfx.Types.Parsing.ParseInt(SubComandoCtaCte);
@@ -679,7 +668,6 @@ namespace Lazaro
                                                         OTarjetas = new Lfc.Tarjetas.Cupones.Inicio();
                                                 if (!Aplicacion.Flotante)
                                                         OTarjetas.MdiParent = Aplicacion.FormularioPrincipal;
-                                                OTarjetas.Workspace = Lws.Workspace.Master;
                                                 OTarjetas.RefreshList();
                                                 OTarjetas.Show();
                                                 return OTarjetas;
@@ -691,7 +679,6 @@ namespace Lazaro
                                                 string SubComandoCaja = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
 
                                                 Lfc.Cajas.Inicio FormularioCaja = new Lfc.Cajas.Inicio();
-                                                FormularioCaja.Workspace = Lws.Workspace.Master;
                                                 if (!Aplicacion.Flotante)
                                                         FormularioCaja.MdiParent = Aplicacion.FormularioPrincipal;
                                                 FormularioCaja.m_Caja = Lfx.Types.Parsing.ParseInt(SubComandoCaja);
@@ -708,7 +695,6 @@ namespace Lazaro
                                                 case "ARTICULOS":
                                                         string SubComandoArticulos = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
                                                         Lfc.Articulos.Movimiento FormularioMovimientoArticulo = new Lfc.Articulos.Movimiento();
-                                                        FormularioMovimientoArticulo.Workspace = Lws.Workspace.Master;
                                                         FormularioMovimientoArticulo.EntradaArticulo.TextInt = Lfx.Types.Parsing.ParseInt(SubComandoArticulos);
                                                         FormularioMovimientoArticulo.ShowDialog(Aplicacion.FormularioPrincipal);
                                                         return FormularioMovimientoArticulo;
@@ -754,7 +740,6 @@ namespace Lazaro
                                 case "CHEQUERAS":
                                         if (Lui.Login.LoginData.ValidateAccess(Lws.Workspace.Master.CurrentUser, "accounts.read")) {
                                                 Lfc.Bancos.Chequeras.Inicio OFormChequerasInicio = new Lfc.Bancos.Chequeras.Inicio();
-                                                OFormChequerasInicio.Workspace = Lws.Workspace.Master;
                                                 if (!Aplicacion.Flotante)
                                                         OFormChequerasInicio.MdiParent = Aplicacion.FormularioPrincipal;
                                                 OFormChequerasInicio.Show();
@@ -768,7 +753,6 @@ namespace Lazaro
                                                 case "RECIBIDOS":
                                                         if (Lui.Login.LoginData.ValidateAccess(Lws.Workspace.Master.CurrentUser, "accounts.read")) {
                                                                 Lfc.Bancos.Cheques.Inicio FormularioChequesRecibidos = new Lfc.Bancos.Cheques.Inicio();
-                                                                FormularioChequesRecibidos.Workspace = Lws.Workspace.Master;
                                                                 if (!Aplicacion.Flotante)
                                                                         FormularioChequesRecibidos.MdiParent = Aplicacion.FormularioPrincipal;
                                                                 FormularioChequesRecibidos.Emitidos = false;
@@ -780,7 +764,6 @@ namespace Lazaro
                                                 case "EMITIDOS":
                                                         if (Lui.Login.LoginData.ValidateAccess(Lws.Workspace.Master.CurrentUser, "accounts.read")) {
                                                                 Lfc.Bancos.Cheques.Inicio FormularioChequesEmitidos = new Lfc.Bancos.Cheques.Inicio();
-                                                                FormularioChequesEmitidos.Workspace = Lws.Workspace.Master;
                                                                 if (!Aplicacion.Flotante)
                                                                         FormularioChequesEmitidos.MdiParent = Aplicacion.FormularioPrincipal;
                                                                 FormularioChequesEmitidos.Emitidos = true;
@@ -1004,7 +987,6 @@ namespace Lazaro
                         if (FormularioListado == null)
                                 return null;
 
-                        FormularioListado.Workspace = Lws.Workspace.Master;
                         if (Aplicacion.Flotante)
                                 FormularioListado.WindowState = Aplicacion.FormularioPrincipal.WindowState;
                         else
@@ -1055,7 +1037,6 @@ namespace Lazaro
                                         if (Lui.Login.LoginData.Access(Lws.Workspace.Master.CurrentUser, "people.*")
                                                 || Lui.Login.LoginData.Access(Lws.Workspace.Master.CurrentUser, "people.basicwrite")) {
                                                 FormularioDeEdicion = new Lfc.Personas.Editar();
-                                                FormularioDeEdicion.Workspace = Lws.Workspace.Master;
                                                 if (crear)
                                                         ((Lfc.Personas.Editar)(FormularioDeEdicion)).EntradaTipo.Text = "2";
                                         } else {
@@ -1168,15 +1149,13 @@ namespace Lazaro
                                         break;
 
                                 case "T":
-                                case "B":
-                                case "A":
-                                case "C":
-                                case "E":
-                                case "M":
+                                case "FA":
+                                case "FB":
+                                case "FC":
+                                case "FE":
+                                case "FM":
                                 case "NC":
-                                case "NC*":
                                 case "ND":
-                                case "ND*":
                                 case "NCA":
                                 case "NCB":
                                 case "NCC":
@@ -1194,7 +1173,7 @@ namespace Lazaro
                                 case "F":
                                 case "*":
                                 case "FNCND":
-                                        FormularioDeEdicion = new Lfc.Comprobantes.Facturas.Editar("B");
+                                        FormularioDeEdicion = new Lfc.Comprobantes.Facturas.Editar("FB");
                                         break;
 
                                 case "PS":
@@ -1222,7 +1201,6 @@ namespace Lazaro
 
                                 case "RECIBO_RAPIDO":
                                         Lui.Forms.Form OFormReciboRapido = new Lfc.Comprobantes.Recibos.Rapido();
-                                        OFormReciboRapido.Workspace = Lws.Workspace.Master;
                                         OFormReciboRapido.ShowDialog(Aplicacion.FormularioPrincipal);
                                         return OFormReciboRapido;
 
@@ -1234,7 +1212,7 @@ namespace Lazaro
                                         if (SubComando == "RP")
                                                 ((Lfc.Comprobantes.Compra.Editar)(FormularioDeEdicion)).CrearTipo = "R";
                                         else if (SubComando == "FP")
-                                                ((Lfc.Comprobantes.Compra.Editar)(FormularioDeEdicion)).CrearTipo = "A";
+                                                ((Lfc.Comprobantes.Compra.Editar)(FormularioDeEdicion)).CrearTipo = "FA";
                                         else
                                                 ((Lfc.Comprobantes.Compra.Editar)(FormularioDeEdicion)).CrearTipo = SubComando;
                                         break;
@@ -1245,7 +1223,6 @@ namespace Lazaro
                                         switch (SubComandoTicket) {
                                                 case "NOVEDAD":
                                                         Lui.Forms.Form OFormNovedad = new Lfc.Tareas.Novedad();
-                                                        OFormNovedad.Workspace = Lws.Workspace.Master;
                                                         OFormNovedad.ShowDialog(Aplicacion.FormularioPrincipal);
                                                         return OFormNovedad;
 
@@ -1272,9 +1249,6 @@ namespace Lazaro
 
                         if (FormularioDeEdicion == null)
                                 return null;
-
-                        if (FormularioDeEdicion.Workspace == null)
-                                FormularioDeEdicion.Workspace = Lws.Workspace.Master;
 
                         if (crear) {
                                 Lfx.Types.OperationResult Result = FormularioDeEdicion.Create();
@@ -1393,9 +1367,9 @@ namespace Lazaro
 
                                 return TmpFormularioNuevo;
                         }
-                        catch (Exception ex) {
+                        catch {
                                 if (Lfx.Environment.SystemInformation.DesignMode)
-                                        throw ex;
+                                        throw;
                                 return null;
                         }
                 }
@@ -1445,9 +1419,9 @@ namespace Lazaro
 
                                 return TmpFormularioNuevo;
                         }
-                        catch (Exception ex) {
+                        catch {
                                 if (Lfx.Environment.SystemInformation.DesignMode)
-                                        throw ex;
+                                        throw;
                                 return null;
                         }
                 }
@@ -1473,7 +1447,7 @@ namespace Lazaro
                                 while (ex2 != null) {
                                         if (string.Compare(ex2.Message,"Reading from the stream has failed.", true) == 0
                                                 || string.Compare(ex2.Message, "Connection unexpectedly terminated.", true) == 0
-                                                || string.Compare(ex2.Message, "Se ha forzado la interrupción de una conexión existente por el host remoto", true) == 0) {
+                                                || string.Compare(ex2.Message, "No se pueden leer los datos de la conexión de transporte: Se ha forzado la interrupción de una conexión existente por el host remoto.", true) == 0) {
                                                 KnownExceptionHandler(ex, "Error de comunicación con el servidor");
                                                 Found = true;
                                                 break;

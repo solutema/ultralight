@@ -58,23 +58,23 @@ namespace Lfc.Comprobantes.Facturas
 			switch (EntradaTipo.TextKey)
 			{
 				case "A":
-					TipoReal = "'A', 'NCA', 'NDA'";
+					TipoReal = "'FA', 'NCA', 'NDA'";
 					break;
 
 				case "B":
-					TipoReal = "'B', 'NCB', 'NDB'";
+					TipoReal = "'FB', 'NCB', 'NDB'";
 					break;
 
                                 case "C":
-                                        TipoReal = "'C', 'NCC', 'NDC'";
+                                        TipoReal = "'FC', 'NCC', 'NDC'";
                                         break;
 
                                 case "E":
-                                        TipoReal = "'E', 'NCE', 'NDE'";
+                                        TipoReal = "'FE', 'NCE', 'NDE'";
                                         break;
 
                                 case "M":
-                                        TipoReal = "'M', 'NCM', 'NDM'";
+                                        TipoReal = "'FM', 'NCM', 'NDM'";
                                         break;
 			}
 
@@ -101,6 +101,11 @@ namespace Lfc.Comprobantes.Facturas
                                 } else {
                                         EtiquetaAviso.Text = "Recuerde que necesitar archivar todas las copias del comprobante anulado.";
                                         OkButton.Visible = true;
+                                        if (Fac.FormaDePago.Tipo == Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente) {
+                                                EntradaAnularPagos.TextKey = "1";
+                                        } else {
+                                                EntradaAnularPagos.TextKey = "0";
+                                        }
                                 }
                         } else {
                                 if (ProximosNumeros.ContainsKey(PV) == false)
@@ -113,6 +118,7 @@ namespace Lfc.Comprobantes.Facturas
                                         OkButton.Visible = true;
                                 } else {
                                         EtiquetaAviso.Text = "El comprobante " + EntradaTipo.TextKey + " " + PV.ToString("0000") + "-" + Lfx.Types.Parsing.ParseInt(EntradaNumero.Text).ToString("00000000") + " aun no fue impreso y no puede anularse.";
+                                        EntradaAnularPagos.TextKey = "0";
                                         ComprobanteVistaPrevia.Elemento = null;
                                         ComprobanteVistaPrevia.Visible = false;
                                         OkButton.Visible = false;
@@ -130,30 +136,30 @@ namespace Lfc.Comprobantes.Facturas
 				int PV = Lfx.Types.Parsing.ParseInt(EntradaPV.Text);
                                 bool AnularPagos = Lfx.Types.Parsing.ParseInt(EntradaAnularPagos.TextKey) != 0;
 
-				this.DataView.BeginTransaction();
+				this.DataView.BeginTransaction(true);
 				int m_Id = 0;
 				string TipoReal = "";
 
 				switch (EntradaTipo.TextKey)
 				{
 					case "A":
-						TipoReal = "'A', 'NCA', 'NDA'";
+						TipoReal = "'FA', 'NCA', 'NDA'";
 						break;
 
 					case "B":
-						TipoReal = "'B', 'NCB', 'NDB'";
+						TipoReal = "'FB', 'NCB', 'NDB'";
 						break;
 
                                         case "C":
-                                                TipoReal = "'C', 'NCC', 'NDC'";
+                                                TipoReal = "'FC', 'NCC', 'NDC'";
                                                 break;
 
                                         case "E":
-                                                TipoReal = "'E', 'NCE', 'NDE'";
+                                                TipoReal = "'FE', 'NCE', 'NDE'";
                                                 break;
 
                                         case "M":
-                                                TipoReal = "'M', 'NCM', 'NDM'";
+                                                TipoReal = "'FM', 'NCM', 'NDM'";
                                                 break;
 				}
 
@@ -163,7 +169,7 @@ namespace Lfc.Comprobantes.Facturas
                                         // Es una factura que todava no existe
                                         // Tengo que crear la factura y anularla
                                         DataView.DataBase.Execute("INSERT INTO comprob (tipo_fac, id_formapago, id_sucursal, pv, fecha, id_vendedor, id_cliente, obs, impresa, anulada) VALUES ('" + EntradaTipo.TextKey + "', 3, " + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString() + ", " + EntradaPV.Text + ", NOW(), " + this.Workspace.CurrentUser.Id.ToString() + ", " + this.Workspace.CurrentUser.Id.ToString() + ", 'Comprobante anulado antes de ser impreso.', 1, 1)");
-                                        m_Id = DataView.DataBase.FieldInt("SELECT MAX(id_comprob) AS id_comprob FROM comprob WHERE tipo_fac='" + EntradaTipo.TextKey + "'");
+                                        m_Id = DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
                                         Lbl.Comprobantes.Numerador.Numerar(DataView, m_Id);
                                         Lui.Forms.MessageBox.Show("Se anuló el comprobante " + Lbl.Comprobantes.Comprobante.NumeroCompleto(DataView, m_Id) + ". Recuerde archivar ambas copias.", "Aviso");
                                 } else {
@@ -171,6 +177,8 @@ namespace Lfc.Comprobantes.Facturas
                                         Fac.Anular(AnularPagos);
                                         Lui.Forms.MessageBox.Show("Se anuló el comprobante " + Fac.ToString() + ". Recuerde archivar ambas copias.", "Aviso");
                                 }
+
+                                ProximosNumeros.Clear();
 
 				this.DataView.Commit();
 

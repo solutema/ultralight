@@ -710,7 +710,7 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                         if (EventoConexion != null)
                                 EventoConexion(this, new ConexionEventArgs(ConexionEventArgs.EventTypes.InicioImpresion));
 
-                        Lws.Data.DataView DataView = new Lws.Data.DataView(m_Workspace);
+                        Lws.Data.DataView DataView = new Lws.Data.DataView(this.Workspace);
                         // *** Obtener datos previos
                         Comprobantes.Factura Fac = new Comprobantes.Factura(DataView, idFactura);
 
@@ -747,29 +747,30 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                         }
 
                         switch (Fac.Tipo.Nomenclatura) {
-                                case "M":
+                                case "FM":
                                 case "NDM":
                                 case "NCM":
-                                        // FIXME: va como A?
-                                case "A":
+                                        Letra = "M";
+                                        break;
+                                case "FA":
                                 case "NDA":
                                 case "NCA":
                                         Letra = "A";
                                         break;
 
-                                case "B":
+                                case "FB":
                                 case "NDB":
                                 case "NCB":
                                         Letra = "B";
                                         break;
 
-                                case "C":
+                                case "FC":
                                 case "NDC":
                                 case "NCC":
                                         Letra = "C";
                                         break;
 
-                                case "E":
+                                case "FE":
                                 case "NDE":
                                 case "NCE":
                                         Letra = "E";
@@ -851,8 +852,8 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
 
                         string Domicilio = Fac.Cliente.Domicilio;
                         string ClienteCiudad = "";
-                        if (Fac.Cliente.Ciudad != null)
-                                ClienteCiudad = Fac.Cliente.Ciudad.ToString();
+                        if (Fac.Cliente.Localidad != null)
+                                ClienteCiudad = Fac.Cliente.Localidad.ToString();
 
                         // *** Abrir Documento
                         if (EventoConexion != null)
@@ -1021,7 +1022,7 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                         //        Detalles = this.DataView.DataBase.Select("SELECT id_articulo,nombre,cantidad,precio,series FROM comprob_detalle WHERE id_comprob=" + Fac.Id.ToString());
 
                         foreach (Lbl.Comprobantes.DetalleArticulo Detalle in Fac.Articulos) {
-                                string StrCodigo = m_Workspace.CurrentConfig.Products.DefaultCode();
+                                string StrCodigo = this.Workspace.CurrentConfig.Products.DefaultCode();
 
                                 if (Detalle.Articulo != null) {
                                         if (StrCodigo == "id_articulo")
@@ -1173,14 +1174,14 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                                         case Modelos.EpsonGenerico:
                                         case Modelos.Emulacion:
                                                 ComandoAEnviar = new ComandoFiscal(CodigosComandosFiscales.EpsonDocumentoFiscalPagosYDescuentos,
-                                                        "Recargo " + Lfx.Types.Formatting.FormatCurrencyForPrint(Fac.Recargo, m_Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + "%",
+                                                        "Recargo " + Lfx.Types.Formatting.FormatCurrencyForPrint(Fac.Recargo, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + "%",
                                                         FormatearNumeroEpson(Fac.SubTotal * (Fac.Recargo / 100), 2).PadLeft(12, '0'),
                                                         "R");
                                                 Res = Enviar(ComandoAEnviar);
                                                 break;
                                         case Modelos.HasarGenerico:
                                                 ComandoAEnviar = new ComandoFiscal(CodigosComandosFiscales.HasarDocumentoFiscalDevolucionesYRecargos,
-                                                        "Recargo " + Lfx.Types.Formatting.FormatCurrencyForPrint(Fac.Recargo, m_Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + "%",
+                                                        "Recargo " + Lfx.Types.Formatting.FormatCurrencyForPrint(Fac.Recargo, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + "%",
                                                         FormatearNumeroHasar(Fac.SubTotal * (Fac.Recargo / 100), 2).PadLeft(10, '0'),
                                                         "M",
                                                         "00000000000",
@@ -1244,11 +1245,14 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                                         EventoConexion(this, new ConexionEventArgs("Asentando el movimiento"));
 
                                 try {
-                                        DataView.BeginTransaction();
+                                        DataView.BeginTransaction(true);
 
                                         //Marco la factura como impresa
-                                        DataView.DataBase.Execute("UPDATE comprob SET impresa=1, estado=1, numero=" + Res.NumeroComprobante.ToString() + " WHERE id_comprob=" + Fac.Id.ToString());
                                         Fac.Cargar();
+                                        Fac.Impreso = true;
+                                        Fac.Estado = 1;
+                                        Fac.Numero = Res.NumeroComprobante;
+                                        Fac.Guardar();
 
                                         //Resto el stock si corresponde
                                         Lbl.Articulos.Stock.MoverStockComprobante(Fac);
@@ -1272,8 +1276,7 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                                                         }
                                                         break;
                                                 case TipoFormasDePago.CuentaCorriente:
-                                                        Cajas.CuentaCorriente CtaCte = new Lbl.Cajas.CuentaCorriente(DataView, Fac.Cliente.Id);
-                                                        CtaCte.IngresarComprobante(Fac, 0);
+                                                        Fac.Cliente.CuentaCorriente.IngresarComprobante(Fac);
                                                         break;
                                         }
 
@@ -1319,9 +1322,9 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
 			switch (comando.CodigoComando)
 			{
 				case CodigosComandosFiscales.EpsonDocumentoFiscalCerrar:
-					int LastComprob = m_Workspace.CurrentConfig.ReadGlobalSettingInt("ServidorFiscal", "UltimoComprobEmulacionPV" + this.PV.ToString(), 0) + 1;
+                                        int LastComprob = this.Workspace.CurrentConfig.ReadGlobalSettingInt("ServidorFiscal", "UltimoComprobEmulacionPV" + this.PV.ToString(), 0) + 1;
 					Res.Campos.Add(LastComprob.ToString("00000000"));
-					m_Workspace.CurrentConfig.WriteGlobalSetting("ServidorFiscal", "UltimoComprobEmulacionPV" + this.PV.ToString(), LastComprob.ToString());
+                                        this.Workspace.CurrentConfig.WriteGlobalSetting("ServidorFiscal", "UltimoComprobEmulacionPV" + this.PV.ToString(), LastComprob.ToString());
 					System.Console.WriteLine(m_TextEmulacion.ToString());
 					m_TextEmulacion = new System.Text.StringBuilder();
 					break;

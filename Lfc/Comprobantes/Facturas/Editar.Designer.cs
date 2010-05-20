@@ -69,7 +69,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaFormaPago.CanCreate = true;
                         this.EntradaFormaPago.DetailField = "nombre";
                         this.EntradaFormaPago.ExtraDetailFields = null;
-                        this.EntradaFormaPago.Filter = "estado=1";
+                        this.EntradaFormaPago.Filter = "cobros=1 AND estado=1";
                         this.EntradaFormaPago.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFormaPago.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFormaPago.FreeTextCode = "";
@@ -117,16 +117,17 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
-        "Factura A|A",
-        "Factura B|B",
-        "Factura C|C",
-        "Factura E|E",
+        "Factura A|FA",
+        "Factura B|FB",
+        "Factura C|FC",
+        "Factura E|FE",
+        "Factura M|FM",
         "Ticket|T"};
                         this.EntradaTipo.Size = new System.Drawing.Size(116, 24);
                         this.EntradaTipo.TabIndex = 11;
                         this.EntradaTipo.Table = null;
                         this.EntradaTipo.Text = "Factura A";
-                        this.EntradaTipo.TextKey = "A";
+                        this.EntradaTipo.TextKey = "FA";
                         this.EntradaTipo.TextRaw = "Factura A";
                         this.EntradaTipo.TipWhenBlank = "";
                         this.EntradaTipo.ToolTipText = "";

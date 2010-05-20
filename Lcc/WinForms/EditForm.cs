@@ -1,4 +1,33 @@
-﻿using System;
+// Copyright 2004-2010 South Bridge S.R.L.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// Este programa es software libre; puede distribuirlo y/o moficiarlo de
+// acuerdo a los términos de la Licencia Pública General de GNU (GNU
+// General Public License), como la publica la Fundación para el Software
+// Libre (Free Software Foundation), tanto la versión 3 de la Licencia
+// como (a su elección) cualquier versión posterior.
+//
+// Este programa se distribuye con la esperanza de que sea útil, pero SIN
+// GARANTÍA ALGUNA; ni siquiera la garantía MERCANTIL implícita y sin
+// garantizar su CONVENIENCIA PARA UN PROPÓSITO PARTICULAR. Véase la
+// Licencia Pública General de GNU para más detalles. 
+//
+// Debería haber recibido una copia de la Licencia Pública General junto
+// con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -7,7 +36,7 @@ using Lazaro.Forms;
 
 namespace Lcc.WinForms
 {
-        public partial class EditForm : UserControl
+        public partial class EditForm : ActionForm
         {
                 private Lazaro.Forms.EditForm m_OriginalForm;
                 private Size MinControlSize = new Size(96, 24);
@@ -16,6 +45,8 @@ namespace Lcc.WinForms
                 public EditForm()
                 {
                         InitializeComponent();
+
+                        this.Body.Controls.Add(DataArea);
                 }
 
                 [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -40,11 +71,9 @@ namespace Lcc.WinForms
                         DataArea.ColumnStyles[0].Width = 20;
                         DataArea.ColumnStyles[1].SizeType = SizeType.AutoSize;
                         DataArea.ColumnStyles[1].Width = 80;
-                        LabelHeader.Font = new Font(this.Font.FontFamily, 12, FontStyle.Bold);
 
                         if (form != null) {
-                                LabelHeader.Text = form.Caption;
-
+                                this.FormHeader.Text = form.Caption;
                                 int CurrentRow = 0;
 
                                 foreach (FormSection Sect in form.Sections) {

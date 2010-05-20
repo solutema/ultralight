@@ -1,4 +1,33 @@
-﻿namespace Lcc.Edicion
+// Copyright 2004-2010 South Bridge S.R.L.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// Este programa es software libre; puede distribuirlo y/o moficiarlo de
+// acuerdo a los términos de la Licencia Pública General de GNU (GNU
+// General Public License), como la publica la Fundación para el Software
+// Libre (Free Software Foundation), tanto la versión 3 de la Licencia
+// como (a su elección) cualquier versión posterior.
+//
+// Este programa se distribuye con la esperanza de que sea útil, pero SIN
+// GARANTÍA ALGUNA; ni siquiera la garantía MERCANTIL implícita y sin
+// garantizar su CONVENIENCIA PARA UN PROPÓSITO PARTICULAR. Véase la
+// Licencia Pública General de GNU para más detalles. 
+//
+// Debería haber recibido una copia de la Licencia Pública General junto
+// con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+
+namespace Lcc.Edicion
 {
         partial class ImagenRecorte
         {
@@ -29,14 +58,14 @@
                 {
                         this.components = new System.ComponentModel.Container();
                         this.EntradaImagen = new System.Windows.Forms.PictureBox();
+                        this.MenuEntradImagen = new System.Windows.Forms.ContextMenuStrip(this.components);
+                        this.copiarAlPortapapelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+                        this.guardarEnUnArchivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
                         this.BotonGuardar = new Lui.Forms.Button();
                         this.label1 = new System.Windows.Forms.Label();
                         this.EntradaRatio = new Lui.Forms.ComboBox();
                         this.label2 = new System.Windows.Forms.Label();
                         this.BotonSinRecorte = new Lui.Forms.Button();
-                        this.MenuEntradImagen = new System.Windows.Forms.ContextMenuStrip(this.components);
-                        this.copiarAlPortapapelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-                        this.guardarEnUnArchivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
                         ((System.ComponentModel.ISupportInitialize)(this.EntradaImagen)).BeginInit();
                         this.MenuEntradImagen.SuspendLayout();
                         this.SuspendLayout();
@@ -54,6 +83,29 @@
                         this.EntradaImagen.MouseMove += new System.Windows.Forms.MouseEventHandler(this.EntradaImagen_MouseMove);
                         this.EntradaImagen.MouseDown += new System.Windows.Forms.MouseEventHandler(this.EntradaImagen_MouseDown);
                         this.EntradaImagen.Paint += new System.Windows.Forms.PaintEventHandler(this.EntradaImagen_Paint);
+                        this.EntradaImagen.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EntradaImagen_MouseUp);
+                        // 
+                        // MenuEntradImagen
+                        // 
+                        this.MenuEntradImagen.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copiarAlPortapapelesToolStripMenuItem,
+            this.guardarEnUnArchivoToolStripMenuItem});
+                        this.MenuEntradImagen.Name = "MenuEntradImagen";
+                        this.MenuEntradImagen.Size = new System.Drawing.Size(193, 48);
+                        // 
+                        // copiarAlPortapapelesToolStripMenuItem
+                        // 
+                        this.copiarAlPortapapelesToolStripMenuItem.Name = "copiarAlPortapapelesToolStripMenuItem";
+                        this.copiarAlPortapapelesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+                        this.copiarAlPortapapelesToolStripMenuItem.Text = "&Copiar al portapapeles";
+                        this.copiarAlPortapapelesToolStripMenuItem.Click += new System.EventHandler(this.copiarAlPortapapelesToolStripMenuItem_Click);
+                        // 
+                        // guardarEnUnArchivoToolStripMenuItem
+                        // 
+                        this.guardarEnUnArchivoToolStripMenuItem.Name = "guardarEnUnArchivoToolStripMenuItem";
+                        this.guardarEnUnArchivoToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+                        this.guardarEnUnArchivoToolStripMenuItem.Text = "&Guardar en un archivo";
+                        this.guardarEnUnArchivoToolStripMenuItem.Click += new System.EventHandler(this.guardarEnUnArchivoToolStripMenuItem_Click);
                         // 
                         // BotonGuardar
                         // 
@@ -153,28 +205,6 @@
                         this.BotonSinRecorte.Text = "Sin Recorte";
                         this.BotonSinRecorte.ToolTipText = "";
                         this.BotonSinRecorte.Click += new System.EventHandler(this.BotonSinRecorte_Click);
-                        // 
-                        // MenuEntradImagen
-                        // 
-                        this.MenuEntradImagen.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copiarAlPortapapelesToolStripMenuItem,
-            this.guardarEnUnArchivoToolStripMenuItem});
-                        this.MenuEntradImagen.Name = "MenuEntradImagen";
-                        this.MenuEntradImagen.Size = new System.Drawing.Size(193, 70);
-                        // 
-                        // copiarAlPortapapelesToolStripMenuItem
-                        // 
-                        this.copiarAlPortapapelesToolStripMenuItem.Name = "copiarAlPortapapelesToolStripMenuItem";
-                        this.copiarAlPortapapelesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-                        this.copiarAlPortapapelesToolStripMenuItem.Text = "&Copiar al portapapeles";
-                        this.copiarAlPortapapelesToolStripMenuItem.Click += new System.EventHandler(this.copiarAlPortapapelesToolStripMenuItem_Click);
-                        // 
-                        // guardarEnUnArchivoToolStripMenuItem
-                        // 
-                        this.guardarEnUnArchivoToolStripMenuItem.Name = "guardarEnUnArchivoToolStripMenuItem";
-                        this.guardarEnUnArchivoToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-                        this.guardarEnUnArchivoToolStripMenuItem.Text = "&Guardar en un archivo";
-                        this.guardarEnUnArchivoToolStripMenuItem.Click += new System.EventHandler(this.guardarEnUnArchivoToolStripMenuItem_Click);
                         // 
                         // ImagenRecorte
                         // 

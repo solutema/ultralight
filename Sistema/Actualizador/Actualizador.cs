@@ -99,7 +99,7 @@ namespace Lazaro.Actualizador
                         } catch (Exception ex) {
                                 System.Console.WriteLine("ActualizarAplicacionDesdeBD: " + ex.Message);
                                 if (Lfx.Environment.SystemInformation.DesignMode)
-                                        throw ex;
+                                        throw;
                                 return 0;
                         }
                 }
@@ -228,7 +228,7 @@ namespace Lazaro.Actualizador
                                 } catch (Exception ex) {
                                         System.Console.WriteLine("ActualizarArchivoDesdeBD: CambiarFecha: " + ex.Message);
                                         if (Lfx.Environment.SystemInformation.DesignMode)
-                                                throw ex;
+                                                throw;
                                         FechaArchivo = string.Empty;
                                 }
                         }
@@ -258,7 +258,7 @@ namespace Lazaro.Actualizador
                                                         } catch (Exception ex) {
                                                                 System.Console.WriteLine("ActualizarArchivoDesdeBD: CambiarFecha: " + ex.Message);
                                                                 if (Lfx.Environment.SystemInformation.DesignMode)
-                                                                        throw ex;
+                                                                        throw;
                                                                 // No pude poner la fecha del archivo... estoy en un problema?
                                                         }
                                                 }
@@ -378,7 +378,7 @@ namespace Lazaro.Actualizador
                                                                 Aplicacion.GenericExceptionHandler(ex);
                                                                 // No pude poner la fecha del archivo... estoy en un problema?
                                                                 if (Lfx.Environment.SystemInformation.DesignMode)
-                                                                        throw ex;
+                                                                        throw;
                                                         }
                                                 }
                                                 actualizarArchivoDesdeWebReturn = true;

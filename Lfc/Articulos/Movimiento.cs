@@ -450,7 +450,6 @@ namespace Lfc.Articulos
                         this.EntradaArticulo.TabIndex = 1;
                         this.EntradaArticulo.TextDetail = "";
                         this.EntradaArticulo.TextInt = 0;
-                        this.EntradaArticulo.Workspace = null;
                         // 
                         // Movimiento
                         // 
@@ -510,12 +509,20 @@ namespace Lfc.Articulos
                         Lbl.Articulos.Articulo Art = new Lbl.Articulos.Articulo(this.DataView, EntradaArticulo.TextInt);
                         Art.Cargar();
                         if (Art.RequiereNS) {
-                                aceptarReturn.Message += "No se pueden realizar movimientos manuales de artículos trazables. Debe confeccionar un Remito o una Factura." + Environment.NewLine;
-                                aceptarReturn.Success = false;
+                                if (this.Workspace.CurrentUser.AccessList.HasGlobalAcccess()) {
+                                        Lui.Forms.YesNoDialog Preg = new Lui.Forms.YesNoDialog("Es un artículo trazable. ¿Desea realizar un movimiento manual de todos modos?", "Advertencia");
+                                        if (Preg.ShowDialog() != DialogResult.OK) {
+                                                aceptarReturn.Message += "Debe confeccionar un Remito o una Factura." + Environment.NewLine;
+                                                aceptarReturn.Success = false;
+                                        }
+                                } else {
+                                        aceptarReturn.Message += "No se pueden realizar movimientos manuales de artículos trazables. Debe confeccionar un Remito o una Factura." + Environment.NewLine;
+                                        aceptarReturn.Success = false;
+                                }
                         }
 
                         if (aceptarReturn.Success == true) {
-                                DataView.BeginTransaction();
+                                DataView.BeginTransaction(true);
                                 double Cantidad = Lfx.Types.Parsing.ParseDouble(txtCantidad.Text);
                                 Lbl.Articulos.Situacion Origen, Destino;
                                 if (txtDesdeSituacion.TextInt > 0)

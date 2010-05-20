@@ -98,7 +98,7 @@ namespace Lfc.Comprobantes.Recibos
                                         Rec = new Lbl.Comprobantes.Recibo(this.DataView, IdRecibo);
 
                                 if (Rec != null && Rec.Existe) {
-                                        Rec.DataView.BeginTransaction();
+                                        Rec.DataView.BeginTransaction(true);
                                         Rec.Anular();
                                         Rec.DataView.Commit();
                                 }

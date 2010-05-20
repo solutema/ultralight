@@ -95,7 +95,6 @@ namespace Lui.Forms
                                 }
                         } else if (this.Report != null) {
                                 ListingFormExport ExportForm = new ListingFormExport();
-                                ExportForm.Workspace = this.Workspace;
                                 ExportForm.Report = this.Report;
                                 ExportForm.Nombre = this.Text.Replace(":", "");
                                 ExportForm.ShowDialog();

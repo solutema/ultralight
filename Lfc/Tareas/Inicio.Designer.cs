@@ -55,23 +55,89 @@ namespace Lfc.Tareas
 
                 private void InitializeComponent()
                 {
+                        this.EtiquetaRetrasados = new System.Windows.Forms.Label();
+                        this.EtiquetasTerminados = new System.Windows.Forms.Label();
+                        this.EtiquetaActivos = new System.Windows.Forms.Label();
+                        this.EtiquetaNuevos = new System.Windows.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // Listado
                         // 
                         this.Listado.Size = new System.Drawing.Size(544, 473);
                         // 
+                        // EtiquetaRetrasados
+                        // 
+                        this.EtiquetaRetrasados.AutoSize = true;
+                        this.EtiquetaRetrasados.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaRetrasados.ForeColor = System.Drawing.Color.Crimson;
+                        this.EtiquetaRetrasados.Location = new System.Drawing.Point(8, 144);
+                        this.EtiquetaRetrasados.Name = "EtiquetaRetrasados";
+                        this.EtiquetaRetrasados.Size = new System.Drawing.Size(80, 13);
+                        this.EtiquetaRetrasados.TabIndex = 52;
+                        this.EtiquetaRetrasados.Text = "0 retrasados";
+                        this.EtiquetaRetrasados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EtiquetasTerminados
+                        // 
+                        this.EtiquetasTerminados.AutoSize = true;
+                        this.EtiquetasTerminados.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetasTerminados.ForeColor = System.Drawing.Color.Green;
+                        this.EtiquetasTerminados.Location = new System.Drawing.Point(8, 124);
+                        this.EtiquetasTerminados.Name = "EtiquetasTerminados";
+                        this.EtiquetasTerminados.Size = new System.Drawing.Size(82, 13);
+                        this.EtiquetasTerminados.TabIndex = 53;
+                        this.EtiquetasTerminados.Text = "0 terminados";
+                        this.EtiquetasTerminados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EtiquetaActivos
+                        // 
+                        this.EtiquetaActivos.AutoSize = true;
+                        this.EtiquetaActivos.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaActivos.Location = new System.Drawing.Point(8, 104);
+                        this.EtiquetaActivos.Name = "EtiquetaActivos";
+                        this.EtiquetaActivos.Size = new System.Drawing.Size(57, 13);
+                        this.EtiquetaActivos.TabIndex = 54;
+                        this.EtiquetaActivos.Text = "0 activos";
+                        this.EtiquetaActivos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EtiquetaNuevos
+                        // 
+                        this.EtiquetaNuevos.AutoSize = true;
+                        this.EtiquetaNuevos.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaNuevos.Location = new System.Drawing.Point(8, 84);
+                        this.EtiquetaNuevos.Name = "EtiquetaNuevos";
+                        this.EtiquetaNuevos.Size = new System.Drawing.Size(58, 13);
+                        this.EtiquetaNuevos.TabIndex = 55;
+                        this.EtiquetaNuevos.Text = "0 nuevos";
+                        this.EtiquetaNuevos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
                         // Inicio
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(692, 473);
+                        this.Controls.Add(this.EtiquetaNuevos);
+                        this.Controls.Add(this.EtiquetaActivos);
+                        this.Controls.Add(this.EtiquetasTerminados);
+                        this.Controls.Add(this.EtiquetaRetrasados);
                         this.Name = "Inicio";
                         this.Text = "Tickets: Listado";
                         this.WorkspaceChanged += new System.EventHandler(this.FormTicketsInicio_WorkspaceChanged);
+                        this.Controls.SetChildIndex(this.EtiquetaRetrasados, 0);
+                        this.Controls.SetChildIndex(this.Listado, 0);
+                        this.Controls.SetChildIndex(this.EtiquetasTerminados, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaActivos, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaNuevos, 0);
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
                 }
 
                 #endregion
+
+                private Label EtiquetaRetrasados;
+                private Label EtiquetasTerminados;
+                private Label EtiquetaActivos;
+                private Label EtiquetaNuevos;
+
         }
 }

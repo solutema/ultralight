@@ -39,7 +39,6 @@ namespace Lazaro.Principal
 {
 	public partial class BarraInferior : UserControl
 	{
-		private Lws.Workspace m_Workspace;
                 private Lws.Data.DataView m_DataView;
 		private int ItemActual, ItemSolicitado;
 		private string TablaActual, TablaSolicitada;
@@ -57,13 +56,7 @@ namespace Lazaro.Principal
 		{
 			get
 			{
-				if (m_Workspace == null && this.Parent != null && this.Parent is Principal.Inicio)
-					m_Workspace = ((Principal.Inicio)this.Parent).Workspace;
-				return m_Workspace;
-			}
-			set
-			{
-				m_Workspace = value;
+				return Lws.Workspace.Master;
 			}
 		}
 
@@ -205,7 +198,6 @@ namespace Lazaro.Principal
                 {
                         if (ElementoActual != null) {
                                 Lfc.Etiquetas FormularioEtiquetas = new Lfc.Etiquetas();
-                                FormularioEtiquetas.Workspace = this.Workspace;
                                 FormularioEtiquetas.Elemento = ElementoActual;
                                 FormularioEtiquetas.Show();
                         }

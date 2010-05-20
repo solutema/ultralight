@@ -141,7 +141,6 @@ namespace Lfc.Sucursales
 			this.txtNombre.Size = new System.Drawing.Size(464, 24);
 			this.txtNombre.TabIndex = 1;
 			this.txtNombre.ToolTipText = "";
-			this.txtNombre.Workspace = null;
 			// 
 			// txtDireccion
 			// 
@@ -161,7 +160,6 @@ namespace Lfc.Sucursales
 			this.txtDireccion.Size = new System.Drawing.Size(464, 24);
 			this.txtDireccion.TabIndex = 3;
 			this.txtDireccion.ToolTipText = "";
-			this.txtDireccion.Workspace = null;
 			// 
 			// label2
 			// 
@@ -190,7 +188,6 @@ namespace Lfc.Sucursales
 			this.txtTelefono.Size = new System.Drawing.Size(332, 24);
 			this.txtTelefono.TabIndex = 5;
 			this.txtTelefono.ToolTipText = "";
-			this.txtTelefono.Workspace = null;
 			// 
 			// label3
 			// 
@@ -225,7 +222,6 @@ namespace Lfc.Sucursales
 			this.txtCiudad.TextDetail = "";
 			this.txtCiudad.TextInt = 0;
 			this.txtCiudad.ToolTipText = "";
-			this.txtCiudad.Workspace = null;
 			// 
 			// Label9
 			// 
@@ -261,7 +257,6 @@ namespace Lfc.Sucursales
 			this.txtSituacionOrigen.TextDetail = "";
 			this.txtSituacionOrigen.TextInt = 0;
 			this.txtSituacionOrigen.ToolTipText = "";
-			this.txtSituacionOrigen.Workspace = null;
 			// 
 			// label4
 			// 
@@ -298,7 +293,6 @@ namespace Lfc.Sucursales
 			this.EntradaCajaDiaria.TextDetail = "";
 			this.EntradaCajaDiaria.TextInt = 0;
 			this.EntradaCajaDiaria.ToolTipText = "";
-			this.EntradaCajaDiaria.Workspace = null;
 			// 
 			// label5
 			// 
@@ -335,7 +329,7 @@ namespace Lfc.Sucursales
 			this.EntradaCajaCheques.TextDetail = "";
 			this.EntradaCajaCheques.TextInt = 0;
 			this.EntradaCajaCheques.ToolTipText = "";
-			this.EntradaCajaCheques.Workspace = null;
+
 			// 
 			// label6
 			// 
@@ -408,7 +402,7 @@ namespace Lfc.Sucursales
 			Lfx.Types.OperationResult ResultadoGuardar = ValidateData();
 
 			if(ResultadoGuardar.Success == true) {
-                                this.DataView.DataBase.BeginTransaction();
+                                this.DataView.BeginTransaction();
 
                                 Lfx.Data.SqlTableCommandBuilder Comando;
                                 if (m_Nuevo) {
@@ -431,7 +425,7 @@ namespace Lfc.Sucursales
                                 this.DataView.DataBase.Commit();
 
 				if(m_Nuevo) {
-                                        m_Id = DataView.DataBase.FieldInt("SELECT MAX(id_ciudad) FROM sucursales");
+                                        m_Id = DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
 					m_Nuevo = false;
 					if(ControlDestino != null) {
 						ControlDestino.Text = m_Id.ToString();

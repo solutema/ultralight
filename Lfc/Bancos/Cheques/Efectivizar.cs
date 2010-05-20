@@ -72,7 +72,7 @@ namespace Lfc.Bancos.Cheques
 				double GestionDeCobro = Lfx.Types.Parsing.ParseCurrency(txtGestionDeCobro.Text);
 				double Impuestos = Lfx.Types.Parsing.ParseCurrency(txtImpuestos.Text);
 
-				DataView.BeginTransaction();
+				DataView.BeginTransaction(true);
 
 				Lbl.Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(DataView, this.Workspace.CurrentConfig.Company.CajaCheques);
 				CajaCheques.Movimiento(true, 30000, "Efectivización de Cheques", 0, -ImporteOrigen, "Cheques Nº " + ListaCheques, 0, 0, "");

@@ -39,7 +39,7 @@ namespace Lfc.Comprobantes.Compra
         public class Listado : Lui.Forms.TextListingForm
         {
 
-                internal string m_Tipo;
+                protected internal string m_Tipo = "FNCND", m_Letra = "*";
                 internal Lfx.Types.DateRange m_Fecha;
                 internal int m_Proveedor;
                 internal string m_Agrupar = "";
@@ -112,7 +112,6 @@ namespace Lfc.Comprobantes.Compra
                         this.txtReporte.Size = new System.Drawing.Size(568, 284);
                         this.txtReporte.TabIndex = 51;
                         this.txtReporte.ToolTipText = "";
-                        this.txtReporte.Workspace = null;
                         // 
                         // txtMostrar
                         // 
@@ -133,7 +132,6 @@ namespace Lfc.Comprobantes.Compra
                         this.txtMostrar.Text = "Todo";
                         this.txtMostrar.TextKey = "1";
                         this.txtMostrar.ToolTipText = "";
-                        this.txtMostrar.Workspace = null;
                         this.txtMostrar.TextChanged += new System.EventHandler(this.txtAgrupar_TextChanged);
                         // 
                         // Label2
@@ -167,7 +165,6 @@ namespace Lfc.Comprobantes.Compra
                         this.txtAgrupar.Text = "Sin Agrupar";
                         this.txtAgrupar.TextKey = "*";
                         this.txtAgrupar.ToolTipText = "";
-                        this.txtAgrupar.Workspace = null;
                         this.txtAgrupar.TextChanged += new System.EventHandler(this.txtAgrupar_TextChanged);
                         // 
                         // Label1
@@ -216,12 +213,12 @@ namespace Lfc.Comprobantes.Compra
                                                 Filtro += " AND comprob.tipo_fac='R'";
                                                 break;
                                         case "FP":
-                                        case "A":
-                                        case "B":
-                                        case "C":
-                                        case "E":
-                                        case "M":
-                                                Filtro += " AND comprob.tipo_fac IN ('A', 'B', 'C', 'E', 'M')";
+                                        case "FA":
+                                        case "FB":
+                                        case "FC":
+                                        case "FE":
+                                        case "FM":
+                                                Filtro += " AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM')";
                                                 break;
                                         default:
                                                 Filtro += " AND comprob.tipo_fac='" + m_Tipo + "'";

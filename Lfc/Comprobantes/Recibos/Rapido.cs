@@ -52,7 +52,7 @@ namespace Lfc.Comprobantes.Recibos
 			if(Lfx.Types.Parsing.ParseCurrency(txtImporte.Text) <= 0)
 				return new Lfx.Types.FailureOperationResult("Debe especificar el importe");
 
-			this.DataView.BeginTransaction();
+			this.DataView.BeginTransaction(true);
 
 			Lbl.Personas.Persona Cliente = new Lbl.Personas.Persona(DataView, txtCliente.TextInt);
 			Lbl.Comprobantes.ReciboDeCobro Rec = new Lbl.Comprobantes.ReciboDeCobro(DataView, Cliente);

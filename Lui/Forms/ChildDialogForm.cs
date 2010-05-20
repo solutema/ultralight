@@ -36,7 +36,7 @@ using System.Windows.Forms;
 
 namespace Lui.Forms
 {
-        public partial class ChildDialogForm : Lui.Forms.Form
+        public partial class ChildDialogForm : Lui.Forms.ChildForm
 	{
 
 		public virtual Lfx.Types.OperationResult Ok()

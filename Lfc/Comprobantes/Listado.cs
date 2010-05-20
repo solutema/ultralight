@@ -100,9 +100,9 @@ namespace Lfc.Comprobantes
 
                                 case "F":
                                         if (m_Letra == "*")
-                                                FiltroSql += " AND comprob.tipo_fac IN ('A', 'B', 'C', 'E', 'M')";
+                                                FiltroSql += " AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM')";
                                         else
-                                                FiltroSql += " AND comprob.tipo_fac='" + m_Letra + "'";
+                                                FiltroSql += " AND comprob.tipo_fac='F" + m_Letra + "'";
                                         break;
 
                                 case "T":
@@ -111,9 +111,9 @@ namespace Lfc.Comprobantes
 
                                 default:
                                         if (m_Letra == "*")
-                                                FiltroSql += " AND comprob.tipo_fac IN ('A', 'B', 'C', 'E', 'M', 'NCA', 'NCB', 'NCC', 'NCE', 'NCM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM')";
+                                                FiltroSql += " AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NCA', 'NCB', 'NCC', 'NCE', 'NCM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM')";
                                         else
-                                                FiltroSql += " AND (comprob.tipo_fac='" + m_Letra + "' OR comprob.tipo_fac='NC" + m_Letra + "' OR comprob.tipo_fac='ND" + m_Letra + "')";
+                                                FiltroSql += " AND (comprob.tipo_fac='F" + m_Letra + "' OR comprob.tipo_fac='NC" + m_Letra + "' OR comprob.tipo_fac='ND" + m_Letra + "')";
                                         break;
                         }
 

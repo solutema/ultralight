@@ -59,7 +59,7 @@ namespace Lbl.Personas
 			}
 		}
 
-                public string TipoComprobantePredeterminado()
+                public string LetraPredeterminada()
                 {
                         if (Workspace.CurrentConfig.Company.SituacionTributaria == 2) {
                                 //Si soy responsable inscripto, facturo según la siguiente tabla

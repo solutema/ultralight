@@ -257,18 +257,18 @@ namespace Lfc.Tareas
                         switch (e.KeyCode) {
                                 case Keys.F4:
                                         e.Handled = true;
-                                        if (cmdFacturar.Enabled && cmdFacturar.Visible)
-                                                cmdFacturar.PerformClick();
+                                        if (BotonFacturar.Enabled && BotonFacturar.Visible)
+                                                BotonFacturar.PerformClick();
                                         break;
                                 case Keys.F5:
                                         e.Handled = true;
-                                        if (cmdArticulos.Enabled && cmdArticulos.Visible)
-                                                cmdArticulos.PerformClick();
+                                        if (BotonArticulos.Enabled && BotonArticulos.Visible)
+                                                BotonArticulos.PerformClick();
                                         break;
                                 case Keys.F6:
                                         e.Handled = true;
-                                        if (cmdNovedad.Enabled && cmdNovedad.Visible)
-                                                cmdNovedad.PerformClick();
+                                        if (BotonNovedad.Enabled && BotonNovedad.Visible)
+                                                BotonNovedad.PerformClick();
                                         break;
                         }
 
@@ -276,13 +276,12 @@ namespace Lfc.Tareas
                 }
 
 
-                private void cmdNovedad_Click(object sender, System.EventArgs e)
+                private void BotonNovedad_Click(object sender, System.EventArgs e)
                 {
                         if (m_Nuevo) {
                                 Lui.Forms.MessageBox.Show("No se puede cargar novedades en una Tarea que aun no ha sido creada.", "Error");
                         } else {
                                 Tareas.Novedad OFormNovedadCargar = new Tareas.Novedad();
-                                OFormNovedadCargar.Workspace = this.Workspace;
                                 OFormNovedadCargar.Create();
                                 OFormNovedadCargar.txtTicket.TextInt = m_Id;
                                 OFormNovedadCargar.txtTicket.Enabled = false;
@@ -291,9 +290,9 @@ namespace Lfc.Tareas
                         }
                 }
 
-                private void cmdFacturar_Click(object sender, System.EventArgs e)
+                private void BotonFacturar_Click(object sender, System.EventArgs e)
                 {
-                        Comprobantes.Facturas.Editar FacturaNueva = (Comprobantes.Facturas.Editar)this.Workspace.RunTime.Execute("CREAR B");
+                        Comprobantes.Facturas.Editar FacturaNueva = (Comprobantes.Facturas.Editar)this.Workspace.RunTime.Execute("CREAR FB");
 
                         FacturaNueva.ControlDestino = txtComprobanteId;
 
@@ -306,7 +305,7 @@ namespace Lfc.Tareas
                         } else {
                                 if (this.Save().Success == true) {
                                         txtEstado.Text = "50";
-                                        FacturaNueva.Create("B");
+                                        FacturaNueva.Create("FB");
 
                                         FacturaNueva.EntradaCliente.Text = txtCliente.Text;
                                         FacturaNueva.EntradaVendedor.Text = txtTecnico.Text;
@@ -370,13 +369,12 @@ namespace Lfc.Tareas
                 }
 
 
-                private void cmdArticulos_Click(object sender, System.EventArgs e)
+                private void BotonArticulos_Click(object sender, System.EventArgs e)
                 {
                         if (m_Nuevo) {
                                 Lui.Forms.MessageBox.Show("No se puede cargar artículos en una Tarea que aun no ha sido creada.", "Error");
                         } else {
                                 Tareas.Articulos OFormTicketsArticulos = new Tareas.Articulos();
-                                OFormTicketsArticulos.Workspace = this.Workspace;
                                 OFormTicketsArticulos.MdiParent = this.MdiParent;
                                 OFormTicketsArticulos.Edit(m_Id);
                                 OFormTicketsArticulos.Show();

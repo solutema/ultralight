@@ -39,6 +39,7 @@ namespace Lfc.Tareas
 	{
 		private int m_Tarea, m_Cliente, m_Sucursal;
                 private string m_Estado = "sin_entregar";
+                private int Activos, Terminados, Retrasados, Nuevos;
 
                 public Inicio() : base()
                 {
@@ -55,7 +56,7 @@ namespace Lfc.Tareas
 				new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 240),
 				new Lfx.Data.FormField("tickets.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 96),
 				new Lfx.Data.FormField("tickets.fecha_ingreso", "Fecha", Lfx.Data.InputFieldTypes.DateTime, 120),
-                                new Lfx.Data.FormField("tickets.id_tecnico_recibe", "Técnico", Lfx.Data.InputFieldTypes.Relation, 160)
+                                new Lfx.Data.FormField("DATEDIFF(NOW(), tickets.fecha_ingreso)", "Tiempo", Lfx.Data.InputFieldTypes.Relation, 160)
 			};
                         OrderBy = "tickets.id_ticket DESC";
                         BotonFiltrar.Visible = true;
@@ -89,6 +90,10 @@ namespace Lfc.Tareas
 
 		public override void BeginRefreshList()
 		{
+                        Activos = 0;
+                        Terminados = 0;
+                        Retrasados = 0;
+
 			string TextoSql = "TRUE";
 			if (m_Tarea > 0)
 				TextoSql += " AND tickets.id_tipo_ticket=" + m_Tarea.ToString();
@@ -101,17 +106,20 @@ namespace Lfc.Tareas
 
 			switch (m_Estado)
 			{
-				case "0":
+				case "todos":
 					// Nada
 					break;
 				case "presupuestados":
-					TextoSql += " AND tickets.estado=10";
+					TextoSql += " AND tickets.estado IN (10, 35)";
 					break;
+                                case "terminados":
+                                        TextoSql += " AND tickets.estado IN (30, 35, 40)";
+                                        break;
 				case "sin_terminar":
 					TextoSql += " AND tickets.estado<30";
 					break;
 				case "sin_verificar":
-					TextoSql += " AND tickets.estado<40";
+					TextoSql += " AND tickets.estado IN (30, 35)";
 					break;
 				case "sin_entregar":
 					TextoSql += " AND tickets.estado<50";
@@ -128,13 +136,21 @@ namespace Lfc.Tareas
 			base.BeginRefreshList();
 		}
 
+                public override void EndRefreshList()
+                {
+                        EtiquetaNuevos.Text = Nuevos.ToString() + " nuevos";
+                        EtiquetaActivos.Text = Activos.ToString() + " activos";
+                        EtiquetaRetrasados.Text = Retrasados.ToString() + " retrasados";
+                        EtiquetasTerminados.Text = Terminados.ToString() + " terminados";
+                        base.EndRefreshList();
+                }
+
 
 		public override Lfx.Types.OperationResult OnFilter()
 		{
 			Lfx.Types.OperationResult filtrarReturn = new Lfx.Types.SuccessOperationResult();
 
 			Tareas.Filtros OFormFiltros = new Tareas.Filtros();
-			OFormFiltros.Workspace = this.Workspace;
 			OFormFiltros.txtSucursal.TextInt = m_Sucursal;
 			OFormFiltros.txtTarea.TextInt = m_Tarea;
 			OFormFiltros.txtCliente.TextInt = m_Cliente;
@@ -165,23 +181,41 @@ namespace Lfc.Tareas
 			foreach (System.Windows.Forms.ListViewItem itm in Listado.Items)
 			{
 				int IdEstado = Lfx.Types.Parsing.ParseInt(itm.SubItems[3].Text);
+                                int Dias = Lfx.Types.Parsing.ParseInt(itm.SubItems[5].Text);
 				switch (IdEstado)
 				{
 					case 0:
-						itm.BackColor = System.Drawing.Color.FromArgb(255, 230, 230);
+                                        case 1:
+                                                Nuevos++;
+                                                if (Dias > 1) {
+                                                        itm.ForeColor = Color.Crimson;
+                                                        Retrasados++;
+                                                }
 						break;
-					case 5:
-					case 20:
-						itm.BackColor = System.Drawing.Color.FromArgb(240, 255, 240);
-						break;
-					case 10:
-					case 35:
-						itm.BackColor = System.Drawing.Color.LightSkyBlue;
-						break;
-					case 30:
+                                        case 5:
+                                                Activos++;
+                                                if (Dias > 3) {
+                                                        itm.ForeColor = Color.Crimson;
+                                                        Retrasados++;
+                                                }
+                                                break;
+                                        case 10:
+                                        case 20:
+                                                Activos++;
+                                                if (Dias > 4) {
+                                                        itm.ForeColor = Color.Crimson;
+                                                        Retrasados++;
+                                                }
+                                                break;
+                                        case 30:
+                                        case 35:
+                                                itm.ForeColor = Color.DarkGreen;
+                                                Terminados++;
+                                                break;
 					case 50:
-						itm.ForeColor = System.Drawing.Color.Gray;
+                                                itm.ForeColor = System.Drawing.Color.Gray;
 						break;
+                                        case 80:
 					case 90:
 						itm.Font = new Font(itm.Font, FontStyle.Strikeout);
 						break;
@@ -191,9 +225,9 @@ namespace Lfc.Tareas
 				if (Estado != null)
 					itm.SubItems[3].Text = Estado["nombre"].ToString();
 
-                                Lfx.Data.Row Tecnico = this.DataView.Tables["personas"].FastRows[Lfx.Types.Parsing.ParseInt(itm.SubItems[5].Text)];
-                                if (Tecnico != null)
-                                        itm.SubItems[5].Text = Tecnico["nombre"].ToString();
+                                //Lfx.Data.Row Tecnico = this.DataView.Tables["personas"].FastRows[Lfx.Types.Parsing.ParseInt(itm.SubItems[5].Text)];
+                                //if (Tecnico != null)
+                                //        itm.SubItems[5].Text = Tecnico["nombre"].ToString();
 			}
 		}
 

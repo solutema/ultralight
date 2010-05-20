@@ -93,36 +93,29 @@ namespace Lbl.Comprobantes.Impresion
                                 if (ComprobConArt.Tipo.MueveStock)
                                         Lbl.Articulos.Stock.MoverStockComprobante(ComprobConArt);
 
-                                Lbl.Cajas.CuentaCorriente CtaCte = new Lbl.Cajas.CuentaCorriente(this.DataView, ComprobConArt.Cliente.Id);
+                                Lbl.Cajas.CuentaCorriente CtaCte = ComprobConArt.Cliente.CuentaCorriente;
 
-                                if (ComprobConArt.Tipo.EsNotaDebito) {
-                                        CtaCte.Movimiento(true, 30000, ComprobConArt.ToString(), ComprobConArt.Total, ComprobConArt.Obs, ComprobConArt.Id, 0, true);
-                                        CtaCte.IngresarComprobante(ComprobConArt, 0);
-                                } else if (ComprobConArt.Tipo.EsNotaCredito) {
-                                        CtaCte.Movimiento(true, 30000, ComprobConArt.ToString(), -ComprobConArt.Total, ComprobConArt.Obs, ComprobConArt.Id, 0, true);
-                                } else if (ComprobConArt.Tipo.EsFactura) {
-                                        //Asiento el pago (sólo efectivo y cta. cte.)
-                                        //El resto de los pagos los maneja el formulario desde donde se mandó a imprimir
-                                        switch (ComprobConArt.FormaDePago.Tipo) {
-                                                case TipoFormasDePago.Efectivo:
-                                                        if (ComprobConArt.ImporteImpago > 0) {
-                                                                Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(this.DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
-                                                                Caja.Movimiento(true,
-                                                                        11000,
-                                                                        "Cobro Factura " + ComprobConArt.ToString(),
-                                                                        ComprobConArt.Cliente.Id,
-                                                                        ComprobConArt.ImporteImpago,
-                                                                        "",
-                                                                        ComprobConArt.Id,
-                                                                        0,
-                                                                        "");
-								ComprobConArt.CancelarImporte(ComprobConArt.ImporteImpago);
-                                                        }
-                                                        break;
-                                                case TipoFormasDePago.CuentaCorriente:
-                                                        CtaCte.IngresarComprobante(ComprobConArt, 0);
-                                                        break;
-                                        }
+                                //Asiento el pago (sólo efectivo y cta. cte.)
+                                //El resto de los pagos los maneja el formulario desde donde se mandó a imprimir
+                                switch (ComprobConArt.FormaDePago.Tipo) {
+                                        case TipoFormasDePago.Efectivo:
+                                                if (ComprobConArt.ImporteImpago > 0) {
+                                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(this.DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
+                                                        Caja.Movimiento(true,
+                                                                11000,
+                                                                "Cobro Factura " + ComprobConArt.ToString(),
+                                                                ComprobConArt.Cliente.Id,
+                                                                ComprobConArt.ImporteImpago,
+                                                                "",
+                                                                ComprobConArt.Id,
+                                                                0,
+                                                                "");
+							ComprobConArt.CancelarImporte(ComprobConArt.ImporteImpago);
+                                                }
+                                                break;
+                                        case TipoFormasDePago.CuentaCorriente:
+                                                CtaCte.IngresarComprobante(ComprobConArt);
+                                                break;
                                 }
                         }
 

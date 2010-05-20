@@ -41,7 +41,7 @@ namespace Lfc.Comprobantes.Compra
                 private double EnVerde = 0;
                 private double EnNaranja = 0;
 
-		public string m_Tipo = "PD";
+                public string m_Tipo = "FNCND", m_Letra = "*";
 		public int m_Proveedor, m_Estado = -1;
 		private Lfx.Types.DateRange m_Fecha = new Lfx.Types.DateRange("mes-0");
 
@@ -116,9 +116,9 @@ namespace Lfc.Comprobantes.Compra
 		public override Lfx.Types.OperationResult OnPrint(bool selectPrinter)
 		{
 			Lfc.Comprobantes.Compra.Listado OFormListado = new Lfc.Comprobantes.Compra.Listado();
-                        OFormListado.Workspace = this.Workspace;
                         OFormListado.MdiParent = this.MdiParent;
 			OFormListado.m_Tipo = m_Tipo;
+                        OFormListado.m_Tipo = m_Letra;
 			OFormListado.m_Proveedor = m_Proveedor;
 			OFormListado.m_Fecha = m_Fecha;
 			OFormListado.Show();
@@ -133,9 +133,9 @@ namespace Lfc.Comprobantes.Compra
 			OFormPedidosCrear.TipoComprob = m_Tipo;
 			if (OFormPedidosCrear.ShowDialog() == DialogResult.OK)
 			{
-				string Tipo = OFormPedidosCrear.TipoComprob;
+                                string TipoCrear = OFormPedidosCrear.TipoComprob;
 				OFormPedidosCrear = null;
-				this.Workspace.RunTime.Execute("CREAR " + Tipo);
+                                this.Workspace.RunTime.Execute("CREAR " + TipoCrear);
 			}
 			return new Lfx.Types.SuccessOperationResult();
 		}
@@ -155,7 +155,6 @@ namespace Lfc.Comprobantes.Compra
 			if (filtrarReturn.Success == true)
 			{
                                 Lfc.Comprobantes.Compra.Filtros OFiltros = new Lfc.Comprobantes.Compra.Filtros();
-				OFiltros.Workspace = this.Workspace;
 				OFiltros.txtTipo.TextKey = m_Tipo;
 				OFiltros.txtProveedor.Text = m_Proveedor.ToString();
 				OFiltros.EntradaFechas.Rango = m_Fecha;
@@ -197,14 +196,14 @@ namespace Lfc.Comprobantes.Compra
 					break;
 				
 				case "FP":
-                                        FiltroTemp += " AND comprob.tipo_fac IN ('A', 'B', 'C', 'E')";
+                                        FiltroTemp += " AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE')";
                                         break;
                                 case "R":
-                                case "A":
-                                case "B":
-                                case "C":
-                                case "E":
-                                case "M":
+                                case "FA":
+                                case "FB":
+                                case "FC":
+                                case "FE":
+                                case "FM":
                                         FiltroTemp += " AND comprob.tipo_fac='" + m_Tipo +"'";
                                         break;
                                 default:

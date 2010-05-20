@@ -38,7 +38,7 @@ namespace Lfc.Comprobantes.Presupuestos
 {
         public partial class Editar : Lfc.Comprobantes.Editar
 	{
-		private bool Ticker_IgnorarEventos;
+		//private bool Ticker_IgnorarEventos;
 
                 public Editar(string tipo) : this()
                 {
@@ -49,11 +49,11 @@ namespace Lfc.Comprobantes.Presupuestos
                 {
                         InitializeComponent();
 
-                        this.ProductArray.LostFocus += new System.EventHandler(this.ProductArray_LostFocus);
-			this.ProductArray.TotalChanged += new System.EventHandler(this.ProductArray_TotalChanged);
+                        //this.ProductArray.LostFocus += new System.EventHandler(this.ProductArray_LostFocus);
+			//this.ProductArray.TotalChanged += new System.EventHandler(this.ProductArray_TotalChanged);
                 }
 
-		private void ProductArray_LostFocus(object sender, System.EventArgs e)
+		/* TODO: obsolete private void ProductArray_LostFocus(object sender, System.EventArgs e)
 		{
 			if (Ticker_IgnorarEventos == false && Lfc.Misc.Estaticos.FormularioTickerPresupuestos != null)
                                 Lfc.Misc.Estaticos.FormularioTickerPresupuestos.MostrarPresupuesto(this);
@@ -64,19 +64,20 @@ namespace Lfc.Comprobantes.Presupuestos
 		{
 			if (Ticker_IgnorarEventos == false && Lfc.Misc.Estaticos.FormularioTickerPresupuestos != null)
 				Lfc.Misc.Estaticos.FormularioTickerPresupuestos.MostrarPresupuestoValores(this);
-		}
+		} */
 
 
 		public override Lfx.Types.OperationResult Edit(int iId)
 		{
 			Lfx.Types.OperationResult ResultadoEditar = new Lfx.Types.SuccessOperationResult();
-			Ticker_IgnorarEventos = true;
+			//Ticker_IgnorarEventos = true;
 			ResultadoEditar = base.Edit(iId);
-			Ticker_IgnorarEventos = false;
+			//Ticker_IgnorarEventos = false;
 			ProductArray.ShowStock = true;
+			/* TODO: obsolete
 			if (Lfc.Misc.Estaticos.FormularioTickerPresupuestos != null)
 				Lfc.Misc.Estaticos.FormularioTickerPresupuestos.MostrarPresupuesto(this);
-			
+			*/
                         return ResultadoEditar;
 		}
 
@@ -129,20 +130,26 @@ namespace Lfc.Comprobantes.Presupuestos
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
+		/* TODO: obsolete
 		private void FormPresupuestosEditar_Closed(object sender, System.EventArgs e)
 		{
 			Ticker_IgnorarEventos = true;
+			
 			if (Lfc.Misc.Estaticos.FormularioTickerPresupuestos != null)
 				Lfc.Misc.Estaticos.FormularioTickerPresupuestos.Modo = Lfc.Comprobantes.Ticker.TickerPresupuestos.Modos.Inicio;
 		}
+		*/
 
 		override protected internal void CambioValores(object sender, System.EventArgs e)
 		{
 			base.CambioValores(sender, e);
+			/* TODO: obsolete
 			if (this.Visible && Ticker_IgnorarEventos == false && Lfc.Misc.Estaticos.FormularioTickerPresupuestos != null)
 				Lfc.Misc.Estaticos.FormularioTickerPresupuestos.MostrarPresupuestoValores(this);
+			*/
 		}
 
+		/* TODO: obsolete
 		private void ProductArray_TextChanged(System.Object sender, System.EventArgs e)
 		{
 			if (this.Visible && Ticker_IgnorarEventos == false && Lfc.Misc.Estaticos.FormularioTickerPresupuestos != null)
@@ -155,5 +162,6 @@ namespace Lfc.Comprobantes.Presupuestos
 			if (this.Visible && Ticker_IgnorarEventos == false && Lfc.Misc.Estaticos.FormularioTickerPresupuestos != null)
 				Lfc.Misc.Estaticos.FormularioTickerPresupuestos.MostrarPresupuesto(this);
 		}
+		*/
 	}
 }

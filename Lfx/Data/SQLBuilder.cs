@@ -711,7 +711,8 @@ namespace Lfx.Data
                         if (WhereClause != null) {
                                 Command += " WHERE " + WhereClause.ToString();
                         } else if (EnableDeleleteWithoutWhere == false) {
-                                throw new InvalidOperationException("SqlDeleteBuilder necesita una cláusula Where o Truncate = true.");
+                                System.Console.WriteLine("SqlDeleteBuilder necesita una cláusula Where o Truncate = true.");
+				return "";
                         }
 
                         return Command;

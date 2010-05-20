@@ -80,26 +80,26 @@ namespace Lfx.Printing
                 protected override void OnPrintPage(System.Drawing.Printing.PrintPageEventArgs ev)
                 {
                         base.OnPrintPage(ev);
-                        int intPrintAreaHeight = 0, intPrintAreaWidth = 0, intMarginLeft = 0, intMarginTop = 0;
+                        int PrintAreaHeight = 0, PrintAreaWidth = 0, MarginLeft = 0, MarginTop = 0;
 
-                        intPrintAreaHeight = base.DefaultPageSettings.PaperSize.Height - base.DefaultPageSettings.Margins.Top - base.DefaultPageSettings.Margins.Bottom;
-                        intPrintAreaWidth = base.DefaultPageSettings.PaperSize.Width - base.DefaultPageSettings.Margins.Left - base.DefaultPageSettings.Margins.Right;
-                        intMarginLeft = base.DefaultPageSettings.Margins.Left; // X
-                        intMarginTop = base.DefaultPageSettings.Margins.Top;   // Y
+                        PrintAreaHeight = base.DefaultPageSettings.PaperSize.Height - base.DefaultPageSettings.Margins.Top - base.DefaultPageSettings.Margins.Bottom;
+                        PrintAreaWidth = base.DefaultPageSettings.PaperSize.Width - base.DefaultPageSettings.Margins.Left - base.DefaultPageSettings.Margins.Right;
+                        MarginLeft = base.DefaultPageSettings.Margins.Left; // X
+                        MarginTop = base.DefaultPageSettings.Margins.Top;   // Y
 
                         if (base.DefaultPageSettings.Landscape) {
-                                int intTemp = 0;
-                                intTemp = intPrintAreaHeight;
-                                intPrintAreaHeight = intPrintAreaWidth;
-                                intPrintAreaWidth = intTemp;
+                                int TempInt = 0;
+                                TempInt = PrintAreaHeight;
+                                PrintAreaHeight = PrintAreaWidth;
+                                PrintAreaWidth = TempInt;
                         }
 
-                        RectangleF rectPrintingArea = new RectangleF(intMarginLeft, intMarginTop, intPrintAreaWidth, intPrintAreaHeight);
+                        RectangleF PrintingArea = new RectangleF(MarginLeft, MarginTop, PrintAreaWidth, PrintAreaHeight);
                         StringFormat objSF = new StringFormat(StringFormatFlags.LineLimit);
                         Int32 intLinesFilled = 0, intCharsFitted = 0;
                         string StrPageText = TextToPrint.Substring(OnPrintPage_CurrentChar, TextToPrint.Length - OnPrintPage_CurrentChar);
-                        ev.Graphics.MeasureString(StrPageText, Font, new SizeF(intPrintAreaWidth, intPrintAreaHeight), objSF, out intCharsFitted, out intLinesFilled);
-                        ev.Graphics.DrawString(StrPageText, Font, Brushes.Black, rectPrintingArea, objSF);
+                        ev.Graphics.MeasureString(StrPageText, Font, new SizeF(PrintAreaWidth, PrintAreaHeight), objSF, out intCharsFitted, out intLinesFilled);
+                        ev.Graphics.DrawString(StrPageText, Font, Brushes.Black, PrintingArea, objSF);
                         //  Increase current char count
                         OnPrintPage_CurrentChar += intCharsFitted;
 

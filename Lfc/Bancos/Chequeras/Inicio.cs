@@ -72,7 +72,6 @@ namespace Lfc.Bancos.Chequeras
                         Lfx.Types.OperationResult filtrarReturn = base.OnFilter();
                         if (filtrarReturn.Success == true) {
                                 Bancos.Chequeras.Filtros FormularioFiltros = new Bancos.Chequeras.Filtros();
-                                FormularioFiltros.Workspace = this.Workspace;
                                 FormularioFiltros.EntradaEstado.TextKey = ((int)m_Estado).ToString();
                                 FormularioFiltros.EntradaBanco.TextInt = m_Banco;
                                 FormularioFiltros.EntradaCaja.TextInt = m_Caja;

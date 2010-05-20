@@ -1,4 +1,33 @@
-﻿namespace Lcc.WinForms
+// Copyright 2004-2010 South Bridge S.R.L.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// Este programa es software libre; puede distribuirlo y/o moficiarlo de
+// acuerdo a los términos de la Licencia Pública General de GNU (GNU
+// General Public License), como la publica la Fundación para el Software
+// Libre (Free Software Foundation), tanto la versión 3 de la Licencia
+// como (a su elección) cualquier versión posterior.
+//
+// Este programa se distribuye con la esperanza de que sea útil, pero SIN
+// GARANTÍA ALGUNA; ni siquiera la garantía MERCANTIL implícita y sin
+// garantizar su CONVENIENCIA PARA UN PROPÓSITO PARTICULAR. Véase la
+// Licencia Pública General de GNU para más detalles. 
+//
+// Debería haber recibido una copia de la Licencia Pública General junto
+// con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+
+namespace Lcc.WinForms
 {
         partial class EditForm
         {
@@ -27,41 +56,8 @@
                 /// </summary>
                 private void InitializeComponent()
                 {
-                        this.Header = new System.Windows.Forms.Panel();
-                        this.LabelHeader = new System.Windows.Forms.Label();
                         this.DataArea = new System.Windows.Forms.TableLayoutPanel();
-                        this.Body = new System.Windows.Forms.Panel();
-                        this.ActionPanel = new Lcc.WinForms.ActionPanel();
-                        this.Header.SuspendLayout();
-                        this.Body.SuspendLayout();
                         this.SuspendLayout();
-                        // 
-                        // Header
-                        // 
-                        this.Header.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Header.BackColor = System.Drawing.SystemColors.ActiveCaption;
-                        this.Header.Controls.Add(this.LabelHeader);
-                        this.Header.Location = new System.Drawing.Point(0, 0);
-                        this.Header.Name = "Header";
-                        this.Header.Size = new System.Drawing.Size(637, 32);
-                        this.Header.TabIndex = 0;
-                        // 
-                        // LabelHeader
-                        // 
-                        this.LabelHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.LabelHeader.AutoEllipsis = true;
-                        this.LabelHeader.BackColor = System.Drawing.SystemColors.ActiveCaption;
-                        this.LabelHeader.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-                        this.LabelHeader.Location = new System.Drawing.Point(4, 4);
-                        this.LabelHeader.Name = "LabelHeader";
-                        this.LabelHeader.Size = new System.Drawing.Size(573, 24);
-                        this.LabelHeader.TabIndex = 0;
-                        this.LabelHeader.Text = "...";
-                        this.LabelHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        this.LabelHeader.UseMnemonic = false;
                         // 
                         // DataArea
                         // 
@@ -71,7 +67,7 @@
                         this.DataArea.ColumnCount = 2;
                         this.DataArea.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.46429F));
                         this.DataArea.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.53571F));
-                        this.DataArea.Location = new System.Drawing.Point(64, 8);
+                        this.DataArea.Location = new System.Drawing.Point(56, 12);
                         this.DataArea.Name = "DataArea";
                         this.DataArea.RowCount = 1;
                         this.DataArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -79,49 +75,21 @@
                         this.DataArea.Size = new System.Drawing.Size(564, 32);
                         this.DataArea.TabIndex = 0;
                         // 
-                        // Body
-                        // 
-                        this.Body.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Body.Controls.Add(this.DataArea);
-                        this.Body.Location = new System.Drawing.Point(0, 36);
-                        this.Body.Name = "Body";
-                        this.Body.Size = new System.Drawing.Size(640, 277);
-                        this.Body.TabIndex = 3;
-                        // 
-                        // ActionPanel
-                        // 
-                        this.ActionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.ActionPanel.BackColor = System.Drawing.SystemColors.AppWorkspace;
-                        this.ActionPanel.Location = new System.Drawing.Point(0, 317);
-                        this.ActionPanel.Name = "ActionPanel";
-                        this.ActionPanel.Size = new System.Drawing.Size(637, 80);
-                        this.ActionPanel.TabIndex = 4;
-                        // 
                         // EditForm
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.Controls.Add(this.ActionPanel);
-                        this.Controls.Add(this.Body);
-                        this.Controls.Add(this.Header);
+                        this.Controls.Add(this.DataArea);
                         this.Name = "EditForm";
-                        this.Size = new System.Drawing.Size(640, 400);
-                        this.Header.ResumeLayout(false);
-                        this.Body.ResumeLayout(false);
-                        this.Body.PerformLayout();
+                        this.Controls.SetChildIndex(this.Body, 0);
+                        this.Controls.SetChildIndex(this.DataArea, 0);
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
                 }
 
                 #endregion
 
-                private System.Windows.Forms.Panel Header;
                 private System.Windows.Forms.TableLayoutPanel DataArea;
-                private System.Windows.Forms.Panel Body;
-                private System.Windows.Forms.Label LabelHeader;
-                private ActionPanel ActionPanel;
         }
 }

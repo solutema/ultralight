@@ -106,7 +106,7 @@ namespace Lfc.Tareas
                         // 
                         this.CancelCommandButton.Location = new System.Drawing.Point(474, 8);
                         // 
-                        // EntradaCliente
+                        // txtCliente
                         // 
                         this.txtCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
@@ -122,7 +122,7 @@ namespace Lfc.Tareas
                         this.txtCliente.KeyField = "id_persona";
                         this.txtCliente.Location = new System.Drawing.Point(97, 33);
                         this.txtCliente.MaxLength = 200;
-                        this.txtCliente.Name = "EntradaCliente";
+                        this.txtCliente.Name = "txtCliente";
                         this.txtCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCliente.ReadOnly = false;
                         this.txtCliente.Required = false;
@@ -247,11 +247,14 @@ namespace Lfc.Tareas
                         this.txtEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.txtEstado.ReadOnly = false;
                         this.txtEstado.SetData = new string[] {
-        "Todos|0",
+        "Todos|todos",
+        "Nuevos|0",
+        "Activos|5",
         "Presupuestados|presupuestados",
+        "Terminados|terminados",
         "Sin Terminar|sin_terminar",
-        "Sin Verificar|sin_verificar",
-        "Sin Entregar|sin_entregar"};
+        "Terminados Sin Verificar|sin_verificar",
+        "Terminados Sin Entregar|sin_entregar"};
                         this.txtEstado.Size = new System.Drawing.Size(235, 24);
                         this.txtEstado.TabIndex = 7;
                         this.txtEstado.Table = null;
@@ -334,6 +337,7 @@ namespace Lfc.Tareas
                         this.Controls.Add(this.tableLayoutPanel1);
                         this.Name = "Filtros";
                         this.Text = "Tickets: Filtros";
+                        this.Controls.SetChildIndex(this.tableLayoutPanel1, 0);
                         this.tableLayoutPanel1.ResumeLayout(false);
                         this.ResumeLayout(false);
 

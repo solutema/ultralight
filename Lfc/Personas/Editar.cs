@@ -278,15 +278,19 @@ namespace Lfc.Personas
                         EntradaGrupo.ReadOnly = NegarEdicionAvanzada;
                         EntradaDomicilio.Text = Cliente.Domicilio;
                         EntradaDomicilioTrabajo.Text = Cliente.DomicilioLaboral;
-                        if (Cliente.Ciudad == null)
+                        if (Cliente.Localidad == null)
                                 EntradaCiudad.TextInt = 0;
                         else
-                                EntradaCiudad.TextInt = Cliente.Ciudad.Id;
+                                EntradaCiudad.TextInt = Cliente.Localidad.Id;
                         EntradaTelefono.Text = Cliente.Telefono;
                         EntradaEmail.Text = Cliente.Email;
+                        if (Cliente.Vendedor == null)
+                                EntradaVendedor.TextInt = 0;
+                        else
+                                EntradaVendedor.TextInt = Cliente.Vendedor.Id;
 
                         EntradaLimiteCredito.Text = Lfx.Types.Formatting.FormatCurrency(Cliente.LimiteCredito, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        EntradaLimiteCredito.ReadOnly = NegarEdicionAvanzada;
+                        EntradaLimiteCredito.ReadOnly = !Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.creditlimit"); ;
                         if (Cliente.Registro["fechanac"] == null || Cliente.Registro["fechanac"] is DBNull)
                                 EntradaFechaNac.Text = "";
                         else
@@ -385,8 +389,10 @@ namespace Lfc.Personas
                         if (m_Id == 1) {
                                 Lui.Forms.MessageBox.Show("No puede editar el acceso del usuario Administrador.", "Error");
                         } else {
+                                this.Save();
                                 if (Lui.Login.LoginData.ValidateAccess(this.Workspace.CurrentUser, "people.access") && Lui.Login.LoginData.RevalidateAccess(this.Workspace.CurrentUser))
                                         this.Workspace.RunTime.Execute("EDIT ACCESS " + m_Id.ToString());
+                                this.Close();
                         }
                 }
 
@@ -424,11 +430,15 @@ namespace Lfc.Personas
                         Res.Domicilio = EntradaDomicilio.Text;
                         Res.DomicilioLaboral = EntradaDomicilioTrabajo.Text;
                         if (EntradaCiudad.TextInt == 0)
-                                Res.Ciudad = null;
+                                Res.Localidad = null;
                         else
-                                Res.Ciudad = new Lbl.Entidades.Ciudad(Res.DataView, EntradaCiudad.TextInt);
+                                Res.Localidad = new Lbl.Entidades.Localidad(Res.DataView, EntradaCiudad.TextInt);
                         Res.Telefono = EntradaTelefono.Text;
                         Res.Email = EntradaEmail.Text;
+                        if (EntradaVendedor.TextInt == 0)
+                                Res.Vendedor = null;
+                        else
+                                Res.Vendedor = new Lbl.Personas.Persona(Res.DataView, EntradaVendedor.TextInt);
                         Res.Obs = EntradaObs.Text;
                         Res.Estado = 1;
                         Res.LimiteCredito = Lfx.Types.Parsing.ParseCurrency(EntradaLimiteCredito.Text);

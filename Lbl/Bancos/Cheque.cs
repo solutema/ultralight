@@ -283,16 +283,24 @@ namespace Lbl.Bancos
                         else
                                 Comando.Fields.AddWithValue("id_comprob", this.Factura.Id);
 
+                        if (this.Emitido)
+                                Comando.Fields.AddWithValue("nombre", "Nº " + this.Numero + " por $ " + Lfx.Types.Formatting.FormatCurrency(this.Importe, 2));
+                        else
+                                Comando.Fields.AddWithValue("nombre", "Nº " + this.Numero + " por $ " + Lfx.Types.Formatting.FormatCurrency(this.Importe, 2) + " emitido por " + this.Emisor);
 			Comando.Fields.AddWithValue("importe", this.Importe);
 			Comando.Fields.AddWithValue("fechaemision", this.FechaEmision);
 			Comando.Fields.AddWithValue("emitidopor", this.Emisor);
                         Comando.Fields.AddWithValue("emitido", this.Emitido ? 1 : 0);
+                        Comando.Fields.AddWithValue("estado", this.Estado);
 			Comando.Fields.AddWithValue("fechacobro", this.FechaCobro);
 			Comando.Fields.AddWithValue("obs", this.Obs);
 
 			this.AgregarTags(Comando);
 
 			this.DataView.Execute(Comando);
+
+                        if (this.Chequera != null)
+                                this.DataView.DataBase.Execute("UPDATE chequeras SET cheques_emitidos=cheques_emitidos+1 WHERE id_chequera=" + this.Chequera.Id.ToString());
 
                         if (this.Emitido == false) {
                                 //Asiento en la cuenta cheques, sólo para cheques de cobro

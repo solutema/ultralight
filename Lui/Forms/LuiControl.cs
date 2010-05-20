@@ -39,8 +39,6 @@ namespace Lui.Forms
 {
         public partial class LuiControl : UserControl
         {
-                private Lws.Workspace m_Workspace;
-
                 public LuiControl()
                 {
                         InitializeComponent();
@@ -51,39 +49,8 @@ namespace Lui.Forms
                 {
                         get
                         {
-                                //Busco un Workspace en mi parent
-                                if (m_Workspace == null) {
-                                        m_Workspace = FindMyWorkspace(this.ParentForm);
-                                        if (m_Workspace != null)
-                                                this.WorkspaceChanged();
-                                }
-                                return m_Workspace;
+                                return Lws.Workspace.Master;
                         }
-                        set
-                        {
-                                m_Workspace = value;
-                                this.WorkspaceChanged();
-                        }
-                }
-
-
-                protected virtual void WorkspaceChanged()
-                {
-                        return;
-                }
-
-                private Lws.Workspace FindMyWorkspace(System.Windows.Forms.Control whereToFind)
-                {
-                        if (whereToFind is Lui.Forms.Form)
-                                return ((Lui.Forms.Form)whereToFind).Workspace;
-                        else if (whereToFind is System.Windows.Forms.Form && ((Form)whereToFind).Owner != null)
-                                return FindMyWorkspace(((Form)whereToFind).Owner);
-                        else if (whereToFind != null && whereToFind.Parent != null)
-                                return FindMyWorkspace(whereToFind.Parent);
-                        else if (whereToFind != null && ((Form)whereToFind).MdiParent != null)
-                                return FindMyWorkspace(((Form)whereToFind).MdiParent);
-                        else
-                                return null;
                 }
 
                 [EditorBrowsable(EditorBrowsableState.Always), Browsable(true), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]

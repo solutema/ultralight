@@ -1,3 +1,32 @@
+// Copyright 2004-2010 South Bridge S.R.L.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// Este programa es software libre; puede distribuirlo y/o moficiarlo de
+// acuerdo a los términos de la Licencia Pública General de GNU (GNU
+// General Public License), como la publica la Fundación para el Software
+// Libre (Free Software Foundation), tanto la versión 3 de la Licencia
+// como (a su elección) cualquier versión posterior.
+//
+// Este programa se distribuye con la esperanza de que sea útil, pero SIN
+// GARANTÍA ALGUNA; ni siquiera la garantía MERCANTIL implícita y sin
+// garantizar su CONVENIENCIA PARA UN PROPÓSITO PARTICULAR. Véase la
+// Licencia Pública General de GNU para más detalles. 
+//
+// Debería haber recibido una copia de la Licencia Pública General junto
+// con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+
 namespace Lcc.Edicion.Comprobantes
 {
         partial class Pago
@@ -30,7 +59,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaImporte = new Lui.Forms.TextBox();
                         this.label1 = new System.Windows.Forms.Label();
                         this.PanelImporte = new System.Windows.Forms.Panel();
-                        this.PanelCheque = new System.Windows.Forms.Panel();
+                        this.PanelChequePropio = new System.Windows.Forms.Panel();
                         this.label2 = new System.Windows.Forms.Label();
                         this.EntradaFechaCobro = new Lui.Forms.TextBox();
                         this.label3 = new System.Windows.Forms.Label();
@@ -67,8 +96,14 @@ namespace Lcc.Edicion.Comprobantes
                         this.label13 = new System.Windows.Forms.Label();
                         this.label12 = new System.Windows.Forms.Label();
                         this.PanelSeparadorInferior = new System.Windows.Forms.Panel();
+                        this.PanelChequeTerceros = new System.Windows.Forms.Panel();
+                        this.label5 = new System.Windows.Forms.Label();
+                        this.EntradaChequeTerceros = new Lui.Forms.DetailBox();
+                        this.PanelValor = new System.Windows.Forms.Panel();
+                        this.EtiquetaPagoConValor = new System.Windows.Forms.Label();
+                        this.EntradaValor = new Lui.Forms.DetailBox();
                         this.PanelImporte.SuspendLayout();
-                        this.PanelCheque.SuspendLayout();
+                        this.PanelChequePropio.SuspendLayout();
                         this.PanelTitulo.SuspendLayout();
                         this.PanelCaja.SuspendLayout();
                         this.PanelEfectivo.SuspendLayout();
@@ -76,6 +111,8 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelObs.SuspendLayout();
                         this.PanelCuentaCorriente.SuspendLayout();
                         this.PanelFormaDePago.SuspendLayout();
+                        this.PanelChequeTerceros.SuspendLayout();
+                        this.PanelValor.SuspendLayout();
                         this.SuspendLayout();
                         // 
                         // EntradaImporte
@@ -85,6 +122,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaImporte.AutoTab = true;
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Money;
                         this.EntradaImporte.DecimalPlaces = -1;
+                        this.EntradaImporte.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporte.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaImporte.Location = new System.Drawing.Point(140, 0);
@@ -118,27 +156,27 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelImporte.Controls.Add(this.EntradaImporte);
                         this.PanelImporte.Controls.Add(this.label1);
                         this.PanelImporte.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelImporte.Location = new System.Drawing.Point(0, 70);
+                        this.PanelImporte.Location = new System.Drawing.Point(0, 66);
                         this.PanelImporte.Name = "PanelImporte";
                         this.PanelImporte.Size = new System.Drawing.Size(460, 30);
                         this.PanelImporte.TabIndex = 2;
                         // 
-                        // PanelCheque
+                        // PanelChequePropio
                         // 
-                        this.PanelCheque.Controls.Add(this.label2);
-                        this.PanelCheque.Controls.Add(this.EntradaFechaCobro);
-                        this.PanelCheque.Controls.Add(this.label3);
-                        this.PanelCheque.Controls.Add(this.label6);
-                        this.PanelCheque.Controls.Add(this.EntradaFechaEmision);
-                        this.PanelCheque.Controls.Add(this.EntradaNumeroCheque);
-                        this.PanelCheque.Controls.Add(this.lblFecha1);
-                        this.PanelCheque.Controls.Add(this.EntradaBanco);
-                        this.PanelCheque.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelCheque.Location = new System.Drawing.Point(0, 132);
-                        this.PanelCheque.Name = "PanelCheque";
-                        this.PanelCheque.Size = new System.Drawing.Size(460, 134);
-                        this.PanelCheque.TabIndex = 4;
-                        this.PanelCheque.Visible = false;
+                        this.PanelChequePropio.Controls.Add(this.label2);
+                        this.PanelChequePropio.Controls.Add(this.EntradaFechaCobro);
+                        this.PanelChequePropio.Controls.Add(this.label3);
+                        this.PanelChequePropio.Controls.Add(this.label6);
+                        this.PanelChequePropio.Controls.Add(this.EntradaFechaEmision);
+                        this.PanelChequePropio.Controls.Add(this.EntradaNumeroCheque);
+                        this.PanelChequePropio.Controls.Add(this.lblFecha1);
+                        this.PanelChequePropio.Controls.Add(this.EntradaBanco);
+                        this.PanelChequePropio.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.PanelChequePropio.Location = new System.Drawing.Point(0, 128);
+                        this.PanelChequePropio.Name = "PanelChequePropio";
+                        this.PanelChequePropio.Size = new System.Drawing.Size(460, 134);
+                        this.PanelChequePropio.TabIndex = 4;
+                        this.PanelChequePropio.Visible = false;
                         // 
                         // label2
                         // 
@@ -156,6 +194,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFechaCobro.AutoTab = true;
                         this.EntradaFechaCobro.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaFechaCobro.DecimalPlaces = -1;
+                        this.EntradaFechaCobro.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaFechaCobro.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaCobro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaFechaCobro.Location = new System.Drawing.Point(140, 96);
@@ -200,6 +239,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFechaEmision.AutoTab = true;
                         this.EntradaFechaEmision.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaFechaEmision.DecimalPlaces = -1;
+                        this.EntradaFechaEmision.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaFechaEmision.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaEmision.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaFechaEmision.Location = new System.Drawing.Point(140, 64);
@@ -226,6 +266,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaNumeroCheque.AutoTab = true;
                         this.EntradaNumeroCheque.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaNumeroCheque.DecimalPlaces = -1;
+                        this.EntradaNumeroCheque.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaNumeroCheque.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumeroCheque.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaNumeroCheque.Location = new System.Drawing.Point(140, 32);
@@ -264,6 +305,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaBanco.DetailField = "nombre";
                         this.EntradaBanco.ExtraDetailFields = null;
                         this.EntradaBanco.Filter = "";
+                        this.EntradaBanco.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaBanco.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.KeyField = "id_banco";
@@ -288,7 +330,7 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.PanelTitulo.Controls.Add(this.FrameTitulo);
                         this.PanelTitulo.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelTitulo.Location = new System.Drawing.Point(0, 36);
+                        this.PanelTitulo.Location = new System.Drawing.Point(0, 32);
                         this.PanelTitulo.Name = "PanelTitulo";
                         this.PanelTitulo.Size = new System.Drawing.Size(460, 34);
                         this.PanelTitulo.TabIndex = 1;
@@ -297,6 +339,7 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.FrameTitulo.AutoHeight = false;
                         this.FrameTitulo.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.FrameTitulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.FrameTitulo.Location = new System.Drawing.Point(0, 0);
                         this.FrameTitulo.Name = "FrameTitulo";
                         this.FrameTitulo.Padding = new System.Windows.Forms.Padding(2);
@@ -312,7 +355,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelCaja.Controls.Add(this.label9);
                         this.PanelCaja.Controls.Add(this.EntradaCaja);
                         this.PanelCaja.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelCaja.Location = new System.Drawing.Point(0, 266);
+                        this.PanelCaja.Location = new System.Drawing.Point(0, 262);
                         this.PanelCaja.Name = "PanelCaja";
                         this.PanelCaja.Size = new System.Drawing.Size(460, 56);
                         this.PanelCaja.TabIndex = 5;
@@ -336,6 +379,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCaja.DetailField = "nombre";
                         this.EntradaCaja.ExtraDetailFields = null;
                         this.EntradaCaja.Filter = "";
+                        this.EntradaCaja.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaCaja.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCaja.FreeTextCode = "";
                         this.EntradaCaja.KeyField = "id_caja";
@@ -360,7 +404,7 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.PanelEfectivo.Controls.Add(this.label8);
                         this.PanelEfectivo.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelEfectivo.Location = new System.Drawing.Point(0, 322);
+                        this.PanelEfectivo.Location = new System.Drawing.Point(0, 318);
                         this.PanelEfectivo.Name = "PanelEfectivo";
                         this.PanelEfectivo.Size = new System.Drawing.Size(460, 32);
                         this.PanelEfectivo.TabIndex = 6;
@@ -388,7 +432,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelTarjeta.Controls.Add(this.Label11);
                         this.PanelTarjeta.Controls.Add(this.Label15);
                         this.PanelTarjeta.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelTarjeta.Location = new System.Drawing.Point(0, 354);
+                        this.PanelTarjeta.Location = new System.Drawing.Point(0, 350);
                         this.PanelTarjeta.Name = "PanelTarjeta";
                         this.PanelTarjeta.Size = new System.Drawing.Size(460, 130);
                         this.PanelTarjeta.TabIndex = 7;
@@ -401,6 +445,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaAutorizacion.AutoTab = true;
                         this.EntradaAutorizacion.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaAutorizacion.DecimalPlaces = -1;
+                        this.EntradaAutorizacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaAutorizacion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaAutorizacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaAutorizacion.Location = new System.Drawing.Point(140, 100);
@@ -426,6 +471,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCupon.AutoTab = true;
                         this.EntradaCupon.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaCupon.DecimalPlaces = -1;
+                        this.EntradaCupon.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaCupon.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCupon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaCupon.Location = new System.Drawing.Point(140, 68);
@@ -451,6 +497,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaInteres.AutoTab = true;
                         this.EntradaInteres.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaInteres.DecimalPlaces = -1;
+                        this.EntradaInteres.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaInteres.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaInteres.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaInteres.Location = new System.Drawing.Point(368, 60);
@@ -487,6 +534,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCuotas.AutoTab = true;
                         this.EntradaCuotas.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaCuotas.DecimalPlaces = -1;
+                        this.EntradaCuotas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaCuotas.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCuotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaCuotas.Location = new System.Drawing.Point(228, 28);
@@ -526,6 +574,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaPlan.DetailField = "nombre";
                         this.EntradaPlan.ExtraDetailFields = null;
                         this.EntradaPlan.Filter = "";
+                        this.EntradaPlan.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaPlan.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaPlan.FreeTextCode = "";
                         this.EntradaPlan.KeyField = "id_plan";
@@ -579,7 +628,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelObs.Controls.Add(this.EntradaObs);
                         this.PanelObs.Controls.Add(this.Label20);
                         this.PanelObs.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelObs.Location = new System.Drawing.Point(0, 484);
+                        this.PanelObs.Location = new System.Drawing.Point(0, 592);
                         this.PanelObs.Name = "PanelObs";
                         this.PanelObs.Size = new System.Drawing.Size(460, 58);
                         this.PanelObs.TabIndex = 8;
@@ -594,6 +643,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaObs.AutoTab = true;
                         this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaObs.DecimalPlaces = -1;
+                        this.EntradaObs.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaObs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaObs.Location = new System.Drawing.Point(140, 0);
@@ -625,7 +675,7 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.PanelCuentaCorriente.Controls.Add(this.label7);
                         this.PanelCuentaCorriente.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelCuentaCorriente.Location = new System.Drawing.Point(0, 100);
+                        this.PanelCuentaCorriente.Location = new System.Drawing.Point(0, 96);
                         this.PanelCuentaCorriente.Name = "PanelCuentaCorriente";
                         this.PanelCuentaCorriente.Size = new System.Drawing.Size(460, 32);
                         this.PanelCuentaCorriente.TabIndex = 3;
@@ -648,7 +698,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelFormaDePago.Dock = System.Windows.Forms.DockStyle.Top;
                         this.PanelFormaDePago.Location = new System.Drawing.Point(0, 0);
                         this.PanelFormaDePago.Name = "PanelFormaDePago";
-                        this.PanelFormaDePago.Size = new System.Drawing.Size(460, 36);
+                        this.PanelFormaDePago.Size = new System.Drawing.Size(460, 32);
                         this.PanelFormaDePago.TabIndex = 0;
                         this.PanelFormaDePago.Visible = false;
                         // 
@@ -662,6 +712,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFormaDePago.DetailField = "nombre";
                         this.EntradaFormaDePago.ExtraDetailFields = null;
                         this.EntradaFormaDePago.Filter = "pagos=1";
+                        this.EntradaFormaDePago.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaFormaDePago.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFormaDePago.FreeTextCode = "";
                         this.EntradaFormaDePago.KeyField = "id_formapago";
@@ -705,27 +756,131 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.PanelSeparadorInferior.BackColor = System.Drawing.SystemColors.ControlDark;
                         this.PanelSeparadorInferior.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.PanelSeparadorInferior.Location = new System.Drawing.Point(0, 542);
+                        this.PanelSeparadorInferior.Location = new System.Drawing.Point(0, 650);
                         this.PanelSeparadorInferior.Name = "PanelSeparadorInferior";
                         this.PanelSeparadorInferior.Size = new System.Drawing.Size(460, 2);
-                        this.PanelSeparadorInferior.TabIndex = 9;
+                        this.PanelSeparadorInferior.TabIndex = 10;
+                        // 
+                        // PanelChequeTerceros
+                        // 
+                        this.PanelChequeTerceros.Controls.Add(this.label5);
+                        this.PanelChequeTerceros.Controls.Add(this.EntradaChequeTerceros);
+                        this.PanelChequeTerceros.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.PanelChequeTerceros.Location = new System.Drawing.Point(0, 480);
+                        this.PanelChequeTerceros.Name = "PanelChequeTerceros";
+                        this.PanelChequeTerceros.Size = new System.Drawing.Size(460, 56);
+                        this.PanelChequeTerceros.TabIndex = 11;
+                        this.PanelChequeTerceros.Visible = false;
+                        // 
+                        // label5
+                        // 
+                        this.label5.Location = new System.Drawing.Point(0, 0);
+                        this.label5.Name = "label5";
+                        this.label5.Size = new System.Drawing.Size(440, 20);
+                        this.label5.TabIndex = 0;
+                        this.label5.Text = "Pago con cheque de terceros";
+                        // 
+                        // EntradaChequeTerceros
+                        // 
+                        this.EntradaChequeTerceros.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaChequeTerceros.AutoHeight = false;
+                        this.EntradaChequeTerceros.AutoTab = true;
+                        this.EntradaChequeTerceros.CanCreate = true;
+                        this.EntradaChequeTerceros.DetailField = "nombre";
+                        this.EntradaChequeTerceros.ExtraDetailFields = null;
+                        this.EntradaChequeTerceros.Filter = "emitido=0 AND estado=0";
+                        this.EntradaChequeTerceros.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EntradaChequeTerceros.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaChequeTerceros.FreeTextCode = "";
+                        this.EntradaChequeTerceros.KeyField = "id_cheque";
+                        this.EntradaChequeTerceros.Location = new System.Drawing.Point(140, 20);
+                        this.EntradaChequeTerceros.MaxLength = 200;
+                        this.EntradaChequeTerceros.Name = "EntradaChequeTerceros";
+                        this.EntradaChequeTerceros.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaChequeTerceros.ReadOnly = false;
+                        this.EntradaChequeTerceros.Required = true;
+                        this.EntradaChequeTerceros.SelectOnFocus = false;
+                        this.EntradaChequeTerceros.Size = new System.Drawing.Size(320, 24);
+                        this.EntradaChequeTerceros.TabIndex = 1;
+                        this.EntradaChequeTerceros.Table = "bancos_cheques";
+                        this.EntradaChequeTerceros.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaChequeTerceros.Text = "0";
+                        this.EntradaChequeTerceros.TextDetail = "";
+                        this.EntradaChequeTerceros.TextInt = 0;
+                        this.EntradaChequeTerceros.TipWhenBlank = "";
+                        this.EntradaChequeTerceros.ToolTipText = "";
+                        this.EntradaChequeTerceros.TextChanged += new System.EventHandler(this.EntradaChequeTerceros_TextChanged);
+                        // 
+                        // PanelValor
+                        // 
+                        this.PanelValor.Controls.Add(this.EtiquetaPagoConValor);
+                        this.PanelValor.Controls.Add(this.EntradaValor);
+                        this.PanelValor.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.PanelValor.Location = new System.Drawing.Point(0, 536);
+                        this.PanelValor.Name = "PanelValor";
+                        this.PanelValor.Size = new System.Drawing.Size(460, 56);
+                        this.PanelValor.TabIndex = 12;
+                        this.PanelValor.Visible = false;
+                        // 
+                        // EtiquetaPagoConValor
+                        // 
+                        this.EtiquetaPagoConValor.Location = new System.Drawing.Point(0, 0);
+                        this.EtiquetaPagoConValor.Name = "EtiquetaPagoConValor";
+                        this.EtiquetaPagoConValor.Size = new System.Drawing.Size(440, 20);
+                        this.EtiquetaPagoConValor.TabIndex = 0;
+                        this.EtiquetaPagoConValor.Text = "Pago con ...";
+                        // 
+                        // EntradaValor
+                        // 
+                        this.EntradaValor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaValor.AutoHeight = false;
+                        this.EntradaValor.AutoTab = true;
+                        this.EntradaValor.CanCreate = true;
+                        this.EntradaValor.DetailField = "nombre";
+                        this.EntradaValor.ExtraDetailFields = null;
+                        this.EntradaValor.Filter = "estado=0";
+                        this.EntradaValor.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EntradaValor.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaValor.FreeTextCode = "";
+                        this.EntradaValor.KeyField = "id_valor";
+                        this.EntradaValor.Location = new System.Drawing.Point(140, 20);
+                        this.EntradaValor.MaxLength = 200;
+                        this.EntradaValor.Name = "EntradaValor";
+                        this.EntradaValor.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaValor.ReadOnly = false;
+                        this.EntradaValor.Required = true;
+                        this.EntradaValor.SelectOnFocus = false;
+                        this.EntradaValor.Size = new System.Drawing.Size(320, 24);
+                        this.EntradaValor.TabIndex = 1;
+                        this.EntradaValor.Table = "pagos_valores";
+                        this.EntradaValor.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaValor.Text = "0";
+                        this.EntradaValor.TextDetail = "";
+                        this.EntradaValor.TextInt = 0;
+                        this.EntradaValor.TipWhenBlank = "";
+                        this.EntradaValor.ToolTipText = "";
+                        this.EntradaValor.TextChanged += new System.EventHandler(this.EntradaValor_TextChanged);
                         // 
                         // Pago
                         // 
                         this.Controls.Add(this.PanelSeparadorInferior);
                         this.Controls.Add(this.PanelObs);
+                        this.Controls.Add(this.PanelValor);
+                        this.Controls.Add(this.PanelChequeTerceros);
                         this.Controls.Add(this.PanelTarjeta);
                         this.Controls.Add(this.PanelEfectivo);
                         this.Controls.Add(this.PanelCaja);
-                        this.Controls.Add(this.PanelCheque);
+                        this.Controls.Add(this.PanelChequePropio);
                         this.Controls.Add(this.PanelCuentaCorriente);
                         this.Controls.Add(this.PanelImporte);
                         this.Controls.Add(this.PanelTitulo);
                         this.Controls.Add(this.PanelFormaDePago);
                         this.Name = "Pago";
-                        this.Size = new System.Drawing.Size(460, 629);
+                        this.Size = new System.Drawing.Size(460, 697);
                         this.PanelImporte.ResumeLayout(false);
-                        this.PanelCheque.ResumeLayout(false);
+                        this.PanelChequePropio.ResumeLayout(false);
                         this.PanelTitulo.ResumeLayout(false);
                         this.PanelCaja.ResumeLayout(false);
                         this.PanelEfectivo.ResumeLayout(false);
@@ -733,6 +888,8 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelObs.ResumeLayout(false);
                         this.PanelCuentaCorriente.ResumeLayout(false);
                         this.PanelFormaDePago.ResumeLayout(false);
+                        this.PanelChequeTerceros.ResumeLayout(false);
+                        this.PanelValor.ResumeLayout(false);
                         this.ResumeLayout(false);
 
                 }
@@ -742,7 +899,7 @@ namespace Lcc.Edicion.Comprobantes
                 internal Lui.Forms.TextBox EntradaImporte;
                 private System.Windows.Forms.Label label1;
                 private System.Windows.Forms.Panel PanelImporte;
-                private System.Windows.Forms.Panel PanelCheque;
+                private System.Windows.Forms.Panel PanelChequePropio;
                 private System.Windows.Forms.Label label2;
                 internal Lui.Forms.TextBox EntradaFechaCobro;
                 private System.Windows.Forms.Label label3;
@@ -779,5 +936,11 @@ namespace Lcc.Edicion.Comprobantes
                 public Lui.Forms.DetailBox EntradaCaja;
                 public Lui.Forms.DetailBox EntradaBanco;
                 internal Lui.Forms.DetailBox EntradaFormaDePago;
+                private System.Windows.Forms.Panel PanelChequeTerceros;
+                private System.Windows.Forms.Label label5;
+                public Lui.Forms.DetailBox EntradaChequeTerceros;
+                private System.Windows.Forms.Panel PanelValor;
+                private System.Windows.Forms.Label EtiquetaPagoConValor;
+                public Lui.Forms.DetailBox EntradaValor;
         }
 }

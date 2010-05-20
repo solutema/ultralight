@@ -129,7 +129,6 @@ namespace Lfc.Tareas
                         this.ProductArray.ShowStock = true;
                         this.ProductArray.Size = new System.Drawing.Size(576, 220);
                         this.ProductArray.TabIndex = 1;
-                        this.ProductArray.Workspace = null;
                         this.ProductArray.TotalChanged += new System.EventHandler(this.ProductArray_TotalChanged);
                         // 
                         // lblTitulo

@@ -33,12 +33,14 @@ using System.Text;
 
 namespace Lbl.Entidades
 {
-	public class Ciudad : ElementoDeDatos
+	public class Localidad : ElementoDeDatos
 	{
-		//Heredar constructor
-		public Ciudad(Lws.Data.DataView dataView) : base(dataView) { }
+                private Localidad m_Parent = null;
 
-		public Ciudad(Lws.Data.DataView dataView, int itemId)
+		//Heredar constructor
+		public Localidad(Lws.Data.DataView dataView) : base(dataView) { }
+
+		public Localidad(Lws.Data.DataView dataView, int itemId)
 			: this(dataView)
 		{
 			m_ItemId = itemId;
@@ -59,5 +61,37 @@ namespace Lbl.Entidades
 				return "id_ciudad";
 			}
 		}
+
+                public string CodigoPostal
+                {
+                        get
+                        {
+                                return this.FieldString("cp");
+                        }
+                        set
+                        {
+                                this.Registro["cp"] = value;
+                        }
+                }
+
+                public Localidad Provincia
+                {
+                        get
+                        {
+                                if (m_Parent == null) {
+                                        if (this.Registro["parent"] != null)
+                                                m_Parent = new Localidad(this.DataView, this.FieldInt("parent"));
+                                }
+                                return m_Parent;
+                        }
+                        set
+                        {
+                                m_Parent = value;
+                                if (value == null)
+                                        this.Registro["parent"] = null;
+                                else
+                                        this.Registro["parent"] = m_Parent.Id;
+                        }
+                }
 	}
 }

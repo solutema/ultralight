@@ -170,7 +170,7 @@ namespace Lbl.Bancos
                         DataView.Execute(Comando);
 
                         if (m_ItemId == 0)
-                                m_ItemId = DataView.DataBase.FieldInt("SELECT MAX(id_chequera) FROM chequeras");
+                                m_ItemId = DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
 
                         if (this.Desde > 0 && this.Hasta > 0 && this.Hasta > this.Desde) {
 				Lfx.Data.SqlUpdateBuilder Actua = new Lfx.Data.SqlUpdateBuilder("bancos_cheques");

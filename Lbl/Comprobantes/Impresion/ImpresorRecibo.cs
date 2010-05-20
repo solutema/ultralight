@@ -67,7 +67,7 @@ namespace Lbl.Comprobantes.Impresion
                                                         case Lbl.Comprobantes.TipoFormasDePago.Efectivo:
                                                                 Valores.AppendLine("Efectivo                 : " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
                                                                 break;
-                                                        case Lbl.Comprobantes.TipoFormasDePago.Cheque:
+                                                        case Lbl.Comprobantes.TipoFormasDePago.ChequePropio:
                                                                 Valores.AppendLine("Cheque                   : " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
                                                                 Valores.AppendLine("                           Nº " + Pg.Cheque.Numero + " del banco " + Pg.Cheque.Banco.ToString());
                                                                 Valores.AppendLine("                           emitido por " + Pg.Cheque.Emisor);

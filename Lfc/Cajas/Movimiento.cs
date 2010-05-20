@@ -397,7 +397,7 @@ namespace Lfc.Cajas
 
                         if (aceptarReturn.Success == true) {
                                 double Importe = Lfx.Types.Parsing.ParseCurrency(txtImporte.Text);
-                                DataView.BeginTransaction();
+                                DataView.BeginTransaction(true);
                                 Lbl.Cajas.Caja CajaOrigen = new Lbl.Cajas.Caja(DataView, iOrigen);
                                 CajaOrigen.Movimiento(false, txtConcepto.TextInt, txtConcepto.TextDetail, this.Workspace.CurrentUser.Id, -Importe, txtObs.Text, 0, 0, txtComprob.Text);
                                 if (txtImporteDestino.Visible)

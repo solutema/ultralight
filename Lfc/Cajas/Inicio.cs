@@ -240,7 +240,6 @@ namespace Lfc.Cajas
                 public override Lfx.Types.OperationResult Filter()
                 {
                         Cajas.Filtros FormularioFiltros = new Cajas.Filtros();
-                        FormularioFiltros.Workspace = this.Workspace;
                         FormularioFiltros.EntradaCaja.Text = m_Caja.ToString();
                         FormularioFiltros.Fechas.Rango = m_Fechas;
 
@@ -290,7 +289,6 @@ namespace Lfc.Cajas
                 public override Lfx.Types.OperationResult Print()
                 {
                         Cajas.Listado FormularioListado = new Cajas.Listado();
-                        FormularioListado.Workspace = this.Workspace;
                         FormularioListado.MdiParent = this.MdiParent;
                         FormularioListado.Show();
                         FormularioListado.m_Caja = m_Caja;
@@ -308,7 +306,6 @@ namespace Lfc.Cajas
                 {
                         if (Lui.Login.LoginData.ValidateAccess(this.Workspace.CurrentUser, "accounts.write")) {
                                 Cajas.IngresoEgreso FormularioIngreso = new Cajas.IngresoEgreso();
-                                FormularioIngreso.Workspace = this.Workspace;
                                 FormularioIngreso.Caja = m_Caja;
                                 FormularioIngreso.SaldoActual = Lfx.Types.Parsing.ParseCurrency(EtiquetaSaldo.Text);
                                 FormularioIngreso.Ingreso = true;
@@ -322,7 +319,6 @@ namespace Lfc.Cajas
                 {
                         if (Lui.Login.LoginData.ValidateAccess(this.Workspace.CurrentUser, "accounts.write")) {
                                 Cajas.IngresoEgreso FormularioEgreso = new Cajas.IngresoEgreso();
-                                FormularioEgreso.Workspace = this.Workspace;
                                 FormularioEgreso.Caja = m_Caja;
                                 FormularioEgreso.SaldoActual = Lfx.Types.Parsing.ParseCurrency(EtiquetaSaldo.Text);
                                 FormularioEgreso.Ingreso = false;
@@ -370,7 +366,6 @@ namespace Lfc.Cajas
                 {
                         if (Lui.Login.LoginData.ValidateAccess(this.Workspace.CurrentUser, "accounts.write")) {
                                 Cajas.Movimiento FormularioMovimiento = new Cajas.Movimiento();
-                                FormularioMovimiento.Workspace = this.Workspace;
                                 FormularioMovimiento.txtOrigen.TextInt = m_Caja;
                                 FormularioMovimiento.txtConcepto.Text = "30000";
                                 if (FormularioMovimiento.ShowDialog() == DialogResult.OK)

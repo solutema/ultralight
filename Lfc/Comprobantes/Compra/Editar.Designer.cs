@@ -134,7 +134,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProductos.ShowStock = false;
                         this.EntradaProductos.Size = new System.Drawing.Size(792, 228);
                         this.EntradaProductos.TabIndex = 13;
-                        this.EntradaProductos.Workspace = null;
                         this.EntradaProductos.TotalChanged += new System.EventHandler(this.RecalcularTotal);
                         this.EntradaProductos.AskForSerials += new System.EventHandler(this.EntradaProductos_AskForSerials);
                         // 
@@ -282,10 +281,11 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
-        "Factura A|A",
-        "Factura B|B",
-        "Factura C|C",
-        "Factura E|E",
+        "Factura A|FA",
+        "Factura B|FB",
+        "Factura C|FC",
+        "Factura E|FE",
+        "Factura M|FM",
         "Remito|R",
         "Nota Pedido|NP",
         "Pedido|PD"};
@@ -293,7 +293,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTipo.TabIndex = 4;
                         this.EntradaTipo.Table = null;
                         this.EntradaTipo.Text = "Factura A";
-                        this.EntradaTipo.TextKey = "A";
+                        this.EntradaTipo.TextKey = "FA";
                         this.EntradaTipo.TextRaw = "Factura A";
                         this.EntradaTipo.TipWhenBlank = "";
                         this.EntradaTipo.ToolTipText = "";

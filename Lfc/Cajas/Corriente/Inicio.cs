@@ -102,7 +102,7 @@ namespace Lfc.Cajas.Corriente
                         ItemList.Columns[4].Width = 0;
                         ItemList.Columns[6].Width = 0;
                         ItemList.Columns[7].Width = 0;
-                        ItemList.Columns[8].Width = 0;
+                        ItemList.Columns[8].Width = 320;
 
                         m_SelectCommand = new Lfx.Data.SqlSelectBuilder("personas");
                         m_SelectCommand.Joins.Clear();
@@ -272,7 +272,6 @@ namespace Lfc.Cajas.Corriente
                         Lfx.Types.OperationResult Res = base.Filter();
                         if (Res.Success == true) {
                                 Filtros FormularioFiltros = new Filtros();
-                                FormularioFiltros.Workspace = this.Workspace;
                                 FormularioFiltros.EntradaCliente.TextInt = m_Cliente;
                                 FormularioFiltros.EntradaGrupo.TextInt = m_Grupo;
                                 FormularioFiltros.EntradaFechas.Rango = m_Fechas;
@@ -358,7 +357,6 @@ namespace Lfc.Cajas.Corriente
                         if (Lui.Login.LoginData.ValidateAccess(this.Workspace.CurrentUser, "ctacte.write")) {
                                 Ajuste OAjuste = new Ajuste();
                                 OAjuste.Owner = this;
-                                OAjuste.Workspace = this.Workspace;
                                 OAjuste.SaldoActual = Lfx.Types.Parsing.ParseCurrency(EtiquetaSaldo.Text);
                                 if (OAjuste.ShowDialog() == DialogResult.OK) {
                                         double Importe = Lfx.Types.Parsing.ParseCurrency(OAjuste.txtImporte.Text);

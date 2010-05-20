@@ -92,4 +92,22 @@ namespace Lbl.Cajas
 			return new Lfx.Types.SuccessOperationResult();
 		}
 	}
+
+        /* public class Movimiento
+        {
+                bool auto;
+                int idConcepto;
+                string concepto;
+                int idCliente;
+                double importe;
+                string obs;
+                int idFactura;
+                int idRecibo;
+                string comprobantes;
+
+                public Movimiento(Lbl.Cajas.Concepto concepto, Lbl.Personas.Persona persona, Lbl)
+                {
+
+                }
+        } */
 }

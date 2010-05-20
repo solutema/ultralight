@@ -61,7 +61,6 @@ namespace Lui.Login
 		public static bool RevalidateAccess(Lws.LoginData loginData)
 		{
 			Lui.Login.FormRevalidateAccess Reval = new Lui.Login.FormRevalidateAccess();
-			Reval.Workspace = loginData.Workspace;
 			bool Res = Reval.Revalidate();
                         Reval.Close();
                         Reval.Dispose();
@@ -80,7 +79,6 @@ namespace Lui.Login
 			Lui.Login.FormRevalidateAccess Reval = new Lui.Login.FormRevalidateAccess();
 			if(Explain != null)
 				Reval.Explain = Explain;
-			Reval.Workspace = loginData.Workspace;
 			return Reval.ValidateAs(1);
 		}
 	}

@@ -34,6 +34,11 @@
             Obtiene las estructuras de las tablas desde dbstruct.xml (puede no coincidir con el contenido actual de la base de datos)
             </summary>
         </member>
+        <member name="T:Lfx.Data.IsolationLevels">
+            <summary>
+            Define los niveles de aislamiento para las transacciones
+            </summary>
+        </member>
         <member name="T:Lfx.Data.Providers.Npgsql">
             <summary>
             Proveedor compatible con Npgsql versión 2. Requiere la presencia de Npgsql.dll en el directorio del programa.

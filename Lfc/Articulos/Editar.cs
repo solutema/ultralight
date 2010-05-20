@@ -148,7 +148,6 @@ namespace Lfc.Articulos
                 private void cmdInfo_Click(object sender, System.EventArgs e)
                 {
                         Articulos.MasInfo OInfo = new Articulos.MasInfo();
-                        OInfo.Workspace = this.Workspace;
                         OInfo.Articulo = m_Id;
 
                         if (OInfo.ShowDialog() == DialogResult.OK) {
@@ -283,15 +282,15 @@ namespace Lfc.Articulos
                         if (m_Id > 0) {
                                 string Res = "";
 
-                                double PrecioUltComp = this.Workspace.DefaultDataBase.FieldDouble("SELECT comprob_detalle.precio FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('R', 'A', 'B', 'C', 'E', 'M') AND comprob.compra=1 AND id_articulo=" + m_Id.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
-                                double PrecioUltFlete = this.Workspace.DefaultDataBase.FieldDouble("SELECT (comprob.gastosenvio+comprob.otrosgastos)*(comprob_detalle.precio/comprob.total) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('R', 'A', 'B', 'C', 'E', 'M') AND comprob.compra=1 AND id_articulo=" + m_Id.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
+                                double PrecioUltComp = this.Workspace.DefaultDataBase.FieldDouble("SELECT comprob_detalle.precio FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND id_articulo=" + m_Id.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
+                                double PrecioUltFlete = this.Workspace.DefaultDataBase.FieldDouble("SELECT (comprob.gastosenvio+comprob.otrosgastos)*(comprob_detalle.precio/comprob.total) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND id_articulo=" + m_Id.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
                                 Res += "Costo de la última compra (sin gastos): " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + Environment.NewLine;
                                 Res += "Costo de la última compra (con gastos): " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUltComp + PrecioUltFlete, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + Environment.NewLine;
 
                                 // Podra hacer esto con una subconsulta, pero la versión de MySql que estamos utilizando
                                 // no permite la cláusula LIMIT dentro de una subconsulta IN ()
                                 double PrecioUlt5Comps = 0;
-                                System.Data.DataTable UltimasCompras = this.Workspace.DefaultDataBase.Select("SELECT comprob_detalle.precio, comprob.id_comprob FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'A', 'B', 'C', 'E', 'M') AND comprob.compra=1 AND comprob_detalle.id_articulo=" + m_Id.ToString() + " ORDER BY comprob.fecha DESC LIMIT 5");
+                                System.Data.DataTable UltimasCompras = this.Workspace.DefaultDataBase.Select("SELECT comprob_detalle.precio, comprob.id_comprob FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND comprob_detalle.id_articulo=" + m_Id.ToString() + " ORDER BY comprob.fecha DESC LIMIT 5");
 
                                 if (UltimasCompras.Rows.Count > 0) {
                                         foreach (System.Data.DataRow Compra in UltimasCompras.Rows) {
@@ -518,7 +517,6 @@ namespace Lfc.Articulos
                 private void BotonArticuloVerMovimientos_Click(object sender, System.EventArgs e)
                 {
                         Articulos.VerMovimientos FormularioDetalles = new Articulos.VerMovimientos();
-                        FormularioDetalles.Workspace = this.Workspace;
                         FormularioDetalles.MdiParent = this.MdiParent;
                         FormularioDetalles.Mostrar(this.CachedRow as Lbl.Articulos.Articulo);
                         FormularioDetalles.Show();
@@ -527,7 +525,6 @@ namespace Lfc.Articulos
                 private void BotonArticuloVerConformación_Click(object sender, EventArgs e)
                 {
                         Articulos.VerConformacion FormularioDetalles = new Articulos.VerConformacion();
-                        FormularioDetalles.Workspace = this.Workspace;
                         FormularioDetalles.MdiParent = this.MdiParent;
                         FormularioDetalles.Mostrar(this.CachedRow as Lbl.Articulos.Articulo);
                         FormularioDetalles.Show();

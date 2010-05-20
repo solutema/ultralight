@@ -51,7 +51,6 @@ namespace Lazaro.Misc
 
 		private void FormIngreso_Load(object sender, System.EventArgs e)
 		{
-			this.Workspace = Lws.Workspace.Master;
 			txtUsuario.Text = Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString(null, "Sistema.Ingreso.UltimoUsuario", "0");
 		}
 
@@ -74,15 +73,19 @@ namespace Lazaro.Misc
 
                                 if (Puede == false) {
                                         System.Threading.Thread.Sleep(800);
-                                        this.Workspace.ActionLog("LOGON.FAIL", "", txtUsuario.TextInt, "Estación no permitida.");
+                                        this.Workspace.ActionLog("LOGON.FAIL", null, txtUsuario.TextInt, "Estación no permitida.");
                                         MessageBox.Show("No se permite el acceso como Administrador desde este equipo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                         return;
                                 }
                         }
-			Lfx.Data.Row row = Lws.Workspace.Master.DefaultDataBase.FirstRowFromSelect("SELECT id_persona, nombre, nombre_visible FROM personas WHERE id_persona=" + txtUsuario.TextInt.ToString() + " AND contrasena='" + Lws.Workspace.Master.DefaultDataBase.EscapeString(txtContrasena.Text) + "'");
+			Lfx.Data.Row row = Lws.Workspace.Master.DefaultDataBase.FirstRowFromSelect(@"SELECT id_persona, nombre, nombre_visible
+                                FROM personas
+                                WHERE id_persona=" + txtUsuario.TextInt.ToString()
+                                                   + " AND contrasena='" + Lws.Workspace.Master.DefaultDataBase.EscapeString(txtContrasena.Text) + "'"
+                                                   + " AND id_persona IN (SELECT id_persona FROM sys_accesslist)");
 			if(row == null) {
 				System.Threading.Thread.Sleep(800);
-                                this.Workspace.ActionLog("LOGON.FAIL", "", txtUsuario.TextInt, "Usuario o contraseña incorrecto.");
+                                this.Workspace.ActionLog("LOGON.FAIL", null, txtUsuario.TextInt, "Usuario o contraseña incorrecto.");
 				MessageBox.Show("El nombre de usuario o la contraseña son incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				txtContrasena.Focus();
 			} else {
@@ -93,7 +96,7 @@ namespace Lazaro.Misc
 				this.Workspace.CurrentUser.CompleteName = System.Convert.ToString(row["nombre_visible"]);
 				this.Workspace.CurrentConfig.WriteGlobalSetting(null, "Sistema.Ingreso.UltimoUsuario", System.Convert.ToString(Lws.Workspace.Master.CurrentUser.Id), System.Environment.MachineName.ToUpperInvariant());
 				this.Workspace.CurrentConfig.WriteGlobalSetting(null, "Sistema.Ingreso.UltimoIngreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), System.Environment.MachineName.ToUpperInvariant());
-				this.Workspace.ActionLog("LOGON", "");
+				this.Workspace.ActionLog("LOGON", null);
 				this.Close();
 			}
 		}

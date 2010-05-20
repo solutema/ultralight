@@ -48,28 +48,5 @@ namespace Lfx.Data.Providers
                         "MySqlClient.MySqlParameter")
                 {
                 }
-
-                /* Para acceso nativo, con MySql.Data incorporado en la solución
-                public override IDbConnection GetConnection()
-                {
-                        return new MySql.Data.MySqlClient.MySqlConnection();
-                }
-
-                public override IDbCommand GetCommand()
-                {
-                        return new MySql.Data.MySqlClient.MySqlCommand();
-                }
-
-                public override IDbDataAdapter GetAdapter(string commandText, IDbConnection connection)
-                {
-
-                        return new MySql.Data.MySqlClient.MySqlDataAdapter(commandText, (MySqlConnection)connection);
-                }
-
-                public override IDbDataParameter GetParameter()
-                {
-                        return new MySql.Data.MySqlClient.MySqlParameter();
-                }
-                */
         }
 }

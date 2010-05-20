@@ -48,11 +48,14 @@ namespace Lfc.Pvs
                         this.Joins.Add(new Lfx.Data.Join("sucursales", "pvs.id_sucursal=sucursales.id_sucursal"));
 			FormFields = new Lfx.Data.FormField[]
 			{
-				new Lfx.Data.FormField("pvs.id_pv", "PV", Lfx.Data.InputFieldTypes.Serial, 96),
+				new Lfx.Data.FormField("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                new Lfx.Data.FormField("pvs.tipo_fac", "Comprobantes", Lfx.Data.InputFieldTypes.Text, 180),
+                                new Lfx.Data.FormField("pvs.numero", "PV", Lfx.Data.InputFieldTypes.Integer, 96),
 				new Lfx.Data.FormField("sucursales.nombre", "Sucursal", Lfx.Data.InputFieldTypes.Text, 160),
 				new Lfx.Data.FormField("pvs.tipo", "Tipo", Lfx.Data.InputFieldTypes.Text, 120),
 				new Lfx.Data.FormField("pvs.estacion", "Estacion", Lfx.Data.InputFieldTypes.Text, 160),
-				new Lfx.Data.FormField("pvs.carga", "Carga", Lfx.Data.InputFieldTypes.Text, 120)
+				new Lfx.Data.FormField("pvs.carga", "Carga", Lfx.Data.InputFieldTypes.Text, 120),
+                                new Lfx.Data.FormField("pvs.detalonario", "Usa Talonario", Lfx.Data.InputFieldTypes.Bool, 120)
 			};
 
 			BotonFiltrar.Visible = false;
@@ -86,17 +89,39 @@ namespace Lfc.Pvs
 
 		public override void ItemAdded(ListViewItem itm)
 		{
-			if(itm.SubItems[3].Text == "0")
-				itm.SubItems[3].Text = "Inactivo";
-			if(itm.SubItems[3].Text == "1")
-				itm.SubItems[3].Text = "Normal";
-			else if(itm.SubItems[3].Text == "2")
-				itm.SubItems[3].Text = "Fiscal";
+                        switch(itm.SubItems[2].Text)
+                        {
+                                case "F":
+                                        itm.SubItems[2].Text = "Facturas";
+                                        break;
+                                case "F,ND":
+                                        itm.SubItems[2].Text = "Facturas, Notas de Débito";
+                                        break;
+                                case "F,NC,ND":
+                                        itm.SubItems[2].Text = "Facturas, Notas de Crédito y Débito";
+                                        break;
+                                case "R":
+                                        itm.SubItems[2].Text = "Remitos";
+                                        break;
+                                case "RC":
+                                        itm.SubItems[2].Text = "Recibos de Cobro";
+                                        break;
+                                case "RP":
+                                        itm.SubItems[2].Text = "Recibos de Pago";
+                                        break;
+                        }
 
 			if(itm.SubItems[5].Text == "0")
-				itm.SubItems[5].Text = "Automática";
-			else if(itm.SubItems[5].Text == "1")
-				itm.SubItems[5].Text = "Manual";
+				itm.SubItems[5].Text = "Inactivo";
+			if(itm.SubItems[5].Text == "1")
+				itm.SubItems[5].Text = "Normal";
+			else if(itm.SubItems[5].Text == "2")
+				itm.SubItems[5].Text = "Fiscal";
+
+			if(itm.SubItems[7].Text == "0")
+				itm.SubItems[7].Text = "Automática";
+			else if(itm.SubItems[7].Text == "1")
+				itm.SubItems[7].Text = "Manual";
 		}
 
 		public override Lfx.Types.OperationResult OnCreate()

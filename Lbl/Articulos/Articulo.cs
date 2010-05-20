@@ -608,7 +608,7 @@ namespace Lbl.Articulos
                         this.DataView.Execute(Comando);
 
                         if (this.Existe == false) {
-                                m_ItemId = this.DataView.DataBase.FieldInt("SELECT MAX(id_articulo) FROM articulos");
+                                m_ItemId = this.DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
                         } else {
                                 if (PrecioOriginal != System.Convert.ToDouble(this.Registro["pvp"])) {
                                         // Actualizo la fecha del precio

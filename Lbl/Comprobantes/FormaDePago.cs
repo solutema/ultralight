@@ -36,10 +36,12 @@ namespace Lbl.Comprobantes
         public enum TipoFormasDePago
         {
                 Efectivo = 1,
-                Cheque = 2,
+                ChequePropio = 2,
                 CuentaCorriente = 3,
                 Tarjeta = 4,
-                Caja = 6
+                Caja = 6,
+                OtroValor = 7,
+                ChequeTerceros = 8
         }
 
         public class FormaDePago : ElementoDeDatos

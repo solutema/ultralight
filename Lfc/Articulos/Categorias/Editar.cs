@@ -84,7 +84,7 @@ namespace Lfc.Articulos.Categorias
 
                         if (ResultadoGuardar.Success == true)
                         {
-                                this.DataView.DataBase.BeginTransaction();
+                                this.DataView.BeginTransaction();
 
 				Lbl.Articulos.Categoria Cat = new Lbl.Articulos.Categoria(DataView, m_Id);
 				Cat.Nombre = EntradaNombre.Text;

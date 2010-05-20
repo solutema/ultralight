@@ -16,3 +16,16 @@
 *** 2010-02-17
 
 * Se incorporaron las tarjetas Nativa y Actual.
+
+*** 2010-04-30
+
+* Se agregó la opción de cobrar parte de una factura con un Comprobante de Retención de Impuestos.
+* Se agregó la opcion de pagar con cheques de terceros o con Comprobantes de Retención de Impuestos.
+
+*** 2010-05-10
+
+* Ahora se puede restringir el tipo de documento que se imprime en cada Punto de Venta.
+
+*** 2010-05-19
+
+* Las Notas de Crédito ahora también controlan el saldo impago (como lo hacen las Notas de Débito y Facturas).

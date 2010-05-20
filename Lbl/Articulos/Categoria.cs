@@ -142,9 +142,6 @@ namespace Lbl.Articulos
 
                         this.DataView.Execute(Comando);
 
-                        if (this.Existe == false)
-				m_ItemId = this.DataView.DataBase.FieldInt("SELECT MAX(" + this.CampoId + ") FROM " + this.TablaDatos);
-
 			return base.Guardar();
 		}
 

@@ -39,7 +39,6 @@ namespace Lui.Forms
 {
 	public partial class Form : System.Windows.Forms.Form
 	{
-		private Lws.Workspace m_Workspace;
                 private Lws.Data.DataView m_DataView = null;
 		public event System.EventHandler WorkspaceChanged;
 
@@ -72,6 +71,9 @@ namespace Lui.Forms
 			if(this.BackColor == SystemColors.Control)
 				this.BackColor = Lws.Config.Display.CurrentTemplate.WindowBackground;
 			this.Font = Lws.Config.Display.CurrentTemplate.DefaultFont;
+
+                        if (WorkspaceChanged != null)
+                                this.WorkspaceChanged(this, null);
 		}	
 
 		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -79,18 +81,7 @@ namespace Lui.Forms
 		{
 			get
 			{
-				if (m_Workspace == null)
-				{
-					if (this.Owner is Lui.Forms.Form)
-						m_Workspace = ((Lui.Forms.Form)this.Owner).Workspace;
-				}
-				return m_Workspace;
-			}
-			set
-			{
-				m_Workspace = value;
-				if (WorkspaceChanged != null)
-					this.WorkspaceChanged(this, null);
+				return Lws.Workspace.Master;
 			}
 		}
 

@@ -83,12 +83,12 @@ namespace Lazaro.Misc.Config
                 internal Lui.Forms.TextBox txtServidor;
                 internal System.Windows.Forms.Label lblServidor;
                 internal System.Windows.Forms.Panel PanelServidorAvanzado;
-                internal Lui.Forms.TextBox txtBD;
+                internal Lui.Forms.TextBox EntradaBD;
                 internal System.Windows.Forms.Label Label2;
                 internal Lui.Forms.ComboBox txtConexion;
                 internal System.Windows.Forms.Label Label1;
-                internal Lui.Forms.TextBox txtContrasena;
-                internal Lui.Forms.TextBox txtUsuario;
+                internal Lui.Forms.TextBox EntradaContrasena;
+                internal Lui.Forms.TextBox EntradaUsuario;
                 internal System.Windows.Forms.Label Label28;
                 internal System.Windows.Forms.Label Label29;
                 internal Lui.Forms.Button cmdServidorVista;
@@ -121,12 +121,12 @@ namespace Lazaro.Misc.Config
                         this.label5 = new System.Windows.Forms.Label();
                         this.txtSlowLink = new Lui.Forms.ComboBox();
                         this.label4 = new System.Windows.Forms.Label();
-                        this.txtBD = new Lui.Forms.TextBox();
+                        this.EntradaBD = new Lui.Forms.TextBox();
                         this.Label2 = new System.Windows.Forms.Label();
                         this.txtConexion = new Lui.Forms.ComboBox();
                         this.Label1 = new System.Windows.Forms.Label();
-                        this.txtContrasena = new Lui.Forms.TextBox();
-                        this.txtUsuario = new Lui.Forms.TextBox();
+                        this.EntradaContrasena = new Lui.Forms.TextBox();
+                        this.EntradaUsuario = new Lui.Forms.TextBox();
                         this.Label28 = new System.Windows.Forms.Label();
                         this.Label29 = new System.Windows.Forms.Label();
                         this.GCommand1 = new Lui.Forms.Button();
@@ -241,12 +241,12 @@ namespace Lazaro.Misc.Config
                         this.PanelServidorAvanzado.Controls.Add(this.label5);
                         this.PanelServidorAvanzado.Controls.Add(this.txtSlowLink);
                         this.PanelServidorAvanzado.Controls.Add(this.label4);
-                        this.PanelServidorAvanzado.Controls.Add(this.txtBD);
+                        this.PanelServidorAvanzado.Controls.Add(this.EntradaBD);
                         this.PanelServidorAvanzado.Controls.Add(this.Label2);
                         this.PanelServidorAvanzado.Controls.Add(this.txtConexion);
                         this.PanelServidorAvanzado.Controls.Add(this.Label1);
-                        this.PanelServidorAvanzado.Controls.Add(this.txtContrasena);
-                        this.PanelServidorAvanzado.Controls.Add(this.txtUsuario);
+                        this.PanelServidorAvanzado.Controls.Add(this.EntradaContrasena);
+                        this.PanelServidorAvanzado.Controls.Add(this.EntradaUsuario);
                         this.PanelServidorAvanzado.Controls.Add(this.Label28);
                         this.PanelServidorAvanzado.Controls.Add(this.Label29);
                         this.PanelServidorAvanzado.Location = new System.Drawing.Point(168, 183);
@@ -329,29 +329,29 @@ namespace Lazaro.Misc.Config
                         // 
                         // txtBD
                         // 
-                        this.txtBD.AutoHeight = false;
-                        this.txtBD.AutoNav = true;
-                        this.txtBD.AutoTab = true;
-                        this.txtBD.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.txtBD.DecimalPlaces = -1;
-                        this.txtBD.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.txtBD.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtBD.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtBD.Location = new System.Drawing.Point(124, 28);
-                        this.txtBD.MaxLenght = 32767;
-                        this.txtBD.MultiLine = false;
-                        this.txtBD.Name = "txtBD";
-                        this.txtBD.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtBD.PasswordChar = '\0';
-                        this.txtBD.Prefijo = "";
-                        this.txtBD.ReadOnly = false;
-                        this.txtBD.SelectOnFocus = true;
-                        this.txtBD.Size = new System.Drawing.Size(172, 24);
-                        this.txtBD.Sufijo = "";
-                        this.txtBD.TabIndex = 3;
-                        this.txtBD.TextRaw = "";
-                        this.txtBD.TipWhenBlank = "";
-                        this.txtBD.ToolTipText = "";
+                        this.EntradaBD.AutoHeight = false;
+                        this.EntradaBD.AutoNav = true;
+                        this.EntradaBD.AutoTab = true;
+                        this.EntradaBD.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaBD.DecimalPlaces = -1;
+                        this.EntradaBD.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EntradaBD.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaBD.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaBD.Location = new System.Drawing.Point(124, 28);
+                        this.EntradaBD.MaxLenght = 32767;
+                        this.EntradaBD.MultiLine = false;
+                        this.EntradaBD.Name = "txtBD";
+                        this.EntradaBD.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaBD.PasswordChar = '\0';
+                        this.EntradaBD.Prefijo = "";
+                        this.EntradaBD.ReadOnly = false;
+                        this.EntradaBD.SelectOnFocus = true;
+                        this.EntradaBD.Size = new System.Drawing.Size(172, 24);
+                        this.EntradaBD.Sufijo = "";
+                        this.EntradaBD.TabIndex = 3;
+                        this.EntradaBD.TextRaw = "";
+                        this.EntradaBD.TipWhenBlank = "";
+                        this.EntradaBD.ToolTipText = "";
                         // 
                         // Label2
                         // 
@@ -403,55 +403,55 @@ namespace Lazaro.Misc.Config
                         // 
                         // txtContrasena
                         // 
-                        this.txtContrasena.AutoHeight = false;
-                        this.txtContrasena.AutoNav = true;
-                        this.txtContrasena.AutoTab = true;
-                        this.txtContrasena.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.txtContrasena.DecimalPlaces = -1;
-                        this.txtContrasena.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.txtContrasena.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtContrasena.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtContrasena.Location = new System.Drawing.Point(124, 84);
-                        this.txtContrasena.MaxLenght = 32767;
-                        this.txtContrasena.MultiLine = false;
-                        this.txtContrasena.Name = "txtContrasena";
-                        this.txtContrasena.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtContrasena.PasswordChar = '*';
-                        this.txtContrasena.Prefijo = "";
-                        this.txtContrasena.ReadOnly = false;
-                        this.txtContrasena.SelectOnFocus = true;
-                        this.txtContrasena.Size = new System.Drawing.Size(124, 24);
-                        this.txtContrasena.Sufijo = "";
-                        this.txtContrasena.TabIndex = 7;
-                        this.txtContrasena.TextRaw = "";
-                        this.txtContrasena.TipWhenBlank = "";
-                        this.txtContrasena.ToolTipText = "";
+                        this.EntradaContrasena.AutoHeight = false;
+                        this.EntradaContrasena.AutoNav = true;
+                        this.EntradaContrasena.AutoTab = true;
+                        this.EntradaContrasena.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaContrasena.DecimalPlaces = -1;
+                        this.EntradaContrasena.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaContrasena.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaContrasena.Location = new System.Drawing.Point(124, 84);
+                        this.EntradaContrasena.MaxLenght = 32767;
+                        this.EntradaContrasena.MultiLine = false;
+                        this.EntradaContrasena.Name = "txtContrasena";
+                        this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaContrasena.PasswordChar = '*';
+                        this.EntradaContrasena.Prefijo = "";
+                        this.EntradaContrasena.ReadOnly = false;
+                        this.EntradaContrasena.SelectOnFocus = true;
+                        this.EntradaContrasena.Size = new System.Drawing.Size(124, 24);
+                        this.EntradaContrasena.Sufijo = "";
+                        this.EntradaContrasena.TabIndex = 7;
+                        this.EntradaContrasena.TextRaw = "";
+                        this.EntradaContrasena.TipWhenBlank = "";
+                        this.EntradaContrasena.ToolTipText = "";
                         // 
                         // txtUsuario
                         // 
-                        this.txtUsuario.AutoHeight = false;
-                        this.txtUsuario.AutoNav = true;
-                        this.txtUsuario.AutoTab = true;
-                        this.txtUsuario.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.txtUsuario.DecimalPlaces = -1;
-                        this.txtUsuario.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.txtUsuario.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtUsuario.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtUsuario.Location = new System.Drawing.Point(124, 55);
-                        this.txtUsuario.MaxLenght = 32767;
-                        this.txtUsuario.MultiLine = false;
-                        this.txtUsuario.Name = "txtUsuario";
-                        this.txtUsuario.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtUsuario.PasswordChar = '\0';
-                        this.txtUsuario.Prefijo = "";
-                        this.txtUsuario.ReadOnly = false;
-                        this.txtUsuario.SelectOnFocus = true;
-                        this.txtUsuario.Size = new System.Drawing.Size(124, 25);
-                        this.txtUsuario.Sufijo = "";
-                        this.txtUsuario.TabIndex = 5;
-                        this.txtUsuario.TextRaw = "";
-                        this.txtUsuario.TipWhenBlank = "";
-                        this.txtUsuario.ToolTipText = "";
+                        this.EntradaUsuario.AutoHeight = false;
+                        this.EntradaUsuario.AutoNav = true;
+                        this.EntradaUsuario.AutoTab = true;
+                        this.EntradaUsuario.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaUsuario.DecimalPlaces = -1;
+                        this.EntradaUsuario.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EntradaUsuario.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaUsuario.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaUsuario.Location = new System.Drawing.Point(124, 55);
+                        this.EntradaUsuario.MaxLenght = 32767;
+                        this.EntradaUsuario.MultiLine = false;
+                        this.EntradaUsuario.Name = "txtUsuario";
+                        this.EntradaUsuario.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaUsuario.PasswordChar = '\0';
+                        this.EntradaUsuario.Prefijo = "";
+                        this.EntradaUsuario.ReadOnly = false;
+                        this.EntradaUsuario.SelectOnFocus = true;
+                        this.EntradaUsuario.Size = new System.Drawing.Size(124, 25);
+                        this.EntradaUsuario.Sufijo = "";
+                        this.EntradaUsuario.TabIndex = 5;
+                        this.EntradaUsuario.TextRaw = "";
+                        this.EntradaUsuario.TipWhenBlank = "";
+                        this.EntradaUsuario.ToolTipText = "";
                         // 
                         // Label28
                         // 
@@ -665,19 +665,19 @@ namespace Lazaro.Misc.Config
                                 txtConexion.TextKey = Conexion;
 
                         if (BD == null)
-                                txtBD.Text = "lazaro";
+                                EntradaBD.Text = "lazaro";
                         else
-                                txtBD.Text = BD;
+                                EntradaBD.Text = BD;
 
                         if (Usuario == null)
-                                txtUsuario.Text = "lazaro";
+                                EntradaUsuario.Text = "lazaro";
                         else
-                                txtUsuario.Text = Usuario;
+                                EntradaUsuario.Text = Usuario;
 
                         if (Contrasena == null)
-                                txtContrasena.Text = "";
+                                EntradaContrasena.Text = "";
                         else
-                                txtContrasena.Text = Contrasena;
+                                EntradaContrasena.Text = Contrasena;
 
                         if (SlowLink == null)
                                 txtSlowLink.TextKey = "1";
@@ -728,7 +728,7 @@ namespace Lazaro.Misc.Config
                                 Lui.Forms.MessageBox.Show("Por favor escriba el nombre del Servidor.", "Error");
                                 return;
                         }
-                        if (txtConexion.TextKey != "odbc" && txtUsuario.Text.Length == 0) {
+                        if (txtConexion.TextKey != "odbc" && EntradaUsuario.Text.Length == 0) {
                                 Lui.Forms.MessageBox.Show("Por favor escriba el nombre del Usuario.", "Error");
                                 return;
                         }
@@ -755,15 +755,15 @@ namespace Lazaro.Misc.Config
                                 }
                         
                         Lfx.Data.DataBaseCache.DefaultCache.SlowLink = Lfx.Types.Parsing.ParseInt(txtSlowLink.TextKey) != 0;
-                        Lfx.Data.DataBaseCache.DefaultCache.DataBaseName = txtBD.Text;
-                        Lfx.Data.DataBaseCache.DefaultCache.UserName = txtUsuario.Text;
-                        Lfx.Data.DataBaseCache.DefaultCache.Password = txtContrasena.Text;
+                        Lfx.Data.DataBaseCache.DefaultCache.DataBaseName = EntradaBD.Text;
+                        Lfx.Data.DataBaseCache.DefaultCache.UserName = EntradaUsuario.Text;
+                        Lfx.Data.DataBaseCache.DefaultCache.Password = EntradaContrasena.Text;
 
                         Lws.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "DataSource", Lfx.Data.DataBaseCache.DefaultCache.ServerName);
                         Lws.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "ConnectionType", txtConexion.TextKey);
-                        Lws.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "DatabaseName", txtBD.Text);
-                        Lws.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "User", txtUsuario.Text);
-                        Lws.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "Password", txtContrasena.Text);
+                        Lws.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "DatabaseName", EntradaBD.Text);
+                        Lws.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "User", EntradaUsuario.Text);
+                        Lws.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "Password", EntradaContrasena.Text);
                         Lws.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "SlowLink", Lfx.Data.DataBaseCache.DefaultCache.SlowLink ? "1" : "0");
                         Lws.Workspace.Master.CurrentConfig.WriteLocalSetting("Company", "Branch", txtBranch.Text);
 

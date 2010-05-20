@@ -108,6 +108,8 @@ namespace Lfc.Personas
                         this.EntradaTags = new Lui.Forms.FieldTags();
                         this.EntradaImagen = new Lcc.Edicion.Imagen();
                         this.ContenedorScroll = new System.Windows.Forms.Panel();
+                        this.EntradaVendedor = new Lui.Forms.DetailBox();
+                        this.label23 = new System.Windows.Forms.Label();
                         this.Frame1.SuspendLayout();
                         this.Frame2.SuspendLayout();
                         this.frame3.SuspendLayout();
@@ -779,7 +781,7 @@ namespace Lfc.Personas
                         this.EntradaFechaNac.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFechaNac.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaNac.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaFechaNac.Location = new System.Drawing.Point(160, 168);
+                        this.EntradaFechaNac.Location = new System.Drawing.Point(160, 196);
                         this.EntradaFechaNac.MaxLenght = 32767;
                         this.EntradaFechaNac.MultiLine = false;
                         this.EntradaFechaNac.Name = "EntradaFechaNac";
@@ -790,17 +792,17 @@ namespace Lfc.Personas
                         this.EntradaFechaNac.SelectOnFocus = true;
                         this.EntradaFechaNac.Size = new System.Drawing.Size(152, 24);
                         this.EntradaFechaNac.Sufijo = "";
-                        this.EntradaFechaNac.TabIndex = 11;
+                        this.EntradaFechaNac.TabIndex = 13;
                         this.EntradaFechaNac.TextRaw = "";
                         this.EntradaFechaNac.TipWhenBlank = "";
                         this.EntradaFechaNac.ToolTipText = "";
                         // 
                         // label18
                         // 
-                        this.label18.Location = new System.Drawing.Point(8, 168);
+                        this.label18.Location = new System.Drawing.Point(8, 196);
                         this.label18.Name = "label18";
                         this.label18.Size = new System.Drawing.Size(152, 24);
-                        this.label18.TabIndex = 10;
+                        this.label18.TabIndex = 12;
                         this.label18.Text = "Fecha de Nacimiento";
                         this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -861,7 +863,7 @@ namespace Lfc.Personas
                         this.EntradaEstadoCredito.SetData = new string[] {
         "Normal|0",
         "En plan de pagos|5",
-        "Suspendido|10",
+        "Suspendido termporal|10",
         "Suspend. permanente|100"};
                         this.EntradaEstadoCredito.Size = new System.Drawing.Size(195, 24);
                         this.EntradaEstadoCredito.TabIndex = 9;
@@ -960,24 +962,26 @@ namespace Lfc.Personas
                         this.frame3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.frame3.AutoHeight = false;
+                        this.frame3.Controls.Add(this.EntradaVendedor);
+                        this.frame3.Controls.Add(this.label23);
                         this.frame3.Controls.Add(this.Label8);
                         this.frame3.Controls.Add(this.EntradaDomicilio);
                         this.frame3.Controls.Add(this.EntradaTelefono);
-                        this.frame3.Controls.Add(this.label18);
                         this.frame3.Controls.Add(this.Label10);
+                        this.frame3.Controls.Add(this.label18);
                         this.frame3.Controls.Add(this.Label11);
                         this.frame3.Controls.Add(this.label19);
                         this.frame3.Controls.Add(this.Label9);
                         this.frame3.Controls.Add(this.EntradaDomicilioTrabajo);
                         this.frame3.Controls.Add(this.EntradaEmail);
-                        this.frame3.Controls.Add(this.EntradaFechaNac);
                         this.frame3.Controls.Add(this.EntradaCiudad);
+                        this.frame3.Controls.Add(this.EntradaFechaNac);
                         this.frame3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.frame3.Location = new System.Drawing.Point(3, 154);
                         this.frame3.Name = "frame3";
                         this.frame3.Padding = new System.Windows.Forms.Padding(2);
                         this.frame3.ReadOnly = false;
-                        this.frame3.Size = new System.Drawing.Size(420, 198);
+                        this.frame3.Size = new System.Drawing.Size(420, 226);
                         this.frame3.TabIndex = 2;
                         this.frame3.Text = "Datos de Contacto";
                         this.frame3.ToolTipText = "";
@@ -1178,6 +1182,46 @@ namespace Lfc.Personas
                         this.ContenedorScroll.Size = new System.Drawing.Size(792, 372);
                         this.ContenedorScroll.TabIndex = 0;
                         // 
+                        // EntradaVendedor
+                        // 
+                        this.EntradaVendedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaVendedor.AutoHeight = false;
+                        this.EntradaVendedor.AutoTab = true;
+                        this.EntradaVendedor.CanCreate = true;
+                        this.EntradaVendedor.DetailField = "nombre_visible";
+                        this.EntradaVendedor.ExtraDetailFields = null;
+                        this.EntradaVendedor.Filter = "(tipo&4)=4";
+                        this.EntradaVendedor.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaVendedor.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaVendedor.FreeTextCode = "";
+                        this.EntradaVendedor.KeyField = "id_persona";
+                        this.EntradaVendedor.Location = new System.Drawing.Point(100, 168);
+                        this.EntradaVendedor.MaxLength = 200;
+                        this.EntradaVendedor.Name = "EntradaVendedor";
+                        this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaVendedor.ReadOnly = false;
+                        this.EntradaVendedor.Required = false;
+                        this.EntradaVendedor.SelectOnFocus = false;
+                        this.EntradaVendedor.Size = new System.Drawing.Size(316, 24);
+                        this.EntradaVendedor.TabIndex = 11;
+                        this.EntradaVendedor.Table = "personas";
+                        this.EntradaVendedor.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaVendedor.Text = "0";
+                        this.EntradaVendedor.TextDetail = "";
+                        this.EntradaVendedor.TextInt = 0;
+                        this.EntradaVendedor.TipWhenBlank = "Ninguno";
+                        this.EntradaVendedor.ToolTipText = "";
+                        // 
+                        // label23
+                        // 
+                        this.label23.Location = new System.Drawing.Point(8, 168);
+                        this.label23.Name = "label23";
+                        this.label23.Size = new System.Drawing.Size(96, 24);
+                        this.label23.TabIndex = 10;
+                        this.label23.Text = "Vendedor";
+                        this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
                         // Editar
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -1264,6 +1308,8 @@ namespace Lfc.Personas
                 internal Lui.Forms.DetailBox EntradaSubGrupo;
                 internal Label label13;
                 private Lcc.Edicion.Imagen EntradaImagen;
+                internal Lui.Forms.DetailBox EntradaVendedor;
+                internal Label label23;
 
         }
 }

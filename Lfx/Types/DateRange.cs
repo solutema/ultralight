@@ -189,6 +189,8 @@ namespace Lfx.Types
                                         case "dia-1":
                                         case "dia-2":
                                         case "dia-3":
+                                        case "dia-4":
+                                        case "dia-5":
                                         case "dia":
                                                 return this.From;
 

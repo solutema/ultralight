@@ -66,6 +66,27 @@ namespace Lfc.Comprobantes
                                 validarReturn.Message += "El comprobante debe tener un Importe superior a $ 0.00." + Environment.NewLine;
                         }
 
+                        int PV = Lfx.Types.Parsing.ParseInt(txtPV.Text);
+                        System.Data.DataTable PVAdmitidos = this.DataView.DataBase.Select(@"SELECT * FROM pvs WHERE (
+                                CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.LetraSola + @",%'
+                                OR CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.TipoBase + @",%'
+                                OR CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.Nomenclatura + @",%'
+                                )AND tipo>0");
+                        if (PVAdmitidos.Rows.Count > 0) {
+                                bool Admitido = false;
+                                foreach (System.Data.DataRow PVAdmitido in PVAdmitidos.Rows) {
+                                        if (System.Convert.ToInt32(PVAdmitido["numero"]) == PV) {
+                                                Admitido = true;
+                                                break;
+                                        }
+                                }
+
+                                if (Admitido == false) {
+                                        validarReturn.Success = false;
+                                        validarReturn.Message += "Seleccione un Punto de Venta (PV) válido para este tipo de comprobante." + Environment.NewLine;
+                                }
+                        }
+
                         Lbl.Comprobantes.ComprobanteConArticulos Registro = this.ToRow() as Lbl.Comprobantes.ComprobanteConArticulos;
                         if (Registro.Tipo.MueveStock) {
                                 if (Registro.SituacionOrigen == null || Registro.SituacionDestino == null || Registro.SituacionOrigen.Id == Registro.SituacionDestino.Id) {
@@ -79,7 +100,7 @@ namespace Lfc.Comprobantes
 
 		public override Lfx.Types.OperationResult Edit(int iId)
 		{
-                        if (Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.write") == false)
+                        if (Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.read") == false)
                                 return new Lfx.Types.NoAccessOperationResult();
 
                         Lbl.Comprobantes.ComprobanteConArticulos NewRow = new Lbl.Comprobantes.ComprobanteConArticulos(this.DataView, iId);
@@ -109,19 +130,19 @@ namespace Lfc.Comprobantes
                                                         NombreImpresora = OSeleccionarImpresora.SelectedPrinter;
                                         }
 
-                                        CachedRow.BeginTransaction();
+                                        CachedRow.DataView.BeginTransaction();
                                         ResultadoImprimir = ((Lbl.Comprobantes.Comprobante)CachedRow).Imprimir(NombreImpresora);
 
                                         if (ResultadoImprimir.Success) {
                                                 //Registro.Impreso = true;
                                                 //Registro.Guardar();
-                                                CachedRow.Commit();
+                                                CachedRow.DataView.Commit();
                                                 if (Registro.Tipo.PermiteModificarImpresos == false)
                                                         this.ReadOnly = true;
                                                 if (Registro.Tipo.PermiteImprimirVariasVeces == false)
                                                         PrintButton.Visible = false;
                                         } else {
-                                                CachedRow.RollBack();
+                                                CachedRow.DataView.RollBack();
                                         }
                                 }
                         }
@@ -141,13 +162,13 @@ namespace Lfc.Comprobantes
                         else
                                 EntradaVendedor.TextInt = 0;
 
-                        Ignorar_txtCliente_TextChanged = true;
+                        Ignorar_EntradaCliente_TextChanged = true;
                         if (Registro.Cliente != null)
                                 EntradaCliente.TextInt = Registro.Cliente.Id;
                         else
                                 EntradaCliente.TextInt = 0;
 
-                        Ignorar_txtCliente_TextChanged = false;
+                        Ignorar_EntradaCliente_TextChanged = false;
                         txtSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Registro.SubTotal, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                         txtDescuento.Text = Lfx.Types.Formatting.FormatNumber(Registro.Descuento, 2);
                         txtInteres.Text = Lfx.Types.Formatting.FormatNumber(Registro.Recargo, 2);
@@ -307,11 +328,23 @@ namespace Lfc.Comprobantes
 		{
 			Comprobantes.Convertir FormConvertir = new Comprobantes.Convertir();
                         FormConvertir.OrigenTipo = this.Tipo.Nomenclatura;
-                        FormConvertir.DestinoTipo = "B";
+                        FormConvertir.DestinoTipo = "F";
                         FormConvertir.OrigenNombre = this.CachedRow.ToString();
 
                         if (FormConvertir.ShowDialog() == DialogResult.OK) {
-                                Lfx.Types.OperationResult Resultado = ConvertirEn(FormConvertir.DestinoTipo);
+                                string ConvertirEnTipo = FormConvertir.DestinoTipo;
+                                if (ConvertirEnTipo == "F" || ConvertirEnTipo == "NC" || ConvertirEnTipo == "ND") {
+                                        if (this.Tipo.LetraSola.Length > 0 && "ABCEM".IndexOf(this.Tipo.LetraSola) >= 0) {
+                                                ConvertirEnTipo += this.Tipo.LetraSola;
+                                        } else {
+                                                Lbl.Comprobantes.ComprobanteConArticulos Compr = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
+                                                if (Compr != null && Compr.Cliente != null && Compr.Cliente.LetraPredeterminada().Length > 0)
+                                                        ConvertirEnTipo += Compr.Cliente.LetraPredeterminada();
+                                                else
+                                                        ConvertirEnTipo += "B";
+                                        }
+                                }
+                                Lfx.Types.OperationResult Resultado = ConvertirEn(ConvertirEnTipo);
 
                                 if (Resultado.Success == false)
                                         Lui.Forms.MessageBox.Show(Resultado.Message, "Error");
@@ -329,6 +362,12 @@ namespace Lfc.Comprobantes
                                 case "C":
                                 case "E":
                                 case "M":
+
+                                case "FA":
+                                case "FB":
+                                case "FC":
+                                case "FE":
+                                case "FM":
 
                                 case "NCA":
                                 case "NCB":
@@ -353,7 +392,6 @@ namespace Lfc.Comprobantes
                                         break;
                         }
 
-                        NuevoComprob.Workspace = this.Workspace;
                         NuevoComprob.MdiParent = this.MdiParent;
                         NuevoComprob.ControlDestino = txtComprobanteID;
 
@@ -377,6 +415,7 @@ namespace Lfc.Comprobantes
                                         NuevoComprob.ProductArray.ChildControls[n].Text = ProductArray.ChildControls[n].Text;
                                         NuevoComprob.ProductArray.ChildControls[n].Cantidad = ProductArray.ChildControls[n].Cantidad;
                                         NuevoComprob.ProductArray.ChildControls[n].Unitario = ProductArray.ChildControls[n].Unitario;
+                                        NuevoComprob.ProductArray.ChildControls[n].Series = ProductArray.ChildControls[n].Series;
                                 }
 
                                 ((Lbl.Comprobantes.Comprobante)NuevoComprob.CachedRow).Obs = ((Lbl.Comprobantes.Comprobante)CachedRow).Obs;
@@ -429,6 +468,12 @@ namespace Lfc.Comprobantes
                                         case "E":
                                         case "M":
 
+                                        case "FA":
+                                        case "FB":
+                                        case "FC":
+                                        case "FE":
+                                        case "FM":
+
                                         case "NCA":
                                         case "NCB":
                                         case "NCC":
@@ -452,10 +497,10 @@ namespace Lfc.Comprobantes
                         }
                 }
 
-                private bool Ignorar_txtCliente_TextChanged = false;
-                private void txtCliente_TextChanged(object sender, System.EventArgs e)
+                private bool Ignorar_EntradaCliente_TextChanged = false;
+                private void EntradaCliente_TextChanged(object sender, System.EventArgs e)
                 {
-                        if (Ignorar_txtCliente_TextChanged)
+                        if (Ignorar_EntradaCliente_TextChanged)
                                 return;
 
                         double Descuento = this.Workspace.DefaultDataBase.FieldDouble("SELECT descuento FROM personas_grupos WHERE id_grupo=(SELECT id_grupo FROM personas WHERE id_persona=" + EntradaCliente.TextInt.ToString() + ")");
@@ -467,20 +512,20 @@ namespace Lfc.Comprobantes
 
                         if (this.Tipo.EsFacturaNCoND && this.CachedRow.Existe == false && EntradaCliente.TextInt > 0) {
                                 Lbl.Personas.Persona Persona = new Lbl.Personas.Persona(CachedRow.DataView, EntradaCliente.TextInt, true);
-                                string TipoComprob = Persona.TipoComprobantePredeterminado();
+                                string LetraComprob = Persona.LetraPredeterminada();
 
-                                switch (TipoComprob) {
+                                switch (LetraComprob) {
                                         case "A":
                                         case "B":
                                         case "C":
                                         case "M":
                                         case "E":
                                                 if (this.Tipo.EsNotaCredito)
-                                                        this.Tipo = new Lbl.Comprobantes.Tipo(this.CachedRow.DataView, "NC" + TipoComprob);
+                                                        this.Tipo = new Lbl.Comprobantes.Tipo(this.CachedRow.DataView, "NC" + LetraComprob);
                                                 else if (this.Tipo.EsNotaDebito)
-                                                        this.Tipo = new Lbl.Comprobantes.Tipo(this.CachedRow.DataView, "ND" + TipoComprob);
+                                                        this.Tipo = new Lbl.Comprobantes.Tipo(this.CachedRow.DataView, "ND" + LetraComprob);
                                                 else
-                                                        this.Tipo = new Lbl.Comprobantes.Tipo(this.CachedRow.DataView, TipoComprob);
+                                                        this.Tipo = new Lbl.Comprobantes.Tipo(this.CachedRow.DataView, "F" + LetraComprob);
                                                 break;
                                 }
                         }
@@ -598,9 +643,8 @@ namespace Lfc.Comprobantes
                         Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
 
                         EditSerials Editar = new EditSerials();
-                        Editar.Workspace = this.Workspace;
                         Editar.Articulo = new Lbl.Articulos.Articulo(this.DataView, IdArticulo);
-                        Editar.Cantidad = System.Convert.ToInt32(Cant);
+                        Editar.Cantidad = Math.Abs(System.Convert.ToInt32(Cant));
                         Editar.Situacion = Comprob.SituacionOrigen;
                         Editar.Series = Prod.Series;
                         if (Editar.ShowDialog() == DialogResult.OK) {

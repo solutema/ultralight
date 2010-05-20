@@ -50,7 +50,6 @@ namespace Lui.Forms
 		private object m_CurrentFilter;
                 private bool Virtual = false;
                 private ListViewItem[] VirtualModeCache = null;
-                private ListViewItem SelectedItem = null;
                 
                 private int[] m_Labels = null;
                 private string m_LabelField = null;
@@ -459,7 +458,10 @@ namespace Lui.Forms
 
                                                         case Lfx.Data.InputFieldTypes.Text:
                                                         case Lfx.Data.InputFieldTypes.Memo:
-								Itm.SubItems.Add(Registro[ii].ToString());
+                                                                if (Registro[ii] is System.Byte[])
+                                                                        Itm.SubItems.Add(System.Text.Encoding.Default.GetString(((System.Byte[])(Registro[ii]))));
+                                                                else
+                                                                        Itm.SubItems.Add(Registro[ii].ToString());
 								break;
 
                                                         case Lfx.Data.InputFieldTypes.Currency:
@@ -642,7 +644,6 @@ namespace Lui.Forms
 						{
 							e.Handled = true;
 							ListingFormExport Exportar = new ListingFormExport();
-							Exportar.Workspace = this.Workspace;
 							Exportar.SelectCommand = this.SelectCommand(false);
 							Exportar.KeyField = this.KeyField;
 							Exportar.FormFields = this.FormFields;
@@ -719,7 +720,7 @@ namespace Lui.Forms
                 {
                         get
                         {
-                                if (SelectedItem != null)
+                                if (Listado.SelectedItems.Count > 0)
                                         return Lfx.Types.Parsing.ParseInt(Listado.SelectedItems[0].Text);
                                 else
                                         return 0;
@@ -744,14 +745,11 @@ namespace Lui.Forms
                                         this.ItemSelected(ee.Item);
                         } else if (this.Listado.SelectedItems.Count > 0) {
                                 this.ItemSelected(this.Listado.SelectedItems[0]);
-                        } else {
-                                SelectedItem = null;
                         }
                 }
 
                 public virtual void ItemSelected(ListViewItem itm)
                 {
-                        this.SelectedItem = itm;
                         this.Workspace.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", m_DataTableName, itm.Text });
                 }
 
@@ -767,7 +765,18 @@ namespace Lui.Forms
                                                         this.OnDelete(Codigos);
                                                 break;
 				}
-			}
+                        } else if (e.Control == true) {
+                                switch(e.KeyCode) {
+                                        case Keys.U:
+                                                foreach (ColumnHeader Ch in Listado.Columns) {
+                                                        if (Ch.Index < this.FormFields.Length)
+                                                                Ch.Width = this.FormFields[Ch.Index].Width;
+                                                }
+                                                e.Handled = true;
+                                                break;
+
+                                }
+                        }
 		}
 
 		private void Listado_ColumnClick(object sender, System.Windows.Forms.ColumnClickEventArgs e)

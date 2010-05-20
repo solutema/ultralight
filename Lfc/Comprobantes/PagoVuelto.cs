@@ -138,7 +138,6 @@ namespace Lfc.Comprobantes
 			this.txtTotal.TabStop = false;
 			this.txtTotal.Text = "0.00";
 			this.txtTotal.ToolTipText = "";
-			this.txtTotal.Workspace = null;
 			// 
 			// txtPago
 			// 
@@ -158,7 +157,6 @@ namespace Lfc.Comprobantes
 			this.txtPago.TabIndex = 3;
 			this.txtPago.Text = "0.00";
 			this.txtPago.ToolTipText = "";
-			this.txtPago.Workspace = null;
 			this.txtPago.TextChanged += new System.EventHandler(this.txtPago_TextChanged);
 			// 
 			// Label2
@@ -192,7 +190,6 @@ namespace Lfc.Comprobantes
 			this.txtCambio.Text = "0.00";
 			this.txtCambio.ToolTipText = "";
 			this.txtCambio.Visible = false;
-			this.txtCambio.Workspace = null;
 			// 
 			// Label3
 			// 

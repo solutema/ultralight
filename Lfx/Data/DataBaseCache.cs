@@ -54,6 +54,7 @@ namespace Lfx.Data
                 public bool SlowLink = false, Mars = true;
                 public Lfx.Data.AccessModes AccessMode = Lfx.Data.AccessModes.Undefined;
                 public Lfx.Data.SqlModes SqlMode = Lfx.Data.SqlModes.Ansi;
+                public Lfx.Data.IsolationLevels DefaultIsolationLevel = IsolationLevels.Serializable;
 
                 private System.Collections.Generic.Dictionary<string, Lfx.Data.ConstraintDefinition> m_Constraints = null;
                 private System.Collections.Generic.Dictionary<string, Lfx.Data.TableStructure> m_TableStructures = null;
@@ -258,33 +259,10 @@ namespace Lfx.Data
                                                 Columna.Nullable = Tg.Nullable;
                                                 Columna.PrimaryKey = false;
 
-                                                if (Columna.Nullable) {
-                                                        if (Tg.DefaultValue == null || Tg.DefaultValue is DBNull)
-                                                                Columna.DefaultValue = "NULL";
-                                                        else
-                                                                Columna.DefaultValue = Tg.DefaultValue.ToString();
-                                                } else {
-                                                        switch (Columna.FieldType) {
-                                                                case DbTypes.VarChar:
-                                                                        Columna.DefaultValue = "";
-                                                                        break;
-                                                                case DbTypes.Text:
-                                                                case DbTypes.Blob:
-                                                                        Columna.DefaultValue = "";
-                                                                        break;
-                                                                case DbTypes.Currency:
-                                                                case DbTypes.Integer:
-                                                                case DbTypes.NonExactDecimal:
-                                                                case DbTypes.Numeric:
-                                                                case DbTypes.Serial:
-                                                                case DbTypes.SmallInt:
-                                                                        Columna.DefaultValue = "0";
-                                                                        break;
-                                                                default:
-                                                                        Columna.DefaultValue = "";
-                                                                        break;
-                                                        }
-                                                }
+                                                if (Tg.DefaultValue == null || Tg.DefaultValue is DBNull)
+                                                        Columna.DefaultValue = "NULL";
+                                                else
+                                                        Columna.DefaultValue = Tg.DefaultValue.ToString();
 
                                                 if (Tabla.Columns.ContainsKey(Tg.FieldName))
                                                         Tabla.Columns[Columna.Name] = Columna;

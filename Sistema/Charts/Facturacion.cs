@@ -519,10 +519,10 @@ namespace Lazaro.Charts
                                         string Fecha1Sql = anio.ToString("0000") + "-" + mes.ToString("00") + "-01";
                                         string Fecha2Sql = anio.ToString("0000") + "-" + mes.ToString("00") + "-31";
 
-                                        double Facturas = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double NotasCredito = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('NCA', 'NCB', 'NCC') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double Costo = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND comprob.impresa AND comprob.numero>0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double CostoNotasCredito = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC') AND comprob.impresa AND comprob.numero>0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        double Facturas = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        double NotasCredito = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        double Costo = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND comprob.impresa>0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        double CostoNotasCredito = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND comprob.impresa>0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                                         double CostoCapital = this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=220) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                                         double GastosFijos = this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=230) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                                         double GastosVariables = this.DataView.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=240) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
@@ -582,14 +582,14 @@ namespace Lazaro.Charts
 					if(costo == false) 
 					{
 						//Tomo la facturación
-						ValoresSuma = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-						ValoresResta = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('NCA', 'NCB', 'NCC') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                                ValoresSuma = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                                ValoresResta = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 					}
 					else
 					{
 						//Tomo el costo de la facturación
-						ValoresSuma = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE " + WhereSuc + " comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND comprob.impresa AND comprob.numero>0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-						ValoresResta = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE " + WhereSuc + " comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC') AND comprob.impresa AND comprob.numero>0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                                ValoresSuma = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE " + WhereSuc + " comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND comprob.impresa>0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                                ValoresResta = this.DataView.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE " + WhereSuc + " comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND comprob.impresa>0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 					}
 
 					if(ValoresSuma != 0)
@@ -642,8 +642,8 @@ namespace Lazaro.Charts
 						WhereSuc = " id_sucursal=" + sucursal.ToString() + " AND ";
 
 					//Tomo la facturación
-                                        ValoresSuma = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('A', 'B', 'C', 'NDA', 'NDB', 'NDC') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        ValoresResta = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('NCA', 'NCB', 'NCC') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        ValoresSuma = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        ValoresResta = this.DataView.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 
 					if(ValoresSuma != 0)
 					{

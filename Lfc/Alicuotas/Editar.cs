@@ -223,7 +223,7 @@ namespace Lfc.Alicuotas
 
 			if(ResultadoGuardar.Success == true)
 			{
-                                this.DataView.DataBase.BeginTransaction();
+                                this.DataView.BeginTransaction();
 
                                 Lfx.Data.SqlTableCommandBuilder Comando;
                                 if (m_Nuevo) {
@@ -242,13 +242,12 @@ namespace Lfc.Alicuotas
                                 this.DataView.DataBase.Commit();
 
                                 if (m_Nuevo)
-                                        m_Id = DataView.DataBase.FieldInt("SELECT MAX(id_alicuota) FROM alicuotas");
+                                        m_Id = DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
 
-				if(m_Nuevo && ControlDestino != null)
-				{
-					ControlDestino.Text = m_Id.ToString();
-					ControlDestino.Focus();
-				}
+                                if (m_Nuevo && ControlDestino != null) {
+                                        ControlDestino.Text = m_Id.ToString();
+                                        ControlDestino.Focus();
+                                }
 
 				m_Nuevo = false;
 

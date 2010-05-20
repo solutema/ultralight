@@ -179,9 +179,6 @@ namespace Lbl.Tarjetas
 
                         this.DataView.Execute(Comando);
 
-                        if (this.Existe == false)
-                                m_ItemId = this.DataView.DataBase.FieldInt("SELECT MAX(id_tarjeta) FROM artitarjetasculos");
-
                         return base.Guardar();
                 }
 

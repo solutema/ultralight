@@ -51,6 +51,7 @@ namespace Lui.Forms
                         InitializeComponent();
 
                         LowerPanel.BackColor = Lws.Config.Display.CurrentTemplate.FooterBackground;
+                        BotonHistorial.Visible = this.Workspace.CurrentUser.AccessList.HasGlobalAcccess();
                 }
 
 		public virtual bool ReadOnly
@@ -397,11 +398,17 @@ namespace Lui.Forms
                 {
                         this.CachedRow = row;
                         this.m_Id = row.Id;
+                        BotonHistorial.Visible = this.CachedRow.Existe;
                 }
 
                 public virtual Lbl.ElementoDeDatos ToRow()
                 {
                         return this.CachedRow;
+                }
+
+                private void BotonHistorial_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                {
+                        this.Workspace.RunTime.Execute("HISTORIAL", new string[] { this.CachedRow.TablaDatos, this.CachedRow.Id.ToString() });
                 }
 	}
 }

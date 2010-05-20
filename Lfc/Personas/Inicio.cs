@@ -130,7 +130,6 @@ namespace Lfc.Personas
                 public override Lfx.Types.OperationResult OnFilter()
                 {
                         Lfc.Personas.Filtros FormFiltros = new Lfc.Personas.Filtros();
-                        FormFiltros.Workspace = this.Workspace;
                         FormFiltros.EntradaTipo.TextInt = m_Tipo;
                         FormFiltros.EntradaSituacion.TextInt = m_Situacion;
                         FormFiltros.EntradaGrupo.TextInt = m_Grupo;

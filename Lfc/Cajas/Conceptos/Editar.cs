@@ -294,7 +294,7 @@ namespace Lfc.Cajas.Conceptos
 						this.txtCodigo.Text = "1";
 				}
 
-                                DataView.DataBase.BeginTransaction();
+                                DataView.BeginTransaction();
 
                                 Lfx.Data.SqlTableCommandBuilder Comando;
                                 if (m_Nuevo) {

@@ -270,7 +270,7 @@ namespace Lfc.Personas.Grupos
 
 			if(ResultadoGuardar.Success == true)
 			{
-                                DataView.DataBase.BeginTransaction();
+                                DataView.BeginTransaction();
 
                                 Lfx.Data.SqlTableCommandBuilder Comando;
                                 if (m_Nuevo) {
@@ -290,7 +290,7 @@ namespace Lfc.Personas.Grupos
                                 DataView.DataBase.Commit();
 
 				if(m_Nuevo)
-                                        m_Id = DataView.DataBase.FieldInt("SELECT MAX(id_grupo) FROM personas_grupos");
+                                        m_Id = DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
 
 				if(m_Nuevo && ControlDestino != null)
 				{

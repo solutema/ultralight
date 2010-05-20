@@ -37,7 +37,7 @@ using System.Windows.Forms;
 
 namespace Lui.Forms
 {
-        public class DetailBox : Lui.Forms.Control
+        public partial class DetailBox : Lui.Forms.Control
         {
                 private bool m_SelectOnFocus = true;
                 private bool m_AutoTab = true;
@@ -62,206 +62,22 @@ namespace Lui.Forms
                 public new event System.EventHandler TextChanged;
                 public new event System.Windows.Forms.KeyEventHandler KeyDown;
 
-                #region Código generado por el Diseñador de Windows Forms
-
                 public DetailBox()
                         : base()
                 {
-
-
                         // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
 
                         Label1.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
                         TextBox1.BackColor = Label1.BackColor;
-                        txtFreeText.BackColor = Label1.BackColor;
+                        EntradaFreeText.BackColor = Label1.BackColor;
                         Label1.ForeColor = Lws.Config.Display.CurrentTemplate.ControlText;
                         TextBox1.ForeColor = Label1.ForeColor;
-                        txtFreeText.ForeColor = Label1.ForeColor;
+                        EntradaFreeText.ForeColor = Label1.ForeColor;
                         this.BorderStyle = BorderStyles.TextBox;
+
+                        UpdateDetail();
                 }
-
-                // Limpiar los recursos que se estén utilizando.
-                protected override void Dispose(bool disposing)
-                {
-                        if (disposing) {
-                                if (components != null) {
-                                        components.Dispose();
-                                }
-                        }
-                        base.Dispose(disposing);
-                }
-
-
-                // Requerido por el Diseñador de Windows Forms
-                private System.ComponentModel.Container components = null;
-
-                // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
-                // Puede modificarse utilizando el Diseñador de Windows Forms. 
-                // No lo modifique con el editor de código.
-                protected System.Windows.Forms.TextBox TextBox1;
-                internal System.Windows.Forms.Label Label1;
-                internal System.Windows.Forms.TextBox txtFreeText;
-                internal System.Windows.Forms.MenuItem MenuItemCopiarCodigo;
-                internal System.Windows.Forms.MenuItem MenuItemCopiarNombre;
-                internal System.Windows.Forms.MenuItem MenuItem3;
-                internal System.Windows.Forms.MenuItem MenuItemPegar;
-                internal System.Windows.Forms.MenuItem MenuItem5;
-                internal System.Windows.Forms.MenuItem MenuItemEditar;
-                internal System.Windows.Forms.MenuItem MenuItemBuscadorRapido;
-                internal System.Windows.Forms.MenuItem MenuItem2;
-                internal System.Windows.Forms.ContextMenu MiContextMenu;
-
-                private void InitializeComponent()
-                {
-                        this.TextBox1 = new System.Windows.Forms.TextBox();
-                        this.MiContextMenu = new System.Windows.Forms.ContextMenu();
-                        this.MenuItemBuscadorRapido = new System.Windows.Forms.MenuItem();
-                        this.MenuItem2 = new System.Windows.Forms.MenuItem();
-                        this.MenuItemCopiarCodigo = new System.Windows.Forms.MenuItem();
-                        this.MenuItemCopiarNombre = new System.Windows.Forms.MenuItem();
-                        this.MenuItem3 = new System.Windows.Forms.MenuItem();
-                        this.MenuItemPegar = new System.Windows.Forms.MenuItem();
-                        this.MenuItem5 = new System.Windows.Forms.MenuItem();
-                        this.MenuItemEditar = new System.Windows.Forms.MenuItem();
-                        this.Label1 = new System.Windows.Forms.Label();
-                        this.txtFreeText = new System.Windows.Forms.TextBox();
-                        this.SuspendLayout();
-                        // 
-                        // TextBox1
-                        // 
-                        this.TextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)));
-                        this.TextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-                        this.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.TextBox1.ContextMenu = this.MiContextMenu;
-                        this.TextBox1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.TextBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-                        this.TextBox1.Location = new System.Drawing.Point(4, 4);
-                        this.TextBox1.MaxLength = 32;
-                        this.TextBox1.Multiline = false;
-                        this.TextBox1.Name = "TextBox1";
-                        this.TextBox1.Size = new System.Drawing.Size(51, 21);
-                        this.TextBox1.TabIndex = 0;
-                        this.TextBox1.LostFocus += new System.EventHandler(this.TextBox1_LostFocus);
-                        this.TextBox1.DoubleClick += new System.EventHandler(this.TextBox1_DoubleClick);
-                        this.TextBox1.GotFocus += new System.EventHandler(this.TextBox1_GotFocus);
-                        this.TextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox1_KeyPress);
-                        this.TextBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
-                        this.TextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1_KeyDown);
-                        // 
-                        // MiContextMenu
-                        // 
-                        this.MiContextMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.MenuItemBuscadorRapido,
-            this.MenuItem2,
-            this.MenuItemCopiarCodigo,
-            this.MenuItemCopiarNombre,
-            this.MenuItem3,
-            this.MenuItemPegar,
-            this.MenuItem5,
-            this.MenuItemEditar});
-                        this.MiContextMenu.Popup += new System.EventHandler(this.ContextMenu_Popup);
-                        // 
-                        // MenuItemBuscadorRapido
-                        // 
-                        this.MenuItemBuscadorRapido.DefaultItem = true;
-                        this.MenuItemBuscadorRapido.Index = 0;
-                        this.MenuItemBuscadorRapido.Text = "Seleccionar de una Lista";
-                        this.MenuItemBuscadorRapido.Click += new System.EventHandler(this.MenuItemBuscadorRapido_Click);
-                        // 
-                        // MenuItem2
-                        // 
-                        this.MenuItem2.Index = 1;
-                        this.MenuItem2.Text = "-";
-                        // 
-                        // MenuItemCopiarCodigo
-                        // 
-                        this.MenuItemCopiarCodigo.Index = 2;
-                        this.MenuItemCopiarCodigo.Text = "Copiar el Código";
-                        this.MenuItemCopiarCodigo.Click += new System.EventHandler(this.MenuItemCopiarCodigo_Click);
-                        // 
-                        // MenuItemCopiarNombre
-                        // 
-                        this.MenuItemCopiarNombre.Index = 3;
-                        this.MenuItemCopiarNombre.Text = "Copiar el Nombre";
-                        this.MenuItemCopiarNombre.Click += new System.EventHandler(this.MenuItemCopiarNombre_Click);
-                        // 
-                        // MenuItem3
-                        // 
-                        this.MenuItem3.Index = 4;
-                        this.MenuItem3.Text = "-";
-                        // 
-                        // MenuItemPegar
-                        // 
-                        this.MenuItemPegar.Index = 5;
-                        this.MenuItemPegar.Text = "Pegar";
-                        this.MenuItemPegar.Click += new System.EventHandler(this.MenuItemPegar_Click);
-                        // 
-                        // MenuItem5
-                        // 
-                        this.MenuItem5.Index = 6;
-                        this.MenuItem5.Text = "-";
-                        // 
-                        // MenuItemEditar
-                        // 
-                        this.MenuItemEditar.Index = 7;
-                        this.MenuItemEditar.Text = "Editar";
-                        this.MenuItemEditar.Click += new System.EventHandler(this.MenuItemEditar_Click);
-                        // 
-                        // Label1
-                        // 
-                        this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-                        this.Label1.ContextMenu = this.MiContextMenu;
-                        this.Label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.Label1.Location = new System.Drawing.Point(58, 4);
-                        this.Label1.Name = "Label1";
-                        this.Label1.Size = new System.Drawing.Size(280, 21);
-                        this.Label1.TabIndex = 50;
-                        this.Label1.DoubleClick += new System.EventHandler(this.Label1_DoubleClick);
-                        this.Label1.Click += new System.EventHandler(this.Label1_Click);
-                        // 
-                        // txtFreeText
-                        // 
-                        this.txtFreeText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtFreeText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-                        this.txtFreeText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.txtFreeText.ContextMenu = this.MiContextMenu;
-                        this.txtFreeText.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.txtFreeText.Location = new System.Drawing.Point(58, 4);
-                        this.txtFreeText.MaxLength = 200;
-                        this.txtFreeText.Name = "txtFreeText";
-                        this.txtFreeText.Size = new System.Drawing.Size(280, 16);
-                        this.txtFreeText.TabIndex = 1;
-                        this.txtFreeText.Visible = false;
-                        this.txtFreeText.WordWrap = false;
-                        this.txtFreeText.LostFocus += new System.EventHandler(this.txtFreeText_LostFocus);
-                        this.txtFreeText.GotFocus += new System.EventHandler(this.txtFreeText_GotFocus);
-                        this.txtFreeText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFreeText_KeyDown);
-                        // 
-                        // DetailBox
-                        // 
-                        this.Controls.Add(this.TextBox1);
-                        this.Controls.Add(this.txtFreeText);
-                        this.Controls.Add(this.Label1);
-                        this.Name = "DetailBox";
-                        this.Size = new System.Drawing.Size(343, 29);
-                        this.Enter += new System.EventHandler(this.DetailBox_Enter);
-                        this.FontChanged += new System.EventHandler(this.DetailBox_FontChanged);
-                        this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DetailBox_KeyPress);
-                        this.ForeColorChanged += new System.EventHandler(this.DetailBox_ForeColorChanged);
-                        this.ResumeLayout(false);
-                        this.PerformLayout();
-
-                }
-
-
-                #endregion
 
                 public int TextInt
                 {
@@ -316,11 +132,11 @@ namespace Lui.Forms
                 {
                         get
                         {
-                                return txtFreeText.MaxLength;
+                                return EntradaFreeText.MaxLength;
                         }
                         set
                         {
-                                txtFreeText.MaxLength = value;
+                                EntradaFreeText.MaxLength = value;
                         }
                 }
 
@@ -509,7 +325,7 @@ namespace Lui.Forms
                         get
                         {
                                 if (TextBox1.Text == m_FreeTextCode)
-                                        return txtFreeText.Text;
+                                        return EntradaFreeText.Text;
                                 else if (Label1.Text == "???")
                                         return "";
                                 else
@@ -518,7 +334,7 @@ namespace Lui.Forms
                         set
                         {
                                 if (TextBox1.Text == m_FreeTextCode)
-                                        txtFreeText.Text = value;
+                                        EntradaFreeText.Text = value;
                                 else
                                         Label1.Text = value;
                                 this.Changed = false;
@@ -578,8 +394,8 @@ namespace Lui.Forms
                 private void txtFreeText_GotFocus(object sender, System.EventArgs e)
                 {
                         if (m_ReadOnly == false)
-                                txtFreeText.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataareaActive;
-                        txtFreeText.SelectionStart = 1024;
+                                EntradaFreeText.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataareaActive;
+                        EntradaFreeText.SelectionStart = 1024;
                 }
 
                 private void TextBox1_LostFocus(System.Object sender, System.EventArgs e)
@@ -589,7 +405,7 @@ namespace Lui.Forms
 
                 private void txtFreeText_LostFocus(object sender, System.EventArgs e)
                 {
-                        txtFreeText.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
+                        EntradaFreeText.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
                 }
 
 
@@ -638,11 +454,11 @@ namespace Lui.Forms
                                 if (TextBox1.Text == m_FreeTextCode && FreeTextCode.Length > 0) {
                                         m_ItemId = 0;
                                         m_LastText1 = "";
-                                        txtFreeText.Visible = true;
-                                        txtFreeText.Focus();
+                                        EntradaFreeText.Visible = true;
+                                        EntradaFreeText.Focus();
                                 } else if (m_Table.Length > 0 && KeyFieldAlt.Length > 0 && m_DetailField.Length > 0 && TextBox1.Text.Length > 0 && TextBox1.Text != "0") {
                                         if (TextBox1.Text != m_LastText1) {
-                                                txtFreeText.Visible = false;
+                                                EntradaFreeText.Visible = false;
                                                 string TextoSql = "", Campos = "";
                                                 Campos = KeyFieldAlt + ", " + m_DetailField;
                                                 if (m_KeyField != KeyFieldAlt)
@@ -707,10 +523,10 @@ namespace Lui.Forms
                                         e.Handled = true;
                                         break;
                                 case Keys.Right:
-                                        if (txtFreeText.Visible) {
+                                        if (EntradaFreeText.Visible) {
                                                 e.Handled = true;
-                                                txtFreeText.Focus();
-                                                txtFreeText.SelectionStart = 0;
+                                                EntradaFreeText.Focus();
+                                                EntradaFreeText.SelectionStart = 0;
                                         } else {
                                                 if (null != KeyDown) KeyDown(sender, e);
                                         }
@@ -757,14 +573,14 @@ namespace Lui.Forms
                 {
                         switch (e.KeyCode) {
                                 case Keys.Left:
-                                        if (txtFreeText.SelectionStart == 0) {
+                                        if (EntradaFreeText.SelectionStart == 0) {
                                                 e.Handled = true;
                                                 TextBox1.Focus();
                                                 // RaiseEvent KeyDown(sender, e)
                                         }
                                         break;
                                 case Keys.Right:
-                                        if (txtFreeText.SelectionStart >= txtFreeText.Text.Length) {
+                                        if (EntradaFreeText.SelectionStart >= EntradaFreeText.Text.Length) {
                                                 e.Handled = true;
                                                 if (null != KeyDown) KeyDown(sender, e);
                                                 // Lui.Forms.SendKeys.Send("{enter}")
@@ -779,7 +595,7 @@ namespace Lui.Forms
                                         e.Handled = true;
                                         break;
                                 case Keys.Return:
-                                        if (txtFreeText.Text.Length > 0 || m_Required == false) {
+                                        if (EntradaFreeText.Text.Length > 0 || m_Required == false) {
                                                 e.Handled = true;
                                                 if (null != KeyDown) KeyDown(sender, e);
                                         } else {
@@ -808,10 +624,10 @@ namespace Lui.Forms
                         // Reubico los campos txtFreeText y Label1
                         // Llamar a esta función despus de haber cambiado el Width de TextBox1
                         this.SuspendLayout();
-                        txtFreeText.Left = TextBox1.Width + 4;
-                        txtFreeText.Width = this.Width - txtFreeText.Left - 4;
-                        Label1.Location = txtFreeText.Location;
-                        Label1.Size = txtFreeText.Size;
+                        EntradaFreeText.Left = TextBox1.Width + 4;
+                        EntradaFreeText.Width = this.Width - EntradaFreeText.Left - 4;
+                        Label1.Location = EntradaFreeText.Location;
+                        Label1.Size = EntradaFreeText.Size;
                         this.ResumeLayout();
                 }
 
@@ -895,22 +711,16 @@ namespace Lui.Forms
                                 this.MostrarBuscador("");
                 }
 
-                internal override void WorkspaceChanged()
-                {
-                        UpdateDetail();
-                        return;
-                }
-
                 private void DetailBox_FontChanged(object sender, System.EventArgs e)
                 {
                         Label1.Font = this.Font;
-                        txtFreeText.Font = this.Font;
+                        EntradaFreeText.Font = this.Font;
                 }
 
                 private void DetailBox_ForeColorChanged(object sender, System.EventArgs e)
                 {
                         Label1.ForeColor = this.ForeColor;
-                        txtFreeText.ForeColor = this.ForeColor;
+                        EntradaFreeText.ForeColor = this.ForeColor;
                 }
         }
 }

@@ -72,10 +72,11 @@ namespace Lfx.Data
                                         if (Lfx.Data.DataBaseCache.DefaultCache.Provider == null)
                                                 Lfx.Data.DataBaseCache.DefaultCache.Provider = new Lfx.Data.Providers.MySqlProvider();
                                         ConnectionString.Append("Convert Zero Datetime=true;");
-                                        //ConnectionString.Append("Connection Timeout=60;");
-                                        ConnectionString.Append("Default Command Timeout=900;");
+                                        ConnectionString.Append("Connection Timeout=30;");
+                                        ConnectionString.Append("Default Command Timeout=180;");
                                         ConnectionString.Append("Allow User Variables=True;");
-                                        //ConnectionString.Append("KeepAlive=25;");
+                                        //ConnectionString.Append("Pooling=False;");
+                                        //ConnectionString.Append("KeepAlive=20;");
                                         switch (System.Text.Encoding.Default.BodyName) {
                                                 case "utf-8":
                                                         ConnectionString.Append("charset=utf8;");
@@ -188,6 +189,42 @@ namespace Lfx.Data
                         }
                 }
 
+                private void SetTransactionIsolationLevel(IsolationLevels level)
+                {
+                        string SqlCommand;
+                        switch (this.SqlMode) {
+                                case SqlModes.MySql:
+                                        SqlCommand = "SET SESSION TRANSACTION ISOLATION LEVEL";
+                                        break;
+                                case SqlModes.PostgreSql:
+                                        SqlCommand = "SET TRANSACTION ISOLATION LEVEL";
+                                        break;
+                                default:
+                                        SqlCommand = "SET TRANSACTION ISOLATION LEVEL";
+                                        break;
+                        }
+
+                        string SqlLevel;
+                        switch (level) {
+                                case IsolationLevels.ReadUncommitted:
+                                        SqlLevel = "READ UNCOMMITTED";
+                                        break;
+                                case IsolationLevels.ReadCommited:
+                                        SqlLevel = "READ COMMITTED";
+                                        break;
+                                case IsolationLevels.RepeatableRead:
+                                        SqlLevel = "REPEATABLE READ";
+                                        break;
+                                case IsolationLevels.Serializable:
+                                        SqlLevel = "SERIALIZABLE";
+                                        break;
+                                default:
+                                        throw new ArgumentException("No se reconoce el nivel de aislamiento");
+                        }
+
+                        this.Execute(SqlCommand + " " + SqlLevel);
+                }
+
 
                 private void SetupServer(System.Data.IDbConnection setupConnection)
                 {
@@ -206,7 +243,6 @@ namespace Lfx.Data
                                 case SqlModes.MySql:
                                         // Pongo a MySql en modo ANSI
                                         this.Execute("SET sql_mode='ANSI'");
-                                        this.Execute("SET SESSION TRANSACTION ISOLATION LEVEL SERIALIZABLE");
                                         switch (System.Text.Encoding.Default.BodyName) {
                                                 case "utf-8":
                                                         this.Execute("SET CHARACTER SET UTF8");
@@ -217,7 +253,6 @@ namespace Lfx.Data
                                         }
                                         break;
                                 case SqlModes.PostgreSql:
-                                        this.Execute("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
                                         switch (System.Text.Encoding.Default.BodyName) {
                                                 case "utf-8":
                                                         this.Execute("SET CLIENT_ENCODING TO 'UTF8'");
@@ -246,7 +281,7 @@ namespace Lfx.Data
 	                        LIMIT 1) WHERE control_stock<>0");
                         this.Execute(@"UPDATE articulos SET stock_actual=0 WHERE control_stock=0");
 
-                        // TODO: verificar saldos de cajas y cajas corrientes
+                        // TODO: verificar saldos de cajas y cuentas corrientes
                 }
 
                 public void CheckTable(string tableName)
@@ -527,16 +562,21 @@ namespace Lfx.Data
                                                         FieldDef.DefaultValue = FieldDef.DefaultValue.Substring(1, FieldDef.DefaultValue.Length - 2);	//Quito comillas
                                         }
                                 } else {
-                                        switch (FieldDef.FieldType) {
-                                                case DbTypes.Text:
-                                                case DbTypes.Blob:
-                                                case DbTypes.DateTime:
-                                                        // No pueden tener default value
-                                                        FieldDef.DefaultValue = null;
-                                                        break;
-                                                default:
-                                                        FieldDef.DefaultValue = "NULL";
-                                                        break;
+                                        if (FieldDef.Nullable == false) {
+                                                // null es sin default value, "NULL" es default to NULL
+                                                FieldDef.DefaultValue = null;
+                                        } else {
+                                                switch (FieldDef.FieldType) {
+                                                        case DbTypes.Text:
+                                                        case DbTypes.Blob:
+                                                        case DbTypes.DateTime:
+                                                                // No pueden tener default value
+                                                                FieldDef.DefaultValue = null;
+                                                                break;
+                                                        default:
+                                                                FieldDef.DefaultValue = "NULL";
+                                                                break;
+                                                }
                                         }
                                 }
 
@@ -1235,8 +1275,13 @@ LEFT JOIN pg_attribute
                         }
                 }
 
-                public void BeginTransaction()
+                public void BeginTransaction(bool serializable)
                 {
+                        if (serializable)
+                                this.SetTransactionIsolationLevel(Lfx.Data.IsolationLevels.Serializable);
+                        else
+                                this.SetTransactionIsolationLevel(Lfx.Data.DataBaseCache.DefaultCache.DefaultIsolationLevel);
+
                         if (m_InTransaction && Lfx.Environment.SystemInformation.DesignMode)
                                 throw new InvalidOperationException("Ya se inició una transacción");
 
@@ -1279,8 +1324,8 @@ LEFT JOIN pg_attribute
 
                 public void RollBack()
                 {
-                        m_InTransaction = false;
                         this.Execute("ROLLBACK");
+                        m_InTransaction = false;
                 }
 
                 //Función: CustomizeSql

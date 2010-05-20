@@ -86,20 +86,19 @@ namespace Lfc.Comprobantes
 
                 private void InitializeComponent()
                 {
-                        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Convertir));
                         this.txtOrigen = new Lui.Forms.TextBox();
                         this.Label6 = new System.Windows.Forms.Label();
                         this.Label7 = new System.Windows.Forms.Label();
                         this.txtDestinoTipo = new Lui.Forms.ComboBox();
                         this.lblInfo = new System.Windows.Forms.Label();
-                        this.PictureBox1 = new System.Windows.Forms.PictureBox();
-                        this.PictureBox2 = new System.Windows.Forms.PictureBox();
-                        this.PictureBox3 = new System.Windows.Forms.PictureBox();
                         this.lblOrigenTipo = new System.Windows.Forms.Label();
                         this.lblDestinoTipo = new System.Windows.Forms.Label();
                         this.lblDuplicado = new System.Windows.Forms.Label();
-                        ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
+                        this.PictureBox2 = new System.Windows.Forms.PictureBox();
+                        this.PictureBox1 = new System.Windows.Forms.PictureBox();
+                        this.PictureBox3 = new System.Windows.Forms.PictureBox();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
+                        ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).BeginInit();
                         this.SuspendLayout();
                         // 
@@ -115,19 +114,28 @@ namespace Lfc.Comprobantes
                         // 
                         this.txtOrigen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.txtOrigen.AutoHeight = false;
                         this.txtOrigen.AutoNav = true;
                         this.txtOrigen.AutoTab = true;
                         this.txtOrigen.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.txtOrigen.DecimalPlaces = -1;
                         this.txtOrigen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.txtOrigen.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtOrigen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtOrigen.Location = new System.Drawing.Point(300, 20);
                         this.txtOrigen.MaxLenght = 32767;
+                        this.txtOrigen.MultiLine = false;
                         this.txtOrigen.Name = "txtOrigen";
                         this.txtOrigen.Padding = new System.Windows.Forms.Padding(2);
+                        this.txtOrigen.PasswordChar = '\0';
+                        this.txtOrigen.Prefijo = "";
                         this.txtOrigen.ReadOnly = true;
+                        this.txtOrigen.SelectOnFocus = true;
                         this.txtOrigen.Size = new System.Drawing.Size(312, 24);
+                        this.txtOrigen.Sufijo = "";
                         this.txtOrigen.TabIndex = 1;
                         this.txtOrigen.TabStop = false;
+                        this.txtOrigen.TextRaw = "";
                         this.txtOrigen.TipWhenBlank = "";
                         this.txtOrigen.ToolTipText = "";
                         // 
@@ -153,23 +161,31 @@ namespace Lfc.Comprobantes
                         // 
                         this.txtDestinoTipo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.txtDestinoTipo.AutoHeight = true;
                         this.txtDestinoTipo.AutoNav = true;
                         this.txtDestinoTipo.AutoTab = true;
+                        this.txtDestinoTipo.DetailField = null;
+                        this.txtDestinoTipo.Filter = null;
                         this.txtDestinoTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtDestinoTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.txtDestinoTipo.KeyField = null;
                         this.txtDestinoTipo.Location = new System.Drawing.Point(300, 48);
                         this.txtDestinoTipo.MaxLenght = 32767;
                         this.txtDestinoTipo.Name = "txtDestinoTipo";
                         this.txtDestinoTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.txtDestinoTipo.ReadOnly = false;
                         this.txtDestinoTipo.SetData = new string[] {
-        "Factura|B",
+        "Factura|F",
         "Presupuesto|PS",
         "Remito|R",
-        "Nota de Crédito|NCB",
-        "Nota de Débito B|NDB"};
+        "Nota de Crédito|NC",
+        "Nota de Débito B|ND"};
                         this.txtDestinoTipo.Size = new System.Drawing.Size(312, 24);
                         this.txtDestinoTipo.TabIndex = 3;
+                        this.txtDestinoTipo.Table = null;
+                        this.txtDestinoTipo.Text = "Factura";
+                        this.txtDestinoTipo.TextKey = "F";
+                        this.txtDestinoTipo.TextRaw = "Factura";
                         this.txtDestinoTipo.TipWhenBlank = "";
                         this.txtDestinoTipo.ToolTipText = "";
                         this.txtDestinoTipo.TextChanged += new System.EventHandler(this.txtDestinoTipo_TextChanged);
@@ -182,38 +198,6 @@ namespace Lfc.Comprobantes
                         this.lblInfo.Size = new System.Drawing.Size(260, 36);
                         this.lblInfo.TabIndex = 6;
                         this.lblInfo.Text = "El comprobante original queda sin cambios.";
-                        // 
-                        // PictureBox1
-                        // 
-                        this.PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox1.Image")));
-                        this.PictureBox1.Location = new System.Drawing.Point(62, 220);
-                        this.PictureBox1.Name = "PictureBox1";
-                        this.PictureBox1.Size = new System.Drawing.Size(84, 64);
-                        this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-                        this.PictureBox1.TabIndex = 56;
-                        this.PictureBox1.TabStop = false;
-                        // 
-                        // PictureBox2
-                        // 
-                        this.PictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.PictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox2.Image")));
-                        this.PictureBox2.Location = new System.Drawing.Point(154, 236);
-                        this.PictureBox2.Name = "PictureBox2";
-                        this.PictureBox2.Size = new System.Drawing.Size(32, 28);
-                        this.PictureBox2.TabIndex = 57;
-                        this.PictureBox2.TabStop = false;
-                        // 
-                        // PictureBox3
-                        // 
-                        this.PictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.PictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox3.Image")));
-                        this.PictureBox3.Location = new System.Drawing.Point(194, 220);
-                        this.PictureBox3.Name = "PictureBox3";
-                        this.PictureBox3.Size = new System.Drawing.Size(84, 64);
-                        this.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-                        this.PictureBox3.TabIndex = 57;
-                        this.PictureBox3.TabStop = false;
                         // 
                         // lblOrigenTipo
                         // 
@@ -247,6 +231,38 @@ namespace Lfc.Comprobantes
                         this.lblDuplicado.Text = "Se creará un duplicado del comprobante original.";
                         this.lblDuplicado.Visible = false;
                         // 
+                        // PictureBox2
+                        // 
+                        this.PictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+                        this.PictureBox2.Image = global::Lfc.Properties.Resources.Flecha_Der_Azul;
+                        this.PictureBox2.Location = new System.Drawing.Point(154, 236);
+                        this.PictureBox2.Name = "PictureBox2";
+                        this.PictureBox2.Size = new System.Drawing.Size(32, 28);
+                        this.PictureBox2.TabIndex = 57;
+                        this.PictureBox2.TabStop = false;
+                        // 
+                        // PictureBox1
+                        // 
+                        this.PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+                        this.PictureBox1.Image = global::Lfc.Properties.Resources.Comprobante;
+                        this.PictureBox1.Location = new System.Drawing.Point(62, 220);
+                        this.PictureBox1.Name = "PictureBox1";
+                        this.PictureBox1.Size = new System.Drawing.Size(84, 64);
+                        this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+                        this.PictureBox1.TabIndex = 56;
+                        this.PictureBox1.TabStop = false;
+                        // 
+                        // PictureBox3
+                        // 
+                        this.PictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
+                        this.PictureBox3.Image = global::Lfc.Properties.Resources.Comprobante1;
+                        this.PictureBox3.Location = new System.Drawing.Point(194, 220);
+                        this.PictureBox3.Name = "PictureBox3";
+                        this.PictureBox3.Size = new System.Drawing.Size(84, 64);
+                        this.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+                        this.PictureBox3.TabIndex = 57;
+                        this.PictureBox3.TabStop = false;
+                        // 
                         // Convertir
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -264,8 +280,19 @@ namespace Lfc.Comprobantes
                         this.Controls.Add(this.PictureBox3);
                         this.Name = "Convertir";
                         this.Text = "Convertir Comprobante";
-                        ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
+                        this.Controls.SetChildIndex(this.PictureBox3, 0);
+                        this.Controls.SetChildIndex(this.txtOrigen, 0);
+                        this.Controls.SetChildIndex(this.Label6, 0);
+                        this.Controls.SetChildIndex(this.txtDestinoTipo, 0);
+                        this.Controls.SetChildIndex(this.Label7, 0);
+                        this.Controls.SetChildIndex(this.lblInfo, 0);
+                        this.Controls.SetChildIndex(this.PictureBox1, 0);
+                        this.Controls.SetChildIndex(this.PictureBox2, 0);
+                        this.Controls.SetChildIndex(this.lblOrigenTipo, 0);
+                        this.Controls.SetChildIndex(this.lblDestinoTipo, 0);
+                        this.Controls.SetChildIndex(this.lblDuplicado, 0);
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).EndInit();
+                        ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).EndInit();
                         this.ResumeLayout(false);
 

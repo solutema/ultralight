@@ -57,12 +57,19 @@ namespace Lfx.Types
                         return this.Value.ToString();
                 }
 
+                public string ToString(string format)
+                {
+                        return this.Value.ToString(format);
+                }
+
                 public override bool Equals(object obj)
                 {
+			LDateTime LDat = obj as LDateTime;
+			
                         if (object.ReferenceEquals(obj, null))
                                 return false;
                         else
-                                return (this.Value == ((LDateTime)(obj)).Value);
+                                return (this.Value == LDat.Value);
                 }
 
                 public override int GetHashCode()

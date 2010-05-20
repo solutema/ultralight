@@ -40,22 +40,32 @@ namespace Lazaro.Principal
 {
         public partial class Inicio : Form
         {
-                private struct MenuItemInfo
+                private class MenuItemInfo
                 {
                         public MenuItem Item;
                         public string Text;
                         public string Funcion;
                         public string ParentText;
+
+                        public string FullPath
+                        {
+                                get
+                                {
+                                        return this.ParentText + @"\" + this.Text;
+                                }
+                        }
+
+                        public override string ToString()
+                        {
+                                return this.FullPath;
+                        }
                 }
 
-                private static System.Collections.Hashtable MenuItemInfoTable = null;
-                public Lws.Workspace Workspace = null;
+                private static System.Collections.Generic.Dictionary<string, MenuItemInfo> MenuItemInfoTable = null;
 
                 public Inicio()
                 {
                         InitializeComponent();
-
-                        BarraInferior.Workspace = this.Workspace;
                 }
 
                 private void FormPrincipal_Load(object sender, EventArgs e)
@@ -73,7 +83,7 @@ namespace Lazaro.Principal
                         switch (this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Apariencia.ModoPantalla", ModoPredeterminado))
                         {
                                 case "normal":
-                                        this.Text = "Lázaro - " + Lfx.Types.Strings.ULCase(this.Workspace.CurrentUser.UserName) + " en " + this.Workspace.ToString();
+                                        this.Text = "Lázaro - " + Lfx.Types.Strings.ULCase(this.Workspace.CurrentUser.UserName) + " en " + Lws.Workspace.Master.ToString();
                                         break;
                                 case "maximizado":
                                         this.WindowState = FormWindowState.Maximized;
@@ -203,7 +213,7 @@ namespace Lazaro.Principal
                                                         System.IO.StreamReader Lector = new System.IO.StreamReader(Archivo, System.Text.Encoding.Default);
 
                                                         Lfx.Data.DataBase ConexionActualizar = this.Workspace.DefaultDataBase;
-                                                        ConexionActualizar.BeginTransaction();
+                                                        ConexionActualizar.BeginTransaction(false);
                                                         string SqlActualizacion = ConexionActualizar.CustomizeSql(Lector.ReadToEnd());
                                                         do
                                                         {
@@ -235,7 +245,7 @@ namespace Lazaro.Principal
                                         if (e.Control == true && e.Alt == false && e.Shift == false)
                                         {
                                                 e.Handled = true;
-                                                Aplicacion.Exec("CREAR B");
+                                                Aplicacion.Exec("CREAR FB");
                                         }
                                         break;
                                 case Keys.T:
@@ -270,7 +280,7 @@ namespace Lazaro.Principal
                                 if (Pregunta.ShowDialog() != DialogResult.OK) {
                                         e.Cancel = true;
                                 } else {
-                                        Lws.Workspace.Master.CurrentConfig.WriteGlobalSetting("", "Sistema.Ingreso.UltimoEgreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "");
+                                        this.Workspace.CurrentConfig.WriteGlobalSetting("", "Sistema.Ingreso.UltimoEgreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "");
                                         System.Environment.Exit(0);
                                 }
                         }
@@ -403,7 +413,7 @@ namespace Lazaro.Principal
                 private void CargarMenuPrincipal()
                 {
                         // Vacío el menú
-                        MenuItemInfoTable = new System.Collections.Hashtable();
+                        MenuItemInfoTable = new Dictionary<string, MenuItemInfo>();
                         Aplicacion.FormularioPrincipal.MainMenu.MenuItems.Clear();
 
                         // Creo el menú del sistema
@@ -419,6 +429,7 @@ namespace Lazaro.Principal
 
                         // Creo la opción de Acerca de ...
                         ItmTmp = new MenuItem("&Acerca del sistema Lázaro", new System.EventHandler(MnuClick));
+                        ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmTmp;
                         ItmInfo.Funcion = "VER";
                         ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu.&Sistema");
@@ -427,6 +438,7 @@ namespace Lazaro.Principal
 
                         // Creo la opción de Calculadora ...
                         ItmTmp = new MenuItem("&Calculadora", new System.EventHandler(MnuClick));
+                        ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmTmp;
                         ItmInfo.Funcion = "CALC";
                         ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu.&Sistema");
@@ -435,6 +447,7 @@ namespace Lazaro.Principal
 
                         // Creo la opción de Fiscal
                         ItmTmp = new MenuItem("&Fiscal", new System.EventHandler(MnuClick));
+                        ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmTmp;
                         ItmInfo.Funcion = "FISCAL PANEL";
                         ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu.&Sistema");
@@ -443,6 +456,7 @@ namespace Lazaro.Principal
 
                         // Creo la opción de Copia de Respaldo
                         ItmTmp = new MenuItem("&Copia de Respaldo", new System.EventHandler(MnuClick));
+                        ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmTmp;
                         ItmInfo.Funcion = "BACKUP MANAGER";
                         ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu.&Sistema");
@@ -451,6 +465,7 @@ namespace Lazaro.Principal
 
                         // Creo la opción de Preferencias
                         ItmTmp = new MenuItem("&Preferencias", new System.EventHandler(MnuClick));
+                        ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmTmp;
                         ItmInfo.Funcion = "CONFIG";
                         ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu.&Sistema");
@@ -459,6 +474,7 @@ namespace Lazaro.Principal
 
                         // Creo la opción de Preferencias
                         ItmTmp = new MenuItem("&Usuarios", new System.EventHandler(MnuClick));
+                        ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmTmp;
                         ItmInfo.Funcion = "ACCESSMGR";
                         ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu.&Sistema");
@@ -467,6 +483,7 @@ namespace Lazaro.Principal
 
                         // Separador
                         ItmTmp = new MenuItem("-", new System.EventHandler(MnuClick));
+                        ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmTmp;
                         ItmInfo.Funcion = "";
                         ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu.&Sistema");
@@ -475,6 +492,7 @@ namespace Lazaro.Principal
 
                         // Salir
                         ItmTmp = new MenuItem("&Salir", new System.EventHandler(MnuClick));
+                        ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmTmp;
                         ItmInfo.Funcion = "QUIT";
                         ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu.&Sistema");
@@ -577,7 +595,7 @@ namespace Lazaro.Principal
                         Itm.Tag = Itm.GetHashCode();
                         Itm.Select += new System.EventHandler(this.Menu_Select);
                         ColgarDe.MenuItems.Add(Itm);
-                        MenuItemInfoTable.Add(Itm.Tag, ItmInfo);
+                        MenuItemInfoTable.Add(Itm.Tag.ToString(), ItmInfo);
                 }
 
                 // Las siguientes constantes y funciones (Menu_Select, Menu_MeasureItem, Menu_DrawItem)
@@ -680,9 +698,21 @@ namespace Lazaro.Principal
                 /// <param name="e"></param>
                 private void MnuClick(object sender, System.EventArgs e)
                 {
-                        MenuItem SenderItem = ((MenuItem)sender);
-                        MenuItemInfo ItmInfo = ((MenuItemInfo)(MenuItemInfoTable[SenderItem.Tag]));
+                        MenuItem ItemClicked = (MenuItem)sender;
+                        MenuItemInfo ItmInfo = MenuItemInfoTable[ItemClicked.Tag.ToString()];
+
+                        int Hits = this.Workspace.CurrentConfig.ReadLocalSettingInt("MenuStats", ItmInfo.FullPath, 0);
+                        this.Workspace.CurrentConfig.WriteLocalSetting("MenuStats", ItmInfo.FullPath, Hits + 1);
+
                         Aplicacion.Exec(ItmInfo.Funcion);
+                }
+
+                public Lws.Workspace Workspace
+                {
+                        get
+                        {
+                                return Lws.Workspace.Master;
+                        }
                 }
         }
 }

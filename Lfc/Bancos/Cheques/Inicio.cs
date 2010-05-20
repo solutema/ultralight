@@ -168,7 +168,7 @@ namespace Lfc.Bancos.Cheques
                         if (this.Emitidos == false) {
                                 return Efectivizar();
                         } else {
-                                this.Workspace.RunTime.Execute("CREAR CHEQUE");
+                                this.Workspace.RunTime.Execute("CREAR RCP");
                                 return new Lfx.Types.SuccessOperationResult();
                         }
                 }
@@ -195,7 +195,6 @@ namespace Lfc.Bancos.Cheques
                         Lfx.Types.OperationResult filtrarReturn = base.OnFilter();
                         if (filtrarReturn.Success == true) {
                                 Bancos.Cheques.Filtros FormularioFiltros = new Bancos.Cheques.Filtros();
-                                FormularioFiltros.Workspace = this.Workspace;
                                 if (this.Emitidos) {
                                         FormularioFiltros.EntradaEstado.SetData = new string[] {
                                         "Todos|-1",
@@ -248,7 +247,6 @@ namespace Lfc.Bancos.Cheques
                 private Lfx.Types.OperationResult Efectivizar()
                 {
                         Lfc.Bancos.Cheques.Efectivizar Efectivizar = new Lfc.Bancos.Cheques.Efectivizar();
-                        Efectivizar.Workspace = this.Workspace;
 
                         double Total = 0;
                         int Cantidad = 0;
@@ -329,7 +327,6 @@ namespace Lfc.Bancos.Cheques
 
                         if (Cheques.Count > 0) {
                                 Bancos.Cheques.Pagar FormPagar = new Bancos.Cheques.Pagar();
-                                FormPagar.Workspace = this.Workspace;
                                 FormPagar.EntradaCajaOrigen.TextInt = IdCajaOrigen;
                                 if (FormPagar.Mostrar(Cheques) == DialogResult.OK) {
                                         this.RefreshList();

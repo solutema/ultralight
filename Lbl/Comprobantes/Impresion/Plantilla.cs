@@ -59,23 +59,23 @@ namespace Lbl.Comprobantes.Impresion
                                 {
                                         case "NDA":
                                         case "NCA":
-                                                BuscarComprob = "A";
+                                                BuscarComprob = "FA";
                                                 break;
                                         case "NDB":
                                         case "NCB":
-                                                BuscarComprob = "B";
+                                                BuscarComprob = "FB";
                                                 break;
                                         case "NDC":
                                         case "NCC":
-                                                BuscarComprob = "C";
+                                                BuscarComprob = "FC";
                                                 break;
                                         case "NDE":
                                         case "NCE":
-                                                BuscarComprob = "E";
+                                                BuscarComprob = "FE";
                                                 break;
                                         case "NDM":
                                         case "NCM":
-                                                BuscarComprob = "M";
+                                                BuscarComprob = "FM";
                                                 break;
                                 }
                                 m_ItemId = dataView.DataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='" + BuscarComprob + "'");
@@ -87,7 +87,7 @@ namespace Lbl.Comprobantes.Impresion
                                         case "C":
                                         case "E":
                                         case "M":
-                                                BuscarComprob = "A";
+                                                BuscarComprob = "FA";
                                                 break;
                                 }
                                 m_ItemId = dataView.DataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='" + BuscarComprob + "'");
@@ -297,10 +297,7 @@ namespace Lbl.Comprobantes.Impresion
 
                         this.DataView.Execute(Comando);
 
-			if(this.Existe == false)
-				m_ItemId = this.DataView.DataBase.FieldInt("SELECT MAX(id_plantilla) AS id_plantilla FROM sys_plantillas");
-
-                        return new Lfx.Types.SuccessOperationResult();
+                        return base.Guardar();
                 }
 
                 public void CargarXml(string defXml)

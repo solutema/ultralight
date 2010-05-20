@@ -413,22 +413,22 @@ namespace Lfc.Comprobantes.Facturas
 
                         switch (txtTipo.TextKey) {
                                 case "A":
-                                        Sql += " AND tipo_fac IN ('A', 'NCA', 'NDA')";
+                                        Sql += " AND tipo_fac IN ('FA', 'NCA', 'NDA')";
                                         break;
                                 case "B":
-                                        Sql += " AND tipo_fac IN ('B', 'NCB', 'NDB')";
+                                        Sql += " AND tipo_fac IN ('FB', 'NCB', 'NDB')";
                                         break;
                                 case "C":
-                                        Sql += " AND tipo_fac IN ('C', 'NCC', 'NDC')";
+                                        Sql += " AND tipo_fac IN ('FC', 'NCC', 'NDC')";
                                         break;
                                 case "E":
-                                        Sql += " AND tipo_fac IN ('E', 'NCE', 'NDE')";
+                                        Sql += " AND tipo_fac IN ('FE', 'NCE', 'NDE')";
                                         break;
                                 case "M":
-                                        Sql += " AND tipo_fac IN ('M', 'NCM', 'NDM')";
+                                        Sql += " AND tipo_fac IN ('FM', 'NCM', 'NDM')";
                                         break;
                                 default:
-                                        Sql += " AND tipo_fac IN ('A', 'NCA', 'NDA', 'B', 'NCB', 'NDB', 'C', 'NCC', 'NDC', 'E', 'NCE', 'NDE', 'M', 'NCM', 'NDM')";
+                                        Sql += " AND tipo_fac IN ('FA', 'NCA', 'NDA', 'FB', 'NCB', 'NDB', 'FC', 'NCC', 'NDC', 'FE', 'NCE', 'NDE', 'FM', 'NCM', 'NDM')";
                                         break;
                         }
 

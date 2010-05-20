@@ -133,16 +133,19 @@ namespace Lbl.Comprobantes
 				case "T":
 					return "Ticket";
 
-				case "A":
+				case "FA":
 					return "Factura A";
 
-				case "B":
+				case "FB":
 					return "Factura B";
 
-				case "C":
+				case "FC":
 					return "Factura C";
 
-				case "M":
+                                case "FE":
+                                        return "Factura E";
+
+				case "FM":
 					return "Factura M";
 
 				case "R":

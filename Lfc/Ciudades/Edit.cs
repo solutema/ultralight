@@ -35,7 +35,7 @@ namespace Lfc.Ciudades
 {
         public class Edit : Lazaro.Forms.EditForm
         {
-                public Edit(Lbl.Entidades.Ciudad ciudad)
+                public Edit(Lbl.Entidades.Localidad ciudad)
                 {
                         this.LoadFromElement(ciudad);
                 }

@@ -61,7 +61,6 @@ namespace Lui.Forms
 		protected Lfx.Data.Row Articulo;
 		protected int ArticuloId;
 		protected string m_Serials = "";
-		private Lws.Workspace m_Workspace;
 
 		public new event System.EventHandler TextChanged;
 		public new event System.Windows.Forms.KeyEventHandler KeyDown;
@@ -73,6 +72,19 @@ namespace Lui.Forms
                 {
                         // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
+
+                        switch (m_Precio) {
+                                case Precios.Costo:
+                                        txtUnitario.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto;
+                                        txtImporte.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto;
+                                        break;
+                                case Precios.PVP:
+                                        txtUnitario.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlaces;
+                                        txtImporte.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlaces;
+                                        break;
+                        }
+                        txtCantidad.DecimalPlaces = this.Workspace.CurrentConfig.Products.StockDecimalPlaces;
+
                 }
 
 		public ControlesSock ControlStock
@@ -644,61 +656,7 @@ namespace Lui.Forms
 		{
 			get
 			{
-				//Busco un Workspace en mi parent
-				if (m_Workspace == null)
-				{
-					m_Workspace = FindMyWorkspace(this.Parent);
-					if (m_Workspace != null)
-					{
-						this.WorkspaceChanged();
-					}
-				}
-				return m_Workspace;
-			}
-			set
-			{
-				m_Workspace = value;
-				this.WorkspaceChanged();
-			}
-		}
-
-		public virtual void WorkspaceChanged()
-		{
-			if (m_Workspace != null)
-			{
-				switch (m_Precio)
-				{
-					case Precios.Costo:
-						txtUnitario.DecimalPlaces = m_Workspace.CurrentConfig.Currency.DecimalPlacesCosto;
-						txtImporte.DecimalPlaces = m_Workspace.CurrentConfig.Currency.DecimalPlacesCosto;
-						break;
-					case Precios.PVP:
-						txtUnitario.DecimalPlaces = m_Workspace.CurrentConfig.Currency.DecimalPlaces;
-						txtImporte.DecimalPlaces = m_Workspace.CurrentConfig.Currency.DecimalPlaces;
-						break;
-				}
-				txtCantidad.DecimalPlaces = this.Workspace.CurrentConfig.Products.StockDecimalPlaces;
-			}
-		}
-
-
-		private Lws.Workspace FindMyWorkspace(System.Windows.Forms.Control whereToFind)
-		{
-			if (whereToFind is Lui.Forms.Form)
-			{
-				return ((Lui.Forms.Form)whereToFind).Workspace;
-			}
-			else if (whereToFind is ProductArray)
-			{
-				return ((ProductArray)whereToFind).Workspace;
-			}
-			else if (whereToFind != null && whereToFind.Parent != null)
-			{
-				return FindMyWorkspace(whereToFind.Parent);
-			}
-			else
-			{
-				return null;
+				return Lws.Workspace.Master;
 			}
 		}
 

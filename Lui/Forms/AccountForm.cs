@@ -100,7 +100,6 @@ namespace Lui.Forms
                 public virtual void ShowExportDialog()
                 {
                         Lui.Forms.ListingFormExport OFormExportar = new Lui.Forms.ListingFormExport();
-			OFormExportar.Workspace = this.Workspace;
 			OFormExportar.Nombre = this.Text.Replace(":", "");
 			OFormExportar.FormFields = m_FormFields;
 			OFormExportar.SelectCommand = this.SelectCommand();

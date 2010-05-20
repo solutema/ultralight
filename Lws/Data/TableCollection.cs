@@ -54,7 +54,7 @@ namespace Lws.Data
 					if(Tb.Name == name)
 						return Tb;
 				}
-				throw new InvalidOperationException();
+				throw new IndexOutOfRangeException("No existe la tabla " + name);
 			}
 		}
 

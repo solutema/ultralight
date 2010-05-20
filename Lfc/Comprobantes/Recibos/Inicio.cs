@@ -157,8 +157,10 @@ namespace Lfc.Comprobantes.Recibos
 		public override void ItemAdded(ListViewItem itm)
 		{
 			Total += Lfx.Types.Parsing.ParseCurrency(itm.SubItems[4].Text);
-			if (this.Workspace.SlowLink == false)
-				itm.SubItems[5].Text = Lbl.Comprobantes.Comprobante.FacturasDeUnRecibo(this.DataView, Lfx.Types.Parsing.ParseInt(itm.Text));
+                        if (this.Workspace.SlowLink)
+                                itm.SubItems[5].Text = "";
+                        else
+                                itm.SubItems[5].Text = Lbl.Comprobantes.Comprobante.FacturasDeUnRecibo(this.DataView, Lfx.Types.Parsing.ParseInt(itm.Text));
 
                         if (itm.SubItems[9].Text == "90")
                                 itm.Font = new Font(itm.Font, FontStyle.Strikeout);
@@ -191,8 +193,6 @@ namespace Lfc.Comprobantes.Recibos
 
                         if (filtrarReturn.Success == true) {
                                 Comprobantes.Recibos.Filtros OFiltros = new Comprobantes.Recibos.Filtros();
-
-                                OFiltros.Workspace = this.Workspace;
                                 OFiltros.EntradaTipo.TextKey = m_Tipo.ToString();
                                 OFiltros.txtSucursal.TextInt = m_Sucursal;
                                 OFiltros.txtCliente.TextInt = m_Cliente;

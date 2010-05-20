@@ -66,15 +66,18 @@ namespace Lfx.Types
                         else if (val2 is LDateTime)
                                 b = ((LDateTime)(val2)).Value;
 
-                        if ((a is short || a is int || a is long)
+                        if (a == null && b is int && (int)b == 0) {
+                                // Por la forma en la que trabaja FieldCollection[columName], digo que NULL==0 es true
+                                return true;
+                        } else if ((a is short || a is int || a is long)
                            && (b is short || b is int || b is long)) {
                                 return System.Convert.ToInt64(a) == System.Convert.ToInt64(b);
                         } else if (b is double && a is double) {
-                                return System.Convert.ToDouble(a) == System.Convert.ToDouble(b);
+                                return Math.Abs(System.Convert.ToDouble(a) - System.Convert.ToDouble(b)) < 0.01;
                         } else if (b is decimal && a is decimal) {
-                                return System.Convert.ToDecimal(a) == System.Convert.ToDecimal(b);
+                                return Math.Abs(System.Convert.ToDecimal(a) - System.Convert.ToDecimal(b)) < 0.01m;
                         } else if ((b is decimal && a is double) || (b is double && a is decimal)) {
-                                return System.Convert.ToDecimal(a) == System.Convert.ToDecimal(b);
+                                return Math.Abs(System.Convert.ToDecimal(a) - System.Convert.ToDecimal(b)) < 0.01m;
                         } else if (a is DateTime && b is DateTime) {
                                 return System.Convert.ToDateTime(a) == System.Convert.ToDateTime(b);
                         } else if (a is string && b is string) {

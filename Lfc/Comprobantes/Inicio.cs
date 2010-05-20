@@ -56,7 +56,7 @@ namespace Lfc.Comprobantes
                         FormFields = new Lfx.Data.FormField[]
 			{
 				new Lfx.Data.FormField("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 40),
-				new Lfx.Data.FormField("comprob.numero", "Número", Lfx.Data.InputFieldTypes.Integer, 96, "00000000"),
+				new Lfx.Data.FormField("CONCAT(LPAD(comprob.pv, 4, '0'), '-', LPAD(comprob.numero, 8, '0'))", "Número", Lfx.Data.InputFieldTypes.Text, 120),
 				new Lfx.Data.FormField("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
 				new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 320),
 				new Lfx.Data.FormField("comprob.total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
@@ -64,7 +64,8 @@ namespace Lfc.Comprobantes
 				new Lfx.Data.FormField("comprob.anulada", "Anulada", Lfx.Data.InputFieldTypes.Bool, 0),
 				new Lfx.Data.FormField("comprob.total-comprob.cancelado", "Pendiente", Lfx.Data.InputFieldTypes.Currency, 96),
 				new Lfx.Data.FormField("comprob.id_vendedor", "Vendedor", Lfx.Data.InputFieldTypes.Relation, 160),
-				new Lfx.Data.FormField("comprob.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 160)
+				new Lfx.Data.FormField("comprob.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 160),
+                                
 			};
                         OrderBy = "comprob.id_comprob DESC";
                         ExtraSearchFields = new Lfx.Data.FormField[] {
@@ -102,7 +103,6 @@ namespace Lfc.Comprobantes
                 public override Lfx.Types.OperationResult OnPrint(bool selectPrinter)
                 {
                         Comprobantes.FormComprobantesListado FormListado = new Comprobantes.FormComprobantesListado();
-                        FormListado.Workspace = this.Workspace;
                         FormListado.MdiParent = this.MdiParent;
                         FormListado.m_Tipo = m_Tipo;
                         FormListado.m_Letra = m_Letra;
@@ -132,8 +132,6 @@ namespace Lfc.Comprobantes
 
                         if (ResultadoFiltrar.Success == true) {
                                 Comprobantes.Filtros FormFiltros = new Comprobantes.Filtros();
-
-                                FormFiltros.Workspace = this.Workspace;
                                 FormFiltros.txtTipo.TextKey = m_Tipo;
                                 FormFiltros.txtPV.Text = m_PV.ToString();
                                 FormFiltros.txtLetra.TextKey = m_Letra;
@@ -157,10 +155,10 @@ namespace Lfc.Comprobantes
                                         m_Fechas = FormFiltros.EntradaFechas.Rango;
                                         m_Estado = FormFiltros.txtEstado.TextKey;
                                         m_Anuladas = Lfx.Types.Parsing.ParseInt(FormFiltros.txtAnuladas.TextKey);
-                                        m_Tipo = FormFiltros.txtTipo.TextKey;
                                         m_PV = Lfx.Types.Parsing.ParseInt(FormFiltros.txtPV.Text);
                                         m_MontoDesde = Lfx.Types.Parsing.ParseCurrency(FormFiltros.EntradaMontoDesde.Text);
                                         m_MontoHasta = Lfx.Types.Parsing.ParseCurrency(FormFiltros.EntradaMontoHasta.Text);
+                                        m_Tipo = FormFiltros.txtTipo.TextKey;
                                         m_Letra = FormFiltros.txtLetra.TextKey;
 
                                         this.RefreshList();
@@ -179,22 +177,22 @@ namespace Lfc.Comprobantes
                         switch (m_Tipo) {
                                 case "F":
                                         if (m_Letra == "*")
-                                                this.Workspace.RunTime.Execute("CREAR " + m_Letra);
+                                                this.Workspace.RunTime.Execute("CREAR FB");
                                         else
-                                                this.Workspace.RunTime.Execute("CREAR B");
+                                                this.Workspace.RunTime.Execute("CREAR F" + m_Letra);
                                         break;
                                 case "NC":
                                 case "NCD":
                                         if (m_Letra == "*")
-                                                this.Workspace.RunTime.Execute("CREAR NC" + m_Letra);
-                                        else
                                                 this.Workspace.RunTime.Execute("CREAR NCB");
+                                        else
+                                                this.Workspace.RunTime.Execute("CREAR NC" + m_Letra);
                                         break;
                                 case "ND":
                                         if (m_Letra == "*")
-                                                this.Workspace.RunTime.Execute("CREAR ND" + m_Letra);
-                                        else
                                                 this.Workspace.RunTime.Execute("CREAR NDB");
+                                        else
+                                                this.Workspace.RunTime.Execute("CREAR ND" + m_Letra);
                                         break;
                                 default:
                                         this.Workspace.RunTime.Execute("CREAR " + m_Tipo);
@@ -248,9 +246,9 @@ namespace Lfc.Comprobantes
                                 case "F":
                                         Listado.Columns[8].Width = 80;
                                         if (m_Letra == "*")
-                                                FiltroTemp += " AND comprob.tipo_fac IN ('A', 'B', 'C', 'E', 'M')";
+                                                FiltroTemp += " AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM')";
                                         else
-                                                FiltroTemp += " AND comprob.tipo_fac='" + m_Letra + "'";
+                                                FiltroTemp += " AND comprob.tipo_fac='F" + m_Letra + "'";
                                         break;
 
                                 case "T":
@@ -261,9 +259,9 @@ namespace Lfc.Comprobantes
                                 case "FNCND":
                                         Listado.Columns[8].Width = 0;
                                         if (m_Letra == "*")
-                                                FiltroTemp += " AND comprob.tipo_fac IN ('A', 'B', 'C', 'E', 'M', 'NCA', 'NCB', 'NCC', 'NCE', 'NCM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM')";
+                                                FiltroTemp += " AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NCA', 'NCB', 'NCC', 'NCE', 'NCM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM')";
                                         else
-                                                FiltroTemp += " AND (comprob.tipo_fac='" + m_Letra + "' OR comprob.tipo_fac='NC" + m_Letra + "' OR comprob.tipo_fac='ND" + m_Letra + "')";
+                                                FiltroTemp += " AND (comprob.tipo_fac='F" + m_Letra + "' OR comprob.tipo_fac='NC" + m_Letra + "' OR comprob.tipo_fac='ND" + m_Letra + "')";
                                         break;
 
                                 default:

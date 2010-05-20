@@ -137,8 +137,8 @@ namespace Lazaro.Misc.Config
 		{
 			System.Collections.ArrayList Comprobs = new System.Collections.ArrayList();
 			Comprobs.Add("F");
-			Comprobs.Add("A");
-			Comprobs.Add("B");
+			Comprobs.Add("FA");
+			Comprobs.Add("FB");
 			Comprobs.Add("NC");
 			Comprobs.Add("NCA");
 			Comprobs.Add("NCB");
@@ -239,36 +239,38 @@ namespace Lazaro.Misc.Config
 			{
 				ListaCodigos[System.Convert.ToInt32(Codigo["id_codigo"])] += System.Convert.ToString(Codigo["nombre"]) + "|" + System.Convert.ToString(Codigo["id_codigo"]);
 			}
-			txtArticulosCodigoPredet.SetData = ListaCodigos;
-			txtArticulosCodigoPredet.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.CodigoPredet", "*");
+			EntradaArticulosCodigoPredet.SetData = ListaCodigos;
+			EntradaArticulosCodigoPredet.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.CodigoPredet", "*");
 
-			txtStockMultideposito.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.Multideposito", "0");
-			txtStockDepositoPredet.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.DepositoPredet", "0");
-			txtStockDepositoPredetSuc.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.DepositoPredet", "0");
-			txtStockDecimales.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.Decimales", "0");
-                        txtBackup.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Backup.Tipo", "0");
+			EntradaStockMultideposito.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.Multideposito", "0");
+			EntradaStockDepositoPredet.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.DepositoPredet", "0");
+			EntradaStockDepositoPredetSuc.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.DepositoPredet", "0");
+			EntradaStockDecimales.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.Decimales", "0");
 
 			EntradaEmpresaNombre.Text = this.Workspace.CurrentConfig.Company.Name;
 			EntradaEmpresaCuit.Text = this.Workspace.CurrentConfig.Company.Cuit;
 			EntradaEmpresaSituacion.TextInt = this.Workspace.CurrentConfig.Company.SituacionTributaria;
                         EntradaEmpresaEmail.Text = this.Workspace.CurrentConfig.Company.Email;
+
+                        EntradaBackup.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Backup.Tipo", "0");
                         EntradaModoPantalla.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Apariencia.ModoPantalla", "maximizado");
+                        EntradaAislacion.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Datos.Aislacion", "Serializable");
 
 			CargarImpresorasPredet();
 
-			txtPV.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.PV", "1");
-			txtPVABC.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.ABC.PV", "0");
-			txtPVNC.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.NC.PV", "0");
-			txtPVND.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.ND.PV", "0");
-			txtPVR.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.R.PV", "0");
+			EntradaPV.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.PV", "1");
+			EntradaPVABC.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.ABC.PV", "0");
+			EntradaPVNC.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.NC.PV", "0");
+			EntradaPVND.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.ND.PV", "0");
+			EntradaPVR.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.R.PV", "0");
 
-			txtClientePredet.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.ClientePredet", "");
-			txtFormaPagoPredet.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.FormaPagoPredet", "");
+			EntradaClientePredet.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.ClientePredet", "");
+			EntradaFormaPagoPredet.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.FormaPagoPredet", "");
 
-			txtCambiaPrecioComprob.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.CambiaPrecioItemFactura", "1");
+			EntradaCambiaPrecioComprob.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.CambiaPrecioItemFactura", "1");
 
-                        txtLimiteCredito.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Cuentas.LimiteCreditoPredet", "0");
-                        txtRedondeo.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Moneda.Redondeo", "0.05");
+                        EntradaLimiteCredito.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Cuentas.LimiteCreditoPredet", "0");
+                        EntradaRedondeo.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Moneda.Redondeo", "0.05");
 		}
 
 
@@ -282,14 +284,19 @@ namespace Lazaro.Misc.Config
                                 return true;
                         }
 
+                        if (EntradaEmpresaEmail.Text.Length <= 5 || EntradaEmpresaEmail.Text.IndexOf('@') <= 0 || EntradaEmpresaEmail.Text.IndexOf('.') <= 0) {
+                                Lui.Forms.MessageBox.Show("Debe escribir una dirección de Correo Electrónico (e-mail) válida.", "Validación");
+                                return true;
+                        }
+
 			int Sucursal = this.Workspace.CurrentConfig.ReadLocalSettingInt("Estacion", "Sucursal", 1);
 
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Stock.CodigoPredet", txtArticulosCodigoPredet.TextKey, 0);
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Stock.Multideposito", txtStockMultideposito.TextKey, 0);
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Stock.Decimales", txtStockDecimales.TextKey, 0);
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Stock.DepositoPredet", txtStockDepositoPredet.Text, 0); ;
-			if (txtStockDepositoPredetSuc.TextInt > 0)
-				this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Stock.DepositoPredet", txtStockDepositoPredetSuc.Text, Sucursal);
+			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Stock.CodigoPredet", EntradaArticulosCodigoPredet.TextKey, 0);
+			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Stock.Multideposito", EntradaStockMultideposito.TextKey, 0);
+			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Stock.Decimales", EntradaStockDecimales.TextKey, 0);
+			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Stock.DepositoPredet", EntradaStockDepositoPredet.Text, 0); ;
+			if (EntradaStockDepositoPredetSuc.TextInt > 0)
+				this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Stock.DepositoPredet", EntradaStockDepositoPredetSuc.Text, Sucursal);
 			else
 				this.Workspace.CurrentConfig.DeleteGlobalSetting("Sistema", "Stock.DepositoPredet", Sucursal);
 
@@ -297,28 +304,29 @@ namespace Lazaro.Misc.Config
 			this.Workspace.CurrentConfig.Company.Cuit = EntradaEmpresaCuit.Text;
 			this.Workspace.CurrentConfig.Company.SituacionTributaria = EntradaEmpresaSituacion.TextInt;
                         this.Workspace.CurrentConfig.Company.Email = EntradaEmpresaEmail.Text;
-                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Backup.Tipo", txtBackup.TextKey, System.Environment.MachineName.ToUpperInvariant());
+                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Backup.Tipo", EntradaBackup.TextKey, System.Environment.MachineName.ToUpperInvariant());
                         if (EntradaModoPantalla.TextKey == "*")
                                 this.Workspace.CurrentConfig.DeleteGlobalSetting("Sistema", "Apariencia.ModoPantalla", System.Environment.MachineName.ToUpperInvariant());
                         else
                                 this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Apariencia.ModoPantalla", EntradaModoPantalla.TextKey, System.Environment.MachineName.ToUpperInvariant());
+                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Datos.Aislacion", EntradaAislacion.TextKey);
 
 			GuardarImpresorasPredet();
 
 			//Guardo información sobre los PV
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.PV", txtPV.Text, Sucursal);
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.ABC.PV", txtPVABC.Text, Sucursal);
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.NC.PV", txtPVNC.Text, Sucursal);
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.ND.PV", txtPVND.Text, Sucursal);
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.R.PV", txtPVR.Text, Sucursal);
+			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.PV", EntradaPV.Text, Sucursal);
+			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.ABC.PV", EntradaPVABC.Text, Sucursal);
+			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.NC.PV", EntradaPVNC.Text, Sucursal);
+			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.ND.PV", EntradaPVND.Text, Sucursal);
+			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.R.PV", EntradaPVR.Text, Sucursal);
 
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.ClientePredet", txtClientePredet.Text, "*");
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.FormaPagoPredet", txtFormaPagoPredet.Text, "*");
+			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.ClientePredet", EntradaClientePredet.Text, "*");
+			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.FormaPagoPredet", EntradaFormaPagoPredet.Text, "*");
 
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.CambiaPrecioItemFactura", txtCambiaPrecioComprob.TextKey.ToString(), "*");
+			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.CambiaPrecioItemFactura", EntradaCambiaPrecioComprob.TextKey.ToString(), "*");
 
-                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Cuentas.LimiteCreditoPredet", txtLimiteCredito.Text, "*");
-                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Moneda.Redondeo", txtRedondeo.Text, "*");
+                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Cuentas.LimiteCreditoPredet", EntradaLimiteCredito.Text, "*");
+                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Moneda.Redondeo", EntradaRedondeo.Text, "*");
 
 			return false;
 		}

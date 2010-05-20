@@ -221,7 +221,7 @@ namespace Lbl.Comprobantes
                                 TablaPagos = this.DataView.DataBase.Select("SELECT id_cheque FROM bancos_cheques WHERE id_recibo=" + Id.ToString());
                                 foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
                                         Bancos.Cheque Ch = new Lbl.Bancos.Cheque(DataView, System.Convert.ToInt32(Pago["id_cheque"]));
-                                        Ch.Recibo = this;
+                                        Ch.Recibo = this;       // Esto no debería estar aquí
                                         if (this.DePago)
                                                 Pagos.Add(new Pago(Ch));
                                         else
@@ -232,7 +232,7 @@ namespace Lbl.Comprobantes
                                 TablaPagos = this.DataView.DataBase.Select("SELECT id_cupon FROM tarjetas_cupones WHERE id_recibo=" + Id.ToString());
                                 foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
                                         Tarjetas.Cupon Cp = new Lbl.Tarjetas.Cupon(DataView, System.Convert.ToInt32(Pago["id_cupon"]));
-                                        Cp.Recibo = this;
+                                        Cp.Recibo = this;       // Esto no debería estar aquí
                                         Cobros.Add(new Cobro(Cp));
                                 }
 
@@ -250,6 +250,17 @@ namespace Lbl.Comprobantes
                                                 Cb.CajaDestino = new Cajas.Caja(DataView, System.Convert.ToInt32(Pago["id_caja"]));
                                                 Cobros.Add(Cb);
                                         }
+                                }
+
+                                // Otros valores
+                                TablaPagos = this.DataView.DataBase.Select("SELECT id_valor FROM pagos_valores WHERE id_recibo=" + Id.ToString());
+                                foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
+                                        Lbl.Pagos.Valor Vl = new Lbl.Pagos.Valor(DataView, System.Convert.ToInt32(Pago["id_valor"]));
+                                        Vl.Recibo = this;       // Esto no debería estar aquí
+                                        if (this.DePago)
+                                                Pagos.Add(new Pago(Vl));
+                                        else
+                                                Cobros.Add(new Cobro(Vl));
                                 }
                         }
                         base.OnLoad();
@@ -299,7 +310,7 @@ namespace Lbl.Comprobantes
                         this.DataView.Execute(Comando);
 
                         // Tomo el id del recibo que acabo de crear
-                        m_ItemId = this.DataView.DataBase.FieldInt("SELECT MAX(id_recibo) AS id_recibo FROM recibos WHERE numero=" + this.Numero.ToString() + " AND pv=" + this.PV.ToString() + " AND tipo_fac='" + this.Tipo.Nomenclatura + "'");
+                        m_ItemId = this.DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
 
                         string ObsPago = string.Empty;
                         if (this.Obs != null && this.Obs.Length > 0)
@@ -325,13 +336,15 @@ namespace Lbl.Comprobantes
                                                 if (ResultadoEfect.Success == false)
                                                         return ResultadoEfect;
                                                 break;
-                                        case TipoFormasDePago.Cheque:
+                                        case TipoFormasDePago.ChequePropio:
+                                        case TipoFormasDePago.ChequeTerceros:
                                                 Pg.Cheque.DataView = this.DataView;
                                                 Pg.Cheque.Obs = ObsPago;
                                                 Pg.Cheque.Concepto = Pg.Concepto;
                                                 Pg.Cheque.ConceptoTexto = Pg.ConceptoTexto;
                                                 Pg.Cheque.Recibo = this;
                                                 Pg.Cheque.Cliente = this.Cliente;
+                                                Pg.Cheque.Emitido = Pg.FormaDePago.Tipo == TipoFormasDePago.ChequePropio;
                                                 Lfx.Types.OperationResult ResultadoCheque = Pg.Cheque.Guardar();
                                                 if (ResultadoCheque.Success == false)
                                                         return ResultadoCheque;
@@ -352,6 +365,14 @@ namespace Lbl.Comprobantes
                                                 if (ResultadoDeposito.Success != true)
                                                         return ResultadoDeposito;
                                                 break;
+                                        case TipoFormasDePago.OtroValor:
+                                                Pg.Valor.DataView = this.DataView;
+                                                Pg.Valor.Obs = ObsPago;
+                                                Pg.Valor.Recibo = this;
+                                                Lfx.Types.OperationResult ResultadoValor = Pg.Valor.Guardar();
+                                                if (ResultadoValor.Success == false)
+                                                        return ResultadoValor;
+                                                break;
                                 }
                         }
 
@@ -365,7 +386,7 @@ namespace Lbl.Comprobantes
                                                 if (ResultadoEfect.Success == false)
                                                         return ResultadoEfect;
                                                 break;
-                                        case TipoFormasDePago.Cheque:
+                                        case TipoFormasDePago.ChequePropio:
                                                 Pg.Cheque.DataView = this.DataView;
                                                 Pg.Cheque.Concepto = Pg.Concepto;
                                                 Pg.Cheque.Cliente = this.Cliente;
@@ -383,6 +404,30 @@ namespace Lbl.Comprobantes
                                                 if (ResultadoDeposito.Success != true)
                                                         return ResultadoDeposito;
                                                 break;
+                                        case TipoFormasDePago.ChequeTerceros:
+                                                Pg.Cheque.DataView = this.DataView;
+                                                Pg.Cheque.Estado = 11;
+                                                if (Pg.Cheque.Obs.Length > 0)
+                                                        Pg.Cheque.Obs += " /// ";
+                                                Pg.Cheque.Obs += "Entregado s/" + this.ToString();
+                                                Pg.Cheque.Recibo = this;
+                                                Pg.Cheque.Guardar();
+                                                Lfx.Types.OperationResult ResultadoChequeTerceros = Pg.Cheque.Guardar();
+                                                if (ResultadoChequeTerceros.Success == false)
+                                                        return ResultadoChequeTerceros;
+                                                break;
+                                        case TipoFormasDePago.OtroValor:
+                                                Pg.Valor.DataView = this.DataView;
+                                                Pg.Valor.Estado = 11;
+                                                if (Pg.Valor.Obs.Length > 0)
+                                                        Pg.Valor.Obs += " /// ";
+                                                Pg.Valor.Obs += "Entregado s/" + this.ToString();
+                                                Pg.Valor.Recibo = this;
+                                                Pg.Valor.Guardar();
+                                                Lfx.Types.OperationResult ResultadoValor = Pg.Valor.Guardar();
+                                                if (ResultadoValor.Success == false)
+                                                        return ResultadoValor;
+                                                break;
                                 }
                         }
 
@@ -391,7 +436,7 @@ namespace Lbl.Comprobantes
 
                         if (this.Facturas == null || this.Facturas.Count == 0) {
                                 // No se especificaron comprob. Busco comprob a cancelar.
-                                System.Data.DataTable FacturasConSaldo = this.DataView.DataBase.Select("SELECT id_comprob,total,cancelado FROM comprob WHERE impresa>0 AND anulada=0 AND numero>0 AND tipo_fac IN ('A', 'B', 'C', 'E', 'M', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND id_formapago IN (1, 3, 99) AND cancelado<total AND id_cliente=" + this.Cliente.Id.ToString() + " ORDER BY id_comprob");
+                                System.Data.DataTable FacturasConSaldo = this.DataView.DataBase.Select("SELECT id_comprob,total,cancelado FROM comprob WHERE impresa>0 AND anulada=0 AND numero>0 AND tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND id_formapago IN (1, 3, 99) AND cancelado<total AND id_cliente=" + this.Cliente.Id.ToString() + " ORDER BY id_comprob");
 
                                 double ImporteRestante = this.Importe;
 

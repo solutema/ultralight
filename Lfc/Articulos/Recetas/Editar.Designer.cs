@@ -198,7 +198,6 @@ namespace Lfc.Articulos.Recetas
 			this.Articulos.Size = new System.Drawing.Size(660, 215);
 			this.Articulos.TabIndex = 12;
 			this.Articulos.Visible = false;
-			this.Articulos.Workspace = null;
 			// 
 			// txtCategoria
 			// 

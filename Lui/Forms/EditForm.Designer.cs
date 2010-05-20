@@ -38,6 +38,7 @@ namespace Lui.Forms
                         this.SaveButton = new Lui.Forms.Button();
                         this.CancelCommandButton = new Lui.Forms.Button();
                         this.LowerPanel = new System.Windows.Forms.Panel();
+                        this.BotonHistorial = new System.Windows.Forms.LinkLabel();
                         this.LowerPanel.SuspendLayout();
                         this.SuspendLayout();
                         // 
@@ -85,6 +86,7 @@ namespace Lui.Forms
                         // 
                         // LowerPanel
                         // 
+                        this.LowerPanel.Controls.Add(this.BotonHistorial);
                         this.LowerPanel.Controls.Add(this.CancelCommandButton);
                         this.LowerPanel.Controls.Add(this.SaveButton);
                         this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -92,6 +94,19 @@ namespace Lui.Forms
                         this.LowerPanel.Name = "LowerPanel";
                         this.LowerPanel.Size = new System.Drawing.Size(768, 60);
                         this.LowerPanel.TabIndex = 103;
+                        // 
+                        // BotonHistorial
+                        // 
+                        this.BotonHistorial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonHistorial.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonHistorial.Location = new System.Drawing.Point(468, 36);
+                        this.BotonHistorial.Name = "BotonHistorial";
+                        this.BotonHistorial.Size = new System.Drawing.Size(72, 16);
+                        this.BotonHistorial.TabIndex = 103;
+                        this.BotonHistorial.TabStop = true;
+                        this.BotonHistorial.Text = "Historial";
+                        this.BotonHistorial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.BotonHistorial.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BotonHistorial_LinkClicked);
                         // 
                         // EditForm
                         // 
@@ -116,5 +131,6 @@ namespace Lui.Forms
                 internal System.Windows.Forms.Panel LowerPanel;
 
                 #endregion
+                private System.Windows.Forms.LinkLabel BotonHistorial;
         }
 }

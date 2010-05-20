@@ -38,7 +38,7 @@ namespace Lazaro
 {
         public class Datos
         {
-                const int VersionUltima = 22;
+                const int VersionUltima = 23;
 
                 /// <summary>
                 /// Inicia una conexión con la base de datos y verifica si la versión de la la misma es la última disponible. En caso contrario la actualiza.
@@ -94,7 +94,11 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                                 }
                         }
 
+                        // Configuro el nivel de aislación predeterminado
+                        Lfx.Data.DataBaseCache.DefaultCache.DefaultIsolationLevel = (Lfx.Data.IsolationLevels)(Enum.Parse(typeof(Lfx.Data.IsolationLevels), Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Datos.Aislacion", "Serializable")));
+                        
                         if (Lfx.Environment.SystemInformation.DesignMode == false) {
+                                // Si es necesario, actualizo la estructura de la base de datos
                                 Lws.Data.DataView DataViewVerif = Lws.Workspace.Master.GetDataView(true);
                                 VerificarVersionDB(DataViewVerif, false, false);
                                 DataViewVerif.Dispose();
@@ -112,14 +116,6 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                 public static void VerificarVersionDB(Lws.Data.DataView dataView, bool ignorarFecha, bool noTocarDatos)
                 {
                         int VersionActual = dataView.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "DB.Version", 0);
-                        bool MustCommit = false;
-
-                        if (dataView.DataBase.InTransaction == false) {
-                                //dataView.DataBase.BeginTransaction();
-                                //MustCommit = true;
-                        } else {
-                                System.Console.WriteLine("Ya estoy en una transacción.");
-                        }
 
                         if (VersionUltima < VersionActual) {
                                 Lui.Forms.MessageBox.Show("Es necesario actualizar el sistema Lázaro en esta estación de trabajo. Se esperaba la versión " + VersionUltima.ToString() + " de la base de datos, pero se encontró la versión " + VersionActual.ToString() + " que es demasiado nueva.", "Aviso Importante");
@@ -140,7 +136,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                                 Lui.Forms.MessageBox.Show("La versión de Lázaro que está utilizando es antigua. Por favor actualice su sistema urgentemente.", "Aviso");
                         } else if (ignorarFecha || Diferencia.Hours > 1) {
                                 //Lázaro es más nuevo que la bd por al menos 1 hora
-                                VerificarEstructuraDB(dataView);
+                                VerificarEstructuraDB(dataView, false);
                                 if (noTocarDatos == false)
                                         Lws.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema", "DB.VersionEstructura", Lfx.Types.Formatting.FormatDateTimeSql(FechaLazaroExe));
                         }
@@ -151,9 +147,6 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                                         Lws.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema", "DB.Version", i.ToString(), "*");
                                 }
                         }
-
-                        if (MustCommit)
-                                dataView.DataBase.Commit();
                 }
 
                 private static void InyectarSqlDesdeRecurso(Lws.Data.DataView dataView, string archivo)
@@ -188,8 +181,9 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                 /// Verifica la estructura de la base de datos actual y si es necesario modifica para que esté conforme
                 /// al diseño de referencia.
                 /// </summary>
-                /// <param name="dataView">Acceso a la base de datos.</param>
-                private static void VerificarEstructuraDB(Lws.Data.DataView dataView)
+                /// <param name="dataView">DataView mediante el cual se accede a la base de datos.</param>
+                /// <param name="omitPreAndPostSql">Omitir la ejecución de comandos Pre- y Post-actualización de estructura. Esto es útil cuando se actualiza una estructura vacía, por ejemplo al crear una base de datos nueva.</param>
+                private static void VerificarEstructuraDB(Lws.Data.DataView dataView, bool omitPreAndPostSql)
                 {
                         Lui.Forms.ProgressForm Progreso = new Lui.Forms.ProgressForm();
                         Progreso.Style = ProgressBarStyle.Continuous;
@@ -203,6 +197,9 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                                 dataView.DataBase.EnableConstraints(false);
                                 MustEnableConstraints = true;
                         }
+
+                        if (omitPreAndPostSql == false)
+                                InyectarSqlDesdeRecurso(dataView, @"Data.db_upd_pre.sql");
 
                         //Primero borro claves foráneas (deleteOnly = true)
                         Progreso.Operacion = "Analizando estructura actual";
@@ -219,6 +216,9 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                         //Ahora creo claves nuevas (deleteOnly = false)
                         Progreso.Operacion = "Creando claves foráneas";
                         dataView.DataBase.SetConstraints(Lfx.Data.DataBaseCache.DefaultCache.Constraints, false);
+
+                        if (omitPreAndPostSql == false)
+                                InyectarSqlDesdeRecurso(dataView, @"Data.db_upd_post.sql");
 
                         Progreso.Operacion = "Guardando modificaciones";
                         if (MustEnableConstraints)
@@ -240,7 +240,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                         OProgreso.Show();
 
                         // Creación de tablas
-                        VerificarEstructuraDB(dataView);
+                        VerificarEstructuraDB(dataView, true);
 
                         dataView.DataBase.EnableConstraints(false);
 
@@ -276,7 +276,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                         // Cargar TagList y volver a verificar la estructura
                         Lfx.Data.DataBaseCache.DefaultCache.TagList.Clear();
                         Lfx.Data.DataBaseCache.DefaultCache.CargarEstructuraDesdeXml(null);
-                        VerificarEstructuraDB(dataView);
+                        VerificarEstructuraDB(dataView, false);
 
                         dataView.DataBase.EnableConstraints(true);
                         Lws.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema", "DB.Version", VersionUltima.ToString(), "*");

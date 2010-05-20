@@ -51,9 +51,9 @@ namespace Lfc.Comprobantes.Presupuestos
                         this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
                         this.ClientSize = new System.Drawing.Size(692, 473);
                         this.Name = "Editar";
-                        this.Closed += new System.EventHandler(this.FormPresupuestosEditar_Closed);
-                        this.ProductArray.TextChanged += new System.EventHandler(this.ProductArray_TextChanged);
-                        this.ProductArray.Leave += new System.EventHandler(this.ProductArray_Leave);
+                        //this.Closed += new System.EventHandler(this.FormPresupuestosEditar_Closed);
+                        //this.ProductArray.TextChanged += new System.EventHandler(this.ProductArray_TextChanged);
+                        //this.ProductArray.Leave += new System.EventHandler(this.ProductArray_Leave);
                 }
                 #endregion
         }

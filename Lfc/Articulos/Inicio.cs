@@ -158,7 +158,6 @@ namespace Lfc.Articulos
                 public override Lfx.Types.OperationResult OnFilter()
                 {
                         Articulos.Filtros OFormArticulosFiltros = new Articulos.Filtros();
-                        OFormArticulosFiltros.Workspace = this.Workspace;
                         OFormArticulosFiltros.EntradaProveedor.TextInt = m_Proveedor;
                         OFormArticulosFiltros.EntradaMarca.TextInt = m_Marca;
                         OFormArticulosFiltros.EntradaCategoria.TextInt = m_Categoria;

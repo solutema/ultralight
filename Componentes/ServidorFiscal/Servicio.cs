@@ -37,7 +37,7 @@ namespace ServidorFiscal
         {
                 public ServicioFiscal()
                 {
-                        this.ServiceName = "L�zaro - Servidor Fiscal";
+                        this.ServiceName = "Lázaro - Servidor Fiscal";
                         this.EventLog.Log = "Application";
 
                         this.CanHandlePowerEvent = false;

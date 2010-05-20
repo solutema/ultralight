@@ -91,10 +91,26 @@ namespace Lbl.Cajas
                         Comando.Fields.AddWithValue("obs", obs);
                         this.DataView.Execute(Comando);
 
-                        if (cancelaCosas && importeDebito < 0) {
-                                // Débito negativo... es un crédito
-                                // Cancelo saldos de comprob que haya en cta. cte. pendientes de pago
-                                System.Data.DataTable FacturasConSaldo = this.DataView.DataBase.Select("SELECT id_comprob,total,cancelado FROM comprob WHERE impresa>0 AND anulada=0 AND numero>0 AND tipo_fac IN ('A', 'B', 'C', 'E', 'M', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND id_formapago IN (1, 3, 99) AND cancelado<total AND id_cliente=" + m_ItemId.ToString() + " ORDER BY id_comprob");
+                        if (cancelaCosas) {
+                                string SqlWhere = "impresa>0 AND anulada=0 AND numero>0 AND id_formapago IN (1, 3, 99) AND cancelado<total AND id_cliente=" + m_ItemId.ToString();
+                                if (importeDebito < 0) {
+                                        // Es un crédito (débito negativo)
+                                        // Cancelo saldos en facturas, notas de débito y notas de crédito de compra
+                                        SqlWhere += @" AND (
+                                                        (compra=0 AND tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM'))
+                                                        OR
+                                                        (compra=1 AND tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM'))
+                                                         )";
+                                } else {
+                                        // Es un débito. Cancelo comprobantes de compra, o Notas de Crédito
+                                        SqlWhere += @" AND (
+                                                        (compra=1 AND tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM'))
+                                                        OR
+                                                        (compra=0 AND tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM'))
+                                                         )";
+                                }
+                                System.Data.DataTable FacturasConSaldo = this.DataView.DataBase.Select("SELECT id_comprob,total,cancelado FROM comprob WHERE " + SqlWhere + " ORDER BY id_comprob");
+
 
                                 double ImporteRestante = importeDebito;
 
@@ -119,34 +135,32 @@ namespace Lbl.Cajas
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
-                public Lfx.Types.OperationResult IngresarComprobante(Comprobantes.ComprobanteConArticulos factura, double valorMaximo)
+                public Lfx.Types.OperationResult IngresarComprobante(Comprobantes.ComprobanteConArticulos factura)
                 {
                         if (this.Id == 0)
                                 m_ItemId = factura.Cliente.Id;
                         else if (factura.Cliente.Id != this.Id)
-                                throw new Exception("La factura no que ingresa no corresponde al cliente");
+                                throw new Exception("La factura se que ingresa no corresponde al cliente");
+                        
+                        if(factura.Compra)
+                                throw new Exception("La factura se que ingresa no corresponde al cliente");
 
                         double SaldoCtaCteAntes = this.Saldo();
 
-                        this.Movimiento(true, new Lbl.Cajas.Concepto(factura.DataView, 11000), factura.ToString() + " pendiente por $ " + Lfx.Types.Formatting.FormatCurrency(factura.Total, this.Workspace.CurrentConfig.Currency.DecimalPlaces), factura.Total, null, factura, null, false);
+                        this.Movimiento(true, new Lbl.Cajas.Concepto(factura.DataView, 11000), factura.ToString() + " por $ " + Lfx.Types.Formatting.FormatCurrency(factura.Total, this.Workspace.CurrentConfig.Currency.DecimalPlaces), factura.Tipo.EsNotaCredito ? -factura.Total : factura.Total, null, factura, null, factura.Tipo.EsFacturaNCoND);
                         double FacturaSaldo = factura.Total - factura.ImporteCancelado;
-                        double SaldoCancelado = 0;
 
-                        if (valorMaximo == 0)
-                                valorMaximo = FacturaSaldo;
-
-                        if (FacturaSaldo > 0 && factura.Tipo.EsNotaCredito == false) {
-                                // Busca un saldo a favor no sólo en NC, sino directamente en la tabla ctacte
-                                // ya que puede tener saldo a favor por un recibo o un ajuste
-                                if (SaldoCtaCteAntes < 0) {
-                                        double SaldoACancelar = -SaldoCtaCteAntes;
+                        if (FacturaSaldo > 0) {
+                                // Busca un saldo en cta cte para cancelar este comprobante
+                                if ((factura.Tipo.EsNotaCredito && SaldoCtaCteAntes > 0)
+                                        || (factura.Tipo.EsNotaCredito == false && SaldoCtaCteAntes < 0)) {
+                                        double SaldoACancelar = factura.Tipo.EsNotaCredito ? SaldoCtaCteAntes : -SaldoCtaCteAntes;
 
                                         if (SaldoACancelar > FacturaSaldo)
                                                 SaldoACancelar = FacturaSaldo;
 
                                         // Cancelo la factura con un saldo a favor que tena en cta. cte.
                                         this.DataView.DataBase.Execute("UPDATE comprob SET cancelado=cancelado+" + Lfx.Types.Formatting.FormatCurrency(SaldoACancelar, this.Workspace.CurrentConfig.Currency.DecimalPlaces) + " WHERE id_comprob=" + factura.Id.ToString());
-                                        SaldoCancelado += SaldoACancelar;
                                 }
                         }
 

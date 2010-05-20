@@ -1,4 +1,33 @@
-﻿using System;
+// Copyright 2004-2010 South Bridge S.R.L.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// Este programa es software libre; puede distribuirlo y/o moficiarlo de
+// acuerdo a los términos de la Licencia Pública General de GNU (GNU
+// General Public License), como la publica la Fundación para el Software
+// Libre (Free Software Foundation), tanto la versión 3 de la Licencia
+// como (a su elección) cualquier versión posterior.
+//
+// Este programa se distribuye con la esperanza de que sea útil, pero SIN
+// GARANTÍA ALGUNA; ni siquiera la garantía MERCANTIL implícita y sin
+// garantizar su CONVENIENCIA PARA UN PROPÓSITO PARTICULAR. Véase la
+// Licencia Pública General de GNU para más detalles. 
+//
+// Debería haber recibido una copia de la Licencia Pública General junto
+// con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +39,19 @@ namespace Lcc.Edicion
 {
         public partial class ImagenRecorte : Lui.Forms.Form
         {
+                public enum MouseActions
+                {
+                        None,
+                        Draw,
+                        Drag
+                }
+
                 private System.Drawing.Rectangle CropRect = System.Drawing.Rectangle.Empty;
                 private System.Drawing.Point StartPoint = System.Drawing.Point.Empty;
                 private System.Drawing.Brush SelectionBrush = null;
                 private System.Drawing.Image m_Imagen = null;
                 private double SelectionRatio = 0;
+                private MouseActions MouseAction = MouseActions.None;
 
                 public ImagenRecorte()
                 {
@@ -48,9 +85,17 @@ namespace Lcc.Edicion
                 {
                         switch (e.Button) {
                                 case MouseButtons.Left:
-                                        StartPoint = e.Location;
+                                        if (CropRect.Contains(e.Location)) {
+                                                MouseAction = MouseActions.Drag;
+                                                StartPoint.X = e.X - CropRect.X;
+                                                StartPoint.Y = e.Y - CropRect.Y;
+                                        } else {
+                                                MouseAction = MouseActions.Draw;
+                                                StartPoint = e.Location;
+                                        }
                                         break;
                                 case MouseButtons.Middle:
+                                        MouseAction = MouseActions.Drag;
                                         StartPoint.X = e.X - CropRect.X;
                                         StartPoint.Y = e.Y - CropRect.Y;
                                         break;
@@ -59,16 +104,16 @@ namespace Lcc.Edicion
 
                 private void EntradaImagen_MouseMove(object sender, MouseEventArgs e)
                 {
-                        if (StartPoint != System.Drawing.Point.Empty) {
-                                switch (e.Button) {
-                                        case MouseButtons.Left:
+                        if (e.Button == MouseButtons.Left || e.Button == MouseButtons.Middle) {
+                                switch (MouseAction) {
+                                        case MouseActions.Draw:
                                                 CropRect = RectangleFromPoints(StartPoint, e.Location);
                                                 if (this.SelectionRatio != 0) {
                                                         CropRect.Width = System.Convert.ToInt32(CropRect.Height * SelectionRatio);
                                                 }
                                                 EntradaImagen.Invalidate();
                                                 break;
-                                        case MouseButtons.Middle:
+                                        case MouseActions.Drag:
                                                 CropRect.X = e.X - StartPoint.X;
                                                 CropRect.Y = e.Y - StartPoint.Y;
                                                 EntradaImagen.Invalidate();
@@ -131,12 +176,6 @@ namespace Lcc.Edicion
                         this.Close();
                 }
 
-                private void BotonCancelar_Click(object sender, EventArgs e)
-                {
-                        this.DialogResult = DialogResult.Cancel;
-                        this.Close();
-                }
-
                 private void EntradaRatio_TextChanged(object sender, EventArgs e)
                 {
                         this.SelectionRatio = Lfx.Types.Parsing.ParseDouble(EntradaRatio.TextKey);
@@ -162,6 +201,11 @@ namespace Lcc.Edicion
                         if (Guardar.ShowDialog() == DialogResult.OK) {
                                 EntradaImagen.Image.Save(Guardar.FileName);
                         }
+                }
+
+                private void EntradaImagen_MouseUp(object sender, MouseEventArgs e)
+                {
+                        MouseAction = MouseActions.None;
                 }
         }
 }

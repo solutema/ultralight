@@ -38,10 +38,11 @@ namespace Lbl.Personas
 		//Heredar constructor
 		public Persona(Lws.Data.DataView dataView) : base(dataView) { }
 
-		public Entidades.Ciudad Ciudad;
+		public Entidades.Localidad Localidad;
 		public Grupo Grupo, SubGrupo;
 		public SituacionTributaria SituacionTributaria;
                 private Lbl.Cajas.CuentaCorriente m_CuentaCorriente = null;
+                private Lbl.Personas.Persona m_Vendedor = null;
 
 		public Persona(Lws.Data.DataView dataView, int idPersona)
 			:this(dataView, idPersona, true)
@@ -53,6 +54,7 @@ namespace Lbl.Personas
 		{
 			m_ItemId = idPersona;
                         m_CuentaCorriente = null;
+                        m_Vendedor = null;
 			if(cargar)
 				this.Cargar();
 		}
@@ -66,7 +68,8 @@ namespace Lbl.Personas
                                 this.Grupo = null;
                                 this.TipoDocumento = 1;
                                 this.SituacionTributaria = new SituacionTributaria(this.DataView, 1);
-                                this.Ciudad = new Lbl.Entidades.Ciudad(this.DataView, this.Workspace.CurrentConfig.Company.idCiudad);
+                                this.Localidad = new Lbl.Entidades.Localidad(this.DataView, this.Workspace.CurrentConfig.Company.idCiudad);
+                                m_Vendedor = new Persona(this.DataView, this.DataView.Workspace.CurrentUser.Id);
                         }
                         return Res;
                 }
@@ -114,10 +117,14 @@ namespace Lbl.Personas
                         Comando.Fields.AddWithValue("tipo_fac", this.FacturaPreferida);
                         Comando.Fields.AddWithValue("domicilio", this.Domicilio);
                         Comando.Fields.AddWithValue("domiciliotrabajo", this.DomicilioLaboral);
-                        if (this.Ciudad == null)
+                        if (this.Localidad == null)
                                 Comando.Fields.AddWithValue("id_ciudad", null);
                         else
-                                Comando.Fields.AddWithValue("id_ciudad", this.Ciudad.Id);
+                                Comando.Fields.AddWithValue("id_ciudad", this.Localidad.Id);
+                        if (this.Vendedor == null)
+                                Comando.Fields.AddWithValue("id_vendedor", null);
+                        else
+                                Comando.Fields.AddWithValue("id_vendedor", this.Vendedor.Id);
                         Comando.Fields.AddWithValue("telefono", this.Telefono);
                         Comando.Fields.AddWithValue("email", this.Email);
                         Comando.Fields.AddWithValue("url", this.Url);
@@ -132,9 +139,6 @@ namespace Lbl.Personas
                         this.AgregarTags(Comando);
 
                         this.DataView.Execute(Comando);
-
-                        if (this.Existe == false)
-                                m_ItemId = this.DataView.DataBase.FieldInt("SELECT MAX(" + this.CampoId + ") FROM " + this.TablaDatos);
 
                         return base.Guardar();
                 }
@@ -431,9 +435,9 @@ namespace Lbl.Personas
                                         this.SubGrupo = null;
 
                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(m_Registro["id_ciudad"]) > 0)
-                                        this.Ciudad = new Entidades.Ciudad(this.DataView, System.Convert.ToInt32(m_Registro["id_ciudad"]));
+                                        this.Localidad = new Entidades.Localidad(this.DataView, System.Convert.ToInt32(m_Registro["id_ciudad"]));
                                 else
-                                        this.Ciudad = null;
+                                        this.Localidad = null;
 
                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(m_Registro["id_situacion"]) > 0)
                                         this.SituacionTributaria = new SituacionTributaria(this.DataView, System.Convert.ToInt32(m_Registro["id_situacion"]));
@@ -444,13 +448,13 @@ namespace Lbl.Personas
                         base.OnLoad();
                 }
 
-                public string TipoComprobantePredeterminado()
+                public string LetraPredeterminada()
                 {
                         if (this.FacturaPreferida == null) {
                                 if (this.SituacionTributaria == null)
                                         return "B";
                                 else
-                                        return this.SituacionTributaria.TipoComprobantePredeterminado();
+                                        return this.SituacionTributaria.LetraPredeterminada();
                         } else {
                                 return this.FacturaPreferida;
                         }
@@ -463,6 +467,24 @@ namespace Lbl.Personas
                                 if (m_CuentaCorriente == null)
                                         m_CuentaCorriente = new Lbl.Cajas.CuentaCorriente(this.DataView, this.Id);
                                 return m_CuentaCorriente;
+                        }
+                }
+
+                public Lbl.Personas.Persona Vendedor
+                {
+                        get
+                        {
+                                if (m_Vendedor == null && this.FieldInt("id_vendedor") != 0)
+                                        m_Vendedor = new Lbl.Personas.Persona(this.DataView, this.FieldInt("id_vendedor"));
+                                return m_Vendedor;
+                        }
+                        set
+                        {
+                                m_Vendedor = value;
+                                if (m_Vendedor == null)
+                                        this.Registro["id_vendedor"] = 0;
+                                else
+                                        this.Registro["id_vendedor"] = value.Id;
                         }
                 }
 	}
