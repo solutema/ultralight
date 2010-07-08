@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -59,13 +61,16 @@ namespace Lui.Forms
                         this.Tabla = tabla;
                         this.ItemId = itemId;
                         
-                        System.Data.DataTable LogsTable = this.DataView.DataBase.Select("SELECT * FROM sys_log WHERE tabla='" + this.Tabla + "' AND item_id=" + this.ItemId.ToString() + " ORDER BY fecha DESC");
-                        Lbl.ColeccionGenerica<Lbl.Sys.Log.Entry> Logs = new Lbl.ColeccionGenerica<Lbl.Sys.Log.Entry>(this.DataView, LogsTable);
+                        System.Data.DataTable LogsTable = this.DataBase.Select("SELECT * FROM sys_log WHERE tabla='" + this.Tabla + "' AND item_id=" + this.ItemId.ToString() + " ORDER BY fecha DESC");
+                        Lbl.ColeccionGenerica<Lbl.Sys.Log.Entry> Logs = new Lbl.ColeccionGenerica<Lbl.Sys.Log.Entry>(this.DataBase, LogsTable);
                         for (int i = 0; i < Logs.Count; i++) {
                                 Lbl.Sys.Log.Entry Log = Logs[i];
-                                Lfx.Data.Row Usuario = this.DataView.Tables["personas"].FastRows[Log.IdUsuario];
+                                Lfx.Data.Row Usuario = this.DataBase.Tables["personas"].FastRows[Log.IdUsuario];
                                 ListViewItem Itm = ListaHistoral.Items.Add(Log.Fecha.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
-                                Itm.SubItems.Add(Usuario.Fields["nombre_visible"].Value.ToString());
+                                if (Usuario == null)
+                                        Itm.SubItems.Add("");
+                                else
+                                        Itm.SubItems.Add(Usuario.Fields["nombre_visible"].Value.ToString());
                                 Itm.SubItems.Add(Log.Comando.ToString());
                                 Itm.SubItems.Add(Log.ToString());
                         }

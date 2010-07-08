@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -179,7 +181,7 @@ namespace Lfc.Comprobantes
                         TextoSql += " GROUP BY " + m_Agrupar;
                         TextoSql += " ORDER BY total DESC";
 
-                        System.Data.DataTable TmpTabla = this.Workspace.DefaultDataBase.Select(TextoSql);
+                        System.Data.DataTable TmpTabla = this.DataBase.Select(TextoSql);
 
                         ReportSheet = new Lfx.FileFormats.Office.Spreadsheet.Sheet("Listado de Comprobantes - Fecha " + m_Fechas.From + " al " + m_Fechas.To);
                         ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Detalle", 320));
@@ -218,25 +220,25 @@ namespace Lfc.Comprobantes
                                                 break;
                                 }
 
-                                TotalNC = this.Workspace.DefaultDataBase.FieldDouble("SELECT SUM(comprob_detalle.importe*(1-comprob.descuento/100)*(1+comprob.interes/100)) AS total FROM comprob, comprob_detalle, articulos WHERE " + FiltrosCompletos + " GROUP BY comprob.id_comprob");
-                                TotalNCCosto = this.Workspace.DefaultDataBase.FieldDouble("SELECT SUM(comprob_detalle.costo) AS total FROM comprob, comprob_detalle, articulos WHERE " + FiltrosCompletos + " GROUP BY " + m_Agrupar);
+                                TotalNC = this.DataBase.FieldDouble("SELECT SUM(comprob_detalle.importe*(1-comprob.descuento/100)*(1+comprob.interes/100)) AS total FROM comprob, comprob_detalle, articulos WHERE " + FiltrosCompletos + " GROUP BY comprob.id_comprob");
+                                TotalNCCosto = this.DataBase.FieldDouble("SELECT SUM(comprob_detalle.costo) AS total FROM comprob, comprob_detalle, articulos WHERE " + FiltrosCompletos + " GROUP BY " + m_Agrupar);
                                 string Detalle = null;
 
                                 switch (m_Agrupar) {
                                         case "articulos.id_proveedor":
-                                                Detalle = this.Workspace.DefaultDataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_proveedor"]).ToString());
+                                                Detalle = this.DataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_proveedor"]).ToString());
                                                 break;
 
                                         case "articulos.id_marca":
-                                                Detalle = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM marcas WHERE id_marca=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_marca"]).ToString());
+                                                Detalle = this.DataBase.FieldString("SELECT nombre FROM marcas WHERE id_marca=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_marca"]).ToString());
                                                 break;
 
                                         case "articulos.id_articulo":
-                                                Detalle = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM articulos WHERE id_articulo=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_articulo"]).ToString());
+                                                Detalle = this.DataBase.FieldString("SELECT nombre FROM articulos WHERE id_articulo=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_articulo"]).ToString());
                                                 break;
 
                                         case "articulos.id_categoria":
-                                                Detalle = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM articulos_categorias WHERE id_categoria=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_categoria"]).ToString());
+                                                Detalle = this.DataBase.FieldString("SELECT nombre FROM articulos_categorias WHERE id_categoria=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_categoria"]).ToString());
                                                 break;
                                 }
 
@@ -306,7 +308,7 @@ namespace Lfc.Comprobantes
 
                         TextoSql += "RIGHT(comprob.tipo_fac, 1), comprob.pv, comprob.numero";
 
-                        System.Data.DataTable TmpTabla = this.Workspace.DefaultDataBase.Select(TextoSql);
+                        System.Data.DataTable TmpTabla = this.DataBase.Select(TextoSql);
 
                         double Total = 0;
                         double SubTotal = 0;
@@ -345,14 +347,14 @@ namespace Lfc.Comprobantes
                                                 case "comprob.id_vendedor":
                                                 case "comprob.id_cliente":
                                                         if (UltimoValorAgrupar.Length > 0)
-                                                                NombreGrupo = this.Workspace.DefaultDataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + UltimoValorAgrupar);
+                                                                NombreGrupo = this.DataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + UltimoValorAgrupar);
                                                         else
                                                                 NombreGrupo = "(Sin especificar)";
                                                         break;
 
                                                 case "comprob.id_formapago":
                                                         if (UltimoValorAgrupar.Length > 0)
-                                                                NombreGrupo = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM formaspago WHERE id_formapago=" + UltimoValorAgrupar);
+                                                                NombreGrupo = this.DataBase.FieldString("SELECT nombre FROM formaspago WHERE id_formapago=" + UltimoValorAgrupar);
                                                         else
                                                                 NombreGrupo = "(Sin especificar)";
 
@@ -414,7 +416,7 @@ namespace Lfc.Comprobantes
                                         Renglon.Append(Lfx.Types.Formatting.FormatCurrency(0, this.Workspace.CurrentConfig.Currency.DecimalPlaces).PadLeft(10));
                                         // No suma al total
                                 } else {
-                                        Lfx.Data.Row Cliente = this.Workspace.DefaultDataBase.Row("personas", "id_persona", System.Convert.ToInt32(row["id_cliente"]));
+                                        Lfx.Data.Row Cliente = this.DataBase.Row("personas", "id_persona", System.Convert.ToInt32(row["id_cliente"]));
                                         Renglon.Append(System.Convert.ToString(Cliente["nombre_visible"]).PadRight(25).Substring(0, 25) + " ");
                                         Renglon.Append(System.Convert.ToString(Cliente["cuit"]).PadRight(13).Substring(0, 13) + " ");
                                         Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Cliente["nombre_visible"].ToString()));

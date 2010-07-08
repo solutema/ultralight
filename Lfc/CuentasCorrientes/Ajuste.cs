@@ -30,41 +30,46 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Collections;
 using System.Data;
 using System.Drawing;
-using System.Text;
+using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Lfc
+namespace Lfc.CuentasCorrientes
 {
-        public partial class Etiquetas : Lui.Forms.DialogForm
+        public partial class Ajuste : Lui.Forms.DialogForm
         {
-                public Etiquetas()
+                protected internal double SaldoActual = 0;
+
+                public Ajuste()
                 {
                         InitializeComponent();
                 }
 
-                public Lbl.ElementoDeDatos Elemento
+                private void txtImporte_TextChanged(object sender, System.EventArgs e)
                 {
-                        get
-                        {
-                                return EntradaEtiquetas.Elemento;
-                        }
-                        set
-                        {
-                                this.Text = value.ToString();
-                                EntradaEtiquetas.Elemento = value;
-                                EntradaComentarios.Elemento = value;
-                        }
+                        double Importe = Lfx.Types.Parsing.ParseCurrency(txtImporte.Text);
+                        if (Importe < 0 && txtDireccion.TextKey != "0")
+                                txtDireccion.TextKey = "0";
+                        else if (Importe > 0 && txtDireccion.TextKey != "1")
+                                txtDireccion.TextKey = "1";
+
+                        EntradaNuevoSaldo.Text = Lfx.Types.Formatting.FormatCurrency(SaldoActual + Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                 }
 
-                public override Lfx.Types.OperationResult Ok()
+                private void txtDireccion_TextChanged(object sender, System.EventArgs e)
                 {
-                        this.Elemento.Guardar();
+                        if (txtDireccion.TextKey == "0" && Lfx.Types.Parsing.ParseCurrency(txtImporte.Text) > 0)
+                                txtImporte.Text = Lfx.Types.Formatting.FormatCurrency(-Lfx.Types.Parsing.ParseCurrency(txtImporte.Text), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        else if (txtDireccion.TextKey == "1" && Lfx.Types.Parsing.ParseCurrency(txtImporte.Text) < 0)
+                                txtImporte.Text = Lfx.Types.Formatting.FormatCurrency(-Lfx.Types.Parsing.ParseCurrency(txtImporte.Text), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                }
 
-                        return base.Ok();
+                private void EntradaConcepto_Leave(object sender, EventArgs e)
+                {
+                        if (EntradaConcepto.TextInt == 0)
+                                EntradaConcepto.TextInt = 30000;
                 }
         }
 }

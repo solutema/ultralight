@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -12,12 +12,14 @@
     <AssemblyName>Lfc</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <OldToolsVersion>2.0</OldToolsVersion>
+    <OldToolsVersion>3.5</OldToolsVersion>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkSubset>
-    </TargetFrameworkSubset>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ApplicationIcon>Lazaro.ico</ApplicationIcon>
+    <ReleaseVersion>1.0</ReleaseVersion>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -30,11 +32,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <ApplicationIcon>Lazaro.ico</ApplicationIcon>
-    <ReleaseVersion>1.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -205,7 +204,7 @@
     <Compile Include="Cajas\Admin\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Cajas\Corriente\Ajuste.Designer.cs">
+    <Compile Include="CuentasCorrientes\Ajuste.Designer.cs">
       <DependentUpon>Ajuste.cs</DependentUpon>
     </Compile>
     <Compile Include="Cajas\Filtros.Designer.cs">
@@ -240,6 +239,12 @@
     </Compile>
     <Compile Include="Log\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\Desduplicar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\Desduplicar.Designer.cs">
+      <DependentUpon>Desduplicar.cs</DependentUpon>
     </Compile>
     <Compile Include="Personas\AltaDuplicada.cs">
       <SubType>Form</SubType>
@@ -406,16 +411,16 @@
     <Compile Include="Cajas\Conceptos\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Cajas\Corriente\Ajuste.cs">
+    <Compile Include="CuentasCorrientes\Ajuste.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Cajas\Corriente\Filtros.cs">
+    <Compile Include="CuentasCorrientes\Filtros.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Cajas\Corriente\Inicio.cs">
+    <Compile Include="CuentasCorrientes\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Cajas\Corriente\Inicio.Designer.cs">
+    <Compile Include="CuentasCorrientes\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
     <Compile Include="Cajas\Filtros.cs">
@@ -436,7 +441,7 @@
     <Compile Include="Personas\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Resources1.Designer.cs">
+    <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -514,10 +519,6 @@
     <ProjectReference Include="..\Lui\Lui.csproj">
       <Project>{FD8409C3-35CF-4F30-8898-F4CC17FC35D6}</Project>
       <Name>Lui</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lws\Lws.csproj">
-      <Project>{16A55055-8770-457B-8D39-3D61955FAB7C}</Project>
-      <Name>Lws</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -634,6 +635,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Log\Editar.resx">
       <DependentUpon>Editar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc\Desduplicar.resx">
+      <DependentUpon>Desduplicar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Personas\AltaDuplicada.resx">
       <DependentUpon>AltaDuplicada.cs</DependentUpon>
@@ -803,15 +807,15 @@
       <DependentUpon>Inicio.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Cajas\Corriente\Ajuste.resx">
+    <EmbeddedResource Include="CuentasCorrientes\Ajuste.resx">
       <DependentUpon>Ajuste.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Cajas\Corriente\Filtros.resx">
+    <EmbeddedResource Include="CuentasCorrientes\Filtros.resx">
       <DependentUpon>Filtros.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Cajas\Corriente\Inicio.resx">
+    <EmbeddedResource Include="CuentasCorrientes\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -834,6 +838,10 @@
     <EmbeddedResource Include="Cajas\Movimiento.resx">
       <DependentUpon>Movimiento.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Pvs\Editar.resx">
       <DependentUpon>Editar.cs</DependentUpon>
@@ -866,11 +874,6 @@
       <DependentUpon>Inicio.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Tareas\Editar.resx">
       <DependentUpon>Editar.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -901,21 +904,31 @@
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
       <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
       <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
       <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
-      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
@@ -924,6 +937,7 @@
     <None Include="Resources\Comprobante1.png" />
     <None Include="Resources\Comprobante.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
