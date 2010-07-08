@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -61,7 +63,7 @@ namespace Lcc.Edicion.Articulos
                 {
                         Lbl.Articulos.Articulo Art = this.Elemento as Lbl.Articulos.Articulo;
 
-                        Art.Categoria = new Lbl.Articulos.Categoria(Elemento.DataView, EntradaCategoria.TextInt);
+                        Art.Categoria = new Lbl.Articulos.Categoria(Elemento.DataBase, EntradaCategoria.TextInt);
                         
                         base.ActualizarElemento();
                 }

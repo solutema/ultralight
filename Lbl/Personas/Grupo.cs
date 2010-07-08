@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -37,10 +39,10 @@ namespace Lbl.Personas
 	{
                 private Grupo m_Parent = null;
 
-		public Grupo(Lws.Data.DataView dataView) : base(dataView) { }
+		public Grupo(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-		public Grupo(Lws.Data.DataView dataView, int idGrupo)
-			: this(dataView)
+		public Grupo(Lfx.Data.DataBase dataBase, int idGrupo)
+			: this(dataBase)
 		{
 			m_ItemId = idGrupo;
 		}
@@ -73,7 +75,7 @@ namespace Lbl.Personas
                         get
                         {
                                 if(m_Parent == null && this.FieldInt("parent") != 0)
-                                        m_Parent = new Grupo(this.DataView, this.FieldInt("parent"));
+                                        m_Parent = new Grupo(this.DataBase, this.FieldInt("parent"));
 
                                 return m_Parent;
                         }

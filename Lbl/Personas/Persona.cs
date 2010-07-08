@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -36,21 +38,27 @@ namespace Lbl.Personas
 	public class Persona : ElementoDeDatos
 	{
 		//Heredar constructor
-		public Persona(Lws.Data.DataView dataView) : base(dataView) { }
+		public Persona(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
 		public Entidades.Localidad Localidad;
 		public Grupo Grupo, SubGrupo;
 		public SituacionTributaria SituacionTributaria;
-                private Lbl.Cajas.CuentaCorriente m_CuentaCorriente = null;
+                private Lbl.CuentasCorrientes.CuentaCorriente m_CuentaCorriente = null;
                 private Lbl.Personas.Persona m_Vendedor = null;
 
-		public Persona(Lws.Data.DataView dataView, int idPersona)
-			:this(dataView, idPersona, true)
+                // Heredar constructores
+		public Persona(Lfx.Data.DataBase dataBase, int idPersona)
+			:this(dataBase, idPersona, true)
 		{
 		}
 
-		public Persona(Lws.Data.DataView dataView, int idPersona, bool cargar)
-			: this(dataView)
+                public Persona(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow)
+                {
+                }
+
+		public Persona(Lfx.Data.DataBase dataBase, int idPersona, bool cargar)
+			: this(dataBase)
 		{
 			m_ItemId = idPersona;
                         m_CuentaCorriente = null;
@@ -67,9 +75,9 @@ namespace Lbl.Personas
                                 this.Tipo = 1;
                                 this.Grupo = null;
                                 this.TipoDocumento = 1;
-                                this.SituacionTributaria = new SituacionTributaria(this.DataView, 1);
-                                this.Localidad = new Lbl.Entidades.Localidad(this.DataView, this.Workspace.CurrentConfig.Company.idCiudad);
-                                m_Vendedor = new Persona(this.DataView, this.DataView.Workspace.CurrentUser.Id);
+                                this.SituacionTributaria = new SituacionTributaria(this.DataBase, 1);
+                                this.Localidad = new Lbl.Entidades.Localidad(this.DataBase, this.Workspace.CurrentConfig.Company.idCiudad);
+                                m_Vendedor = new Persona(this.DataBase, this.Workspace.CurrentUser.Id);
                         }
                         return Res;
                 }
@@ -77,14 +85,14 @@ namespace Lbl.Personas
 
                 public override Lfx.Types.OperationResult Guardar()
                 {
-                        Lfx.Data.SqlTableCommandBuilder Comando;
+                        qGen.TableCommand Comando;
 
                         if (this.Existe == false) {
-                                Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.Fields.AddWithValue("fechaalta", Lfx.Data.SqlFunctions.Now);
+                                Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
+                                Comando.Fields.AddWithValue("fechaalta", qGen.SqlFunctions.Now);
                         } else {
-                                Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
+                                Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
                         Comando.Fields.AddWithValue("tipo", this.Tipo);
@@ -108,8 +116,14 @@ namespace Lbl.Personas
                                 Comando.Fields.AddWithValue("id_tipo_doc", null);
                         else
                                 Comando.Fields.AddWithValue("id_tipo_doc", this.TipoDocumento);
-                        Comando.Fields.AddWithValue("num_doc", this.NumeroDocumento.Replace(".", "").Replace(",", "").Replace("-", "").Replace(" ", ""));
-                        Comando.Fields.AddWithValue("cuit", this.Cuit.Replace(".", "").Replace(",", "").Replace(" ", ""));
+                        if (this.NumeroDocumento == null)
+                                Comando.Fields.AddWithValue("num_doc", "");
+                        else
+                                Comando.Fields.AddWithValue("num_doc", this.NumeroDocumento.Replace(".", "").Replace(",", "").Replace(" ", ""));
+                        if (this.Cuit == null)
+                                Comando.Fields.AddWithValue("cuit", null);
+                        else
+                                Comando.Fields.AddWithValue("cuit", this.Cuit.Replace(".", "").Replace(",", "").Replace(" ", ""));
                         if (this.SituacionTributaria == null)
                                 Comando.Fields.AddWithValue("id_situacion", null);
                         else
@@ -138,7 +152,7 @@ namespace Lbl.Personas
 
                         this.AgregarTags(Comando);
 
-                        this.DataView.Execute(Comando);
+                        this.DataBase.Execute(Comando);
 
                         return base.Guardar();
                 }
@@ -425,22 +439,22 @@ namespace Lbl.Personas
                 {
                         if (this.Registro != null) {
                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(m_Registro["id_grupo"]) > 0)
-                                        this.Grupo = new Grupo(this.DataView, System.Convert.ToInt32(m_Registro["id_grupo"]));
+                                        this.Grupo = new Grupo(this.DataBase, System.Convert.ToInt32(m_Registro["id_grupo"]));
                                 else
                                         this.Grupo = null;
 
                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(m_Registro["id_subgrupo"]) > 0)
-                                        this.SubGrupo = new Grupo(this.DataView, System.Convert.ToInt32(m_Registro["id_subgrupo"]));
+                                        this.SubGrupo = new Grupo(this.DataBase, System.Convert.ToInt32(m_Registro["id_subgrupo"]));
                                 else
                                         this.SubGrupo = null;
 
                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(m_Registro["id_ciudad"]) > 0)
-                                        this.Localidad = new Entidades.Localidad(this.DataView, System.Convert.ToInt32(m_Registro["id_ciudad"]));
+                                        this.Localidad = new Entidades.Localidad(this.DataBase, System.Convert.ToInt32(m_Registro["id_ciudad"]));
                                 else
                                         this.Localidad = null;
 
                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(m_Registro["id_situacion"]) > 0)
-                                        this.SituacionTributaria = new SituacionTributaria(this.DataView, System.Convert.ToInt32(m_Registro["id_situacion"]));
+                                        this.SituacionTributaria = new SituacionTributaria(this.DataBase, System.Convert.ToInt32(m_Registro["id_situacion"]));
                                 else
                                         this.SituacionTributaria = null;
 
@@ -460,12 +474,12 @@ namespace Lbl.Personas
                         }
                 }
 
-                public Lbl.Cajas.CuentaCorriente CuentaCorriente
+                public Lbl.CuentasCorrientes.CuentaCorriente CuentaCorriente
                 {
                         get
                         {
                                 if (m_CuentaCorriente == null)
-                                        m_CuentaCorriente = new Lbl.Cajas.CuentaCorriente(this.DataView, this.Id);
+                                        m_CuentaCorriente = new Lbl.CuentasCorrientes.CuentaCorriente(this.DataBase, this.Id);
                                 return m_CuentaCorriente;
                         }
                 }
@@ -475,7 +489,7 @@ namespace Lbl.Personas
                         get
                         {
                                 if (m_Vendedor == null && this.FieldInt("id_vendedor") != 0)
-                                        m_Vendedor = new Lbl.Personas.Persona(this.DataView, this.FieldInt("id_vendedor"));
+                                        m_Vendedor = new Lbl.Personas.Persona(this.DataBase, this.FieldInt("id_vendedor"));
                                 return m_Vendedor;
                         }
                         set

@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -57,7 +59,7 @@ namespace Lcc.Controles.Datos
                                 //Cargo tags para la nueva tabla
                                 Lista.SuspendLayout();
                                 Lista.Items.Clear();
-                                Lws.Data.Table TablaEtiquetas = this.DataView.Tables["sys_labels"];
+                                Lfx.Data.Table TablaEtiquetas = this.DataBase.Tables["sys_labels"];
                                 TablaEtiquetas.PreLoad();
                                 foreach (Lfx.Data.Row Rw in TablaEtiquetas.FastRows.Values) {
                                         Lbl.Etiqueta Eti = new Lbl.Etiqueta(Rw);
@@ -79,7 +81,7 @@ namespace Lcc.Controles.Datos
                                 if(e.Item.Checked) {
                                         //Agrego
                                         if(Elemento.Etiquetas.Contains(ItemId) == false)
-                                                m_Elemento.Etiquetas.Add(new Lbl.Etiqueta(m_Elemento.DataView, ItemId));
+                                                m_Elemento.Etiquetas.Add(new Lbl.Etiqueta(m_Elemento.DataBase, ItemId));
                                 } else {
                                         //Lo quito
                                         if (Elemento.Etiquetas.Contains(ItemId))

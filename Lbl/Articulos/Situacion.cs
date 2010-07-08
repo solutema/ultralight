@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -36,10 +38,10 @@ namespace Lbl.Articulos
 	public class Situacion : ElementoDeDatos
 	{
 		//Heredar constructor
-		public Situacion(Lws.Data.DataView dataView) : base(dataView) { }
+		public Situacion(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-		public Situacion(Lws.Data.DataView dataView, int idArticulo)
-			: this(dataView)
+		public Situacion(Lfx.Data.DataBase dataBase, int idArticulo)
+			: this(dataBase)
 		{
 			m_ItemId = idArticulo;
 		}
@@ -71,12 +73,12 @@ namespace Lbl.Articulos
                 public override Lfx.Types.OperationResult Guardar()
                 {
                         try {
-				Lfx.Data.SqlTableCommandBuilder Comando;
+				qGen.TableCommand Comando;
                                 if (this.Existe) {
-					Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-					Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
+					Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+					Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
 				} else {
-					Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, this.TablaDatos);
+					Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
 				}
 
                                 Comando.Fields.AddWithValue("nombre", this.Registro["nombre"].ToString());
@@ -86,7 +88,7 @@ namespace Lbl.Articulos
 				
 				this.AgregarTags(Comando);
 
-	                        this.DataView.Execute(Comando);
+	                        this.DataBase.Execute(Comando);
 
 				return new Lfx.Types.SuccessOperationResult();
                         }

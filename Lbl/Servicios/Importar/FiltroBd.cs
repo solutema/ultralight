@@ -33,32 +33,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lbl.Tareas
+namespace Lbl.Servicios.Importar
 {
-        public class Tipo : ElementoDeDatos
+        public class FiltroBd : Filtro
         {
-                public Tipo(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+                //private System.Data.IDbConnection DataConnection;
 
-                public Tipo(Lfx.Data.DataBase dataBase, int idTipo)
-			: this(dataBase)
-		{
-			m_ItemId = idTipo;
-		}
-
-		public override string TablaDatos
-		{
-			get
-			{
-                                return "tickets_tipos";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-                                return "id_tipo_ticket";
-			}
-		}
+                public FiltroBd(Lfx.Data.DataBase dataBase)
+                        : base(dataBase)
+                {
+                }
         }
 }

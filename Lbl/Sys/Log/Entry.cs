@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -42,13 +44,13 @@ namespace Lbl.Sys.Log
         public class Entry : Lbl.ElementoDeDatos
         {
                 //Heredar constructor
-                public Entry(Lws.Data.DataView dataView, int idLog)
-			: base(dataView, idLog)
+                public Entry(Lfx.Data.DataBase dataBase, int idLog)
+			: base(dataBase, idLog)
 		{
 		}
 
-                public Entry(Lws.Data.DataView dataView, Lfx.Data.Row row)
-                        : base(dataView, row)
+                public Entry(Lfx.Data.DataBase dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row)
                 {
                 }
 

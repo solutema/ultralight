@@ -15,12 +15,18 @@
             Crea un nuevo elemento, con sus valores predeterminados.
             </summary>
         </member>
+        <member name="M:Lbl.ElementoDeDatos.AgregarComentario(System.String)">
+            <summary>
+            Agrega un comentario al historial de este elemento.
+            </summary>
+            <param name="texto">El texto del comentario.</param>
+        </member>
         <member name="M:Lbl.ElementoDeDatos.Guardar">
             <summary>
             Guarda los cambios en la base de datos.
             </summary>
         </member>
-        <member name="M:Lbl.ElementoDeDatos.AgregarTags(Lfx.Data.SqlCommandBuilder)">
+        <member name="M:Lbl.ElementoDeDatos.AgregarTags(qGen.Command)">
             <summary>
             Agrega los campos personalizados (tags) al comando, antes de guardar.
             </summary>
@@ -76,7 +82,7 @@
             Devuelve una nueva colección, conteniendo los mismos elementos.
             </summary>
         </member>
-        <member name="M:Lbl.ColeccionGenerica`1.Agregados(Lbl.ColeccionDeElementos)">
+        <member name="M:Lbl.ColeccionGenerica`1.Agregados(Lbl.ColeccionGenerica{`0})">
             <summary>
             Devuelve una colección de elementos nuevos, en comparación con una colección original.
             </summary>
@@ -90,44 +96,101 @@
             <param name="original">La colección original.</param>
             <returns>La colección de los elementos no presentes en esta colección, pero si en la original.</returns>
         </member>
-        <member name="T:Lbl.ColeccionDeElementos">
+        <member name="T:Lbl.Servicios.Desduplicador">
             <summary>
-            Una colección de ElementosDeDatos.
+            Fusiona dos elementos de datos, útil para eliminar duplicados. Cambia todas las referencias de claves foráneas al nuevo elemento.
             </summary>
         </member>
-        <member name="M:Lbl.ColeccionDeElementos.Contains(System.Int32)">
+        <member name="T:Lbl.Servicios.Importar.Filtro">
             <summary>
-            Busca un elemento por su Id.
+            Describe un filtro de importación.
             </summary>
         </member>
-        <member name="M:Lbl.ColeccionDeElementos.Add(Lbl.ElementoDeDatos)">
+        <member name="M:Lbl.Servicios.Importar.Filtro.Cargar">
             <summary>
-            Agrega un elemento a la colección.
+            Carga en memoria los datos a importar.
             </summary>
         </member>
-        <member name="M:Lbl.ColeccionDeElementos.RemoveById(System.Int32)">
+        <member name="M:Lbl.Servicios.Importar.Filtro.CargarDatos">
             <summary>
-            Elimina un elemento por su Id.
+            Carga los datos desde el origen.
             </summary>
         </member>
-        <member name="M:Lbl.ColeccionDeElementos.Clone">
+        <member name="M:Lbl.Servicios.Importar.Filtro.Fusionar">
             <summary>
-            Devuelve una nueva colección, conteniendo los mismos elementos.
+            Incorpora en la base de datos los datos cargados en memoria.
             </summary>
         </member>
-        <member name="M:Lbl.ColeccionDeElementos.Agregados(Lbl.ColeccionDeElementos)">
+        <member name="M:Lbl.Servicios.Importar.Filtro.FusionarTabla(Lbl.Servicios.Importar.MapaDeTabla)">
             <summary>
-            Devuelve una colección de elementos nuevos, en comparación con una colección original.
+            Incorpora en la base de datos los datos cargados en memoria para la tabla seleccionada.
             </summary>
-            <param name="original">La colección original.</param>
-            <returns>La colección de los elementos presentes en esta colección, pero no en la original.</returns>
         </member>
-        <member name="M:Lbl.ColeccionDeElementos.Quitados(Lbl.ColeccionDeElementos)">
+        <member name="M:Lbl.Servicios.Importar.Filtro.ProcesarRegistro(Lbl.Servicios.Importar.MapaDeTabla,System.Data.DataRow)">
             <summary>
-            Devuelve una colección de elementos faltantes, en comparación con una colección original.
+            Procesa un registro según el mapa de columnas correspondiente a la tabla y devuelve un Lfx.Data.Row
             </summary>
-            <param name="original">La colección original.</param>
-            <returns>La colección de los elementos no presentes en esta colección, pero si en la original.</returns>
+        </member>
+        <member name="M:Lbl.Servicios.Importar.Filtro.PrepararTablasLazaro">
+            <summary>
+            Prepara las tablas internas para recibir los datos importados.
+            </summary>
+        </member>
+        <member name="M:Lbl.Servicios.Importar.Filtro.ProcesarRemplazos(Lbl.Servicios.Importar.MapaDeTabla,Lfx.Data.Row@)">
+            <summary>
+            Realiza los reemplazos de la lista de reemplazos definidos para este filtro.
+            </summary>
+        </member>
+        <member name="M:Lbl.Servicios.Importar.Filtro.CrearElemento(Lbl.Servicios.Importar.MapaDeTabla,Lfx.Data.Row)">
+            <summary>
+            Crea un derivado de ElementoDeDatos del tipo correspondiente para el mapa de tabla actual a partir de un Lfx.Data.Row.
+            </summary>
+            <param name="mapa">El mapa de la tabla a la cual corresponde el registro.</param>
+            <param name="row">El registro a partir del cual crear un ElementoDeDatos.</param>
+            <returns>Un objeto de alguna clase derivada de ElementoDeDatos.</returns>
+        </member>
+        <member name="M:Lbl.Servicios.Importar.Filtro.CargarElemento(Lbl.Servicios.Importar.MapaDeTabla,Lfx.Data.Row)">
+            <summary>
+            Carga un elemento existente desde la base de datos.
+            </summary>
+            <param name="mapa"></param>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Lbl.Servicios.Importar.FiltroArchivos">
+            <summary>
+            Describe un filtro de importación desde uno o varios archivos.
+            </summary>
+        </member>
+        <member name="T:Lbl.Servicios.Importar.FiltroDbf">
+            <summary>
+            Describe un filtro de importación desde archivos DBF.
+            </summary>
+        </member>
+        <member name="T:Lbl.Servicios.Importar.FiltroEscorpion">
+            <summary>
+            Describe un filtro de importación desde archivos DBF del sistema de Escorpión Sistemas.
+            </summary>
+        </member>
+        <member name="T:Lbl.Servicios.Importar.MapaDeColumna">
+            <summary>
+            Especifica cómo se "mapea" una columna de una tabla externa a una columna de una tabla de Lázaro.
+            </summary>
+        </member>
+        <member name="T:Lbl.Servicios.Importar.MapaDeColumnas">
+            <summary>
+            Contiene una lista de columnas a mapear en una tabla.
+            </summary>
+        </member>
+        <member name="T:Lbl.Servicios.Importar.MapaDeTabla">
+            <summary>
+            Especifica cómo se "mapea" una tabla externa a una tabla de Lázaro.
+            </summary>
+        </member>
+        <member name="T:Lbl.Servicios.Importar.MapaDeTablas">
+            <summary>
+            Contiene una lista de tablas a mapear al importar.
+            </summary>
         </member>
         <member name="M:Lbl.Comprobantes.ColeccionDetalleArticulos.Unificar">
             <summary>
@@ -160,6 +223,108 @@
         <member name="P:Lbl.Comprobantes.Tipo.Nomenclatura">
             <summary>
             La nomenclatura del tipo de comprobante (A, B, NCA, NDE, etc.)
+            </summary>
+        </member>
+        <member name="T:Lbl.CuentasCorrientes.CuentaCorriente">
+            <summary>
+            Representa la cuenta corriente de una persona (cliente o proveedor).
+            </summary>
+        </member>
+        <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.Saldo">
+            <summary>
+            Calcula el saldo actual de la cuenta corriente.
+            </summary>
+            <returns>El monto adeudado (puede ser positivo o negativo) en la cuenta corriente.</returns>
+        </member>
+        <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.Recalcular">
+            <summary>
+            Recalcula completamente el saldo de la cuenta corriente, para corregir errores de transporte. Principalmente de uso interno
+            durante verificaciones de consistencia o al desduplicar cuentas.
+            </summary>
+        </member>
+        <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.Movimiento(System.Boolean,System.Int32,System.String,System.Double,System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Asienta un movimiento en la cuenta corriente.
+            </summary>
+            <param name="auto">Indica si es un movimiento automático (generado por el sistema) o manual (generado por el usuario).</param>
+            <param name="idConcepto">El concepto bajo el cual se realiza el movimiento.</param>
+            <param name="concepto">El texto que describe al concepto.</param>
+            <param name="importeDebito">El importe a debitar de la cuenta. Un importe negativo indica un crédito.</param>
+            <param name="obs">Observaciones.</param>
+            <param name="idComprob">El comprobante asociado a este movimiento.</param>
+            <param name="idRecibo">El recibo asociado a este movimiento.</param>
+            <param name="cancelaCosas">Indica si el monto del movimiento se usa para cancelar comprobantes impagos.</param>
+            <returns>El resultado de la operación</returns>
+        </member>
+        <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.IngresarComprobante(Lbl.Comprobantes.ComprobanteConArticulos)">
+            <summary>
+            Ingresa un comprobante (factura, nota de crédito o nota de débito) a la cuenta corriente, realizando el movimiento correspondiente.
+            </summary>
+            <param name="comprob">El comprobante a ingresar.</param>
+        </member>
+        <member name="P:Lbl.Cuotas.Cuota.Fecha">
+            <summary>
+            Devuelve o establece la fecha en la que se realiza la operación.
+            </summary>
+        </member>
+        <member name="P:Lbl.Cuotas.Cuota.Vencimiento">
+            <summary>
+            Devuelve o establece el vencimiento de la primera cuota. El resto de las cuotas vencen el mismo día de los meses sucesivos.
+            </summary>
+        </member>
+        <member name="P:Lbl.Cuotas.Cuota.Cuotas">
+            <summary>
+            Devuelve o establece la cantidad de cuotas en las que se paga esta operación.
+            </summary>
+        </member>
+        <member name="P:Lbl.Cuotas.Cuota.Autorizacion">
+            <summary>
+            Devuelve o establece el número de autorizacón para esta operación.
+            </summary>
+        </member>
+        <member name="P:Lbl.Cuotas.Cuota.ImporteTotal">
+            <summary>
+            Devuelve o establece el importe total de la operación, incluyendo los intereses.
+            </summary>
+        </member>
+        <member name="P:Lbl.Cuotas.Cuota.ImporteBruto">
+            <summary>
+            Devuelve o establece el importe bruto de la operación, sin incluir intereses.
+            </summary>
+        </member>
+        <member name="P:Lbl.Cuotas.Cuota.ImporteIntereses">
+            <summary>
+            Devuelve el monto total de intereses aplicado a esta operación.
+            </summary>
+        </member>
+        <member name="P:Lbl.Cuotas.Cuota.Intereses">
+            <summary>
+            Devuelve el porcentaje de interés total aplicado a esta operación.
+            </summary>
+        </member>
+        <member name="P:Lbl.Cuotas.Cuota.Diferencia">
+            <summary>
+            Devuelve la "diferencia" en las operaciones "diferidas".
+            </summary>
+        </member>
+        <member name="P:Lbl.Cuotas.Cuota.DiferenciaMeses">
+            <summary>
+            Devuelve la "diferencia" (en meses) en las operaciones "diferidas".
+            </summary>
+        </member>
+        <member name="P:Lbl.Cuotas.Cuota.DiferenciaDesdeHoy">
+            <summary>
+            Devuelve la "diferencia" desde hoy (y no desde la fecha de la operación) en las operaciones "diferidas".
+            </summary>
+        </member>
+        <member name="P:Lbl.Cuotas.Cuota.DiferenciaMesesDesdeHoy">
+            <summary>
+            Devuelve la "diferencia" (en meses) desde hoy (y no desde la fecha de la operación) hasta la fecha del primer pago (especialmente para las precancelaciones).
+            </summary>
+        </member>
+        <member name="P:Lbl.Cuotas.Cuota.MontoCuota">
+            <summary>
+            Devuelve el monto de la cuota (es el importe total dividido por la cantidad de cuotas).
             </summary>
         </member>
         <member name="P:Lbl.Tarjetas.Cupon.FormaDePago">

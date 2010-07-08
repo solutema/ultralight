@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -39,10 +41,10 @@ namespace Lbl.Pagos
                 public Lbl.Comprobantes.Recibo Recibo;
 
                 //Heredar constructor
-		public Valor(Lws.Data.DataView dataView) : base(dataView) { }
+		public Valor(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-                public Valor(Lws.Data.DataView dataView, int idValor)
-			: this(dataView)
+                public Valor(Lfx.Data.DataBase dataBase, int idValor)
+			: this(dataBase)
 		{
                         m_ItemId = idValor;
                         this.Cargar();
@@ -68,12 +70,12 @@ namespace Lbl.Pagos
                 {
                         if (this.Registro != null) {
                                 if (this.FieldInt("id_formapago") > 0)
-                                        this.FormaDePago = new Lbl.Comprobantes.FormaDePago(this.DataView, this.FieldInt("id_formapago"));
+                                        this.FormaDePago = new Lbl.Comprobantes.FormaDePago(this.DataBase, this.FieldInt("id_formapago"));
                                 else
                                         this.FormaDePago = null;
 
                                 /* if (this.FieldInt("id_recibo") > 0)
-                                        this.Recibo = new Lbl.Comprobantes.Recibo(this.DataView, this.FieldInt("id_recibo"));
+                                        this.Recibo = new Lbl.Comprobantes.Recibo(this.DataBase, this.FieldInt("id_recibo"));
                                 else
                                         this.Recibo = null; */
                         }
@@ -132,15 +134,15 @@ namespace Lbl.Pagos
 
                 public override Lfx.Types.OperationResult Guardar()
                 {
-                        Lfx.Data.SqlTableCommandBuilder Comando;
+                        qGen.TableCommand Comando;
                         if (this.Existe) {
-                                Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
+                                Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         } else {
-                                Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, this.TablaDatos);
+                                Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
                         }
 
-                        Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
+                        Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
 
                         if (this.FormaDePago == null)
                                 throw new InvalidOperationException("Lbl.Pagos.Valor.Guardar: Debe especificar la forma de pago");
@@ -158,14 +160,14 @@ namespace Lbl.Pagos
                                 Comando.Fields.AddWithValue("nombre", this.Nombre);
 
                         Comando.Fields.AddWithValue("numero", this.Numero);
-                        Comando.Fields.AddWithValue("id_sucursal", this.DataView.Workspace.CurrentConfig.Company.CurrentBranch);
+                        Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Company.CurrentBranch);
 
                         Comando.Fields.AddWithValue("importe", this.Importe);
                         Comando.Fields.AddWithValue("obs", this.Obs);
 
                         this.AgregarTags(Comando);
 
-                        this.DataView.Execute(Comando);
+                        this.DataBase.Execute(Comando);
 
                         return base.Guardar();
                 }

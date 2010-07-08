@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -48,17 +50,17 @@ namespace Lcc.Controles.Datos
                 {
                         ListaComentarios.BeginUpdate();
                         ListaComentarios.Items.Clear();
-                        Lfx.Data.SqlSelectBuilder SelectComentarios = new Lfx.Data.SqlSelectBuilder("sys_comments");
-                        SelectComentarios.WhereClause = new Lfx.Data.SqlWhereBuilder();
-                        SelectComentarios.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("tablas", this.Elemento.TablaDatos));
-                        SelectComentarios.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("item_id", this.Elemento.Id));
+                        qGen.Select SelectComentarios = new qGen.Select("sys_comments");
+                        SelectComentarios.WhereClause = new qGen.Where();
+                        SelectComentarios.WhereClause.Add(new qGen.ComparisonCondition("tablas", this.Elemento.TablaDatos));
+                        SelectComentarios.WhereClause.Add(new qGen.ComparisonCondition("item_id", this.Elemento.Id));
                         SelectComentarios.Order = "fecha DESC";
 
-                        System.Data.DataTable Comentarios = Elemento.DataView.DataBase.Select(SelectComentarios);
+                        System.Data.DataTable Comentarios = Elemento.DataBase.Select(SelectComentarios);
                         foreach (System.Data.DataRow Com in Comentarios.Rows) {
                                 ListViewItem Itm = ListaComentarios.Items.Add(Com["id_comment"].ToString());
                                 Itm.SubItems.Add(Lfx.Types.Formatting.FormatShortestDateAndTime(System.Convert.ToDateTime(Com["fecha"])));
-                                Itm.SubItems.Add(this.Elemento.DataView.Tables["personas"].FastRows[System.Convert.ToInt32(Com["id_persona"])].Fields["nombre_visible"].Value.ToString());
+                                Itm.SubItems.Add(this.Elemento.DataBase.Tables["personas"].FastRows[System.Convert.ToInt32(Com["id_persona"])].Fields["nombre_visible"].Value.ToString());
                                 Itm.SubItems.Add(Com["obs"].ToString());
                         }
 
@@ -73,13 +75,13 @@ namespace Lcc.Controles.Datos
 
                 private void BotonAgregar_Click(object sender, EventArgs e)
                 {
-                        Lfx.Data.SqlInsertBuilder InsertarComentario = new Lfx.Data.SqlInsertBuilder("sys_comments");
-                        InsertarComentario.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
+                        qGen.Insert InsertarComentario = new qGen.Insert("sys_comments");
+                        InsertarComentario.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                         InsertarComentario.Fields.AddWithValue("tablas", this.Elemento.TablaDatos);
                         InsertarComentario.Fields.AddWithValue("item_id", this.Elemento.Id);
                         InsertarComentario.Fields.AddWithValue("id_persona", this.Workspace.CurrentUser.Id);
                         InsertarComentario.Fields.AddWithValue("obs", EntradaComentario.Text);
-                        this.Elemento.DataView.Execute(InsertarComentario);
+                        this.Elemento.DataBase.Execute(InsertarComentario);
 
                         ListaComentarios.BeginUpdate();
                         ListViewItem Itm = ListaComentarios.Items.Insert(0, new ListViewItem(new System.Random().Next().ToString()));

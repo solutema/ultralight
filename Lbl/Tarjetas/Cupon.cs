@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -45,7 +47,7 @@ namespace Lbl.Tarjetas
 	public class Cupon : ElementoDeDatos
 	{
 		//Heredar constructor
-		public Cupon(Lws.Data.DataView dataView) : base(dataView) { }
+		public Cupon(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
 		public Tarjetas.Tarjeta Tarjeta;
 		public Tarjetas.Plan Plan;
@@ -54,22 +56,22 @@ namespace Lbl.Tarjetas
                 public Cajas.Concepto Concepto;
                 public Personas.Persona Cliente, Vendedor;
 
-		public Cupon(Lws.Data.DataView dataView, int idCupon)
-			: this(dataView)
+		public Cupon(Lfx.Data.DataBase dataBase, int idCupon)
+			: this(dataBase)
 		{
 			m_ItemId = idCupon;
                         this.Cargar();
 		}
 
-                public Cupon(Lws.Data.DataView dataView, Lbl.Comprobantes.ComprobanteConArticulos factura)
-                        : this(dataView)
+                public Cupon(Lfx.Data.DataBase dataBase, Lbl.Comprobantes.ComprobanteConArticulos factura)
+                        : this(dataBase)
                 {
-                        m_ItemId = dataView.DataBase.FieldInt("SELECT MAX(id_cupon) FROM tarjetas_cupones WHERE id_comprob=" + factura.Id.ToString());
+                        m_ItemId = dataBase.FieldInt("SELECT MAX(id_cupon) FROM tarjetas_cupones WHERE id_comprob=" + factura.Id.ToString());
                         this.Cargar();
                 }
 
-		public Cupon(Lws.Data.DataView dataView, double importe, Tarjetas.Tarjeta tarjeta, Tarjetas.Plan plan, string numero, string autorizacion)
-			: this(dataView)
+		public Cupon(Lfx.Data.DataBase dataBase, double importe, Tarjetas.Tarjeta tarjeta, Tarjetas.Plan plan, string numero, string autorizacion)
+			: this(dataBase)
 		{
 			Importe = importe;
 			Tarjeta = tarjeta;
@@ -137,9 +139,9 @@ namespace Lbl.Tarjetas
                 {
                         get
                         {
-                                Lbl.Comprobantes.FormaDePago Res = new Lbl.Comprobantes.FormaDePago(this.DataView, this.Tarjeta.Id);
+                                Lbl.Comprobantes.FormaDePago Res = new Lbl.Comprobantes.FormaDePago(this.DataBase, this.Tarjeta.Id);
                                 if (Res.Existe == false)
-                                        return new Lbl.Comprobantes.FormaDePago(this.DataView, 4);
+                                        return new Lbl.Comprobantes.FormaDePago(this.DataBase, 4);
                                 else
                                         return Res;
 
@@ -194,37 +196,37 @@ namespace Lbl.Tarjetas
                 {
                         if (this.Registro != null) {
                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(Registro["id_tarjeta"]) > 0)
-                                        this.Tarjeta = new Tarjeta(this.DataView, System.Convert.ToInt32(Registro["id_tarjeta"]));
+                                        this.Tarjeta = new Tarjeta(this.DataBase, System.Convert.ToInt32(Registro["id_tarjeta"]));
                                 else
                                         this.Tarjeta = null;
 
                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(Registro["id_plan"]) > 0)
-                                        this.Plan = new Plan(this.DataView, Lfx.Data.DataBase.ConvertDBNullToZero(Registro["id_plan"]));
+                                        this.Plan = new Plan(this.DataBase, Lfx.Data.DataBase.ConvertDBNullToZero(Registro["id_plan"]));
                                 else
                                         this.Plan = null;
 
                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(Registro["id_recibo"]) > 0)
-                                        this.Recibo = new Comprobantes.ReciboDeCobro(this.DataView, System.Convert.ToInt32(Registro["id_recibos"]));
+                                        this.Recibo = new Comprobantes.ReciboDeCobro(this.DataBase, System.Convert.ToInt32(Registro["id_recibos"]));
                                 else
                                         this.Recibo = null;
 
                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(Registro["id_comprob"]) > 0)
-                                        this.Factura = new Comprobantes.Factura(this.DataView, System.Convert.ToInt32(Registro["id_comprob"]));
+                                        this.Factura = new Comprobantes.Factura(this.DataBase, System.Convert.ToInt32(Registro["id_comprob"]));
                                 else
                                         this.Factura = null;
 
                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(Registro["id_concepto"]) > 0)
-                                        this.Concepto = new Cajas.Concepto(this.DataView, System.Convert.ToInt32(Registro["id_concepto"]));
+                                        this.Concepto = new Cajas.Concepto(this.DataBase, System.Convert.ToInt32(Registro["id_concepto"]));
                                 else
                                         this.Concepto = null;
 
                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(Registro["id_cliente"]) > 0)
-                                        this.Cliente = new Personas.Persona(this.DataView, System.Convert.ToInt32(Registro["id_cliente"]));
+                                        this.Cliente = new Personas.Persona(this.DataBase, System.Convert.ToInt32(Registro["id_cliente"]));
                                 else
                                         this.Cliente = null;
 
                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(Registro["id_vendedor"]) > 0)
-                                        this.Vendedor = new Personas.Persona(this.DataView, System.Convert.ToInt32(Registro["id_vendedor"]));
+                                        this.Vendedor = new Personas.Persona(this.DataBase, System.Convert.ToInt32(Registro["id_vendedor"]));
                                 else
                                         this.Vendedor = null;
                         }
@@ -251,14 +253,14 @@ namespace Lbl.Tarjetas
                                 }
                         }
 
-			Lfx.Data.SqlTableCommandBuilder Comando;
+			qGen.TableCommand Comando;
 
                         if (this.Existe == false) {
-                                Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
+                                Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
+                                Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                         } else {
-                                Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
+                                Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
 			Comando.Fields.AddWithValue("numero", this.Numero);
@@ -330,7 +332,7 @@ namespace Lbl.Tarjetas
 
 			this.AgregarTags(Comando);
 
-			this.DataView.Execute(Comando);
+			this.DataBase.Execute(Comando);
 
 			return new Lfx.Types.SuccessOperationResult();
 		}
@@ -339,10 +341,10 @@ namespace Lbl.Tarjetas
                 {
                         if (this.Anulado == false) {
                                 // Marco el cheque como anulado
-                                Lfx.Data.SqlUpdateBuilder Act = new Lfx.Data.SqlUpdateBuilder(this.TablaDatos);
+                                qGen.Update Act = new qGen.Update(this.TablaDatos);
                                 Act.Fields.AddWithValue("estado", 1);
-                                Act.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
-                                this.DataView.Execute(Act);
+                                Act.WhereClause = new qGen.Where(this.CampoId, this.Id);
+                                this.DataBase.Execute(Act);
                         }
                 }
 	}

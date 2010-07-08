@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -35,6 +37,14 @@ namespace Lbl.Articulos
 {
 	public class Stock
 	{
+                public enum DownloadImage
+                {
+                        Always,
+                        Never,
+                        OnlyIfNotInCache,
+                        PreferCacheOnSlowLinks
+                }
+
 		public static void MoverStockFactura(Lbl.Comprobantes.ComprobanteConArticulos comprobante, bool saliente)
 		{
 			// Resta lo facturado del stock
@@ -81,20 +91,12 @@ namespace Lbl.Articulos
                         }
 		}
 
-                public enum DownloadImage
-                {
-                        Always,
-                        Never,
-                        OnlyIfNotInCache,
-                        PreferCacheOnSlowLinks
-                }
-
-		public static System.Drawing.Image ProductImage(Lws.Data.DataView dataView, int productId)
+		public static System.Drawing.Image ProductImage(Lfx.Data.DataBase dataBase, int productId)
 		{
-			return ProductImage(dataView, productId, DownloadImage.PreferCacheOnSlowLinks);
+			return ProductImage(dataBase, productId, DownloadImage.PreferCacheOnSlowLinks);
 		}
 
-		public static System.Drawing.Image ProductImage(Lws.Data.DataView dataView, int productId, DownloadImage downloadImage)
+		public static System.Drawing.Image ProductImage(Lfx.Data.DataBase dataBase, int productId, DownloadImage downloadImage)
 		{
 			string CachePath = Lfx.Environment.Folders.CacheFolder;
 			string ImageFileName = "product_" + productId.ToString() + ".jpg";
@@ -102,10 +104,10 @@ namespace Lbl.Articulos
 
 			if(downloadImage == DownloadImage.Always
 				|| (downloadImage == DownloadImage.OnlyIfNotInCache && ImageInCache == false)
-				|| ((downloadImage == DownloadImage.PreferCacheOnSlowLinks && ImageInCache == false) || dataView.DataBase.SlowLink == false))
+				|| ((downloadImage == DownloadImage.PreferCacheOnSlowLinks && ImageInCache == false) || dataBase.SlowLink == false))
 			{
 				//Download image and save to cache
-				Lfx.Data.Row ImagenDB = dataView.DataBase.Row("articulos_imagenes", "imagen", "id_articulo", productId);
+				Lfx.Data.Row ImagenDB = dataBase.Row("articulos_imagenes", "imagen", "id_articulo", productId);
 
                                 if (ImagenDB != null && ImagenDB.Fields["imagen"].Value != DBNull.Value && ((byte[])(ImagenDB.Fields["imagen"].Value)).Length > 5)
 				{
@@ -115,14 +117,18 @@ namespace Lbl.Articulos
 					wr.Close();
 
                                         byte[] ByteArr = ((byte[])(ImagenDB.Fields["imagen"].Value));
-					System.IO.MemoryStream loStream = new System.IO.MemoryStream(ByteArr);
-					return System.Drawing.Image.FromStream(loStream);
+                                        System.Drawing.Image Img;
+
+                                        using (System.IO.MemoryStream loStream = new System.IO.MemoryStream(ByteArr)) {
+                                                Img = System.Drawing.Image.FromStream(loStream);
+                                        }
+                                        return Img;
 				}
 				else
 				{
 					//Devuelve la imagen de la categoría, en lugar de la del artículo
-					int CategoriaArticulo = dataView.DataBase.FieldInt("SELECT id_categoria FROM articulos WHERE id_articulo=" + productId.ToString());
-					return CategoryImage(dataView, CategoriaArticulo, downloadImage);
+					int CategoriaArticulo = dataBase.FieldInt("SELECT id_categoria FROM articulos WHERE id_articulo=" + productId.ToString());
+					return CategoryImage(dataBase, CategoriaArticulo, downloadImage);
 				}
 			}
 
@@ -135,7 +141,7 @@ namespace Lbl.Articulos
 			return null;
 		}
 
-		public static System.Drawing.Image CategoryImage(Lws.Data.DataView dataView, int categoryId, DownloadImage downloadImage)
+		public static System.Drawing.Image CategoryImage(Lfx.Data.DataBase dataBase, int categoryId, DownloadImage downloadImage)
 		{
 			string CachePath = Lfx.Environment.Folders.CacheFolder;
 			string ImageFileName = "product_category_" + categoryId.ToString() + ".jpg";
@@ -143,10 +149,10 @@ namespace Lbl.Articulos
 
                         if (downloadImage == DownloadImage.Always
                                 || (downloadImage == DownloadImage.OnlyIfNotInCache && ImageInCache == false)
-                                || ((downloadImage == DownloadImage.PreferCacheOnSlowLinks && ImageInCache == false) || dataView.DataBase.SlowLink == false))
+                                || ((downloadImage == DownloadImage.PreferCacheOnSlowLinks && ImageInCache == false) || dataBase.SlowLink == false))
 			{
 				//Download image and save to cache
-				Lfx.Data.Row ImagenDB = dataView.DataBase.Row("articulos_categorias", "imagen", "id_categoria", categoryId);
+				Lfx.Data.Row ImagenDB = dataBase.Row("articulos_categorias", "imagen", "id_categoria", categoryId);
 
 				if(ImagenDB != null && ImagenDB["imagen"] != null && ((byte[])(ImagenDB["imagen"])).Length > 5)
 				{
@@ -172,12 +178,12 @@ namespace Lbl.Articulos
 			return null;
 		}
 
-		public static string CodigoPredet(Lws.Workspace workspace)
+		public static string CodigoPredet(Lfx.Workspace workspace)
 		{
 			return CodigoPredet(workspace, null);
 		}
 
-		public static string CodigoPredet(Lws.Workspace workspace, Lfx.Data.Row Articulo)
+		public static string CodigoPredet(Lfx.Workspace workspace, Lfx.Data.Row Articulo)
 		{
 			// Devuelve el código predeterminado de un artículo
 			// Si se pasa un registro artículo como parmetro, devuelve el valor del

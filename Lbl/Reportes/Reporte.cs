@@ -1,4 +1,5 @@
-﻿// Copyright 2004-2010 South Bridge S.R.L.
+#region License
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -36,18 +38,18 @@ namespace Lbl.Reportes
 {
         public class Reporte
         {
-                public Lws.Data.DataView DataView;
+                public Lfx.Data.DataBase DataBase;
                 public string Titulo = "Reporte";
 
-                public Lfx.Data.SqlSelectBuilder SelectCommand;
+                public qGen.Select SelectCommand;
                 public Lfx.Data.Grouping Grouping = null;
                 public System.Collections.Generic.List<Lfx.Data.Aggregate> Aggregates = new List<Lfx.Data.Aggregate>();
                 public System.Collections.Generic.List<Lfx.Data.FormField> Fields = new List<Lfx.Data.FormField>();
                 public bool ExpandGroups = true;
 
-                public Reporte(Lws.Data.DataView dataView, Lfx.Data.SqlSelectBuilder selectCommand)
+                public Reporte(Lfx.Data.DataBase dataBase, qGen.Select selectCommand)
                 {
-                        this.DataView = dataView;
+                        this.DataBase = dataBase;
                         this.SelectCommand = selectCommand;
                 }
 
@@ -66,7 +68,7 @@ namespace Lbl.Reportes
                         if (this.Grouping != null)
                                 this.Grouping.Reset();
 
-                        Lfx.Data.SqlSelectBuilder Sel = this.SelectCommand.Clone();
+                        qGen.Select Sel = this.SelectCommand.Clone();
                         if (this.Grouping != null) {
                                 if (Sel.Order == null || Sel.Order.Length == 0)
                                         Sel.Order = this.Grouping.Field.ColumnName;
@@ -74,7 +76,7 @@ namespace Lbl.Reportes
                                         Sel.Order = this.Grouping.Field.ColumnName + "," + Sel.Order;
                         }
 
-                        System.Data.DataTable Tabla = DataView.DataBase.Select(Sel);
+                        System.Data.DataTable Tabla = DataBase.Select(Sel);
                         foreach (System.Data.DataRow Registro in Tabla.Rows) {
                                 if (this.Grouping != null && Lfx.Types.Object.ObjectsEqualByValue(this.Grouping.LastValue, Registro[Lfx.Data.DataBase.GetFieldName(this.Grouping.Field.ColumnName)]) == false) {
                                         // Agrego un renglón de subtotales

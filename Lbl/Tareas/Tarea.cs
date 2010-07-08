@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -38,10 +40,10 @@ namespace Lbl.Tareas
                 public Lbl.Personas.Persona Cliente, Encargado;
                 public Lbl.Tareas.Tipo Tipo;
 
-                public Tarea(Lws.Data.DataView dataView) : base(dataView) { }
+                public Tarea(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-                public Tarea(Lws.Data.DataView dataView, int idTarea)
-			: this(dataView)
+                public Tarea(Lfx.Data.DataBase dataBase, int idTarea)
+			: this(dataBase)
 		{
 			m_ItemId = idTarea;
 		}
@@ -138,17 +140,17 @@ namespace Lbl.Tareas
                 {
                         if (m_Registro != null) {
                                 if (this.FieldInt("id_tipo_ticket") != 0)
-                                        this.Tipo = new Tipo(this.DataView, System.Convert.ToInt32(this.Registro["id_tipo_ticket"]));
+                                        this.Tipo = new Tipo(this.DataBase, System.Convert.ToInt32(this.Registro["id_tipo_ticket"]));
                                 else
                                         this.Tipo = null;
 
                                 if (this.FieldInt("id_persona") != 0)
-                                        this.Cliente = new Personas.Persona(this.DataView, this.FieldInt("id_persona"));
+                                        this.Cliente = new Personas.Persona(this.DataBase, this.FieldInt("id_persona"));
                                 else
                                         this.Cliente = null;
 
                                 if (this.FieldInt("id_tecnico_recibe") != 0)
-                                        this.Encargado = new Personas.Persona(this.DataView, this.FieldInt("id_tecnico_recibe"));
+                                        this.Encargado = new Personas.Persona(this.DataBase, this.FieldInt("id_tecnico_recibe"));
                                 else
                                         this.Encargado = null;
                         }
@@ -158,21 +160,21 @@ namespace Lbl.Tareas
                 public override Lfx.Types.OperationResult Crear()
                 {
                         Lfx.Types.OperationResult Res = base.Crear();
-                        this.Encargado = new Lbl.Personas.Persona(this.DataView, this.Workspace.CurrentUser.Id);
+                        this.Encargado = new Lbl.Personas.Persona(this.DataBase, this.Workspace.CurrentUser.Id);
                         return Res;
                 }
 
                 public override Lfx.Types.OperationResult Guardar()
                 {
-                        Lfx.Data.SqlTableCommandBuilder Comando;
+                        qGen.TableCommand Comando;
 
                         if (this.Existe == false) {
-                                Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.Fields.AddWithValue("fecha_ingreso", Lfx.Data.SqlFunctions.Now);
+                                Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
+                                Comando.Fields.AddWithValue("fecha_ingreso", qGen.SqlFunctions.Now);
                                 Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Company.CurrentBranch);
                         } else {
-                                Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
+                                Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
                         Comando.Fields.AddWithValue("id_persona", this.Cliente.Id);
@@ -189,7 +191,7 @@ namespace Lbl.Tareas
 
                         this.AgregarTags(Comando);
 
-                        this.DataView.Execute(Comando);
+                        this.DataBase.Execute(Comando);
 
                         return base.Guardar();
                 }

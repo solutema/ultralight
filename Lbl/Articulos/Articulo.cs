@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -56,13 +58,17 @@ namespace Lbl.Articulos
                 private ColeccionItem m_ListaItem = null;
 
 		//Heredar constructor
-		public Articulo(Lws.Data.DataView dataView) : base(dataView) { }
+		public Articulo(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-		public Articulo(Lws.Data.DataView dataView, int idArticulo)
-			: this(dataView)
+		public Articulo(Lfx.Data.DataBase dataBase, int idArticulo)
+			: base(dataBase, idArticulo)
 		{
-			m_ItemId = idArticulo;
 		}
+
+                public Articulo(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow)
+                {
+                }
 
 		public override string TablaDatos
 		{
@@ -330,9 +336,10 @@ namespace Lbl.Articulos
                         {
                                 if (m_ListaItem == null) {
                                         m_ListaItem = new ColeccionItem();
-                                        System.Data.DataTable TablaListaItem = this.DataView.DataBase.Select("SELECT id_situacion, serie FROM articulos_series WHERE id_articulo=" + this.Id.ToString());
-                                        foreach (System.Data.DataRow RowItem in TablaListaItem.Rows) {
-                                                m_ListaItem.Add(new Item(RowItem["serie"].ToString(), new Situacion(this.DataView, System.Convert.ToInt32(RowItem["id_situacion"]))));
+                                        using (System.Data.DataTable TablaListaItem = this.DataBase.Select("SELECT id_situacion, serie FROM articulos_series WHERE id_articulo=" + this.Id.ToString())) {
+                                                foreach (System.Data.DataRow RowItem in TablaListaItem.Rows) {
+                                                        m_ListaItem.Add(new Item(RowItem["serie"].ToString(), new Situacion(this.DataBase, System.Convert.ToInt32(RowItem["id_situacion"]))));
+                                                }
                                         }
                                 }
                                 return m_ListaItem;
@@ -346,7 +353,7 @@ namespace Lbl.Articulos
 
 		public double StockActual(Situacion situacion)
 		{
-			return this.DataView.DataBase.FieldDouble("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion=" + situacion.Id.ToString());
+			return this.DataBase.FieldDouble("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion=" + situacion.Id.ToString());
 		}
 
 		
@@ -356,44 +363,44 @@ namespace Lbl.Articulos
                                 double CantidadEntranteOSalienteDeStock = 0;
 
                                 string[] ListaSeries;
-                                string ListaSeriesSql;
+                                //string ListaSeriesSql;
                                 if (series != null) {
                                         series = series.Replace('\r', '\n');
                                         ListaSeries = series.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
-                                        ListaSeriesSql = "'" + string.Join("', '", ListaSeries) + "'";
+                                        //ListaSeriesSql = "'" + string.Join("', '", ListaSeries) + "'";
                                 } else {
                                         ListaSeries = new string[0];
-                                        ListaSeriesSql = "";
+                                        //ListaSeriesSql = "";
                                 }
 
                                 // stock saliente (situación de origen)
                                 if (situacionOrigen != null && situacionOrigen.CuentaStock) {
-                                        int Existe = this.DataView.DataBase.FieldInt("SELECT COUNT(id_articulo) FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion=" + situacionOrigen.Id.ToString());
+                                        int Existe = this.DataBase.FieldInt("SELECT COUNT(id_articulo) FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion=" + situacionOrigen.Id.ToString());
                                         if (Existe == 0) {
                                                 // No existen datos de stock para esta situación... la creo
-                                                Lfx.Data.SqlInsertBuilder InsertarCantidadSituacion = new Lfx.Data.SqlInsertBuilder("articulos_stock");
+                                                qGen.Insert InsertarCantidadSituacion = new qGen.Insert("articulos_stock");
                                                 InsertarCantidadSituacion.Fields.AddWithValue("id_articulo", this.Id);
                                                 InsertarCantidadSituacion.Fields.AddWithValue("id_situacion", situacionOrigen.Id);
                                                 InsertarCantidadSituacion.Fields.AddWithValue("cantidad", cantidad);
-                                                this.DataView.Execute(InsertarCantidadSituacion);
+                                                this.DataBase.Execute(InsertarCantidadSituacion);
                                         } else {
                                                 // Actualizo el stock en la nueva situación
-                                                Lfx.Data.SqlUpdateBuilder ActualizarCantidadSituacion = new Lfx.Data.SqlUpdateBuilder("articulos_stock");
-                                                ActualizarCantidadSituacion.Fields.AddWithValue("cantidad", new Lfx.Data.SqlExpression(@"""cantidad""-" + Lfx.Types.Formatting.FormatStockSql(cantidad)));
-                                                ActualizarCantidadSituacion.WhereClause = new Lfx.Data.SqlWhereBuilder(Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandAnd);
-                                                ActualizarCantidadSituacion.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("id_articulo", this.Id));
-                                                ActualizarCantidadSituacion.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("id_situacion", situacionOrigen.Id));
-                                                this.DataView.Execute(ActualizarCantidadSituacion);
+                                                qGen.Update ActualizarCantidadSituacion = new qGen.Update("articulos_stock");
+                                                ActualizarCantidadSituacion.Fields.AddWithValue("cantidad", new qGen.SqlExpression(@"""cantidad""-" + Lfx.Types.Formatting.FormatStockSql(cantidad)));
+                                                ActualizarCantidadSituacion.WhereClause = new qGen.Where(qGen.AndOr.And);
+                                                ActualizarCantidadSituacion.WhereClause.Add(new qGen.ComparisonCondition("id_articulo", this.Id));
+                                                ActualizarCantidadSituacion.WhereClause.Add(new qGen.ComparisonCondition("id_situacion", situacionOrigen.Id));
+                                                this.DataBase.Execute(ActualizarCantidadSituacion);
                                         }
 
                                         if (series != null && series.Length > 0) {
                                                 // Quito los series de la situación
-                                                Lfx.Data.SqlDeleteBuilder QuitarSeries = new Lfx.Data.SqlDeleteBuilder("articulos_series");
-                                                QuitarSeries.WhereClause = new Lfx.Data.SqlWhereBuilder(Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandAnd);
-                                                QuitarSeries.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("id_articulo", this.Id));
-                                                QuitarSeries.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("id_situacion", situacionOrigen.Id));
-                                                QuitarSeries.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("serie", Lfx.Data.SqlCommandBuilder.SqlOperands.In, new Lfx.Data.SqlExpression(ListaSeriesSql)));
-                                                this.DataView.Execute(QuitarSeries);
+                                                qGen.Delete QuitarSeries = new qGen.Delete("articulos_series");
+                                                QuitarSeries.WhereClause = new qGen.Where(qGen.AndOr.And);
+                                                QuitarSeries.WhereClause.Add(new qGen.ComparisonCondition("id_articulo", this.Id));
+                                                QuitarSeries.WhereClause.Add(new qGen.ComparisonCondition("id_situacion", situacionOrigen.Id));
+                                                QuitarSeries.WhereClause.Add(new qGen.ComparisonCondition("serie", qGen.ComparisonOperators.In, ListaSeries));
+                                                this.DataBase.Execute(QuitarSeries);
                                         }
 
                                         CantidadEntranteOSalienteDeStock -= cantidad;
@@ -401,52 +408,52 @@ namespace Lbl.Articulos
 
                                 // stock entrante (situación de destino)
                                 if (situacionDestino != null && situacionDestino.CuentaStock) {
-                                        int Existe = this.DataView.DataBase.FieldInt("SELECT COUNT(id_articulo) FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion=" + situacionDestino.Id.ToString());
+                                        int Existe = this.DataBase.FieldInt("SELECT COUNT(id_articulo) FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion=" + situacionDestino.Id.ToString());
                                         if (Existe == 0) {
                                                 // No existen datos de stock para esta situación... la creo
-                                                Lfx.Data.SqlInsertBuilder InsertarCantidadSituacion = new Lfx.Data.SqlInsertBuilder("articulos_stock");
+                                                qGen.Insert InsertarCantidadSituacion = new qGen.Insert("articulos_stock");
                                                 InsertarCantidadSituacion.Fields.AddWithValue("id_articulo", this.Id);
                                                 InsertarCantidadSituacion.Fields.AddWithValue("id_situacion", situacionDestino.Id);
                                                 InsertarCantidadSituacion.Fields.AddWithValue("cantidad", cantidad);
-                                                this.DataView.Execute(InsertarCantidadSituacion);
+                                                this.DataBase.Execute(InsertarCantidadSituacion);
                                         } else {
                                                 // Actualizo el stock en la nueva situación
-                                                Lfx.Data.SqlUpdateBuilder ActualizarCantidadSituacion = new Lfx.Data.SqlUpdateBuilder("articulos_stock");
-                                                ActualizarCantidadSituacion.Fields.AddWithValue("cantidad", new Lfx.Data.SqlExpression(@"""cantidad""+" + Lfx.Types.Formatting.FormatStockSql(cantidad)));
-                                                ActualizarCantidadSituacion.WhereClause = new Lfx.Data.SqlWhereBuilder(Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandAnd);
-                                                ActualizarCantidadSituacion.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("id_articulo", this.Id));
-                                                ActualizarCantidadSituacion.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("id_situacion", situacionDestino.Id));
-                                                this.DataView.Execute(ActualizarCantidadSituacion);
+                                                qGen.Update ActualizarCantidadSituacion = new qGen.Update("articulos_stock");
+                                                ActualizarCantidadSituacion.Fields.AddWithValue("cantidad", new qGen.SqlExpression(@"""cantidad""+" + Lfx.Types.Formatting.FormatStockSql(cantidad)));
+                                                ActualizarCantidadSituacion.WhereClause = new qGen.Where(qGen.AndOr.And);
+                                                ActualizarCantidadSituacion.WhereClause.Add(new qGen.ComparisonCondition("id_articulo", this.Id));
+                                                ActualizarCantidadSituacion.WhereClause.Add(new qGen.ComparisonCondition("id_situacion", situacionDestino.Id));
+                                                this.DataBase.Execute(ActualizarCantidadSituacion);
                                         }
 
                                         // Inserto los series en la situación
                                         foreach (string Ser in ListaSeries) {
-                                                Lfx.Data.SqlInsertBuilder InsertarSerie = new Lfx.Data.SqlInsertBuilder("articulos_series");
+                                                qGen.Insert InsertarSerie = new qGen.Insert("articulos_series");
                                                 InsertarSerie.Fields.AddWithValue("id_articulo", this.Id);
                                                 InsertarSerie.Fields.AddWithValue("id_situacion", situacionDestino.Id);
                                                 InsertarSerie.Fields.AddWithValue("serie", Ser);
-                                                this.DataView.Execute(InsertarSerie);        
+                                                this.DataBase.Execute(InsertarSerie);        
                                         }
 
                                         CantidadEntranteOSalienteDeStock += cantidad;
                                 }
 
                                 if (CantidadEntranteOSalienteDeStock != 0) {
-                                        Lfx.Data.SqlUpdateBuilder ActualizarCantidad = new Lfx.Data.SqlUpdateBuilder("articulos");
-                                        ActualizarCantidad.Fields.AddWithValue("stock_actual", new Lfx.Data.SqlExpression(@"""stock_actual""+" + Lfx.Types.Formatting.FormatStockSql(CantidadEntranteOSalienteDeStock)));
-                                        ActualizarCantidad.WhereClause = new Lfx.Data.SqlWhereBuilder("id_articulo", this.Id);
-                                        this.DataView.Execute(ActualizarCantidad);
-                                        //this.DataView.DataBase.Execute("UPDATE articulos SET stock_actual=stock_actual+(" + Lfx.Types.Formatting.FormatNumberSql(CantidadMovida, this.DataView.Workspace.CurrentConfig.Products.StockDecimalPlaces) + ") WHERE id_articulo=" + this.Id.ToString());
+                                        qGen.Update ActualizarCantidad = new qGen.Update("articulos");
+                                        ActualizarCantidad.Fields.AddWithValue("stock_actual", new qGen.SqlExpression(@"""stock_actual""+" + Lfx.Types.Formatting.FormatStockSql(CantidadEntranteOSalienteDeStock)));
+                                        ActualizarCantidad.WhereClause = new qGen.Where("id_articulo", this.Id);
+                                        this.DataBase.Execute(ActualizarCantidad);
+                                        //this.DataBase.Execute("UPDATE articulos SET stock_actual=stock_actual+(" + Lfx.Types.Formatting.FormatNumberSql(CantidadMovida, this.Workspace.CurrentConfig.Products.StockDecimalPlaces) + ") WHERE id_articulo=" + this.Id.ToString());
                                 }
 
                                 if (this.Caja != null && this.Caja.Existe)
                                         this.Caja.Movimiento(true, 30000, "Movimiento de stock de artículo " + this.ToString(), this.Workspace.CurrentUser.Id, this.PVP * cantidad, Obs, 0, 0, string.Empty);
                         }
 
-			double Saldo = this.DataView.DataBase.FieldDouble("SELECT stock_actual FROM articulos WHERE id_articulo=" + this.Id.ToString());
+			double Saldo = this.DataBase.FieldDouble("SELECT stock_actual FROM articulos WHERE id_articulo=" + this.Id.ToString());
 
-                        Lfx.Data.SqlTableCommandBuilder Comando; Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, "articulos_movim");
-                        Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
+                        qGen.TableCommand Comando; Comando = new qGen.Insert(this.DataBase, "articulos_movim");
+                        Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
 			Comando.Fields.AddWithValue("id_articulo", this.Id);
 			Comando.Fields.AddWithValue("cantidad", cantidad);
 			if(situacionOrigen == null)
@@ -461,7 +468,7 @@ namespace Lbl.Articulos
 			Comando.Fields.AddWithValue("obs", obs);
                         Comando.Fields.AddWithValue("series", series);
 			
-			this.DataView.Execute(Comando);
+			this.DataBase.Execute(Comando);
 		}
 
 		public double Costo
@@ -485,9 +492,9 @@ namespace Lbl.Articulos
                         this.Margen = null;
                         this.Proveedor = null;
                         this.ControlaStock = true;
-                        int MargenPredet = this.DataView.DataBase.FieldInt("SELECT id_margen FROM margenes WHERE predet=1 AND estado<50");
+                        int MargenPredet = this.DataBase.FieldInt("SELECT id_margen FROM margenes WHERE predet=1 AND estado<50");
                         if (MargenPredet > 0)
-                                this.Margen = new Margen(this.DataView, MargenPredet);
+                                this.Margen = new Margen(this.DataBase, MargenPredet);
                         return Res;
                 }
 
@@ -498,27 +505,27 @@ namespace Lbl.Articulos
                         if (Registro["id_categoria"] == null)
                                 this.Categoria = null;
                         else
-                                this.Categoria = new Categoria(this.DataView, System.Convert.ToInt32(Registro["id_categoria"]));
+                                this.Categoria = new Categoria(this.DataBase, System.Convert.ToInt32(Registro["id_categoria"]));
 
                         if (Registro["id_marca"] == null)
                                 this.Marca = null;
                         else
-                                this.Marca = new Marca(this.DataView, System.Convert.ToInt32(Registro["id_marca"]));
+                                this.Marca = new Marca(this.DataBase, System.Convert.ToInt32(Registro["id_marca"]));
 
                         if (Registro["id_caja"] == null)
                                 this.Caja = null;
                         else
-                                this.Caja = new Lbl.Cajas.Caja(this.DataView, System.Convert.ToInt32(Registro["id_caja"]));
+                                this.Caja = new Lbl.Cajas.Caja(this.DataBase, System.Convert.ToInt32(Registro["id_caja"]));
 
                         if (Registro["id_margen"] == null)
                                 this.Margen = null;
                         else
-                                this.Margen = new Margen(this.DataView, System.Convert.ToInt32(Registro["id_margen"]));
+                                this.Margen = new Margen(this.DataBase, System.Convert.ToInt32(Registro["id_margen"]));
 
                         if (Registro["id_proveedor"] == null)
                                 this.Proveedor = null;
                         else
-                                this.Proveedor = new Lbl.Personas.Persona(this.DataView, System.Convert.ToInt32(Registro["id_proveedor"]));
+                                this.Proveedor = new Lbl.Personas.Persona(this.DataBase, System.Convert.ToInt32(Registro["id_proveedor"]));
                 }
 
 
@@ -529,15 +536,15 @@ namespace Lbl.Articulos
                         if(this.Existe)
                                 PrecioOriginal = System.Convert.ToDouble(this.RegistroOriginal["pvp"]);
 
-			Lfx.Data.SqlTableCommandBuilder Comando;
+			qGen.TableCommand Comando;
 
                         if (this.Existe == false) {
-				Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, this.TablaDatos);
-				Comando.Fields.AddWithValue("fecha_creado", Lfx.Data.SqlFunctions.Now);
-				Comando.Fields.AddWithValue("fecha_precio", Lfx.Data.SqlFunctions.Now);
+				Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
+				Comando.Fields.AddWithValue("fecha_creado", qGen.SqlFunctions.Now);
+				Comando.Fields.AddWithValue("fecha_precio", qGen.SqlFunctions.Now);
 			} else {
-				Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
+				Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
 			}
 
                         Comando.Fields.AddWithValue("codigo1", this.Codigo1);
@@ -605,27 +612,31 @@ namespace Lbl.Articulos
 
 			this.AgregarTags(Comando);
 
-                        this.DataView.Execute(Comando);
+                        this.DataBase.Execute(Comando);
 
                         if (this.Existe == false) {
-                                m_ItemId = this.DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
+                                m_ItemId = this.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
                         } else {
                                 if (PrecioOriginal != System.Convert.ToDouble(this.Registro["pvp"])) {
                                         // Actualizo la fecha del precio
-                                        this.DataView.DataBase.Execute("UPDATE articulos SET pvp=" + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(this.Registro["pvp"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces) + ", fecha_precio=NOW() WHERE id_articulo=" + this.Id.ToString());
+                                        qGen.Update ActualizarPrecio = new qGen.Update(this.TablaDatos);
+                                        ActualizarPrecio.Fields.AddWithValue("pvp", this.PVP);
+                                        ActualizarPrecio.Fields.AddWithValue("fecha_precio", qGen.SqlFunctions.Now);
+                                        ActualizarPrecio.WhereClause = new qGen.Where(this.CampoId, this.Id);
+                                        this.DataBase.Execute(ActualizarPrecio);
 
                                         // Y creo un evento en el historial de precios
-					Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, "articulos_precios");
-                                        Comando.Fields.AddWithValue("id_articulo", this.Id);
-                                        Comando.Fields.AddWithValue("costo", this.Costo);
-					Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
+					qGen.Insert AgregarAlHistorialDePrecios = new qGen.Insert(this.DataBase, "articulos_precios");
+                                        AgregarAlHistorialDePrecios.Fields.AddWithValue("id_articulo", this.Id);
+                                        AgregarAlHistorialDePrecios.Fields.AddWithValue("costo", this.Costo);
+                                        AgregarAlHistorialDePrecios.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                                         if (this.Margen == null)
-                                                Comando.Fields.AddWithValue("id_margen", DBNull.Value);
+                                                AgregarAlHistorialDePrecios.Fields.AddWithValue("id_margen", null);
                                         else
-                                                Comando.Fields.AddWithValue("id_margen", this.Margen.Id);
-                                        Comando.Fields.AddWithValue("pvp", this.PVP);
-                                        Comando.Fields.AddWithValue("id_persona", this.Workspace.CurrentUser.Id);
-                                        this.DataView.Execute(Comando);
+                                                AgregarAlHistorialDePrecios.Fields.AddWithValue("id_margen", this.Margen.Id);
+                                        AgregarAlHistorialDePrecios.Fields.AddWithValue("pvp", this.PVP);
+                                        AgregarAlHistorialDePrecios.Fields.AddWithValue("id_persona", this.Workspace.CurrentUser.Id);
+                                        this.DataBase.Execute(AgregarAlHistorialDePrecios);
                                 }
                         }
 

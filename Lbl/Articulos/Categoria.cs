@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -35,13 +37,18 @@ namespace Lbl.Articulos
 {
 	public class Categoria : ElementoDeDatos
 	{
-		public Categoria(Lws.Data.DataView dataView) : base(dataView) { }
+		public Categoria(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-		public Categoria(Lws.Data.DataView dataView, int itemId)
-			: this(dataView)
+		public Categoria(Lfx.Data.DataBase dataBase, int itemId)
+			: this(dataBase)
 		{
 			m_ItemId = itemId;
 		}
+
+                public Categoria(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow)
+                {
+                }
 
 		public override string TablaDatos
 		{
@@ -63,7 +70,7 @@ namespace Lbl.Articulos
 		{
 			get
 			{
-				return this.Registro["nombresing"].ToString();
+				return this.FieldString("nombresing");
 			}
 			set
 			{
@@ -75,7 +82,7 @@ namespace Lbl.Articulos
 		{
 			get
 			{
-				return ((double)(this.Registro["stock_minimo"]));
+				return this.FieldDouble("stock_minimo");
 			}
 			set
 			{
@@ -121,13 +128,13 @@ namespace Lbl.Articulos
 
 		public override Lfx.Types.OperationResult Guardar()
                 {
-			Lfx.Data.SqlTableCommandBuilder Comando;
+			qGen.TableCommand Comando;
 
                         if (this.Existe == false) {
-                                Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, this.TablaDatos);
+                                Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
                         } else {
-                                Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
+                                Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
                         Comando.Fields.AddWithValue("nombre", this.Nombre);
@@ -140,7 +147,7 @@ namespace Lbl.Articulos
 
 			this.AgregarTags(Comando);
 
-                        this.DataView.Execute(Comando);
+                        this.DataBase.Execute(Comando);
 
 			return base.Guardar();
 		}

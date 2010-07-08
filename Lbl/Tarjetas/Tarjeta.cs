@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -46,10 +48,10 @@ namespace Lbl.Tarjetas
                 public Lbl.Cajas.Caja Caja;
 
 		//Heredar constructor
-		public Tarjeta(Lws.Data.DataView dataView) : base(dataView) { }
+		public Tarjeta(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-		public Tarjeta(Lws.Data.DataView dataView, int IdTarjeta)
-			: base(dataView)
+		public Tarjeta(Lfx.Data.DataBase dataBase, int IdTarjeta)
+			: base(dataBase)
 		{
 			m_ItemId = IdTarjeta;
 		}
@@ -151,20 +153,20 @@ namespace Lbl.Tarjetas
                                 if (Registro["id_caja"] == null)
                                         this.Caja = null;
                                 else
-                                        this.Caja = new Lbl.Cajas.Caja(this.DataView, System.Convert.ToInt32(Registro["id_caja"]));
+                                        this.Caja = new Lbl.Cajas.Caja(this.DataBase, System.Convert.ToInt32(Registro["id_caja"]));
                         }
                         return base.Cargar();
                 }
 
                 public override Lfx.Types.OperationResult Guardar()
                 {
-                        Lfx.Data.SqlTableCommandBuilder Comando;
+                        qGen.TableCommand Comando;
 
                         if (this.Existe == false) {
-                                Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, this.TablaDatos);
+                                Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
                         } else {
-                                Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
+                                Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
                         Comando.Fields.AddWithValue("credeb", ((int)(this.Tipo)));
@@ -177,7 +179,7 @@ namespace Lbl.Tarjetas
 
 			this.AgregarTags(Comando);
 
-                        this.DataView.Execute(Comando);
+                        this.DataBase.Execute(Comando);
 
                         return base.Guardar();
                 }

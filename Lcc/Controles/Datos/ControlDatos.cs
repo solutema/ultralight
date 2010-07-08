@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -56,7 +58,7 @@ namespace Lcc.Controles.Datos
                         }
                 }
 
-                public Lws.Workspace Workspace
+                public Lfx.Workspace Workspace
                 {
                         get
                         {
@@ -73,14 +75,14 @@ namespace Lcc.Controles.Datos
 
 
                 [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public Lws.Data.DataView DataView
+                public Lfx.Data.DataBase DataBase
                 {
                         get
                         {
                                 if (m_Elemento == null)
                                         return null;
                                 else
-                                        return m_Elemento.DataView;
+                                        return m_Elemento.DataBase;
                         }
                 }
         }

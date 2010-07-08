@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -37,21 +39,23 @@ namespace Lbl.Impresion
 	{
 		public static Lfx.Types.OperationResult ShowManualFeedDialog(string printerName, string documentName)
 		{
-			ManualFeedDialog OFormFacturaCargaManual = new ManualFeedDialog();
-			OFormFacturaCargaManual.DocumentName = documentName;
+                        System.Windows.Forms.DialogResult Res;
 
-			// Muestro el nombre de la impresora
-			if (printerName != null && printerName.Length > 0)
-			{
-				OFormFacturaCargaManual.PrinterName = printerName;
-			}
-			else
-			{
-				System.Drawing.Printing.PrinterSettings objPrint = new System.Drawing.Printing.PrinterSettings();
-				OFormFacturaCargaManual.PrinterName = objPrint.PrinterName;
-			}
+                        using (ManualFeedDialog CargaManual = new ManualFeedDialog()) {
+                                CargaManual.DocumentName = documentName;
 
-			if (OFormFacturaCargaManual.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
+                                // Muestro el nombre de la impresora
+                                if (printerName != null && printerName.Length > 0) {
+                                        CargaManual.PrinterName = printerName;
+                                } else {
+                                        System.Drawing.Printing.PrinterSettings objPrint = new System.Drawing.Printing.PrinterSettings();
+                                        CargaManual.PrinterName = objPrint.PrinterName;
+                                }
+
+                                Res = CargaManual.ShowDialog();
+                        }
+
+			if (Res == System.Windows.Forms.DialogResult.Cancel)
 				return new Lfx.Types.FailureOperationResult("Operación cancelada");
 			else
 				return new Lfx.Types.SuccessOperationResult();

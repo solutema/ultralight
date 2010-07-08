@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,15 +10,19 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Lbl</RootNamespace>
     <AssemblyName>Lbl</AssemblyName>
-    <AssemblyOriginatorKeyFile>Lbl.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <OldToolsVersion>2.0</OldToolsVersion>
+    <OldToolsVersion>3.5</OldToolsVersion>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkSubset>
-    </TargetFrameworkSubset>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ApplicationIcon>Lazaro.ico</ApplicationIcon>
+    <CodePage>65001</CodePage>
+    <ReleaseVersion>1.0</ReleaseVersion>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -31,12 +35,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <ApplicationIcon>Lazaro.ico</ApplicationIcon>
-    <CodePage>65001</CodePage>
-    <ReleaseVersion>1.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -87,8 +87,23 @@
     <Compile Include="Bancos\Cheque.cs" />
     <Compile Include="Bancos\Chequera.cs" />
     <Compile Include="ColeccionGenerica.cs" />
+    <Compile Include="Comprobantes\Impresion\Fiscal\Comando.cs" />
+    <Compile Include="Comprobantes\Impresion\Fiscal\ImpresoraEventArgs.cs" />
+    <Compile Include="Comprobantes\Impresion\Fiscal\EstadoAuxiliar.cs" />
+    <Compile Include="Comprobantes\Impresion\Fiscal\EstadoImpresora.cs" />
+    <Compile Include="Comprobantes\Impresion\Fiscal\Impresora.cs" />
+    <Compile Include="Comprobantes\Impresion\Fiscal\Respuesta.cs" />
+    <Compile Include="Servicios\Desduplicador.cs" />
+    <Compile Include="Servicios\Importar\Filtro.cs" />
+    <Compile Include="Servicios\Importar\FiltroArchivos.cs" />
+    <Compile Include="Servicios\Importar\FiltroBd.cs" />
+    <Compile Include="Servicios\Importar\FiltroDbf.cs" />
+    <Compile Include="Servicios\Importar\FiltroEscorpion.cs" />
+    <Compile Include="Servicios\Importar\FiltroLazaro.cs" />
+    <Compile Include="Servicios\Importar\MapaDeColumnas.cs" />
+    <Compile Include="Servicios\Importar\MapaDeTablas.cs" />
+    <Compile Include="Servicios\Importar\Reemplazo.cs" />
     <Compile Include="Pagos\Valor.cs" />
-    <Compile Include="ColeccionDeElementos.cs" />
     <Compile Include="Comprobantes\ColeccionComprobanteConArticulos.cs" />
     <Compile Include="Comprobantes\ColeccionRecibos.cs" />
     <Compile Include="Comprobantes\ColeccionDetalleArticulo.cs" />
@@ -99,7 +114,7 @@
     <Compile Include="Comprobantes\FormaDePago.cs" />
     <Compile Include="Comprobantes\Impresion\Campo.cs" />
     <Compile Include="Comprobantes\Impresion\DocumentoDeTexto.cs" />
-    <Compile Include="Comprobantes\Impresion\Fiscal.cs" />
+    <Compile Include="Comprobantes\Impresion\Fiscal\Enums.cs" />
     <Compile Include="Comprobantes\Numerador.cs" />
     <Compile Include="Comprobantes\Cobro.cs" />
     <Compile Include="Comprobantes\Pago.cs" />
@@ -109,7 +124,7 @@
     <Compile Include="Comprobantes\Remito.cs" />
     <Compile Include="Comprobantes\Tipo.cs" />
     <Compile Include="Cajas\Concepto.cs" />
-    <Compile Include="Cajas\CuentaCorriente.cs" />
+    <Compile Include="CuentasCorrientes\CuentaCorriente.cs" />
     <Compile Include="Cajas\Caja.cs" />
     <Compile Include="Cajas\Vencimiento.cs" />
     <Compile Include="Cuotas\Cuota.cs" />
@@ -150,20 +165,16 @@
     <Compile Include="Comprobantes\Impresion\ImpresorComprobanteConArticulos.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Servicios\Verificador.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lfx\Lfx.csproj">
       <Project>{BC643FE8-57FF-4E26-AAF2-19B229BE9B16}</Project>
       <Name>Lfx</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Lws\Lws.csproj">
-      <Project>{16A55055-8770-457B-8D39-3D61955FAB7C}</Project>
-      <Name>Lws</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Lbl.snk" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Impresion\ManualFeedDialog.resx">
@@ -174,21 +185,31 @@
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
       <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
       <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
       <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
-      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
