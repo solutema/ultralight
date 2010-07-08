@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -37,29 +39,30 @@ namespace Lbl
         /// Proporciona acceso a los datos con alto nivel de abstracción.
         /// Normalmente refleja un registro de la base de datos como un objeto con propiedades y métodos.
         /// </summary>
-	public abstract class ElementoDeDatos
+        [Serializable]
+        public abstract class ElementoDeDatos : System.MarshalByRefObject
 	{
-		public Lws.Data.DataView DataView = null;
+		public Lfx.Data.DataBase DataBase = null;
 
 		protected int m_ItemId = 0;
 		protected Lfx.Data.Row m_Registro = null, m_RegistroOriginal = null;
                 protected System.Drawing.Image m_Imagen = null;
                 protected bool m_ImagenCambio = false;
-                protected ColeccionDeEtiquetas m_Etiquetas = null, m_EtiquetasOriginal = null;
+                protected ColeccionGenerica<Etiqueta> m_Etiquetas = null, m_EtiquetasOriginal = null;
 
-		protected ElementoDeDatos(Lws.Data.DataView dataView)
+		protected ElementoDeDatos(Lfx.Data.DataBase dataBase)
 		{
-			this.DataView = dataView;
+			this.DataBase = dataBase;
 		}
 
-                public ElementoDeDatos(Lws.Data.DataView dataView, int itemId)
-                        : this(dataView)
+                public ElementoDeDatos(Lfx.Data.DataBase dataBase, int itemId)
+                        : this(dataBase)
                 {
                         m_ItemId = itemId;
                 }
 
-                public ElementoDeDatos(Lws.Data.DataView dataView, Lfx.Data.Row fromRow)
-                        : this(dataView)
+                public ElementoDeDatos(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : this(dataBase)
                 {
                         this.FromRow(fromRow);
                 }
@@ -95,14 +98,14 @@ namespace Lbl
                                         m_Etiquetas = null;
                                         Lfx.Data.Row Reg = null;
                                         if (this.Id != 0) {
-                                                if (this.CampoId == this.DataView.Tables[this.TablaDatos].PrimaryKey
-                                                                && this.DataView.DataBase.InTransaction == false)
+                                                if (this.CampoId == this.DataBase.Tables[this.TablaDatos].PrimaryKey
+                                                                && this.DataBase.InTransaction == false)
                                                         // Si estoy accediendo a través de una clave primaria y no estoy en una transacción
-                                                        // puedo usar directamente DataView.Tables.FastRows, que es cacheable
-                                                        Reg = this.DataView.Tables[this.TablaDatos].FastRows[this.Id];
+                                                        // puedo usar directamente DataBase.Tables.FastRows, que es cacheable
+                                                        Reg = this.DataBase.Tables[this.TablaDatos].FastRows[this.Id];
                                                 else
                                                         //De lo contrario uso DataBase.Row que termina en un SELECT común
-                                                        Reg = this.DataView.DataBase.Row(this.TablaDatos, this.CampoId, this.Id);
+                                                        Reg = this.DataBase.Row(this.TablaDatos, this.CampoId, this.Id);
                                         }
 
                                         this.Cargar(Reg);
@@ -150,11 +153,11 @@ namespace Lbl
 			}
 		}
 
-		public Lws.Workspace Workspace
+		public Lfx.Workspace Workspace
 		{
 			get
 			{
-				return DataView.Workspace;
+				return this.DataBase.Workspace;
 			}
 		}
 
@@ -220,10 +223,10 @@ namespace Lbl
                                 if (m_Imagen == null && m_ImagenCambio == false) {
                                         // FIXME: Para los artículos sin imagen, evitar hacer esta consulta cada vez que se accede a la propiedad
                                         Lfx.Data.Row Imagen = null;
-                                        if(DataView.Tables[this.TablaImagenes].PrimaryKey == null)
-                                                Imagen = DataView.DataBase.Row(this.TablaImagenes, "imagen", this.CampoId, this.Id);
+                                        if(DataBase.Tables[this.TablaImagenes].PrimaryKey == null)
+                                                Imagen = DataBase.Row(this.TablaImagenes, "imagen", this.CampoId, this.Id);
                                         else
-                                                Imagen = DataView.Tables[this.TablaImagenes].FastRows[this.Id];
+                                                Imagen = DataBase.Tables[this.TablaImagenes].FastRows[this.Id];
 
                                         if (Imagen != null && Imagen["imagen"] != null && ((byte[])(Imagen["imagen"])).Length > 5) {
                                                 byte[] ByteArr = ((byte[])(Imagen["imagen"]));
@@ -264,79 +267,112 @@ namespace Lbl
 		}
 
                 /// <summary>
+                /// Agrega un comentario al historial de este elemento.
+                /// </summary>
+                /// <param name="texto">El texto del comentario.</param>
+                public void AgregarComentario(string texto)
+                {
+                        if (this.Existe == false)
+                                throw new InvalidOperationException("No se pueden agregar comentarios a un elemento que no existe en la base de datos");
+
+                        qGen.Insert NuevoCom = new qGen.Insert("sys_comments");
+                        NuevoCom.Fields.AddWithValue("tablas", this.TablaDatos);
+                        NuevoCom.Fields.AddWithValue("item_id", this.Id);
+                        NuevoCom.Fields.AddWithValue("id_persona", this.Workspace.CurrentUser.Id);
+                        NuevoCom.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
+                        NuevoCom.Fields.AddWithValue("obs", texto);
+
+                        this.DataBase.Execute(NuevoCom);
+                }
+
+                /// <summary>
                 /// Guarda los cambios en la base de datos.
                 /// </summary>
 		public virtual Lfx.Types.OperationResult Guardar()
 		{
                         if (this.Id == 0) {
                                 // Acabo de insertar, averiguo mi propio id
-                                m_ItemId = this.DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
+                                m_ItemId = this.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
                         } else {
                                 // Es un registro antiguo, lo elimino de la caché
-                                this.DataView.Tables[this.TablaDatos].FastRows.RemoveFromCache(this.Id);
+                                this.DataBase.Tables[this.TablaDatos].FastRows.RemoveFromCache(this.Id);
                         }
 
                         if (this.m_ImagenCambio) {
+                                // Hay cambios en el campo imagen
                                 if (this.Imagen == null) {
-                                        if (this.TablaImagenes == this.TablaDatos)
-                                                this.DataView.DataBase.Execute("UPDATE " + this.TablaImagenes + " SET imagen=NULL WHERE " + this.CampoId + "=" + this.Id.ToString());
-                                        else
-                                                this.DataView.DataBase.Execute("DELETE FROM " + this.TablaImagenes + " WHERE " + this.CampoId + "=" + this.Id.ToString());
+                                        // Eliminó la imagen
+                                        if (this.TablaImagenes == this.TablaDatos) {
+                                                // La imagen reside en un campo de la misma tabla
+                                                qGen.Update ActualizarImagen = new qGen.Update(this.TablaImagenes);
+                                                ActualizarImagen.Fields.AddWithValue("imagen", null);
+                                                ActualizarImagen.WhereClause = new qGen.Where(this.CampoId, this.Id);
+                                                this.DataBase.Execute(ActualizarImagen);
+                                        } else {
+                                                // Usa una tabla separada para las imágenes
+                                                qGen.Delete EliminarImagen = new qGen.Delete(this.TablaImagenes);
+                                                EliminarImagen.WhereClause = new qGen.Where(this.CampoId, this.Id);
+                                                this.DataBase.Execute(EliminarImagen);
+                                        }
                                 } else {
                                         // Cargar imagen nueva
-                                        System.IO.MemoryStream ByteStream = new System.IO.MemoryStream();
+                                        using (System.IO.MemoryStream ByteStream = new System.IO.MemoryStream()) {
 
-                                        System.Drawing.Imaging.ImageCodecInfo CodecInfo = null;
-                                        System.Drawing.Imaging.ImageCodecInfo[] Codecs = System.Drawing.Imaging.ImageCodecInfo.GetImageEncoders();
-                                        foreach (System.Drawing.Imaging.ImageCodecInfo Codec in Codecs) {
-                                                if (Codec.MimeType == "image/jpeg")
-                                                        CodecInfo = Codec;
+                                                System.Drawing.Imaging.ImageCodecInfo CodecInfo = null;
+                                                System.Drawing.Imaging.ImageCodecInfo[] Codecs = System.Drawing.Imaging.ImageCodecInfo.GetImageEncoders();
+                                                foreach (System.Drawing.Imaging.ImageCodecInfo Codec in Codecs) {
+                                                        if (Codec.MimeType == "image/jpeg")
+                                                                CodecInfo = Codec;
+                                                }
+
+                                                if (CodecInfo == null) {
+                                                        this.Imagen.Save(ByteStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                                                } else {
+                                                        System.Drawing.Imaging.Encoder QualityEncoder = System.Drawing.Imaging.Encoder.Quality;
+                                                        using (System.Drawing.Imaging.EncoderParameters EncoderParams = new System.Drawing.Imaging.EncoderParameters(1)) {
+                                                                EncoderParams.Param[0] = new System.Drawing.Imaging.EncoderParameter(QualityEncoder, 33L);
+
+                                                                this.Imagen.Save(ByteStream, CodecInfo, EncoderParams);
+                                                        }
+                                                }
+                                                byte[] ImagenBytes = ByteStream.ToArray();
+
+                                                qGen.TableCommand CambiarImagen;
+                                                if (this.TablaImagenes != this.TablaDatos) {
+                                                        qGen.Delete EliminarImagen = new qGen.Delete(this.TablaImagenes);
+                                                        EliminarImagen.WhereClause = new qGen.Where(this.CampoId, this.Id);
+                                                        this.DataBase.Execute(EliminarImagen);
+
+                                                        CambiarImagen = new qGen.Insert(DataBase, this.TablaImagenes);
+                                                        CambiarImagen.Fields.AddWithValue(this.CampoId, this.Id);
+                                                } else {
+                                                        CambiarImagen = new qGen.Update(DataBase, this.TablaImagenes);
+                                                        CambiarImagen.WhereClause = new qGen.Where(this.CampoId, this.Id);
+                                                }
+
+                                                CambiarImagen.Fields.AddWithValue("imagen", ImagenBytes);
+                                                this.DataBase.Execute(CambiarImagen);
                                         }
-
-                                        if (CodecInfo == null) {
-                                                this.Imagen.Save(ByteStream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                                        } else {
-                                                System.Drawing.Imaging.Encoder QualityEncoder = System.Drawing.Imaging.Encoder.Quality;
-                                                System.Drawing.Imaging.EncoderParameters EncoderParams = new System.Drawing.Imaging.EncoderParameters(1);
-                                                EncoderParams.Param[0] = new System.Drawing.Imaging.EncoderParameter(QualityEncoder, 33L);
-
-                                                this.Imagen.Save(ByteStream, CodecInfo, EncoderParams);
-                                        }
-                                        byte[] ImagenBytes = ByteStream.ToArray();
-
-                                        Lfx.Data.SqlTableCommandBuilder CambiarImagen;
-                                        if (this.TablaImagenes != this.TablaDatos) {
-                                                this.DataView.DataBase.Execute("DELETE FROM " + this.TablaImagenes + " WHERE " + this.CampoId + "=" + this.Id.ToString());
-                                                CambiarImagen = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, this.TablaImagenes);
-                                                CambiarImagen.Fields.AddWithValue(this.CampoId, this.Id);
-                                        } else {
-                                                CambiarImagen = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, this.TablaImagenes);
-                                                CambiarImagen.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
-                                        }
-                                        
-                                        CambiarImagen.Fields.AddWithValue("imagen", ImagenBytes);
-                                        this.DataView.Execute(CambiarImagen);
                                 }
                         }
 
                         // Elimino las etiquetas que ya no están.
-                        ColeccionDeElementos ListaEtiquetas = this.Etiquetas.Quitados(m_EtiquetasOriginal);
+                        ColeccionGenerica<Etiqueta> ListaEtiquetas = this.Etiquetas.Quitados(m_EtiquetasOriginal);
                         if (ListaEtiquetas != null && ListaEtiquetas.Count > 0) {
-                                Lfx.Data.SqlDeleteBuilder EliminarEtiquetas = new Lfx.Data.SqlDeleteBuilder(this.DataView.DataBase, "sys_labels_values");
-                                EliminarEtiquetas.WhereClause = new Lfx.Data.SqlWhereBuilder("tabla", this.TablaDatos);
-                                EliminarEtiquetas.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("item_id", this.Id));
-                                EliminarEtiquetas.WhereClause.Conditions.Add("id_label IN (" + string.Join(", ", ListaEtiquetas.Ids()) + ")");
-                                this.DataView.Execute(EliminarEtiquetas);
+                                qGen.Delete EliminarEtiquetas = new qGen.Delete(this.DataBase, "sys_labels_values");
+                                EliminarEtiquetas.WhereClause = new qGen.Where("item_id", this.Id);
+                                EliminarEtiquetas.WhereClause.Add(new qGen.ComparisonCondition("id_label", qGen.ComparisonOperators.In, ListaEtiquetas.GetAllIds()));
+                                this.DataBase.Execute(EliminarEtiquetas);
                         }
 
                         // Agrego las etiquetas nuevas.
                         ListaEtiquetas = this.Etiquetas.Agregados(m_EtiquetasOriginal);
                         if (ListaEtiquetas != null && ListaEtiquetas.Count > 0) {
-                                foreach (ElementoDeDatos El in ListaEtiquetas) {
-                                        Lfx.Data.SqlInsertBuilder CrearEtiquetas = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, "sys_labels_values");
+                                foreach (ElementoDeDatos El in ListaEtiquetas.List) {
+                                        qGen.Insert CrearEtiquetas = new qGen.Insert(this.DataBase, "sys_labels_values");
                                         CrearEtiquetas.Fields.AddWithValue("id_label", El.Id);
                                         CrearEtiquetas.Fields.AddWithValue("item_id", this.Id);
-                                        this.DataView.Execute(CrearEtiquetas);
+                                        this.DataBase.Execute(CrearEtiquetas);
                                 }
                         }
 
@@ -356,12 +392,12 @@ namespace Lbl
 
                                                 Extra1 += Fl.ColumnName + "=";
                                                 if (ValorOriginal != null)
-                                                        Extra1 += "\'" + this.DataView.DataBase.EscapeString(ValorOriginal.ToString()) + "\'->";
+                                                        Extra1 += "\'" + this.DataBase.EscapeString(ValorOriginal.ToString()) + "\'->";
                                                 else
                                                         Extra1 += "NULL->";
 
                                                 if (ValorNuevo != null)
-                                                        Extra1 += "\'" + this.DataView.DataBase.EscapeString(ValorNuevo.ToString()) + "\'";
+                                                        Extra1 += "\'" + this.DataBase.EscapeString(ValorNuevo.ToString()) + "\'";
                                                 else
                                                         Extra1 += "NULL";
                                         }
@@ -385,7 +421,7 @@ namespace Lbl
                         this.Workspace.NotifyTableChange(this.TablaDatos, this.Id);
 
                         this.m_RegistroOriginal = this.m_Registro.Clone();
-                        this.m_EtiquetasOriginal = ((ColeccionDeEtiquetas)(this.m_Etiquetas.Clone()));
+                        this.m_EtiquetasOriginal = this.m_Etiquetas.Clone();
                         this.m_ImagenCambio = false;
 			this.m_Registro.IsNew = false;
 			
@@ -396,14 +432,14 @@ namespace Lbl
                 /// Agrega los campos personalizados (tags) al comando, antes de guardar.
                 /// </summary>
                 /// <param name="comando">El parámetro al cual agregar los campos.</param>
-		public virtual void AgregarTags(Lfx.Data.SqlCommandBuilder comando)
+		public virtual void AgregarTags(qGen.Command comando)
 		{
 			this.AgregarTags(comando, this.Registro, this.TablaDatos);
 		}
 		
-                public virtual void AgregarTags(Lfx.Data.SqlCommandBuilder comando, Lfx.Data.Row registro, string tabla)
+                public virtual void AgregarTags(qGen.Command comando, Lfx.Data.Row registro, string tabla)
                 {
-                        Lws.Data.Table Tabla = this.DataView.Tables[tabla];
+                        Lfx.Data.Table Tabla = this.DataBase.Tables[tabla];
                         if (Tabla.Tags != null) {
                                 foreach (Lfx.Data.Tag Tg in Tabla.Tags) {
                                         if (Tg.Nullable == false && registro[Tg.FieldName] == null) {
@@ -517,8 +553,8 @@ namespace Lbl
                         m_Registro = row;
                         if (m_Registro != null) {
                                 m_ItemId = System.Convert.ToInt32(m_Registro[this.CampoId]);
-                                m_Registro.IsNew = false;
-                                m_Registro.IsModified = false;
+                                m_Registro.IsNew = row.IsNew;
+                                m_Registro.IsModified = row.IsModified;
                                 m_RegistroOriginal = m_Registro.Clone();
                                 this.OnLoad();
                         } else {
@@ -535,18 +571,17 @@ namespace Lbl
                 /// <summary>
                 /// Devuelve o establece una colección de etiquetas del elemento.
                 /// </summary>
-                public ColeccionDeEtiquetas Etiquetas
+                public ColeccionGenerica<Etiqueta> Etiquetas
                 {
                         get
                         {
                                 if (m_Etiquetas == null) {
-                                        m_Etiquetas = new ColeccionDeEtiquetas();
-                                        System.Data.IDataReader EtiquetasElem = this.DataView.DataBase.GetReader("SELECT id_label FROM sys_labels_values WHERE id_label IN (SELECT id_label FROM sys_labels WHERE tablas='" + this.TablaDatos + "') AND item_id=" + this.Id.ToString());
-                                        while (EtiquetasElem.Read()) {
-                                                m_Etiquetas.Add(new Etiqueta(this.DataView, EtiquetasElem.GetInt32(0)));
+                                        m_Etiquetas = new ColeccionGenerica<Etiqueta>();
+                                        System.Data.DataTable EtiquetasElem = this.DataBase.Select("SELECT id_label FROM sys_labels_values WHERE id_label IN (SELECT id_label FROM sys_labels WHERE tablas='" + this.TablaDatos + "') AND item_id=" + this.Id.ToString());
+                                        foreach(System.Data.DataRow TagRow in EtiquetasElem.Rows) {
+                                                m_Etiquetas.Add(new Etiqueta(this.DataBase, (Lfx.Data.Row)TagRow));
                                         }
-                                        EtiquetasElem.Close();
-                                        this.m_EtiquetasOriginal = ((ColeccionDeEtiquetas)(this.m_Etiquetas.Clone()));
+                                        this.m_EtiquetasOriginal = m_Etiquetas.Clone();
                                 }
                                 return m_Etiquetas;
                         }

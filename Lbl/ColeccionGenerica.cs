@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -38,40 +40,40 @@ namespace Lbl
         /// </summary>
         public class ColeccionGenerica<T> //: System.Collections.Generic.IEnumerable<T>
         {
-                public Lws.Data.DataView DataView;
+                public Lfx.Data.DataBase DataBase;
                 public List<T> List = new List<T>();
 
                 public ColeccionGenerica()
                 {
                 }
 
-                public ColeccionGenerica(Lws.Data.DataView dataView)
+                public ColeccionGenerica(Lfx.Data.DataBase dataBase)
                         : this()
                 {
-                        this.DataView = dataView;
+                        this.DataBase = dataBase;
                 }
 
-                public ColeccionGenerica(Lws.Data.DataView dataView, System.Data.DataTable tabla)
-                        : this(dataView)
+                public ColeccionGenerica(Lfx.Data.DataBase dataBase, System.Data.DataTable tabla)
+                        : this(dataBase)
                 {
                         this.List.Clear();
                         foreach (System.Data.DataRow Rw in tabla.Rows) {
                                 Lfx.Data.Row Lrw = (Lfx.Data.Row)Rw;
                                 Type t = typeof(T);
-                                System.Reflection.ConstructorInfo TConstr = t.GetConstructor(new Type[] { typeof(Lws.Data.DataView), typeof(Lfx.Data.Row) });
-                                T Elem = (T)(TConstr.Invoke(new object[] { dataView, Lrw }));
+                                System.Reflection.ConstructorInfo TConstr = t.GetConstructor(new Type[] { typeof(Lfx.Data.DataBase), typeof(Lfx.Data.Row) });
+                                T Elem = (T)(TConstr.Invoke(new object[] { dataBase, Lrw }));
                                 this.List.Add(Elem);
                         }
                 }
 
-                public ColeccionGenerica(Lws.Data.Table tabla)
-                        : this(tabla.DataView)
+                public ColeccionGenerica(Lfx.Data.Table tabla)
+                        : this(tabla.DataBase)
                 {
                         this.List.Clear();
                         foreach (Lfx.Data.Row Lrw in tabla.FastRows) {
                                 Type t = typeof(T);
-                                System.Reflection.ConstructorInfo TConstr = t.GetConstructor(new Type[] { typeof(Lws.Data.DataView), typeof(Lfx.Data.Row) });
-                                T Elem = (T)(TConstr.Invoke(new object[] { this.DataView, Lrw }));
+                                System.Reflection.ConstructorInfo TConstr = t.GetConstructor(new Type[] { typeof(Lfx.Data.DataBase), typeof(Lfx.Data.Row) });
+                                T Elem = (T)(TConstr.Invoke(new object[] { this.DataBase, Lrw }));
                                 this.List.Add(Elem);
                         }
                 }
@@ -97,14 +99,14 @@ namespace Lbl
                         }
                 }
 
-                public string[] Ids()
+                public int[] GetAllIds()
                 {
-                        string[] Res = new string[this.Count];
+                        int[] Res = new int[this.Count];
                         int i = 0;
                         foreach (T El in this.List) {
                                 Lbl.ElementoDeDatos El2 = El as Lbl.ElementoDeDatos;
                                 if (El2 != null)
-                                        Res[i++] = El2.Id.ToString();
+                                        Res[i++] = El2.Id;
                         }
                         return Res;
                 }
@@ -156,7 +158,7 @@ namespace Lbl
                 /// </summary>
                 /// <param name="original">La colección original.</param>
                 /// <returns>La colección de los elementos presentes en esta colección, pero no en la original.</returns>
-                public ColeccionGenerica<T> Agregados(ColeccionDeElementos original)
+                public ColeccionGenerica<T> Agregados(ColeccionGenerica<T> original)
                 {
                         ColeccionGenerica<T> Res = new ColeccionGenerica<T>();
                         foreach (T El in this.List) {

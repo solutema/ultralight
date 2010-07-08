@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 namespace Lbl.Comprobantes.Impresion
 {
@@ -45,26 +47,26 @@ namespace Lbl.Comprobantes.Impresion
 
                         if (this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.ActualizaCostoAlFacturar", 1) != 0) {
                                 // Asiento los precios de costo de los artículos de la factura (con fines estadsticos)
-                                System.Data.DataTable Detalle = this.DataView.DataBase.Select("SELECT comprob_detalle.id_comprob_detalle, comprob_detalle.id_articulo, articulos.costo FROM comprob_detalle, articulos WHERE comprob_detalle.id_articulo=articulos.id_articulo AND id_comprob=" + this.Comprobante.Id.ToString());
+                                System.Data.DataTable Detalle = this.DataBase.Select("SELECT comprob_detalle.id_comprob_detalle, comprob_detalle.id_articulo, articulos.costo FROM comprob_detalle, articulos WHERE comprob_detalle.id_articulo=articulos.id_articulo AND id_comprob=" + this.Comprobante.Id.ToString());
 
                                 foreach (System.Data.DataRow Art in Detalle.Rows) {
                                         if (Lfx.Data.DataBase.ConvertDBNullToZero(Art["id_articulo"]) > 0) {
-                                                Lfx.Data.SqlUpdateBuilder Act = new Lfx.Data.SqlUpdateBuilder("comprob_detalle");
+                                                qGen.Update Act = new qGen.Update("comprob_detalle");
                                                 Act.Fields.AddWithValue("costo", System.Convert.ToDouble(Art["costo"]));
-                                                Act.WhereClause = new Lfx.Data.SqlWhereBuilder("id_comprob_detalle", System.Convert.ToInt32(Art["id_comprob_detalle"]));
-                                                this.DataView.Execute(Act);
+                                                Act.WhereClause = new qGen.Where("id_comprob_detalle", System.Convert.ToInt32(Art["id_comprob_detalle"]));
+                                                this.DataBase.Execute(Act);
                                         }
                                 }
                         }
 
 			// Determino la impresora que le corresponde
 			if (nombreImpresora == null || nombreImpresora.Length == 0)
-                                nombreImpresora = this.DataView.Workspace.CurrentConfig.Printing.PreferredPrinter(ComprobConArt.Tipo.Nomenclatura);
+                                nombreImpresora = this.Workspace.CurrentConfig.Printing.PreferredPrinter(ComprobConArt.Tipo.Nomenclatura);
 
 			// Si es de carga manual, presento el formulario correspondiente
                         if (this.Workspace.CurrentConfig.Printing.PrinterFeed(ComprobConArt.Tipo.Nomenclatura, "manual") == "manual")
 			{
-                                string NombreComprob = ComprobConArt.Tipo.ToString() + " " + ComprobConArt.PV.ToString("0000") + "-" + Numerador.ProximoNumero(ComprobConArt.DataView, ComprobConArt).ToString("00000000");
+                                string NombreComprob = ComprobConArt.Tipo.ToString() + " " + ComprobConArt.PV.ToString("0000") + "-" + Numerador.ProximoNumero(ComprobConArt.DataBase, ComprobConArt).ToString("00000000");
                                 if (Lbl.Impresion.Services.ShowManualFeedDialog(nombreImpresora, NombreComprob).Success == false)
 					return new Lfx.Types.FailureOperationResult("Operación cancelada");
 			}
@@ -80,12 +82,12 @@ namespace Lbl.Comprobantes.Impresion
                                 ComprobConArt.Fecha = System.DateTime.Now;
 
                                 //Marco la factura como impresa y actualizo la fecha
-                                Lfx.Data.SqlUpdateBuilder Act = new Lfx.Data.SqlUpdateBuilder("comprob");
+                                qGen.Update Act = new qGen.Update("comprob");
                                 Act.Fields.AddWithValue("impresa", ComprobConArt.Impreso ? 1 : 0);
                                 Act.Fields.AddWithValue("estado", ComprobConArt.Estado);
                                 Act.Fields.AddWithValue("fecha", ComprobConArt.Fecha);
-                                Act.WhereClause = new Lfx.Data.SqlWhereBuilder("id_comprob", ComprobConArt.Id);
-                                this.DataView.Execute(Act);
+                                Act.WhereClause = new qGen.Where("id_comprob", ComprobConArt.Id);
+                                this.DataBase.Execute(Act);
 
                                 ComprobConArt.Guardar();
 
@@ -93,14 +95,14 @@ namespace Lbl.Comprobantes.Impresion
                                 if (ComprobConArt.Tipo.MueveStock)
                                         Lbl.Articulos.Stock.MoverStockComprobante(ComprobConArt);
 
-                                Lbl.Cajas.CuentaCorriente CtaCte = ComprobConArt.Cliente.CuentaCorriente;
+                                Lbl.CuentasCorrientes.CuentaCorriente CtaCte = ComprobConArt.Cliente.CuentaCorriente;
 
                                 //Asiento el pago (sólo efectivo y cta. cte.)
                                 //El resto de los pagos los maneja el formulario desde donde se mandó a imprimir
                                 switch (ComprobConArt.FormaDePago.Tipo) {
                                         case TipoFormasDePago.Efectivo:
                                                 if (ComprobConArt.ImporteImpago > 0) {
-                                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(this.DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
+                                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(this.DataBase, this.Workspace.CurrentConfig.Company.CajaDiaria);
                                                         Caja.Movimiento(true,
                                                                 11000,
                                                                 "Cobro Factura " + ComprobConArt.ToString(),

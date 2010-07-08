@@ -33,58 +33,57 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lbl
+namespace Lbl.Importar
 {
-        public class Etiqueta : ElementoDeDatos
+        /// <summary>
+        /// Especifica cómo se "mapea" una tabla externa a una tabla de Lázaro.
+        /// </summary>
+        public class MapaDeTabla
         {
-                //Heredar constructor
-		public Etiqueta(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+                public string Archivo, TablaLazaro, ColumnaIdExterna = null, ColumnaIdLazaro = "import_id";
+                public MapaDeColumnas MapaDeColumnas = new MapaDeColumnas();
+                public Type TipoElemento;
+                public string Where = null;
+                public System.Collections.Generic.List<Lfx.Data.Row> ImportedRows;
 
-                public Etiqueta(Lfx.Data.DataBase dataBase, int itemId)
-			: this(dataBase)
-		{
-                        m_ItemId = itemId;
-		}
-
-                public Etiqueta(Lfx.Data.DataBase dataBase, Lfx.Data.Row row)
-                        : base(dataBase, row)
+                public MapaDeTabla(string tablaExterna, string tablaLazaro)
                 {
+                        this.Archivo = tablaExterna;
+                        this.TablaLazaro = tablaLazaro;
                 }
 
-                public Etiqueta(Lfx.Data.Row row)
-                        : this(((Lfx.Data.Table)(row.Table)).DataBase)
+                public MapaDeTabla(string tablaExterna, string tablaLazaro, string columnaId)
+                        : this(tablaExterna, tablaLazaro)
                 {
-                        this.FromRow(row);
+                        this.ColumnaIdExterna = columnaId;
+                }
+        }
+
+        /// <summary>
+        /// Contiene una lista de tablas a mapear al importar.
+        /// </summary>
+        public class MapaDeTablas : System.Collections.Generic.List<MapaDeTabla>
+        {
+                public void AddWithValue(string tablaExterna, string tablaLazaro)
+                {
+                        this.Add(new MapaDeTabla(tablaExterna, tablaLazaro));
                 }
 
-                public override string TablaDatos
+                public void AddWithValue(string tablaExterna, string tablaLazaro, string columnaId)
+                {
+                        this.Add(new MapaDeTabla(tablaExterna, tablaLazaro, columnaId));
+                }
+
+                public MapaDeTabla this[string tablaExterna]
                 {
                         get
                         {
-                                return "sys_labels";
-                        }
-                }
-
-                public override string CampoId
-                {
-                        get
-                        {
-                                return "id_label";
-                        }
-                }
-
-                public static implicit operator Etiqueta(Lfx.Data.Row row)
-                {
-                        Etiqueta Res = new Etiqueta(((Lfx.Data.Table)(row.Table)).DataBase);
-                        Res.FromRow(row);
-                        return Res;
-                }
-
-                public string TablaReferencia
-                {
-                        get
-                        {
-                                return this.FieldString("tablas");
+                                foreach(MapaDeTabla Map in this)
+                                {
+                                        if (Map.Archivo == tablaExterna)
+                                                return Map;
+                                }
+                                return null;
                         }
                 }
         }

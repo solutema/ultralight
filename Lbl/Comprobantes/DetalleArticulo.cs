@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -36,10 +38,10 @@ namespace Lbl.Comprobantes
 	public class DetalleArticulo : ElementoDeDatos
 	{
 		//Heredar constructor
-		public DetalleArticulo(Lws.Data.DataView dataView) : base(dataView) { }
+		public DetalleArticulo(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-		public DetalleArticulo(Lws.Data.DataView dataView, int IdArticulo)
-			: base(dataView)
+		public DetalleArticulo(Lfx.Data.DataBase dataBase, int IdArticulo)
+			: base(dataBase)
 		{
 			m_ItemId = IdArticulo;
 		}
@@ -61,9 +63,10 @@ namespace Lbl.Comprobantes
 		}
 
 		private Articulos.Articulo m_Articulo = null;
+                private int m_IdArticulo;
                 public double Cantidad, Unitario, Costo, Recargo;
 		public string Descripcion;
-		public int Orden, IdArticulo;
+		public int Orden;
 
                 public double ImporteFinal
                 {
@@ -73,12 +76,24 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+                public int IdArticulo
+                {
+                        get
+                        {
+                                return m_IdArticulo;
+                        }
+                        set
+                        {
+                                m_IdArticulo = value;
+                        }
+                }
+
                 public Articulos.Articulo Articulo
                 {
                         get
                         {
                                 if (m_Articulo == null && this.IdArticulo != 0) {
-                                        m_Articulo = new Lbl.Articulos.Articulo(this.DataView, this.IdArticulo);
+                                        m_Articulo = new Lbl.Articulos.Articulo(this.DataBase, this.IdArticulo);
                                         m_Articulo.Cargar();
                                 }
                                 
@@ -108,7 +123,7 @@ namespace Lbl.Comprobantes
 
                 public virtual DetalleArticulo Clone()
                 {
-                        DetalleArticulo Res = new DetalleArticulo(this.DataView, this.Id);
+                        DetalleArticulo Res = new DetalleArticulo(this.DataBase, this.Id);
                         Res.m_Registro = this.m_Registro.Clone();
                         Res.Articulo = this.Articulo;
                         Res.Cantidad = this.Cantidad;

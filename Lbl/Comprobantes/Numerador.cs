@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -36,19 +38,22 @@ namespace Lbl.Comprobantes
 	public class Numerador
 	{
 
-		public static int Numerar(Lws.Data.DataView dataView, Lbl.Comprobantes.ComprobanteConArticulos comprobante)
+                public static int Numerar(Lfx.Data.DataBase dataBase, Lbl.Comprobantes.ComprobanteConArticulos comprobante)
+                {
+                        int NumeroSiguienteComprob = ProximoNumero(dataBase, comprobante);
+                        qGen.Update ActualizarNumero = new qGen.Update("comprob");
+                        ActualizarNumero.Fields.AddWithValue("numero", NumeroSiguienteComprob);
+                        ActualizarNumero.WhereClause = new qGen.Where("id_comprob", comprobante.Id);
+                        dataBase.Execute(ActualizarNumero);
+                        return NumeroSiguienteComprob;
+                }
+
+		public static int Numerar(Lfx.Data.DataBase dataBase, int idComprobante)
 		{
-                        int NumeroSiguienteComprob = ProximoNumero(dataView, comprobante);
-                        dataView.DataBase.Execute("UPDATE comprob SET numero=" + NumeroSiguienteComprob.ToString() + " WHERE id_comprob=" + comprobante.Id.ToString());
-			return NumeroSiguienteComprob;
+			return Numerar(dataBase, new Lbl.Comprobantes.ComprobanteConArticulos(dataBase, idComprobante));
 		}
 
-		public static int Numerar(Lws.Data.DataView dataView, int idComprobante)
-		{
-			return Numerar(dataView, new Lbl.Comprobantes.ComprobanteConArticulos(dataView, idComprobante));
-		}
-
-                public static int ProximoNumero(Lws.Data.DataView dataView, Lbl.Comprobantes.ComprobanteConArticulos comprobante)
+                public static int ProximoNumero(Lfx.Data.DataBase dataBase, Lbl.Comprobantes.ComprobanteConArticulos comprobante)
                 {
                         string TipoReal = "";
 
@@ -94,7 +99,7 @@ namespace Lbl.Comprobantes
                                         break;
                         }
 
-                        return dataView.DataBase.FieldInt("SELECT MAX(numero) FROM comprob WHERE compra=0 AND pv=" + comprobante.PV.ToString() + " AND tipo_fac IN (" + TipoReal + ")") + 1;
+                        return dataBase.FieldInt("SELECT MAX(numero) FROM comprob WHERE compra=0 AND pv=" + comprobante.PV.ToString() + " AND tipo_fac IN (" + TipoReal + ")") + 1;
                 }
 	}
 }

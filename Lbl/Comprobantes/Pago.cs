@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -45,35 +47,35 @@ namespace Lbl.Comprobantes
                 public Comprobantes.Recibo Recibo;
 
                 //Heredar constructor
-                public Pago(Lws.Data.DataView dataView) : base(dataView) { }
+                public Pago(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-                public Pago(Lws.Data.DataView dataView, Lbl.Comprobantes.FormaDePago formaDePago)
-                        : this(dataView)
+                public Pago(Lfx.Data.DataBase dataBase, Lbl.Comprobantes.FormaDePago formaDePago)
+                        : this(dataBase)
                 {
                         this.FormaDePago = formaDePago;
                 }
 
-                public Pago(Lws.Data.DataView dataView, Lbl.Comprobantes.TipoFormasDePago tipoFormaDePago)
-                        : this(dataView)
+                public Pago(Lfx.Data.DataBase dataBase, Lbl.Comprobantes.TipoFormasDePago tipoFormaDePago)
+                        : this(dataBase)
                 {
-                        FormaDePago = new FormaDePago(dataView, tipoFormaDePago);
+                        FormaDePago = new FormaDePago(dataBase, tipoFormaDePago);
                         FormaDePago.Cargar();
                 }
 
-                public Pago(Lws.Data.DataView dataView, Lbl.Comprobantes.TipoFormasDePago formaDePago, double importe)
-                        : this(dataView, formaDePago)
+                public Pago(Lfx.Data.DataBase dataBase, Lbl.Comprobantes.TipoFormasDePago formaDePago, double importe)
+                        : this(dataBase, formaDePago)
                 {
                         this.Importe = importe;
                 }
 
                 public Pago(Bancos.Cheque cheque)
-                        : this(cheque.DataView, cheque.Emitido ? TipoFormasDePago.ChequePropio : TipoFormasDePago.ChequeTerceros)
+                        : this(cheque.DataBase, cheque.Emitido ? TipoFormasDePago.ChequePropio : TipoFormasDePago.ChequeTerceros)
                 {
                         this.Cheque = cheque;
                 }
 
                 public Pago(Pagos.Valor valor)
-                        : this(valor.DataView, valor.FormaDePago.Tipo)
+                        : this(valor.DataBase, valor.FormaDePago.Tipo)
                 {
                         this.Valor = valor;
                 }
@@ -132,7 +134,7 @@ namespace Lbl.Comprobantes
 
                         switch (this.FormaDePago.Tipo) {
                                 case TipoFormasDePago.Efectivo:
-                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
+                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(DataBase, this.Workspace.CurrentConfig.Company.CajaDiaria);
                                         Caja.Movimiento(true, this.Concepto, DescripConcepto, Cliente, this.Importe, null, Factura, this.Recibo, null);
                                         break;
                                 case TipoFormasDePago.ChequePropio:

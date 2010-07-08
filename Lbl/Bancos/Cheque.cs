@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -43,24 +45,24 @@ namespace Lbl.Bancos
                 public Lbl.Comprobantes.ComprobanteConArticulos Factura;
                 
                 //Heredar constructor
-		public Cheque(Lws.Data.DataView dataView) : base(dataView) { }
+		public Cheque(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-		public Cheque(Lws.Data.DataView dataView, int idCheque)
-			: this(dataView)
+		public Cheque(Lfx.Data.DataBase dataBase, int idCheque)
+			: this(dataBase)
 		{
 			m_ItemId = idCheque;
                         this.Cargar();
 		}
 
-                public Cheque(Lws.Data.DataView dataView, Lbl.Comprobantes.ComprobanteConArticulos factura)
-                        : this(dataView)
+                public Cheque(Lfx.Data.DataBase dataBase, Lbl.Comprobantes.ComprobanteConArticulos factura)
+                        : this(dataBase)
                 {
-                        m_ItemId = dataView.DataBase.FieldInt("SELECT MAX(id_cheque) FROM bancos_cheques WHERE id_comprob=" + factura.Id.ToString());
+                        m_ItemId = this.DataBase.FieldInt("SELECT MAX(id_cheque) FROM bancos_cheques WHERE id_comprob=" + factura.Id.ToString());
                         this.Cargar();
                 }
 
-                public Cheque(Lws.Data.DataView dataView, double importe, int numero, string emisor, Lfx.Types.LDateTime fechaEmision, Lfx.Types.LDateTime fechaCobro, Bancos.Banco banco)
-			: this(dataView)
+                public Cheque(Lfx.Data.DataBase dataBase, double importe, int numero, string emisor, Lfx.Types.LDateTime fechaEmision, Lfx.Types.LDateTime fechaCobro, Bancos.Banco banco)
+			: this(dataBase)
 		{
 			this.Importe = importe;
                         this.Numero = numero;
@@ -90,32 +92,32 @@ namespace Lbl.Bancos
                 {
                         if (this.Registro != null) {
                                 if (this.FieldInt("id_banco") > 0)
-                                        this.Banco = new Bancos.Banco(this.DataView, this.FieldInt("id_banco"));
+                                        this.Banco = new Bancos.Banco(this.DataBase, this.FieldInt("id_banco"));
                                 else
                                         this.Banco = null;
 
                                 if (this.FieldInt("id_concepto") > 0)
-                                        this.Concepto = new Cajas.Concepto(this.DataView, this.FieldInt("id_concepto"));
+                                        this.Concepto = new Cajas.Concepto(this.DataBase, this.FieldInt("id_concepto"));
                                 else
                                         this.Concepto = null;
 
                                 if (this.FieldInt("id_recibo") > 0)
-                                        this.Recibo = new Comprobantes.ReciboDeCobro(this.DataView, this.FieldInt("id_recibos"));
+                                        this.Recibo = new Comprobantes.ReciboDeCobro(this.DataBase, this.FieldInt("id_recibos"));
                                 else
                                         this.Recibo = null;
 
                                 if (this.FieldInt("id_chequera") > 0)
-                                        this.Chequera = new Bancos.Chequera(this.DataView, this.FieldInt("id_chequera"));
+                                        this.Chequera = new Bancos.Chequera(this.DataBase, this.FieldInt("id_chequera"));
                                 else
                                         this.Chequera = null;
 
                                 if (this.FieldInt("id_cliente") > 0)
-                                        this.Cliente = new Personas.Persona(this.DataView, this.FieldInt("id_cliente"));
+                                        this.Cliente = new Personas.Persona(this.DataBase, this.FieldInt("id_cliente"));
                                 else
                                         this.Cliente = null;
 
                                 if (this.FieldInt("id_comprob") > 0)
-                                        this.Factura = new Comprobantes.Factura(this.DataView, this.FieldInt("id_comprob"));
+                                        this.Factura = new Comprobantes.Factura(this.DataBase, this.FieldInt("id_comprob"));
                                 else
                                         this.Factura = null;
                         }
@@ -229,15 +231,15 @@ namespace Lbl.Bancos
 
 		public override Lfx.Types.OperationResult Guardar()
 		{
-			Lfx.Data.SqlTableCommandBuilder Comando;
+			qGen.TableCommand Comando;
                         if (this.Existe) {
-				Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-				Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
+				Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+				Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
 			} else {
-				Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, this.TablaDatos);
+				Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
 			}
 
-			Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
+			Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                         if (this.Concepto == null)
                                 Comando.Fields.AddWithValue("id_concepto", null);
                         else
@@ -263,7 +265,7 @@ namespace Lbl.Bancos
                                 Comando.Fields.AddWithValue("id_chequera", this.Chequera.Id);
 
 			Comando.Fields.AddWithValue("numero", this.Numero);
-			Comando.Fields.AddWithValue("id_sucursal", this.DataView.Workspace.CurrentConfig.Company.CurrentBranch);
+			Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Company.CurrentBranch);
 
                         if (this.Recibo == null)
                                 Comando.Fields.AddWithValue("id_recibo", null);
@@ -297,14 +299,18 @@ namespace Lbl.Bancos
 
 			this.AgregarTags(Comando);
 
-			this.DataView.Execute(Comando);
+			this.DataBase.Execute(Comando);
 
-                        if (this.Chequera != null)
-                                this.DataView.DataBase.Execute("UPDATE chequeras SET cheques_emitidos=cheques_emitidos+1 WHERE id_chequera=" + this.Chequera.Id.ToString());
+                        if (this.Chequera != null) {
+                                qGen.Update ActualizarChequeras = new qGen.Update("chequeras");
+                                ActualizarChequeras.Fields.AddWithValue("cheques_emitidos", new qGen.SqlExpression("cheques_emitidos+1"));
+                                ActualizarChequeras.WhereClause = new qGen.Where("id_chequera", this.Chequera.Id);
+                                this.DataBase.Execute(ActualizarChequeras);
+                        }
 
                         if (this.Emitido == false) {
                                 //Asiento en la cuenta cheques, sólo para cheques de cobro
-                                Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(this.DataView, this.DataView.Workspace.CurrentConfig.Company.CajaCheques);
+                                Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(this.DataBase, this.Workspace.CurrentConfig.Company.CajaCheques);
                                 Lbl.Personas.Persona UsarCliente = this.Cliente;
                                 if (UsarCliente == null && this.Factura != null)
                                         UsarCliente = this.Factura.Cliente;
@@ -320,14 +326,12 @@ namespace Lbl.Bancos
                 {
                         if (this.Anulado == false) {
                                 // Marco el cheque como anulado
-                                Lfx.Data.SqlUpdateBuilder Act = new Lfx.Data.SqlUpdateBuilder(this.TablaDatos);
-                                Act.Fields.AddWithValue("estado", 90);
-                                Act.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
-                                this.DataView.Execute(Act);
+                                this.Estado = 90;
+                                this.Guardar();
 
                                 if (this.Emitido == false) {
                                         //Asiento en la cuenta cheques, sólo para cheques de cobro
-                                        Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(this.DataView, this.DataView.Workspace.CurrentConfig.Company.CajaCheques);
+                                        Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(this.DataBase, this.Workspace.CurrentConfig.Company.CajaCheques);
                                         Lbl.Personas.Persona UsarCliente = this.Cliente;
                                         if (UsarCliente == null && this.Factura != null)
                                                 UsarCliente = this.Factura.Cliente;

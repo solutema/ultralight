@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -34,22 +36,22 @@ using System.Drawing;
 
 namespace Lbl.Comprobantes.Impresion
 {
+        public enum Alineacion
+        {
+                Izquierda = 0,
+                Derecha = 1,
+        }
+
 	public class DocumentoDeTexto
 	{
 		private string m_Tipo;
-
-		public enum mpAlineacion
-		{
-			mpIzq = 0,
-			mpDer = 1,
-		}
 
 		public DocumentoDeTexto(string sTipo)
 		{
 			m_Tipo = sTipo;
 		}
 
-		public Lfx.Types.OperationResult ImprimirComprobante(Lws.Data.DataView dataView, int lCodigo, string Impresora)
+		public Lfx.Types.OperationResult ImprimirComprobante(Lfx.Data.DataBase dataBase, int lCodigo, string Impresora)
 		{
 			Lfx.Types.OperationResult imprimirComprobanteReturn = new Lfx.Types.SuccessOperationResult();
 
@@ -57,9 +59,9 @@ namespace Lbl.Comprobantes.Impresion
 			string[] Factura = null;
 
 			// Obtengo el formato del comprobante de la base de datos
-			string sDefinicion = dataView.DataBase.FieldString("SELECT definicion FROM sys_plantillas WHERE codigo='" + m_Tipo + "'");
+			string sDefinicion = dataBase.FieldString("SELECT definicion FROM sys_plantillas WHERE codigo='" + m_Tipo + "'");
 			if (sDefinicion == null)
-				sDefinicion = dataView.DataBase.FieldString("SELECT definicion FROM sys_plantillas WHERE codigo='*'");
+				sDefinicion = dataBase.FieldString("SELECT definicion FROM sys_plantillas WHERE codigo='*'");
 
 			Factura = new string[Lfx.Types.Ini.ReadInt(sDefinicion, "General", "PaginaAlto")];
 
@@ -67,8 +69,8 @@ namespace Lbl.Comprobantes.Impresion
 				Factura[n] = System.String.Empty.PadLeft(256);
 
 			// Cargo el registro correspondiente a la factura y al cliente
-			Lfx.Data.Row RegistroFactura = dataView.DataBase.Row("comprob", "id_comprob", lCodigo);
-			Lfx.Data.Row RegistroCliente = dataView.DataBase.Row("personas", "id_persona", System.Convert.ToInt32(RegistroFactura["id_cliente"]));
+			Lfx.Data.Row RegistroFactura = dataBase.Row("comprob", "id_comprob", lCodigo);
+			Lfx.Data.Row RegistroCliente = dataBase.Row("personas", "id_persona", System.Convert.ToInt32(RegistroFactura["id_cliente"]));
 
 			// Calculo el total real, tomando en cuenta el redondeo y los decimales
 			double Total = System.Convert.ToDouble(RegistroFactura["total"]);
@@ -76,7 +78,7 @@ namespace Lbl.Comprobantes.Impresion
 
 			// Determino la impresora que prefiere o le corresponde
 			if (Impresora != null && Impresora.Length == 0)
-				Impresora = dataView.Workspace.CurrentConfig.Printing.PreferredPrinter(System.Convert.ToString(RegistroFactura["tipo_fac"]));
+				Impresora = dataBase.Workspace.CurrentConfig.Printing.PreferredPrinter(System.Convert.ToString(RegistroFactura["tipo_fac"]));
 
 			string strCodigos = null;
 			string strDescrips = null;
@@ -84,7 +86,7 @@ namespace Lbl.Comprobantes.Impresion
 			string strPrecios = null;
 			string strImportes = null;
 
-			System.Data.DataTable TablaArticulos = dataView.DataBase.Select("SELECT id_articulo, nombre, cantidad, precio, importe FROM comprob_detalle WHERE id_comprob=" + lCodigo.ToString() + " ORDER BY orden");
+			System.Data.DataTable TablaArticulos = dataBase.Select("SELECT id_articulo, nombre, cantidad, precio, importe FROM comprob_detalle WHERE id_comprob=" + lCodigo.ToString() + " ORDER BY orden");
 
 			if (TablaArticulos.Rows.Count > 0)
 			{
@@ -92,10 +94,10 @@ namespace Lbl.Comprobantes.Impresion
 				{
 					if (Lfx.Data.DataBase.ConvertDBNullToZero(Articulo["id_articulo"]) > 0)
 					{
-						if (Lbl.Articulos.Stock.CodigoPredet(dataView.Workspace) == "id_articulo")
+						if (Lbl.Articulos.Stock.CodigoPredet(dataBase.Workspace) == "id_articulo")
 							strCodigos = strCodigos + System.Convert.ToInt32(Articulo["id_articulo"]).ToString("00000000000") + System.Environment.NewLine;
 						else
-							strCodigos = strCodigos + Lbl.Articulos.Stock.CodigoPredet(dataView.Workspace, dataView.DataBase.Row("articulos", "id_articulo", System.Convert.ToInt32(Articulo["id_articulo"]))) + System.Environment.NewLine;
+							strCodigos = strCodigos + Lbl.Articulos.Stock.CodigoPredet(dataBase.Workspace, dataBase.Row("articulos", "id_articulo", System.Convert.ToInt32(Articulo["id_articulo"]))) + System.Environment.NewLine;
 					}
 					else
 					{
@@ -103,28 +105,28 @@ namespace Lbl.Comprobantes.Impresion
 					}
 
 					strDescrips = strDescrips + System.Convert.ToString(Articulo["nombre"]) + System.Environment.NewLine;
-					strCants = strCants + Lfx.Types.Formatting.FormatStock(System.Convert.ToDouble(Articulo["cantidad"]), dataView.Workspace.CurrentConfig.Products.StockDecimalPlaces) + System.Environment.NewLine;
-					strPrecios = strPrecios + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(Articulo["precio"]), dataView.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
-					strImportes = strImportes + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(Articulo["importe"]), dataView.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
+					strCants = strCants + Lfx.Types.Formatting.FormatStock(System.Convert.ToDouble(Articulo["cantidad"]), dataBase.Workspace.CurrentConfig.Products.StockDecimalPlaces) + System.Environment.NewLine;
+					strPrecios = strPrecios + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(Articulo["precio"]), dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
+					strImportes = strImportes + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(Articulo["importe"]), dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
 				}
 			}
 
 			if (System.Convert.ToDouble(RegistroFactura["descuento"]) > 0 && System.Convert.ToString(RegistroFactura["tipo_fac"]) != "R")
 			{
 				strCodigos = strCodigos + System.Environment.NewLine;
-				strDescrips = strDescrips + "Descuento " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["descuento"]), dataView.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + "%" + System.Environment.NewLine;
+				strDescrips = strDescrips + "Descuento " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["descuento"]), dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + "%" + System.Environment.NewLine;
 				strCants = strCants + System.Environment.NewLine;
-				strPrecios = strPrecios + Lfx.Types.Currency.CurrencySymbol + " -" + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["subtotal"]) * (System.Convert.ToDouble(RegistroFactura["descuento"]) / 100), dataView.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
-				strImportes = strImportes + Lfx.Types.Currency.CurrencySymbol + " -" + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["subtotal"]) * (System.Convert.ToDouble(RegistroFactura["descuento"]) / 100), dataView.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
+				strPrecios = strPrecios + Lfx.Types.Currency.CurrencySymbol + " -" + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["subtotal"]) * (System.Convert.ToDouble(RegistroFactura["descuento"]) / 100), dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
+				strImportes = strImportes + Lfx.Types.Currency.CurrencySymbol + " -" + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["subtotal"]) * (System.Convert.ToDouble(RegistroFactura["descuento"]) / 100), dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
 			}
 
 			if (System.Convert.ToDouble(RegistroFactura["interes"]) > 0 && System.Convert.ToString(RegistroFactura["tipo_fac"]) != "R")
 			{
 				strCodigos = strCodigos + System.Environment.NewLine;
-				strDescrips = strDescrips + "Recargo " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["interes"]), dataView.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + "%" + System.Environment.NewLine;
+				strDescrips = strDescrips + "Recargo " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["interes"]), dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + "%" + System.Environment.NewLine;
 				strCants = strCants + System.Environment.NewLine;
-				strPrecios = strPrecios + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["subtotal"]) * (System.Convert.ToDouble(RegistroFactura["interes"]) / 100), dataView.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
-				strImportes = strImportes + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["subtotal"]) * (System.Convert.ToDouble(RegistroFactura["interes"]) / 100), dataView.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
+				strPrecios = strPrecios + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["subtotal"]) * (System.Convert.ToDouble(RegistroFactura["interes"]) / 100), dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
+				strImportes = strImportes + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["subtotal"]) * (System.Convert.ToDouble(RegistroFactura["interes"]) / 100), dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
 			}
 
 			if (TotalReal != Total && System.Convert.ToString(RegistroFactura["tipo_fac"]) != "R")
@@ -133,7 +135,7 @@ namespace Lbl.Comprobantes.Impresion
 				strDescrips = strDescrips + "Ajustes por Redondeo" + System.Environment.NewLine;
 				strCants = strCants + System.Environment.NewLine;
 				strPrecios = strPrecios + System.Environment.NewLine;
-				strImportes = strImportes + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(Total - TotalReal, dataView.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
+				strImportes = strImportes + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(Total - TotalReal, dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
 			}
 
 			long lPasada = 0;
@@ -188,7 +190,7 @@ namespace Lbl.Comprobantes.Impresion
 				cTotalXY = Lfx.Types.Ini.ReadRectangle(sDefinicion, sNombrePasada, "TotalXY", cTotalXY);
 
 				MPrint(ref Factura, cFechaXY, cPasadaXY, System.Convert.ToDateTime(RegistroFactura["fecha"]).ToString("dd-MM-yyyy"));
-				MPrint(ref Factura, cNumeroXY, cPasadaXY, Lbl.Comprobantes.Comprobante.NumeroCompleto(dataView, lCodigo));
+				MPrint(ref Factura, cNumeroXY, cPasadaXY, Lbl.Comprobantes.Comprobante.NumeroCompleto(dataBase, lCodigo));
 				MPrint(ref Factura, cClienteXY, cPasadaXY, "(" + System.Convert.ToInt32(RegistroFactura["id_cliente"]).ToString() + ") " + System.Convert.ToString(RegistroCliente["nombre_visible"]));
 				MPrint(ref Factura, cDomicilioXY, cPasadaXY, System.Convert.ToString(RegistroCliente["domicilio"]));
 
@@ -197,22 +199,22 @@ namespace Lbl.Comprobantes.Impresion
 				else
 					MPrint(ref Factura, cCUITXY, cPasadaXY, System.Convert.ToString(RegistroCliente["num_doc"]));
 
-				MPrint(ref Factura, cOrigenXY, cPasadaXY, dataView.DataBase.FieldString("SELECT nombre FROM articulos_situaciones WHERE id_situacion=" + RegistroFactura["situacionorigen"].ToString()));
-				MPrint(ref Factura, cDestinoXY, cPasadaXY, dataView.DataBase.FieldString("SELECT nombre FROM articulos_situaciones WHERE id_situacion=" + RegistroFactura["situaciondestino"].ToString()));
-				MPrint(ref Factura, cIVAXY, cPasadaXY, dataView.DataBase.FieldString("SELECT nombre FROM situaciones WHERE id_situacion=" + Lfx.Data.DataBase.ConvertDBNullToZero(RegistroCliente["id_situacion"]).ToString()));
+				MPrint(ref Factura, cOrigenXY, cPasadaXY, dataBase.FieldString("SELECT nombre FROM articulos_situaciones WHERE id_situacion=" + RegistroFactura["situacionorigen"].ToString()));
+				MPrint(ref Factura, cDestinoXY, cPasadaXY, dataBase.FieldString("SELECT nombre FROM articulos_situaciones WHERE id_situacion=" + RegistroFactura["situaciondestino"].ToString()));
+				MPrint(ref Factura, cIVAXY, cPasadaXY, dataBase.FieldString("SELECT nombre FROM situaciones WHERE id_situacion=" + Lfx.Data.DataBase.ConvertDBNullToZero(RegistroCliente["id_situacion"]).ToString()));
 
 				if (System.Convert.ToString(RegistroFactura["tipo_fac"]) != "R")
-					MPrint(ref Factura, cFormaPagoXY, cPasadaXY, dataView.DataBase.FieldString("SELECT nombre FROM formaspago WHERE id_formapago=" + Lfx.Data.DataBase.ConvertDBNullToZero(RegistroFactura["id_formapago"]).ToString()));
+					MPrint(ref Factura, cFormaPagoXY, cPasadaXY, dataBase.FieldString("SELECT nombre FROM formaspago WHERE id_formapago=" + Lfx.Data.DataBase.ConvertDBNullToZero(RegistroFactura["id_formapago"]).ToString()));
 
-				MPrint(ref Factura, cCodigosXY, cPasadaXY, (strCodigos), mpAlineacion.mpDer);
+				MPrint(ref Factura, cCodigosXY, cPasadaXY, (strCodigos), Alineacion.Derecha);
 				MPrint(ref Factura, cDetallesXY, cPasadaXY, (strDescrips));
-				MPrint(ref Factura, cCantidadesXY, cPasadaXY, (strCants), mpAlineacion.mpDer);
+				MPrint(ref Factura, cCantidadesXY, cPasadaXY, (strCants), Alineacion.Derecha);
 
 				if (System.Convert.ToString(RegistroFactura["tipo_fac"]) != "R")
-					MPrint(ref Factura, cPreciosXY, cPasadaXY, (strPrecios), mpAlineacion.mpDer);
+					MPrint(ref Factura, cPreciosXY, cPasadaXY, (strPrecios), Alineacion.Derecha);
 
 				if (System.Convert.ToString(RegistroFactura["tipo_fac"]) != "R")
-					MPrint(ref Factura, cImportesXY, cPasadaXY, (strImportes), mpAlineacion.mpDer);
+					MPrint(ref Factura, cImportesXY, cPasadaXY, (strImportes), Alineacion.Derecha);
 
 				if (System.Convert.ToString(RegistroFactura["tipo_fac"]) != "R")
 					MPrint(ref Factura, cSonPesosXY, cPasadaXY, "Son pesos: " + Lfx.Types.Formatting.SpellNumber(Total));
@@ -222,8 +224,8 @@ namespace Lbl.Comprobantes.Impresion
 					MPrint(ref Factura,
 					       cTotalXY,
 					       cPasadaXY,
-					       Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(Total, dataView.Workspace.CurrentConfig.Currency.DecimalPlacesFinal),
-					       mpAlineacion.mpDer);
+					       Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(Total, dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesFinal),
+					       Alineacion.Derecha);
 				}
 
 				// Imprimo las observaciones en el lugar que queda debajo de los detalles, cantidades, etc.
@@ -336,7 +338,7 @@ namespace Lbl.Comprobantes.Impresion
 
 			// Creo el nuevo documento (utilizando la clase para imprimir texto)
                         Lfx.Printing.TextPrint Documento = new Lfx.Printing.TextPrint(String.Join(" " + System.Environment.NewLine, Factura));
-			Documento.DocumentName = "Comprobante " + Lbl.Comprobantes.Comprobante.NumeroCompleto(dataView, lCodigo);
+			Documento.DocumentName = "Comprobante " + Lbl.Comprobantes.Comprobante.NumeroCompleto(dataBase, lCodigo);
 
 			// Si prefiere una impresora, la selecciono
 			if (Impresora != null && Impresora.Length > 0)
@@ -400,10 +402,10 @@ namespace Lbl.Comprobantes.Impresion
 
                 private static void MPrint(ref string[] Matriz, Rectangle lXY, Rectangle lDespl, string sCadena)
 		{
-			MPrint(ref Matriz, lXY, lDespl, sCadena, mpAlineacion.mpIzq);
+			MPrint(ref Matriz, lXY, lDespl, sCadena, Alineacion.Izquierda);
 		}
 
-		private static void MPrint(ref string[] Matriz, Rectangle lXY, Rectangle lDespl, string sCadena, mpAlineacion lAlineacion)
+		private static void MPrint(ref string[] Matriz, Rectangle lXY, Rectangle lDespl, string sCadena, Alineacion lAlineacion)
 		{
 			// Imprime un texto en una matriz de cadenas.
 			// Creo que se utiliza exclusivamente en la ClaseComprobante
@@ -423,7 +425,7 @@ namespace Lbl.Comprobantes.Impresion
 
 					if (lXY.Width > 0)
 					{
-						if (lAlineacion == mpAlineacion.mpDer)
+						if (lAlineacion == Alineacion.Derecha)
 						{
 							if (sRenglon.Length > lXY.Width)
 								sRenglon = sRenglon.Substring(sRenglon.Length - lXY.Width, lXY.Width);

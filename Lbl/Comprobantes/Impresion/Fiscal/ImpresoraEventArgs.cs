@@ -33,38 +33,41 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lbl.Comprobantes
+namespace Lbl.Comprobantes.Impresion.Fiscal
 {
-        public class ReciboDeCobro : Recibo
+        public delegate void NotificacionEventHandler(object sender, ImpresoraEventArgs e);
+
+        //Sistema de eventos
+        public class ImpresoraEventArgs : System.EventArgs
         {
-                //Heredar constructor
-                public ReciboDeCobro(Lfx.Data.DataBase dataBase)
-                        : base(dataBase)
+                public enum EventTypes
                 {
-                        this.Crear();
-                        this.Vendedor = new Personas.Persona(dataBase, dataBase.Workspace.CurrentUser.Id);
+                        Inicializada,
+                        InicioImpresion,
+                        FinImpresion,
+                        Estado,
+                        Error
                 }
 
-                public ReciboDeCobro(Lfx.Data.DataBase dataBase, Personas.Persona cliente)
-                        : this(dataBase)
-                {
-                        this.Crear();
-                        this.Cliente = cliente;
-                }
+                public EventTypes EventType = EventTypes.Estado;
+                public EstadoServidorFiscal Estado;
+                public string MensajeEstado;
+                public ErroresFiscales ErrorFiscal;
 
-                public ReciboDeCobro(Lfx.Data.DataBase dataBase, int idRecibo)
-                        : this(dataBase)
+                public ImpresoraEventArgs() { }
+                public ImpresoraEventArgs(EventTypes eventType)
                 {
-                        this.m_ItemId = idRecibo;
-                        this.Cargar();
+                        EventType = eventType;
                 }
-
-                public override Lfx.Types.OperationResult Crear()
+                public ImpresoraEventArgs(string mensajeEstado)
                 {
-                        Lfx.Types.OperationResult Res = base.Crear();
-                        this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.RC.PV", this.Workspace.CurrentConfig.Company.CurrentBranch);
-                        this.Tipo = new Tipo(this.DataBase, "RC");
-                        return Res;
+                        this.EventType = EventTypes.Estado;
+                        MensajeEstado = mensajeEstado;
+                }
+                public ImpresoraEventArgs(ErroresFiscales errorFiscal)
+                {
+                        this.EventType = EventTypes.Error;
+                        ErrorFiscal = errorFiscal;
                 }
         }
 }

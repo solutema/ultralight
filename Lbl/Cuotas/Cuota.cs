@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -52,13 +54,19 @@ namespace Lbl.Cuotas
                 public Lbl.Comprobantes.Recibo Recibo;
                 public Lbl.Personas.Persona Cliente, Comercio;
 
-		//Heredar constructor
-		public Cuota(Lws.Data.DataView dataView) : base(dataView)
+		//Heredar constructores
+		public Cuota(Lfx.Data.DataBase dataBase) : base(dataBase)
                 {
                         for (int i = 1; i < 120; i++) {
                                 EstadosCuotas[i] = Estados.Nueva;
                                 EstadosCuotasComercio[i] = Estados.Nueva;
                         }
+                }
+
+                public Cuota(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : this(dataBase)
+                {
+                        this.FromRow(fromRow);
                 }
 
 		public override string TablaDatos
@@ -100,7 +108,7 @@ namespace Lbl.Cuotas
                         Lfx.Data.Row Dummy = this.Registro;
                         if (Dummy != null && System.Convert.ToInt32(Dummy["cuota"]) != 1) {
                                 //Busco la primera cuota
-                                int RegistroUno = this.DataView.DataBase.FieldInt("SELECT id_cuota FROM ventas_cuotas WHERE cuota=1 AND prefijo=" + Dummy["prefijo"].ToString() + " AND operacion=" + Dummy["operacion"].ToString());
+                                int RegistroUno = this.DataBase.FieldInt("SELECT id_cuota FROM ventas_cuotas WHERE cuota=1 AND prefijo=" + Dummy["prefijo"].ToString() + " AND operacion=" + Dummy["operacion"].ToString());
                                 //Puede que no exista la cuota 1 (registros importados del sistema viejo)
                                 if (RegistroUno > 0) {
                                         m_ItemId = RegistroUno;
@@ -112,12 +120,12 @@ namespace Lbl.Cuotas
                         for (int i = 1; i < 120; i++)
                                 EstadosCuotas[i] = Estados.Nueva;
                         //Cargo los estados de las cuotas
-                        System.Data.IDataReader Cuotas = this.DataView.DataBase.GetReader("SELECT cuota, estado, estado_com FROM ventas_cuotas WHERE prefijo=" + Dummy["prefijo"].ToString() + " AND operacion=" + Dummy["operacion"].ToString());
-                        while (Cuotas.Read()) {
-                                EstadosCuotas[System.Convert.ToInt32(Cuotas["cuota"])] = (Estados)(System.Convert.ToInt32(Cuotas["estado"]));
-                                EstadosCuotasComercio[System.Convert.ToInt32(Cuotas["cuota"])] = (Estados)(System.Convert.ToInt32(Cuotas["estado_com"]));
+                        using (System.Data.DataTable Cuotas = this.DataBase.Select("SELECT cuota, estado, estado_com FROM ventas_cuotas WHERE prefijo=" + Dummy["prefijo"].ToString() + " AND operacion=" + Dummy["operacion"].ToString())) {
+                                foreach(System.Data.DataRow Cuota in Cuotas.Rows) {
+                                        EstadosCuotas[System.Convert.ToInt32(Cuota["cuota"])] = (Estados)(System.Convert.ToInt32(Cuota["estado"]));
+                                        EstadosCuotasComercio[System.Convert.ToInt32(Cuota["cuota"])] = (Estados)(System.Convert.ToInt32(Cuota["estado_com"]));
+                                }
                         }
-                        Cuotas.Close();
 
                         if (Dummy == null)
                                 return new Lfx.Types.FailureOperationResult("No se pudo cargar el registro");
@@ -129,13 +137,13 @@ namespace Lbl.Cuotas
                 {
                         if (this.Registro != null) {
                                 if (this.FieldInt("id_cliente") != 0)
-                                        Cliente = new Lbl.Personas.Persona(DataView, this.FieldInt("id_cliente"), false);
+                                        Cliente = new Lbl.Personas.Persona(DataBase, this.FieldInt("id_cliente"), false);
 
                                 if (this.FieldInt("id_comercio") != 0)
-                                        Comercio = new Lbl.Personas.Persona(DataView, this.FieldInt("id_comercio"), false);
+                                        Comercio = new Lbl.Personas.Persona(DataBase, this.FieldInt("id_comercio"), false);
 
                                 if (this.FieldInt("id_recibo") != 0)
-                                        Recibo = new Lbl.Comprobantes.Recibo(DataView, this.FieldInt("id_recibo"));
+                                        Recibo = new Lbl.Comprobantes.Recibo(DataBase, this.FieldInt("id_recibo"));
                         }
                         base.OnLoad();
                 }
@@ -144,14 +152,17 @@ namespace Lbl.Cuotas
                 {
                         get
                         {
-                                throw new InvalidOperationException("No se puede acceder a la propiedad estado de una Operacion");
+                                throw new InvalidOperationException("No se puede acceder a la propiedad estado de una Operacion. Se debe acceder al estado de cada cuota.");
                         }
                         set
                         {
-                                throw new InvalidOperationException("No se puede acceder a la propiedad estado de una Operacion");
+                                throw new InvalidOperationException("No se puede acceder a la propiedad estado de una Operacion, Se debe acceder al estado de cada cuota.");
                         }
                 }
 
+                /// <summary>
+                /// Devuelve o establece la fecha en la que se realiza la operación.
+                /// </summary>
                 public DateTime Fecha
                 {
                         get
@@ -164,6 +175,9 @@ namespace Lbl.Cuotas
                         }
                 }
 
+                /// <summary>
+                /// Devuelve o establece el vencimiento de la primera cuota. El resto de las cuotas vencen el mismo día de los meses sucesivos.
+                /// </summary>
                 public DateTime Vencimiento
                 {
                         get
@@ -176,6 +190,9 @@ namespace Lbl.Cuotas
                         }
                 }
 
+                /// <summary>
+                /// Devuelve o establece la cantidad de cuotas en las que se paga esta operación.
+                /// </summary>
                 public int Cuotas
                 {
                         get
@@ -188,6 +205,9 @@ namespace Lbl.Cuotas
                         }
                 }
 
+                /// <summary>
+                /// Devuelve o establece el número de autorizacón para esta operación.
+                /// </summary>
                 public int Autorizacion
                 {
                         get
@@ -200,6 +220,9 @@ namespace Lbl.Cuotas
                         }
                 }
 
+                /// <summary>
+                /// Devuelve o establece el importe total de la operación, incluyendo los intereses.
+                /// </summary>
                 public double ImporteTotal
                 {
                         get
@@ -214,6 +237,9 @@ namespace Lbl.Cuotas
                         }
                 }
 
+                /// <summary>
+                /// Devuelve o establece el importe bruto de la operación, sin incluir intereses.
+                /// </summary>
                 public double ImporteBruto
                 {
                         get
@@ -226,6 +252,89 @@ namespace Lbl.Cuotas
                         }
                 }
 
+                /// <summary>
+                /// Devuelve el monto total de intereses aplicado a esta operación.
+                /// </summary>
+                public double ImporteIntereses
+                {
+                        get
+                        {
+                                return this.ImporteTotal - this.ImporteBruto;
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve el porcentaje de interés total aplicado a esta operación.
+                /// </summary>
+                public double Intereses
+                {
+                        get
+                        {
+                                return Math.Round(this.ImporteIntereses / this.ImporteBruto * 100, 4);
+                        }
+                }
+
+                public double IntereseMensual
+                {
+                        get
+                        {
+                                int DifMeses = this.DiferenciaMeses;
+                                if (DifMeses >= 1) {
+                                        return Math.Round(this.Intereses / System.Convert.ToDouble(this.Cuotas + DifMeses), 4);
+                                } else {
+                                        // Es una operación normal a 30 días
+                                        return Math.Round(this.Intereses / System.Convert.ToDouble(this.Cuotas), 4);
+                                }
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve la "diferencia" en las operaciones "diferidas".
+                /// </summary>
+                public TimeSpan Diferencia
+                {
+                        get
+                        {
+                                return this.Vencimiento - this.Fecha;
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve la "diferencia" (en meses) en las operaciones "diferidas".
+                /// </summary>
+                public int DiferenciaMeses
+                {
+                        get
+                        {
+                                return System.Convert.ToInt32(Math.Round(this.Diferencia.TotalDays / 30.41D));
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve la "diferencia" desde hoy (y no desde la fecha de la operación) en las operaciones "diferidas".
+                /// </summary>
+                public TimeSpan DiferenciaDesdeHoy
+                {
+                        get
+                        {
+                                return this.Vencimiento - System.DateTime.Now;
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve la "diferencia" (en meses) desde hoy (y no desde la fecha de la operación) hasta la fecha del primer pago (especialmente para las precancelaciones).
+                /// </summary>
+                public int DiferenciaMesesDesdeHoy
+                {
+                        get
+                        {
+                                return System.Convert.ToInt32(Math.Round(this.DiferenciaDesdeHoy.TotalDays / 30.41D));
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve el monto de la cuota (es el importe total dividido por la cantidad de cuotas).
+                /// </summary>
                 public double MontoCuota
                 {
                         get

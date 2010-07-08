@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System.Drawing;
 using System.Drawing.Printing;
@@ -47,28 +49,28 @@ namespace Lbl.Comprobantes.Impresion
 		
 		protected void ObtenerPlantilla()
 		{
-                        this.Plantilla = new Plantilla(this.DataView, this.Comprobante.Tipo.Nomenclatura);
+                        this.Plantilla = new Plantilla(this.DataBase, this.Comprobante.Tipo.Nomenclatura);
 		}
 
-                public Lws.Data.DataView DataView
-		{
-			get
-			{
-				if (this.Comprobante == null)
-					return null;
-				else
-					return this.Comprobante.DataView;
-			}
-		}
+                public Lfx.Data.DataBase DataBase
+                {
+                        get
+                        {
+                                if (this.Comprobante == null)
+                                        return null;
+                                else
+                                        return this.Comprobante.DataBase;
+                        }
+                }
 		
-		public Lws.Workspace Workspace
+		public Lfx.Workspace Workspace
 		{
 			get
 			{
-				if (this.DataView == null)
+				if (this.Comprobante == null || this.Comprobante.Workspace == null)
 					return null;
 				else
-					return this.DataView.Workspace;
+                                        return this.Comprobante.Workspace;
 			}
 		}
 

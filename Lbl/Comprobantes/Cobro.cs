@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -46,62 +48,62 @@ namespace Lbl.Comprobantes
                 public Comprobantes.Recibo Recibo;
 
                 //Heredar constructor
-                public Cobro(Lws.Data.DataView dataView) : base(dataView) { }
+                public Cobro(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-                public Cobro(Lws.Data.DataView dataView, Lbl.Comprobantes.FormaDePago formaDePago)
-                        : this(dataView)
+                public Cobro(Lfx.Data.DataBase dataBase, Lbl.Comprobantes.FormaDePago formaDePago)
+                        : this(dataBase)
                 {
                         FormaDePago = formaDePago;
                 }
 
-                public Cobro(Lws.Data.DataView dataView, Lbl.Comprobantes.TipoFormasDePago tipoFormaDePago)
-                        : this(dataView)
+                public Cobro(Lfx.Data.DataBase dataBase, Lbl.Comprobantes.TipoFormasDePago tipoFormaDePago)
+                        : this(dataBase)
                 {
                         switch(tipoFormaDePago) {
                                 case TipoFormasDePago.Efectivo:
-                                        FormaDePago = new FormaDePago(dataView, 1);
+                                        FormaDePago = new FormaDePago(dataBase, 1);
                                         break;
                                 case TipoFormasDePago.ChequePropio:
-                                        FormaDePago = new FormaDePago(dataView, 2);
+                                        FormaDePago = new FormaDePago(dataBase, 2);
                                         break;
                                 case TipoFormasDePago.CuentaCorriente:
-                                        FormaDePago = new FormaDePago(dataView, 3);
+                                        FormaDePago = new FormaDePago(dataBase, 3);
                                         break;
                                 case TipoFormasDePago.Tarjeta:
-                                        FormaDePago = new FormaDePago(dataView, 4);
+                                        FormaDePago = new FormaDePago(dataBase, 4);
                                         break;
                                 case TipoFormasDePago.Caja:
-                                        FormaDePago = new FormaDePago(dataView, 6);
+                                        FormaDePago = new FormaDePago(dataBase, 6);
                                         break;
                                 case TipoFormasDePago.ChequeTerceros:
-                                        FormaDePago = new FormaDePago(dataView, 8);
+                                        FormaDePago = new FormaDePago(dataBase, 8);
                                         break;
                                 default:
-                                        FormaDePago = new FormaDePago(dataView, (int)tipoFormaDePago);
+                                        FormaDePago = new FormaDePago(dataBase, (int)tipoFormaDePago);
                                         break;
                         }
                 }
 
-                public Cobro(Lws.Data.DataView dataView, Lbl.Comprobantes.TipoFormasDePago formaDePago, double importe)
-                        : this(dataView, formaDePago)
+                public Cobro(Lfx.Data.DataBase dataBase, Lbl.Comprobantes.TipoFormasDePago formaDePago, double importe)
+                        : this(dataBase, formaDePago)
                 {
                         this.Importe = importe;
                 }
 
                 public Cobro(Bancos.Cheque cheque)
-                        : this(cheque.DataView, TipoFormasDePago.ChequeTerceros)
+                        : this(cheque.DataBase, TipoFormasDePago.ChequeTerceros)
                 {
                         this.Cheque = cheque;
                 }
 
                 public Cobro(Tarjetas.Cupon cupon)
-                        : this(cupon.DataView, cupon.FormaDePago)
+                        : this(cupon.DataBase, cupon.FormaDePago)
                 {
                         this.Cupon = cupon;
                 }
 
                 public Cobro(Pagos.Valor valor)
-                        : this(valor.DataView, valor.FormaDePago.Tipo)
+                        : this(valor.DataBase, valor.FormaDePago.Tipo)
                 {
                         this.Valor = valor;
                 }
@@ -168,7 +170,7 @@ namespace Lbl.Comprobantes
 
                         switch (FormaDePago.Tipo) {
                                 case TipoFormasDePago.Efectivo:
-                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
+                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(DataBase, this.Workspace.CurrentConfig.Company.CajaDiaria);
                                         Caja.Movimiento(true, this.Concepto, DescripConcepto, Cliente, -this.Importe, "", Factura, this.Recibo, "");
                                         break;
                                 case TipoFormasDePago.ChequePropio:
@@ -232,7 +234,7 @@ namespace Lbl.Comprobantes
                 public new void RemoveAt(int index)
                 {
                         if ((index > (Count - 1)) || (index < 0))
-                                throw new Exception("Índice fuera de rango en " + this.GetType().ToString());
+                                throw new ArgumentOutOfRangeException("Índice fuera de rango en " + this.GetType().ToString());
                         List.RemoveAt(index);
                 }
 

@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -36,22 +38,22 @@ namespace Lbl.Comprobantes
         public class ReciboDePago : Recibo
         {
                 //Heredar constructor
-                public ReciboDePago(Lws.Data.DataView dataView)
-                        : base(dataView)
+                public ReciboDePago(Lfx.Data.DataBase dataBase)
+                        : base(dataBase)
                 {
                         this.Crear();
-                        this.Vendedor = new Personas.Persona(dataView, dataView.Workspace.CurrentUser.Id);
+                        this.Vendedor = new Personas.Persona(dataBase, dataBase.Workspace.CurrentUser.Id);
                 }
 
-                public ReciboDePago(Lws.Data.DataView dataView, Personas.Persona cliente)
-                        : this(dataView)
+                public ReciboDePago(Lfx.Data.DataBase dataBase, Personas.Persona cliente)
+                        : this(dataBase)
                 {
                         this.Crear();
                         this.Cliente = cliente;
                 }
 
-                public ReciboDePago(Lws.Data.DataView dataView, int idRecibo)
-                        : this(dataView)
+                public ReciboDePago(Lfx.Data.DataBase dataBase, int idRecibo)
+                        : this(dataBase)
                 {
                         this.m_ItemId = idRecibo;
                         this.Cargar();
@@ -61,7 +63,7 @@ namespace Lbl.Comprobantes
                 {
                         Lfx.Types.OperationResult Res = base.Crear();
                         this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.RCP.PV", this.Workspace.CurrentConfig.Company.CurrentBranch);
-                        this.Tipo = new Tipo(this.DataView, "RCP");
+                        this.Tipo = new Tipo(this.DataBase, "RCP");
                         return Res;
                 }
         }

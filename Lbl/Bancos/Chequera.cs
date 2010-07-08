@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -40,14 +42,14 @@ namespace Lbl.Bancos
                 public Lbl.Entidades.Sucursal Sucursal;
 
                 //Heredar constructor
-                public Chequera(Lws.Data.DataView dataView)
-                        : base(dataView)
+                public Chequera(Lfx.Data.DataBase dataBase)
+                        : base(dataBase)
                 {
                         this.Estado = 1;
                 }
 
-                public Chequera(Lws.Data.DataView dataView, int idChequera)
-			: this(dataView)
+                public Chequera(Lfx.Data.DataBase dataBase, int idChequera)
+			: this(dataBase)
 		{
 			m_ItemId = idChequera;
                         this.Cargar();
@@ -121,17 +123,17 @@ namespace Lbl.Bancos
                 {
                         if (this.Registro != null) {
                                 if (this.FieldInt("id_banco") > 0)
-                                        this.Banco = new Bancos.Banco(this.DataView, this.FieldInt("id_banco"));
+                                        this.Banco = new Bancos.Banco(this.DataBase, this.FieldInt("id_banco"));
                                 else
                                         this.Banco = null;
 
                                 if (this.FieldInt("id_caja") > 0)
-                                        this.Caja = new Cajas.Caja(this.DataView, this.FieldInt("id_caja"));
+                                        this.Caja = new Cajas.Caja(this.DataBase, this.FieldInt("id_caja"));
                                 else
                                         this.Caja = null;
 
                                 if (this.FieldInt("id_sucursal") > 0)
-                                        this.Sucursal = new Lbl.Entidades.Sucursal(this.DataView, this.FieldInt("id_sucursal"));
+                                        this.Sucursal = new Lbl.Entidades.Sucursal(this.DataBase, this.FieldInt("id_sucursal"));
                                 else
                                         this.Sucursal = null;
                         }
@@ -140,13 +142,13 @@ namespace Lbl.Bancos
 
                 public override Lfx.Types.OperationResult Guardar()
                 {
-                        Lfx.Data.SqlTableCommandBuilder Comando;
+                        qGen.TableCommand Comando;
                         if (this.Existe == false) {
-                                Comando = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, "chequeras");
-                                Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
+                                Comando = new qGen.Insert(DataBase, "chequeras");
+                                Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                         } else {
-                                Comando = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "chequeras");
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_chequera", m_ItemId);
+                                Comando = new qGen.Update(DataBase, "chequeras");
+                                Comando.WhereClause = new qGen.Where("id_chequera", m_ItemId);
                         }
 
                         if (this.Banco == null)
@@ -167,24 +169,32 @@ namespace Lbl.Bancos
                         Comando.Fields.AddWithValue("titular", this.Titular);
                         Comando.Fields.AddWithValue("estado", this.Estado);
 
-                        DataView.Execute(Comando);
+                        DataBase.Execute(Comando);
 
                         if (m_ItemId == 0)
-                                m_ItemId = DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
+                                m_ItemId = DataBase.FieldInt("SELECT LAST_INSERT_ID()");
 
                         if (this.Desde > 0 && this.Hasta > 0 && this.Hasta > this.Desde) {
-				Lfx.Data.SqlUpdateBuilder Actua = new Lfx.Data.SqlUpdateBuilder("bancos_cheques");
-				Actua.Fields.Add(new Lfx.Data.SqlField("id_chequera", Lfx.Data.ValueTypes.Int, this.Id));
-				Actua.WhereClause = new Lfx.Data.SqlWhereBuilder("emitido=1 AND numero BETWEEN " + this.Desde.ToString() + " AND " + this.Hasta.ToString());
-				DataView.Execute(Actua);
+				qGen.Update Actua = new qGen.Update("bancos_cheques");
+				Actua.Fields.AddWithValue("id_chequera", this.Id);
+				Actua.WhereClause = new qGen.Where();
+                                Actua.WhereClause.AddWithValue("emitido", 1);
+                                Actua.WhereClause.AddWithValue("id_banco", this.Banco.Id);
+                                Actua.WhereClause.AddWithValue("numero", this.Desde, this.Hasta);
+				DataBase.Execute(Actua);
 				
-				Actua = new Lfx.Data.SqlUpdateBuilder("bancos_cheques");
-				Actua.Fields.Add(new Lfx.Data.SqlField("id_chequera", Lfx.Data.ValueTypes.Int, null));
-				Actua.WhereClause = new Lfx.Data.SqlWhereBuilder("emitido=1 AND id_chequera=" + this.Id.ToString() + " AND (numero<" + this.Desde.ToString() + " OR numero>" + this.Hasta.ToString() + ")");
-				DataView.Execute(Actua);
-				
-                                //DataView.DataBase.Execute("UPDATE bancos_cheques SET id_chequera=" + this.Id.ToString() + " WHERE emitido=1 AND numero BETWEEN " + this.Desde.ToString() + " AND " + this.Hasta.ToString());
-                                //DataView.DataBase.Execute("UPDATE bancos_cheques SET id_chequera=NULL WHERE emitido=1 AND id_chequera=" + this.Id.ToString() + " AND (numero<" + this.Desde.ToString() + " OR numero>" + this.Hasta.ToString() + ")");
+				Actua = new qGen.Update("bancos_cheques");
+				Actua.Fields.Add(new Lfx.Data.Field("id_chequera", Lfx.Data.DbTypes.Integer, null));
+				Actua.WhereClause = new qGen.Where();
+                                Actua.WhereClause.AddWithValue("emitido", 1);
+                                Actua.WhereClause.AddWithValue("id_banco", this.Banco.Id);
+                                Actua.WhereClause.AddWithValue("id_chequera", this.Id);
+                                qGen.Where Numeros = new qGen.Where(qGen.AndOr.Or);
+                                Numeros.AddWithValue("numero", qGen.ComparisonOperators.LessThan, this.Desde);
+                                Numeros.AddWithValue("numero", qGen.ComparisonOperators.GreaterThan, this.Hasta);
+                                Actua.WhereClause.AddWithValue(Numeros);
+				DataBase.Execute(Actua);
+
                         }
 
                         return base.Guardar();

@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -35,12 +37,17 @@ namespace Lbl.Cajas
 {
 	public class Caja : ElementoDeDatos
 	{
-		//Heredar constructor
-		public Caja(Lws.Data.DataView dataView, int idCaja)
-			: base(dataView)
+		//Heredar constructores
+		public Caja(Lfx.Data.DataBase dataBase, int idCaja)
+			: base(dataBase)
 		{
 			m_ItemId = idCaja;
 		}
+
+                public Caja(Lfx.Data.DataBase dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row)
+                {
+                }
 
 		public override string TablaDatos
 		{
@@ -60,7 +67,7 @@ namespace Lbl.Cajas
 
 		public virtual double Saldo()
 		{
-			return this.DataView.DataBase.FieldDouble("SELECT saldo FROM cajas_movim WHERE id_caja=" + m_ItemId.ToString() + " ORDER BY id_movim DESC");
+			return this.DataBase.FieldDouble("SELECT saldo FROM cajas_movim WHERE id_caja=" + m_ItemId.ToString() + " ORDER BY id_movim DESC");
 		}
 
                 
@@ -73,21 +80,21 @@ namespace Lbl.Cajas
 		{
 			double SaldoActual = this.Saldo();
 
-                        Lfx.Data.SqlTableCommandBuilder Comando; Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, "cajas_movim");
+                        qGen.TableCommand Comando; Comando = new qGen.Insert(this.DataBase, "cajas_movim");
 			Comando.Fields.AddWithValue("id_caja", m_ItemId);
 			Comando.Fields.AddWithValue("auto", auto ? (int)1 : (int)0);
 			Comando.Fields.AddWithValue("id_concepto", Lfx.Data.DataBase.ConvertZeroToDBNull(idConcepto));
 			Comando.Fields.AddWithValue("concepto", concepto);
                         Comando.Fields.AddWithValue("id_persona", this.Workspace.CurrentUser.Id);
 			Comando.Fields.AddWithValue("id_cliente", Lfx.Data.DataBase.ConvertZeroToDBNull(idCliente));
-			Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
+			Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
 			Comando.Fields.AddWithValue("importe", importe);
 			Comando.Fields.AddWithValue("id_comprob", Lfx.Data.DataBase.ConvertZeroToDBNull(idFactura));
 			Comando.Fields.AddWithValue("id_recibo", Lfx.Data.DataBase.ConvertZeroToDBNull(idRecibo));
 			Comando.Fields.AddWithValue("comprob", comprobantes);
 			Comando.Fields.AddWithValue("saldo", SaldoActual + importe);
 			Comando.Fields.AddWithValue("obs", obs);
-			this.DataView.Execute(Comando);
+			this.DataBase.Execute(Comando);
 
 			return new Lfx.Types.SuccessOperationResult();
 		}

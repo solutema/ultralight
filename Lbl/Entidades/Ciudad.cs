@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -33,15 +35,22 @@ using System.Text;
 
 namespace Lbl.Entidades
 {
+        public enum TipoLocalidad
+        {
+                Provincia = 0,
+                Departamento = 1,
+                Localidad = 2
+        }
+
 	public class Localidad : ElementoDeDatos
 	{
                 private Localidad m_Parent = null;
 
 		//Heredar constructor
-		public Localidad(Lws.Data.DataView dataView) : base(dataView) { }
+		public Localidad(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-		public Localidad(Lws.Data.DataView dataView, int itemId)
-			: this(dataView)
+		public Localidad(Lfx.Data.DataBase dataBase, int itemId)
+			: this(dataBase)
 		{
 			m_ItemId = itemId;
 		}
@@ -74,13 +83,25 @@ namespace Lbl.Entidades
                         }
                 }
 
-                public Localidad Provincia
+                public TipoLocalidad TipoLocalidad
+                {
+                        get
+                        {
+                                return ((TipoLocalidad)(this.FieldInt("nivel")));
+                        }
+                        set
+                        {
+                                this.Registro["nivel"] = (int)value;
+                        }
+                }
+
+                public Localidad Parent
                 {
                         get
                         {
                                 if (m_Parent == null) {
                                         if (this.Registro["parent"] != null)
-                                                m_Parent = new Localidad(this.DataView, this.FieldInt("parent"));
+                                                m_Parent = new Localidad(this.DataBase, this.FieldInt("parent"));
                                 }
                                 return m_Parent;
                         }
@@ -91,6 +112,67 @@ namespace Lbl.Entidades
                                         this.Registro["parent"] = null;
                                 else
                                         this.Registro["parent"] = m_Parent.Id;
+                        }
+                }
+
+                public Localidad Departamento
+                {
+                        get
+                        {
+                                switch (this.TipoLocalidad) {
+                                        case Entidades.TipoLocalidad.Provincia:
+                                                return null;
+                                        case Entidades.TipoLocalidad.Departamento:
+                                                return this;
+                                        case Entidades.TipoLocalidad.Localidad:
+                                                return this.Parent;
+                                        default:
+                                                throw new InvalidProgramException("Tipo de Localidad desconocido");
+                                }
+                        }
+                        set
+                        {
+                                switch (this.TipoLocalidad) {
+                                        case Entidades.TipoLocalidad.Provincia:
+                                                throw new InvalidOperationException("No se puede establecer el Departamento de una Provincia");
+                                        case Entidades.TipoLocalidad.Departamento:
+                                                throw new InvalidOperationException("No se puede establecer el Departamento de un Departamento");
+                                        case Entidades.TipoLocalidad.Localidad:
+                                                this.Parent = value;
+                                                break;
+                                }
+                        }
+                }
+
+                public Localidad Provincia
+                {
+                        get
+                        {
+                                switch (this.TipoLocalidad) {
+                                        case Entidades.TipoLocalidad.Provincia:
+                                                return this;
+                                        case Entidades.TipoLocalidad.Departamento:
+                                                return this.Parent;
+                                        case Entidades.TipoLocalidad.Localidad:
+                                                if (this.Parent == null)
+                                                        return null;
+                                                else
+                                                        return this.Parent.Parent;
+                                        default:
+                                                throw new InvalidProgramException("Tipo de Localidad desconocido");
+                                }
+                        }
+                        set
+                        {
+                                switch (this.TipoLocalidad) {
+                                        case Entidades.TipoLocalidad.Provincia:
+                                                throw new InvalidOperationException("No se puede establecer la Provincia de una Provincia");
+                                        case Entidades.TipoLocalidad.Departamento:
+                                                this.Parent = value;
+                                                break;
+                                        case Entidades.TipoLocalidad.Localidad:
+                                                throw new InvalidOperationException("No se puede establecer la Provincia de una Ciudad directamente, debe establecer el Departamento");
+                                }
                         }
                 }
 	}

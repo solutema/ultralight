@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -33,29 +35,29 @@ using System.Text;
 
 namespace Lbl.Cajas
 {
+        public enum Frecuencias
+        {
+                Unica,
+                Diaria,
+                Semanal,
+                Mensual,
+                Bimestral,
+                Trimestral,
+                Cuatrimestral,
+                Semestral,
+                Anual
+        }
+
         public class Vencimiento : ElementoDeDatos
         {
-                public enum Frecuencias
-                {
-                        Unica,
-                        Diaria,
-                        Semanal,
-                        Mensual,
-                        Bimestral,
-                        Trimestral,
-                        Cuatrimestral,
-                        Semestral,
-                        Anual
-                }
-
                 public Cajas.Concepto Concepto;
 
                 //Heredar constructor
-                public Vencimiento(Lws.Data.DataView dataView)
-                        : base(dataView) {}
+                public Vencimiento(Lfx.Data.DataBase dataBase)
+                        : base(dataBase) {}
 
-                public Vencimiento(Lws.Data.DataView dataView, int itemId)
-			: this(dataView)
+                public Vencimiento(Lfx.Data.DataBase dataBase, int itemId)
+			: this(dataBase)
 		{
                         m_ItemId = itemId;
 		}
@@ -194,7 +196,7 @@ namespace Lbl.Cajas
                 {
                         if (this.Registro != null) {
                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(Registro["id_concepto"]) > 0)
-                                        this.Concepto = new Cajas.Concepto(this.DataView, System.Convert.ToInt32(Registro["id_concepto"]));
+                                        this.Concepto = new Cajas.Concepto(this.DataBase, System.Convert.ToInt32(Registro["id_concepto"]));
                                 else
                                         this.Concepto = null;
                         }
@@ -202,14 +204,14 @@ namespace Lbl.Cajas
 
                 public override Lfx.Types.OperationResult Guardar()
                 {
-                        Lfx.Data.SqlTableCommandBuilder Comando;
+                        qGen.TableCommand Comando;
 
                         if (this.Existe == false) {
-                                Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
+                                Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
+                                Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                         } else {
-                                Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
+                                Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
                         Comando.Fields.AddWithValue("nombre", this.Nombre);
@@ -257,7 +259,7 @@ namespace Lbl.Cajas
 
                         this.AgregarTags(Comando);
 
-                        this.DataView.Execute(Comando);
+                        this.DataBase.Execute(Comando);
 
                         return new Lfx.Types.SuccessOperationResult();
                 }

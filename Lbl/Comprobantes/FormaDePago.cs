@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -49,16 +51,16 @@ namespace Lbl.Comprobantes
                 private Lbl.Cajas.Caja m_Caja;
 
                 //Heredar constructor
-		public FormaDePago(Lws.Data.DataView dataView) : base(dataView) { }
+		public FormaDePago(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-                public FormaDePago(Lws.Data.DataView dataView, int idFormaDePago)
-			: this(dataView)
+                public FormaDePago(Lfx.Data.DataBase dataBase, int idFormaDePago)
+			: this(dataBase)
 		{
                         m_ItemId = idFormaDePago;
 		}
 
-                public FormaDePago(Lws.Data.DataView dataView, TipoFormasDePago tipoFormaPago)
-                        : this(dataView)
+                public FormaDePago(Lfx.Data.DataBase dataBase, TipoFormasDePago tipoFormaPago)
+                        : this(dataBase)
                 {
                         m_ItemId = (int)tipoFormaPago;
                 }
@@ -92,7 +94,7 @@ namespace Lbl.Comprobantes
                                 if (Registro["id_caja"] == null)
                                         m_Caja = null;
                                 else
-                                        m_Caja = new Lbl.Cajas.Caja(this.DataView, System.Convert.ToInt32(Registro["id_caja"]));
+                                        m_Caja = new Lbl.Cajas.Caja(this.DataBase, System.Convert.ToInt32(Registro["id_caja"]));
                         }
 
                         return Res;
@@ -187,7 +189,7 @@ namespace Lbl.Comprobantes
                         get
                         {
                                 if (m_Caja == null && this.FieldInt("id_caja") > 0)
-                                        m_Caja = new Lbl.Cajas.Caja(this.DataView, this.FieldInt("id_caja"));
+                                        m_Caja = new Lbl.Cajas.Caja(this.DataBase, this.FieldInt("id_caja"));
                                 return m_Caja;
                         }
                         set

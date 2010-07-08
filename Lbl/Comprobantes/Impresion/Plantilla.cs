@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System.Collections.Generic;
 using System.Xml;
@@ -38,21 +40,21 @@ namespace Lbl.Comprobantes.Impresion
                 public System.Drawing.Font Font;
 
 		//Heredar constructor
-		public Plantilla(Lws.Data.DataView dataView) : base(dataView) { }
+		public Plantilla(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-		public Plantilla(Lws.Data.DataView dataView, int idPlantilla)
-			: this(dataView)
+		public Plantilla(Lfx.Data.DataBase dataBase, int idPlantilla)
+			: this(dataBase)
 		{
 			m_ItemId = idPlantilla;
                         this.Cargar();
 		}
 		
-		public Plantilla(Lws.Data.DataView dataView, string tipoComprob)
-			: this(dataView)
+		public Plantilla(Lfx.Data.DataBase dataBase, string tipoComprob)
+			: this(dataBase)
 		{
                         string BuscarComprob = tipoComprob;
 
-                        m_ItemId = dataView.DataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='" + BuscarComprob + "'");
+                        m_ItemId = dataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='" + BuscarComprob + "'");
                         if (m_ItemId == 0) {
        
                                 switch(BuscarComprob)
@@ -78,7 +80,7 @@ namespace Lbl.Comprobantes.Impresion
                                                 BuscarComprob = "FM";
                                                 break;
                                 }
-                                m_ItemId = dataView.DataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='" + BuscarComprob + "'");
+                                m_ItemId = dataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='" + BuscarComprob + "'");
                         }
 
                         if (m_ItemId == 0) {
@@ -90,11 +92,11 @@ namespace Lbl.Comprobantes.Impresion
                                                 BuscarComprob = "FA";
                                                 break;
                                 }
-                                m_ItemId = dataView.DataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='" + BuscarComprob + "'");
+                                m_ItemId = dataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='" + BuscarComprob + "'");
                         }
 
 			if (m_ItemId == 0)
-				m_ItemId = dataView.DataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='*'");
+				m_ItemId = dataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='*'");
 
 			this.Cargar();
 		}
@@ -278,13 +280,13 @@ namespace Lbl.Comprobantes.Impresion
 
                         this.Definicion = XmlDef;
 
-			Lfx.Data.SqlTableCommandBuilder Comando;
+			qGen.TableCommand Comando;
 
                         if (this.Existe == false) {
-                                Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, this.TablaDatos);
+                                Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
                         } else {
-                                Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
+                                Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
                         Comando.Fields.AddWithValue("codigo", this.Codigo);
@@ -295,7 +297,7 @@ namespace Lbl.Comprobantes.Impresion
                         Comando.Fields.AddWithValue("copias", this.Copias);
                         Comando.Fields.AddWithValue("membrete", this.Membrete);
 
-                        this.DataView.Execute(Comando);
+                        this.DataBase.Execute(Comando);
 
                         return base.Guardar();
                 }

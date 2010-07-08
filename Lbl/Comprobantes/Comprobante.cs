@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -36,7 +38,7 @@ namespace Lbl.Comprobantes
 	public abstract class Comprobante : ElementoDeDatos
 	{
 		//Heredar constructor
-		protected Comprobante(Lws.Data.DataView dataView) : base(dataView) { }
+		protected Comprobante(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
 		public Personas.Persona Vendedor, Cliente;
 		public Entidades.Sucursal Sucursal;
@@ -51,7 +53,7 @@ namespace Lbl.Comprobantes
 			get
 			{
                                 if(m_Tipo == null && this.FieldString("tipo_fac") != null)
-                                        Tipo = new Tipo(this.DataView, this.FieldString("tipo_fac"));
+                                        Tipo = new Tipo(this.DataBase, this.FieldString("tipo_fac"));
                                 return m_Tipo;
 			}
                         set
@@ -91,31 +93,31 @@ namespace Lbl.Comprobantes
                                         if(Tipo != null)
                                                 SituacionOrigen = Tipo.SituacionOrigen;
                                 } else {
-                                        SituacionOrigen = new Lbl.Articulos.Situacion(this.DataView, System.Convert.ToInt32(Registro["situacionorigen"]));
+                                        SituacionOrigen = new Lbl.Articulos.Situacion(this.DataBase, System.Convert.ToInt32(Registro["situacionorigen"]));
                                 }
 
                                 if (this.Registro["situaciondestino"] == null) {
                                         if (Tipo != null)
                                                 SituacionDestino = Tipo.SituacionDestino;
                                 } else {
-                                        SituacionDestino = new Lbl.Articulos.Situacion(this.DataView, System.Convert.ToInt32(Registro["situaciondestino"]));
+                                        SituacionDestino = new Lbl.Articulos.Situacion(this.DataBase, System.Convert.ToInt32(Registro["situaciondestino"]));
                                 }
                         }
 
                         return Res;
                 }
 
-		public static string FacturasDeUnRecibo(Lws.Data.DataView dataView, int ReciboId)
+		public static string FacturasDeUnRecibo(Lfx.Data.DataBase dataBase, int ReciboId)
 		{
 			System.Text.StringBuilder Facturas = new System.Text.StringBuilder();
-			System.Data.DataTable TablaFacturas = dataView.DataBase.Select("SELECT id_comprob FROM recibos_comprob WHERE id_recibo=" + ReciboId.ToString());
+			System.Data.DataTable TablaFacturas = dataBase.Select("SELECT id_comprob FROM recibos_comprob WHERE id_recibo=" + ReciboId.ToString());
 
 			foreach (System.Data.DataRow Factura in TablaFacturas.Rows)
 			{
 				if (Facturas.Length == 0)
-					Facturas.Append(Lbl.Comprobantes.Comprobante.NumeroCompleto(dataView, Lfx.Data.DataBase.ConvertDBNullToZero(Factura["id_comprob"])));
+					Facturas.Append(Lbl.Comprobantes.Comprobante.NumeroCompleto(dataBase, Lfx.Data.DataBase.ConvertDBNullToZero(Factura["id_comprob"])));
 				else
-					Facturas.Append(", " + Lbl.Comprobantes.Comprobante.NumeroCompleto(dataView, Lfx.Data.DataBase.ConvertDBNullToZero(Factura["id_comprob"])));
+					Facturas.Append(", " + Lbl.Comprobantes.Comprobante.NumeroCompleto(dataBase, Lfx.Data.DataBase.ConvertDBNullToZero(Factura["id_comprob"])));
 			}
 
 			return Facturas.ToString();
@@ -210,10 +212,10 @@ namespace Lbl.Comprobantes
 		{
 			// Determino la impresora que le corresponde
 			if (nombreImpresora != null && nombreImpresora.Length == 0)
-                                nombreImpresora = this.DataView.Workspace.CurrentConfig.Printing.PreferredPrinter(this.Tipo.Nomenclatura);
+                                nombreImpresora = this.Workspace.CurrentConfig.Printing.PreferredPrinter(this.Tipo.Nomenclatura);
 
 			// Si es de carga manual, presento el formulario correspondiente
-                        if (this.DataView.Workspace.CurrentConfig.Printing.PrinterFeed(this.Tipo.Nomenclatura, "manual") == "manual")
+                        if (this.Workspace.CurrentConfig.Printing.PrinterFeed(this.Tipo.Nomenclatura, "manual") == "manual")
 			{
                                 if (Lbl.Impresion.Services.ShowManualFeedDialog(nombreImpresora, this.ToString()).Success == false)
 					return new Lfx.Types.FailureOperationResult("Operación cancelada");
@@ -223,10 +225,10 @@ namespace Lbl.Comprobantes
 			return Impresor.Imprimir(nombreImpresora);
 		}
 
-		public static string NumeroCompleto(Lws.Data.DataView dataView, int iId)
+		public static string NumeroCompleto(Lfx.Data.DataBase dataBase, int iId)
 		{
 			// Toma el Id de factura y devuelve el tipo y número (por ejemplo: B 0001-00000135)
-                        Lfx.Data.Row TmpFactura = dataView.Tables["comprob"].FastRows[iId]; //dataView.DataBase.Row("comprob", "tipo_fac, pv, numero", "id_comprob", iId);
+                        Lfx.Data.Row TmpFactura = dataBase.Tables["comprob"].FastRows[iId]; //dataBase.Row("comprob", "tipo_fac, pv, numero", "id_comprob", iId);
 
 			if (TmpFactura == null)
 				return "";
@@ -234,10 +236,10 @@ namespace Lbl.Comprobantes
 				return (string)TmpFactura["tipo_fac"].ToString() + " " + System.Convert.ToInt32(TmpFactura["pv"]).ToString("0000") + "-" + System.Convert.ToInt32(TmpFactura["numero"]).ToString("00000000");
 		}
 
-		public static string NombreCompletoRecibo(Lws.Data.DataView dataView, int iId)
+		public static string NombreCompletoRecibo(Lfx.Data.DataBase dataBase, int iId)
 		{
 			// Toma el Id del recibo y devuelve el tipo y número (por ejemplo: "Recibo #003" o "Comprobante de Pago #256")
-			Lfx.Data.Row TmpRecibo = dataView.DataBase.Row("recibos", "id_recibo", iId);
+			Lfx.Data.Row TmpRecibo = dataBase.Row("recibos", "id_recibo", iId);
 
 			if (TmpRecibo == null)
 				return "";
@@ -255,7 +257,7 @@ namespace Lbl.Comprobantes
                                         if (Registro["id_comprob_orig"] == null)
                                                 m_ComprobanteOriginal = null;
                                         else
-                                                m_ComprobanteOriginal = new ComprobanteConArticulos(this.DataView, System.Convert.ToInt32(Registro["id_comprob_orig"]));
+                                                m_ComprobanteOriginal = new ComprobanteConArticulos(this.DataBase, System.Convert.ToInt32(Registro["id_comprob_orig"]));
                                 }
                                 return m_ComprobanteOriginal;
                         }

@@ -33,38 +33,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lbl.Comprobantes
+namespace Lbl.Comprobantes.Impresion.Fiscal
 {
-        public class ReciboDeCobro : Recibo
+        public class EstadoAuxiliare
         {
-                //Heredar constructor
-                public ReciboDeCobro(Lfx.Data.DataBase dataBase)
-                        : base(dataBase)
-                {
-                        this.Crear();
-                        this.Vendedor = new Personas.Persona(dataBase, dataBase.Workspace.CurrentUser.Id);
-                }
-
-                public ReciboDeCobro(Lfx.Data.DataBase dataBase, Personas.Persona cliente)
-                        : this(dataBase)
-                {
-                        this.Crear();
-                        this.Cliente = cliente;
-                }
-
-                public ReciboDeCobro(Lfx.Data.DataBase dataBase, int idRecibo)
-                        : this(dataBase)
-                {
-                        this.m_ItemId = idRecibo;
-                        this.Cargar();
-                }
-
-                public override Lfx.Types.OperationResult Crear()
-                {
-                        Lfx.Types.OperationResult Res = base.Crear();
-                        this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.RC.PV", this.Workspace.CurrentConfig.Company.CurrentBranch);
-                        this.Tipo = new Tipo(this.DataBase, "RC");
-                        return Res;
-                }
+                public long CodigoEstado;
         }
 }

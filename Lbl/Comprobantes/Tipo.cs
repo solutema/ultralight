@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -38,18 +40,18 @@ namespace Lbl.Comprobantes
                 public Articulos.Situacion SituacionOrigen, SituacionDestino;
 
                 //Heredar constructor
-		public Tipo(Lws.Data.DataView dataView) : base(dataView) { }
+		public Tipo(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-                public Tipo(Lws.Data.DataView dataView, int idTipo)
-			: this(dataView)
+                public Tipo(Lfx.Data.DataBase dataBase, int idTipo)
+			: this(dataBase)
 		{
                         m_ItemId = idTipo;
 		}
 
-                public Tipo(Lws.Data.DataView dataView, string letraTipo)
-                        : this(dataView)
+                public Tipo(Lfx.Data.DataBase dataBase, string letraTipo)
+                        : this(dataBase)
                 {
-                        m_ItemId = dataView.DataBase.FieldInt("SELECT id_tipo FROM documentos_tipos WHERE letra='" + letraTipo + "'");
+                        m_ItemId = dataBase.FieldInt("SELECT id_tipo FROM documentos_tipos WHERE letra='" + letraTipo + "'");
                         if (m_ItemId == 0)
                                 throw new InvalidOperationException("No existe el tipo de documento " + letraTipo);
                 }
@@ -77,12 +79,12 @@ namespace Lbl.Comprobantes
                                 if (Registro["situacionorigen"] == null)
                                         SituacionOrigen = null;
                                 else
-                                        SituacionOrigen = new Lbl.Articulos.Situacion(this.DataView, System.Convert.ToInt32(Registro["situacionorigen"]));
+                                        SituacionOrigen = new Lbl.Articulos.Situacion(this.DataBase, System.Convert.ToInt32(Registro["situacionorigen"]));
 
                                 if (Registro["situaciondestino"] == null)
                                         SituacionDestino = null;
                                 else
-                                        SituacionDestino = new Lbl.Articulos.Situacion(this.DataView, System.Convert.ToInt32(Registro["situaciondestino"]));
+                                        SituacionDestino = new Lbl.Articulos.Situacion(this.DataBase, System.Convert.ToInt32(Registro["situaciondestino"]));
                         }
 
                         return Res;
@@ -291,13 +293,13 @@ namespace Lbl.Comprobantes
 
                 public override Lfx.Types.OperationResult Guardar()
                 {
-                        Lfx.Data.SqlTableCommandBuilder Comando;
+                        qGen.TableCommand Comando;
 
                         if (this.Existe == false) {
-                                Comando = new Lfx.Data.SqlInsertBuilder(this.DataView.DataBase, this.TablaDatos);
+                                Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
                         } else {
-                                Comando = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, this.TablaDatos);
-                                Comando.WhereClause = new Lfx.Data.SqlWhereBuilder(this.CampoId, this.Id);
+                                Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
                         Comando.Fields.AddWithValue("letra", this.Nomenclatura);
@@ -321,7 +323,7 @@ namespace Lbl.Comprobantes
 
                         this.AgregarTags(Comando);
 
-                        this.DataView.Execute(Comando);
+                        this.DataBase.Execute(Comando);
 
                         return base.Guardar();
                 }
