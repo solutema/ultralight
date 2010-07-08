@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -40,7 +42,9 @@ namespace Lfc.Comprobantes
 	public partial class Editar : Lui.Forms.EditForm
 	{
                 protected internal string TipoPredet = null;
-                public Editar(string tipo) : this()
+                
+                public Editar(string tipo) 
+                        : this()
                 {
                         TipoPredet = tipo;
                 }
@@ -67,7 +71,7 @@ namespace Lfc.Comprobantes
                         }
 
                         int PV = Lfx.Types.Parsing.ParseInt(txtPV.Text);
-                        System.Data.DataTable PVAdmitidos = this.DataView.DataBase.Select(@"SELECT * FROM pvs WHERE (
+                        System.Data.DataTable PVAdmitidos = this.DataBase.Select(@"SELECT * FROM pvs WHERE (
                                 CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.LetraSola + @",%'
                                 OR CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.TipoBase + @",%'
                                 OR CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.Nomenclatura + @",%'
@@ -103,10 +107,7 @@ namespace Lfc.Comprobantes
                         if (Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.read") == false)
                                 return new Lfx.Types.NoAccessOperationResult();
 
-                        Lbl.Comprobantes.ComprobanteConArticulos NewRow = new Lbl.Comprobantes.ComprobanteConArticulos(this.DataView, iId);
-                        this.FromRow(NewRow);
-
-			return new Lfx.Types.SuccessOperationResult();
+                        return base.Edit(iId);
 		}
 
                 public override Lfx.Types.OperationResult Print(bool DejaSeleccionarImpresora)
@@ -130,19 +131,19 @@ namespace Lfc.Comprobantes
                                                         NombreImpresora = OSeleccionarImpresora.SelectedPrinter;
                                         }
 
-                                        CachedRow.DataView.BeginTransaction();
+                                        CachedRow.DataBase.BeginTransaction();
                                         ResultadoImprimir = ((Lbl.Comprobantes.Comprobante)CachedRow).Imprimir(NombreImpresora);
 
                                         if (ResultadoImprimir.Success) {
                                                 //Registro.Impreso = true;
                                                 //Registro.Guardar();
-                                                CachedRow.DataView.Commit();
+                                                CachedRow.DataBase.Commit();
                                                 if (Registro.Tipo.PermiteModificarImpresos == false)
                                                         this.ReadOnly = true;
                                                 if (Registro.Tipo.PermiteImprimirVariasVeces == false)
                                                         PrintButton.Visible = false;
                                         } else {
-                                                CachedRow.DataView.RollBack();
+                                                CachedRow.DataBase.RollBack();
                                         }
                                 }
                         }
@@ -208,8 +209,8 @@ namespace Lfc.Comprobantes
                 {
                         Lbl.Comprobantes.ComprobanteConArticulos Res = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
                         Res.PV = Lfx.Types.Parsing.ParseInt(txtPV.Text);
-                        Res.Vendedor = new Lbl.Personas.Persona(Res.DataView, EntradaVendedor.TextInt);
-                        Res.Cliente = new Lbl.Personas.Persona(Res.DataView, EntradaCliente.TextInt);
+                        Res.Vendedor = new Lbl.Personas.Persona(Res.DataBase, EntradaVendedor.TextInt);
+                        Res.Cliente = new Lbl.Personas.Persona(Res.DataBase, EntradaCliente.TextInt);
 
                         Res.Descuento = Lfx.Types.Parsing.ParseDouble(txtDescuento.Text);
                         Res.Recargo = Lfx.Types.Parsing.ParseDouble(txtInteres.Text);
@@ -220,7 +221,7 @@ namespace Lfc.Comprobantes
                         Res.Articulos.Clear();
                         for (i = 0; i <= ProductArray.Count - 1; i++) {
                                 if (ProductArray.ChildControls[i].Text == ProductArray.FreeTextCode || ProductArray.ChildControls[i].TextInt > 0) {
-                                        Lbl.Comprobantes.DetalleArticulo Art = new Lbl.Comprobantes.DetalleArticulo(Res.DataView);
+                                        Lbl.Comprobantes.DetalleArticulo Art = new Lbl.Comprobantes.DetalleArticulo(Res.DataBase);
                                         Art.Orden = i + 1;
 
                                         Art.IdArticulo = ProductArray.ChildControls[i].TextInt;
@@ -442,7 +443,7 @@ namespace Lfc.Comprobantes
                         if (Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.create") == false)
                                 return new Lfx.Types.NoAccessOperationResult();
 
-                        Lbl.Comprobantes.ComprobanteConArticulos NewRow = new Lbl.Comprobantes.ComprobanteConArticulos(this.DataView);
+                        Lbl.Comprobantes.ComprobanteConArticulos NewRow = new Lbl.Comprobantes.ComprobanteConArticulos(this.DataBase);
                         if (letra == null)
                                 NewRow.Crear();
                         else
@@ -450,7 +451,7 @@ namespace Lfc.Comprobantes
                         
                         int ClientePredet = this.Workspace.CurrentConfig.ReadGlobalSettingInt(null, "Sistema.Documentos.ClientePredet", 0);
                         if (ClientePredet != 0)
-                                NewRow.Cliente = new Lbl.Personas.Persona(NewRow.DataView, ClientePredet);
+                                NewRow.Cliente = new Lbl.Personas.Persona(NewRow.DataBase, ClientePredet);
 
                         this.FromRow(NewRow);
 			return new Lfx.Types.SuccessOperationResult();
@@ -503,7 +504,7 @@ namespace Lfc.Comprobantes
                         if (Ignorar_EntradaCliente_TextChanged)
                                 return;
 
-                        double Descuento = this.Workspace.DefaultDataBase.FieldDouble("SELECT descuento FROM personas_grupos WHERE id_grupo=(SELECT id_grupo FROM personas WHERE id_persona=" + EntradaCliente.TextInt.ToString() + ")");
+                        double Descuento = this.DataBase.FieldDouble("SELECT descuento FROM personas_grupos WHERE id_grupo=(SELECT id_grupo FROM personas WHERE id_persona=" + EntradaCliente.TextInt.ToString() + ")");
 
                         if (Descuento > 0 && Lfx.Types.Parsing.ParseDouble(txtDescuento.Text) == 0) {
                                 txtDescuento.Text = Lfx.Types.Formatting.FormatNumber(Descuento, 2);
@@ -511,7 +512,7 @@ namespace Lfc.Comprobantes
                         }
 
                         if (this.Tipo.EsFacturaNCoND && this.CachedRow.Existe == false && EntradaCliente.TextInt > 0) {
-                                Lbl.Personas.Persona Persona = new Lbl.Personas.Persona(CachedRow.DataView, EntradaCliente.TextInt, true);
+                                Lbl.Personas.Persona Persona = new Lbl.Personas.Persona(CachedRow.DataBase, EntradaCliente.TextInt, true);
                                 string LetraComprob = Persona.LetraPredeterminada();
 
                                 switch (LetraComprob) {
@@ -521,11 +522,11 @@ namespace Lfc.Comprobantes
                                         case "M":
                                         case "E":
                                                 if (this.Tipo.EsNotaCredito)
-                                                        this.Tipo = new Lbl.Comprobantes.Tipo(this.CachedRow.DataView, "NC" + LetraComprob);
+                                                        this.Tipo = new Lbl.Comprobantes.Tipo(this.CachedRow.DataBase, "NC" + LetraComprob);
                                                 else if (this.Tipo.EsNotaDebito)
-                                                        this.Tipo = new Lbl.Comprobantes.Tipo(this.CachedRow.DataView, "ND" + LetraComprob);
+                                                        this.Tipo = new Lbl.Comprobantes.Tipo(this.CachedRow.DataBase, "ND" + LetraComprob);
                                                 else
-                                                        this.Tipo = new Lbl.Comprobantes.Tipo(this.CachedRow.DataView, "F" + LetraComprob);
+                                                        this.Tipo = new Lbl.Comprobantes.Tipo(this.CachedRow.DataBase, "F" + LetraComprob);
                                                 break;
                                 }
                         }
@@ -549,8 +550,8 @@ namespace Lfc.Comprobantes
                                 OFormMasDatos.txtDesdeSituacion.Filter = "";
 
                         if (OFormMasDatos.ShowDialog() == DialogResult.OK) {
-                                Registro.SituacionOrigen = new Lbl.Articulos.Situacion(Registro.DataView, OFormMasDatos.txtDesdeSituacion.TextInt);
-                                Registro.SituacionDestino = new Lbl.Articulos.Situacion(Registro.DataView, OFormMasDatos.txtHaciaSituacion.TextInt);
+                                Registro.SituacionOrigen = new Lbl.Articulos.Situacion(Registro.DataBase, OFormMasDatos.txtDesdeSituacion.TextInt);
+                                Registro.SituacionDestino = new Lbl.Articulos.Situacion(Registro.DataBase, OFormMasDatos.txtHaciaSituacion.TextInt);
                                 this.CachedRow.Registro["estado"] = Lfx.Types.Parsing.ParseInt(OFormMasDatos.txtBloqueada.TextKey);
                                 this.ReadOnly = Lfx.Types.Parsing.ParseInt(OFormMasDatos.txtBloqueada.TextKey) != 0;
                         }
@@ -558,8 +559,10 @@ namespace Lfc.Comprobantes
 
 		private void FormComprobanteEditar_WorkspaceChanged(object sender, System.EventArgs e)
 		{
-			EntradaTotal.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal;
-			ProductArray.LockPrice = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.CambiaPrecioItemFactura", 0) == 0;
+                        if (this.Workspace != null) {
+                                EntradaTotal.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal;
+                                ProductArray.LockPrice = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.CambiaPrecioItemFactura", 0) == 0;
+                        }
 		}
 
 		private void FormComprobanteEditar_Load(object sender, System.EventArgs e)
@@ -643,7 +646,7 @@ namespace Lfc.Comprobantes
                         Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
 
                         EditSerials Editar = new EditSerials();
-                        Editar.Articulo = new Lbl.Articulos.Articulo(this.DataView, IdArticulo);
+                        Editar.Articulo = new Lbl.Articulos.Articulo(this.DataBase, IdArticulo);
                         Editar.Cantidad = Math.Abs(System.Convert.ToInt32(Cant));
                         Editar.Situacion = Comprob.SituacionOrigen;
                         Editar.Series = Prod.Series;

@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -244,7 +246,7 @@ namespace Lfc.Comprobantes.Compra
                                         TextoSql = "SELECT * FROM comprob WHERE (" + Filtro + ") ORDER BY RIGHT(tipo_fac, 1), pv, numero";
                                 }
 
-                                System.Data.DataTable TmpTabla = this.Workspace.DefaultDataBase.Select(TextoSql);
+                                System.Data.DataTable TmpTabla = this.DataBase.Select(TextoSql);
 
                                 ListingContent = new System.Text.StringBuilder();
                                 ListingContent.Append("LISTADO DE COMPROBANTES DE COMPRA - Fecha " + m_Fecha.From.ToString(Lfx.Types.Formatting.DateTime.DefaultDateFormat));
@@ -270,7 +272,7 @@ namespace Lfc.Comprobantes.Compra
                                                 }
                                                 switch (m_Agrupar) {
                                                         case "id_proveedor":
-                                                                ListingContent.Append(Environment.NewLine + this.Workspace.DefaultDataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + LastAgrupar) + Environment.NewLine);
+                                                                ListingContent.Append(Environment.NewLine + this.DataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + LastAgrupar) + Environment.NewLine);
                                                                 break;
                                                         case "DAYOFWEEK(fecha)":
                                                                 switch (System.Convert.ToInt32(row[m_Agrupar])) {
@@ -315,7 +317,7 @@ namespace Lfc.Comprobantes.Compra
                                         Renglon.Append(System.Convert.ToString(row["numero"]).PadRight(13).Substring(0, 13) + " ");
                                         int ProveedorId = System.Convert.ToInt32(row["id_cliente"]);
                                         if (ProveedorId != 0) {
-                                                Lfx.Data.Row Proveedor = this.Workspace.DefaultDataBase.Row("personas", "id_persona", ProveedorId);
+                                                Lfx.Data.Row Proveedor = this.DataBase.Row("personas", "id_persona", ProveedorId);
                                                 Renglon.Append(System.Convert.ToString(Proveedor["nombre_visible"]).PadRight(25).Substring(0, 25) + " ");
                                                 Renglon.Append(System.Convert.ToString(Proveedor["cuit"]).PadRight(13).Substring(0, 13) + " ");
                                         } else {

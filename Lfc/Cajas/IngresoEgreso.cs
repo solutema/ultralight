@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -96,7 +98,7 @@ namespace Lfc.Cajas
                         }
 
                         if (aceptarReturn.Success == true) {
-                                Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(this.Workspace.DefaultDataView, this.Caja);
+                                Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(this.DataBase, this.Caja);
                                 if (m_Ingreso)
                                         Caja.Movimiento(false, EntradaConcepto.TextInt, EntradaConcepto.TextDetail, EntradaPersona.TextInt, Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text), EntradaObs.Text, 0, 0, EntradaComprobante.Text);
                                 else

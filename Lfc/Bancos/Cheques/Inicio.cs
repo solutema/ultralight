@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,9 +27,10 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -90,41 +92,39 @@ namespace Lfc.Bancos.Cheques
 
                 public override void RefreshList()
                 {
-                        string TextoSql;
+                        this.CustomFilters.Clear();
 
                         if (this.Emitidos)
-                                TextoSql = "emitido=1";
+                                this.CustomFilters.AddWithValue("emitido", 1);
                         else
-                                TextoSql = "emitido=0";
+                                this.CustomFilters.AddWithValue("emitido", 0);
 
                         if (m_Estado == -2)
-                                TextoSql += " AND estado IN (0, 5)";
+                                this.CustomFilters.AddWithValue("estado IN (0, 5)");
                         if (m_Estado >= 0)
-                                TextoSql += " AND estado=" + m_Estado.ToString();
+                                this.CustomFilters.AddWithValue("estado", m_Estado);
 
                         if (m_Sucursal > 0)
-                                TextoSql += " AND id_sucursal=" + m_Sucursal.ToString();
+                                this.CustomFilters.AddWithValue("id_sucursal", m_Sucursal);
 
                         if (m_Banco > 0)
-                                TextoSql += " AND id_banco=" + m_Banco.ToString();
+                                this.CustomFilters.AddWithValue("id_banco", m_Banco);
 
                         if (m_Cliente > 0)
-                                TextoSql += " AND id_cliente=" + m_Cliente.ToString();
+                                this.CustomFilters.AddWithValue("id_cliente", m_Cliente);
 
                         if (m_Fechas.HasRange)
-                                TextoSql += " AND fechaemision BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.From) + "  00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.To) + " 23:59:59'";
-
-                        this.CurrentFilter = TextoSql;
+                                this.CustomFilters.AddWithValue("fechaemision BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.From) + "  00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.To) + " 23:59:59'");
 
                         base.RefreshList();
                 }
 
-                public override void ItemAdded(ListViewItem itm)
+                public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
                 {
                         itm.SubItems[1].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[1].Text).ToString("00000000");
                         
                         Total += Lfx.Types.Parsing.ParseCurrency(itm.SubItems[4].Text);
-                        itm.SubItems[7].Text = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM bancos WHERE id_banco=" + Lfx.Types.Parsing.ParseInt(itm.SubItems[7].Text).ToString());
+                        itm.SubItems[7].Text = this.DataBase.FieldString("SELECT nombre FROM bancos WHERE id_banco=" + Lfx.Types.Parsing.ParseInt(itm.SubItems[7].Text).ToString());
                         
                         switch (itm.SubItems[8].Text) {
                                 case "0":
@@ -178,11 +178,11 @@ namespace Lfc.Bancos.Cheques
                         if (Lui.Login.LoginData.ValidateAccess(this.Workspace.CurrentUser, "bancos.cheques.delete")) {
                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("¿Desea anular los cheques seleccionados?", "Pregunta");
                                 if (Pregunta.ShowDialog() == DialogResult.OK) {
-                                        Lfx.Data.SqlUpdateBuilder Actua = new Lfx.Data.SqlUpdateBuilder("bancos_cheques");
+                                        qGen.Update Actua = new qGen.Update("bancos_cheques");
                                         Actua.Fields.AddWithValue("estado", 90);
-                                        Actua.WhereClause = new Lfx.Data.SqlWhereBuilder("id_cheque IN (" + Lfx.Types.Strings.Ints2CSV(itemIds, ",") + ")");
-                                        this.DataView.Execute(Actua);
-                                        //this.Workspace.DefaultDataBase.Execute("UPDATE bancos_cheques SET estado=90 WHERE id_cheque IN (" + Lfx.Types.Strings.Ints2CSV(itemIds, ",") + ")");
+                                        Actua.WhereClause = new qGen.Where("id_cheque", qGen.ComparisonOperators.In, itemIds);
+                                        this.DataBase.Execute(Actua);
+                                        //this.DataBase.Execute("UPDATE bancos_cheques SET estado=90 WHERE id_cheque IN (" + Lfx.Types.Strings.Ints2CSV(itemIds, ",") + ")");
                                         this.RefreshList();
                                         return new Lfx.Types.SuccessOperationResult();
                                 }
@@ -234,7 +234,7 @@ namespace Lfc.Bancos.Cheques
                         return filtrarReturn;
                 }
 
-                public override void Fill(Lfx.Data.SqlSelectBuilder command)
+                public override void Fill(qGen.Select command)
                 {
                         Total = 0;
                         SinCobrar = 0;
@@ -256,7 +256,7 @@ namespace Lfc.Bancos.Cheques
                         foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
                                 if (itm.Checked && (itm.SubItems[8].Text == "A cobrar" || itm.SubItems[8].Text == "Depositado")) {
                                         Cantidad++;
-                                        Lfx.Data.Row Cheque = this.Workspace.DefaultDataBase.Row("bancos_cheques", "id_cheque", Lfx.Types.Parsing.ParseInt(itm.Text));
+                                        Lfx.Data.Row Cheque = this.DataBase.Row("bancos_cheques", "id_cheque", Lfx.Types.Parsing.ParseInt(itm.Text));
                                         Total += System.Convert.ToDouble(Cheque["importe"]);
                                         if (ListaCheques.Length == 0) {
                                                 ListaCheques.Append(System.Convert.ToString(Cheque["numero"]));
@@ -297,12 +297,16 @@ namespace Lfc.Bancos.Cheques
                         if (this.Emitidos == false) {
                                 //Depositar
                                 int[] Codigos = this.CodigosSeleccionados;
-                                if (Codigos == null) {
+                                if (Codigos == null || Codigos.Length == 0) {
                                         Lui.Forms.MessageBox.Show("Debe seleccionar uno o más cheques.", "Error");
                                 } else {
                                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Al depositar un cheque en una cuenta bancaria propia, puede marcarlo como depositado para control interno.\nSirve sólamente para depositos en cajas propias. Para depósitos en cajas de terceros utilice la opción 'Efectivizar'.", "¿Desea marcar los cheques seleccionados como depositados?");
                                         if (Pregunta.ShowDialog() == DialogResult.OK) {
-                                                this.Workspace.DefaultDataBase.Execute("UPDATE bancos_cheques SET estado=5 WHERE estado=0 AND id_cheque IN (" + Lfx.Types.Strings.Ints2CSV(Codigos, ",") + ")");
+                                                qGen.Update Depo = new qGen.Update("bancos_cheques");
+                                                Depo.Fields.AddWithValue("estado", 5);
+                                                Depo.WhereClause.AddWithValue("estado", 0);
+                                                Depo.WhereClause.AddWithValue("id_cheque", qGen.ComparisonOperators.In, Codigos);
+                                                this.DataBase.Execute(Depo);
                                                 this.RefreshList();
                                         }
                                 }
@@ -316,12 +320,12 @@ namespace Lfc.Bancos.Cheques
                 private Lfx.Types.OperationResult Pagar()
                 {
                         int IdCajaOrigen = 0;
-                        System.Collections.ArrayList Cheques = new System.Collections.ArrayList();
+                        List<string> Cheques = new List<string>();
                         foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
                                 if (itm.Checked && (itm.SubItems[8].Text == "A pagar")) {
                                         Cheques.Add(itm.Text);
                                         if (IdCajaOrigen == 0)
-                                                IdCajaOrigen = this.Workspace.DefaultDataBase.FieldInt("SELECT id_caja FROM chequeras WHERE (SELECT numero FROM bancos_cheques WHERE id_cheque=" + itm.Text + ") BETWEEN desde AND hasta AND estado=1");
+                                                IdCajaOrigen = this.DataBase.FieldInt("SELECT id_caja FROM chequeras WHERE (SELECT numero FROM bancos_cheques WHERE id_cheque=" + itm.Text + ") BETWEEN desde AND hasta AND estado=1");
                                 }
                         }
 

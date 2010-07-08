@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -47,13 +49,13 @@ namespace Lfc.Comprobantes.Compra
 		public Editar()
 			: base()
 		{
-			// Necesario para admitir el Diseñador de Windows Forms
 			InitializeComponent();
 
-			// agregar código de constructor después de llamar a InitializeComponent
-			EtiquetaTitulo.Font = Lws.Config.Display.CurrentTemplate.DefaultHeaderFont;
-			EtiquetaTitulo.BackColor = Lws.Config.Display.CurrentTemplate.HeaderBackground;
-			EtiquetaTitulo.ForeColor = Lws.Config.Display.CurrentTemplate.HeaderText;
+                        this.ElementType = typeof(Lbl.Comprobantes.ComprobanteConArticulos);
+
+			EtiquetaTitulo.Font = Lfx.Config.Display.CurrentTemplate.DefaultHeaderFont;
+			EtiquetaTitulo.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
+			EtiquetaTitulo.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
 		}
 
 		public override Lfx.Types.OperationResult Create()
@@ -64,10 +66,10 @@ namespace Lfc.Comprobantes.Compra
                         EntradaHaciaSituacion.Visible = this.Workspace.CurrentConfig.Products.StockMultideposito;
                         lblHaciaSituacion.Visible = this.Workspace.CurrentConfig.Products.StockMultideposito;
 
-                        Lbl.Comprobantes.ComprobanteConArticulos NewRow = new Lbl.Comprobantes.ComprobanteConArticulos(this.DataView);
+                        Lbl.Comprobantes.ComprobanteConArticulos NewRow = new Lbl.Comprobantes.ComprobanteConArticulos(this.DataBase);
                         NewRow.Crear(CrearTipo, true);
                         if (NewRow.Tipo.EsFacturaNCoND)
-                                NewRow.FormaDePago = new Lbl.Comprobantes.FormaDePago(this.DataView, Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente);
+                                NewRow.FormaDePago = new Lbl.Comprobantes.FormaDePago(this.DataBase, Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente);
                         else
                                 NewRow.FormaDePago = null;
 
@@ -103,10 +105,7 @@ namespace Lfc.Comprobantes.Compra
                         if (Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.write") == false)
                                 return new Lfx.Types.NoAccessOperationResult();
 
-                        Lbl.Comprobantes.ComprobanteConArticulos NewRow = new Lbl.Comprobantes.ComprobanteConArticulos(this.DataView, iId);
-                        this.FromRow(NewRow);
-
-                        return new Lfx.Types.SuccessOperationResult();
+                        return base.Edit(iId);
 		}
 
                 public override void FromRow(Lbl.ElementoDeDatos row)
@@ -179,25 +178,25 @@ namespace Lfc.Comprobantes.Compra
                         Res.Compra = true;
                         Res.Fecha = Lfx.Types.Parsing.ParseDate(EntradaFecha.Text);
                         if (EntradaFormaPago.TextKey != "0")
-                                Res.FormaDePago = new Lbl.Comprobantes.FormaDePago(Res.DataView, Lfx.Types.Parsing.ParseInt(EntradaFormaPago.TextKey));
+                                Res.FormaDePago = new Lbl.Comprobantes.FormaDePago(Res.DataBase, Lfx.Types.Parsing.ParseInt(EntradaFormaPago.TextKey));
                         else
                                 Res.FormaDePago = null;
                         if(m_FacturaIdOrig == 0)
                                 Res.ComprobanteOriginal = null;
                         else
-                                Res.ComprobanteOriginal = new Lbl.Comprobantes.ComprobanteConArticulos(Res.DataView, m_FacturaIdOrig);
-                        Res.Vendedor = new Lbl.Personas.Persona(Res.DataView, this.Workspace.CurrentUser.Id);
+                                Res.ComprobanteOriginal = new Lbl.Comprobantes.ComprobanteConArticulos(Res.DataBase, m_FacturaIdOrig);
+                        Res.Vendedor = new Lbl.Personas.Persona(Res.DataBase, this.Workspace.CurrentUser.Id);
                         if (EntradaProveedor.TextInt == 0)
                                 Res.Cliente = null;
                         else
-                                Res.Cliente = new Lbl.Personas.Persona(Res.DataView, EntradaProveedor.TextInt);
-                        Res.Tipo = new Lbl.Comprobantes.Tipo(Res.DataView, EntradaTipo.TextKey);
+                                Res.Cliente = new Lbl.Personas.Persona(Res.DataBase, EntradaProveedor.TextInt);
+                        Res.Tipo = new Lbl.Comprobantes.Tipo(Res.DataBase, EntradaTipo.TextKey);
                         Res.PV = Lfx.Types.Parsing.ParseInt(EntradaPV.Text);
 			Res.Numero = Lfx.Types.Parsing.ParseInt(EntradaNumero.Text);
                         if (EntradaHaciaSituacion.TextInt == 0)
                                 Res.SituacionDestino = null;
                         else
-                                Res.SituacionDestino = new Lbl.Articulos.Situacion(Res.DataView, EntradaHaciaSituacion.TextInt);
+                                Res.SituacionDestino = new Lbl.Articulos.Situacion(Res.DataBase, EntradaHaciaSituacion.TextInt);
 			Res.GastosDeEnvio = Lfx.Types.Parsing.ParseCurrency(EntradaGastosEnvio.Text);
                         Res.OtrosGastos = Lfx.Types.Parsing.ParseCurrency(EntradaOtrosGastos.Text);
                         Res.Obs = EntradaObs.Text;
@@ -210,7 +209,7 @@ namespace Lfc.Comprobantes.Compra
                         Res.Articulos.Clear();
                         for (int i = 0; i <= EntradaProductos.Count - 1; i++) {
                                 if (EntradaProductos.ChildControls[i].Text == EntradaProductos.FreeTextCode || EntradaProductos.ChildControls[i].TextInt > 0) {
-                                        Lbl.Comprobantes.DetalleArticulo Art = new Lbl.Comprobantes.DetalleArticulo(Res.DataView);
+                                        Lbl.Comprobantes.DetalleArticulo Art = new Lbl.Comprobantes.DetalleArticulo(Res.DataBase);
                                         Art.Orden = i + 1;
 
                                         Art.IdArticulo = EntradaProductos.ChildControls[i].TextInt;
@@ -303,9 +302,9 @@ namespace Lfc.Comprobantes.Compra
                                 FormularioEdicion.MdiParent = this.MdiParent;
 				FormularioEdicion.Create();
                                 if (FormularioConvertir.TipoComprob == "FP")
-                                        FormularioEdicion.TipoComprob = new Lbl.Comprobantes.Tipo(this.DataView, "FA");
+                                        FormularioEdicion.TipoComprob = new Lbl.Comprobantes.Tipo(this.DataBase, "FA");
                                 else
-                                        FormularioEdicion.TipoComprob = new Lbl.Comprobantes.Tipo(this.DataView, FormularioConvertir.TipoComprob);
+                                        FormularioEdicion.TipoComprob = new Lbl.Comprobantes.Tipo(this.DataBase, FormularioConvertir.TipoComprob);
 				FormularioEdicion.m_FacturaIdOrig = m_Id;
                                 FormularioEdicion.EntradaGastosEnvio.Text = this.EntradaGastosEnvio.Text;
 				FormularioEdicion.EntradaProveedor.Text = EntradaProveedor.Text;
@@ -384,7 +383,7 @@ namespace Lfc.Comprobantes.Compra
                         Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
 
                         EditSerials Editar = new EditSerials();
-                        Editar.Articulo = new Lbl.Articulos.Articulo(this.DataView, IdArticulo);
+                        Editar.Articulo = new Lbl.Articulos.Articulo(this.DataBase, IdArticulo);
                         Editar.Cantidad = Math.Abs(System.Convert.ToInt32(Cant));
                         Editar.Situacion = Comprob.SituacionOrigen;
                         Editar.Series = Prod.Series;

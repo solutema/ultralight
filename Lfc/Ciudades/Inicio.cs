@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -38,18 +40,13 @@ namespace Lfc.Ciudades
 {
 	public class FormCiudadesInicio : Lui.Forms.ListingForm
 	{
-
-		#region 'Windows Form Designer generated code'
+		#region Windows Form Designer generated code
 
 		public FormCiudadesInicio()
 			: base()
 		{
-
-
-			// This call is required by the Windows Form Designer.
 			InitializeComponent();
 
-			// agregar código de constructor después de llamar a InitializeComponent
 			DataTableName = "ciudades";
                         KeyField = new Lfx.Data.FormField("ciudades.id_ciudad", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
 			OrderBy = "ciudades.parent, ciudades.nombre";
@@ -60,7 +57,6 @@ namespace Lfc.Ciudades
 			};
 		}
 
-		// Form overrides dispose to clean up the component list.
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing)
@@ -73,13 +69,7 @@ namespace Lfc.Ciudades
 			base.Dispose(disposing);
 		}
 
-
-		// Required by the Windows Form Designer
 		private System.ComponentModel.Container components = null;
-
-		// NOTE: The following procedure is required by the Windows Form Designer
-		// It can be modified using the Windows Form Designer.  
-		// Do not modify it using the code editor.
 
 		private void InitializeComponent()
 		{
@@ -87,8 +77,6 @@ namespace Lfc.Ciudades
 			// 
 			// FormCiudadesInicio
 			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
-			this.ClientSize = new System.Drawing.Size(692, 473);
 			this.Name = "FormCiudadesInicio";
 			this.Text = "Listado: Ciudades";
 			this.ResumeLayout(false);

@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -397,14 +399,14 @@ namespace Lfc.Cajas
 
                         if (aceptarReturn.Success == true) {
                                 double Importe = Lfx.Types.Parsing.ParseCurrency(txtImporte.Text);
-                                DataView.BeginTransaction(true);
-                                Lbl.Cajas.Caja CajaOrigen = new Lbl.Cajas.Caja(DataView, iOrigen);
+                                DataBase.BeginTransaction(true);
+                                Lbl.Cajas.Caja CajaOrigen = new Lbl.Cajas.Caja(DataBase, iOrigen);
                                 CajaOrigen.Movimiento(false, txtConcepto.TextInt, txtConcepto.TextDetail, this.Workspace.CurrentUser.Id, -Importe, txtObs.Text, 0, 0, txtComprob.Text);
                                 if (txtImporteDestino.Visible)
                                         Importe = Lfx.Types.Parsing.ParseCurrency(txtImporteDestino.Text);
-                                Lbl.Cajas.Caja CajaaDestino = new Lbl.Cajas.Caja(DataView, iDestino);
+                                Lbl.Cajas.Caja CajaaDestino = new Lbl.Cajas.Caja(DataBase, iDestino);
                                 CajaaDestino.Movimiento(false, txtConcepto.TextInt, txtConcepto.TextDetail, this.Workspace.CurrentUser.Id, Importe, txtObs.Text, 0, 0, txtComprob.Text);
-                                DataView.Commit();
+                                DataBase.Commit();
                         }
                         return aceptarReturn;
                 }
@@ -415,17 +417,17 @@ namespace Lfc.Cajas
                         int iOrigen = txtOrigen.TextInt;
                         int iDestino = txtDestino.TextInt;
                         if (txtObs.Text.Length == 0 && iOrigen != 0 && iDestino != 0) {
-                                txtObs.Text = "Movimiento entre " + this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM cajas WHERE id_caja=" + iOrigen.ToString()) + " y " + this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM cajas WHERE id_caja=" + iDestino.ToString());
+                                txtObs.Text = "Movimiento entre " + this.DataBase.FieldString("SELECT nombre FROM cajas WHERE id_caja=" + iOrigen.ToString()) + " y " + this.DataBase.FieldString("SELECT nombre FROM cajas WHERE id_caja=" + iDestino.ToString());
                         }
                 }
 
 
                 private void txtOrigenDestino_TextChanged(object sender, System.EventArgs e)
                 {
-                        iMonedaOrigen = this.Workspace.DefaultDataBase.FieldInt("SELECT id_moneda FROM cajas WHERE id_caja=" + txtOrigen.TextInt);
-                        iMonedaDestino = this.Workspace.DefaultDataBase.FieldInt("SELECT id_moneda FROM cajas WHERE id_caja=" + txtDestino.TextInt);
-                        MonedaOrigen = this.Workspace.DefaultDataBase.Row("monedas", "id_moneda", iMonedaOrigen);
-                        MonedaDestino = this.Workspace.DefaultDataBase.Row("monedas", "id_moneda", iMonedaDestino);
+                        iMonedaOrigen = this.DataBase.FieldInt("SELECT id_moneda FROM cajas WHERE id_caja=" + txtOrigen.TextInt);
+                        iMonedaDestino = this.DataBase.FieldInt("SELECT id_moneda FROM cajas WHERE id_caja=" + txtDestino.TextInt);
+                        MonedaOrigen = this.DataBase.Row("monedas", "id_moneda", iMonedaOrigen);
+                        MonedaDestino = this.DataBase.Row("monedas", "id_moneda", iMonedaDestino);
                         if (MonedaOrigen != null && MonedaDestino != null) {
                                 txtImporte.Prefijo = System.Convert.ToString(MonedaOrigen["signo"]);
                                 txtImporteDestino.Prefijo = System.Convert.ToString(MonedaDestino["signo"]);

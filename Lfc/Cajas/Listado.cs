@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -198,10 +200,10 @@ namespace Lfc.Cajas
                                 else
                                         TextoSql += ") ORDER BY cajas_movim.fecha";
 
-                                System.Data.DataTable TmpTabla = this.Workspace.DefaultDataBase.Select(TextoSql);
+                                System.Data.DataTable TmpTabla = this.DataBase.Select(TextoSql);
 
                                 ListingContent = new System.Text.StringBuilder();
-                                ListingContent.Append(this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM cajas WHERE id_caja=" + m_Caja.ToString()) + " - Fecha " + m_Fechas.From);
+                                ListingContent.Append(this.DataBase.FieldString("SELECT nombre FROM cajas WHERE id_caja=" + m_Caja.ToString()) + " - Fecha " + m_Fechas.From);
                                 if (m_Fechas.Diff.Days > 0)
                                         ListingContent.Append(" al " + m_Fechas.To);
 
@@ -211,7 +213,7 @@ namespace Lfc.Cajas
                                 ListingContent.AppendLine("===============================================================================");
                                 ListingContent.AppendLine();
 
-                                double Transporte = Math.Round(this.Workspace.DefaultDataBase.FieldDouble("SELECT saldo FROM cajas_movim WHERE  id_caja=" + m_Caja.ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateTimeSql(m_Fechas.From).ToString() + "' ORDER BY id_movim DESC"), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                double Transporte = Math.Round(this.DataBase.FieldDouble("SELECT saldo FROM cajas_movim WHERE  id_caja=" + m_Caja.ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateTimeSql(m_Fechas.From).ToString() + "' ORDER BY id_movim DESC"), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
 
                                 double SubTotal = 0; double Ingresos = 0; double Egresos = 0; string LastAgrupar = "slfadf*af*df*asdf";
                                 foreach (System.Data.DataRow row in TmpTabla.Rows) {
@@ -231,11 +233,11 @@ namespace Lfc.Cajas
                                                                 case "id_vendedor":
                                                                 case "id_cliente":
                                                                 case "id_persona":
-                                                                        ListingContent.AppendLine(Environment.NewLine + this.Workspace.DefaultDataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + LastAgrupar));
+                                                                        ListingContent.AppendLine(Environment.NewLine + this.DataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + LastAgrupar));
                                                                         break;
                                                                 case "id_concepto":
                                                                         if (LastAgrupar.Length > 0) {
-                                                                                string Concepto = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM conceptos WHERE id_concepto=" + LastAgrupar);
+                                                                                string Concepto = this.DataBase.FieldString("SELECT nombre FROM conceptos WHERE id_concepto=" + LastAgrupar);
                                                                                 if (Concepto.Length > 0)
                                                                                         ListingContent.AppendLine(Environment.NewLine + Concepto);
                                                                                 else
@@ -261,16 +263,16 @@ namespace Lfc.Cajas
                                         if (m_Agrupar != "id_concepto") {
                                                 string NombreConcepto = null;
                                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(row["id_concepto"]) > 0)
-                                                        NombreConcepto = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM conceptos WHERE id_concepto=" + row["id_concepto"].ToString());
+                                                        NombreConcepto = this.DataBase.FieldString("SELECT nombre FROM conceptos WHERE id_concepto=" + row["id_concepto"].ToString());
                                                 else if (System.Convert.ToString(row["concepto"]).Length > 0)
                                                         NombreConcepto = System.Convert.ToString(row["concepto"]);
                                                 Detalle.Append(NombreConcepto.PadRight(20).Substring(0, 20) + ". ");
                                         }
                                         if (Lfx.Data.DataBase.ConvertDBNullToZero(row["id_comprob"]) > 0)
-                                                Detalle.Append(Lbl.Comprobantes.Comprobante.NumeroCompleto(this.Workspace.DefaultDataView, Lfx.Data.DataBase.ConvertDBNullToZero(row["id_comprob"])));
+                                                Detalle.Append(Lbl.Comprobantes.Comprobante.NumeroCompleto(this.DataBase, Lfx.Data.DataBase.ConvertDBNullToZero(row["id_comprob"])));
 
                                         if (Lfx.Data.DataBase.ConvertDBNullToZero(row["id_cliente"]) > 0) {
-                                                string NombreCliente = this.Workspace.DefaultDataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + row["id_cliente"].ToString());
+                                                string NombreCliente = this.DataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + row["id_cliente"].ToString());
                                                 int ObsWidth = 32;
                                                 if (System.Convert.ToString(row["obs"]).Length > 5)
                                                         ObsWidth = 14;

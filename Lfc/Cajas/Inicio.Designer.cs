@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -150,7 +152,6 @@ namespace Lfc.Cajas
                         this.Controls.Add(this.cmdEgreso);
                         this.Controls.Add(this.cmdArqueo);
                         this.Name = "Inicio";
-                        this.Activated += new System.EventHandler(this.Inicio_Activated);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Inicio_KeyDown);
                         this.Controls.SetChildIndex(this.EtiquetaIngresos, 0);
                         this.Controls.SetChildIndex(this.EtiquetaEgresos, 0);

@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -58,48 +60,47 @@ namespace Lfc.Cajas
                                 new Lfx.Data.FormField("cajas_movim.fecha", "Fecha.", Lfx.Data.InputFieldTypes.Date, 96),
                                 new Lfx.Data.FormField("cajas_movim.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
                                 new Lfx.Data.FormField("cajas_movim.saldo", "Saldo", Lfx.Data.InputFieldTypes.Currency, 96),
-                                new Lfx.Data.FormField("cajas_movim.comprob", "Comprobante", Lfx.Data.InputFieldTypes.Text, 160),
+                                new Lfx.Data.FormField("cajas_movim.id_persona", "Usuario", Lfx.Data.InputFieldTypes.Text, 160),
                                 new Lfx.Data.FormField("cajas_movim.id_comprob", "Factura", Lfx.Data.InputFieldTypes.Relation, 0),
                                 new Lfx.Data.FormField("cajas_movim.id_recibo", "Recibo", Lfx.Data.InputFieldTypes.Relation, 0),
-                                new Lfx.Data.FormField("cajas_movim.obs", "Obs.", Lfx.Data.InputFieldTypes.Text, 320)
+                                new Lfx.Data.FormField("cajas_movim.obs", "Obs.", Lfx.Data.InputFieldTypes.Text, 320),
+                                new Lfx.Data.FormField("cajas_movim.comprob", "Comprobante", Lfx.Data.InputFieldTypes.Text, 160),
                         };
                 }
 
-                public override Lfx.Data.SqlSelectBuilder SelectCommand()
+                public override qGen.Select SelectCommand()
                 {
-                        m_SelectCommand = new Lfx.Data.SqlSelectBuilder("cajas_movim");
-                        m_SelectCommand.Joins.Add(new Lfx.Data.Join("personas", "cajas_movim.id_cliente=personas.id_persona"));
-                        m_SelectCommand.Fields = "cajas_movim.id_movim, cajas_movim.id_caja, cajas_movim.id_concepto, cajas_movim.concepto, cajas_movim.fecha, cajas_movim.importe, cajas_movim.saldo, cajas_movim.comprob, cajas_movim.id_comprob, cajas_movim.id_recibo, cajas_movim.obs, personas.nombre_visible";
+                        m_SelectCommand = new qGen.Select("cajas_movim");
+                        m_SelectCommand.Joins.Add(new qGen.Join("personas", "cajas_movim.id_cliente=personas.id_persona"));
+                        m_SelectCommand.Fields = "cajas_movim.id_movim, cajas_movim.id_caja, cajas_movim.id_concepto, cajas_movim.concepto, cajas_movim.fecha, cajas_movim.importe, cajas_movim.saldo, cajas_movim.comprob, cajas_movim.id_comprob, cajas_movim.id_recibo, cajas_movim.obs, personas.nombre_visible, cajas_movim.id_persona";
                         if (m_TipoConcepto > 0)
-                                m_SelectCommand.Joins.Add(new Lfx.Data.Join("conceptos", "cajas_movim.id_concepto=conceptos.id_concepto"));
+                                m_SelectCommand.Joins.Add(new qGen.Join("conceptos", "cajas_movim.id_concepto=conceptos.id_concepto"));
 
-                        string TextoWhere;
+                        qGen.Where Where = new qGen.Where();
 
                         if (m_Direccion == 1)
-                                TextoWhere = "cajas_movim.importe>0";
+                                Where.AddWithValue("cajas_movim.importe", qGen.ComparisonOperators.GreaterThan, 0);
                         else if (m_Direccion == 2)
-                                TextoWhere = "cajas_movim.importe<0";
-                        else
-                                TextoWhere ="TRUE";
+                                Where.AddWithValue("cajas_movim.importe", qGen.ComparisonOperators.LessThan, 0);
 
                         if (m_Caja > 0)
-                                TextoWhere += " AND cajas_movim.id_caja = " + m_Caja.ToString();
+                                Where.AddWithValue("cajas_movim.id_caja", m_Caja);
 
                         if (m_Cliente > 0)
-                                TextoWhere += " AND cajas_movim.id_cliente=" + m_Cliente.ToString();
+                                Where.AddWithValue("cajas_movim.id_cliente", m_Cliente);
 
                         if (m_Concepto > 0)
-                                TextoWhere += " AND cajas_movim.id_concepto=" + m_Concepto.ToString();
+                                Where.AddWithValue("cajas_movim.id_concepto", m_Concepto);
                         else if (m_Concepto == -1 && m_ConceptoStr != null && m_ConceptoStr.Length > 0)
-                                TextoWhere += " AND cajas_movim.concepto LIKE '%" + m_ConceptoStr + "%'";
+                                Where.AddWithValue("cajas_movim.concepto", qGen.ComparisonOperators.InsensitiveLike,  "%" + m_ConceptoStr + "%");
 
                         if (m_TipoConcepto > 0)
-                                TextoWhere += " AND conceptos.grupo=" + m_TipoConcepto.ToString();
+                                Where.AddWithValue("conceptos.grupo", m_TipoConcepto);
 
                         if (m_Fechas.HasRange)
-                                TextoWhere += " AND cajas_movim.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.To) + " 23:59:59'";
+                                Where.AddWithValue("cajas_movim.fecha", m_Fechas.From, m_Fechas.To);
 
-                        m_SelectCommand.WhereClause = new Lfx.Data.SqlWhereBuilder(TextoWhere);
+                        m_SelectCommand.WhereClause = Where;
                         m_SelectCommand.Order = "cajas_movim.id_movim";
                         return m_SelectCommand;
                 }
@@ -110,7 +111,7 @@ namespace Lfc.Cajas
 
                         if (mostrarReturn.Success == true) {
                                 if (m_Tabla.Length > 0) {
-                                        System.Data.DataTable Movimientos = this.Workspace.DefaultDataBase.Select(this.SelectCommand());
+                                        System.Data.DataTable Movimientos = this.DataBase.Select(this.SelectCommand());
                                         ListViewItem itm = null;
                                         double Transporte = 0, Ingresos = 0, Egresos = 0, Saldo = 0;
 
@@ -127,13 +128,13 @@ namespace Lfc.Cajas
                                         System.DateTime FechaFrom = m_Fechas.HasRange ? m_Fechas.From : new System.DateTime(1900, 1, 1);
                                         if (m_Caja == 0) {
                                                 // Calculo el transporte combinado de todas las cajas
-                                                DataTable Cajas = this.Workspace.DefaultDataBase.Select("SELECT id_caja FROM cajas");
+                                                DataTable Cajas = this.DataBase.Select("SELECT id_caja FROM cajas");
                                                 foreach (System.Data.DataRow Caja in Cajas.Rows) {
-                                                        Transporte += Math.Round(this.Workspace.DefaultDataBase.FieldDouble("SELECT saldo FROM " + m_Tabla + " WHERE  id_caja=" + Caja["id_caja"].ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom).ToString() + " 00:00:00' ORDER BY id_movim DESC"), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                                        Transporte += Math.Round(this.DataBase.FieldDouble("SELECT saldo FROM " + m_Tabla + " WHERE  id_caja=" + Caja["id_caja"].ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom).ToString() + " 00:00:00' ORDER BY id_movim DESC"), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                                                 }
                                         } else {
                                                 // Calculo el transporte de una cuenta
-                                                Transporte = Math.Round(this.Workspace.DefaultDataBase.FieldDouble("SELECT saldo FROM " + m_Tabla + " WHERE  id_caja=" + m_Caja.ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom) + " 00:00:00' ORDER BY id_movim DESC LIMIT 1"), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                                Transporte = Math.Round(this.DataBase.FieldDouble("SELECT saldo FROM " + m_Tabla + " WHERE  id_caja=" + m_Caja.ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom) + " 00:00:00' ORDER BY id_movim DESC LIMIT 1"), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                                         }
                                         Saldo = Transporte;
                                         if (Movimientos.Rows.Count > 0) {
@@ -189,16 +190,18 @@ namespace Lfc.Cajas
                                                                 return this.RefreshList();
                                                         }
                                                         */
+                                                        int IdPersona = Movimiento["id_persona"] is DBNull || Movimiento["id_persona"] == null ? 0 : System.Convert.ToInt32(Movimiento["id_persona"]);
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, this.DataBase.Tables["personas"].FastRows[IdPersona].Fields["nombre_visible"].Value.ToString()));
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Movimiento["nombre_visible"])));
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Movimiento["obs"])));
                                                         if (System.Convert.ToString(Movimiento["comprob"]).Length > 0)
                                                                 itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Movimiento["comprob"])));
                                                         else if (this.Workspace.SlowLink == false && Lfx.Data.DataBase.ConvertDBNullToZero(Movimiento["id_comprob"]) != 0)
-                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lbl.Comprobantes.Comprobante.NumeroCompleto(this.Workspace.DefaultDataView, Lfx.Data.DataBase.ConvertDBNullToZero(Movimiento["id_comprob"]))));
+                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lbl.Comprobantes.Comprobante.NumeroCompleto(this.DataBase, Lfx.Data.DataBase.ConvertDBNullToZero(Movimiento["id_comprob"]))));
                                                         else if (this.Workspace.SlowLink == false && Lfx.Data.DataBase.ConvertDBNullToZero(Movimiento["id_recibo"]) != 0)
-                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lbl.Comprobantes.Comprobante.FacturasDeUnRecibo(this.Workspace.DefaultDataView, Lfx.Data.DataBase.ConvertDBNullToZero(Movimiento["id_recibo"]))));
+                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lbl.Comprobantes.Comprobante.FacturasDeUnRecibo(this.DataBase, Lfx.Data.DataBase.ConvertDBNullToZero(Movimiento["id_recibo"]))));
                                                         else
                                                                 itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, ""));
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Movimiento["nombre_visible"])));
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Movimiento["obs"])));
                                                         if (CurItem != null) {
                                                                 if (itm.Text == CurItem.Text) {
                                                                         itm.Selected = true;
@@ -219,7 +222,7 @@ namespace Lfc.Cajas
                                         }
 
                                         if (m_Caja > 0)
-                                                this.Text = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM cajas WHERE id_caja=" + m_Caja.ToString());
+                                                this.Text = this.DataBase.Tables["cajas"].FastRows[m_Caja].Fields["nombre"].Value.ToString();
                                         else
                                                 this.Text = "Caja";
 
@@ -263,7 +266,7 @@ namespace Lfc.Cajas
                                 m_Caja = FormularioFiltros.EntradaCaja.TextInt;
                                 m_Fechas = FormularioFiltros.Fechas.Rango;
                                 if (m_Caja > 0)
-                                        EtiquetaTitulo.Text = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM cajas WHERE id_caja=" + m_Caja.ToString());
+                                        EtiquetaTitulo.Text = this.DataBase.FieldString("SELECT nombre FROM cajas WHERE id_caja=" + m_Caja.ToString());
                                 else
                                         EtiquetaTitulo.Text = "Movimientos de Cajas";
                                 if (FormularioFiltros.txtPersona.Text == FormularioFiltros.txtPersona.FreeTextCode)
@@ -356,12 +359,6 @@ namespace Lfc.Cajas
                 }
 
 
-                private void Inicio_Activated(object sender, System.EventArgs e)
-                {
-                        this.RefreshList();
-                }
-
-
                 private void cmdMovim_Click(object sender, System.EventArgs e)
                 {
                         if (Lui.Login.LoginData.ValidateAccess(this.Workspace.CurrentUser, "accounts.write")) {
@@ -379,8 +376,8 @@ namespace Lfc.Cajas
                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Si confirma que el saldo de la cuenta es el indicado se asentará una marca de 'Arqueo', para su propio control.", "¿Confirma que el saldo de la cuenta es de $ " + EtiquetaSaldo.Text + "?");
                         Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
                         if (Pregunta.ShowDialog() == DialogResult.OK) {
-                                Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(this.Workspace.DefaultDataView, m_Caja);
-                                Caja.Movimiento(false, null, "Arqueo - Saldo: " + EtiquetaSaldo.Text, new Lbl.Personas.Persona(Caja.DataView, this.Workspace.CurrentUser.Id), 0, null, null, null, null);
+                                Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(this.DataBase, m_Caja);
+                                Caja.Movimiento(false, null, "Arqueo - Saldo: " + EtiquetaSaldo.Text, new Lbl.Personas.Persona(Caja.DataBase, this.Workspace.CurrentUser.Id), 0, null, null, null, null);
                                 this.RefreshList();
                         } else {
                                 Lui.Forms.MessageBox.Show("Verifique el saldo de la cuenta y si es necesario realice un ajuste.", "Arqueo");

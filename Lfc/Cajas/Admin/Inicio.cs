@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -63,7 +65,7 @@ namespace Lfc.Cajas.Admin
 			txtActivos.Text = "0";
 		}
 
-		public override void ItemAdded(ListViewItem itm)
+                public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
 		{
 			switch (itm.SubItems[5].Text)
 			{
@@ -96,11 +98,11 @@ namespace Lfc.Cajas.Admin
                                         break;
                         }
 
-			itm.SubItems[2].Text = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM bancos WHERE id_banco=" + Lfx.Types.Parsing.ParseInt(itm.SubItems[2].Text).ToString());
+			itm.SubItems[2].Text = this.DataBase.FieldString("SELECT nombre FROM bancos WHERE id_banco=" + Lfx.Types.Parsing.ParseInt(itm.SubItems[2].Text).ToString());
 
                         int IdCaja = Lfx.Types.Parsing.ParseInt(itm.Text);
-                        double Saldo = this.Workspace.DefaultDataBase.FieldDouble("SELECT saldo FROM cajas_movim WHERE id_caja=" + IdCaja.ToString() + " ORDER BY id_movim DESC LIMIT 1");
-                        double Pasivos = this.Workspace.DefaultDataBase.FieldDouble("SELECT SUM(importe) FROM bancos_cheques WHERE estado IN (0, 5) AND emitido=1 AND id_chequera IN (SELECT chequeras.id_chequera FROM chequeras WHERE estado=1 AND id_caja=" + IdCaja.ToString() + ")");
+                        double Saldo = this.DataBase.FieldDouble("SELECT saldo FROM cajas_movim WHERE id_caja=" + IdCaja.ToString() + " ORDER BY id_movim DESC LIMIT 1");
+                        double Pasivos = this.DataBase.FieldDouble("SELECT SUM(importe) FROM bancos_cheques WHERE estado IN (0, 5) AND emitido=1 AND id_chequera IN (SELECT chequeras.id_chequera FROM chequeras WHERE estado=1 AND id_caja=" + IdCaja.ToString() + ")");
 
 			txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtTotal.Text) + Saldo, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
 			if (Saldo > 0)

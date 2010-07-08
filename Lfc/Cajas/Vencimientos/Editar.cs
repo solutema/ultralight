@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -42,6 +44,8 @@ namespace Lfc.Cajas.Vencimientos
                 public Editar()
                 {
                         InitializeComponent();
+
+                        this.ElementType = typeof(Lbl.Cajas.Vencimiento);
                 }
 
                 public override Lfx.Types.OperationResult Create()
@@ -49,7 +53,7 @@ namespace Lfc.Cajas.Vencimientos
                         if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "vencimientos.create"))
                                 return new Lfx.Types.NoAccessOperationResult();
 
-                        Lbl.Cajas.Vencimiento Res = new Lbl.Cajas.Vencimiento(this.DataView);
+                        Lbl.Cajas.Vencimiento Res = new Lbl.Cajas.Vencimiento(this.DataBase);
                         Res.Crear();
 
                         this.FromRow(Res);
@@ -61,14 +65,7 @@ namespace Lfc.Cajas.Vencimientos
                         if (Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "vencimientos.read") == false)
                                 return new Lfx.Types.NoAccessOperationResult();
 
-                        Lbl.Cajas.Vencimiento Res = new Lbl.Cajas.Vencimiento(this.DataView, lId);
-
-                        if (Res.Cargar().Success == false) {
-                                return new Lfx.Types.FailureOperationResult("Error al cargar el registro");
-                        } else {
-                                this.FromRow(Res);
-                                return new Lfx.Types.SuccessOperationResult();
-                        }
+                        return base.Edit(lId);
                 }
 
                 public override void FromRow(Lbl.ElementoDeDatos row)
@@ -106,38 +103,38 @@ namespace Lfc.Cajas.Vencimientos
                         if (EntradaConcepto.TextInt == 0)
                                 Res.Concepto = null;
                         else
-                                Res.Concepto = new Lbl.Cajas.Concepto(Res.DataView, EntradaConcepto.TextInt);
+                                Res.Concepto = new Lbl.Cajas.Concepto(Res.DataBase, EntradaConcepto.TextInt);
 
                         Res.Estado = Lfx.Types.Parsing.ParseInt(EntradaEstado.TextKey);
                         Res.FechaFin = Lfx.Types.Parsing.ParseDate(EntradaFechaFin.Text);
                         Res.FechaInicio = Lfx.Types.Parsing.ParseDate(EntradaFechaInicio.Text);
                         switch(EntradaFrecuencia.TextKey){
                                 case "unica":
-                                        Res.Frecuencia = Lbl.Cajas.Vencimiento.Frecuencias.Unica;
+                                        Res.Frecuencia = Lbl.Cajas.Frecuencias.Unica;
                                         break;
                                 case "diaria":
-                                        Res.Frecuencia = Lbl.Cajas.Vencimiento.Frecuencias.Diaria;
+                                        Res.Frecuencia = Lbl.Cajas.Frecuencias.Diaria;
                                         break;
                                 case "semanal":
-                                        Res.Frecuencia = Lbl.Cajas.Vencimiento.Frecuencias.Semanal;
+                                        Res.Frecuencia = Lbl.Cajas.Frecuencias.Semanal;
                                         break;
                                 case "mensual":
-                                        Res.Frecuencia = Lbl.Cajas.Vencimiento.Frecuencias.Mensual;
+                                        Res.Frecuencia = Lbl.Cajas.Frecuencias.Mensual;
                                         break;
                                 case "bimestral":
-                                        Res.Frecuencia = Lbl.Cajas.Vencimiento.Frecuencias.Bimestral;
+                                        Res.Frecuencia = Lbl.Cajas.Frecuencias.Bimestral;
                                         break;
                                 case "trimestral":
-                                        Res.Frecuencia = Lbl.Cajas.Vencimiento.Frecuencias.Trimestral;
+                                        Res.Frecuencia = Lbl.Cajas.Frecuencias.Trimestral;
                                         break;
                                 case "cuatrimestral":
-                                        Res.Frecuencia = Lbl.Cajas.Vencimiento.Frecuencias.Cuatrimestral;
+                                        Res.Frecuencia = Lbl.Cajas.Frecuencias.Cuatrimestral;
                                         break;
                                 case "semestral":
-                                        Res.Frecuencia = Lbl.Cajas.Vencimiento.Frecuencias.Semestral;
+                                        Res.Frecuencia = Lbl.Cajas.Frecuencias.Semestral;
                                         break;
                                 case "anual":
-                                        Res.Frecuencia = Lbl.Cajas.Vencimiento.Frecuencias.Anual;
+                                        Res.Frecuencia = Lbl.Cajas.Frecuencias.Anual;
                                         break;
                         }
 

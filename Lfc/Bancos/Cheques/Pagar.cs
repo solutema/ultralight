@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,18 +27,17 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Lfc.Bancos.Cheques
 {
 	public class Pagar : Lui.Forms.DialogForm
 	{
-		System.Collections.ArrayList Cheques = null;
+                List<string> Cheques = null;
 		private string ChequesIds = null;
 
 		internal System.Windows.Forms.Label label7;
@@ -292,7 +292,7 @@ namespace Lfc.Bancos.Cheques
 			txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text) + Lfx.Types.Parsing.ParseCurrency(txtImpuestos.Text), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
 		}
 
-		public System.Windows.Forms.DialogResult Mostrar(System.Collections.ArrayList ChequesAPagar)
+                public System.Windows.Forms.DialogResult Mostrar(List<string> ChequesAPagar)
 		{
 			this.Cheques = ChequesAPagar;
 
@@ -306,7 +306,7 @@ namespace Lfc.Bancos.Cheques
 
 			if(ChequesIds != null)
 			{
-				double Total = this.Workspace.DefaultDataBase.FieldDouble("SELECT SUM(importe) FROM bancos_cheques WHERE id_cheque IN (" + ChequesIds + ")");
+				double Total = this.DataBase.FieldDouble("SELECT SUM(importe) FROM bancos_cheques WHERE id_cheque IN (" + ChequesIds + ")");
 
 				txtCantidad.Text = Cheques.Count.ToString();
 				txtSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
@@ -337,11 +337,11 @@ namespace Lfc.Bancos.Cheques
 				//double ImporteDestino = Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text);
 				double Impuestos = Lfx.Types.Parsing.ParseCurrency(txtImpuestos.Text);
 
-				this.DataView.BeginTransaction(true);
+				this.DataBase.BeginTransaction(true);
 				
 				string ChequesNum = null;
-				System.Data.DataTable TablaCheques = DataView.DataBase.Select("SELECT * FROM bancos_cheques WHERE id_cheque IN (" + ChequesIds + ")");
-				Lbl.Cajas.Caja CajaOrigen = new Lbl.Cajas.Caja(DataView, EntradaCajaOrigen.TextInt);
+				System.Data.DataTable TablaCheques = DataBase.Select("SELECT * FROM bancos_cheques WHERE id_cheque IN (" + ChequesIds + ")");
+				Lbl.Cajas.Caja CajaOrigen = new Lbl.Cajas.Caja(DataBase, EntradaCajaOrigen.TextInt);
 				foreach(System.Data.DataRow Cheque in TablaCheques.Rows)
 				{
                                         string NumeroCheque = Cheque["numero"].ToString();
@@ -354,13 +354,13 @@ namespace Lfc.Bancos.Cheques
                                                 ChequesNum += ", " + NumeroCheque;
 
                                         CajaOrigen.Movimiento(true, Lfx.Data.DataBase.ConvertDBNullToZero(Cheque["id_concepto"]), Cheque["concepto"].ToString(), Lfx.Data.DataBase.ConvertDBNullToZero(Cheque["id_cliente"]), -System.Convert.ToDouble(Cheque["importe"]), "Pago de cheque Nº " + NumeroCheque, 0, Lfx.Data.DataBase.ConvertDBNullToZero(Cheque["id_recibo"]), "");
-					DataView.DataBase.Execute("UPDATE bancos_cheques SET estado=10 WHERE id_cheque=" + System.Convert.ToInt32(Cheque["id_cheque"]).ToString());
+					DataBase.Execute("UPDATE bancos_cheques SET estado=10 WHERE id_cheque=" + System.Convert.ToInt32(Cheque["id_cheque"]).ToString());
 				}                
 
 				if(Impuestos != 0)
 					CajaOrigen.Movimiento(true, 23030, "Impuestos Cheques", 0, -Impuestos, "Cheques Nº " + ChequesNum, 0, 0, "");
 
-				this.DataView.Commit();
+				this.DataBase.Commit();
 			}
 			return aceptarReturn;
 		}

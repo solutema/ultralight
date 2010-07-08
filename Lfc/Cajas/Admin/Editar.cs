@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -426,7 +428,7 @@ namespace Lfc.Cajas.Admin
 		{
 			Lfx.Types.OperationResult ResultadoEditar = new Lfx.Types.SuccessOperationResult();
 
-			Lfx.Data.Row row = this.Workspace.DefaultDataBase.Row("cajas", "id_caja", lId);
+			Lfx.Data.Row row = this.DataBase.Row("cajas", "id_caja", lId);
 
 			if (row == null)
 			{
@@ -462,15 +464,15 @@ namespace Lfc.Cajas.Admin
 
 			if (ResultadoGuardar.Success == true)
 			{
-                                DataView.BeginTransaction();
+                                DataBase.BeginTransaction();
 
-                                Lfx.Data.SqlTableCommandBuilder Comando;
+                                qGen.TableCommand Comando;
                                 if (m_Nuevo) {
-                                        Comando = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, "cajas");
-                                        Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
+                                        Comando = new qGen.Insert(DataBase, "cajas");
+                                        Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                                 } else {
-                                        Comando = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "cajas");
-                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_caja", m_Id);
+                                        Comando = new qGen.Update(DataBase, "cajas");
+                                        Comando.WhereClause = new qGen.Where("id_caja", m_Id);
                                 }
 
                                 Comando.Fields.AddWithValue("titular", txtTitular.Text);
@@ -482,14 +484,14 @@ namespace Lfc.Cajas.Admin
 				Comando.Fields.AddWithValue("cbu", txtCBU.Text);
                                 Comando.Fields.AddWithValue("estado", Lfx.Types.Parsing.ParseInt(txtEstado.TextKey));
 
-                                DataView.Execute(Comando);
+                                DataBase.Execute(Comando);
 
                                 if (m_Nuevo) {
-                                        m_Id = DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
+                                        m_Id = DataBase.FieldInt("SELECT LAST_INSERT_ID()");
                                         m_Nuevo = false;
                                 }
 
-                                DataView.DataBase.Commit();
+                                DataBase.Commit();
 
 				ResultadoGuardar = base.Save();
 			}

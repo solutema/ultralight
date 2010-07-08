@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -72,12 +74,12 @@ namespace Lfc.Bancos.Cheques
 				double GestionDeCobro = Lfx.Types.Parsing.ParseCurrency(txtGestionDeCobro.Text);
 				double Impuestos = Lfx.Types.Parsing.ParseCurrency(txtImpuestos.Text);
 
-				DataView.BeginTransaction(true);
+				DataBase.BeginTransaction(true);
 
-				Lbl.Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(DataView, this.Workspace.CurrentConfig.Company.CajaCheques);
+				Lbl.Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(DataBase, this.Workspace.CurrentConfig.Company.CajaCheques);
 				CajaCheques.Movimiento(true, 30000, "Efectivización de Cheques", 0, -ImporteOrigen, "Cheques Nº " + ListaCheques, 0, 0, "");
 
-				Lbl.Cajas.Caja CajaDestino = new Lbl.Cajas.Caja(DataView, EntradaCajaDestino.TextInt);
+				Lbl.Cajas.Caja CajaDestino = new Lbl.Cajas.Caja(DataBase, EntradaCajaDestino.TextInt);
 				CajaDestino.Movimiento(true, 30000, "Efectivización de Cheques", 0, ImporteDestino, "Cheques Nº " + ListaCheques, 0, 0, "");
 
 				if (GestionDeCobro != 0)
@@ -88,11 +90,11 @@ namespace Lfc.Bancos.Cheques
 				string sCheque = Lfx.Types.Strings.GetNextToken(ref ListaChequesId, ",");
 				do
 				{
-					DataView.DataBase.Execute("UPDATE bancos_cheques SET estado=10 WHERE id_cheque=" + Lfx.Types.Parsing.ParseInt(sCheque).ToString());
+					DataBase.Execute("UPDATE bancos_cheques SET estado=10 WHERE id_cheque=" + Lfx.Types.Parsing.ParseInt(sCheque).ToString());
 					sCheque = Lfx.Types.Strings.GetNextToken(ref ListaChequesId, ",");
 				}
 				while (sCheque.Length > 0);
-				DataView.Commit();
+				DataBase.Commit();
 			}
 			return aceptarReturn;
 		}

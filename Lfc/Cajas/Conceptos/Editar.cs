@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -253,7 +255,7 @@ namespace Lfc.Cajas.Conceptos
 		{
 			Lfx.Types.OperationResult ResultadoEditar = new Lfx.Types.SuccessOperationResult();
 
-			Lfx.Data.Row Registro = this.Workspace.DefaultDataBase.Row("conceptos", "id_concepto", lId);
+			Lfx.Data.Row Registro = this.DataBase.Row("conceptos", "id_concepto", lId);
 
 			if(Registro == null) {
 				ResultadoEditar.Success = false;
@@ -289,19 +291,19 @@ namespace Lfc.Cajas.Conceptos
 
 			if(ResultadoGuardar.Success == true) {
 				if(m_Nuevo && Lfx.Types.Parsing.ParseInt(txtCodigo.Text) == 0) {
-					this.txtCodigo.Text = this.Workspace.DefaultDataBase.FieldInt("SELECT MAX(id_concepto)+1 FROM conceptos WHERE id_concepto<10000").ToString();
+					this.txtCodigo.Text = this.DataBase.FieldInt("SELECT MAX(id_concepto)+1 FROM conceptos WHERE id_concepto<10000").ToString();
 					if(Lfx.Types.Parsing.ParseInt(this.txtCodigo.Text) == 0)
 						this.txtCodigo.Text = "1";
 				}
 
-                                DataView.BeginTransaction();
+                                DataBase.BeginTransaction(true);
 
-                                Lfx.Data.SqlTableCommandBuilder Comando;
+                                qGen.TableCommand Comando;
                                 if (m_Nuevo) {
-                                        Comando = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, "conceptos");
+                                        Comando = new qGen.Insert(DataBase, "conceptos");
                                 } else {
-                                        Comando = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "conceptos");
-                                	Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_concepto", m_Id);        
+                                        Comando = new qGen.Update(DataBase, "conceptos");
+                                	Comando.WhereClause = new qGen.Where("id_concepto", m_Id);        
                                 }
 
 				Comando.Fields.AddWithValue("id_concepto", Lfx.Types.Parsing.ParseInt(txtCodigo.Text));
@@ -309,8 +311,8 @@ namespace Lfc.Cajas.Conceptos
 				Comando.Fields.AddWithValue("es", Lfx.Types.Parsing.ParseInt(txtDireccion.TextKey));
 				Comando.Fields.AddWithValue("grupo", Lfx.Data.DataBase.ConvertZeroToDBNull(Lfx.Types.Parsing.ParseInt(txtTipo.TextKey)));
 
-                                DataView.Execute(Comando);
-                                DataView.DataBase.Commit();
+                                DataBase.Execute(Comando);
+                                DataBase.Commit();
 
 				m_Id = Lfx.Types.Parsing.ParseInt(txtCodigo.Text);
 

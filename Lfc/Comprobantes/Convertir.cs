@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -86,6 +88,7 @@ namespace Lfc.Comprobantes
 
                 private void InitializeComponent()
                 {
+                        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Convertir));
                         this.txtOrigen = new Lui.Forms.TextBox();
                         this.Label6 = new System.Windows.Forms.Label();
                         this.Label7 = new System.Windows.Forms.Label();
@@ -234,7 +237,7 @@ namespace Lfc.Comprobantes
                         // PictureBox2
                         // 
                         this.PictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.PictureBox2.Image = global::Lfc.Properties.Resources.Flecha_Der_Azul;
+                        this.PictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox2.Image")));
                         this.PictureBox2.Location = new System.Drawing.Point(154, 236);
                         this.PictureBox2.Name = "PictureBox2";
                         this.PictureBox2.Size = new System.Drawing.Size(32, 28);
@@ -244,7 +247,7 @@ namespace Lfc.Comprobantes
                         // PictureBox1
                         // 
                         this.PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.PictureBox1.Image = global::Lfc.Properties.Resources.Comprobante;
+                        this.PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox1.Image")));
                         this.PictureBox1.Location = new System.Drawing.Point(62, 220);
                         this.PictureBox1.Name = "PictureBox1";
                         this.PictureBox1.Size = new System.Drawing.Size(84, 64);
@@ -255,7 +258,7 @@ namespace Lfc.Comprobantes
                         // PictureBox3
                         // 
                         this.PictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.PictureBox3.Image = global::Lfc.Properties.Resources.Comprobante1;
+                        this.PictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox3.Image")));
                         this.PictureBox3.Location = new System.Drawing.Point(194, 220);
                         this.PictureBox3.Name = "PictureBox3";
                         this.PictureBox3.Size = new System.Drawing.Size(84, 64);

@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -51,7 +53,7 @@ namespace Lfc.Comprobantes.Compra
 
 			// agregar código de constructor después de llamar a InitializeComponent
 			DataTableName = "comprob";
-			this.Joins.Add(new Lfx.Data.Join("comprob_detalle", "comprob.id_comprob=comprob_detalle.id_comprob"));
+			this.Joins.Add(new qGen.Join("comprob_detalle", "comprob.id_comprob=comprob_detalle.id_comprob"));
                         KeyField = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
 			GroupBy = KeyField;
 			OrderBy = "comprob.fecha DESC";
@@ -79,12 +81,12 @@ namespace Lfc.Comprobantes.Compra
                 }
 
 
-                public override void ItemAdded(ListViewItem itm)
+                public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
                 {
                         itm.SubItems[2].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[2].Text).ToString("0000");
                         itm.SubItems[3].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[3].Text).ToString("00000000");
 
-                        Lfx.Data.Row Persona = this.DataView.Tables["personas"].FastRows[Lfx.Types.Parsing.ParseInt(itm.SubItems[5].Text)];
+                        Lfx.Data.Row Persona = this.DataBase.Tables["personas"].FastRows[Lfx.Types.Parsing.ParseInt(itm.SubItems[5].Text)];
                         if (Persona != null)
                                 itm.SubItems[5].Text = Persona.Fields["nombre_visible"].ToString();
 
@@ -181,22 +183,23 @@ namespace Lfc.Comprobantes.Compra
 		{
                         EnNaranja = EnVerde = 0;
 
-			string FiltroTemp = "compra=1";
+                        this.CustomFilters.Clear();
+                        this.CustomFilters.AddWithValue("compra", 1);
 			switch (m_Tipo)
 			{
 				case "NP":
-					FiltroTemp += " AND comprob.tipo_fac='NP'";
+					this.CustomFilters.AddWithValue("comprob.tipo_fac", "NP");
                                         if (m_Estado == -1)
-                                                FiltroTemp += " AND (comprob.estado<=50)";
+                                                this.CustomFilters.AddWithValue("(comprob.estado<=50)");
 					break;
 				case "PD":
-					FiltroTemp += " AND comprob.tipo_fac='PD'";
+					this.CustomFilters.AddWithValue("comprob.tipo_fac", "PD");
                                         if (m_Estado == -1)
-                                                FiltroTemp += " AND (comprob.estado<=50)";
+                                                this.CustomFilters.AddWithValue("(comprob.estado<=50)");
 					break;
 				
 				case "FP":
-                                        FiltroTemp += " AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE')";
+                                        this.CustomFilters.AddWithValue("comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE')");
                                         break;
                                 case "R":
                                 case "FA":
@@ -204,7 +207,7 @@ namespace Lfc.Comprobantes.Compra
                                 case "FC":
                                 case "FE":
                                 case "FM":
-                                        FiltroTemp += " AND comprob.tipo_fac='" + m_Tipo +"'";
+                                        this.CustomFilters.AddWithValue("comprob.tipo_fac", m_Tipo);
                                         break;
                                 default:
 					// Nada
@@ -212,15 +215,14 @@ namespace Lfc.Comprobantes.Compra
 			}
 
 			if (m_Proveedor > 0)
-				FiltroTemp += " AND (comprob.id_cliente=" + m_Proveedor.ToString() + ")";
+				this.CustomFilters.AddWithValue("comprob.id_cliente", m_Proveedor);
 
 			if (m_Estado >= 0)
-				FiltroTemp += " AND (comprob.estado=" + m_Estado.ToString() + ")";
+				this.CustomFilters.AddWithValue("comprob.estado", m_Estado);
 
                         if (m_Fecha.HasRange)
-                                FiltroTemp += " AND (comprob.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')";
+                                this.CustomFilters.AddWithValue("(comprob.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')");
 
-			this.CurrentFilter = FiltroTemp;
 			base.RefreshList();
 
                         txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(EnVerde + EnNaranja, this.Workspace.CurrentConfig.Currency.DecimalPlaces);

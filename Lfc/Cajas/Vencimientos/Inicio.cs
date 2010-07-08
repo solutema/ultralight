@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -60,10 +62,8 @@ namespace Lfc.Cajas.Vencimientos
                         BotonFiltrar.Visible = true;
                 }
 
-                public override void ItemAdded(ListViewItem item)
+                public override void ItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
-                        base.ItemAdded(item);
-
                         switch (Lfx.Types.Parsing.ParseInt(item.SubItems[6].Text)) {
                                 case 1:
                                         item.SubItems[6].Text = "Activo";
@@ -81,7 +81,7 @@ namespace Lfc.Cajas.Vencimientos
                                         break;
                         }
 
-                        Lfx.Data.Row Concepto = this.DataView.Tables["conceptos"].FastRows[Lfx.Types.Parsing.ParseInt(item.SubItems[5].Text)];
+                        Lfx.Data.Row Concepto = this.DataBase.Tables["conceptos"].FastRows[Lfx.Types.Parsing.ParseInt(item.SubItems[5].Text)];
                         if (Concepto != null)
                                 item.SubItems[5].Text = Concepto.Fields["nombre"].ToString();
 
