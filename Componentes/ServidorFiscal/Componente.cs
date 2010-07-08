@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,30 +27,31 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 
 namespace ServidorFiscal
 {
-	/// <summary>
-	/// Servidor de Impresora Fiscal
-	/// </summary>
-	public class ServidorFiscal : Lws.Components.Component
-	{
-		public Lbl.Comprobantes.Impresion.Fiscal.ConexionImpresora ConFiscal;
-		private int m_PV;
-		private System.Timers.Timer Programador;
-		private System.Timers.Timer Watchdog;
-		private System.DateTime Watchdog_LastOp = System.DateTime.Now;
-		private FiscalStatus FormEstado = null;
-		public Lbl.Comprobantes.Impresion.Fiscal.ConexionEventArgs UltimoEvento;
+        /// <summary>
+        /// Servidor de Impresora Fiscal
+        /// </summary>
+        public class ServidorFiscal : Lfx.Components.Component
+        {
+                public Lbl.Comprobantes.Impresion.Fiscal.Impresora Impresora;
+                private int m_PV;
+                private System.Timers.Timer Programador;
+                private System.Timers.Timer Watchdog;
+                private System.DateTime Watchdog_LastOp = System.DateTime.Now;
+                private FiscalStatus FormEstado = null;
+                public Lbl.Comprobantes.Impresion.Fiscal.ImpresoraEventArgs UltimoEvento;
 
-		public override object Create(bool wait)
-		{
+                public override object Create(bool wait)
+                {
                         this.Workspace.CurrentUser.Id = 1;
-			FormEstado = new FiscalStatus();
-			FormEstado.ServidorAsociado = this;
-			this.FormEstado.lblVersion.Text = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).ProductVersion;
+                        FormEstado = new FiscalStatus();
+                        FormEstado.ServidorAsociado = this;
+                        this.FormEstado.lblVersion.Text = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).ProductVersion;
 
                         try {
                                 System.Diagnostics.Process Yo = System.Diagnostics.Process.GetCurrentProcess();
@@ -60,257 +62,237 @@ namespace ServidorFiscal
                                 //No es crítico, así que continúo sin problema
                         }
 
-			ConFiscal = new Lbl.Comprobantes.Impresion.Fiscal.ConexionImpresora(this.Workspace);
+                        Impresora = new Lbl.Comprobantes.Impresion.Fiscal.Impresora(this.Workspace);
 
-			this.Workspace.RunTime.IpcEvent += new Lws.Workspace.RunTimeServices.IpcEventHandler(Workspace_IpcEvent);
-			ConFiscal.EventoConexion += new Lbl.Comprobantes.Impresion.Fiscal.ConexionImpresora.ManejadorEventoConexion(ConFiscal_EventoConexion);
+                        this.Workspace.RunTime.IpcEvent += new Lfx.Workspace.RunTimeServices.IpcEventHandler(Workspace_IpcEvent);
+                        Impresora.Notificacion += new Lbl.Comprobantes.Impresion.Fiscal.NotificacionEventHandler(ConFiscal_EventoConexion);
 
-			Programador = new System.Timers.Timer(1000);
-			Programador.Elapsed += new System.Timers.ElapsedEventHandler(EventoProgramador);
-			Programador.Start();
+                        Programador = new System.Timers.Timer(1000);
+                        Programador.Elapsed += new System.Timers.ElapsedEventHandler(EventoProgramador);
+                        Programador.Start();
 
-			Watchdog = new System.Timers.Timer(60000);
-			Watchdog.Elapsed += new System.Timers.ElapsedEventHandler(EventoWatchdog);
-			Watchdog.Start();
+                        Watchdog = new System.Timers.Timer(60000);
+                        Watchdog.Elapsed += new System.Timers.ElapsedEventHandler(EventoWatchdog);
+                        Watchdog.Start();
 
-			if (wait)
-			{
-				while (ConFiscal.EstadoServidor != Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Apagando
-					&& ConFiscal.EstadoServidor != Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Reiniciando)
-				{
-					System.Threading.Thread.Sleep(100);
-					System.Windows.Forms.Application.DoEvents();
-				}
+                        if (wait) {
+                                while (Impresora.EstadoServidor != Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Apagando
+                                        && Impresora.EstadoServidor != Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Reiniciando) {
+                                        System.Threading.Thread.Sleep(100);
+                                        System.Windows.Forms.Application.DoEvents();
+                                }
 
-				if (ConFiscal.EstadoServidor == Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Reiniciando)
-					this.End(true);
-				else if (ConFiscal.EstadoServidor == Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Apagando)
-					this.End(false);
-			}
-
-			return null;
-		}
-
-		public void ConFiscal_EventoConexion(object sender, Lbl.Comprobantes.Impresion.Fiscal.ConexionEventArgs e)
-		{
-			UltimoEvento = e;
-			switch (e.EventType)
-			{
-				case Lbl.Comprobantes.Impresion.Fiscal.ConexionEventArgs.EventTypes.Inicializada:
-					FormEstado.lblPV.Text = this.PV.ToString();
-					FormEstado.lblImpresora.Text = ConFiscal.ModelName;
-					FormEstado.lblConexion.Text = ConFiscal.PortName + " a " + ConFiscal.BaudRate.ToString() + " bps";
-					FormEstado.lblImpresora.Text = ConFiscal.ModelName;
-					break;
-				case Lbl.Comprobantes.Impresion.Fiscal.ConexionEventArgs.EventTypes.Estado:
-					FormEstado.lblEstado.Text = e.MensajeEstado;
-					break;
-				case Lbl.Comprobantes.Impresion.Fiscal.ConexionEventArgs.EventTypes.InicioImpresion:
-					FormEstado.NotifyIcon1.ShowBalloonTip(1000, "Servidor Fiscal", "Se inició el proceso de impresión", System.Windows.Forms.ToolTipIcon.Info);
-					break;
-				case Lbl.Comprobantes.Impresion.Fiscal.ConexionEventArgs.EventTypes.FinImpresion:
-					FormEstado.NotifyIcon1.ShowBalloonTip(1000, "Servidor Fiscal", "Finalizó el proceso de impresión", System.Windows.Forms.ToolTipIcon.Info);
-					break;
-			}
-		}
-
-		public void Workspace_IpcEvent(object sender, ref Lws.Workspace.RunTimeServices.IpcEventArgs e)
-		{
-			if (e.Destination == "servidorfiscal" && e.Verb == "END")
-				ConFiscal.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Apagando;
-			else if (e.Destination == "servidorfiscal" && e.Verb == "REBOOT")
-				ConFiscal.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Reiniciando;
-		}
-
-		public override Lws.Components.ComponentTypes ComponentType
-		{
-			get
-			{
-				return Lws.Components.ComponentTypes.Loadable;
-			}
-		}
-
-		private void EventoWatchdog(object source, System.Timers.ElapsedEventArgs e)
-		{
-			//Hace un minuto que no se dispara un evento. Reinicio el servidor fiscal.
-			if (System.DateTime.Now > Watchdog_LastOp.AddMinutes(5))
-			{
-				System.IO.BinaryWriter wr = new System.IO.BinaryWriter(new System.IO.FileStream(Lfx.Environment.Folders.ApplicationDataFolder + "watchdog.log", System.IO.FileMode.Append));
-				wr.Write("ServidorFiscal: REBOOT " + System.DateTime.Now.ToString() + System.Environment.NewLine);
-				wr.Close();
-
-				ConFiscal.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Reiniciando;
-			}
-		}
-
-		private int PV
-		{
-			get
-			{
-				if (m_PV == 0)
-				{
-					m_PV = this.Workspace.DefaultDataBase.FieldInt("SELECT id_pv FROM pvs WHERE UPPER(estacion)='" + System.Environment.MachineName.ToUpperInvariant().ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString());
-					this.ConFiscal.PV = m_PV;
-					this.FormEstado.lblPV.Text = m_PV.ToString();
-
-					if (m_PV == 0)
-						FormEstado.NotifyIcon1.Text = "No hay definido un Punto de Venta para esta estación.";
-					else
-						FormEstado.NotifyIcon1.Text = "Utilizando el Punto de Venta " + m_PV.ToString();
-				}
-				return m_PV;
-			}
-		}
-
-		private void EventoProgramador(object source, System.Timers.ElapsedEventArgs e)
-		{
-			Programador.Stop();
-			Watchdog_LastOp = System.DateTime.Now;
-
-			//Busco un PV que corresponda a esta terminal
-			if (this.PV == 0)
-			{
-				Programador.Start();
-				return;
-			}
-
-			Watchdog.Stop();
-                        Lfx.Data.SqlUpdateBuilder Actualizar = new Lfx.Data.SqlUpdateBuilder(this.Workspace.DefaultDataBase, "pvs", new Lfx.Data.SqlWhereBuilder("id_pv", this.PV));
-                        Actualizar.Fields.AddWithValue("lsa", Lfx.Data.SqlFunctions.Now);
-                        this.Workspace.DefaultDataView.Execute(Actualizar);
-                        Lws.Services.Task ProximaTarea = this.Workspace.DefaultScheduler.GetNextTask("fiscal" + this.PV.ToString());
-			if (ProximaTarea != null)
-			{
-				string Comando = ProximaTarea.Command;
-				string SubComando = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();
-
-				Lbl.Comprobantes.Impresion.Fiscal.RespuestaFiscal Res;
-				switch (SubComando)
-				{
-					case "REBOOT":
-						ConFiscal.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Reiniciando;
-						//this.End(true);
-						break;
-
-					case "END":
-						ConFiscal.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Apagando;
-						//this.End(false);
-						break;
-
-					case "CIERRE":
-						Res = ConFiscal.ObtenerEstadoImpresora();
-						if (Res.EstadoFiscal.DocumentoFiscalAbierto)
-						{
-							Res = ConFiscal.CancelarDocumentoFiscal();
-							System.Threading.Thread.Sleep(500);
-						}
-						else if (Res.Error == Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Ok)
-						{
-							string SubComandoCierre = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();
-							Lbl.Comprobantes.Impresion.Fiscal.RespuestaFiscal ResultadoCierre = ConFiscal.Cierre(SubComandoCierre, true);
-							if (SubComandoCierre == "Z" && ResultadoCierre.Error == Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Ok)
-							{
-								//Si hizo un cierre Z correctamente, actualizo la variable LCZ
-                                                                Actualizar = new Lfx.Data.SqlUpdateBuilder(this.Workspace.DefaultDataBase, "pvs", new Lfx.Data.SqlWhereBuilder("id_pv", this.PV));
-                                                                Actualizar.Fields.AddWithValue("ultimoz", Lfx.Data.SqlFunctions.Now);
-                                                                this.Workspace.DefaultDataView.Execute(Actualizar);
-							}
-							if (ResultadoCierre.Error != Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Ok)
-							{
-								MostrarErrorFiscal(ResultadoCierre);
-							}
-							System.Threading.Thread.Sleep(100);
-						}
-						break;
-
-					case "CANCELAR":
-						string ItemCancelar = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();
-						switch (ItemCancelar)
-						{
-							case "FISCAL":
-								ConFiscal.CancelarDocumentoFiscal();
-								System.Threading.Thread.Sleep(500);
-								break;
-						}
-						break;
-
-					case "IMPRIMIR":
-						int IdFactura = Lfx.Types.Parsing.ParseInt(Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim());
-						Res = ConFiscal.ObtenerEstadoImpresora();
-
-						if (Res.EstadoFiscal.DocumentoFiscalAbierto)
-						{
-							Res = ConFiscal.CancelarDocumentoFiscal();
-							System.Threading.Thread.Sleep(500);
-						}
-
-						if (Res.HacerCierreZ)
-						{
-							Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Hacer Cierre Z", "Es obligatorio hacer un Cierre Z antes de continuar. ¿Desea hacer el cierre ahora?");
-							Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
-
-							if (Pregunta.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-							{
-								// Hago el cierre, y Res es el resultado del cierre
-								Res = ConFiscal.Cierre("Z", true);
-								System.Threading.Thread.Sleep(500);
-							}
-							else
-							{
-								// No quiso hacer el cierre. Devuelvo un error
-								Programador.Start();
-								Watchdog.Start();
-								return;
-							}
-						}
-
-						if (Res.Error == Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Ok)
-							Res = ConFiscal.ImprimirComprobante(IdFactura);
-
-						if (Res.Error != Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Ok)
-						{
-							MostrarErrorFiscal(Res);
-							if (Res.EstadoFiscal.DocumentoFiscalAbierto)
-								Res = ConFiscal.CancelarDocumentoFiscal();
-							Programador.Start();
-							Watchdog.Start();
-							return;
-						}
-						break;
-				}
-			}
-			Programador.Start();
-			Watchdog.Start();
-		}
-
-		private void MostrarErrorFiscal(Lbl.Comprobantes.Impresion.Fiscal.RespuestaFiscal Res)
-		{
-			FormFiscalError OFormFiscalError = new FormFiscalError();
-			OFormFiscalError.Mostrar(Res);
-			OFormFiscalError.ShowDialog();
-		}
-
-		public void End(bool reboot)
-		{
-			Programador.Stop();
-                        if (this.PV != 0) {
-                                Lfx.Data.SqlUpdateBuilder Actualizar = new Lfx.Data.SqlUpdateBuilder(this.Workspace.DefaultDataBase, "pvs", new Lfx.Data.SqlWhereBuilder("id_pv", this.PV));
-                                Actualizar.Fields.AddWithValue("lsa", null);
-                                this.Workspace.DefaultDataView.Execute(Actualizar);
+                                if (Impresora.EstadoServidor == Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Reiniciando)
+                                        this.End(true);
+                                else if (Impresora.EstadoServidor == Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Apagando)
+                                        this.End(false);
                         }
 
-			ConFiscal.Terminar();
-			FormEstado.Close();
+                        return null;
+                }
 
-			if (reboot)
-			{
-				string[] ParametrosAPasar = this.CommandLineArgs;
-				ParametrosAPasar[0] = "";
-				string Params = string.Join(" ", ParametrosAPasar).Trim();
+                public void ConFiscal_EventoConexion(object sender, Lbl.Comprobantes.Impresion.Fiscal.ImpresoraEventArgs e)
+                {
+                        UltimoEvento = e;
+                        switch (e.EventType) {
+                                case Lbl.Comprobantes.Impresion.Fiscal.ImpresoraEventArgs.EventTypes.Inicializada:
+                                        FormEstado.lblPV.Text = this.PV.ToString();
+                                        FormEstado.lblImpresora.Text = Impresora.NombreModelo;
+                                        FormEstado.lblConexion.Text = Impresora.PortName + " a " + Impresora.BaudRate.ToString() + " bps";
+                                        FormEstado.lblImpresora.Text = Impresora.NombreModelo;
+                                        break;
+                                case Lbl.Comprobantes.Impresion.Fiscal.ImpresoraEventArgs.EventTypes.Estado:
+                                        FormEstado.lblEstado.Text = e.MensajeEstado;
+                                        break;
+                                case Lbl.Comprobantes.Impresion.Fiscal.ImpresoraEventArgs.EventTypes.InicioImpresion:
+                                        FormEstado.NotifyIcon1.ShowBalloonTip(1000, "Servidor Fiscal", "Se inició el proceso de impresión", System.Windows.Forms.ToolTipIcon.Info);
+                                        break;
+                                case Lbl.Comprobantes.Impresion.Fiscal.ImpresoraEventArgs.EventTypes.FinImpresion:
+                                        FormEstado.NotifyIcon1.ShowBalloonTip(1000, "Servidor Fiscal", "Finalizó el proceso de impresión", System.Windows.Forms.ToolTipIcon.Info);
+                                        break;
+                        }
+                }
 
-				Lfx.Environment.Shell.Execute(this.ExecutableName, Params, System.Diagnostics.ProcessWindowStyle.Minimized, false);
-			}
-			System.Windows.Forms.Application.Exit();
-		}
-	}
+                public void Workspace_IpcEvent(object sender, ref Lfx.Workspace.RunTimeServices.IpcEventArgs e)
+                {
+                        if (e.Destination == "servidorfiscal" && e.Verb == "END")
+                                Impresora.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Apagando;
+                        else if (e.Destination == "servidorfiscal" && e.Verb == "REBOOT")
+                                Impresora.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Reiniciando;
+                }
+
+                public override Lfx.Components.ComponentTypes ComponentType
+                {
+                        get
+                        {
+                                return Lfx.Components.ComponentTypes.Loadable;
+                        }
+                }
+
+                private void EventoWatchdog(object source, System.Timers.ElapsedEventArgs e)
+                {
+                        //Hace un minuto que no se dispara un evento. Reinicio el servidor fiscal.
+                        if (System.DateTime.Now > Watchdog_LastOp.AddMinutes(5)) {
+                                System.IO.BinaryWriter wr = new System.IO.BinaryWriter(new System.IO.FileStream(Lfx.Environment.Folders.ApplicationDataFolder + "watchdog.log", System.IO.FileMode.Append));
+                                wr.Write("ServidorFiscal: REBOOT " + System.DateTime.Now.ToString() + System.Environment.NewLine);
+                                wr.Close();
+
+                                Impresora.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Reiniciando;
+                        }
+                }
+
+                private int PV
+                {
+                        get
+                        {
+                                if (m_PV == 0) {
+                                        m_PV = this.Impresora.DataBase.FieldInt("SELECT id_pv FROM pvs WHERE UPPER(estacion)='" + System.Environment.MachineName.ToUpperInvariant().ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString());
+                                        this.Impresora.PV = m_PV;
+                                        this.FormEstado.lblPV.Text = m_PV.ToString();
+
+                                        if (m_PV == 0)
+                                                FormEstado.NotifyIcon1.Text = "No hay definido un Punto de Venta para esta estación.";
+                                        else
+                                                FormEstado.NotifyIcon1.Text = "Utilizando el Punto de Venta " + m_PV.ToString();
+                                }
+                                return m_PV;
+                        }
+                }
+
+                private void EventoProgramador(object source, System.Timers.ElapsedEventArgs e)
+                {
+                        Programador.Stop();
+                        Watchdog_LastOp = System.DateTime.Now;
+
+                        //Busco un PV que corresponda a esta terminal
+                        if (this.PV == 0) {
+                                Programador.Start();
+                                return;
+                        }
+
+                        Watchdog.Stop();
+                        qGen.Update Actualizar = new qGen.Update("pvs", new qGen.Where("id_pv", this.PV));
+                        Actualizar.Fields.AddWithValue("lsa", qGen.SqlFunctions.Now);
+                        this.Impresora.DataBase.Execute(Actualizar);
+                        Lfx.Services.Task ProximaTarea = this.Workspace.DefaultScheduler.GetNextTask("fiscal" + this.PV.ToString());
+                        if (ProximaTarea != null) {
+                                string Comando = ProximaTarea.Command;
+                                string SubComando = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();
+
+                                Lbl.Comprobantes.Impresion.Fiscal.Respuesta Res;
+                                switch (SubComando) {
+                                        case "REBOOT":
+                                                Impresora.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Reiniciando;
+                                                //this.End(true);
+                                                break;
+
+                                        case "END":
+                                                Impresora.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Apagando;
+                                                //this.End(false);
+                                                break;
+
+                                        case "CIERRE":
+                                                Res = Impresora.ObtenerEstadoImpresora();
+                                                if (Res.EstadoFiscal.DocumentoFiscalAbierto) {
+                                                        Res = Impresora.CancelarDocumentoFiscal();
+                                                        System.Threading.Thread.Sleep(500);
+                                                } else if (Res.Error == Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Ok) {
+                                                        string SubComandoCierre = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();
+                                                        Lbl.Comprobantes.Impresion.Fiscal.Respuesta ResultadoCierre = Impresora.Cierre(SubComandoCierre, true);
+                                                        if (SubComandoCierre == "Z" && ResultadoCierre.Error == Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Ok) {
+                                                                //Si hizo un cierre Z correctamente, actualizo la variable LCZ
+                                                                Actualizar = new qGen.Update("pvs", new qGen.Where("id_pv", this.PV));
+                                                                Actualizar.Fields.AddWithValue("ultimoz", qGen.SqlFunctions.Now);
+                                                                this.Impresora.DataBase.Execute(Actualizar);
+                                                        }
+                                                        if (ResultadoCierre.Error != Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Ok) {
+                                                                MostrarErrorFiscal(ResultadoCierre);
+                                                        }
+                                                        System.Threading.Thread.Sleep(100);
+                                                }
+                                                break;
+
+                                        case "CANCELAR":
+                                                string ItemCancelar = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();
+                                                switch (ItemCancelar) {
+                                                        case "FISCAL":
+                                                                Impresora.CancelarDocumentoFiscal();
+                                                                System.Threading.Thread.Sleep(500);
+                                                                break;
+                                                }
+                                                break;
+
+                                        case "IMPRIMIR":
+                                                int IdFactura = Lfx.Types.Parsing.ParseInt(Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim());
+                                                Res = Impresora.ObtenerEstadoImpresora();
+
+                                                if (Res.EstadoFiscal.DocumentoFiscalAbierto) {
+                                                        Res = Impresora.CancelarDocumentoFiscal();
+                                                        System.Threading.Thread.Sleep(500);
+                                                }
+
+                                                if (Res.HacerCierreZ) {
+                                                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Hacer Cierre Z", "Es obligatorio hacer un Cierre Z antes de continuar. ¿Desea hacer el cierre ahora?");
+                                                        Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+
+                                                        if (Pregunta.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                                                                // Hago el cierre, y Res es el resultado del cierre
+                                                                Res = Impresora.Cierre("Z", true);
+                                                                System.Threading.Thread.Sleep(500);
+                                                        } else {
+                                                                // No quiso hacer el cierre. Devuelvo un error
+                                                                Programador.Start();
+                                                                Watchdog.Start();
+                                                                return;
+                                                        }
+                                                }
+
+                                                if (Res.Error == Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Ok)
+                                                        Res = Impresora.ImprimirComprobante(IdFactura);
+
+                                                if (Res.Error != Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Ok) {
+                                                        MostrarErrorFiscal(Res);
+                                                        if (Res.EstadoFiscal.DocumentoFiscalAbierto)
+                                                                Res = Impresora.CancelarDocumentoFiscal();
+                                                        Programador.Start();
+                                                        Watchdog.Start();
+                                                        return;
+                                                }
+                                                break;
+                                }
+                        }
+                        Programador.Start();
+                        Watchdog.Start();
+                }
+
+                private void MostrarErrorFiscal(Lbl.Comprobantes.Impresion.Fiscal.Respuesta Res)
+                {
+                        FormFiscalError OFormFiscalError = new FormFiscalError();
+                        OFormFiscalError.Mostrar(Res);
+                        OFormFiscalError.ShowDialog();
+                }
+
+                public void End(bool reboot)
+                {
+                        Programador.Stop();
+
+                        if (this.PV != 0) {
+                                qGen.Update Actualizar = new qGen.Update("pvs", new qGen.Where("id_pv", this.PV));
+                                Actualizar.Fields.AddWithValue("lsa", null);
+                                this.Impresora.DataBase.Execute(Actualizar);
+                        }
+
+                        Impresora.Terminar();
+                        FormEstado.Close();
+
+                        if (reboot) {
+                                string[] ParametrosAPasar = this.CommandLineArgs;
+                                ParametrosAPasar[0] = "";
+                                string Params = string.Join(" ", ParametrosAPasar).Trim();
+
+                                Lfx.Environment.Shell.Execute(this.ExecutableName, Params, System.Diagnostics.ProcessWindowStyle.Minimized, false);
+                        }
+                        System.Windows.Forms.Application.Exit();
+                }
+        }
 }

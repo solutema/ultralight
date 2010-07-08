@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual C# Express 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazaro", "Sistema\Lazaro.csproj", "{06B1A167-AAC4-468A-A763-9C99E52B2CB3}"
 	ProjectSection(ProjectDependencies) = postProject
 		{BC643FE8-57FF-4E26-AAF2-19B229BE9B16} = {BC643FE8-57FF-4E26-AAF2-19B229BE9B16}
@@ -13,8 +13,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lbl", "Lbl\Lbl.csproj", "{56F39851-6542-405C-9F47-E8414B757EF6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lui", "Lui\Lui.csproj", "{FD8409C3-35CF-4F30-8898-F4CC17FC35D6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lws", "Lws\Lws.csproj", "{16A55055-8770-457B-8D39-3D61955FAB7C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lfc", "Lfc\Lfc.csproj", "{F17DC014-DB1E-4278-820C-EA49B2B92C79}"
 EndProject
@@ -62,12 +60,6 @@ Global
 		{FD8409C3-35CF-4F30-8898-F4CC17FC35D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD8409C3-35CF-4F30-8898-F4CC17FC35D6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FD8409C3-35CF-4F30-8898-F4CC17FC35D6}.Release|x86.ActiveCfg = Release|Any CPU
-		{16A55055-8770-457B-8D39-3D61955FAB7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{16A55055-8770-457B-8D39-3D61955FAB7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{16A55055-8770-457B-8D39-3D61955FAB7C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{16A55055-8770-457B-8D39-3D61955FAB7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{16A55055-8770-457B-8D39-3D61955FAB7C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{16A55055-8770-457B-8D39-3D61955FAB7C}.Release|x86.ActiveCfg = Release|Any CPU
 		{F17DC014-DB1E-4278-820C-EA49B2B92C79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F17DC014-DB1E-4278-820C-EA49B2B92C79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F17DC014-DB1E-4278-820C-EA49B2B92C79}.Debug|x86.ActiveCfg = Debug|Any CPU

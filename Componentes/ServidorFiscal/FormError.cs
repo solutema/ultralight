@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -363,7 +365,7 @@ namespace ServidorFiscal
 
 		#endregion
 
-		internal void Mostrar(Lbl.Comprobantes.Impresion.Fiscal.RespuestaFiscal Res)
+		internal void Mostrar(Lbl.Comprobantes.Impresion.Fiscal.Respuesta Res)
 		{
 			switch (Res.Error)
 			{
@@ -393,7 +395,7 @@ namespace ServidorFiscal
 			lblLugar.Text = Res.Lugar;
 			lblMensaje.Text = Res.Mensaje;
 			lblComando.Text = Res.CodigoComando.ToString();
-			lblCampos.Text = Lfx.Types.Strings.Collection2CSV(Res.Campos, Environment.NewLine);
+                        lblCampos.Text = string.Join(Environment.NewLine, Res.Campos.ToArray());
 			lblEstadoImpresora.Text = Res.ExplicarEstadoImpresora();
 			lblEstadoFiscal.Text = Res.ExplicarEstadoFiscal();
 			CancelCommandButton.Visible = false;

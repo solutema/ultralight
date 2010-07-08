@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -368,12 +370,12 @@ namespace ServidorFiscal
 
 		private void MenuReiniciar_Click(System.Object sender, System.EventArgs e)
 		{
-			ServidorAsociado.ConFiscal.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Reiniciando;
+			ServidorAsociado.Impresora.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Reiniciando;
 		}
 
 		private void MenuCerrar_Click(System.Object sender, System.EventArgs e)
 		{
-			ServidorAsociado.ConFiscal.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Apagando;
+			ServidorAsociado.Impresora.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Apagando;
 		}
 
 		public void QuitarIcono()

@@ -37,15 +37,15 @@ namespace RunComponent
 
                         if (ComponentName != null && FunctionName != null) {
                                 //Console.WriteLine("Ejecutando " + ComponentName + "." + FunctionName);
-                                Lws.Components.Component Componente = null;
+                                Lfx.Components.Component Componente = null;
                                 try {
-                                        Componente = Lws.Components.ComponentManager.LoadComponent(ComponentName, FunctionName);
+                                        Componente = Lfx.Components.ComponentManager.LoadComponent(ComponentName, FunctionName);
                                 } catch (Exception ex) {
                                         System.Windows.Forms.MessageBox.Show(ex.Message, "Error");
                                 }
                                 if (Componente != null) {
-                                        Lws.Workspace.Master = new Lws.Workspace("default", false);
-                                        Componente.Workspace = new Lws.Workspace("default");
+                                        Lfx.Workspace.Master = new Lfx.Workspace("default", false);
+                                        Componente.Workspace = new Lfx.Workspace("default");
                                         Componente.ExecutableName = System.Reflection.Assembly.GetExecutingAssembly().Location;
                                         Componente.CommandLineArgs = Environment.GetCommandLineArgs();
                                         Componente.Create(true);
@@ -104,7 +104,7 @@ namespace RunComponent
 
                         MailMessage Mensaje = new MailMessage();
                         Mensaje.To.Add(new MailAddress("error@sistemalazaro.com.ar"));
-                        Mensaje.From = new MailAddress(Lws.Workspace.Master.CurrentUser.Id.ToString() + "@" + System.Environment.MachineName.ToUpperInvariant(), Lws.Workspace.Master.CurrentUser.CompleteName + " en " + Lws.Workspace.Master.CurrentConfig.Company.Name);
+                        Mensaje.From = new MailAddress(Lfx.Workspace.Master.CurrentUser.Id.ToString() + "@" + System.Environment.MachineName.ToUpperInvariant(), Lfx.Workspace.Master.CurrentUser.CompleteName + " en " + Lfx.Workspace.Master.CurrentConfig.Company.Name);
                         try {
                                 //No sé por qué, pero una vez dió un error al poner el asunto
                                 Mensaje.Subject = ex.Message;

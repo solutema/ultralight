@@ -50,6 +50,19 @@ namespace Cargador
                         if (System.IO.Directory.Exists(CarpetaTrabajo) == false)
                             System.IO.Directory.CreateDirectory(CarpetaTrabajo);
 
+                        if (RunTime == RunTimes.DotNet) {
+                                // Verifico que esté instalada la versión 3.5, para futuras actualizaciones
+                                if (Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5", "Install", null) == null
+                                        && Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\DotNetClient\v3.5\Layers\v2.0", "Install", null) == null
+                                        && System.IO.File.Exists(CarpetaDescarga + "DotNetFx35ClientSetup.exe")) {
+                                        // No se encontró .NET Framework 3.5, pero está pendiente de instalar.
+                                        System.Diagnostics.Process ActualizarDotNet = new System.Diagnostics.Process();
+                                        ActualizarDotNet.StartInfo = new System.Diagnostics.ProcessStartInfo(CarpetaDescarga + "DotNetFx35ClientSetup.exe", "/PASSIVE /NORESTART");
+                                        ActualizarDotNet.StartInfo.UseShellExecute = false;
+                                        ActualizarDotNet.Start();
+                                }
+                        }
+
                         string[] ArchivosNuevos = System.IO.Directory.GetFiles(CarpetaDescarga, "*.new", System.IO.SearchOption.AllDirectories);
                         if (ArchivosNuevos.Length > 0) {
                                 if (IsUacActive && IsAdministrator == false)
@@ -58,6 +71,7 @@ namespace Cargador
                                 // Espero 1 segundo por si algún proceso todavía está corriendo.
                                 System.Threading.Thread.Sleep(1500);
                         }
+
                         foreach (string ArchivoNuevo in ArchivosNuevos) {
                                 if (ArchivoNuevo.Length > 4) {
                                         System.Console.WriteLine("Actualizando " + ArchivoNuevo);
