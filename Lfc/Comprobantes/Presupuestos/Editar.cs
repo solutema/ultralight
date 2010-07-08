@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -100,7 +102,7 @@ namespace Lfc.Comprobantes.Presupuestos
                                                 // Si es de carga manual, presento el formulario correspondiente
                                                 if (this.Workspace.CurrentConfig.Printing.PrinterFeed(this.Tipo.Nomenclatura, "auto") == "manual") {
                                                         Lbl.Impresion.ManualFeedDialog OFormFacturaCargaManual = new Lbl.Impresion.ManualFeedDialog();
-                                                        OFormFacturaCargaManual.DocumentName = Lbl.Comprobantes.Comprobante.NumeroCompleto(this.DataView, m_Id);
+                                                        OFormFacturaCargaManual.DocumentName = Lbl.Comprobantes.Comprobante.NumeroCompleto(this.DataBase, m_Id);
                                                         // Muestro el nombre de la impresora
                                                         if (sImpresora.Length > 0) {
                                                                 OFormFacturaCargaManual.PrinterName = sImpresora;

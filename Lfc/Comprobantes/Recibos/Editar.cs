@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Data;
@@ -45,11 +47,11 @@ namespace Lfc.Comprobantes.Recibos
                         InitializeComponent();
 
                         // agregar código de constructor después de llamar a InitializeComponent
-                        EtiquetaTitulo.Font = Lws.Config.Display.CurrentTemplate.DefaultHeaderFont;
-                        EtiquetaTitulo.BackColor = Lws.Config.Display.CurrentTemplate.HeaderBackground;
-                        EtiquetaTitulo.ForeColor = Lws.Config.Display.CurrentTemplate.HeaderText;
-                        ListaValores.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
-                        ListaFacturas.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
+                        EtiquetaTitulo.Font = Lfx.Config.Display.CurrentTemplate.DefaultHeaderFont;
+                        EtiquetaTitulo.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
+                        EtiquetaTitulo.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
+                        ListaValores.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
+                        ListaFacturas.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
                 }
 
                 public override Lfx.Types.OperationResult Create()
@@ -59,9 +61,9 @@ namespace Lfc.Comprobantes.Recibos
 
                         Lbl.Comprobantes.Recibo Rec;
                         if (CrearDePago)
-                                Rec = new Lbl.Comprobantes.ReciboDePago(this.DataView);
+                                Rec = new Lbl.Comprobantes.ReciboDePago(this.DataBase);
                         else
-                                Rec = new Lbl.Comprobantes.ReciboDeCobro(this.DataView);
+                                Rec = new Lbl.Comprobantes.ReciboDeCobro(this.DataBase);
                         
                         this.FromRow(Rec);
                         return new Lfx.Types.SuccessOperationResult();
@@ -103,7 +105,7 @@ namespace Lfc.Comprobantes.Recibos
 
                 public override Lfx.Types.OperationResult Edit(int Id)
                 {
-                        Lbl.Comprobantes.Recibo Rec = new Lbl.Comprobantes.Recibo(this.DataView, Id);
+                        Lbl.Comprobantes.Recibo Rec = new Lbl.Comprobantes.Recibo(this.DataBase, Id);
                         this.FromRow(Rec);
                         this.ReadOnly = true;
                         return new Lfx.Types.SuccessOperationResult();
@@ -177,7 +179,7 @@ namespace Lfc.Comprobantes.Recibos
                         }
 
                         if (m_Nuevo && Lfx.Types.Strings.IsNumericInt(EntradaNumero.Text) && Lfx.Types.Parsing.ParseInt(EntradaNumero.Text) != 0) {
-                                int bExiste = this.Workspace.DefaultDataBase.FieldInt("SELECT COUNT(id_recibo) FROM recibos WHERE numero=" + Lfx.Types.Parsing.ParseInt(EntradaNumero.Text).ToString());
+                                int bExiste = this.DataBase.FieldInt("SELECT COUNT(id_recibo) FROM recibos WHERE numero=" + Lfx.Types.Parsing.ParseInt(EntradaNumero.Text).ToString());
                                 if (bExiste != 0) {
                                         validarReturn.Success = false;
                                         validarReturn.Message = "Ya existe un Recibo con ese número." + Environment.NewLine;
@@ -207,11 +209,11 @@ namespace Lfc.Comprobantes.Recibos
 
                         Rec.PV = Lfx.Types.Parsing.ParseInt(EntradaPV.Text);
                         Rec.Numero = Lfx.Types.Parsing.ParseInt(EntradaNumero.Text);
-                        Rec.Cliente = new Lbl.Personas.Persona(Rec.DataView, EntradaCliente.TextInt);
-                        Rec.Vendedor = new Lbl.Personas.Persona(Rec.DataView, EntradaVendedor.TextInt);
+                        Rec.Cliente = new Lbl.Personas.Persona(Rec.DataBase, EntradaCliente.TextInt);
+                        Rec.Vendedor = new Lbl.Personas.Persona(Rec.DataBase, EntradaVendedor.TextInt);
                         Rec.ConceptoTexto = EntradaConceptoTexto.Text;
                         if (EntradaConcepto.TextInt > 0)
-                                Rec.Concepto = new Lbl.Cajas.Concepto(Rec.DataView, EntradaConcepto.TextInt);
+                                Rec.Concepto = new Lbl.Cajas.Concepto(Rec.DataBase, EntradaConcepto.TextInt);
                         else
                                 Rec.Concepto = null;
                         Rec.Obs = null;
@@ -250,7 +252,7 @@ namespace Lfc.Comprobantes.Recibos
                                                 return new Lfx.Types.FailureOperationResult("La factura seleccionada ya está en la lista.");
                                 }
                         }
-                        Lbl.Comprobantes.Factura Fac = new Lbl.Comprobantes.Factura(Rec.DataView, idFactura);
+                        Lbl.Comprobantes.Factura Fac = new Lbl.Comprobantes.Factura(Rec.DataBase, idFactura);
                         Rec.Facturas.Add(Fac);
 
                         if (EntradaCliente.TextInt <= 0)
@@ -313,11 +315,11 @@ namespace Lfc.Comprobantes.Recibos
                         if (this.DePago) {
                                 Comprobantes.Recibos.EditarPago FormularioEditarPago = new Comprobantes.Recibos.EditarPago();
                                 FormularioEditarPago.Owner = this;
-                                FormularioEditarPago.Pago.FromPago(new Lbl.Comprobantes.Pago(this.DataView, Lbl.Comprobantes.TipoFormasDePago.Efectivo));
+                                FormularioEditarPago.Pago.FromPago(new Lbl.Comprobantes.Pago(this.DataBase, Lbl.Comprobantes.TipoFormasDePago.Efectivo));
                                 FormularioEditarPago.Pago.ObsVisible = false;
 
                                 if (FormularioEditarPago.ShowDialog() == DialogResult.OK) {
-                                        Lbl.Comprobantes.Pago MiPago = FormularioEditarPago.Pago.ToPago(this.CachedRow.DataView);
+                                        Lbl.Comprobantes.Pago MiPago = FormularioEditarPago.Pago.ToPago(this.CachedRow.DataBase);
                                         Lbl.Comprobantes.Recibo Rec = this.CachedRow as Lbl.Comprobantes.Recibo;
                                         Rec.Pagos.Add(MiPago);
                                         this.MostrarValores();
@@ -325,11 +327,11 @@ namespace Lfc.Comprobantes.Recibos
                         } else {
                                 Comprobantes.Recibos.EditarCobro FormularioEditarCobro = new Comprobantes.Recibos.EditarCobro();
                                 FormularioEditarCobro.Owner = this;
-                                FormularioEditarCobro.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.DataView, Lbl.Comprobantes.TipoFormasDePago.Efectivo));
+                                FormularioEditarCobro.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.DataBase, Lbl.Comprobantes.TipoFormasDePago.Efectivo));
                                 FormularioEditarCobro.Cobro.ObsVisible = false;
 
                                 if (FormularioEditarCobro.ShowDialog() == DialogResult.OK) {
-                                        Lbl.Comprobantes.Cobro MiCobro = FormularioEditarCobro.Cobro.ToCobro(this.CachedRow.DataView);
+                                        Lbl.Comprobantes.Cobro MiCobro = FormularioEditarCobro.Cobro.ToCobro(this.CachedRow.DataBase);
                                         Lbl.Comprobantes.Recibo Rec = this.CachedRow as Lbl.Comprobantes.Recibo;
                                         Rec.Cobros.Add(MiCobro);
                                         this.MostrarValores();
@@ -556,24 +558,24 @@ namespace Lfc.Comprobantes.Recibos
 
                 private void lvFacturas_GotFocus(object sender, System.EventArgs e)
                 {
-                        ListaFacturas.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataareaActive;
+                        ListaFacturas.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
                 }
 
                 private void lvFacturas_LostFocus(object sender, System.EventArgs e)
                 {
-                        ListaFacturas.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
+                        ListaFacturas.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
                 }
 
 
                 private void lvValores_GotFocus(object sender, System.EventArgs e)
                 {
-                        ListaValores.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataareaActive;
+                        ListaValores.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
                 }
 
 
                 private void lvValores_LostFocus(object sender, System.EventArgs e)
                 {
-                        ListaValores.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
+                        ListaValores.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
                 }
 
 

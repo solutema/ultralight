@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -43,9 +45,9 @@ namespace Lfc.Comprobantes.Presupuestos
 		private string m_Vendedor = "";
 		private int m_Pagina;
 		private int m_LastRow;
-                private Lws.Workspace Workspace;
+                private Lfx.Workspace Workspace;
 
-		public Imprimir(Lws.Workspace workspace, int idComprob)
+		public Imprimir(Lfx.Workspace workspace, int idComprob)
 			: base()
 		{
                         this.Workspace = workspace;
@@ -68,10 +70,10 @@ namespace Lfc.Comprobantes.Presupuestos
 		{
 			base.OnBeginPrint(ev);
 			// Abro el Comprobante
-			m_Comprob = this.Workspace.DefaultDataBase.Row("comprob", "id_comprob", m_IdComprob);
-			m_Detalle = this.Workspace.DefaultDataBase.Select("SELECT * FROM comprob_detalle WHERE id_comprob=" + m_IdComprob.ToString());
-			m_Cliente = this.Workspace.DefaultDataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + m_Comprob["id_cliente"].ToString());
-			m_Vendedor = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM personas WHERE id_persona=" + m_Comprob["id_vendedor"].ToString());
+                        m_Comprob = this.Workspace.DefaultDataBase.Row("comprob", "id_comprob", m_IdComprob);
+                        m_Detalle = this.Workspace.DefaultDataBase.Select("SELECT * FROM comprob_detalle WHERE id_comprob=" + m_IdComprob.ToString());
+                        m_Cliente = this.Workspace.DefaultDataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + m_Comprob["id_cliente"].ToString());
+                        m_Vendedor = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM personas WHERE id_persona=" + m_Comprob["id_vendedor"].ToString());
 			m_Pagina = 0;
 			m_LastRow = 0;
 			this.DocumentName = "Presupuesto N " + m_Comprob["numero"].ToString();
@@ -217,7 +219,7 @@ namespace Lfc.Comprobantes.Presupuestos
 				if (Lfx.Data.DataBase.ConvertDBNullToZero(Detalle["id_articulo"]) > 0)
 				{
 					Rect = new RectangleF(MarginLeft + 70, iTop, PrintAreaWidth - MarginLeft - 140, 100);
-					string Descrip = this.Workspace.DefaultDataBase.FieldString("SELECT descripcion FROM articulos WHERE id_articulo=" + Detalle["id_articulo"].ToString());
+                                        string Descrip = this.Workspace.DefaultDataBase.FieldString("SELECT descripcion FROM articulos WHERE id_articulo=" + Detalle["id_articulo"].ToString());
 
 					if (Descrip.Length > 0)
 					{

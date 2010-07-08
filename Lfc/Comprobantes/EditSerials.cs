@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -121,7 +123,7 @@ namespace Lfc.Comprobantes
                                 ListaSeries.BeginUpdate();
                                 ListaSeries.Items.Clear();
 
-                                System.Data.DataTable TablaListaItem = this.DataView.DataBase.Select("SELECT serie FROM articulos_series WHERE id_articulo=" + this.Articulo.Id.ToString() + " AND id_situacion=" + this.Situacion.Id.ToString());
+                                System.Data.DataTable TablaListaItem = this.DataBase.Select("SELECT serie FROM articulos_series WHERE id_articulo=" + this.Articulo.Id.ToString() + " AND id_situacion=" + this.Situacion.Id.ToString());
                                 foreach (System.Data.DataRow RowItem in TablaListaItem.Rows) {
                                         string Ser = RowItem["serie"].ToString();
                                         ListViewItem Itm = ListaSeries.Items.Add(Ser);

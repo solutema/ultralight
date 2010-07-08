@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -57,7 +59,7 @@ namespace Lfc.Comprobantes.Recibos
 
 			// agregar código de constructor después de llamar a InitializeComponent
 			DataTableName = "recibos";
-			this.Joins.Add(new Lfx.Data.Join("personas", "recibos.id_cliente=personas.id_persona"));
+			this.Joins.Add(new qGen.Join("personas", "recibos.id_cliente=personas.id_persona"));
                         KeyField = new Lfx.Data.FormField("recibos.id_recibo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
 			OrderBy = "recibos.fecha DESC";
 			FormFields = new Lfx.Data.FormField[]
@@ -154,13 +156,13 @@ namespace Lfc.Comprobantes.Recibos
 
 		#endregion
 
-		public override void ItemAdded(ListViewItem itm)
+                public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
 		{
 			Total += Lfx.Types.Parsing.ParseCurrency(itm.SubItems[4].Text);
-                        if (this.Workspace.SlowLink)
+                        if (this.Workspace.SlowLink ||this.Listado.Items.Count > 300)
                                 itm.SubItems[5].Text = "";
                         else
-                                itm.SubItems[5].Text = Lbl.Comprobantes.Comprobante.FacturasDeUnRecibo(this.DataView, Lfx.Types.Parsing.ParseInt(itm.Text));
+                                itm.SubItems[5].Text = Lbl.Comprobantes.Comprobante.FacturasDeUnRecibo(this.DataBase, Lfx.Types.Parsing.ParseInt(itm.Text));
 
                         if (itm.SubItems[9].Text == "90")
                                 itm.Font = new Font(itm.Font, FontStyle.Strikeout);
@@ -219,10 +221,16 @@ namespace Lfc.Comprobantes.Recibos
                         return filtrarReturn;
                 }
 
+                public override Lfx.Types.OperationResult OnDelete(int[] itemIds)
+                {
+                        this.Workspace.RunTime.Execute("ANULAR RC " + itemIds[0].ToString());
+                        return new Lfx.Types.SuccessOperationResult();
+                }
+
 		public override void BeginRefreshList()
 		{
 			this.Total = 0;
-			string FiltroTemp = "1";
+                        this.CustomFilters.Clear();
 
 			if(System.Text.RegularExpressions.Regex.IsMatch(SearchText, @"^[0-3]\d(-|/)[0-1]\d(-|/)(\d{2}|\d{4})$")) {
 				this.SearchText = Lfx.Types.Formatting.FormatDateTimeSql(SearchText).ToString();
@@ -233,24 +241,22 @@ namespace Lfc.Comprobantes.Recibos
 			if(SearchText != null && SearchText.Length == 0)
 			{
 				if (m_Sucursal > 0)
-					FiltroTemp += " AND recibos.id_sucursal=" + m_Sucursal.ToString();
+					this.CustomFilters.AddWithValue("recibos.id_sucursal", m_Sucursal);
 
 				if (m_Cliente > 0)
-					FiltroTemp += " AND recibos.id_cliente=" + m_Cliente.ToString();
+					this.CustomFilters.AddWithValue("recibos.id_cliente", m_Cliente);
 
 				if (m_Vendedor > 0)
-					FiltroTemp += " AND recibos.id_vendedor=" + m_Vendedor.ToString();
+					this.CustomFilters.AddWithValue("recibos.id_vendedor", m_Vendedor);
 
                                 if (m_Tipo == 0)
-                                        FiltroTemp += " AND recibos.tipo_fac='RC'";
+                                        this.CustomFilters.AddWithValue("recibos.tipo_fac", "RC");
                                 else
-                                        FiltroTemp += " AND recibos.tipo_fac='RCP'";
+                                        this.CustomFilters.AddWithValue("recibos.tipo_fac", "RCP");
 
                                 if (m_Fecha.HasRange)
-                                        FiltroTemp += " AND (fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')";
+                                        this.CustomFilters.AddWithValue("(fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')");
 			}
-
-			this.CurrentFilter = FiltroTemp;
 		}
 	}
 }

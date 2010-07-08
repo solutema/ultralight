@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 namespace Lfc.Comprobantes
 {
@@ -35,14 +37,12 @@ namespace Lfc.Comprobantes
                 public Editar()
                         : base()
                 {
-
-                        // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
 
-                        // agregar código de constructor después de llamar a InitializeComponent
-                        lblTitulo.Font = Lws.Config.Display.CurrentTemplate.DefaultHeaderFont;
-                        lblTitulo.BackColor = Lws.Config.Display.CurrentTemplate.HeaderBackground;
-                        lblTitulo.ForeColor = Lws.Config.Display.CurrentTemplate.HeaderText;
+                        this.ElementType = typeof(Lbl.Comprobantes.ComprobanteConArticulos);
+                        lblTitulo.Font = Lfx.Config.Display.CurrentTemplate.DefaultHeaderFont;
+                        lblTitulo.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
+                        lblTitulo.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
                 }
 
                 private void InitializeComponent()
@@ -611,8 +611,8 @@ namespace Lfc.Comprobantes
                         this.Controls.Add(this.ProductArray);
                         this.Name = "Editar";
                         this.Text = "Comprobante";
-                        this.Load += new System.EventHandler(this.FormComprobanteEditar_Load);
                         this.WorkspaceChanged += new System.EventHandler(this.FormComprobanteEditar_WorkspaceChanged);
+                        this.Load += new System.EventHandler(this.FormComprobanteEditar_Load);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormComprobanteEditar_KeyDown);
                         this.Controls.SetChildIndex(this.ProductArray, 0);
                         this.Controls.SetChildIndex(this.EntradaVendedor, 0);

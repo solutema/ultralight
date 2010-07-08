@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 namespace Lfc.Comprobantes.Recibos
 {
@@ -81,7 +83,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label7
                         // 
-                        this.Label7.Location = new System.Drawing.Point(168, 52);
+                        this.Label7.Location = new System.Drawing.Point(168, 84);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(16, 24);
                         this.Label7.TabIndex = 4;
@@ -98,7 +100,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaPV.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPV.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaPV.Location = new System.Drawing.Point(108, 52);
+                        this.EntradaPV.Location = new System.Drawing.Point(108, 84);
                         this.EntradaPV.MaxLenght = 32767;
                         this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
@@ -126,7 +128,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaNumero.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaNumero.Location = new System.Drawing.Point(184, 52);
+                        this.EntradaNumero.Location = new System.Drawing.Point(184, 84);
                         this.EntradaNumero.MaxLenght = 32767;
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
@@ -146,7 +148,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label2
                         // 
-                        this.Label2.Location = new System.Drawing.Point(24, 52);
+                        this.Label2.Location = new System.Drawing.Point(24, 84);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(84, 24);
                         this.Label2.TabIndex = 2;
@@ -155,7 +157,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // EntradaTipo
                         // 
-                        this.EntradaTipo.AutoHeight = false;
+                        this.EntradaTipo.AutoHeight = true;
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoTab = true;
                         this.EntradaTipo.DetailField = null;
@@ -194,7 +196,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         this.EtiquetaAviso.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaAviso.Location = new System.Drawing.Point(112, 200);
+                        this.EtiquetaAviso.Location = new System.Drawing.Point(112, 232);
                         this.EtiquetaAviso.Name = "EtiquetaAviso";
                         this.EtiquetaAviso.Size = new System.Drawing.Size(496, 56);
                         this.EtiquetaAviso.TabIndex = 12;
@@ -211,7 +213,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCliente.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaCliente.Location = new System.Drawing.Point(108, 172);
+                        this.EntradaCliente.Location = new System.Drawing.Point(108, 204);
                         this.EntradaCliente.MaxLenght = 32767;
                         this.EntradaCliente.MultiLine = false;
                         this.EntradaCliente.Name = "EntradaCliente";
@@ -230,7 +232,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label4
                         // 
-                        this.Label4.Location = new System.Drawing.Point(24, 172);
+                        this.Label4.Location = new System.Drawing.Point(24, 204);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(84, 24);
                         this.Label4.TabIndex = 10;
@@ -247,7 +249,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaImporte.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporte.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaImporte.Location = new System.Drawing.Point(108, 144);
+                        this.EntradaImporte.Location = new System.Drawing.Point(108, 176);
                         this.EntradaImporte.MaxLenght = 32767;
                         this.EntradaImporte.MultiLine = false;
                         this.EntradaImporte.Name = "EntradaImporte";
@@ -267,7 +269,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label5
                         // 
-                        this.Label5.Location = new System.Drawing.Point(24, 144);
+                        this.Label5.Location = new System.Drawing.Point(24, 176);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(84, 24);
                         this.Label5.TabIndex = 8;
@@ -284,7 +286,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaFecha.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFecha.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFecha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaFecha.Location = new System.Drawing.Point(108, 116);
+                        this.EntradaFecha.Location = new System.Drawing.Point(108, 148);
                         this.EntradaFecha.MaxLenght = 32767;
                         this.EntradaFecha.MultiLine = false;
                         this.EntradaFecha.Name = "EntradaFecha";
@@ -303,7 +305,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label3
                         // 
-                        this.Label3.Location = new System.Drawing.Point(24, 116);
+                        this.Label3.Location = new System.Drawing.Point(24, 148);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(84, 24);
                         this.Label3.TabIndex = 6;

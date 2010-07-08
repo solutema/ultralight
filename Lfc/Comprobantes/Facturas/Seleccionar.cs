@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -106,23 +108,23 @@ namespace Lfc.Comprobantes.Facturas
                         this.Label8 = new System.Windows.Forms.Label();
                         this.txtVendedor = new Lui.Forms.DetailBox();
                         this.lvItems = new Lui.Forms.ListView();
-                        this.ColumnHeader6 = new System.Windows.Forms.ColumnHeader();
-                        this.ColFecha = new System.Windows.Forms.ColumnHeader();
-                        this.ColumnHeader1 = new System.Windows.Forms.ColumnHeader();
-                        this.ColumnHeader2 = new System.Windows.Forms.ColumnHeader();
-                        this.ColumnHeader3 = new System.Windows.Forms.ColumnHeader();
-                        this.ColumnHeader4 = new System.Windows.Forms.ColumnHeader();
-                        this.ColumnHeader5 = new System.Windows.Forms.ColumnHeader();
+                        this.ColumnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColFecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColumnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColumnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColumnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColumnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColumnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.txtCliente = new Lui.Forms.DetailBox();
                         this.SuspendLayout();
                         // 
                         // OkButton
                         // 
-                        this.OkButton.Location = new System.Drawing.Point(478, 8);
+                        this.OkButton.Location = new System.Drawing.Point(454, 8);
                         // 
                         // CancelCommandButton
                         // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(586, 8);
+                        this.CancelCommandButton.Location = new System.Drawing.Point(574, 8);
                         // 
                         // lblAviso
                         // 
@@ -136,18 +138,27 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // txtNumero
                         // 
+                        this.txtNumero.AutoHeight = false;
                         this.txtNumero.AutoNav = true;
                         this.txtNumero.AutoTab = true;
                         this.txtNumero.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.txtNumero.DecimalPlaces = -1;
                         this.txtNumero.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.txtNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtNumero.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtNumero.Location = new System.Drawing.Point(348, 68);
                         this.txtNumero.MaxLenght = 32767;
+                        this.txtNumero.MultiLine = false;
                         this.txtNumero.Name = "txtNumero";
                         this.txtNumero.Padding = new System.Windows.Forms.Padding(2);
+                        this.txtNumero.PasswordChar = '\0';
+                        this.txtNumero.Prefijo = "";
                         this.txtNumero.ReadOnly = false;
+                        this.txtNumero.SelectOnFocus = true;
                         this.txtNumero.Size = new System.Drawing.Size(96, 24);
+                        this.txtNumero.Sufijo = "";
                         this.txtNumero.TabIndex = 9;
+                        this.txtNumero.TextRaw = "";
                         this.txtNumero.TipWhenBlank = "";
                         this.txtNumero.ToolTipText = "";
                         this.txtNumero.TextChanged += new System.EventHandler(this.txtVendedorClienteTipoPVNumero_TextChanged);
@@ -161,15 +172,19 @@ namespace Lfc.Comprobantes.Facturas
                         this.Label2.Text = "Número";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaTipo
+                        // txtTipo
                         // 
+                        this.txtTipo.AutoHeight = false;
                         this.txtTipo.AutoNav = true;
                         this.txtTipo.AutoTab = true;
+                        this.txtTipo.DetailField = null;
+                        this.txtTipo.Filter = null;
                         this.txtTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.txtTipo.KeyField = null;
                         this.txtTipo.Location = new System.Drawing.Point(84, 68);
                         this.txtTipo.MaxLenght = 32767;
-                        this.txtTipo.Name = "EntradaTipo";
+                        this.txtTipo.Name = "txtTipo";
                         this.txtTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTipo.ReadOnly = false;
                         this.txtTipo.SetData = new string[] {
@@ -181,8 +196,10 @@ namespace Lfc.Comprobantes.Facturas
         "Todas|*"};
                         this.txtTipo.Size = new System.Drawing.Size(124, 24);
                         this.txtTipo.TabIndex = 5;
+                        this.txtTipo.Table = null;
                         this.txtTipo.Text = "Todas";
                         this.txtTipo.TextKey = "*";
+                        this.txtTipo.TextRaw = "Todas";
                         this.txtTipo.TipWhenBlank = "";
                         this.txtTipo.ToolTipText = "";
                         this.txtTipo.TextChanged += new System.EventHandler(this.txtVendedorClienteTipoPVNumero_TextChanged);
@@ -198,18 +215,27 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // txtPV
                         // 
+                        this.txtPV.AutoHeight = false;
                         this.txtPV.AutoNav = true;
                         this.txtPV.AutoTab = true;
                         this.txtPV.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.txtPV.DecimalPlaces = -1;
                         this.txtPV.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.txtPV.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtPV.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtPV.Location = new System.Drawing.Point(288, 68);
                         this.txtPV.MaxLenght = 32767;
+                        this.txtPV.MultiLine = false;
                         this.txtPV.Name = "txtPV";
                         this.txtPV.Padding = new System.Windows.Forms.Padding(2);
+                        this.txtPV.PasswordChar = '\0';
+                        this.txtPV.Prefijo = "";
                         this.txtPV.ReadOnly = false;
+                        this.txtPV.SelectOnFocus = true;
                         this.txtPV.Size = new System.Drawing.Size(48, 24);
+                        this.txtPV.Sufijo = "";
                         this.txtPV.TabIndex = 7;
+                        this.txtPV.TextRaw = "";
                         this.txtPV.TipWhenBlank = "";
                         this.txtPV.ToolTipText = "";
                         this.txtPV.TextChanged += new System.EventHandler(this.txtVendedorClienteTipoPVNumero_TextChanged);
@@ -241,8 +267,9 @@ namespace Lfc.Comprobantes.Facturas
                         this.Label8.Text = "Vendedor";
                         this.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaVendedor
+                        // txtVendedor
                         // 
+                        this.txtVendedor.AutoHeight = false;
                         this.txtVendedor.AutoTab = true;
                         this.txtVendedor.CanCreate = true;
                         this.txtVendedor.DetailField = "nombre_visible";
@@ -254,10 +281,11 @@ namespace Lfc.Comprobantes.Facturas
                         this.txtVendedor.KeyField = "id_persona";
                         this.txtVendedor.Location = new System.Drawing.Point(84, 40);
                         this.txtVendedor.MaxLength = 200;
-                        this.txtVendedor.Name = "EntradaVendedor";
+                        this.txtVendedor.Name = "txtVendedor";
                         this.txtVendedor.Padding = new System.Windows.Forms.Padding(2);
                         this.txtVendedor.ReadOnly = false;
                         this.txtVendedor.Required = false;
+                        this.txtVendedor.SelectOnFocus = true;
                         this.txtVendedor.Size = new System.Drawing.Size(360, 24);
                         this.txtVendedor.TabIndex = 3;
                         this.txtVendedor.Table = "personas";
@@ -336,22 +364,25 @@ namespace Lfc.Comprobantes.Facturas
                         this.ColumnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
                         this.ColumnHeader5.Width = 86;
                         // 
-                        // EntradaCliente
+                        // txtCliente
                         // 
+                        this.txtCliente.AutoHeight = false;
                         this.txtCliente.AutoTab = true;
                         this.txtCliente.CanCreate = true;
                         this.txtCliente.DetailField = "nombre_visible";
                         this.txtCliente.ExtraDetailFields = null;
+                        this.txtCliente.Filter = "";
                         this.txtCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtCliente.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.txtCliente.FreeTextCode = "";
                         this.txtCliente.KeyField = "id_persona";
                         this.txtCliente.Location = new System.Drawing.Point(84, 12);
                         this.txtCliente.MaxLength = 200;
-                        this.txtCliente.Name = "EntradaCliente";
+                        this.txtCliente.Name = "txtCliente";
                         this.txtCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCliente.ReadOnly = false;
                         this.txtCliente.Required = false;
+                        this.txtCliente.SelectOnFocus = true;
                         this.txtCliente.Size = new System.Drawing.Size(360, 24);
                         this.txtCliente.TabIndex = 1;
                         this.txtCliente.Table = "personas";
@@ -365,7 +396,7 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // FormSeleccionarFactura
                         // 
-                        this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(694, 475);
                         this.Controls.Add(this.txtCliente);
                         this.Controls.Add(this.lvItems);
@@ -381,6 +412,18 @@ namespace Lfc.Comprobantes.Facturas
                         this.Controls.Add(this.Label1);
                         this.Name = "FormSeleccionarFactura";
                         this.Text = "Seleccionar Factura";
+                        this.Controls.SetChildIndex(this.Label1, 0);
+                        this.Controls.SetChildIndex(this.txtTipo, 0);
+                        this.Controls.SetChildIndex(this.Label2, 0);
+                        this.Controls.SetChildIndex(this.txtNumero, 0);
+                        this.Controls.SetChildIndex(this.lblAviso, 0);
+                        this.Controls.SetChildIndex(this.txtPV, 0);
+                        this.Controls.SetChildIndex(this.Label7, 0);
+                        this.Controls.SetChildIndex(this.txtVendedor, 0);
+                        this.Controls.SetChildIndex(this.Label8, 0);
+                        this.Controls.SetChildIndex(this.Label4, 0);
+                        this.Controls.SetChildIndex(this.lvItems, 0);
+                        this.Controls.SetChildIndex(this.txtCliente, 0);
                         this.ResumeLayout(false);
 
                 }
@@ -439,7 +482,7 @@ namespace Lfc.Comprobantes.Facturas
                                 Sql += " AND numero=" + Lfx.Types.Parsing.ParseInt(txtNumero.Text).ToString();
 
                         Sql += " ORDER BY fecha DESC LIMIT 100";
-                        DataTable Facturas = this.Workspace.DefaultDataBase.Select(Sql);
+                        DataTable Facturas = this.DataBase.Select(Sql);
 
                         lvItems.BeginUpdate();
                         lvItems.Items.Clear();
@@ -448,7 +491,7 @@ namespace Lfc.Comprobantes.Facturas
                                 Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatDate(Factura["fecha"])));
                                 Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, System.Convert.ToString(Factura["tipo_fac"])));
                                 Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, System.Convert.ToInt32(Factura["pv"]).ToString("0000") + "-" + System.Convert.ToInt32(Factura["numero"]).ToString("00000000")));
-                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, this.Workspace.DefaultDataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + Factura["id_cliente"].ToString())));
+                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, this.DataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + Factura["id_cliente"].ToString())));
                                 Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Factura["total"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
                                 if (System.Convert.ToDouble(Factura["cancelado"]) >= System.Convert.ToDouble(Factura["total"]))
                                         Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, "Si"));
@@ -469,7 +512,7 @@ namespace Lfc.Comprobantes.Facturas
                         ListViewItem Itm = null;
                         if (lvItems.SelectedItems.Count > 0) {
                                 Itm = lvItems.SelectedItems[0];
-                                Factura = this.Workspace.DefaultDataBase.Row("comprob", "id_comprob", Lfx.Types.Parsing.ParseInt(Itm.Text));
+                                Factura = this.DataBase.Row("comprob", "id_comprob", Lfx.Types.Parsing.ParseInt(Itm.Text));
                         }
 
                         if (Factura != null) {

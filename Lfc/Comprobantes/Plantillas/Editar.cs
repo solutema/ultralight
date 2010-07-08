@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -60,7 +62,7 @@ namespace Lfc.Comprobantes.Plantillas
                         if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.templates.create"))
                                 return new Lfx.Types.NoAccessOperationResult();
 
-                        this.Plantilla = new Lbl.Comprobantes.Impresion.Plantilla(this.DataView);
+                        this.Plantilla = new Lbl.Comprobantes.Impresion.Plantilla(this.DataBase);
                         this.Plantilla.Crear();
 
                         this.Text = "Plantillas: Nueva";
@@ -73,7 +75,7 @@ namespace Lfc.Comprobantes.Plantillas
                         if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.templates.read"))
                                 return new Lfx.Types.NoAccessOperationResult();
 
-                        Plantilla = new Lbl.Comprobantes.Impresion.Plantilla(this.DataView, itemId);
+                        Plantilla = new Lbl.Comprobantes.Impresion.Plantilla(this.DataBase, itemId);
 
                         if (Plantilla.Existe == false) {
                                 return new Lfx.Types.FailureOperationResult("El registro no existe");

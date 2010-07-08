@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 namespace Lfc.Comprobantes.Facturas
 {
@@ -91,7 +93,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.BotonCancelar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonCancelar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.BotonCancelar.Image = global::Lfc.Properties.Resources.edit_undo;
                         this.BotonCancelar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCancelar.Location = new System.Drawing.Point(20, 288);
                         this.BotonCancelar.Name = "BotonCancelar";
@@ -113,7 +114,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.BotonContinuar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonContinuar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonContinuar.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.BotonContinuar.Image = global::Lfc.Properties.Resources.edit_copy;
                         this.BotonContinuar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonContinuar.Location = new System.Drawing.Point(20, 212);
                         this.BotonContinuar.Name = "BotonContinuar";
@@ -136,7 +136,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.BotonCorregir.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonCorregir.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonCorregir.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.BotonCorregir.Image = global::Lfc.Properties.Resources.contact_new;
                         this.BotonCorregir.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCorregir.Location = new System.Drawing.Point(20, 136);
                         this.BotonCorregir.Name = "BotonCorregir";
