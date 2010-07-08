@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -312,16 +314,16 @@ namespace Lfc.Articulos
 				m_Articulo = value;
 
 				if(m_Articulo > 0) {
-					Lfx.Data.Row Art = this.Workspace.DefaultDataBase.Row("articulos", "id_articulo, fecha_creado, fecha_precio", "id_articulo", m_Articulo);
+					Lfx.Data.Row Art = this.DataBase.Row("articulos", "id_articulo, fecha_creado, fecha_precio", "id_articulo", m_Articulo);
 					txtFechaCreado.Text = Lfx.Types.Formatting.FormatDate(Art["fecha_creado"]);
 					txtFechaPrecio.Text = Lfx.Types.Formatting.FormatDate(Art["fecha_precio"]);
-					double PrecioUltComp = this.Workspace.DefaultDataBase.FieldDouble("SELECT comprob_detalle.precio FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND id_articulo=" + m_Articulo.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
+					double PrecioUltComp = this.DataBase.FieldDouble("SELECT comprob_detalle.precio FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND id_articulo=" + m_Articulo.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
 					txtCostoUlt.Text = Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto);
 
 					// Podra hacer esto con una subconsulta, pero la versión de MySql que estamos utilizando
 					// no permite la cláusula LIMIT dentro de una subconsulta IN ()
 					PrecioUltComp = 0;
-					System.Data.DataTable UltimasCompras = this.Workspace.DefaultDataBase.Select("SELECT comprob_detalle.precio, comprob.id_comprob FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND comprob_detalle.id_articulo=" + m_Articulo.ToString() + " ORDER BY comprob.fecha DESC LIMIT 5");
+					System.Data.DataTable UltimasCompras = this.DataBase.Select("SELECT comprob_detalle.precio, comprob.id_comprob FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND comprob_detalle.id_articulo=" + m_Articulo.ToString() + " ORDER BY comprob.fecha DESC LIMIT 5");
 
 					if(UltimasCompras.Rows.Count > 0) {
 						foreach(System.Data.DataRow Compra in UltimasCompras.Rows) {
@@ -332,7 +334,7 @@ namespace Lfc.Articulos
 						txtCostoProm.Text = Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto);
 					}
 
-					System.Data.DataTable Precios = this.Workspace.DefaultDataBase.Select("SELECT fecha, costo, pvp FROM articulos_precios WHERE id_articulo=" + m_Articulo.ToString() + " ORDER BY fecha DESC LIMIT 100");
+					System.Data.DataTable Precios = this.DataBase.Select("SELECT fecha, costo, pvp FROM articulos_precios WHERE id_articulo=" + m_Articulo.ToString() + " ORDER BY fecha DESC LIMIT 100");
 					lvItems.Items.Clear();
 
 					foreach(System.Data.DataRow Precio in Precios.Rows) {

@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 namespace Lcc.WinForms
 {
@@ -79,7 +81,6 @@ namespace Lcc.WinForms
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.BackgroundImage = global::Lcc.Properties.Resources.Header;
                         this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                         this.Controls.Add(this.LabelHeader);
                         this.Name = "FormHeader";

@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -60,7 +62,7 @@ namespace Lcc.Edicion.Comprobantes
                         set
                         {
                                 if (this.ElementoCobro == null)
-                                        this.ElementoCobro = new Lbl.Comprobantes.Cobro(this.DataView, value);
+                                        this.ElementoCobro = new Lbl.Comprobantes.Cobro(this.DataBase, value);
                                 else
                                         this.ElementoCobro.FormaDePago = value;
                                 if (EntradaFormaDePago.TextInt != value.Id)
@@ -153,45 +155,45 @@ namespace Lcc.Edicion.Comprobantes
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
-                public virtual Lbl.Comprobantes.Cobro ToCobro(Lws.Data.DataView dataView)
+                public virtual Lbl.Comprobantes.Cobro ToCobro(Lfx.Data.DataBase dataBase)
                 {
                         switch (this.ElementoCobro.FormaDePago.Tipo) {
                                 case Lbl.Comprobantes.TipoFormasDePago.Efectivo:
                                 case Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente:
                                         break;
                                 case Lbl.Comprobantes.TipoFormasDePago.ChequeTerceros:
-                                        this.ElementoCobro.Cheque = new Lbl.Bancos.Cheque(dataView);
+                                        this.ElementoCobro.Cheque = new Lbl.Bancos.Cheque(dataBase);
                                         this.ElementoCobro.Cheque.Emisor = EntradaEmisor.Text;
                                         this.ElementoCobro.Cheque.FechaCobro = Lfx.Types.Parsing.ParseDate(EntradaFechaCobro.Text);
                                         this.ElementoCobro.Cheque.FechaEmision = Lfx.Types.Parsing.ParseDate(EntradaFechaEmision.Text);
                                         this.ElementoCobro.Cheque.Importe = Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text);
                                         this.ElementoCobro.Cheque.Numero = Lfx.Types.Parsing.ParseInt(EntradaNumeroCheque.Text);
                                         if (EntradaBanco.TextInt > 0)
-                                                this.ElementoCobro.Cheque.Banco = new Lbl.Bancos.Banco(dataView, EntradaBanco.TextInt);
+                                                this.ElementoCobro.Cheque.Banco = new Lbl.Bancos.Banco(dataBase, EntradaBanco.TextInt);
                                         else
                                                 this.ElementoCobro.Cheque.Banco = null;
                                         this.ElementoCobro.Cheque.Obs = EntradaObs.Text;
                                         break;
                                 case Lbl.Comprobantes.TipoFormasDePago.Caja:
                                         if (EntradaCaja.TextInt > 0)
-                                                this.ElementoCobro.CajaDestino = new Lbl.Cajas.Caja(dataView, EntradaCaja.TextInt);
+                                                this.ElementoCobro.CajaDestino = new Lbl.Cajas.Caja(dataBase, EntradaCaja.TextInt);
                                         else
                                                 this.ElementoCobro.CajaDestino = null;
                                         break;
                                 case Lbl.Comprobantes.TipoFormasDePago.Tarjeta:
-                                        this.ElementoCobro.Cupon = new Lbl.Tarjetas.Cupon(dataView);
+                                        this.ElementoCobro.Cupon = new Lbl.Tarjetas.Cupon(dataBase);
                                         this.ElementoCobro.Cupon.Numero = EntradaCupon.Text;
-                                        this.ElementoCobro.Cupon.Tarjeta = new Lbl.Tarjetas.Tarjeta(dataView, this.FormaDePago.Id);
+                                        this.ElementoCobro.Cupon.Tarjeta = new Lbl.Tarjetas.Tarjeta(dataBase, this.FormaDePago.Id);
 
                                         if (EntradaPlan.TextInt > 0)
-                                                this.ElementoCobro.Cupon.Plan = new Lbl.Tarjetas.Plan(dataView, EntradaPlan.TextInt);
+                                                this.ElementoCobro.Cupon.Plan = new Lbl.Tarjetas.Plan(dataBase, EntradaPlan.TextInt);
                                         else
                                                 this.ElementoCobro.Cupon.Plan = null;
 
                                         this.ElementoCobro.Cupon.Obs = EntradaObs.Text;
                                         break;
                                 case Lbl.Comprobantes.TipoFormasDePago.OtroValor:
-                                        this.ElementoCobro.Valor = new Lbl.Pagos.Valor(dataView);
+                                        this.ElementoCobro.Valor = new Lbl.Pagos.Valor(dataBase);
                                         this.ElementoCobro.FormaDePago = this.FormaDePago;
                                         this.ElementoCobro.Valor.FormaDePago = this.FormaDePago;
                                         this.ElementoCobro.Valor.Numero = EntradaValorNumero.Text;
@@ -378,7 +380,7 @@ namespace Lcc.Edicion.Comprobantes
 
                 private void EntradaPlan_TextChanged(object sender, EventArgs e)
                 {
-                        Lfx.Data.Row Plan = this.Workspace.DefaultDataView.Tables["tarjetas_planes"].FastRows[EntradaPlan.TextInt];
+                        Lfx.Data.Row Plan = this.DataBase.Tables["tarjetas_planes"].FastRows[EntradaPlan.TextInt];
 
                         if (Plan != null) {
                                 EntradaCuotas.Text = Plan["cuotas"].ToString();
@@ -406,7 +408,7 @@ namespace Lcc.Edicion.Comprobantes
 
                 private void EntradaFormaDePago_TextChanged(object sender, EventArgs e)
                 {
-                        this.FormaDePago = new Lbl.Comprobantes.FormaDePago(this.DataView, EntradaFormaDePago.TextInt);
+                        this.FormaDePago = new Lbl.Comprobantes.FormaDePago(this.DataBase, EntradaFormaDePago.TextInt);
                 }
         }
 }

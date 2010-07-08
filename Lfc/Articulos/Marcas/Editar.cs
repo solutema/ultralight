@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -252,7 +254,7 @@ namespace Lfc.Articulos.Marcas
 		{
 			Lfx.Types.OperationResult ResultadoEditar = new Lfx.Types.SuccessOperationResult();
 
-			Lfx.Data.Row Registro = this.Workspace.DefaultDataBase.Row("marcas", "id_marca", lId);
+			Lfx.Data.Row Registro = this.DataBase.Row("marcas", "id_marca", lId);
 
 			if(Registro == null) {
 				ResultadoEditar.Success = false;
@@ -281,12 +283,12 @@ namespace Lfc.Articulos.Marcas
 			ResultadoGuardar = ValidateData();
 
 			if(ResultadoGuardar.Success == true) {
-				Lbl.Articulos.Marca Mar = new Lbl.Articulos.Marca(DataView, m_Id);
+				Lbl.Articulos.Marca Mar = new Lbl.Articulos.Marca(DataBase, m_Id);
 
 				Mar.Nombre = txtNombre.Text;
 				Mar.Url = txtURL.Text;
 				if(txtProveedor.TextInt > 0)
-					Mar.Proveedor = new Lbl.Personas.Persona(DataView, txtProveedor.TextInt);
+					Mar.Proveedor = new Lbl.Personas.Persona(DataBase, txtProveedor.TextInt);
 				else
 					Mar.Proveedor = null;
 				Mar.Obs = txtObs.Text;

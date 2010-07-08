@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -58,7 +60,7 @@ namespace Lfc.Bancos.Chequeras
                         FormFields = new Lfx.Data.FormField[]
 			{
 				new Lfx.Data.FormField("chequeras.id_banco", "Banco", Lfx.Data.InputFieldTypes.Relation, 240),
-                                new Lfx.Data.FormField("chequeras.prefijo", "Prefijo", Lfx.Data.InputFieldTypes.Integer, 90),
+                                new Lfx.Data.FormField("chequeras.cheques_emitidos", "Emitidos", Lfx.Data.InputFieldTypes.Integer, 90),
 				new Lfx.Data.FormField("chequeras.desde", "Desde", Lfx.Data.InputFieldTypes.Integer, 120),
 				new Lfx.Data.FormField("chequeras.hasta", "Hasta", Lfx.Data.InputFieldTypes.Integer, 120),
 				new Lfx.Data.FormField("chequeras.id_caja", "Caja", Lfx.Data.InputFieldTypes.Relation, 240),
@@ -92,24 +94,21 @@ namespace Lfc.Bancos.Chequeras
 		
 		public override void RefreshList()
 		{
-			string TextoSql;
+			this.CustomFilters = new qGen.Where();
 
-                        if (m_Estado == Estados.Todos)
-                                TextoSql = "TRUE";
-                        else
-                                TextoSql = "estado=" + ((int)m_Estado).ToString();
+                        if (m_Estado != Estados.Todos)
+                                this.CustomFilters.AddWithValue("estado", (int)m_Estado);
                         
                         if(m_Banco > 0)
-                                TextoSql += " AND id_banco=" + m_Banco.ToString();
+                                this.CustomFilters.AddWithValue("id_banco", m_Banco);
 
                         if (m_Caja > 0)
-                                TextoSql += " AND id_caja=" + m_Caja.ToString();
+                                this.CustomFilters.AddWithValue("id_caja", m_Caja);
 
-			CurrentFilter = TextoSql;
 			base.RefreshList();
 		}
 
-		public override void ItemAdded(ListViewItem itm)
+                public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
 		{
 			switch(itm.SubItems[7].Text)
 			{
@@ -125,13 +124,13 @@ namespace Lfc.Bancos.Chequeras
 					break;
 			}
 
-                        itm.SubItems[1].Text = this.DataView.Tables["bancos"].FastRows[Lfx.Types.Parsing.ParseInt(itm.SubItems[1].Text)].Fields["nombre"].ToString();
+                        itm.SubItems[1].Text = this.DataBase.Tables["bancos"].FastRows[Lfx.Types.Parsing.ParseInt(itm.SubItems[1].Text)].Fields["nombre"].ToString();
                         itm.SubItems[2].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[2].Text).ToString("0000");
                         itm.SubItems[3].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[3].Text).ToString("00000000");
                         itm.SubItems[4].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[4].Text).ToString("00000000");
                         int IdCaja = Lfx.Types.Parsing.ParseInt(itm.SubItems[5].Text);
                         if (IdCaja > 0)
-                                itm.SubItems[5].Text = this.DataView.Tables["cajas"].FastRows[IdCaja].Fields["nombre"].ToString();
+                                itm.SubItems[5].Text = this.DataBase.Tables["cajas"].FastRows[IdCaja].Fields["nombre"].ToString();
 		}
 
 		public override Lfx.Types.OperationResult OnEdit(int lCodigo)

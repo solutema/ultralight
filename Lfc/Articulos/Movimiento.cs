@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -506,7 +508,7 @@ namespace Lfc.Articulos
                         }
 
 
-                        Lbl.Articulos.Articulo Art = new Lbl.Articulos.Articulo(this.DataView, EntradaArticulo.TextInt);
+                        Lbl.Articulos.Articulo Art = new Lbl.Articulos.Articulo(this.DataBase, EntradaArticulo.TextInt);
                         Art.Cargar();
                         if (Art.RequiereNS) {
                                 if (this.Workspace.CurrentUser.AccessList.HasGlobalAcccess()) {
@@ -522,19 +524,19 @@ namespace Lfc.Articulos
                         }
 
                         if (aceptarReturn.Success == true) {
-                                DataView.BeginTransaction(true);
+                                DataBase.BeginTransaction(true);
                                 double Cantidad = Lfx.Types.Parsing.ParseDouble(txtCantidad.Text);
                                 Lbl.Articulos.Situacion Origen, Destino;
                                 if (txtDesdeSituacion.TextInt > 0)
-                                        Origen = new Lbl.Articulos.Situacion(DataView, txtDesdeSituacion.TextInt);
+                                        Origen = new Lbl.Articulos.Situacion(DataBase, txtDesdeSituacion.TextInt);
                                 else
                                         Origen = null;
                                 if (txtHaciaSituacion.TextInt > 0)
-                                        Destino = new Lbl.Articulos.Situacion(DataView, txtHaciaSituacion.TextInt);
+                                        Destino = new Lbl.Articulos.Situacion(DataBase, txtHaciaSituacion.TextInt);
                                 else
                                         Destino = null;
                                 Art.MoverStock(Cantidad, txtObs.Text, Origen, Destino, null);
-                                DataView.Commit();
+                                DataBase.Commit();
                         }
 
                         return aceptarReturn;
@@ -593,8 +595,8 @@ namespace Lfc.Articulos
 
                         if (ArticuloId > 0 && (txtDesdeSituacion.TextInt != txtHaciaSituacion.TextInt)) {
                                 double Cantidad = Lfx.Types.Parsing.ParseStock(txtCantidad.Text);
-                                double DesdeCantidad = this.Workspace.DefaultDataBase.FieldDouble("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + ArticuloId.ToString() + " AND id_situacion=" + txtDesdeSituacion.TextInt.ToString());
-                                double HaciaCantidad = this.Workspace.DefaultDataBase.FieldDouble("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + ArticuloId.ToString() + " AND id_situacion=" + txtHaciaSituacion.TextInt.ToString());
+                                double DesdeCantidad = this.DataBase.FieldDouble("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + ArticuloId.ToString() + " AND id_situacion=" + txtDesdeSituacion.TextInt.ToString());
+                                double HaciaCantidad = this.DataBase.FieldDouble("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + ArticuloId.ToString() + " AND id_situacion=" + txtHaciaSituacion.TextInt.ToString());
 
                                 if (txtDesdeSituacion.TextInt < 998 || txtDesdeSituacion.TextInt > 999) {
                                         txtStockActual.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);

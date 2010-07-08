@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -42,6 +44,8 @@ namespace Lfc.Bancos.Cheques
                 public Editar()
                 {
                         InitializeComponent();
+
+                        this.ElementType = typeof(Lbl.Bancos.Cheque);
                 }
 
                 public override Lfx.Types.OperationResult Create()
@@ -49,7 +53,7 @@ namespace Lfc.Bancos.Cheques
                         if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "cheques.create"))
                                 return new Lfx.Types.NoAccessOperationResult();
 
-                        Lbl.Bancos.Cheque Cheque = new Lbl.Bancos.Cheque(this.DataView);
+                        Lbl.Bancos.Cheque Cheque = new Lbl.Bancos.Cheque(this.DataBase);
                         Cheque.Crear();
 
                         this.FromRow(Cheque);
@@ -61,14 +65,7 @@ namespace Lfc.Bancos.Cheques
                         if (Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "cheques.read") == false)
                                 return new Lfx.Types.NoAccessOperationResult();
 
-                        Lbl.Bancos.Cheque Cheque = new Lbl.Bancos.Cheque(this.DataView, lId);
-
-                        if (Cheque.Cargar().Success == false) {
-                                return new Lfx.Types.FailureOperationResult("Error al cargar el registro");
-                        } else {
-                                this.FromRow(Cheque);
-                                return new Lfx.Types.SuccessOperationResult();
-                        }
+                        return base.Edit(lId);
                 }
 
                 public override void FromRow(Lbl.ElementoDeDatos row)
@@ -102,7 +99,7 @@ namespace Lfc.Bancos.Cheques
                         if (EntradaBanco.TextInt == 0)
                                 Res.Banco = null;
                         else
-                                Res.Banco = new Lbl.Bancos.Banco(Res.DataView, EntradaBanco.TextInt);
+                                Res.Banco = new Lbl.Bancos.Banco(Res.DataBase, EntradaBanco.TextInt);
 
                         Res.Numero = Lfx.Types.Parsing.ParseInt(EntradaNumero.Text);
                         Res.FechaCobro = Lfx.Types.Parsing.ParseDate(EntradaFechaCobro.Text);

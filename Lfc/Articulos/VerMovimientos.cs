@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -281,7 +283,7 @@ namespace Lfc.Articulos
 			lvItems.BeginUpdate();
 			lvItems.Items.Clear();
 
-                        System.Data.DataTable Detalles = this.Workspace.DefaultDataBase.Select("SELECT id_movim, id_articulo, desdesituacion, haciasituacion, cantidad, fecha, saldo, obs FROM articulos_movim WHERE id_articulo=" + articulo.Id.ToString() + " ORDER BY fecha");
+                        System.Data.DataTable Detalles = this.DataBase.Select("SELECT id_movim, id_articulo, desdesituacion, haciasituacion, cantidad, fecha, saldo, obs FROM articulos_movim WHERE id_articulo=" + articulo.Id.ToString() + " ORDER BY fecha");
 
 			ListViewItem itm = null;
 			foreach (System.Data.DataRow Detalle in Detalles.Rows)
@@ -295,14 +297,14 @@ namespace Lfc.Articulos
 				if ((int)Detalle["desdesituacion"] != 0)
 				{
 					if (SituacionCache[Detalle["desdesituacion"]] == null)
-						SituacionCache[Detalle["desdesituacion"]] = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM articulos_situaciones WHERE id_situacion=" + Detalle["desdesituacion"].ToString());
+						SituacionCache[Detalle["desdesituacion"]] = this.DataBase.FieldString("SELECT nombre FROM articulos_situaciones WHERE id_situacion=" + Detalle["desdesituacion"].ToString());
 					DesdeSituacion = (string)SituacionCache[(int)Detalle["desdesituacion"]];
 				}
 
 				if ((int)Detalle["haciasituacion"] != 0)
 				{
 					if (SituacionCache[Detalle["haciasituacion"]] == null)
-						SituacionCache[Detalle["haciasituacion"]] = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM articulos_situaciones WHERE id_situacion=" + Detalle["haciasituacion"].ToString());
+						SituacionCache[Detalle["haciasituacion"]] = this.DataBase.FieldString("SELECT nombre FROM articulos_situaciones WHERE id_situacion=" + Detalle["haciasituacion"].ToString());
 					HaciaSituacion = (string)SituacionCache[(int)Detalle["haciasituacion"]];
 				}
 
@@ -324,7 +326,7 @@ namespace Lfc.Articulos
 
 			lvPedidos.BeginUpdate();
 			lvPedidos.Items.Clear();
-			System.Data.DataTable Pedidos = this.Workspace.DefaultDataBase.Select(@"SELECT comprob.id_comprob, comprob.fecha, comprob.id_cliente, comprob.tipo_fac, comprob.numero, comprob_detalle.cantidad, comprob_detalle.precio, comprob.estado
+			System.Data.DataTable Pedidos = this.DataBase.Select(@"SELECT comprob.id_comprob, comprob.fecha, comprob.id_cliente, comprob.tipo_fac, comprob.numero, comprob_detalle.cantidad, comprob_detalle.precio, comprob.estado
 				FROM comprob, comprob_detalle
 				WHERE comprob.id_comprob=comprob_detalle.id_comprob
 					AND comprob.compra=1
@@ -337,7 +339,7 @@ namespace Lfc.Articulos
 			foreach (System.Data.DataRow Pedido in Pedidos.Rows)
 			{
 				itm = lvPedidos.Items.Add(System.Convert.ToString(Pedido["id_comprob"]));
-				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, this.Workspace.DefaultDataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + Lfx.Data.DataBase.ConvertDBNullToZero(Pedido["id_cliente"]).ToString())));
+				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, this.DataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + Lfx.Data.DataBase.ConvertDBNullToZero(Pedido["id_cliente"]).ToString())));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Pedido["numero"])));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatDateAndTime(System.Convert.ToDateTime(Pedido["fecha"]))));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Pedido["cantidad"]), this.Workspace.CurrentConfig.Products.StockDecimalPlaces)));

@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -168,10 +170,10 @@ namespace Lfc.Articulos.Rubros
 
 		public override Lfx.Types.OperationResult Edit(int lId)
 		{
-			Lfx.Data.SqlSelectBuilder ComandoSelect = new Lfx.Data.SqlSelectBuilder();
-			ComandoSelect.WhereClause = new Lfx.Data.SqlWhereBuilder("id_rubro", lId);
+			qGen.Select ComandoSelect = new qGen.Select();
+			ComandoSelect.WhereClause = new qGen.Where("id_rubro", lId);
 
-			Lfx.Data.Row Registro = this.Workspace.DefaultDataBase.Row("articulos_rubros", "id_rubro", lId);
+			Lfx.Data.Row Registro = this.DataBase.Row("articulos_rubros", "id_rubro", lId);
 
 			if(Registro == null) {
 				return new Lfx.Types.FailureOperationResult("El registro no existe.");
@@ -191,18 +193,18 @@ namespace Lfc.Articulos.Rubros
 			Lfx.Types.OperationResult ResultadoGuardar = ValidateData();
 
 			if(ResultadoGuardar.Success == true) {
-                                Lfx.Data.SqlTableCommandBuilder Comando;
+                                qGen.TableCommand Comando;
 
                                 if (m_Nuevo) {
-                                        Comando = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, "articulos_rubros");
+                                        Comando = new qGen.Insert(DataBase, "articulos_rubros");
                                 } else {
-                                        Comando = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "articulos_rubros");
-                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_rubro", m_Id);
+                                        Comando = new qGen.Update(DataBase, "articulos_rubros");
+                                        Comando.WhereClause = new qGen.Where("id_rubro", m_Id);
                                 }
 
                                 Comando.Fields.AddWithValue("nombre", txtNombre.Text);
                                 Comando.Fields.AddWithValue("id_alicuota", Lfx.Data.DataBase.ConvertZeroToDBNull(txtAlicuota.TextInt));
-                                DataView.Execute(Comando);
+                                DataBase.Execute(Comando);
 
 				if(m_Nuevo && ControlDestino != null) {
                                         m_Nuevo = false;

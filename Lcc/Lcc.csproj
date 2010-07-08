@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -12,12 +12,14 @@
     <AssemblyName>Lcc</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <OldToolsVersion>2.0</OldToolsVersion>
+    <OldToolsVersion>3.5</OldToolsVersion>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkSubset>
-    </TargetFrameworkSubset>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ApplicationIcon>Lazaro.ico</ApplicationIcon>
+    <ReleaseVersion>1.0</ReleaseVersion>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -30,11 +32,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <ApplicationIcon>Lazaro.ico</ApplicationIcon>
-    <ReleaseVersion>1.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -183,11 +182,6 @@
     </Compile>
     <Compile Include="ILccControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Vista\Comprobantes\ComprobanteConArticulos.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -248,10 +242,6 @@
       <Project>{FD8409C3-35CF-4F30-8898-F4CC17FC35D6}</Project>
       <Name>Lui</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Lws\Lws.csproj">
-      <Project>{16A55055-8770-457B-8D39-3D61955FAB7C}</Project>
-      <Name>Lws</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Control.resx">
@@ -311,10 +301,6 @@
     <EmbeddedResource Include="Edicion\ImagenRecorte.resx">
       <DependentUpon>ImagenRecorte.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Vista\Comprobantes\ComprobanteConArticulos.resx">
       <DependentUpon>ComprobanteConArticulos.cs</DependentUpon>
     </EmbeddedResource>
@@ -340,21 +326,31 @@
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
       <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
       <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
       <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
-      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>

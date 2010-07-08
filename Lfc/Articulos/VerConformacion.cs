@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -48,11 +50,11 @@ namespace Lfc.Articulos
                 {
                         ListaConformacion.BeginUpdate();
                         ListaConformacion.Items.Clear();
-                        System.Data.DataTable Situaciones = this.DataView.DataBase.Select("SELECT id_situacion, nombre FROM articulos_situaciones WHERE id_situacion IN (SELECT DISTINCT id_situacion FROM articulos_stock WHERE id_articulo=" + articulo.Id.ToString() + ")");
+                        System.Data.DataTable Situaciones = this.DataBase.Select("SELECT id_situacion, nombre FROM articulos_situaciones WHERE id_situacion IN (SELECT DISTINCT id_situacion FROM articulos_stock WHERE id_articulo=" + articulo.Id.ToString() + ")");
                         
                         foreach (System.Data.DataRow Situacion in Situaciones.Rows) {
                                 ListViewGroup Grupo = ListaConformacion.Groups.Add(Situacion["id_situacion"].ToString(), Situacion["nombre"].ToString());
-                                System.Data.DataTable Articulos = this.DataView.DataBase.Select("SELECT serie FROM articulos_series WHERE id_articulo=" + articulo.Id.ToString() + " AND id_situacion=" + Situacion["id_situacion"].ToString());
+                                System.Data.DataTable Articulos = this.DataBase.Select("SELECT serie FROM articulos_series WHERE id_articulo=" + articulo.Id.ToString() + " AND id_situacion=" + Situacion["id_situacion"].ToString());
                                 foreach(System.Data.DataRow Articulo in Articulos.Rows){
                                         string Serie = Articulo["serie"].ToString();
                                         ListViewItem Itm = ListaConformacion.Items.Add(Serie);

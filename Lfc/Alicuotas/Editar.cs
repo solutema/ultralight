@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -198,7 +200,7 @@ namespace Lfc.Alicuotas
 
 		public override Lfx.Types.OperationResult Edit(int lId)
 		{
-			Lfx.Data.Row Registro = this.Workspace.DefaultDataBase.Row("alicuotas", "id_alicuota", lId);
+			Lfx.Data.Row Registro = this.DataBase.Row("alicuotas", "id_alicuota", lId);
 
 			if(Registro == null)
 			{
@@ -223,26 +225,26 @@ namespace Lfc.Alicuotas
 
 			if(ResultadoGuardar.Success == true)
 			{
-                                this.DataView.BeginTransaction();
+                                this.DataBase.BeginTransaction();
 
-                                Lfx.Data.SqlTableCommandBuilder Comando;
+                                qGen.TableCommand Comando;
                                 if (m_Nuevo) {
-                                        Comando = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, "alicuotas");
-                                        Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
+                                        Comando = new qGen.Insert(DataBase, "alicuotas");
+                                        Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                                 } else {
-                                        Comando = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "alicuotas");
-                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_alicuota", m_Id);
+                                        Comando = new qGen.Update(DataBase, "alicuotas");
+                                        Comando.WhereClause = new qGen.Where("id_alicuota", m_Id);
                                 }
 
 				Comando.Fields.AddWithValue("nombre", txtNombre.Text);
 				Comando.Fields.AddWithValue("porcentaje", Lfx.Types.Parsing.ParseDouble(txtPorcentaje.Text));
 				Comando.Fields.AddWithValue("importe_minimo", Lfx.Types.Parsing.ParseDouble(txtImporteMinimo.Text));
 
-                                this.DataView.Execute(Comando);
-                                this.DataView.DataBase.Commit();
+                                this.DataBase.Execute(Comando);
+                                this.DataBase.Commit();
 
                                 if (m_Nuevo)
-                                        m_Id = DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
+                                        m_Id = DataBase.FieldInt("SELECT LAST_INSERT_ID()");
 
                                 if (m_Nuevo && ControlDestino != null) {
                                         ControlDestino.Text = m_Id.ToString();

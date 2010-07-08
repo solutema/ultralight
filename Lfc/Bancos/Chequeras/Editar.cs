@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -40,6 +42,8 @@ namespace Lfc.Bancos.Chequeras
 		public Editar()
 		{
 			InitializeComponent();
+
+                        this.ElementType = typeof(Lbl.Bancos.Chequera);
 		}
 
                 public override Lfx.Types.OperationResult Create()
@@ -47,7 +51,7 @@ namespace Lfc.Bancos.Chequeras
                         if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "chequeras.create"))
                                 return new Lfx.Types.NoAccessOperationResult();
 
-                        Lbl.Bancos.Chequera Chequera = new Lbl.Bancos.Chequera(this.DataView);
+                        Lbl.Bancos.Chequera Chequera = new Lbl.Bancos.Chequera(this.DataBase);
                         Chequera.Crear();
 
                         this.FromRow(Chequera);
@@ -59,14 +63,7 @@ namespace Lfc.Bancos.Chequeras
                         if (Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "chequeras.read") == false)
                                 return new Lfx.Types.NoAccessOperationResult();
 
-                        Lbl.Bancos.Chequera Chequera = new Lbl.Bancos.Chequera(this.DataView, lId);
-
-                        if (Chequera.Cargar().Success == false) {
-                                return new Lfx.Types.FailureOperationResult("Error al cargar el registro");
-                        } else {
-                                this.FromRow(Chequera);
-                                return new Lfx.Types.SuccessOperationResult();
-                        }
+                        return base.Edit(lId);
 		}
 
                 public override void FromRow(Lbl.ElementoDeDatos row)
@@ -112,17 +109,17 @@ namespace Lfc.Bancos.Chequeras
                         if (EntradaBanco.TextInt == 0)
                                 Res.Banco = null;
                         else
-                                Res.Banco = new Lbl.Bancos.Banco(Res.DataView, EntradaBanco.TextInt);
+                                Res.Banco = new Lbl.Bancos.Banco(Res.DataBase, EntradaBanco.TextInt);
 
                         if (EntradaCaja.TextInt == 0)
                                 Res.Caja = null;
                         else
-                                Res.Caja = new Lbl.Cajas.Caja(Res.DataView, EntradaCaja.TextInt);
+                                Res.Caja = new Lbl.Cajas.Caja(Res.DataBase, EntradaCaja.TextInt);
 
                         if (EntradaSucursal.TextInt == 0)
                                 Res.Sucursal = null;
                         else
-                                Res.Sucursal = new Lbl.Entidades.Sucursal(Res.DataView, EntradaSucursal.TextInt);
+                                Res.Sucursal = new Lbl.Entidades.Sucursal(Res.DataBase, EntradaSucursal.TextInt);
 
                         Res.Prefijo = Lfx.Types.Parsing.ParseInt(EntradaPrefijo.Text);
                         Res.Desde = Lfx.Types.Parsing.ParseInt(EntradaDesde.Text);

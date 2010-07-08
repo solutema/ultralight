@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -48,7 +50,7 @@ namespace Lfc.Articulos.Categorias
 
                         DataTableName = "articulos_categorias";
                         KeyField = new Lfx.Data.FormField("articulos_categorias.id_categoria", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        Joins.Add(new Lfx.Data.Join("articulos", "articulos_categorias.id_categoria"));
+                        Joins.Add(new qGen.Join("articulos", "articulos_categorias.id_categoria"));
                         GroupBy = KeyField;
                         OrderBy = "articulos_categorias.nombre";
                         FormFields = new Lfx.Data.FormField[]
@@ -90,11 +92,12 @@ namespace Lfc.Articulos.Categorias
                         switch (m_Stock)
                         {
                                 case "f":
-					CurrentFilter = "articulos_categorias.stock_minimo>0 AND articulos_categorias.stock_minimo>(SELECT SUM(articulos.stock_actual) FROM articulos WHERE articulos_categorias.id_categoria=id_categoria)";
+                                        this.CustomFilters.Clear();
+					CustomFilters.AddWithValue("articulos_categorias.stock_minimo>0 AND articulos_categorias.stock_minimo>(SELECT SUM(articulos.stock_actual) FROM articulos WHERE articulos_categorias.id_categoria=id_categoria)");
                                         break;
 
                                 default:
-					CurrentFilter = null;
+					CustomFilters.Clear();
                                         break;
                         }
 
@@ -102,10 +105,10 @@ namespace Lfc.Articulos.Categorias
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
-                public override void Fill(Lfx.Data.SqlSelectBuilder sqlCommand)
+                public override void Fill(qGen.Select sqlCommand)
                 {
-                        this.DataView.DataBase.Execute("UPDATE articulos_categorias SET cache_stock_actual=(SELECT SUM(stock_actual) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria), cache_costo=(SELECT SUM(stock_actual*costo) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria)");
-                        m_ValorizacionCostoTotal = this.DataView.DataBase.FieldDouble("SELECT SUM(cache_costo) FROM articulos_categorias");
+                        this.DataBase.Execute("UPDATE articulos_categorias SET cache_stock_actual=(SELECT SUM(stock_actual) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria), cache_costo=(SELECT SUM(stock_actual*costo) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria)");
+                        m_ValorizacionCostoTotal = this.DataBase.FieldDouble("SELECT SUM(cache_costo) FROM articulos_categorias");
                         base.Fill(sqlCommand);
 
                         foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
@@ -114,7 +117,7 @@ namespace Lfc.Articulos.Categorias
                         }
                 }
 
-                public override void ItemAdded(ListViewItem item)
+                public override void ItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
                         double ValPct;
                         if (m_ValorizacionCostoTotal <= 0)
@@ -122,7 +125,6 @@ namespace Lfc.Articulos.Categorias
                         else
                                 ValPct = Lfx.Types.Parsing.ParseDouble(item.SubItems[5].Text) / m_ValorizacionCostoTotal * 100;
                         item.SubItems[5].Text = Lfx.Types.Formatting.FormatNumber(ValPct, 2);
-                        base.ItemAdded(item);
                 }
         }
 }

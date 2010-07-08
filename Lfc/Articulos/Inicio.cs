@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -53,7 +55,7 @@ namespace Lfc.Articulos
                         BotonFiltrar.Visible = true;
                 }
 
-                public override void ItemAdded(ListViewItem itm)
+                public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
                 {
                         if (Lfx.Types.Parsing.ParseInt(itm.SubItems[8].Text) > 0)
                                 itm.Font = new Font(itm.Font, FontStyle.Bold);
@@ -75,27 +77,27 @@ namespace Lfc.Articulos
 
                 public override void RefreshList()
                 {
-                        Lfx.Data.SqlWhereBuilder FiltroWhere = new Lfx.Data.SqlWhereBuilder();
+                        this.CustomFilters.Clear();
 
                         if (m_Proveedor > 0)
-                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("id_proveedor", m_Proveedor));
+                                this.CustomFilters.Add(new qGen.ComparisonCondition("id_proveedor", m_Proveedor));
 
                         if (m_Marca > 0)
-                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("id_marca", m_Marca));
+                                this.CustomFilters.Add(new qGen.ComparisonCondition("id_marca", m_Marca));
 
                         if (m_Categoria > 0)
-                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("id_categoria", m_Categoria));
+                                this.CustomFilters.Add(new qGen.ComparisonCondition("id_categoria", m_Categoria));
 
                         if (m_PVPDesde != 0)
-                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("pvp", Lfx.Data.SqlCommandBuilder.SqlOperands.GreaterOrEqual, m_PVPDesde));
+                                this.CustomFilters.Add(new qGen.ComparisonCondition("pvp", qGen.ComparisonOperators.GreaterOrEqual, m_PVPDesde));
                         if (m_PVPHasta != 0)
-                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("pvp", Lfx.Data.SqlCommandBuilder.SqlOperands.LessOrEqual, m_PVPHasta));
+                                this.CustomFilters.Add(new qGen.ComparisonCondition("pvp", qGen.ComparisonOperators.LessOrEqual, m_PVPHasta));
 
                         if (m_Situacion > 0) {
-                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("articulos_stock.id_situacion", m_Situacion));
-                                FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("articulos_stock.cantidad", Lfx.Data.SqlCommandBuilder.SqlOperands.NotEquals, 0));
+                                this.CustomFilters.Add(new qGen.ComparisonCondition("articulos_stock.id_situacion", m_Situacion));
+                                this.CustomFilters.Add(new qGen.ComparisonCondition("articulos_stock.cantidad", qGen.ComparisonOperators.NotEquals, 0));
                                 this.Joins.Clear();
-                                this.Joins.Add(new Lfx.Data.Join("articulos_stock", "articulos.id_articulo=articulos_stock.id_articulo"));
+                                this.Joins.Add(new qGen.Join("articulos_stock", "articulos.id_articulo=articulos_stock.id_articulo"));
                                 this.FormFields[3] = new Lfx.Data.FormField("articulos_stock.cantidad", "Stock", Lfx.Data.InputFieldTypes.Numeric, 120);
                         } else {
                                 this.Joins.Clear();
@@ -104,54 +106,62 @@ namespace Lfc.Articulos
 
                         switch (m_Stock) {
                                 case "cs":
-                                        FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("stock_actual", Lfx.Data.SqlCommandBuilder.SqlOperands.GreaterThan, 0));
+                                        this.CustomFilters.Add(new qGen.ComparisonCondition("stock_actual", qGen.ComparisonOperators.GreaterThan, 0));
                                         break;
 
                                 case "ss":
-                                        FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("stock_actual", Lfx.Data.SqlCommandBuilder.SqlOperands.LessOrEqual, 0));
+                                        this.CustomFilters.Add(new qGen.ComparisonCondition("stock_actual", qGen.ComparisonOperators.LessOrEqual, 0));
                                         break;
 
                                 case "faltante":
-                                        FiltroWhere.Conditions.Add("((stock_actual<stock_minimo AND stock_minimo>0) OR stock_actual<0)");
+                                        // (stock_actual<stock_minimo AND stock_minimo>0) OR stock_actual<0
+                                        qGen.Where Nested1 = new qGen.Where();
+                                        Nested1.AddWithValue("stock_actual", qGen.ComparisonOperators.LessThan, new qGen.SqlExpression("stock_minimo"));
+                                        Nested1.AddWithValue("stock_minimo", qGen.ComparisonOperators.GreaterThan, 0);
+
+                                        qGen.Where Nested2 = new qGen.Where();
+                                        Nested2.AddWithValue(Nested1);
+                                        Nested2.AddWithValue("stock_actual", qGen.ComparisonOperators.LessThan, 0);
+                                        
+                                        this.CustomFilters.AddWithValue(Nested2);
                                         break;
 
                                 case "faltanteip":
-                                        FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("stock_minimo", Lfx.Data.SqlCommandBuilder.SqlOperands.GreaterThan, 0));
-                                        FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("stock_actual+pedido", Lfx.Data.SqlCommandBuilder.SqlOperands.LessThan, new Lfx.Data.SqlExpression("stock_minimo")));
+                                        this.CustomFilters.Add(new qGen.ComparisonCondition("stock_minimo", qGen.ComparisonOperators.GreaterThan, 0));
+                                        this.CustomFilters.Add(new qGen.ComparisonCondition("stock_actual+pedido", qGen.ComparisonOperators.LessThan, new qGen.SqlExpression("stock_minimo")));
                                         break;
 
                                 case "apedir":
-                                        FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("apedir", Lfx.Data.SqlCommandBuilder.SqlOperands.GreaterThan, 0));
+                                        this.CustomFilters.Add(new qGen.ComparisonCondition("apedir", qGen.ComparisonOperators.GreaterThan, 0));
                                         break;
 
                                 case "pedido":
-                                        FiltroWhere.Conditions.Add(new Lfx.Data.SqlCondition("pedido", Lfx.Data.SqlCommandBuilder.SqlOperands.GreaterThan, 0));
+                                        this.CustomFilters.Add(new qGen.ComparisonCondition("pedido", qGen.ComparisonOperators.GreaterThan, 0));
                                         break;
                         }
-                        this.CurrentFilter = FiltroWhere;
 
                         base.RefreshList();
 
                         string SelectValorizacion = "SELECT SUM(costo*stock_actual) FROM articulos";
                         if (this.Joins != null && this.Joins.Count > 0) {
-                                foreach (Lfx.Data.Join Jo in this.Joins) {
+                                foreach (qGen.Join Jo in this.Joins) {
                                         SelectValorizacion += Jo.ToString();
                                 }
                         }
-                        if (FiltroWhere.Conditions.Count > 0)
-                                SelectValorizacion += " WHERE " + FiltroWhere.ToString();
-                        double Valorizacion = this.Workspace.DefaultDataBase.FieldDouble(SelectValorizacion);
+                        if (this.CustomFilters.Count > 0)
+                                SelectValorizacion += " WHERE " + this.CustomFilters.ToString();
+                        double Valorizacion = this.DataBase.FieldDouble(SelectValorizacion);
                         txtValorCosto.Text = Lfx.Types.Formatting.FormatCurrency(Valorizacion, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto);
 
                         SelectValorizacion = "SELECT SUM(pvp*stock_actual) FROM articulos";
                         if (this.Joins != null && this.Joins.Count > 0) {
-                                foreach (Lfx.Data.Join Jo in this.Joins) {
+                                foreach (qGen.Join Jo in this.Joins) {
                                         SelectValorizacion += Jo.ToString();
                                 }
                         }
-                        if (FiltroWhere.Conditions.Count > 0)
-                                SelectValorizacion += " WHERE " + FiltroWhere.ToString();
-                        Valorizacion = this.Workspace.DefaultDataBase.FieldDouble(SelectValorizacion);
+                        if (this.CustomFilters.Count > 0)
+                                SelectValorizacion += " WHERE " + this.CustomFilters.ToString();
+                        Valorizacion = this.DataBase.FieldDouble(SelectValorizacion);
                         txtValorPVP.Text = Lfx.Types.Formatting.FormatCurrency(Valorizacion, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                 }
 
@@ -221,15 +231,15 @@ namespace Lfc.Articulos
                 private void Inicio_WorkspaceChanged(object sender, EventArgs e)
                 {
                         // Cargo la tabla en memoria
-                        this.DataView.Tables["articulos_codigos"].PreLoad();
+                        this.DataBase.Tables["articulos_codigos"].PreLoad();
 
-                        Lfx.Data.Row CodRow = this.DataView.Tables["articulos_codigos"].FastRows[1];
+                        Lfx.Data.Row CodRow = this.DataBase.Tables["articulos_codigos"].FastRows[1];
                         string Cod1 = CodRow == null ? "Código 1" : CodRow["nombre"].ToString();
-                        CodRow = this.DataView.Tables["articulos_codigos"].FastRows[2];
+                        CodRow = this.DataBase.Tables["articulos_codigos"].FastRows[2];
                         string Cod2 = CodRow == null ? "Código 2" : CodRow["nombre"].ToString();
-                        CodRow = this.DataView.Tables["articulos_codigos"].FastRows[3];
+                        CodRow = this.DataBase.Tables["articulos_codigos"].FastRows[3];
                         string Cod3 = CodRow == null ? "Código 3" : CodRow["nombre"].ToString();
-                        CodRow = this.DataView.Tables["articulos_codigos"].FastRows[4];
+                        CodRow = this.DataBase.Tables["articulos_codigos"].FastRows[4];
                         string Cod4 = CodRow == null ? "Código 4" : CodRow["nombre"].ToString();
 
                         FormFields = new Lfx.Data.FormField[]
