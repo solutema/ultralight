@@ -33,42 +33,23 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lfc.Personas
+namespace Lfx.Access
 {
-        public partial class Inicio : Lui.Forms.ListingForm
-        {
-                #region Código generado por el Diseñador de Windows Forms
+	/// <summary>
+	/// Proporciona acceso a la información sobre el usuario
+	/// </summary>
+	public class LoginData
+	{
+		public int Id;
+		public string UserName;
+		public string CompleteName;
+		public Lfx.Workspace Workspace;
+                public Lfx.Access.AccessList AccessList;
 
-                private System.ComponentModel.Container components = null;
-
-                protected override void Dispose(bool disposing)
-                {
-                        if (disposing) {
-                                if (components != null) {
-                                        components.Dispose();
-                                }
-                        }
-
-                        base.Dispose(disposing);
-                }
-
-                private void InitializeComponent()
-                {
-                        this.SuspendLayout();
-                        // 
-                        // BotonFiltrar
-                        // 
-                        this.BotonFiltrar.Visible = true;
-                        // 
-                        // Inicio
-                        // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.Name = "Inicio";
-                        this.Text = "Clientes: Listado";
-                        this.ResumeLayout(false);
-
-                }
-
-                #endregion
-        }
+		public LoginData(Lfx.Workspace workspace)
+		{
+			Workspace = workspace;
+                        this.AccessList = new AccessList(workspace);
+		}
+	}
 }

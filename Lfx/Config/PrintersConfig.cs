@@ -1,4 +1,5 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+#region License
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -49,26 +51,26 @@ namespace Lfx.Config
                                 // Si NO hay una impresora definida para este documento,
                                 // busco alternativas
                                 if (sTipo == "NCA" || sTipo == "NDA") {
-                                        // La impresora predeterminada para las notas de d�bito y 
-                                        // cr�dito "A" es la misma que para las facturas "A"
-                                        res = PreferredPrinter("A");
+                                        // La impresora predeterminada para las notas de débito y 
+                                        // crédito "A" es la misma que para las comprob "A"
+                                        res = PreferredPrinter("FA");
                                 } else if (sTipo == "NCB" || sTipo == "NDB") {
                                         // Lo mismo con las "B"
-                                        res = PreferredPrinter("B");
+                                        res = PreferredPrinter("FB");
                                 } else if (sTipo.Length >= 8 && sTipo.Substring(0, 8) == "Listado.") {
                                         // Si no hay impresora para este listado en particular,
                                         // busco la impresora definida para listados en general
                                         res = PreferredPrinter("Listados");
                                 }
                         }
-                        if (res != null && res.Length > Lfx.Environment.SystemInformation.ComputerName.Length + 3 && string.Compare(res.Substring(0, Lfx.Environment.SystemInformation.ComputerName.Length + 3), System.Convert.ToString(System.IO.Path.DirectorySeparatorChar) + System.IO.Path.DirectorySeparatorChar + Lfx.Environment.SystemInformation.ComputerName + System.IO.Path.DirectorySeparatorChar, true) == 0) {
+                        if (res != null && res.Length > System.Environment.MachineName.ToUpperInvariant().Length + 3 && string.Compare(res.Substring(0, System.Environment.MachineName.ToUpperInvariant().Length + 3), System.Convert.ToString(System.IO.Path.DirectorySeparatorChar) + System.IO.Path.DirectorySeparatorChar + System.Environment.MachineName.ToUpperInvariant() + System.IO.Path.DirectorySeparatorChar, true) == 0) {
                                 // Si el nombre de la impresora incluye el nombre de la PC
                                 // y resulta que es esta misma PC, asumo que es una impresora local
-                                // y le quito el nombre de la estaci�n
+                                // y le quito el nombre de la estación
 
                                 // Por ejemplo, si la impresora es "\\Oficina1\hp1010", la dejo
                                 // en "hp1010" cuando imprimo desde "Oficina1"
-                                res = res.Substring(Lfx.Environment.SystemInformation.ComputerName.Length + 3, res.Length - (Lfx.Environment.SystemInformation.ComputerName.Length + 3));
+                                res = res.Substring(System.Environment.MachineName.ToUpperInvariant().Length + 3, res.Length - (System.Environment.MachineName.ToUpperInvariant().Length + 3));
                         }
                         return res;
                 }
@@ -85,12 +87,12 @@ namespace Lfx.Config
                                 // Si NO hay una impresora definida para este documento,
                                 // busco alternativas
                                 if (sTipo == "NCA" || sTipo == "NDA") {
-                                        // La impresora predeterminada para las notas de d�bito y 
-                                        // cr�dito "A" es la misma que para las facturas "A"
-                                        res = PrinterFeed("A");
+                                        // La impresora predeterminada para las notas de débito y 
+                                        // crédito "A" es la misma que para las comprob "A"
+                                        res = PrinterFeed("FA");
                                 } else if (sTipo == "NCB" || sTipo == "NDB") {
                                         // Lo mismo con las "B"
-                                        res = PrinterFeed("B");
+                                        res = PrinterFeed("FB");
                                 } else if (sTipo.Length >= 8 && sTipo.Substring(0, 8) == "Listado.") {
                                         // Si no hay impresora para este listado en particular,
                                         // busco la impresora definida para listados en general

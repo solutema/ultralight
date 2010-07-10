@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,25 +27,22 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Lfc.Personas
 {
 	public partial class EditarAccesos : Lui.Forms.EditForm
 	{
-		bool IgnorarEventos;
-                private System.Collections.ArrayList NewAccessList = new System.Collections.ArrayList();
+		private bool IgnorarEventos;
+                private List<AccessListEntry> NewAccessList = new List<AccessListEntry>();
 
                 public EditarAccesos()
                 {
                         InitializeComponent();
                 }
-
 
 		class AccessListEntry
 		{
@@ -62,7 +60,7 @@ namespace Lfc.Personas
 
 			Lfx.Types.OperationResult ResultadoEditar = new Lfx.Types.SuccessOperationResult();
 
-			Lfx.Data.Row Registro = this.Workspace.DefaultDataBase.Row("personas", "id_persona", iId);
+                        Lfx.Data.Row Registro = this.DataBase.Row("personas", "id_persona", iId);
                         if (Registro["contrasena"] != null)
                                 txtContrasena.Text = System.Convert.ToString(Registro["contrasena"]);
 
@@ -72,7 +70,7 @@ namespace Lfc.Personas
 			else
 				txtAcceso.TextKey = "0";
 
-			AccessList = this.Workspace.DefaultDataBase.Select("SELECT id_acceso, id_persona, item FROM sys_accesslist WHERE id_persona=" + iId.ToString());
+			AccessList = this.DataBase.Select("SELECT id_acceso, id_persona, item FROM sys_accesslist WHERE id_persona=" + iId.ToString());
 			foreach(System.Data.DataRow Acceso in AccessList.Rows) {
 				NewAccessList.Add(new AccessListEntry(Acceso["id_acceso"].ToString(), Acceso["item"].ToString()));
 			}
@@ -84,9 +82,9 @@ namespace Lfc.Personas
 		{
 			Accesos.Nodes.Clear();
 
-			System.Data.DataTable AccessBase = this.Workspace.DefaultDataBase.Select("SELECT id_acceso, nombre FROM sys_accessbase WHERE parent IS NULL ORDER BY nombre");
+			System.Data.DataTable AccessBase = this.DataBase.Select("SELECT id_acceso, nombre FROM sys_accessbase WHERE parent IS NULL ORDER BY nombre");
 			foreach(System.Data.DataRow Acceso in AccessBase.Rows) {
-				System.Data.DataTable Hijos = this.Workspace.DefaultDataBase.Select("SELECT id_acceso, nombre FROM sys_accessbase WHERE parent='" + System.Convert.ToString(Acceso["id_acceso"]) + "' ORDER BY nombre");
+				System.Data.DataTable Hijos = this.DataBase.Select("SELECT id_acceso, nombre FROM sys_accessbase WHERE parent='" + System.Convert.ToString(Acceso["id_acceso"]) + "' ORDER BY nombre");
 				TreeNode[] NodosHijos = new TreeNode[Hijos.Rows.Count];
 				int i = 0;
 				foreach(System.Data.DataRow Hijo in Hijos.Rows) {
@@ -108,15 +106,15 @@ namespace Lfc.Personas
 			Lfx.Types.OperationResult ResultadoGuardar = ValidateData();
 
 			if(ResultadoGuardar.Success == true) {
-                                DataView.BeginTransaction();
+                                DataBase.BeginTransaction();
 
-                                DataView.DataBase.Execute("DELETE FROM sys_accesslist WHERE id_persona=" + m_Id.ToString());
+                                DataBase.Execute("DELETE FROM sys_accesslist WHERE id_persona=" + m_Id.ToString());
 				foreach(AccessListEntry Acc in NewAccessList) {
-                                        DataView.DataBase.Execute("INSERT INTO sys_accesslist (id_acceso, id_persona, item) VALUES ('" + Acc.id_acceso + "', " + m_Id.ToString() + ", '" + Acc.item + "')");
+                                        DataBase.Execute("INSERT INTO sys_accesslist (id_acceso, id_persona, item) VALUES ('" + Acc.id_acceso + "', " + m_Id.ToString() + ", '" + Acc.item + "')");
 				}
 
-                                Lfx.Data.SqlUpdateBuilder ActualizarAcceso = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "personas");
-                                ActualizarAcceso.WhereClause = new Lfx.Data.SqlWhereBuilder("id_persona", m_Id);
+                                qGen.Update ActualizarAcceso = new qGen.Update(DataBase, "personas");
+                                ActualizarAcceso.WhereClause = new qGen.Where("id_persona", m_Id);
 
         			int OldTipo = System.Convert.ToInt32(txtAcceso.Tag);
 				if(txtAcceso.TextKey == "1")
@@ -127,8 +125,8 @@ namespace Lfc.Personas
                                 ActualizarAcceso.Fields.AddWithValue("tipo", OldTipo);
                                 ActualizarAcceso.Fields.AddWithValue("contrasena", txtContrasena.Text);
 
-                                DataView.Execute(ActualizarAcceso);
-                                DataView.Commit();
+                                DataBase.Execute(ActualizarAcceso);
+                                DataBase.Commit();
 			}
 
 			base.Save();
@@ -232,7 +230,7 @@ namespace Lfc.Personas
 		{
 			SubItems.Items.Clear();
 
-			System.Data.DataTable Cajas = this.Workspace.DefaultDataBase.Select("SELECT " + keyName + ", " + valueName + " FROM " + tableName + " ORDER BY " + valueName);
+			System.Data.DataTable Cajas = this.DataBase.Select("SELECT " + keyName + ", " + valueName + " FROM " + tableName + " ORDER BY " + valueName);
 			foreach(System.Data.DataRow Caja in Cajas.Rows) {
 				ListViewItem Itm = SubItems.Items.Add(Caja[keyName].ToString());
 				Itm.SubItems.Add(Caja[valueName].ToString());

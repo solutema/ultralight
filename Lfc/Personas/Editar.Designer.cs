@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -98,6 +100,8 @@ namespace Lfc.Personas
                         this.EntradaNumeroCuenta = new Lui.Forms.TextBox();
                         this.label22 = new System.Windows.Forms.Label();
                         this.frame3 = new Lui.Forms.Frame();
+                        this.EntradaVendedor = new Lui.Forms.DetailBox();
+                        this.label23 = new System.Windows.Forms.Label();
                         this.frame4 = new Lui.Forms.Frame();
                         this.EntradaSubGrupo = new Lui.Forms.DetailBox();
                         this.label13 = new System.Windows.Forms.Label();
@@ -108,8 +112,6 @@ namespace Lfc.Personas
                         this.EntradaTags = new Lui.Forms.FieldTags();
                         this.EntradaImagen = new Lcc.Edicion.Imagen();
                         this.ContenedorScroll = new System.Windows.Forms.Panel();
-                        this.EntradaVendedor = new Lui.Forms.DetailBox();
-                        this.label23 = new System.Windows.Forms.Label();
                         this.Frame1.SuspendLayout();
                         this.Frame2.SuspendLayout();
                         this.frame3.SuspendLayout();
@@ -192,7 +194,7 @@ namespace Lfc.Personas
                         this.EntradaCiudad.CanCreate = true;
                         this.EntradaCiudad.DetailField = "nombre";
                         this.EntradaCiudad.ExtraDetailFields = null;
-                        this.EntradaCiudad.Filter = "";
+                        this.EntradaCiudad.Filter = "nivel=2";
                         this.EntradaCiudad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCiudad.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCiudad.FreeTextCode = "";
@@ -986,6 +988,46 @@ namespace Lfc.Personas
                         this.frame3.Text = "Datos de Contacto";
                         this.frame3.ToolTipText = "";
                         // 
+                        // EntradaVendedor
+                        // 
+                        this.EntradaVendedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaVendedor.AutoHeight = false;
+                        this.EntradaVendedor.AutoTab = true;
+                        this.EntradaVendedor.CanCreate = true;
+                        this.EntradaVendedor.DetailField = "nombre_visible";
+                        this.EntradaVendedor.ExtraDetailFields = null;
+                        this.EntradaVendedor.Filter = "(tipo&4)=4";
+                        this.EntradaVendedor.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaVendedor.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaVendedor.FreeTextCode = "";
+                        this.EntradaVendedor.KeyField = "id_persona";
+                        this.EntradaVendedor.Location = new System.Drawing.Point(100, 168);
+                        this.EntradaVendedor.MaxLength = 200;
+                        this.EntradaVendedor.Name = "EntradaVendedor";
+                        this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaVendedor.ReadOnly = false;
+                        this.EntradaVendedor.Required = false;
+                        this.EntradaVendedor.SelectOnFocus = false;
+                        this.EntradaVendedor.Size = new System.Drawing.Size(316, 24);
+                        this.EntradaVendedor.TabIndex = 11;
+                        this.EntradaVendedor.Table = "personas";
+                        this.EntradaVendedor.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaVendedor.Text = "0";
+                        this.EntradaVendedor.TextDetail = "";
+                        this.EntradaVendedor.TextInt = 0;
+                        this.EntradaVendedor.TipWhenBlank = "Ninguno";
+                        this.EntradaVendedor.ToolTipText = "";
+                        // 
+                        // label23
+                        // 
+                        this.label23.Location = new System.Drawing.Point(8, 168);
+                        this.label23.Name = "label23";
+                        this.label23.Size = new System.Drawing.Size(96, 24);
+                        this.label23.TabIndex = 10;
+                        this.label23.Text = "Vendedor";
+                        this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
                         // frame4
                         // 
                         this.frame4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -1181,46 +1223,6 @@ namespace Lfc.Personas
                         this.ContenedorScroll.Name = "ContenedorScroll";
                         this.ContenedorScroll.Size = new System.Drawing.Size(792, 372);
                         this.ContenedorScroll.TabIndex = 0;
-                        // 
-                        // EntradaVendedor
-                        // 
-                        this.EntradaVendedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaVendedor.AutoHeight = false;
-                        this.EntradaVendedor.AutoTab = true;
-                        this.EntradaVendedor.CanCreate = true;
-                        this.EntradaVendedor.DetailField = "nombre_visible";
-                        this.EntradaVendedor.ExtraDetailFields = null;
-                        this.EntradaVendedor.Filter = "(tipo&4)=4";
-                        this.EntradaVendedor.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaVendedor.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaVendedor.FreeTextCode = "";
-                        this.EntradaVendedor.KeyField = "id_persona";
-                        this.EntradaVendedor.Location = new System.Drawing.Point(100, 168);
-                        this.EntradaVendedor.MaxLength = 200;
-                        this.EntradaVendedor.Name = "EntradaVendedor";
-                        this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaVendedor.ReadOnly = false;
-                        this.EntradaVendedor.Required = false;
-                        this.EntradaVendedor.SelectOnFocus = false;
-                        this.EntradaVendedor.Size = new System.Drawing.Size(316, 24);
-                        this.EntradaVendedor.TabIndex = 11;
-                        this.EntradaVendedor.Table = "personas";
-                        this.EntradaVendedor.TeclaDespuesDeEnter = "{tab}";
-                        this.EntradaVendedor.Text = "0";
-                        this.EntradaVendedor.TextDetail = "";
-                        this.EntradaVendedor.TextInt = 0;
-                        this.EntradaVendedor.TipWhenBlank = "Ninguno";
-                        this.EntradaVendedor.ToolTipText = "";
-                        // 
-                        // label23
-                        // 
-                        this.label23.Location = new System.Drawing.Point(8, 168);
-                        this.label23.Name = "label23";
-                        this.label23.Size = new System.Drawing.Size(96, 24);
-                        this.label23.TabIndex = 10;
-                        this.label23.Text = "Vendedor";
-                        this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Editar
                         // 

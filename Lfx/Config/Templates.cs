@@ -1,4 +1,5 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+#region License
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -26,10 +27,12 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Drawing;
 
 namespace Lfx.Config.Templates
 {
@@ -38,7 +41,7 @@ namespace Lfx.Config.Templates
                 public System.Drawing.Font DefaultFont = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                 public System.Drawing.Font SmallFont = new System.Drawing.Font("Bitstream Vera Sans", 8F);
                 public System.Drawing.Font SmallerFont = new System.Drawing.Font("Bitstream Vera Sans", 6.75F);
-                public System.Drawing.Font TitleFont = new System.Drawing.Font("Bitstream Vera Sans", 11F, System.Drawing.FontStyle.Bold);
+                public System.Drawing.Font TitleFont = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold);
                 public System.Drawing.Font DefaultHeaderFont = new System.Drawing.Font("Bitstream Vera Sans", 16F, System.Drawing.FontStyle.Bold);
                 public System.Drawing.Font DefaultHeader2Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold);
                 public System.Drawing.Font DefaultMonospaced = new System.Drawing.Font("Bitstream Vera Sans Mono", 10F);
@@ -102,11 +105,11 @@ namespace Lfx.Config.Templates
                         ToolBarText = System.Drawing.SystemColors.InfoText;
                 }
 
-                // Funcin: PaletaCambiarBrillo
-                // Parmetros:
+                // Función: PaletaCambiarBrillo
+                // Parámetros:
                 //    Color   El color que se desea cambiar
                 //    Brillo  Un valor porcentual de birllo positivo (aumentar) o negativo (disminuir)
-                // Descripci�n:
+                // Descripción:
                 //    Sube o baja el brillo de un color, segn un porcentaje (de -100 a 100)
                 public static System.Drawing.Color CambiarBrillo(System.Drawing.Color colorOrigen, int Brillo)
                 {
@@ -148,7 +151,7 @@ namespace Lfx.Config.Templates
 
                         this.WindowText = System.Drawing.Color.Black;
                         this.ButtonFace = CambiarBrillo(this.WindowBackground, 5);
-                        this.ButtonBackground = System.Drawing.Color.White;
+                        this.ButtonBackground = System.Drawing.Color.FromArgb(250, 250, 250);
                         this.ButtonBorder = System.Drawing.Color.FromArgb(83, 113, 149);
                         this.ButtonText = System.Drawing.Color.FromArgb(7, 2, 25);
                         this.ButtonSubBackground = System.Drawing.Color.FromArgb(225, 225, 225);
@@ -165,8 +168,8 @@ namespace Lfx.Config.Templates
                         this.SelectionText = System.Drawing.Color.White;
                         this.TitleBackground = this.WindowBackground;
                         this.TitleText = System.Drawing.Color.FromArgb(40, 68, 98);
-                        this.HeaderBackground = System.Drawing.Color.FromArgb(81, 129, 183);
-                        this.HeaderText = System.Drawing.Color.White;
+                        this.HeaderBackground = System.Drawing.Color.FromArgb(214, 202, 174);
+                        this.HeaderText = this.ControlText;             // System.Drawing.Color.White;
                         this.Header2Background = System.Drawing.Color.FromArgb(200, 206, 220);
                         this.Header2Text = System.Drawing.Color.FromArgb(27, 68, 115);
                         this.FooterBackground = System.Drawing.Color.FromArgb(207, 205, 187);

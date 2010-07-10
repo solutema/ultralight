@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,8 +27,10 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Lfc.Personas
@@ -46,9 +49,9 @@ namespace Lfc.Personas
                         if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.create"))
                                 return new Lfx.Types.NoAccessOperationResult();
 
-                        Lbl.Personas.Persona Cliente = new Lbl.Personas.Persona(this.DataView);
+                        Lbl.Personas.Persona Cliente = new Lbl.Personas.Persona(this.DataBase);
                         Cliente.Crear();
-                        Cliente.Grupo = new Lbl.Personas.Grupo(Cliente.DataView, this.Workspace.DefaultDataBase.FieldInt("SELECT id_grupo FROM personas_grupos WHERE predet=1"));
+                        Cliente.Grupo = new Lbl.Personas.Grupo(Cliente.DataBase, this.DataBase.FieldInt("SELECT id_grupo FROM personas_grupos WHERE predet=1"));
                         this.FromRow(Cliente);
 
                         this.Text = "Clientes: Nuevo";
@@ -59,29 +62,29 @@ namespace Lfc.Personas
                 public override Lui.Printing.ItemPrint FormatForPrinting(Lui.Printing.ItemPrint ImprimirItem)
                 {
                         ImprimirItem.Titulo = EntradaNombreVisible.Text;
-                        ImprimirItem.ParesAgregar("Tipo", EntradaTipo.TextDetail, 1);
+                        ImprimirItem.AgregarPar("Tipo", EntradaTipo.TextDetail, 1);
                         if (EntradaNombre.Text.Length > 0)
-                                ImprimirItem.ParesAgregar("Nombres", EntradaNombre.Text, 1);
+                                ImprimirItem.AgregarPar("Nombres", EntradaNombre.Text, 1);
 
                         if (EntradaApellido.Text.Length > 0)
-                                ImprimirItem.ParesAgregar("Apellidos", EntradaApellido.Text, 1);
+                                ImprimirItem.AgregarPar("Apellidos", EntradaApellido.Text, 1);
 
                         if (EntradaRazonSocial.Text.Length > 0)
-                                ImprimirItem.ParesAgregar("Razón Social", EntradaRazonSocial.Text, 1);
+                                ImprimirItem.AgregarPar("Razón Social", EntradaRazonSocial.Text, 1);
 
-                        ImprimirItem.ParesAgregar("Situación Tributaria", EntradaSituacion.TextDetail, 1);
+                        ImprimirItem.AgregarPar("Situación Tributaria", EntradaSituacion.TextDetail, 1);
                         if (EntradaCuit.Text.Length > 0)
-                                ImprimirItem.ParesAgregar("CUIT", EntradaCuit.Text, 1);
+                                ImprimirItem.AgregarPar("CUIT", EntradaCuit.Text, 1);
 
-                        ImprimirItem.ParesAgregar("Nombre Visible", EntradaNombreVisible.Text, 1);
-                        ImprimirItem.ParesAgregar("Domicilio", EntradaDomicilio.Text, 1);
-                        ImprimirItem.ParesAgregar("", EntradaCiudad.TextDetail, 1);
-                        ImprimirItem.ParesAgregar("Teléfono", EntradaTelefono.Text, 1);
+                        ImprimirItem.AgregarPar("Nombre Visible", EntradaNombreVisible.Text, 1);
+                        ImprimirItem.AgregarPar("Domicilio", EntradaDomicilio.Text, 1);
+                        ImprimirItem.AgregarPar("", EntradaCiudad.TextDetail, 1);
+                        ImprimirItem.AgregarPar("Teléfono", EntradaTelefono.Text, 1);
                         if (EntradaEmail.Text.Length > 0)
-                                ImprimirItem.ParesAgregar("E-mail", EntradaEmail.Text, 1);
+                                ImprimirItem.AgregarPar("E-mail", EntradaEmail.Text, 1);
 
                         if (EntradaObs.Text.Length > 0)
-                                ImprimirItem.ParesAgregar("Observaciones", EntradaObs.Text, 1);
+                                ImprimirItem.AgregarPar("Observaciones", EntradaObs.Text, 1);
 
                         return ImprimirItem;
                 }
@@ -95,7 +98,7 @@ namespace Lfc.Personas
                         if (iId == 999) {
                                 return new Lfx.Types.FailureOperationResult("No se pueden cambiar los datos de \"Consumidor Final\"");
                         } else {
-                                Lbl.Personas.Persona Persona = new Lbl.Personas.Persona(this.DataView, iId);
+                                Lbl.Personas.Persona Persona = new Lbl.Personas.Persona(this.DataBase, iId);
                                 this.FromRow(Persona);
                                 return new Lfx.Types.SuccessOperationResult();
                         }
@@ -120,7 +123,7 @@ namespace Lfc.Personas
                                 Lfx.Data.Row rowVeriNombre = null;
                                 string Sql = @"SELECT id_persona, nombre_visible, domicilio, telefono, cuit, email FROM personas WHERE (";
                                 if (EntradaNombreVisible.Text.Length > 0)
-                                        Sql += @"nombre_visible LIKE '%" + this.Workspace.DefaultDataBase.EscapeString(EntradaNombreVisible.Text.Replace("%", "").Replace("_", "")) + @"%'";
+                                        Sql += @"nombre_visible LIKE '%" + this.DataBase.EscapeString(EntradaNombreVisible.Text.Replace("%", "").Replace("_", "")) + @"%'";
                                 if (EntradaDomicilio.Text.Length > 0)
                                         Sql += @" OR domicilio LIKE '%" + Workspace.DefaultDataBase.EscapeString(EntradaDomicilio.Text) + @"%'";
 
@@ -129,7 +132,7 @@ namespace Lfc.Personas
 
                                 if (EntradaTelefono.Text.Length > 0) {
                                         string Telefono = EntradaTelefono.Text.Replace(" -", "").Replace("- ", "").Replace("/", " ").Replace(",", " ").Replace(".", " ").Replace("  ", " ").Replace("%", "").Replace("_", "");
-                                        System.Collections.ArrayList Telefonos = Lfx.Types.Strings.SplitDelimitedString(Telefono, ' ');
+                                        List<string> Telefonos = Lfx.Types.Strings.SplitDelimitedString(Telefono, ' ');
                                         if (Telefonos != null && Telefonos.Count > 0) {
                                                 foreach (string Tel in Telefonos) {
                                                         if (Tel != null && Tel.Length > 4)
@@ -143,7 +146,7 @@ namespace Lfc.Personas
                                         Sql += @" OR cuit='" + Workspace.DefaultDataBase.EscapeString(EntradaCuit.Text.Replace("%", "").Replace("_", "")) + @"'";
                                 Sql += @") AND id_persona<>" + m_Id.ToString();
 
-                                rowVeriNombre = this.Workspace.DefaultDataBase.FirstRowFromSelect(Sql);
+                                rowVeriNombre = this.DataBase.FirstRowFromSelect(Sql);
                                 if (rowVeriNombre != null) {
                                         if (Cliente != null && Cliente.Existe == false) {
                                                 AltaDuplicada CliDup = new AltaDuplicada();
@@ -171,7 +174,7 @@ namespace Lfc.Personas
                                                         case DialogResult.No:
                                                                 //Actualizar
                                                                 this.m_Id = System.Convert.ToInt32(rowVeriNombre["id_persona"]);
-                                                                this.CachedRow = new Lbl.Personas.Persona(this.CachedRow.DataView, m_Id);
+                                                                this.CachedRow = new Lbl.Personas.Persona(this.CachedRow.DataBase, m_Id);
                                                                 return new Lfx.Types.SuccessOperationResult();
                                                         case DialogResult.Cancel:
                                                                 //Volver a la edición
@@ -203,7 +206,7 @@ namespace Lfc.Personas
                                         if (EntradaCuit.Text.Length == 11)
                                                 EntradaCuit.Text = EntradaCuit.Text.Substring(0, 2) + "-" + EntradaCuit.Text.Substring(2, 8) + "-" + EntradaCuit.Text.Substring(10, 1);
 
-                                        Lfx.Data.Row rowVeriCUIT = this.Workspace.DefaultDataBase.FirstRowFromSelect("SELECT id_persona FROM personas WHERE cuit='" + EntradaCuit.Text + "' AND id_persona<>" + m_Id.ToString());
+                                        Lfx.Data.Row rowVeriCUIT = this.DataBase.FirstRowFromSelect("SELECT id_persona FROM personas WHERE cuit='" + EntradaCuit.Text + "' AND id_persona<>" + m_Id.ToString());
                                         if (rowVeriCUIT != null) {
                                                 if (Cliente.Existe == false) {
                                                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Ya existe una empresa o persona con esa CUIT en la base de datos. ¿Desea continuar y crear una nueva de todos modos?", "CUIT duplicada");
@@ -404,11 +407,11 @@ namespace Lfc.Personas
                         if (EntradaGrupo.TextInt == 0)
                                 Res.Grupo = null;
                         else
-                                Res.Grupo = new Lbl.Personas.Grupo(Res.DataView, EntradaGrupo.TextInt);
+                                Res.Grupo = new Lbl.Personas.Grupo(Res.DataBase, EntradaGrupo.TextInt);
                         if (EntradaSubGrupo.TextInt == 0)
                                 Res.SubGrupo = null;
                         else
-                                Res.SubGrupo = new Lbl.Personas.Grupo(Res.DataView, EntradaSubGrupo.TextInt);
+                                Res.SubGrupo = new Lbl.Personas.Grupo(Res.DataBase, EntradaSubGrupo.TextInt);
                         Res.NombreSolo = EntradaNombre.Text.Trim();
                         Res.Apellido = EntradaApellido.Text.Trim();
                         Res.RazonSocial = EntradaRazonSocial.Text.Trim();
@@ -420,7 +423,7 @@ namespace Lfc.Personas
                         if (EntradaSituacion.TextInt == 0)
                                 Res.SituacionTributaria = null;
                         else
-                                Res.SituacionTributaria = new Lbl.Personas.SituacionTributaria(Res.DataView, EntradaSituacion.TextInt);
+                                Res.SituacionTributaria = new Lbl.Personas.SituacionTributaria(Res.DataBase, EntradaSituacion.TextInt);
 
                         if (EntradaTipoFac.TextKey == "*")
                                 Res.FacturaPreferida = null;
@@ -432,13 +435,13 @@ namespace Lfc.Personas
                         if (EntradaCiudad.TextInt == 0)
                                 Res.Localidad = null;
                         else
-                                Res.Localidad = new Lbl.Entidades.Localidad(Res.DataView, EntradaCiudad.TextInt);
+                                Res.Localidad = new Lbl.Entidades.Localidad(Res.DataBase, EntradaCiudad.TextInt);
                         Res.Telefono = EntradaTelefono.Text;
                         Res.Email = EntradaEmail.Text;
                         if (EntradaVendedor.TextInt == 0)
                                 Res.Vendedor = null;
                         else
-                                Res.Vendedor = new Lbl.Personas.Persona(Res.DataView, EntradaVendedor.TextInt);
+                                Res.Vendedor = new Lbl.Personas.Persona(Res.DataBase, EntradaVendedor.TextInt);
                         Res.Obs = EntradaObs.Text;
                         Res.Estado = 1;
                         Res.LimiteCredito = Lfx.Types.Parsing.ParseCurrency(EntradaLimiteCredito.Text);

@@ -1,4 +1,5 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+#region License
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -36,10 +38,21 @@ namespace Lfx.Config
         public class CompanyConfig
         {
                 private ConfigManager ConfigManager;
+                private Lfx.Data.Row m_Sucursal;
 
                 public CompanyConfig(ConfigManager configManager)
                 {
                         this.ConfigManager = configManager;
+                }
+
+                private Lfx.Data.Row Sucursal
+                {
+                        get
+                        {
+                                if (m_Sucursal == null)
+                                        m_Sucursal = ConfigManager.DataBase.Tables["sucursales"].FastRows[this.CurrentBranch];
+                                return m_Sucursal;
+                        }
                 }
 
                 public int CurrentBranch
@@ -58,7 +71,7 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                return ConfigManager.Workspace.DefaultDataBase.FieldString("SELECT telefono FROM sucursales WHERE id_sucursal=" + this.CurrentBranch.ToString());
+                                return this.Sucursal["telefono"].ToString();
                         }
                 }
 
@@ -66,7 +79,7 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                return ConfigManager.Workspace.DefaultDataBase.FieldString("SELECT direccion FROM sucursales WHERE id_sucursal=" + this.CurrentBranch.ToString());
+                                return this.Sucursal["direccion"].ToString();
                         }
                 }
 
@@ -74,7 +87,7 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                return ConfigManager.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM ciudades WHERE id_ciudad=(SELECT id_ciudad FROM sucursales WHERE id_sucursal=" + this.CurrentBranch.ToString() + ")");
+                                return ConfigManager.DataBase.FieldString("SELECT nombre FROM ciudades WHERE id_ciudad=(SELECT id_ciudad FROM sucursales WHERE id_sucursal=" + this.CurrentBranch.ToString() + ")");
                         }
                 }
 
@@ -82,7 +95,7 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                int City = ConfigManager.Workspace.DefaultDataBase.FieldInt("SELECT id_ciudad FROM sucursales WHERE id_sucursal=" + ConfigManager.Company.CurrentBranch.ToString());
+                                int City = ConfigManager.DataBase.FieldInt("SELECT id_ciudad FROM sucursales WHERE id_sucursal=" + ConfigManager.Company.CurrentBranch.ToString());
                                 if (City > 0)
                                         return City;
                                 else
@@ -94,7 +107,7 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                int SituacionOrigen = ConfigManager.Workspace.DefaultDataBase.FieldInt("SELECT situacionorigen FROM sucursales WHERE id_sucursal=" + ConfigManager.Company.CurrentBranch.ToString());
+                                int SituacionOrigen = ConfigManager.DataBase.FieldInt("SELECT situacionorigen FROM sucursales WHERE id_sucursal=" + ConfigManager.Company.CurrentBranch.ToString());
                                 if (SituacionOrigen > 0)
                                         return SituacionOrigen;
                                 else
@@ -106,21 +119,21 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                int CuentaCaja = ConfigManager.Workspace.DefaultDataBase.FieldInt("SELECT id_cuenta_caja FROM sucursales WHERE id_sucursal=" + ConfigManager.Company.CurrentBranch.ToString());
-                                if (CuentaCaja > 0)
-                                        return CuentaCaja;
+                                int IdCajaDiaria = ConfigManager.DataBase.FieldInt("SELECT id_caja_diaria FROM sucursales WHERE id_sucursal=" + ConfigManager.Company.CurrentBranch.ToString());
+                                if (IdCajaDiaria > 0)
+                                        return IdCajaDiaria;
                                 else
                                         return 999;
                         }
                 }
 
-                public int CuentaCheques
+                public int CajaCheques
                 {
                         get
                         {
-                                int CuentaCheques = ConfigManager.Workspace.DefaultDataBase.FieldInt("SELECT id_cuenta_cheques FROM sucursales WHERE id_sucursal=" + ConfigManager.Company.CurrentBranch.ToString());
-                                if (CuentaCheques > 0)
-                                        return CuentaCheques;
+                                int IdCajaCheques = ConfigManager.DataBase.FieldInt("SELECT id_caja_cheques FROM sucursales WHERE id_sucursal=" + ConfigManager.Company.CurrentBranch.ToString());
+                                if (IdCajaCheques > 0)
+                                        return IdCajaCheques;
                                 else
                                         return this.CajaDiaria;
                         }
@@ -150,7 +163,7 @@ namespace Lfx.Config
                         }
                 }
 
-                public string CUIT
+                public string Cuit
                 {
                         get
                         {
@@ -158,9 +171,20 @@ namespace Lfx.Config
                         }
                         set
                         {
-                                ConfigManager.WriteGlobalSetting("Sistema", "Empresa.CUIT", value, "*");
+                                ConfigManager.WriteGlobalSetting("Sistema", "Empresa.CUIT", value, 0);
                         }
                 }
 
+                public string Email
+                {
+                        get
+                        {
+                                return ConfigManager.ReadGlobalSettingString("Sistema", "Empresa.Email", "");
+                        }
+                        set
+                        {
+                                ConfigManager.WriteGlobalSetting("Sistema", "Empresa.Email", value, "*");
+                        }
+                }
         }
 }

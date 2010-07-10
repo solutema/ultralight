@@ -1,4 +1,5 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+#region License
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Drawing;
@@ -37,17 +39,16 @@ namespace Lfx.Config
 	/// </summary>
 	public class ConfigManager
 	{
-		private string CONFIGFILENAME;
+		private string m_ConfigFileName;
 		private System.Xml.XmlDocument ConfigDocument;
 		private Workspace m_Workspace;
+                //private Lfx.Data.DataBase m_DataBase;
 
                 public Lfx.Config.ProductsConfig Products;
                 public Lfx.Config.CurrencyConfig Currency;
                 public Lfx.Config.PrintersConfig Printing;
                 public Lfx.Config.CompanyConfig Company;
 
-		//TODO: que se vacíe cada tanto
-		private Lfx.Data.DataBase ConfigDB;
                 private System.Collections.Hashtable SysConfigCache = null;
                 private System.DateTime SysConfigCacheLastRefresh;
 
@@ -74,16 +75,34 @@ namespace Lfx.Config
 		{
 			get
 			{
-				return CONFIGFILENAME;
+				return m_ConfigFileName;
 			}
 			set
 			{
-				CONFIGFILENAME = value;
-				//Si no tiene ruta, asumo la carpeta de la aplicación
-				if(!System.IO.Path.IsPathRooted(CONFIGFILENAME)) 
-					CONFIGFILENAME = Lfx.Environment.Folders.ApplicationDataFolder + CONFIGFILENAME;
+				m_ConfigFileName = value;
+
+                                if (!System.IO.Path.IsPathRooted(m_ConfigFileName)) {
+                                        // Si no tiene ruta, busco en la carpeta de datos
+                                        // o junto al ejecutable (para aplicaciones portables)
+                                        if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + m_ConfigFileName)) {
+                                                m_ConfigFileName = Lfx.Environment.Folders.ApplicationFolder + m_ConfigFileName;
+                                        } else {
+                                                m_ConfigFileName = Lfx.Environment.Folders.ApplicationDataFolder + m_ConfigFileName;
+                                        }
+                                }
 			}
 		}
+
+                public Lfx.Data.DataBase DataBase
+                {
+                        get
+                        {
+                                //if (m_DataBase == null)
+                                //        m_DataBase = m_Workspace.GetDataBase("Administrador de configuración");
+                                //return m_DataBase;
+                                return this.Workspace.DefaultDataBase;
+                        }
+                }
 
 		public void WriteLocalSetting(string sectionName, string settingName, int settingValue)
 		{
@@ -216,18 +235,17 @@ namespace Lfx.Config
                         if (SysConfigCache == null) {
                                 SysConfigCache = new System.Collections.Hashtable();
 
-                                if (ConfigDB == null)
-                                        ConfigDB = m_Workspace.DefaultDataBase;
-
-                                System.Data.Odbc.OdbcDataReader TablaSysConfig = ConfigDB.GetReader("SELECT nombre, valor, estacion, id_sucursal FROM sys_config");
-                                while (TablaSysConfig.Read()) {
+                                qGen.Select SelectConfig = new qGen.Select("sys_config");
+                                SelectConfig.Fields = "nombre, valor, estacion, id_sucursal";
+                                System.Data.DataTable TablaSysConfig = this.DataBase.Select(SelectConfig);
+                                foreach(System.Data.DataRow CfgRow in TablaSysConfig.Rows) {
                                         string Sucu;
-                                        if (TablaSysConfig["id_sucursal"] is DBNull || System.Convert.ToInt32(TablaSysConfig["id_sucursal"]) == 0)
+                                        if (CfgRow["id_sucursal"] == null || System.Convert.ToInt32(CfgRow["id_sucursal"]) == 0)
                                                 Sucu = "";
                                         else
-                                                Sucu = TablaSysConfig["id_sucursal"].ToString();
-                                        string VarName = TablaSysConfig["estacion"].ToString() + "/" + Sucu + "/" + TablaSysConfig["nombre"].ToString();
-                                        SysConfigCache.Add(VarName, TablaSysConfig["valor"].ToString());
+                                                Sucu = CfgRow["id_sucursal"].ToString();
+                                        string VarName = CfgRow["estacion"].ToString() + "/" + Sucu + "/" + CfgRow["nombre"].ToString();
+                                        SysConfigCache.Add(VarName, CfgRow["valor"].ToString());
                                 }
                                 SysConfigCacheLastRefresh = System.DateTime.Now;
 			}
@@ -235,7 +253,7 @@ namespace Lfx.Config
 			string Busco;
 
 			//Busco una variable para la estación
-                        Busco = (terminalName == null ? Lfx.Environment.SystemInformation.ComputerName : terminalName) + "//" + CompleteSettingName;
+                        Busco = (terminalName == null ? System.Environment.MachineName.ToUpperInvariant() : terminalName) + "//" + CompleteSettingName;
 			if(sucursal == 0 && SysConfigCache.Contains(Busco)) {
                                 string Res = (string)SysConfigCache[Busco];
                                 if (Res.Length > 0)
@@ -243,7 +261,7 @@ namespace Lfx.Config
 			}
 
 			//Busco una variable para la sucursal
-                        Busco = "*/" + m_Workspace.CurrentConfig.Company.CurrentBranch.ToString() + "/" + ConfigDB.EscapeString(CompleteSettingName);
+                        Busco = "*/" + m_Workspace.CurrentConfig.Company.CurrentBranch.ToString() + "/" + DataBase.EscapeString(CompleteSettingName);
                         if (terminalName == null && SysConfigCache.Contains(Busco)) {
                                 string Res = (string)SysConfigCache[Busco];
                                 if (Res.Length > 0)
@@ -253,7 +271,7 @@ namespace Lfx.Config
 			if(sucursal == 0 && terminalName == null)
 			{
 				//Busco una variable global
-                                Busco = "*//" + ConfigDB.EscapeString(CompleteSettingName);
+                                Busco = "*//" + DataBase.EscapeString(CompleteSettingName);
                                 if (SysConfigCache.Contains(Busco)) {
                                         string Res = (string)SysConfigCache[Busco];
                                         if (Res.Length > 0)
@@ -266,19 +284,15 @@ namespace Lfx.Config
 
 		public bool DeleteGlobalSetting(string sectionName, string settingName, int branch)
 		{
-			if(ConfigDB == null)
-				ConfigDB = m_Workspace.GetDataBase();
-
 			if(branch == 0)
 				branch = m_Workspace.CurrentConfig.Company.CurrentBranch;
 
 			string CompleteSettingName = (sectionName==null||sectionName.Length==0?"":(sectionName+@".")) + settingName;
-			Data.SqlDeleteBuilder DeleteCommand = new Data.SqlDeleteBuilder("sys_config");
-			DeleteCommand.WhereClause = new Data.SqlWhereBuilder();
-			DeleteCommand.WhereClause.AndOr = Data.SqlWhereBuilder.OperandsAndOr.OperandAnd;
-			DeleteCommand.WhereClause.Conditions.Add(new Data.SqlCondition("nombre", Data.SqlCommandBuilder.SqlOperands.Equals, "'" + CompleteSettingName + "'"));
-			DeleteCommand.WhereClause.Conditions.Add(new Data.SqlCondition("id_sucursal", Data.SqlCommandBuilder.SqlOperands.Equals, branch.ToString()));
-			ConfigDB.Delete(DeleteCommand);
+                        qGen.Delete DeleteCommand = new qGen.Delete("sys_config");
+                        DeleteCommand.WhereClause = new qGen.Where(qGen.AndOr.And);
+                        DeleteCommand.WhereClause.Add(new qGen.ComparisonCondition("nombre", CompleteSettingName));
+                        DeleteCommand.WhereClause.Add(new qGen.ComparisonCondition("id_sucursal", branch));
+			DataBase.Delete(DeleteCommand);
 
 			this.InvalidateConfigCache();
 			return true;
@@ -286,19 +300,16 @@ namespace Lfx.Config
 
 		public bool DeleteGlobalSetting(string sectionName, string settingName, string terminalName)
 		{
-			if(ConfigDB == null)
-				ConfigDB = m_Workspace.GetDataBase();
-
 			if(terminalName == null || terminalName.Length == 0)
-				terminalName = Lfx.Environment.SystemInformation.ComputerName;
+                                terminalName = System.Environment.MachineName.ToUpperInvariant();
 
 			string CompleteSettingName = (sectionName==null||sectionName.Length==0?"":(sectionName+@".")) + settingName;
-			Data.SqlDeleteBuilder DeleteCommand = new Data.SqlDeleteBuilder("sys_config");
-			DeleteCommand.WhereClause = new Data.SqlWhereBuilder();
-			DeleteCommand.WhereClause.AndOr = Data.SqlWhereBuilder.OperandsAndOr.OperandAnd;
-			DeleteCommand.WhereClause.Conditions.Add(new Data.SqlCondition("nombre", Data.SqlCommandBuilder.SqlOperands.Equals, "'" + CompleteSettingName + "'"));
-			DeleteCommand.WhereClause.Conditions.Add(new Data.SqlCondition("estacion", Data.SqlCommandBuilder.SqlOperands.Equals, "'" + terminalName + "'"));
-			ConfigDB.Delete(DeleteCommand);
+                        qGen.Delete DeleteCommand = new qGen.Delete("sys_config");
+                        DeleteCommand.WhereClause = new qGen.Where();
+                        DeleteCommand.WhereClause.Operator = qGen.AndOr.And;
+                        DeleteCommand.WhereClause.Add(new qGen.ComparisonCondition("nombre", CompleteSettingName));
+                        DeleteCommand.WhereClause.Add(new qGen.ComparisonCondition("estacion", terminalName));
+			DataBase.Delete(DeleteCommand);
 
 			this.InvalidateConfigCache();
 			return true;
@@ -311,31 +322,28 @@ namespace Lfx.Config
 
 		public bool WriteGlobalSetting(string sectionName, string settingName, string stringValue, int branch)
 		{
-                        if (ConfigDB == null)
-                                ConfigDB = m_Workspace.DefaultDataBase;
-
 			string CurrentValue = ReadGlobalSettingString(sectionName, settingName, null, null, branch);
 			string CompleteSettingName = (sectionName==null||sectionName.Length==0?"":(sectionName+@".")) + settingName;
 			if(CurrentValue == null) 
 			{
 				//Crear el valor
-				Data.SqlInsertBuilder InsertCommand = new Data.SqlInsertBuilder("sys_config");
-				InsertCommand.Fields.Add(new Data.SqlField("id_sucursal", Data.ValueTypes.StringValue, branch));
-				InsertCommand.Fields.Add(new Data.SqlField("estacion", Data.ValueTypes.StringValue, "*"));
-				InsertCommand.Fields.Add(new Data.SqlField("nombre", Data.ValueTypes.StringValue, CompleteSettingName));
-				InsertCommand.Fields.Add(new Data.SqlField("valor", Data.ValueTypes.StringValue, stringValue));
-				ConfigDB.Insert(InsertCommand);
+                                qGen.Insert InsertCommand = new qGen.Insert("sys_config");
+                                InsertCommand.Fields.Add(new Lfx.Data.Field("id_sucursal", Lfx.Data.DbTypes.Integer, branch));
+                                InsertCommand.Fields.Add(new Lfx.Data.Field("estacion", Lfx.Data.DbTypes.VarChar, "*"));
+                                InsertCommand.Fields.Add(new Lfx.Data.Field("nombre", Lfx.Data.DbTypes.VarChar, CompleteSettingName));
+                                InsertCommand.Fields.Add(new Lfx.Data.Field("valor", Lfx.Data.DbTypes.VarChar, stringValue));
+				DataBase.Insert(InsertCommand);
 			}
 			else
 			{
 				//Actualizar el valor
-				Data.SqlUpdateBuilder UpdateCommand = new Data.SqlUpdateBuilder("sys_config");
-				UpdateCommand.Fields.Add(new Data.SqlField("valor", Data.ValueTypes.StringValue, stringValue));
-				UpdateCommand.WhereClause = new Data.SqlWhereBuilder();
-				UpdateCommand.WhereClause.AndOr = Data.SqlWhereBuilder.OperandsAndOr.OperandAnd;
-				UpdateCommand.WhereClause.Conditions.Add(new Data.SqlCondition("nombre", Data.SqlCommandBuilder.SqlOperands.Equals, "'" + CompleteSettingName + "'"));
-				UpdateCommand.WhereClause.Conditions.Add(new Data.SqlCondition("id_sucursal", Data.SqlCommandBuilder.SqlOperands.Equals, branch.ToString()));
-				ConfigDB.Update(UpdateCommand);
+				qGen.Update UpdateCommand = new qGen.Update("sys_config");
+                                UpdateCommand.Fields.Add(new Lfx.Data.Field("valor", Lfx.Data.DbTypes.VarChar, stringValue));
+				UpdateCommand.WhereClause = new qGen.Where();
+				UpdateCommand.WhereClause.Operator = qGen.AndOr.And;
+                                UpdateCommand.WhereClause.Add(new qGen.ComparisonCondition("nombre", CompleteSettingName));
+                                UpdateCommand.WhereClause.Add(new qGen.ComparisonCondition("id_sucursal", branch));
+				DataBase.Update(UpdateCommand);
 			}
 
 			this.InvalidateConfigCache();
@@ -344,33 +352,30 @@ namespace Lfx.Config
 
 		public bool WriteGlobalSetting(string sectionName, string settingName, string stringValue, string terminalName)
 		{
-			if(ConfigDB == null)
-				ConfigDB = m_Workspace.GetDataBase();
-
-			if(terminalName == null || terminalName.Length == 0) 
-				terminalName = Lfx.Environment.SystemInformation.ComputerName;
+			if(terminalName == null || terminalName.Length == 0)
+                                terminalName = System.Environment.MachineName.ToUpperInvariant();
 
                         string CurrentValue = ReadGlobalSettingString(sectionName, settingName, null, terminalName, 0);
 			string CompleteSettingName = (sectionName==null||sectionName.Length==0?"":(sectionName+@".")) + settingName;
 			if(CurrentValue == null) 
 			{
 				//Crear el valor
-				Data.SqlInsertBuilder InsertCommand = new Data.SqlInsertBuilder("sys_config");
-				InsertCommand.Fields.Add(new Data.SqlField("estacion", Data.ValueTypes.StringValue, terminalName));
-				InsertCommand.Fields.Add(new Data.SqlField("nombre", Data.ValueTypes.StringValue, CompleteSettingName));
-				InsertCommand.Fields.Add(new Data.SqlField("valor", Data.ValueTypes.StringValue, stringValue));
-				ConfigDB.Insert(InsertCommand);
+                                qGen.Insert InsertCommand = new qGen.Insert("sys_config");
+                                InsertCommand.Fields.Add(new Lfx.Data.Field("estacion", Lfx.Data.DbTypes.VarChar, terminalName));
+                                InsertCommand.Fields.Add(new Lfx.Data.Field("nombre", Lfx.Data.DbTypes.VarChar, CompleteSettingName));
+                                InsertCommand.Fields.Add(new Lfx.Data.Field("valor", Lfx.Data.DbTypes.VarChar, stringValue));
+				DataBase.Insert(InsertCommand);
 			}
 			else
 			{
 				//Actualizar el valor
-				Data.SqlUpdateBuilder UpdateCommand = new Data.SqlUpdateBuilder("sys_config");
-				UpdateCommand.Fields.Add(new Data.SqlField("valor", Data.ValueTypes.StringValue, stringValue));
-				UpdateCommand.WhereClause = new Data.SqlWhereBuilder();
-				UpdateCommand.WhereClause.AndOr = Data.SqlWhereBuilder.OperandsAndOr.OperandAnd;
-				UpdateCommand.WhereClause.Conditions.Add(new Data.SqlCondition("nombre", Data.SqlCommandBuilder.SqlOperands.Equals, "'" + CompleteSettingName + "'"));
-				UpdateCommand.WhereClause.Conditions.Add(new Data.SqlCondition("estacion", Data.SqlCommandBuilder.SqlOperands.Equals, "'" + terminalName + "'"));
-				ConfigDB.Update(UpdateCommand);
+                                qGen.Update UpdateCommand = new qGen.Update("sys_config");
+                                UpdateCommand.Fields.Add(new Lfx.Data.Field("valor", Lfx.Data.DbTypes.VarChar, stringValue));
+                                UpdateCommand.WhereClause = new qGen.Where();
+                                UpdateCommand.WhereClause.Operator = qGen.AndOr.And;
+                                UpdateCommand.WhereClause.Add(new qGen.ComparisonCondition("nombre", CompleteSettingName));
+                                UpdateCommand.WhereClause.Add(new qGen.ComparisonCondition("estacion", terminalName));
+				DataBase.Update(UpdateCommand);
 			}
 
 			this.InvalidateConfigCache();

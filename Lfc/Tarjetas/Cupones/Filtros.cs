@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -450,7 +452,7 @@ namespace Lfc.Tarjetas.Cupones
 
                 private void txtPlan_TextChanged(object sender, System.EventArgs e)
                 {
-                        Lfx.Data.Row row = this.Workspace.DefaultDataBase.Row("tarjetas_planes", "id_plan", txtPlan.TextInt);
+                        Lfx.Data.Row row = this.DataBase.Row("tarjetas_planes", "id_plan", txtPlan.TextInt);
                         if (row != null) {
                                 txtPlanCuotas.Text = System.Convert.ToString(row["cuotas"]);
                                 txtPlanInteres.Text = Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(row["interes"]));

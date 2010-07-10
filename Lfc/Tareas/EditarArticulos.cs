@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -50,8 +52,8 @@ namespace Lfc.Tareas
                         InitializeComponent();
 
                         // agregar código de constructor después de llamar a InitializeComponent
-                        lblTitulo.BackColor = Lws.Config.Display.CurrentTemplate.HeaderBackground;
-                        lblTitulo.ForeColor = Lws.Config.Display.CurrentTemplate.HeaderText;
+                        lblTitulo.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
+                        lblTitulo.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
 
                 }
 
@@ -261,7 +263,7 @@ namespace Lfc.Tareas
                         lblTitulo.Text = "Artículos del Ticket Nº " + Ticket.ToString();
                         this.Text = lblTitulo.Text;
                         m_Id = Ticket;
-                        System.Data.DataTable Articulos = this.Workspace.DefaultDataBase.Select("SELECT * FROM tickets_articulos WHERE id_ticket=" + Ticket.ToString() + " ORDER BY orden");
+                        System.Data.DataTable Articulos = this.DataBase.Select("SELECT * FROM tickets_articulos WHERE id_ticket=" + Ticket.ToString() + " ORDER BY orden");
                         ProductArray.Count = Articulos.Rows.Count;
                         for (int i = 0; i <= Articulos.Rows.Count - 1; i++) {
                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(Articulos.Rows[i]["id_articulo"]) == 0)
@@ -273,7 +275,7 @@ namespace Lfc.Tareas
                                 ProductArray.ChildControls[i].Cantidad = System.Convert.ToDouble(Articulos.Rows[i]["cantidad"]);
                                 ProductArray.ChildControls[i].Unitario = System.Convert.ToDouble(Articulos.Rows[i]["precio"]);
                         }
-                        txtDescuento.Text = Lfx.Types.Formatting.FormatNumber(this.Workspace.DefaultDataBase.FieldDouble("SELECT articulos_descuento FROM tickets WHERE id_ticket=" + m_Id.ToString()));
+                        txtDescuento.Text = Lfx.Types.Formatting.FormatNumber(this.DataBase.FieldDouble("SELECT articulos_descuento FROM tickets WHERE id_ticket=" + m_Id.ToString()));
                         ProductArray.AutoAgregar = true;
                         return new Lfx.Types.SuccessOperationResult();
                 }
@@ -281,22 +283,22 @@ namespace Lfc.Tareas
 
                 public override Lfx.Types.OperationResult Save()
                 {
-                        DataView.BeginTransaction();
-                        DataView.DataBase.Execute("DELETE FROM tickets_articulos WHERE id_ticket=" + m_Id.ToString());
+                        DataBase.BeginTransaction(true);
+                        DataBase.Execute("DELETE FROM tickets_articulos WHERE id_ticket=" + m_Id.ToString());
                         for (int i = 0; i <= ProductArray.Count - 1; i++) {
                                 if (ProductArray.ChildControls[i].TextInt != 0) {
-                                        Lfx.Data.SqlInsertBuilder Comando = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, "tickets_articulos");
+                                        qGen.Insert Comando = new qGen.Insert(DataBase, "tickets_articulos");
                                         Comando.Fields.AddWithValue("id_ticket", m_Id);
                                         Comando.Fields.AddWithValue("id_articulo", Lfx.Data.DataBase.ConvertZeroToDBNull(ProductArray.ChildControls[i].TextInt));
                                         Comando.Fields.AddWithValue("nombre", ProductArray.ChildControls[i].TextDetail);
                                         Comando.Fields.AddWithValue("orden", i + 1);
                                         Comando.Fields.AddWithValue("cantidad", ProductArray.ChildControls[i].Cantidad);
                                         Comando.Fields.AddWithValue("precio", ProductArray.ChildControls[i].Unitario);
-                                        DataView.Execute(Comando);
+                                        DataBase.Execute(Comando);
                                 }
                         }
-                        DataView.DataBase.Execute("UPDATE tickets SET articulos_descuento=" + Lfx.Types.Formatting.FormatNumber(Lfx.Types.Parsing.ParseDouble(txtDescuento.Text)) + " WHERE id_ticket=" + m_Id.ToString());
-                        DataView.Commit();
+                        DataBase.Execute("UPDATE tickets SET articulos_descuento=" + Lfx.Types.Formatting.FormatNumber(Lfx.Types.Parsing.ParseDouble(txtDescuento.Text)) + " WHERE id_ticket=" + m_Id.ToString());
+                        DataBase.Commit();
                         return base.Save();
                 }
 

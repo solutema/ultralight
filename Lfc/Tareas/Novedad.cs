@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -338,14 +340,14 @@ namespace Lfc.Tareas
                        ResultadoGuardar = ValidateData();
 
                         if (ResultadoGuardar.Success == true) {
-                                Lfx.Data.SqlInsertBuilder InsertarNovedad = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, "tickets_eventos");
+                                qGen.Insert InsertarNovedad = new qGen.Insert(DataBase, "tickets_eventos");
                                 InsertarNovedad.Fields.AddWithValue("id_ticket", txtTicket.TextInt);
                                 InsertarNovedad.Fields.AddWithValue("id_tecnico", txtTecnico.Text);
                                 InsertarNovedad.Fields.AddWithValue("minutos_tecnico", Lfx.Types.Parsing.ParseInt(txtMinutos.Text));
                                 InsertarNovedad.Fields.AddWithValue("privado", txtCondicion.TextKey);
                                 InsertarNovedad.Fields.AddWithValue("descripcion", txtDescripcion.Text);
-                                InsertarNovedad.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
-                                DataView.Execute(InsertarNovedad);
+                                InsertarNovedad.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
+                                DataBase.Execute(InsertarNovedad);
 
                                 ResultadoGuardar = base.Save();
                         }

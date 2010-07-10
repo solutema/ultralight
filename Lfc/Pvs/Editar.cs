@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -71,7 +73,7 @@ namespace Lfc.Pvs
                         ListaTipos.Add("Notas de Crédito|NC");
                         ListaTipos.Add("Facutras, Notas de Débito|F,ND");
                         ListaTipos.Add("Facutras, Notas de Crédito y Débito|F,NC,ND");
-                        System.Data.DataTable DocumentosTipos = this.Workspace.DefaultDataBase.Select("SELECT letra,nombre FROM documentos_tipos ORDER BY letra");
+                        System.Data.DataTable DocumentosTipos = this.DataBase.Select("SELECT letra,nombre FROM documentos_tipos ORDER BY letra");
                         foreach (System.Data.DataRow DocumentoTipo in DocumentosTipos.Rows) {
                                 ListaTipos.Add(DocumentoTipo["nombre"].ToString() + "|" + DocumentoTipo["letra"].ToString());
                         }
@@ -605,7 +607,7 @@ namespace Lfc.Pvs
 			if(!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "global.admin"))
 				return new Lfx.Types.NoAccessOperationResult();
 
-			Lfx.Data.Row Registro = this.Workspace.DefaultDataBase.Row("pvs", "id_pv", lId);
+			Lfx.Data.Row Registro = this.DataBase.Row("pvs", "id_pv", lId);
 
 			if(Registro == null)
 			{
@@ -636,7 +638,7 @@ namespace Lfc.Pvs
 
 		public override Lfx.Types.OperationResult Create()
 		{
-			EntradaNumero.Text = this.Workspace.DefaultDataBase.FieldInt("SELECT MAX(id_pv)+1 FROM pvs").ToString();
+			EntradaNumero.Text = this.DataBase.FieldInt("SELECT MAX(id_pv)+1 FROM pvs").ToString();
 			return new Lfx.Types.SuccessOperationResult();
 		}
 
@@ -648,15 +650,15 @@ namespace Lfc.Pvs
 
 			if(ResultadoGuardar.Success == true)
 			{
-                                DataView.BeginTransaction();
+                                DataBase.BeginTransaction();
 
-                                Lfx.Data.SqlTableCommandBuilder Comando;
+                                qGen.TableCommand Comando;
                                 if (m_Nuevo) {
-                                        Comando = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, "pvs");
-                                        Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
+                                        Comando = new qGen.Insert(DataBase, "pvs");
+                                        Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                                 } else {
-                                        Comando = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "pvs");
-                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_pv", m_Id);
+                                        Comando = new qGen.Update(DataBase, "pvs");
+                                        Comando.WhereClause = new qGen.Where("id_pv", m_Id);
                                 }
 
 				Comando.Fields.AddWithValue("numero", Lfx.Types.Parsing.ParseInt(EntradaNumero.Text));
@@ -672,7 +674,7 @@ namespace Lfc.Pvs
 
 				try
 				{
-                                        DataView.Execute(Comando);
+                                        DataBase.Execute(Comando);
 				}
 				catch(Exception ex)
 				{
@@ -680,9 +682,9 @@ namespace Lfc.Pvs
 				}
 
 				if(m_Nuevo)
-                                        m_Id = DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
+                                        m_Id = DataBase.FieldInt("SELECT LAST_INSERT_ID()");
 
-                                DataView.DataBase.Commit();
+                                DataBase.Commit();
 
                                 if (m_Nuevo && ControlDestino != null) {
                                         ControlDestino.Text = m_Id.ToString();

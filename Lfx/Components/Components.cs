@@ -1,4 +1,5 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+#region License
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -26,14 +27,15 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 
 namespace Lfx.Components
 {
-	/// <summary>
-	/// Infraestructura para el manejo de componentes.
-	/// </summary>
+        /// <summary>
+        /// Enumera los tipos de componentes.
+        /// </summary>
 	public enum ComponentTypes
 	{
 		Executable,
@@ -42,6 +44,9 @@ namespace Lfx.Components
 		MdiChildren
 	}
 
+	/// <summary>
+	/// Infraestructura para el manejo de componentes.
+	/// </summary>
 	public static class ComponentManager
 	{
                 public static System.Collections.Hashtable ComponentesCargados = new System.Collections.Hashtable();
@@ -64,7 +69,7 @@ namespace Lfx.Components
                                 ComponentObject.Workspace = workspace;
                                 string Error = "";
                                 if (ComponentObject.Try(out Error) == false)
-                                        return new Lfx.Types.FailureOperationResult("Error al cargar componente " + componentName + ", funci�n " + functionName);
+                                        return new Lfx.Types.FailureOperationResult("Error al cargar componente " + componentName + ", función " + functionName);
 
                                 object Result = ComponentObject.Create();
 
@@ -80,16 +85,16 @@ namespace Lfx.Components
 
                                 return new Lfx.Types.SuccessOperationResult();
                         } else {
-                                return new Lfx.Types.FailureOperationResult(@"No se puede cargar la funci�n """ + functionName + @""" del componente """ + componentName + @""".");
+                                return new Lfx.Types.FailureOperationResult(@"No se puede cargar la función """ + functionName + @""" del componente """ + componentName + @""".");
                         }
                 }
 
-		public static Lfx.Components.Component LoadComponent(string componentName)
+                public static Lfx.Components.Component LoadComponent(string componentName)
 		{
 			return LoadComponent(componentName, componentName);
 		}
 
-		public static Lfx.Components.Component LoadComponent(string componentName, string functionName)
+                public static Lfx.Components.Component LoadComponent(string componentName, string functionName)
 		{
 			string[] WhereToLook;
 			if(Lfx.Environment.SystemInformation.DesignMode) {
@@ -111,7 +116,7 @@ namespace Lfx.Components
 			foreach(string Archivo in WhereToLook) {
 				if(System.IO.File.Exists(Archivo)) {
 					try {
-						ComponentAssembly = System.Reflection.Assembly.LoadFile(Archivo);
+						ComponentAssembly = System.Reflection.Assembly.LoadFrom(Archivo);
 						break;
 					}
 					catch {
@@ -123,7 +128,7 @@ namespace Lfx.Components
 			if(ComponentAssembly == null)
 				return null;
 			else
-				return (Lfx.Components.Component)ComponentAssembly.CreateInstance(componentName + "." + functionName);
+                                return (Lfx.Components.Component)ComponentAssembly.CreateInstance(componentName + "." + functionName);
 		}
 	}
 }

@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -46,8 +48,8 @@ namespace Lfc.Personas
                         InitializeComponent();
 
                         DataTableName = "personas";
-                        this.Joins.Add(new Lfx.Data.Join("personas_grupos", "personas_grupos.id_grupo=personas.id_grupo"));
-                        this.Joins.Add(new Lfx.Data.Join("ciudades", "personas.id_ciudad=ciudades.id_ciudad"));
+                        this.Joins.Add(new qGen.Join("personas_grupos", "personas_grupos.id_grupo=personas.id_grupo"));
+                        this.Joins.Add(new qGen.Join("ciudades", "personas.id_ciudad=ciudades.id_ciudad"));
                         OrderBy = "personas.nombre_visible";
                         KeyField = new Lfx.Data.FormField("personas.id_persona", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80);
                         FormFields = new Lfx.Data.FormField[]
@@ -70,7 +72,7 @@ namespace Lfc.Personas
 			};
                 }
 
-                public override void ItemAdded(ListViewItem item)
+                public override void ItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
                         if (item.SubItems[5].Text.Length > 0 && Lfx.Types.Strings.ValidCUIT(item.SubItems[5].Text) == false) {
                                 item.UseItemStyleForSubItems = false;
@@ -79,11 +81,10 @@ namespace Lfc.Personas
 
                         int IdSubGrupo = Lfx.Types.Parsing.ParseInt(item.SubItems[7].Text);
                         if (IdSubGrupo != 0) {
-                                Lfx.Data.Row SubGrupo = this.DataView.Tables["personas_grupos"].FastRows[IdSubGrupo];
+                                Lfx.Data.Row SubGrupo = this.DataBase.Tables["personas_grupos"].FastRows[IdSubGrupo];
                                 if (SubGrupo != null)
                                         item.SubItems[7].Text = SubGrupo["nombre"].ToString();
                         }
-                        base.ItemAdded(item);
                 }
 
                 public override void RefreshList()
@@ -100,29 +101,27 @@ namespace Lfc.Personas
                                         break;
                         }
 
-                        string TextoSql = "TRUE";
+                        this.CustomFilters.Clear();
 
                         if (m_Tipo > 0)
-                                TextoSql += " AND (personas.tipo&" + m_Tipo.ToString() + "=" + m_Tipo.ToString() + " OR personas.tipo=0)";
+                                this.CustomFilters.AddWithValue("(personas.tipo&" + m_Tipo.ToString() + "=" + m_Tipo.ToString() + " OR personas.tipo=0)");
 
                         if (m_SubGrupo > 0)
-                                TextoSql += " AND personas.id_subgrupo=" + m_SubGrupo.ToString();
+                                this.CustomFilters.AddWithValue("personas.id_subgrupo", m_SubGrupo);
                         else if (m_Grupo > 0)
-                                TextoSql += " AND personas.id_grupo=" + m_Grupo.ToString();
+                                this.CustomFilters.AddWithValue("personas.id_grupo", m_Grupo);
 
                         if (m_Situacion > 0)
-                                TextoSql += " AND personas.id_situacion=" + m_Situacion.ToString();
+                                this.CustomFilters.AddWithValue("personas.id_situacion", m_Situacion);
 
                         if (m_EstadoCredito >= 0)
-                                TextoSql += " AND personas.estadocredito=" + m_EstadoCredito.ToString();
+                                this.CustomFilters.AddWithValue("personas.estadocredito", m_EstadoCredito);
 
                         if (m_Ciudad > 0)
-                                TextoSql += " AND (personas.id_ciudad=" + m_Ciudad.ToString() + " OR personas.id_ciudad IS NULL)";
-
-                        CurrentFilter = TextoSql;
+                                this.CustomFilters.AddWithValue("(personas.id_ciudad=" + m_Ciudad.ToString() + " OR personas.id_ciudad IS NULL)");
 
                         // Cargo la tabla en memoria, ya que la voy a usar mucho
-                        this.DataView.Tables["personas_grupos"].PreLoad();
+                        this.DataBase.Tables["personas_grupos"].PreLoad();
 
                         base.RefreshList();
                 }
@@ -140,7 +139,7 @@ namespace Lfc.Personas
                         string[] Etiquetas = new string[1];
                         int i = 0;
                         Etiquetas[i++] = "Todas|0";
-                        foreach (Lfx.Data.Row Lab in this.DataView.Tables["sys_labels"].FastRows.Values) {
+                        foreach (Lfx.Data.Row Lab in this.DataBase.Tables["sys_labels"].FastRows.Values) {
                                 if (Lab["tablas"].ToString() == this.DataTableName) {
                                         if (Etiquetas.Length < (i + 1))
                                                 Array.Resize<string>(ref Etiquetas, i + 2);

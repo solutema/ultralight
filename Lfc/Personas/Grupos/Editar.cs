@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -240,7 +242,7 @@ namespace Lfc.Personas.Grupos
 		{
 			Lfx.Types.OperationResult ResultadoEditar = new Lfx.Types.SuccessOperationResult();
 
-			Lfx.Data.Row Registro = this.Workspace.DefaultDataBase.Row("personas_grupos", "id_grupo", lId);
+			Lfx.Data.Row Registro = this.DataBase.Row("personas_grupos", "id_grupo", lId);
 
 			if(Registro == null)
 			{
@@ -270,15 +272,15 @@ namespace Lfc.Personas.Grupos
 
 			if(ResultadoGuardar.Success == true)
 			{
-                                DataView.BeginTransaction();
+                                DataBase.BeginTransaction(false);
 
-                                Lfx.Data.SqlTableCommandBuilder Comando;
+                                qGen.TableCommand Comando;
                                 if (m_Nuevo) {
-                                        Comando = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, "personas_grupos");
-                                        Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
+                                        Comando = new qGen.Insert(DataBase, "personas_grupos");
+                                        Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                                 } else {
-                                        Comando = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "personas_grupos");
-                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_grupo", m_Id);
+                                        Comando = new qGen.Update(DataBase, "personas_grupos");
+                                        Comando.WhereClause = new qGen.Where("id_grupo", m_Id);
                                 }
 
                                 Comando.Fields.AddWithValue("nombre", txtNombre.Text);
@@ -286,11 +288,11 @@ namespace Lfc.Personas.Grupos
                                 Comando.Fields.AddWithValue("predet", Lfx.Types.Parsing.ParseInt(txtPredet.TextKey));
                                 Comando.Fields.AddWithValue("parent", Lfx.Data.DataBase.ConvertZeroToDBNull(txtGrupo.TextInt));
 
-                                DataView.Execute(Comando);
-                                DataView.DataBase.Commit();
+                                DataBase.Execute(Comando);
+                                DataBase.Commit();
 
 				if(m_Nuevo)
-                                        m_Id = DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
+                                        m_Id = DataBase.FieldInt("SELECT LAST_INSERT_ID()");
 
 				if(m_Nuevo && ControlDestino != null)
 				{

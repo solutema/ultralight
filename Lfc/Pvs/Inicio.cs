@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -45,7 +47,7 @@ namespace Lfc.Pvs
 
 			DataTableName = "pvs";
                         KeyField = new Lfx.Data.FormField("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        this.Joins.Add(new Lfx.Data.Join("sucursales", "pvs.id_sucursal=sucursales.id_sucursal"));
+                        this.Joins.Add(new qGen.Join("sucursales", "pvs.id_sucursal=sucursales.id_sucursal"));
 			FormFields = new Lfx.Data.FormField[]
 			{
 				new Lfx.Data.FormField("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
@@ -87,9 +89,9 @@ namespace Lfc.Pvs
 		}
 		#endregion
 
-		public override void ItemAdded(ListViewItem itm)
+                public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
 		{
-                        switch(itm.SubItems[2].Text)
+                        switch(row.Fields["tipo_fac"].ValueString)
                         {
                                 case "F":
                                         itm.SubItems[2].Text = "Facturas";
@@ -111,11 +113,12 @@ namespace Lfc.Pvs
                                         break;
                         }
 
-			if(itm.SubItems[5].Text == "0")
+                        int TipoPv = row.Fields["tipo"].ValueInt;
+                        if (TipoPv == 0)
 				itm.SubItems[5].Text = "Inactivo";
-			if(itm.SubItems[5].Text == "1")
+                        if (TipoPv == 1)
 				itm.SubItems[5].Text = "Normal";
-			else if(itm.SubItems[5].Text == "2")
+                        else if (TipoPv == 2)
 				itm.SubItems[5].Text = "Fiscal";
 
 			if(itm.SubItems[7].Text == "0")

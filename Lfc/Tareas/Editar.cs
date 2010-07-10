@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -43,28 +45,20 @@ namespace Lfc.Tareas
                 
                 public Editar() : base()
                 {
-                        // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
 
-                        // agregar código de constructor después de llamar a InitializeComponent
+                        this.ElementType = typeof(Lbl.Tareas.Tarea);
                 }
 
                 public override Lfx.Types.OperationResult Create()
                 {
-                        Lbl.Tareas.Tarea Tarea = new Lbl.Tareas.Tarea(this.DataView);
+                        Lbl.Tareas.Tarea Tarea = new Lbl.Tareas.Tarea(this.DataBase);
                         Tarea.Crear();
-                        Tarea.Encargado = new Lbl.Personas.Persona(Tarea.DataView, this.Workspace.CurrentUser.Id);
+                        Tarea.Encargado = new Lbl.Personas.Persona(Tarea.DataBase, this.Workspace.CurrentUser.Id);
                         Tarea.Estado = 1;
-                        Tarea.Tipo = new Lbl.Tareas.Tipo(Tarea.DataView, 1);
+                        Tarea.Tipo = new Lbl.Tareas.Tipo(Tarea.DataBase, 1);
                         this.FromRow(Tarea);
                         return base.Create();
-                }
-
-                public override Lfx.Types.OperationResult Edit(int itemId)
-                {
-                        Lbl.Tareas.Tarea Tarea = new Lbl.Tareas.Tarea(this.DataView, itemId);
-                        this.FromRow(Tarea);
-                        return base.Edit(itemId);
                 }
 
                 public override Lbl.ElementoDeDatos ToRow()
@@ -74,14 +68,14 @@ namespace Lfc.Tareas
                         if (txtCliente.TextInt == 0)
                                 Res.Cliente = null;
                         else
-                                Res.Cliente = new Lbl.Personas.Persona(Res.DataView, txtCliente.TextInt);
+                                Res.Cliente = new Lbl.Personas.Persona(Res.DataBase, txtCliente.TextInt);
 
                         if (txtTecnico.TextInt == 0)
                                 Res.Encargado = null;
                         else
-                                Res.Encargado = new Lbl.Personas.Persona(Res.DataView, txtTecnico.TextInt);
+                                Res.Encargado = new Lbl.Personas.Persona(Res.DataBase, txtTecnico.TextInt);
                         
-                        Res.Tipo = new Lbl.Tareas.Tipo(Res.DataView, txtTarea.TextInt);
+                        Res.Tipo = new Lbl.Tareas.Tipo(Res.DataBase, txtTarea.TextInt);
                         Res.Prioridad = Lfx.Types.Parsing.ParseInt(txtPrioridad.TextKey);
                         Res.Nombre = txtAsunto.Text;
                         Res.Descripcion = txtDescripcion.Text;
@@ -138,33 +132,33 @@ namespace Lfc.Tareas
                 public override Lui.Printing.ItemPrint FormatForPrinting(Lui.Printing.ItemPrint ImprimirItem)
                 {
                         ImprimirItem.Titulo = "Tarea Nº " + txtNumero.Text;
-                        ImprimirItem.ParesAgregar("Tipo de Tarea", txtTarea.TextDetail, 1);
-                        ImprimirItem.ParesAgregar("Asunto", txtAsunto.Text, 1);
-                        ImprimirItem.ParesAgregar("Cliente", txtCliente.TextDetail, 1);
+                        ImprimirItem.AgregarPar("Tipo de Tarea", txtTarea.TextDetail, 1);
+                        ImprimirItem.AgregarPar("Asunto", txtAsunto.Text, 1);
+                        ImprimirItem.AgregarPar("Cliente", txtCliente.TextDetail, 1);
                         // Datos del cliente
                         if (txtDescripcion.Text.Length > 0)
-                                ImprimirItem.ParesAgregar("Descripción", txtDescripcion.Text, 1);
+                                ImprimirItem.AgregarPar("Descripción", txtDescripcion.Text, 1);
 
-                        ImprimirItem.ParesAgregar("Encargado", txtTecnico.TextDetail, 1);
-                        ImprimirItem.ParesAgregar("Estado", txtEstado.TextDetail, 1);
-                        ImprimirItem.ParesAgregar("Fecha de Ingreso", txtFechaIngreso.Text, 1);
+                        ImprimirItem.AgregarPar("Encargado", txtTecnico.TextDetail, 1);
+                        ImprimirItem.AgregarPar("Estado", txtEstado.TextDetail, 1);
+                        ImprimirItem.AgregarPar("Fecha de Ingreso", txtFechaIngreso.Text, 1);
                         if (Lfx.Types.Parsing.ParseCurrency(txtPresupuesto.Text) != 0)
-                                ImprimirItem.ParesAgregar("Presupuesto", Lfx.Types.Currency.CurrencySymbol + " " + txtPresupuesto.Text, 1);
+                                ImprimirItem.AgregarPar("Presupuesto", Lfx.Types.Currency.CurrencySymbol + " " + txtPresupuesto.Text, 1);
 
                         if (Lfx.Types.Parsing.ParseCurrency(txtPresupuesto2.Text) != 0) {
-                                ImprimirItem.ParesAgregar("Artículos", Lfx.Types.Currency.CurrencySymbol + " " + txtPresupuesto2.Text, 1);
+                                ImprimirItem.AgregarPar("Artículos", Lfx.Types.Currency.CurrencySymbol + " " + txtPresupuesto2.Text, 1);
                                 //Detalle artículos
-                                System.Data.DataTable Articulos = this.Workspace.DefaultDataBase.Select("SELECT * FROM tickets_articulos WHERE id_ticket=" + m_Id.ToString() + " ORDER BY orden");
+                                System.Data.DataTable Articulos = this.DataBase.Select("SELECT * FROM tickets_articulos WHERE id_ticket=" + m_Id.ToString() + " ORDER BY orden");
                                 foreach (System.Data.DataRow Articulo in Articulos.Rows) {
-                                        ImprimirItem.ParesAgregar(Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Articulo["precio"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces), "[" + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Articulo["cantidad"]), this.Workspace.CurrentConfig.Products.StockDecimalPlaces) + "] " + System.Convert.ToString(Articulo["nombre"]), 2);
+                                        ImprimirItem.AgregarPar(Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Articulo["precio"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces), "[" + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Articulo["cantidad"]), this.Workspace.CurrentConfig.Products.StockDecimalPlaces) + "] " + System.Convert.ToString(Articulo["nombre"]), 2);
                                 }
                         }
 
-                        System.Data.DataTable Eventos = this.Workspace.DefaultDataBase.Select("SELECT tickets_eventos.fecha, tickets_eventos.descripcion, personas.nombre FROM tickets_eventos, personas WHERE tickets_eventos.privado=0 AND tickets_eventos.id_tecnico=personas.id_persona AND id_ticket=" + m_Id.ToString() + " ORDER BY id_evento DESC");
+                        System.Data.DataTable Eventos = this.DataBase.Select("SELECT tickets_eventos.fecha, tickets_eventos.descripcion, personas.nombre FROM tickets_eventos, personas WHERE tickets_eventos.privado=0 AND tickets_eventos.id_tecnico=personas.id_persona AND id_ticket=" + m_Id.ToString() + " ORDER BY id_evento DESC");
                         if (Eventos.Rows.Count > 0) {
-                                ImprimirItem.ParesAgregar("Historial", "", 1);
+                                ImprimirItem.AgregarPar("Historial", "", 1);
                                 foreach (System.Data.DataRow Evento in Eventos.Rows) {
-                                        ImprimirItem.ParesAgregar(System.Convert.ToString(Evento["fecha"]), "[" + System.Convert.ToString(Evento["nombre"]) + "] " + System.Convert.ToString(Evento["descripcion"]), 2);
+                                        ImprimirItem.AgregarPar(System.Convert.ToString(Evento["fecha"]), "[" + System.Convert.ToString(Evento["nombre"]) + "] " + System.Convert.ToString(Evento["descripcion"]), 2);
                                 }
                         }
                         return ImprimirItem;
@@ -204,14 +198,14 @@ namespace Lfc.Tareas
                                         Lui.Forms.MessageBox.Show("Acaba de crear y guardar la Tarea Nº " + m_Id.ToString(), "Tarea Nº " + m_Id.ToString());
                                 } else if (this.CachedRow.Estado != EstadoOriginal) {
                                         Lbl.Tareas.Tarea Tar = this.CachedRow as Lbl.Tareas.Tarea;
-                                        Lfx.Data.SqlInsertBuilder InsertarNovedad = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, "tickets_eventos");
+                                        qGen.Insert InsertarNovedad = new qGen.Insert(DataBase, "tickets_eventos");
                                         InsertarNovedad.Fields.AddWithValue("id_ticket", Tar.Id);
                                         InsertarNovedad.Fields.AddWithValue("id_tecnico", this.Workspace.CurrentUser.Id);
                                         InsertarNovedad.Fields.AddWithValue("minutos_tecnico", 0);
                                         InsertarNovedad.Fields.AddWithValue("privado", 1);
                                         InsertarNovedad.Fields.AddWithValue("descripcion", "Est:" + Tar.Estado.ToString());
-                                        InsertarNovedad.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
-                                        DataView.Execute(InsertarNovedad);
+                                        InsertarNovedad.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
+                                        DataBase.Execute(InsertarNovedad);
                                 }
                         }
                         return ResultadoGuardar;
@@ -224,7 +218,7 @@ namespace Lfc.Tareas
                         lvHistorial.Items.Clear();
 
                         string TextoSql = "SELECT tickets_eventos.id_ticket, tickets_eventos.fecha, tickets_eventos.descripcion, personas.nombre FROM tickets_eventos, personas WHERE tickets_eventos.id_tecnico=personas.id_persona AND tickets_eventos.id_ticket IN (SELECT id_ticket FROM tickets WHERE id_persona=" + txtCliente.TextInt.ToString() + ") ORDER BY tickets_eventos.id_evento DESC";
-                        System.Data.DataTable Eventos = this.Workspace.DefaultDataBase.Select(TextoSql);
+                        System.Data.DataTable Eventos = this.DataBase.Select(TextoSql);
                         if (Eventos.Rows.Count > 0) {
 
                                 foreach (System.Data.DataRow Evento in Eventos.Rows) {
@@ -297,7 +291,7 @@ namespace Lfc.Tareas
                         FacturaNueva.ControlDestino = txtComprobanteId;
 
                         int intComprobanteId = Lfx.Types.Parsing.ParseInt(txtComprobanteId.Text);
-                        bool bAnulada = System.Convert.ToBoolean(this.Workspace.DefaultDataBase.FieldInt("SELECT anulada FROM comprob WHERE id_comprob=" + intComprobanteId.ToString()));
+                        bool bAnulada = System.Convert.ToBoolean(this.DataBase.FieldInt("SELECT anulada FROM comprob WHERE id_comprob=" + intComprobanteId.ToString()));
 
                         if (intComprobanteId > 0 && bAnulada == false) {
                                 FacturaNueva.Edit(intComprobanteId);
@@ -311,7 +305,7 @@ namespace Lfc.Tareas
                                         FacturaNueva.EntradaVendedor.Text = txtTecnico.Text;
                                         ((Lbl.Comprobantes.Comprobante)FacturaNueva.CachedRow).Obs = txtTarea.TextDetail + " s/tarea #" + m_Id.ToString();
 
-                                        System.Data.DataTable Articulos = this.Workspace.DefaultDataBase.Select("SELECT * FROM tickets_articulos WHERE id_ticket=" + m_Id.ToString() + " ORDER BY orden");
+                                        System.Data.DataTable Articulos = this.DataBase.Select("SELECT * FROM tickets_articulos WHERE id_ticket=" + m_Id.ToString() + " ORDER BY orden");
                                         FacturaNueva.ProductArray.Count = Articulos.Rows.Count;
                                         for (int i = 0; i <= Articulos.Rows.Count - 1; i++) {
                                                 FacturaNueva.ProductArray.ChildControls[i].TextInt = System.Convert.ToInt32(Articulos.Rows[i]["id_articulo"]);
@@ -342,13 +336,15 @@ namespace Lfc.Tareas
                 {
                         int intComprobanteId = Lfx.Types.Parsing.ParseInt(txtComprobanteId.Text);
                         if (intComprobanteId > 0) {
-                                txtComprobante.Text = Lbl.Comprobantes.Comprobante.NumeroCompleto(this.DataView, intComprobanteId);
+                                txtComprobante.Text = Lbl.Comprobantes.Comprobante.NumeroCompleto(this.DataBase, intComprobanteId);
                                 // Guardo el comprobante en la tarea (sólo si no tenía uno asociado)
-                                //this.Workspace.DefaultDataView.Execute("UPDATE tickets SET id_comprob=" + intComprobanteId.ToString() + " WHERE id_comprob=0 AND id_ticket=" + m_Id.ToString());
-                                Lfx.Data.SqlUpdateBuilder Actual = new Lfx.Data.SqlUpdateBuilder("tickets");
-                                Actual.Fields.Add(new Lfx.Data.SqlField("id_comprob", intComprobanteId));
-                                Actual.WhereClause = new Lfx.Data.SqlWhereBuilder("id_comprob=0 AND id_ticket=" + m_Id.ToString());
-                                this.DataView.Execute(Actual);
+                                //this.DataBase.Execute("UPDATE tickets SET id_comprob=" + intComprobanteId.ToString() + " WHERE id_comprob=0 AND id_ticket=" + m_Id.ToString());
+                                qGen.Update Actual = new qGen.Update("tickets");
+                                Actual.Fields.Add(new Lfx.Data.Field("id_comprob", intComprobanteId));
+                                Actual.WhereClause = new qGen.Where();
+                                Actual.WhereClause.AddWithValue("id_comprob", 0);
+                                Actual.WhereClause.AddWithValue("id_ticket", m_Id);
+                                this.DataBase.Execute(Actual);
                         } else {
                                 txtComprobante.Text = "";
                         }
@@ -384,7 +380,7 @@ namespace Lfc.Tareas
 
                 public void MostrarPresupuesto2()
                 {
-                        double ValorArticulos = this.Workspace.DefaultDataBase.FieldDouble("SELECT SUM(cantidad*precio) FROM tickets_articulos WHERE id_ticket=" + m_Id.ToString());
+                        double ValorArticulos = this.DataBase.FieldDouble("SELECT SUM(cantidad*precio) FROM tickets_articulos WHERE id_ticket=" + m_Id.ToString());
                         txtPresupuesto2.Text = Lfx.Types.Formatting.FormatCurrency(ValorArticulos * (1 - Descuento / 100), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                 }
 

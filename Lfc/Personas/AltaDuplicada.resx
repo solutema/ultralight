@@ -117,7 +117,47 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="$this.DrawGrid" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="BotonCancelar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADdYAAA3WAZBveZwAAAAGYktHRAD/AP8A/6C9p5MAAAAHdElNRQfWBxoKDgAWI5Yh
+        AAABpUlEQVQ4T2NgwAGOLGD4j0sOr/j+uQwiIM1kGVBbySoI0vj781rSDUDW/PuJKtgAEN63UPj57vmi
+        53cvlF5SU8XGjdX5yJq/PTT8/+uxwv9fb4r//3qd///7izwgzvmxZ6HIlYOLRa4C1cqgGAIU4II5+9sD
+        /f/fHxn9/3hb8/9XIBtEPz4r9v/NTbP/355n/n98zvHfwcXCT4B6jOCGIGv+AdQMMgCEYQa8uCT7H4ZB
+        Bj086/B/70KxUyCLwYbUwQLubeV/kAFf7uv8v3aABY6RDbh/gvv/56dZ/4+ulv6xZ4Hoabgr4GHwtuz/
+        rcMs/38D6Z+vMlHw97us/++f4Pp/4xD7/9d38v/vXyz9BT0sIFEI1AzCsFiA0ysZ/797mPf//kn+/5+e
+        ZP4/sETqB0aMILsEOSEB2QY7ZzIEAOmTX5/l/n//qOz/wcWSuFMqrpR4cB6D1Ik1TP8/Pe/4d2iRIP6k
+        jispn17F9+/lrdh/B5Ypvyc5rwANVbp9xPnPjaPOIAPqyTEg9tXttE2HlgmuI1kzSMPhZRKZR5ZLZQJd
+        IgEzAADbc08qrTIntgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="BotonContinuar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAGYktHRAAAAAAAAPlDu38AAAAHdElNRQfVChoUCC+DFDSb
+        AAABMklEQVQ4T52Ty06DQBSGeUNNfB5zVl6gtdWFl9SlSx/CBQhduHDBE4grLkPDIBQoHOfQTAsFC3GS
+        PyTDnO//z5yMcjPXTq61Cxij2Z16phwudXJ5jogwRmTyJ2C1CiEMWUe0TyKDQcByacHi+fFTHMQxEu2/
+        KrIF6aRNr0rhNmqRSQtACQSwBgjgUdGZDoDuQCYggGWZvaJ/HQAVm+b7/xMwFkAQ+IMJZGutBFVVge/7
+        YBj6qAR5niPnfH8HWZaB53nguu5gAsYYpmmCuqHvAZxHEMccoihqAQ4nMZ2p2FQ9hfnt5FSMjqJLlVVV
+        dkZIsZ8W90jf9TpF5/trm6DnbRR5nrUAVNQEOM62WOijFxDHcd1nkvzgZlNgURRo27ZI8LBz7n0XRBM9
+        voh2jr2Ft2bxL+Z22eGRP11PAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="BotonCorregir.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADdYAAA3WAZBveZwAAAAGYktHRAD/AP8A/6C9p5MAAAAHdElNRQfWBwwLGQvwwqlL
+        AAACB0lEQVQ4T5VTTWsTURSdatRdxa+N0B8giFhcuXMnolC1oAhFkKBFaUmRCAGli2pBq6ZQ0TZU09hI
+        tYjVEiqIimTlRglJGpMoZFEdxTjfmcwwM+/NsW/E4NCK44XDfQ/uOffcC5fjAgb53tVG6se3EfFCD9WS
+        l6lyo5NIF0MB6Ry3LLCZCOfj1HyruOSHTY1X74jQt5ebmp6cuzoyjH8hnYpBWLoNSjS4LoVj1tD4emmW
+        Y8Qg4VqLIEocrlWES0RQ/TkWc2PwCZjfPmJ+oBNTR9fiWWQ32J+F67ogThOO/gaOOgGipmDLSYzfGfQL
+        MPLnh/vAvzzk5cfndoBSilKphGq1ioWFeVQ/vIYmvYehL+Ha9St+gVR3CPyLg+Bn9oN/egDJI2vgOA6y
+        2SwSiQTS6TQymQyKxSKazaa3N98Ic5Fdvxwsk1mePtUBy7JgmiYMw/BIjUYDmqZ5znwCj57EEO3dg1vH
+        1uFuVxvih0OIhHfi/swAdF1HoVBAPp/3kMvlYNu2X6C3fwuGRjswFN+O2PBWRAc3oT/WjvDZdq+roigt
+        yLK80sGD2ShO923EyTMbWugJr8fNsRNQVRW1Wg2VSgXlctkD241vBFakKDK+8J9akGXJI7PukiRBFEUI
+        goB6vQ5CiF+A2WLLWQ1/2v/9XrFEZul/4Y0Q9BZWu5XJexPjga/xb4U/Adr6v9eT/G4sAAAAAElFTkSu
+        QmCC
+</value>
+  </data>
 </root>

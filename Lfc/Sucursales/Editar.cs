@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -372,7 +374,7 @@ namespace Lfc.Sucursales
 		{
 			Lfx.Types.OperationResult ResultadoEditar = new Lfx.Types.SuccessOperationResult();
 
-			Lfx.Data.Row row = this.Workspace.DefaultDataBase.Row("sucursales", "id_sucursal", lId);
+			Lfx.Data.Row row = this.DataBase.Row("sucursales", "id_sucursal", lId);
 
 			if(row == null) {
 				ResultadoEditar.Success = false;
@@ -402,15 +404,15 @@ namespace Lfc.Sucursales
 			Lfx.Types.OperationResult ResultadoGuardar = ValidateData();
 
 			if(ResultadoGuardar.Success == true) {
-                                this.DataView.BeginTransaction();
+                                this.DataBase.BeginTransaction();
 
-                                Lfx.Data.SqlTableCommandBuilder Comando;
+                                qGen.TableCommand Comando;
                                 if (m_Nuevo) {
-                                        Comando = new Lfx.Data.SqlInsertBuilder(DataView.DataBase, "sucursales");
-                                        Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
+                                        Comando = new qGen.Insert(DataBase, "sucursales");
+                                        Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                                 } else {
-                                        Comando = new Lfx.Data.SqlUpdateBuilder(DataView.DataBase, "sucursales");
-                                        Comando.WhereClause = new Lfx.Data.SqlWhereBuilder("id_sucursal", m_Id);
+                                        Comando = new qGen.Update(DataBase, "sucursales");
+                                        Comando.WhereClause = new qGen.Where("id_sucursal", m_Id);
                                 }
 
 				Comando.Fields.AddWithValue("nombre", txtNombre.Text);
@@ -421,11 +423,11 @@ namespace Lfc.Sucursales
 				Comando.Fields.AddWithValue("id_caja_diaria", Lfx.Data.DataBase.ConvertZeroToDBNull(EntradaCajaDiaria.TextInt));
 				Comando.Fields.AddWithValue("id_caja_cheques", Lfx.Data.DataBase.ConvertZeroToDBNull(EntradaCajaCheques.TextInt));
 
-                                this.DataView.Execute(Comando);
-                                this.DataView.DataBase.Commit();
+                                this.DataBase.Execute(Comando);
+                                this.DataBase.Commit();
 
 				if(m_Nuevo) {
-                                        m_Id = DataView.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
+                                        m_Id = DataBase.FieldInt("SELECT LAST_INSERT_ID()");
 					m_Nuevo = false;
 					if(ControlDestino != null) {
 						ControlDestino.Text = m_Id.ToString();

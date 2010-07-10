@@ -33,42 +33,17 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lfc.Personas
+namespace Lfx.Access
 {
-        public partial class Inicio : Lui.Forms.ListingForm
+        public class Access
         {
-                #region Código generado por el Diseñador de Windows Forms
+                public string Name;
+                public int Item;
 
-                private System.ComponentModel.Container components = null;
-
-                protected override void Dispose(bool disposing)
+                public Access(string name, int item)
                 {
-                        if (disposing) {
-                                if (components != null) {
-                                        components.Dispose();
-                                }
-                        }
-
-                        base.Dispose(disposing);
+                        this.Name = name;
+                        this.Item = item;
                 }
-
-                private void InitializeComponent()
-                {
-                        this.SuspendLayout();
-                        // 
-                        // BotonFiltrar
-                        // 
-                        this.BotonFiltrar.Visible = true;
-                        // 
-                        // Inicio
-                        // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.Name = "Inicio";
-                        this.Text = "Clientes: Listado";
-                        this.ResumeLayout(false);
-
-                }
-
-                #endregion
         }
 }

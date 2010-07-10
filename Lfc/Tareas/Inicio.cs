@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Data;
@@ -48,7 +50,7 @@ namespace Lfc.Tareas
 
                         // agregar código de constructor después de llamar a InitializeComponent
                         DataTableName = "tickets";
-                        this.Joins.Add(new Lfx.Data.Join("personas", "tickets.id_persona=personas.id_persona"));
+                        this.Joins.Add(new qGen.Join("personas", "tickets.id_persona=personas.id_persona"));
                         KeyField = new Lfx.Data.FormField("tickets.id_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64);
                         FormFields = new Lfx.Data.FormField[]
 			{
@@ -94,15 +96,16 @@ namespace Lfc.Tareas
                         Terminados = 0;
                         Retrasados = 0;
 
-			string TextoSql = "TRUE";
+                        this.CustomFilters.Clear();
+
 			if (m_Tarea > 0)
-				TextoSql += " AND tickets.id_tipo_ticket=" + m_Tarea.ToString();
+				this.CustomFilters.AddWithValue("tickets.id_tipo_ticket", m_Tarea);
 
 			if (m_Cliente > 0)
-				TextoSql += " AND tickets.id_persona=" + m_Cliente.ToString();
+				this.CustomFilters.AddWithValue("tickets.id_persona", m_Cliente);
 
 			if (m_Sucursal > 0)
-				TextoSql += " AND tickets.id_sucursal=" + m_Sucursal.ToString();
+				this.CustomFilters.AddWithValue("tickets.id_sucursal", m_Sucursal);
 
 			switch (m_Estado)
 			{
@@ -110,29 +113,28 @@ namespace Lfc.Tareas
 					// Nada
 					break;
 				case "presupuestados":
-					TextoSql += " AND tickets.estado IN (10, 35)";
+					this.CustomFilters.AddWithValue("tickets.estado IN (10, 35)");
 					break;
                                 case "terminados":
-                                        TextoSql += " AND tickets.estado IN (30, 35, 40)";
+                                        this.CustomFilters.AddWithValue("tickets.estado IN (30, 35, 40)");
                                         break;
 				case "sin_terminar":
-					TextoSql += " AND tickets.estado<30";
+					this.CustomFilters.AddWithValue("tickets.estado<30");
 					break;
 				case "sin_verificar":
-					TextoSql += " AND tickets.estado IN (30, 35)";
+					this.CustomFilters.AddWithValue("tickets.estado IN (30, 35)");
 					break;
 				case "sin_entregar":
-					TextoSql += " AND tickets.estado<50";
+					this.CustomFilters.AddWithValue("tickets.estado<50");
 					break;
 				default:
-					TextoSql += " AND tickets.estado=" + m_Estado.ToString();
+					this.CustomFilters.AddWithValue("tickets.estado", m_Estado);
 					break;
 			}
 
                         // Cargo la tabla en memoria, ya que la voy a usar mucho
-                        this.DataView.Tables["tickets_estados"].PreLoad();
+                        this.DataBase.Tables["tickets_estados"].PreLoad();
 
-			this.CurrentFilter = TextoSql;
 			base.BeginRefreshList();
 		}
 
@@ -175,7 +177,7 @@ namespace Lfc.Tareas
 		}
 
 
-		public override void Fill(Lfx.Data.SqlSelectBuilder command)
+		public override void Fill(qGen.Select command)
 		{
 			base.Fill(command);
 			foreach (System.Windows.Forms.ListViewItem itm in Listado.Items)
@@ -221,11 +223,11 @@ namespace Lfc.Tareas
 						break;
 				}
 
-                                Lfx.Data.Row Estado = this.DataView.Tables["tickets_estados"].FastRows[IdEstado];
+                                Lfx.Data.Row Estado = this.DataBase.Tables["tickets_estados"].FastRows[IdEstado];
 				if (Estado != null)
 					itm.SubItems[3].Text = Estado["nombre"].ToString();
 
-                                //Lfx.Data.Row Tecnico = this.DataView.Tables["personas"].FastRows[Lfx.Types.Parsing.ParseInt(itm.SubItems[5].Text)];
+                                //Lfx.Data.Row Tecnico = this.DataBase.Tables["personas"].FastRows[Lfx.Types.Parsing.ParseInt(itm.SubItems[5].Text)];
                                 //if (Tecnico != null)
                                 //        itm.SubItems[5].Text = Tecnico["nombre"].ToString();
 			}

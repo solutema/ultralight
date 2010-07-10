@@ -1,4 +1,5 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+#region License
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -51,6 +53,14 @@ namespace Lfx.Config
                         }
                 }
 
+                public int DepositoPredeterminado
+                {
+                        get
+                        {
+                                return ConfigManager.ReadGlobalSettingInt(null, "Sistema.Stock.DepositoPredet", 1);
+                        }
+                }
+
                 // Si usa situaciones de stock
                 public bool StockMultideposito
                 {
@@ -66,16 +76,16 @@ namespace Lfx.Config
                         if (ps_DefaultCode != null)
                                 return ps_DefaultCode;
 
-                        // Devuelve el c�digo predeterminado de un art�culo
+                        // Devuelve el código predeterminado de un artículo
                         int CodPredet = ConfigManager.ReadGlobalSettingInt(null, "Sistema.Stock.CodigoPredet", 0);
 
                         switch (CodPredet) {
                                 case 0:
-                                        // Usar el c�digo autonum�rico integrado
+                                        // Usar el código autonumérico integrado
                                         ps_DefaultCode = "id_articulo";
                                         break;
                                 default:
-                                        // Usar un c�digo en particular
+                                        // Usar un código en particular
                                         ps_DefaultCode = "codigo" + CodPredet.ToString();
                                         break;
                         }
