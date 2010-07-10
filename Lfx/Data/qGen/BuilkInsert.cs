@@ -30,24 +30,49 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Text;
 
-namespace Lfx.Data.Providers
+namespace qGen
 {
-        /// <summary>
-        /// Proveedor compatible con Npgsql versión 2. Requiere la presencia de Npgsql.dll en el directorio del programa.
-        /// </summary>
-        public class Npgsql : Provider
+        public class BuilkInsert : TableCommand
         {
-                public Npgsql() :
-                        base("Npgsql",
-                        "Npgsql",
-                        "NpgsqlConnection",
-                        "NpgsqlCommand",
-                        "NpgsqlDataAdapter",
-                        "NpgsqlParameter")
+                System.Collections.Generic.List<Insert> InsertCommands = new List<Insert>();
+
+                public void Clear()
                 {
+                        this.InsertCommands.Clear();
+                }
+
+                public void Add(Insert insertCommand)
+                {
+                        this.InsertCommands.Add(insertCommand);
+                }
+
+                public int Count
+                {
+                        get
+                        {
+                                return this.InsertCommands.Count;
+                        }
+                }
+
+                public override string ToString()
+                {
+                        System.Text.StringBuilder Res = null;
+                        foreach (Insert cmd in this.InsertCommands) {
+                                if (Res == null) {
+                                        Res = new System.Text.StringBuilder();
+                                        Res.AppendLine(cmd.ToString());
+                                } else {
+                                        Res.Append(", ");
+                                        Res.AppendLine(cmd.ToString(true));
+                                }
+                        }
+                        if (Res == null)
+                                return "";
+                        else
+                                return Res.ToString();
                 }
         }
 }
-

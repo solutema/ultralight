@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -53,7 +55,7 @@ namespace Lfx.Data
                 public string ServerName = null, DataBaseName, UserName, Password;
                 public bool SlowLink = false, Mars = true;
                 public Lfx.Data.AccessModes AccessMode = Lfx.Data.AccessModes.Undefined;
-                public Lfx.Data.SqlModes SqlMode = Lfx.Data.SqlModes.Ansi;
+                public qGen.SqlModes SqlMode = qGen.SqlModes.Ansi;
                 public Lfx.Data.IsolationLevels DefaultIsolationLevel = IsolationLevels.Serializable;
 
                 private System.Collections.Generic.Dictionary<string, Lfx.Data.ConstraintDefinition> m_Constraints = null;
@@ -244,9 +246,7 @@ namespace Lfx.Data
                                 //Agrego los campos de sys_tags
                                 if (this.TagList.ContainsKey(Tabla.Name)) {
                                         foreach (Data.Tag Tg in this.TagList[Tabla.Name]) {
-                                                Lfx.Data.ColumnDefinition Columna = new Lfx.Data.ColumnDefinition();
-                                                Columna.Name = Tg.FieldName;
-                                                Columna.FieldType = Tg.FieldType;
+                                                Lfx.Data.ColumnDefinition Columna = new Lfx.Data.ColumnDefinition(Tg.FieldName, Tg.FieldType);
                                                 switch (Columna.FieldType) {
                                                         case Lfx.Data.DbTypes.VarChar:
                                                                 Columna.Lenght = 200;
@@ -259,9 +259,7 @@ namespace Lfx.Data
                                                 Columna.Nullable = Tg.Nullable;
                                                 Columna.PrimaryKey = false;
 
-                                                if (Tg.DefaultValue == null || Tg.DefaultValue is DBNull)
-                                                        Columna.DefaultValue = "NULL";
-                                                else
+                                                if (Tg.DefaultValue != null)
                                                         Columna.DefaultValue = Tg.DefaultValue.ToString();
 
                                                 if (Tabla.Columns.ContainsKey(Tg.FieldName))
@@ -299,23 +297,17 @@ namespace Lfx.Data
                                         if (m_TagList == null)
                                                 m_TagList = new System.Collections.Generic.Dictionary<string, Data.TagCollection>();
                                         if (this.TableList.Contains("sys_tags")) {
-                                                System.Data.IDataReader Rdr = this.DataBase.GetReader("SELECT tablename,fieldname,label,fieldtype,fieldnullable,fielddefault FROM sys_tags ORDER BY tablename");
-                                                while (Rdr.Read()) {
-                                                        string TableName = Rdr["tablename"].ToString();
+                                                System.Data.DataTable TagsTable = this.DataBase.Select("SELECT * FROM sys_tags ORDER BY tablename");
+                                                foreach(System.Data.DataRow TagRow in TagsTable.Rows) {
+                                                        string TableName = TagRow["tablename"].ToString();
                                                         if (m_TagList.ContainsKey(TableName) == false)
                                                                 m_TagList.Add(TableName, new Data.TagCollection());
 
                                                         Data.TagCollection CurrentCol = m_TagList[TableName];
 
-                                                        Data.Tag NewTag = new Data.Tag(TableName, Rdr["fieldname"].ToString(), Rdr["label"].ToString());
-                                                        NewTag.FieldType = Lfx.Data.Types.FromSQLType(Rdr["fieldtype"].ToString());
-                                                        NewTag.Nullable = System.Convert.ToBoolean(Rdr["fieldnullable"]);
-                                                        NewTag.DefaultValue = Rdr["fielddefault"];
-                                                        if (NewTag.DefaultValue is DBNull)
-                                                                NewTag.DefaultValue = null;
+                                                        Data.Tag NewTag = new Data.Tag(this.DataBase, TableName, (Lfx.Data.Row)TagRow);
                                                         CurrentCol.Add(NewTag);
                                                 }
-                                                Rdr.Close();
                                         }
                                 }
                                 return m_TagList;
@@ -334,8 +326,8 @@ namespace Lfx.Data
                                                 m_TableList = new System.Collections.Generic.List<string>();
                                         System.Data.DataTable Tablas = null;
                                         switch (SqlMode) {
-                                                case Lfx.Data.SqlModes.MySql:
-                                                case Lfx.Data.SqlModes.Oracle:
+                                                case qGen.SqlModes.MySql:
+                                                case qGen.SqlModes.Oracle:
                                                         Tablas = this.DataBase.Select("SHOW TABLES");
                                                         break;
                                                 default:

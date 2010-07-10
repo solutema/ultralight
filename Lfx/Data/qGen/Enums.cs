@@ -30,24 +30,71 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Text;
 
-namespace Lfx.Data.Providers
+namespace qGen
 {
-        /// <summary>
-        /// Proveedor compatible con Npgsql versión 2. Requiere la presencia de Npgsql.dll en el directorio del programa.
-        /// </summary>
-        public class Npgsql : Provider
+        public enum AndOr
         {
-                public Npgsql() :
-                        base("Npgsql",
-                        "Npgsql",
-                        "NpgsqlConnection",
-                        "NpgsqlCommand",
-                        "NpgsqlDataAdapter",
-                        "NpgsqlParameter")
-                {
-                }
+                And,
+                Or,
+        }
+
+        public enum WhereHaving
+        {
+                Where,
+                Having,
+        }
+
+        public enum SqlFunctions
+        {
+                Now
+        }
+
+        public enum SqlModes
+        {
+                Ansi = 0,
+                MySql,
+                PostgreSql,
+                TransactSql,
+                Oracle,
+        }
+
+        public enum ComparisonOperators
+        {
+                NullSafeEquals,
+                Equals,
+                NotEquals,
+                LessThan,
+                GreaterThan,
+                LessOrEqual,
+                GreaterOrEqual,
+                SensitiveLike,
+                InsensitiveLike,
+                SensitiveNotLike,
+                InsensitiveNotLike,
+                SoundsLike,
+                In,
+                NotIn,
+                Between
+        }
+
+        public enum JoinTypes
+        {
+                ImplicitJoin,
+                InnerJoin,
+                NaturalJoin,
+                CrossJoin,
+                LeftJoin,
+                LeftOuterJoin,
+                RightOuterJoin,
+                FullOuterJoin
+        }
+
+        public enum InsertTypes
+        {
+                Insert,
+                InsertOrReplace
         }
 }
-

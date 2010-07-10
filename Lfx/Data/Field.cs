@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -43,6 +45,28 @@ namespace Lfx.Data
 		{
 			this.ColumnName = columnName;
 		}
+
+                public Field(string columnName, object value)
+                        : this(columnName)
+                {
+                        this.Value = value;
+                        if (value is double || value is decimal)
+                                this.DataType = DbTypes.Numeric;
+                        else if (value is int || value is long)
+                                this.DataType = DbTypes.Integer;
+                        else if (value is DateTime)
+                                this.DataType = DbTypes.DateTime;
+                        else if (value is bool)
+                                this.DataType = DbTypes.SmallInt;
+                        else if (value is byte[])
+                                this.DataType = DbTypes.Blob;
+                }
+
+                public Field(string columnName, DbTypes fieldType, object fieldValue)
+                        : this(columnName, fieldValue)
+                {
+                        this.DataType = fieldType;
+                }
 
 		public string Label
 		{
@@ -71,6 +95,38 @@ namespace Lfx.Data
                 public override string ToString()
                 {
                         return this.Value.ToString();
+                }
+
+                public double ValueDouble
+                {
+                        get
+                        {
+                                return System.Convert.ToDouble(this.Value);
+                        }
+                }
+
+                public string ValueString
+                {
+                        get
+                        {
+                                return System.Convert.ToString(this.Value);
+                        }
+                }
+
+                public int ValueInt
+                {
+                        get
+                        {
+                                return System.Convert.ToInt32(this.Value);
+                        }
+                }
+
+                public DateTime ValueDateTime
+                {
+                        get
+                        {
+                                return System.Convert.ToDateTime(this.Value);
+                        }
                 }
 	}
 }

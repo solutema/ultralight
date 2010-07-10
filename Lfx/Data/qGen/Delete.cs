@@ -30,24 +30,46 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Text;
 
-namespace Lfx.Data.Providers
+namespace qGen
 {
-        /// <summary>
-        /// Proveedor compatible con Npgsql versión 2. Requiere la presencia de Npgsql.dll en el directorio del programa.
-        /// </summary>
-        public class Npgsql : Provider
+        public class Delete : TableCommand
         {
-                public Npgsql() :
-                        base("Npgsql",
-                        "Npgsql",
-                        "NpgsqlConnection",
-                        "NpgsqlCommand",
-                        "NpgsqlDataAdapter",
-                        "NpgsqlParameter")
+                public bool EnableDeleleteWithoutWhere = false;
+
+                public Delete()
+                        : base() { }
+
+                public Delete(string Tables)
+                        : base(Tables) { }
+
+                public Delete(Lfx.Data.DataBase dataBase, string tables)
+                        : base(dataBase, tables) { }
+
+                public Delete(string tables, Where whereClause)
+                        : base(tables, whereClause) { }
+
+                public override string ToString()
                 {
+                        string Command = null;
+
+                        Command = "DELETE FROM " + Tables;
+
+                        if (WhereClause != null) {
+                                Command += " WHERE " + WhereClause.ToString();
+                        } else if (EnableDeleleteWithoutWhere == false) {
+                                System.Console.WriteLine("SqlDeleteBuilder necesita una cláusula Where o Truncate = true.");
+                                return "";
+                        }
+
+                        return Command;
+                }
+
+                public override void SetupDbCommand(ref System.Data.IDbCommand baseCommand)
+                {
+                        baseCommand.CommandText = this.ToString();
                 }
         }
 }
-

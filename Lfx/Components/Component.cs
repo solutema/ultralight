@@ -1,4 +1,5 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+#region License
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 
@@ -36,7 +38,7 @@ namespace Lfx.Components
 	/// </summary>
 	public class Component
 	{
-		protected Lfx.Workspace m_Workspace;
+                protected Lfx.Workspace m_Workspace;
 		public string ExecutableName = null;
 		public string[] CommandLineArgs = null;
 
@@ -56,11 +58,11 @@ namespace Lfx.Components
 			}
 		}
 
-		public virtual Lfx.Components.ComponentTypes ComponentType
+                public virtual Lfx.Components.ComponentTypes ComponentType
 		{
 			get
 			{
-				return Lfx.Components.ComponentTypes.Executable;
+                                return Lfx.Components.ComponentTypes.Executable;
 			}
 		}
 

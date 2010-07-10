@@ -30,24 +30,23 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Text;
 
-namespace Lfx.Data.Providers
+namespace qGen
 {
-        /// <summary>
-        /// Proveedor compatible con Npgsql versión 2. Requiere la presencia de Npgsql.dll en el directorio del programa.
-        /// </summary>
-        public class Npgsql : Provider
+        public class SqlExpression
         {
-                public Npgsql() :
-                        base("Npgsql",
-                        "Npgsql",
-                        "NpgsqlConnection",
-                        "NpgsqlCommand",
-                        "NpgsqlDataAdapter",
-                        "NpgsqlParameter")
+                public string Value = null;
+
+                public SqlExpression(string expr)
                 {
+                        this.Value = expr;
+                }
+
+                public override string ToString()
+                {
+                        return this.Value;
                 }
         }
 }
-

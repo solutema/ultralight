@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Reflection;
@@ -34,19 +36,25 @@ namespace Lfx.Data
 {
         /// <summary>
         /// Proporciona una conexión a la base de datos y acceso de bajo nivel (sin abstracción) a los datos. Se utiliza normalmente para ejecutar consultas.
-        /// Vea Lws.Data.DataView para acceso de medio nivel a los datos o Lbl.* para para acceso de alto nivel a los datos.
+        /// Vea Lfx.Data.DataBase para acceso de medio nivel a los datos o Lbl.* para para acceso de alto nivel a los datos.
         /// </summary>
         public class DataBase : IDisposable
         {
-                private bool m_Closing = false;
-                protected System.Data.IDbConnection DbConnection;
-                protected bool m_InTransaction = false;
-                public bool EnableRecover = false, Debug = false;
-                private int Handle = 0;
-                private static int LastHandle = 0;
+                public bool EnableRecover = false;
+                public Lfx.Workspace Workspace;
+                public int KeepAlive = 600;             // 10 minutos
+                public string Name = null;
 
-                public DataBase()
+                private readonly int Handle = 0;
+                private static int LastHandle = 0;
+                private System.Timers.Timer KeepAliveTimer = null;
+                private System.Data.IDbConnection DbConnection;
+                private bool m_InTransaction = false, m_Closing = false;
+
+                public DataBase(Lfx.Workspace workspace, string name)
                 {
+                        this.Workspace = workspace;
+                        this.Name = name;
                         this.Handle = LastHandle++;
                         if (Lfx.Data.DataBaseCache.DefaultCache == null)
                                 Lfx.Data.DataBaseCache.DefaultCache = new DataBaseCache(this);
@@ -58,6 +66,8 @@ namespace Lfx.Data
 
                         if (DbConnection != null && DbConnection.State != System.Data.ConnectionState.Closed && DbConnection.State != System.Data.ConnectionState.Broken)
                                 return false;
+
+                        this.Workspace.DebugLog(this.Handle, "Abriendo " + this.Name);
 
                         System.Text.StringBuilder ConnectionString = new System.Text.StringBuilder();
 
@@ -73,10 +83,9 @@ namespace Lfx.Data
                                                 Lfx.Data.DataBaseCache.DefaultCache.Provider = new Lfx.Data.Providers.MySqlProvider();
                                         ConnectionString.Append("Convert Zero Datetime=true;");
                                         ConnectionString.Append("Connection Timeout=30;");
-                                        ConnectionString.Append("Default Command Timeout=180;");
+                                        ConnectionString.Append("Default Command Timeout=600;");
                                         ConnectionString.Append("Allow User Variables=True;");
-                                        //ConnectionString.Append("Pooling=False;");
-                                        //ConnectionString.Append("KeepAlive=20;");
+                                        //ConnectionString.Append("KeepAlive=20;");     // No sirve, uso KeepAlive propio
                                         switch (System.Text.Encoding.Default.BodyName) {
                                                 case "utf-8":
                                                         ConnectionString.Append("charset=utf8;");
@@ -89,7 +98,7 @@ namespace Lfx.Data
                                                 ConnectionString.Append("Compress=true;");
                                         Lfx.Data.DataBaseCache.DefaultCache.OdbcDriver = null;
                                         Lfx.Data.DataBaseCache.DefaultCache.Mars = false;
-                                        Lfx.Data.DataBaseCache.DefaultCache.SqlMode = SqlModes.MySql;
+                                        Lfx.Data.DataBaseCache.DefaultCache.SqlMode = qGen.SqlModes.MySql;
                                         break;
                                 case AccessModes.MyOdbc:
                                         if (Lfx.Data.DataBaseCache.DefaultCache.Provider == null)
@@ -125,19 +134,19 @@ namespace Lfx.Data
                                         if (Lfx.Data.DataBaseCache.DefaultCache.SlowLink)
                                                 MyOdbcOptions |= 2048;    // FLAG_COMPRESSED_PROTO (Use the compressed client/server protocol)
                                         ConnectionString.Append("OPTION=" + MyOdbcOptions.ToString() + ";");
-                                        Lfx.Data.DataBaseCache.DefaultCache.SqlMode = SqlModes.MySql;
+                                        Lfx.Data.DataBaseCache.DefaultCache.SqlMode = qGen.SqlModes.MySql;
                                         break;
                                 case AccessModes.Npgsql:
                                         if (Lfx.Data.DataBaseCache.DefaultCache.Provider == null)
                                                 Lfx.Data.DataBaseCache.DefaultCache.Provider = new Lfx.Data.Providers.Npgsql();
                                         ConnectionString.Append("CommandTimeout=900;");
-                                        Lfx.Data.DataBaseCache.DefaultCache.SqlMode = SqlModes.PostgreSql;
+                                        Lfx.Data.DataBaseCache.DefaultCache.SqlMode = qGen.SqlModes.PostgreSql;
                                         break;
                                 case AccessModes.MSSql:
                                         if (Lfx.Data.DataBaseCache.DefaultCache.Provider == null)
                                                 Lfx.Data.DataBaseCache.DefaultCache.Provider = new Lfx.Data.Providers.Odbc();
                                         Lfx.Data.DataBaseCache.DefaultCache.OdbcDriver = "SQL Server";
-                                        Lfx.Data.DataBaseCache.DefaultCache.SqlMode = SqlModes.MSSql;
+                                        Lfx.Data.DataBaseCache.DefaultCache.SqlMode = qGen.SqlModes.TransactSql;
                                         break;
                         }
 
@@ -159,6 +168,12 @@ namespace Lfx.Data
                         this.SetupServer(this.DbConnection);
                         EnableRecover = true;
 
+                        if (KeepAlive > 0) {
+                                KeepAliveTimer = new System.Timers.Timer(this.KeepAlive * 1000);
+                                KeepAliveTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.KeepAliveTimer_Elapsed);
+                                KeepAliveTimer.Start();
+                        }
+
                         if (DbConnection is System.Data.Odbc.OdbcConnection) {
                                 System.Data.Odbc.OdbcConnection OdbcConnection = DbConnection as System.Data.Odbc.OdbcConnection;
                                 try {
@@ -171,6 +186,19 @@ namespace Lfx.Data
                         }
 
                         return false;
+                }
+
+                private void KeepAliveTimer_Elapsed(object source, System.Timers.ElapsedEventArgs e)
+                {
+                        this.Execute("SELECT 1");
+                }
+
+                private void ResetKeepAliveTimer()
+                {
+                        if (this.KeepAliveTimer != null) {
+                                this.KeepAliveTimer.Stop();
+                                this.KeepAliveTimer.Start();
+                        }
                 }
 
                 public string ServerName
@@ -193,10 +221,10 @@ namespace Lfx.Data
                 {
                         string SqlCommand;
                         switch (this.SqlMode) {
-                                case SqlModes.MySql:
+                                case qGen.SqlModes.MySql:
                                         SqlCommand = "SET SESSION TRANSACTION ISOLATION LEVEL";
                                         break;
-                                case SqlModes.PostgreSql:
+                                case qGen.SqlModes.PostgreSql:
                                         SqlCommand = "SET TRANSACTION ISOLATION LEVEL";
                                         break;
                                 default:
@@ -232,15 +260,15 @@ namespace Lfx.Data
                                 //Detecto el tipo de servidor y asigno directamente a la variable porque la propiedad es sólo lectura
                                 System.Data.Odbc.OdbcConnection OdbcConnection = setupConnection as System.Data.Odbc.OdbcConnection;
                                 if (OdbcConnection.ServerVersion.IndexOf("PostgreSql", StringComparison.InvariantCultureIgnoreCase) >= 0)
-                                        Lfx.Data.DataBaseCache.DefaultCache.SqlMode = SqlModes.PostgreSql;
+                                        Lfx.Data.DataBaseCache.DefaultCache.SqlMode = qGen.SqlModes.PostgreSql;
                                 else if (OdbcConnection.Driver.IndexOf("myodbc", StringComparison.InvariantCultureIgnoreCase) >= 0)
-                                        Lfx.Data.DataBaseCache.DefaultCache.SqlMode = SqlModes.MySql;
+                                        Lfx.Data.DataBaseCache.DefaultCache.SqlMode = qGen.SqlModes.MySql;
                                 else if (OdbcConnection.Driver.IndexOf("SqlSRV", StringComparison.InvariantCultureIgnoreCase) >= 0)
-                                        Lfx.Data.DataBaseCache.DefaultCache.SqlMode = SqlModes.MSSql;
+                                        Lfx.Data.DataBaseCache.DefaultCache.SqlMode = qGen.SqlModes.TransactSql;
                         }
 
                         switch (this.SqlMode) {
-                                case SqlModes.MySql:
+                                case qGen.SqlModes.MySql:
                                         // Pongo a MySql en modo ANSI
                                         this.Execute("SET sql_mode='ANSI'");
                                         switch (System.Text.Encoding.Default.BodyName) {
@@ -252,7 +280,7 @@ namespace Lfx.Data
                                                         break;
                                         }
                                         break;
-                                case SqlModes.PostgreSql:
+                                case qGen.SqlModes.PostgreSql:
                                         switch (System.Text.Encoding.Default.BodyName) {
                                                 case "utf-8":
                                                         this.Execute("SET CLIENT_ENCODING TO 'UTF8'");
@@ -262,56 +290,6 @@ namespace Lfx.Data
                                                         break;
                                         }
                                         break;
-                        }
-                }
-
-                public void CheckDataBase()
-                {
-                        this.Execute("ALTER DATABASE " + this.DataBaseName + " charset=utf8");
-
-                        foreach (string Tabla in Lfx.Data.DataBaseCache.DefaultCache.TableList) {
-                                this.Execute("ALTER TABLE " + Tabla + " CONVERT TO CHARACTER SET utf8");
-                                CheckTable(Tabla);
-                        }
-
-                        // Actualizo los saldos de stock, se acuerdo a stock_movim
-                        this.Execute(@"UPDATE articulos SET stock_actual=(SELECT saldo FROM articulos_movim WHERE 
-	                        articulos_movim.id_articulo=articulos.id_articulo
-	                        ORDER BY id_movim DESC
-	                        LIMIT 1) WHERE control_stock<>0");
-                        this.Execute(@"UPDATE articulos SET stock_actual=0 WHERE control_stock=0");
-
-                        // TODO: verificar saldos de cajas y cuentas corrientes
-                }
-
-                public void CheckTable(string tableName)
-                {
-                        Data.TableStructure CurrentTableDef = this.GetTableStructure(tableName, true);
-                        foreach (Lfx.Data.ColumnDefinition Col in CurrentTableDef.Columns.Values) {
-                                if (Col.FieldType == DbTypes.VarChar || Col.FieldType == DbTypes.Text) {
-                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã¡', 'á')");
-                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã©', 'é')");
-                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã­', 'í')");
-                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã³', 'ó')");
-                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ãº', 'ú')");
-                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã¼', 'ü')");
-                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã±', 'ñ')");
-                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã‰', 'É')");
-                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã“', 'Ó')");
-                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ãš', 'Ú')");
-                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã\\‘', 'Ñ')");
-                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Âº', 'º')");
-                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Â¿', '¿')");
-                                        
-                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã‚º', 'º')");
-                                        this.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'ÃƒÂ±', 'ñ')");
-                                        //a=Ã¡, e=Ã©, i=Ã­, o=Ã³, u=Ãº, N=Ã‘, ?=Â¿, u=Ã¼, A=Ã, E=Ã‰, I=Ã, O=Ã“, U=Ãš, Ã‚º=º
-                                }
-                        }
-
-                        foreach (Lfx.Data.ConstraintDefinition Cons in CurrentTableDef.Constraints.Values) {
-                                // Elimino valores 0 (los pongo en NULL)
-                                this.Execute("UPDATE " + tableName + " SET " + Cons.Column + "=NULL WHERE " + Cons.Column + "=0");
                         }
                 }
 
@@ -443,11 +421,7 @@ namespace Lfx.Data
                                         Sql = "ALTER TABLE \"" + index.TableName + "\" ADD " + index.SqlDefinition();
                                         break;
                         }
-                        try {
-                                this.Execute(Sql);
-                        } catch {
-                                // TODO: esto lo ignoro por problemas con PostgreSQL
-                        }
+                        this.Execute(Sql);
                 }
 
                 public void DropIndex(Data.IndexDefinition index)
@@ -581,13 +555,13 @@ namespace Lfx.Data
                                 }
 
                                 //Es la clave autonumérica?
-                                if (this.SqlMode == SqlModes.MySql && Columna["EXTRA"].ToString() == "auto_increment") {
+                                if (this.SqlMode == qGen.SqlModes.MySql && Columna["EXTRA"].ToString() == "auto_increment") {
                                         FieldDef.FieldType = DbTypes.Serial;
                                 } else if (this.AccessMode == AccessModes.Npgsql && Columna["COLUMN_DEFAULT"].ToString().IndexOf("nextval(") >= 0) {
                                         FieldDef.FieldType = DbTypes.Serial;
                                 }
 
-                                if (this.SqlMode == SqlModes.MySql) {
+                                if (this.SqlMode == qGen.SqlModes.MySql) {
                                         //Particularidades de MySQL
                                         if (Columna["COLUMN_KEY"].ToString() == "PRI")
                                                 FieldDef.PrimaryKey = true;
@@ -814,8 +788,7 @@ LEFT JOIN pg_attribute
                                         while (this.DbConnection.State != System.Data.ConnectionState.Open && intentos-- > 0) {
                                                 try {
                                                         this.Open();
-                                                }
-                                                catch {
+                                                } catch {
                                                         System.Threading.Thread.Sleep(1000);
                                                 }
                                         }
@@ -865,6 +838,12 @@ LEFT JOIN pg_attribute
 		
 		public void Dispose ()
 		{
+                        if (this.Handle == 0) {
+                                if (Lfx.Environment.SystemInformation.DesignMode)
+                                        throw new InvalidOperationException("No se puede deshechar el espacio de trabajo maestro");
+                                return;
+                        }
+                        this.Workspace.DebugLog(this.Handle, "Deshechando " + this.Name);
 			this.Close();
                         if (DbConnection != null) {
                                 DbConnection.Dispose();
@@ -901,7 +880,7 @@ LEFT JOIN pg_attribute
                         return TempCommand;
                 }
 
-                public System.Data.IDbCommand GetCommand(SqlCommandBuilder command)
+                public System.Data.IDbCommand GetCommand(qGen.Command command)
                 {
                         System.Data.IDbCommand TempCommand = Lfx.Data.DataBaseCache.DefaultCache.Provider.GetCommand();
                         TempCommand.Connection = this.DbConnection;
@@ -910,7 +889,7 @@ LEFT JOIN pg_attribute
                         return TempCommand;
                 }
 
-                public int Update(SqlUpdateBuilder updateCommand)
+                public int Update(qGen.Update updateCommand)
                 {
                         if (this.IsOpen() == false)
                                 this.Open();
@@ -919,7 +898,10 @@ LEFT JOIN pg_attribute
                         while (true) {
                                 try {
                                         TempCommand.Connection = this.DbConnection;
-                                        return TempCommand.ExecuteNonQuery();
+                                        int Res = TempCommand.ExecuteNonQuery();
+                                        TempCommand.Dispose();
+                                        this.ResetKeepAliveTimer();
+                                        return Res;
                                 }
                                 catch (Exception ex) {
                                         if (this.TryToRecover(ex))
@@ -928,7 +910,7 @@ LEFT JOIN pg_attribute
                         }
                 }
 
-                public int Delete(SqlDeleteBuilder deleteCommand)
+                public int Delete(qGen.Delete deleteCommand)
                 {
                         if (this.IsOpen() == false)
                                 this.Open();
@@ -936,7 +918,7 @@ LEFT JOIN pg_attribute
                         return this.Execute(deleteCommand.ToString());
                 }
 
-                public int Insert(SqlInsertBuilder insertCommand)
+                public int Insert(qGen.Insert insertCommand)
                 {
                         if (this.IsOpen() == false)
                                 this.Open();
@@ -961,29 +943,29 @@ LEFT JOIN pg_attribute
                         if (sqlCommand.Length == 0)
                                 return 0;
 
-                        return this.Execute(this.GetCommand(sqlCommand));
+                        return this.ExecuteNonQuery(this.GetCommand(sqlCommand));
                 }
 
-                public int ExecuteCommand(Lfx.Data.SqlTableCommandBuilder sqlCommand)
+                public int Execute(qGen.TableCommand sqlCommand)
                 {
                         sqlCommand.SqlMode = this.SqlMode;
-                        return this.Execute(this.GetCommand(sqlCommand));
+                        return this.ExecuteNonQuery(this.GetCommand(sqlCommand));
                 }
 
-                private int Execute(System.Data.IDbCommand command)
+                private int ExecuteNonQuery(System.Data.IDbCommand command)
                 {
-                        if (command.Connection == null)
-                                command.Connection = this.DbConnection;
-
                         if (this.IsOpen() == false)
                                 this.Open();
 
                         while (true) {
                                 try {
+                                        if (command.Connection == null)
+                                                command.Connection = this.DbConnection;
+
+                                        this.Workspace.DebugLog(this.Handle, command.CommandText);
                                         int Res = command.ExecuteNonQuery();
+                                        this.ResetKeepAliveTimer();
                                         command.Dispose();
-                                        if (Debug)
-                                                System.Console.WriteLine(command.CommandText);
                                         return Res;
                                 } catch (Exception ex)  {
                                         if (this.TryToRecover(ex)) {
@@ -996,9 +978,9 @@ LEFT JOIN pg_attribute
                         }
                 }
 
-                public string FieldString(SqlSelectBuilder selectCommand)
+                public string FieldString(qGen.Select selectCommand)
                 {
-                        object Res = this.ExecuteScalar(selectCommand.ToString());
+                        object Res = this.ConnExecuteScalar(selectCommand.ToString());
                         if (Res == null || Res is DBNull)
                                 return null;
                         else
@@ -1007,7 +989,7 @@ LEFT JOIN pg_attribute
 
                 public string FieldString(string selectCommand)
                 {
-                        object Res = this.ExecuteScalar(selectCommand);
+                        object Res = this.ConnExecuteScalar(selectCommand);
                         if (Res == null || Res is DBNull)
                                 return null;
                         else
@@ -1032,13 +1014,15 @@ LEFT JOIN pg_attribute
                 }
 
 
-                private object ExecuteScalar(string selectCommand)
+                private object ConnExecuteScalar(string selectCommand)
                 {
+                        if (this.IsOpen() == false)
+                                this.Open();
+
                         System.Data.IDbCommand Cmd = this.GetCommand(selectCommand);
                         while (true) {
                                 try {
-                                        if (Debug)
-                                                System.Console.WriteLine(this.Handle.ToString() + ": " + selectCommand);
+                                        this.Workspace.DebugLog(this.Handle, selectCommand);
                                         return Cmd.ExecuteScalar();
                                 }
                                 catch (Exception ex) {
@@ -1054,16 +1038,16 @@ LEFT JOIN pg_attribute
 
                 public int FieldInt(string selectCommand)
                 {
-                        object Res = this.ExecuteScalar(selectCommand);
+                        object Res = this.ConnExecuteScalar(selectCommand);
                         if (Res == null || Res is DBNull)
                                 return 0;
                         else
                                 return System.Convert.ToInt32(Res);
                 }
 
-                public int FieldInt(SqlSelectBuilder selectCommand)
+                public int FieldInt(qGen.Select selectCommand)
                 {
-                        object Res = this.ExecuteScalar(selectCommand.ToString());
+                        object Res = this.ConnExecuteScalar(selectCommand.ToString());
                         if (Res == null || Res is DBNull)
                                 return 0;
                         else
@@ -1072,16 +1056,16 @@ LEFT JOIN pg_attribute
 
                 public DateTime FieldDateTime(string selectCommand, DateTime defaultValue)
                 {
-                        object Res = this.ExecuteScalar(selectCommand);
+                        object Res = this.ConnExecuteScalar(selectCommand);
                         if (Res == null || Res is DBNull)
                                 return defaultValue;
                         else
                                 return System.Convert.ToDateTime(Res);
                 }
 
-                public double FieldDouble(SqlSelectBuilder selectCommand)
+                public double FieldDouble(qGen.Select selectCommand)
                 {
-                        object Res = this.ExecuteScalar(selectCommand.ToString());
+                        object Res = this.ConnExecuteScalar(selectCommand.ToString());
                         if (Res == null || Res is DBNull)
                                 return 0;
                         else
@@ -1090,7 +1074,7 @@ LEFT JOIN pg_attribute
 
                 public double FieldDouble(string selectCommand)
                 {
-                        object Res = this.ExecuteScalar(selectCommand);
+                        object Res = this.ConnExecuteScalar(selectCommand);
                         if (Res == null || Res is DBNull)
                                 return 0;
                         else
@@ -1109,11 +1093,20 @@ LEFT JOIN pg_attribute
 
                 public Lfx.Data.Row FirstRowFromSelect(string selectCommand)
                 {
-                        System.Data.IDataReader Rdr = this.GetReader(selectCommand);
-                        if (Rdr != null){
+                        System.Data.DataTable SelTbl = this.Select(selectCommand);
+                        if (SelTbl.Rows.Count == 0)
+                                return null;
+
+                        Lfx.Data.Row Res = ((Lfx.Data.Row)(SelTbl.Rows[0]));
+                        Res.IsNew = false;
+                        return Res;
+
+                        /* System.Data.IDataReader Rdr = this.GetReader(selectCommand);
+                        if (Rdr != null) {
                                 Lfx.Data.Row Res = null;
                                 if (Rdr.Read()) {
                                         Res = new Lfx.Data.Row();
+                                        Res.IsNew = false;
                                         for (int i = 0; i < Rdr.FieldCount; i++) {
                                                 object Val = Rdr[i];
                                                 if (Val is DateTime && (DateTime)Val == DateTime.MinValue)
@@ -1126,10 +1119,10 @@ LEFT JOIN pg_attribute
                                 return Res;
                         } else {
                                 return null;
-                        }
+                        } */
                 }
 
-                public Lfx.Data.Row FirstRowFromSelect(SqlSelectBuilder selectCommand)
+                public Lfx.Data.Row FirstRowFromSelect(qGen.Select selectCommand)
                 {
                         return this.FirstRowFromSelect(selectCommand.ToString());
                 }
@@ -1139,20 +1132,23 @@ LEFT JOIN pg_attribute
                         return (this.ConectionState == System.Data.ConnectionState.Open) || (this.ConectionState == System.Data.ConnectionState.Executing) || (this.ConectionState == System.Data.ConnectionState.Fetching);
                 }
 
-                public System.Data.IDataReader GetReader(Lfx.Data.SqlSelectBuilder comando)
+                /* public System.Data.IDataReader GetReader(qGen.Select comando)
                 {
                         return this.GetReader(comando.ToString());
                 }
 
-                public System.Data.IDataReader GetReader(string selectCommand)
+                protected System.Data.IDataReader GetReader(string selectCommand)
                 {
+                        if (this.IsOpen() == false)
+                                this.Open();
+
                         System.Data.IDbCommand Cmd = this.GetCommand(selectCommand);
                         while (true) {
                                 try {
                                         Cmd.Connection = this.DbConnection;
                                         System.Data.IDataReader Rdr = Cmd.ExecuteReader(System.Data.CommandBehavior.SingleResult);
-                                        if (Debug)
-                                                System.Console.WriteLine(this.Handle.ToString() + ": " + selectCommand);
+                                        this.ResetKeepAliveTimer();
+                                        this.Workspace.DebugLog(this.Handle, selectCommand);
                                         return Rdr;
                                 }
                                 catch (Exception ex) {
@@ -1164,9 +1160,9 @@ LEFT JOIN pg_attribute
                                         }
                                 }
                         }
-                }
+                } */
 
-                public System.Data.DataTable Select(SqlSelectBuilder selectCommand)
+                public System.Data.DataTable Select(qGen.Select selectCommand)
                 {
                         return Select(selectCommand.ToString());
                 }
@@ -1215,8 +1211,8 @@ LEFT JOIN pg_attribute
                         while (true) {
                                 try {
                                         Adaptador.Fill(Lector);
-                                        if (Debug)
-                                                System.Console.WriteLine(this.Handle.ToString() + ": " + selectCommand);
+                                        this.ResetKeepAliveTimer();
+                                        this.Workspace.DebugLog(this.Handle, selectCommand);
                                         break;
                                 }
                                 catch (Exception ex) {
@@ -1251,13 +1247,13 @@ LEFT JOIN pg_attribute
                 public void EnableConstraints(bool enable)
                 {
                         switch (this.SqlMode) {
-                                case SqlModes.MySql:
+                                case qGen.SqlModes.MySql:
                                         if (enable)
                                                 this.Execute("SET FOREIGN_KEY_CHECKS=1");
                                         else
                                                 this.Execute("SET FOREIGN_KEY_CHECKS=0");
                                         break;
-                                case SqlModes.PostgreSql:
+                                case qGen.SqlModes.PostgreSql:
                                         if (enable)
                                                 this.Execute("SET CONSTRAINTS ALL IMMEDIATE");
                                         else
@@ -1275,8 +1271,19 @@ LEFT JOIN pg_attribute
                         }
                 }
 
+
+                public void BeginTransaction()
+                {
+                        if (this.Handle == 0 && Lfx.Environment.SystemInformation.DesignMode)
+                                throw new InvalidOperationException("No se pueden realizar transacciones en el espacio de trabajo maestro");
+                        this.BeginTransaction(true);
+                }
+
                 public void BeginTransaction(bool serializable)
                 {
+                        if (this.IsOpen() == false)
+                                this.Open();
+
                         if (serializable)
                                 this.SetTransactionIsolationLevel(Lfx.Data.IsolationLevels.Serializable);
                         else
@@ -1333,32 +1340,29 @@ LEFT JOIN pg_attribute
                 public string CustomizeSql(string sqlOrigen)
                 {
                         switch (this.SqlMode) {
-                                case Lfx.Data.SqlModes.MySql:
+                                case qGen.SqlModes.MySql:
                                         sqlOrigen = sqlOrigen.Replace("$SERIAL$", "INTEGER AUTO_INCREMENT NOT NULL");
                                         sqlOrigen = sqlOrigen.Replace("$BLOB$", "LONGBLOB");
                                         sqlOrigen = sqlOrigen.Replace("$TIMESTAMP$", "DATETIME");
                                         sqlOrigen = sqlOrigen.Replace("$DATETIME$", "DATETIME");
                                         sqlOrigen = sqlOrigen.Replace("$/CREATETABLE$", " TYPE=InnoDB CHARACTER SET=utf8");
                                         sqlOrigen = sqlOrigen.Replace("$DEFERRABLE$", string.Empty);
-                                        sqlOrigen = sqlOrigen.Replace("$INSERTORREPLACE$", "REPLACE INTO");
                                         break;
-                                case Lfx.Data.SqlModes.PostgreSql:
+                                case qGen.SqlModes.PostgreSql:
                                         sqlOrigen = sqlOrigen.Replace("$SERIAL$", "SERIAL");
                                         sqlOrigen = sqlOrigen.Replace("$BLOB$", "BYTEA");
                                         sqlOrigen = sqlOrigen.Replace("$TIMESTAMP$", "TIMESTAMP");
                                         sqlOrigen = sqlOrigen.Replace("$DATETIME$", "TIMESTAMP");
                                         sqlOrigen = sqlOrigen.Replace("$/CREATETABLE$", string.Empty);
                                         sqlOrigen = sqlOrigen.Replace("$DEFERRABLE$", "DEFERRABLE");
-                                        sqlOrigen = sqlOrigen.Replace("$INSERTORREPLACE$", "INSERT INTO");
                                         break;
-                                case Lfx.Data.SqlModes.MSSql:
+                                case qGen.SqlModes.TransactSql:
                                         sqlOrigen = sqlOrigen.Replace("$SERIAL$", "INTEGER IDENTITY");
                                         sqlOrigen = sqlOrigen.Replace("BLOB", "VARBINARY");
                                         sqlOrigen = sqlOrigen.Replace("$TIMESTAMP$", "DATETIME");
                                         sqlOrigen = sqlOrigen.Replace("$DATETIME$", "DATETIME");
                                         sqlOrigen = sqlOrigen.Replace("$/CREATETABLE$", string.Empty);
                                         sqlOrigen = sqlOrigen.Replace("$DEFERRABLE$", string.Empty);
-                                        sqlOrigen = sqlOrigen.Replace("$INSERTORREPLACE$", "INSERT INTO");
                                         break;
                                 default:
                                         // Para servidores desconocidos, trato de utilizar ANSI
@@ -1368,7 +1372,6 @@ LEFT JOIN pg_attribute
                                         sqlOrigen = sqlOrigen.Replace("$DATETIME$", "TIMESTAMP");
                                         sqlOrigen = sqlOrigen.Replace("$/CREATETABLE$", string.Empty);
                                         sqlOrigen = sqlOrigen.Replace("$DEFERRABLE$", string.Empty);
-                                        sqlOrigen = sqlOrigen.Replace("$INSERTORREPLACE$", "INSERT INTO");
                                         break;
                         }
                         return sqlOrigen;
@@ -1396,22 +1399,47 @@ LEFT JOIN pg_attribute
                 public string EscapeString(string stringValue)
                 {
                         switch (this.SqlMode) {
-                                case Lfx.Data.SqlModes.PostgreSql:
+                                case qGen.SqlModes.PostgreSql:
                                         return stringValue.Replace("'", "''");
-                                case Lfx.Data.SqlModes.MySql:
+                                case qGen.SqlModes.MySql:
                                 default:
                                         return stringValue.Replace("'", "''").Replace(@"\", @"\\");
                         }
                 }
 
-                public static string EscapeString(string stringValue, Lfx.Data.SqlModes sqlMode)
+                public static string EscapeString(string stringValue, qGen.SqlModes sqlMode)
                 {
                         switch (sqlMode) {
-                                case Lfx.Data.SqlModes.PostgreSql:
+                                case qGen.SqlModes.PostgreSql:
                                         return stringValue.Replace("'", "''");
-                                case Lfx.Data.SqlModes.MySql:
+                                case qGen.SqlModes.MySql:
                                 default:
                                         return stringValue.Replace("'", "''").Replace(@"\", @"\\");
+                        }
+                }
+
+                public TableCollection Tables
+                {
+                        get
+                        {
+                                if (Lfx.Workspace.MasterTableCollection == null) {
+                                        Lfx.Workspace.MasterTableCollection = new TableCollection(Lfx.Workspace.Master.DefaultDataBase);
+                                        foreach (string TblName in Lfx.Data.DataBaseCache.DefaultCache.TableList) {
+                                                Table NewTable = new Table(Lfx.Workspace.Master.DefaultDataBase, TblName);
+                                                switch (TblName) {
+                                                        case "sys_asl":
+                                                        case "sys_log":
+                                                        case "sys_programador":
+                                                        case "sys_quickpaste":
+                                                                NewTable.Cacheable = false;
+                                                                break;
+                                                }
+                                                if (Lfx.Data.DataBaseCache.DefaultCache.TableStructures.ContainsKey(TblName) && Lfx.Data.DataBaseCache.DefaultCache.TableStructures[TblName].PrimaryKey != null)
+                                                        NewTable.PrimaryKey = Lfx.Data.DataBaseCache.DefaultCache.TableStructures[TblName].PrimaryKey.Name;
+                                                Lfx.Workspace.MasterTableCollection.Add(NewTable);
+                                        }
+                                }
+                                return Lfx.Workspace.MasterTableCollection;
                         }
                 }
 
@@ -1437,7 +1465,7 @@ LEFT JOIN pg_attribute
                 }
 
 
-                public SqlModes SqlMode
+                public qGen.SqlModes SqlMode
                 {
                         get
                         {

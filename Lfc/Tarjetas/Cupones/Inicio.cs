@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -41,42 +43,42 @@ namespace Lfc.Tarjetas.Cupones
                 protected internal string m_Tabla = "tarjetas_cupones";
 		protected internal int m_Cliente, m_Tarjeta, m_Plan, m_Estado = -2;
                 protected internal Lfx.Types.DateRange m_Fecha = new Lfx.Types.DateRange("*");
-                protected internal Lfx.Data.SqlSelectBuilder m_SelectCommand;
+                protected internal qGen.Select m_SelectCommand;
                 
                 public Inicio() : base()
                 {
                         // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
 
-                        LowerPanel.BackColor = Lws.Config.Display.CurrentTemplate.FooterBackground;
+                        LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
                 }
 
 		public Lfx.Types.OperationResult RefreshList()
 		{
 			if (m_Tabla.Length > 0)
 			{
-                                m_SelectCommand = new Lfx.Data.SqlSelectBuilder(m_Tabla);
+                                m_SelectCommand = new qGen.Select(m_Tabla);
                                 m_SelectCommand.Fields = "id_cupon,fecha,concepto,id_tarjeta,numero,importe,estado,id_plan";
-                                m_SelectCommand.WhereClause = new Lfx.Data.SqlWhereBuilder();
-                                m_SelectCommand.WhereClause.AndOr = Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandAnd;
+                                m_SelectCommand.WhereClause = new qGen.Where();
+                                m_SelectCommand.WhereClause.Operator = qGen.AndOr.And;
 
 				if (m_Cliente > 0)
-                                        m_SelectCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("id_cliente", m_Cliente));
+                                        m_SelectCommand.WhereClause.Add(new qGen.ComparisonCondition("id_cliente", m_Cliente));
 
 				if (m_Tarjeta > 0)
-                                        m_SelectCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("id_tarjeta", m_Tarjeta));
+                                        m_SelectCommand.WhereClause.Add(new qGen.ComparisonCondition("id_tarjeta", m_Tarjeta));
 
-				if (m_Estado >= 0)
-                                        m_SelectCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("estado", m_Estado));
-                                else if(m_Estado == -2)
-                                        m_SelectCommand.WhereClause.Conditions.Add("estado IN (0, 10)");
+                                if (m_Estado >= 0)
+                                        m_SelectCommand.WhereClause.Add(new qGen.ComparisonCondition("estado", m_Estado));
+                                else if (m_Estado == -2)
+                                        m_SelectCommand.WhereClause.Add(new qGen.ComparisonCondition("estado", qGen.ComparisonOperators.In, new int[] { 0, 10 }));
 
                                 if (m_Fecha.HasRange)
-                                        m_SelectCommand.WhereClause.Conditions.Add("(fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')");
+                                        m_SelectCommand.WhereClause.Add(new qGen.ComparisonCondition("fecha", m_Fecha.From, m_Fecha.To));
                          
                                 m_SelectCommand.Order = "fecha DESC";
 
-				System.Data.DataTable dt = this.Workspace.DefaultDataBase.Select(this.SelectCommand());
+				System.Data.DataTable dt = this.DataBase.Select(this.SelectCommand());
 				double Total = 0, SinPresentar = 0, Presentados = 0, Acreditados = 0, Cancelados = 0, Rechazados = 0;
                                 int CantidadSinPresentar = 0, CantidadPresentados = 0, CantidadAcreditados = 0;
 
@@ -97,7 +99,7 @@ namespace Lfc.Tarjetas.Cupones
 						itm = ItemList.Items.Add(System.Convert.ToString(row["id_cupon"]));
 						itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatDate(row["fecha"])));
 						itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(row["concepto"])));
-						itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM tarjetas WHERE id_tarjeta=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_tarjeta"]).ToString())));
+						itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, this.DataBase.FieldString("SELECT nombre FROM tarjetas WHERE id_tarjeta=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_tarjeta"]).ToString())));
 						itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(row["numero"])));
 						Total += System.Convert.ToDouble(row["importe"]);
 						itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(row["importe"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
@@ -136,7 +138,7 @@ namespace Lfc.Tarjetas.Cupones
 
                                                 int IdPlan = Lfx.Data.DataBase.ConvertDBNullToZero(row["id_plan"]);
                                                 if (IdPlan != 0)
-                                                        itm.SubItems.Add(this.Workspace.DefaultDataView.Tables["tarjetas_planes"].FastRows[IdPlan].Fields["nombre"].ToString());
+                                                        itm.SubItems.Add(this.DataBase.Tables["tarjetas_planes"].FastRows[IdPlan].Fields["nombre"].ToString());
                                                 else
                                                         itm.SubItems.Add("");
 
@@ -295,7 +297,7 @@ namespace Lfc.Tarjetas.Cupones
 			}
 		}
 
-                public Lfx.Data.SqlSelectBuilder SelectCommand()
+                public qGen.Select SelectCommand()
                 {
                         return m_SelectCommand;
                 }
@@ -358,7 +360,7 @@ namespace Lfc.Tarjetas.Cupones
 				if (itm.Checked)
 				{
 					iCantidad++;
-					Lbl.Tarjetas.Cupon Cupon = new Lbl.Tarjetas.Cupon(DataView, Lfx.Types.Parsing.ParseInt(itm.Text));
+					Lbl.Tarjetas.Cupon Cupon = new Lbl.Tarjetas.Cupon(DataBase, Lfx.Types.Parsing.ParseInt(itm.Text));
                                         Total += Cupon.Importe;
 					if (Cupones.Length > 0)
 						Cupones.Append("," + Cupon.Numero);
@@ -405,7 +407,7 @@ namespace Lfc.Tarjetas.Cupones
 				{
 					dTotalAcreditar = Lfx.Types.Parsing.ParseCurrency(FormularioAcreditacion.txtTotal.Text);
 					dGestionDeCobro = Total - dTotalAcreditar;
-                                        FormularioPago.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.DataView, ((Lbl.Comprobantes.TipoFormasDePago)(Lfx.Types.Parsing.ParseInt(FormularioAcreditacion.txtFormaPago.TextKey)))));
+                                        FormularioPago.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.DataBase, ((Lbl.Comprobantes.TipoFormasDePago)(Lfx.Types.Parsing.ParseInt(FormularioAcreditacion.txtFormaPago.TextKey)))));
                                         FormularioPago.Cobro.FormaDePagoEditable = false;
 					FormularioPago.Cobro.Importe = dTotalAcreditar;
 					FormularioPago.Cobro.ImporteEditable = false;
@@ -428,7 +430,7 @@ namespace Lfc.Tarjetas.Cupones
 			while (true);
 			if (bAceptar)
 			{
-				DataView.BeginTransaction(true);
+				DataBase.BeginTransaction(true);
 
 				Progreso.Titulo = "Asentando el Movimiento...";
 				Progreso.Progreso = 0;
@@ -439,22 +441,22 @@ namespace Lfc.Tarjetas.Cupones
 				foreach (System.Windows.Forms.ListViewItem itm in ItemList.Items)
 				{
 					if (itm.Checked)
-						DataView.DataBase.Execute("UPDATE tarjetas_cupones SET estado=20, fecha_acred=NOW() WHERE id_cupon=" + itm.Text);
+						DataBase.Execute("UPDATE tarjetas_cupones SET estado=20, fecha_acred=NOW() WHERE id_cupon=" + itm.Text);
 					Progreso.Progreso = itm.Index;
 				}
 
 				// Acreditar el dinero
-                                Lbl.Comprobantes.Cobro MiCobro = FormularioPago.Cobro.ToCobro(DataView);
+                                Lbl.Comprobantes.Cobro MiCobro = FormularioPago.Cobro.ToCobro(DataBase);
 				switch (FormularioPago.Cobro.FormaDePago.Tipo)
 				{
                                         case Lbl.Comprobantes.TipoFormasDePago.Efectivo:
-						Lbl.Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(DataView, this.Workspace.CurrentConfig.Company.CajaDiaria);
+						Lbl.Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(DataBase, this.Workspace.CurrentConfig.Company.CajaDiaria);
 						CajaDiaria.Movimiento(true, 11000, "Acreditación Tarjetas", 0, Total, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
 						CajaDiaria.Movimiento(true, 24010, "Gestión de Cobro Tarjetas", 0, -dGestionDeCobro, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
 						break;
                                         case Lbl.Comprobantes.TipoFormasDePago.ChequePropio:
                                                 Lbl.Bancos.Cheque Cheque = MiCobro.Cheque;
-                                                Cheque.Concepto = new Lbl.Cajas.Concepto(DataView, 11000);
+                                                Cheque.Concepto = new Lbl.Cajas.Concepto(DataBase, 11000);
                                                 Cheque.ConceptoTexto = "Acreditación Tarjetas";
                                                 Cheque.Guardar();
 						break;
@@ -465,7 +467,7 @@ namespace Lfc.Tarjetas.Cupones
 				}
 
 
-				DataView.Commit();
+				DataBase.Commit();
 				Progreso.Cerrar();
 			}
 			FormularioAcreditacion = null;
@@ -511,10 +513,10 @@ namespace Lfc.Tarjetas.Cupones
 					if (itm.Checked)
 					{
 						Progreso.Progreso++;
-						Lfx.Data.Row Cupon = this.Workspace.DefaultDataBase.Row("tarjetas_cupones", "id_cupon", Lfx.Types.Parsing.ParseInt(itm.Text));
+						Lfx.Data.Row Cupon = this.DataBase.Row("tarjetas_cupones", "id_cupon", Lfx.Types.Parsing.ParseInt(itm.Text));
 						if (System.Convert.ToInt32(Cupon["estado"]) == 0 || System.Convert.ToInt32(Cupon["estado"]) == 10)
 						{
-							this.Workspace.DefaultDataBase.Execute("UPDATE tarjetas_cupones SET estado=1 WHERE id_cupon=" + itm.Text);
+							this.DataBase.Execute("UPDATE tarjetas_cupones SET estado=1 WHERE id_cupon=" + itm.Text);
 							System.Threading.Thread.Sleep(50);
 						}
 					}
@@ -555,9 +557,9 @@ namespace Lfc.Tarjetas.Cupones
                                 foreach (System.Windows.Forms.ListViewItem itm in ItemList.Items) {
                                         if (itm.Checked) {
                                                 Progreso.Progreso++;
-                                                Lfx.Data.Row Cupon = this.Workspace.DefaultDataBase.Row("tarjetas_cupones", "id_cupon", Lfx.Types.Parsing.ParseInt(itm.Text));
+                                                Lfx.Data.Row Cupon = this.DataBase.Row("tarjetas_cupones", "id_cupon", Lfx.Types.Parsing.ParseInt(itm.Text));
                                                 if (System.Convert.ToInt32(Cupon["estado"]) == 0) {
-                                                        this.Workspace.DefaultDataBase.Execute("UPDATE tarjetas_cupones SET estado=10, fecha_pres=NOW() WHERE id_cupon=" + itm.Text);
+                                                        this.DataBase.Execute("UPDATE tarjetas_cupones SET estado=10, fecha_pres=NOW() WHERE id_cupon=" + itm.Text);
                                                         System.Threading.Thread.Sleep(50);
                                                 }
                                         }
