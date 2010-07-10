@@ -1,4 +1,5 @@
-﻿// Copyright 2004-2010 South Bridge S.R.L.
+﻿#region License
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -44,12 +46,14 @@ namespace Lfx
                         foreach (string Archivo in Archivos) {
                                 System.IO.StreamReader Lector = System.IO.File.OpenText(Archivo);
                                 string Contenido = Lector.ReadToEnd();
+                                string ContenidoOriginal = Contenido;
                                 int Pos = Contenido.IndexOf("Copyright", StringComparison.OrdinalIgnoreCase);
                                 Lector.Close();
 
                                 if (Pos == -1) {
                                         //No tiene mensaje de Copyright. Agrego
-                                        Contenido = @"// Copyright 2004-2010 South Bridge S.R.L.
+                                        Contenido = @"#region License
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -77,6 +81,7 @@ namespace Lfx
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 " + Contenido;
                                         System.IO.StreamWriter Escritor = System.IO.File.CreateText(Archivo);

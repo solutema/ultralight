@@ -33,7 +33,40 @@ using System;
 
 namespace Lfx.Data
 {
-	public class TagCollection : System.Collections.ObjectModel.Collection<Tag>
-        {           
+        public class TableCollection : System.Collections.ObjectModel.Collection<Table>
+        {
+                protected DataBase DataBase;
+
+                public TableCollection(DataBase dataBase)
+                {
+                        this.DataBase = dataBase;
+                }
+
+                public new void Add(Table table)
+                {
+                        table.DataBase = this.DataBase;
+                        base.Add(table);
+                }
+
+		public Table this[string name]
+		{
+			get
+			{
+				foreach(Table Tb in this) {
+					if(Tb.Name == name)
+						return Tb;
+				}
+                                throw new ArgumentOutOfRangeException("No existe la tabla " + name);
+			}
+		}
+
+                public bool ContainsKey(string key)
+                {
+                        foreach (Table Tb in this) {
+                                if (Tb.Name == key)
+                                        return true;
+                        }
+                        return false;
+                }
         }
 }

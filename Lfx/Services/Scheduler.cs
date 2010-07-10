@@ -1,4 +1,5 @@
-// Copyright 2004-2009 Carrea Ernesto N., Martínez Miguel A.
+#region License
+// Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -26,35 +27,35 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 
 namespace Lfx.Services
 {
-
-
-	/// <summary>
-	/// Programador de tareas
-	/// </summary>
-	public class Scheduler
-	{
-		private Lfx.Workspace m_Workspace;
+        /// <summary>
+        /// Programador de tareas
+        /// </summary>
+        public class Scheduler
+        {
+                private Lfx.Workspace Workspace;
+                //private Lfx.Data.DataBase m_DataBase = null;
                 private DateTime m_LastGetTask = DateTime.MinValue;
 
-		public Scheduler(Workspace workspace)
-		{
-			m_Workspace = workspace;
-		}
+                public Scheduler(Workspace workspace)
+                {
+                        Workspace = workspace;
+                }
 
-		public  bool AddTask(string commandString)
-		{
-			return AddTask(commandString, "lazaro", Lfx.Environment.SystemInformation.ComputerName);
-		}
+                public bool AddTask(string commandString)
+                {
+                        return AddTask(commandString, "lazaro", System.Environment.MachineName.ToUpperInvariant());
+                }
 
-		public  bool AddTask(string commandString, string component)
-		{
-			return AddTask(commandString, component, Lfx.Environment.SystemInformation.ComputerName);
-		}
+                public bool AddTask(string commandString, string component)
+                {
+                        return AddTask(commandString, component, System.Environment.MachineName.ToUpperInvariant());
+                }
 
                 public DateTime LastGetTask
                 {
@@ -64,75 +65,78 @@ namespace Lfx.Services
                         }
                 }
 
-		public bool AddTask(string commandString, string component, string terminalName)
-		{
-			if(terminalName.Length == 0)
-				terminalName = Lfx.Environment.SystemInformation.ComputerName;
+                private Lfx.Data.DataBase DataBase
+                {
+                        get
+                        {
+                                //if (m_DataBase == null)
+                                //        m_DataBase = m_Workspace.GetDataBase("Programador de tareas");
+                                //return m_DataBase;
+                                return this.Workspace.DefaultDataBase;
+                        }
+                }
 
-			Lfx.Data.SqlInsertBuilder Comando = new Lfx.Data.SqlInsertBuilder(m_Workspace.DefaultDataView, "sys_programador");
-			Comando.Fields.AddWithValue("crea_estacion", Lfx.Environment.SystemInformation.ComputerName);
-			Comando.Fields.AddWithValue("crea_usuario", m_Workspace.CurrentUser.UserCompleteName);
-			Comando.Fields.AddWithValue("estacion", terminalName);
-			Comando.Fields.AddWithValue("comando", commandString);
-			Comando.Fields.AddWithValue("componente", component);
-			Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
+                public bool AddTask(string commandString, string component, string terminalName)
+                {
+                        if (terminalName.Length == 0)
+                                terminalName = System.Environment.MachineName.ToUpperInvariant();
 
-			try
-			{
-				m_Workspace.DefaultDataView.DataBase.Execute(Comando);
-			}
-			catch
-			{
-				return true;
-			}
+                        qGen.Insert Comando = new qGen.Insert(this.DataBase, "sys_programador");
+                        Comando.Fields.AddWithValue("crea_estacion", System.Environment.MachineName.ToUpperInvariant());
+                        Comando.Fields.AddWithValue("crea_usuario", Workspace.CurrentUser.CompleteName);
+                        Comando.Fields.AddWithValue("estacion", terminalName);
+                        Comando.Fields.AddWithValue("comando", commandString);
+                        Comando.Fields.AddWithValue("componente", component);
+                        Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
 
-			return false;
-		}
+                        try {
+                                this.DataBase.Execute(Comando);
+                        }
+                        catch {
+                                return true;
+                        }
 
-		public Task GetNextTask(string component)
-		{
-			if(m_Workspace == null)
-				return null;
+                        return false;
+                }
 
-			if(m_Workspace.DefaultDataView.DataBase.ConectionState == System.Data.ConnectionState.Open)
-			{
+                public Task GetNextTask(string component)
+                {
+                        if (Workspace == null)
+                                return null;
+
+                        if (this.DataBase.ConectionState == System.Data.ConnectionState.Open) {
                                 m_LastGetTask = DateTime.Now;
-				string Sql = "SELECT * FROM sys_programador WHERE estado=0";
+                                string Sql = "SELECT * FROM sys_programador WHERE estado=0";
 
-				Sql += " AND (componente='" + component + "' OR componente IS NULL)";
-				Sql += " AND (estacion='*' OR estacion='" + m_Workspace.DefaultDataView.DataBase.EscapeString(Lfx.Environment.SystemInformation.ComputerName) + "')";
+                                Sql += " AND componente IN ('" + component + "', NULL)";
+                                Sql += " AND estacion IN ('*', '" + this.DataBase.EscapeString(System.Environment.MachineName.ToUpperInvariant()) + "')";
 
-                                Lfx.Data.Row TaskRow = m_Workspace.DefaultDataView.DataBase.FirstRowFromSelect(Sql);
+                                Lfx.Data.Row TaskRow = this.DataBase.FirstRowFromSelect(Sql);
 
-				if(TaskRow != null) {
-					Task Result = new Task();
+                                if (TaskRow != null) {
+                                        Task Result = new Task();
 
-					Result.Id = System.Convert.ToInt32(TaskRow["id_evento"]);
-					Result.Command = TaskRow["comando"].ToString();
-					Result.Component = TaskRow["componente"].ToString();
-					Result.Creator = TaskRow["crea_usuario"].ToString();
-					Result.CreatorComputerName = TaskRow["crea_estacion"].ToString();
-					Result.ComputerName = TaskRow["estacion"].ToString();
-					Result.Schedule = System.Convert.ToDateTime(TaskRow["fecha"]);
-					Result.Status = System.Convert.ToInt32(TaskRow["estado"]);
+                                        Result.Id = System.Convert.ToInt32(TaskRow["id_evento"]);
+                                        Result.Command = TaskRow["comando"].ToString();
+                                        Result.Component = TaskRow["componente"].ToString();
+                                        Result.Creator = TaskRow["crea_usuario"].ToString();
+                                        Result.CreatorComputerName = TaskRow["crea_estacion"].ToString();
+                                        Result.ComputerName = TaskRow["estacion"].ToString();
+                                        Result.Schedule = System.Convert.ToDateTime(TaskRow["fecha"]);
+                                        Result.Status = System.Convert.ToInt32(TaskRow["estado"]);
 
-					//Elimino tareas viejas
-					//DataView.DataBase.Execute("UPDATE sys_programador SET estado=1 WHERE id_evento=" + Result.Id.ToString());
-					Lfx.Data.SqlUpdateBuilder Actualizar = new Lfx.Data.SqlUpdateBuilder(m_Workspace.DefaultDataView, "sys_programador", "id_evento=" + Result.Id.ToString());
-					Actualizar.Fields.AddWithValue("estado", 1);
-					m_Workspace.DefaultDataView.DataBase.Execute(Actualizar);
-					//DataView.DataBase.Execute("DELETE FROM sys_programador WHERE fecha<'" + Lfx.Types.Formatting.FormatDateSql(System.DateTime.Now.AddDays(-7)) + "'");
-					m_Workspace.DefaultDataView.DataBase.Execute(new Lfx.Data.SqlDeleteBuilder(m_Workspace.DefaultDataView, "sys_programador", "fecha<'" + Lfx.Types.Formatting.FormatDateSql(System.DateTime.Now.AddDays(-7)) + "'"));
+                                        //Elimino tareas viejas
+                                        qGen.Update Actualizar = new qGen.Update("sys_programador", new qGen.Where("id_evento", Result.Id));
+                                        Actualizar.Fields.AddWithValue("estado", 1);
+                                        this.DataBase.Execute(Actualizar);
+                                        this.DataBase.Execute(new qGen.Delete("sys_programador", new qGen.Where("fecha", qGen.ComparisonOperators.LessThan, System.DateTime.Now.AddDays(-7))));
 
-					return Result;
-				}
-				else
-					return null;
-			}
-			else
-			{
-				return null;
-			}
-		}
-	}
+                                        return Result;
+                                } else
+                                        return null;
+                        } else {
+                                return null;
+                        }
+                }
+        }
 }

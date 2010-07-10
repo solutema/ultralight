@@ -4,6 +4,58 @@
         <name>Lfx</name>
     </assembly>
     <members>
+        <member name="T:Lfx.Updater">
+            <summary>
+            Actualizador de sistema Lázaro (actualiza desde web o base de datos).
+            Desde web:
+            Descarga el archivo version.xml que contiene información sobre
+            los archivos que hay que actualizar y sus versiones actuales
+            Utiliza la variable "Sistema.Actualizaciones.URLNLWC" de la tabla "sys_config"
+            para saber de dénde descargar.
+            Para que dos estaciones no descarguen a la vez, utiliza las variables
+            "Sistema.Actualizaciones.InicioDescarga" para saber cuándo comenzó la última
+            descarga (fecha y hora) y "Sistema.Actualizaciones.Estacion" para saber el
+            nombre de la estación que inició la descarga.
+            Guarda las actualizaciones bajadas en la BD.
+            Desde BD:
+            Actualiza desde la tabla "sys_asl", que es el caché de las últimas
+            versiones descargadas de la web.
+            </summary>
+        </member>
+        <member name="M:Lfx.Updater.NetGet(System.String,System.String)">
+            <summary>
+            Descarga un archivo desde una URI y lo guarda en el disco.
+            </summary>
+            <param name="uri">La URI del archivo a descargar.</param>
+            <param name="archivo">El nombre del archivo en el disco.</param>
+        </member>
+        <member name="M:Lfx.Updater.NetGet(System.String)">
+            <summary>
+            Descarga un archivo desde una URI.
+            </summary>
+            <param name="uri">La URI del archivo a descargar.</param>
+            <returns>Una matriz de bytes con el contenido del archivo descargado.</returns>
+        </member>
+        <member name="T:Lfx.Components.Component">
+            <summary>
+            Esqueleto del componente.
+            </summary>
+        </member>
+        <member name="T:Lfx.Components.ComponentTypes">
+            <summary>
+            Enumera los tipos de componentes.
+            </summary>
+        </member>
+        <member name="T:Lfx.Components.ComponentManager">
+            <summary>
+            Infraestructura para el manejo de componentes.
+            </summary>
+        </member>
+        <member name="T:Lfx.Config.ConfigManager">
+            <summary>
+            Maneja los parámetros de configuración
+            </summary>
+        </member>
         <member name="T:Lfx.Cpx.DataMatchCompareCommand">
             <summary>
             Matches the data on the magnetic stripe before writing.
@@ -50,9 +102,1089 @@
             agregar dependencias en tiempo de diseño. La única dependencia en tiempo de diseño es System.Data.Odbc.
             </summary>
         </member>
+        <member name="T:qGen.TableCommand">
+            <summary>
+            Comandos que operan sobre una o más tablas (SELECT, UPDATE, INSERT, DELETE, TRUNCATE, etc.)
+            </summary>
+        </member>
+        <member name="T:qGen.Command">
+            <summary>
+            Esta clase y sus derivadas se utilizan para evitar escribir los comandos SQL como literales de texto.
+            Permite la creación de un objeto y asignación de propiedades que luego puede convertirse para su ejecución
+            en texto SQL (mediante el método ToString()) o en un OdbcCommand (mediante el método ToOdbcCommand()).
+            Se utilizan principalmente con dos objetivos:
+              1.- Solucionar problemas de léxico SQL.
+              2.- Agregar extensibilidad al acceso a datos. Así como hoy se implementa ToOdbcCommand() para acceso mediante ODBC, luego se
+                  pueden implementar otros métodos para acceso mediante otros adaptadores (p. ej. MySQL Connector/Net).
+            </summary>
+        </member>
+        <member name="T:qGen.Select">
+            <summary>
+            Comando SELECT
+            </summary>
+        </member>
         <member name="T:Lfx.Lic">
             <summary>
             Agrega la licencia GPL como encabezado a todos los archivos de código fuente.
+            </summary>
+        </member>
+        <member name="T:System.Linq.Enumerable">
+            <summary>
+            Provides a set of static (Shared in Visual Basic) methods for 
+            querying objects that implement <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.AsEnumerable``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns the input typed as <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Empty``1">
+            <summary>
+            Returns an empty <see cref="T:System.Collections.Generic.IEnumerable`1"/> that has the 
+            specified type argument.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)">
+            <summary>
+            Converts the elements of an <see cref="T:System.Collections.IEnumerable"/> to the 
+            specified type.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)">
+            <summary>
+            Filters the elements of an <see cref="T:System.Collections.IEnumerable"/> based on a specified type.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Range(System.Int32,System.Int32)">
+            <summary>
+            Generates a sequence of integral numbers within a specified range.
+            </summary>
+            <param name="start">The value of the first integer in the sequence.</param>
+            <param name="count">The number of sequential integers to generate.</param>
+        </member>
+        <member name="M:System.Linq.Enumerable.Repeat``1(``0,System.Int32)">
+            <summary>
+            Generates a sequence that contains one repeated value.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Filters a sequence of values based on a predicate.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,System.Boolean})">
+            <summary>
+            Filters a sequence of values based on a predicate. 
+            Each element's index is used in the logic of the predicate function.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Projects each element of a sequence into a new form.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,``1})">
+            <summary>
+            Projects each element of a sequence into a new form by 
+            incorporating the element's index.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.SelectMany``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}})">
+            <summary>
+            Projects each element of a sequence to an <see cref="T:System.Collections.Generic.IEnumerable`1"/> 
+            and flattens the resulting sequences into one sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.SelectMany``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,System.Collections.Generic.IEnumerable{``1}})">
+            <summary>
+            Projects each element of a sequence to an <see cref="T:System.Collections.Generic.IEnumerable`1"/>, 
+            and flattens the resulting sequences into one sequence. The 
+            index of each source element is used in the projected form of 
+            that element.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})">
+            <summary>
+            Projects each element of a sequence to an <see cref="T:System.Collections.Generic.IEnumerable`1"/>, 
+            flattens the resulting sequences into one sequence, and invokes 
+            a result selector function on each element therein.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})">
+            <summary>
+            Projects each element of a sequence to an <see cref="T:System.Collections.Generic.IEnumerable`1"/>, 
+            flattens the resulting sequences into one sequence, and invokes 
+            a result selector function on each element therein. The index of 
+            each source element is used in the intermediate projected form 
+            of that element.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.TakeWhile``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Returns elements from a sequence as long as a specified condition is true.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.TakeWhile``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,System.Boolean})">
+            <summary>
+            Returns elements from a sequence as long as a specified condition is true.
+            The element's index is used in the logic of the predicate function.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.FirstImpl``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0})">
+            <summary>
+            Base implementation of First operator.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.First``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns the first element of a sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.First``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Returns the first element in a sequence that satisfies a specified condition.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns the first element of a sequence, or a default value if 
+            the sequence contains no elements.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Returns the first element of the sequence that satisfies a 
+            condition or a default value if no such element is found.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.LastImpl``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0})">
+            <summary>
+            Base implementation of Last operator.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Last``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns the last element of a sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Last``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Returns the last element of a sequence that satisfies a 
+            specified condition.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.LastOrDefault``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns the last element of a sequence, or a default value if 
+            the sequence contains no elements.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.LastOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Returns the last element of a sequence that satisfies a 
+            condition or a default value if no such element is found.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.SingleImpl``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0})">
+            <summary>
+            Base implementation of Single operator.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Single``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns the only element of a sequence, and throws an exception 
+            if there is not exactly one element in the sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Single``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Returns the only element of a sequence that satisfies a 
+            specified condition, and throws an exception if more than one 
+            such element exists.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.SingleOrDefault``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns the only element of a sequence, or a default value if 
+            the sequence is empty; this method throws an exception if there 
+            is more than one element in the sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.SingleOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Returns the only element of a sequence that satisfies a 
+            specified condition or a default value if no such element 
+            exists; this method throws an exception if more than one element 
+            satisfies the condition.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.ElementAt``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Returns the element at a specified index in a sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.ElementAtOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Returns the element at a specified index in a sequence or a 
+            default value if the index is out of range.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Inverts the order of the elements in a sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Take``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Returns a specified number of contiguous elements from the start 
+            of a sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Skip``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Bypasses a specified number of elements in a sequence and then 
+            returns the remaining elements.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.SkipWhile``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Bypasses elements in a sequence as long as a specified condition 
+            is true and then returns the remaining elements.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.SkipWhile``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,System.Boolean})">
+            <summary>
+            Bypasses elements in a sequence as long as a specified condition 
+            is true and then returns the remaining elements. The element's 
+            index is used in the logic of the predicate function.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Count``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns the number of elements in a sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Count``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Returns a number that represents how many elements in the 
+            specified sequence satisfy a condition.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.LongCount``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns an <see cref="T:System.Int64"/> that represents the total number 
+            of elements in a sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.LongCount``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Returns an <see cref="T:System.Int64"/> that represents how many elements 
+            in a sequence satisfy a condition.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Concat``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Concatenates two sequences.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.ToList``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Creates a <see cref="T:System.Collections.Generic.List`1"/> from an <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.ToArray``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Creates an array from an <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Distinct``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns distinct elements from a sequence by using the default 
+            equality comparer to compare values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Distinct``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Returns distinct elements from a sequence by using a specified 
+            <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to compare values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.ToLookup``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Creates a <see cref="T:System.Linq.Lookup`2"/> from an 
+            <see cref="T:System.Collections.Generic.IEnumerable`1"/> according to a specified key 
+            selector function.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.ToLookup``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            Creates a <see cref="T:System.Linq.Lookup`2"/> from an 
+            <see cref="T:System.Collections.Generic.IEnumerable`1"/> according to a specified key 
+            selector function and a key comparer.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.ToLookup``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})">
+            <summary>
+            Creates a <see cref="T:System.Linq.Lookup`2"/> from an 
+            <see cref="T:System.Collections.Generic.IEnumerable`1"/> according to specified key 
+            and element selector functions.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.ToLookup``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2},System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            Creates a <see cref="T:System.Linq.Lookup`2"/> from an 
+            <see cref="T:System.Collections.Generic.IEnumerable`1"/> according to a specified key 
+            selector function, a comparer and an element selector function.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Groups the elements of a sequence according to a specified key 
+            selector function.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            Groups the elements of a sequence according to a specified key 
+            selector function and compares the keys by using a specified 
+            comparer.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.GroupBy``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})">
+            <summary>
+            Groups the elements of a sequence according to a specified key 
+            selector function and projects the elements for each group by 
+            using a specified function.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.GroupBy``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2},System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            Groups the elements of a sequence according to a specified key 
+            selector function and creates a result value from each group and 
+            its key.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.GroupBy``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``1,System.Collections.Generic.IEnumerable{``0},``2})">
+            <summary>
+            Groups the elements of a sequence according to a key selector 
+            function. The keys are compared by using a comparer and each 
+            group's elements are projected by using a specified function.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.GroupBy``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``1,System.Collections.Generic.IEnumerable{``0},``2},System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            Groups the elements of a sequence according to a specified key 
+            selector function and creates a result value from each group and 
+            its key. The elements of each group are projected by using a 
+            specified function.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.GroupBy``4(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2},System.Func{``1,System.Collections.Generic.IEnumerable{``2},``3})">
+            <summary>
+            Groups the elements of a sequence according to a specified key 
+            selector function and creates a result value from each group and 
+            its key. The keys are compared by using a specified comparer.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.GroupBy``4(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2},System.Func{``1,System.Collections.Generic.IEnumerable{``2},``3},System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            Groups the elements of a sequence according to a specified key 
+            selector function and creates a result value from each group and 
+            its key. Key values are compared by using a specified comparer, 
+            and the elements of each group are projected by using a 
+            specified function.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})">
+            <summary>
+            Applies an accumulator function over a sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Aggregate``2(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1})">
+            <summary>
+            Applies an accumulator function over a sequence. The specified 
+            seed value is used as the initial accumulator value.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Aggregate``3(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1},System.Func{``1,``2})">
+            <summary>
+            Applies an accumulator function over a sequence. The specified 
+            seed value is used as the initial accumulator value, and the 
+            specified function is used to select the result value.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Union``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Produces the set union of two sequences by using the default 
+            equality comparer.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Union``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Produces the set union of two sequences by using a specified 
+            <see cref="T:System.Collections.Generic.IEqualityComparer`1"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.DefaultIfEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns the elements of the specified sequence or the type 
+            parameter's default value in a singleton collection if the 
+            sequence is empty.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.DefaultIfEmpty``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            Returns the elements of the specified sequence or the specified 
+            value in a singleton collection if the sequence is empty.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.All``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Determines whether all elements of a sequence satisfy a condition.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Any``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Determines whether a sequence contains any elements.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Any``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Determines whether any element of a sequence satisfies a 
+            condition.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Contains``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            Determines whether a sequence contains a specified element by 
+            using the default equality comparer.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Contains``1(System.Collections.Generic.IEnumerable{``0},``0,System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Determines whether a sequence contains a specified element by 
+            using a specified <see cref="T:System.Collections.Generic.IEqualityComparer`1"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.SequenceEqual``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Determines whether two sequences are equal by comparing the 
+            elements by using the default equality comparer for their type.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.SequenceEqual``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Determines whether two sequences are equal by comparing their 
+            elements by using a specified <see cref="T:System.Collections.Generic.IEqualityComparer`1"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.MinMaxImpl``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Boolean})">
+            <summary>
+            Base implementation for Min/Max operator.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.MinMaxImpl``1(System.Collections.Generic.IEnumerable{System.Nullable{``0}},System.Nullable{``0},System.Func{System.Nullable{``0},System.Nullable{``0},System.Boolean})">
+            <summary>
+            Base implementation for Min/Max operator for nullable types.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Min``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns the minimum value in a generic sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Min``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Invokes a transform function on each element of a generic 
+            sequence and returns the minimum resulting value.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Max``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns the maximum value in a generic sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Max``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Invokes a transform function on each element of a generic 
+            sequence and returns the maximum resulting value.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Renumerable``1(System.Collections.Generic.IEnumerator{``0})">
+            <summary>
+            Makes an enumerator seen as enumerable once more.
+            </summary>
+            <remarks>
+            The supplied enumerator must have been started. The first element
+            returned is the element the enumerator was on when passed in.
+            DO NOT use this method if the caller must be a generator. It is
+            mostly safe among aggregate operations.
+            </remarks>
+        </member>
+        <member name="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Sorts the elements of a sequence in ascending order according to a key.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})">
+            <summary>
+            Sorts the elements of a sequence in ascending order by using a 
+            specified comparer.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.OrderByDescending``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Sorts the elements of a sequence in descending order according to a key.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.OrderByDescending``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})">
+            <summary>
+             Sorts the elements of a sequence in descending order by using a 
+            specified comparer. 
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Performs a subsequent ordering of the elements in a sequence in 
+            ascending order according to a key.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})">
+            <summary>
+            Performs a subsequent ordering of the elements in a sequence in 
+            ascending order by using a specified comparer.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.ThenByDescending``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Performs a subsequent ordering of the elements in a sequence in 
+            descending order, according to a key.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.ThenByDescending``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})">
+            <summary>
+            Performs a subsequent ordering of the elements in a sequence in 
+            descending order by using a specified comparer.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.IntersectExceptImpl``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0},System.Boolean)">
+            <summary>
+            Base implementation for Intersect and Except operators.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Intersect``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Produces the set intersection of two sequences by using the 
+            default equality comparer to compare values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Intersect``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Produces the set intersection of two sequences by using the 
+            specified <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to compare values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Except``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Produces the set difference of two sequences by using the 
+            default equality comparer to compare values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Except``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Produces the set difference of two sequences by using the 
+            specified <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to compare values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.ToDictionary``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Creates a <see cref="T:System.Collections.Generic.Dictionary`2"/> from an 
+            <see cref="T:System.Collections.Generic.IEnumerable`1"/> according to a specified key 
+            selector function.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.ToDictionary``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            Creates a <see cref="T:System.Collections.Generic.Dictionary`2"/> from an 
+            <see cref="T:System.Collections.Generic.IEnumerable`1"/> according to a specified key 
+            selector function and key comparer.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.ToDictionary``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})">
+            <summary>
+            Creates a <see cref="T:System.Collections.Generic.Dictionary`2"/> from an 
+            <see cref="T:System.Collections.Generic.IEnumerable`1"/> according to specified key 
+            selector and element selector functions.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.ToDictionary``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2},System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            Creates a <see cref="T:System.Collections.Generic.Dictionary`2"/> from an 
+            <see cref="T:System.Collections.Generic.IEnumerable`1"/> according to a specified key 
+            selector function, a comparer, and an element selector function.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Join``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3})">
+            <summary>
+            Correlates the elements of two sequences based on matching keys. 
+            The default equality comparer is used to compare keys.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Join``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3},System.Collections.Generic.IEqualityComparer{``2})">
+            <summary>
+            Correlates the elements of two sequences based on matching keys. 
+            The default equality comparer is used to compare keys. A 
+            specified <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> is used to compare keys.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.GroupJoin``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,System.Collections.Generic.IEnumerable{``1},``3})">
+            <summary>
+            Correlates the elements of two sequences based on equality of 
+            keys and groups the results. The default equality comparer is 
+            used to compare keys.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.GroupJoin``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,System.Collections.Generic.IEnumerable{``1},``3},System.Collections.Generic.IEqualityComparer{``2})">
+            <summary>
+            Correlates the elements of two sequences based on equality of 
+            keys and groups the results. The default equality comparer is 
+            used to compare keys. A specified <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> 
+            is used to compare keys.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Computes the sum of a sequence of nullable <see cref="T:System.Int32"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32})">
+            <summary>
+            Computes the sum of a sequence of nullable <see cref="T:System.Int32"/> 
+            values that are obtained by invoking a transform function on 
+            each element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Computes the average of a sequence of nullable <see cref="T:System.Int32"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32})">
+            <summary>
+            Computes the average of a sequence of nullable <see cref="T:System.Int32"/> values 
+            that are obtained by invoking a transform function on each 
+            element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum(System.Collections.Generic.IEnumerable{System.Nullable{System.Int32}})">
+            <summary>
+            Computes the sum of a sequence of <see cref="T:System.Int32"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Int32}})">
+            <summary>
+            Computes the sum of a sequence of <see cref="T:System.Int32"/> 
+            values that are obtained by invoking a transform function on 
+            each element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average(System.Collections.Generic.IEnumerable{System.Nullable{System.Int32}})">
+            <summary>
+            Computes the average of a sequence of <see cref="T:System.Int32"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Int32}})">
+            <summary>
+            Computes the average of a sequence of <see cref="T:System.Int32"/> values 
+            that are obtained by invoking a transform function on each 
+            element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Min(System.Collections.Generic.IEnumerable{System.Nullable{System.Int32}})">
+            <summary>
+            Returns the minimum value in a sequence of nullable 
+            <see cref="T:System.Int32"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Min``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Int32}})">
+            <summary>
+            Invokes a transform function on each element of a sequence and 
+            returns the minimum nullable <see cref="T:System.Int32"/> value.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Max(System.Collections.Generic.IEnumerable{System.Nullable{System.Int32}})">
+            <summary>
+            Returns the maximum value in a sequence of nullable 
+            <see cref="T:System.Int32"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Max``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Int32}})">
+            <summary>
+            Invokes a transform function on each element of a sequence and 
+            returns the maximum nullable <see cref="T:System.Int32"/> value.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            Computes the sum of a sequence of nullable <see cref="T:System.Int64"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int64})">
+            <summary>
+            Computes the sum of a sequence of nullable <see cref="T:System.Int64"/> 
+            values that are obtained by invoking a transform function on 
+            each element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            Computes the average of a sequence of nullable <see cref="T:System.Int64"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int64})">
+            <summary>
+            Computes the average of a sequence of nullable <see cref="T:System.Int64"/> values 
+            that are obtained by invoking a transform function on each 
+            element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum(System.Collections.Generic.IEnumerable{System.Nullable{System.Int64}})">
+            <summary>
+            Computes the sum of a sequence of <see cref="T:System.Int64"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Int64}})">
+            <summary>
+            Computes the sum of a sequence of <see cref="T:System.Int64"/> 
+            values that are obtained by invoking a transform function on 
+            each element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average(System.Collections.Generic.IEnumerable{System.Nullable{System.Int64}})">
+            <summary>
+            Computes the average of a sequence of <see cref="T:System.Int64"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Int64}})">
+            <summary>
+            Computes the average of a sequence of <see cref="T:System.Int64"/> values 
+            that are obtained by invoking a transform function on each 
+            element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Min(System.Collections.Generic.IEnumerable{System.Nullable{System.Int64}})">
+            <summary>
+            Returns the minimum value in a sequence of nullable 
+            <see cref="T:System.Int64"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Min``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Int64}})">
+            <summary>
+            Invokes a transform function on each element of a sequence and 
+            returns the minimum nullable <see cref="T:System.Int64"/> value.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Max(System.Collections.Generic.IEnumerable{System.Nullable{System.Int64}})">
+            <summary>
+            Returns the maximum value in a sequence of nullable 
+            <see cref="T:System.Int64"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Max``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Int64}})">
+            <summary>
+            Invokes a transform function on each element of a sequence and 
+            returns the maximum nullable <see cref="T:System.Int64"/> value.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum(System.Collections.Generic.IEnumerable{System.Single})">
+            <summary>
+            Computes the sum of a sequence of nullable <see cref="T:System.Single"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Single})">
+            <summary>
+            Computes the sum of a sequence of nullable <see cref="T:System.Single"/> 
+            values that are obtained by invoking a transform function on 
+            each element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average(System.Collections.Generic.IEnumerable{System.Single})">
+            <summary>
+            Computes the average of a sequence of nullable <see cref="T:System.Single"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Single})">
+            <summary>
+            Computes the average of a sequence of nullable <see cref="T:System.Single"/> values 
+            that are obtained by invoking a transform function on each 
+            element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum(System.Collections.Generic.IEnumerable{System.Nullable{System.Single}})">
+            <summary>
+            Computes the sum of a sequence of <see cref="T:System.Single"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Single}})">
+            <summary>
+            Computes the sum of a sequence of <see cref="T:System.Single"/> 
+            values that are obtained by invoking a transform function on 
+            each element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average(System.Collections.Generic.IEnumerable{System.Nullable{System.Single}})">
+            <summary>
+            Computes the average of a sequence of <see cref="T:System.Single"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Single}})">
+            <summary>
+            Computes the average of a sequence of <see cref="T:System.Single"/> values 
+            that are obtained by invoking a transform function on each 
+            element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Min(System.Collections.Generic.IEnumerable{System.Nullable{System.Single}})">
+            <summary>
+            Returns the minimum value in a sequence of nullable 
+            <see cref="T:System.Single"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Min``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Single}})">
+            <summary>
+            Invokes a transform function on each element of a sequence and 
+            returns the minimum nullable <see cref="T:System.Single"/> value.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Max(System.Collections.Generic.IEnumerable{System.Nullable{System.Single}})">
+            <summary>
+            Returns the maximum value in a sequence of nullable 
+            <see cref="T:System.Single"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Max``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Single}})">
+            <summary>
+            Invokes a transform function on each element of a sequence and 
+            returns the maximum nullable <see cref="T:System.Single"/> value.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Computes the sum of a sequence of nullable <see cref="T:System.Double"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Double})">
+            <summary>
+            Computes the sum of a sequence of nullable <see cref="T:System.Double"/> 
+            values that are obtained by invoking a transform function on 
+            each element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Computes the average of a sequence of nullable <see cref="T:System.Double"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Double})">
+            <summary>
+            Computes the average of a sequence of nullable <see cref="T:System.Double"/> values 
+            that are obtained by invoking a transform function on each 
+            element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum(System.Collections.Generic.IEnumerable{System.Nullable{System.Double}})">
+            <summary>
+            Computes the sum of a sequence of <see cref="T:System.Double"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Double}})">
+            <summary>
+            Computes the sum of a sequence of <see cref="T:System.Double"/> 
+            values that are obtained by invoking a transform function on 
+            each element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average(System.Collections.Generic.IEnumerable{System.Nullable{System.Double}})">
+            <summary>
+            Computes the average of a sequence of <see cref="T:System.Double"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Double}})">
+            <summary>
+            Computes the average of a sequence of <see cref="T:System.Double"/> values 
+            that are obtained by invoking a transform function on each 
+            element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Min(System.Collections.Generic.IEnumerable{System.Nullable{System.Double}})">
+            <summary>
+            Returns the minimum value in a sequence of nullable 
+            <see cref="T:System.Double"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Min``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Double}})">
+            <summary>
+            Invokes a transform function on each element of a sequence and 
+            returns the minimum nullable <see cref="T:System.Double"/> value.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Max(System.Collections.Generic.IEnumerable{System.Nullable{System.Double}})">
+            <summary>
+            Returns the maximum value in a sequence of nullable 
+            <see cref="T:System.Double"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Max``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Double}})">
+            <summary>
+            Invokes a transform function on each element of a sequence and 
+            returns the maximum nullable <see cref="T:System.Double"/> value.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum(System.Collections.Generic.IEnumerable{System.Decimal})">
+            <summary>
+            Computes the sum of a sequence of nullable <see cref="T:System.Decimal"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Decimal})">
+            <summary>
+            Computes the sum of a sequence of nullable <see cref="T:System.Decimal"/> 
+            values that are obtained by invoking a transform function on 
+            each element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average(System.Collections.Generic.IEnumerable{System.Decimal})">
+            <summary>
+            Computes the average of a sequence of nullable <see cref="T:System.Decimal"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Decimal})">
+            <summary>
+            Computes the average of a sequence of nullable <see cref="T:System.Decimal"/> values 
+            that are obtained by invoking a transform function on each 
+            element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum(System.Collections.Generic.IEnumerable{System.Nullable{System.Decimal}})">
+            <summary>
+            Computes the sum of a sequence of <see cref="T:System.Decimal"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Decimal}})">
+            <summary>
+            Computes the sum of a sequence of <see cref="T:System.Decimal"/> 
+            values that are obtained by invoking a transform function on 
+            each element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average(System.Collections.Generic.IEnumerable{System.Nullable{System.Decimal}})">
+            <summary>
+            Computes the average of a sequence of <see cref="T:System.Decimal"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Average``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Decimal}})">
+            <summary>
+            Computes the average of a sequence of <see cref="T:System.Decimal"/> values 
+            that are obtained by invoking a transform function on each 
+            element of the input sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Min(System.Collections.Generic.IEnumerable{System.Nullable{System.Decimal}})">
+            <summary>
+            Returns the minimum value in a sequence of nullable 
+            <see cref="T:System.Decimal"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Min``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Decimal}})">
+            <summary>
+            Invokes a transform function on each element of a sequence and 
+            returns the minimum nullable <see cref="T:System.Decimal"/> value.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Max(System.Collections.Generic.IEnumerable{System.Nullable{System.Decimal}})">
+            <summary>
+            Returns the maximum value in a sequence of nullable 
+            <see cref="T:System.Decimal"/> values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerable.Max``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Nullable{System.Decimal}})">
+            <summary>
+            Invokes a transform function on each element of a sequence and 
+            returns the maximum nullable <see cref="T:System.Decimal"/> value.
+            </summary>
+        </member>
+        <member name="T:System.Linq.IGrouping`2">
+            <summary>
+            Represents a collection of objects that have a common key.
+            </summary>
+        </member>
+        <member name="P:System.Linq.IGrouping`2.Key">
+            <summary>
+            Gets the key of the <see cref="T:System.Linq.IGrouping`2"/>.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.ExtensionAttribute">
+            <remarks>
+            This attribute allows us to define extension methods without 
+            requiring .NET Framework 3.5. For more information, see the section,
+            <a href="http://msdn.microsoft.com/en-us/magazine/cc163317.aspx#S7">Extension Methods in .NET Framework 2.0 Apps</a>,
+            of <a href="http://msdn.microsoft.com/en-us/magazine/cc163317.aspx">Basic Instincts: Extension Methods</a>
+            column in <a href="http://msdn.microsoft.com/msdnmag/">MSDN Magazine</a>, 
+            issue <a href="http://msdn.microsoft.com/en-us/magazine/cc135410.aspx">Nov 2007</a>.
+            </remarks>
+        </member>
+        <member name="T:System.Linq.ILookup`2">
+            <summary>
+            Defines an indexer, size property, and Boolean search method for 
+            data structures that map keys to <see cref="T:System.Collections.Generic.IEnumerable`1"/> 
+            sequences of values.
+            </summary>
+        </member>
+        <member name="T:System.Linq.IOrderedEnumerable`1">
+            <summary>
+            Represents a sorted sequence.
+            </summary>
+        </member>
+        <member name="M:System.Linq.IOrderedEnumerable`1.CreateOrderedEnumerable``1(System.Func{`0,``0},System.Collections.Generic.IComparer{``0},System.Boolean)">
+            <summary>
+            Performs a subsequent ordering on the elements of an 
+            <see cref="T:System.Linq.IOrderedEnumerable`1"/> according to a key.
+            </summary>
+        </member>
+        <member name="T:System.Linq.Lookup`2">
+            <summary>
+            Represents a collection of keys each mapped to one or more values.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Lookup`2.Contains(`0)">
+            <summary>
+            Determines whether a specified key is in the <see cref="T:System.Linq.Lookup`2"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Lookup`2.ApplyResultSelector``1(System.Func{`0,System.Collections.Generic.IEnumerable{`1},``0})">
+            <summary>
+            Applies a transform function to each key and its associated 
+            values and returns the results.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Lookup`2.GetEnumerator">
+            <summary>
+            Returns a generic enumerator that iterates through the <see cref="T:System.Linq.Lookup`2"/>.
+            </summary>
+        </member>
+        <member name="P:System.Linq.Lookup`2.Count">
+            <summary>
+            Gets the number of key/value collection pairs in the <see cref="T:System.Linq.Lookup`2"/>.
+            </summary>
+        </member>
+        <member name="P:System.Linq.Lookup`2.Item(`0)">
+            <summary>
+            Gets the collection of values indexed by the specified key.
+            </summary>
+        </member>
+        <member name="T:Lfx.Access.LoginData">
+            <summary>
+            Proporciona acceso a la información sobre el usuario
             </summary>
         </member>
         <member name="T:Lfx.Data.InputFieldTypes">
@@ -133,23 +1265,12 @@
         <member name="T:Lfx.Data.DataBase">
             <summary>
             Proporciona una conexión a la base de datos y acceso de bajo nivel (sin abstracción) a los datos. Se utiliza normalmente para ejecutar consultas.
-            Vea Lws.Data.DataView para acceso de medio nivel a los datos o Lbl.* para para acceso de alto nivel a los datos.
+            Vea Lfx.Data.DataBase para acceso de medio nivel a los datos o Lbl.* para para acceso de alto nivel a los datos.
             </summary>
         </member>
         <member name="M:Lfx.Data.DataBase.GetFieldName(System.String)">
             <summary>
             Toma "tabla.campo" y devulve "campo"
-            </summary>
-        </member>
-        <member name="T:Lfx.Data.SqlCommandBuilder">
-            <summary>
-            Esta clase y sus derivadas se utilizan para evitar escribir los comandos SQL como literales de texto.
-            Permite la creación de un objeto y asignación de propiedades que luego puede convertirse para su ejecución
-            en texto SQL (mediante el método ToString()) o en un OdbcCommand (mediante el método ToOdbcCommand()).
-            Se utilizan principalmente con dos objetivos:
-              1.- Solucionar problemas de léxico SQL.
-              2.- Agregar extensibilidad al acceso a datos. Así como hoy se implementa ToOdbcCommand() para acceso mediante ODBC, luego se
-                  pueden implementar otros métodos para acceso mediante otros adaptadores (p. ej. MySQL Connector/Net).
             </summary>
         </member>
         <member name="T:Lfx.Environment.Folders">
@@ -167,20 +1288,54 @@
             Provee información sobre el sistema
             </summary>
         </member>
-        <member name="T:Lfx.Properties.Resources">
+        <member name="T:Lfx.Services.Scheduler">
             <summary>
-              Clase de recurso con establecimiento inflexible de tipos, para buscar cadenas traducidas, etc.
+            Programador de tareas
             </summary>
         </member>
-        <member name="P:Lfx.Properties.Resources.ResourceManager">
+        <member name="P:Lfx.Types.DateRange.From">
             <summary>
-              Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
+            Devuelve la fecha inicial del rango, con hora 00:00:00.
             </summary>
         </member>
-        <member name="P:Lfx.Properties.Resources.Culture">
+        <member name="P:Lfx.Types.DateRange.To">
             <summary>
-              Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
-              búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
+            Devuelve la fecha final del rango, con hora 23:59:59.
+            </summary>
+        </member>
+        <member name="P:Lfx.Types.DateRange.InternalFrom">
+            <summary>
+            Devuelve lo mismo que this.From, pero sin tener cuidado de la hora.
+            </summary>
+        </member>
+        <member name="P:Lfx.Types.DateRange.InternalTo">
+            <summary>
+            Devuelve lo mismo que this.To, pero sin tener cuidado de la hora.
+            </summary>
+        </member>
+        <member name="T:Lfx.Types.IntExtensions">
+            <summary>
+            Métodos de extension para el tipo Int.
+            </summary>
+        </member>
+        <member name="T:Lfx.Types.DoubleExtensions">
+            <summary>
+            Métodos de extension para el tipo Double.
+            </summary>
+        </member>
+        <member name="T:Lfx.Types.BoolExtensions">
+            <summary>
+            Métodos de extension para el tipo Bool.
+            </summary>
+        </member>
+        <member name="T:Lfx.Types.DateTimeExtensions">
+            <summary>
+            Métodos de extension para los tipos DateTime y LDateTime.
+            </summary>
+        </member>
+        <member name="M:Lfx.Types.DateTimeExtensions.ParseSql(System.String)">
+            <summary>
+            Toma una fecha YYYY-MM-DD HH:MM:SS y devuelve un DateTime
             </summary>
         </member>
         <member name="M:Lfx.Types.Object.ObjectsEqualByValue(System.Object,System.Object)">
@@ -223,16 +1378,6 @@
             Interpreta un valor entero. Devuelve cero para cualquier valor desconocido.
             </summary>
         </member>
-        <member name="M:Lfx.Types.Strings.Collection2CSV(System.Collections.ArrayList,System.String)">
-            <summary>
-            Convierte una matriz de cadenas en una cadena conteniendo todos los elementos separados por comas (u otro separador)
-            </summary>
-        </member>
-        <member name="M:Lfx.Types.Strings.Ints2CSV(System.Int32[],System.String)">
-            <summary>
-            Convierte una matriz de enteros en una cadena conteniendo todos los elementos separados por comas (u otro separador)
-            </summary>
-        </member>
         <member name="M:Lfx.Types.Strings.UnixToWindows(System.String)">
             <summary>
             Convierte o unifica fines de línea en formato Windows (CR+LF).
@@ -251,6 +1396,31 @@
         <member name="T:Lfx.Types.ControlChars">
             <summary>
             Clases referentes al manejo de tipos.
+            </summary>
+        </member>
+        <member name="T:Lfx.Workspace">
+            <summary>
+            Proporciona un espacio de trabajo que incluye acceso a los datos y a la configuración.
+            </summary>
+        </member>
+        <member name="M:Lfx.Workspace.DebugLog(System.Int32,System.String)">
+            <summary>
+            Log de comandos SQL (normalmente a la consola). Sólo para depuración.
+            </summary>
+        </member>
+        <member name="M:Lfx.Workspace.ActionLog(System.String,System.String)">
+            <summary>
+            Escribe un evento en la tabla sys_log. Se utiliza para registrar operaciones de datos (altas, bajas, ingresos, egresos, etc.)
+            </summary>
+        </member>
+        <member name="M:Lfx.Workspace.NotifyTableChange(System.String,System.Int32)">
+            <summary>
+            Notifica sobre un cambio de una tabla de datos
+            </summary>
+        </member>
+        <member name="T:Lfx.Workspace.RunTimeServices">
+            <summary>
+            Proporciona servicios de comunicación inter-proceso (entre el Lfx, la aplicación principal y los componentes)
             </summary>
         </member>
         <member name="T:Lfx.Data.Providers.MySqlProvider">

@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -108,12 +110,47 @@ namespace Lfx.Types
                                                 return DateRangeTypes.Range;
 
                                         default:
-                                                throw new Exception("DateRange: representación inválida (" + this.Rep + ")");
+                                                throw new InvalidOperationException("DateRange: representación inválida (" + this.Rep + ")");
                                 }
                         }
                 }
 
+                /// <summary>
+                /// Devuelve la fecha inicial del rango, con hora 00:00:00.
+                /// </summary>
                 public DateTime From
+                {
+                        get
+                        {
+                                DateTime RawDate = this.InternalFrom;
+                                return new DateTime(RawDate.Year, RawDate.Month, RawDate.Day, 0, 0, 0);
+                        }
+                        set
+                        {
+                                m_From = value;
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve la fecha final del rango, con hora 23:59:59.
+                /// </summary>
+                public DateTime To
+                {
+                        get
+                        {
+                                DateTime RawDate = this.InternalTo;
+                                return new DateTime(RawDate.Year, RawDate.Month, RawDate.Day, 23, 59, 59);
+                        }
+                        set
+                        {
+                                m_To = value;
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve lo mismo que this.From, pero sin tener cuidado de la hora.
+                /// </summary>
+                private DateTime InternalFrom
                 {
                         get
                         {
@@ -180,7 +217,10 @@ namespace Lfx.Types
                         }
                 }
 
-                public DateTime To
+                /// <summary>
+                /// Devuelve lo mismo que this.To, pero sin tener cuidado de la hora.
+                /// </summary>
+                private DateTime InternalTo
                 {
                         get
                         {

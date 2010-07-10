@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 
@@ -33,16 +35,87 @@ namespace Lfx.Data
 {
         public class Tag
         {
+                public int Id;
                 public string TableName, FieldName, Label;
                 public bool Nullable = false;
                 public Lfx.Data.DbTypes FieldType = Lfx.Data.DbTypes.VarChar;
                 public object Value = null, DefaultValue = null;
+                public DataBase DataBase;
+                public Lfx.Data.Relation Relation = null;
+
+                public Tag(DataBase dataBase, string tableName, Lfx.Data.Row fromRow)
+                {
+                        this.DataBase = dataBase;
+                        this.TableName = tableName;
+                        this.Id = System.Convert.ToInt32(fromRow["id_tag"]);
+                        this.FieldName = fromRow["fieldname"].ToString();
+                        this.Label = fromRow["label"].ToString();
+                        string FldType = fromRow["fieldtype"].ToString();
+                        switch(FldType) {
+                                case "relation":
+                                        this.FieldType = DbTypes.Integer;
+                                        string[] RelationFields = fromRow["extra"].ToString().Split(new char[] { ',' });
+                                        string ReferenceTable = RelationFields[0], ReferenceColumn, DetailColumn;
+                                        
+                                        if(RelationFields.Length >= 2)
+                                                ReferenceColumn = RelationFields[1];
+                                        else
+                                                ReferenceColumn = dataBase.Tables[ReferenceTable].PrimaryKey;
+
+                                        if(RelationFields.Length >= 3)
+                                                DetailColumn = RelationFields[2];
+                                        else
+                                                DetailColumn = "nombre";
+
+                                        this.Relation = new Relation(this.FieldName, ReferenceTable, ReferenceColumn, DetailColumn);
+                                        break;
+                                default:
+                                        this.FieldType = Lfx.Data.Types.FromSQLType(FldType);
+                                        break;
+                        }
+                        
+                        this.Nullable = System.Convert.ToBoolean(fromRow["fieldnullable"]);
+                        this.DefaultValue = fromRow["fielddefault"];
+                        if (this.DefaultValue is DBNull)
+                                this.DefaultValue = null;
+
+                }
 
                 public Tag(string tableName, string fieldName, string label)
                 {
                         this.TableName = tableName;
                         this.FieldName = fieldName;
                         this.Label = label;
+                }
+
+                public void Save()
+                {
+                        qGen.TableCommand InsertOrUpdate;
+                        if (this.Id == 0) {
+                                InsertOrUpdate = new qGen.Insert("sys_tags");
+                        } else {
+                                InsertOrUpdate = new qGen.Update("sys_tags");
+                                InsertOrUpdate.WhereClause = new qGen.Where("id_tag", this.Id);
+                        }
+
+                        InsertOrUpdate.Fields.AddWithValue("tablename", this.TableName);
+                        InsertOrUpdate.Fields.AddWithValue("fieldname", this.FieldName);
+                        InsertOrUpdate.Fields.AddWithValue("label", this.Label);
+                        switch(this.FieldType) {
+                                case DbTypes.VarChar:
+                                        InsertOrUpdate.Fields.AddWithValue("fieldtype", "varchar");
+                                        break;
+                                case DbTypes.Integer:
+                                        InsertOrUpdate.Fields.AddWithValue("fieldtype", "integer");
+                                        break;
+                                case DbTypes.Text:
+                                        InsertOrUpdate.Fields.AddWithValue("fieldtype", "text");
+                                        break;
+                        }
+                        InsertOrUpdate.Fields.AddWithValue("fieldnullable", this.Nullable ? 1 : 0);
+                        InsertOrUpdate.Fields.AddWithValue("fielddefault", this.DefaultValue);
+
+                        this.DataBase.Execute(InsertOrUpdate);
                 }
         }
 }

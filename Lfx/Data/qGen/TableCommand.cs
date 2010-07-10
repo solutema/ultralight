@@ -30,10 +30,40 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Lfx.Data
+namespace qGen
 {
-	public class TagCollection : System.Collections.ObjectModel.Collection<Tag>
-        {           
+        /// <summary>
+        /// Comandos que operan sobre una o más tablas (SELECT, UPDATE, INSERT, DELETE, TRUNCATE, etc.)
+        /// </summary>
+        public abstract class TableCommand : Command
+        {
+                public string Tables = "";
+
+                protected TableCommand()
+                        : base() { }
+
+                protected TableCommand(SqlModes sqlMode)
+                        : base(sqlMode) { }
+
+                protected TableCommand(Lfx.Data.DataBase dataBase, string tables)
+                        : base(dataBase)
+                {
+                        this.Tables = tables;
+                }
+
+                protected TableCommand(string tables)
+                        : this()
+                {
+                        this.Tables = tables;
+                }
+
+                public TableCommand(string tables, Where whereClause)
+                        : this(tables)
+                {
+                        this.WhereClause = whereClause;
+                }
         }
 }

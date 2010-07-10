@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -37,5 +39,40 @@ namespace Lfx.Data
         {
                 public string Name, PrimaryKey;
                 public bool Cacheable = true;
+                public DataBase DataBase;
+		protected RowCollection m_Rows = null;
+
+                public Table(DataBase dataBase, string name)
+                {
+			this.DataBase = dataBase;
+                        this.Name = name;
+                }
+
+		public RowCollection FastRows
+                {
+			get
+			{
+				if(m_Rows == null) {
+		                        m_Rows = new RowCollection(this);
+				}
+				return m_Rows;
+			}
+		}
+
+                public void PreLoad()
+                {
+                        this.FastRows.LoadAll();
+                }
+
+                public Lfx.Data.TagCollection Tags
+                {
+			get
+			{
+                                if (Lfx.Data.DataBaseCache.DefaultCache.TagList.ContainsKey(this.Name) == false)
+                                        Lfx.Data.DataBaseCache.DefaultCache.TagList.Add(this.Name, new Lfx.Data.TagCollection());
+                                
+                                return Lfx.Data.DataBaseCache.DefaultCache.TagList[this.Name];
+			}
+                }
         }
 }

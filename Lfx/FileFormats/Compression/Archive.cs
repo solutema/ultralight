@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -92,7 +94,7 @@ namespace Lfx.FileFormats.Compression
 			{
                                 case ArchiveTypes.BZip2:
                                         string ArchivoSalida = outputFolder + System.IO.Path.DirectorySeparatorChar + fileName;
-                                        object[] Args = new object[] { System.IO.File.OpenRead(this.ArchiveFileName), System.IO.File.Create(ArchivoSalida) };
+                                        object[] Args = new object[] { System.IO.File.OpenRead(this.ArchiveFileName), System.IO.File.Create(ArchivoSalida), true };
                                         System.Reflection.MethodInfo DecompMethod = this.SharpZipLib.GetType("ICSharpCode.SharpZipLib.BZip2.BZip2").GetMethod("Decompress");
                                         DecompMethod.Invoke(null, Args);
                                         break;

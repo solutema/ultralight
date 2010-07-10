@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <ProductVersion>9.0.30729</ProductVersion>
@@ -11,7 +11,8 @@
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>Lfx</AssemblyName>
-    <AssemblyOriginatorKeyFile>Lfx.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
     <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
@@ -23,10 +24,12 @@
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <OldToolsVersion>2.0</OldToolsVersion>
+    <OldToolsVersion>3.5</OldToolsVersion>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
-    <TargetFrameworkSubset>
-    </TargetFrameworkSubset>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <CodePage>65001</CodePage>
+    <ReleaseVersion>1.0</ReleaseVersion>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -39,11 +42,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <CodePage>65001</CodePage>
-    <ReleaseVersion>1.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -92,6 +92,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Access\Access.cs" />
+    <Compile Include="Access\AccessList.cs" />
+    <Compile Include="Updater.cs" />
+    <Compile Include="Components\Component.cs" />
+    <Compile Include="Components\Components.cs" />
+    <Compile Include="Config\CompanyConfig.cs" />
+    <Compile Include="Config\ConfigManager.cs" />
+    <Compile Include="Config\CurrencyConfig.cs" />
+    <Compile Include="Config\Display.cs" />
+    <Compile Include="Config\PrintersConfig.cs" />
+    <Compile Include="Config\ProductsConfig.cs" />
+    <Compile Include="Config\Templates.cs" />
     <Compile Include="Cpx\CommandList.cs" />
     <Compile Include="Cpx\CommandResponse.cs" />
     <Compile Include="Cpx\Commands.cs" />
@@ -104,30 +116,46 @@
     <Compile Include="Data\IndexDefinition.cs" />
     <Compile Include="Data\IsolationLevels.cs" />
     <Compile Include="Data\Providers\Npgsql.cs" />
+    <Compile Include="Data\qGen\BuilkInsert.cs" />
+    <Compile Include="Data\qGen\Command.cs" />
+    <Compile Include="Data\qGen\Condition.cs" />
+    <Compile Include="Data\qGen\Delete.cs" />
+    <Compile Include="Data\qGen\Enums.cs" />
+    <Compile Include="Data\qGen\Expression.cs" />
+    <Compile Include="Data\qGen\Insert.cs" />
+    <Compile Include="Data\qGen\Join.cs" />
+    <Compile Include="Data\qGen\Select.cs" />
+    <Compile Include="Data\qGen\TableCommand.cs" />
+    <Compile Include="Data\qGen\Update.cs" />
+    <Compile Include="Data\qGen\Where.cs" />
+    <Compile Include="Data\qGen\Window.cs" />
     <Compile Include="Data\Relation.cs" />
     <Compile Include="Data\Row.cs" />
+    <Compile Include="Data\RowCollection.cs" />
     <Compile Include="Data\Table.cs" />
+    <Compile Include="Data\TableCollection.cs" />
     <Compile Include="Data\TableStructure.cs" />
     <Compile Include="Data\Tag.cs" />
     <Compile Include="Data\FormField.cs" />
     <Compile Include="FileFormats\Compression\Archive.cs" />
     <Compile Include="FileFormats\Office\Spreadsheet.cs" />
     <Compile Include="Lic.cs" />
+    <Compile Include="LinqBridge.cs" />
+    <Compile Include="Access\LoginData.cs" />
     <Compile Include="Printing\TextPrint.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Data.cs" />
     <Compile Include="Data\DataBase.cs" />
-    <Compile Include="Data\SQLBuilder.cs" />
     <Compile Include="Environment\Folders.cs" />
     <Compile Include="Environment\Shell.cs" />
     <Compile Include="Environment\SystemInformation.cs" />
+    <Compile Include="Services\Scheduler.cs" />
+    <Compile Include="Services\Task.cs" />
     <Compile Include="Types\DateRange.cs" />
+    <Compile Include="Types\Extensions.cs" />
     <Compile Include="Types\Evaluator.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Types\Currency.cs" />
     <Compile Include="Types\Formatting.cs" />
     <Compile Include="Types\Ini.cs" />
@@ -137,12 +165,12 @@
     <Compile Include="Types\Parsing.cs" />
     <Compile Include="Types\Strings.cs" />
     <Compile Include="Types\Types.cs" />
-    <EmbeddedResource Include="Data\dbstruct.xml" />
-    <EmbeddedResource Include="Printing\TextPrint.resx">
-      <DependentUpon>TextPrint.cs</DependentUpon>
+    <Compile Include="Workspace.cs" />
+    <EmbeddedResource Include="Data\dbstruct.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Include="Printing\TextPrint.resx">
+      <DependentUpon>TextPrint.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Data\TagCollection.cs" />
@@ -153,31 +181,41 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Lfx.snk" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
       <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
       <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
       <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
-      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lazaro.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
