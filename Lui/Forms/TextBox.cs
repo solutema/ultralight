@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -57,12 +59,12 @@ namespace Lui.Forms
 
                         this.BorderStyle = BorderStyles.TextBox;
                         this.BackColor = TextBox1.BackColor;
-                        TextBox1.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
-                        TextBox1.ForeColor = Lws.Config.Display.CurrentTemplate.ControlText;
-                        lblPrefijo.ForeColor = Lws.Config.Display.CurrentTemplate.ControlText;
-                        lblPrefijo.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
-                        lblSufijo.ForeColor = Lws.Config.Display.CurrentTemplate.ControlText;
-                        lblSufijo.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
+                        TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
+                        TextBox1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
+                        lblPrefijo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
+                        lblPrefijo.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
+                        lblSufijo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
+                        lblSufijo.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
                         this.SizeChanged += new System.EventHandler(this.TextBox_SizeChanged);
                         this.TextBox1.ContextMenu = this.MiContextMenu;
                         this.TextBox1.DoubleClick += new System.EventHandler(this.TextBox1_DoubleClick);
@@ -353,7 +355,7 @@ namespace Lui.Forms
 			}
 			if (this.Workspace != null)
 			{
-                                System.Data.DataTable QuickPastes = this.Workspace.DefaultDataView.DataBase.Select("SELECT texto FROM sys_quickpaste ORDER BY fecha DESC LIMIT 12");
+                                System.Data.DataTable QuickPastes = this.Workspace.DefaultDataBase.Select("SELECT texto FROM sys_quickpaste ORDER BY fecha DESC LIMIT 12");
 				foreach (System.Data.DataRow QuickPaste in QuickPastes.Rows)
 				{
 					System.Windows.Forms.MenuItem NuevoItem = new System.Windows.Forms.MenuItem();
@@ -366,12 +368,12 @@ namespace Lui.Forms
 
 		private void MenuItemPegadoRapidoAgregar_Click(object sender, System.EventArgs e)
 		{
-			Lfx.Data.SqlInsertBuilder Comando = new Lfx.Data.SqlInsertBuilder(this.Workspace.DefaultDataView.DataBase, "sys_quickpaste");
+                        qGen.Insert Comando = new qGen.Insert("sys_quickpaste");
 			Comando.Fields.AddWithValue("texto", this.Text);
 			Comando.Fields.AddWithValue("estacion", System.Environment.MachineName.ToUpperInvariant());
 			Comando.Fields.AddWithValue("usuario", this.Workspace.CurrentUser.Id);
-			Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
-			this.Workspace.DefaultDataView.Execute(Comando);
+			Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
+                        this.Workspace.DefaultDataBase.Execute(Comando);
 		}
 
 		private void MenuItemPegadoRapidoTexto_Click(object sender, System.EventArgs e)

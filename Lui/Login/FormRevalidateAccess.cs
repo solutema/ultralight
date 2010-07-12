@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -45,9 +47,9 @@ namespace Lui.Login
 		{
 			InitializeComponent();
 
-			Titulo.Font = Lws.Config.Display.CurrentTemplate.TitleFont;
-			Titulo.BackColor = Lws.Config.Display.CurrentTemplate.TitleBackground;
-			Titulo.ForeColor = Lws.Config.Display.CurrentTemplate.TitleText;
+			Titulo.Font = Lfx.Config.Display.CurrentTemplate.TitleFont;
+			Titulo.BackColor = Lfx.Config.Display.CurrentTemplate.TitleBackground;
+			Titulo.ForeColor = Lfx.Config.Display.CurrentTemplate.TitleText;
 			CancelCommandButton.Text = "Cancelar";
 		}
 
@@ -75,7 +77,7 @@ namespace Lui.Login
 			txtUsuario.TextInt = userId;
 			txtContrasena.Text = "";
 			if(this.ShowDialog() == DialogResult.OK) {
-				Lfx.Data.Row Usuario = this.DataView.DataBase.FirstRowFromSelect("SELECT id_persona, nombre, nombre_visible FROM personas WHERE id_persona=" + txtUsuario.TextInt.ToString() + " AND contrasena='" + this.DataView.DataBase.EscapeString(txtContrasena.Text) + "'");
+				Lfx.Data.Row Usuario = this.DataBase.FirstRowFromSelect("SELECT id_persona, nombre, nombre_visible FROM personas WHERE id_persona=" + txtUsuario.TextInt.ToString() + " AND contrasena='" + this.DataBase.EscapeString(txtContrasena.Text) + "'");
 				if(Usuario != null && System.Convert.ToInt32(Usuario["id_persona"]) == userId) {
 					return true;
 				} else {

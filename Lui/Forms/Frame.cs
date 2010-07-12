@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System.ComponentModel;
 using System;
@@ -46,10 +48,10 @@ namespace Lui.Forms
                         // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
 
-                        ControlCaption.Font = Lws.Config.Display.CurrentTemplate.TitleFont;
-                        ControlCaption.ForeColor = Lws.Config.Display.CurrentTemplate.HeaderText;
-                        //ControlCaption.BackColor = Lws.Config.Display.CurrentTemplate.HeaderBackground;
-                        this.BackColor = Lws.Config.Display.CurrentTemplate.WindowBackground;
+                        ControlCaption.Font = Lfx.Config.Display.CurrentTemplate.TitleFont;
+                        ControlCaption.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
+                        //ControlCaption.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
+                        this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
                 }
 
                 private void Frame_Enter(object sender, EventArgs e)
@@ -69,11 +71,11 @@ namespace Lui.Forms
                         int y = 0;
                         if (ControlCaption.Visible)
                                 y += ControlCaption.Top + ControlCaption.Height;
-                        e.Graphics.DrawLine(new System.Drawing.Pen(Lws.Config.Display.CurrentTemplate.ControlBorder), 0, y, this.Width - 1, y);
+                        e.Graphics.DrawLine(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.ControlBorder), 0, y, this.Width - 1, y);
                         if (this.Highlighted) {
-                                ControlCaption.BackColor = Lws.Config.Display.CurrentTemplate.HeaderBackground;
+                                ControlCaption.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
                         } else {
-                                ControlCaption.BackColor = Lws.Config.Display.CurrentTemplate.WindowBackground;
+                                ControlCaption.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
                         }
                 }
         }

@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -45,9 +47,9 @@ namespace Lui.Forms
 		private string m_DataTableName;
 		private Lfx.Data.FormField m_KeyField;
 		private string m_OrderBy = null;
-                private System.Collections.Generic.List<Lfx.Data.Join> m_Joins = new System.Collections.Generic.List<Lfx.Data.Join>();
+                private System.Collections.Generic.List<qGen.Join> m_Joins = new System.Collections.Generic.List<qGen.Join>();
 		private string m_SearchText = "";
-		private object m_CurrentFilter;
+		private qGen.Where m_CustomFilters = new qGen.Where();
                 private bool Virtual = false;
                 private ListViewItem[] VirtualModeCache = null;
                 
@@ -60,10 +62,10 @@ namespace Lui.Forms
                         // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
 
-                        PanelBotonera.BackColor = Lws.Config.Display.CurrentTemplate.FooterBackground;
-                        Listado.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
-                        Listado.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
-                        Listado.ForeColor = Lws.Config.Display.CurrentTemplate.ControlText;
+                        PanelBotonera.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
+                        Listado.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
+                        Listado.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
+                        Listado.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
                         Listado.VirtualMode = this.Virtual;
                 }
 
@@ -179,19 +181,19 @@ namespace Lui.Forms
 			}
 		}
 
-		public object CurrentFilter
+		public qGen.Where CustomFilters
 		{
 			get
 			{
-				return m_CurrentFilter;
+				return m_CustomFilters;
 			}
 			set
 			{
-				m_CurrentFilter = value;
+				m_CustomFilters = value;
 			}
 		}
 
-                public System.Collections.Generic.List<Lfx.Data.Join> Joins
+                public System.Collections.Generic.List<qGen.Join> Joins
                 {
                         get
                         {
@@ -276,7 +278,7 @@ namespace Lui.Forms
                         this.BeginRefreshList();
                         if (this.Virtual) {
                                 this.Listado.VirtualMode = true;
-                                this.Listado.VirtualListSize = this.DataView.DataBase.FieldInt(this.SelectCommand(true));
+                                this.Listado.VirtualListSize = this.DataBase.FieldInt(this.SelectCommand(true));
                                 VirtualModeCache = new ListViewItem[this.Listado.VirtualListSize];
                         } else {
                                 this.Listado.VirtualMode = false;
@@ -300,10 +302,10 @@ namespace Lui.Forms
 				return sCampo;
 		}
 
-                private Lfx.Data.SqlSelectBuilder SelectCommand(bool forCount)
+                private qGen.Select SelectCommand(bool forCount)
                 {
                         if (m_DataTableName != null) {
-                                Lfx.Data.SqlSelectBuilder ComandoSelect = new Lfx.Data.SqlSelectBuilder(this.DataView.DataBase.SqlMode);
+                                qGen.Select ComandoSelect = new qGen.Select(this.DataBase.SqlMode);
 
                                 // Genero la lista de tablas, con JOIN y todo
                                 string ListaTablas = null;
@@ -323,28 +325,28 @@ namespace Lui.Forms
                                 }
 
                                 // Genero las condiciones del WHERE
-                                Lfx.Data.SqlWhereBuilder WhereBuscarTexto = new Lfx.Data.SqlWhereBuilder();
-                                WhereBuscarTexto.AndOr = Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandOr;
+                                qGen.Where WhereBuscarTexto = new qGen.Where();
+                                WhereBuscarTexto.Operator = qGen.AndOr.Or;
 
                                 if (m_SearchText != null && m_SearchText.Length > 0) {
                                         if (Lfx.Types.Strings.IsNumericInt(m_SearchText))
-                                                WhereBuscarTexto.Conditions.Add(new Lfx.Data.SqlCondition(m_KeyField.ColumnName, Lfx.Types.Parsing.ParseInt(m_SearchText).ToString()));
+                                                WhereBuscarTexto.AddWithValue(m_KeyField.ColumnName, Lfx.Types.Parsing.ParseInt(m_SearchText).ToString());
 
                                         if (m_FormFields != null) {
                                                 foreach (Lfx.Data.FormField CurField in m_FormFields) {
                                                         if (CurField.ColumnName.IndexOf(" AS ") == -1 && CurField.ColumnName.IndexOf("(") == -1)
-                                                                WhereBuscarTexto.Conditions.Add(new Lfx.Data.SqlCondition(CurField.ColumnName, Lfx.Data.SqlCommandBuilder.SqlOperands.InsensitiveLike, "%" + m_SearchText + "%"));
+                                                                WhereBuscarTexto.AddWithValue(CurField.ColumnName, qGen.ComparisonOperators.InsensitiveLike, "%" + m_SearchText + "%");
                                                 }
                                         }
                                         if (m_ExtraSearchFields != null) {
                                                 foreach (Lfx.Data.FormField CurField in m_ExtraSearchFields) {
-                                                        WhereBuscarTexto.Conditions.Add(new Lfx.Data.SqlCondition(CurField.ColumnName, Lfx.Data.SqlCommandBuilder.SqlOperands.InsensitiveLike, "%" + m_SearchText + "%"));
+                                                        WhereBuscarTexto.AddWithValue(CurField.ColumnName, qGen.ComparisonOperators.InsensitiveLike, "%" + m_SearchText + "%");
                                                 }
                                         }
                                 }
 
-                                Lfx.Data.SqlWhereBuilder WhereCompleto = new Lfx.Data.SqlWhereBuilder();
-                                WhereCompleto.AndOr = Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandAnd;
+                                qGen.Where WhereCompleto = new qGen.Where();
+                                WhereCompleto.Operator = qGen.AndOr.And;
 
                                 if (m_Labels != null) {
                                         if (m_LabelField == null || m_LabelField.Length == 0)
@@ -352,26 +354,20 @@ namespace Lui.Forms
                                         if (m_Labels.Length == 1) {
                                                 // Ids negativos sólo cuando hay una sola etiqueta
                                                 if (m_Labels[0] > 0)
-                                                        WhereCompleto.Conditions.Add(m_LabelField + " IN (SELECT item_id FROM sys_labels_values WHERE id_label=" + m_Labels[0].ToString() + ")");
+                                                        WhereCompleto.AddWithValue(m_LabelField, qGen.ComparisonOperators.In, new qGen.SqlExpression("(SELECT item_id FROM sys_labels_values WHERE id_label=" + m_Labels[0].ToString() + ")"));
                                                 else
-                                                        WhereCompleto.Conditions.Add(m_LabelField + " NOT IN (SELECT item_id FROM sys_labels_values WHERE id_label=" + (-m_Labels[0]).ToString() + ")");
+                                                        WhereCompleto.AddWithValue(m_LabelField, qGen.ComparisonOperators.NotIn, new qGen.SqlExpression("(SELECT item_id FROM sys_labels_values WHERE id_label=" + (-m_Labels[0]).ToString() + ")"));
                                         } else if (m_Labels.Length > 1) {
                                                 string[] LabelsString = Array.ConvertAll<int, string>(m_Labels, new Converter<int, string>(Convert.ToString));
-                                                WhereCompleto.Conditions.Add(m_LabelField + " IN (SELECT item_id FROM sys_labels_values WHERE id_label IN (" + string.Join(",", LabelsString) + "))");
+                                                WhereCompleto.AddWithValue(m_LabelField, qGen.ComparisonOperators.In, new qGen.SqlExpression("(SELECT item_id FROM sys_labels_values WHERE id_label IN (" + string.Join(",", LabelsString) + "))"));
                                         }
                                 }
 
-                                if (WhereBuscarTexto.Conditions.Count > 0)
-                                        WhereCompleto.Conditions.Add(WhereBuscarTexto);
+                                if (WhereBuscarTexto.Count > 0)
+                                        WhereCompleto.AddWithValue(WhereBuscarTexto);
 
-                                if (m_CurrentFilter != null) {
-                                        if (m_CurrentFilter is string) {
-                                                if (System.Convert.ToString(m_CurrentFilter).Length > 0)
-                                                        WhereCompleto.Conditions.Add(m_CurrentFilter);
-                                        } else {
-                                                WhereCompleto.Conditions.Add(m_CurrentFilter);
-                                        }
-                                }
+                                if (m_CustomFilters != null && m_CustomFilters.Count > 0)
+                                        WhereCompleto.AddWithValue(m_CustomFilters);
 
                                 ComandoSelect.Tables = ListaTablas;
                                 ComandoSelect.Fields = ListaCampos;
@@ -386,17 +382,17 @@ namespace Lui.Forms
                         }
                 }
 
-                public virtual void Fill(Lfx.Data.SqlSelectBuilder command)
+                public virtual void Fill(qGen.Select command)
                 {
                         this.Fill(command, 0);
                 }
 
-		public virtual void Fill(Lfx.Data.SqlSelectBuilder command, int virtualModeOffset)
+		public virtual void Fill(qGen.Select command, int virtualModeOffset)
 		{
         		if (this.Workspace == null || command == null)
 				return;
 
-			System.Data.DataTable Tabla = this.DataView.DataBase.Select(command);
+			System.Data.DataTable Tabla = this.DataBase.Select(command);
 
 			ListViewItem CurItem = null;
                         System.Collections.Generic.List<int> CheckedItems = null;
@@ -404,9 +400,9 @@ namespace Lui.Forms
                         if (this.Virtual == false) {
                                 if (command.Window == null) {
                                         if (this.Workspace.SlowLink)
-                                                command.Window = new Lfx.Data.Window(1000 > m_Limit ? 1000 : m_Limit);
+                                                command.Window = new qGen.Window(1000 > m_Limit ? 1000 : m_Limit);
                                         else if (m_Limit > 0)
-                                                command.Window = new Lfx.Data.Window(m_Limit);
+                                                command.Window = new qGen.Window(m_Limit);
                                         else
                                                 command.Window = null;
                                 }
@@ -549,7 +545,7 @@ namespace Lui.Forms
                                                 VirtualModeCache[virtualModeOffset++] = Itm;
                                         } else {
                                                 Listado.Items.Add(Itm);
-                                                ItemAdded(Itm);
+                                                ItemAdded(Itm, (Lfx.Data.Row)Registro);
                                                 if (CurItem != null && Itm.Text == CurItem.Text)
 						CurItem = Itm;
                                         }
@@ -582,7 +578,7 @@ namespace Lui.Forms
 			}
 		}
 
-		public virtual void ItemAdded(ListViewItem item) { }
+		public virtual void ItemAdded(ListViewItem item, Lfx.Data.Row row) { }
 		public virtual void EndRefreshList() { }
 		public virtual void BeginRefreshList() { }
 
@@ -832,16 +828,16 @@ namespace Lui.Forms
 
                 private void ListingForm_Activated(object sender, EventArgs e)
                 {
-                        //Sólo refresco en conexiones rápidas o cuando son menos de 200 elementos
-                        if (this.Visible && (this.Workspace.SlowLink == false || this.Listado.Items.Count < 200))
+                        //Sólo refresco si no hay filtros y cuando son pocos elementos
+                        if (this.Visible && this.Listado.Items.Count < 200 && this.CustomFilters.Count == 0)
                                 this.RefreshList();
                 }
 
                 private void Listado_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
                 {
                         if (VirtualModeCache[e.ItemIndex] == null) {
-                                Lfx.Data.SqlSelectBuilder Sel = this.SelectCommand(false);
-                                Sel.Window = new Lfx.Data.Window(e.ItemIndex, 50);
+                                qGen.Select Sel = this.SelectCommand(false);
+                                Sel.Window = new qGen.Window(e.ItemIndex, 50);
                                 this.Fill(Sel, e.ItemIndex);
                         }
                         e.Item = VirtualModeCache[e.ItemIndex];
@@ -849,8 +845,8 @@ namespace Lui.Forms
 
                 private void Listado_CacheVirtualItems(object sender, CacheVirtualItemsEventArgs e)
                 {
-                        Lfx.Data.SqlSelectBuilder Sel = this.SelectCommand(false);
-                        Sel.Window = new Lfx.Data.Window(e.StartIndex, e.EndIndex - e.StartIndex);
+                        qGen.Select Sel = this.SelectCommand(false);
+                        Sel.Window = new qGen.Window(e.StartIndex, e.EndIndex - e.StartIndex);
                         for (int i = e.StartIndex; i < e.EndIndex; i++) {
                                 if(VirtualModeCache[i] == null) {
                                         this.Fill(Sel, e.StartIndex);

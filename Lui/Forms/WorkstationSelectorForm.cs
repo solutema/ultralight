@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -149,7 +151,7 @@ namespace Lui.Forms
 			ListViewItem itm = lvItems.Items.Add(new ListViewItem (new string[] {System.Environment.MachineName.ToUpperInvariant(), "Este equipo"}));
 			itm.Selected = (this.Estacion == System.Environment.MachineName.ToUpperInvariant());
 
-			System.Data.DataTable Estaciones = this.Workspace.DefaultDataBase.Select("SELECT DISTINCT estacion FROM sys_config ORDER BY estacion");
+			System.Data.DataTable Estaciones = this.DataBase.Select("SELECT DISTINCT estacion FROM sys_config ORDER BY estacion");
 			foreach(System.Data.DataRow RowEstacion in Estaciones.Rows)
 			{
 				if((string)RowEstacion["estacion"] != "*" && (string)RowEstacion["estacion"] != System.Environment.MachineName.ToUpperInvariant())

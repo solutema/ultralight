@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 namespace Lui.Forms
 {
@@ -40,7 +42,7 @@ namespace Lui.Forms
 			// Necesario para admitir el Diseñador de Windows Forms
 			InitializeComponent();
 
-			LowerPanel.BackColor = Lws.Config.Display.CurrentTemplate.FooterBackground;
+			LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
 		}
 
 		// Limpiar los recursos que se estén utilizando.

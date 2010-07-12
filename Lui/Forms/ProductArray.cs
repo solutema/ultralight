@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -63,9 +65,9 @@ namespace Lui.Forms
 			// Necesario para admitir el Diseñador de Windows Forms
 			InitializeComponent();
 
-			PanelGrilla.BackColor = Lws.Config.Display.CurrentTemplate.WindowBackground;
-			lblHeaderDetalle.BackColor = Lws.Config.Display.CurrentTemplate.Header2Background;
-			lblHeaderDetalle.ForeColor = Lws.Config.Display.CurrentTemplate.Header2Text;
+			PanelGrilla.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
+			lblHeaderDetalle.BackColor = Lfx.Config.Display.CurrentTemplate.Header2Background;
+			lblHeaderDetalle.ForeColor = Lfx.Config.Display.CurrentTemplate.Header2Text;
 			lblHeaderUnitario.BackColor = lblHeaderDetalle.BackColor;
 			lblHeaderUnitario.ForeColor = lblHeaderDetalle.ForeColor;
 			lblHeaderCantidad.BackColor = lblHeaderDetalle.BackColor;
@@ -194,7 +196,7 @@ namespace Lui.Forms
                                 m_Articulos = new System.Collections.Generic.List<Lbl.Comprobantes.DetalleArticulo>();
                                 int i = 1;
                                 foreach (Product Pro in this.ChildControls) {
-                                        Lbl.Comprobantes.DetalleArticulo DetArt = new Lbl.Comprobantes.DetalleArticulo(this.Workspace.DefaultDataView, 0);
+                                        Lbl.Comprobantes.DetalleArticulo DetArt = new Lbl.Comprobantes.DetalleArticulo(this.Workspace.DefaultDataBase, 0);
                                         DetArt.IdArticulo = Pro.TextInt;
                                         DetArt.Orden = i++;
                                         DetArt.Cantidad = Pro.Cantidad;
@@ -572,7 +574,7 @@ namespace Lui.Forms
 
 		private void ReubicarEncabs()
 		{
-			this.BackColor = Lws.Config.Display.CurrentTemplate.WindowBackground;
+			this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
                         if (this.ChildControls != null && this.ChildControls.Count > 0)
 			{
 				Product ctrl = this.ChildControls[0];
@@ -586,11 +588,11 @@ namespace Lui.Forms
 			}
 		}
 
-		public Lws.Workspace Workspace
+		public Lfx.Workspace Workspace
 		{
 			get
 			{
-				return Lws.Workspace.Master;
+				return Lfx.Workspace.Master;
 			}
 		}
 	}

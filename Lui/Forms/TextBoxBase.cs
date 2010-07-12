@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -207,10 +209,10 @@ namespace Lui.Forms
                                 this.Changed = true;
                                 m_IgnoreChanges--;
                         }
-                        if (this.TextChanged != null)
-                                this.TextChanged(this, e);
+                        EventHandler TChanged = this.TextChanged;
+                        if (TChanged != null)
+                                TChanged(this, e);
                 }
-
                 
 
                 public override bool ReadOnly
@@ -268,7 +270,7 @@ namespace Lui.Forms
                 private void TextBox1_LostFocus(object sender, System.EventArgs e)
                 {
                         if (IgnorarEventos == 0) {
-                                TextBox1.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
+                                TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
                                 if (this.LostFocus != null)
                                         this.LostFocus(this, e);
                         }
@@ -279,7 +281,7 @@ namespace Lui.Forms
                 {
                         if (IgnorarEventos == 0) {
                                 if (m_ReadOnly == false)
-                                        TextBox1.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataareaActive;
+                                        TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
 
                                 IgnorarEventos++;
                                 TextBox1.Focus();

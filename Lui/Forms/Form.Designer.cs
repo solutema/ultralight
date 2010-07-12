@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 namespace Lui.Forms
 {
@@ -46,8 +48,8 @@ namespace Lui.Forms
                                 components.Dispose();
                         }
                         base.Dispose(disposing);
-                        if (m_DataView != null)
-                                m_DataView.Dispose();
+                        if (m_DataBase != null)
+                                m_DataBase.Dispose();
                 }
 
 		#region Código generado por el Diseñador de Windows Forms
@@ -63,7 +65,7 @@ namespace Lui.Forms
                         // 
                         // Form
                         // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(792, 473);
                         this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
@@ -73,6 +75,7 @@ namespace Lui.Forms
                         this.Name = "Form";
                         this.Text = "Form";
                         this.Load += new System.EventHandler(this.Form_Load);
+                        this.TextChanged += new System.EventHandler(this.Form_TextChanged);
                         this.ResumeLayout(false);
 
 		}

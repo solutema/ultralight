@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -38,7 +40,7 @@ namespace Lui.Forms
 {
 	public partial class ListingFormExport : Lui.Forms.DialogForm
 	{
-		public Lfx.Data.SqlSelectBuilder SelectCommand;
+		public qGen.Select SelectCommand;
 		public Lfx.Data.FormField[] FormFields;
 		public Lfx.Data.FormField KeyField;
 		public string Nombre = "Datos Exportados del sistema Lázaro";
@@ -89,7 +91,7 @@ namespace Lui.Forms
                         }
 
 			// Exporto los renglones
-			System.Data.DataTable Tabla = this.DataView.DataBase.Select(this.SelectCommand);
+			System.Data.DataTable Tabla = this.DataBase.Select(this.SelectCommand);
 			foreach (System.Data.DataRow Registro in Tabla.Rows)
 			{
 				Lfx.FileFormats.Office.Spreadsheet.Row Reng = new Lfx.FileFormats.Office.Spreadsheet.Row();

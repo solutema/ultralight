@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -102,9 +104,9 @@ namespace Lws.Data
                         }
                 }
 		
-		public int Execute(Lfx.Data.SqlTableCommandBuilder sqlCommand)
+		public int Execute(qGen.TableCommand sqlCommand)
 		{
-                        if (sqlCommand is Lfx.Data.SqlUpdateBuilder || sqlCommand is Lfx.Data.SqlDeleteBuilder) {
+                        if (sqlCommand is qGen.Update || sqlCommand is qGen.Delete) {
                                 if (this.Tables.ContainsKey(sqlCommand.Tables))
                                         this.Tables[sqlCommand.Tables].FastRows.ClearCache();
                         }

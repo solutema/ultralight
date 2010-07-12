@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Drawing;
@@ -280,11 +282,10 @@ namespace Lws.Config
 				branch = m_Workspace.CurrentConfig.Company.CurrentBranch;
 
 			string CompleteSettingName = (sectionName==null||sectionName.Length==0?"":(sectionName+@".")) + settingName;
-                        Lfx.Data.SqlDeleteBuilder DeleteCommand = new Lfx.Data.SqlDeleteBuilder("sys_config");
-                        DeleteCommand.WhereClause = new Lfx.Data.SqlWhereBuilder();
-                        DeleteCommand.WhereClause.AndOr = Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandAnd;
-                        DeleteCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("nombre", CompleteSettingName));
-                        DeleteCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("id_sucursal", branch));
+                        qGen.Delete DeleteCommand = new qGen.Delete("sys_config");
+                        DeleteCommand.WhereClause = new qGen.Where(qGen.AndOr.And);
+                        DeleteCommand.WhereClause.Add(new qGen.ComparisonCondition("nombre", CompleteSettingName));
+                        DeleteCommand.WhereClause.Add(new qGen.ComparisonCondition("id_sucursal", branch));
 			ConfigDB.Delete(DeleteCommand);
 
 			this.InvalidateConfigCache();
@@ -300,11 +301,11 @@ namespace Lws.Config
                                 terminalName = System.Environment.MachineName.ToUpperInvariant();
 
 			string CompleteSettingName = (sectionName==null||sectionName.Length==0?"":(sectionName+@".")) + settingName;
-                        Lfx.Data.SqlDeleteBuilder DeleteCommand = new Lfx.Data.SqlDeleteBuilder("sys_config");
-                        DeleteCommand.WhereClause = new Lfx.Data.SqlWhereBuilder();
-                        DeleteCommand.WhereClause.AndOr = Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandAnd;
-                        DeleteCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("nombre", CompleteSettingName));
-                        DeleteCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("estacion", terminalName));
+                        qGen.Delete DeleteCommand = new qGen.Delete("sys_config");
+                        DeleteCommand.WhereClause = new qGen.Where();
+                        DeleteCommand.WhereClause.Operator = qGen.AndOr.And;
+                        DeleteCommand.WhereClause.Add(new qGen.ComparisonCondition("nombre", CompleteSettingName));
+                        DeleteCommand.WhereClause.Add(new qGen.ComparisonCondition("estacion", terminalName));
 			ConfigDB.Delete(DeleteCommand);
 
 			this.InvalidateConfigCache();
@@ -326,22 +327,22 @@ namespace Lws.Config
 			if(CurrentValue == null) 
 			{
 				//Crear el valor
-                                Lfx.Data.SqlInsertBuilder InsertCommand = new Lfx.Data.SqlInsertBuilder("sys_config");
-                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("id_sucursal", Lfx.Data.ValueTypes.String, branch));
-                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("estacion", Lfx.Data.ValueTypes.String, "*"));
-                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("nombre", Lfx.Data.ValueTypes.String, CompleteSettingName));
-                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("valor", Lfx.Data.ValueTypes.String, stringValue));
+                                qGen.Insert InsertCommand = new qGen.Insert("sys_config");
+                                InsertCommand.Fields.Add(new Lfx.Data.Field("id_sucursal", Lfx.Data.DbTypes.Integer, branch));
+                                InsertCommand.Fields.Add(new Lfx.Data.Field("estacion", Lfx.Data.DbTypes.VarChar, "*"));
+                                InsertCommand.Fields.Add(new Lfx.Data.Field("nombre", Lfx.Data.DbTypes.VarChar, CompleteSettingName));
+                                InsertCommand.Fields.Add(new Lfx.Data.Field("valor", Lfx.Data.DbTypes.VarChar, stringValue));
 				ConfigDB.Insert(InsertCommand);
 			}
 			else
 			{
 				//Actualizar el valor
-				Lfx.Data.SqlUpdateBuilder UpdateCommand = new Lfx.Data.SqlUpdateBuilder("sys_config");
-                                UpdateCommand.Fields.Add(new Lfx.Data.SqlField("valor", Lfx.Data.ValueTypes.String, stringValue));
-				UpdateCommand.WhereClause = new Lfx.Data.SqlWhereBuilder();
-				UpdateCommand.WhereClause.AndOr = Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandAnd;
-				UpdateCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("nombre", CompleteSettingName));
-				UpdateCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("id_sucursal", branch));
+				qGen.Update UpdateCommand = new qGen.Update("sys_config");
+                                UpdateCommand.Fields.Add(new Lfx.Data.Field("valor", Lfx.Data.DbTypes.VarChar, stringValue));
+				UpdateCommand.WhereClause = new qGen.Where();
+				UpdateCommand.WhereClause.Operator = qGen.AndOr.And;
+                                UpdateCommand.WhereClause.Add(new qGen.ComparisonCondition("nombre", CompleteSettingName));
+                                UpdateCommand.WhereClause.Add(new qGen.ComparisonCondition("id_sucursal", branch));
 				ConfigDB.Update(UpdateCommand);
 			}
 
@@ -362,21 +363,21 @@ namespace Lws.Config
 			if(CurrentValue == null) 
 			{
 				//Crear el valor
-                                Lfx.Data.SqlInsertBuilder InsertCommand = new Lfx.Data.SqlInsertBuilder("sys_config");
-                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("estacion", Lfx.Data.ValueTypes.String, terminalName));
-                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("nombre", Lfx.Data.ValueTypes.String, CompleteSettingName));
-                                InsertCommand.Fields.Add(new Lfx.Data.SqlField("valor", Lfx.Data.ValueTypes.String, stringValue));
+                                qGen.Insert InsertCommand = new qGen.Insert("sys_config");
+                                InsertCommand.Fields.Add(new Lfx.Data.Field("estacion", Lfx.Data.DbTypes.VarChar, terminalName));
+                                InsertCommand.Fields.Add(new Lfx.Data.Field("nombre", Lfx.Data.DbTypes.VarChar, CompleteSettingName));
+                                InsertCommand.Fields.Add(new Lfx.Data.Field("valor", Lfx.Data.DbTypes.VarChar, stringValue));
 				ConfigDB.Insert(InsertCommand);
 			}
 			else
 			{
 				//Actualizar el valor
-                                Lfx.Data.SqlUpdateBuilder UpdateCommand = new Lfx.Data.SqlUpdateBuilder("sys_config");
-                                UpdateCommand.Fields.Add(new Lfx.Data.SqlField("valor", Lfx.Data.ValueTypes.String, stringValue));
-                                UpdateCommand.WhereClause = new Lfx.Data.SqlWhereBuilder();
-                                UpdateCommand.WhereClause.AndOr = Lfx.Data.SqlWhereBuilder.OperandsAndOr.OperandAnd;
-                                UpdateCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("nombre", CompleteSettingName));
-                                UpdateCommand.WhereClause.Conditions.Add(new Lfx.Data.SqlCondition("estacion", terminalName));
+                                qGen.Update UpdateCommand = new qGen.Update("sys_config");
+                                UpdateCommand.Fields.Add(new Lfx.Data.Field("valor", Lfx.Data.DbTypes.VarChar, stringValue));
+                                UpdateCommand.WhereClause = new qGen.Where();
+                                UpdateCommand.WhereClause.Operator = qGen.AndOr.And;
+                                UpdateCommand.WhereClause.Add(new qGen.ComparisonCondition("nombre", CompleteSettingName));
+                                UpdateCommand.WhereClause.Add(new qGen.ComparisonCondition("estacion", terminalName));
 				ConfigDB.Update(UpdateCommand);
 			}
 

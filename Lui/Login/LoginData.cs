@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -35,12 +37,12 @@ namespace Lui.Login
 {
 	public static class LoginData
 	{
-		public static bool ValidateAccess(Lws.LoginData loginData, string accessName)
+		public static bool ValidateAccess(Lfx.Access.LoginData loginData, string accessName)
 		{
 			return ValidateAccess(loginData,accessName, 0);
 		}
 
-		public static bool ValidateAccess(Lws.LoginData loginData, string accessName, int itemId)
+		public static bool ValidateAccess(Lfx.Access.LoginData loginData, string accessName, int itemId)
 		{
 			bool Tiene = Access(loginData,accessName, itemId);
 			if(Tiene == false)
@@ -48,17 +50,17 @@ namespace Lui.Login
 			return Tiene;
 		}
 
-		public static bool Access(Lws.LoginData loginData, string accessName)
+		public static bool Access(Lfx.Access.LoginData loginData, string accessName)
 		{
 			return Access(loginData,accessName, 0);
 		}
 
-		public static bool Access(Lws.LoginData loginData, string accessName, int itemId)
+		public static bool Access(Lfx.Access.LoginData loginData, string accessName, int itemId)
 		{
                         return loginData.AccessList.HasAccess(accessName, itemId);
 		}
 
-		public static bool RevalidateAccess(Lws.LoginData loginData)
+		public static bool RevalidateAccess(Lfx.Access.LoginData loginData)
 		{
 			Lui.Login.FormRevalidateAccess Reval = new Lui.Login.FormRevalidateAccess();
 			bool Res = Reval.Revalidate();
@@ -69,12 +71,12 @@ namespace Lui.Login
 		}
 
 
-		public static bool ValidateAsAdmin(Lws.LoginData loginData)
+		public static bool ValidateAsAdmin(Lfx.Access.LoginData loginData)
 		{
 			return ValidateAsAdmin(loginData, null);
 		}
 
-		public static bool ValidateAsAdmin(Lws.LoginData loginData, string Explain)
+		public static bool ValidateAsAdmin(Lfx.Access.LoginData loginData, string Explain)
 		{
 			Lui.Login.FormRevalidateAccess Reval = new Lui.Login.FormRevalidateAccess();
 			if(Explain != null)

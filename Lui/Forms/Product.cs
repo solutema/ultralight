@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -73,17 +75,19 @@ namespace Lui.Forms
                         // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
 
-                        switch (m_Precio) {
-                                case Precios.Costo:
-                                        txtUnitario.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto;
-                                        txtImporte.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto;
-                                        break;
-                                case Precios.PVP:
-                                        txtUnitario.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlaces;
-                                        txtImporte.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlaces;
-                                        break;
+                        if (this.Workspace != null) {
+                                switch (m_Precio) {
+                                        case Precios.Costo:
+                                                txtUnitario.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto;
+                                                txtImporte.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto;
+                                                break;
+                                        case Precios.PVP:
+                                                txtUnitario.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlaces;
+                                                txtImporte.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlaces;
+                                                break;
+                                }
+                                txtCantidad.DecimalPlaces = this.Workspace.CurrentConfig.Products.StockDecimalPlaces;
                         }
-                        txtCantidad.DecimalPlaces = this.Workspace.CurrentConfig.Products.StockDecimalPlaces;
 
                 }
 
@@ -421,13 +425,13 @@ namespace Lui.Forms
 			}
 			else if (CodPredet == "id_articulo")
 			{
-                                Articulo = this.Workspace.DefaultDataView.DataBase.Row("articulos", "id_articulo, costo, pvp, control_stock, stock_actual, unidad_stock, rendimiento, unidad_rend, pedido", "id_articulo", ArticuloId);
+                                Articulo = this.Workspace.DefaultDataBase.Row("articulos", "id_articulo, costo, pvp, control_stock, stock_actual, unidad_stock, rendimiento, unidad_rend, pedido", "id_articulo", ArticuloId);
 			}
 			else
 			{
-                                Articulo = this.Workspace.DefaultDataView.DataBase.FirstRowFromSelect("SELECT id_articulo, costo, pvp, control_stock, stock_actual, unidad_stock, rendimiento, unidad_rend, pedido FROM articulos WHERE " + CodPredet + "='" + txtArticulo.Text.Trim() + "'");
+                                Articulo = this.Workspace.DefaultDataBase.FirstRowFromSelect("SELECT id_articulo, costo, pvp, control_stock, stock_actual, unidad_stock, rendimiento, unidad_rend, pedido FROM articulos WHERE " + CodPredet + "='" + txtArticulo.Text.Trim() + "'");
 				if (Articulo == null)
-                                        Articulo = this.Workspace.DefaultDataView.DataBase.Row("articulos", "id_articulo, costo, pvp, control_stock, stock_actual, unidad_stock, rendimiento, unidad_rend, pedido", "id_articulo", ArticuloId);
+                                        Articulo = this.Workspace.DefaultDataBase.Row("articulos", "id_articulo, costo, pvp, control_stock, stock_actual, unidad_stock, rendimiento, unidad_rend, pedido", "id_articulo", ArticuloId);
 			}
 
 			if (Articulo != null)
@@ -652,11 +656,11 @@ namespace Lui.Forms
 		}
 
 
-		public Lws.Workspace Workspace
+		public Lfx.Workspace Workspace
 		{
 			get
 			{
-				return Lws.Workspace.Master;
+				return Lfx.Workspace.Master;
 			}
 		}
 
