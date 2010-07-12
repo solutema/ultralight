@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -69,6 +71,12 @@ namespace Lfx.Types
                         if (a == null && b is int && (int)b == 0) {
                                 // Por la forma en la que trabaja FieldCollection[columName], digo que NULL==0 es true
                                 return true;
+                        } else if (a == null && b is double && (double)b == 0) {
+                                // Por la forma en la que trabaja FieldCollection[columName], digo que NULL==0 es true
+                                return true;
+                        } else if (a == null && b is string && (string)b == "") {
+                                // Por la forma en la que trabaja FieldCollection[columName], digo que NULL=="" es true
+                                return true;
                         } else if ((a is short || a is int || a is long)
                            && (b is short || b is int || b is long)) {
                                 return System.Convert.ToInt64(a) == System.Convert.ToInt64(b);
@@ -83,7 +91,7 @@ namespace Lfx.Types
                         } else if (a is string && b is string) {
                                 return string.Equals(a as string, b as string, StringComparison.CurrentCulture);
                         } else {
-                                return System.Convert.ToString(a) == System.Convert.ToString(b);
+                                return string.Equals(System.Convert.ToString(a), System.Convert.ToString(b), StringComparison.CurrentCulture);
                         }
                 }
         }

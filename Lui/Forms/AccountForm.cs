@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -41,16 +43,16 @@ namespace Lui.Forms
                 protected internal string m_Tabla;
                 public int m_Cliente;
                 public Lfx.Types.DateRange m_Fechas = new Lfx.Types.DateRange("dia-0");
-		protected Lfx.Data.SqlSelectBuilder m_SelectCommand;
+		protected qGen.Select m_SelectCommand;
 		protected Lfx.Data.FormField[] m_FormFields;
 
                 public AccountForm()
                 {
                         InitializeComponent();
 
-                        LowerPanel.BackColor = Lws.Config.Display.CurrentTemplate.FooterBackground;
-                        EtiquetaTitulo.BackColor = Lws.Config.Display.CurrentTemplate.Header2Background;
-                        EtiquetaTitulo.ForeColor = Lws.Config.Display.CurrentTemplate.Header2Text;
+                        LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
+                        EtiquetaTitulo.BackColor = Lfx.Config.Display.CurrentTemplate.Header2Background;
+                        EtiquetaTitulo.ForeColor = Lfx.Config.Display.CurrentTemplate.Header2Text;
                 }
 
 		public virtual Lfx.Types.OperationResult RefreshList()
@@ -92,7 +94,7 @@ namespace Lui.Forms
 			Cancel();
 		}
 
-		public virtual Lfx.Data.SqlSelectBuilder SelectCommand()
+		public virtual qGen.Select SelectCommand()
 		{
 			return null;
 		}

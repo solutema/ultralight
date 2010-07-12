@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -44,14 +46,14 @@ namespace Lui.Forms
 		public System.Windows.Forms.Control ControlDestino;
 		private bool m_ReadOnly = false;
                 public Lbl.ElementoDeDatos CachedRow;
+                public Type ElementType = null;
 
                 public EditForm()
                         : base()
                 {
                         InitializeComponent();
 
-                        LowerPanel.BackColor = Lws.Config.Display.CurrentTemplate.FooterBackground;
-                        BotonHistorial.Visible = this.Workspace.CurrentUser.AccessList.HasGlobalAcccess();
+                        LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
                 }
 
 		public virtual bool ReadOnly
@@ -81,12 +83,20 @@ namespace Lui.Forms
 		{
 			m_Nuevo = false;
                         m_Id = itemId;
+
+                        if (this.ElementType != null) {
+                                System.Reflection.ConstructorInfo TConstr = this.ElementType.GetConstructor(new Type[] { typeof(Lfx.Data.DataBase), typeof(int) });
+                                Lbl.ElementoDeDatos Elem = (Lbl.ElementoDeDatos)(TConstr.Invoke(new object[] { this.DataBase, m_Id }));
+
+                                if (Elem != null)
+                                        this.FromRow(Elem);
+                        }
 			return new Lfx.Types.SuccessOperationResult();
 		}
 
 		public virtual Printing.ItemPrint FormatForPrinting(Printing.ItemPrint ImprimirItem)
 		{
-			ImprimirItem.Titulo = "ERROR: Formato no definido"; ImprimirItem.ParesAgregar("", "No se ha definido el formato de impresión para este tipo de elementos.", 1);
+			ImprimirItem.Titulo = "ERROR: Formato no definido"; ImprimirItem.AgregarPar("", "No se ha definido el formato de impresión para este tipo de elementos.", 1);
 			return ImprimirItem;
 		}
 
@@ -178,18 +188,18 @@ namespace Lui.Forms
                         if (this.CachedRow != null) {
                                 WasNew = !this.CachedRow.Existe;
                                 this.CachedRow = this.ToRow();
-                                bool WasInTransaction = this.CachedRow.DataView.InTransaction;
+                                bool WasInTransaction = this.CachedRow.DataBase.InTransaction;
                                 if (WasInTransaction == false)
-                                        this.CachedRow.DataView.BeginTransaction();
+                                        this.CachedRow.DataBase.BeginTransaction(true);
                                 ValidateResult = this.CachedRow.Guardar();
                                 if (ValidateResult.Success) {
                                         if (WasInTransaction == false)
-                                                this.CachedRow.DataView.Commit();
+                                                this.CachedRow.DataBase.Commit();
                                         m_Id = this.CachedRow.Id;
                                         m_Nuevo = false;
                                 } else {
                                         if (WasInTransaction == false)
-                                                this.CachedRow.DataView.RollBack();
+                                                this.CachedRow.DataBase.RollBack();
                                 }
                         } else if(Lfx.Environment.SystemInformation.DesignMode) {
                                 // Devolver error para detectar código viejo (que no use CachedRow, ToFrom() y FromRow())

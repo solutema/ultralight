@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.ComponentModel;
@@ -108,7 +110,7 @@ namespace Lui.Forms
 		{
 			get
 			{
-				return Lws.Config.Display.CurrentTemplate.WindowBackground;
+				return Lfx.Config.Display.CurrentTemplate.WindowBackground;
 			}
 		}
 
@@ -265,13 +267,13 @@ namespace Lui.Forms
 			switch (m_BorderStyle)
 			{
 				case BorderStyles.Button:
-					e.Graphics.Clear(Lws.Config.Display.CurrentTemplate.ButtonFace);
+					e.Graphics.Clear(Lfx.Config.Display.CurrentTemplate.ButtonFace);
 					break;
 				case BorderStyles.TextBox:
-					e.Graphics.Clear(Lws.Config.Display.CurrentTemplate.ControlDataarea);
+					e.Graphics.Clear(Lfx.Config.Display.CurrentTemplate.ControlDataarea);
 					break;
 				default:
-					e.Graphics.Clear(Lws.Config.Display.CurrentTemplate.WindowBackground);
+					e.Graphics.Clear(Lfx.Config.Display.CurrentTemplate.WindowBackground);
 					break;
 			}
 
@@ -279,10 +281,10 @@ namespace Lui.Forms
 			{
 				case BorderStyles.None:
 					if (m_Highlighted)
-						e.Graphics.DrawRectangle(new System.Drawing.Pen(Lws.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
+						e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
 					break;
 				case BorderStyles.TextBox:
-					e.Graphics.DrawRectangle(new System.Drawing.Pen(Lws.Config.Display.CurrentTemplate.ControlBorder), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
+					e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.ControlBorder), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
 					if (m_ShowChanged && m_Changed)
 					{
 						e.Graphics.DrawRectangle(new System.Drawing.Pen(Color.Red), new System.Drawing.Rectangle(3, this.Height - 2, this.Width - 6, 1));
@@ -291,19 +293,19 @@ namespace Lui.Forms
 					{
 						if (m_ReadOnly)
 						{
-							e.Graphics.DrawRectangle(new System.Drawing.Pen(Lws.Config.Display.CurrentTemplate.SelectionDisabled), new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
-							e.Graphics.DrawRectangle(new System.Drawing.Pen(Lws.Config.Display.CurrentTemplate.SelectionDisabled), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
+							e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.SelectionDisabled), new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
+							e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.SelectionDisabled), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
 						}
 						else
 						{
-							e.Graphics.DrawRectangle(new System.Drawing.Pen(Lws.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(1, 0, this.Width - 3, this.Height - 1));
-							e.Graphics.DrawRectangle(new System.Drawing.Pen(Lws.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(0, 1, this.Width - 1, this.Height - 3));
-							//e.Graphics.DrawRectangle(new System.Drawing.Pen(Lws.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
-							//e.Graphics.DrawRectangle(new System.Drawing.Pen(Lws.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
+							e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(1, 0, this.Width - 3, this.Height - 1));
+							e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(0, 1, this.Width - 1, this.Height - 3));
+							//e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
+							//e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
 						}
 					}
 					if (m_Error != null && m_Error.Length > 0 && m_ShowChanged == false)
-						e.Graphics.DrawRectangle(new System.Drawing.Pen(Lws.Config.Display.CurrentTemplate.SelectionError), new System.Drawing.Rectangle(3, this.Height - 2, this.Width - 6, 1));
+						e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.SelectionError), new System.Drawing.Rectangle(3, this.Height - 2, this.Width - 6, 1));
 					break;
 			}
 		}
@@ -315,11 +317,11 @@ namespace Lui.Forms
 		}
 
 		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public Lws.Workspace Workspace
+		public Lfx.Workspace Workspace
 		{
 			get
 			{
-                                return Lws.Workspace.Master;
+                                return Lfx.Workspace.Master;
 			}
 		}
 	}

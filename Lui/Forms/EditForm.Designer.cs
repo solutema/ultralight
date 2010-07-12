@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 namespace Lui.Forms
 {
@@ -106,6 +108,7 @@ namespace Lui.Forms
                         this.BotonHistorial.TabStop = true;
                         this.BotonHistorial.Text = "Historial";
                         this.BotonHistorial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.BotonHistorial.Visible = false;
                         this.BotonHistorial.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BotonHistorial_LinkClicked);
                         // 
                         // EditForm
@@ -117,9 +120,9 @@ namespace Lui.Forms
                         this.Name = "EditForm";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
                         this.Text = "Editar";
+                        this.Closing += new System.ComponentModel.CancelEventHandler(this.FormTablaEditar_Closing);
                         this.Load += new System.EventHandler(this.FormTablaEditar_Load);
                         this.SizeChanged += new System.EventHandler(this.EditForm_SizeChanged);
-                        this.Closing += new System.ComponentModel.CancelEventHandler(this.FormTablaEditar_Closing);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormTablaEditar_KeyDown);
                         this.LowerPanel.ResumeLayout(false);
                         this.ResumeLayout(false);

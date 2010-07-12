@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.ComponentModel;
@@ -68,10 +70,10 @@ namespace Lui.Forms
                         // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
 
-                        Label1.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
+                        Label1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
                         TextBox1.BackColor = Label1.BackColor;
                         EntradaFreeText.BackColor = Label1.BackColor;
-                        Label1.ForeColor = Lws.Config.Display.CurrentTemplate.ControlText;
+                        Label1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
                         TextBox1.ForeColor = Label1.ForeColor;
                         EntradaFreeText.ForeColor = Label1.ForeColor;
                         this.BorderStyle = BorderStyles.TextBox;
@@ -386,7 +388,7 @@ namespace Lui.Forms
                         RowMisses = 0;
 
                         if (m_ReadOnly == false)
-                                TextBox1.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataareaActive;
+                                TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
                         if (m_SelectOnFocus)
                                 TextBox1.SelectAll();
                 }
@@ -394,18 +396,18 @@ namespace Lui.Forms
                 private void txtFreeText_GotFocus(object sender, System.EventArgs e)
                 {
                         if (m_ReadOnly == false)
-                                EntradaFreeText.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataareaActive;
+                                EntradaFreeText.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
                         EntradaFreeText.SelectionStart = 1024;
                 }
 
                 private void TextBox1_LostFocus(System.Object sender, System.EventArgs e)
                 {
-                        TextBox1.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
+                        TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
                 }
 
                 private void txtFreeText_LostFocus(object sender, System.EventArgs e)
                 {
-                        EntradaFreeText.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
+                        EntradaFreeText.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
                 }
 
 
@@ -445,7 +447,7 @@ namespace Lui.Forms
 
                 private void UpdateDetail()
                 {
-                        if (this.Workspace != null && this.Workspace.DefaultDataView.DataBase != null && this.Workspace.DefaultDataView.DataBase.ConectionState == System.Data.ConnectionState.Open) {
+                        if (this.Workspace != null && this.Workspace.DefaultDataBase != null && this.Workspace.DefaultDataBase.ConectionState == System.Data.ConnectionState.Open) {
                                 //Actualizo sólo si cambió el código
                                 string KeyFieldAlt = m_KeyField; // KeyField Alternativo
                                 if (m_Table == "articulos" && KeyFieldAlt == "id_articulo")
@@ -464,16 +466,16 @@ namespace Lui.Forms
                                                 if (m_KeyField != KeyFieldAlt)
                                                         Campos += ", " + m_KeyField;
 
-                                                TextoSql = "SELECT " + Campos + " FROM " + m_Table + " WHERE " + KeyFieldAlt + "='" + this.Workspace.DefaultDataView.DataBase.EscapeString(TextBox1.Text) + "'";
+                                                TextoSql = "SELECT " + Campos + " FROM " + m_Table + " WHERE " + KeyFieldAlt + "='" + this.Workspace.DefaultDataBase.EscapeString(TextBox1.Text) + "'";
                                                 if (m_Filter != null && m_Filter.Length > 0)
                                                         TextoSql += " AND (" + m_Filter + ")";
 
-                                                CurrentRow = this.Workspace.DefaultDataView.DataBase.FirstRowFromSelect(TextoSql);
+                                                CurrentRow = this.Workspace.DefaultDataBase.FirstRowFromSelect(TextoSql);
                                                 if (CurrentRow == null && m_KeyField != KeyFieldAlt) {
-                                                        TextoSql = "SELECT " + Campos + " FROM " + m_Table + " WHERE " + m_KeyField + "='" + this.Workspace.DefaultDataView.DataBase.EscapeString(TextBox1.Text) + "'";
+                                                        TextoSql = "SELECT " + Campos + " FROM " + m_Table + " WHERE " + m_KeyField + "='" + this.Workspace.DefaultDataBase.EscapeString(TextBox1.Text) + "'";
                                                         if (m_Filter != null && m_Filter.Length > 0)
                                                                 TextoSql += " AND (" + m_Filter + ")";
-                                                        CurrentRow = this.Workspace.DefaultDataView.DataBase.FirstRowFromSelect(TextoSql);
+                                                        CurrentRow = this.Workspace.DefaultDataBase.FirstRowFromSelect(TextoSql);
                                                 }
                                                 if (CurrentRow == null) {
                                                         m_ItemId = 0;

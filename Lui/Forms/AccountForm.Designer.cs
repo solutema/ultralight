@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 namespace Lui.Forms
 {
@@ -52,9 +54,9 @@ namespace Lui.Forms
                 internal Lui.Forms.Button PrintButton;
 		internal Lui.Forms.Button CancelCommandButton;
                 public Lui.Forms.ListView ItemList;
-		internal System.Windows.Forms.ColumnHeader fecha;
-		internal System.Windows.Forms.ColumnHeader concepto;
-		internal System.Windows.Forms.ColumnHeader saldo;
+		internal System.Windows.Forms.ColumnHeader FechaCol;
+		internal System.Windows.Forms.ColumnHeader ConceptoCol;
+		internal System.Windows.Forms.ColumnHeader SaldoCol;
 		public Lui.Forms.Button FilterButton;
 		public Lui.Forms.TextBox EtiquetaIngresos;
 		internal System.Windows.Forms.Label Label1;
@@ -64,7 +66,7 @@ namespace Lui.Forms
 		public Lui.Forms.TextBox EtiquetaEgresos;
 		public Lui.Forms.TextBox EtiquetaSaldo;
 		public Lui.Forms.TextBox EtiquetaTransporte;
-		internal System.Windows.Forms.ColumnHeader comprob;
+		internal System.Windows.Forms.ColumnHeader UsuarioCol;
 		internal System.Windows.Forms.ColumnHeader extra1;
 		internal System.Windows.Forms.ColumnHeader extra2;
 		public System.Windows.Forms.Label EtiquetaTitulo;
@@ -79,15 +81,15 @@ namespace Lui.Forms
                         this.PrintButton = new Lui.Forms.Button();
                         this.CancelCommandButton = new Lui.Forms.Button();
                         this.ItemList = new Lui.Forms.ListView();
-                        this.id = new System.Windows.Forms.ColumnHeader();
-                        this.fecha = new System.Windows.Forms.ColumnHeader();
-                        this.concepto = new System.Windows.Forms.ColumnHeader();
-                        this.ColIngreso = new System.Windows.Forms.ColumnHeader();
-                        this.ColEgreso = new System.Windows.Forms.ColumnHeader();
-                        this.saldo = new System.Windows.Forms.ColumnHeader();
-                        this.comprob = new System.Windows.Forms.ColumnHeader();
-                        this.extra1 = new System.Windows.Forms.ColumnHeader();
-                        this.extra2 = new System.Windows.Forms.ColumnHeader();
+                        this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.FechaCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ConceptoCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColIngreso = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColEgreso = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.SaldoCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.UsuarioCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.extra1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.extra2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.EtiquetaIngresos = new Lui.Forms.TextBox();
                         this.EtiquetaEgresos = new Lui.Forms.TextBox();
                         this.EtiquetaSaldo = new Lui.Forms.TextBox();
@@ -97,6 +99,7 @@ namespace Lui.Forms
                         this.Label4 = new System.Windows.Forms.Label();
                         this.EtiquetaTransporte = new Lui.Forms.TextBox();
                         this.EtiquetaTitulo = new System.Windows.Forms.Label();
+                        this.extra3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.LowerPanel.SuspendLayout();
                         this.SuspendLayout();
                         // 
@@ -183,14 +186,15 @@ namespace Lui.Forms
                         this.ItemList.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.ItemList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.id,
-            this.fecha,
-            this.concepto,
+            this.FechaCol,
+            this.ConceptoCol,
             this.ColIngreso,
             this.ColEgreso,
-            this.saldo,
-            this.comprob,
+            this.SaldoCol,
+            this.UsuarioCol,
             this.extra1,
-            this.extra2});
+            this.extra2,
+            this.extra3});
                         this.ItemList.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.ItemList.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.ItemList.FullRowSelect = true;
@@ -204,23 +208,23 @@ namespace Lui.Forms
                         this.ItemList.UseCompatibleStateImageBehavior = false;
                         this.ItemList.View = System.Windows.Forms.View.Details;
                         this.ItemList.DoubleClick += new System.EventHandler(this.lvItems_DoubleClick);
-                        this.ItemList.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.lvItems_KeyPress);
                         this.ItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvItems_KeyDown);
+                        this.ItemList.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.lvItems_KeyPress);
                         // 
                         // id
                         // 
                         this.id.Text = "Cód";
                         this.id.Width = 0;
                         // 
-                        // fecha
+                        // FechaCol
                         // 
-                        this.fecha.Text = "Fecha";
-                        this.fecha.Width = 86;
+                        this.FechaCol.Text = "Fecha";
+                        this.FechaCol.Width = 86;
                         // 
-                        // concepto
+                        // ConceptoCol
                         // 
-                        this.concepto.Text = "Concepto";
-                        this.concepto.Width = 240;
+                        this.ConceptoCol.Text = "Concepto";
+                        this.ConceptoCol.Width = 240;
                         // 
                         // ColIngreso
                         // 
@@ -234,16 +238,16 @@ namespace Lui.Forms
                         this.ColEgreso.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
                         this.ColEgreso.Width = 86;
                         // 
-                        // saldo
+                        // SaldoCol
                         // 
-                        this.saldo.Text = "Saldo";
-                        this.saldo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-                        this.saldo.Width = 86;
+                        this.SaldoCol.Text = "Saldo";
+                        this.SaldoCol.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+                        this.SaldoCol.Width = 86;
                         // 
-                        // comprob
+                        // UsuarioCol
                         // 
-                        this.comprob.Text = "Comprob.";
-                        this.comprob.Width = 160;
+                        this.UsuarioCol.Text = "Usuario";
+                        this.UsuarioCol.Width = 160;
                         // 
                         // extra1
                         // 
@@ -413,6 +417,11 @@ namespace Lui.Forms
                         this.EtiquetaTitulo.Text = "Caja";
                         this.EtiquetaTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         // 
+                        // extra3
+                        // 
+                        this.extra3.Text = "Comprob";
+                        this.extra3.Width = 160;
+                        // 
                         // AccountForm
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -440,5 +449,7 @@ namespace Lui.Forms
 
 
 		#endregion
+
+                private System.Windows.Forms.ColumnHeader extra3;
 	}
 }

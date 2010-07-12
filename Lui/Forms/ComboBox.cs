@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Data;
@@ -56,8 +58,8 @@ namespace Lui.Forms
 
                         this.BorderStyle = BorderStyles.TextBox;
                         this.BackColor = TextBox1.BackColor;
-                        TextBox1.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataarea;
-                        TextBox1.ForeColor = Lws.Config.Display.CurrentTemplate.ControlText;
+                        TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
+                        TextBox1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
                         this.TextBox1.DoubleClick += new System.EventHandler(this.TextBox1_DoubleClick);
                         this.TextBox1.LostFocus += new System.EventHandler(this.TextBox1_LostFocus);
                         this.TextBox1.GotFocus += new System.EventHandler(this.TextBox1_GotFocus);
@@ -345,7 +347,7 @@ namespace Lui.Forms
                 private void UpdateDetail()
                 {
                         if (m_Table != null && m_Table.Length > 0 && m_KeyField != null && m_KeyField.Length > 0 && m_DetailField != null && m_DetailField.Length > 0 && this.Workspace != null) {
-                                if (this.Workspace.DefaultDataView.DataBase.ConectionState == ConnectionState.Open) {
+                                if (this.Workspace.DefaultDataBase.ConectionState == ConnectionState.Open) {
                                         string TextoSql = null;
                                         if (m_Table.Length >= 7 && m_Table.Substring(0, 7) == "SELECT ") {
                                                 TextoSql = m_Table;
@@ -354,7 +356,7 @@ namespace Lui.Forms
                                                 if (m_Filter != null && m_Filter.Length > 0)
                                                         TextoSql += " WHERE " + m_Filter;
                                         }
-                                        System.Data.DataTable m_DataTable = this.Workspace.DefaultDataView.DataBase.Select(TextoSql);
+                                        System.Data.DataTable m_DataTable = this.Workspace.DefaultDataBase.Select(TextoSql);
                                         if (m_DataTable != null) {
                                                 string[] Resultado = new string[m_DataTable.Rows.Count];
                                                 int i = 0;
@@ -370,7 +372,7 @@ namespace Lui.Forms
                                                 this.SetData = Resultado;
                                         }
                                 } else {
-                                        TextBox1.Text = "(this.Workspace.DefaultDataBase is closed)";
+                                        TextBox1.Text = "(this.DataBase is closed)";
                                 }
                         }
                 }

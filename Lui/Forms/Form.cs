@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -39,7 +41,7 @@ namespace Lui.Forms
 {
 	public partial class Form : System.Windows.Forms.Form
 	{
-                private Lws.Data.DataView m_DataView = null;
+                private Lfx.Data.DataBase m_DataBase = null;
 		public event System.EventHandler WorkspaceChanged;
 
 		public Form()
@@ -50,7 +52,7 @@ namespace Lui.Forms
 
 		private void SetControlsFont(System.Windows.Forms.Control.ControlCollection controles)
 		{
-			this.Font = Lws.Config.Display.CurrentTemplate.DefaultFont;
+			this.Font = Lfx.Config.Display.CurrentTemplate.DefaultFont;
 			//Cambio la fuente de todos los controles en el formulario
 			foreach (System.Windows.Forms.Control ctl in controles)
 			{
@@ -61,7 +63,7 @@ namespace Lui.Forms
                                         SetControlsFont(ctl.Controls);
                                 } else {
                                         //Cambiar fuente
-                                        ctl.Font = Lws.Config.Display.CurrentTemplate.DefaultFont;
+                                        ctl.Font = Lfx.Config.Display.CurrentTemplate.DefaultFont;
                                 }
 			}
 		}
@@ -69,31 +71,38 @@ namespace Lui.Forms
 		private void Form_Load(object sender, System.EventArgs e)
 		{
 			if(this.BackColor == SystemColors.Control)
-				this.BackColor = Lws.Config.Display.CurrentTemplate.WindowBackground;
-			this.Font = Lws.Config.Display.CurrentTemplate.DefaultFont;
+				this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
+			this.Font = Lfx.Config.Display.CurrentTemplate.DefaultFont;
 
-                        if (WorkspaceChanged != null)
-                                this.WorkspaceChanged(this, null);
+                        EventHandler WorkspaceChangedHandler = this.WorkspaceChanged;
+                        if (WorkspaceChangedHandler != null)
+                                WorkspaceChangedHandler(this, null);
 		}	
 
 		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public Lws.Workspace Workspace
+		public Lfx.Workspace Workspace
 		{
 			get
 			{
-				return Lws.Workspace.Master;
+				return Lfx.Workspace.Master;
 			}
 		}
 
                 [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public Lws.Data.DataView DataView
+                public Lfx.Data.DataBase DataBase
                 {
                         get
                         {
-                                if (m_DataView == null)
-                                        m_DataView = this.Workspace.GetDataView(true);
-                                return m_DataView;
+                                if (m_DataBase == null)
+                                        m_DataBase = this.Workspace.GetDataBase(this.Text);
+                                return m_DataBase;
                         }
+                }
+
+                private void Form_TextChanged(object sender, EventArgs e)
+                {
+                        if (m_DataBase != null)
+                                m_DataBase.Name = this.Text;
                 }
 	}
 }

@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -122,8 +124,11 @@ namespace Lui.Forms.AuxForms
 			if (m_Table == "personas" && (m_ExtraDetailFields == null || m_ExtraDetailFields.Length == 0))
 				m_ExtraDetailFields = "num_doc,cuit,extra1";
 
+                        if (m_Table == "ciudades" && (m_ExtraDetailFields == null || m_ExtraDetailFields.Length == 0))
+                                m_ExtraDetailFields = "cp";
+
 			if (m_ExtraDetailFields != null)
-				CamposExtra = m_ExtraDetailFields.Length - m_ExtraDetailFields.Replace(",", "").Length;
+				CamposExtra = m_ExtraDetailFields.Length - m_ExtraDetailFields.Replace(",", "").Length + 1;
 
 			if (CamposExtra > 4)
 				CamposExtra = 4;
@@ -177,7 +182,7 @@ namespace Lui.Forms.AuxForms
 					string TextoSql = null;
 					string sBuscar = txtBuscar.Text;
 
-                                        sBuscar = this.Workspace.DefaultDataView.DataBase.EscapeString(sBuscar.Replace("  ", " ").Trim());
+                                        sBuscar = this.Workspace.DefaultDataBase.EscapeString(sBuscar.Replace("  ", " ").Trim());
 
 					if (m_Table.Length >= 7 && m_Table.Substring(0, 7) == "SELECT ")
 					{
@@ -197,7 +202,7 @@ namespace Lui.Forms.AuxForms
 						if (sBuscar != null && sBuscar.Length > 1)
 							TextoSql += " WHERE (" + m_DetailField + " LIKE '%" + sBuscar.Replace(" ", "%' AND " + m_DetailField + " LIKE '%") + "%'";
 						else if (sBuscar != null && sBuscar.Length > 0)
-                                                        TextoSql += " WHERE (" + m_DetailField + " LIKE '" + this.Workspace.DefaultDataView.DataBase.EscapeString(sBuscar) + "%'";
+                                                        TextoSql += " WHERE (" + m_DetailField + " LIKE '" + this.Workspace.DefaultDataBase.EscapeString(sBuscar) + "%'";
 
 						if (m_ExtraDetailFields != null && m_ExtraDetailFields.Length > 0 && sBuscar != null && sBuscar.Length > 1)
 						{
@@ -230,14 +235,14 @@ namespace Lui.Forms.AuxForms
 						else
 							TextoSql += " ORDER BY " + m_DetailField;
 
-						// TODO: Código dependiente de MySql/PostgreSql. Pasar a Lfx.Data.SqlCommandBuilder
+						// TODO: Código dependiente de MySql/PostgreSql. Pasar a qGen.SqlCommandBuilder
 						if (this.Workspace.SlowLink)
 							TextoSql += " LIMIT 40";
 						else
 							TextoSql += " LIMIT 100";
 					}
 
-                                        System.Data.DataTable dt = this.Workspace.DefaultDataView.DataBase.Select(TextoSql);
+                                        System.Data.DataTable dt = this.Workspace.DefaultDataBase.Select(TextoSql);
 					lvItems.SuspendLayout();
 					lvItems.BeginUpdate();
 					foreach (System.Data.DataRow row in dt.Rows)
@@ -415,7 +420,7 @@ namespace Lui.Forms.AuxForms
 			{
 				if (m_Table == "articulos")
 				{
-                                        string Codigo = this.Workspace.DefaultDataView.DataBase.FieldString("SELECT " + this.Workspace.CurrentConfig.Products.DefaultCode() + " FROM articulos WHERE id_articulo=" + int.Parse(lvItems.SelectedItems[0].Text).ToString());
+                                        string Codigo = this.Workspace.DefaultDataBase.FieldString("SELECT " + this.Workspace.CurrentConfig.Products.DefaultCode() + " FROM articulos WHERE id_articulo=" + int.Parse(lvItems.SelectedItems[0].Text).ToString());
 					if (Codigo.Length == 0)
 						Codigo = int.Parse(lvItems.SelectedItems[0].Text).ToString();
 					ControlDestino.Text = Codigo;
@@ -507,11 +512,11 @@ namespace Lui.Forms.AuxForms
 			DarleEnter();
 		}
 
-		public Lws.Workspace Workspace
+		public Lfx.Workspace Workspace
 		{
 			get
 			{
-				return Lws.Workspace.Master;
+				return Lfx.Workspace.Master;
 			}
 		}
 	}

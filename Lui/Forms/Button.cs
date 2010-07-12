@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System.ComponentModel;
 using System;
@@ -57,11 +59,11 @@ namespace Lui.Forms
 			// Necesario para admitir el Diseñador de Windows Forms
 			InitializeComponent();
 
-			MainText.BackColor = Lws.Config.Display.CurrentTemplate.ButtonFace;
-			MainText.ForeColor = Lws.Config.Display.CurrentTemplate.ButtonText;
-			SubText.BackColor = Lws.Config.Display.CurrentTemplate.ButtonSubBackground;
-			SubText.ForeColor = Lws.Config.Display.CurrentTemplate.ButtonSubText;
-			this.BackColor = Lws.Config.Display.CurrentTemplate.ButtonBackground;
+			MainText.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonFace;
+			MainText.ForeColor = Lfx.Config.Display.CurrentTemplate.ButtonText;
+			SubText.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonSubBackground;
+			SubText.ForeColor = Lfx.Config.Display.CurrentTemplate.ButtonSubText;
+			this.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonBackground;
 			this.BorderStyle = BorderStyles.Button;
 		}
 
@@ -247,7 +249,7 @@ namespace Lui.Forms
 					//No hay subtexto, el texto ocupa todo
 					MainText.Width = this.Width - MainText.Left - HorizontalMargin;
 					MainText.Height = this.Height - (VerticalMargin * 2);
-					MainText.Font = Lws.Config.Display.CurrentTemplate.DefaultFont;
+					MainText.Font = Lfx.Config.Display.CurrentTemplate.DefaultFont;
 
 					SubText.Visible = false;
 					break;
@@ -256,17 +258,17 @@ namespace Lui.Forms
 					MainText.Width = this.Width - MainText.Left - HorizontalMargin;
 					MainText.Height = this.Height - SmallSubTextHeight - (VerticalMargin * 2);
 					MainText.TextAlign = ContentAlignment.MiddleCenter;
-					MainText.Font = Lws.Config.Display.CurrentTemplate.DefaultFont;
+					MainText.Font = Lfx.Config.Display.CurrentTemplate.DefaultFont;
 
 					SubText.Left = MainText.Left;
 					SubText.Width = MainText.Width;
 					SubText.Height = SmallSubTextHeight;
 					SubText.Top = MainText.Top + MainText.Height;
 					SubText.TextAlign = ContentAlignment.MiddleCenter;
-					SubText.Font = Lws.Config.Display.CurrentTemplate.SmallerFont;
+					SubText.Font = Lfx.Config.Display.CurrentTemplate.SmallerFont;
 
-					SubText.BackColor = Lws.Config.Display.CurrentTemplate.ButtonSubBackground;
-					SubText.ForeColor = Lws.Config.Display.CurrentTemplate.ButtonSubText;
+					SubText.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonSubBackground;
+					SubText.ForeColor = Lfx.Config.Display.CurrentTemplate.ButtonSubText;
 					SubText.Visible = true;
 					break;
 				case SubLabelPositions.Right:
@@ -274,15 +276,15 @@ namespace Lui.Forms
 					MainText.Width = this.Width - MainText.Left - HorizontalMargin - SmallSubTextWidth;
 					MainText.Height = this.Height - VerticalMargin * 2;
 					MainText.TextAlign = ContentAlignment.MiddleCenter;
-					MainText.Font = Lws.Config.Display.CurrentTemplate.DefaultFont;
+					MainText.Font = Lfx.Config.Display.CurrentTemplate.DefaultFont;
 
 					SubText.Size = new Size(SmallSubTextWidth, this.Height - VerticalMargin * 2);
 					SubText.Location = new Point(this.Width - SubText.Width - HorizontalMargin, MainText.Top);
 					SubText.TextAlign = ContentAlignment.MiddleCenter;
-					SubText.Font = Lws.Config.Display.CurrentTemplate.SmallerFont;
+					SubText.Font = Lfx.Config.Display.CurrentTemplate.SmallerFont;
 
-					SubText.BackColor = Lws.Config.Display.CurrentTemplate.ButtonSubBackground;
-					SubText.ForeColor = Lws.Config.Display.CurrentTemplate.ButtonSubText;
+					SubText.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonSubBackground;
+					SubText.ForeColor = Lfx.Config.Display.CurrentTemplate.ButtonSubText;
 					SubText.Visible = true;
 					break;
 				case SubLabelPositions.LongBottom:
@@ -293,16 +295,16 @@ namespace Lui.Forms
 					else
 						MainText.Height = 22;
 					MainText.TextAlign = ContentAlignment.MiddleLeft;
-					MainText.Font = Lws.Config.Display.CurrentTemplate.TitleFont;
+					MainText.Font = Lfx.Config.Display.CurrentTemplate.TitleFont;
 
 					SubText.Left = MainText.Left;
 					SubText.Width = MainText.Width;
 					SubText.Top = MainText.Top + MainText.Height;
 					SubText.Height = this.Height - SubText.Top - VerticalMargin;
 					SubText.TextAlign = ContentAlignment.TopLeft;
-					SubText.BackColor = Lws.Config.Display.CurrentTemplate.ButtonFace;
-					SubText.ForeColor = Lws.Config.Display.CurrentTemplate.ButtonText;
-					SubText.Font = Lws.Config.Display.CurrentTemplate.SmallFont;
+					SubText.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonFace;
+					SubText.ForeColor = Lfx.Config.Display.CurrentTemplate.ButtonText;
+					SubText.Font = Lfx.Config.Display.CurrentTemplate.SmallFont;
 
 					SubText.Visible = true;
 					break;
@@ -324,16 +326,16 @@ namespace Lui.Forms
 
 		private void Button_GotFocus(object sender, System.EventArgs e)
 		{
-			//MainText.BackColor = Lws.Config.Display.CurrentTemplate.Selection;
-			//MainText.ForeColor = Lws.Config.Display.CurrentTemplate.SelectionText;
+			//MainText.BackColor = Lfx.Config.Display.CurrentTemplate.Selection;
+			//MainText.ForeColor = Lfx.Config.Display.CurrentTemplate.SelectionText;
 			this.Highlighted = true;
 		}
 
 
 		private void Button_LostFocus(object sender, System.EventArgs e)
 		{
-			//MainText.BackColor = Lws.Config.Display.CurrentTemplate.ButtonBackground;
-			//MainText.ForeColor = Lws.Config.Display.CurrentTemplate.ButtonText;
+			//MainText.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonBackground;
+			//MainText.ForeColor = Lfx.Config.Display.CurrentTemplate.ButtonText;
 			this.Highlighted = false;
 		}
 
@@ -459,10 +461,10 @@ namespace Lui.Forms
                         base.OnPaint(e);
 
                         if (m_Highlighted) {
-                                e.Graphics.DrawRectangle(new System.Drawing.Pen(Lws.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(1, 0, this.Width - 3, this.Height - 1));
-                                e.Graphics.DrawRectangle(new System.Drawing.Pen(Lws.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(0, 1, this.Width - 1, this.Height - 3));
+                                e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(1, 0, this.Width - 3, this.Height - 1));
+                                e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(0, 1, this.Width - 1, this.Height - 3));
                         } else {
-                                e.Graphics.DrawRectangle(new System.Drawing.Pen(Lws.Config.Display.CurrentTemplate.ButtonBorder), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
+                                e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.ButtonBorder), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
                         }
                 }
 		

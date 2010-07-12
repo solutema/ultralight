@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -67,8 +69,8 @@ namespace Lui.Forms
                 {
                         this.FieldContainer.Controls.Clear();
                         //Tomos los tags del registro
-                        Lws.Data.Table Tabla = new Lws.Data.Table(m_Elemento.DataView, m_Elemento.TablaDatos);
-                        Tabla.DataView = this.Workspace.DefaultDataView;
+                        Lfx.Data.Table Tabla = new Lfx.Data.Table(m_Elemento.DataBase, m_Elemento.TablaDatos);
+                        Tabla.DataBase = this.Workspace.DefaultDataBase;
                         if (Tabla.Tags != null) {
                                 foreach (Lfx.Data.Tag Tg in Tabla.Tags) {
                                         Field Fld = new Field();

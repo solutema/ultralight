@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -35,20 +37,19 @@ namespace Lfx.Types
 {
 	public static class Strings
 	{
-		public static System.Collections.ArrayList SplitDelimitedString(string CurrentLine)
+		public static System.Collections.Generic.List<string> SplitDelimitedString(string CurrentLine)
 		{
 			return SplitDelimitedString(CurrentLine, ',', Lfx.Types.ControlChars.Quote);
 		}
 
-		public static System.Collections.ArrayList SplitDelimitedString(string CurrentLine, char Delimiter)
+                public static System.Collections.Generic.List<string> SplitDelimitedString(string CurrentLine, char Delimiter)
 		{
 			return SplitDelimitedString(CurrentLine, Delimiter, Lfx.Types.ControlChars.Quote);
 		}
 
-		public static System.Collections.ArrayList SplitDelimitedString(string CurrentLine, char Delimiter, char Qualifier)
+                public static System.Collections.Generic.List<string> SplitDelimitedString(string CurrentLine, char Delimiter, char Qualifier)
 		{
-			System.Collections.ArrayList splitDelimitedStringReturn = null;
-			System.Collections.ArrayList SplitString = new System.Collections.ArrayList();
+                        System.Collections.Generic.List<string> Result = new List<string>();
 			bool CountDelimiter = true;
 			int Total = 0;
 			System.Text.StringBuilder Section = new System.Text.StringBuilder();
@@ -61,7 +62,7 @@ namespace Lfx.Types
 				} else if(Ch == Delimiter) {
 					if(CountDelimiter) {
 						//Add current section to collection
-						SplitString.Add(Section.ToString());
+						Result.Add(Section.ToString());
 						Section = new System.Text.StringBuilder();
 						Total = Total + 1;
 					}
@@ -73,11 +74,10 @@ namespace Lfx.Types
 			//  Get the last field - as most files will not have an ending delimiter
 			if(CountDelimiter) {
 				//  Add current section to collection
-				SplitString.Add(Section.ToString());
+				Result.Add(Section.ToString());
 			}
 
-			splitDelimitedStringReturn = SplitString;
-			return splitDelimitedStringReturn;
+                        return Result;
 		}
 
 		public static string GetNextToken(ref string stringValue)
@@ -114,47 +114,6 @@ namespace Lfx.Types
 			return valueInCSVReturn;
 		}
 
-                /// <summary>
-                /// Convierte una matriz de cadenas en una cadena conteniendo todos los elementos separados por comas (u otro separador)
-                /// </summary>
-		public static string Collection2CSV(System.Collections.ArrayList coleccion, string separador)
-		{
-			if(coleccion == null || coleccion.Count == 0) {
-				return "";
-			} else {
-				System.Text.StringBuilder Res = new System.Text.StringBuilder();
-
-				foreach(string Valor in coleccion) {
-					if(Res.Length > 0)
-						Res.Append(separador + Valor.TrimEnd());
-					else
-						Res.Append(Valor);
-				}
-
-				return Res.ToString();
-			}
-		}
-
-                /// <summary>
-                /// Convierte una matriz de enteros en una cadena conteniendo todos los elementos separados por comas (u otro separador)
-                /// </summary>
-                public static string Ints2CSV(int[] ints, string separador)
-                {
-                        if (ints == null || ints.Length == 0) {
-                                return "";
-                        } else {
-                                System.Text.StringBuilder Res = new System.Text.StringBuilder();
-
-                                foreach (int Valor in ints) {
-                                        if (Res.Length > 0)
-                                                Res.Append(separador + Valor.ToString());
-                                        else
-                                                Res.Append(Valor);
-                                }
-
-                                return Res.ToString();
-                        }
-                }
 
                 /// <summary>
                 /// Convierte o unifica fines de línea en formato Windows (CR+LF).
