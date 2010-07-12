@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -47,7 +49,7 @@ namespace Lazaro.Misc
                 private void Fiscal_WorkspaceChanged(object sender, System.EventArgs e)
                 {
                         //Lleno la tabla de PVs
-                        System.Data.DataTable PVs = this.DataView.DataBase.Select("SELECT * FROM pvs WHERE tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString());
+                        System.Data.DataTable PVs = this.DataBase.Select("SELECT * FROM pvs WHERE tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString());
                         string[] PVDataSet = new string[PVs.Rows.Count];
                         int i = 0;
                         foreach (System.Data.DataRow PV in PVs.Rows) {
@@ -58,11 +60,11 @@ namespace Lazaro.Misc
                         if (txtPV.SetData.Length > 0) {
 
                                 //Busco el PV para esta estación, en esta sucursal
-                                this.PV = DataView.DataBase.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString() + " AND estacion='" + System.Environment.MachineName.ToUpperInvariant() + "'");
+                                this.PV = DataBase.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString() + " AND estacion='" + System.Environment.MachineName.ToUpperInvariant() + "'");
 
                                 if (this.PV == 0)
                                         //Busco el PV para alguna estación, en esta sucursal
-                                        this.PV = DataView.DataBase.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString());
+                                        this.PV = DataBase.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString());
 
                                 if (this.PV != 0)
                                         txtPV.TextKey = this.PV.ToString();
@@ -74,7 +76,7 @@ namespace Lazaro.Misc
                 private void MostrarDatos()
                 {
                         if (this.PV != 0) {
-                                string LSAString = DataView.DataBase.FieldString("SELECT lsa FROM pvs WHERE id_pv=" + this.PV.ToString());
+                                string LSAString = DataBase.FieldString("SELECT lsa FROM pvs WHERE id_pv=" + this.PV.ToString());
 
                                 if (LSAString != null && LSAString.Length > 0) {
                                         System.DateTime LSA = DateTime.ParseExact(LSAString,
@@ -91,7 +93,7 @@ namespace Lazaro.Misc
                                         lblEstadoServidor.Text = "Desconocido";
                                 }
 
-                                string LCZString = DataView.DataBase.FieldString("SELECT ultimoz FROM pvs WHERE id_pv=" + this.PV.ToString());
+                                string LCZString = DataBase.FieldString("SELECT ultimoz FROM pvs WHERE id_pv=" + this.PV.ToString());
                                 if (LCZString != null && LCZString.Length > 0) {
                                         System.DateTime LCZ = DateTime.ParseExact(LCZString,
                                                 @"yyyy\-MM\-dd HH\:mm\:ss",
@@ -146,7 +148,7 @@ namespace Lazaro.Misc
                 private void cmdIniciarDetener_Click(object sender, System.EventArgs e)
                 {
                         if (cmdIniciarDetener.Text == "Iniciar") {
-                                string EstacionFiscal = DataView.DataBase.FieldString("SELECT estacion FROM pvs WHERE id_pv=" + this.PV.ToString());
+                                string EstacionFiscal = DataBase.FieldString("SELECT estacion FROM pvs WHERE id_pv=" + this.PV.ToString());
                                 this.Workspace.DefaultScheduler.AddTask("FISCAL INICIAR", "lazaro", EstacionFiscal);
                                 Lui.Forms.MessageBox.Show("Se envió una orden de Iniciar el servidor fiscal. Puede demorar varios segundos.", "Iniciar");
                         } else {

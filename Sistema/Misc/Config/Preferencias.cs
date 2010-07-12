@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,12 +27,10 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
-using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Lazaro.Misc.Config
@@ -73,7 +72,7 @@ namespace Lazaro.Misc.Config
 			Lui.Printing.PrinterSelectionDialog OFormSeleccionarImpresora = new Lui.Printing.PrinterSelectionDialog();
 
 			string ListaPuntosDeVenta = "";
-			System.Data.DataTable PuntosDeVenta = this.Workspace.DefaultDataBase.Select("SELECT estacion, id_pv FROM pvs WHERE estacion IS NOT NULL AND tipo=2");
+			System.Data.DataTable PuntosDeVenta = this.DataBase.Select("SELECT estacion, id_pv FROM pvs WHERE estacion IS NOT NULL AND tipo=2");
 			foreach (System.Data.DataRow Servidor in PuntosDeVenta.Rows)
 			{
 				if (ListaPuntosDeVenta.Length > 0)
@@ -82,7 +81,7 @@ namespace Lazaro.Misc.Config
 
 			}
 
-			PuntosDeVenta = this.Workspace.DefaultDataBase.Select("SELECT estacion, id_pv FROM pvs WHERE estacion IS NOT NULL AND tipo=1");
+			PuntosDeVenta = this.DataBase.Select("SELECT estacion, id_pv FROM pvs WHERE estacion IS NOT NULL AND tipo=1");
 			foreach (System.Data.DataRow Servidor in PuntosDeVenta.Rows)
 			{
 				if (ListaPuntosDeVenta.Length > 0)
@@ -135,7 +134,7 @@ namespace Lazaro.Misc.Config
 
 		private void CargarImpresorasPredet()
 		{
-			System.Collections.ArrayList Comprobs = new System.Collections.ArrayList();
+                        List<string> Comprobs = new List<string>();
 			Comprobs.Add("F");
 			Comprobs.Add("FA");
 			Comprobs.Add("FB");
@@ -234,7 +233,7 @@ namespace Lazaro.Misc.Config
 		{
 			string[] ListaCodigos = new string[5];
 			ListaCodigos[0] = "Código Autonumérico Incorporado|0";
-			DataTable Codigos = this.Workspace.DefaultDataBase.Select("SELECT * FROM articulos_codigos");
+			DataTable Codigos = this.DataBase.Select("SELECT * FROM articulos_codigos");
 			foreach (System.Data.DataRow Codigo in Codigos.Rows)
 			{
 				ListaCodigos[System.Convert.ToInt32(Codigo["id_codigo"])] += System.Convert.ToString(Codigo["nombre"]) + "|" + System.Convert.ToString(Codigo["id_codigo"]);
@@ -255,6 +254,7 @@ namespace Lazaro.Misc.Config
                         EntradaBackup.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Backup.Tipo", "0");
                         EntradaModoPantalla.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Apariencia.ModoPantalla", "maximizado");
                         EntradaAislacion.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Datos.Aislacion", "Serializable");
+                        EntradaActualizaciones.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Actualizaciones.Nivel", "stable");
 
 			CargarImpresorasPredet();
 
@@ -310,6 +310,7 @@ namespace Lazaro.Misc.Config
                         else
                                 this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Apariencia.ModoPantalla", EntradaModoPantalla.TextKey, System.Environment.MachineName.ToUpperInvariant());
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Datos.Aislacion", EntradaAislacion.TextKey);
+                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Actualizaciones.Nivel", EntradaActualizaciones.TextKey);
 
 			GuardarImpresorasPredet();
 

@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -50,8 +52,8 @@ namespace Lazaro.Misc.Config
 			InitializeComponent();
 
 			// agregar código de constructor después de llamar a InitializeComponent
-			LowerPanel.BackColor = Lws.Config.Display.CurrentTemplate.FooterBackground;
-			lblHeader1.BackColor = Lws.Config.Templates.Template.CambiarBrillo(Lws.Config.Display.CurrentTemplate.WindowBackground, -10);
+			LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
+			lblHeader1.BackColor = Lfx.Config.Templates.Template.CambiarBrillo(Lfx.Config.Display.CurrentTemplate.WindowBackground, -10);
 		}
 
 		// Limpiar los recursos que se estén utilizando.
@@ -421,6 +423,10 @@ namespace Lazaro.Misc.Config
 
 		public string ErrorText
 		{
+                        get
+                        {
+                                return NotaError.Text;
+                        }
 			set
 			{
 				NotaError.Text = value;

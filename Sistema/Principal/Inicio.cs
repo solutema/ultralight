@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -83,7 +85,7 @@ namespace Lazaro.Principal
                         switch (this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Apariencia.ModoPantalla", ModoPredeterminado))
                         {
                                 case "normal":
-                                        this.Text = "Lázaro - " + Lfx.Types.Strings.ULCase(this.Workspace.CurrentUser.UserName) + " en " + Lws.Workspace.Master.ToString();
+                                        this.Text = "Lázaro - " + Lfx.Types.Strings.ULCase(this.Workspace.CurrentUser.UserName) + " en " + Lfx.Workspace.Master.ToString();
                                         break;
                                 case "maximizado":
                                         this.WindowState = FormWindowState.Maximized;
@@ -112,8 +114,7 @@ namespace Lazaro.Principal
 
                 private void Actualizar()
                 {
-                        if (this.Workspace.DefaultDataBase != null && Lfx.Environment.Folders.ApplicationFolder != "/opt/lazaro")
-                        {
+                        if (this.Workspace.DefaultDataBase != null) {
                                 int ActualizarAhora = 0;
 
                                 // Busco actualizaciones cada 20 minutos
@@ -124,33 +125,23 @@ namespace Lazaro.Principal
                                 else if (MinSec == "20:00" || MinSec == "40:00")
                                         ActualizarAhora = 1;
 
-                                if (ActualizarAhora == 1 && this.Workspace.SlowLink == false)
-                                {
+                                if (ActualizarAhora == 1 && this.Workspace.SlowLink == false) {
                                         // Actualizar desde la BD
-                                        Actualizador.Actualizador.ActualizarAplicacionDesdeBD();
-                                }
-                                else if (ActualizarAhora == 2)
-                                {
+                                        Lfx.Updater.Master.UpdateAllFromDbCache();
+                                } else if (ActualizarAhora == 2) {
                                         // Actualizar desde la web
-                                        System.Threading.Thread TareaActualizador = new System.Threading.Thread(new System.Threading.ThreadStart(Actualizador.Actualizador.ActualizarAplicacion));
+                                        System.Threading.Thread TareaActualizador = new System.Threading.Thread(new System.Threading.ThreadStart(Lfx.Updater.Master.UpdateAll));
                                         TareaActualizador.Start();
                                 }
-                                if (Aplicacion.ReinicioPendiente && Aplicacion.FormularioPrincipal.MdiChildren.Length == 0)
-                                {
+
+                                if (Aplicacion.ReinicioPendiente && Aplicacion.FormularioPrincipal.MdiChildren.Length == 0) {
                                         Aplicacion.ReinicioPendiente = false;
                                         // Si hay actualizaciones pendientes y no se está relizando una tarea
                                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Existe una nueva versión del sistema Lázaro. Debe reiniciar la aplicación para instalar la actualización.", "¿Desea reiniciar ahora?");
                                         Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
                                         DialogResult Respuesta = Pregunta.ShowDialog();
                                         if (Respuesta == DialogResult.OK)
-                                        {
-                                                int EstacionFiscal = this.Workspace.DefaultDataBase.FieldInt("SELECT id_pv FROM pvs WHERE estacion='" + System.Environment.MachineName.ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString());
-                                                if (EstacionFiscal > 0)
-                                                        this.Workspace.DefaultScheduler.AddTask("REBOOT", "fiscal" + EstacionFiscal.ToString(), "*");
-
-                                                System.Threading.Thread.Sleep(100);
                                                 Aplicacion.Exec("REBOOT");
-                                        }
                                 }
                         }
                 }
@@ -162,7 +153,7 @@ namespace Lazaro.Principal
                         if (this.Visible)
                         {
                                 //Ejecuto tareas del programador
-                                Lws.Services.Task ProximaTarea = null;
+                                Lfx.Services.Task ProximaTarea = null;
                                 //En conexiones lentas, 1 vez por minuto
                                 //De lo contrario, cada vez que se activa el timer
                                 if (this.Workspace.SlowLink == false || (this.Workspace.DefaultScheduler.LastGetTask == System.DateTime.MinValue && (DateTime.Now - this.Workspace.DefaultScheduler.LastGetTask).Minutes >= 1))
@@ -212,23 +203,23 @@ namespace Lazaro.Principal
                                                         System.IO.Stream Archivo = System.IO.File.OpenRead(DialogoArchivo.FileName);
                                                         System.IO.StreamReader Lector = new System.IO.StreamReader(Archivo, System.Text.Encoding.Default);
 
-                                                        Lfx.Data.DataBase ConexionActualizar = this.Workspace.DefaultDataBase;
-                                                        ConexionActualizar.BeginTransaction(false);
-                                                        string SqlActualizacion = ConexionActualizar.CustomizeSql(Lector.ReadToEnd());
-                                                        do
-                                                        {
-                                                                string Comando = Datos.GetNextCommand(ref SqlActualizacion);
-                                                                System.Windows.Forms.Clipboard.SetDataObject(Comando, true);
-                                                                try {
-                                                                        ConexionActualizar.Execute(Comando);
-                                                                } catch (Exception ex) {
-                                                                        System.Windows.Forms.MessageBox.Show(Comando + System.Environment.NewLine + System.Environment.NewLine + ex.Message, "Lazaro.Datos.Iniciar");
+                                                        using (Lfx.Data.DataBase ConexionActualizar = this.Workspace.GetDataBase("Inyectar SQL")) {
+                                                                ConexionActualizar.BeginTransaction(false);
+                                                                string SqlActualizacion = ConexionActualizar.CustomizeSql(Lector.ReadToEnd());
+                                                                do {
+                                                                        string Comando = Datos.GetNextCommand(ref SqlActualizacion);
+                                                                        System.Windows.Forms.Clipboard.SetDataObject(Comando, true);
+                                                                        try {
+                                                                                ConexionActualizar.Execute(Comando);
+                                                                        } catch (Exception ex) {
+                                                                                System.Windows.Forms.MessageBox.Show(Comando + System.Environment.NewLine + System.Environment.NewLine + ex.Message, "Lazaro.Datos.Iniciar");
+                                                                        }
                                                                 }
+                                                                while (SqlActualizacion.Length > 0);
+                                                                ConexionActualizar.Commit();
+                                                                Lector.Dispose();
+                                                                Archivo.Dispose();
                                                         }
-                                                        while (SqlActualizacion.Length > 0);
-                                                        ConexionActualizar.Commit();
-                                                        Lector.Close();
-                                                        Archivo.Close();
                                                 }
                                         }
                                         break;
@@ -707,11 +698,11 @@ namespace Lazaro.Principal
                         Aplicacion.Exec(ItmInfo.Funcion);
                 }
 
-                public Lws.Workspace Workspace
+                public Lfx.Workspace Workspace
                 {
                         get
                         {
-                                return Lws.Workspace.Master;
+                                return Lfx.Workspace.Master;
                         }
                 }
         }

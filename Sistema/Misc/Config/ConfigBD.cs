@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -51,11 +53,11 @@ namespace Lazaro.Misc.Config
                         InitializeComponent();
 
                         // agregar código de constructor después de llamar a InitializeComponent
-                        LowerPanel.BackColor = Lws.Config.Display.CurrentTemplate.FooterBackground;
-                        lblHeader1.BackColor = Lws.Config.Display.CurrentTemplate.HeaderBackground;
-                        lblHeader1.ForeColor = Lws.Config.Display.CurrentTemplate.HeaderText;
-                        lblHeader4.BackColor = Lws.Config.Display.CurrentTemplate.HeaderBackground;
-                        lblHeader4.ForeColor = Lws.Config.Display.CurrentTemplate.HeaderText;
+                        LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
+                        lblHeader1.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
+                        lblHeader1.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
+                        lblHeader4.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
+                        lblHeader4.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
 
                 }
 
@@ -646,13 +648,13 @@ namespace Lazaro.Misc.Config
 
                 private void FormConfigBD_Load(object sender, System.EventArgs e)
                 {
-                        string Servidor = Lws.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "DataSource", null);
-                        string Conexion = Lws.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "ConnectionType", null);
-                        string BD = Lws.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "DatabaseName", null);
-                        string Usuario = Lws.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "User", null);
-                        string Contrasena = Lws.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "Password", null);
-                        string SlowLink = Lws.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "SlowLink", null);
-                        string Branch = Lws.Workspace.Master.CurrentConfig.ReadLocalSettingString("Company", "Branch", null);
+                        string Servidor = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "DataSource", null);
+                        string Conexion = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "ConnectionType", null);
+                        string BD = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "DatabaseName", null);
+                        string Usuario = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "User", null);
+                        string Contrasena = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "Password", null);
+                        string SlowLink = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "SlowLink", null);
+                        string Branch = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Company", "Branch", null);
 
                         if (Servidor == null)
                                 txtServidor.Text = "localhost";
@@ -759,13 +761,13 @@ namespace Lazaro.Misc.Config
                         Lfx.Data.DataBaseCache.DefaultCache.UserName = EntradaUsuario.Text;
                         Lfx.Data.DataBaseCache.DefaultCache.Password = EntradaContrasena.Text;
 
-                        Lws.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "DataSource", Lfx.Data.DataBaseCache.DefaultCache.ServerName);
-                        Lws.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "ConnectionType", txtConexion.TextKey);
-                        Lws.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "DatabaseName", EntradaBD.Text);
-                        Lws.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "User", EntradaUsuario.Text);
-                        Lws.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "Password", EntradaContrasena.Text);
-                        Lws.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "SlowLink", Lfx.Data.DataBaseCache.DefaultCache.SlowLink ? "1" : "0");
-                        Lws.Workspace.Master.CurrentConfig.WriteLocalSetting("Company", "Branch", txtBranch.Text);
+                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "DataSource", Lfx.Data.DataBaseCache.DefaultCache.ServerName);
+                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "ConnectionType", txtConexion.TextKey);
+                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "DatabaseName", EntradaBD.Text);
+                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "User", EntradaUsuario.Text);
+                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "Password", EntradaContrasena.Text);
+                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "SlowLink", Lfx.Data.DataBaseCache.DefaultCache.SlowLink ? "1" : "0");
+                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Company", "Branch", txtBranch.Text);
 
                         Datos.Iniciar();
                         this.DialogResult = DialogResult.Retry;

@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -43,22 +45,22 @@ namespace Lazaro.Misc
                 {
                         InitializeComponent();
 
-                        LowerPanel.BackColor = Lws.Config.Display.CurrentTemplate.FooterBackground;
-                        Titulo.Font = Lws.Config.Display.CurrentTemplate.TitleFont;
-                        Titulo.BackColor = Lws.Config.Display.CurrentTemplate.TitleBackground;
-                        Titulo.ForeColor = Lws.Config.Display.CurrentTemplate.TitleText;
+                        LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
+                        Titulo.Font = Lfx.Config.Display.CurrentTemplate.TitleFont;
+                        Titulo.BackColor = Lfx.Config.Display.CurrentTemplate.TitleBackground;
+                        Titulo.ForeColor = Lfx.Config.Display.CurrentTemplate.TitleText;
                 }
 
 		private void FormIngreso_Load(object sender, System.EventArgs e)
 		{
-			txtUsuario.Text = Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString(null, "Sistema.Ingreso.UltimoUsuario", "0");
+			txtUsuario.Text = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingString(null, "Sistema.Ingreso.UltimoUsuario", "0");
 		}
 
 
 		private void cmdAceptar_Click(object sender, System.EventArgs e)
 		{
                         if (txtUsuario.TextInt == 1 && Lfx.Environment.SystemInformation.DesignMode == false) {
-                                string[] EstacionesAdministrador = Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Ingreso.Administrador.Estaciones", "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                                string[] EstacionesAdministrador = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Ingreso.Administrador.Estaciones", "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                                 bool Puede = false;
                                 if (EstacionesAdministrador.Length == 0) {
                                         Puede = true;
@@ -78,10 +80,10 @@ namespace Lazaro.Misc
                                         return;
                                 }
                         }
-			Lfx.Data.Row row = Lws.Workspace.Master.DefaultDataBase.FirstRowFromSelect(@"SELECT id_persona, nombre, nombre_visible
+			Lfx.Data.Row row = Lfx.Workspace.Master.DefaultDataBase.FirstRowFromSelect(@"SELECT id_persona, nombre, nombre_visible
                                 FROM personas
                                 WHERE id_persona=" + txtUsuario.TextInt.ToString()
-                                                   + " AND contrasena='" + Lws.Workspace.Master.DefaultDataBase.EscapeString(txtContrasena.Text) + "'"
+                                                   + " AND contrasena='" + Lfx.Workspace.Master.DefaultDataBase.EscapeString(txtContrasena.Text) + "'"
                                                    + " AND id_persona IN (SELECT id_persona FROM sys_accesslist)");
 			if(row == null) {
 				System.Threading.Thread.Sleep(800);
@@ -94,7 +96,7 @@ namespace Lazaro.Misc
 				this.Workspace.CurrentUser.Id = System.Convert.ToInt32(row["id_persona"]);
 				this.Workspace.CurrentUser.UserName = System.Convert.ToString(row["nombre"]).ToLower();
 				this.Workspace.CurrentUser.CompleteName = System.Convert.ToString(row["nombre_visible"]);
-				this.Workspace.CurrentConfig.WriteGlobalSetting(null, "Sistema.Ingreso.UltimoUsuario", System.Convert.ToString(Lws.Workspace.Master.CurrentUser.Id), System.Environment.MachineName.ToUpperInvariant());
+				this.Workspace.CurrentConfig.WriteGlobalSetting(null, "Sistema.Ingreso.UltimoUsuario", System.Convert.ToString(Lfx.Workspace.Master.CurrentUser.Id), System.Environment.MachineName.ToUpperInvariant());
 				this.Workspace.CurrentConfig.WriteGlobalSetting(null, "Sistema.Ingreso.UltimoIngreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), System.Environment.MachineName.ToUpperInvariant());
 				this.Workspace.ActionLog("LOGON", null);
 				this.Close();

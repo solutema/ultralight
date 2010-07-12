@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -46,7 +48,7 @@ namespace Lazaro.Misc
 
                 private void Form1_WorkspaceChanged(object sender, EventArgs e)
                 {
-                        Lbl.Entidades.Localidad Rg = new Lbl.Entidades.Localidad(this.DataView, 1);
+                        Lbl.Entidades.Localidad Rg = new Lbl.Entidades.Localidad(this.DataBase, 1);
                         Lfc.Ciudades.Edit Edt = new Lfc.Ciudades.Edit(Rg);
                         this.editForm1.OriginalForm = Edt;
                 }

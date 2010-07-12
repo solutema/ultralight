@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 namespace Lazaro.Principal
 {
@@ -42,8 +44,8 @@ namespace Lazaro.Principal
 		/// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
 		protected override void Dispose(bool disposing)
 		{
-			if (m_DataView != null)
-				m_DataView.Dispose();
+			if (m_DataBase != null)
+				m_DataBase.Dispose();
 			if (disposing && (components != null))
 			{
 				components.Dispose();

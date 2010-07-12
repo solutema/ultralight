@@ -44,4 +44,6 @@ UPDATE sys_config SET nombre=REPLACE(nombre, '.B.', '.FB.');
 UPDATE comprob SET impresa=1 WHERE compra>0;
 UPDATE comprob SET cancelado=total WHERE tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM');
 
+DROP TABLE IF EXISTS tarjetas_presentaciones;
+
 SET FOREIGN_KEY_CHECKS=1;

@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 namespace Lazaro.Misc.Config
 {
@@ -159,10 +161,10 @@ namespace Lazaro.Misc.Config
                         this.Label2 = new System.Windows.Forms.Label();
                         this.Label1 = new System.Windows.Forms.Label();
                         this.lvImpresionComprob = new Lui.Forms.ListView();
-                        this.comprob = new System.Windows.Forms.ColumnHeader();
-                        this.nombrecomprob = new System.Windows.Forms.ColumnHeader();
-                        this.impresora = new System.Windows.Forms.ColumnHeader();
-                        this.carga = new System.Windows.Forms.ColumnHeader();
+                        this.comprob = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.nombrecomprob = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.impresora = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.carga = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.BotonSiguiente = new Lui.Forms.Button();
                         this.FrmArticulos = new Lui.Forms.Frame();
                         this.label26 = new System.Windows.Forms.Label();
@@ -178,6 +180,8 @@ namespace Lazaro.Misc.Config
                         this.EntradaPVR = new Lui.Forms.TextBox();
                         this.label12 = new System.Windows.Forms.Label();
                         this.FrmImpresion = new Lui.Forms.Frame();
+                        this.EntradaActualizaciones = new Lui.Forms.ComboBox();
+                        this.label30 = new System.Windows.Forms.Label();
                         this.FrmGeneral.SuspendLayout();
                         this.FrmArticulos.SuspendLayout();
                         this.FrmComprobantes.SuspendLayout();
@@ -342,6 +346,8 @@ namespace Lazaro.Misc.Config
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.FrmGeneral.AutoHeight = false;
+                        this.FrmGeneral.Controls.Add(this.EntradaActualizaciones);
+                        this.FrmGeneral.Controls.Add(this.label30);
                         this.FrmGeneral.Controls.Add(this.EntradaAislacion);
                         this.FrmGeneral.Controls.Add(this.EntradaModoPantalla);
                         this.FrmGeneral.Controls.Add(this.EntradaBackup);
@@ -377,7 +383,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaAislacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaAislacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaAislacion.KeyField = null;
-                        this.EntradaAislacion.Location = new System.Drawing.Point(248, 336);
+                        this.EntradaAislacion.Location = new System.Drawing.Point(248, 300);
                         this.EntradaAislacion.MaxLenght = 32767;
                         this.EntradaAislacion.Name = "EntradaAislacion";
                         this.EntradaAislacion.Padding = new System.Windows.Forms.Padding(2);
@@ -404,7 +410,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaModoPantalla.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaModoPantalla.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaModoPantalla.KeyField = null;
-                        this.EntradaModoPantalla.Location = new System.Drawing.Point(248, 304);
+                        this.EntradaModoPantalla.Location = new System.Drawing.Point(248, 268);
                         this.EntradaModoPantalla.MaxLenght = 32767;
                         this.EntradaModoPantalla.Name = "EntradaModoPantalla";
                         this.EntradaModoPantalla.Padding = new System.Windows.Forms.Padding(2);
@@ -434,7 +440,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaBackup.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaBackup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaBackup.KeyField = null;
-                        this.EntradaBackup.Location = new System.Drawing.Point(248, 272);
+                        this.EntradaBackup.Location = new System.Drawing.Point(248, 236);
                         this.EntradaBackup.MaxLenght = 32767;
                         this.EntradaBackup.Name = "EntradaBackup";
                         this.EntradaBackup.Padding = new System.Windows.Forms.Padding(2);
@@ -454,7 +460,7 @@ namespace Lazaro.Misc.Config
                         // 
                         // label29
                         // 
-                        this.label29.Location = new System.Drawing.Point(16, 336);
+                        this.label29.Location = new System.Drawing.Point(16, 300);
                         this.label29.Name = "label29";
                         this.label29.Size = new System.Drawing.Size(232, 24);
                         this.label29.TabIndex = 12;
@@ -498,7 +504,7 @@ namespace Lazaro.Misc.Config
                         // 
                         // label27
                         // 
-                        this.label27.Location = new System.Drawing.Point(16, 304);
+                        this.label27.Location = new System.Drawing.Point(16, 268);
                         this.label27.Name = "label27";
                         this.label27.Size = new System.Drawing.Size(232, 24);
                         this.label27.TabIndex = 10;
@@ -507,7 +513,7 @@ namespace Lazaro.Misc.Config
                         // 
                         // label14
                         // 
-                        this.label14.Location = new System.Drawing.Point(16, 272);
+                        this.label14.Location = new System.Drawing.Point(16, 236);
                         this.label14.Name = "label14";
                         this.label14.Size = new System.Drawing.Size(232, 24);
                         this.label14.TabIndex = 8;
@@ -1422,6 +1428,43 @@ namespace Lazaro.Misc.Config
                         this.FrmImpresion.ToolTipText = "";
                         this.FrmImpresion.Visible = false;
                         // 
+                        // EntradaActualizaciones
+                        // 
+                        this.EntradaActualizaciones.AutoHeight = false;
+                        this.EntradaActualizaciones.AutoNav = true;
+                        this.EntradaActualizaciones.AutoTab = true;
+                        this.EntradaActualizaciones.DetailField = null;
+                        this.EntradaActualizaciones.Filter = null;
+                        this.EntradaActualizaciones.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaActualizaciones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaActualizaciones.KeyField = null;
+                        this.EntradaActualizaciones.Location = new System.Drawing.Point(248, 332);
+                        this.EntradaActualizaciones.MaxLenght = 32767;
+                        this.EntradaActualizaciones.Name = "EntradaActualizaciones";
+                        this.EntradaActualizaciones.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaActualizaciones.ReadOnly = false;
+                        this.EntradaActualizaciones.SetData = new string[] {
+        "Estables|stable",
+        "Preliminares|gama",
+        "En prueba|beta"};
+                        this.EntradaActualizaciones.Size = new System.Drawing.Size(132, 24);
+                        this.EntradaActualizaciones.TabIndex = 15;
+                        this.EntradaActualizaciones.Table = null;
+                        this.EntradaActualizaciones.Text = "Estables";
+                        this.EntradaActualizaciones.TextKey = "stable";
+                        this.EntradaActualizaciones.TextRaw = "Estables";
+                        this.EntradaActualizaciones.TipWhenBlank = "";
+                        this.EntradaActualizaciones.ToolTipText = "";
+                        // 
+                        // label30
+                        // 
+                        this.label30.Location = new System.Drawing.Point(16, 332);
+                        this.label30.Name = "label30";
+                        this.label30.Size = new System.Drawing.Size(232, 24);
+                        this.label30.TabIndex = 14;
+                        this.label30.Text = "Recibir actualizaciones";
+                        this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
                         // Preferencias
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -1463,5 +1506,7 @@ namespace Lazaro.Misc.Config
                 internal System.Windows.Forms.Label label28;
                 internal Lui.Forms.ComboBox EntradaAislacion;
                 internal System.Windows.Forms.Label label29;
+                internal Lui.Forms.ComboBox EntradaActualizaciones;
+                internal System.Windows.Forms.Label label30;
 	}
 }

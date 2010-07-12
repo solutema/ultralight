@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 
@@ -80,13 +82,13 @@ namespace Lws.Services
                         if (terminalName.Length == 0)
                                 terminalName = System.Environment.MachineName.ToUpperInvariant();
 
-                        Lfx.Data.SqlInsertBuilder Comando = new Lfx.Data.SqlInsertBuilder(m_Workspace.DefaultDataBase, "sys_programador");
+                        qGen.Insert Comando = new qGen.Insert(m_Workspace.DefaultDataBase, "sys_programador");
                         Comando.Fields.AddWithValue("crea_estacion", System.Environment.MachineName.ToUpperInvariant());
                         Comando.Fields.AddWithValue("crea_usuario", m_Workspace.CurrentUser.CompleteName);
                         Comando.Fields.AddWithValue("estacion", terminalName);
                         Comando.Fields.AddWithValue("comando", commandString);
                         Comando.Fields.AddWithValue("componente", component);
-                        Comando.Fields.AddWithValue("fecha", Lfx.Data.SqlFunctions.Now);
+                        Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
 
                         try {
                                 this.DataView.Execute(Comando);
@@ -125,10 +127,10 @@ namespace Lws.Services
                                         Result.Status = System.Convert.ToInt32(TaskRow["estado"]);
 
                                         //Elimino tareas viejas
-                                        Lfx.Data.SqlUpdateBuilder Actualizar = new Lfx.Data.SqlUpdateBuilder(this.DataView.DataBase, "sys_programador", "id_evento=" + Result.Id.ToString());
+                                        qGen.Update Actualizar = new qGen.Update(this.DataView.DataBase, "sys_programador", new qGen.Where("id_evento", Result.Id));
                                         Actualizar.Fields.AddWithValue("estado", 1);
                                         this.DataView.Execute(Actualizar);
-                                        this.DataView.Execute(new Lfx.Data.SqlDeleteBuilder(this.DataView.DataBase, "sys_programador", "fecha<'" + Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.AddDays(-7)) + "'"));
+                                        this.DataView.Execute(new qGen.Delete(this.DataView.DataBase, "sys_programador", new qGen.Where("fecha", qGen.ComparisonOperators.LessThan, System.DateTime.Now.AddDays(-7))));
 
                                         return Result;
                                 } else

@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -39,7 +41,7 @@ namespace Lazaro.Principal
 {
 	public partial class BarraInferior : UserControl
 	{
-                private Lws.Data.DataView m_DataView;
+                private Lfx.Data.DataBase m_DataBase;
 		private int ItemActual, ItemSolicitado;
 		private string TablaActual, TablaSolicitada;
                 private Lbl.ElementoDeDatos ElementoActual = null;
@@ -52,22 +54,23 @@ namespace Lazaro.Principal
 		}
 
 		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public Lws.Workspace Workspace
+		public Lfx.Workspace Workspace
 		{
 			get
 			{
-				return Lws.Workspace.Master;
+				return Lfx.Workspace.Master;
 			}
 		}
 
                 [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public Lws.Data.DataView DataView
+                public Lfx.Data.DataBase DataBase
                 {
                         get
                         {
-                                if (m_DataView == null)
-                                        m_DataView = this.Workspace.GetDataView(false);
-                                return m_DataView;
+                                //if (m_DataBase == null)
+                                //        m_DataBase = this.Workspace.GetDataBase("Formulario principal: Barra inferior");
+                                //return m_DataBase;
+                                return this.Workspace.DefaultDataBase;
                         }
                 }
 
@@ -112,20 +115,20 @@ namespace Lazaro.Principal
 				case "articulos":
 					PanelAyuda.Visible = false;
 					PanelPersona.Visible = false;
-                                        Lbl.Articulos.Articulo Art = new Lbl.Articulos.Articulo(this.DataView, ItemSolicitado);
+                                        Lbl.Articulos.Articulo Art = new Lbl.Articulos.Articulo(this.DataBase, ItemSolicitado);
                                         ElementoActual = Art;
                                         if (Art.Existe) {
                                                 ItemActual = ItemSolicitado;
                                                 TablaActual = TablaSolicitada;
 
                                                 string Codigos = Art.Id.ToString();
-                                                if (Art.Codigo1.Length > 0)
+                                                if (Art.Codigo1 != null && Art.Codigo1.Length > 0)
                                                         Codigos += System.Environment.NewLine + Art.Codigo1;
-                                                if (Art.Codigo2.Length > 0)
+                                                if (Art.Codigo2 != null && Art.Codigo2.Length > 0)
                                                         Codigos += System.Environment.NewLine + Art.Codigo2;
-                                                if (Art.Codigo3.Length > 0)
+                                                if (Art.Codigo3 != null && Art.Codigo3.Length > 0)
                                                         Codigos += System.Environment.NewLine + Art.Codigo3;
-                                                if (Art.Codigo4.Length > 0)
+                                                if (Art.Codigo4 != null && Art.Codigo4.Length > 0)
                                                         Codigos += System.Environment.NewLine + Art.Codigo4;
                                                 ArticuloCodigos.Text = Codigos;
                                                 ArticuloNombre.Text = Art.ToString();
@@ -139,7 +142,7 @@ namespace Lazaro.Principal
 				case "personas":
 					PanelAyuda.Visible = false;
 					PanelArticulo.Visible = false;
-                                        Lbl.Personas.Persona Per = new Lbl.Personas.Persona(this.DataView, ItemSolicitado);
+                                        Lbl.Personas.Persona Per = new Lbl.Personas.Persona(this.DataBase, ItemSolicitado);
                                         ElementoActual = Per;
                                         if (Per.Existe) {
                                                 ItemActual = ItemSolicitado;

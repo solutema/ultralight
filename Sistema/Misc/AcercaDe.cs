@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -61,7 +63,7 @@ namespace Lazaro.Misc
 		{
 			ListaComponentes.BackColor = this.BackColor;
 
-                        EtiquetaUsuario.Text = Lws.Workspace.Master.CurrentUser.Id.ToString() + " (" + Lws.Workspace.Master.CurrentUser.CompleteName + ") / " + System.Environment.MachineName;
+                        EtiquetaUsuario.Text = Lfx.Workspace.Master.CurrentUser.Id.ToString() + " (" + Lfx.Workspace.Master.CurrentUser.CompleteName + ") / " + System.Environment.MachineName;
 
                         ListaComponentes.Items.Add("Lazaro versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").ProductVersion + " del " + new System.IO.FileInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
                         System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ApplicationFolder);
@@ -126,13 +128,20 @@ namespace Lazaro.Misc
 			Actualizador.Estado OFormActualizador = new Actualizador.Estado();
 			OFormActualizador.TopMost = true;
 			OFormActualizador.Show();
-                        Actualizador.Actualizador.ActualizarAplicacion();
+                        Lfx.Updater.Master.UpdateAll();
 			OFormActualizador.Close();
 			OFormActualizador = null;
-                        if (Actualizador.Actualizador.HuboError())
-                                Lui.Forms.MessageBox.Show(Actualizador.Actualizador.MensajeError, "Error");
-                        else if (Actualizador.Actualizador.ArchivosActualizados == 0)
-				Lui.Forms.MessageBox.Show("Ya está utilizando la versión más nueva disponible.", "Actualizar");
+                        if (Lfx.Updater.Master.ErrorFlag) {
+                                Lui.Forms.MessageBox.Show(Lfx.Updater.Master.ErrorMessage, "Error");
+                        } else if (Lfx.Updater.Master.UpdatedFiles == 0) {
+                                Lui.Forms.MessageBox.Show("Ya está utilizando la versión más nueva disponible.", "Actualizar");
+                        } else {
+                                Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Se descargó una nueva versión de Lázaro. Debe reiniciar la aplicación para instalar la actualización.", "¿Desea reiniciar ahora?");
+                                Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+                                DialogResult Respuesta = Pregunta.ShowDialog();
+                                if (Respuesta == DialogResult.OK)
+                                        Aplicacion.Exec("REBOOT");
+                        }
 		}
 
 		private void OkButton_Click(object sender, System.EventArgs e)

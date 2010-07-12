@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,12 +27,12 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
-using System.Collections;
-using System.Data;
-using System.Drawing;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Lazaro.Misc.Backup
@@ -49,7 +50,7 @@ namespace Lazaro.Misc.Backup
 
 		public void MostrarListaBackups()
 		{
-			System.Collections.ArrayList Backups = Misc.Backup.Services.ListaBackups();
+                        List<string> Backups = Misc.Backup.Services.ListaBackups();
 			string BackupMasNuevo = Misc.Backup.Services.BackupMasNuevo();
 
 			lvItems.BeginUpdate();
@@ -63,7 +64,7 @@ namespace Lazaro.Misc.Backup
 				if (BackupMasNuevo == NombreCarpeta)
 				{
 					Itm.Font = new Font(Itm.Font, FontStyle.Bold);
-					Itm.BackColor = Lws.Config.Display.CurrentTemplate.ControlDataareaActive;
+					Itm.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
 				}
 				Itm.SubItems.Add(System.Convert.ToString(i));
 				Itm.SubItems.Add(Lfx.Types.Ini.ReadString(ArchivoIni, "", "FechaYHora"));

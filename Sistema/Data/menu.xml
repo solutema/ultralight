@@ -122,5 +122,6 @@
       <Opcion Nombre="Sucursales" Funcion="LISTADO SUCURSALES" />
       <Opcion Nombre="Puntos de Venta" Funcion="LISTADO PVS" />
     </Opcion>
+    <Opcion Nombre="Desduplicar Registros" Funcion="DESDUP" />
   </Opcion>
 </Menu>

@@ -29,3 +29,7 @@
 *** 2010-05-19
 
 * Las Notas de Crédito ahora también controlan el saldo impago (como lo hacen las Notas de Débito y Facturas).
+
+*** 2010-05-08
+
+* El sistema va a instalar Microsoft .NET Framework 3.5 en los equipos que no lo tengan. Éste es un componente requisitorio para futuras actualizaciones.

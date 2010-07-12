@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -38,7 +40,7 @@ namespace Lazaro
 {
         public class Datos
         {
-                const int VersionUltima = 23;
+                const int VersionUltima = 24;
 
                 /// <summary>
                 /// Inicia una conexión con la base de datos y verifica si la versión de la la misma es la última disponible. En caso contrario la actualiza.
@@ -63,7 +65,7 @@ namespace Lazaro
                         }
 
                         try {
-                                Lws.Workspace.Master.DefaultDataBase.Open();
+                                Lfx.Workspace.Master.DefaultDataBase.Open();
                         } catch (Exception ex) {
                                 return new Lfx.Types.FailureOperationResult(ex.Message);
                         }
@@ -71,37 +73,41 @@ namespace Lazaro
                         // Verifico si tiene una base de datos
                         bool TieneDB = true;
                         try {
-                                Lws.Workspace.Master.DefaultDataBase.FieldString("SELECT nombre FROM sys_config");
+                                Lfx.Workspace.Master.DefaultDataBase.FieldString("SELECT nombre FROM sys_config");
                         } catch (Exception ex) {
                                 System.Console.WriteLine(ex.ToString());
                                 TieneDB = false;
                         }
 
                         if (TieneDB == false) {
-                                Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog(@"Aparentemente es la primera vez que conecta a este servidor. Antes de poder utilizarlo debe preparar el servidor con una carga inicial de datos.
-Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o está restaurando de una copia de seguridad.", @"¿Desea preparar el servidor """ + Lws.Workspace.Master.DefaultDataBase.ToString() + @"""?");
-                                Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
-                                if (Pregunta.ShowDialog() == DialogResult.OK) {
-                                        Lws.Data.DataView DataView = Lws.Workspace.Master.GetDataView(true);
-                                        Lfx.Types.OperationResult Res = PrepararServidor(DataView);
-                                        DataView.Dispose();
-                                        if (Res.Success == false)
-                                                return Res;
-                                        else
-                                                Lui.Forms.MessageBox.Show("El servidor fue preparado con éxito. Puede comenzar a utilizar el sistema.", "Preparar Servidor");
-                                } else {
-                                        return new Lfx.Types.FailureOperationResult("Debe preparar el servidor.");
+                                using (Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog(@"Aparentemente es la primera vez que conecta a este servidor. Antes de poder utilizarlo debe preparar el servidor con una carga inicial de datos.
+Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o está restaurando desde una copia de seguridad.", @"¿Desea preparar el servidor """ + Lfx.Workspace.Master.DefaultDataBase.ToString() + @"""?")) {
+                                        Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+                                        if (Pregunta.ShowDialog() == DialogResult.OK) {
+                                                Lfx.Types.OperationResult Res;
+                                                using (Lfx.Data.DataBase DataBase = Lfx.Workspace.Master.GetDataBase("Preparar servidor")) {
+                                                        Res = PrepararServidor(DataBase);
+                                                        DataBase.Dispose();
+                                                }
+                                                if (Res.Success == false)
+                                                        return Res;
+                                                else
+                                                        Lui.Forms.MessageBox.Show("El servidor fue preparado con éxito. Puede comenzar a utilizar el sistema.", "Preparar Servidor");
+                                        } else {
+                                                return new Lfx.Types.FailureOperationResult("Debe preparar el servidor.");
+                                        }
                                 }
                         }
 
                         // Configuro el nivel de aislación predeterminado
-                        Lfx.Data.DataBaseCache.DefaultCache.DefaultIsolationLevel = (Lfx.Data.IsolationLevels)(Enum.Parse(typeof(Lfx.Data.IsolationLevels), Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Datos.Aislacion", "Serializable")));
+                        Lfx.Data.DataBaseCache.DefaultCache.DefaultIsolationLevel = (Lfx.Data.IsolationLevels)(Enum.Parse(typeof(Lfx.Data.IsolationLevels), Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Datos.Aislacion", "Serializable")));
                         
                         if (Lfx.Environment.SystemInformation.DesignMode == false) {
                                 // Si es necesario, actualizo la estructura de la base de datos
-                                Lws.Data.DataView DataViewVerif = Lws.Workspace.Master.GetDataView(true);
-                                VerificarVersionDB(DataViewVerif, false, false);
-                                DataViewVerif.Dispose();
+                                using (Lfx.Data.DataBase DataBaseVerif = Lfx.Workspace.Master.GetDataBase("Verificar versión de la base de datos")) {
+                                        VerificarVersionDB(DataBaseVerif, false, false);
+                                        DataBaseVerif.Dispose();
+                                }
                         }
                         return iniciarReturn;
                 }
@@ -110,23 +116,23 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                 /// <summary>
                 /// Verifica la versión de la base de datos y si es necesario actualiza.
                 /// </summary>
-                /// <param name="dataView">Acceso a la base de datos.</param>
+                /// <param name="dataBase">Acceso a la base de datos.</param>
                 /// <param name="ignorarFecha">Ignorar la fecha y actualizar siempre.</param>
                 /// <param name="noTocarDatos">Actualizar sólo la estructura. No incorpora ni modifica datos.</param>
-                public static void VerificarVersionDB(Lws.Data.DataView dataView, bool ignorarFecha, bool noTocarDatos)
+                public static void VerificarVersionDB(Lfx.Data.DataBase dataBase, bool ignorarFecha, bool noTocarDatos)
                 {
-                        int VersionActual = dataView.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "DB.Version", 0);
+                        int VersionActual = dataBase.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "DB.Version", 0);
 
                         if (VersionUltima < VersionActual) {
                                 Lui.Forms.MessageBox.Show("Es necesario actualizar el sistema Lázaro en esta estación de trabajo. Se esperaba la versión " + VersionUltima.ToString() + " de la base de datos, pero se encontró la versión " + VersionActual.ToString() + " que es demasiado nueva.", "Aviso Importante");
                         } else if (noTocarDatos == false && VersionActual < VersionUltima && VersionActual > 0) {
                                 //Actualizo desde la versión actual a la última
                                 for (int i = VersionActual + 1; i <= VersionUltima; i++) {
-                                        InyectarSqlDesdeRecurso(dataView, @"Data.db_upd" + i.ToString() + "_pre.sql");
+                                        InyectarSqlDesdeRecurso(dataBase, @"Data.db_upd" + i.ToString() + "_pre.sql");
                                 }
                         }
 
-                        DateTime VersionEstructura = Lfx.Types.Parsing.ParseSqlDateTime(Lws.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"));
+                        DateTime VersionEstructura = Lfx.Types.Parsing.ParseSqlDateTime(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"));
                         DateTime FechaLazaroExe = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).LastWriteTime;
                         TimeSpan Diferencia = FechaLazaroExe - VersionEstructura;
                         System.Console.WriteLine("Versión estructura: " + VersionEstructura.ToString());
@@ -136,34 +142,34 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                                 Lui.Forms.MessageBox.Show("La versión de Lázaro que está utilizando es antigua. Por favor actualice su sistema urgentemente.", "Aviso");
                         } else if (ignorarFecha || Diferencia.Hours > 1) {
                                 //Lázaro es más nuevo que la bd por al menos 1 hora
-                                VerificarEstructuraDB(dataView, false);
+                                VerificarEstructuraDB(dataBase, false);
                                 if (noTocarDatos == false)
-                                        Lws.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema", "DB.VersionEstructura", Lfx.Types.Formatting.FormatDateTimeSql(FechaLazaroExe));
+                                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema", "DB.VersionEstructura", Lfx.Types.Formatting.FormatDateTimeSql(FechaLazaroExe));
                         }
 
                         if (noTocarDatos == false && VersionActual < VersionUltima && VersionActual > 0) {
                                 for (int i = VersionActual + 1; i <= VersionUltima; i++) {
-                                        InyectarSqlDesdeRecurso(dataView, @"Data.db_upd" + i.ToString() + "_post.sql");
-                                        Lws.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema", "DB.Version", i.ToString(), "*");
+                                        InyectarSqlDesdeRecurso(dataBase, @"Data.db_upd" + i.ToString() + "_post.sql");
+                                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema", "DB.Version", i.ToString(), "*");
                                 }
                         }
                 }
 
-                private static void InyectarSqlDesdeRecurso(Lws.Data.DataView dataView, string archivo)
+                private static void InyectarSqlDesdeRecurso(Lfx.Data.DataBase dataBase, string archivo)
                 {
                         //try {
                                 System.IO.Stream RecursoActualizacion = Aplicacion.ObtenerRecurso(archivo);
                                 if (RecursoActualizacion != null) {
-                                        System.IO.StreamReader Lector = new System.IO.StreamReader(RecursoActualizacion, System.Text.Encoding.Default);
-                                        string SqlActualizacion = dataView.DataBase.CustomizeSql(Lector.ReadToEnd());
-                                        //dataView.DataBase.Execute(SqlActualizacion);
+                                        System.IO.StreamReader Lector = new System.IO.StreamReader(RecursoActualizacion);
+                                        string SqlActualizacion = dataBase.CustomizeSql(Lector.ReadToEnd());
+                                        //dataBase.Execute(SqlActualizacion);
                                         do {
                                                 string Comando = Datos.GetNextCommand(ref SqlActualizacion);
                                                 try {
-                                                        dataView.DataBase.Execute(Comando);
+                                                        dataBase.Execute(Comando);
                                                 } catch (Exception ex) {
                                                         if (Lfx.Environment.SystemInformation.DesignMode)
-                                                                throw ex;
+                                                                throw;
                                                         Aplicacion.GenericExceptionHandler(ex);
                                                 }
                                         }
@@ -181,9 +187,9 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                 /// Verifica la estructura de la base de datos actual y si es necesario modifica para que esté conforme
                 /// al diseño de referencia.
                 /// </summary>
-                /// <param name="dataView">DataView mediante el cual se accede a la base de datos.</param>
+                /// <param name="dataBase">DataBase mediante el cual se accede a la base de datos.</param>
                 /// <param name="omitPreAndPostSql">Omitir la ejecución de comandos Pre- y Post-actualización de estructura. Esto es útil cuando se actualiza una estructura vacía, por ejemplo al crear una base de datos nueva.</param>
-                private static void VerificarEstructuraDB(Lws.Data.DataView dataView, bool omitPreAndPostSql)
+                private static void VerificarEstructuraDB(Lfx.Data.DataBase dataBase, bool omitPreAndPostSql)
                 {
                         Lui.Forms.ProgressForm Progreso = new Lui.Forms.ProgressForm();
                         Progreso.Style = ProgressBarStyle.Continuous;
@@ -193,36 +199,36 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                         Progreso.Operacion = "Leyendo información de base de datos";
 
                         bool MustEnableConstraints = false;
-                        if (dataView.DataBase.ConstraintsEnabled) {
-                                dataView.DataBase.EnableConstraints(false);
+                        if (dataBase.ConstraintsEnabled) {
+                                dataBase.EnableConstraints(false);
                                 MustEnableConstraints = true;
                         }
 
                         if (omitPreAndPostSql == false)
-                                InyectarSqlDesdeRecurso(dataView, @"Data.db_upd_pre.sql");
+                                InyectarSqlDesdeRecurso(dataBase, @"Data.db_upd_pre.sql");
 
                         //Primero borro claves foráneas (deleteOnly = true)
                         Progreso.Operacion = "Analizando estructura actual";
-                        dataView.DataBase.SetConstraints(Lfx.Data.DataBaseCache.DefaultCache.Constraints, true);
+                        dataBase.SetConstraints(Lfx.Data.DataBaseCache.DefaultCache.Constraints, true);
 
                         Progreso.Max = Lfx.Data.DataBaseCache.DefaultCache.TableStructures.Count;
                         Progreso.Progreso = 0;
                         foreach (Lfx.Data.TableStructure Tab in Lfx.Data.DataBaseCache.DefaultCache.TableStructures.Values) {
                                 Progreso.Operacion = "Actualizando " + Tab.Name;
-                                dataView.DataBase.SetTableStructure(Tab);
+                                dataBase.SetTableStructure(Tab);
                                 Progreso.Progreso++;
                         }
 
                         //Ahora creo claves nuevas (deleteOnly = false)
                         Progreso.Operacion = "Creando claves foráneas";
-                        dataView.DataBase.SetConstraints(Lfx.Data.DataBaseCache.DefaultCache.Constraints, false);
+                        dataBase.SetConstraints(Lfx.Data.DataBaseCache.DefaultCache.Constraints, false);
 
                         if (omitPreAndPostSql == false)
-                                InyectarSqlDesdeRecurso(dataView, @"Data.db_upd_post.sql");
+                                InyectarSqlDesdeRecurso(dataBase, @"Data.db_upd_post.sql");
 
                         Progreso.Operacion = "Guardando modificaciones";
                         if (MustEnableConstraints)
-                                dataView.DataBase.EnableConstraints(true);
+                                dataBase.EnableConstraints(true);
 
                         Progreso.Dispose();
                 }
@@ -230,57 +236,57 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                 /// <summary>
                 /// Prepara un servidor para ser utilizado por Lázaro. Crea estructuras y realiza una carga inicial de datos.
                 /// </summary>
-                /// <param name="dataView">Acceso a la base de datos.</param>
-                public static Lfx.Types.OperationResult PrepararServidor(Lws.Data.DataView dataView)
+                /// <param name="dataBase">Acceso a la base de datos.</param>
+                public static Lfx.Types.OperationResult PrepararServidor(Lfx.Data.DataBase dataBase)
                 {
-                        Lui.Forms.ProgressForm OProgreso = new Lui.Forms.ProgressForm();
-                        OProgreso.Titulo = "Preparando Servidor...";
-                        OProgreso.Texto = "Este proceso puede demorar varios minutos dependiendo de la velocidad de su servidor.";
-                        OProgreso.Operacion = "Creando estructura...";
-                        OProgreso.Show();
+                        using (Lui.Forms.ProgressForm Progreso = new Lui.Forms.ProgressForm()) {
+                                Progreso.Titulo = "Preparando Servidor...";
+                                Progreso.Texto = "Este proceso puede demorar varios minutos dependiendo de la velocidad de su servidor.";
+                                Progreso.Operacion = "Creando estructura...";
+                                Progreso.Show();
 
-                        // Creación de tablas
-                        VerificarEstructuraDB(dataView, true);
+                                // Creación de tablas
+                                VerificarEstructuraDB(dataBase, true);
 
-                        dataView.DataBase.EnableConstraints(false);
+                                dataBase.EnableConstraints(false);
 
-                        System.IO.Stream RecursoSql = null;
-                        System.IO.StreamReader Lector = null;
-                        string Sql = "";
+                                string Sql = "";
+                                using (System.IO.Stream RecursoSql = Aplicacion.ObtenerRecurso(@"Data.dbdata.sql")) {
+                                        using (System.IO.StreamReader Lector = new System.IO.StreamReader(RecursoSql, System.Text.Encoding.UTF8)) {
+                                                // Carga inicial de datos
+                                                Sql = dataBase.CustomizeSql(Lector.ReadToEnd());
+                                                Lector.Close();
+                                                RecursoSql.Close();
+                                        }
+                                }
 
-                        // Carga inicial de datos
-                        RecursoSql = Aplicacion.ObtenerRecurso(@"Data.dbdata.sql");
-                        Lector = new System.IO.StreamReader(RecursoSql, System.Text.Encoding.UTF8);
-                        Sql = dataView.DataBase.CustomizeSql(Lector.ReadToEnd());
-                        Lector.Close();
-                        RecursoSql.Close();
+                                // Si hay archivos adicionales de datos para la carga inicial, los incluyo
+                                // Estos suelen tener datos personalizados de esta instalación en partícular
+                                if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + "default.alf")) {
+                                        using (System.IO.StreamReader Lector = new System.IO.StreamReader(Lfx.Environment.Folders.ApplicationFolder + "default.alf", System.Text.Encoding.UTF8)) {
+                                                Sql += Lfx.Types.ControlChars.CrLf;
+                                                Sql += dataBase.CustomizeSql(Lector.ReadToEnd());
+                                                Lector.Close();
+                                        }
+                                }
 
-                        // Si hay archivos adicionales de datos para la carga inicial, los incluyo
-                        // Estos suelen tener datos personalizados de esta instalación en partícular
-                        if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + "default.alf")) {
-                                Lector = new System.IO.StreamReader(Lfx.Environment.Folders.ApplicationFolder + "default.alf", System.Text.Encoding.UTF8);
-                                Sql += Lfx.Types.ControlChars.CrLf;
-                                Sql += dataView.DataBase.CustomizeSql(Lector.ReadToEnd());
-                                Lector.Close();
+                                Progreso.Operacion = "Carga inicial de datos...";
+                                Progreso.Max = Sql.Length;
+                                do {
+                                        string Comando = Datos.GetNextCommand(ref Sql);
+                                        dataBase.Execute(Comando);
+                                        Progreso.Progreso = Progreso.Max - Sql.Length;
+                                }
+                                while (Sql.Length > 0);
+
+                                // Cargar TagList y volver a verificar la estructura
+                                Lfx.Data.DataBaseCache.DefaultCache.TagList.Clear();
+                                Lfx.Data.DataBaseCache.DefaultCache.CargarEstructuraDesdeXml(null);
+                                VerificarEstructuraDB(dataBase, false);
+
+                                dataBase.EnableConstraints(true);
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema", "DB.Version", VersionUltima.ToString(), "*");
                         }
-
-                        OProgreso.Operacion = "Carga inicial de datos...";
-                        OProgreso.Max = Sql.Length;
-                        do {
-                                string Comando = Datos.GetNextCommand(ref Sql);
-                                dataView.DataBase.Execute(Comando);
-                                OProgreso.Progreso = OProgreso.Max - Sql.Length;
-                        }
-                        while (Sql.Length > 0);
-
-                        // Cargar TagList y volver a verificar la estructura
-                        Lfx.Data.DataBaseCache.DefaultCache.TagList.Clear();
-                        Lfx.Data.DataBaseCache.DefaultCache.CargarEstructuraDesdeXml(null);
-                        VerificarEstructuraDB(dataView, false);
-
-                        dataView.DataBase.EnableConstraints(true);
-                        Lws.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema", "DB.Version", VersionUltima.ToString(), "*");
-                        OProgreso.Dispose();
                         return new Lfx.Types.SuccessOperationResult();
                 }
 

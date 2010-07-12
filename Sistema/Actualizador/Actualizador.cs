@@ -1,3 +1,4 @@
+#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,6 +27,7 @@
 //
 // Debería haber recibido una copia de la Licencia Pública General junto
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
 
 using System;
 using System.Collections;
@@ -87,14 +89,14 @@ namespace Lazaro.Actualizador
                 public static int ActualizarAplicacionDesdeBD(string nombreCarpeta)
                 {
                         try {
-                                DataTable Archivos = GetDataView().DataBase.Select("SELECT nombre, fecha, checksum FROM sys_asl");
-                                foreach (System.Data.DataRow Archivo in Archivos.Rows) {
-                                        if (ActualizarArchivoDesdeBD((Lfx.Data.Row)Archivo, false, nombreCarpeta))
-                                                ArchivosActualizados++;
+                                using (DataTable Archivos = GetDataView().DataBase.Select("SELECT nombre, fecha, checksum FROM sys_asl")) {
+                                        foreach (System.Data.DataRow Archivo in Archivos.Rows) {
+                                                if (ActualizarArchivoDesdeBD((Lfx.Data.Row)Archivo, false, nombreCarpeta))
+                                                        ArchivosActualizados++;
+                                        }
+                                        if (ArchivosActualizados > 0)
+                                                Aplicacion.ReinicioPendiente = true;
                                 }
-                                if (ArchivosActualizados > 0)
-                                        Aplicacion.ReinicioPendiente = true;
-
                                 return ArchivosActualizados;
                         } catch (Exception ex) {
                                 System.Console.WriteLine("ActualizarAplicacionDesdeBD: " + ex.Message);
@@ -243,9 +245,10 @@ namespace Lazaro.Actualizador
                                         Archivo = GetDataView().DataBase.FirstRowFromSelect("SELECT nombre, fecha, contenido FROM sys_asl WHERE nombre='" + (nombreCarpeta + Archivo["nombre"]).Replace("\\", "/") + "'");
 
                                         if (Archivo != null && Archivo["contenido"] != null) {
-                                                System.IO.BinaryWriter wr = new System.IO.BinaryWriter(System.IO.File.OpenWrite(CarpetaDescarga + NombreArchivo + ".new"), System.Text.Encoding.Default);
-                                                wr.Write(((byte[])(Archivo["contenido"])));
-                                                wr.Close();
+                                                using (System.IO.BinaryWriter wr = new System.IO.BinaryWriter(System.IO.File.OpenWrite(CarpetaDescarga + NombreArchivo + ".new"), System.Text.Encoding.Default)) {
+                                                        wr.Write(((byte[])(Archivo["contenido"])));
+                                                        wr.Close();
+                                                }
 
                                                 System.Console.WriteLine("Actualización BD de " + NombreArchivo);
 
@@ -341,9 +344,10 @@ namespace Lazaro.Actualizador
                                                         System.IO.File.Delete(CarpetaDescarga + NombreArchivo + ".new" + Compresion);
 
                                                 System.Console.Write("Guardando como " + CarpetaDescarga + NombreArchivo + ".new" + Compresion + ": ");
-                                                System.IO.BinaryWriter wr = new System.IO.BinaryWriter(System.IO.File.OpenWrite(CarpetaDescarga + NombreArchivo + ".new" + Compresion), System.Text.Encoding.Default);
-                                                wr.Write(Contenido);
-                                                wr.Close();
+                                                using (System.IO.BinaryWriter wr = new System.IO.BinaryWriter(System.IO.File.OpenWrite(CarpetaDescarga + NombreArchivo + ".new" + Compresion), System.Text.Encoding.Default)) {
+                                                        wr.Write(Contenido);
+                                                        wr.Close();
+                                                }
                                                 System.Console.WriteLine("ok.");
 
                                                 if (Compresion == ".bz2") {
@@ -356,10 +360,11 @@ namespace Lazaro.Actualizador
                                                                 // Se descomprimí ok. Borro el .new.bz2
                                                                 System.IO.File.Delete(CarpetaDescarga + NombreArchivo + ".new" + Compresion);
                                                                 // Y cargo el contenido del archivo descomprimido, para tener
-                                                                System.IO.FileStream ArchivoStream = new System.IO.FileStream(CarpetaDescarga + NombreArchivo + ".new", System.IO.FileMode.Open, System.IO.FileAccess.Read);
-                                                                Contenido = new byte[ArchivoStream.Length];
-                                                                ArchivoStream.Read(Contenido, 0, System.Convert.ToInt32(ArchivoStream.Length));
-                                                                ArchivoStream.Close();
+                                                                using (System.IO.FileStream ArchivoStream = new System.IO.FileStream(CarpetaDescarga + NombreArchivo + ".new", System.IO.FileMode.Open, System.IO.FileAccess.Read)) {
+                                                                        Contenido = new byte[ArchivoStream.Length];
+                                                                        ArchivoStream.Read(Contenido, 0, System.Convert.ToInt32(ArchivoStream.Length));
+                                                                        ArchivoStream.Close();
+                                                                }
                                                         } else {
                                                                 System.Console.WriteLine("error.");
                                                                 MensajeError = "No se puede descomprimir " + NombreArchivo;
@@ -386,7 +391,7 @@ namespace Lazaro.Actualizador
                                                 // Lo publico en la BD
                                                 if (NombreArchivo != "version.xml" && Lws.Workspace.Master.SlowLink == false && Lfx.Environment.SystemInformation.DesignMode == false) {
                                                         Lws.Workspace.Master.DefaultDataView.DataBase.Execute("DELETE FROM sys_asl WHERE nombre='" + (nombreCarpeta + NombreArchivo).Replace("\\", "/") + "'");
-                                                        Lfx.Data.SqlInsertBuilder InsertarArchivo = new Lfx.Data.SqlInsertBuilder(GetDataView().DataBase, "sys_asl");
+                                                        qGen.Insert InsertarArchivo = new qGen.Insert(GetDataView().DataBase, "sys_asl");
                                                         InsertarArchivo.Fields.AddWithValue("nombre", (nombreCarpeta + NombreArchivo).Replace("\\", "/"));
                                                         InsertarArchivo.Fields.AddWithValue("fecha", FechaNueva);
                                                         InsertarArchivo.Fields.AddWithValue("checksum", ChecksumContenido);
@@ -430,9 +435,10 @@ namespace Lazaro.Actualizador
                         byte[] Contenido = NetGet(uri);
 
                         if (Contenido != null) {
-                                System.IO.BinaryWriter wr = new System.IO.BinaryWriter(System.IO.File.OpenWrite(archivo), System.Text.Encoding.Default);
-                                wr.Write(Contenido);
-                                wr.Close();
+                                using (System.IO.BinaryWriter wr = new System.IO.BinaryWriter(System.IO.File.OpenWrite(archivo), System.Text.Encoding.Default)) {
+                                        wr.Write(Contenido);
+                                        wr.Close();
+                                }
                         }
                 }
 
@@ -466,7 +472,7 @@ namespace Lazaro.Actualizador
                         } catch (Exception ex) {
                                 System.Console.WriteLine(ex.Message);
                                 if (Lfx.Environment.SystemInformation.DesignMode)
-                                        throw ex;
+                                        throw;
                                 return null;
                         }
                 }
