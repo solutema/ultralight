@@ -67,10 +67,10 @@ namespace Lazaro.Principal
                 {
                         get
                         {
-                                //if (m_DataBase == null)
-                                //        m_DataBase = this.Workspace.GetDataBase("Formulario principal: Barra inferior");
-                                //return m_DataBase;
-                                return this.Workspace.DefaultDataBase;
+                                if (m_DataBase == null)
+                                        m_DataBase = this.Workspace.GetDataBase("Formulario principal: Barra inferior");
+                                return m_DataBase;
+                                //return this.Workspace.DefaultDataBase;
                         }
                 }
 

@@ -38,13 +38,13 @@ using System.Windows.Forms;
 
 namespace Lui.Forms
 {
-	public partial class EditForm : Lui.Forms.ChildForm
-	{
-		public int m_Id;
-		public bool m_Nuevo = true;
-		public Form FormOpener;
-		public System.Windows.Forms.Control ControlDestino;
-		private bool m_ReadOnly = false;
+        public partial class EditForm : Lui.Forms.ChildForm
+        {
+                public int m_Id;
+                public bool m_Nuevo = true;
+                public Form FormOpener;
+                public System.Windows.Forms.Control ControlDestino;
+                private bool m_ReadOnly = false;
                 public Lbl.ElementoDeDatos CachedRow;
                 public Type ElementType = null;
 
@@ -56,32 +56,32 @@ namespace Lui.Forms
                         LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
                 }
 
-		public virtual bool ReadOnly
-		{
-			get
-			{
-				return m_ReadOnly;
-			}
-			set
-			{
-				m_ReadOnly = value;
-				SaveButton.Visible = !m_ReadOnly;
+                public virtual bool ReadOnly
+                {
+                        get
+                        {
+                                return m_ReadOnly;
+                        }
+                        set
+                        {
+                                m_ReadOnly = value;
+                                SaveButton.Visible = !m_ReadOnly;
                                 if (value)
                                         CancelCommandButton.Text = "Cerrar";
                                 else
                                         CancelCommandButton.Text = "Cancelar";
-				this.SetControlsReadOnly(this.Controls, m_ReadOnly);
-			}
-		}
+                                this.SetControlsReadOnly(this.Controls, m_ReadOnly);
+                        }
+                }
 
-		public virtual Lfx.Types.OperationResult Create()
-		{
-			return new Lfx.Types.SuccessOperationResult();
-		}
+                public virtual Lfx.Types.OperationResult Create()
+                {
+                        return new Lfx.Types.SuccessOperationResult();
+                }
 
-		public virtual Lfx.Types.OperationResult Edit(int itemId)
-		{
-			m_Nuevo = false;
+                public virtual Lfx.Types.OperationResult Edit(int itemId)
+                {
+                        m_Nuevo = false;
                         m_Id = itemId;
 
                         if (this.ElementType != null) {
@@ -91,92 +91,80 @@ namespace Lui.Forms
                                 if (Elem != null)
                                         this.FromRow(Elem);
                         }
-			return new Lfx.Types.SuccessOperationResult();
-		}
+                        return new Lfx.Types.SuccessOperationResult();
+                }
 
-		public virtual Printing.ItemPrint FormatForPrinting(Printing.ItemPrint ImprimirItem)
-		{
-			ImprimirItem.Titulo = "ERROR: Formato no definido"; ImprimirItem.AgregarPar("", "No se ha definido el formato de impresión para este tipo de elementos.", 1);
-			return ImprimirItem;
-		}
+                public virtual Printing.ItemPrint FormatForPrinting(Printing.ItemPrint ImprimirItem)
+                {
+                        ImprimirItem.Titulo = "ERROR: Formato no definido"; ImprimirItem.AgregarPar("", "No se ha definido el formato de impresión para este tipo de elementos.", 1);
+                        return ImprimirItem;
+                }
 
-		public virtual Lfx.Types.OperationResult Print(bool DejaSeleccionarImpresora)
-		{
-			if (this.ValidateData().Success && this.Save().Success)
-			{
-				Printing.ItemPrint ImprimirItem = FormatForPrinting(new Printing.ItemPrint());
+                public virtual Lfx.Types.OperationResult Print(bool DejaSeleccionarImpresora)
+                {
+                        if (this.ValidateData().Success && this.Save().Success) {
+                                Printing.ItemPrint ImprimirItem = FormatForPrinting(new Printing.ItemPrint());
 
-				// Determino la impresora que le corresponde
-				string sImpresora = "";
+                                // Determino la impresora que le corresponde
+                                string sImpresora = "";
 
-				if (DejaSeleccionarImpresora)
-				{
-					Lui.Printing.PrinterSelectionDialog OSeleccionarImpresora = new Lui.Printing.PrinterSelectionDialog();
-					OSeleccionarImpresora.VistaPrevia = true;
+                                if (DejaSeleccionarImpresora) {
+                                        Lui.Printing.PrinterSelectionDialog OSeleccionarImpresora = new Lui.Printing.PrinterSelectionDialog();
+                                        OSeleccionarImpresora.VistaPrevia = true;
 
-					if (OSeleccionarImpresora.ShowDialog() == DialogResult.OK)
-						sImpresora = OSeleccionarImpresora.m_Resultado;
+                                        if (OSeleccionarImpresora.ShowDialog() == DialogResult.OK)
+                                                sImpresora = OSeleccionarImpresora.m_Resultado;
 
-					OSeleccionarImpresora.Dispose();
-				}
-				else
-				{
-					sImpresora = this.Workspace.CurrentConfig.Printing.PreferredPrinter("Item");
+                                        OSeleccionarImpresora.Dispose();
+                                } else {
+                                        sImpresora = this.Workspace.CurrentConfig.Printing.PreferredPrinter("Item");
 
-					// Si es de carga manual, presento el formulario correspondiente
-					if (this.Workspace.CurrentConfig.Printing.PrinterFeed("Item", "auto") == "auto")
-					{
+                                        // Si es de carga manual, presento el formulario correspondiente
+                                        if (this.Workspace.CurrentConfig.Printing.PrinterFeed("Item", "auto") == "auto") {
                                                 Lbl.Impresion.ManualFeedDialog DialogCargaManual = new Lbl.Impresion.ManualFeedDialog();
-						DialogCargaManual.DocumentName = "Item";
+                                                DialogCargaManual.DocumentName = "Item";
 
-						// Muestro el nombre de la impresora
-						if (sImpresora.Length > 0)
-						{
-							DialogCargaManual.PrinterName = sImpresora;
-						}
-						else
-						{
-							System.Drawing.Printing.PrinterSettings
-								objPrint = new System.Drawing.Printing.PrinterSettings();
+                                                // Muestro el nombre de la impresora
+                                                if (sImpresora.Length > 0) {
+                                                        DialogCargaManual.PrinterName = sImpresora;
+                                                } else {
+                                                        System.Drawing.Printing.PrinterSettings
+                                                                objPrint = new System.Drawing.Printing.PrinterSettings();
                                                         DialogCargaManual.PrinterName = objPrint.PrinterName;
-						}
+                                                }
 
-						if (DialogCargaManual.ShowDialog() == DialogResult.Cancel)
-							return new Lfx.Types.FailureOperationResult("Operación cancelada");
-					}
-				}
+                                                if (DialogCargaManual.ShowDialog() == DialogResult.Cancel)
+                                                        return new Lfx.Types.FailureOperationResult("Operación cancelada");
+                                        }
+                                }
 
-				if (sImpresora == "lazaro!preview")
-				{
-					ImprimirItem.PrintController = new System.Drawing.Printing.PreviewPrintController();
-					Lui.Printing.PrintPreviewForm VistaPrevia = new Lui.Printing.PrintPreviewForm();
-					VistaPrevia.PrintPreview.Document = ImprimirItem;
-					VistaPrevia.MdiParent = this.MdiParent;
-					VistaPrevia.Show();
-				}
-				else
-				{
-					if (sImpresora.Length > 0)
-					{
-						ImprimirItem.PrinterSettings.PrinterName = sImpresora;
-					}
-					ImprimirItem.PrintController = new System.Drawing.Printing.StandardPrintController();
-					ImprimirItem.Print();
-				}
+                                if (sImpresora == "lazaro!preview") {
+                                        ImprimirItem.PrintController = new System.Drawing.Printing.PreviewPrintController();
+                                        Lui.Printing.PrintPreviewForm VistaPrevia = new Lui.Printing.PrintPreviewForm();
+                                        VistaPrevia.PrintPreview.Document = ImprimirItem;
+                                        VistaPrevia.MdiParent = this.MdiParent;
+                                        VistaPrevia.Show();
+                                } else {
+                                        if (sImpresora.Length > 0) {
+                                                ImprimirItem.PrinterSettings.PrinterName = sImpresora;
+                                        }
+                                        ImprimirItem.PrintController = new System.Drawing.Printing.StandardPrintController();
+                                        ImprimirItem.Print();
+                                }
 
-				ImprimirItem.Dispose();
-			}
+                                ImprimirItem.Dispose();
+                        }
 
-			return new Lfx.Types.SuccessOperationResult();
-		}
+                        return new Lfx.Types.SuccessOperationResult();
+                }
 
-		public virtual Lfx.Types.OperationResult ValidateData()
-		{
-			return new Lfx.Types.SuccessOperationResult();
-		}
+                public virtual Lfx.Types.OperationResult ValidateData()
+                {
+                        return new Lfx.Types.SuccessOperationResult();
+                }
 
-		public virtual Lfx.Types.OperationResult Save()
-		{
+                public virtual Lfx.Types.OperationResult Save()
+                {
                         if (this.ReadOnly)
                                 return new Lfx.Types.FailureOperationResult("No se puede guardar porque es un formulario sólo-lectura");
 
@@ -188,20 +176,23 @@ namespace Lui.Forms
                         if (this.CachedRow != null) {
                                 WasNew = !this.CachedRow.Existe;
                                 this.CachedRow = this.ToRow();
-                                bool WasInTransaction = this.CachedRow.DataBase.InTransaction;
-                                if (WasInTransaction == false)
-                                        this.CachedRow.DataBase.BeginTransaction(true);
-                                ValidateResult = this.CachedRow.Guardar();
-                                if (ValidateResult.Success) {
+                                if (SomethingChanged(this.Controls, false) || this.CachedRow.Registro.IsModified || this.CachedRow.ImagenCambio) {
+                                        // Guardo sólo si hubo cambios
+                                        bool WasInTransaction = this.CachedRow.DataBase.InTransaction;
                                         if (WasInTransaction == false)
-                                                this.CachedRow.DataBase.Commit();
-                                        m_Id = this.CachedRow.Id;
-                                        m_Nuevo = false;
-                                } else {
-                                        if (WasInTransaction == false)
-                                                this.CachedRow.DataBase.RollBack();
+                                                this.CachedRow.DataBase.BeginTransaction(true);
+                                        ValidateResult = this.CachedRow.Guardar();
+                                        if (ValidateResult.Success) {
+                                                if (WasInTransaction == false)
+                                                        this.CachedRow.DataBase.Commit();
+                                                m_Id = this.CachedRow.Id;
+                                                m_Nuevo = false;
+                                        } else {
+                                                if (WasInTransaction == false)
+                                                        this.CachedRow.DataBase.RollBack();
+                                        }
                                 }
-                        } else if(Lfx.Environment.SystemInformation.DesignMode) {
+                        } else if (Lfx.Environment.SystemInformation.DesignMode) {
                                 // Devolver error para detectar código viejo (que no use CachedRow, ToFrom() y FromRow())
                                 System.Console.WriteLine("Código obsoleto en " + this.Name);
                         }
@@ -222,21 +213,20 @@ namespace Lui.Forms
                                 this.DialogResult = DialogResult.OK;
                         }
                         return ValidateResult;
-		}
+                }
 
-		public virtual Lfx.Types.OperationResult Cancel()
-		{
-			this.Close();
+                public virtual Lfx.Types.OperationResult Cancel()
+                {
+                        this.Close();
 
-			if (FormOpener != null)
-			{
-				FormOpener.Focus();
-				FormOpener.Activate();
-			}
+                        if (FormOpener != null) {
+                                FormOpener.Focus();
+                                FormOpener.Activate();
+                        }
 
-			this.DialogResult = DialogResult.Cancel;
-			return new Lfx.Types.SuccessOperationResult();
-		}
+                        this.DialogResult = DialogResult.Cancel;
+                        return new Lfx.Types.SuccessOperationResult();
+                }
 
                 private void SaveButton_Click(object sender, System.EventArgs e)
                 {
@@ -253,162 +243,127 @@ namespace Lui.Forms
                         }
                 }
 
-		private void cmdCancelar_Click(object sender, System.EventArgs e)
-		{
-			Cancel();
-		}
+                private void CancelButton_Click(object sender, System.EventArgs e)
+                {
+                        Cancel();
+                }
 
-		private void FormTablaEditar_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-		{
-			if (e.Alt == false && e.Control == false)
-			{
-				switch (e.KeyCode)
-				{
-					case Keys.F9:
-						e.Handled = true;
-						if (SaveButton.Enabled && SaveButton.Visible)
+                private void EditForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+                {
+                        if (e.Alt == false && e.Control == false) {
+                                switch (e.KeyCode) {
+                                        case Keys.F9:
+                                                e.Handled = true;
+                                                if (SaveButton.Enabled && SaveButton.Visible)
                                                         SaveButton.PerformClick();
-						break;
+                                                break;
 
-					case Keys.Escape:
-						e.Handled = true;
-						Cancel();
-						break;
-				}
-			}
-			else if (e.Alt == false && e.Control == true)
-			{
-				// Teclas con Ctrl
-				switch (e.KeyCode)
-				{
-					case Keys.R:
-						e.Handled = true;
-						Print(!e.Shift);
-						break;
-				}
-			}
-		}
+                                        case Keys.Escape:
+                                                e.Handled = true;
+                                                Cancel();
+                                                break;
+                                }
+                        } else if (e.Alt == false && e.Control == true) {
+                                // Teclas con Ctrl
+                                switch (e.KeyCode) {
+                                        case Keys.R:
+                                                e.Handled = true;
+                                                Print(!e.Shift);
+                                                break;
+                                }
+                        }
+                }
 
-		private void FormTablaEditar_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			if (SomethingChanged(this.Controls, true))
-			{
+                private void EditForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+                {
+                        if (SomethingChanged(this.Controls, true)) {
 
-				Lui.Forms.YesNoDialog OPreguna = new Lui.Forms.YesNoDialog("Si cierra el formulario en este momento, no se guardarán los cambios realizados (subrayados en color rojo). ¿Desea cerrar el formulario de todos modos y perder los cambios realizados?", "Hay cambios sin guardar");
-				OPreguna.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+                                Lui.Forms.YesNoDialog OPreguna = new Lui.Forms.YesNoDialog("Si cierra el formulario en este momento, no se guardarán los cambios realizados (subrayados en color rojo). ¿Desea cerrar el formulario de todos modos y perder los cambios realizados?", "Hay cambios sin guardar");
+                                OPreguna.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
 
-				if (OPreguna.ShowDialog() == DialogResult.Cancel)
-				{
-					e.Cancel = true;
-					SomethingChanged(this.Controls, false);
-				}
-				else
-				{
-					e.Cancel = false;
-				}
-			}
-		}
+                                if (OPreguna.ShowDialog() == DialogResult.Cancel) {
+                                        e.Cancel = true;
+                                        SomethingChanged(this.Controls, false);
+                                } else {
+                                        e.Cancel = false;
+                                }
+                        }
+                }
 
-		private bool SomethingChanged(System.Windows.Forms.Control.ControlCollection controls, bool showChanges)
-		{
-			bool Result = false;
-			// Ver si algo cambió
-			foreach (System.Windows.Forms.Control ctl in controls)
-			{
-				if (ctl == null)
-				{
-					//Nada
-				}
-				else if (ctl is Lui.Forms.ProductArray)
-				{
-					if (((Lui.Forms.ProductArray)ctl).Changed)
-					{
-						Result = true;
-						((Lui.Forms.ProductArray)ctl).ShowChanged = showChanges;
-					}
-				}
-				else if (ctl is Lui.Forms.Frame || ctl is System.Windows.Forms.Panel)
-				{
-					// Es un conteneder. Uso recursión
-					if (SomethingChanged(ctl.Controls, showChanges))
-					{
-						Result = true;
-					}
-				}
-				else if (ctl is Lui.Forms.Control)
-				{
-					if (((Lui.Forms.Control)ctl).Changed)
-					{
-						Result = true;
-						((Lui.Forms.Control)ctl).ShowChanged = showChanges;
-					}
-				}
-			}
-			return Result;
-		}
+                private bool SomethingChanged(System.Windows.Forms.Control.ControlCollection controls, bool showChanges)
+                {
+                        bool Result = false;
+                        // Ver si algo cambió
+                        foreach (System.Windows.Forms.Control ctl in controls) {
+                                if (ctl == null) {
+                                        //Nada
+                                } else if (ctl is Lui.Forms.ProductArray) {
+                                        if (((Lui.Forms.ProductArray)ctl).Changed) {
+                                                Result = true;
+                                                ((Lui.Forms.ProductArray)ctl).ShowChanged = showChanges;
+                                        }
+                                } else if (ctl is Lui.Forms.Frame || ctl is System.Windows.Forms.Panel) {
+                                        // Es un conteneder. Uso recursión
+                                        if (SomethingChanged(ctl.Controls, showChanges))
+                                                Result = true;
+                                } else if (ctl is Lui.Forms.Control) {
+                                        if (((Lui.Forms.Control)ctl).Changed) {
+                                                Result = true;
+                                                ((Lui.Forms.Control)ctl).ShowChanged = showChanges;
+                                        }
+                                }
+                        }
+                        return Result;
+                }
 
-		internal void SetControlsReadOnly(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
-		{
-			// Pongo los Changed en False
-			foreach (System.Windows.Forms.Control ctl in controles)
-			{
-				if (ctl == null)
-				{
-					//Nada
-				}
-				else if (ctl is Lui.Forms.Frame || ctl is System.Windows.Forms.Panel)
-				{
-					SetControlsReadOnly(ctl.Controls, newValue);
-				}
-				else if (ctl is Lui.Forms.Control)
-				{
-					((Lui.Forms.Control)ctl).ReadOnly = newValue;
-				}
+                internal void SetControlsReadOnly(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
+                {
+                        // Pongo los Changed en False
+                        foreach (System.Windows.Forms.Control ctl in controles) {
+                                if (ctl == null) {
+                                        //Nada
+                                } else if (ctl is Lui.Forms.Frame || ctl is System.Windows.Forms.Panel) {
+                                        SetControlsReadOnly(ctl.Controls, newValue);
+                                } else if (ctl is Lui.Forms.Control) {
+                                        ((Lui.Forms.Control)ctl).ReadOnly = newValue;
+                                }
 
-			}
-		}
+                        }
+                }
 
-		internal void SetControlsChanged(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
-		{
-			// Pongo los Changed en False
-			foreach (System.Windows.Forms.Control ctl in controles)
-			{
-				if (ctl == null)
-				{
-					//Nada
-				}
-				else if (ctl is Lui.Forms.ProductArray)
-				{
-					((Lui.Forms.ProductArray)ctl).Changed = newValue;
-				}
-				else if (ctl is Lui.Forms.Frame || ctl is System.Windows.Forms.Panel)
-				{
-					SetControlsChanged(ctl.Controls, newValue);
-				}
-				else if (ctl is Lui.Forms.Control)
-				{
-					((Lui.Forms.Control)ctl).Changed = newValue;
-				}
-			}
-		}
+                internal void SetControlsChanged(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
+                {
+                        // Pongo los Changed en False
+                        foreach (System.Windows.Forms.Control ctl in controles) {
+                                if (ctl == null) {
+                                        //Nada
+                                } else if (ctl is Lui.Forms.ProductArray) {
+                                        ((Lui.Forms.ProductArray)ctl).Changed = newValue;
+                                } else if (ctl is Lui.Forms.Frame || ctl is System.Windows.Forms.Panel) {
+                                        SetControlsChanged(ctl.Controls, newValue);
+                                } else if (ctl is Lui.Forms.Control) {
+                                        ((Lui.Forms.Control)ctl).Changed = newValue;
+                                }
+                        }
+                }
 
-		private void FormTablaEditar_Load(object sender, System.EventArgs e)
-		{
+                private void FormTablaEditar_Load(object sender, System.EventArgs e)
+                {
                         if (this.MyToolBarButton != null)
                                 this.MyToolBarButton.ImageIndex = 1;
-		}
+                }
 
-		private void EditForm_SizeChanged(object sender, System.EventArgs e)
-		{
-			CancelCommandButton.Left = LowerPanel.Width - CancelCommandButton.Width - 4;
-			SaveButton.Left = CancelCommandButton.Left - SaveButton.Width - 4;
-		}
+                private void EditForm_SizeChanged(object sender, System.EventArgs e)
+                {
+                        CancelCommandButton.Left = LowerPanel.Width - CancelCommandButton.Width - 4;
+                        SaveButton.Left = CancelCommandButton.Left - SaveButton.Width - 4;
+                }
 
                 public virtual void FromRow(Lbl.ElementoDeDatos row)
                 {
                         this.CachedRow = row;
                         this.m_Id = row.Id;
-                        BotonHistorial.Visible = this.CachedRow.Existe;
+                        BotonHistorial.Visible = this.CachedRow.Existe && this.Workspace.CurrentUser.AccessList.HasGlobalAcccess();
                 }
 
                 public virtual Lbl.ElementoDeDatos ToRow()
@@ -420,5 +375,5 @@ namespace Lui.Forms
                 {
                         this.Workspace.RunTime.Execute("HISTORIAL", new string[] { this.CachedRow.TablaDatos, this.CachedRow.Id.ToString() });
                 }
-	}
+        }
 }

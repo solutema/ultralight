@@ -47,6 +47,11 @@
             Carga un elemento por su Id desde un registro
             </summary>
         </member>
+        <member name="P:Lbl.ElementoDeDatos.ImagenCambio">
+            <summary>
+            True si la imagen fue cambiada.
+            </summary>
+        </member>
         <member name="P:Lbl.ElementoDeDatos.Existe">
             <summary>
             Devuelve Verdadero si el elemento existe en la base de datos.

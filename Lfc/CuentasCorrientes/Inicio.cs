@@ -363,7 +363,7 @@ namespace Lfc.CuentasCorrientes
                                 OAjuste.Owner = this;
                                 OAjuste.SaldoActual = Lfx.Types.Parsing.ParseCurrency(EtiquetaSaldo.Text);
                                 if (OAjuste.ShowDialog() == DialogResult.OK) {
-                                        double Importe = Lfx.Types.Parsing.ParseCurrency(OAjuste.txtImporte.Text);
+                                        double Importe = Lfx.Types.Parsing.ParseCurrency(OAjuste.EntradaImporte.Text);
                                         if (Importe == 0) {
                                                 Lui.Forms.MessageBox.Show("El Importe debe ser mayor o menor que cero.", "Error");
                                         } else {
@@ -377,7 +377,7 @@ namespace Lfc.CuentasCorrientes
 
                                                 if (Cliente > 0) {
                                                         Lbl.CuentasCorrientes.CuentaCorriente CtaCte = new Lbl.CuentasCorrientes.CuentaCorriente(this.DataBase, Cliente);
-                                                        CtaCte.Movimiento(false, OAjuste.EntradaConcepto.TextInt, OAjuste.EntradaConcepto.TextDetail, Importe, OAjuste.txtObs.Text, 0, 0, false);
+                                                        CtaCte.Movimiento(false, OAjuste.EntradaConcepto.TextInt, OAjuste.EntradaConcepto.TextDetail, Importe, OAjuste.EntradaObs.Text, 0, 0, false);
                                                         this.RefreshList();
                                                 }
                                         }

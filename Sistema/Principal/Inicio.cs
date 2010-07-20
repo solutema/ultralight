@@ -110,42 +110,12 @@ namespace Lazaro.Principal
                                         break;
                         }
                         MostrarAyuda("Bienvenido a Lázaro", "Pulse la tecla <F12> para activar el menú.");
+
+                        if (Lfx.Environment.SystemInformation.DesignMode == false)
+                                Lfx.Updater.Master.Start();
                 }
 
-                private void Actualizar()
-                {
-                        if (this.Workspace.DefaultDataBase != null) {
-                                int ActualizarAhora = 0;
-
-                                // Busco actualizaciones cada 20 minutos
-                                // 1 de cada 3 veces lo hago desde la web, el resto desde bd
-                                string MinSec = System.DateTime.Now.ToString("mm:ss");
-                                if (MinSec == "00:00")
-                                        ActualizarAhora = 2;
-                                else if (MinSec == "20:00" || MinSec == "40:00")
-                                        ActualizarAhora = 1;
-
-                                if (ActualizarAhora == 1 && this.Workspace.SlowLink == false) {
-                                        // Actualizar desde la BD
-                                        Lfx.Updater.Master.UpdateAllFromDbCache();
-                                } else if (ActualizarAhora == 2) {
-                                        // Actualizar desde la web
-                                        System.Threading.Thread TareaActualizador = new System.Threading.Thread(new System.Threading.ThreadStart(Lfx.Updater.Master.UpdateAll));
-                                        TareaActualizador.Start();
-                                }
-
-                                if (Aplicacion.ReinicioPendiente && Aplicacion.FormularioPrincipal.MdiChildren.Length == 0) {
-                                        Aplicacion.ReinicioPendiente = false;
-                                        // Si hay actualizaciones pendientes y no se está relizando una tarea
-                                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Existe una nueva versión del sistema Lázaro. Debe reiniciar la aplicación para instalar la actualización.", "¿Desea reiniciar ahora?");
-                                        Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
-                                        DialogResult Respuesta = Pregunta.ShowDialog();
-                                        if (Respuesta == DialogResult.OK)
-                                                Aplicacion.Exec("REBOOT");
-                                }
-                        }
-                }
-
+                private static bool YaPregunteReiniciar = false;
                 private void TimerReloj_Tick(object sender, EventArgs e)
                 {
                         TimerReloj.Enabled = false;
@@ -159,19 +129,23 @@ namespace Lazaro.Principal
                                 if (this.Workspace.SlowLink == false || (this.Workspace.DefaultScheduler.LastGetTask == System.DateTime.MinValue && (DateTime.Now - this.Workspace.DefaultScheduler.LastGetTask).Minutes >= 1))
                                         ProximaTarea = this.Workspace.DefaultScheduler.GetNextTask("lazaro");
 
-                                if (ProximaTarea != null)
-                                {
+                                if (ProximaTarea != null) {
                                         object Resultado = Aplicacion.Exec(ProximaTarea.Command, ProximaTarea.CreatorComputerName);
-                                        if ((Resultado) is Lfx.Types.OperationResult)
-                                        {
+                                        if ((Resultado) is Lfx.Types.OperationResult) {
                                                 if (((Lfx.Types.OperationResult)(Resultado)).Success != true)
                                                         Lui.Forms.MessageBox.Show("Hubo un error al ejecutar la tarea " + ProximaTarea.Command, "Programador");
                                         }
                                 }
-                        }
 
-                        if(Lfx.Environment.SystemInformation.DesignMode == false)
-                                Actualizar();
+                                if (Lfx.Updater.Master.RebootNeeded && YaPregunteReiniciar == false) {
+                                        YaPregunteReiniciar = true;
+                                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Existe una nueva versión del sistema Lázaro. Debe reiniciar la aplicación para instalar la actualización.", "¿Desea reiniciar ahora?");
+                                        Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+                                        DialogResult Respuesta = Pregunta.ShowDialog();
+                                        if (Respuesta == DialogResult.OK)
+                                                Aplicacion.Exec("REBOOT");
+                                }
+                        }
 
                         TimerReloj.Enabled = true;
                 }
@@ -326,31 +300,25 @@ namespace Lazaro.Principal
                 private void CargarMenuComponentes()
                 {
                         System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ComponentsFolder);
-                        foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.cif"))
-                        {
+                        foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.cif")) {
                                 string ComponentName = System.IO.Path.GetFileNameWithoutExtension(DirItem.FullName);
                                 string ComponentConfigFileName = Lfx.Environment.Folders.ComponentsFolder + ComponentName + ".cif";
                                 System.IO.TextReader ComponentConfigFile = new System.IO.StreamReader(ComponentConfigFileName, true);
-                                if (System.IO.File.Exists(ComponentConfigFileName) && (DirItem.Attributes & System.IO.FileAttributes.Hidden) != System.IO.FileAttributes.Hidden)
-                                {
+                                if (System.IO.File.Exists(ComponentConfigFileName) && (DirItem.Attributes & System.IO.FileAttributes.Hidden) != System.IO.FileAttributes.Hidden) {
                                         System.Xml.XmlDocument ConfigDocument = new System.Xml.XmlDocument();
                                         ConfigDocument.Load(ComponentConfigFile);
                                         System.Xml.XmlNodeList ListaComponentes = ConfigDocument.GetElementsByTagName("Component");
                                         //Abro el/los nodo(s) de componentes
-                                        foreach (System.Xml.XmlNode Componente in ListaComponentes)
-                                        {
-                                                if (Componente.Attributes["Disabled"] == null || Componente.Attributes["Disabled"].Value != "1")
-                                                {
+                                        foreach (System.Xml.XmlNode Componente in ListaComponentes) {
+                                                if (Componente.Attributes["Disabled"] == null || Componente.Attributes["Disabled"].Value != "1") {
                                                         System.Xml.XmlNodeList ListaFunciones = ConfigDocument.GetElementsByTagName("Function");
                                                         //Abro los nodos de funciones
-                                                        foreach (System.Xml.XmlNode Funcion in ListaFunciones)
-                                                        {
+                                                        foreach (System.Xml.XmlNode Funcion in ListaFunciones) {
                                                                 if (Funcion.Attributes["autorun"] != null && Funcion.Attributes["autorun"].Value == "1")
                                                                         Aplicacion.Exec("RUNCOMPONENT " + ComponentName + " " + Funcion.Attributes["name"].Value);
 
                                                                 System.Xml.XmlNode MenuItem = Funcion.SelectSingleNode("MenuItem");
-                                                                if (MenuItem != null)
-                                                                {
+                                                                if (MenuItem != null) {
                                                                         string MenuItemPosition;
                                                                         if (MenuItem.Attributes["position"] == null)
                                                                                 MenuItemPosition = "Componentes";
@@ -360,16 +328,13 @@ namespace Lazaro.Principal
                                                                         //Busco el Parent
                                                                         MenuItem ColgarDe = null;
                                                                         MenuItemInfo ItmInfo;
-                                                                        foreach (MenuItemInfo ItemInfo in MenuItemInfoTable.Values)
-                                                                        {
-                                                                                if (ItemInfo.ParentText + "." + ItemInfo.Text == Lfx.Types.Strings.SimplifyText("Menu." + MenuItemPosition))
-                                                                                {
+                                                                        foreach (MenuItemInfo ItemInfo in MenuItemInfoTable.Values) {
+                                                                                if (ItemInfo.ParentText + "." + ItemInfo.Text == Lfx.Types.Strings.SimplifyText("Menu." + MenuItemPosition)) {
                                                                                         ColgarDe = ItemInfo.Item;
                                                                                         break;
                                                                                 }
                                                                         }
-                                                                        if (ColgarDe == null)
-                                                                        {
+                                                                        if (ColgarDe == null) {
                                                                                 //Si no hay de donde colgarlo, lo creo
                                                                                 ColgarDe = new MenuItem(MenuItemPosition, new System.EventHandler(MnuClick));
                                                                                 ItmInfo = new MenuItemInfo();
@@ -394,7 +359,6 @@ namespace Lazaro.Principal
                                         }
                                 }
                         }
-
                 }
 
                 // Sub: CargarMenuPrincipal
@@ -605,23 +569,17 @@ namespace Lazaro.Principal
                 {
                         MenuItem MiItem = ((MenuItem)(sender));
 
-                        if (MiItem.Text == "-")
-                        {
+                        if (MiItem.Text == "-") {
                                 e.ItemHeight = 4;
                                 e.ItemWidth = 24;
-                        }
-                        else
-                        {
+                        } else {
                                 Font ItemFont = new Font(FONT_NAME, FONT_SIZE, FONT_STYLE);
                                 SizeF ItemSize = e.Graphics.MeasureString(MiItem.Text.Replace("&", ""), ItemFont);
 
-                                if (MiItem.Parent == this.MainMenu)
-                                {
+                                if (MiItem.Parent == this.MainMenu) {
                                         e.ItemHeight = System.Convert.ToInt32(ItemSize.Height + 2);
                                         e.ItemWidth = System.Convert.ToInt32(ItemSize.Width);
-                                }
-                                else
-                                {
+                                } else {
                                         e.ItemHeight = System.Convert.ToInt32(ItemSize.Height + 8);
                                         e.ItemWidth = System.Convert.ToInt32(ItemSize.Width + 16);
 
@@ -638,8 +596,7 @@ namespace Lazaro.Principal
                         float MargenX = 12;
                         float MargenY = 4;
 
-                        if (MiItem.Parent == Aplicacion.FormularioPrincipal.MainMenu)
-                        {
+                        if (MiItem.Parent == Aplicacion.FormularioPrincipal.MainMenu) {
                                 MargenX = 6;
                                 MargenY = 2;
                         }
@@ -650,12 +607,9 @@ namespace Lazaro.Principal
                         e.Graphics.FillRectangle(Fondo, e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height);
                         // e.Graphics.FillRectangle(New SolidBrush(PaletaCambiarBrillo(SystemColors.Menu, -40)), e.Bounds.X + 1, e.Bounds.Y, 20, e.Bounds.Height - 1)
 
-                        if (MiItem.Text == "-")
-                        {
+                        if (MiItem.Text == "-") {
                                 e.Graphics.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.SystemColors.ControlDark), e.Bounds.X + 3, e.Bounds.Y + 1, e.Bounds.Width - 6, e.Bounds.Height - 3);
-                        }
-                        else if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
-                        {
+                        } else if ((e.State & DrawItemState.Selected) == DrawItemState.Selected) {
                                 SolidBrush Resalte = new SolidBrush(System.Drawing.SystemColors.Highlight);
                                 Pen Recuadro = new Pen(System.Drawing.SystemColors.Highlight);
                                 SolidBrush Texto = new SolidBrush(System.Drawing.SystemColors.HighlightText);
@@ -665,16 +619,12 @@ namespace Lazaro.Principal
                                 e.Graphics.DrawRectangle(Recuadro, e.Bounds.X + 1, e.Bounds.Y, e.Bounds.Width - 2, e.Bounds.Height - 1);
                                 e.Graphics.DrawString(MiItem.Text, ItemFont, Texto, e.Bounds.X + MargenX, e.Bounds.Y + MargenY,
                                     FormatoTexto);
-                        }
-                        else if ((e.State & DrawItemState.Disabled) == DrawItemState.Disabled)
-                        {
+                        } else if ((e.State & DrawItemState.Disabled) == DrawItemState.Disabled) {
                                 SolidBrush Texto = new SolidBrush(System.Drawing.SystemColors.GrayText);
                                 // e.Graphics.SmoothingMode = Drawing2D.SmoothingMode.None
                                 e.Graphics.DrawString(MiItem.Text, ItemFont, Texto, e.Bounds.X + MargenX, e.Bounds.Y + MargenY,
                                     FormatoTexto);
-                        }
-                        else
-                        {
+                        } else {
                                 SolidBrush Texto = new SolidBrush(System.Drawing.SystemColors.MenuText);
                                 // e.Graphics.SmoothingMode = Drawing2D.SmoothingMode.None
                                 e.Graphics.DrawString(MiItem.Text, ItemFont, Texto, e.Bounds.X + MargenX, e.Bounds.Y + MargenY,

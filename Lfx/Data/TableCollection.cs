@@ -33,7 +33,7 @@ using System;
 
 namespace Lfx.Data
 {
-        public class TableCollection : System.Collections.ObjectModel.Collection<Table>
+        public class TableCollection : System.Collections.Generic.List<Lfx.Data.Table>
         {
                 protected DataBase DataBase;
 
@@ -59,14 +59,5 @@ namespace Lfx.Data
                                 throw new ArgumentOutOfRangeException("No existe la tabla " + name);
 			}
 		}
-
-                public bool ContainsKey(string key)
-                {
-                        foreach (Table Tb in this) {
-                                if (Tb.Name == key)
-                                        return true;
-                        }
-                        return false;
-                }
         }
 }

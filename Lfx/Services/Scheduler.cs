@@ -39,7 +39,7 @@ namespace Lfx.Services
         public class Scheduler
         {
                 private Lfx.Workspace Workspace;
-                //private Lfx.Data.DataBase m_DataBase = null;
+                private Lfx.Data.DataBase m_DataBase = null;
                 private DateTime m_LastGetTask = DateTime.MinValue;
 
                 public Scheduler(Workspace workspace)
@@ -69,10 +69,10 @@ namespace Lfx.Services
                 {
                         get
                         {
-                                //if (m_DataBase == null)
-                                //        m_DataBase = m_Workspace.GetDataBase("Programador de tareas");
-                                //return m_DataBase;
-                                return this.Workspace.DefaultDataBase;
+                                if (m_DataBase == null)
+                                        m_DataBase = this.Workspace.GetDataBase("Programador de tareas");
+                                return m_DataBase;
+                                //return this.Workspace.DefaultDataBase;
                         }
                 }
 
@@ -104,39 +104,38 @@ namespace Lfx.Services
                         if (Workspace == null)
                                 return null;
 
-                        if (this.DataBase.ConectionState == System.Data.ConnectionState.Open) {
-                                m_LastGetTask = DateTime.Now;
-                                string Sql = "SELECT * FROM sys_programador WHERE estado=0";
+                        if (this.DataBase.ConectionState != System.Data.ConnectionState.Open)
+                                this.DataBase.Open();
 
-                                Sql += " AND componente IN ('" + component + "', NULL)";
-                                Sql += " AND estacion IN ('*', '" + this.DataBase.EscapeString(System.Environment.MachineName.ToUpperInvariant()) + "')";
+                        m_LastGetTask = DateTime.Now;
+                        string Sql = "SELECT * FROM sys_programador WHERE estado=0";
 
-                                Lfx.Data.Row TaskRow = this.DataBase.FirstRowFromSelect(Sql);
+                        Sql += " AND componente IN ('" + component + "', NULL)";
+                        Sql += " AND estacion IN ('*', '" + this.DataBase.EscapeString(System.Environment.MachineName.ToUpperInvariant()) + "')";
 
-                                if (TaskRow != null) {
-                                        Task Result = new Task();
+                        Lfx.Data.Row TaskRow = this.DataBase.FirstRowFromSelect(Sql);
 
-                                        Result.Id = System.Convert.ToInt32(TaskRow["id_evento"]);
-                                        Result.Command = TaskRow["comando"].ToString();
-                                        Result.Component = TaskRow["componente"].ToString();
-                                        Result.Creator = TaskRow["crea_usuario"].ToString();
-                                        Result.CreatorComputerName = TaskRow["crea_estacion"].ToString();
-                                        Result.ComputerName = TaskRow["estacion"].ToString();
-                                        Result.Schedule = System.Convert.ToDateTime(TaskRow["fecha"]);
-                                        Result.Status = System.Convert.ToInt32(TaskRow["estado"]);
+                        if (TaskRow != null) {
+                                Task Result = new Task();
 
-                                        //Elimino tareas viejas
-                                        qGen.Update Actualizar = new qGen.Update("sys_programador", new qGen.Where("id_evento", Result.Id));
-                                        Actualizar.Fields.AddWithValue("estado", 1);
-                                        this.DataBase.Execute(Actualizar);
-                                        this.DataBase.Execute(new qGen.Delete("sys_programador", new qGen.Where("fecha", qGen.ComparisonOperators.LessThan, System.DateTime.Now.AddDays(-7))));
+                                Result.Id = System.Convert.ToInt32(TaskRow["id_evento"]);
+                                Result.Command = TaskRow["comando"].ToString();
+                                Result.Component = TaskRow["componente"].ToString();
+                                Result.Creator = TaskRow["crea_usuario"].ToString();
+                                Result.CreatorComputerName = TaskRow["crea_estacion"].ToString();
+                                Result.ComputerName = TaskRow["estacion"].ToString();
+                                Result.Schedule = System.Convert.ToDateTime(TaskRow["fecha"]);
+                                Result.Status = System.Convert.ToInt32(TaskRow["estado"]);
 
-                                        return Result;
-                                } else
-                                        return null;
-                        } else {
+                                //Elimino tareas viejas
+                                qGen.Update Actualizar = new qGen.Update("sys_programador", new qGen.Where("id_evento", Result.Id));
+                                Actualizar.Fields.AddWithValue("estado", 1);
+                                this.DataBase.Execute(Actualizar);
+                                this.DataBase.Execute(new qGen.Delete("sys_programador", new qGen.Where("fecha", qGen.ComparisonOperators.LessThan, System.DateTime.Now.AddDays(-7))));
+
+                                return Result;
+                        } else
                                 return null;
-                        }
                 }
         }
 }

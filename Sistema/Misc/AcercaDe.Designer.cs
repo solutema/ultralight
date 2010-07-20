@@ -97,7 +97,7 @@ namespace Lazaro.Misc
                         this.lblActualizar.TabStop = true;
                         this.lblActualizar.Text = "Buscar actualizaciones ahora";
                         this.lblActualizar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        this.lblActualizar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblActualizar_LinkClicked);
+                        this.lblActualizar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BotonActualizar_LinkClicked);
                         // 
                         // Label5
                         // 

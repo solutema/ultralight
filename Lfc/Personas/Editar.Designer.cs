@@ -382,7 +382,7 @@ namespace Lfc.Personas
                         this.EntradaCuit.TextRaw = "";
                         this.EntradaCuit.TipWhenBlank = "";
                         this.EntradaCuit.ToolTipText = "";
-                        this.EntradaCuit.Leave += new System.EventHandler(this.txtCUIT_Leave);
+                        this.EntradaCuit.Leave += new System.EventHandler(this.EntradaCUIT_Leave);
                         // 
                         // EntradaRazonSocial
                         // 

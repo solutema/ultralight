@@ -85,15 +85,46 @@ namespace Lfx.Types
                         }
                 }
 
+                /// <summary>
+                /// Devuelve true si la cadena tiene formato de double
+                /// </summary>
+                /// <param name="valor"></param>
+                /// <returns></returns>
+                public static bool IsDouble(string valor)
+                {
+                        try {
+                                if (valor == null || valor == string.Empty)
+                                        return false;
+
+                                valor = valor.Replace("$", "").Trim();
+
+                                string ValidChars = "-0123456789.,";
+                                for (int i = 0; i < valor.Length; i++) {
+                                        string CurChar = valor.Substring(i, 1);
+                                        if (!ValidChars.Contains(CurChar))
+                                                return false;
+                                }
+                                return true;
+                        } catch {
+                                return false;
+                        }
+                }
+
 
                 /// <summary>
                 /// Interpreta un valor de punto flotante. Devuelve cero para cualquier valor desconocido.
                 /// </summary>
                 public static double ParseDouble(string valor)
                 {
-                        double Resultado = 0;
-                        double.TryParse(valor, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out Resultado);
-                        return Resultado;
+                        string ValorMejorado = valor.Replace("$", "").Trim();
+
+                        if (IsDouble(ValorMejorado)) {
+                                double Resultado = 0;
+                                double.TryParse(ValorMejorado, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out Resultado);
+                                return Resultado;
+                        } else {
+                                return 0;
+                        }
                 }
 
 
@@ -145,6 +176,7 @@ namespace Lfx.Types
                 {
                         if (valor == null || valor.Length == 0)
                                 return 0;
+
                         double Resultado = 0;
                         double.TryParse(valor, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out Resultado);
                         if (Resultado > int.MaxValue)

@@ -71,6 +71,18 @@ namespace Lbl.Entidades
 			}
 		}
 
+                public int Nivel
+                {
+                        get
+                        {
+                                return this.FieldInt("nivel");
+                        }
+                        set
+                        {
+                                this.Registro["nivel"] = value;
+                        }
+                }
+
                 public string CodigoPostal
                 {
                         get
@@ -87,11 +99,11 @@ namespace Lbl.Entidades
                 {
                         get
                         {
-                                return ((TipoLocalidad)(this.FieldInt("nivel")));
+                                return ((TipoLocalidad)(this.Nivel));
                         }
                         set
                         {
-                                this.Registro["nivel"] = (int)value;
+                                this.Nivel = (int)value;
                         }
                 }
 
@@ -174,6 +186,35 @@ namespace Lbl.Entidades
                                                 throw new InvalidOperationException("No se puede establecer la Provincia de una Ciudad directamente, debe establecer el Departamento");
                                 }
                         }
+                }
+
+                public override Lfx.Types.OperationResult Guardar()
+                {
+                        qGen.TableCommand Comando;
+
+                        if (this.Existe == false) {
+                                Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
+                                Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
+                        } else {
+                                Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
+                        }
+
+                        Comando.Fields.AddWithValue("nombre", this.Nombre);
+                        Comando.Fields.AddWithValue("cp", this.CodigoPostal);
+                        if (this.Parent == null) {
+                                Comando.Fields.AddWithValue("parent", null);
+                                Comando.Fields.AddWithValue("nivel", 0);
+                        } else {
+                                Comando.Fields.AddWithValue("parent", this.Parent.Id);
+                                Comando.Fields.AddWithValue("nivel", this.Parent.Nivel + 1);
+                        }
+
+                        this.AgregarTags(Comando);
+
+                        this.DataBase.Execute(Comando);
+
+                        return base.Guardar();
                 }
 	}
 }

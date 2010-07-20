@@ -1353,6 +1353,13 @@
             Interpreta un valor de fecha en varios formatos diferentes. Devuelve null para cadenas vacías o fechas inválidas.
             </summary>
         </member>
+        <member name="M:Lfx.Types.Parsing.IsDouble(System.String)">
+            <summary>
+            Devuelve true si la cadena tiene formato de double
+            </summary>
+            <param name="valor"></param>
+            <returns></returns>
+        </member>
         <member name="M:Lfx.Types.Parsing.ParseDouble(System.String)">
             <summary>
             Interpreta un valor de punto flotante. Devuelve cero para cualquier valor desconocido.

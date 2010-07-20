@@ -54,20 +54,68 @@ namespace Lfx
         {
                 public int UpdatedFiles;
                 public string ErrorMessage = null;
-                public bool IgnorarColisiones = false, Running = false;
+                private bool IgnoreOthersUpdating = false, Updating = false, Running = false;
                 public static Updater Master = null;
+                System.Threading.Thread UpdaterThread = null;
                 
                 private Lfx.Data.DataBase m_DataBase = null;
 
-                public void UpdateAll()
+                public Updater()
                 {
-                        if (Running)
+                        this.UpdaterThread = new System.Threading.Thread(new System.Threading.ThreadStart(UpdateProc));
+                        this.UpdaterThread.Priority = System.Threading.ThreadPriority.Lowest;
+                }
+
+                public void Start()
+                {
+                        this.Running = true;
+                        this.UpdaterThread.Start();
+                }
+
+                private void UpdateProc()
+                {
+                        this.Running = true;
+
+                        int Loop = 0;
+                        while (this.Running) {
+                                if (Loop++ > 3) {
+                                        this.UpdateFromWeb();
+                                        Loop = 0;
+                                } else {
+                                        this.UpdateFromDbCache();
+                                }
+                                System.Threading.Thread.Sleep(10 * 60 * 1000);  // Dormir 10 minutos
+                        }
+                }
+
+                public void Stop()
+                {
+                        this.Running = false;
+                        this.UpdaterThread.Abort();
+                }
+
+                public void UpdateFromWeb()
+                {
+                        if (Updating)
                                 return;
-                        Running = true;
+
+                        Updating = true;
 
                         UpdateAllFromWeb();
 
-                        Running = false;
+                        Updating = false;
+                }
+
+                public void UpdateFromDbCache()
+                {
+                        if (Updating)
+                                return;
+
+                        Updating = true;
+
+                        UpdateAllFromDbCache(string.Empty);
+
+                        Updating = false;
                 }
 
                 public void Dispose()
@@ -86,25 +134,21 @@ namespace Lfx
                         }
                 }
 
-
-                public int UpdateAllFromDbCache()
+                public bool RebootNeeded
                 {
-                        if (Running)
-                                return 0;
-                        Running = true;
+                        get
+                        {
+                                if (this.Running)
+                                        return false;
 
-                        this.ErrorMessage = null;
-                        this.UpdatedFiles = 0;
+                                if (UpdatedFiles > 0)
+                                        return true;
 
-                        int Res = UpdateAllFromDbCache(string.Empty);
-
-                        Running = false;
-                        
-                        return Res;
+                                return false;
+                        }
                 }
 
-
-                public Lfx.Data.DataBase DataBase
+                private Lfx.Data.DataBase DataBase
                 {
                         get
                         {
@@ -115,7 +159,7 @@ namespace Lfx
                 }
 
 
-                public int UpdateAllFromDbCache(string nombreCarpeta)
+                private int UpdateAllFromDbCache(string nombreCarpeta)
                 {
                         try {
                                 DataTable Archivos = this.DataBase.Select("SELECT nombre, fecha, checksum FROM sys_asl");
@@ -134,18 +178,18 @@ namespace Lfx
                 }
 
 
-                public int UpdateAllFromWeb()
+                private void UpdateAllFromWeb()
                 {
                         this.ErrorMessage = null;
-                        this.UpdatedFiles = 0;
-                        Running = true;
+                        UpdatedFiles = 0;
+                        Updating = true;
 
                         // Me fijo si ya hay alguien descargando las actualizaciones
                         string FechaInicioActualizacion = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingString(null, "Sistema.Actualizaciones.InicioDescarga", string.Empty);
                         string FechaInicioActualizacionMax = Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.AddHours(2));
 
                         // Si hay alguien, pero está hace 4 horas o más, me pongo a descargar igual
-                        if (this.IgnorarColisiones || string.Compare(FechaInicioActualizacion, FechaInicioActualizacionMax) < 0) {
+                        if (this.IgnoreOthersUpdating || string.Compare(FechaInicioActualizacion, FechaInicioActualizacionMax) < 0) {
                                 Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.Actualizaciones.InicioDescarga", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "*");
                                 Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.Actualizaciones.EstacionDescarga", System.Environment.MachineName.ToUpperInvariant(), "*");
 
@@ -163,7 +207,7 @@ namespace Lfx
                                 UpdateFileFromWeb(UrlActualizaciones, ArchivoVersion, true, string.Empty);
 
                                 if (System.IO.File.Exists(Lfx.Environment.Folders.UpdatesFolder + "version.xml") == false)
-                                        return 0;
+                                        return;
 
                                 VersionXml.Load(Lfx.Environment.Folders.UpdatesFolder + "version.xml");
                                 System.Xml.XmlNode VersionInfo = VersionXml.SelectSingleNode("/VersionInfo");
@@ -226,13 +270,11 @@ namespace Lfx
                         }
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.Actualizaciones.InicioDescarga", "0");
 
-                        Running = false;
-
-                        return UpdatedFiles;
+                        Updating = false;
                 }
 
 
-                public bool UpdateFileFromDbCache(Lfx.Data.Row Archivo, bool IgnorarFecha, string nombreCarpeta)
+                private bool UpdateFileFromDbCache(Lfx.Data.Row Archivo, bool IgnorarFecha, string nombreCarpeta)
                 {
                         string FechaNueva = "1901-01-02";
                         string FechaArchivo = "1901-01-01";
@@ -304,7 +346,7 @@ namespace Lfx
                 }
 
 
-                public bool UpdateFileFromWeb(string aslURL, System.Xml.XmlNode Archivo, bool IgnorarFecha, string nombreCarpeta)
+                private bool UpdateFileFromWeb(string aslURL, System.Xml.XmlNode Archivo, bool IgnorarFecha, string nombreCarpeta)
                 {
                         bool actualizarArchivoDesdeWebReturn = false;
 
@@ -412,7 +454,7 @@ namespace Lfx
                                                 actualizarArchivoDesdeWebReturn = true;
 
                                                 // Lo publico en la BD
-                                                if (IgnorarColisiones == false && NombreArchivo != "version.xml" && Lfx.Workspace.Master.SlowLink == false && Lfx.Environment.SystemInformation.DesignMode == false) {
+                                                if (IgnoreOthersUpdating == false && NombreArchivo != "version.xml" && Lfx.Workspace.Master.SlowLink == false && Lfx.Environment.SystemInformation.DesignMode == false) {
                                                         qGen.Delete EliminarArchivoViejo = new qGen.Delete("sys_asl");
                                                         EliminarArchivoViejo.WhereClause = new qGen.Where("nombre", (nombreCarpeta + NombreArchivo).Replace("\\", "/"));
                                                         this.DataBase.Execute(EliminarArchivoViejo);

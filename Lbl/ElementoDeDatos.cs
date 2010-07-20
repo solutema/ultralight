@@ -216,6 +216,17 @@ namespace Lbl
 			}
 		}
 
+                /// <summary>
+                /// True si la imagen fue cambiada.
+                /// </summary>
+                public bool ImagenCambio
+                {
+                        get
+                        {
+                                return m_ImagenCambio;
+                        }
+                }
+
                 public virtual System.Drawing.Image Imagen
                 {
                         get
@@ -314,10 +325,10 @@ namespace Lbl
                                                 EliminarImagen.WhereClause = new qGen.Where(this.CampoId, this.Id);
                                                 this.DataBase.Execute(EliminarImagen);
                                         }
+                                        this.Workspace.ActionLog("SAVE", this.TablaDatos, this.Id, "Se eliminó la imagen");
                                 } else {
                                         // Cargar imagen nueva
                                         using (System.IO.MemoryStream ByteStream = new System.IO.MemoryStream()) {
-
                                                 System.Drawing.Imaging.ImageCodecInfo CodecInfo = null;
                                                 System.Drawing.Imaging.ImageCodecInfo[] Codecs = System.Drawing.Imaging.ImageCodecInfo.GetImageEncoders();
                                                 foreach (System.Drawing.Imaging.ImageCodecInfo Codec in Codecs) {
@@ -352,6 +363,7 @@ namespace Lbl
 
                                                 CambiarImagen.Fields.AddWithValue("imagen", ImagenBytes);
                                                 this.DataBase.Execute(CambiarImagen);
+                                                this.Workspace.ActionLog("SAVE", this.TablaDatos, this.Id, "Se cargó una imagen nueva");
                                         }
                                 }
                         }
@@ -376,7 +388,20 @@ namespace Lbl
                                 }
                         }
 
-			string Extra1 = null;
+                        this.GuardarLog();
+                        this.Workspace.NotifyTableChange(this.TablaDatos, this.Id);
+
+                        this.m_RegistroOriginal = this.m_Registro.Clone();
+                        this.m_EtiquetasOriginal = this.m_Etiquetas.Clone();
+                        this.m_ImagenCambio = false;
+			this.m_Registro.IsNew = false;
+			
+                        return new Lfx.Types.SuccessOperationResult();
+		}
+
+                private void GuardarLog()
+                {
+                        string Extra1 = null;
                         try {
                                 // Genero una lista de cambios
                                 foreach (Lfx.Data.Field Fl in this.m_Registro.Fields) {
@@ -407,26 +432,14 @@ namespace Lbl
                                         throw;
                         }
 
-			try
-			{
-				//System.Console.WriteLine(Extra1);
-				this.Workspace.ActionLog("SAVE", this.TablaDatos, this.Id, Extra1);
-			}
-			catch
-			{
+                        try {
+                                //System.Console.WriteLine(Extra1);
+                                this.Workspace.ActionLog("SAVE", this.TablaDatos, this.Id, Extra1);
+                        } catch {
                                 if (Lfx.Environment.SystemInformation.DesignMode)
                                         throw;
-			}
-
-                        this.Workspace.NotifyTableChange(this.TablaDatos, this.Id);
-
-                        this.m_RegistroOriginal = this.m_Registro.Clone();
-                        this.m_EtiquetasOriginal = this.m_Etiquetas.Clone();
-                        this.m_ImagenCambio = false;
-			this.m_Registro.IsNew = false;
-			
-                        return new Lfx.Types.SuccessOperationResult();
-		}
+                        }
+                }
 
                 /// <summary>
                 /// Agrega los campos personalizados (tags) al comando, antes de guardar.

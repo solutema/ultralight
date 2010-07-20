@@ -147,13 +147,13 @@ namespace Lazaro.Reportes
                         this.cmdGastosVariables = new Lui.Forms.Button();
                         this.cmdOtrosEgresos = new Lui.Forms.Button();
                         this.lvItems = new Lui.Forms.ListView();
-                        this.id = new System.Windows.Forms.ColumnHeader();
-                        this.fecha = new System.Windows.Forms.ColumnHeader();
-                        this.concepto = new System.Windows.Forms.ColumnHeader();
-                        this.importe = new System.Windows.Forms.ColumnHeader();
-                        this.cuenta = new System.Windows.Forms.ColumnHeader();
-                        this.comprob = new System.Windows.Forms.ColumnHeader();
-                        this.obs = new System.Windows.Forms.ColumnHeader();
+                        this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.fecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.concepto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.importe = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.cuenta = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.comprob = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.obs = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.txtCobros = new Lui.Forms.TextBox();
                         this.Label10 = new System.Windows.Forms.Label();
                         this.cmdCobros = new Lui.Forms.Button();
@@ -1178,8 +1178,8 @@ namespace Lazaro.Reportes
 
                 public void MostrarReporte()
                 {
-                        double Facturas = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND compra=0 AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                        double NotasCredito = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND compra=0 AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        double Facturas = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND compra=0 AND impresa>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        double NotasCredito = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND compra=0 AND impresa>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 
                         double Costo = this.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND comprob.compra=0 AND comprob.impresa>0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                         double CostoNotasCredito = this.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND comprob.compra=0 AND comprob.impresa>0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");

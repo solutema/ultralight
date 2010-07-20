@@ -42,7 +42,7 @@ namespace Lfx.Config
 		private string m_ConfigFileName;
 		private System.Xml.XmlDocument ConfigDocument;
 		private Workspace m_Workspace;
-                //private Lfx.Data.DataBase m_DataBase;
+                private Lfx.Data.DataBase m_DataBase;
 
                 public Lfx.Config.ProductsConfig Products;
                 public Lfx.Config.CurrencyConfig Currency;
@@ -97,10 +97,10 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                //if (m_DataBase == null)
-                                //        m_DataBase = m_Workspace.GetDataBase("Administrador de configuración");
-                                //return m_DataBase;
-                                return this.Workspace.DefaultDataBase;
+                                if (m_DataBase == null)
+                                        m_DataBase = m_Workspace.GetDataBase("Administrador de configuración");
+                                return m_DataBase;
+                                //return this.Workspace.DefaultDataBase;
                         }
                 }
 

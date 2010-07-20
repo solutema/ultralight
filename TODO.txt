@@ -3,4 +3,4 @@
 Tareas pendientes (sin orden particular)
 
 * Terminar de implementar IVA
-* Mejorar Lui.ListingForm para que puedan personalizarse las columnas.
+* Mejorar Lui.ListingForm para que puedan personalizarse las columnas. Tal vez utilizando ObjectListView.

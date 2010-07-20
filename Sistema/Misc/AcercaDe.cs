@@ -123,12 +123,13 @@ namespace Lazaro.Misc
 		}
 
 
-		private void lblActualizar_LinkClicked(System.Object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		private void BotonActualizar_LinkClicked(System.Object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
+                        this.Close();
 			Actualizador.Estado OFormActualizador = new Actualizador.Estado();
 			OFormActualizador.TopMost = true;
 			OFormActualizador.Show();
-                        Lfx.Updater.Master.UpdateAll();
+                        Lfx.Updater.Master.UpdateFromWeb();
 			OFormActualizador.Close();
 			OFormActualizador = null;
                         if (Lfx.Updater.Master.ErrorFlag) {

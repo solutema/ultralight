@@ -39,7 +39,7 @@ namespace Lfx
         public class Workspace : System.MarshalByRefObject
 	{
                 public static Lfx.Workspace Master;
-                public static Lfx.Data.TableCollection MasterTableCollection = null;
+                public static Lfx.Data.TableCollection m_MasterTableCollection = null;
 
 		private string m_Name;
                 private Lfx.Data.DataBase m_DataBase = null;
@@ -70,8 +70,6 @@ namespace Lfx
                         this.CurrentUser = new Lfx.Access.LoginData(this);
                         this.DefaultScheduler = new Lfx.Services.Scheduler(this);
                         this.RunTime = new Workspace.RunTimeServices();
-                        if (Lfx.Environment.SystemInformation.DesignMode)
-                                this.DebugMode = true;
 
                         m_DataBase = new Lfx.Data.DataBase(this, "Conexion maestra");
 
@@ -86,17 +84,21 @@ namespace Lfx
                                         case "odbc":
                                                 Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.ODBC;
                                                 break;
+
                                         case "mysql":
                                                 Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MySql;
                                                 break;
+
                                         case "myodbc":
                                                 // FIXME: eliminar esto que se usa momentáneamente para migrar a todos de MyODBC a MySQL Connector/NET.
                                                 this.CurrentConfig.WriteLocalSetting("Data", "ConnectionType", "mysql");
                                                 Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MyOdbc;
                                                 break;
+
                                         case "npgsql":
                                                 Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.Npgsql;
                                                 break;
+
                                         case "mssql":
                                                 Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MSSql;
                                                 break;
@@ -182,6 +184,31 @@ namespace Lfx
                                 System.Console.WriteLine(ex.ToString());
 			}
 		}
+
+                public Lfx.Data.TableCollection Tables
+                {
+                        get
+                        {
+                                if (m_MasterTableCollection == null) {
+                                        m_MasterTableCollection = new Lfx.Data.TableCollection(Lfx.Workspace.Master.DefaultDataBase);
+                                        foreach (string TblName in Lfx.Data.DataBaseCache.DefaultCache.TableList) {
+                                                Lfx.Data.Table NewTable = new Lfx.Data.Table(Lfx.Workspace.Master.DefaultDataBase, TblName);
+                                                switch (TblName) {
+                                                        case "sys_asl":
+                                                        case "sys_log":
+                                                        case "sys_programador":
+                                                        case "sys_quickpaste":
+                                                                NewTable.Cacheable = false;
+                                                                break;
+                                                }
+                                                if (Lfx.Data.DataBaseCache.DefaultCache.TableStructures.ContainsKey(TblName) && Lfx.Data.DataBaseCache.DefaultCache.TableStructures[TblName].PrimaryKey != null)
+                                                        NewTable.PrimaryKey = Lfx.Data.DataBaseCache.DefaultCache.TableStructures[TblName].PrimaryKey.Name;
+                                                Lfx.Workspace.m_MasterTableCollection.Add(NewTable);
+                                        }
+                                }
+                                return m_MasterTableCollection;
+                        }
+                }
 
 		public bool SlowLink
 		{

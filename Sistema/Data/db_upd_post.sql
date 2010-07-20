@@ -46,4 +46,6 @@ UPDATE comprob SET cancelado=total WHERE tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE'
 
 DROP TABLE IF EXISTS tarjetas_presentaciones;
 
+UPDATE ctacte SET obs=NULL WHERE obs='';
+
 SET FOREIGN_KEY_CHECKS=1;

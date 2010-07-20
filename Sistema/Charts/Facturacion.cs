@@ -37,67 +37,65 @@ using System.Windows.Forms;
 
 namespace Lazaro.Charts
 {
-	public class Facturacion : Lui.Forms.ChildForm
-	{
-		private Lui.Forms.Chart Chart;
-		internal Lui.Forms.Button PorMes;
-		internal Lui.Forms.Button PorRentabilidad;
-		private System.Windows.Forms.PictureBox pictureBox1;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.PictureBox pictureBox2;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.PictureBox pictureBox3;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.PictureBox pictureBox4;
+        public class Facturacion : Lui.Forms.ChildForm
+        {
+                private Lui.Forms.Chart Chart;
+                internal Lui.Forms.Button PorMes;
+                internal Lui.Forms.Button PorRentabilidad;
+                private System.Windows.Forms.PictureBox pictureBox1;
+                private System.Windows.Forms.Label label1;
+                private System.Windows.Forms.Label label2;
+                private System.Windows.Forms.PictureBox pictureBox2;
+                private System.Windows.Forms.Label label3;
+                private System.Windows.Forms.PictureBox pictureBox3;
+                private System.Windows.Forms.Label label4;
+                private System.Windows.Forms.PictureBox pictureBox4;
                 private Lui.Forms.Chart ChartRent;
-		private Lui.Forms.ListView lvAnual;
-		private System.Windows.Forms.ColumnHeader lvAnualMes;
-		private System.Windows.Forms.ColumnHeader lvAnualMonto;
-		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.PictureBox pictureBox7;
-		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.PictureBox pictureBox8;
-		private System.Windows.Forms.Label label9;
-		private System.Windows.Forms.PictureBox pictureBox9;
-		internal Lui.Forms.Button BotonPorDiaDelMes;
-		private Lui.Forms.Chart ChartMes;
+                private Lui.Forms.ListView lvAnual;
+                private System.Windows.Forms.ColumnHeader lvAnualMes;
+                private System.Windows.Forms.ColumnHeader lvAnualMonto;
+                private System.Windows.Forms.Label label7;
+                private System.Windows.Forms.PictureBox pictureBox7;
+                private System.Windows.Forms.Label label8;
+                private System.Windows.Forms.PictureBox pictureBox8;
+                private System.Windows.Forms.Label label9;
+                private System.Windows.Forms.PictureBox pictureBox9;
+                internal Lui.Forms.Button BotonPorDiaDelMes;
+                private Lui.Forms.Chart ChartMes;
                 private Label label5;
                 private PictureBox pictureBox5;
                 private Label label6;
                 private PictureBox pictureBox6;
                 private Label label10;
                 private PictureBox pictureBox10;
-		private System.ComponentModel.IContainer components = null;
+                private System.ComponentModel.IContainer components = null;
 
-		public Facturacion()
-		{
-			// Llamada necesaria para el Diseñador de Windows Forms.
-			InitializeComponent();
-		}
+                public Facturacion()
+                {
+                        // Llamada necesaria para el Diseñador de Windows Forms.
+                        InitializeComponent();
+                }
 
-		/// <summary>
-		/// Limpiar los recursos que se estén utilizando.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if (components != null) 
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
+                /// <summary>
+                /// Limpiar los recursos que se estén utilizando.
+                /// </summary>
+                protected override void Dispose(bool disposing)
+                {
+                        if (disposing) {
+                                if (components != null) {
+                                        components.Dispose();
+                                }
+                        }
+                        base.Dispose(disposing);
+                }
 
-		#region Código generado por el diseñador
-		/// <summary>
-		/// Método necesario para admitir el Diseñador. No se puede modificar
-		/// el contenido del método con el editor de código.
-		/// </summary>
-		private void InitializeComponent()
-		{
+                #region Código generado por el diseñador
+                /// <summary>
+                /// Método necesario para admitir el Diseñador. No se puede modificar
+                /// el contenido del método con el editor de código.
+                /// </summary>
+                private void InitializeComponent()
+                {
                         this.Chart = new Lui.Forms.Chart();
                         this.PorMes = new Lui.Forms.Button();
                         this.PorRentabilidad = new Lui.Forms.Button();
@@ -495,8 +493,8 @@ namespace Lazaro.Charts
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
                         this.ResumeLayout(false);
 
-		}
-		#endregion
+                }
+                #endregion
 
                 public void RentabilidadAnual(int anio, Lui.Forms.Chart Chrt)
                 {
@@ -521,10 +519,10 @@ namespace Lazaro.Charts
                                         string Fecha1Sql = anio.ToString("0000") + "-" + mes.ToString("00") + "-01";
                                         string Fecha2Sql = anio.ToString("0000") + "-" + mes.ToString("00") + "-31";
 
-                                        double Facturas = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double NotasCredito = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double Costo = this.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND comprob.impresa>0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double CostoNotasCredito = this.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND comprob.impresa>0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        double Facturas = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND compra=0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        double NotasCredito = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND impresa>0 AND compra=0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        double Costo = this.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND comprob.compra=0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        double CostoNotasCredito = this.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND comprob.impresa>0 AND comprob.compra=0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                                         double CostoCapital = this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=220) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                                         double GastosFijos = this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=230) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                                         double GastosVariables = this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=240) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
@@ -560,113 +558,94 @@ namespace Lazaro.Charts
                         Chrt.Series.Add(Serie3);
                 }
 
-		private Lbl.Charts.Element[] FacturacionAnual(int anio, bool costo, int sucursal)
-		{
+                private Lbl.Charts.Element[] FacturacionAnual(int anio, bool costo, int sucursal)
+                {
                         Lbl.Charts.Element[] Elements = new Lbl.Charts.Element[12];
 
-			for(int mes = 1; mes <= 12; mes++) 
-			{
-				if(mes == System.DateTime.Now.Month && anio == System.DateTime.Now.Year)
-				{
-					Elements[mes-1] = null;
-				}
-				else
-				{
-					string Fecha1Sql = anio.ToString("0000") + "-" + mes.ToString("00") + "-01";
-					string Fecha2Sql = anio.ToString("0000") + "-" + mes.ToString("00") + "-31";
+                        for (int mes = 1; mes <= 12; mes++) {
+                                if (mes == System.DateTime.Now.Month && anio == System.DateTime.Now.Year) {
+                                        Elements[mes - 1] = null;
+                                } else {
+                                        string Fecha1Sql = anio.ToString("0000") + "-" + mes.ToString("00") + "-01";
+                                        string Fecha2Sql = anio.ToString("0000") + "-" + mes.ToString("00") + "-31";
 
-					double ValoresSuma = 0, ValoresResta = 0;
+                                        double ValoresSuma = 0, ValoresResta = 0;
 
-					string WhereSuc = "";
-					if(sucursal > 0)
-						WhereSuc = " id_sucursal=" + sucursal.ToString() + " AND ";
+                                        string WhereSuc = "";
+                                        if (sucursal > 0)
+                                                WhereSuc = " id_sucursal=" + sucursal.ToString() + " AND ";
 
-					if(costo == false) 
-					{
-						//Tomo la facturación
-                                                ValoresSuma = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                                ValoresResta = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-					}
-					else
-					{
-						//Tomo el costo de la facturación
-                                                ValoresSuma = this.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE " + WhereSuc + " comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND comprob.impresa>0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                                ValoresResta = this.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE " + WhereSuc + " comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND comprob.impresa>0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-					}
+                                        if (costo == false) {
+                                                //Tomo la facturación
+                                                ValoresSuma = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND compra=0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                                ValoresResta = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND impresa>0 AND compra=0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        } else {
+                                                //Tomo el costo de la facturación
+                                                ValoresSuma = this.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE " + WhereSuc + " comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND comprob.impresa>0 AND comprob.compra=0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                                ValoresResta = this.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE " + WhereSuc + " comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND comprob.impresa>0 AND comprob.compra=0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        }
 
-					if(ValoresSuma != 0)
-					{
+                                        if (ValoresSuma != 0) {
                                                 Elements[mes - 1] = new Lbl.Charts.Element();
-						Elements[mes-1].Value = ValoresSuma - ValoresResta;
-					}
-					else
-					{
-						Elements[mes-1] = null;
-					}
-				}
-			}
-			return Elements;
-		}
+                                                Elements[mes - 1].Value = ValoresSuma - ValoresResta;
+                                        } else {
+                                                Elements[mes - 1] = null;
+                                        }
+                                }
+                        }
+                        return Elements;
+                }
 
 
                 private Lbl.Charts.Element[] FacturacionMensual(int anio, int mes, int sucursal)
-		{
+                {
                         Lbl.Charts.Element[] Elements = new Lbl.Charts.Element[31];
 
-			for(int dia = 1; dia <= 31; dia++) 
-			{
-				if(mes == System.DateTime.Now.Month && anio == System.DateTime.Now.Year && dia == System.DateTime.Now.Day)
-				{
-					Elements[dia-1] = null;
-				}
-				else
-				{
-                    int anio1 = anio, anio2 = anio;
-                    if (anio == 0)
-                    {
-                        anio1 = 1900;
-                        anio2 = 2099;
-                    }
-                    int mes1 = mes, mes2 = mes;
-                    if (mes == 0)
-                    {
-                        mes1 = 1900;
-                        mes2 = 2099;
-                    }
+                        for (int dia = 1; dia <= 31; dia++) {
+                                if (mes == System.DateTime.Now.Month && anio == System.DateTime.Now.Year && dia == System.DateTime.Now.Day) {
+                                        Elements[dia - 1] = null;
+                                } else {
+                                        int anio1 = anio, anio2 = anio;
+                                        if (anio == 0) {
+                                                anio1 = 1900;
+                                                anio2 = 2099;
+                                        }
+                                        int mes1 = mes, mes2 = mes;
+                                        if (mes == 0) {
+                                                mes1 = 1900;
+                                                mes2 = 2099;
+                                        }
 
-                    string Fecha1Sql = anio1.ToString("0000") + "-" + mes1.ToString("00") + "-" + dia.ToString("00") + " 00:00:00";
-					string Fecha2Sql = anio2.ToString("0000") + "-" + mes2.ToString("00") + "-" + dia.ToString("00") + " 23:59:59";
+                                        string Fecha1Sql = anio1.ToString("0000") + "-" + mes1.ToString("00") + "-" + dia.ToString("00") + " 00:00:00";
+                                        string Fecha2Sql = anio2.ToString("0000") + "-" + mes2.ToString("00") + "-" + dia.ToString("00") + " 23:59:59";
 
-					double ValoresSuma = 0, ValoresResta = 0;
+                                        double ValoresSuma = 0, ValoresResta = 0;
 
-					string WhereSuc = "";
-					if(sucursal > 0)
-						WhereSuc = " id_sucursal=" + sucursal.ToString() + " AND ";
+                                        string WhereSuc = "";
+                                        if (sucursal > 0)
+                                                WhereSuc = " id_sucursal=" + sucursal.ToString() + " AND ";
 
-					//Tomo la facturación
-                                        ValoresSuma = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        ValoresResta = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        //Tomo la facturación
+                                        ValoresSuma = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND compra=0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        ValoresResta = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND impresa>0 AND compra=0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 
-					if(ValoresSuma != 0)
-					{
+                                        if (ValoresSuma != 0) {
                                                 Elements[dia - 1] = new Lbl.Charts.Element();
-						Elements[dia-1].Value = ValoresSuma - ValoresResta;
-					}
-					else
-					{
-						Elements[dia-1] = null;
-					}
-				}
-			}
-			return Elements;
-		}
+                                                Elements[dia - 1].Value = ValoresSuma - ValoresResta;
+                                        } else {
+                                                Elements[dia - 1] = null;
+                                        }
+                                }
+                        }
+                        return Elements;
+                }
 
 
 
-		private void PorMes_Click(object sender, System.EventArgs e)
-		{
-			Chart.Title = "Facturación Por Mes";
-			Chart.GraphicType = Lui.Forms.Chart.GraphicTypes.Lines;
+                private void PorMes_Click(object sender, System.EventArgs e)
+                {
+                        Chart.Title = "Facturación Por Mes";
+                        Chart.GraphicType = Lui.Forms.Chart.GraphicTypes.Lines;
 
                         Chart.Series = new System.Collections.Generic.List<Lbl.Charts.Serie>();
                         Chart.Series.Add(new Lbl.Charts.Serie(""));
@@ -675,53 +654,51 @@ namespace Lazaro.Charts
                         Chart.Series.Add(new Lbl.Charts.Serie(""));
 
                         Chart.Series[0] = new Lbl.Charts.Serie("");
-			Chart.Series[0].Color = System.Drawing.Color.Gainsboro;
-			Chart.Series[0].Elements = FacturacionAnual(System.DateTime.Now.Year - 2, false, 0);
-			Chart.Redraw();
+                        Chart.Series[0].Color = System.Drawing.Color.Gainsboro;
+                        Chart.Series[0].Elements = FacturacionAnual(System.DateTime.Now.Year - 2, false, 0);
+                        Chart.Redraw();
 
                         Chart.Series[1] = new Lbl.Charts.Serie("");
-			Chart.Series[1].Color = System.Drawing.Color.Silver;
-			Chart.Series[1].Elements = FacturacionAnual(System.DateTime.Now.Year - 1, false, 0);
-			Chart.Redraw();
+                        Chart.Series[1].Color = System.Drawing.Color.Silver;
+                        Chart.Series[1].Elements = FacturacionAnual(System.DateTime.Now.Year - 1, false, 0);
+                        Chart.Redraw();
 
                         Chart.Series[2] = new Lbl.Charts.Serie("");
-			Chart.Series[2].Color = System.Drawing.Color.DarkGreen;
-			Chart.Series[2].Elements = FacturacionAnual(System.DateTime.Now.Year, true, 0);
-			Chart.Redraw();
+                        Chart.Series[2].Color = System.Drawing.Color.DarkGreen;
+                        Chart.Series[2].Elements = FacturacionAnual(System.DateTime.Now.Year, true, 0);
+                        Chart.Redraw();
 
                         Chart.Series[3] = new Lbl.Charts.Serie("");
-			Chart.Series[3].Color = System.Drawing.Color.Green;
-			Chart.Series[3].Elements = FacturacionAnual(System.DateTime.Now.Year, false, 0);
+                        Chart.Series[3].Color = System.Drawing.Color.Green;
+                        Chart.Series[3].Elements = FacturacionAnual(System.DateTime.Now.Year, false, 0);
 
-			lvAnual.Items.Clear();
-			lvAnualMonto.Text = System.DateTime.Now.Year.ToString();
-			for(int mes = 1; mes <=12; mes++) 
-			{
+                        lvAnual.Items.Clear();
+                        lvAnualMonto.Text = System.DateTime.Now.Year.ToString();
+                        for (int mes = 1; mes <= 12; mes++) {
                                 ListViewItem Item = lvAnual.Items.Add(new System.DateTime(System.DateTime.Now.Year, mes, 1).ToString("MMMM"));
-				if(Chart.Series[3].Elements[mes-1] != null) 
-				{
-					Item.SubItems.Add(Lfx.Types.Formatting.FormatCurrencyForPrint(Chart.Series[3].Elements[mes-1].Value, 0));
-				}
-			}
+                                if (Chart.Series[3].Elements[mes - 1] != null) {
+                                        Item.SubItems.Add(Lfx.Types.Formatting.FormatCurrencyForPrint(Chart.Series[3].Elements[mes - 1].Value, 0));
+                                }
+                        }
 
-			Chart.Redraw();
-		}
+                        Chart.Redraw();
+                }
 
-		private void PorRentabilidad_Click(object sender, System.EventArgs e)
-		{
+                private void PorRentabilidad_Click(object sender, System.EventArgs e)
+                {
                         ChartRent.Title = "Rentabilidad Por Mes";
                         ChartRent.GraphicType = Lui.Forms.Chart.GraphicTypes.Lines;
 
                         RentabilidadAnual(System.DateTime.Now.Year - 1, ChartRent);
                         RentabilidadAnual(System.DateTime.Now.Year, ChartRent);
 
-			ChartRent.Redraw();
-		}
+                        ChartRent.Redraw();
+                }
 
-		private void BotonPorDiaDelMes_Click(object sender, System.EventArgs e)
-		{
-			ChartMes.Title = "Facturación Por Día del Mes";
-			ChartMes.GraphicType = Lui.Forms.Chart.GraphicTypes.Lines;
+                private void BotonPorDiaDelMes_Click(object sender, System.EventArgs e)
+                {
+                        ChartMes.Title = "Facturación Por Día del Mes";
+                        ChartMes.GraphicType = Lui.Forms.Chart.GraphicTypes.Lines;
 
                         ChartMes.Series = new System.Collections.Generic.List<Lbl.Charts.Serie>();
                         ChartMes.Series.Add(new Lbl.Charts.Serie(""));
@@ -729,20 +706,19 @@ namespace Lazaro.Charts
                         ChartMes.Series.Add(new Lbl.Charts.Serie(""));
 
                         ChartMes.Series[0] = new Lbl.Charts.Serie("");
-			ChartMes.Series[0].Color = System.Drawing.Color.Gainsboro;
-			ChartMes.Series[0].Elements = FacturacionMensual(System.DateTime.Now.AddMonths(-2).Year, System.DateTime.Now.AddMonths(-2).Month, 1);
-			ChartMes.Redraw();
+                        ChartMes.Series[0].Color = System.Drawing.Color.Gainsboro;
+                        ChartMes.Series[0].Elements = FacturacionMensual(System.DateTime.Now.AddMonths(-2).Year, System.DateTime.Now.AddMonths(-2).Month, 1);
+                        ChartMes.Redraw();
 
                         ChartMes.Series[1] = new Lbl.Charts.Serie("");
-			ChartMes.Series[1].Color = System.Drawing.Color.Silver;
-			ChartMes.Series[1].Elements = FacturacionMensual(System.DateTime.Now.AddMonths(-1).Year, System.DateTime.Now.AddMonths(-1).Month, 1);
+                        ChartMes.Series[1].Color = System.Drawing.Color.Silver;
+                        ChartMes.Series[1].Elements = FacturacionMensual(System.DateTime.Now.AddMonths(-1).Year, System.DateTime.Now.AddMonths(-1).Month, 1);
 
                         ChartMes.Series[2] = new Lbl.Charts.Serie("");
-			ChartMes.Series[2].Color = System.Drawing.Color.Green;
-			ChartMes.Series[2].Elements = FacturacionMensual(0, 0, 1);
+                        ChartMes.Series[2].Color = System.Drawing.Color.Green;
+                        ChartMes.Series[2].Elements = FacturacionMensual(0, 0, 1);
 
-			ChartMes.Redraw();
-		}
-	}
+                        ChartMes.Redraw();
+                }
+        }
 }
-

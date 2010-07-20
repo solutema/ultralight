@@ -42,7 +42,6 @@ namespace Lazaro
         {
                 public static Principal.Inicio FormularioPrincipal;
                 public static bool Flotante;
-                public static bool ReinicioPendiente;
                 public static string CUIT = "";
 
                 /// <summary>
@@ -87,7 +86,7 @@ namespace Lazaro
                         System.Console.WriteLine("RunTime: " + Lfx.Environment.SystemInformation.RunTime.ToString() + " en " + Lfx.Environment.SystemInformation.Platform.ToString());
                         System.Console.WriteLine("Codificación: " + System.Text.Encoding.Default.BodyName);
 
-                        bool ReconfigDB = false, IgnoreUpdates = false;
+                        bool ReconfigDB = false, IgnoreUpdates = false, DebugMode = false;
 
                         string NombreConfig = "default";
 
@@ -107,6 +106,10 @@ namespace Lazaro
                                                 case "/?":
                                                         System.Windows.Forms.MessageBox.Show(System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + @" [/config] [/ignoreupdates] [EspacioTrabajo]", "Ayuda");
                                                         System.Environment.Exit(0);
+                                                        break;
+
+                                                case "debug":
+                                                        DebugMode = true;
                                                         break;
 
                                                 default:
@@ -190,10 +193,10 @@ namespace Lazaro
                         }
 
                         Lfx.Workspace.Master = new Lfx.Workspace(NombreConfig, false);
+                        Lfx.Workspace.Master.DebugMode = DebugMode;
 
                         if (ReconfigDB) {
                                 using (Misc.Config.ConfigBD ConfigBD = new Misc.Config.ConfigBD()) {
-
                                         if (ConfigBD.ShowDialog() == DialogResult.Cancel)
                                                 System.Environment.Exit(0);
                                 }
@@ -292,7 +295,7 @@ namespace Lazaro
                 private static Lfx.Types.OperationResult IniciarNormal()
                 {
                         if (Lfx.Environment.SystemInformation.DesignMode == false) {
-                                Lfx.Updater.Master.UpdateAllFromDbCache();
+                                Lfx.Updater.Master.UpdateFromDbCache();
 
                                 if (Lfx.Updater.Master.UpdatedFiles > 0) {
                                         Aplicacion.Exec("REBOOT");
@@ -476,14 +479,14 @@ namespace Lazaro
                                         throw new InvalidOperationException("Error de Prueba");
 
                                 case "TEST":
-                                        Lbl.Servicios.Importar.FiltroEscorpion Fil = new Lbl.Servicios.Importar.FiltroEscorpion(Lfx.Workspace.Master.DefaultDataBase);
+                                        /* Lbl.Servicios.Importar.FiltroEscorpion Fil = new Lbl.Servicios.Importar.FiltroEscorpion(Lfx.Workspace.Master.DefaultDataBase);
                                         Fil.Carpeta = @"C:\Projects\Ventre\";
                                         Fil.Cargar();
-                                        Fil.Fusionar();
+                                        Fil.Fusionar(); */
 
-                                        //Misc.Form1 Frm = new Lazaro.Misc.Form1();
-                                        //Frm.MdiParent = FormularioPrincipal;
-                                        //Frm.Show();
+                                        Misc.Form1 Frm = new Lazaro.Misc.Form1();
+                                        Frm.MdiParent = FormularioPrincipal;
+                                        Frm.Show();
                                         break;
 
                                 case "CHECK":

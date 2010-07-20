@@ -168,7 +168,7 @@ namespace Lfx.Data
                         this.SetupServer(this.DbConnection);
                         EnableRecover = true;
 
-                        if (KeepAlive > 0) {
+                        if (KeepAlive > 0 && KeepAliveTimer == null) {
                                 KeepAliveTimer = new System.Timers.Timer(this.KeepAlive * 1000);
                                 KeepAliveTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.KeepAliveTimer_Elapsed);
                                 KeepAliveTimer.Start();
@@ -1418,28 +1418,11 @@ LEFT JOIN pg_attribute
                         }
                 }
 
-                public TableCollection Tables
+                public Lfx.Data.TableCollection Tables
                 {
                         get
                         {
-                                if (Lfx.Workspace.MasterTableCollection == null) {
-                                        Lfx.Workspace.MasterTableCollection = new TableCollection(Lfx.Workspace.Master.DefaultDataBase);
-                                        foreach (string TblName in Lfx.Data.DataBaseCache.DefaultCache.TableList) {
-                                                Table NewTable = new Table(Lfx.Workspace.Master.DefaultDataBase, TblName);
-                                                switch (TblName) {
-                                                        case "sys_asl":
-                                                        case "sys_log":
-                                                        case "sys_programador":
-                                                        case "sys_quickpaste":
-                                                                NewTable.Cacheable = false;
-                                                                break;
-                                                }
-                                                if (Lfx.Data.DataBaseCache.DefaultCache.TableStructures.ContainsKey(TblName) && Lfx.Data.DataBaseCache.DefaultCache.TableStructures[TblName].PrimaryKey != null)
-                                                        NewTable.PrimaryKey = Lfx.Data.DataBaseCache.DefaultCache.TableStructures[TblName].PrimaryKey.Name;
-                                                Lfx.Workspace.MasterTableCollection.Add(NewTable);
-                                        }
-                                }
-                                return Lfx.Workspace.MasterTableCollection;
+                                return this.Workspace.Tables;
                         }
                 }
 

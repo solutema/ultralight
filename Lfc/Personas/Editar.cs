@@ -344,7 +344,7 @@ namespace Lfc.Personas
                 }
 
 
-                private void txtCUIT_Leave(object sender, System.EventArgs e)
+                private void EntradaCUIT_Leave(object sender, System.EventArgs e)
                 {
                         if (EntradaCuit.Text.Length == 11)
                                 EntradaCuit.Text = EntradaCuit.Text.Substring(0, 2) + "-" + EntradaCuit.Text.Substring(2, 8) + "-" + EntradaCuit.Text.Substring(10, 1);

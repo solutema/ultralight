@@ -79,6 +79,8 @@ namespace Lfx.Data
 			{
 				if(Fields == null)
 					Fields = new FieldCollection();
+                                if (Fields[fieldName].Value != value)
+                                        this.IsModified = true;
 				Fields[fieldName].Value = value;
 			}
 		}

@@ -47,23 +47,23 @@ namespace Lfc.CuentasCorrientes
                         InitializeComponent();
                 }
 
-                private void txtImporte_TextChanged(object sender, System.EventArgs e)
+                private void EntradaImporte_TextChanged(object sender, System.EventArgs e)
                 {
-                        double Importe = Lfx.Types.Parsing.ParseCurrency(txtImporte.Text);
-                        if (Importe < 0 && txtDireccion.TextKey != "0")
-                                txtDireccion.TextKey = "0";
-                        else if (Importe > 0 && txtDireccion.TextKey != "1")
-                                txtDireccion.TextKey = "1";
+                        double Importe = Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text);
+                        if (Importe < 0 && EntradaDireccion.TextKey != "0")
+                                EntradaDireccion.TextKey = "0";
+                        else if (Importe > 0 && EntradaDireccion.TextKey != "1")
+                                EntradaDireccion.TextKey = "1";
 
                         EntradaNuevoSaldo.Text = Lfx.Types.Formatting.FormatCurrency(SaldoActual + Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                 }
 
-                private void txtDireccion_TextChanged(object sender, System.EventArgs e)
+                private void EntradaDireccion_TextChanged(object sender, System.EventArgs e)
                 {
-                        if (txtDireccion.TextKey == "0" && Lfx.Types.Parsing.ParseCurrency(txtImporte.Text) > 0)
-                                txtImporte.Text = Lfx.Types.Formatting.FormatCurrency(-Lfx.Types.Parsing.ParseCurrency(txtImporte.Text), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        else if (txtDireccion.TextKey == "1" && Lfx.Types.Parsing.ParseCurrency(txtImporte.Text) < 0)
-                                txtImporte.Text = Lfx.Types.Formatting.FormatCurrency(-Lfx.Types.Parsing.ParseCurrency(txtImporte.Text), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        if (EntradaDireccion.TextKey == "0" && Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text) > 0)
+                                EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(-Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        else if (EntradaDireccion.TextKey == "1" && Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text) < 0)
+                                EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(-Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
                 }
 
                 private void EntradaConcepto_Leave(object sender, EventArgs e)

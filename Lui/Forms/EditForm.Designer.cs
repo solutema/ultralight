@@ -84,7 +84,7 @@ namespace Lui.Forms
                         this.CancelCommandButton.TabIndex = 102;
                         this.CancelCommandButton.Text = "Cancelar";
                         this.CancelCommandButton.ToolTipText = "";
-                        this.CancelCommandButton.Click += new System.EventHandler(this.cmdCancelar_Click);
+                        this.CancelCommandButton.Click += new System.EventHandler(this.CancelButton_Click);
                         // 
                         // LowerPanel
                         // 
@@ -120,10 +120,10 @@ namespace Lui.Forms
                         this.Name = "EditForm";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
                         this.Text = "Editar";
-                        this.Closing += new System.ComponentModel.CancelEventHandler(this.FormTablaEditar_Closing);
+                        this.Closing += new System.ComponentModel.CancelEventHandler(this.EditForm_Closing);
                         this.Load += new System.EventHandler(this.FormTablaEditar_Load);
                         this.SizeChanged += new System.EventHandler(this.EditForm_SizeChanged);
-                        this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormTablaEditar_KeyDown);
+                        this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditForm_KeyDown);
                         this.LowerPanel.ResumeLayout(false);
                         this.ResumeLayout(false);
 
