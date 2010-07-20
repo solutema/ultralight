@@ -1413,7 +1413,7 @@ namespace Lazaro.Reportes
 
                 private void ChartButton_Click(object sender, System.EventArgs e)
                 {
-                        Lazaro.Charts.Facturacion ChartFact = new Lazaro.Charts.Facturacion();
+                        Lazaro.Reportes.Facturacion ChartFact = new Lazaro.Reportes.Facturacion();
                         ChartFact.MdiParent = this.MdiParent;
                         ChartFact.Show();
                 }

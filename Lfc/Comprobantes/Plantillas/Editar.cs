@@ -70,52 +70,54 @@ namespace Lfc.Comprobantes.Plantillas
                 }
 
 
+                public override void FromRow(Lbl.ElementoDeDatos row)
+                {
+                        base.FromRow(row);
+
+                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = row as Lbl.Comprobantes.Impresion.Plantilla;
+
+                        EntradaMembrete.TextKey = Plantilla.Membrete.ToString();
+                        EntradaCodigo.Text = Plantilla.Codigo;
+                        EntradaCodigo.ReadOnly = !Plantilla.Existe;
+                        EntradaNombre.Text = Plantilla.Nombre;
+                        EntradaPapelTamano.TextKey = Plantilla.TamanoPapel;
+                        EntradaFuente.TextKey = Plantilla.Font.Name;
+                        EntradaFuenteTamano.Text = Plantilla.Font.Size.ToString();
+                        EntradaLandscape.TextKey = Plantilla.Landscape ? "1" : "0";
+
+                        this.ActualizarListaCampos();
+
+                        SaveButton.Visible = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.templates.write");
+
+                        this.Text = "Plantilla: " + EntradaNombre.Text;
+                }
+
+
                 public override Lfx.Types.OperationResult Edit(int itemId)
                 {
                         if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.templates.read"))
                                 return new Lfx.Types.NoAccessOperationResult();
 
-                        Plantilla = new Lbl.Comprobantes.Impresion.Plantilla(this.DataBase, itemId);
-
-                        if (Plantilla.Existe == false) {
-                                return new Lfx.Types.FailureOperationResult("El registro no existe");
-                        } else {
-                                txtMembrete.TextKey = Plantilla.Membrete.ToString();
-                                txtCodigo.Text = Plantilla.Codigo;
-                                txtNombre.Text = Plantilla.Nombre;
-                                txtPapelTamano.TextKey = Plantilla.TamanoPapel;
-                                txtFuente.TextKey = Plantilla.Font.Name;
-                                txtFuenteTamano.Text = Plantilla.Font.Size.ToString();
-				txtLandscape.TextKey = Plantilla.Landscape ? "1" : "0";
-
-                                this.ActualizarListaCampos();
-
-                                m_Id = itemId;
-                                m_Nuevo = false;
-
-                                SaveButton.Visible = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.templates.write");
-
-                                this.Text = "Plantilla: " + txtNombre.Text;
-                                return new Lfx.Types.SuccessOperationResult();
-                        }
+                        return base.Edit(itemId);
                 }
 
-                public override Lfx.Types.OperationResult Save()
+
+                public override Lbl.ElementoDeDatos ToRow()
                 {
-                        if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.templates.write"))
-                                return new Lfx.Types.NoAccessOperationResult();
+                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = base.ToRow() as Lbl.Comprobantes.Impresion.Plantilla;
 
-                        Plantilla.Codigo = txtCodigo.Text;
-                        Plantilla.Nombre = txtNombre.Text;
-                        Plantilla.TamanoPapel = txtPapelTamano.TextKey;
-			Plantilla.Landscape = txtLandscape.TextKey == "1";
-			Plantilla.Copias = Lfx.Types.Parsing.ParseInt(txtCopias.Text);
-                        Plantilla.Membrete = Lfx.Types.Parsing.ParseInt(txtMembrete.TextKey);
-                        Plantilla.Guardar();
-                        return new Lfx.Types.SuccessOperationResult();
+                        Plantilla.Codigo = EntradaCodigo.Text;
+                        Plantilla.Nombre = EntradaNombre.Text;
+                        Plantilla.TamanoPapel = EntradaPapelTamano.TextKey;
+                        Plantilla.Landscape = EntradaLandscape.TextKey == "1";
+                        Plantilla.Copias = Lfx.Types.Parsing.ParseInt(txtCopias.Text);
+                        Plantilla.Membrete = Lfx.Types.Parsing.ParseInt(EntradaMembrete.TextKey);
+
+                        return Plantilla;
                 }
 
-                private void pctPreview_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
+
+                private void ImagePreview_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
                 {
                         e.Graphics.Clear(Color.Ivory);
                         e.Graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
@@ -129,7 +131,7 @@ namespace Lfc.Comprobantes.Plantillas
 
                         PointF EscalaMm = new PointF(300F / 25.4F, 300F / 25.4F);
 
-                        Size TamPap = TamanoPapel(txtPapelTamano.TextKey);
+                        Size TamPap = TamanoPapel(EntradaPapelTamano.TextKey);
 			if (Plantilla.Landscape)
 				TamPap = new Size(TamPap.Height, TamPap.Width);
 
@@ -188,6 +190,7 @@ namespace Lfc.Comprobantes.Plantillas
                                 Texto = Texto.Replace("{Importes}", "$ 123.456,00\r\n$ 123.456,00\r\n$ 123.456,00\r\n$ 123.456,00");
                                 Texto = Texto.Replace("{Detalles}", "Producto de ejemplo Nº 1\r\nProducto de ejemplo Nº 2\r\nProducto de ejemplo Nº 3\r\nProducto de ejemplo Nº 4");
                                 Texto = Texto.Replace("{Valores}", "Efectivo        : $ 100.\r\nCheque          : $ 100.\r\nTarjeta de Déb. : $ 100.\r\nTarjeta de Cré. : $ 100.");
+                                Texto = Texto.Replace("{Comprobante.Tipo}", "Nota de Crédito");
 
                                 StringFormat StrFmt = new StringFormat(StringFormatFlags.NoClip);
                                 StrFmt.Trimming = StringTrimming.None;
@@ -214,9 +217,9 @@ namespace Lfc.Comprobantes.Plantillas
 
                 private void lvCampos_SelectedIndexChanged(object sender, System.EventArgs e)
                 {
-                        if (Plantilla.Campos != null && lvCampos.SelectedItems.Count > 0) {
+                        if (Plantilla.Campos != null && ListaCampos.SelectedItems.Count > 0) {
                                 foreach (Lbl.Comprobantes.Impresion.Campo Cam in Plantilla.Campos) {
-                                        if (Cam.GetHashCode().ToString() == lvCampos.SelectedItems[0].Text) {
+                                        if (Cam.GetHashCode().ToString() == ListaCampos.SelectedItems[0].Text) {
                                                 CampoSeleccionado = Cam;
                                                 break;
                                         }
@@ -225,7 +228,7 @@ namespace Lfc.Comprobantes.Plantillas
                                 CampoSeleccionado = null;
                         }
 
-                        pctPreview.Invalidate();
+                        ImagePreview.Invalidate();
                 }
 
                 private Point PuntoDesdePantalla(Point pt)
@@ -243,7 +246,7 @@ namespace Lfc.Comprobantes.Plantillas
                         return Res;
                 }
 
-                private void pctPreview_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+                private void ImagePreview_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
                 {
                         if (e.Button == System.Windows.Forms.MouseButtons.Middle) {
                                 ButtonDown = new Point(e.X, e.Y);
@@ -283,13 +286,13 @@ namespace Lfc.Comprobantes.Plantillas
                                                 //Encontré el campo del Click
                                                 //Lo selecciono mediante la listview
                                                 CampoSeleccionado = Cam;
-                                                foreach (ListViewItem itm in lvCampos.Items) {
+                                                foreach (ListViewItem itm in ListaCampos.Items) {
                                                         itm.Selected = (itm.Text == CampoSeleccionado.GetHashCode().ToString());
                                                 }
                                                 break;
                                         } else {
-                                                while (lvCampos.SelectedItems.Count > 0) {
-                                                        lvCampos.SelectedItems[0].Selected = false;
+                                                while (ListaCampos.SelectedItems.Count > 0) {
+                                                        ListaCampos.SelectedItems[0].Selected = false;
                                                 }
                                         }
                                 }
@@ -299,7 +302,7 @@ namespace Lfc.Comprobantes.Plantillas
                         }
                 }
 
-                private void pctPreview_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+                private void ImagePreview_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
                 {
                         if (e.Button == System.Windows.Forms.MouseButtons.Middle) {
                                 Point OldDesplazamiento = this.Desplazamiento;
@@ -308,7 +311,7 @@ namespace Lfc.Comprobantes.Plantillas
                                 this.Desplazamiento = OldDesplazamiento;
                                 this.Desplazamiento.Offset(Diferencia);
                                 ButtonDown = new Point(e.X, e.Y);
-                                pctPreview.Invalidate();
+                                ImagePreview.Invalidate();
                         } else if (e.Button == System.Windows.Forms.MouseButtons.Left) {
                                 if (CampoSeleccionado != null) {
                                         if (KnobGrabbed) {
@@ -324,16 +327,16 @@ namespace Lfc.Comprobantes.Plantillas
                                                 NewCampoPos.Offset(PosCursor.X - ButtonDown.X, PosCursor.Y - ButtonDown.Y);
                                                 CampoSeleccionado.Rectangle.Location = NewCampoPos;
                                         }
-                                        pctPreview.Invalidate();
+                                        ImagePreview.Invalidate();
                                 }
                         }
                 }
 
-                private void txtPapelTamano_TextChanged(object sender, System.EventArgs e)
+                private void EntradaPapelTamano_TextChanged(object sender, System.EventArgs e)
                 {
-                        Plantilla.TamanoPapel = txtPapelTamano.TextKey;
-			Plantilla.Landscape = txtLandscape.TextKey == "1";
-                        pctPreview.Invalidate();
+                        Plantilla.TamanoPapel = EntradaPapelTamano.TextKey;
+			Plantilla.Landscape = EntradaLandscape.TextKey == "1";
+                        ImagePreview.Invalidate();
                 }
 
                 private static System.Drawing.Size TamanoPapel(string tipoPapel)
@@ -355,7 +358,7 @@ namespace Lfc.Comprobantes.Plantillas
                         }
                 }
 
-                private void lvCampos_DoubleClick(object sender, System.EventArgs e)
+                private void ListaCampos_DoubleClick(object sender, System.EventArgs e)
                 {
                         if (CampoSeleccionado != null) {
                                 EditarCampo FormEditarCampo = new EditarCampo();
@@ -418,53 +421,53 @@ namespace Lfc.Comprobantes.Plantillas
                                                         break;
                                         }
                                         CampoSeleccionado.Wrap = FormEditarCampo.txtWrap.TextKey == "1";
-                                        pctPreview.Invalidate();
+                                        ImagePreview.Invalidate();
                                 }
                         }
                 }
 
-                private void pctPreview_DoubleClick(object sender, System.EventArgs e)
+                private void ImagenPreview_DoubleClick(object sender, System.EventArgs e)
                 {
-                        lvCampos_DoubleClick(sender, e);
+                        ListaCampos_DoubleClick(sender, e);
                 }
 
-                private void cmdAgregar_Click(object sender, EventArgs e)
+                private void BotonAgregar_Click(object sender, EventArgs e)
                 {
                         Lbl.Comprobantes.Impresion.Campo Cam = new Lbl.Comprobantes.Impresion.Campo();
                         Cam.Valor = "Nuevo campo";
                         Cam.Rectangle = new Rectangle(10, 10, 280, 52);
                         Plantilla.Campos.Add(Cam);
                         this.ActualizarListaCampos();
-                        lvCampos.FindItemWithText(Cam.GetHashCode().ToString()).Selected = true;
-                        lvCampos_DoubleClick(sender, e);
-                        pctPreview.Invalidate();
+                        ListaCampos.FindItemWithText(Cam.GetHashCode().ToString()).Selected = true;
+                        ListaCampos_DoubleClick(sender, e);
+                        ImagePreview.Invalidate();
                 }
 
                 private void ActualizarListaCampos()
                 {
-                        lvCampos.Items.Clear();
+                        ListaCampos.Items.Clear();
                         if (Plantilla.Campos != null) {
                                 foreach (Lbl.Comprobantes.Impresion.Campo Cam in Plantilla.Campos) {
-                                        ListViewItem itm = lvCampos.Items.Add(new ListViewItem(Cam.GetHashCode().ToString()));
+                                        ListViewItem itm = ListaCampos.Items.Add(new ListViewItem(Cam.GetHashCode().ToString()));
                                         itm.SubItems.Add(Cam.Valor);
                                 }
                         }
                 }
 
-                private void cmdQuitar_Click(object sender, EventArgs e)
+                private void BotonQuitar_Click(object sender, EventArgs e)
                 {
                         if (CampoSeleccionado != null) {
                                 Plantilla.Campos.Remove(CampoSeleccionado);
                                 this.ActualizarListaCampos();
-                                pctPreview.Invalidate();
+                                ImagePreview.Invalidate();
                         }
                 }
 
-                private void txtFuenteFuenteTamano_TextChanged(object sender, EventArgs e)
+                private void EntradaFuenteFuenteTamano_TextChanged(object sender, EventArgs e)
                 {
-                        txtFuenteTamano.Enabled = (txtFuente.TextKey != "*");
-                        if(txtFuente.TextKey != "*" && Lfx.Types.Parsing.ParseInt(txtFuenteTamano.Text) > 0)
-                                Plantilla.Font = new Font(txtFuente.TextKey, Lfx.Types.Parsing.ParseInt(txtFuenteTamano.Text));
+                        EntradaFuenteTamano.Enabled = (EntradaFuente.TextKey != "*");
+                        if(EntradaFuente.TextKey != "*" && Lfx.Types.Parsing.ParseInt(EntradaFuenteTamano.Text) > 0)
+                                Plantilla.Font = new Font(EntradaFuente.TextKey, Lfx.Types.Parsing.ParseInt(EntradaFuenteTamano.Text));
                         else
                                 Plantilla.Font = new Font("Courier New", 10);
                 }
@@ -472,10 +475,10 @@ namespace Lfc.Comprobantes.Plantillas
                 private void ZoomBar_Scroll(object sender, EventArgs e)
                 {
                         this.Zoom = ZoomBar.Value;
-                        pctPreview.Invalidate();
+                        ImagePreview.Invalidate();
                 }
 
-                private void cmdGuardar_Click(object sender, EventArgs e)
+                private void BotonGuardar_Click(object sender, EventArgs e)
                 {
                         SaveFileDialog FileDialog = new SaveFileDialog();
                         FileDialog.Filter = "Archivos de plantilla|*.ltx";
@@ -488,7 +491,7 @@ namespace Lfc.Comprobantes.Plantillas
                         }
                 }
 
-                private void cmdCargar_Click(object sender, EventArgs e)
+                private void BotonCargar_Click(object sender, EventArgs e)
                 {
                         OpenFileDialog FileDialog = new OpenFileDialog();
                         FileDialog.Filter = "Archivos de plantilla|*.ltx";
@@ -501,7 +504,7 @@ namespace Lfc.Comprobantes.Plantillas
                         }
                 }
 
-                private void pctPreview_MouseUp(object sender, MouseEventArgs e)
+                private void ImagePreview_MouseUp(object sender, MouseEventArgs e)
                 {
                         if (CampoSeleccionado != null) {
                                 if (CampoSeleccionado.Rectangle.Width < 0) {
@@ -512,14 +515,14 @@ namespace Lfc.Comprobantes.Plantillas
                                         CampoSeleccionado.Rectangle.Height = Math.Abs(CampoSeleccionado.Rectangle.Height);
                                         CampoSeleccionado.Rectangle.Y -= CampoSeleccionado.Rectangle.Height;
                                 }
-                                pctPreview.Invalidate();
+                                ImagePreview.Invalidate();
                         }
                 }
 
                 private void Editar_KeyDown(object sender, KeyEventArgs e)
                 {
                         if (e.KeyCode == Keys.Delete && e.Alt == false && e.Control == false && e.Shift == false) {
-                                cmdQuitar.PerformClick();
+                                BotonQuitar.PerformClick();
                         }
                 }
         }

@@ -174,7 +174,8 @@ namespace Lfc.Comprobantes.Compra
 
                 public override Lbl.ElementoDeDatos ToRow()
                 {
-                        Lbl.Comprobantes.ComprobanteConArticulos Res = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
+                        Lbl.Comprobantes.ComprobanteConArticulos Res = base.ToRow() as Lbl.Comprobantes.ComprobanteConArticulos;
+                        
                         Res.Compra = true;
                         Res.Fecha = Lfx.Types.Parsing.ParseDate(EntradaFecha.Text);
                         if (EntradaFormaPago.TextKey != "0")
