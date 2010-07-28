@@ -167,15 +167,19 @@ namespace Lfc.Comprobantes.Recibos
                                 validarReturn.Success = false;
                                 validarReturn.Message = "Por favor seleccione un concepto para el movimiento." + Environment.NewLine;
                         }
-                        
-                        if (this.DePago == false && Rec.Cobros.ImporteTotal() <= 0) {
-                                validarReturn.Success = false;
-                                validarReturn.Message = "Debe especificar los valores de cobro." + Environment.NewLine;
-                        }
 
-                        if (this.DePago && Rec.Pagos.ImporteTotal() <= 0) {
-                                validarReturn.Success = false;
-                                validarReturn.Message = "Debe especificar los valores de pago." + Environment.NewLine;
+                        if (this.DePago) {
+                                // Recibo de pago
+                                if (Rec.Pagos.ImporteTotal <= 0) {
+                                        validarReturn.Success = false;
+                                        validarReturn.Message = "Debe especificar los valores de pago." + Environment.NewLine;
+                                }
+                        } else {
+                                // Recibo de cobro
+                                if (Rec.Cobros.ImporteTotal <= 0) {
+                                        validarReturn.Success = false;
+                                        validarReturn.Message = "Debe especificar los valores de cobro." + Environment.NewLine;
+                                }
                         }
 
                         if (m_Nuevo && Lfx.Types.Strings.IsNumericInt(EntradaNumero.Text) && Lfx.Types.Parsing.ParseInt(EntradaNumero.Text) != 0) {
@@ -365,7 +369,7 @@ namespace Lfc.Comprobantes.Recibos
                                                         break;
                                         }
                                 }
-                                EtiquetaValoresImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Pagos.ImporteTotal(), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                EtiquetaValoresImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Pagos.ImporteTotal, this.Workspace.CurrentConfig.Moneda.Decimales);
                         } else {
                                 foreach (Lbl.Comprobantes.Cobro Cb in Rec.Cobros) {
                                         ListViewItem itm = ListaValores.Items.Add(Cb.GetHashCode().ToString());
@@ -391,7 +395,7 @@ namespace Lfc.Comprobantes.Recibos
                                                         break;
                                         }
                                 }
-                                EtiquetaValoresImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Cobros.ImporteTotal(), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                EtiquetaValoresImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Cobros.ImporteTotal, this.Workspace.CurrentConfig.Moneda.Decimales);
                         }
 
                         if (ListaValores.Items.Count > 0 && ListaValores.SelectedItems.Count == 0) {

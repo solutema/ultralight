@@ -181,7 +181,7 @@ namespace Lfc.Comprobantes
                         TextoSql += " GROUP BY " + m_Agrupar;
                         TextoSql += " ORDER BY total DESC";
 
-                        System.Data.DataTable TmpTabla = this.DataBase.Select(TextoSql);
+                        System.Data.DataTable Comprobs = this.DataBase.Select(TextoSql);
 
                         ReportSheet = new Lfx.FileFormats.Office.Spreadsheet.Sheet("Listado de Comprobantes - Fecha " + m_Fechas.From + " al " + m_Fechas.To);
                         ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Detalle", 320));
@@ -189,34 +189,33 @@ namespace Lfc.Comprobantes
                         ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Facturas", 80, Lfx.Types.StringAlignment.Far));
                         ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Costo", 120, Lfx.Types.StringAlignment.Far));
                         ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Importe", 120, Lfx.Types.StringAlignment.Far));
+                        ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Pendiente", 120, Lfx.Types.StringAlignment.Far));
                         ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Diferencia", 120, Lfx.Types.StringAlignment.Far));
 
-                        double Total = 0;
-                        double TotalCosto = 0;
-                        double TotalNC = 0;
-                        double TotalNCCosto = 0;
+                        double Total = 0, TotalCosto = 0;
+                        double TotalNC = 0, TotalNCCosto = 0;
                         double Diferencia = 0;
 
-                        foreach (System.Data.DataRow row in TmpTabla.Rows) {
+                        foreach (System.Data.DataRow Comrob in Comprobs.Rows) {
                                 Lfx.FileFormats.Office.Spreadsheet.Row Reng = new Lfx.FileFormats.Office.Spreadsheet.Row();
 
                                 FiltrosCompletos = "comprob.tipo_fac IN('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND comprob.id_comprob=comprob_detalle.id_comprob AND comprob_detalle.id_articulo=articulos.id_articulo AND " + Filtros;
 
                                 switch (m_Agrupar) {
                                         case "articulos.id_marca":
-                                                FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_marca"]);
+                                                FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.DataBase.ConvertDBNullToZero(Comrob["id_marca"]);
                                                 break;
 
                                         case "articulos.id_proveedor":
-                                                FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_proveedor"]);
+                                                FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.DataBase.ConvertDBNullToZero(Comrob["id_proveedor"]);
                                                 break;
 
                                         case "articulos.id_articulo":
-                                                FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_articulo"]);
+                                                FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.DataBase.ConvertDBNullToZero(Comrob["id_articulo"]);
                                                 break;
 
                                         case "articulos.id_categoria":
-                                                FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_categoria"]);
+                                                FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.DataBase.ConvertDBNullToZero(Comrob["id_categoria"]);
                                                 break;
                                 }
 
@@ -226,48 +225,48 @@ namespace Lfc.Comprobantes
 
                                 switch (m_Agrupar) {
                                         case "articulos.id_proveedor":
-                                                Detalle = this.DataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_proveedor"]).ToString());
+                                                Detalle = this.DataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + Lfx.Data.DataBase.ConvertDBNullToZero(Comrob["id_proveedor"]).ToString());
                                                 break;
 
                                         case "articulos.id_marca":
-                                                Detalle = this.DataBase.FieldString("SELECT nombre FROM marcas WHERE id_marca=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_marca"]).ToString());
+                                                Detalle = this.DataBase.FieldString("SELECT nombre FROM marcas WHERE id_marca=" + Lfx.Data.DataBase.ConvertDBNullToZero(Comrob["id_marca"]).ToString());
                                                 break;
 
                                         case "articulos.id_articulo":
-                                                Detalle = this.DataBase.FieldString("SELECT nombre FROM articulos WHERE id_articulo=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_articulo"]).ToString());
+                                                Detalle = this.DataBase.FieldString("SELECT nombre FROM articulos WHERE id_articulo=" + Lfx.Data.DataBase.ConvertDBNullToZero(Comrob["id_articulo"]).ToString());
                                                 break;
 
                                         case "articulos.id_categoria":
-                                                Detalle = this.DataBase.FieldString("SELECT nombre FROM articulos_categorias WHERE id_categoria=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_categoria"]).ToString());
+                                                Detalle = this.DataBase.FieldString("SELECT nombre FROM articulos_categorias WHERE id_categoria=" + Lfx.Data.DataBase.ConvertDBNullToZero(Comrob["id_categoria"]).ToString());
                                                 break;
                                 }
 
-                                double rowTotal = System.Convert.ToDouble(row["total"]) - TotalNC;
-                                double RowTotalCosto = System.Convert.ToDouble(row["totalcosto"]) - TotalNCCosto;
-                                double rowDiferencia = rowTotal - RowTotalCosto;
+                                double ComprobTotal = System.Convert.ToDouble(Comrob["total"]) - TotalNC;
+                                double ComprobTotalCosto = System.Convert.ToDouble(Comrob["totalcosto"]) - TotalNCCosto;
+                                double ComprobDiferencia = ComprobTotal - ComprobTotalCosto;
 
                                 if (Detalle == null || Detalle.Length == 0)
                                         Detalle = "(Sin especificar)";
 
                                 Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Detalle));
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(row["cantart"]), this.Workspace.CurrentConfig.Productos.DecimalesStock)));
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToInt32(row["cantfact"])));
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(RowTotalCosto, this.Workspace.CurrentConfig.Moneda.Decimales)));
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(rowTotal, this.Workspace.CurrentConfig.Moneda.Decimales)));
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(rowDiferencia, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Comrob["cantart"]), this.Workspace.CurrentConfig.Productos.DecimalesStock)));
+                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToInt32(Comrob["cantfact"])));
+                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobTotalCosto, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobTotal, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobDiferencia, this.Workspace.CurrentConfig.Moneda.Decimales)));
 
-                                Total += rowTotal;
-                                TotalCosto += RowTotalCosto;
+                                Total += ComprobTotal;
+                                TotalCosto += ComprobTotalCosto;
                                 ReportSheet.Rows.Add(Reng);
-                                Diferencia += rowDiferencia;
+                                Diferencia += ComprobDiferencia;
                         }
 
                         Lfx.FileFormats.Office.Spreadsheet.Row RengTotal = new Lfx.FileFormats.Office.Spreadsheet.Row();
                         RengTotal.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell("Total"));
                         RengTotal.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(" "));
                         RengTotal.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(" "));
-                        RengTotal.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Total));
                         RengTotal.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(TotalCosto));
+                        RengTotal.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Total));
                         RengTotal.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Diferencia));
                         ReportSheet.Rows.Add(RengTotal);
 
@@ -308,10 +307,9 @@ namespace Lfc.Comprobantes
 
                         TextoSql += "RIGHT(comprob.tipo_fac, 1), comprob.pv, comprob.numero";
 
-                        System.Data.DataTable TmpTabla = this.DataBase.Select(TextoSql);
+                        System.Data.DataTable Comprobs = this.DataBase.Select(TextoSql);
 
-                        double Total = 0;
-                        double SubTotal = 0;
+                        double Total = 0, SubTotal = 0;
                         //double Diferencia = 0;
                         string UltimoValorAgrupar = "slfadf*af*df*asdf";
 
@@ -323,17 +321,19 @@ namespace Lfc.Comprobantes
                                 ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Cliente", 240));
                                 ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("CUIT", 120));
                                 ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Importe", 160, Lfx.Types.StringAlignment.Far));
+                                ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Cancelado", 160, Lfx.Types.StringAlignment.Far));
                         } else {
                                 ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Item", 480));
                                 ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Importe", 160, Lfx.Types.StringAlignment.Far));
+                                ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Cancelado", 160, Lfx.Types.StringAlignment.Far));
                         }
 
                         string NombreGrupo = null;
-                        foreach (System.Data.DataRow row in TmpTabla.Rows) {
+                        foreach (System.Data.DataRow Comprob in Comprobs.Rows) {
                                 Lfx.FileFormats.Office.Spreadsheet.Row Reng = new Lfx.FileFormats.Office.Spreadsheet.Row();
 
-                                if (m_Agrupar.Length > 0 && row[Lfx.Data.DataBase.GetFieldName(m_Agrupar)].ToString() != UltimoValorAgrupar) {
-                                        UltimoValorAgrupar = row[Lfx.Data.DataBase.GetFieldName(m_Agrupar)].ToString();
+                                if (m_Agrupar.Length > 0 && Comprob[Lfx.Data.DataBase.GetFieldName(m_Agrupar)].ToString() != UltimoValorAgrupar) {
+                                        UltimoValorAgrupar = Comprob[Lfx.Data.DataBase.GetFieldName(m_Agrupar)].ToString();
 
                                         if (SubTotal > 0) {
                                                 Lfx.FileFormats.Office.Spreadsheet.Row SubTotal1 = new Lfx.FileFormats.Office.Spreadsheet.Row();
@@ -361,7 +361,7 @@ namespace Lfc.Comprobantes
                                                         break;
 
                                                 case "DAYOFWEEK(comprob.fecha)":
-                                                        switch (System.Convert.ToInt32(row[Lfx.Data.DataBase.GetFieldName(m_Agrupar)])) {
+                                                        switch (System.Convert.ToInt32(Comprob[Lfx.Data.DataBase.GetFieldName(m_Agrupar)])) {
                                                                 case 1:
                                                                         NombreGrupo = "Domingo";
                                                                         break;
@@ -387,11 +387,11 @@ namespace Lfc.Comprobantes
                                                         break;
 
                                                 case "DAYOFMONTH(comprob.fecha)":
-                                                        NombreGrupo = System.Convert.ToDateTime(row["fecha"]).ToString("dd-MM-yyyy");
+                                                        NombreGrupo = System.Convert.ToDateTime(Comprob["fecha"]).ToString("dd-MM-yyyy");
                                                         break;
 
                                                 case "MONTH(comprob.fecha)":
-                                                        NombreGrupo = System.Convert.ToDateTime(row["fecha"]).ToString("MMMM");
+                                                        NombreGrupo = System.Convert.ToDateTime(Comprob["fecha"]).ToString("MMMM");
                                                         break;
 
                                                 default:
@@ -400,45 +400,36 @@ namespace Lfc.Comprobantes
                                         }
                                 }
 
-                                System.Text.StringBuilder Renglon = new System.Text.StringBuilder();
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatDate(row["fecha"])));
-                                Renglon.Append(Lfx.Types.Formatting.FormatDate(row["fecha"]) + " ");
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToString(row["tipo_fac"]).PadRight(3).Substring(0, 3)));
-                                Renglon.Append(System.Convert.ToString(row["tipo_fac"]).PadRight(3).Substring(0, 3) + " ");
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToInt32(row["pv"]).ToString("0000") + "-" + System.Convert.ToInt32(row["numero"]).ToString("00000000")));
-                                Renglon.Append(System.Convert.ToInt32(row["pv"]).ToString("0000") + "-" + System.Convert.ToInt32(row["numero"]).ToString("00000000") + " ");
+                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatDate(Comprob["fecha"])));
+                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToString(Comprob["tipo_fac"]).PadRight(3).Substring(0, 3)));
+                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToInt32(Comprob["pv"]).ToString("0000") + "-" + System.Convert.ToInt32(Comprob["numero"]).ToString("00000000")));
 
-                                if (System.Convert.ToInt32(row["anulada"]) != 0) {
+                                if (System.Convert.ToInt32(Comprob["anulada"]) != 0) {
                                         Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell("ANULADA"));
-                                        Renglon.Append("ANULADA".PadRight(25) + " ");
-                                        Renglon.Append("              ");
                                         Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell((double)0));
-                                        Renglon.Append(Lfx.Types.Formatting.FormatCurrency(0, this.Workspace.CurrentConfig.Moneda.Decimales).PadLeft(10));
                                         // No suma al total
                                 } else {
-                                        Lfx.Data.Row Cliente = this.DataBase.Row("personas", "id_persona", System.Convert.ToInt32(row["id_cliente"]));
-                                        Renglon.Append(System.Convert.ToString(Cliente["nombre_visible"]).PadRight(25).Substring(0, 25) + " ");
-                                        Renglon.Append(System.Convert.ToString(Cliente["cuit"]).PadRight(13).Substring(0, 13) + " ");
+                                        Lfx.Data.Row Cliente = this.DataBase.Row("personas", "id_persona", System.Convert.ToInt32(Comprob["id_cliente"]));
                                         Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Cliente["nombre_visible"].ToString()));
                                         Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Cliente["cuit"].ToString()));
 
-                                        switch (System.Convert.ToString(row["tipo_fac"])) {
+                                        switch (System.Convert.ToString(Comprob["tipo_fac"])) {
                                                 case "NCA":
                                                 case "NCB":
                                                 case "NCC":
                                                 case "NCE":
                                                 case "NCM":
-                                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(-System.Convert.ToDouble(row[ColumnaTotal])));
-                                                        Renglon.Append(("(" + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(row[ColumnaTotal]), this.Workspace.CurrentConfig.Moneda.Decimales) + ")").PadLeft(10));
-                                                        Total -= System.Convert.ToDouble(row[ColumnaTotal]);
-                                                        SubTotal -= System.Convert.ToDouble(row[ColumnaTotal]);
+                                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(-System.Convert.ToDouble(Comprob[ColumnaTotal])));
+                                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToDouble(Comprob["cancelado"])));
+                                                        Total -= System.Convert.ToDouble(Comprob[ColumnaTotal]);
+                                                        SubTotal -= System.Convert.ToDouble(Comprob[ColumnaTotal]);
                                                         break;
 
                                                 default:
-                                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToDouble(row[ColumnaTotal])));
-                                                        Renglon.Append(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(row[ColumnaTotal]), this.Workspace.CurrentConfig.Moneda.Decimales).PadLeft(10));
-                                                        Total += System.Convert.ToDouble(row[ColumnaTotal]);
-                                                        SubTotal += System.Convert.ToDouble(row[ColumnaTotal]);
+                                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToDouble(Comprob[ColumnaTotal])));
+                                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToDouble(Comprob["cancelado"])));
+                                                        Total += System.Convert.ToDouble(Comprob[ColumnaTotal]);
+                                                        SubTotal += System.Convert.ToDouble(Comprob[ColumnaTotal]);
                                                         break;
                                         }
                                 }

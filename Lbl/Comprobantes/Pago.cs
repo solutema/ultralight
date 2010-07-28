@@ -195,13 +195,16 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                public double ImporteTotal()
+                public double ImporteTotal
                 {
-                        double Res = 0;
-                        foreach (Lbl.Comprobantes.Pago Pg in this.List) {
-                                Res += Pg.Importe;
+                        get
+                        {
+                                double Res = 0;
+                                foreach (Lbl.Comprobantes.Pago Pg in this.List) {
+                                        Res += Pg.Importe;
+                                }
+                                return Res;
                         }
-                        return Res;
                 }
         }
 }

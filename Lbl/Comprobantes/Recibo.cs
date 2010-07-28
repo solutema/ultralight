@@ -222,12 +222,13 @@ namespace Lbl.Comprobantes
                                 // Pagos en efectivo
                                 using (System.Data.DataTable TablaPagos = DataBase.Select("SELECT * FROM cajas_movim WHERE id_caja=" + this.Workspace.CurrentConfig.Empresa.CajaDiaria.ToString() + " AND id_recibo=" + Id.ToString())) {
                                         foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
-                                                if (this.DePago) {
-                                                        Pago Pg = new Pago(this.DataBase, Lbl.Pagos.TipoFormasDePago.Efectivo, Math.Abs(System.Convert.ToDouble(Pago["importe"])));
+                                                double ImporteCaja = System.Convert.ToDouble(Pago["importe"]);
+                                                if (this.DePago && ImporteCaja < 0) {
+                                                        Pago Pg = new Pago(this.DataBase, Lbl.Pagos.TipoFormasDePago.Efectivo, ImporteCaja);
                                                         Pg.Recibo = this;
                                                         Pagos.Add(Pg);
-                                                } else {
-                                                        Cobro Cb = new Cobro(this.DataBase, Lbl.Pagos.TipoFormasDePago.Efectivo, Math.Abs(System.Convert.ToDouble(Pago["importe"])));
+                                                } else if (this.DePago == false && ImporteCaja > 0) {
+                                                        Cobro Cb = new Cobro(this.DataBase, Lbl.Pagos.TipoFormasDePago.Efectivo, ImporteCaja);
                                                         Cb.Recibo = this;
                                                         Cobros.Add(Cb);
                                                 }
