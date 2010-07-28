@@ -83,7 +83,7 @@
     <Opcion Nombre="&amp;Cuentas Corrientes" Funcion="CTACTE" />
     <Opcion Nombre="T&amp;odas las Cajas" Funcion="CAJAS" />
     <Opcion Nombre="-" Funcion="" />
-    <Opcion Nombre="Cupones de &amp;Tarjetas" Funcion="TARJETAS" />
+    <Opcion Nombre="C&amp;upones de Cobro" Funcion="CUPONES" />
     <Opcion Nombre="C&amp;heques" Funcion="">
       <Opcion Nombre="&amp;Recibidos" Funcion="LISTADO CHEQUES RECIBIDOS" />
       <Opcion Nombre="&amp;Emitidos" Funcion="LISTADO CHEQUES EMITIDOS" />
@@ -99,8 +99,8 @@
       <Opcion Nombre="Conceptos" Funcion="LISTADO CAJAS_CONCEPTOS" />
       <Opcion Nombre="Bancos" Funcion="LISTADO BANCOS" />
       <Opcion Nombre="Chequeras" Funcion="LISTADO CHEQUERAS" />
-      <Opcion Nombre="Tarjetas" Funcion="LISTADO TARJETAS" />
-      <Opcion Nombre="Planes de Tarjetas" Funcion="LISTADO PLANES" />
+      <Opcion Nombre="Formas de Pago" Funcion="LISTADO FORMASPAGO" />
+      <Opcion Nombre="Planes" Funcion="LISTADO PLANES" />
     </Opcion>
   </Opcion>
   <Opcion Nombre="&amp;Tareas" Funcion="">

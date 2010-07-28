@@ -82,7 +82,7 @@ namespace Lfc.Cajas.Vencimientos
                         EntradaFechaFin.Text = Lfx.Types.Formatting.FormatDate(Res.FechaFin);
                         EntradaFechaInicio.Text = Lfx.Types.Formatting.FormatDate(Res.FechaInicio);
                         EntradaFrecuencia.TextKey = ((int)(Res.Frecuencia)).ToString();
-                        EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(Res.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(Res.Importe, this.Workspace.CurrentConfig.Moneda.Decimales);
                         EntradaNombre.Text = Res.Nombre;
                         EntradaObs.Text = Res.Obs;
                         EntradaRepetir.Text = Res.Repetir.ToString();

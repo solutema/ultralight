@@ -36,7 +36,7 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Lfc.Tarjetas.Cupones
+namespace Lfc.Cupones.Cupones
 {
         public class Acreditar : Lui.Forms.DialogForm
         {
@@ -458,7 +458,7 @@ namespace Lfc.Tarjetas.Cupones
                 {
                         if (IgnorarCambios == false) {
                                 IgnorarCambios = true;
-                                txtComisionUsuario.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text) - Lfx.Types.Parsing.ParseCurrency(txtTotal.Text) - Lfx.Types.Parsing.ParseDouble(txtComisionTarjeta.Text) - Lfx.Types.Parsing.ParseDouble(txtComisionPlan.Text), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                txtComisionUsuario.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text) - Lfx.Types.Parsing.ParseCurrency(txtTotal.Text) - Lfx.Types.Parsing.ParseDouble(txtComisionTarjeta.Text) - Lfx.Types.Parsing.ParseDouble(txtComisionPlan.Text), this.Workspace.CurrentConfig.Moneda.Decimales);
                                 IgnorarCambios = false;
                         }
                 }
@@ -478,7 +478,7 @@ namespace Lfc.Tarjetas.Cupones
                         lblComisionUsuarioPct.Text = "(" + Lfx.Types.Formatting.FormatNumber(Lfx.Types.Parsing.ParseCurrency(txtComisionUsuario.Text) / Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text) * 100, 2) + "%)";
                         if (IgnorarCambios == false) {
                                 IgnorarCambios = true;
-                                txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text) - Lfx.Types.Parsing.ParseDouble(txtComisionTarjeta.Text) - Lfx.Types.Parsing.ParseDouble(txtComisionPlan.Text) - Lfx.Types.Parsing.ParseDouble(txtComisionUsuario.Text), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text) - Lfx.Types.Parsing.ParseDouble(txtComisionTarjeta.Text) - Lfx.Types.Parsing.ParseDouble(txtComisionPlan.Text) - Lfx.Types.Parsing.ParseDouble(txtComisionUsuario.Text), this.Workspace.CurrentConfig.Moneda.Decimales);
                                 IgnorarCambios = false;
                         }
                 }

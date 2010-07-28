@@ -173,7 +173,7 @@ namespace Lfc.Articulos
                                                 dPVP *= (1 + MargenCompleto / 100);
                                                 dPVP += System.Convert.ToDouble(Margen["sumar2"]);
                                                 IgnorarCostoTextChanged++;
-                                                EntradaPvp.Text = Lfx.Types.Formatting.FormatCurrency(dPVP, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto);
+                                                EntradaPvp.Text = Lfx.Types.Formatting.FormatCurrency(dPVP, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
                                                 IgnorarCostoTextChanged--;
                                         }
                                 } else {
@@ -193,7 +193,7 @@ namespace Lfc.Articulos
                                 if (Lfx.Types.Parsing.ParseCurrency(EntradaCosto.Text) == 0)
                                         EntradaMargen.Text = "N/A";
                                 else
-                                        EntradaMargen.Text = "Otro (" + Lfx.Types.Formatting.FormatNumber(Lfx.Types.Parsing.ParseCurrency(EntradaPvp.Text) / Lfx.Types.Parsing.ParseCurrency(EntradaCosto.Text) * 100 - 100, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + "%)";
+                                        EntradaMargen.Text = "Otro (" + Lfx.Types.Formatting.FormatNumber(Lfx.Types.Parsing.ParseCurrency(EntradaPvp.Text) / Lfx.Types.Parsing.ParseCurrency(EntradaCosto.Text) * 100 - 100, this.Workspace.CurrentConfig.Moneda.DecimalesCosto) + "%)";
 
                                 IgnorarCostoTextChanged--;
                         }
@@ -249,7 +249,7 @@ namespace Lfc.Articulos
 
                 private void cmdArticulosMovimDetalles_GotFocus(object sender, System.EventArgs e)
                 {
-                        if (m_Id > 0 && this.Workspace.CurrentConfig.Products.StockMultideposito) {
+                        if (m_Id > 0 && this.Workspace.CurrentConfig.Productos.StockMultideposito) {
                                 DataTable Stocks = this.DataBase.Select("SELECT id_articulo, id_situacion, cantidad FROM articulos_stock WHERE id_articulo=" + m_Id.ToString() + " AND cantidad<>0 AND id_situacion<>998 AND id_situacion<>999 ORDER BY id_situacion");
 
                                 if (Stocks != null) {
@@ -262,7 +262,7 @@ namespace Lfc.Articulos
                                                 if (System.Convert.ToInt32(Situacion["cuenta_stock"]) == 0)
                                                         Resultado.Append(" (N.C.S.)");
 
-                                                Resultado.Append(": " + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Stock["cantidad"]), this.Workspace.CurrentConfig.Products.StockDecimalPlaces) + Environment.NewLine);
+                                                Resultado.Append(": " + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Stock["cantidad"]), this.Workspace.CurrentConfig.Productos.DecimalesStock) + Environment.NewLine);
                                         }
 
                                         if (Resultado.Length > 0) {
@@ -281,8 +281,8 @@ namespace Lfc.Articulos
 
                                 double PrecioUltComp = this.DataBase.FieldDouble("SELECT comprob_detalle.precio FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND id_articulo=" + m_Id.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
                                 double PrecioUltFlete = this.DataBase.FieldDouble("SELECT (comprob.gastosenvio+comprob.otrosgastos)*(comprob_detalle.precio/comprob.total) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND id_articulo=" + m_Id.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
-                                Res += "Costo de la última compra (sin gastos): " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + Environment.NewLine;
-                                Res += "Costo de la última compra (con gastos): " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUltComp + PrecioUltFlete, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + Environment.NewLine;
+                                Res += "Costo de la última compra (sin gastos): " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, this.Workspace.CurrentConfig.Moneda.DecimalesCosto) + Environment.NewLine;
+                                Res += "Costo de la última compra (con gastos): " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUltComp + PrecioUltFlete, this.Workspace.CurrentConfig.Moneda.DecimalesCosto) + Environment.NewLine;
 
                                 // Podra hacer esto con una subconsulta, pero la versión de MySql que estamos utilizando
                                 // no permite la cláusula LIMIT dentro de una subconsulta IN ()
@@ -295,7 +295,7 @@ namespace Lfc.Articulos
                                         }
 
                                         PrecioUlt5Comps = PrecioUlt5Comps / UltimasCompras.Rows.Count;
-                                        Res += "Promedio de las últimas " + UltimasCompras.Rows.Count.ToString() + " compras (sin gastos): " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUlt5Comps, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto);
+                                        Res += "Promedio de las últimas " + UltimasCompras.Rows.Count.ToString() + " compras (sin gastos): " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUlt5Comps, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
                                 }
 
                                 EntradaCosto.ShowBalloon(Res, "Precio de Compra", 60);
@@ -331,10 +331,10 @@ namespace Lfc.Articulos
 
                 private void FormArticulosEditar_WorkspaceChanged(object sender, System.EventArgs e)
                 {
-                        EntradaStockActual.DecimalPlaces = this.Workspace.CurrentConfig.Products.StockDecimalPlaces;
-                        EntradaStockMinimo.DecimalPlaces = this.Workspace.CurrentConfig.Products.StockDecimalPlaces;
-                        EntradaCosto.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto;
-                        EntradaPvp.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlaces;
+                        EntradaStockActual.DecimalPlaces = this.Workspace.CurrentConfig.Productos.DecimalesStock;
+                        EntradaStockMinimo.DecimalPlaces = this.Workspace.CurrentConfig.Productos.DecimalesStock;
+                        EntradaCosto.DecimalPlaces = this.Workspace.CurrentConfig.Moneda.DecimalesCosto;
+                        EntradaPvp.DecimalPlaces = this.Workspace.CurrentConfig.Moneda.Decimales;
 
                         Lfx.Data.Row Nombre = null;
 
@@ -384,7 +384,7 @@ namespace Lfc.Articulos
                 private void txtPVP_Enter(object sender, EventArgs e)
                 {
                         if (EntradaUnidad.TextKey.Length > 0 && UnidadRendimiento.Length > 0) {
-                                EntradaPvp.ShowBalloon("En " + EntradaUnidad.TextKey + " de " + Lfx.Types.Formatting.FormatNumber(Rendimiento) + " " + UnidadRendimiento + " a razón de " + Lfx.Types.Currency.CurrencySymbol + Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(EntradaPvp.Text) / Rendimiento, this.Workspace.CurrentConfig.Currency.DecimalPlaces) + " (PVP) el " + UnidadRendimiento + ".");
+                                EntradaPvp.ShowBalloon("En " + EntradaUnidad.TextKey + " de " + Lfx.Types.Formatting.FormatNumber(Rendimiento) + " " + UnidadRendimiento + " a razón de " + Lfx.Types.Currency.CurrencySymbol + Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(EntradaPvp.Text) / Rendimiento, this.Workspace.CurrentConfig.Moneda.Decimales) + " (PVP) el " + UnidadRendimiento + ".");
                         }
                 }
 
@@ -426,23 +426,23 @@ namespace Lfc.Articulos
                         EntradaWeb.TextKey = System.Convert.ToInt32(Item.Destacado).ToString();
 
                         IgnorarCostoTextChanged++;
-                        EntradaCosto.Text = Lfx.Types.Formatting.FormatCurrency(Item.Costo, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto);
+                        EntradaCosto.Text = Lfx.Types.Formatting.FormatCurrency(Item.Costo, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
                         if (Item.Margen == null) {
                                 EntradaMargen.TextKey = "";
                                 EntradaMargen.Text = "Otro";
                         } else {
                                 EntradaMargen.TextKey = Item.Margen.Id.ToString();
                         }
-                        EntradaPvp.Text = Lfx.Types.Formatting.FormatCurrency(Item.PVP, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto);
+                        EntradaPvp.Text = Lfx.Types.Formatting.FormatCurrency(Item.PVP, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
 
                         IgnorarCostoTextChanged--;
 
                         EntradaUsaStock.TextKey = Item.ControlaStock ? "1" : "0";
-                        EntradaStockActual.Text = Lfx.Types.Formatting.FormatNumber(Item.StockActual(), this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
+                        EntradaStockActual.Text = Lfx.Types.Formatting.FormatNumber(Item.StockActual, this.Workspace.CurrentConfig.Productos.DecimalesStock);
                         EntradaUnidad.TextKey = Item.Unidad;
                         Rendimiento = Item.Rendimiento;
                         UnidadRendimiento = Item.UnidadRendimiento;
-                        EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatNumber(Item.StockMinimo, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
+                        EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatNumber(Item.StockMinimo, this.Workspace.CurrentConfig.Productos.DecimalesStock);
                         EntradaGarantia.Text = Item.Garantia.ToString();
                         EntradaImagen.Elemento = Item;
                         EntradaTags.Elemento = Item;

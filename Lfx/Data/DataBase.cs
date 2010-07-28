@@ -51,10 +51,10 @@ namespace Lfx.Data
                 private System.Data.IDbConnection DbConnection;
                 private bool m_InTransaction = false, m_Closing = false;
 
-                public DataBase(Lfx.Workspace workspace, string name)
+                public DataBase(Lfx.Workspace workspace, string ownerName)
                 {
                         this.Workspace = workspace;
-                        this.Name = name;
+                        this.Name = ownerName;
                         this.Handle = LastHandle++;
                         if (Lfx.Data.DataBaseCache.DefaultCache == null)
                                 Lfx.Data.DataBaseCache.DefaultCache = new DataBaseCache(this);
@@ -949,7 +949,9 @@ LEFT JOIN pg_attribute
                 public int Execute(qGen.TableCommand sqlCommand)
                 {
                         sqlCommand.SqlMode = this.SqlMode;
-                        return this.ExecuteNonQuery(this.GetCommand(sqlCommand));
+                        using (System.Data.IDbCommand Cmd = this.GetCommand(sqlCommand)) {
+                                return this.ExecuteNonQuery(Cmd);
+                        }
                 }
 
                 private int ExecuteNonQuery(System.Data.IDbCommand command)
@@ -965,7 +967,6 @@ LEFT JOIN pg_attribute
                                         this.Workspace.DebugLog(this.Handle, command.CommandText);
                                         int Res = command.ExecuteNonQuery();
                                         this.ResetKeepAliveTimer();
-                                        command.Dispose();
                                         return Res;
                                 } catch (Exception ex)  {
                                         if (this.TryToRecover(ex)) {
@@ -1093,33 +1094,34 @@ LEFT JOIN pg_attribute
 
                 public Lfx.Data.Row FirstRowFromSelect(string selectCommand)
                 {
-                        System.Data.DataTable SelTbl = this.Select(selectCommand);
+                        /* System.Data.DataTable SelTbl = this.Select(selectCommand);
                         if (SelTbl.Rows.Count == 0)
                                 return null;
 
                         Lfx.Data.Row Res = ((Lfx.Data.Row)(SelTbl.Rows[0]));
                         Res.IsNew = false;
-                        return Res;
+                        return Res; */
 
-                        /* System.Data.IDataReader Rdr = this.GetReader(selectCommand);
-                        if (Rdr != null) {
-                                Lfx.Data.Row Res = null;
-                                if (Rdr.Read()) {
-                                        Res = new Lfx.Data.Row();
-                                        Res.IsNew = false;
-                                        for (int i = 0; i < Rdr.FieldCount; i++) {
-                                                object Val = Rdr[i];
-                                                if (Val is DateTime && (DateTime)Val == DateTime.MinValue)
-                                                        Res[Rdr.GetName(i)] = DBNull.Value;
-                                                else
-                                                        Res[Rdr.GetName(i)] = Rdr[i];
+                        using (System.Data.IDataReader Rdr = this.GetReader(selectCommand)) {
+                                if (Rdr != null) {
+                                        Lfx.Data.Row Res = null;
+                                        if (Rdr.Read()) {
+                                                Res = new Lfx.Data.Row();
+                                                Res.IsNew = false;
+                                                for (int i = 0; i < Rdr.FieldCount; i++) {
+                                                        object Val = Rdr[i];
+                                                        if (Val is DateTime && (DateTime)Val == DateTime.MinValue)
+                                                                Res[Rdr.GetName(i)] = DBNull.Value;
+                                                        else
+                                                                Res[Rdr.GetName(i)] = Rdr[i];
+                                                }
                                         }
+                                        Rdr.Close();
+                                        return Res;
+                                } else {
+                                        return null;
                                 }
-                                Rdr.Close();
-                                return Res;
-                        } else {
-                                return null;
-                        } */
+                        }
                 }
 
                 public Lfx.Data.Row FirstRowFromSelect(qGen.Select selectCommand)
@@ -1132,7 +1134,7 @@ LEFT JOIN pg_attribute
                         return (this.ConectionState == System.Data.ConnectionState.Open) || (this.ConectionState == System.Data.ConnectionState.Executing) || (this.ConectionState == System.Data.ConnectionState.Fetching);
                 }
 
-                /* public System.Data.IDataReader GetReader(qGen.Select comando)
+                public System.Data.IDataReader GetReader(qGen.Select comando)
                 {
                         return this.GetReader(comando.ToString());
                 }
@@ -1160,7 +1162,7 @@ LEFT JOIN pg_attribute
                                         }
                                 }
                         }
-                } */
+                }
 
                 public System.Data.DataTable Select(qGen.Select selectCommand)
                 {
@@ -1207,24 +1209,24 @@ LEFT JOIN pg_attribute
                         } */
                        
                         System.Data.IDbDataAdapter Adaptador = Lfx.Data.DataBaseCache.DefaultCache.Provider.GetAdapter(selectCommand, this.DbConnection);
-                        System.Data.DataSet Lector = new System.Data.DataSet();
-                        while (true) {
-                                try {
-                                        Adaptador.Fill(Lector);
-                                        this.ResetKeepAliveTimer();
-                                        this.Workspace.DebugLog(this.Handle, selectCommand);
-                                        break;
-                                }
-                                catch (Exception ex) {
-                                        if (this.TryToRecover(ex)) {
-                                                LogError("----------------------------------------------------------------------------");
-                                                LogError(ex.Message);
-                                                LogError(selectCommand);
-                                                throw;
+                        using (System.Data.DataSet Lector = new System.Data.DataSet()) {
+                                while (true) {
+                                        try {
+                                                Adaptador.Fill(Lector);
+                                                this.ResetKeepAliveTimer();
+                                                this.Workspace.DebugLog(this.Handle, selectCommand);
+                                                break;
+                                        } catch (Exception ex) {
+                                                if (this.TryToRecover(ex)) {
+                                                        LogError("----------------------------------------------------------------------------");
+                                                        LogError(ex.Message);
+                                                        LogError(selectCommand);
+                                                        throw;
+                                                }
                                         }
                                 }
+                                return Lector.Tables[0];
                         }
-                        return Lector.Tables[0];
                 }
 
                 private void LogError(string texto)

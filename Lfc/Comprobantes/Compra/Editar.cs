@@ -63,13 +63,13 @@ namespace Lfc.Comprobantes.Compra
                         if (Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.create") == false)
                                 return new Lfx.Types.NoAccessOperationResult();
 
-                        EntradaHaciaSituacion.Visible = this.Workspace.CurrentConfig.Products.StockMultideposito;
-                        lblHaciaSituacion.Visible = this.Workspace.CurrentConfig.Products.StockMultideposito;
+                        EntradaHaciaSituacion.Visible = this.Workspace.CurrentConfig.Productos.StockMultideposito;
+                        lblHaciaSituacion.Visible = this.Workspace.CurrentConfig.Productos.StockMultideposito;
 
                         Lbl.Comprobantes.ComprobanteConArticulos NewRow = new Lbl.Comprobantes.ComprobanteConArticulos(this.DataBase);
                         NewRow.Crear(CrearTipo, true);
                         if (NewRow.Tipo.EsFacturaNCoND)
-                                NewRow.FormaDePago = new Lbl.Comprobantes.FormaDePago(this.DataBase, Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente);
+                                NewRow.FormaDePago = new Lbl.Pagos.FormaDePago(this.DataBase, Lbl.Pagos.TipoFormasDePago.CuentaCorriente);
                         else
                                 NewRow.FormaDePago = null;
 
@@ -138,10 +138,10 @@ namespace Lfc.Comprobantes.Compra
                         EntradaTipo.TextKey = Fac.Tipo.Nomenclatura;
 			EntradaHaciaSituacion.ReadOnly = Fac.Existe;
 			EntradaEstado.TextKey = Fac.Estado.ToString();
-			EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Fac.Total, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-			EntradaCancelado.Text = Lfx.Types.Formatting.FormatCurrency(Fac.ImporteCancelado, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-			EntradaGastosEnvio.Text = Lfx.Types.Formatting.FormatCurrency(Fac.GastosDeEnvio, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        EntradaOtrosGastos.Text = Lfx.Types.Formatting.FormatCurrency(Fac.OtrosGastos, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+			EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Fac.Total, this.Workspace.CurrentConfig.Moneda.Decimales);
+			EntradaCancelado.Text = Lfx.Types.Formatting.FormatCurrency(Fac.ImporteCancelado, this.Workspace.CurrentConfig.Moneda.Decimales);
+			EntradaGastosEnvio.Text = Lfx.Types.Formatting.FormatCurrency(Fac.GastosDeEnvio, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaOtrosGastos.Text = Lfx.Types.Formatting.FormatCurrency(Fac.OtrosGastos, this.Workspace.CurrentConfig.Moneda.Decimales);
                         EntradaFecha.Text = Lfx.Types.Formatting.FormatDate(Fac.Fecha);
                         EntradaObs.Text = Fac.Obs;
 
@@ -179,7 +179,7 @@ namespace Lfc.Comprobantes.Compra
                         Res.Compra = true;
                         Res.Fecha = Lfx.Types.Parsing.ParseDate(EntradaFecha.Text);
                         if (EntradaFormaPago.TextKey != "0")
-                                Res.FormaDePago = new Lbl.Comprobantes.FormaDePago(Res.DataBase, Lfx.Types.Parsing.ParseInt(EntradaFormaPago.TextKey));
+                                Res.FormaDePago = new Lbl.Pagos.FormaDePago(Res.DataBase, Lfx.Types.Parsing.ParseInt(EntradaFormaPago.TextKey));
                         else
                                 Res.FormaDePago = null;
                         if(m_FacturaIdOrig == 0)
@@ -366,7 +366,7 @@ namespace Lfc.Comprobantes.Compra
 		{
                         double GastosEnvio = Lfx.Types.Parsing.ParseCurrency(EntradaGastosEnvio.Text);
                         double OtrosGastos = Lfx.Types.Parsing.ParseCurrency(EntradaOtrosGastos.Text);
-                        EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(EntradaProductos.Total + GastosEnvio + OtrosGastos, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(EntradaProductos.Total + GastosEnvio + OtrosGastos, this.Workspace.CurrentConfig.Moneda.Decimales);
 		}
 
 		private void txtNumero_Leave(object sender, System.EventArgs e)

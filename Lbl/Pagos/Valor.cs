@@ -37,7 +37,7 @@ namespace Lbl.Pagos
 {
         public class Valor : ElementoDeDatos
         {
-                public Lbl.Comprobantes.FormaDePago FormaDePago;
+                public Lbl.Pagos.FormaDePago FormaDePago;
                 public Lbl.Comprobantes.Recibo Recibo;
 
                 //Heredar constructor
@@ -70,7 +70,7 @@ namespace Lbl.Pagos
                 {
                         if (this.Registro != null) {
                                 if (this.FieldInt("id_formapago") > 0)
-                                        this.FormaDePago = new Lbl.Comprobantes.FormaDePago(this.DataBase, this.FieldInt("id_formapago"));
+                                        this.FormaDePago = new Lbl.Pagos.FormaDePago(this.DataBase, this.FieldInt("id_formapago"));
                                 else
                                         this.FormaDePago = null;
 
@@ -160,7 +160,7 @@ namespace Lbl.Pagos
                                 Comando.Fields.AddWithValue("nombre", this.Nombre);
 
                         Comando.Fields.AddWithValue("numero", this.Numero);
-                        Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Company.CurrentBranch);
+                        Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
 
                         Comando.Fields.AddWithValue("importe", this.Importe);
                         Comando.Fields.AddWithValue("obs", this.Obs);

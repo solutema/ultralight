@@ -43,6 +43,8 @@ namespace Lbl.Servicios.Importar
                 public FiltroEscorpion(Lfx.Data.DataBase dataBase)
                         : base(dataBase)
                 {
+                        this.FilterName = "Filtro de importación de Escorpión Sistemas";
+
                         this.Reemplazos.Add(new Reemplazo("NO POSEE", ""));
 
                         this.MapaDeTablas = new MapaDeTablas();
@@ -51,6 +53,7 @@ namespace Lbl.Servicios.Importar
                         this.MapaDeTablas["clientes.dbf"].Where = "CODIGO>1";   // 1 es consumidor final y lo ignoramos
                         this.MapaDeTablas["clientes.dbf"].TipoElemento = typeof(Lbl.Personas.Persona);
                         this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues(null, "tipo", 1);
+                        this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues(null, "id_situacion", 2);
                         this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues("NOMBRE", "nombre_visible", ConversionDeColumna.InterpretarNombreYApellido);
                         this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues("DOMICILIO", "domicilio", ConversionDeColumna.ConvertirAMayusculasYMinusculas);
                         this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues("COD_POS", "id_ciudad", ConversionDeColumna.InterpretarSql);
@@ -77,7 +80,8 @@ namespace Lbl.Servicios.Importar
 
                         this.MapaDeTablas.AddWithValue("listapre.dbf", "articulos", "CODIGO");
                         this.MapaDeTablas["listapre.dbf"].TipoElemento = typeof(Lbl.Articulos.Articulo);
-                        this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues(null, "estado", 1);
+                        this.MapaDeTablas["listapre.dbf"].MapaDeColumnas.AddWithValues(null, "estado", 1);
+                        this.MapaDeTablas["listapre.dbf"].MapaDeColumnas.AddWithValues(null, "control_stock", 1);
                         this.MapaDeTablas["listapre.dbf"].MapaDeColumnas.AddWithValues("CODIGO", "codigo1");
                         this.MapaDeTablas["listapre.dbf"].MapaDeColumnas.AddWithValues("U_MEDIDA", "unidad_stock", ConversionDeColumna.ConvertirAMinusculas);
                         this.MapaDeTablas["listapre.dbf"].MapaDeColumnas.AddWithValues("DESCRIP", "nombre", ConversionDeColumna.ConvertirAMayusculasYMinusculas);
@@ -90,6 +94,7 @@ namespace Lbl.Servicios.Importar
                         this.MapaDeTablas["listapre.dbf"].MapaDeColumnas["CATALOGO"].ParametroConversion = "SELECT id_categoria FROM articulos_categorias WHERE import_id='$VALOR$'";
 
                         // Movimientos de stock (a.k.a. facturas)
+                        /*
                         this.MapaDeTablas.AddWithValue("movimien.dbf", "comprob_detalle");
                         this.MapaDeTablas["movimien.dbf"].TipoElemento = typeof(Lbl.Comprobantes.DetalleArticulo);
                         this.Reemplazos.Add(new Reemplazo(1, 999, "movimien.dbf:CLIENTE"));      // En el sistema de Escorpión, Consumidor Final es el cliente 1, en Lázaro es 999
@@ -103,6 +108,7 @@ namespace Lbl.Servicios.Importar
                         this.MapaDeTablas["movimien.dbf"].MapaDeColumnas.AddWithValues("FECHA", "FECHA");
                         this.MapaDeTablas["movimien.dbf"].MapaDeColumnas.AddWithValues("CLIENTE", "CLIENTE");
                         this.MapaDeTablas["movimien.dbf"].MapaDeColumnas.AddWithValues("TIPO", "TIPO");
+                         * */
 
                         // Cuentas corrientes
                         /* this.MapaDeTablas.AddWithValue("ctasctes.dbf", "catcte");

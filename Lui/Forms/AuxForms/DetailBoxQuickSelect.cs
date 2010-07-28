@@ -29,284 +29,262 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections;
-using System.Data;
+using System.ComponentModel;
 using System.Drawing;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Lui.Forms.AuxForms
 {
-	public partial class DetailBoxQuickSelect : System.Windows.Forms.Form
-	{
-		private string m_Table = "";
-		private string m_KeyField = "";
-		private string m_DetailField = "";
-		private string m_ExtraDetailFields = "";
-		private string m_Filter = "";
-		private bool f_IgnoreEvents;
-		public System.Windows.Forms.Control ControlDestino;
+        public partial class DetailBoxQuickSelect : System.Windows.Forms.Form, IDataControl
+        {
+                private string m_Table = "";
+                private string m_KeyField = "";
+                private string m_DetailField = "";
+                private string m_ExtraDetailFields = "";
+                private string m_Filter = "";
+                private bool f_IgnoreEvents;
+                public System.Windows.Forms.Control ControlDestino;
 
                 public bool CanCreate
-		{
-			set
-			{
-				cmdNuevo.Visible = value;
-				if (value)
-					txtBuscar.Width = cmdNuevo.Left - (txtBuscar.Left * 2);
-				else
-					txtBuscar.Width = this.ClientSize.Width - (txtBuscar.Left * 2);
-			}
-		}
+                {
+                        set
+                        {
+                                BotonNuevo.Visible = value;
+                                if (value)
+                                        EntradaBuscar.Width = BotonNuevo.Left - (EntradaBuscar.Left * 2);
+                                else
+                                        EntradaBuscar.Width = this.ClientSize.Width - (EntradaBuscar.Left * 2);
+                        }
+                }
 
-		[System.ComponentModel.Category("Datos")]
-		public string Table
-		{
-			get
-			{
-				return m_Table;
-			}
-			set
-			{
-				m_Table = value;
-				UpdateDetail();
-			}
-		}
+                [System.ComponentModel.Category("Datos")]
+                public string Table
+                {
+                        get
+                        {
+                                return m_Table;
+                        }
+                        set
+                        {
+                                m_Table = value;
+                                UpdateDetail();
+                        }
+                }
 
-		[System.ComponentModel.Category("Datos")]
+                [System.ComponentModel.Category("Datos")]
                 public string KeyField
-		{
-			set
-			{
-				m_KeyField = value;
-				UpdateDetail();
-			}
-		}
+                {
+                        set
+                        {
+                                m_KeyField = value;
+                                UpdateDetail();
+                        }
+                }
 
-		[System.ComponentModel.Category("Datos")]
+                [System.ComponentModel.Category("Datos")]
                 public string DetailField
-		{
-			set
-			{
-				m_DetailField = value;
-				UpdateDetail();
-			}
-		}
+                {
+                        set
+                        {
+                                m_DetailField = value;
+                                UpdateDetail();
+                        }
+                }
 
-		[System.ComponentModel.Category("Datos")]
+                [System.ComponentModel.Category("Datos")]
                 public string ExtraDetailFields
-		{
-			set
-			{
-				m_ExtraDetailFields = value;
-				UpdateDetail();
-			}
-		}
+                {
+                        set
+                        {
+                                m_ExtraDetailFields = value;
+                                UpdateDetail();
+                        }
+                }
 
-		[System.ComponentModel.Category("Datos")]
+                [System.ComponentModel.Category("Datos")]
                 public string Filter
-		{
-			set
-			{
-				m_Filter = value;
-				UpdateDetail();
-			}
-		}
+                {
+                        set
+                        {
+                                m_Filter = value;
+                                UpdateDetail();
+                        }
+                }
 
-		private void UpdateDetail()
-		{
-			int CamposExtra = 0;
+                private void UpdateDetail()
+                {
+                        int CamposExtra = 0;
 
-			if (m_Table == "articulos" && (m_ExtraDetailFields == null || m_ExtraDetailFields.Length == 0))
-				m_ExtraDetailFields = "codigo1,codigo2,codigo3,codigo4";
+                        if (m_Table == "articulos" && (m_ExtraDetailFields == null || m_ExtraDetailFields.Length == 0))
+                                m_ExtraDetailFields = "codigo1,codigo2,codigo3,codigo4";
 
-			if (m_Table == "personas" && (m_ExtraDetailFields == null || m_ExtraDetailFields.Length == 0))
-				m_ExtraDetailFields = "num_doc,cuit,extra1";
+                        if (m_Table == "personas" && (m_ExtraDetailFields == null || m_ExtraDetailFields.Length == 0))
+                                m_ExtraDetailFields = "num_doc,cuit,extra1";
 
                         if (m_Table == "ciudades" && (m_ExtraDetailFields == null || m_ExtraDetailFields.Length == 0))
                                 m_ExtraDetailFields = "cp";
 
-			if (m_ExtraDetailFields != null)
-				CamposExtra = m_ExtraDetailFields.Length - m_ExtraDetailFields.Replace(",", "").Length + 1;
+                        if (m_ExtraDetailFields != null)
+                                CamposExtra = m_ExtraDetailFields.Length - m_ExtraDetailFields.Replace(",", "").Length + 1;
 
-			if (CamposExtra > 4)
-				CamposExtra = 4;
+                        if (CamposExtra > 4)
+                                CamposExtra = 4;
 
-			this.Width = 480 + (80 * CamposExtra);
-                        if (lvItems.Columns.Count > 0)
-                                lvItems.Columns[1].Width = lvItems.Width - lvItems.Columns[0].Width - (80 * CamposExtra) - 20;
+                        this.Width = 480 + (80 * CamposExtra);
+                        if (ListaItem.Columns.Count > 0)
+                                ListaItem.Columns[1].Width = ListaItem.Width - ListaItem.Columns[0].Width - (80 * CamposExtra) - 20;
 
-			if (CamposExtra >= 1)
-				extra1.Width = 80;
-			else
-				extra1.Width = 0;
+                        if (CamposExtra >= 1)
+                                extra1.Width = 80;
+                        else
+                                extra1.Width = 0;
 
-			if (CamposExtra >= 2)
-				extra1.Width = 80;
-			else
-				extra2.Width = 0;
+                        if (CamposExtra >= 2)
+                                extra1.Width = 80;
+                        else
+                                extra2.Width = 0;
 
-			if (CamposExtra >= 3)
-				extra1.Width = 80;
-			else
-				extra3.Width = 0;
+                        if (CamposExtra >= 3)
+                                extra1.Width = 80;
+                        else
+                                extra3.Width = 0;
 
-			if (CamposExtra >= 4)
-				extra1.Width = 80;
-			else
-				extra4.Width = 0;
-		}
+                        if (CamposExtra >= 4)
+                                extra1.Width = 80;
+                        else
+                                extra4.Width = 0;
+                }
 
 
                 public void Buscar(string valorInicial)
                 {
                         Refrescar();
                         f_IgnoreEvents = true;
-                        txtBuscar.Text = valorInicial.Trim();
+                        EntradaBuscar.Text = valorInicial.Trim();
                         f_IgnoreEvents = false;
-                        txtBuscar.SelectionLength = 0;
-                        txtBuscar.SelectionStart = txtBuscar.Text.Length;
+                        EntradaBuscar.SelectionLength = 0;
+                        EntradaBuscar.SelectionStart = EntradaBuscar.Text.Length;
                         this.Refrescar();
                         if (!this.Visible)
                                 this.ShowDialog();
                 }
 
-		internal void Refrescar()
-		{
-			lvItems.Items.Clear();
-			if (this.Workspace != null)
-			{
-				if (m_Table.Length > 0 && m_KeyField.Length > 0 && m_DetailField.Length > 0)
-				{
-					string TextoSql = null;
-					string sBuscar = txtBuscar.Text;
+                internal void Refrescar()
+                {
+                        ListaItem.Items.Clear();
+                        if (this.Workspace != null) {
+                                if (m_Table.Length > 0 && m_KeyField.Length > 0 && m_DetailField.Length > 0) {
+                                        string TextoSql = null;
+                                        string sBuscar = EntradaBuscar.Text;
 
-                                        sBuscar = this.Workspace.DefaultDataBase.EscapeString(sBuscar.Replace("  ", " ").Trim());
+                                        sBuscar = this.DataBase.EscapeString(sBuscar.Replace("  ", " ").Trim());
 
-					if (m_Table.Length >= 7 && m_Table.Substring(0, 7) == "SELECT ")
-					{
-						TextoSql = m_Table;
-					}
-					else
-					{
-						TextoSql = "SELECT " + m_KeyField + ", " + m_DetailField;
-						if (m_ExtraDetailFields != null && m_ExtraDetailFields.Length > 0)
-							TextoSql += ", " + m_ExtraDetailFields;
+                                        if (m_Table.Length >= 7 && m_Table.Substring(0, 7) == "SELECT ") {
+                                                TextoSql = m_Table;
+                                        } else {
+                                                TextoSql = "SELECT " + m_KeyField + ", " + m_DetailField;
+                                                if (m_ExtraDetailFields != null && m_ExtraDetailFields.Length > 0)
+                                                        TextoSql += ", " + m_ExtraDetailFields;
 
-						// Si es la tabla de artículos, muestro algunas cosas más
-						if (m_Table == "articulos")
-							TextoSql += ", control_stock, stock_actual, pedido, destacado";
+                                                // Si es la tabla de artículos, muestro algunas cosas más
+                                                if (m_Table == "articulos")
+                                                        TextoSql += ", control_stock, stock_actual, pedido, destacado";
 
-						TextoSql += " FROM " + m_Table;
-						if (sBuscar != null && sBuscar.Length > 1)
-							TextoSql += " WHERE (" + m_DetailField + " LIKE '%" + sBuscar.Replace(" ", "%' AND " + m_DetailField + " LIKE '%") + "%'";
-						else if (sBuscar != null && sBuscar.Length > 0)
-                                                        TextoSql += " WHERE (" + m_DetailField + " LIKE '" + this.Workspace.DefaultDataBase.EscapeString(sBuscar) + "%'";
+                                                TextoSql += " FROM " + m_Table;
+                                                if (sBuscar != null && sBuscar.Length > 1)
+                                                        TextoSql += " WHERE (" + m_DetailField + " LIKE '%" + sBuscar.Replace(" ", "%' AND " + m_DetailField + " LIKE '%") + "%'";
+                                                else if (sBuscar != null && sBuscar.Length > 0)
+                                                        TextoSql += " WHERE (" + m_DetailField + " LIKE '" + this.DataBase.EscapeString(sBuscar) + "%'";
 
-						if (m_ExtraDetailFields != null && m_ExtraDetailFields.Length > 0 && sBuscar != null && sBuscar.Length > 1)
-						{
-							string TempExtraDetailFields = m_ExtraDetailFields;
-							string TempWhere = "";
-							string ExtraField = Lfx.Types.Strings.GetNextToken(ref TempExtraDetailFields, ",");
-							while (ExtraField.Length > 0)
-							{
-								if (TempWhere.Length == 0)
-									TempWhere += ExtraField + " LIKE '%" + sBuscar + "%'";
-								else
-									TempWhere += " OR " + ExtraField + " LIKE '%" + sBuscar + "%'";
-								ExtraField = Lfx.Types.Strings.GetNextToken(ref TempExtraDetailFields, ",");
-							}
-							TextoSql += " OR (" + TempWhere + ")";
-						}
-						if (TextoSql.IndexOf(" WHERE ") != -1)
-							TextoSql += ") ";
+                                                if (m_ExtraDetailFields != null && m_ExtraDetailFields.Length > 0 && sBuscar != null && sBuscar.Length > 1) {
+                                                        string TempExtraDetailFields = m_ExtraDetailFields;
+                                                        string TempWhere = "";
+                                                        string ExtraField = Lfx.Types.Strings.GetNextToken(ref TempExtraDetailFields, ",");
+                                                        while (ExtraField.Length > 0) {
+                                                                if (TempWhere.Length == 0)
+                                                                        TempWhere += ExtraField + " LIKE '%" + sBuscar + "%'";
+                                                                else
+                                                                        TempWhere += " OR " + ExtraField + " LIKE '%" + sBuscar + "%'";
+                                                                ExtraField = Lfx.Types.Strings.GetNextToken(ref TempExtraDetailFields, ",");
+                                                        }
+                                                        TextoSql += " OR (" + TempWhere + ")";
+                                                }
+                                                if (TextoSql.IndexOf(" WHERE ") != -1)
+                                                        TextoSql += ") ";
 
-						if (m_Filter != null && m_Filter.Length > 0)
-						{
-							if (TextoSql.IndexOf(" WHERE ") != -1)
-								TextoSql += " AND (" + m_Filter + ")";
-							else
-								TextoSql += " WHERE " + m_Filter;
-						}
+                                                if (m_Filter != null && m_Filter.Length > 0) {
+                                                        if (TextoSql.IndexOf(" WHERE ") != -1)
+                                                                TextoSql += " AND (" + m_Filter + ")";
+                                                        else
+                                                                TextoSql += " WHERE " + m_Filter;
+                                                }
 
-						if (m_Table == "articulos")
-							TextoSql += " ORDER BY IF(stock_actual+pedido>0,0,1), " + m_DetailField;
-						else
-							TextoSql += " ORDER BY " + m_DetailField;
+                                                if (m_Table == "articulos")
+                                                        TextoSql += " ORDER BY IF(stock_actual+pedido>0,0,1), " + m_DetailField;
+                                                else
+                                                        TextoSql += " ORDER BY " + m_DetailField;
 
-						// TODO: Código dependiente de MySql/PostgreSql. Pasar a qGen.SqlCommandBuilder
-						if (this.Workspace.SlowLink)
-							TextoSql += " LIMIT 40";
-						else
-							TextoSql += " LIMIT 100";
-					}
+                                                // TODO: Código dependiente de MySql/PostgreSql. Pasar a qGen.SqlCommandBuilder
+                                                if (this.Workspace.SlowLink)
+                                                        TextoSql += " LIMIT 40";
+                                                else
+                                                        TextoSql += " LIMIT 100";
+                                        }
 
-                                        System.Data.DataTable dt = this.Workspace.DefaultDataBase.Select(TextoSql);
-					lvItems.SuspendLayout();
-					lvItems.BeginUpdate();
-					foreach (System.Data.DataRow row in dt.Rows)
-					{
-						ListViewItem itm = lvItems.Items.Add(System.Convert.ToInt32(row[m_KeyField]).ToString("00000"));
-						itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(row[m_DetailField])));
-						if (m_ExtraDetailFields != null && m_ExtraDetailFields.Length > 0)
-						{
-							string TempExtraDetailFields = m_ExtraDetailFields;
-							string Campo = Lfx.Types.Strings.GetNextToken(ref TempExtraDetailFields, ",").Trim();
-							while (Campo.Length > 0)
-							{
-								switch (row[Campo].GetType().ToString())
-								{
-									case "System.Single":
-									case "System.Decimal":
-									case "System.Double":
-										itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(row[Campo]))));
-										break;
-									default:
-										itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(row[Campo])));
-										break;
-								}
+                                        System.Data.DataTable dt = this.DataBase.Select(TextoSql);
+                                        ListaItem.SuspendLayout();
+                                        ListaItem.BeginUpdate();
+                                        foreach (System.Data.DataRow row in dt.Rows) {
+                                                ListViewItem itm = ListaItem.Items.Add(System.Convert.ToInt32(row[m_KeyField]).ToString("00000"));
+                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(row[m_DetailField])));
+                                                if (m_ExtraDetailFields != null && m_ExtraDetailFields.Length > 0) {
+                                                        string TempExtraDetailFields = m_ExtraDetailFields;
+                                                        string Campo = Lfx.Types.Strings.GetNextToken(ref TempExtraDetailFields, ",").Trim();
+                                                        while (Campo.Length > 0) {
+                                                                switch (row[Campo].GetType().ToString()) {
+                                                                        case "System.Single":
+                                                                        case "System.Decimal":
+                                                                        case "System.Double":
+                                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(row[Campo]))));
+                                                                                break;
+                                                                        default:
+                                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(row[Campo])));
+                                                                                break;
+                                                                }
 
 
-								Campo = Lfx.Types.Strings.GetNextToken(ref TempExtraDetailFields, ",").Trim();
-							}
-						}
-						// TODO: que tome m_ExtraDetailFields esto en cuenta
-						if (m_Table == "articulos")
-						{
-							if (System.Convert.ToInt32(row["control_stock"]) != 0 && System.Convert.ToDouble(row["stock_actual"]) <= 0)
-							{
-								// No hay stock.
-								if (System.Convert.ToDouble(row["pedido"]) + System.Convert.ToDouble(row["stock_actual"]) > 0)
-								{
-									// Pero hay pedido suficiente para cubrir un stock negativo y sobra
-									itm.ForeColor = System.Drawing.Color.OrangeRed;
-									itm.Font = new Font(itm.Font, FontStyle.Regular);
-								}
-								else
-								{
-									itm.ForeColor = System.Drawing.Color.Red;
-									itm.Font = new Font(itm.Font, FontStyle.Strikeout);
-								}
-							}
-							else if (System.Convert.ToInt32(row["destacado"]) != 0)
-							{
-								itm.ForeColor = System.Drawing.Color.DarkGreen;
-								itm.Font = new Font(itm.Font, FontStyle.Regular);
-							}
-						}
-					}
-					lvItems.EndUpdate();
-					lvItems.ResumeLayout();
+                                                                Campo = Lfx.Types.Strings.GetNextToken(ref TempExtraDetailFields, ",").Trim();
+                                                        }
+                                                }
+                                                // TODO: que tome m_ExtraDetailFields esto en cuenta
+                                                if (m_Table == "articulos") {
+                                                        if (System.Convert.ToInt32(row["control_stock"]) != 0 && System.Convert.ToDouble(row["stock_actual"]) <= 0) {
+                                                                // No hay stock.
+                                                                if (System.Convert.ToDouble(row["pedido"]) + System.Convert.ToDouble(row["stock_actual"]) > 0) {
+                                                                        // Pero hay pedido suficiente para cubrir un stock negativo y sobra
+                                                                        itm.ForeColor = System.Drawing.Color.OrangeRed;
+                                                                        itm.Font = new Font(itm.Font, FontStyle.Regular);
+                                                                } else {
+                                                                        itm.ForeColor = System.Drawing.Color.Red;
+                                                                        itm.Font = new Font(itm.Font, FontStyle.Strikeout);
+                                                                }
+                                                        } else if (System.Convert.ToInt32(row["destacado"]) != 0) {
+                                                                itm.ForeColor = System.Drawing.Color.DarkGreen;
+                                                                itm.Font = new Font(itm.Font, FontStyle.Regular);
+                                                        }
+                                                }
+                                        }
+                                        ListaItem.EndUpdate();
+                                        ListaItem.ResumeLayout();
 
-					if (lvItems.Items.Count > 0)
-						lvItems.Items[0].Selected = true;
-				}
-			}
-		}
+                                        if (ListaItem.Items.Count > 0)
+                                                ListaItem.Items[0].Selected = true;
+                                }
+                        }
+                }
 
 
-                private void txtBuscar_TextChanged(object sender, System.EventArgs e)
+                private void EntradaBuscar_TextChanged(object sender, System.EventArgs e)
                 {
                         if (f_IgnoreEvents == false && this.Workspace != null) {
                                 if (this.Workspace.SlowLink) {
@@ -319,205 +297,195 @@ namespace Lui.Forms.AuxForms
                 }
 
 
-		private void txtBuscar_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
-		{
-			byte Tecla = System.Text.Encoding.ASCII.GetBytes(System.Convert.ToString(e.KeyChar))[0];
-			if (Tecla == System.Convert.ToByte(Keys.Escape))
-			{
-				e.Handled = true;
-				this.Close();
-			}
-			else if (Tecla == System.Convert.ToByte(Keys.Return))
-			{
-				e.Handled = true;
-				this.DarleEnter();
-			}
-		}
+                private void EntradaBuscar_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+                {
+                        byte Tecla = System.Text.Encoding.ASCII.GetBytes(System.Convert.ToString(e.KeyChar))[0];
+                        if (Tecla == System.Convert.ToByte(Keys.Escape)) {
+                                e.Handled = true;
+                                this.Close();
+                        } else if (Tecla == System.Convert.ToByte(Keys.Return)) {
+                                e.Handled = true;
+                                this.DarleEnter();
+                        }
+                }
 
 
-		private void txtBuscar_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-		{
-			if (lvItems.Items.Count > 0)
-			{
-				switch (e.KeyCode)
-				{
-					case Keys.Up:
-						if (lvItems.SelectedItems.Count == 0)
-							lvItems.SelectedItems[0].Selected = true;
-						else if (lvItems.SelectedItems[0].Index > 0)
-							lvItems.Items[lvItems.SelectedItems[0].Index - 1].Selected = true;
-						e.Handled = true;
-						break;
-					case Keys.Down:
-						if (lvItems.SelectedItems.Count == 0)
-							lvItems.SelectedItems[0].Selected = true;
-						else if (lvItems.SelectedItems[0].Index < lvItems.Items.Count - 1)
-							lvItems.Items[lvItems.SelectedItems[0].Index + 1].Selected = true;
-						e.Handled = true;
-						break;
-					case Keys.PageUp:
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
-						break;
-					case Keys.PageDown:
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
-						this.txtBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
-						break;
-				}
-			}
-		}
+                private void EntradaBuscar_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+                {
+                        if (ListaItem.Items.Count > 0) {
+                                switch (e.KeyCode) {
+                                        case Keys.Up:
+                                                if (ListaItem.SelectedItems.Count == 0)
+                                                        ListaItem.SelectedItems[0].Selected = true;
+                                                else if (ListaItem.SelectedItems[0].Index > 0)
+                                                        ListaItem.Items[ListaItem.SelectedItems[0].Index - 1].Selected = true;
+                                                e.Handled = true;
+                                                break;
+                                        case Keys.Down:
+                                                if (ListaItem.SelectedItems.Count == 0)
+                                                        ListaItem.SelectedItems[0].Selected = true;
+                                                else if (ListaItem.SelectedItems[0].Index < ListaItem.Items.Count - 1)
+                                                        ListaItem.Items[ListaItem.SelectedItems[0].Index + 1].Selected = true;
+                                                e.Handled = true;
+                                                break;
+                                        case Keys.PageUp:
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Up));
+                                                break;
+                                        case Keys.PageDown:
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
+                                                this.EntradaBuscar_KeyDown(sender, new System.Windows.Forms.KeyEventArgs(Keys.Down));
+                                                break;
+                                }
+                        }
+                }
 
 
-		private void lvItems_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
-		{
-			byte Tecla = System.Text.Encoding.ASCII.GetBytes(System.Convert.ToString(e.KeyChar))[0];
-			if (Tecla == System.Convert.ToByte(Keys.Return))
-			{
-				e.Handled = true;
-				this.DarleEnter();
-			}
-			else if (Tecla == System.Convert.ToByte(Keys.Escape))
-			{
-				e.Handled = true;
-				this.Close();
-			}
-			else if (Tecla == System.Convert.ToByte(Keys.Back))
-			{
-				if (txtBuscar.Text.Length > 0)
-				{
-					e.Handled = true;
-					txtBuscar.Text = txtBuscar.Text.Substring(0, txtBuscar.Text.Length - 1);
-				}
-				e.Handled = true;
-			}
-			else if ((@"ABCDEFGHIJKLMNOPQRSTUVWXYZ* """).IndexOf(char.ToUpper(e.KeyChar)) != -1)
-			{
-				e.Handled = true;
-				txtBuscar.Text += System.Convert.ToString(e.KeyChar);
-			}
-		}
+                private void ListaItem_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+                {
+                        byte Tecla = System.Text.Encoding.ASCII.GetBytes(System.Convert.ToString(e.KeyChar))[0];
+                        if (Tecla == System.Convert.ToByte(Keys.Return)) {
+                                e.Handled = true;
+                                this.DarleEnter();
+                        } else if (Tecla == System.Convert.ToByte(Keys.Escape)) {
+                                e.Handled = true;
+                                this.Close();
+                        } else if (Tecla == System.Convert.ToByte(Keys.Back)) {
+                                if (EntradaBuscar.Text.Length > 0) {
+                                        e.Handled = true;
+                                        EntradaBuscar.Text = EntradaBuscar.Text.Substring(0, EntradaBuscar.Text.Length - 1);
+                                }
+                                e.Handled = true;
+                        } else if ((@"ABCDEFGHIJKLMNOPQRSTUVWXYZ* """).IndexOf(char.ToUpper(e.KeyChar)) != -1) {
+                                e.Handled = true;
+                                EntradaBuscar.Text += System.Convert.ToString(e.KeyChar);
+                        }
+                }
 
 
-		internal void DarleEnter()
-		{
-			if (lvItems.SelectedItems.Count > 0)
-			{
-				if (m_Table == "articulos")
-				{
-                                        string Codigo = this.Workspace.DefaultDataBase.FieldString("SELECT " + this.Workspace.CurrentConfig.Products.DefaultCode() + " FROM articulos WHERE id_articulo=" + int.Parse(lvItems.SelectedItems[0].Text).ToString());
-					if (Codigo.Length == 0)
-						Codigo = int.Parse(lvItems.SelectedItems[0].Text).ToString();
-					ControlDestino.Text = Codigo;
-				}
-				else
-				{
-					ControlDestino.Text = int.Parse(lvItems.SelectedItems[0].Text).ToString();
-				}
-				this.Close();
-			}
-		}
+                internal void DarleEnter()
+                {
+                        if (ListaItem.SelectedItems.Count > 0) {
+                                if (m_Table == "articulos") {
+                                        string Codigo = this.DataBase.FieldString("SELECT " + this.Workspace.CurrentConfig.Productos.CodigoPredeterminado() + " FROM articulos WHERE id_articulo=" + int.Parse(ListaItem.SelectedItems[0].Text).ToString());
+                                        if (Codigo.Length == 0)
+                                                Codigo = int.Parse(ListaItem.SelectedItems[0].Text).ToString();
+                                        ControlDestino.Text = Codigo;
+                                } else {
+                                        ControlDestino.Text = int.Parse(ListaItem.SelectedItems[0].Text).ToString();
+                                }
+                                this.Close();
+                        }
+                }
 
 
-		private void cmdNuevo_Click(object sender, System.EventArgs e)
-		{
-			this.Hide();
-			object Resultado = this.Workspace.RunTime.Execute("CREATE", new string[] { m_Table });
-			if (Resultado == null)
-			{
-				// No se puede crear
-				this.Show();
-			}
-			else if (Resultado is Lui.Forms.EditForm)
-			{
-				((Lui.Forms.EditForm)Resultado).ControlDestino = this.ControlDestino;
-				this.DialogResult = DialogResult.Retry;
-				this.Tag = Resultado;
-				this.Close();
-			}
-			else if (Resultado is Form)
-			{
-				this.DialogResult = DialogResult.Retry;
-				this.Close();
-			}
-			else if (Resultado is Lfx.Types.OperationResult)
-			{
-				Lui.Forms.MessageBox.Show(((Lfx.Types.OperationResult)(Resultado)).Message, "Mensaje");
-			}
-			else
-			{
-				// Devolvió algo raro.
-			}
-		}
+                private void BotonNuevo_Click(object sender, System.EventArgs e)
+                {
+                        this.Hide();
+                        object Resultado = this.Workspace.RunTime.Execute("CREATE", new string[] { m_Table });
+                        if (Resultado == null) {
+                                // No se puede crear
+                                this.Show();
+                        } else if (Resultado is Lui.Forms.EditForm) {
+                                ((Lui.Forms.EditForm)Resultado).ControlDestino = this.ControlDestino;
+                                this.DialogResult = DialogResult.Retry;
+                                this.Tag = Resultado;
+                                this.Close();
+                        } else if (Resultado is Form) {
+                                this.DialogResult = DialogResult.Retry;
+                                this.Close();
+                        } else if (Resultado is Lfx.Types.OperationResult) {
+                                Lui.Forms.MessageBox.Show(((Lfx.Types.OperationResult)(Resultado)).Message, "Mensaje");
+                        } else {
+                                // Devolvió algo raro.
+                        }
+                }
 
 
-		private void FormBuscadorRapido_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-		{
-			switch (e.KeyCode)
-			{
-				case Keys.F6:
-					e.Handled = true;
-					if (cmdNuevo.Enabled && cmdNuevo.Visible)
-						cmdNuevo.PerformClick();
-					break;
-			}
-		}
+                private void DetailBoxQuickSelect_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+                {
+                        switch (e.KeyCode) {
+                                case Keys.F6:
+                                        e.Handled = true;
+                                        if (BotonNuevo.Enabled && BotonNuevo.Visible)
+                                                BotonNuevo.PerformClick();
+                                        break;
+                        }
+                }
 
 
-		public void VerDetalles()
-		{
-			if (lvItems.SelectedItems.Count > 0)
-			{
-				int ItemId = int.Parse(lvItems.SelectedItems[0].Text);
-				if (ItemId > 0)
-					this.Workspace.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", this.Table, ItemId.ToString() });
-			}
-		}
+                public void VerDetalles()
+                {
+                        if (ListaItem.SelectedItems.Count > 0) {
+                                int ItemId = int.Parse(ListaItem.SelectedItems[0].Text);
+                                if (ItemId > 0)
+                                        this.Workspace.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", this.Table, ItemId.ToString() });
+                        }
+                }
 
 
-		private void lvItems_SelectedIndexChanged(object sender, System.EventArgs e)
-		{
-			if (lvItems.SelectedItems.Count > 0)
-			{
-				lvItems.Items[lvItems.SelectedItems[0].Index].Focused = true;
-				lvItems.Items[lvItems.SelectedItems[0].Index].EnsureVisible();
-			}
-			VerDetalles();
-		}
+                private void ListaItem_SelectedIndexChanged(object sender, System.EventArgs e)
+                {
+                        if (ListaItem.SelectedItems.Count > 0) {
+                                ListaItem.Items[ListaItem.SelectedItems[0].Index].Focused = true;
+                                ListaItem.Items[ListaItem.SelectedItems[0].Index].EnsureVisible();
+                        }
+                        VerDetalles();
+                }
 
 
-		private void Timer1_Tick(System.Object sender, System.EventArgs e)
-		{
-			this.Refrescar();
-			Timer1.Enabled = false;
-		}
+                private void Timer1_Tick(System.Object sender, System.EventArgs e)
+                {
+                        this.Refrescar();
+                        Timer1.Enabled = false;
+                }
 
-		private void lvItems_DoubleClick(object sender, System.EventArgs e)
-		{
-			DarleEnter();
-		}
+                private void ListaItem_DoubleClick(object sender, System.EventArgs e)
+                {
+                        DarleEnter();
+                }
 
-		public Lfx.Workspace Workspace
-		{
-			get
-			{
-				return Lfx.Workspace.Master;
-			}
-		}
-	}
+                /// <summary>
+                /// IDataControl
+                /// </summary>
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public Lfx.Workspace Workspace
+                {
+                        get
+                        {
+                                return Lfx.Workspace.Master;
+                        }
+                }
+
+                /// <summary>
+                /// IDataControl
+                /// </summary>
+                public Lfx.Data.DataBase DataBase
+                {
+                        get
+                        {
+                                if (this.Parent is Lui.Forms.IDataControl) {
+                                        return ((Lui.Forms.IDataControl)(this.Parent)).DataBase;
+                                } else {
+                                        return this.Workspace.DefaultDataBase;
+                                }
+                        }
+                }
+        }
 }

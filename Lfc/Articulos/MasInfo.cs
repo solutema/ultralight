@@ -318,7 +318,7 @@ namespace Lfc.Articulos
 					txtFechaCreado.Text = Lfx.Types.Formatting.FormatDate(Art["fecha_creado"]);
 					txtFechaPrecio.Text = Lfx.Types.Formatting.FormatDate(Art["fecha_precio"]);
 					double PrecioUltComp = this.DataBase.FieldDouble("SELECT comprob_detalle.precio FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND id_articulo=" + m_Articulo.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
-					txtCostoUlt.Text = Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto);
+					txtCostoUlt.Text = Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
 
 					// Podra hacer esto con una subconsulta, pero la versión de MySql que estamos utilizando
 					// no permite la cláusula LIMIT dentro de una subconsulta IN ()
@@ -331,7 +331,7 @@ namespace Lfc.Articulos
 						}
 
 						PrecioUltComp = PrecioUltComp / UltimasCompras.Rows.Count;
-						txtCostoProm.Text = Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto);
+						txtCostoProm.Text = Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
 					}
 
 					System.Data.DataTable Precios = this.DataBase.Select("SELECT fecha, costo, pvp FROM articulos_precios WHERE id_articulo=" + m_Articulo.ToString() + " ORDER BY fecha DESC LIMIT 100");
@@ -339,8 +339,8 @@ namespace Lfc.Articulos
 
 					foreach(System.Data.DataRow Precio in Precios.Rows) {
 						ListViewItem Itm = lvItems.Items.Add(Lfx.Types.Formatting.FormatDate(Precio["fecha"]));
-						Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Precio["costo"]), this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto)));
-						Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Precio["pvp"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
+						Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Precio["costo"]), this.Workspace.CurrentConfig.Moneda.DecimalesCosto)));
+						Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Precio["pvp"]), this.Workspace.CurrentConfig.Moneda.Decimales)));
 					}
 				}
 			}

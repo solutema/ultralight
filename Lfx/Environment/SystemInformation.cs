@@ -107,7 +107,7 @@ namespace Lfx.Environment
 		{
 			get
 			{
-				System.Diagnostics.Process Yo = System.Diagnostics.Process.GetCurrentProcess();
+                                System.Diagnostics.Process Yo = System.Diagnostics.Process.GetCurrentProcess();
 				if(Yo.ProcessName.IndexOf(".vshost") >= 0)
 					return true;
 				else if(Lfx.Environment.Folders.ApplicationFolder.IndexOf("/Sistema/bin/".Replace('/', System.IO.Path.DirectorySeparatorChar)) >= 0)

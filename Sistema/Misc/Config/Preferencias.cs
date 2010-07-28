@@ -246,10 +246,10 @@ namespace Lazaro.Misc.Config
 			EntradaStockDepositoPredetSuc.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.DepositoPredet", "0");
 			EntradaStockDecimales.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.Decimales", "0");
 
-			EntradaEmpresaNombre.Text = this.Workspace.CurrentConfig.Company.Name;
-			EntradaEmpresaCuit.Text = this.Workspace.CurrentConfig.Company.Cuit;
-			EntradaEmpresaSituacion.TextInt = this.Workspace.CurrentConfig.Company.SituacionTributaria;
-                        EntradaEmpresaEmail.Text = this.Workspace.CurrentConfig.Company.Email;
+			EntradaEmpresaNombre.Text = this.Workspace.CurrentConfig.Empresa.Nombre;
+			EntradaEmpresaCuit.Text = this.Workspace.CurrentConfig.Empresa.Cuit;
+			EntradaEmpresaSituacion.TextInt = this.Workspace.CurrentConfig.Empresa.SituacionTributaria;
+                        EntradaEmpresaEmail.Text = this.Workspace.CurrentConfig.Empresa.Email;
 
                         EntradaBackup.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Backup.Tipo", "0");
                         EntradaModoPantalla.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Apariencia.ModoPantalla", "maximizado");
@@ -300,10 +300,10 @@ namespace Lazaro.Misc.Config
 			else
 				this.Workspace.CurrentConfig.DeleteGlobalSetting("Sistema", "Stock.DepositoPredet", Sucursal);
 
-			this.Workspace.CurrentConfig.Company.Name = EntradaEmpresaNombre.Text;
-			this.Workspace.CurrentConfig.Company.Cuit = EntradaEmpresaCuit.Text;
-			this.Workspace.CurrentConfig.Company.SituacionTributaria = EntradaEmpresaSituacion.TextInt;
-                        this.Workspace.CurrentConfig.Company.Email = EntradaEmpresaEmail.Text;
+			this.Workspace.CurrentConfig.Empresa.Nombre = EntradaEmpresaNombre.Text;
+			this.Workspace.CurrentConfig.Empresa.Cuit = EntradaEmpresaCuit.Text;
+			this.Workspace.CurrentConfig.Empresa.SituacionTributaria = EntradaEmpresaSituacion.TextInt;
+                        this.Workspace.CurrentConfig.Empresa.Email = EntradaEmpresaEmail.Text;
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Backup.Tipo", EntradaBackup.TextKey, System.Environment.MachineName.ToUpperInvariant());
                         if (EntradaModoPantalla.TextKey == "*")
                                 this.Workspace.CurrentConfig.DeleteGlobalSetting("Sistema", "Apariencia.ModoPantalla", System.Environment.MachineName.ToUpperInvariant());

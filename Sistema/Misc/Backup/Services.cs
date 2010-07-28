@@ -291,7 +291,7 @@ namespace Lazaro.Misc.Backup
                                 using (System.IO.StreamWriter Escribidor = new System.IO.StreamWriter(Archivo, System.Text.Encoding.Default)) {
                                         Escribidor.WriteLine("Copia de seguridad del sistema Lázaro");
                                         Escribidor.WriteLine("");
-                                        Escribidor.WriteLine("Empresa=" + Lfx.Workspace.Master.CurrentConfig.Company.Name);
+                                        Escribidor.WriteLine("Empresa=" + Lfx.Workspace.Master.CurrentConfig.Empresa.Nombre);
                                         Escribidor.WriteLine("EspacioTrabajo=" + Lfx.Workspace.Master.Name);
                                         Escribidor.WriteLine("FechaYHora=" + System.DateTime.Now.ToString("dd-MM-yyyy") + " a las " + System.DateTime.Now.ToString("HH:mm:ss"));
                                         Escribidor.WriteLine("Usuario=" + Lfx.Workspace.Master.CurrentUser.CompleteName);

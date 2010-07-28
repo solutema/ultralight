@@ -178,7 +178,7 @@ namespace Lazaro.Reportes
                     this.label2.Name = "label2";
                     this.label2.Size = new System.Drawing.Size(232, 24);
                     this.label2.TabIndex = 3;
-                    this.label2.Text = "Presentaciones de tarjetas";
+                    this.label2.Text = "Presentaciones de cupones";
                     this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                     this.label2.UseMnemonic = false;
                     // 

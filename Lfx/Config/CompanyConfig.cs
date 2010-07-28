@@ -50,12 +50,12 @@ namespace Lfx.Config
                         get
                         {
                                 if (m_Sucursal == null)
-                                        m_Sucursal = ConfigManager.DataBase.Tables["sucursales"].FastRows[this.CurrentBranch];
+                                        m_Sucursal = ConfigManager.DataBase.Tables["sucursales"].FastRows[this.SucursalPredeterminada];
                                 return m_Sucursal;
                         }
                 }
 
-                public int CurrentBranch
+                public int SucursalPredeterminada
                 {
                         get
                         {
@@ -87,15 +87,15 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                return ConfigManager.DataBase.FieldString("SELECT nombre FROM ciudades WHERE id_ciudad=(SELECT id_ciudad FROM sucursales WHERE id_sucursal=" + this.CurrentBranch.ToString() + ")");
+                                return ConfigManager.DataBase.FieldString("SELECT nombre FROM ciudades WHERE id_ciudad=(SELECT id_ciudad FROM sucursales WHERE id_sucursal=" + this.SucursalPredeterminada.ToString() + ")");
                         }
                 }
 
-                public int idCiudad
+                public int Ciudad
                 {
                         get
                         {
-                                int City = ConfigManager.DataBase.FieldInt("SELECT id_ciudad FROM sucursales WHERE id_sucursal=" + ConfigManager.Company.CurrentBranch.ToString());
+                                int City = ConfigManager.DataBase.FieldInt("SELECT id_ciudad FROM sucursales WHERE id_sucursal=" + ConfigManager.Empresa.SucursalPredeterminada.ToString());
                                 if (City > 0)
                                         return City;
                                 else
@@ -103,11 +103,11 @@ namespace Lfx.Config
                         }
                 }
 
-                public int DefaultSituacionOrigen
+                public int SituacionOrigenPredeterminada
                 {
                         get
                         {
-                                int SituacionOrigen = ConfigManager.DataBase.FieldInt("SELECT situacionorigen FROM sucursales WHERE id_sucursal=" + ConfigManager.Company.CurrentBranch.ToString());
+                                int SituacionOrigen = ConfigManager.DataBase.FieldInt("SELECT situacionorigen FROM sucursales WHERE id_sucursal=" + ConfigManager.Empresa.SucursalPredeterminada.ToString());
                                 if (SituacionOrigen > 0)
                                         return SituacionOrigen;
                                 else
@@ -119,7 +119,7 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                int IdCajaDiaria = ConfigManager.DataBase.FieldInt("SELECT id_caja_diaria FROM sucursales WHERE id_sucursal=" + ConfigManager.Company.CurrentBranch.ToString());
+                                int IdCajaDiaria = ConfigManager.DataBase.FieldInt("SELECT id_caja_diaria FROM sucursales WHERE id_sucursal=" + ConfigManager.Empresa.SucursalPredeterminada.ToString());
                                 if (IdCajaDiaria > 0)
                                         return IdCajaDiaria;
                                 else
@@ -131,7 +131,7 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                int IdCajaCheques = ConfigManager.DataBase.FieldInt("SELECT id_caja_cheques FROM sucursales WHERE id_sucursal=" + ConfigManager.Company.CurrentBranch.ToString());
+                                int IdCajaCheques = ConfigManager.DataBase.FieldInt("SELECT id_caja_cheques FROM sucursales WHERE id_sucursal=" + ConfigManager.Empresa.SucursalPredeterminada.ToString());
                                 if (IdCajaCheques > 0)
                                         return IdCajaCheques;
                                 else
@@ -139,7 +139,7 @@ namespace Lfx.Config
                         }
                 }
 
-                public string Name
+                public string Nombre
                 {
                         get
                         {

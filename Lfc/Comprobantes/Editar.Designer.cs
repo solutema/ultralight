@@ -56,9 +56,9 @@ namespace Lfc.Comprobantes
                         this.Label4 = new System.Windows.Forms.Label();
                         this.Label5 = new System.Windows.Forms.Label();
                         this.txtSubTotal = new Lui.Forms.TextBox();
-                        this.txtDescuento = new Lui.Forms.TextBox();
+                        this.EntradaDescuento = new Lui.Forms.TextBox();
                         this.Label6 = new System.Windows.Forms.Label();
-                        this.txtInteres = new Lui.Forms.TextBox();
+                        this.EntradaInteres = new Lui.Forms.TextBox();
                         this.Label7 = new System.Windows.Forms.Label();
                         this.txtCuotas = new Lui.Forms.TextBox();
                         this.Label8 = new System.Windows.Forms.Label();
@@ -273,32 +273,32 @@ namespace Lfc.Comprobantes
                         // 
                         // txtDescuento
                         // 
-                        this.txtDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.txtDescuento.AutoHeight = false;
-                        this.txtDescuento.AutoNav = true;
-                        this.txtDescuento.AutoTab = true;
-                        this.txtDescuento.DataType = Lui.Forms.DataTypes.Float;
-                        this.txtDescuento.DecimalPlaces = -1;
-                        this.txtDescuento.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtDescuento.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtDescuento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtDescuento.Location = new System.Drawing.Point(232, 356);
-                        this.txtDescuento.MaxLenght = 32767;
-                        this.txtDescuento.MultiLine = false;
-                        this.txtDescuento.Name = "txtDescuento";
-                        this.txtDescuento.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtDescuento.PasswordChar = '\0';
-                        this.txtDescuento.Prefijo = "";
-                        this.txtDescuento.ReadOnly = false;
-                        this.txtDescuento.SelectOnFocus = true;
-                        this.txtDescuento.Size = new System.Drawing.Size(76, 24);
-                        this.txtDescuento.Sufijo = "%";
-                        this.txtDescuento.TabIndex = 24;
-                        this.txtDescuento.Text = "0.00";
-                        this.txtDescuento.TextRaw = "0.00";
-                        this.txtDescuento.TipWhenBlank = "";
-                        this.txtDescuento.ToolTipText = "";
-                        this.txtDescuento.TextChanged += new System.EventHandler(this.CambioValores);
+                        this.EntradaDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.EntradaDescuento.AutoHeight = false;
+                        this.EntradaDescuento.AutoNav = true;
+                        this.EntradaDescuento.AutoTab = true;
+                        this.EntradaDescuento.DataType = Lui.Forms.DataTypes.Float;
+                        this.EntradaDescuento.DecimalPlaces = -1;
+                        this.EntradaDescuento.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaDescuento.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaDescuento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaDescuento.Location = new System.Drawing.Point(232, 356);
+                        this.EntradaDescuento.MaxLenght = 32767;
+                        this.EntradaDescuento.MultiLine = false;
+                        this.EntradaDescuento.Name = "txtDescuento";
+                        this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaDescuento.PasswordChar = '\0';
+                        this.EntradaDescuento.Prefijo = "";
+                        this.EntradaDescuento.ReadOnly = false;
+                        this.EntradaDescuento.SelectOnFocus = true;
+                        this.EntradaDescuento.Size = new System.Drawing.Size(76, 24);
+                        this.EntradaDescuento.Sufijo = "%";
+                        this.EntradaDescuento.TabIndex = 24;
+                        this.EntradaDescuento.Text = "0.00";
+                        this.EntradaDescuento.TextRaw = "0.00";
+                        this.EntradaDescuento.TipWhenBlank = "";
+                        this.EntradaDescuento.ToolTipText = "";
+                        this.EntradaDescuento.TextChanged += new System.EventHandler(this.CambioValores);
                         // 
                         // Label6
                         // 
@@ -312,32 +312,32 @@ namespace Lfc.Comprobantes
                         // 
                         // txtInteres
                         // 
-                        this.txtInteres.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.txtInteres.AutoHeight = false;
-                        this.txtInteres.AutoNav = true;
-                        this.txtInteres.AutoTab = true;
-                        this.txtInteres.DataType = Lui.Forms.DataTypes.Float;
-                        this.txtInteres.DecimalPlaces = -1;
-                        this.txtInteres.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtInteres.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtInteres.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtInteres.Location = new System.Drawing.Point(232, 384);
-                        this.txtInteres.MaxLenght = 32767;
-                        this.txtInteres.MultiLine = false;
-                        this.txtInteres.Name = "txtInteres";
-                        this.txtInteres.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtInteres.PasswordChar = '\0';
-                        this.txtInteres.Prefijo = "";
-                        this.txtInteres.ReadOnly = false;
-                        this.txtInteres.SelectOnFocus = true;
-                        this.txtInteres.Size = new System.Drawing.Size(76, 24);
-                        this.txtInteres.Sufijo = "%";
-                        this.txtInteres.TabIndex = 26;
-                        this.txtInteres.Text = "0.00";
-                        this.txtInteres.TextRaw = "0.00";
-                        this.txtInteres.TipWhenBlank = "";
-                        this.txtInteres.ToolTipText = "";
-                        this.txtInteres.TextChanged += new System.EventHandler(this.CambioValores);
+                        this.EntradaInteres.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.EntradaInteres.AutoHeight = false;
+                        this.EntradaInteres.AutoNav = true;
+                        this.EntradaInteres.AutoTab = true;
+                        this.EntradaInteres.DataType = Lui.Forms.DataTypes.Float;
+                        this.EntradaInteres.DecimalPlaces = -1;
+                        this.EntradaInteres.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaInteres.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaInteres.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaInteres.Location = new System.Drawing.Point(232, 384);
+                        this.EntradaInteres.MaxLenght = 32767;
+                        this.EntradaInteres.MultiLine = false;
+                        this.EntradaInteres.Name = "txtInteres";
+                        this.EntradaInteres.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaInteres.PasswordChar = '\0';
+                        this.EntradaInteres.Prefijo = "";
+                        this.EntradaInteres.ReadOnly = false;
+                        this.EntradaInteres.SelectOnFocus = true;
+                        this.EntradaInteres.Size = new System.Drawing.Size(76, 24);
+                        this.EntradaInteres.Sufijo = "%";
+                        this.EntradaInteres.TabIndex = 26;
+                        this.EntradaInteres.Text = "0.00";
+                        this.EntradaInteres.TextRaw = "0.00";
+                        this.EntradaInteres.TipWhenBlank = "";
+                        this.EntradaInteres.ToolTipText = "";
+                        this.EntradaInteres.TextChanged += new System.EventHandler(this.CambioValores);
                         // 
                         // Label7
                         // 
@@ -597,9 +597,9 @@ namespace Lfc.Comprobantes
                         this.Controls.Add(this.lblTitulo);
                         this.Controls.Add(this.EntradaCliente);
                         this.Controls.Add(this.txtComprobanteID);
-                        this.Controls.Add(this.txtInteres);
+                        this.Controls.Add(this.EntradaInteres);
                         this.Controls.Add(this.Label7);
-                        this.Controls.Add(this.txtDescuento);
+                        this.Controls.Add(this.EntradaDescuento);
                         this.Controls.Add(this.Label6);
                         this.Controls.Add(this.txtSubTotal);
                         this.Controls.Add(this.Label5);
@@ -623,9 +623,9 @@ namespace Lfc.Comprobantes
                         this.Controls.SetChildIndex(this.Label5, 0);
                         this.Controls.SetChildIndex(this.txtSubTotal, 0);
                         this.Controls.SetChildIndex(this.Label6, 0);
-                        this.Controls.SetChildIndex(this.txtDescuento, 0);
+                        this.Controls.SetChildIndex(this.EntradaDescuento, 0);
                         this.Controls.SetChildIndex(this.Label7, 0);
-                        this.Controls.SetChildIndex(this.txtInteres, 0);
+                        this.Controls.SetChildIndex(this.EntradaInteres, 0);
                         this.Controls.SetChildIndex(this.txtComprobanteID, 0);
                         this.Controls.SetChildIndex(this.EntradaCliente, 0);
                         this.Controls.SetChildIndex(this.lblTitulo, 0);
@@ -651,9 +651,9 @@ namespace Lfc.Comprobantes
                 internal System.Windows.Forms.Label Label4;
                 internal System.Windows.Forms.Label Label5;
                 internal Lui.Forms.TextBox txtSubTotal;
-                internal Lui.Forms.TextBox txtDescuento;
+                internal Lui.Forms.TextBox EntradaDescuento;
                 internal System.Windows.Forms.Label Label6;
-                internal Lui.Forms.TextBox txtInteres;
+                internal Lui.Forms.TextBox EntradaInteres;
                 internal System.Windows.Forms.Label Label7;
                 internal Lui.Forms.TextBox txtCuotas;
                 internal System.Windows.Forms.Label Label8;

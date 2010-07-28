@@ -55,10 +55,10 @@ namespace Lui.Forms
 
                         if (ListingContent != null && ListingContent.Length > 0) {
                                 // Determino la impresora que le corresponde
-                                string Impresora = this.Workspace.CurrentConfig.Printing.PreferredPrinter("Listados");
+                                string Impresora = this.Workspace.CurrentConfig.Impresion.PreferredPrinter("Listados");
 
                                 // Si es de carga manual, presento el formulario correspondiente
-                                if (this.Workspace.CurrentConfig.Printing.PrinterFeed("Listados", "auto") == "manual") {
+                                if (this.Workspace.CurrentConfig.Impresion.PrinterFeed("Listados", "auto") == "manual") {
                                         Lbl.Impresion.ManualFeedDialog OFormFacturaCargaManual = new Lbl.Impresion.ManualFeedDialog();
                                         OFormFacturaCargaManual.DocumentName = "Papel para Listado";
 

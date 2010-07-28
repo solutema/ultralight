@@ -582,7 +582,7 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
 
                         // *** Imprimir Detalles
                         foreach (Lbl.Comprobantes.DetalleArticulo Detalle in Fac.Articulos) {
-                                string StrCodigo = this.Workspace.CurrentConfig.Products.DefaultCode();
+                                string StrCodigo = this.Workspace.CurrentConfig.Productos.CodigoPredeterminado();
 
                                 if (Detalle.Articulo != null) {
                                         if (StrCodigo == "id_articulo")
@@ -734,14 +734,14 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                                         case Modelos.EpsonGenerico:
                                         case Modelos.Emulacion:
                                                 ComandoAEnviar = new Comando(CodigosComandosFiscales.EpsonDocumentoFiscalPagosYDescuentos,
-                                                        "Recargo " + Lfx.Types.Formatting.FormatCurrencyForPrint(Fac.Recargo, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + "%",
+                                                        "Recargo " + Lfx.Types.Formatting.FormatCurrencyForPrint(Fac.Recargo, this.Workspace.CurrentConfig.Moneda.DecimalesCosto) + "%",
                                                         FormatearNumeroEpson(Fac.SubTotal * (Fac.Recargo / 100), 2).PadLeft(12, '0'),
                                                         "R");
                                                 Res = Enviar(ComandoAEnviar);
                                                 break;
                                         case Modelos.HasarGenerico:
                                                 ComandoAEnviar = new Comando(CodigosComandosFiscales.HasarDocumentoFiscalDevolucionesYRecargos,
-                                                        "Recargo " + Lfx.Types.Formatting.FormatCurrencyForPrint(Fac.Recargo, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + "%",
+                                                        "Recargo " + Lfx.Types.Formatting.FormatCurrencyForPrint(Fac.Recargo, this.Workspace.CurrentConfig.Moneda.DecimalesCosto) + "%",
                                                         FormatearNumeroHasar(Fac.SubTotal * (Fac.Recargo / 100), 2).PadLeft(10, '0'),
                                                         "M",
                                                         "00000000000",
@@ -820,9 +820,9 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                                         //Asiento el pago (sólo efectivo y cta. cte.)
                                         //El resto de los pagos los maneja el formulario desde donde se mandó a imprimir
                                         switch (Fac.FormaDePago.Tipo) {
-                                                case TipoFormasDePago.Efectivo:
+                                                case Lbl.Pagos.TipoFormasDePago.Efectivo:
                                                         if (Fac.ImporteImpago > 0) {
-                                                                Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(DataBase, this.Workspace.CurrentConfig.Company.CajaDiaria);
+                                                                Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(DataBase, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
                                                                 CajaDiaria.Movimiento(true,
                                                                         11000,
                                                                         "Cobro " + Fac.ToString(),
@@ -835,7 +835,7 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                                                                 Fac.CancelarImporte(Fac.ImporteImpago);
                                                         }
                                                         break;
-                                                case TipoFormasDePago.CuentaCorriente:
+                                                case Lbl.Pagos.TipoFormasDePago.CuentaCorriente:
                                                         Fac.Cliente.CuentaCorriente.IngresarComprobante(Fac);
                                                         break;
                                         }

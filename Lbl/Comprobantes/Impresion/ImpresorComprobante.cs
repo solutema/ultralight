@@ -201,13 +201,13 @@ namespace Lbl.Comprobantes.Impresion
                                                 return this.Comprobante.Cliente.Id.ToString();
 
                                         case "EMPRESA":
-                                                return this.Workspace.CurrentConfig.Company.Name;
+                                                return this.Workspace.CurrentConfig.Empresa.Nombre;
                                         case "EMPRESA.DOMICILIO":
-                                                return this.Workspace.CurrentConfig.Company.Domicilio;
+                                                return this.Workspace.CurrentConfig.Empresa.Domicilio;
                                         case "EMPRESA.TELEFONO":
-                                                return this.Workspace.CurrentConfig.Company.Telefono;
+                                                return this.Workspace.CurrentConfig.Empresa.Telefono;
                                         case "EMPRESA.CIUDAD":
-                                                return this.Workspace.CurrentConfig.Company.NombreCiudad;
+                                                return this.Workspace.CurrentConfig.Empresa.NombreCiudad;
 					
 					case "VENDEDOR":
                                                 return this.Comprobante.Vendedor.ToString();

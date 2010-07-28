@@ -138,7 +138,7 @@ namespace Lfc.CuentasCorrientes
                                         Total += Saldo;
                                         itm.SubItems.Add("-");
                                         itm.SubItems.Add("-");
-                                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Saldo, Workspace.CurrentConfig.Currency.DecimalPlaces));
+                                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Saldo, Workspace.CurrentConfig.Moneda.Decimales));
                                         itm.SubItems.Add("");
                                         itm.SubItems.Add("");
                                         itm.SubItems.Add("");
@@ -152,7 +152,7 @@ namespace Lfc.CuentasCorrientes
                                 ItemList.Items[0].Selected = true;
                         }
 
-                        EtiquetaSaldo.Text = Lfx.Types.Formatting.FormatCurrency(Total, Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        EtiquetaSaldo.Text = Lfx.Types.Formatting.FormatCurrency(Total, Workspace.CurrentConfig.Moneda.Decimales);
                         EtiquetaTransporte.Text = "-";
                         EtiquetaIngresos.Text = "-";
                         EtiquetaEgresos.Text = "-";
@@ -223,14 +223,14 @@ namespace Lfc.CuentasCorrientes
                                         if (System.Convert.ToDouble(Registro["importe"]) > 0) {
                                                 dIngresos += System.Convert.ToDouble(Registro["importe"]);
                                                 itm.SubItems.Add("-");
-                                                itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Registro["importe"]), Workspace.CurrentConfig.Currency.DecimalPlaces));
+                                                itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Registro["importe"]), Workspace.CurrentConfig.Moneda.Decimales));
                                         } else {
                                                 dEgresos += Math.Abs(System.Convert.ToDouble(Registro["importe"]));
-                                                itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(-System.Convert.ToDouble(Registro["importe"]), Workspace.CurrentConfig.Currency.DecimalPlaces));
+                                                itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(-System.Convert.ToDouble(Registro["importe"]), Workspace.CurrentConfig.Moneda.Decimales));
                                                 itm.SubItems.Add("-");
                                         }
                                         //UltimoSaldo = System.Convert.ToDouble(Registro["saldo"]);
-                                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Registro["saldo"]), Workspace.CurrentConfig.Currency.DecimalPlaces));
+                                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Registro["saldo"]), Workspace.CurrentConfig.Moneda.Decimales));
                                         int IdComprob = Lfx.Data.DataBase.ConvertDBNullToZero(Registro["id_comprob"]);
                                         if (IdComprob != 0)
                                                 itm.SubItems.Add(Lbl.Comprobantes.Comprobante.NumeroCompleto(this.DataBase, IdComprob));
@@ -249,10 +249,10 @@ namespace Lfc.CuentasCorrientes
                                 dTransporte = Workspace.DefaultDataBase.FieldDouble("SELECT saldo FROM ctacte WHERE fecha<'" + Lfx.Types.Formatting.FormatDateTimeSql(m_Fechas.From).ToString() + "' ORDER BY fecha DESC");
                         else
                                 dTransporte = 0;
-                        EtiquetaTransporte.Text = Lfx.Types.Formatting.FormatCurrency(dTransporte, Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        EtiquetaIngresos.Text = Lfx.Types.Formatting.FormatCurrency(dIngresos, Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        EtiquetaEgresos.Text = Lfx.Types.Formatting.FormatCurrency(dEgresos, Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        EtiquetaSaldo.Text = Lfx.Types.Formatting.FormatCurrency(dTransporte + dIngresos - dEgresos, Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        EtiquetaTransporte.Text = Lfx.Types.Formatting.FormatCurrency(dTransporte, Workspace.CurrentConfig.Moneda.Decimales);
+                        EtiquetaIngresos.Text = Lfx.Types.Formatting.FormatCurrency(dIngresos, Workspace.CurrentConfig.Moneda.Decimales);
+                        EtiquetaEgresos.Text = Lfx.Types.Formatting.FormatCurrency(dEgresos, Workspace.CurrentConfig.Moneda.Decimales);
+                        EtiquetaSaldo.Text = Lfx.Types.Formatting.FormatCurrency(dTransporte + dIngresos - dEgresos, Workspace.CurrentConfig.Moneda.Decimales);
 
                         ItemList.EndUpdate();
                         ItemList.Focus();

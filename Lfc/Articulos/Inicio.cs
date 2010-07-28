@@ -151,7 +151,7 @@ namespace Lfc.Articulos
                         if (this.CustomFilters.Count > 0)
                                 SelectValorizacion += " WHERE " + this.CustomFilters.ToString();
                         double Valorizacion = this.DataBase.FieldDouble(SelectValorizacion);
-                        txtValorCosto.Text = Lfx.Types.Formatting.FormatCurrency(Valorizacion, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto);
+                        txtValorCosto.Text = Lfx.Types.Formatting.FormatCurrency(Valorizacion, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
 
                         SelectValorizacion = "SELECT SUM(pvp*stock_actual) FROM articulos";
                         if (this.Joins != null && this.Joins.Count > 0) {
@@ -162,7 +162,7 @@ namespace Lfc.Articulos
                         if (this.CustomFilters.Count > 0)
                                 SelectValorizacion += " WHERE " + this.CustomFilters.ToString();
                         Valorizacion = this.DataBase.FieldDouble(SelectValorizacion);
-                        txtValorPVP.Text = Lfx.Types.Formatting.FormatCurrency(Valorizacion, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtValorPVP.Text = Lfx.Types.Formatting.FormatCurrency(Valorizacion, this.Workspace.CurrentConfig.Moneda.Decimales);
                 }
 
                 public override Lfx.Types.OperationResult OnFilter()
@@ -173,8 +173,8 @@ namespace Lfc.Articulos
                         OFormArticulosFiltros.EntradaCategoria.TextInt = m_Categoria;
                         OFormArticulosFiltros.EntradaStock.TextKey = m_Stock;
                         OFormArticulosFiltros.EntradaSituacion.TextInt = m_Situacion;
-                        OFormArticulosFiltros.EntradaPvpDesde.Text = Lfx.Types.Formatting.FormatCurrency(m_PVPDesde, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        OFormArticulosFiltros.EntradaPvpHasta.Text = Lfx.Types.Formatting.FormatCurrency(m_PVPHasta, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        OFormArticulosFiltros.EntradaPvpDesde.Text = Lfx.Types.Formatting.FormatCurrency(m_PVPDesde, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        OFormArticulosFiltros.EntradaPvpHasta.Text = Lfx.Types.Formatting.FormatCurrency(m_PVPHasta, this.Workspace.CurrentConfig.Moneda.Decimales);
                         OFormArticulosFiltros.EntradaAgrupar.TextKey = m_Agrupar;
 
                         if (OFormArticulosFiltros.ShowDialog() == DialogResult.OK) {

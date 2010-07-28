@@ -141,7 +141,7 @@ namespace Lbl.Comprobantes
 
                 public override string ToString()
                 {
-                        return this.Cantidad.ToString() + " " + this.Nombre + " a $ " + Lfx.Types.Formatting.FormatCurrency(this.Unitario, this.Workspace.CurrentConfig.Currency.DecimalPlaces) + " c/u";
+                        return this.Cantidad.ToString() + " " + this.Nombre + " a $ " + Lfx.Types.Formatting.FormatCurrency(this.Unitario, this.Workspace.CurrentConfig.Moneda.Decimales) + " c/u";
                 }
 	}
 }

@@ -76,8 +76,8 @@ namespace Lfx
                         if (Lfx.Data.DataBaseCache.DefaultCache == null)
                                 Lfx.Data.DataBaseCache.DefaultCache = new Lfx.Data.DataBaseCache(m_DataBase);
 
-                        if (Lfx.Updater.Master == null)
-                                Lfx.Updater.Master = new Updater();
+                        if (Lfx.Services.Updater.Master == null)
+                                Lfx.Services.Updater.Master = new Services.Updater();
 
                         if (this.DefaultDataBase.AccessMode == Lfx.Data.AccessModes.Undefined) {
                                 switch (this.CurrentConfig.ReadLocalSettingString("Data", "ConnectionType", "mysql")) {
@@ -141,9 +141,9 @@ namespace Lfx
 			}
 		}
 
-                public Lfx.Data.DataBase GetDataBase(string name)
+                public Lfx.Data.DataBase GetDataBase(string ownerName)
 		{
-                        Lfx.Data.DataBase Res = new Lfx.Data.DataBase(this, name);
+                        Lfx.Data.DataBase Res = new Lfx.Data.DataBase(this, ownerName);
                         //Res.Open();
                         return Res;
 		}

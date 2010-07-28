@@ -115,9 +115,9 @@ namespace Lfc.Cajas
                 private void EntradaImporte_TextChanged(object sender, EventArgs e)
                 {
                         if (Ingreso)
-                                EntradaNuevoSaldo.Text = Lfx.Types.Formatting.FormatCurrency(SaldoActual + Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                EntradaNuevoSaldo.Text = Lfx.Types.Formatting.FormatCurrency(SaldoActual + Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text), this.Workspace.CurrentConfig.Moneda.Decimales);
                         else
-                                EntradaNuevoSaldo.Text = Lfx.Types.Formatting.FormatCurrency(SaldoActual - Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                EntradaNuevoSaldo.Text = Lfx.Types.Formatting.FormatCurrency(SaldoActual - Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text), this.Workspace.CurrentConfig.Moneda.Decimales);
                 }
         }
 }

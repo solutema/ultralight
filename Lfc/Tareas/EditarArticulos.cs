@@ -305,13 +305,13 @@ namespace Lfc.Tareas
 
                 private void ProductArray_TotalChanged(System.Object sender, System.EventArgs e)
                 {
-                        txtSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(ProductArray.Total, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(ProductArray.Total, this.Workspace.CurrentConfig.Moneda.Decimales);
                 }
 
 
                 private void txtSubTotal_TextChanged(object sender, System.EventArgs e)
                 {
-                        txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text) * (1 - Lfx.Types.Parsing.ParseDouble(txtDescuento.Text) / 100), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text) * (1 - Lfx.Types.Parsing.ParseDouble(txtDescuento.Text) / 100), this.Workspace.CurrentConfig.Moneda.Decimales);
                 }
         }
 }

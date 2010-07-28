@@ -130,11 +130,11 @@ namespace Lfc.Cajas
                                                 // Calculo el transporte combinado de todas las cajas
                                                 DataTable Cajas = this.DataBase.Select("SELECT id_caja FROM cajas");
                                                 foreach (System.Data.DataRow Caja in Cajas.Rows) {
-                                                        Transporte += Math.Round(this.DataBase.FieldDouble("SELECT saldo FROM " + m_Tabla + " WHERE  id_caja=" + Caja["id_caja"].ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom).ToString() + " 00:00:00' ORDER BY id_movim DESC"), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                                        Transporte += Math.Round(this.DataBase.FieldDouble("SELECT saldo FROM " + m_Tabla + " WHERE  id_caja=" + Caja["id_caja"].ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom).ToString() + " 00:00:00' ORDER BY id_movim DESC"), this.Workspace.CurrentConfig.Moneda.Decimales);
                                                 }
                                         } else {
                                                 // Calculo el transporte de una cuenta
-                                                Transporte = Math.Round(this.DataBase.FieldDouble("SELECT saldo FROM " + m_Tabla + " WHERE  id_caja=" + m_Caja.ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom) + " 00:00:00' ORDER BY id_movim DESC LIMIT 1"), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                                Transporte = Math.Round(this.DataBase.FieldDouble("SELECT saldo FROM " + m_Tabla + " WHERE  id_caja=" + m_Caja.ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom) + " 00:00:00' ORDER BY id_movim DESC LIMIT 1"), this.Workspace.CurrentConfig.Moneda.Decimales);
                                         }
                                         Saldo = Transporte;
                                         if (Movimientos.Rows.Count > 0) {
@@ -145,20 +145,20 @@ namespace Lfc.Cajas
 
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatDate(Movimiento["fecha"])));
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Movimiento["concepto"])));
-                                                        double Importe = Math.Round(System.Convert.ToDouble(Movimiento["importe"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                                        double Importe = Math.Round(System.Convert.ToDouble(Movimiento["importe"]), this.Workspace.CurrentConfig.Moneda.Decimales);
                                                         if (Importe < 0) {
                                                                 Egresos -= Importe;
                                                                 Saldo += Importe;
                                                                 itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "-"));
-                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(-System.Convert.ToDouble(Movimiento["importe"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
+                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(-System.Convert.ToDouble(Movimiento["importe"]), this.Workspace.CurrentConfig.Moneda.Decimales)));
                                                         } else {
                                                                 Ingresos += Importe;
                                                                 Saldo += Importe;
-                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Movimiento["importe"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
+                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Movimiento["importe"]), this.Workspace.CurrentConfig.Moneda.Decimales)));
                                                                 itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "-"));
                                                         }
-                                                        Saldo = Math.Round(Saldo, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Movimiento["saldo"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
+                                                        Saldo = Math.Round(Saldo, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Movimiento["saldo"]), this.Workspace.CurrentConfig.Moneda.Decimales)));
                                                         /* if (m_Caja > 0 && m_Concepto == 0 && m_TipoConcepto == 0 && Math.Abs(System.Convert.ToDouble(Movimiento["saldo"]) - Saldo) > 0.01)
                                                         {
                                                                 itm.BackColor = System.Drawing.Color.Pink;
@@ -211,14 +211,14 @@ namespace Lfc.Cajas
                                                 }
                                         }
 
-                                        EtiquetaIngresos.Text = Lfx.Types.Formatting.FormatCurrency(Ingresos, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                                        EtiquetaEgresos.Text = Lfx.Types.Formatting.FormatCurrency(Egresos, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                        EtiquetaIngresos.Text = Lfx.Types.Formatting.FormatCurrency(Ingresos, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                        EtiquetaEgresos.Text = Lfx.Types.Formatting.FormatCurrency(Egresos, this.Workspace.CurrentConfig.Moneda.Decimales);
                                         if (m_Cliente > 0) {
-                                                EtiquetaTransporte.Text = Lfx.Types.Formatting.FormatCurrency(0, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                                                EtiquetaSaldo.Text = Lfx.Types.Formatting.FormatCurrency(Ingresos - Egresos, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                                EtiquetaTransporte.Text = Lfx.Types.Formatting.FormatCurrency(0, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                                EtiquetaSaldo.Text = Lfx.Types.Formatting.FormatCurrency(Ingresos - Egresos, this.Workspace.CurrentConfig.Moneda.Decimales);
                                         } else {
-                                                EtiquetaTransporte.Text = Lfx.Types.Formatting.FormatCurrency(Transporte, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                                                EtiquetaSaldo.Text = Lfx.Types.Formatting.FormatCurrency(Transporte + Ingresos - Egresos, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                                EtiquetaTransporte.Text = Lfx.Types.Formatting.FormatCurrency(Transporte, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                                EtiquetaSaldo.Text = Lfx.Types.Formatting.FormatCurrency(Transporte + Ingresos - Egresos, this.Workspace.CurrentConfig.Moneda.Decimales);
                                         }
 
                                         if (m_Caja > 0)

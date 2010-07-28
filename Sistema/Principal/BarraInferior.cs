@@ -70,7 +70,6 @@ namespace Lazaro.Principal
                                 if (m_DataBase == null)
                                         m_DataBase = this.Workspace.GetDataBase("Formulario principal: Barra inferior");
                                 return m_DataBase;
-                                //return this.Workspace.DefaultDataBase;
                         }
                 }
 
@@ -133,8 +132,8 @@ namespace Lazaro.Principal
                                                 ArticuloCodigos.Text = Codigos;
                                                 ArticuloNombre.Text = Art.ToString();
                                                 ArticuloDescripcion.Text = Art.Descripcion;
-                                                ArticuloPVP.Text = Lfx.Types.Formatting.FormatCurrency(Art.PVP, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                                                ArticuloStock.Text = Lfx.Types.Formatting.FormatCurrency(Art.StockActual(), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                                ArticuloPVP.Text = Lfx.Types.Formatting.FormatCurrency(Art.PVP, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                                ArticuloStock.Text = Lfx.Types.Formatting.FormatCurrency(Art.StockActual, this.Workspace.CurrentConfig.Moneda.Decimales);
                                                 PanelArticulo.Visible = true;
                                         }
 					break;
@@ -158,11 +157,11 @@ namespace Lazaro.Principal
                                                         PersonaGrupo.Text = "-";
                                                 double Saldo = Per.CuentaCorriente.Saldo();
                                                 if (Saldo > 0) {
-                                                        PersonaComentario.Text = "Esta persona registra saldo impago en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
+                                                        PersonaComentario.Text = "Esta persona registra saldo impago en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
                                                         PersonaComentario.BackColor = System.Drawing.Color.Tomato;
                                                         PersonaComentario.Visible = true;
                                                 } else if (Saldo < 0) {
-                                                        PersonaComentario.Text = "Esta persona registra saldo a favor en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(-Saldo, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
+                                                        PersonaComentario.Text = "Esta persona registra saldo a favor en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(-Saldo, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
                                                         PersonaComentario.BackColor = System.Drawing.SystemColors.Control;
                                                         PersonaComentario.Visible = true;
                                                 } else {

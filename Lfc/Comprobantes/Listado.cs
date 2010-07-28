@@ -250,11 +250,11 @@ namespace Lfc.Comprobantes
                                         Detalle = "(Sin especificar)";
 
                                 Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Detalle));
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(row["cantart"]), this.Workspace.CurrentConfig.Products.StockDecimalPlaces)));
+                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(row["cantart"]), this.Workspace.CurrentConfig.Productos.DecimalesStock)));
                                 Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToInt32(row["cantfact"])));
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(RowTotalCosto, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(rowTotal, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(rowDiferencia, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
+                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(RowTotalCosto, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(rowTotal, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(rowDiferencia, this.Workspace.CurrentConfig.Moneda.Decimales)));
 
                                 Total += rowTotal;
                                 TotalCosto += RowTotalCosto;
@@ -338,7 +338,7 @@ namespace Lfc.Comprobantes
                                         if (SubTotal > 0) {
                                                 Lfx.FileFormats.Office.Spreadsheet.Row SubTotal1 = new Lfx.FileFormats.Office.Spreadsheet.Row();
                                                 SubTotal1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(NombreGrupo));
-                                                SubTotal1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
+                                                SubTotal1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales)));
                                                 ReportSheet.Rows.Add(SubTotal1);
                                                 SubTotal = 0;
                                         }
@@ -413,7 +413,7 @@ namespace Lfc.Comprobantes
                                         Renglon.Append("ANULADA".PadRight(25) + " ");
                                         Renglon.Append("              ");
                                         Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell((double)0));
-                                        Renglon.Append(Lfx.Types.Formatting.FormatCurrency(0, this.Workspace.CurrentConfig.Currency.DecimalPlaces).PadLeft(10));
+                                        Renglon.Append(Lfx.Types.Formatting.FormatCurrency(0, this.Workspace.CurrentConfig.Moneda.Decimales).PadLeft(10));
                                         // No suma al total
                                 } else {
                                         Lfx.Data.Row Cliente = this.DataBase.Row("personas", "id_persona", System.Convert.ToInt32(row["id_cliente"]));
@@ -429,14 +429,14 @@ namespace Lfc.Comprobantes
                                                 case "NCE":
                                                 case "NCM":
                                                         Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(-System.Convert.ToDouble(row[ColumnaTotal])));
-                                                        Renglon.Append(("(" + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(row[ColumnaTotal]), this.Workspace.CurrentConfig.Currency.DecimalPlaces) + ")").PadLeft(10));
+                                                        Renglon.Append(("(" + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(row[ColumnaTotal]), this.Workspace.CurrentConfig.Moneda.Decimales) + ")").PadLeft(10));
                                                         Total -= System.Convert.ToDouble(row[ColumnaTotal]);
                                                         SubTotal -= System.Convert.ToDouble(row[ColumnaTotal]);
                                                         break;
 
                                                 default:
                                                         Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToDouble(row[ColumnaTotal])));
-                                                        Renglon.Append(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(row[ColumnaTotal]), this.Workspace.CurrentConfig.Currency.DecimalPlaces).PadLeft(10));
+                                                        Renglon.Append(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(row[ColumnaTotal]), this.Workspace.CurrentConfig.Moneda.Decimales).PadLeft(10));
                                                         Total += System.Convert.ToDouble(row[ColumnaTotal]);
                                                         SubTotal += System.Convert.ToDouble(row[ColumnaTotal]);
                                                         break;
@@ -450,7 +450,7 @@ namespace Lfc.Comprobantes
                         if (m_Agrupar.Length > 0 && SubTotal > 0) {
                                 Lfx.FileFormats.Office.Spreadsheet.Row SubTotal2 = new Lfx.FileFormats.Office.Spreadsheet.Row();
                                 SubTotal2.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(NombreGrupo));
-                                SubTotal2.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
+                                SubTotal2.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales)));
                                 ReportSheet.Rows.Add(SubTotal2);
                                 SubTotal = 0;
                         }
@@ -461,7 +461,7 @@ namespace Lfc.Comprobantes
                         Total1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(""));
                         Total1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell("Total"));
                         Total1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(""));
-                        Total1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
+                        Total1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales)));
                         ReportSheet.Rows.Add(Total1);
 
                         ReportSheet.ToListView(ReportListView);

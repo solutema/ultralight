@@ -447,11 +447,11 @@ namespace Lui.Forms
 
                 private void UpdateDetail()
                 {
-                        if (this.Workspace != null && this.Workspace.DefaultDataBase != null && this.Workspace.DefaultDataBase.ConectionState == System.Data.ConnectionState.Open) {
+                        if (this.DataBase != null) {
                                 //Actualizo sólo si cambió el código
                                 string KeyFieldAlt = m_KeyField; // KeyField Alternativo
                                 if (m_Table == "articulos" && KeyFieldAlt == "id_articulo")
-                                        KeyFieldAlt = this.Workspace.CurrentConfig.Products.DefaultCode();
+                                        KeyFieldAlt = this.Workspace.CurrentConfig.Productos.CodigoPredeterminado();
 
                                 if (TextBox1.Text == m_FreeTextCode && FreeTextCode.Length > 0) {
                                         m_ItemId = 0;
@@ -466,16 +466,16 @@ namespace Lui.Forms
                                                 if (m_KeyField != KeyFieldAlt)
                                                         Campos += ", " + m_KeyField;
 
-                                                TextoSql = "SELECT " + Campos + " FROM " + m_Table + " WHERE " + KeyFieldAlt + "='" + this.Workspace.DefaultDataBase.EscapeString(TextBox1.Text) + "'";
+                                                TextoSql = "SELECT " + Campos + " FROM " + m_Table + " WHERE " + KeyFieldAlt + "='" + this.DataBase.EscapeString(TextBox1.Text) + "'";
                                                 if (m_Filter != null && m_Filter.Length > 0)
                                                         TextoSql += " AND (" + m_Filter + ")";
 
-                                                CurrentRow = this.Workspace.DefaultDataBase.FirstRowFromSelect(TextoSql);
+                                                CurrentRow = this.DataBase.FirstRowFromSelect(TextoSql);
                                                 if (CurrentRow == null && m_KeyField != KeyFieldAlt) {
-                                                        TextoSql = "SELECT " + Campos + " FROM " + m_Table + " WHERE " + m_KeyField + "='" + this.Workspace.DefaultDataBase.EscapeString(TextBox1.Text) + "'";
+                                                        TextoSql = "SELECT " + Campos + " FROM " + m_Table + " WHERE " + m_KeyField + "='" + this.DataBase.EscapeString(TextBox1.Text) + "'";
                                                         if (m_Filter != null && m_Filter.Length > 0)
                                                                 TextoSql += " AND (" + m_Filter + ")";
-                                                        CurrentRow = this.Workspace.DefaultDataBase.FirstRowFromSelect(TextoSql);
+                                                        CurrentRow = this.DataBase.FirstRowFromSelect(TextoSql);
                                                 }
                                                 if (CurrentRow == null) {
                                                         m_ItemId = 0;

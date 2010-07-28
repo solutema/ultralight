@@ -49,7 +49,7 @@ namespace Lazaro.Misc
                 private void Fiscal_WorkspaceChanged(object sender, System.EventArgs e)
                 {
                         //Lleno la tabla de PVs
-                        System.Data.DataTable PVs = this.DataBase.Select("SELECT * FROM pvs WHERE tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString());
+                        System.Data.DataTable PVs = this.DataBase.Select("SELECT * FROM pvs WHERE tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada.ToString());
                         string[] PVDataSet = new string[PVs.Rows.Count];
                         int i = 0;
                         foreach (System.Data.DataRow PV in PVs.Rows) {
@@ -60,11 +60,11 @@ namespace Lazaro.Misc
                         if (txtPV.SetData.Length > 0) {
 
                                 //Busco el PV para esta estación, en esta sucursal
-                                this.PV = DataBase.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString() + " AND estacion='" + System.Environment.MachineName.ToUpperInvariant() + "'");
+                                this.PV = DataBase.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada.ToString() + " AND estacion='" + System.Environment.MachineName.ToUpperInvariant() + "'");
 
                                 if (this.PV == 0)
                                         //Busco el PV para alguna estación, en esta sucursal
-                                        this.PV = DataBase.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString());
+                                        this.PV = DataBase.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada.ToString());
 
                                 if (this.PV != 0)
                                         txtPV.TextKey = this.PV.ToString();

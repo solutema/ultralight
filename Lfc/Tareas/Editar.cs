@@ -117,7 +117,7 @@ namespace Lfc.Tareas
                         txtFechaIngreso.Text = Lfx.Types.Formatting.FormatDateAndTime(Res.Fecha);
                         txtEntregaEstimada.Text = Lfx.Types.Formatting.FormatDate(Res.FechaEstimada);
                         txtEntregaLimite.Text = Lfx.Types.Formatting.FormatDate(Res.FechaLimite);
-                        txtPresupuesto.Text = Lfx.Types.Formatting.FormatCurrency(Res.Presupuesto, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtPresupuesto.Text = Lfx.Types.Formatting.FormatCurrency(Res.Presupuesto, this.Workspace.CurrentConfig.Moneda.Decimales);
                         txtObs.Text = Res.Obs;
 
                         if (Res.Existe) {
@@ -150,7 +150,7 @@ namespace Lfc.Tareas
                                 //Detalle artículos
                                 System.Data.DataTable Articulos = this.DataBase.Select("SELECT * FROM tickets_articulos WHERE id_ticket=" + m_Id.ToString() + " ORDER BY orden");
                                 foreach (System.Data.DataRow Articulo in Articulos.Rows) {
-                                        ImprimirItem.AgregarPar(Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Articulo["precio"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces), "[" + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Articulo["cantidad"]), this.Workspace.CurrentConfig.Products.StockDecimalPlaces) + "] " + System.Convert.ToString(Articulo["nombre"]), 2);
+                                        ImprimirItem.AgregarPar(Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Articulo["precio"]), this.Workspace.CurrentConfig.Moneda.Decimales), "[" + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Articulo["cantidad"]), this.Workspace.CurrentConfig.Productos.DecimalesStock) + "] " + System.Convert.ToString(Articulo["nombre"]), 2);
                                 }
                         }
 
@@ -381,7 +381,7 @@ namespace Lfc.Tareas
                 public void MostrarPresupuesto2()
                 {
                         double ValorArticulos = this.DataBase.FieldDouble("SELECT SUM(cantidad*precio) FROM tickets_articulos WHERE id_ticket=" + m_Id.ToString());
-                        txtPresupuesto2.Text = Lfx.Types.Formatting.FormatCurrency(ValorArticulos * (1 - Descuento / 100), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtPresupuesto2.Text = Lfx.Types.Formatting.FormatCurrency(ValorArticulos * (1 - Descuento / 100), this.Workspace.CurrentConfig.Moneda.Decimales);
                 }
 
 

@@ -347,7 +347,7 @@ namespace Lui.Forms
                 private void UpdateDetail()
                 {
                         if (m_Table != null && m_Table.Length > 0 && m_KeyField != null && m_KeyField.Length > 0 && m_DetailField != null && m_DetailField.Length > 0 && this.Workspace != null) {
-                                if (this.Workspace.DefaultDataBase.ConectionState == ConnectionState.Open) {
+                                if (this.DataBase.IsOpen()) {
                                         string TextoSql = null;
                                         if (m_Table.Length >= 7 && m_Table.Substring(0, 7) == "SELECT ") {
                                                 TextoSql = m_Table;
@@ -356,7 +356,7 @@ namespace Lui.Forms
                                                 if (m_Filter != null && m_Filter.Length > 0)
                                                         TextoSql += " WHERE " + m_Filter;
                                         }
-                                        System.Data.DataTable m_DataTable = this.Workspace.DefaultDataBase.Select(TextoSql);
+                                        System.Data.DataTable m_DataTable = this.DataBase.Select(TextoSql);
                                         if (m_DataTable != null) {
                                                 string[] Resultado = new string[m_DataTable.Rows.Count];
                                                 int i = 0;

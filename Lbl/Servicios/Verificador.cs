@@ -104,7 +104,7 @@ HAVING SUM(ctacte.importe)<>(SELECT saldo FROM ctacte WHERE ctacte.id_cliente=pe
                                 // Elimino valores 0 (los pongo en NULL)
                                 qGen.Update PonerNullablesEnNull = new qGen.Update(tableName);
                                 PonerNullablesEnNull.Fields.AddWithValue(Cons.Column, null);
-                                PonerNullablesEnNull.WhereClause = new qGen.Where("Cons.Column", 0);
+                                PonerNullablesEnNull.WhereClause = new qGen.Where(Cons.Column, 0);
                                 this.DataBase.Execute(PonerNullablesEnNull);
                         }
                 }

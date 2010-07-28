@@ -87,7 +87,7 @@ namespace Lfc.Comprobantes.Facturas
                                         validarReturn.Success = false;
                                         validarReturn.Message += "Debe especificar la Forma de Pago." + Environment.NewLine;
                                 }
-                                if (Registro.Cliente.Id == 999 && Registro.FormaDePago != null && Registro.FormaDePago.Tipo == Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente && Registro.Cliente != null) {
+                                if (Registro.Cliente.Id == 999 && Registro.FormaDePago != null && Registro.FormaDePago.Tipo == Lbl.Pagos.TipoFormasDePago.CuentaCorriente && Registro.Cliente != null) {
 					validarReturn.Success = false;
 					validarReturn.Message += @"""Consumidor Final"" no puede realizar Pagos Compuestos ni en Cuenta Corriente." + Environment.NewLine;
 				}
@@ -152,7 +152,7 @@ namespace Lfc.Comprobantes.Facturas
                         Lbl.Comprobantes.ComprobanteConArticulos Res = base.ToRow() as Lbl.Comprobantes.ComprobanteConArticulos;
                         //Agrego campos propios de esta instancia
                         if (EntradaFormaPago.TextInt > 0)
-                                Res.FormaDePago = new Lbl.Comprobantes.FormaDePago(Res.DataBase, EntradaFormaPago.TextInt);
+                                Res.FormaDePago = new Lbl.Pagos.FormaDePago(Res.DataBase, EntradaFormaPago.TextInt);
                         else
                                 Res.FormaDePago = null;
                         Res.NumeroRemito = Lfx.Types.Parsing.ParseInt(EntradaRemito.Text);
@@ -191,7 +191,7 @@ namespace Lfc.Comprobantes.Facturas
                         Lfx.Types.OperationResult Res = base.Create(letra);
 
                         Lbl.Comprobantes.ComprobanteConArticulos Registro = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
-                        Registro.FormaDePago = new Lbl.Comprobantes.FormaDePago(Registro.DataBase, this.Workspace.CurrentConfig.ReadGlobalSettingInt(null, "Sistema.Documentos.FormaPagoPredet", 0));
+                        Registro.FormaDePago = new Lbl.Pagos.FormaDePago(Registro.DataBase, this.Workspace.CurrentConfig.ReadGlobalSettingInt(null, "Sistema.Documentos.FormaPagoPredet", 0));
                         this.FromRow(Registro);
                         EntradaTipo.TextKey = this.Tipo.Nomenclatura;
 
@@ -241,7 +241,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                 }
 
                                 if (Registro.Cliente.Id != 999 && (Registro.Tipo.EsFactura || Registro.Tipo.EsNotaDebito)) {
-                                        if (Registro.FormaDePago != null && Registro.FormaDePago.Tipo == Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente) {
+                                        if (Registro.FormaDePago != null && Registro.FormaDePago.Tipo == Lbl.Pagos.TipoFormasDePago.CuentaCorriente) {
                                                 double LimiteCredito = Registro.Cliente.LimiteCredito;
 
                                                 if (LimiteCredito == 0)
@@ -258,7 +258,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                                                 case DialogResult.Yes:
                                                                         //Corregir el problema
                                                                         this.EntradaFormaPago.TextInt = 3;
-                                                                        Registro.FormaDePago.Tipo = Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente;
+                                                                        Registro.FormaDePago.Tipo = Lbl.Pagos.TipoFormasDePago.CuentaCorriente;
                                                                         break;
                                                                 case DialogResult.No:
                                                                         //Continuar. No corregir el problema.
@@ -277,7 +277,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                 Lfx.Types.OperationResult Res = base.Print(selectPrinter);
 
                                 if (Res.Success) {
-                                        if (Registro.FormaDePago.Tipo != Lbl.Comprobantes.TipoFormasDePago.Efectivo && Registro.FormaDePago.Tipo != Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente) {
+                                        if (Registro.FormaDePago.Tipo != Lbl.Pagos.TipoFormasDePago.Efectivo && Registro.FormaDePago.Tipo != Lbl.Pagos.TipoFormasDePago.CuentaCorriente) {
                                                 //Muestro una ventana de progreso de impresión (salvo para pagos en efectivo y cta. cte, en cuyo caso no necesito esperar que finalice la impresión)
                                                 Lui.Forms.ProgressForm Progreso = new Lui.Forms.ProgressForm();
                                                 Progreso.Titulo = "Imprimiendo...";
@@ -312,7 +312,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                         PrintButton.Visible = false;
                                         BotonPago.Visible = EsCancelable();
                                         switch (Registro.FormaDePago.Tipo) {
-                                                case Lbl.Comprobantes.TipoFormasDePago.Efectivo:
+                                                case Lbl.Pagos.TipoFormasDePago.Efectivo:
                                                         //El pago lo asentó la rutina de impresión
                                                         //EditarPago();
                                                         //Yo sólo muestro la ventanita de calcular el cambio
@@ -321,17 +321,17 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                                         OFormVuelto.Total = Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text);
                                                         OFormVuelto.ShowDialog();
                                                         break;
-                                                case Lbl.Comprobantes.TipoFormasDePago.ChequePropio:
+                                                case Lbl.Pagos.TipoFormasDePago.ChequePropio:
                                                         EditarPago(false);
                                                         break;
-                                                case Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente:
+                                                case Lbl.Pagos.TipoFormasDePago.CuentaCorriente:
                                                         //El pago lo asentó la rutina de impresión
                                                         //EditarPago();
                                                         break;
-                                                case Lbl.Comprobantes.TipoFormasDePago.Tarjeta:
+                                                case Lbl.Pagos.TipoFormasDePago.Tarjeta:
                                                         EditarPago(false);
                                                         break;
-                                                case Lbl.Comprobantes.TipoFormasDePago.Caja:
+                                                case Lbl.Pagos.TipoFormasDePago.Caja:
                                                         EditarPago(false);
                                                         break;
                                         }
@@ -368,7 +368,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                         if (Factura.ImporteCancelado >= Factura.Total)
                                 return new Lfx.Types.FailureOperationResult("Este comprobante ya fue cancelado en su totalidad.");
 
-                        if (Factura.FormaDePago.Tipo == Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente) {
+                        if (Factura.FormaDePago.Tipo == Lbl.Pagos.TipoFormasDePago.CuentaCorriente) {
                                 CrearReciboParaEstaFactura();
                         } else {
                                 Comprobantes.Recibos.EditarCobro FormularioEditarPago = new Comprobantes.Recibos.EditarCobro();
@@ -385,7 +385,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                                 Factura.FormaDePago = MiCobro.FormaDePago;
                                                 EntradaFormaPago.TextInt = MiCobro.Id;
                                                 Factura.DataBase.FieldInt("UPDATE comprob SET id_formapago=" + MiCobro.FormaDePago.Id.ToString() + " WHERE id_comprob=" + Factura.Id.ToString());
-                                                if (MiCobro.FormaDePago.Tipo == Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente) {
+                                                if (MiCobro.FormaDePago.Tipo == Lbl.Pagos.TipoFormasDePago.CuentaCorriente) {
                                                         // Si la nueva forma de pago es cta. cte., asiento el saldo
                                                         // Y uso saldo a favor, si lo hay
                                                         double Saldo = Factura.Cliente.CuentaCorriente.Saldo();
@@ -401,17 +401,17 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                                 Factura.DataBase.Commit();
                                         }
                                         switch (Factura.FormaDePago.Tipo) {
-                                                case Lbl.Comprobantes.TipoFormasDePago.Efectivo:
+                                                case Lbl.Pagos.TipoFormasDePago.Efectivo:
                                                         Factura.DataBase.BeginTransaction();
-                                                        Lbl.Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(Factura.DataBase, Lfx.Workspace.Master.CurrentConfig.Company.CajaDiaria);
+                                                        Lbl.Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(Factura.DataBase, Lfx.Workspace.Master.CurrentConfig.Empresa.CajaDiaria);
                                                         CajaDiaria.Movimiento(true, new Lbl.Cajas.Concepto(Factura.DataBase, 11000), Factura.ToString(), Factura.Cliente, Factura.ImporteImpago, Factura.Obs, Factura, null, null);
                                                         Factura.DataBase.Execute("UPDATE comprob SET cancelado=" + Lfx.Types.Formatting.FormatCurrencySql(Factura.Total) + " WHERE id_comprob=" + Factura.Id.ToString());
                                                         Factura.DataBase.Commit();
                                                         break;
-                                                case Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente:
+                                                case Lbl.Pagos.TipoFormasDePago.CuentaCorriente:
                                                         CrearReciboParaEstaFactura();
                                                         break;
-                                                case Lbl.Comprobantes.TipoFormasDePago.ChequeTerceros:
+                                                case Lbl.Pagos.TipoFormasDePago.ChequeTerceros:
                                                         Factura.DataBase.BeginTransaction();
                                                         Lbl.Bancos.Cheque Cheque = MiCobro.Cheque;
                                                         Cheque.Concepto = new Lbl.Cajas.Concepto(Factura.DataBase, 11000);
@@ -422,9 +422,9 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                                         Factura.DataBase.Commit();
                                                         BotonPago.Visible = false;
                                                         break;
-                                                case Lbl.Comprobantes.TipoFormasDePago.Tarjeta:
+                                                case Lbl.Pagos.TipoFormasDePago.Tarjeta:
                                                         Factura.DataBase.BeginTransaction();
-                                                        Lbl.Tarjetas.Cupon CuponCredito = MiCobro.Cupon;
+                                                        Lbl.Cupones.Cupon CuponCredito = MiCobro.Cupon;
                                                         CuponCredito.Concepto = new Lbl.Cajas.Concepto(Factura.DataBase, 11000);
                                                         CuponCredito.ConceptoTexto = "Cobro s/" + Factura.ToString();
 
@@ -438,7 +438,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                                         Factura.DataBase.Commit();
                                                         BotonPago.Visible = false;
                                                         break;
-                                                case Lbl.Comprobantes.TipoFormasDePago.Caja:
+                                                case Lbl.Pagos.TipoFormasDePago.Caja:
                                                         Factura.DataBase.BeginTransaction();
                                                         Lbl.Cajas.Caja CajaDeposito = MiCobro.CajaDestino;
                                                         CajaDeposito.Movimiento(true, new Lbl.Cajas.Concepto(Factura.DataBase, 11000), "Cobro s/" + Factura.ToString(), Factura.Cliente, MiCobro.Importe, MiCobro.Obs, Factura, null, null);
@@ -480,7 +480,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                         if (Registro == null || Registro.ImporteImpago == 0) {
                                 return false;
                         } else {
-                                return (Registro.Impreso && Registro.Existe && (Registro.FormaDePago.Tipo != Lbl.Comprobantes.TipoFormasDePago.Efectivo));
+                                return (Registro.Impreso && Registro.Existe && (Registro.FormaDePago.Tipo != Lbl.Pagos.TipoFormasDePago.Efectivo));
                         }
 		}
 

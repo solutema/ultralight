@@ -76,7 +76,7 @@ namespace Lbl.Personas
                                 this.Grupo = null;
                                 this.TipoDocumento = 1;
                                 this.SituacionTributaria = new SituacionTributaria(this.DataBase, 1);
-                                this.Localidad = new Lbl.Entidades.Localidad(this.DataBase, this.Workspace.CurrentConfig.Company.idCiudad);
+                                this.Localidad = new Lbl.Entidades.Localidad(this.DataBase, this.Workspace.CurrentConfig.Empresa.Ciudad);
                                 m_Vendedor = new Persona(this.DataBase, this.Workspace.CurrentUser.Id);
                         }
                         return Res;

@@ -273,8 +273,8 @@ namespace Lfc.Comprobantes.Recibos
                                 ListViewItem AgregarFactura = ListaFacturas.Items.Add(Fc.GetHashCode().ToString());
                                 AgregarFactura.SubItems.Add(new ListViewItem.ListViewSubItem(AgregarFactura, Fc.ToString()));
                                 AgregarFactura.SubItems.Add(new ListViewItem.ListViewSubItem(AgregarFactura, Lfx.Types.Formatting.FormatDate(Fc.Fecha)));
-                                AgregarFactura.SubItems.Add(new ListViewItem.ListViewSubItem(AgregarFactura, Lfx.Types.Formatting.FormatCurrency(Fc.Total, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
-                                AgregarFactura.SubItems.Add(new ListViewItem.ListViewSubItem(AgregarFactura, Lfx.Types.Formatting.FormatCurrency(Fc.Total - Fc.ImporteCancelado, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
+                                AgregarFactura.SubItems.Add(new ListViewItem.ListViewSubItem(AgregarFactura, Lfx.Types.Formatting.FormatCurrency(Fc.Total, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                AgregarFactura.SubItems.Add(new ListViewItem.ListViewSubItem(AgregarFactura, Lfx.Types.Formatting.FormatCurrency(Fc.Total - Fc.ImporteCancelado, this.Workspace.CurrentConfig.Moneda.Decimales)));
                                 AgregarFactura.SubItems.Add(new ListViewItem.ListViewSubItem(AgregarFactura, Fc.Cliente.ToString()));
 
                         }
@@ -284,7 +284,7 @@ namespace Lfc.Comprobantes.Recibos
                                 ListaFacturas.Items[0].Focused = true;
                         }
 
-                        EtiquetaFacturasImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Facturas.Total - Rec.Facturas.Cancelado, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        EtiquetaFacturasImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Facturas.Total - Rec.Facturas.Cancelado, this.Workspace.CurrentConfig.Moneda.Decimales);
 
                         ListaFacturas.EndUpdate();
                 }
@@ -315,7 +315,7 @@ namespace Lfc.Comprobantes.Recibos
                         if (this.DePago) {
                                 Comprobantes.Recibos.EditarPago FormularioEditarPago = new Comprobantes.Recibos.EditarPago();
                                 FormularioEditarPago.Owner = this;
-                                FormularioEditarPago.Pago.FromPago(new Lbl.Comprobantes.Pago(this.DataBase, Lbl.Comprobantes.TipoFormasDePago.Efectivo));
+                                FormularioEditarPago.Pago.FromPago(new Lbl.Comprobantes.Pago(this.DataBase, Lbl.Pagos.TipoFormasDePago.Efectivo));
                                 FormularioEditarPago.Pago.ObsVisible = false;
 
                                 if (FormularioEditarPago.ShowDialog() == DialogResult.OK) {
@@ -327,7 +327,7 @@ namespace Lfc.Comprobantes.Recibos
                         } else {
                                 Comprobantes.Recibos.EditarCobro FormularioEditarCobro = new Comprobantes.Recibos.EditarCobro();
                                 FormularioEditarCobro.Owner = this;
-                                FormularioEditarCobro.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.DataBase, Lbl.Comprobantes.TipoFormasDePago.Efectivo));
+                                FormularioEditarCobro.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.DataBase, Lbl.Pagos.TipoFormasDePago.Efectivo));
                                 FormularioEditarCobro.Cobro.ObsVisible = false;
 
                                 if (FormularioEditarCobro.ShowDialog() == DialogResult.OK) {
@@ -349,49 +349,49 @@ namespace Lfc.Comprobantes.Recibos
                                 foreach (Lbl.Comprobantes.Pago Pg in Rec.Pagos) {
                                         ListViewItem itm = ListaValores.Items.Add(Pg.GetHashCode().ToString());
                                         switch (Pg.FormaDePago.Tipo) {
-                                                case Lbl.Comprobantes.TipoFormasDePago.Efectivo:
+                                                case Lbl.Pagos.TipoFormasDePago.Efectivo:
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Pg.FormaDePago.ToString()));
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Moneda.Decimales)));
                                                         break;
-                                                case Lbl.Comprobantes.TipoFormasDePago.Caja:
+                                                case Lbl.Pagos.TipoFormasDePago.Caja:
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Pg.FormaDePago.ToString()));
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Moneda.Decimales)));
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Débito desde " + Pg.CajaOrigen.ToString()));
                                                         break;
                                                 default:
                                                         itm.SubItems.Add(Pg.FormaDePago.ToString());
-                                                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
+                                                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Moneda.Decimales));
                                                         itm.SubItems.Add(Pg.ToString());
                                                         break;
                                         }
                                 }
-                                EtiquetaValoresImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Pagos.ImporteTotal(), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                EtiquetaValoresImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Pagos.ImporteTotal(), this.Workspace.CurrentConfig.Moneda.Decimales);
                         } else {
                                 foreach (Lbl.Comprobantes.Cobro Cb in Rec.Cobros) {
                                         ListViewItem itm = ListaValores.Items.Add(Cb.GetHashCode().ToString());
                                         switch (Cb.FormaDePago.Tipo) {
-                                                case Lbl.Comprobantes.TipoFormasDePago.Efectivo:
+                                                case Lbl.Pagos.TipoFormasDePago.Efectivo:
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Cb.FormaDePago.ToString()));
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Cb.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Cb.Importe, this.Workspace.CurrentConfig.Moneda.Decimales)));
                                                         break;
-                                                case Lbl.Comprobantes.TipoFormasDePago.Tarjeta:
+                                                case Lbl.Pagos.TipoFormasDePago.Tarjeta:
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Cb.FormaDePago.ToString()));
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Cb.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Cupón Nº " + Cb.Cupon.Numero + " de " + Cb.Cupon.Tarjeta.ToString()));
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Cb.Importe, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Cupón Nº " + Cb.Cupon.Numero + " de " + Cb.Cupon.FormaDePago.ToString()));
                                                         break;
-                                                case Lbl.Comprobantes.TipoFormasDePago.Caja:
+                                                case Lbl.Pagos.TipoFormasDePago.Caja:
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Cb.FormaDePago.ToString()));
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Cb.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
+                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(Cb.Importe, this.Workspace.CurrentConfig.Moneda.Decimales)));
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Depósito en " + Cb.CajaDestino.ToString()));
                                                         break;
                                                 default:
                                                         itm.SubItems.Add(Cb.FormaDePago.ToString());
-                                                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Cb.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
+                                                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Cb.Importe, this.Workspace.CurrentConfig.Moneda.Decimales));
                                                         itm.SubItems.Add(Cb.ToString());
                                                         break;
                                         }
                                 }
-                                EtiquetaValoresImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Cobros.ImporteTotal(), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                EtiquetaValoresImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Cobros.ImporteTotal(), this.Workspace.CurrentConfig.Moneda.Decimales);
                         }
 
                         if (ListaValores.Items.Count > 0 && ListaValores.SelectedItems.Count == 0) {
@@ -598,7 +598,7 @@ namespace Lfc.Comprobantes.Recibos
                 public override Lfx.Types.OperationResult Print(bool DejaSeleccionarImpresora)
                 {
                         Lbl.Comprobantes.Recibo Rec = this.CachedRow as Lbl.Comprobantes.Recibo;
-                        string Impresora = this.Workspace.CurrentConfig.Printing.PreferredPrinter(Rec.Tipo.Nomenclatura);
+                        string Impresora = this.Workspace.CurrentConfig.Impresion.PreferredPrinter(Rec.Tipo.Nomenclatura);
                         Lfx.Types.OperationResult Res = Rec.Imprimir(Impresora);
                         if (Res.Success)
                                 this.ReadOnly = true;

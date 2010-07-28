@@ -332,9 +332,9 @@
             Devuelve el monto de la cuota (es el importe total dividido por la cantidad de cuotas).
             </summary>
         </member>
-        <member name="P:Lbl.Tarjetas.Cupon.FormaDePago">
+        <member name="T:Lbl.Cupones.Cupon">
             <summary>
-            Devulve la forma de pago asociada con esta tarjeta o "Otra Tarjeta de Crédito" si no se encuentra ninguna.
+            Describe un pago con un cupón (por ejemplo pagos con tarjeta de crédito, vales, mutuales, etc.)
             </summary>
         </member>
     </members>

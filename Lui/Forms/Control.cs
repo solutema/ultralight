@@ -43,7 +43,7 @@ namespace Lui.Forms
 	[Designer("System.Windows.Forms.Design.ControlDesigner, System.Design", typeof(System.ComponentModel.Design.IDesigner)),
                 DefaultEvent("Click"),
                 DefaultProperty("Text")]
-	public partial class Control : System.Windows.Forms.UserControl
+        public partial class Control : System.Windows.Forms.UserControl, IDataControl
 	{
 		protected bool m_Highlighted;
                 protected Lui.Forms.Control.BorderStyles m_BorderStyle = Lui.Forms.Control.BorderStyles.Control;
@@ -316,13 +316,38 @@ namespace Lui.Forms
 			this.Invalidate();
 		}
 
-		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public Lfx.Workspace Workspace
-		{
-			get
-			{
-                                return Lfx.Workspace.Master;
-			}
-		}
+                /// <summary>
+                /// IDataControl
+                /// </summary>
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public Lfx.Workspace Workspace
+                {
+                        get
+                        {
+                                if (this.DataBase == null)
+                                        return Lfx.Workspace.Master;
+                                else
+                                        return this.DataBase.Workspace;
+                        }
+                }
+
+                /// <summary>
+                /// IDataControl
+                /// </summary>
+                public Lfx.Data.DataBase DataBase
+                {
+                        get
+                        {
+                                System.Windows.Forms.Control MiParent = this.Parent;
+                                while (MiParent != null) {
+                                        if (MiParent is Lui.Forms.IDataControl) {
+                                                return ((Lui.Forms.IDataControl)(MiParent)).DataBase;
+                                        } else {
+                                                MiParent = MiParent.Parent;
+                                        }
+                                }
+                                return null;
+                        }
+                }
 	}
 }

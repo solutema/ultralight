@@ -104,7 +104,7 @@ namespace RunComponent
 
                         MailMessage Mensaje = new MailMessage();
                         Mensaje.To.Add(new MailAddress("error@sistemalazaro.com.ar"));
-                        Mensaje.From = new MailAddress(Lfx.Workspace.Master.CurrentUser.Id.ToString() + "@" + System.Environment.MachineName.ToUpperInvariant(), Lfx.Workspace.Master.CurrentUser.CompleteName + " en " + Lfx.Workspace.Master.CurrentConfig.Company.Name);
+                        Mensaje.From = new MailAddress(Lfx.Workspace.Master.CurrentUser.Id.ToString() + "@" + System.Environment.MachineName.ToUpperInvariant(), Lfx.Workspace.Master.CurrentUser.CompleteName + " en " + Lfx.Workspace.Master.CurrentConfig.Empresa.Nombre);
                         try {
                                 //No sé por qué, pero una vez dió un error al poner el asunto
                                 Mensaje.Subject = ex.Message;

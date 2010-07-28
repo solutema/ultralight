@@ -191,7 +191,7 @@ namespace Lbl.CuentasCorrientes
 
                         double SaldoCtaCteAntes = this.Saldo();
 
-                        this.Movimiento(true, new Lbl.Cajas.Concepto(comprob.DataBase, 11000), comprob.ToString() + " por $ " + Lfx.Types.Formatting.FormatCurrency(comprob.Total, this.Workspace.CurrentConfig.Currency.DecimalPlaces), comprob.Tipo.EsNotaCredito ? -comprob.Total : comprob.Total, null, comprob, null, comprob.Tipo.EsFacturaNCoND);
+                        this.Movimiento(true, new Lbl.Cajas.Concepto(comprob.DataBase, 11000), comprob.ToString() + " por $ " + Lfx.Types.Formatting.FormatCurrency(comprob.Total, this.Workspace.CurrentConfig.Moneda.Decimales), comprob.Tipo.EsNotaCredito ? -comprob.Total : comprob.Total, null, comprob, null, comprob.Tipo.EsFacturaNCoND);
                         double FacturaSaldo = comprob.Total - comprob.ImporteCancelado;
 
                         if (FacturaSaldo > 0) {

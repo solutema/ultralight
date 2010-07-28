@@ -212,10 +212,10 @@ namespace Lbl.Comprobantes
 		{
 			// Determino la impresora que le corresponde
 			if (nombreImpresora != null && nombreImpresora.Length == 0)
-                                nombreImpresora = this.Workspace.CurrentConfig.Printing.PreferredPrinter(this.Tipo.Nomenclatura);
+                                nombreImpresora = this.Workspace.CurrentConfig.Impresion.PreferredPrinter(this.Tipo.Nomenclatura);
 
 			// Si es de carga manual, presento el formulario correspondiente
-                        if (this.Workspace.CurrentConfig.Printing.PrinterFeed(this.Tipo.Nomenclatura, "manual") == "manual")
+                        if (this.Workspace.CurrentConfig.Impresion.PrinterFeed(this.Tipo.Nomenclatura, "manual") == "manual")
 			{
                                 if (Lbl.Impresion.Services.ShowManualFeedDialog(nombreImpresora, this.ToString()).Success == false)
 					return new Lfx.Types.FailureOperationResult("Operación cancelada");

@@ -492,11 +492,11 @@ namespace Lfc.Comprobantes.Facturas
                                 Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, System.Convert.ToString(Factura["tipo_fac"])));
                                 Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, System.Convert.ToInt32(Factura["pv"]).ToString("0000") + "-" + System.Convert.ToInt32(Factura["numero"]).ToString("00000000")));
                                 Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, this.DataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + Factura["id_cliente"].ToString())));
-                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Factura["total"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
+                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Factura["total"]), this.Workspace.CurrentConfig.Moneda.Decimales)));
                                 if (System.Convert.ToDouble(Factura["cancelado"]) >= System.Convert.ToDouble(Factura["total"]))
                                         Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, "Si"));
                                 else
-                                        Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Factura["cancelado"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
+                                        Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Factura["cancelado"]), this.Workspace.CurrentConfig.Moneda.Decimales)));
                         }
                         if (lvItems.Items.Count > 0) {
                                 lvItems.Items[0].Selected = true;

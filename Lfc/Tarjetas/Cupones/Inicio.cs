@@ -36,7 +36,7 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Lfc.Tarjetas.Cupones
+namespace Lfc.Cupones.Cupones
 {
 	public partial class Inicio : Lui.Forms.ChildForm
 	{
@@ -102,33 +102,33 @@ namespace Lfc.Tarjetas.Cupones
 						itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, this.DataBase.FieldString("SELECT nombre FROM tarjetas WHERE id_tarjeta=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_tarjeta"]).ToString())));
 						itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(row["numero"])));
 						Total += System.Convert.ToDouble(row["importe"]);
-						itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(row["importe"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces)));
-						switch (((Lbl.Tarjetas.Estado)System.Convert.ToInt32(row["estado"])))
+						itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(row["importe"]), this.Workspace.CurrentConfig.Moneda.Decimales)));
+						switch (((Lbl.Cupones.Estado)System.Convert.ToInt32(row["estado"])))
 						{
-							case Lbl.Tarjetas.Estado.SinPresentar:
+                                                        case Lbl.Cupones.Estado.SinPresentar:
 								SinPresentar += System.Convert.ToDouble(row["importe"]);
                                                                 CantidadSinPresentar++;
 								itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Sin Presentar"));
 								break;
-							case Lbl.Tarjetas.Estado.Anulado:
+                                                        case Lbl.Cupones.Estado.Anulado:
 								Cancelados += System.Convert.ToDouble(row["importe"]);
 								itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Anulado"));
                                                                 itm.ForeColor = Color.Gray;
                                                                 itm.Font = new Font(itm.Font, FontStyle.Strikeout);
 								break;
-							case Lbl.Tarjetas.Estado.Rechazaro:
+                                                        case Lbl.Cupones.Estado.Rechazaro:
 								Rechazados += System.Convert.ToDouble(row["importe"]);
 								itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Rechazado"));
                                                                 itm.ForeColor = Color.Gray;
                                                                 itm.Font = new Font(itm.Font, FontStyle.Strikeout);
 								break;
-							case Lbl.Tarjetas.Estado.Presentado:
+                                                        case Lbl.Cupones.Estado.Presentado:
 								Presentados += System.Convert.ToDouble(row["importe"]);
                                                                 CantidadPresentados++;
 								itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Presentado"));
                                                                 itm.ForeColor = Color.DarkGreen;
 								break;
-							case Lbl.Tarjetas.Estado.Acreditado:
+                                                        case Lbl.Cupones.Estado.Acreditado:
                                                                 CantidadAcreditados++;
 								Acreditados += System.Convert.ToDouble(row["importe"]);
 								itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Acreditado"));
@@ -149,11 +149,11 @@ namespace Lfc.Tarjetas.Cupones
 					}
 				}
 
-                                EtiquetaImporteSinPresentar.Text = Lfx.Types.Formatting.FormatCurrency(SinPresentar, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                EtiquetaImporteSinPresentar.Text = Lfx.Types.Formatting.FormatCurrency(SinPresentar, this.Workspace.CurrentConfig.Moneda.Decimales);
                                 EtiquetaCantidadSinPresentar.Text = CantidadSinPresentar.ToString();
-                                EtiquetaImportePresentados.Text = Lfx.Types.Formatting.FormatCurrency(Presentados, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                EtiquetaImportePresentados.Text = Lfx.Types.Formatting.FormatCurrency(Presentados, this.Workspace.CurrentConfig.Moneda.Decimales);
                                 EtiquetaCantidadPresentados.Text = CantidadPresentados.ToString();
-                                EtiquetaImporteAcreditados.Text = Lfx.Types.Formatting.FormatCurrency(Acreditados, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                EtiquetaImporteAcreditados.Text = Lfx.Types.Formatting.FormatCurrency(Acreditados, this.Workspace.CurrentConfig.Moneda.Decimales);
                                 EtiquetaCantidadAcreditados.Text = CantidadAcreditados.ToString();
 
 				ItemList.EndUpdate();
@@ -188,7 +188,7 @@ namespace Lfc.Tarjetas.Cupones
                 internal virtual Lfx.Types.OperationResult Filtrar()
                 {
                         Lfx.Types.OperationResult filtrarReturn = new Lfx.Types.SuccessOperationResult();
-                        Lfc.Tarjetas.Cupones.Filtros FormFiltros = new Lfc.Tarjetas.Cupones.Filtros();
+                        Lfc.Cupones.Cupones.Filtros FormFiltros = new Lfc.Cupones.Cupones.Filtros();
                         FormFiltros.txtTarjeta.Text = m_Tarjeta.ToString();
                         FormFiltros.txtPlan.Text = m_Plan.ToString();
                         FormFiltros.txtEstado.TextKey = m_Estado.ToString();
@@ -337,7 +337,7 @@ namespace Lfc.Tarjetas.Cupones
 
 		private void BotonAcreditar_Click(object sender, System.EventArgs e)
 		{
-			Lfc.Tarjetas.Cupones.Acreditar FormularioAcreditacion = new Lfc.Tarjetas.Cupones.Acreditar();
+			Lfc.Cupones.Cupones.Acreditar FormularioAcreditacion = new Lfc.Cupones.Cupones.Acreditar();
 
 			Lui.Forms.ProgressForm Progreso = new Lui.Forms.ProgressForm();
 
@@ -354,31 +354,31 @@ namespace Lfc.Tarjetas.Cupones
 			Progreso.Max = ItemList.Items.Count + 2;
 			Progreso.Show();
 
-                        Lbl.Tarjetas.Tarjeta Tarjeta = null;
+                        Lbl.Pagos.FormaDePago Tarjeta = null;
 			foreach (System.Windows.Forms.ListViewItem itm in ItemList.Items)
 			{
 				if (itm.Checked)
 				{
 					iCantidad++;
-					Lbl.Tarjetas.Cupon Cupon = new Lbl.Tarjetas.Cupon(DataBase, Lfx.Types.Parsing.ParseInt(itm.Text));
+					Lbl.Cupones.Cupon Cupon = new Lbl.Cupones.Cupon(DataBase, Lfx.Types.Parsing.ParseInt(itm.Text));
                                         Total += Cupon.Importe;
 					if (Cupones.Length > 0)
 						Cupones.Append("," + Cupon.Numero);
 					else
 						Cupones.Append(Cupon.Numero);
 
-                                        if (Cupon.Tarjeta != null) {
+                                        if (Cupon.FormaDePago != null) {
                                                 if(Tarjeta == null) {
-                                                        Tarjeta = Cupon.Tarjeta;
-                                                } else if (Tarjeta.Id != Cupon.Tarjeta.Id) {
+                                                        Tarjeta = Cupon.FormaDePago;
+                                                } else if (Tarjeta.Id != Cupon.FormaDePago.Id) {
                                                         //Mezcla de tarjetas
                                                         Progreso.Close();
                                                         Progreso = null;
-                                                        Lui.Forms.MessageBox.Show("No todos los cupones seleccionados pertenecen a la misma tarjeta", "Error");
+                                                        Lui.Forms.MessageBox.Show("No todos los cupones seleccionados pertenecen a la misma forma de pago.", "Error");
                                                         return;
                                                 }
 
-                                                ComisionTarjeta += Cupon.Importe * (Tarjeta.Comision / 100);
+                                                ComisionTarjeta += Cupon.Importe * (Tarjeta.Retencion / 100);
                                                 if (Cupon.Plan != null) {
                                                         ComisionPlan += Cupon.Importe * (Cupon.Plan.Comision / 100);
                                                 }
@@ -389,11 +389,11 @@ namespace Lfc.Tarjetas.Cupones
 
 			FormularioAcreditacion.IgnorarCambios = true;
 			FormularioAcreditacion.txtCupones.Text = iCantidad.ToString();
-			FormularioAcreditacion.txtSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-			FormularioAcreditacion.txtComisionTarjeta.Text = Lfx.Types.Formatting.FormatCurrency(ComisionTarjeta, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-			FormularioAcreditacion.txtComisionPlan.Text = Lfx.Types.Formatting.FormatCurrency(ComisionPlan, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+			FormularioAcreditacion.txtSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales);
+			FormularioAcreditacion.txtComisionTarjeta.Text = Lfx.Types.Formatting.FormatCurrency(ComisionTarjeta, this.Workspace.CurrentConfig.Moneda.Decimales);
+			FormularioAcreditacion.txtComisionPlan.Text = Lfx.Types.Formatting.FormatCurrency(ComisionPlan, this.Workspace.CurrentConfig.Moneda.Decimales);
 			FormularioAcreditacion.txtComisionUsuario.Text = "0";
-			FormularioAcreditacion.txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total - ComisionTarjeta - ComisionPlan, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+			FormularioAcreditacion.txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total - ComisionTarjeta - ComisionPlan, this.Workspace.CurrentConfig.Moneda.Decimales);
 			FormularioAcreditacion.IgnorarCambios = false;
 
 			Progreso.Progreso = Progreso.Max;
@@ -407,7 +407,7 @@ namespace Lfc.Tarjetas.Cupones
 				{
 					dTotalAcreditar = Lfx.Types.Parsing.ParseCurrency(FormularioAcreditacion.txtTotal.Text);
 					dGestionDeCobro = Total - dTotalAcreditar;
-                                        FormularioPago.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.DataBase, ((Lbl.Comprobantes.TipoFormasDePago)(Lfx.Types.Parsing.ParseInt(FormularioAcreditacion.txtFormaPago.TextKey)))));
+                                        FormularioPago.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.DataBase, ((Lbl.Pagos.TipoFormasDePago)(Lfx.Types.Parsing.ParseInt(FormularioAcreditacion.txtFormaPago.TextKey)))));
                                         FormularioPago.Cobro.FormaDePagoEditable = false;
 					FormularioPago.Cobro.Importe = dTotalAcreditar;
 					FormularioPago.Cobro.ImporteEditable = false;
@@ -449,20 +449,20 @@ namespace Lfc.Tarjetas.Cupones
                                 Lbl.Comprobantes.Cobro MiCobro = FormularioPago.Cobro.ToCobro(DataBase);
 				switch (FormularioPago.Cobro.FormaDePago.Tipo)
 				{
-                                        case Lbl.Comprobantes.TipoFormasDePago.Efectivo:
-						Lbl.Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(DataBase, this.Workspace.CurrentConfig.Company.CajaDiaria);
-						CajaDiaria.Movimiento(true, 11000, "Acreditación Tarjetas", 0, Total, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
-						CajaDiaria.Movimiento(true, 24010, "Gestión de Cobro Tarjetas", 0, -dGestionDeCobro, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
+                                        case Lbl.Pagos.TipoFormasDePago.Efectivo:
+						Lbl.Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(DataBase, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
+						CajaDiaria.Movimiento(true, 11000, "Acreditación de Cupones", 0, Total, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
+                                                CajaDiaria.Movimiento(true, 24010, "Gestión de Cobro de Cupones", 0, -dGestionDeCobro, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
 						break;
-                                        case Lbl.Comprobantes.TipoFormasDePago.ChequePropio:
+                                        case Lbl.Pagos.TipoFormasDePago.ChequePropio:
                                                 Lbl.Bancos.Cheque Cheque = MiCobro.Cheque;
                                                 Cheque.Concepto = new Lbl.Cajas.Concepto(DataBase, 11000);
                                                 Cheque.ConceptoTexto = "Acreditación Tarjetas";
                                                 Cheque.Guardar();
 						break;
-                                        case Lbl.Comprobantes.TipoFormasDePago.Caja:
-                                                MiCobro.CajaDestino.Movimiento(true, 11000, "Acreditación Tarjetas", 0, Total, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
-                                                MiCobro.CajaDestino.Movimiento(true, 24010, "Gestión de Cobro Tarjetas", 0, -dGestionDeCobro, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
+                                        case Lbl.Pagos.TipoFormasDePago.Caja:
+                                                MiCobro.CajaDestino.Movimiento(true, 11000, "Acreditación de Cupones", 0, Total, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
+                                                MiCobro.CajaDestino.Movimiento(true, 24010, "Gestión de Cobro de Cupones", 0, -dGestionDeCobro, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
 						break;
 				}
 

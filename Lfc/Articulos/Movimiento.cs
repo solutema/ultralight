@@ -599,16 +599,16 @@ namespace Lfc.Articulos
                                 double HaciaCantidad = this.DataBase.FieldDouble("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + ArticuloId.ToString() + " AND id_situacion=" + txtHaciaSituacion.TextInt.ToString());
 
                                 if (txtDesdeSituacion.TextInt < 998 || txtDesdeSituacion.TextInt > 999) {
-                                        txtStockActual.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
-                                        txtStockResult.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad - Cantidad, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
+                                        txtStockActual.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad, this.Workspace.CurrentConfig.Productos.DecimalesStock);
+                                        txtStockResult.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad - Cantidad, this.Workspace.CurrentConfig.Productos.DecimalesStock);
                                 } else {
                                         txtStockActual.Text = "N/A";
                                         txtStockResult.Text = "N/A";
                                 }
 
                                 if (txtHaciaSituacion.TextInt < 998 || txtHaciaSituacion.TextInt > 999) {
-                                        txtStockActual2.Text = Lfx.Types.Formatting.FormatNumber(HaciaCantidad, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
-                                        txtStockResult2.Text = Lfx.Types.Formatting.FormatNumber(HaciaCantidad + Cantidad, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
+                                        txtStockActual2.Text = Lfx.Types.Formatting.FormatNumber(HaciaCantidad, this.Workspace.CurrentConfig.Productos.DecimalesStock);
+                                        txtStockResult2.Text = Lfx.Types.Formatting.FormatNumber(HaciaCantidad + Cantidad, this.Workspace.CurrentConfig.Productos.DecimalesStock);
                                 } else {
                                         txtStockActual2.Text = "N/A";
                                         txtStockResult2.Text = "N/A";
@@ -623,10 +623,10 @@ namespace Lfc.Articulos
 
                 private void FormArticulosMovim_WorkspaceChanged(object sender, System.EventArgs e)
                 {
-                        txtDesdeSituacion.Visible = this.Workspace.CurrentConfig.Products.StockMultideposito;
-                        txtHaciaSituacion.Visible = this.Workspace.CurrentConfig.Products.StockMultideposito;
-                        Label7.Visible = this.Workspace.CurrentConfig.Products.StockMultideposito;
-                        Label8.Visible = this.Workspace.CurrentConfig.Products.StockMultideposito;
+                        txtDesdeSituacion.Visible = this.Workspace.CurrentConfig.Productos.StockMultideposito;
+                        txtHaciaSituacion.Visible = this.Workspace.CurrentConfig.Productos.StockMultideposito;
+                        Label7.Visible = this.Workspace.CurrentConfig.Productos.StockMultideposito;
+                        Label8.Visible = this.Workspace.CurrentConfig.Productos.StockMultideposito;
                 }
 
         }

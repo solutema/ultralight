@@ -292,7 +292,7 @@ namespace Lfc.Personas
                         else
                                 EntradaVendedor.TextInt = Cliente.Vendedor.Id;
 
-                        EntradaLimiteCredito.Text = Lfx.Types.Formatting.FormatCurrency(Cliente.LimiteCredito, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        EntradaLimiteCredito.Text = Lfx.Types.Formatting.FormatCurrency(Cliente.LimiteCredito, this.Workspace.CurrentConfig.Moneda.Decimales);
                         EntradaLimiteCredito.ReadOnly = !Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.creditlimit"); ;
                         if (Cliente.Registro["fechanac"] == null || Cliente.Registro["fechanac"] is DBNull)
                                 EntradaFechaNac.Text = "";
@@ -370,7 +370,7 @@ namespace Lfc.Personas
 
                 private void FormClientesEditar_WorkspaceChanged(object sender, System.EventArgs e)
                 {
-                        EntradaCiudad.TextInt = this.Workspace.CurrentConfig.Company.idCiudad;
+                        EntradaCiudad.TextInt = this.Workspace.CurrentConfig.Empresa.Ciudad;
                 }
 
                 private void FormClientesEditar_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)

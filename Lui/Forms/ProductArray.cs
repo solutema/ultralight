@@ -29,17 +29,12 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections;
-using System.Data;
-using System.Drawing;
-using System.Diagnostics;
-using System.Windows.Forms;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace Lui.Forms
 {
-	public class ProductArray : System.Windows.Forms.UserControl
+	public class ProductArray : System.Windows.Forms.UserControl, IDataControl
 	{
                 private System.Collections.Generic.List<Lbl.Comprobantes.DetalleArticulo> m_Articulos = null;
 		public System.Collections.Generic.List<Product> m_ChildControls = new System.Collections.Generic.List<Product>();
@@ -196,7 +191,7 @@ namespace Lui.Forms
                                 m_Articulos = new System.Collections.Generic.List<Lbl.Comprobantes.DetalleArticulo>();
                                 int i = 1;
                                 foreach (Product Pro in this.ChildControls) {
-                                        Lbl.Comprobantes.DetalleArticulo DetArt = new Lbl.Comprobantes.DetalleArticulo(this.Workspace.DefaultDataBase, 0);
+                                        Lbl.Comprobantes.DetalleArticulo DetArt = new Lbl.Comprobantes.DetalleArticulo(this.DataBase, 0);
                                         DetArt.IdArticulo = Pro.TextInt;
                                         DetArt.Orden = i++;
                                         DetArt.Cantidad = Pro.Cantidad;
@@ -588,12 +583,38 @@ namespace Lui.Forms
 			}
 		}
 
-		public Lfx.Workspace Workspace
-		{
-			get
-			{
-				return Lfx.Workspace.Master;
-			}
-		}
+                /// <summary>
+                /// IDataControl
+                /// </summary>
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public Lfx.Workspace Workspace
+                {
+                        get
+                        {
+                                if (this.DataBase == null)
+                                        return Lfx.Workspace.Master;
+                                else
+                                        return this.DataBase.Workspace;
+                        }
+                }
+
+                /// <summary>
+                /// IDataControl
+                /// </summary>
+                public Lfx.Data.DataBase DataBase
+                {
+                        get
+                        {
+                                System.Windows.Forms.Control MiParent = this.Parent;
+                                while (MiParent != null) {
+                                        if (MiParent is Lui.Forms.IDataControl) {
+                                                return ((Lui.Forms.IDataControl)(MiParent)).DataBase;
+                                        } else {
+                                                MiParent = MiParent.Parent;
+                                        }
+                                }
+                                return null;
+                        }
+                }
 	}
 }

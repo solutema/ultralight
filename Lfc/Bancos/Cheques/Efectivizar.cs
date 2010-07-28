@@ -50,7 +50,7 @@ namespace Lfc.Bancos.Cheques
 
 		private void txtImportes_TextChanged(object sender, System.EventArgs e)
 		{
-			txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text) - Lfx.Types.Parsing.ParseCurrency(txtGestionDeCobro.Text) - Lfx.Types.Parsing.ParseCurrency(txtImpuestos.Text), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+			txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text) - Lfx.Types.Parsing.ParseCurrency(txtGestionDeCobro.Text) - Lfx.Types.Parsing.ParseCurrency(txtImpuestos.Text), this.Workspace.CurrentConfig.Moneda.Decimales);
 		}
 
 
@@ -76,7 +76,7 @@ namespace Lfc.Bancos.Cheques
 
 				DataBase.BeginTransaction(true);
 
-				Lbl.Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(DataBase, this.Workspace.CurrentConfig.Company.CajaCheques);
+				Lbl.Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(DataBase, this.Workspace.CurrentConfig.Empresa.CajaCheques);
 				CajaCheques.Movimiento(true, 30000, "Efectivización de Cheques", 0, -ImporteOrigen, "Cheques Nº " + ListaCheques, 0, 0, "");
 
 				Lbl.Cajas.Caja CajaDestino = new Lbl.Cajas.Caja(DataBase, EntradaCajaDestino.TextInt);

@@ -205,15 +205,15 @@ namespace Lfc.Comprobantes.Presupuestos
 				ev.Graphics.DrawString((RowNumber + 1).ToString(), Fuente, Brushes.DarkGray, Rect, FormatoRC);
 				Rect = new RectangleF(MarginLeft + 26, iTop, 40, 20);
 				ev.Graphics.DrawString(
-				    Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Detalle["cantidad"]), this.Workspace.CurrentConfig.Products.StockDecimalPlaces),
+				    Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Detalle["cantidad"]), this.Workspace.CurrentConfig.Productos.DecimalesStock),
 				    Fuente,
 				    Brushes.Black, Rect, FormatoRC);
 				Rect = new RectangleF(MarginLeft + 70, iTop, PrintAreaWidth - MarginLeft - 160, 20);
 				ev.Graphics.DrawString(System.Convert.ToString(Detalle["nombre"]), Fuente, Brushes.Black, Rect, FormatoLC);
 				Rect = new RectangleF(MarginLeft + PrintAreaWidth - 160, iTop, 80, 20);
-				ev.Graphics.DrawString(Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Detalle["precio"]), this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto), Fuente, Brushes.Black, Rect, FormatoRC);
+				ev.Graphics.DrawString(Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Detalle["precio"]), this.Workspace.CurrentConfig.Moneda.DecimalesCosto), Fuente, Brushes.Black, Rect, FormatoRC);
 				Rect = new RectangleF(MarginLeft + PrintAreaWidth - 80, iTop, 80, 20);
-				ev.Graphics.DrawString(Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Detalle["importe"]), this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto), Fuente, Brushes.Black, Rect, FormatoRC);
+				ev.Graphics.DrawString(Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Detalle["importe"]), this.Workspace.CurrentConfig.Moneda.DecimalesCosto), Fuente, Brushes.Black, Rect, FormatoRC);
 				iTop += 20;
 
 				if (Lfx.Data.DataBase.ConvertDBNullToZero(Detalle["id_articulo"]) > 0)
@@ -284,19 +284,19 @@ namespace Lfc.Comprobantes.Presupuestos
 				if (System.Convert.ToInt32(m_Comprob["cuotas"]) > 0)
 				{
 					Rect = new RectangleF(MarginLeft, iTop, 240, 14);
-					ev.Graphics.DrawString(m_Comprob["cuotas"].ToString() + " cuotas de " + Lfx.Types.Currency.CurrencySymbol + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(m_Comprob["total"]) / System.Convert.ToInt32(m_Comprob["cuotas"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces), Fuente, Brushes.Black, Rect, FormatoLC);
+					ev.Graphics.DrawString(m_Comprob["cuotas"].ToString() + " cuotas de " + Lfx.Types.Currency.CurrencySymbol + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(m_Comprob["total"]) / System.Convert.ToInt32(m_Comprob["cuotas"]), this.Workspace.CurrentConfig.Moneda.Decimales), Fuente, Brushes.Black, Rect, FormatoLC);
 					iTop += System.Convert.ToInt32(Rect.Height);
 				}
 
 				iTop = iTopOld;
 				Fuente = new Font("Arial", 12);
 				Rect = new RectangleF(MarginLeft + PrintAreaWidth - 160, iTop, 160, 20);
-				ev.Graphics.DrawString("Sub total: " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(m_Comprob["subtotal"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces), Fuente, Brushes.Black, Rect, FormatoRC);
+				ev.Graphics.DrawString("Sub total: " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(m_Comprob["subtotal"]), this.Workspace.CurrentConfig.Moneda.Decimales), Fuente, Brushes.Black, Rect, FormatoRC);
 				iTop += System.Convert.ToInt32(Rect.Height + 4);
 
 				Fuente = new Font("Arial Black", 14);
 				Rect = new RectangleF(MarginLeft + PrintAreaWidth - 220, iTop, 220, 28);
-				string Total = "Total: " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(m_Comprob["total"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+				string Total = "Total: " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(m_Comprob["total"]), this.Workspace.CurrentConfig.Moneda.Decimales);
 				SizeF Tamano = ev.Graphics.MeasureString(Total, Fuente, Rect.Location, FormatoLT);
 				Rect.Width = Tamano.Width + 20;
 				Rect.Height = Tamano.Height + 10;

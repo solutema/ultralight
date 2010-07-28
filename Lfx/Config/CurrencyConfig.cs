@@ -45,7 +45,7 @@ namespace Lfx.Config
                 }
 
                 // La cantidad de decimales para el stock
-                public int DecimalPlaces
+                public int Decimales
                 {
                         get
                         {
@@ -53,23 +53,23 @@ namespace Lfx.Config
                         }
                 }
 
-                public int DecimalPlacesCosto
+                public int DecimalesCosto
                 {
                         get
                         {
-                                return ConfigManager.ReadGlobalSettingInt(null, "Sistema.Moneda.DecimalesCosto", this.DecimalPlaces);
+                                return ConfigManager.ReadGlobalSettingInt(null, "Sistema.Moneda.DecimalesCosto", this.Decimales);
                         }
                 }
 
-                public int DecimalPlacesFinal
+                public int DecimalesFinal
                 {
                         get
                         {
-                                return ConfigManager.ReadGlobalSettingInt(null, "Sistema.Moneda.DecimalesFinal", this.DecimalPlaces);
+                                return ConfigManager.ReadGlobalSettingInt(null, "Sistema.Moneda.DecimalesFinal", this.Decimales);
                         }
                 }
 
-                public double Rounding
+                public double Redondeo
                 {
                         get
                         {

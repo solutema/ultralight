@@ -103,7 +103,7 @@ namespace Lfc.Comprobantes.Facturas
                                 } else {
                                         EtiquetaAviso.Text = "Recuerde que necesitar archivar todas las copias del comprobante anulado.";
                                         OkButton.Visible = true;
-                                        if (Fac.FormaDePago.Tipo == Lbl.Comprobantes.TipoFormasDePago.CuentaCorriente) {
+                                        if (Fac.FormaDePago.Tipo == Lbl.Pagos.TipoFormasDePago.CuentaCorriente) {
                                                 EntradaAnularPagos.TextKey = "1";
                                         } else {
                                                 EntradaAnularPagos.TextKey = "0";
@@ -173,7 +173,7 @@ namespace Lfc.Comprobantes.Facturas
                                         qGen.Insert InsertarComprob = new qGen.Insert("comprob");
                                         InsertarComprob.Fields.AddWithValue("tipo_fac", "F" + EntradaTipo.TextKey);
                                         InsertarComprob.Fields.AddWithValue("id_formapago", 3);
-                                        InsertarComprob.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Company.CurrentBranch);
+                                        InsertarComprob.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
                                         InsertarComprob.Fields.AddWithValue("pv", Lfx.Types.Parsing.ParseInt(EntradaPV.Text));
                                         InsertarComprob.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                                         InsertarComprob.Fields.AddWithValue("id_vendedor", this.Workspace.CurrentUser.Id);

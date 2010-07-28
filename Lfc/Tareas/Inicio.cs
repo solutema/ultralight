@@ -235,7 +235,7 @@ namespace Lfc.Tareas
 
 		private void FormTicketsInicio_WorkspaceChanged(object sender, System.EventArgs e)
 		{
-			m_Sucursal = this.Workspace.CurrentConfig.Company.CurrentBranch;
+			m_Sucursal = this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada;
 		}
 	}
 }

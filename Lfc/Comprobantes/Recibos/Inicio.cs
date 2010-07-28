@@ -170,7 +170,7 @@ namespace Lfc.Comprobantes.Recibos
 
 		public override void EndRefreshList()
 		{
-			txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+			txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales);
 			base.EndRefreshList();
 		}
 

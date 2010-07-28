@@ -346,12 +346,23 @@ namespace Lbl.Articulos
                         }
                 }
 
-		public double StockActual()
+		public double StockActual
 		{
-			return this.FieldDouble("stock_actual");
+                        get
+                        {
+                                if (this.DataBase.SlowLink)
+                                        return this.FieldDouble("stock_actual");
+                                else
+                                        return this.ObtenerStockActual();
+                        }
 		}
 
-		public double StockActual(Situacion situacion)
+                public double ObtenerStockActual()
+                {
+                        return this.DataBase.FieldDouble("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion IN (SELECT id_situacion FROM articulos_situaciones WHERE cuenta_stock<>0)");
+                }
+
+		public double ObtenerStockActual(Situacion situacion)
 		{
 			return this.DataBase.FieldDouble("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion=" + situacion.Id.ToString());
 		}
@@ -591,6 +602,8 @@ namespace Lbl.Articulos
                         //control_stock, stock_minimo, unidad_stock, rendimiento, unidad_rend, estado, web, fecha_creado, fecha_precio
                         Comando.Fields.AddWithValue("control_stock", this.ControlaStock ? 1 : 0);
                         Comando.Fields.AddWithValue("stock_minimo", this.StockMinimo);
+                        if (this.Existe)
+                                Comando.Fields.AddWithValue("stock_actual", this.ObtenerStockActual());
                         Comando.Fields.AddWithValue("unidad_stock", this.Unidad);
                         Comando.Fields.AddWithValue("rendimiento", this.Rendimiento);
                         Comando.Fields.AddWithValue("unidad_rend", this.UnidadRendimiento);

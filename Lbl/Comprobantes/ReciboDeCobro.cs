@@ -62,7 +62,7 @@ namespace Lbl.Comprobantes
                 public override Lfx.Types.OperationResult Crear()
                 {
                         Lfx.Types.OperationResult Res = base.Crear();
-                        this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.RC.PV", this.Workspace.CurrentConfig.Company.CurrentBranch);
+                        this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.RC.PV", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
                         this.Tipo = new Tipo(this.DataBase, "RC");
                         return Res;
                 }

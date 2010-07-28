@@ -62,12 +62,12 @@ namespace Lui.Forms.AuxForms
 		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
 		// Puede modificarse utilizando el Diseñador de Windows Forms. 
 		// No lo modifique con el editor de código.
-		internal System.Windows.Forms.ListView lvItems;
+		internal System.Windows.Forms.ListView ListaItem;
 		internal System.Windows.Forms.ColumnHeader id;
 		internal System.Windows.Forms.ColumnHeader nombre;
-		internal Lui.Forms.TextBox txtBuscar;
+		internal Lui.Forms.TextBox EntradaBuscar;
 		internal System.Windows.Forms.ColumnHeader extra1;
-		internal Lui.Forms.Button cmdNuevo;
+		internal Lui.Forms.Button BotonNuevo;
 		internal System.Windows.Forms.Timer Timer1;
 		internal System.Windows.Forms.ColumnHeader extra2;
 		internal System.Windows.Forms.ColumnHeader extra3;
@@ -76,46 +76,46 @@ namespace Lui.Forms.AuxForms
 		private void InitializeComponent()
 		{
                         this.components = new System.ComponentModel.Container();
-                        this.lvItems = new System.Windows.Forms.ListView();
+                        this.ListaItem = new System.Windows.Forms.ListView();
                         this.id = new System.Windows.Forms.ColumnHeader();
                         this.nombre = new System.Windows.Forms.ColumnHeader();
                         this.extra1 = new System.Windows.Forms.ColumnHeader();
                         this.extra2 = new System.Windows.Forms.ColumnHeader();
                         this.extra3 = new System.Windows.Forms.ColumnHeader();
                         this.extra4 = new System.Windows.Forms.ColumnHeader();
-                        this.txtBuscar = new Lui.Forms.TextBox();
-                        this.cmdNuevo = new Lui.Forms.Button();
+                        this.EntradaBuscar = new Lui.Forms.TextBox();
+                        this.BotonNuevo = new Lui.Forms.Button();
                         this.Timer1 = new System.Windows.Forms.Timer(this.components);
                         this.SuspendLayout();
                         // 
                         // lvItems
                         // 
-                        this.lvItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        this.ListaItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lvItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.lvItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+                        this.ListaItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                        this.ListaItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.id,
             this.nombre,
             this.extra1,
             this.extra2,
             this.extra3,
             this.extra4});
-                        this.lvItems.FullRowSelect = true;
-                        this.lvItems.GridLines = true;
-                        this.lvItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-                        this.lvItems.HideSelection = false;
-                        this.lvItems.LabelWrap = false;
-                        this.lvItems.Location = new System.Drawing.Point(0, 0);
-                        this.lvItems.MultiSelect = false;
-                        this.lvItems.Name = "lvItems";
-                        this.lvItems.Size = new System.Drawing.Size(633, 336);
-                        this.lvItems.TabIndex = 2;
-                        this.lvItems.UseCompatibleStateImageBehavior = false;
-                        this.lvItems.View = System.Windows.Forms.View.Details;
-                        this.lvItems.SelectedIndexChanged += new System.EventHandler(this.lvItems_SelectedIndexChanged);
-                        this.lvItems.DoubleClick += new System.EventHandler(this.lvItems_DoubleClick);
-                        this.lvItems.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.lvItems_KeyPress);
+                        this.ListaItem.FullRowSelect = true;
+                        this.ListaItem.GridLines = true;
+                        this.ListaItem.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+                        this.ListaItem.HideSelection = false;
+                        this.ListaItem.LabelWrap = false;
+                        this.ListaItem.Location = new System.Drawing.Point(0, 0);
+                        this.ListaItem.MultiSelect = false;
+                        this.ListaItem.Name = "lvItems";
+                        this.ListaItem.Size = new System.Drawing.Size(633, 336);
+                        this.ListaItem.TabIndex = 2;
+                        this.ListaItem.UseCompatibleStateImageBehavior = false;
+                        this.ListaItem.View = System.Windows.Forms.View.Details;
+                        this.ListaItem.SelectedIndexChanged += new System.EventHandler(this.ListaItem_SelectedIndexChanged);
+                        this.ListaItem.DoubleClick += new System.EventHandler(this.ListaItem_DoubleClick);
+                        this.ListaItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ListaItem_KeyPress);
                         // 
                         // id
                         // 
@@ -149,56 +149,56 @@ namespace Lui.Forms.AuxForms
                         // 
                         // txtBuscar
                         // 
-                        this.txtBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtBuscar.AutoHeight = false;
-                        this.txtBuscar.AutoNav = false;
-                        this.txtBuscar.AutoTab = false;
-                        this.txtBuscar.Cursor = System.Windows.Forms.Cursors.Default;
-                        this.txtBuscar.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.txtBuscar.DecimalPlaces = -1;
-                        this.txtBuscar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.txtBuscar.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtBuscar.Location = new System.Drawing.Point(4, 344);
-                        this.txtBuscar.MaxLenght = 32767;
-                        this.txtBuscar.MultiLine = false;
-                        this.txtBuscar.Name = "txtBuscar";
-                        this.txtBuscar.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtBuscar.PasswordChar = '\0';
-                        this.txtBuscar.Prefijo = "";
-                        this.txtBuscar.ReadOnly = false;
-                        this.txtBuscar.SelectOnFocus = false;
-                        this.txtBuscar.Size = new System.Drawing.Size(524, 24);
-                        this.txtBuscar.Sufijo = "";
-                        this.txtBuscar.TabIndex = 0;
-                        this.txtBuscar.TextRaw = "";
-                        this.txtBuscar.TipWhenBlank = "";
-                        this.txtBuscar.ToolTipText = "";
-                        this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
-                        this.txtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscar_KeyPress);
-                        this.txtBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyDown);
+                        this.EntradaBuscar.AutoHeight = false;
+                        this.EntradaBuscar.AutoNav = false;
+                        this.EntradaBuscar.AutoTab = false;
+                        this.EntradaBuscar.Cursor = System.Windows.Forms.Cursors.Default;
+                        this.EntradaBuscar.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaBuscar.DecimalPlaces = -1;
+                        this.EntradaBuscar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EntradaBuscar.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaBuscar.Location = new System.Drawing.Point(4, 344);
+                        this.EntradaBuscar.MaxLenght = 32767;
+                        this.EntradaBuscar.MultiLine = false;
+                        this.EntradaBuscar.Name = "txtBuscar";
+                        this.EntradaBuscar.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaBuscar.PasswordChar = '\0';
+                        this.EntradaBuscar.Prefijo = "";
+                        this.EntradaBuscar.ReadOnly = false;
+                        this.EntradaBuscar.SelectOnFocus = false;
+                        this.EntradaBuscar.Size = new System.Drawing.Size(524, 24);
+                        this.EntradaBuscar.Sufijo = "";
+                        this.EntradaBuscar.TabIndex = 0;
+                        this.EntradaBuscar.TextRaw = "";
+                        this.EntradaBuscar.TipWhenBlank = "";
+                        this.EntradaBuscar.ToolTipText = "";
+                        this.EntradaBuscar.TextChanged += new System.EventHandler(this.EntradaBuscar_TextChanged);
+                        this.EntradaBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaBuscar_KeyPress);
+                        this.EntradaBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaBuscar_KeyDown);
                         // 
                         // cmdNuevo
                         // 
-                        this.cmdNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.cmdNuevo.AutoHeight = false;
-                        this.cmdNuevo.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdNuevo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.cmdNuevo.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdNuevo.Image = null;
-                        this.cmdNuevo.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdNuevo.Location = new System.Drawing.Point(532, 340);
-                        this.cmdNuevo.Name = "cmdNuevo";
-                        this.cmdNuevo.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdNuevo.ReadOnly = false;
-                        this.cmdNuevo.Size = new System.Drawing.Size(96, 30);
-                        this.cmdNuevo.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
-                        this.cmdNuevo.Subtext = "F6";
-                        this.cmdNuevo.TabIndex = 1;
-                        this.cmdNuevo.Text = "Crear";
-                        this.cmdNuevo.ToolTipText = "";
-                        this.cmdNuevo.Click += new System.EventHandler(this.cmdNuevo_Click);
+                        this.BotonNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonNuevo.AutoHeight = false;
+                        this.BotonNuevo.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonNuevo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.BotonNuevo.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonNuevo.Image = null;
+                        this.BotonNuevo.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonNuevo.Location = new System.Drawing.Point(532, 340);
+                        this.BotonNuevo.Name = "cmdNuevo";
+                        this.BotonNuevo.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonNuevo.ReadOnly = false;
+                        this.BotonNuevo.Size = new System.Drawing.Size(96, 30);
+                        this.BotonNuevo.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonNuevo.Subtext = "F6";
+                        this.BotonNuevo.TabIndex = 1;
+                        this.BotonNuevo.Text = "Crear";
+                        this.BotonNuevo.ToolTipText = "";
+                        this.BotonNuevo.Click += new System.EventHandler(this.BotonNuevo_Click);
                         // 
                         // Timer1
                         // 
@@ -209,9 +209,9 @@ namespace Lui.Forms.AuxForms
                         // 
                         this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
                         this.ClientSize = new System.Drawing.Size(634, 376);
-                        this.Controls.Add(this.cmdNuevo);
-                        this.Controls.Add(this.txtBuscar);
-                        this.Controls.Add(this.lvItems);
+                        this.Controls.Add(this.BotonNuevo);
+                        this.Controls.Add(this.EntradaBuscar);
+                        this.Controls.Add(this.ListaItem);
                         this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
                         this.KeyPreview = true;
@@ -220,7 +220,7 @@ namespace Lui.Forms.AuxForms
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
                         this.Text = "Seleccione de la Lista";
                         this.TopMost = true;
-                        this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormBuscadorRapido_KeyDown);
+                        this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DetailBoxQuickSelect_KeyDown);
                         this.ResumeLayout(false);
 
 		}

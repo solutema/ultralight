@@ -355,7 +355,7 @@ namespace Lui.Forms
 			}
 			if (this.Workspace != null)
 			{
-                                System.Data.DataTable QuickPastes = this.Workspace.DefaultDataBase.Select("SELECT texto FROM sys_quickpaste ORDER BY fecha DESC LIMIT 12");
+                                System.Data.DataTable QuickPastes = this.DataBase.Select("SELECT texto FROM sys_quickpaste ORDER BY fecha DESC LIMIT 12");
 				foreach (System.Data.DataRow QuickPaste in QuickPastes.Rows)
 				{
 					System.Windows.Forms.MenuItem NuevoItem = new System.Windows.Forms.MenuItem();
@@ -373,7 +373,7 @@ namespace Lui.Forms
 			Comando.Fields.AddWithValue("estacion", System.Environment.MachineName.ToUpperInvariant());
 			Comando.Fields.AddWithValue("usuario", this.Workspace.CurrentUser.Id);
 			Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
-                        this.Workspace.DefaultDataBase.Execute(Comando);
+                        this.DataBase.Execute(Comando);
 		}
 
 		private void MenuItemPegadoRapidoTexto_Click(object sender, System.EventArgs e)
@@ -423,7 +423,7 @@ namespace Lui.Forms
                                         break;
                                 case DataTypes.Money:
                                         if (m_DecimalPlaces == -1 && this.Workspace != null)
-                                                Res = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Evaluator.EvaluateDouble(Dato), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                                Res = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Evaluator.EvaluateDouble(Dato), this.Workspace.CurrentConfig.Moneda.Decimales);
                                         else if (m_DecimalPlaces == -1)
                                                 Res = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Evaluator.EvaluateDouble(Dato), 2);
                                         else

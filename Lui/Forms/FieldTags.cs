@@ -70,7 +70,7 @@ namespace Lui.Forms
                         this.FieldContainer.Controls.Clear();
                         //Tomos los tags del registro
                         Lfx.Data.Table Tabla = new Lfx.Data.Table(m_Elemento.DataBase, m_Elemento.TablaDatos);
-                        Tabla.DataBase = this.Workspace.DefaultDataBase;
+                        Tabla.DataBase = this.DataBase;
                         if (Tabla.Tags != null) {
                                 foreach (Lfx.Data.Tag Tg in Tabla.Tags) {
                                         Field Fld = new Field();

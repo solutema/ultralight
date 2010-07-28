@@ -210,7 +210,7 @@ namespace Lfc.Alicuotas
 			{
 				txtNombre.Text = System.Convert.ToString(Registro["nombre"]);
 				txtPorcentaje.Text = Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Registro["porcentaje"]), 2);
-				txtImporteMinimo.Text = Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Registro["importe_minimo"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+				txtImporteMinimo.Text = Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Registro["importe_minimo"]), this.Workspace.CurrentConfig.Moneda.Decimales);
 
 				m_Id = lId;
 				m_Nuevo = false;

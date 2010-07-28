@@ -29,30 +29,16 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Lui.Forms
 {
-        public partial class LuiControl : UserControl
+        public partial class LuiControl : UserControl, IDataControl
         {
                 public LuiControl()
                 {
                         InitializeComponent();
-                }
-
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public Lfx.Workspace Workspace
-                {
-                        get
-                        {
-                                return Lfx.Workspace.Master;
-                        }
                 }
 
                 [EditorBrowsable(EditorBrowsableState.Always), Browsable(true), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -65,6 +51,40 @@ namespace Lui.Forms
                         set
                         {
                                 this.Text = value;
+                        }
+                }
+
+                /// <summary>
+                /// IDataControl
+                /// </summary>
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public Lfx.Workspace Workspace
+                {
+                        get
+                        {
+                                if (this.DataBase == null)
+                                        return Lfx.Workspace.Master;
+                                else
+                                        return this.DataBase.Workspace;
+                        }
+                }
+
+                /// <summary>
+                /// IDataControl
+                /// </summary>
+                public Lfx.Data.DataBase DataBase
+                {
+                        get
+                        {
+                                System.Windows.Forms.Control MiParent = this.Parent;
+                                while (MiParent != null) {
+                                        if (MiParent is Lui.Forms.IDataControl) {
+                                                return ((Lui.Forms.IDataControl)(MiParent)).DataBase;
+                                        } else {
+                                                MiParent = MiParent.Parent;
+                                        }
+                                }
+                                return null;
                         }
                 }
         }

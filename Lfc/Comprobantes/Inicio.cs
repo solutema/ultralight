@@ -144,8 +144,8 @@ namespace Lfc.Comprobantes
                                 FormFiltros.EntradaFechas.Rango = m_Fechas;
                                 FormFiltros.txtEstado.TextKey = m_Estado;
                                 FormFiltros.txtAnuladas.TextKey = m_Anuladas.ToString();
-                                FormFiltros.EntradaMontoDesde.Text = Lfx.Types.Formatting.FormatCurrency(m_MontoDesde, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                                FormFiltros.EntradaMontoHasta.Text = Lfx.Types.Formatting.FormatCurrency(m_MontoHasta, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                FormFiltros.EntradaMontoDesde.Text = Lfx.Types.Formatting.FormatCurrency(m_MontoDesde, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                FormFiltros.EntradaMontoHasta.Text = Lfx.Types.Formatting.FormatCurrency(m_MontoHasta, this.Workspace.CurrentConfig.Moneda.Decimales);
                                 FormFiltros.Owner = this;
                                 FormFiltros.ShowDialog();
 
@@ -351,7 +351,7 @@ namespace Lfc.Comprobantes
                                 } else if (m_Tipo != "PS" && Lfx.Types.Parsing.ParseCurrency(itm.SubItems[8].Text) > 0) {
                                         // Impaga, en rojo
                                         dPendiente = dPendiente + Lfx.Types.Parsing.ParseCurrency(itm.SubItems[8].Text.Replace(",", "."));
-                                        itm.SubItems[8].Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(itm.SubItems[8].Text.Replace(",", ".")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                        itm.SubItems[8].Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(itm.SubItems[8].Text.Replace(",", ".")), this.Workspace.CurrentConfig.Moneda.Decimales);
                                         itm.ForeColor = System.Drawing.Color.Red;
                                 }
 
@@ -363,13 +363,13 @@ namespace Lfc.Comprobantes
                                 }
                         }
 
-                        txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(dTotal, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtPendiente.Text = Lfx.Types.Formatting.FormatCurrency(dPendiente, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(dTotal, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtPendiente.Text = Lfx.Types.Formatting.FormatCurrency(dPendiente, this.Workspace.CurrentConfig.Moneda.Decimales);
                 }
 
                 private void FormComprobantesInicio_WorkspaceChanged(object sender, System.EventArgs e)
                 {
-                        m_Sucursal = this.Workspace.CurrentConfig.Company.CurrentBranch;
+                        m_Sucursal = this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada;
                 }
         }
 }

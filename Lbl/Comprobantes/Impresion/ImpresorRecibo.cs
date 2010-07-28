@@ -66,22 +66,22 @@ namespace Lbl.Comprobantes.Impresion
                                         System.Text.StringBuilder Valores = new System.Text.StringBuilder();
                                         foreach (Lbl.Comprobantes.Cobro Pg in ComprobanteRecibo.Cobros) {
                                                 switch (Pg.FormaDePago.Tipo) {
-                                                        case Lbl.Comprobantes.TipoFormasDePago.Efectivo:
-                                                                Valores.AppendLine("Efectivo                 : " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
+                                                        case Lbl.Pagos.TipoFormasDePago.Efectivo:
+                                                                Valores.AppendLine("Efectivo                 : " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Moneda.Decimales));
                                                                 break;
-                                                        case Lbl.Comprobantes.TipoFormasDePago.ChequePropio:
-                                                                Valores.AppendLine("Cheque                   : " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
+                                                        case Lbl.Pagos.TipoFormasDePago.ChequePropio:
+                                                                Valores.AppendLine("Cheque                   : " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Moneda.Decimales));
                                                                 Valores.AppendLine("                           Nº " + Pg.Cheque.Numero + " del banco " + Pg.Cheque.Banco.ToString());
                                                                 Valores.AppendLine("                           emitido por " + Pg.Cheque.Emisor);
                                                                 Valores.AppendLine("                           el día " + Lfx.Types.Formatting.FormatDate(Pg.Cheque.FechaEmision));
                                                                 Valores.AppendLine("                           pagadero el " + Lfx.Types.Formatting.FormatDate(Pg.Cheque.FechaCobro));
                                                                 break;
-                                                        case Lbl.Comprobantes.TipoFormasDePago.Tarjeta:
-                                                                Valores.AppendLine("Pago con Tarjeta         : " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
+                                                        case Lbl.Pagos.TipoFormasDePago.Tarjeta:
+                                                                Valores.AppendLine("Pago con Tarjeta         : " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Moneda.Decimales));
                                                                 Valores.AppendLine("                           cupón " + Pg.Cupon.ToString());
                                                                 break;
-                                                        case Lbl.Comprobantes.TipoFormasDePago.Caja:
-                                                                Valores.AppendLine("Depósito en Cuenta       : " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
+                                                        case Lbl.Pagos.TipoFormasDePago.Caja:
+                                                                Valores.AppendLine("Depósito en Cuenta       : " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Moneda.Decimales));
                                                                 break;
                                                 }
                                         }

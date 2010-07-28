@@ -289,7 +289,7 @@ namespace Lfc.Bancos.Cheques
 
 		private void Importes_TextChanged(object sender, System.EventArgs e)
 		{
-			txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text) + Lfx.Types.Parsing.ParseCurrency(txtImpuestos.Text), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+			txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text) + Lfx.Types.Parsing.ParseCurrency(txtImpuestos.Text), this.Workspace.CurrentConfig.Moneda.Decimales);
 		}
 
                 public System.Windows.Forms.DialogResult Mostrar(List<string> ChequesAPagar)
@@ -309,7 +309,7 @@ namespace Lfc.Bancos.Cheques
 				double Total = this.DataBase.FieldDouble("SELECT SUM(importe) FROM bancos_cheques WHERE id_cheque IN (" + ChequesIds + ")");
 
 				txtCantidad.Text = Cheques.Count.ToString();
-				txtSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+				txtSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales);
 				return this.ShowDialog();
 			}
 			else

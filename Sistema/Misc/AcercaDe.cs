@@ -105,11 +105,25 @@ namespace Lazaro.Misc
                                                 TieneDotNet35 = false;
                                         }
 
+                                        bool TieneDotNet4 = false;
+                                        try {
+                                                Microsoft.Win32.RegistryKey LocalMachine = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v4\\Client", false);
+                                                object Installed = LocalMachine.GetValue("Install");
+                                                if (System.Convert.ToInt32(Installed) == 1)
+                                                        TieneDotNet4 = true;
+                                        }
+                                        catch (Exception ex) {
+                                                System.Console.WriteLine(ex.Message);
+                                                TieneDotNet4 = false;
+                                        }
+
                                         string VersionesDotNet = "Microsoft .NET 2.0";
                                         if (TieneDotNet3)
                                                 VersionesDotNet += ", 3.0";
                                         if (TieneDotNet35)
                                                 VersionesDotNet += ", 3.5";
+                                        if (TieneDotNet4)
+                                                VersionesDotNet += ", 4";
 
                                         EtiquetaFramework.Text = VersionesDotNet;
                                         break;
@@ -129,12 +143,12 @@ namespace Lazaro.Misc
 			Actualizador.Estado OFormActualizador = new Actualizador.Estado();
 			OFormActualizador.TopMost = true;
 			OFormActualizador.Show();
-                        Lfx.Updater.Master.UpdateFromWeb();
+                        Lfx.Services.Updater.Master.UpdateFromWeb();
 			OFormActualizador.Close();
 			OFormActualizador = null;
-                        if (Lfx.Updater.Master.ErrorFlag) {
-                                Lui.Forms.MessageBox.Show(Lfx.Updater.Master.ErrorMessage, "Error");
-                        } else if (Lfx.Updater.Master.UpdatedFiles == 0) {
+                        if (Lfx.Services.Updater.Master.ErrorFlag) {
+                                Lui.Forms.MessageBox.Show(Lfx.Services.Updater.Master.ErrorMessage, "Error");
+                        } else if (Lfx.Services.Updater.Master.UpdatedFiles == 0) {
                                 Lui.Forms.MessageBox.Show("Ya está utilizando la versión más nueva disponible.", "Actualizar");
                         } else {
                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Se descargó una nueva versión de Lázaro. Debe reiniciar la aplicación para instalar la actualización.", "¿Desea reiniciar ahora?");

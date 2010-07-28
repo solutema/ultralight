@@ -78,7 +78,7 @@ namespace Lbl.Comprobantes.Impresion
 
 			// Determino la impresora que prefiere o le corresponde
 			if (Impresora != null && Impresora.Length == 0)
-				Impresora = dataBase.Workspace.CurrentConfig.Printing.PreferredPrinter(System.Convert.ToString(RegistroFactura["tipo_fac"]));
+				Impresora = dataBase.Workspace.CurrentConfig.Impresion.PreferredPrinter(System.Convert.ToString(RegistroFactura["tipo_fac"]));
 
 			string strCodigos = null;
 			string strDescrips = null;
@@ -105,28 +105,28 @@ namespace Lbl.Comprobantes.Impresion
 					}
 
 					strDescrips = strDescrips + System.Convert.ToString(Articulo["nombre"]) + System.Environment.NewLine;
-					strCants = strCants + Lfx.Types.Formatting.FormatStock(System.Convert.ToDouble(Articulo["cantidad"]), dataBase.Workspace.CurrentConfig.Products.StockDecimalPlaces) + System.Environment.NewLine;
-					strPrecios = strPrecios + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(Articulo["precio"]), dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
-					strImportes = strImportes + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(Articulo["importe"]), dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
+					strCants = strCants + Lfx.Types.Formatting.FormatStock(System.Convert.ToDouble(Articulo["cantidad"]), dataBase.Workspace.CurrentConfig.Productos.DecimalesStock) + System.Environment.NewLine;
+					strPrecios = strPrecios + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(Articulo["precio"]), dataBase.Workspace.CurrentConfig.Moneda.DecimalesCosto) + System.Environment.NewLine;
+					strImportes = strImportes + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(Articulo["importe"]), dataBase.Workspace.CurrentConfig.Moneda.DecimalesCosto) + System.Environment.NewLine;
 				}
 			}
 
 			if (System.Convert.ToDouble(RegistroFactura["descuento"]) > 0 && System.Convert.ToString(RegistroFactura["tipo_fac"]) != "R")
 			{
 				strCodigos = strCodigos + System.Environment.NewLine;
-				strDescrips = strDescrips + "Descuento " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["descuento"]), dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + "%" + System.Environment.NewLine;
+				strDescrips = strDescrips + "Descuento " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["descuento"]), dataBase.Workspace.CurrentConfig.Moneda.DecimalesCosto) + "%" + System.Environment.NewLine;
 				strCants = strCants + System.Environment.NewLine;
-				strPrecios = strPrecios + Lfx.Types.Currency.CurrencySymbol + " -" + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["subtotal"]) * (System.Convert.ToDouble(RegistroFactura["descuento"]) / 100), dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
-				strImportes = strImportes + Lfx.Types.Currency.CurrencySymbol + " -" + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["subtotal"]) * (System.Convert.ToDouble(RegistroFactura["descuento"]) / 100), dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
+				strPrecios = strPrecios + Lfx.Types.Currency.CurrencySymbol + " -" + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["subtotal"]) * (System.Convert.ToDouble(RegistroFactura["descuento"]) / 100), dataBase.Workspace.CurrentConfig.Moneda.DecimalesCosto) + System.Environment.NewLine;
+				strImportes = strImportes + Lfx.Types.Currency.CurrencySymbol + " -" + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["subtotal"]) * (System.Convert.ToDouble(RegistroFactura["descuento"]) / 100), dataBase.Workspace.CurrentConfig.Moneda.DecimalesCosto) + System.Environment.NewLine;
 			}
 
 			if (System.Convert.ToDouble(RegistroFactura["interes"]) > 0 && System.Convert.ToString(RegistroFactura["tipo_fac"]) != "R")
 			{
 				strCodigos = strCodigos + System.Environment.NewLine;
-				strDescrips = strDescrips + "Recargo " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["interes"]), dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + "%" + System.Environment.NewLine;
+				strDescrips = strDescrips + "Recargo " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["interes"]), dataBase.Workspace.CurrentConfig.Moneda.DecimalesCosto) + "%" + System.Environment.NewLine;
 				strCants = strCants + System.Environment.NewLine;
-				strPrecios = strPrecios + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["subtotal"]) * (System.Convert.ToDouble(RegistroFactura["interes"]) / 100), dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
-				strImportes = strImportes + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["subtotal"]) * (System.Convert.ToDouble(RegistroFactura["interes"]) / 100), dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
+				strPrecios = strPrecios + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["subtotal"]) * (System.Convert.ToDouble(RegistroFactura["interes"]) / 100), dataBase.Workspace.CurrentConfig.Moneda.DecimalesCosto) + System.Environment.NewLine;
+				strImportes = strImportes + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(System.Convert.ToDouble(RegistroFactura["subtotal"]) * (System.Convert.ToDouble(RegistroFactura["interes"]) / 100), dataBase.Workspace.CurrentConfig.Moneda.DecimalesCosto) + System.Environment.NewLine;
 			}
 
 			if (TotalReal != Total && System.Convert.ToString(RegistroFactura["tipo_fac"]) != "R")
@@ -135,7 +135,7 @@ namespace Lbl.Comprobantes.Impresion
 				strDescrips = strDescrips + "Ajustes por Redondeo" + System.Environment.NewLine;
 				strCants = strCants + System.Environment.NewLine;
 				strPrecios = strPrecios + System.Environment.NewLine;
-				strImportes = strImportes + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(Total - TotalReal, dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesCosto) + System.Environment.NewLine;
+				strImportes = strImportes + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(Total - TotalReal, dataBase.Workspace.CurrentConfig.Moneda.DecimalesCosto) + System.Environment.NewLine;
 			}
 
 			long lPasada = 0;
@@ -224,7 +224,7 @@ namespace Lbl.Comprobantes.Impresion
 					MPrint(ref Factura,
 					       cTotalXY,
 					       cPasadaXY,
-					       Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(Total, dataBase.Workspace.CurrentConfig.Currency.DecimalPlacesFinal),
+					       Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrencyForPrint(Total, dataBase.Workspace.CurrentConfig.Moneda.DecimalesFinal),
 					       Alineacion.Derecha);
 				}
 

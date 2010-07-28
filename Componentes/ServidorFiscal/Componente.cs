@@ -146,7 +146,7 @@ namespace ServidorFiscal
                         get
                         {
                                 if (m_PV == 0) {
-                                        m_PV = this.Impresora.DataBase.FieldInt("SELECT id_pv FROM pvs WHERE UPPER(estacion)='" + System.Environment.MachineName.ToUpperInvariant().ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Company.CurrentBranch.ToString());
+                                        m_PV = this.Impresora.DataBase.FieldInt("SELECT id_pv FROM pvs WHERE UPPER(estacion)='" + System.Environment.MachineName.ToUpperInvariant().ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada.ToString());
                                         this.Impresora.PV = m_PV;
                                         this.FormEstado.lblPV.Text = m_PV.ToString();
 

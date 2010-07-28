@@ -39,7 +39,7 @@ namespace Lbl.Comprobantes
 	{
                 private ColeccionDetalleArticulos m_Articulos = null, m_ArticulosOriginales = null;
                 private ColeccionRecibos m_Recibos = null;
-                private Lbl.Comprobantes.FormaDePago m_FormaDePago = null;
+                private Lbl.Pagos.FormaDePago m_FormaDePago = null;
                 
                 //Heredar constructor
                 public ComprobanteConArticulos(Lfx.Data.DataBase dataBase) : base(dataBase) { }
@@ -92,7 +92,7 @@ namespace Lbl.Comprobantes
                 {
                         Lfx.Types.OperationResult Res = this.Crear(tipo);
                         if (Res.Success && compra) {
-                                this.SituacionDestino = new Lbl.Articulos.Situacion(this.DataBase, this.Workspace.CurrentConfig.Products.DepositoPredeterminado);
+                                this.SituacionDestino = new Lbl.Articulos.Situacion(this.DataBase, this.Workspace.CurrentConfig.Productos.DepositoPredeterminado);
                                 this.SituacionOrigen = new Lbl.Articulos.Situacion(this.DataBase, 998); //Proveedor
                                 this.Fecha = DateTime.Now;
                         }
@@ -150,27 +150,27 @@ namespace Lbl.Comprobantes
                                 Lbl.Articulos.Stock.MoverStockFactura(this, false);
                                 if (anularPagos) {
                                         switch (this.FormaDePago.Tipo) {
-                                                case TipoFormasDePago.Efectivo:
+                                                case Lbl.Pagos.TipoFormasDePago.Efectivo:
                                                         // Hago un egreso de caja
-                                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(DataBase, this.Workspace.CurrentConfig.Company.CajaDiaria);
+                                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(DataBase, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
                                                         Caja.Movimiento(true, 11000, "Anulación Comprob. " + this.ToString(), this.Cliente.Id, -this.ImporteCancelado, "", this.Id, 0, "");
                                                         break;
 
-                                                case TipoFormasDePago.ChequePropio:
+                                                case Lbl.Pagos.TipoFormasDePago.ChequePropio:
                                                         Lbl.Bancos.Cheque Cheque = new Lbl.Bancos.Cheque(DataBase, this);
                                                         if (Cheque != null && Cheque.Existe)
                                                                 Cheque.Anular();
                                                         break;
 
-                                                case TipoFormasDePago.CuentaCorriente:
+                                                case Lbl.Pagos.TipoFormasDePago.CuentaCorriente:
                                                         if (this.ImporteCancelado < this.Total) {
                                                                 // Quito el saldo paga de la cuenta corriente
                                                                 this.Cliente.CuentaCorriente.Movimiento(true, new Lbl.Cajas.Concepto(this.DataBase, 11000), "Anulación Comprob. " + this.ToString(), -this.ImporteCancelado, "", this, null, false);
                                                         }
                                                         break;
 
-                                                case TipoFormasDePago.Tarjeta:
-                                                        Lbl.Tarjetas.Cupon Cupon = new Lbl.Tarjetas.Cupon(DataBase, this);
+                                                case Lbl.Pagos.TipoFormasDePago.Tarjeta:
+                                                        Lbl.Cupones.Cupon Cupon = new Lbl.Cupones.Cupon(DataBase, this);
                                                         if (Cupon != null && Cupon.Existe)
                                                                 Cupon.Anular();
                                                         break;
@@ -336,11 +336,11 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                double Redondeo = this.Workspace.CurrentConfig.Currency.Rounding;
+                                double Redondeo = this.Workspace.CurrentConfig.Moneda.Redondeo;
                                 if (this.Compra || Redondeo == 0)
-                                        return Lfx.Types.Currency.Truncate(this.TotalReal, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                        return Lfx.Types.Currency.Truncate(this.TotalReal, this.Workspace.CurrentConfig.Moneda.Decimales);
                                 else
-                                        return Lfx.Types.Currency.Truncate(Math.Floor(this.TotalReal / Redondeo) * Redondeo, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                        return Lfx.Types.Currency.Truncate(Math.Floor(this.TotalReal / Redondeo) * Redondeo, this.Workspace.CurrentConfig.Moneda.Decimales);
                         }
                 }
 
@@ -365,12 +365,12 @@ namespace Lbl.Comprobantes
                         }
 		}
 
-		public Lbl.Comprobantes.FormaDePago FormaDePago
+		public Lbl.Pagos.FormaDePago FormaDePago
 		{
 			get
 			{
                                 if (m_FormaDePago == null && this.FieldInt("id_formapago") != 0)
-                                        m_FormaDePago = new FormaDePago(this.DataBase, this.FieldInt("id_formapago"));
+                                        m_FormaDePago = new Lbl.Pagos.FormaDePago(this.DataBase, this.FieldInt("id_formapago"));
                                 return m_FormaDePago;
 			}
 			set
@@ -399,7 +399,7 @@ namespace Lbl.Comprobantes
 			{
 				foreach (Comprobantes.DetalleArticulo Det in this.Articulos)
 				{
-					if(Det.Id > 0 && Det.Articulo != null && Det.Articulo.ControlaStock && Det.Articulo.StockActual() < Det.Cantidad)
+					if(Det.Id > 0 && Det.Articulo != null && Det.Articulo.ControlaStock && Det.Articulo.StockActual < Det.Cantidad)
 						return false;
 				}
 			}
@@ -581,7 +581,7 @@ namespace Lbl.Comprobantes
                         else
                                 Comando.Fields.AddWithValue("id_vendedor", this.Vendedor.Id);
                         if (this.Sucursal == null)
-                                Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Company.CurrentBranch);
+                                Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
                         else
                                 Comando.Fields.AddWithValue("id_sucursal", this.Sucursal.Id);
                         Comando.Fields.AddWithValue("pv", this.PV);
@@ -628,7 +628,7 @@ namespace Lbl.Comprobantes
                                                 return Res;
                                 }
 
-                                if (this.Tipo.EsFactura && this.FormaDePago != null && this.FormaDePago.Tipo == TipoFormasDePago.CuentaCorriente) {
+                                if (this.Tipo.EsFactura && this.FormaDePago != null && this.FormaDePago.Tipo == Lbl.Pagos.TipoFormasDePago.CuentaCorriente) {
                                         double DiferenciaMonto;
                                         if (this.m_RegistroOriginal == null)
                                                 DiferenciaMonto = -this.Total;

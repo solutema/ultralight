@@ -61,10 +61,10 @@ namespace Lbl.Comprobantes.Impresion
 
 			// Determino la impresora que le corresponde
 			if (nombreImpresora == null || nombreImpresora.Length == 0)
-                                nombreImpresora = this.Workspace.CurrentConfig.Printing.PreferredPrinter(ComprobConArt.Tipo.Nomenclatura);
+                                nombreImpresora = this.Workspace.CurrentConfig.Impresion.PreferredPrinter(ComprobConArt.Tipo.Nomenclatura);
 
 			// Si es de carga manual, presento el formulario correspondiente
-                        if (this.Workspace.CurrentConfig.Printing.PrinterFeed(ComprobConArt.Tipo.Nomenclatura, "manual") == "manual")
+                        if (this.Workspace.CurrentConfig.Impresion.PrinterFeed(ComprobConArt.Tipo.Nomenclatura, "manual") == "manual")
 			{
                                 string NombreComprob = ComprobConArt.Tipo.ToString() + " " + ComprobConArt.PV.ToString("0000") + "-" + Numerador.ProximoNumero(ComprobConArt.DataBase, ComprobConArt).ToString("00000000");
                                 if (Lbl.Impresion.Services.ShowManualFeedDialog(nombreImpresora, NombreComprob).Success == false)
@@ -100,9 +100,9 @@ namespace Lbl.Comprobantes.Impresion
                                 //Asiento el pago (sólo efectivo y cta. cte.)
                                 //El resto de los pagos los maneja el formulario desde donde se mandó a imprimir
                                 switch (ComprobConArt.FormaDePago.Tipo) {
-                                        case TipoFormasDePago.Efectivo:
+                                        case Lbl.Pagos.TipoFormasDePago.Efectivo:
                                                 if (ComprobConArt.ImporteImpago > 0) {
-                                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(this.DataBase, this.Workspace.CurrentConfig.Company.CajaDiaria);
+                                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(this.DataBase, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
                                                         Caja.Movimiento(true,
                                                                 11000,
                                                                 "Cobro Factura " + ComprobConArt.ToString(),
@@ -115,7 +115,7 @@ namespace Lbl.Comprobantes.Impresion
 							ComprobConArt.CancelarImporte(ComprobConArt.ImporteImpago);
                                                 }
                                                 break;
-                                        case TipoFormasDePago.CuentaCorriente:
+                                        case Lbl.Pagos.TipoFormasDePago.CuentaCorriente:
                                                 CtaCte.IngresarComprobante(ComprobConArt);
                                                 break;
                                 }
@@ -143,9 +143,9 @@ namespace Lbl.Comprobantes.Impresion
                                         Res = null;
                                         for (int i = 0; i < ComprobConArt.Articulos.Count; i++) {
                                                 if(Res == null)
-                                                        Res = Lfx.Types.Formatting.FormatNumberForPrint(ComprobConArt.Articulos[i].Cantidad, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
+                                                        Res = Lfx.Types.Formatting.FormatNumberForPrint(ComprobConArt.Articulos[i].Cantidad, this.Workspace.CurrentConfig.Productos.DecimalesStock);
                                                 else
-                                                        Res += System.Environment.NewLine + Lfx.Types.Formatting.FormatNumberForPrint(ComprobConArt.Articulos[i].Cantidad, this.Workspace.CurrentConfig.Products.StockDecimalPlaces);
+                                                        Res += System.Environment.NewLine + Lfx.Types.Formatting.FormatNumberForPrint(ComprobConArt.Articulos[i].Cantidad, this.Workspace.CurrentConfig.Productos.DecimalesStock);
                                         }
                                         return Res;
                                 case "DETALLES":
@@ -170,20 +170,20 @@ namespace Lbl.Comprobantes.Impresion
                                         Res = null;
                                         for (int i = 0; i < ComprobConArt.Articulos.Count; i++) {
                                                 if (Res == null)
-                                                        Res = Lfx.Types.Formatting.FormatCurrencyForPrint(ComprobConArt.Articulos[i].Unitario, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
+                                                        Res = Lfx.Types.Formatting.FormatCurrencyForPrint(ComprobConArt.Articulos[i].Unitario, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
                                                 else
-                                                        Res += System.Environment.NewLine + Lfx.Types.Formatting.FormatCurrencyForPrint(ComprobConArt.Articulos[i].Unitario, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
+                                                        Res += System.Environment.NewLine + Lfx.Types.Formatting.FormatCurrencyForPrint(ComprobConArt.Articulos[i].Unitario, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
                                         }
                                         return Res;
                                 case "TOTAL":
-                                        return Lfx.Types.Formatting.FormatCurrencyForPrint(ComprobConArt.Total, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
+                                        return Lfx.Types.Formatting.FormatCurrencyForPrint(ComprobConArt.Total, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
                                 case "IMPORTES":
                                         Res = null;
                                         for (int i = 0; i < ComprobConArt.Articulos.Count; i++) {
                                                 if (Res == null)
-                                                        Res = Lfx.Types.Formatting.FormatCurrencyForPrint(ComprobConArt.Articulos[i].Unitario * ComprobConArt.Articulos[i].Cantidad, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
+                                                        Res = Lfx.Types.Formatting.FormatCurrencyForPrint(ComprobConArt.Articulos[i].Unitario * ComprobConArt.Articulos[i].Cantidad, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
                                                 else
-                                                        Res += System.Environment.NewLine + Lfx.Types.Formatting.FormatCurrencyForPrint(ComprobConArt.Articulos[i].Unitario * ComprobConArt.Articulos[i].Cantidad, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
+                                                        Res += System.Environment.NewLine + Lfx.Types.Formatting.FormatCurrencyForPrint(ComprobConArt.Articulos[i].Unitario * ComprobConArt.Articulos[i].Cantidad, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
                                         }
                                         return Res;
                                 case "RECARGO":

@@ -45,7 +45,7 @@ namespace Lfx.Config
                 }
 
                 // La cantidad de decimales para el stock
-                public int StockDecimalPlaces
+                public int DecimalesStock
                 {
                         get
                         {
@@ -71,7 +71,7 @@ namespace Lfx.Config
                 }
 
                 private static string ps_DefaultCode = null;
-                public string DefaultCode()
+                public string CodigoPredeterminado()
                 {
                         if (ps_DefaultCode != null)
                                 return ps_DefaultCode;

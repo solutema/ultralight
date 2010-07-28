@@ -220,14 +220,14 @@ namespace Lbl.Comprobantes
 
                                 // Cargo pagos asociados al registro
                                 // Pagos en efectivo
-                                using (System.Data.DataTable TablaPagos = DataBase.Select("SELECT * FROM cajas_movim WHERE id_caja=" + this.Workspace.CurrentConfig.Company.CajaDiaria.ToString() + " AND id_recibo=" + Id.ToString())) {
+                                using (System.Data.DataTable TablaPagos = DataBase.Select("SELECT * FROM cajas_movim WHERE id_caja=" + this.Workspace.CurrentConfig.Empresa.CajaDiaria.ToString() + " AND id_recibo=" + Id.ToString())) {
                                         foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
                                                 if (this.DePago) {
-                                                        Pago Pg = new Pago(this.DataBase, TipoFormasDePago.Efectivo, Math.Abs(System.Convert.ToDouble(Pago["importe"])));
+                                                        Pago Pg = new Pago(this.DataBase, Lbl.Pagos.TipoFormasDePago.Efectivo, Math.Abs(System.Convert.ToDouble(Pago["importe"])));
                                                         Pg.Recibo = this;
                                                         Pagos.Add(Pg);
                                                 } else {
-                                                        Cobro Cb = new Cobro(this.DataBase, TipoFormasDePago.Efectivo, Math.Abs(System.Convert.ToDouble(Pago["importe"])));
+                                                        Cobro Cb = new Cobro(this.DataBase, Lbl.Pagos.TipoFormasDePago.Efectivo, Math.Abs(System.Convert.ToDouble(Pago["importe"])));
                                                         Cb.Recibo = this;
                                                         Cobros.Add(Cb);
                                                 }
@@ -249,22 +249,22 @@ namespace Lbl.Comprobantes
                                 // Pagos con Tarjetas de Crédito y Débito
                                 using (System.Data.DataTable TablaPagos = this.DataBase.Select("SELECT id_cupon FROM tarjetas_cupones WHERE id_recibo=" + Id.ToString())) {
                                         foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
-                                                Tarjetas.Cupon Cp = new Lbl.Tarjetas.Cupon(DataBase, System.Convert.ToInt32(Pago["id_cupon"]));
+                                                Cupones.Cupon Cp = new Lbl.Cupones.Cupon(DataBase, System.Convert.ToInt32(Pago["id_cupon"]));
                                                 Cp.Recibo = this;       // Esto no debería estar aquí
                                                 Cobros.Add(new Cobro(Cp));
                                         }
                                 }
 
                                 // Acreditaciones en cuenta regular (excepto caja diaria)
-                                using (System.Data.DataTable TablaPagos = this.DataBase.Select("SELECT * FROM cajas_movim WHERE auto=1 AND id_caja<>" + this.Workspace.CurrentConfig.Company.CajaDiaria.ToString() + " AND id_caja<>" + this.Workspace.CurrentConfig.Company.CajaCheques.ToString() + " AND id_recibo=" + Id.ToString())) {
+                                using (System.Data.DataTable TablaPagos = this.DataBase.Select("SELECT * FROM cajas_movim WHERE auto=1 AND id_caja<>" + this.Workspace.CurrentConfig.Empresa.CajaDiaria.ToString() + " AND id_caja<>" + this.Workspace.CurrentConfig.Empresa.CajaCheques.ToString() + " AND id_recibo=" + Id.ToString())) {
                                         foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
                                                 if (this.DePago) {
-                                                        Pago Pg = new Pago(this.DataBase, TipoFormasDePago.Caja, Math.Abs(System.Convert.ToDouble(Pago["importe"])));
+                                                        Pago Pg = new Pago(this.DataBase, Lbl.Pagos.TipoFormasDePago.Caja, Math.Abs(System.Convert.ToDouble(Pago["importe"])));
                                                         Pg.Recibo = this;
                                                         Pg.CajaOrigen = new Cajas.Caja(DataBase, System.Convert.ToInt32(Pago["id_caja"]));
                                                         Pagos.Add(Pg);
                                                 } else {
-                                                        Cobro Cb = new Cobro(this.DataBase, TipoFormasDePago.Caja, System.Convert.ToDouble(Pago["importe"]));
+                                                        Cobro Cb = new Cobro(this.DataBase, Lbl.Pagos.TipoFormasDePago.Caja, System.Convert.ToDouble(Pago["importe"]));
                                                         Cb.Recibo = this;
                                                         Cb.CajaDestino = new Cajas.Caja(DataBase, System.Convert.ToInt32(Pago["id_caja"]));
                                                         Cobros.Add(Cb);
@@ -322,7 +322,7 @@ namespace Lbl.Comprobantes
                         Comando.Fields.AddWithValue("numero", this.Numero);
                         Comando.Fields.AddWithValue("id_vendedor", Lfx.Data.DataBase.ConvertZeroToDBNull(this.Vendedor.Id));
                         Comando.Fields.AddWithValue("id_cliente", Lfx.Data.DataBase.ConvertZeroToDBNull(this.Cliente.Id));
-                        Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Company.CurrentBranch);
+                        Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
                         Comando.Fields.AddWithValue("total", this.Importe);
                         Comando.Fields.AddWithValue("obs", this.Obs);
 
@@ -351,26 +351,26 @@ namespace Lbl.Comprobantes
                                 Pg.Concepto = this.Concepto;
                                 Pg.ConceptoTexto = this.ConceptoTexto;
                                 switch (Pg.FormaDePago.Tipo) {
-                                        case TipoFormasDePago.Efectivo:
-                                                Cajas.Caja CajaDiaria = new Cajas.Caja(this.DataBase, this.Workspace.CurrentConfig.Company.CajaDiaria);
+                                        case Lbl.Pagos.TipoFormasDePago.Efectivo:
+                                                Cajas.Caja CajaDiaria = new Cajas.Caja(this.DataBase, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
                                                 Lfx.Types.OperationResult ResultadoEfect = CajaDiaria.Movimiento(true, this.Concepto, this.ConceptoTexto, Cliente, Pg.Importe, ObsPago, null, this, string.Empty);
                                                 if (ResultadoEfect.Success == false)
                                                         return ResultadoEfect;
                                                 break;
-                                        case TipoFormasDePago.ChequePropio:
-                                        case TipoFormasDePago.ChequeTerceros:
+                                        case Lbl.Pagos.TipoFormasDePago.ChequePropio:
+                                        case Lbl.Pagos.TipoFormasDePago.ChequeTerceros:
                                                 Pg.Cheque.DataBase = this.DataBase;
                                                 Pg.Cheque.Obs = ObsPago;
                                                 Pg.Cheque.Concepto = Pg.Concepto;
                                                 Pg.Cheque.ConceptoTexto = Pg.ConceptoTexto;
                                                 Pg.Cheque.Recibo = this;
                                                 Pg.Cheque.Cliente = this.Cliente;
-                                                Pg.Cheque.Emitido = Pg.FormaDePago.Tipo == TipoFormasDePago.ChequePropio;
+                                                Pg.Cheque.Emitido = Pg.FormaDePago.Tipo == Lbl.Pagos.TipoFormasDePago.ChequePropio;
                                                 Lfx.Types.OperationResult ResultadoCheque = Pg.Cheque.Guardar();
                                                 if (ResultadoCheque.Success == false)
                                                         return ResultadoCheque;
                                                 break;
-                                        case TipoFormasDePago.Tarjeta:
+                                        case Lbl.Pagos.TipoFormasDePago.Tarjeta:
                                                 Pg.Cupon.DataBase = this.DataBase;
                                                 Pg.Cupon.Obs = ObsPago;
                                                 Pg.Cupon.ConceptoTexto = Pg.ConceptoTexto;
@@ -380,13 +380,13 @@ namespace Lbl.Comprobantes
                                                 if (ResultadoCupon.Success == false)
                                                         return ResultadoCupon;
                                                 break;
-                                        case TipoFormasDePago.Caja:
+                                        case Lbl.Pagos.TipoFormasDePago.Caja:
                                                 Pg.CajaDestino.DataBase = this.DataBase;
                                                 Lfx.Types.OperationResult ResultadoDeposito = Pg.CajaDestino.Movimiento(true, Pg.Concepto, Pg.ConceptoTexto, this.Cliente, Pg.Importe, ObsPago, null, this, string.Empty);
                                                 if (ResultadoDeposito.Success != true)
                                                         return ResultadoDeposito;
                                                 break;
-                                        case TipoFormasDePago.OtroValor:
+                                        case Lbl.Pagos.TipoFormasDePago.OtroValor:
                                                 Pg.Valor.DataBase = this.DataBase;
                                                 Pg.Valor.Obs = ObsPago;
                                                 Pg.Valor.Recibo = this;
@@ -401,13 +401,13 @@ namespace Lbl.Comprobantes
                                 Pg.Concepto = this.Concepto;
                                 Pg.ConceptoTexto = this.ConceptoTexto;
                                 switch (Pg.FormaDePago.Tipo) {
-                                        case TipoFormasDePago.Efectivo:
-                                                Cajas.Caja CajaDiaria = new Cajas.Caja(this.DataBase, this.Workspace.CurrentConfig.Company.CajaDiaria);
+                                        case Lbl.Pagos.TipoFormasDePago.Efectivo:
+                                                Cajas.Caja CajaDiaria = new Cajas.Caja(this.DataBase, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
                                                 Lfx.Types.OperationResult ResultadoEfect = CajaDiaria.Movimiento(true, Pg.Concepto, Pg.ConceptoTexto, this.Cliente, -Pg.Importe, ObsPago, null, this, string.Empty);
                                                 if (ResultadoEfect.Success == false)
                                                         return ResultadoEfect;
                                                 break;
-                                        case TipoFormasDePago.ChequePropio:
+                                        case Lbl.Pagos.TipoFormasDePago.ChequePropio:
                                                 Pg.Cheque.DataBase = this.DataBase;
                                                 Pg.Cheque.Concepto = Pg.Concepto;
                                                 Pg.Cheque.Cliente = this.Cliente;
@@ -419,13 +419,13 @@ namespace Lbl.Comprobantes
                                                 if (ResultadoCheque.Success == false)
                                                         return ResultadoCheque;
                                                 break;
-                                        case TipoFormasDePago.Caja:
+                                        case Lbl.Pagos.TipoFormasDePago.Caja:
                                                 Pg.CajaOrigen.DataBase = this.DataBase;
                                                 Lfx.Types.OperationResult ResultadoDeposito = Pg.CajaOrigen.Movimiento(true, Pg.Concepto, Pg.ConceptoTexto, this.Cliente, -Pg.Importe, ObsPago, null, this, string.Empty);
                                                 if (ResultadoDeposito.Success != true)
                                                         return ResultadoDeposito;
                                                 break;
-                                        case TipoFormasDePago.ChequeTerceros:
+                                        case Lbl.Pagos.TipoFormasDePago.ChequeTerceros:
                                                 Pg.Cheque.DataBase = this.DataBase;
                                                 Pg.Cheque.Estado = 11;
                                                 if (Pg.Cheque.Obs.Length > 0)
@@ -437,7 +437,7 @@ namespace Lbl.Comprobantes
                                                 if (ResultadoChequeTerceros.Success == false)
                                                         return ResultadoChequeTerceros;
                                                 break;
-                                        case TipoFormasDePago.OtroValor:
+                                        case Lbl.Pagos.TipoFormasDePago.OtroValor:
                                                 Pg.Valor.DataBase = this.DataBase;
                                                 Pg.Valor.Estado = 11;
                                                 if (Pg.Valor.Obs.Length > 0)
@@ -497,7 +497,7 @@ namespace Lbl.Comprobantes
                                                 AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("id_comprob", Fact.Id);
                                                 AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("importe", Cancelando);
                                                 this.DataBase.Execute(AsentarComprobantesDeEsteRecibo);
-                                                if (Fact.FormaDePago.Tipo == TipoFormasDePago.CuentaCorriente)
+                                                if (Fact.FormaDePago.Tipo == Lbl.Pagos.TipoFormasDePago.CuentaCorriente)
                                                         this.Cliente.CuentaCorriente.Movimiento(true, 30000, "Cancelación s/" + this.ToString(), this.DePago ? Cancelando : -Cancelando, this.Obs, Fact.Id, this.Id, false);
 
                                                 qGen.Update ActualizarCancelado = new qGen.Update("comprob");
@@ -578,7 +578,7 @@ namespace Lbl.Comprobantes
 
                                                 // Si alcanzo a cancelar algo, lo asiento
                                                 if (Cancelando > 0) {
-                                                        if (Fact.FormaDePago.Tipo == TipoFormasDePago.CuentaCorriente)
+                                                        if (Fact.FormaDePago.Tipo == Lbl.Pagos.TipoFormasDePago.CuentaCorriente)
                                                                 this.Cliente.CuentaCorriente.Movimiento(true, 30000, "Anulación de " + this.ToString(), this.DePago ? -Cancelando : Cancelando, this.Obs, Fact.Id, this.Id, false);
 
                                                         qGen.Update ActualizarCancelado = new qGen.Update("comprob");

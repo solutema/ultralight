@@ -432,10 +432,10 @@ namespace Lfc.Cajas
                                 txtImporte.Prefijo = System.Convert.ToString(MonedaOrigen["signo"]);
                                 txtImporteDestino.Prefijo = System.Convert.ToString(MonedaDestino["signo"]);
                                 if (System.Convert.ToInt32(MonedaOrigen["id_moneda"]) != System.Convert.ToInt32(MonedaDestino["id_moneda"])) {
-                                        txtImporteDestino.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtImporte.Text) * System.Convert.ToDouble(MonedaDestino["cotizacion"]) / System.Convert.ToDouble(MonedaOrigen["cotizacion"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                        txtImporteDestino.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtImporte.Text) * System.Convert.ToDouble(MonedaDestino["cotizacion"]) / System.Convert.ToDouble(MonedaOrigen["cotizacion"]), this.Workspace.CurrentConfig.Moneda.Decimales);
                                         txtImporteDestino.Visible = true;
                                         lblImporteDestino.Visible = true;
-                                        txtImporteDestino.ShowBalloon("Se realiza una conversin de moneda segn la cotización " + System.Convert.ToString(MonedaOrigen["signo"]) + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(MonedaOrigen["cotizacion"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces) + " = " + System.Convert.ToString(MonedaDestino["signo"]) + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(MonedaDestino["cotizacion"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces));
+                                        txtImporteDestino.ShowBalloon("Se realiza una conversin de moneda segn la cotización " + System.Convert.ToString(MonedaOrigen["signo"]) + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(MonedaOrigen["cotizacion"]), this.Workspace.CurrentConfig.Moneda.Decimales) + " = " + System.Convert.ToString(MonedaDestino["signo"]) + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(MonedaDestino["cotizacion"]), this.Workspace.CurrentConfig.Moneda.Decimales));
                                 } else {
                                         txtImporteDestino.Visible = false;
                                         lblImporteDestino.Visible = false;
@@ -451,7 +451,7 @@ namespace Lfc.Cajas
                 {
                         if (MonedaOrigen != null && MonedaDestino != null) {
                                 if (System.Convert.ToInt32(MonedaOrigen["id_moneda"]) != System.Convert.ToInt32(MonedaDestino["id_moneda"]))
-                                        txtImporteDestino.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtImporte.Text) * System.Convert.ToDouble(MonedaDestino["cotizacion"]) / System.Convert.ToDouble(MonedaOrigen["cotizacion"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                        txtImporteDestino.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtImporte.Text) * System.Convert.ToDouble(MonedaDestino["cotizacion"]) / System.Convert.ToDouble(MonedaOrigen["cotizacion"]), this.Workspace.CurrentConfig.Moneda.Decimales);
                         }
                 }
 

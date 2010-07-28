@@ -1187,17 +1187,17 @@ namespace Lazaro.Reportes
                         double GestionCobro = -this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto=24010 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 
                         double Facturacion = Facturas - NotasCredito;
-                        txtFacturacion.Text = Lfx.Types.Formatting.FormatCurrency(Facturacion, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtFacturacion.Tag = "Facturas: " + Lfx.Types.Formatting.FormatCurrency(Facturas, this.Workspace.CurrentConfig.Currency.DecimalPlaces) + " - Notas de Crédito: " + Lfx.Types.Formatting.FormatCurrency(NotasCredito, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtCosto.Text = Lfx.Types.Formatting.FormatCurrency(Costo - CostoNotasCredito, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtCosto.Tag = "Facturas: " + Lfx.Types.Formatting.FormatCurrency(Costo, this.Workspace.CurrentConfig.Currency.DecimalPlaces) + " - Notas de Crédito: " + Lfx.Types.Formatting.FormatCurrency(CostoNotasCredito, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtGestionCobro.Text = Lfx.Types.Formatting.FormatCurrency(GestionCobro, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtDiferenciaBruta.Text = Lfx.Types.Formatting.FormatCurrency(Facturacion - Costo + CostoNotasCredito - GestionCobro, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtFacturacion.Text = Lfx.Types.Formatting.FormatCurrency(Facturacion, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtFacturacion.Tag = "Facturas: " + Lfx.Types.Formatting.FormatCurrency(Facturas, this.Workspace.CurrentConfig.Moneda.Decimales) + " - Notas de Crédito: " + Lfx.Types.Formatting.FormatCurrency(NotasCredito, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtCosto.Text = Lfx.Types.Formatting.FormatCurrency(Costo - CostoNotasCredito, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtCosto.Tag = "Facturas: " + Lfx.Types.Formatting.FormatCurrency(Costo, this.Workspace.CurrentConfig.Moneda.Decimales) + " - Notas de Crédito: " + Lfx.Types.Formatting.FormatCurrency(CostoNotasCredito, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtGestionCobro.Text = Lfx.Types.Formatting.FormatCurrency(GestionCobro, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtDiferenciaBruta.Text = Lfx.Types.Formatting.FormatCurrency(Facturacion - Costo + CostoNotasCredito - GestionCobro, this.Workspace.CurrentConfig.Moneda.Decimales);
 
-                        txtCostoCapital.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=220) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtGastosFijos.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=230) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtGastosVariables.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=240) AND id_concepto NOT IN (24010) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtOtrosEgresos.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE importe<0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND id_concepto<>26030 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtCostoCapital.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=220) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtGastosFijos.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=230) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtGastosVariables.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=240) AND id_concepto NOT IN (24010) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtOtrosEgresos.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE importe<0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND id_concepto<>26030 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
 
                         if (Facturacion == 0)
                                 lblDiferenciaBrutaPct.Text = "N/A";
@@ -1212,7 +1212,7 @@ namespace Lazaro.Reportes
                                         - Lfx.Types.Parsing.ParseCurrency(txtGastosFijos.Text)
                                         - Lfx.Types.Parsing.ParseCurrency(txtGastosVariables.Text)
                                         - Lfx.Types.Parsing.ParseCurrency(txtOtrosEgresos.Text),
-                                        this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                        this.Workspace.CurrentConfig.Moneda.Decimales);
 
                         if (Facturacion == 0)
                                 lblDiferenciaNetaPct.Text = "N/A";
@@ -1221,9 +1221,9 @@ namespace Lazaro.Reportes
 
 
                         //Ingresos y egresos
-                        txtCobros.Text = Lfx.Types.Formatting.FormatCurrency(Math.Abs(this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE (id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=110) OR id_concepto=26030 ) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtIngresosOtros.Text = Lfx.Types.Formatting.FormatCurrency(Math.Abs(this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE importe>0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtCompraMateriales.Text = Lfx.Types.Formatting.FormatCurrency(-this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=210) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'"), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtCobros.Text = Lfx.Types.Formatting.FormatCurrency(Math.Abs(this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE (id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=110) OR id_concepto=26030 ) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtIngresosOtros.Text = Lfx.Types.Formatting.FormatCurrency(Math.Abs(this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE importe>0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtCompraMateriales.Text = Lfx.Types.Formatting.FormatCurrency(-this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=210) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'"), this.Workspace.CurrentConfig.Moneda.Decimales);
 
                 }
 
@@ -1248,7 +1248,7 @@ namespace Lazaro.Reportes
                                 ListViewItem itm = lvItems.Items.Add(System.Convert.ToString(Detalle["id_movim"]));
                                 itm.SubItems.Add(Lfx.Types.Formatting.FormatDate(Detalle["fecha"]));
                                 itm.SubItems.Add(System.Convert.ToString(Detalle["concepto"]));
-                                itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Detalle["importe"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces));
+                                itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Detalle["importe"]), this.Workspace.CurrentConfig.Moneda.Decimales));
                                 itm.SubItems.Add(System.Convert.ToString(Detalle["id_caja"]));
                                 itm.SubItems.Add(System.Convert.ToString(Detalle["comprob"]));
                                 itm.SubItems.Add(System.Convert.ToString(Detalle["obs"]));
@@ -1440,7 +1440,7 @@ namespace Lazaro.Reportes
                         itm = lvItems.Items.Add(System.Convert.ToString("total"));
                         itm.SubItems.Add("-");
                         itm.SubItems.Add("Total");
-                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Resultado, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
+                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Resultado, this.Workspace.CurrentConfig.Moneda.Decimales));
                         itm.SubItems.Add("-");
                         itm.SubItems.Add("-");
                         itm.SubItems.Add("-");
@@ -1498,7 +1498,7 @@ namespace Lazaro.Reportes
                         itm = lvItems.Items.Add(System.Convert.ToString(idTipo.ToString()));
                         itm.SubItems.Add("-");
                         itm.SubItems.Add(NombreConcepto);
-                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Monto, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
+                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Monto, this.Workspace.CurrentConfig.Moneda.Decimales));
                         itm.SubItems.Add("-");
                         itm.SubItems.Add("-");
                         itm.SubItems.Add("-");

@@ -267,7 +267,7 @@ namespace Lfc.Comprobantes.Compra
                                         if (m_Agrupar.Length > 0 && row[m_Agrupar].ToString() != LastAgrupar) {
                                                 LastAgrupar = row[m_Agrupar].ToString();
                                                 if (dSubTotal > 0) {
-                                                        ListingContent.Append("                    SUBTOTAL: " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(dSubTotal, this.Workspace.CurrentConfig.Currency.DecimalPlaces) + Environment.NewLine);
+                                                        ListingContent.Append("                    SUBTOTAL: " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(dSubTotal, this.Workspace.CurrentConfig.Moneda.Decimales) + Environment.NewLine);
                                                         dSubTotal = 0;
                                                 }
                                                 switch (m_Agrupar) {
@@ -324,7 +324,7 @@ namespace Lfc.Comprobantes.Compra
                                                 Renglon.Append("".PadRight(25).Substring(0, 25) + " ");
                                                 Renglon.Append("".PadRight(13).Substring(0, 13) + " ");
                                         }
-                                        Renglon.Append(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(row["total"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces).PadLeft(10));
+                                        Renglon.Append(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(row["total"]), this.Workspace.CurrentConfig.Moneda.Decimales).PadLeft(10));
                                         dTotal += System.Convert.ToDouble(row["total"]);
                                         dSubTotal += System.Convert.ToDouble(row["total"]);
                                         if (MostrarDetalles) {
@@ -333,13 +333,13 @@ namespace Lfc.Comprobantes.Compra
 
                                 }
                                 if (m_Agrupar.Length > 0 && dSubTotal > 0) {
-                                        ListingContent.Append("                    SUBTOTAL: " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(dSubTotal, this.Workspace.CurrentConfig.Currency.DecimalPlaces) + Environment.NewLine);
+                                        ListingContent.Append("                    SUBTOTAL: " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(dSubTotal, this.Workspace.CurrentConfig.Moneda.Decimales) + Environment.NewLine);
                                         dSubTotal = 0;
                                 }
 
                                 ListingContent.Append(Environment.NewLine);
                                 ListingContent.Append("===============================================================================" + Environment.NewLine);
-                                ListingContent.Append("            Total   : " + Lfx.Types.Formatting.FormatCurrency(dTotal, this.Workspace.CurrentConfig.Currency.DecimalPlaces) + Environment.NewLine);
+                                ListingContent.Append("            Total   : " + Lfx.Types.Formatting.FormatCurrency(dTotal, this.Workspace.CurrentConfig.Moneda.Decimales) + Environment.NewLine);
                                 txtReporte.Text = ListingContent.ToString();
                         }
 

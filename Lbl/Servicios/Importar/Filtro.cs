@@ -42,6 +42,7 @@ namespace Lbl.Servicios.Importar
         {
                 public Lfx.Data.DataBase DataBase;
                 public MapaDeTablas MapaDeTablas;
+                public string FilterName = "Filtro de importación genérico";
 
                 // Tomar los siguientes valores como vacíos
                 public System.Collections.Generic.List<Reemplazo> Reemplazos = new List<Reemplazo>();
@@ -113,6 +114,18 @@ namespace Lbl.Servicios.Importar
                                 }
                                 
                                 Elem.Guardar();
+
+                                if (Elem is Lbl.Articulos.Articulo && ImportedRow.Fields.Contains("stock_actual")) {
+                                        // Actualizo el stock
+                                        Lbl.Articulos.Articulo Art = Elem as Lbl.Articulos.Articulo;
+                                        
+                                        double StockActual = Art.ObtenerStockActual();
+                                        double NuevoStock = System.Convert.ToDouble(ImportedRow["stock_actual"]);
+                                        double Diferencia = NuevoStock - StockActual;
+
+                                        if (Diferencia != 0)
+                                                Art.MoverStock(Diferencia, "Stock importado desde " + this.FilterName, null, new Articulos.Situacion(this.DataBase, this.DataBase.Workspace.CurrentConfig.Productos.DepositoPredeterminado), null);
+                                }
                         }
                 }
 

@@ -225,8 +225,8 @@ namespace Lfc.Comprobantes.Compra
 
 			base.RefreshList();
 
-                        txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(EnVerde + EnNaranja, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtPendiente.Text = Lfx.Types.Formatting.FormatCurrency(EnNaranja, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(EnVerde + EnNaranja, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtPendiente.Text = Lfx.Types.Formatting.FormatCurrency(EnNaranja, this.Workspace.CurrentConfig.Moneda.Decimales);
 		}
 
 	}

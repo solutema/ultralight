@@ -63,7 +63,7 @@ namespace Lbl.Personas
 
                 public string LetraPredeterminada()
                 {
-                        if (Workspace.CurrentConfig.Company.SituacionTributaria == 2) {
+                        if (Workspace.CurrentConfig.Empresa.SituacionTributaria == 2) {
                                 //Si soy responsable inscripto, facturo según la siguiente tabla
                                 switch (this.Id) {
                                         case 2:

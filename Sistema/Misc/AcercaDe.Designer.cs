@@ -186,7 +186,8 @@ namespace Lazaro.Misc
                         this.label11.Name = "label11";
                         this.label11.Size = new System.Drawing.Size(605, 16);
                         this.label11.TabIndex = 21;
-                        this.label11.Text = "Incluye MySQL Connector/NET. Copyright 2004-2007 MySQL AB.";
+                        this.label11.Text = "Incluye controlador ADO.Net para MySQL. Copyright © 2004, 2010, Oracle y/o sus af" +
+                            "iliados.";
                         // 
                         // ListaComponentes
                         // 

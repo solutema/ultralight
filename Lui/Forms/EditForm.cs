@@ -117,10 +117,10 @@ namespace Lui.Forms
 
                                         OSeleccionarImpresora.Dispose();
                                 } else {
-                                        sImpresora = this.Workspace.CurrentConfig.Printing.PreferredPrinter("Item");
+                                        sImpresora = this.Workspace.CurrentConfig.Impresion.PreferredPrinter("Item");
 
                                         // Si es de carga manual, presento el formulario correspondiente
-                                        if (this.Workspace.CurrentConfig.Printing.PrinterFeed("Item", "auto") == "auto") {
+                                        if (this.Workspace.CurrentConfig.Impresion.PrinterFeed("Item", "auto") == "auto") {
                                                 Lbl.Impresion.ManualFeedDialog DialogCargaManual = new Lbl.Impresion.ManualFeedDialog();
                                                 DialogCargaManual.DocumentName = "Item";
 

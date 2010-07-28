@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lcc", "Lcc\Lcc.csproj", "{A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazaro.Forms", "Lazaro.Forms\Lazaro.Forms.csproj", "{65AD7811-6304-4ABF-9DF4-1CBA15297684}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazaro.Docs", "Lazaro.Docs\Lazaro.Docs.csproj", "{37B03BAA-2E2D-419C-BDF8-20E40C4B833E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +80,12 @@ Global
 		{65AD7811-6304-4ABF-9DF4-1CBA15297684}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65AD7811-6304-4ABF-9DF4-1CBA15297684}.Release|Any CPU.Build.0 = Release|Any CPU
 		{65AD7811-6304-4ABF-9DF4-1CBA15297684}.Release|x86.ActiveCfg = Release|Any CPU
+		{37B03BAA-2E2D-419C-BDF8-20E40C4B833E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37B03BAA-2E2D-419C-BDF8-20E40C4B833E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37B03BAA-2E2D-419C-BDF8-20E40C4B833E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{37B03BAA-2E2D-419C-BDF8-20E40C4B833E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37B03BAA-2E2D-419C-BDF8-20E40C4B833E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37B03BAA-2E2D-419C-BDF8-20E40C4B833E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

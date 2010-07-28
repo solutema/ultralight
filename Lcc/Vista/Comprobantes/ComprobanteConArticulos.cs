@@ -49,8 +49,8 @@ namespace Lcc.Vista.Comprobantes
                         Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
 
                         if(Comprob != null) {
-                                EtiquetaNombreEmpresa.Text = this.Workspace.CurrentConfig.Company.Name;
-                                EtiquetaCuit.Text = this.Workspace.CurrentConfig.Company.Cuit;
+                                EtiquetaNombreEmpresa.Text = this.Workspace.CurrentConfig.Empresa.Nombre;
+                                EtiquetaCuit.Text = this.Workspace.CurrentConfig.Empresa.Cuit;
 
                                 EtiquetaNumero.Text = Comprob.PV.ToString("0000") + "-" + Comprob.Numero.ToString("00000000");
                                 EtiquetaTipo.Text = Comprob.Tipo.LetraSola;
@@ -68,9 +68,9 @@ namespace Lcc.Vista.Comprobantes
                                 EtiquetaClienteSituacion.Text = "IVA: " + Comprob.Cliente.SituacionTributaria.Nombre;
                                 EtiquetaClienteCuit.Text = "CUIT: " + Comprob.Cliente.Cuit;
 
-                                EtiquetaSubtotal.Text = Lfx.Types.Formatting.FormatCurrency(Comprob.SubTotal, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
+                                EtiquetaSubtotal.Text = Lfx.Types.Formatting.FormatCurrency(Comprob.SubTotal, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
                                 EtiquetaDescuento.Text = Lfx.Types.Formatting.FormatNumber(Comprob.Descuento, 2);
-                                EtiquetaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Comprob.Total, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal);
+                                EtiquetaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Comprob.Total, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
 
                                 EtiquetaAnulado.Visible = Comprob.Anulado;
                         }

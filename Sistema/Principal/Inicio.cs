@@ -112,7 +112,7 @@ namespace Lazaro.Principal
                         MostrarAyuda("Bienvenido a Lázaro", "Pulse la tecla <F12> para activar el menú.");
 
                         if (Lfx.Environment.SystemInformation.DesignMode == false)
-                                Lfx.Updater.Master.Start();
+                                Lfx.Services.Updater.Master.Start();
                 }
 
                 private static bool YaPregunteReiniciar = false;
@@ -137,7 +137,7 @@ namespace Lazaro.Principal
                                         }
                                 }
 
-                                if (Lfx.Updater.Master.RebootNeeded && YaPregunteReiniciar == false) {
+                                if (Lfx.Services.Updater.Master.RebootNeeded && YaPregunteReiniciar == false) {
                                         YaPregunteReiniciar = true;
                                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Existe una nueva versión del sistema Lázaro. Debe reiniciar la aplicación para instalar la actualización.", "¿Desea reiniciar ahora?");
                                         Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
@@ -239,16 +239,17 @@ namespace Lazaro.Principal
 
                 private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
                 {
-                        if (this.Visible) {
+                        /* if (this.Visible) {
                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Está a punto de cerrar completamente la aplicación.", "¿Desea cerrar el sistema Lázaro?");
                                 Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
                                 if (Pregunta.ShowDialog() != DialogResult.OK) {
                                         e.Cancel = true;
-                                } else {
-                                        this.Workspace.CurrentConfig.WriteGlobalSetting("", "Sistema.Ingreso.UltimoEgreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "");
+                                } else { */
+                                        if (this.Workspace != null)
+                                                this.Workspace.CurrentConfig.WriteGlobalSetting("", "Sistema.Ingreso.UltimoEgreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "");
                                         System.Environment.Exit(0);
-                                }
-                        }
+                                /*}
+                        }*/
                 }
 
                 private void BarraTareas_ButtonClick(object sender, ToolBarButtonClickEventArgs e)

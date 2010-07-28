@@ -98,9 +98,9 @@ namespace Lfc.Comprobantes.Presupuestos
                                                 if (OSeleccionarImpresora.ShowDialog() == DialogResult.OK)
                                                         sImpresora = OSeleccionarImpresora.SelectedPrinter;
                                         } else {
-                                                sImpresora = this.Workspace.CurrentConfig.Printing.PreferredPrinter(this.Tipo.Nomenclatura);
+                                                sImpresora = this.Workspace.CurrentConfig.Impresion.PreferredPrinter(this.Tipo.Nomenclatura);
                                                 // Si es de carga manual, presento el formulario correspondiente
-                                                if (this.Workspace.CurrentConfig.Printing.PrinterFeed(this.Tipo.Nomenclatura, "auto") == "manual") {
+                                                if (this.Workspace.CurrentConfig.Impresion.PrinterFeed(this.Tipo.Nomenclatura, "auto") == "manual") {
                                                         Lbl.Impresion.ManualFeedDialog OFormFacturaCargaManual = new Lbl.Impresion.ManualFeedDialog();
                                                         OFormFacturaCargaManual.DocumentName = Lbl.Comprobantes.Comprobante.NumeroCompleto(this.DataBase, m_Id);
                                                         // Muestro el nombre de la impresora

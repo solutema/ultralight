@@ -240,8 +240,8 @@ namespace Lfc.Bancos.Cheques
                         SinCobrar = 0;
                         base.Fill(command);
 
-                        EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        EntradaSinCobrar.Text = Lfx.Types.Formatting.FormatCurrency(SinCobrar, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaSinCobrar.Text = Lfx.Types.Formatting.FormatCurrency(SinCobrar, this.Workspace.CurrentConfig.Moneda.Decimales);
                 }
 
                 private Lfx.Types.OperationResult Efectivizar()
@@ -270,7 +270,7 @@ namespace Lfc.Bancos.Cheques
 
                         if (ListaChequesId.Length > 0 && Total > 0) {
                                 Efectivizar.txtCantidad.Text = Cantidad.ToString();
-                                Efectivizar.txtSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                Efectivizar.txtSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales);
                                 Efectivizar.ListaCheques = ListaCheques.ToString();
                                 Efectivizar.ListaChequesId = ListaChequesId.ToString();
                                 Efectivizar.ShowDialog();

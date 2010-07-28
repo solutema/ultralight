@@ -426,7 +426,7 @@ namespace Lui.Forms
 
 			if (Tabla != null && Tabla.Rows.Count > 0)
 			{
-				int CurrencyDecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlaces;
+				int CurrencyDecimalPlaces = this.Workspace.CurrentConfig.Moneda.Decimales;
 				string NombreCampoId = NombreCampo(m_KeyField.ColumnName);
 				foreach(System.Data.DataRow Registro in Tabla.Rows)
 				{

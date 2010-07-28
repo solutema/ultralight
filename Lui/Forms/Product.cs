@@ -39,7 +39,7 @@ using System.ComponentModel;
 
 namespace Lui.Forms
 {
-	public partial class Product : System.Windows.Forms.UserControl
+        public partial class Product : System.Windows.Forms.UserControl, IDataControl
 	{
 
 		public enum Precios
@@ -78,15 +78,15 @@ namespace Lui.Forms
                         if (this.Workspace != null) {
                                 switch (m_Precio) {
                                         case Precios.Costo:
-                                                txtUnitario.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto;
-                                                txtImporte.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto;
+                                                txtUnitario.DecimalPlaces = this.Workspace.CurrentConfig.Moneda.DecimalesCosto;
+                                                txtImporte.DecimalPlaces = this.Workspace.CurrentConfig.Moneda.DecimalesCosto;
                                                 break;
                                         case Precios.PVP:
-                                                txtUnitario.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlaces;
-                                                txtImporte.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlaces;
+                                                txtUnitario.DecimalPlaces = this.Workspace.CurrentConfig.Moneda.Decimales;
+                                                txtImporte.DecimalPlaces = this.Workspace.CurrentConfig.Moneda.Decimales;
                                                 break;
                                 }
-                                txtCantidad.DecimalPlaces = this.Workspace.CurrentConfig.Products.StockDecimalPlaces;
+                                txtCantidad.DecimalPlaces = this.Workspace.CurrentConfig.Productos.DecimalesStock;
                         }
 
                 }
@@ -411,7 +411,7 @@ namespace Lui.Forms
 
 			string CodPredet = "id_articulo";
 			if (this.Workspace != null)
-				CodPredet = this.Workspace.CurrentConfig.Products.DefaultCode();
+				CodPredet = this.Workspace.CurrentConfig.Productos.CodigoPredeterminado();
                         try {
                                 ArticuloId = txtArticulo.TextInt;
                         } catch {
@@ -425,13 +425,13 @@ namespace Lui.Forms
 			}
 			else if (CodPredet == "id_articulo")
 			{
-                                Articulo = this.Workspace.DefaultDataBase.Row("articulos", "id_articulo, costo, pvp, control_stock, stock_actual, unidad_stock, rendimiento, unidad_rend, pedido", "id_articulo", ArticuloId);
+                                Articulo = this.DataBase.Row("articulos", "id_articulo, costo, pvp, control_stock, stock_actual, unidad_stock, rendimiento, unidad_rend, pedido", "id_articulo", ArticuloId);
 			}
 			else
 			{
-                                Articulo = this.Workspace.DefaultDataBase.FirstRowFromSelect("SELECT id_articulo, costo, pvp, control_stock, stock_actual, unidad_stock, rendimiento, unidad_rend, pedido FROM articulos WHERE " + CodPredet + "='" + txtArticulo.Text.Trim() + "'");
+                                Articulo = this.DataBase.FirstRowFromSelect("SELECT id_articulo, costo, pvp, control_stock, stock_actual, unidad_stock, rendimiento, unidad_rend, pedido FROM articulos WHERE " + CodPredet + "='" + txtArticulo.Text.Trim() + "'");
 				if (Articulo == null)
-                                        Articulo = this.Workspace.DefaultDataBase.Row("articulos", "id_articulo, costo, pvp, control_stock, stock_actual, unidad_stock, rendimiento, unidad_rend, pedido", "id_articulo", ArticuloId);
+                                        Articulo = this.DataBase.Row("articulos", "id_articulo, costo, pvp, control_stock, stock_actual, unidad_stock, rendimiento, unidad_rend, pedido", "id_articulo", ArticuloId);
 			}
 
 			if (Articulo != null)
@@ -481,7 +481,7 @@ namespace Lui.Forms
 		{
 			if (this.Workspace != null)
 			{
-				txtImporte.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtUnitario.Text) * this.Cantidad, this.Workspace.CurrentConfig.Currency.DecimalPlacesCosto);
+				txtImporte.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtUnitario.Text) * this.Cantidad, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
 				VerificarStock();
 				this.Changed = true;
 				if (null != PrecioCantidadChanged)
@@ -656,14 +656,6 @@ namespace Lui.Forms
 		}
 
 
-		public Lfx.Workspace Workspace
-		{
-			get
-			{
-				return Lfx.Workspace.Master;
-			}
-		}
-
 		private void RecalcularAltura(object sender, System.EventArgs e)
 		{
 			LabelSerialsCruz.Visible = LabelSerials.Visible;
@@ -695,5 +687,39 @@ namespace Lui.Forms
 				}
 			}
 		}
+
+                /// <summary>
+                /// IDataControl
+                /// </summary>
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public Lfx.Workspace Workspace
+                {
+                        get
+                        {
+                                if (this.DataBase == null)
+                                        return Lfx.Workspace.Master;
+                                else
+                                        return this.DataBase.Workspace;
+                        }
+                }
+
+                /// <summary>
+                /// IDataControl
+                /// </summary>
+                public Lfx.Data.DataBase DataBase
+                {
+                        get
+                        {
+                                System.Windows.Forms.Control MiParent = this.Parent;
+                                while (MiParent != null) {
+                                        if (MiParent is Lui.Forms.IDataControl) {
+                                                return ((Lui.Forms.IDataControl)(MiParent)).DataBase;
+                                        } else {
+                                                MiParent = MiParent.Parent;
+                                        }
+                                }
+                                return null;
+                        }
+                }
 	}
 }

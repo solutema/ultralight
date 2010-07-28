@@ -352,7 +352,7 @@
     <Column name="orden" datatype="SmallInt" nullable="0" default="0" />
     <Column name="id_articulo" datatype="Integer" nullable="1" />
     <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" />
-    <Column name="descripcion" datatype="Text" nullable="0" />
+    <Column name="descripcion" datatype="Text" nullable="1" />
     <Column name="cantidad" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
     <Column name="cantidad_movida" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
     <Column name="precio" inputtype="Currency" default="0" />
@@ -1002,13 +1002,13 @@
   <DisabledConstraint name="sys_config_id_sucursal" table="sys_config" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" />
   <Constraint name="tarjetas_id_caja" table="tarjetas" column="id_caja" reference_table="cajas" reference_column="id_caja" />
   <Constraint name="tarjetas_cupones_id_recibo" table="tarjetas_cupones" column="id_recibo" reference_table="recibos" reference_column="id_recibo" />
-  <Constraint name="tarjetas_cupones_id_tarjeta" table="tarjetas_cupones" column="id_tarjeta" reference_table="tarjetas" reference_column="id_tarjeta" />
+  <Constraint name="tarjetas_cupones_id_formapago" table="tarjetas_cupones" column="id_tarjeta" reference_table="formaspago" reference_column="id_formapago" />
   <Constraint name="tarjetas_cupones_id_vendedor" table="tarjetas_cupones" column="id_vendedor" reference_table="personas" reference_column="id_persona" />
   <Constraint name="tarjetas_cupones_id_cliente" table="tarjetas_cupones" column="id_cliente" reference_table="personas" reference_column="id_persona" />
   <Constraint name="tarjetas_cupones_id_concepto" table="tarjetas_cupones" column="id_concepto" reference_table="conceptos" reference_column="id_concepto" />
   <Constraint name="tarjetas_cupones_id_comprob" table="tarjetas_cupones" column="id_comprob" reference_table="comprob" reference_column="id_comprob" />
   <Constraint name="tarjetas_cupones_id_plan" table="tarjetas_cupones" column="id_plan" reference_table="tarjetas_planes" reference_column="id_plan" />
-  <Constraint name="tarjetas_planes_id_tarjeta" table="tarjetas_planes" column="id_tarjeta" reference_table="tarjetas" reference_column="id_tarjeta" />
+  <Constraint name="tarjetas_planes_id_formapago" table="tarjetas_planes" column="id_tarjeta" reference_table="formaspago" reference_column="id_formapago" />
   <Constraint name="tickets_id_comprob" table="tickets" column="id_comprob" reference_table="comprob" reference_column="id_comprob" />
   <Constraint name="tickets_id_persona" table="tickets" column="id_persona" reference_table="personas" reference_column="id_persona" />
   <Constraint name="tickets_id_sucursal" table="tickets" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" />

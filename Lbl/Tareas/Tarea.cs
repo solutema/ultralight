@@ -171,7 +171,7 @@ namespace Lbl.Tareas
                         if (this.Existe == false) {
                                 Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
                                 Comando.Fields.AddWithValue("fecha_ingreso", qGen.SqlFunctions.Now);
-                                Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Company.CurrentBranch);
+                                Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
                         } else {
                                 Comando = new qGen.Update(this.DataBase, this.TablaDatos);
                                 Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);

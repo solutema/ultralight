@@ -263,13 +263,13 @@ namespace Lfc.Comprobantes
             }
             set
             {
-                txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(value, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(value, this.Workspace.CurrentConfig.Moneda.Decimales);
             }
         }
 
         private void txtPago_TextChanged(object sender, System.EventArgs e)
         {
-            txtCambio.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtPago.Text) - Lfx.Types.Parsing.ParseCurrency(txtTotal.Text), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+            txtCambio.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtPago.Text) - Lfx.Types.Parsing.ParseCurrency(txtTotal.Text), this.Workspace.CurrentConfig.Moneda.Decimales);
             txtCambio.Visible = Lfx.Types.Parsing.ParseCurrency(txtCambio.Text) >= 0;
         }
     }

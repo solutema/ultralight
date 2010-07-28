@@ -36,7 +36,7 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Lfc.Tarjetas.Cupones
+namespace Lfc.Cupones.Cupones
 {
         public class Filtros : Lui.Forms.DialogForm
         {
@@ -129,11 +129,11 @@ namespace Lfc.Tarjetas.Cupones
                         this.txtTarjeta.CanCreate = false;
                         this.txtTarjeta.DetailField = "nombre";
                         this.txtTarjeta.ExtraDetailFields = null;
-                        this.txtTarjeta.Filter = "";
+                        this.txtTarjeta.Filter = "tipo=4";
                         this.txtTarjeta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtTarjeta.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.txtTarjeta.FreeTextCode = "";
-                        this.txtTarjeta.KeyField = "id_tarjeta";
+                        this.txtTarjeta.KeyField = "id_formapago";
                         this.txtTarjeta.Location = new System.Drawing.Point(85, 3);
                         this.txtTarjeta.MaxLength = 200;
                         this.txtTarjeta.Name = "txtTarjeta";
@@ -143,7 +143,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.txtTarjeta.SelectOnFocus = false;
                         this.txtTarjeta.Size = new System.Drawing.Size(456, 24);
                         this.txtTarjeta.TabIndex = 1;
-                        this.txtTarjeta.Table = "tarjetas";
+                        this.txtTarjeta.Table = "formaspago";
                         this.txtTarjeta.TeclaDespuesDeEnter = "{tab}";
                         this.txtTarjeta.Text = "0";
                         this.txtTarjeta.TextDetail = "";
@@ -290,7 +290,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.Label15.Text = "Plan";
                         this.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaCliente
+                        // txtCliente
                         // 
                         this.txtCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
@@ -306,7 +306,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.txtCliente.KeyField = "id_persona";
                         this.txtCliente.Location = new System.Drawing.Point(85, 123);
                         this.txtCliente.MaxLength = 200;
-                        this.txtCliente.Name = "EntradaCliente";
+                        this.txtCliente.Name = "txtCliente";
                         this.txtCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCliente.ReadOnly = false;
                         this.txtCliente.Required = false;
@@ -425,7 +425,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFechas.ReadOnly = false;
                         this.EntradaFechas.Size = new System.Drawing.Size(455, 30);
                         this.EntradaFechas.TabIndex = 10;
-                        this.EntradaFechas.Text = "rangoFechas1";
                         this.EntradaFechas.ToolTipText = "";
                         // 
                         // Filtros
@@ -435,6 +434,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.Controls.Add(this.tableLayoutPanel1);
                         this.Name = "Filtros";
                         this.Text = "Tarjetas: Filtros";
+                        this.Controls.SetChildIndex(this.tableLayoutPanel1, 0);
                         this.panel1.ResumeLayout(false);
                         this.tableLayoutPanel1.ResumeLayout(false);
                         this.ResumeLayout(false);

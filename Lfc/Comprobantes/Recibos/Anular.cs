@@ -58,7 +58,7 @@ namespace Lfc.Comprobantes.Recibos
                         if (Rec != null && Rec.Existe) {
                                 EntradaFecha.Text = Lfx.Types.Formatting.FormatDate(Rec.Fecha);
 
-                                EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Importe, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Importe, this.Workspace.CurrentConfig.Moneda.Decimales);
                                 EntradaCliente.Text = Rec.Cliente.ToString();
 
                                 EntradaPV.Text = Rec.PV.ToString();

@@ -29,7 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-namespace Lfc.Tarjetas.Cupones
+namespace Lfc.Cupones.Cupones
 {
         public partial class Inicio
         {
@@ -46,14 +46,14 @@ namespace Lfc.Tarjetas.Cupones
                         this.cmdMostrar = new Lui.Forms.Button();
                         this.CancelCommandButton = new Lui.Forms.Button();
                         this.ItemList = new Lui.Forms.ListView();
-                        this.ChId = new System.Windows.Forms.ColumnHeader();
-                        this.ChFecha = new System.Windows.Forms.ColumnHeader();
-                        this.ChConcepto = new System.Windows.Forms.ColumnHeader();
-                        this.ChTarjeta = new System.Windows.Forms.ColumnHeader();
-                        this.ChCupon = new System.Windows.Forms.ColumnHeader();
-                        this.ChImporte = new System.Windows.Forms.ColumnHeader();
-                        this.ChEstado = new System.Windows.Forms.ColumnHeader();
-                        this.ChPlan = new System.Windows.Forms.ColumnHeader();
+                        this.ChId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ChFecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ChConcepto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ChTarjeta = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ChCupon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ChImporte = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ChEstado = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ChPlan = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.EtiquetaTitulo = new System.Windows.Forms.Label();
                         this.Label4 = new System.Windows.Forms.Label();
                         this.EtiquetaImporteSinPresentar = new Lui.Forms.TextBox();
@@ -90,6 +90,8 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // cmdAnular
                         // 
+                        this.cmdAnular.AutoHeight = false;
+                        this.cmdAnular.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.cmdAnular.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.cmdAnular.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.cmdAnular.Image = null;
@@ -108,6 +110,8 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // cmdAcreditar
                         // 
+                        this.cmdAcreditar.AutoHeight = false;
+                        this.cmdAcreditar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.cmdAcreditar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.cmdAcreditar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.cmdAcreditar.Image = null;
@@ -127,6 +131,8 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // cmdPresentar
                         // 
+                        this.cmdPresentar.AutoHeight = false;
+                        this.cmdPresentar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.cmdPresentar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.cmdPresentar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.cmdPresentar.Image = null;
@@ -146,6 +152,8 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // FilterButton
                         // 
+                        this.FilterButton.AutoHeight = false;
+                        this.FilterButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.FilterButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.FilterButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.FilterButton.Image = null;
@@ -165,6 +173,8 @@ namespace Lfc.Tarjetas.Cupones
                         // PrintButton
                         // 
                         this.PrintButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.PrintButton.AutoHeight = false;
+                        this.PrintButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.PrintButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.PrintButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.PrintButton.Image = null;
@@ -184,6 +194,8 @@ namespace Lfc.Tarjetas.Cupones
                         // cmdMostrar
                         // 
                         this.cmdMostrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.cmdMostrar.AutoHeight = false;
+                        this.cmdMostrar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.cmdMostrar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.cmdMostrar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.cmdMostrar.Image = null;
@@ -203,6 +215,8 @@ namespace Lfc.Tarjetas.Cupones
                         // CancelCommandButton
                         // 
                         this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.CancelCommandButton.AutoHeight = false;
+                        this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.CancelCommandButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.CancelCommandButton.Image = null;
@@ -313,69 +327,9 @@ namespace Lfc.Tarjetas.Cupones
                         this.Label4.Text = "cupones por";
                         this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EtiquetaImporteSinPresentar
-                        // 
-                        this.EtiquetaImporteSinPresentar.AccessibleName = "e";
-                        this.EtiquetaImporteSinPresentar.AutoNav = true;
-                        this.EtiquetaImporteSinPresentar.AutoTab = true;
-                        this.EtiquetaImporteSinPresentar.DataType = Lui.Forms.DataTypes.Money;
-                        this.EtiquetaImporteSinPresentar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EtiquetaImporteSinPresentar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EtiquetaImporteSinPresentar.Location = new System.Drawing.Point(88, 56);
-                        this.EtiquetaImporteSinPresentar.MaxLenght = 32767;
-                        this.EtiquetaImporteSinPresentar.Name = "EtiquetaImporteSinPresentar";
-                        this.EtiquetaImporteSinPresentar.Padding = new System.Windows.Forms.Padding(2);
-                        this.EtiquetaImporteSinPresentar.Prefijo = "$";
-                        this.EtiquetaImporteSinPresentar.ReadOnly = true;
-                        this.EtiquetaImporteSinPresentar.Size = new System.Drawing.Size(100, 24);
-                        this.EtiquetaImporteSinPresentar.TabIndex = 2;
-                        this.EtiquetaImporteSinPresentar.TabStop = false;
-                        this.EtiquetaImporteSinPresentar.Text = "0.00";
-                        this.EtiquetaImporteSinPresentar.TipWhenBlank = "";
-                        this.EtiquetaImporteSinPresentar.ToolTipText = "";
-                        // 
-                        // EtiquetaImporteAcreditados
-                        // 
-                        this.EtiquetaImporteAcreditados.AutoNav = true;
-                        this.EtiquetaImporteAcreditados.AutoTab = true;
-                        this.EtiquetaImporteAcreditados.DataType = Lui.Forms.DataTypes.Money;
-                        this.EtiquetaImporteAcreditados.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EtiquetaImporteAcreditados.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EtiquetaImporteAcreditados.Location = new System.Drawing.Point(84, 60);
-                        this.EtiquetaImporteAcreditados.MaxLenght = 32767;
-                        this.EtiquetaImporteAcreditados.Name = "EtiquetaImporteAcreditados";
-                        this.EtiquetaImporteAcreditados.Padding = new System.Windows.Forms.Padding(2);
-                        this.EtiquetaImporteAcreditados.Prefijo = "$";
-                        this.EtiquetaImporteAcreditados.ReadOnly = true;
-                        this.EtiquetaImporteAcreditados.Size = new System.Drawing.Size(100, 24);
-                        this.EtiquetaImporteAcreditados.TabIndex = 2;
-                        this.EtiquetaImporteAcreditados.TabStop = false;
-                        this.EtiquetaImporteAcreditados.Text = "0.00";
-                        this.EtiquetaImporteAcreditados.TipWhenBlank = "";
-                        this.EtiquetaImporteAcreditados.ToolTipText = "";
-                        // 
-                        // EtiquetaImportePresentados
-                        // 
-                        this.EtiquetaImportePresentados.AutoNav = true;
-                        this.EtiquetaImportePresentados.AutoTab = true;
-                        this.EtiquetaImportePresentados.DataType = Lui.Forms.DataTypes.Money;
-                        this.EtiquetaImportePresentados.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EtiquetaImportePresentados.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EtiquetaImportePresentados.Location = new System.Drawing.Point(88, 56);
-                        this.EtiquetaImportePresentados.MaxLenght = 32767;
-                        this.EtiquetaImportePresentados.Name = "EtiquetaImportePresentados";
-                        this.EtiquetaImportePresentados.Padding = new System.Windows.Forms.Padding(2);
-                        this.EtiquetaImportePresentados.Prefijo = "$";
-                        this.EtiquetaImportePresentados.ReadOnly = true;
-                        this.EtiquetaImportePresentados.Size = new System.Drawing.Size(100, 24);
-                        this.EtiquetaImportePresentados.TabIndex = 2;
-                        this.EtiquetaImportePresentados.TabStop = false;
-                        this.EtiquetaImportePresentados.Text = "0.00";
-                        this.EtiquetaImportePresentados.TipWhenBlank = "";
-                        this.EtiquetaImportePresentados.ToolTipText = "";
-                        // 
                         // frame1
                         // 
+                        this.frame1.AutoHeight = false;
                         this.frame1.Controls.Add(this.EtiquetaCantidadSinPresentar);
                         this.frame1.Controls.Add(this.Label4);
                         this.frame1.Controls.Add(this.EtiquetaImporteSinPresentar);
@@ -392,25 +346,35 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // EtiquetaCantidadSinPresentar
                         // 
+                        this.EtiquetaCantidadSinPresentar.AutoHeight = false;
                         this.EtiquetaCantidadSinPresentar.AutoNav = true;
                         this.EtiquetaCantidadSinPresentar.AutoTab = true;
                         this.EtiquetaCantidadSinPresentar.DataType = Lui.Forms.DataTypes.Integer;
+                        this.EtiquetaCantidadSinPresentar.DecimalPlaces = -1;
                         this.EtiquetaCantidadSinPresentar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EtiquetaCantidadSinPresentar.ForceCase = Lui.Forms.TextCasing.None;
                         this.EtiquetaCantidadSinPresentar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EtiquetaCantidadSinPresentar.Location = new System.Drawing.Point(8, 28);
                         this.EtiquetaCantidadSinPresentar.MaxLenght = 32767;
+                        this.EtiquetaCantidadSinPresentar.MultiLine = false;
                         this.EtiquetaCantidadSinPresentar.Name = "EtiquetaCantidadSinPresentar";
                         this.EtiquetaCantidadSinPresentar.Padding = new System.Windows.Forms.Padding(2);
+                        this.EtiquetaCantidadSinPresentar.PasswordChar = '\0';
+                        this.EtiquetaCantidadSinPresentar.Prefijo = "";
                         this.EtiquetaCantidadSinPresentar.ReadOnly = true;
+                        this.EtiquetaCantidadSinPresentar.SelectOnFocus = true;
                         this.EtiquetaCantidadSinPresentar.Size = new System.Drawing.Size(50, 24);
+                        this.EtiquetaCantidadSinPresentar.Sufijo = "";
                         this.EtiquetaCantidadSinPresentar.TabIndex = 0;
                         this.EtiquetaCantidadSinPresentar.TabStop = false;
                         this.EtiquetaCantidadSinPresentar.Text = "0";
+                        this.EtiquetaCantidadSinPresentar.TextRaw = "0";
                         this.EtiquetaCantidadSinPresentar.TipWhenBlank = "";
                         this.EtiquetaCantidadSinPresentar.ToolTipText = "";
                         // 
                         // frame2
                         // 
+                        this.frame2.AutoHeight = false;
                         this.frame2.Controls.Add(this.EtiquetaCantidadPresentados);
                         this.frame2.Controls.Add(this.label1);
                         this.frame2.Controls.Add(this.EtiquetaImportePresentados);
@@ -427,20 +391,29 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // EtiquetaCantidadPresentados
                         // 
+                        this.EtiquetaCantidadPresentados.AutoHeight = false;
                         this.EtiquetaCantidadPresentados.AutoNav = true;
                         this.EtiquetaCantidadPresentados.AutoTab = true;
                         this.EtiquetaCantidadPresentados.DataType = Lui.Forms.DataTypes.Integer;
+                        this.EtiquetaCantidadPresentados.DecimalPlaces = -1;
                         this.EtiquetaCantidadPresentados.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EtiquetaCantidadPresentados.ForceCase = Lui.Forms.TextCasing.None;
                         this.EtiquetaCantidadPresentados.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EtiquetaCantidadPresentados.Location = new System.Drawing.Point(8, 28);
                         this.EtiquetaCantidadPresentados.MaxLenght = 32767;
+                        this.EtiquetaCantidadPresentados.MultiLine = false;
                         this.EtiquetaCantidadPresentados.Name = "EtiquetaCantidadPresentados";
                         this.EtiquetaCantidadPresentados.Padding = new System.Windows.Forms.Padding(2);
+                        this.EtiquetaCantidadPresentados.PasswordChar = '\0';
+                        this.EtiquetaCantidadPresentados.Prefijo = "";
                         this.EtiquetaCantidadPresentados.ReadOnly = true;
+                        this.EtiquetaCantidadPresentados.SelectOnFocus = true;
                         this.EtiquetaCantidadPresentados.Size = new System.Drawing.Size(50, 24);
+                        this.EtiquetaCantidadPresentados.Sufijo = "";
                         this.EtiquetaCantidadPresentados.TabIndex = 0;
                         this.EtiquetaCantidadPresentados.TabStop = false;
                         this.EtiquetaCantidadPresentados.Text = "0";
+                        this.EtiquetaCantidadPresentados.TextRaw = "0";
                         this.EtiquetaCantidadPresentados.TipWhenBlank = "";
                         this.EtiquetaCantidadPresentados.ToolTipText = "";
                         // 
@@ -455,6 +428,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // frame3
                         // 
+                        this.frame3.AutoHeight = false;
                         this.frame3.Controls.Add(this.EtiquetaCantidadAcreditados);
                         this.frame3.Controls.Add(this.label2);
                         this.frame3.Controls.Add(this.EtiquetaImporteAcreditados);
@@ -471,20 +445,29 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // EtiquetaCantidadAcreditados
                         // 
+                        this.EtiquetaCantidadAcreditados.AutoHeight = false;
                         this.EtiquetaCantidadAcreditados.AutoNav = true;
                         this.EtiquetaCantidadAcreditados.AutoTab = true;
                         this.EtiquetaCantidadAcreditados.DataType = Lui.Forms.DataTypes.Integer;
+                        this.EtiquetaCantidadAcreditados.DecimalPlaces = -1;
                         this.EtiquetaCantidadAcreditados.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EtiquetaCantidadAcreditados.ForceCase = Lui.Forms.TextCasing.None;
                         this.EtiquetaCantidadAcreditados.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EtiquetaCantidadAcreditados.Location = new System.Drawing.Point(8, 28);
                         this.EtiquetaCantidadAcreditados.MaxLenght = 32767;
+                        this.EtiquetaCantidadAcreditados.MultiLine = false;
                         this.EtiquetaCantidadAcreditados.Name = "EtiquetaCantidadAcreditados";
                         this.EtiquetaCantidadAcreditados.Padding = new System.Windows.Forms.Padding(2);
+                        this.EtiquetaCantidadAcreditados.PasswordChar = '\0';
+                        this.EtiquetaCantidadAcreditados.Prefijo = "";
                         this.EtiquetaCantidadAcreditados.ReadOnly = true;
+                        this.EtiquetaCantidadAcreditados.SelectOnFocus = true;
                         this.EtiquetaCantidadAcreditados.Size = new System.Drawing.Size(50, 24);
+                        this.EtiquetaCantidadAcreditados.Sufijo = "";
                         this.EtiquetaCantidadAcreditados.TabIndex = 0;
                         this.EtiquetaCantidadAcreditados.TabStop = false;
                         this.EtiquetaCantidadAcreditados.Text = "0";
+                        this.EtiquetaCantidadAcreditados.TextRaw = "0";
                         this.EtiquetaCantidadAcreditados.TipWhenBlank = "";
                         this.EtiquetaCantidadAcreditados.ToolTipText = "";
                         // 
@@ -509,7 +492,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.Controls.Add(this.LowerPanel);
                         this.KeyPreview = true;
                         this.Name = "Inicio";
-                        this.Text = "Tarjetas de Crédito y Débito";
+                        this.Text = "Cobros con cupón";
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Inicio_KeyDown);
                         this.LowerPanel.ResumeLayout(false);
                         this.frame1.ResumeLayout(false);

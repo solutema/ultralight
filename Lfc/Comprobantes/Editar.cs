@@ -170,9 +170,9 @@ namespace Lfc.Comprobantes
                                 EntradaCliente.TextInt = 0;
 
                         Ignorar_EntradaCliente_TextChanged = false;
-                        txtSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Registro.SubTotal, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        txtDescuento.Text = Lfx.Types.Formatting.FormatNumber(Registro.Descuento, 2);
-                        txtInteres.Text = Lfx.Types.Formatting.FormatNumber(Registro.Recargo, 2);
+                        txtSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Registro.SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaDescuento.Text = Lfx.Types.Formatting.FormatNumber(Registro.Descuento, 2);
+                        EntradaInteres.Text = Lfx.Types.Formatting.FormatNumber(Registro.Recargo, 2);
                         txtCuotas.Text = Registro.Cuotas.ToString();
                         if (Registro.Impreso == true && Registro.Tipo.PermiteModificarImpresos == false)
                                 this.ReadOnly = true;
@@ -212,8 +212,8 @@ namespace Lfc.Comprobantes
                         Res.Vendedor = new Lbl.Personas.Persona(Res.DataBase, EntradaVendedor.TextInt);
                         Res.Cliente = new Lbl.Personas.Persona(Res.DataBase, EntradaCliente.TextInt);
 
-                        Res.Descuento = Lfx.Types.Parsing.ParseDouble(txtDescuento.Text);
-                        Res.Recargo = Lfx.Types.Parsing.ParseDouble(txtInteres.Text);
+                        Res.Descuento = Lfx.Types.Parsing.ParseDouble(EntradaDescuento.Text);
+                        Res.Recargo = Lfx.Types.Parsing.ParseDouble(EntradaInteres.Text);
                         Res.Cuotas = Lfx.Types.Parsing.ParseInt(txtCuotas.Text);
 
                         int i = 0;
@@ -354,45 +354,7 @@ namespace Lfc.Comprobantes
 
                 internal virtual Lfx.Types.OperationResult ConvertirEn(string tipoComprob)
                 {
-                        Lfx.Types.OperationResult convertirEnPresupuestoReturn = new Lfx.Types.SuccessOperationResult();
-
-                        Comprobantes.Editar NuevoComprob;
-                        switch (tipoComprob) {
-                                case "A":
-                                case "B":
-                                case "C":
-                                case "E":
-                                case "M":
-
-                                case "FA":
-                                case "FB":
-                                case "FC":
-                                case "FE":
-                                case "FM":
-
-                                case "NCA":
-                                case "NCB":
-                                case "NCC":
-                                case "NCE":
-                                case "NCM":
-
-                                case "NDA":
-                                case "NDB":
-                                case "NDC":
-                                case "NDE":
-                                case "NDM":
-                                        NuevoComprob = new Comprobantes.Facturas.Editar(tipoComprob);
-                                        break;
-
-                                case "PS":
-                                        NuevoComprob = new Comprobantes.Presupuestos.Editar(tipoComprob);
-                                        break;
-
-                                default:
-                                        NuevoComprob = new Comprobantes.Editar(tipoComprob);
-                                        break;
-                        }
-
+                        Comprobantes.Editar NuevoComprob = new Comprobantes.Facturas.Editar(tipoComprob);
                         NuevoComprob.MdiParent = this.MdiParent;
                         NuevoComprob.ControlDestino = txtComprobanteID;
 
@@ -404,8 +366,8 @@ namespace Lfc.Comprobantes
 
                                 NuevoComprob.EntradaCliente.Text = EntradaCliente.Text;
                                 NuevoComprob.EntradaVendedor.Text = EntradaVendedor.Text;
-                                NuevoComprob.txtDescuento.Text = txtDescuento.Text;
-                                NuevoComprob.txtInteres.Text = txtInteres.Text;
+                                NuevoComprob.EntradaDescuento.Text = EntradaDescuento.Text;
+                                NuevoComprob.EntradaInteres.Text = EntradaInteres.Text;
                                 NuevoComprob.ProductArray.Count = ProductArray.Count;
                                 if (this is Facturas.Editar && NuevoComprob is Facturas.Editar) {
                                         ((Facturas.Editar)NuevoComprob).EntradaRemito.Text = ((Facturas.Editar)this).EntradaRemito.Text;
@@ -424,13 +386,12 @@ namespace Lfc.Comprobantes
                                 NuevoComprob.Show();
                         }
 
-                        convertirEnPresupuestoReturn.Success = true;
-                        return convertirEnPresupuestoReturn;
+                        return new Lfx.Types.SuccessOperationResult();
                 }
 
 		private void ProductArray_TotalChanged(System.Object sender, System.EventArgs e)
 		{
-			txtSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(ProductArray.Total, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+			txtSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(ProductArray.Total, this.Workspace.CurrentConfig.Moneda.Decimales);
 		}
 
                 public override Lfx.Types.OperationResult Create()
@@ -506,9 +467,9 @@ namespace Lfc.Comprobantes
 
                         double Descuento = this.DataBase.FieldDouble("SELECT descuento FROM personas_grupos WHERE id_grupo=(SELECT id_grupo FROM personas WHERE id_persona=" + EntradaCliente.TextInt.ToString() + ")");
 
-                        if (Descuento > 0 && Lfx.Types.Parsing.ParseDouble(txtDescuento.Text) == 0) {
-                                txtDescuento.Text = Lfx.Types.Formatting.FormatNumber(Descuento, 2);
-                                txtDescuento.ShowBalloon("Se aplicó el descuento que corresponde al tipo de cliente.");
+                        if (Descuento > 0 && Lfx.Types.Parsing.ParseDouble(EntradaDescuento.Text) == 0) {
+                                EntradaDescuento.Text = Lfx.Types.Formatting.FormatNumber(Descuento, 2);
+                                EntradaDescuento.ShowBalloon("Se aplicó el descuento que corresponde al tipo de cliente.");
                         }
 
                         if (this.Tipo.EsFacturaNCoND && this.CachedRow.Existe == false && EntradaCliente.TextInt > 0) {
@@ -560,7 +521,7 @@ namespace Lfc.Comprobantes
 		private void FormComprobanteEditar_WorkspaceChanged(object sender, System.EventArgs e)
 		{
                         if (this.Workspace != null) {
-                                EntradaTotal.DecimalPlaces = this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal;
+                                EntradaTotal.DecimalPlaces = this.Workspace.CurrentConfig.Moneda.DecimalesFinal;
                                 ProductArray.LockPrice = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.CambiaPrecioItemFactura", 0) == 0;
                         }
 		}
@@ -577,21 +538,21 @@ namespace Lfc.Comprobantes
 
 			IgnorarEventos = true;
 
-                        double Descuento = Lfx.Types.Parsing.ParseDouble(txtDescuento.Text) / 100;
-                        double Recargo = Lfx.Types.Parsing.ParseDouble(txtInteres.Text) / 100;
+                        double Descuento = Lfx.Types.Parsing.ParseDouble(EntradaDescuento.Text) / 100;
+                        double Recargo = Lfx.Types.Parsing.ParseDouble(EntradaInteres.Text) / 100;
 
                         double SubTotal = Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text);
                         double Total;
-                        if(this.Workspace.CurrentConfig.Currency.Rounding >0)
-                                Total = Math.Floor((SubTotal * (1 + Recargo - Descuento)) / this.Workspace.CurrentConfig.Currency.Rounding) * this.Workspace.CurrentConfig.Currency.Rounding;
+                        if(this.Workspace.CurrentConfig.Moneda.Redondeo >0)
+                                Total = Math.Floor((SubTotal * (1 + Recargo - Descuento)) / this.Workspace.CurrentConfig.Moneda.Redondeo) * this.Workspace.CurrentConfig.Moneda.Redondeo;
                         else
                                 Total = SubTotal * (1 + Recargo - Descuento);
 
                         int Cuotas = Lfx.Types.Parsing.ParseInt(txtCuotas.Text);
-                        EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Currency.DecimalPlacesFinal, false);
+                        EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.DecimalesFinal, false);
 
 			if (Cuotas > 0)
-                                txtValorCuota.Text = Lfx.Types.Formatting.FormatCurrency(Total / Cuotas, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                txtValorCuota.Text = Lfx.Types.Formatting.FormatCurrency(Total / Cuotas, this.Workspace.CurrentConfig.Moneda.Decimales);
 			else
 				txtValorCuota.Text = "0";
 
@@ -607,12 +568,12 @@ namespace Lfc.Comprobantes
                         if (Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text) > 0) {
                                 double Descuento = Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text) / Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text);
                                 if (Descuento < 1) {
-                                        txtDescuento.Text = Lfx.Types.Formatting.FormatNumber((1 - Descuento) * 100, 2);
-                                        txtInteres.Text = "0";
+                                        EntradaDescuento.Text = Lfx.Types.Formatting.FormatNumber((1 - Descuento) * 100, 2);
+                                        EntradaInteres.Text = "0";
                                 } else {
-                                        txtInteres.Text = Lfx.Types.Formatting.FormatNumber((Descuento - 1) * 100, 2);
-                                        txtDescuento.Text = "0";
-                                        txtInteres.ShowBalloon("Se aplicó un recargo.");
+                                        EntradaInteres.Text = Lfx.Types.Formatting.FormatNumber((Descuento - 1) * 100, 2);
+                                        EntradaDescuento.Text = "0";
+                                        EntradaInteres.ShowBalloon("Se aplicó un recargo.");
                                 }
                         }
                         IgnorarEventos = false;

@@ -44,10 +44,10 @@ namespace Lfx.Config
 		private Workspace m_Workspace;
                 private Lfx.Data.DataBase m_DataBase;
 
-                public Lfx.Config.ProductsConfig Products;
-                public Lfx.Config.CurrencyConfig Currency;
-                public Lfx.Config.PrintersConfig Printing;
-                public Lfx.Config.CompanyConfig Company;
+                public Lfx.Config.ProductsConfig Productos;
+                public Lfx.Config.CurrencyConfig Moneda;
+                public Lfx.Config.PrintersConfig Impresion;
+                public Lfx.Config.CompanyConfig Empresa;
 
                 private System.Collections.Hashtable SysConfigCache = null;
                 private System.DateTime SysConfigCacheLastRefresh;
@@ -57,10 +57,10 @@ namespace Lfx.Config
 			m_Workspace = workspace;
 			ConfigFileName = m_Workspace.Name + ".lwf";
 
-                        Products = new Lfx.Config.ProductsConfig(this);
-                        Currency = new Lfx.Config.CurrencyConfig(this);
-                        Printing = new Lfx.Config.PrintersConfig(this);
-                        Company = new Lfx.Config.CompanyConfig(this);
+                        Productos = new Lfx.Config.ProductsConfig(this);
+                        Moneda = new Lfx.Config.CurrencyConfig(this);
+                        Impresion = new Lfx.Config.PrintersConfig(this);
+                        Empresa = new Lfx.Config.CompanyConfig(this);
 		}
 
                 public Lfx.Workspace Workspace
@@ -261,7 +261,7 @@ namespace Lfx.Config
 			}
 
 			//Busco una variable para la sucursal
-                        Busco = "*/" + m_Workspace.CurrentConfig.Company.CurrentBranch.ToString() + "/" + DataBase.EscapeString(CompleteSettingName);
+                        Busco = "*/" + m_Workspace.CurrentConfig.Empresa.SucursalPredeterminada.ToString() + "/" + DataBase.EscapeString(CompleteSettingName);
                         if (terminalName == null && SysConfigCache.Contains(Busco)) {
                                 string Res = (string)SysConfigCache[Busco];
                                 if (Res.Length > 0)
@@ -285,7 +285,7 @@ namespace Lfx.Config
 		public bool DeleteGlobalSetting(string sectionName, string settingName, int branch)
 		{
 			if(branch == 0)
-				branch = m_Workspace.CurrentConfig.Company.CurrentBranch;
+				branch = m_Workspace.CurrentConfig.Empresa.SucursalPredeterminada;
 
 			string CompleteSettingName = (sectionName==null||sectionName.Length==0?"":(sectionName+@".")) + settingName;
                         qGen.Delete DeleteCommand = new qGen.Delete("sys_config");

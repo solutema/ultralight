@@ -104,12 +104,12 @@ namespace Lfc.Cajas.Admin
                         double Saldo = this.DataBase.FieldDouble("SELECT saldo FROM cajas_movim WHERE id_caja=" + IdCaja.ToString() + " ORDER BY id_movim DESC LIMIT 1");
                         double Pasivos = this.DataBase.FieldDouble("SELECT SUM(importe) FROM bancos_cheques WHERE estado IN (0, 5) AND emitido=1 AND id_chequera IN (SELECT chequeras.id_chequera FROM chequeras WHERE estado=1 AND id_caja=" + IdCaja.ToString() + ")");
 
-			txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtTotal.Text) + Saldo, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+			txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtTotal.Text) + Saldo, this.Workspace.CurrentConfig.Moneda.Decimales);
 			if (Saldo > 0)
-				txtActivos.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtActivos.Text) + Saldo, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+				txtActivos.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtActivos.Text) + Saldo, this.Workspace.CurrentConfig.Moneda.Decimales);
 			
-                        itm.SubItems[6].Text = Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
-                        itm.SubItems[7].Text = Lfx.Types.Formatting.FormatCurrency(Saldo - Pasivos, this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                        itm.SubItems[6].Text = Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        itm.SubItems[7].Text = Lfx.Types.Formatting.FormatCurrency(Saldo - Pasivos, this.Workspace.CurrentConfig.Moneda.Decimales);
 		}
 
 		public override Lfx.Types.OperationResult OnCreate()

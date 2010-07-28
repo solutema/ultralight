@@ -161,13 +161,13 @@ namespace Lazaro
                                         Estado.Refresh();
 
                                         if (NeedsSharpZipLib)
-                                                Lfx.Updater.NetGet(@"http://www.sistemalazaro.com.ar/aslnlwc/ICSharpCode.SharpZipLib.dll", Lfx.Environment.Folders.UpdatesFolder + "ICSharpCode.SharpZipLib.dll.new");
+                                                Lfx.Services.Updater.NetGet(@"http://www.sistemalazaro.com.ar/aslnlwc/ICSharpCode.SharpZipLib.dll", Lfx.Environment.Folders.UpdatesFolder + "ICSharpCode.SharpZipLib.dll.new");
 
                                         if (NeedsMySqlConnector)
-                                                Lfx.Updater.NetGet(@"http://www.sistemalazaro.com.ar/aslnlwc/MySql.Data.dll", Lfx.Environment.Folders.UpdatesFolder + "MySql.Data.dll.new");
+                                                Lfx.Services.Updater.NetGet(@"http://www.sistemalazaro.com.ar/aslnlwc/MySql.Data.dll", Lfx.Environment.Folders.UpdatesFolder + "MySql.Data.dll.new");
 
                                         if (NeedsDotNet35)
-                                                Lfx.Updater.NetGet(@"http://download.microsoft.com/download/5/3/4/5347CEDC-6A83-49F5-9347-BCD58A9AAE25/DotNetFx35ClientSetup.exe", Lfx.Environment.Folders.UpdatesFolder + "DotNetFx35ClientSetup.exe");
+                                                Lfx.Services.Updater.NetGet(@"http://download.microsoft.com/download/5/3/4/5347CEDC-6A83-49F5-9347-BCD58A9AAE25/DotNetFx35ClientSetup.exe", Lfx.Environment.Folders.UpdatesFolder + "DotNetFx35ClientSetup.exe");
 
                                         Estado.Dispose();
                                 }
@@ -295,9 +295,9 @@ namespace Lazaro
                 private static Lfx.Types.OperationResult IniciarNormal()
                 {
                         if (Lfx.Environment.SystemInformation.DesignMode == false) {
-                                Lfx.Updater.Master.UpdateFromDbCache();
+                                Lfx.Services.Updater.Master.UpdateFromDbCache();
 
-                                if (Lfx.Updater.Master.UpdatedFiles > 0) {
+                                if (Lfx.Services.Updater.Master.UpdatedFiles > 0) {
                                         Aplicacion.Exec("REBOOT");
                                         System.Environment.Exit(0);
                                 }
@@ -310,10 +310,10 @@ namespace Lazaro
                                         Aplicacion.Exec("REBOOT");
                                 else
                                         Aplicacion.Exec("QUIT");
-                        } else if (Lfx.Workspace.Master.CurrentConfig.Company.Email.Length <= 5) {
-                                string Email = Lui.Forms.InputBox.ShowInputBox("Por favor escriba la dirección de correo electrónico (e-mail) de la empresa. Si desea ingresar al sistema sin escribir la dirección ahora, haga clic en Cancelar.", Lfx.Workspace.Master.CurrentConfig.Company.Name, "");
+                        } else if (Lfx.Workspace.Master.CurrentConfig.Empresa.Email.Length <= 5) {
+                                string Email = Lui.Forms.InputBox.ShowInputBox("Por favor escriba la dirección de correo electrónico (e-mail) de la empresa. Si desea ingresar al sistema sin escribir la dirección ahora, haga clic en Cancelar.", Lfx.Workspace.Master.CurrentConfig.Empresa.Nombre, "");
                                 if (Email != null && Email.Length > 5)
-                                        Lfx.Workspace.Master.CurrentConfig.Company.Email = Email;
+                                        Lfx.Workspace.Master.CurrentConfig.Empresa.Email = Email;
                         }
 
 
@@ -478,6 +478,13 @@ namespace Lazaro
                                 case "ERROR":
                                         throw new InvalidOperationException("Error de Prueba");
 
+                                case "VENTRE":
+                                        Lbl.Servicios.Importar.FiltroEscorpion Fil = new Lbl.Servicios.Importar.FiltroEscorpion(Lfx.Workspace.Master.DefaultDataBase);
+                                        Fil.Carpeta = @"C:\Ventre\";
+                                        Fil.Cargar();
+                                        Fil.Fusionar();
+                                        break;
+
                                 case "TEST":
                                         /* Lbl.Servicios.Importar.FiltroEscorpion Fil = new Lbl.Servicios.Importar.FiltroEscorpion(Lfx.Workspace.Master.DefaultDataBase);
                                         Fil.Carpeta = @"C:\Projects\Ventre\";
@@ -518,7 +525,7 @@ namespace Lazaro
                                         break;
 
                                 case "REBOOT":
-                                        int EstacionFiscal = Lfx.Workspace.Master.DefaultDataBase.FieldInt("SELECT id_pv FROM pvs WHERE estacion='" + System.Environment.MachineName.ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Company.CurrentBranch.ToString());
+                                        int EstacionFiscal = Lfx.Workspace.Master.DefaultDataBase.FieldInt("SELECT id_pv FROM pvs WHERE estacion='" + System.Environment.MachineName.ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada.ToString());
                                         if (EstacionFiscal > 0) {
                                                 Lfx.Workspace.Master.DefaultScheduler.AddTask("REBOOT", "fiscal" + EstacionFiscal.ToString(), "*");
                                                 System.Threading.Thread.Sleep(100);
@@ -682,7 +689,7 @@ namespace Lazaro
                                                 Lfc.Cajas.Inicio FormularioCaja = new Lfc.Cajas.Inicio();
                                                 if (!Aplicacion.Flotante)
                                                         FormularioCaja.MdiParent = Aplicacion.FormularioPrincipal;
-                                                FormularioCaja.m_Caja = Lfx.Workspace.Master.CurrentConfig.Company.CajaDiaria;
+                                                FormularioCaja.m_Caja = Lfx.Workspace.Master.CurrentConfig.Empresa.CajaDiaria;
 
                                                 if (SubComandoCaja.Length > 0) {
                                                         Lfx.Types.LDateTime Fecha = Lfx.Types.Parsing.ParseDate(SubComandoCaja);
@@ -715,12 +722,12 @@ namespace Lazaro
                                         }
                                         break;
 
-                                case "TARJETAS":
+                                case "CUPONES":
                                         if (Lui.Login.LoginData.ValidateAccess(Lfx.Workspace.Master.CurrentUser, "accounts.read")) {
-                                                Lfc.Tarjetas.Cupones.Inicio OTarjetas = ((Lfc.Tarjetas.Cupones.Inicio)(BuscarVentana("Lfc.Cajas.Tarjetas.Inicio")));
+                                                Lfc.Cupones.Cupones.Inicio OTarjetas = ((Lfc.Cupones.Cupones.Inicio)(BuscarVentana("Lfc.Cajas.Tarjetas.Inicio")));
 
                                                 if (OTarjetas == null)
-                                                        OTarjetas = new Lfc.Tarjetas.Cupones.Inicio();
+                                                        OTarjetas = new Lfc.Cupones.Cupones.Inicio();
                                                 if (!Aplicacion.Flotante)
                                                         OTarjetas.MdiParent = Aplicacion.FormularioPrincipal;
                                                 OTarjetas.RefreshList();
@@ -1584,7 +1591,7 @@ namespace Lazaro
 
                         MailMessage Mensaje = new MailMessage();
                         Mensaje.To.Add(new MailAddress("error@sistemalazaro.com.ar"));
-                        Mensaje.From = new MailAddress(Lfx.Workspace.Master.CurrentConfig.Company.Email, Lfx.Workspace.Master.CurrentUser.CompleteName + " en " + Lfx.Workspace.Master.CurrentConfig.Company.Name);
+                        Mensaje.From = new MailAddress(Lfx.Workspace.Master.CurrentConfig.Empresa.Email, Lfx.Workspace.Master.CurrentUser.CompleteName + " en " + Lfx.Workspace.Master.CurrentConfig.Empresa.Nombre);
                         try {
                                 //No sé por qué, pero una vez dió un error al poner el asunto
                                 Mensaje.Subject = ex.Message;

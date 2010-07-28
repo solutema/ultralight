@@ -39,7 +39,7 @@ using System.ComponentModel;
 
 namespace Lui.Forms
 {
-	public partial class Form : System.Windows.Forms.Form
+        public partial class Form : System.Windows.Forms.Form, IDataControl
 	{
                 private Lfx.Data.DataBase m_DataBase = null;
 		public event System.EventHandler WorkspaceChanged;
@@ -79,30 +79,36 @@ namespace Lui.Forms
                                 WorkspaceChangedHandler(this, null);
 		}	
 
-		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public Lfx.Workspace Workspace
-		{
-			get
-			{
-				return Lfx.Workspace.Master;
-			}
-		}
-
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public Lfx.Data.DataBase DataBase
-                {
-                        get
-                        {
-                                if (m_DataBase == null)
-                                        m_DataBase = this.Workspace.GetDataBase(this.Text);
-                                return m_DataBase;
-                        }
-                }
-
                 private void Form_TextChanged(object sender, EventArgs e)
                 {
                         if (m_DataBase != null)
                                 m_DataBase.Name = this.Text;
+                }
+
+                /// <summary>
+                /// IDataControl
+                /// </summary>
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public Lfx.Workspace Workspace
+                {
+                        get
+                        {
+                                return Lfx.Workspace.Master;
+                        }
+                }
+
+                /// <summary>
+                /// IDataControl
+                /// </summary>
+                public Lfx.Data.DataBase DataBase
+                {
+                        get
+                        {
+                                if (m_DataBase == null && this.Workspace != null)
+                                        m_DataBase = this.Workspace.GetDataBase(this.Text);
+
+                                return m_DataBase;
+                        }
                 }
 	}
 }

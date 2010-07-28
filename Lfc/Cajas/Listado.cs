@@ -213,7 +213,7 @@ namespace Lfc.Cajas
                                 ListingContent.AppendLine("===============================================================================");
                                 ListingContent.AppendLine();
 
-                                double Transporte = Math.Round(this.DataBase.FieldDouble("SELECT saldo FROM cajas_movim WHERE  id_caja=" + m_Caja.ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateTimeSql(m_Fechas.From).ToString() + "' ORDER BY id_movim DESC"), this.Workspace.CurrentConfig.Currency.DecimalPlaces);
+                                double Transporte = Math.Round(this.DataBase.FieldDouble("SELECT saldo FROM cajas_movim WHERE  id_caja=" + m_Caja.ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateTimeSql(m_Fechas.From).ToString() + "' ORDER BY id_movim DESC"), this.Workspace.CurrentConfig.Moneda.Decimales);
 
                                 double SubTotal = 0; double Ingresos = 0; double Egresos = 0; string LastAgrupar = "slfadf*af*df*asdf";
                                 foreach (System.Data.DataRow row in TmpTabla.Rows) {
@@ -226,7 +226,7 @@ namespace Lfc.Cajas
                                                 if (NuevoAgrupar != LastAgrupar) {
                                                         LastAgrupar = NuevoAgrupar;
                                                         if (SubTotal != 0) {
-                                                                ListingContent.AppendLine("                    SUBTOTAL: " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
+                                                                ListingContent.AppendLine("                    SUBTOTAL: " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales));
                                                                 SubTotal = 0;
                                                         }
                                                         switch (m_Agrupar) {
@@ -293,28 +293,28 @@ namespace Lfc.Cajas
 
                                         if (System.Convert.ToDouble(row["importe"]) < 0) {
                                                 Egresos += Math.Abs(System.Convert.ToDouble(row["importe"]));
-                                                sRenglon += " " + Lfx.Types.Formatting.FormatCurrency(Math.Abs(System.Convert.ToDouble(row["importe"])), this.Workspace.CurrentConfig.Currency.DecimalPlaces).PadLeft(10);
+                                                sRenglon += " " + Lfx.Types.Formatting.FormatCurrency(Math.Abs(System.Convert.ToDouble(row["importe"])), this.Workspace.CurrentConfig.Moneda.Decimales).PadLeft(10);
                                                 sRenglon += " " + "          ";
                                         } else {
                                                 Ingresos += System.Convert.ToDouble(row["importe"]);
                                                 sRenglon += " " + "          ";
-                                                sRenglon += " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(row["importe"]), this.Workspace.CurrentConfig.Currency.DecimalPlaces).PadLeft(10);
+                                                sRenglon += " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(row["importe"]), this.Workspace.CurrentConfig.Moneda.Decimales).PadLeft(10);
                                         }
                                         SubTotal += System.Convert.ToDouble(row["importe"]);
 
                                         ListingContent.AppendLine(sRenglon);
                                 }
                                 if (m_Agrupar.Length > 0 && SubTotal != 0) {
-                                        ListingContent.AppendLine("                    SUBTOTAL: " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
+                                        ListingContent.AppendLine("                    SUBTOTAL: " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales));
                                         SubTotal = 0;
                                 }
                                 // If dSubTotal Then ListingContent.Append(environment.NewLine & "            SUBTOTAL: " & Lfx.Types.Formatting.FormatCurrency(dSubTotal) & environment.NewLine & environment.NewLine)
                                 ListingContent.AppendLine();
                                 ListingContent.AppendLine("===============================================================================");
-                                ListingContent.AppendLine("            Transporte: $ " + Lfx.Types.Formatting.FormatCurrency(Transporte, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
-                                ListingContent.AppendLine("            Ingresos  : $ " + Lfx.Types.Formatting.FormatCurrency(Ingresos, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
-                                ListingContent.AppendLine("            Egresos   : $ " + Lfx.Types.Formatting.FormatCurrency(Egresos, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
-                                ListingContent.AppendLine("            Saldo     : $ " + Lfx.Types.Formatting.FormatCurrency(Transporte + Ingresos - Egresos, this.Workspace.CurrentConfig.Currency.DecimalPlaces));
+                                ListingContent.AppendLine("            Transporte: $ " + Lfx.Types.Formatting.FormatCurrency(Transporte, this.Workspace.CurrentConfig.Moneda.Decimales));
+                                ListingContent.AppendLine("            Ingresos  : $ " + Lfx.Types.Formatting.FormatCurrency(Ingresos, this.Workspace.CurrentConfig.Moneda.Decimales));
+                                ListingContent.AppendLine("            Egresos   : $ " + Lfx.Types.Formatting.FormatCurrency(Egresos, this.Workspace.CurrentConfig.Moneda.Decimales));
+                                ListingContent.AppendLine("            Saldo     : $ " + Lfx.Types.Formatting.FormatCurrency(Transporte + Ingresos - Egresos, this.Workspace.CurrentConfig.Moneda.Decimales));
                                 txtReporte.Text = ListingContent.ToString();
                         }
 

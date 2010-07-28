@@ -1,0 +1,8 @@
+C:\Projects\LazaroOSE\Lazaro.Docs\bin\Debug\Lazaro.Docs.dll
+C:\Projects\LazaroOSE\Lazaro.Docs\bin\Debug\Lazaro.Docs.pdb
+C:\Projects\LazaroOSE\Lazaro.Docs\bin\Debug\Lfx.dll
+C:\Projects\LazaroOSE\Lazaro.Docs\bin\Debug\Lfx.pdb
+C:\Projects\LazaroOSE\Lazaro.Docs\bin\Debug\Lfx.xml
+C:\Projects\LazaroOSE\Lazaro.Docs\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\LazaroOSE\Lazaro.Docs\obj\Debug\Lazaro.Docs.dll
+C:\Projects\LazaroOSE\Lazaro.Docs\obj\Debug\Lazaro.Docs.pdb
