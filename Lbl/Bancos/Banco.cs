@@ -40,11 +40,11 @@ namespace Lbl.Bancos
 		//Heredar constructor
 		public Banco(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-		public Banco(Lfx.Data.DataBase dataBase, int idBanco)
-			: this(dataBase)
-		{
-			m_ItemId = idBanco;
-		}
+		public Banco(Lfx.Data.DataBase dataBase, int itemId)
+			: base(dataBase, itemId) { }
+
+                public Banco(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
 		{

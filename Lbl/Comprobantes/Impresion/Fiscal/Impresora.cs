@@ -832,7 +832,7 @@ namespace Lbl.Comprobantes.Impresion.Fiscal
                                                                         Fac.Id,
                                                                         0,
                                                                         "");
-                                                                Fac.CancelarImporte(Fac.ImporteImpago);
+                                                                Fac.CancelarImporte(Fac.ImporteImpago, null);
                                                         }
                                                         break;
                                                 case Lbl.Pagos.TipoFormasDePago.CuentaCorriente:

@@ -31,60 +31,59 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Diagnostics;
-using System.Windows.Forms;
+using System.Text;
 
-namespace Lbl.Impresion
+namespace Lbl.Impuestos
 {
-	public partial class ManualFeedDialog : System.Windows.Forms.Form
-	{
-		public ManualFeedDialog() : base()
-		{
-			// Necesario para admitir el Diseñador de Windows Forms
-			InitializeComponent();
-		}
+        public class Alicuota : ElementoDeDatos
+        {
+                public Alicuota(Lfx.Data.DataBase dataBase)
+                        : base(dataBase) { }
 
-		private void ManualFeedForm_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
-		{
-			switch (e.KeyChar)
-			{
-				case ' ':
-					e.Handled = true;
-					this.DialogResult = DialogResult.OK;
-					this.Close();
-					break;
-				case (char)Keys.Escape:
-					e.Handled = true;
-					this.DialogResult = DialogResult.Cancel;
-					this.Close();
-					break;
-			}		
-		}
+                public Alicuota(Lfx.Data.DataBase dataBase, int itemId)
+			: base(dataBase, itemId) { }
 
-		public string DocumentName
+                public Alicuota(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
+
+		public override string TablaDatos
 		{
 			get
 			{
-				return txtDocumento.Text;
-			}
-			set
-			{
-				txtDocumento.Text = value;
+				return "alicuotas";
 			}
 		}
 
-		public string PrinterName
+		public override string CampoId
 		{
 			get
 			{
-				return txtImpresora.Text;
-			}
-			set
-			{
-				txtImpresora.Text = value;
+                                return "id_alicuota";
 			}
 		}
-	}
+
+                public double Porcentaje
+                {
+                        get
+                        {
+                                return this.FieldDouble("porcentaje");
+                        }
+                        set
+                        {
+                                this.Registro["porcentaje"] = value;
+                        }
+                }
+
+                public double ImporteMinimo
+                {
+                        get
+                        {
+                                return this.FieldDouble("importe_minimo");
+                        }
+                        set
+                        {
+                                this.Registro["importe_minimo"] = value;
+                        }
+                }
+        }
 }

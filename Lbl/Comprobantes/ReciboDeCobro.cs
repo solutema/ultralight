@@ -64,6 +64,7 @@ namespace Lbl.Comprobantes
                         Lfx.Types.OperationResult Res = base.Crear();
                         this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.RC.PV", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
                         this.Tipo = new Tipo(this.DataBase, "RC");
+                        this.Concepto = new Cajas.Concepto(this.DataBase, 11000);
                         return Res;
                 }
         }

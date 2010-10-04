@@ -233,7 +233,7 @@ namespace ServidorFiscal
 
                                                 if (Res.HacerCierreZ) {
                                                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Hacer Cierre Z", "Es obligatorio hacer un Cierre Z antes de continuar. ¿Desea hacer el cierre ahora?");
-                                                        Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+                                                        Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
 
                                                         if (Pregunta.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                                                                 // Hago el cierre, y Res es el resultado del cierre

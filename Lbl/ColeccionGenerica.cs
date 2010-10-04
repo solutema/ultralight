@@ -38,7 +38,7 @@ namespace Lbl
         /// <summary>
         /// Una colección Generica para ElementosDeDatos.
         /// </summary>
-        public class ColeccionGenerica<T> //: System.Collections.Generic.IEnumerable<T>
+        public class ColeccionGenerica<T> where T : Lbl.ElementoDeDatos
         {
                 public Lfx.Data.DataBase DataBase;
                 public List<T> List = new List<T>();
@@ -59,10 +59,7 @@ namespace Lbl
                         this.List.Clear();
                         foreach (System.Data.DataRow Rw in tabla.Rows) {
                                 Lfx.Data.Row Lrw = (Lfx.Data.Row)Rw;
-                                Type t = typeof(T);
-                                System.Reflection.ConstructorInfo TConstr = t.GetConstructor(new Type[] { typeof(Lfx.Data.DataBase), typeof(Lfx.Data.Row) });
-                                T Elem = (T)(TConstr.Invoke(new object[] { dataBase, Lrw }));
-                                this.List.Add(Elem);
+                                this.AddFromRow(Lrw);
                         }
                 }
 
@@ -70,12 +67,16 @@ namespace Lbl
                         : this(tabla.DataBase)
                 {
                         this.List.Clear();
-                        foreach (Lfx.Data.Row Lrw in tabla.FastRows) {
-                                Type t = typeof(T);
-                                System.Reflection.ConstructorInfo TConstr = t.GetConstructor(new Type[] { typeof(Lfx.Data.DataBase), typeof(Lfx.Data.Row) });
-                                T Elem = (T)(TConstr.Invoke(new object[] { this.DataBase, Lrw }));
-                                this.List.Add(Elem);
+                        tabla.FastRows.LoadAll();
+                        foreach (Lfx.Data.Row Lrw in tabla.FastRows.Values) {
+                                this.AddFromRow(Lrw);
                         }
+                }
+
+                private void AddFromRow(Lfx.Data.Row row)
+                {
+                        T Elem = Instanciador.Instanciar<T>(this.DataBase, row);
+                        this.List.Add(Elem);
                 }
 
                 /// <summary>

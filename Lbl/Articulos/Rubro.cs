@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -33,49 +33,66 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lbl
+namespace Lbl.Articulos
 {
-        public class Etiqueta : ElementoDeDatos
-        {
-                //Heredar constructor
-		public Etiqueta(Lfx.Data.DataBase dataBase)
-                        : base(dataBase) { }
+	public class Rubro : ElementoDeDatos
+	{
+                public Lbl.Impuestos.Alicuota Alicuota = null;
 
-                public Etiqueta(Lfx.Data.DataBase dataBase, int itemId)
+		public Rubro(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+
+		public Rubro(Lfx.Data.DataBase dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Etiqueta(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                public Rubro(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
-                public override string TablaDatos
+		public override string TablaDatos
+		{
+			get
+			{
+				return "articulos_rubros";
+			}
+		}
+
+		public override string CampoId
+		{
+			get
+			{
+				return "id_rubro";
+			}
+		}
+
+                public override void OnLoad()
                 {
-                        get
-                        {
-                                return "sys_labels";
-                        }
+                        base.OnLoad();
+
+                        if (this.FieldInt("id_alicuota") != 0)
+                                this.Alicuota = new Impuestos.Alicuota(this.DataBase, this.FieldInt("id_alicuota"));
+                        else
+                                this.Alicuota = null;
                 }
 
-                public override string CampoId
-                {
-                        get
-                        {
-                                return "id_label";
-                        }
-                }
 
-                public static implicit operator Etiqueta(Lfx.Data.Row row)
+		public override Lfx.Types.OperationResult Guardar()
                 {
-                        Etiqueta Res = new Etiqueta(((Lfx.Data.Table)(row.Table)).DataBase);
-                        Res.FromRow(row);
-                        return Res;
-                }
+			qGen.TableCommand Comando;
 
-                public string TablaReferencia
-                {
-                        get
-                        {
-                                return this.FieldString("tablas");
+                        if (this.Existe == false) {
+                                Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
+                        } else {
+                                Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
-                }
-        }
+
+                        Comando.Fields.AddWithValue("nombre", this.Nombre);
+
+			this.AgregarTags(Comando);
+
+                        this.DataBase.Execute(Comando);
+
+			return base.Guardar();
+		}
+
+	}
 }

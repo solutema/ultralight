@@ -57,10 +57,10 @@ namespace Lbl.Cajas
                         : base(dataBase) {}
 
                 public Vencimiento(Lfx.Data.DataBase dataBase, int itemId)
-			: this(dataBase)
-		{
-                        m_ItemId = itemId;
-		}
+			: base(dataBase, itemId) { }
+
+                public Vencimiento(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
 
                 public override Lfx.Types.OperationResult Crear()
                 {

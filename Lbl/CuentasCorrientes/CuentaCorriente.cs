@@ -67,9 +67,15 @@ namespace Lbl.CuentasCorrientes
                 /// Calcula el saldo actual de la cuenta corriente.
                 /// </summary>
                 /// <returns>El monto adeudado (puede ser positivo o negativo) en la cuenta corriente.</returns>
-                public double Saldo()
+                public double Saldo(bool forUpdate)
                 {
-                        return this.DataBase.FieldDouble("SELECT saldo FROM " + this.TablaDatos + " WHERE id_cliente=" + this.Id.ToString() + " ORDER BY " + this.CampoId + " DESC LIMIT 1");
+                        qGen.Select SelSaldo = new qGen.Select(this.TablaDatos, forUpdate);
+                        SelSaldo.Fields = "saldo";
+                        SelSaldo.WhereClause = new qGen.Where("id_cliente", this.Id);
+                        SelSaldo.Order = this.CampoId + " DESC";
+                        SelSaldo.Window = new qGen.Window(1);
+
+                        return this.DataBase.FieldDouble(SelSaldo);
                 }
 
 
@@ -115,7 +121,7 @@ namespace Lbl.CuentasCorrientes
                 /// <returns>El resultado de la operación</returns>
                 public Lfx.Types.OperationResult Movimiento(bool auto, int idConcepto, string concepto, double importeDebito, string obs, int idComprob, int idRecibo, bool cancelaCosas)
                 {
-                        double SaldoActual = this.Saldo();
+                        double SaldoActual = this.Saldo(true);
                         qGen.TableCommand Comando; Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
 				
                         Comando.Fields.AddWithValue("auto", auto ? (int)1 : (int)0);
@@ -189,7 +195,7 @@ namespace Lbl.CuentasCorrientes
                         if(comprob.Compra)
                                 throw new InvalidOperationException("La factura se que ingresa no corresponde al cliente");
 
-                        double SaldoCtaCteAntes = this.Saldo();
+                        double SaldoCtaCteAntes = this.Saldo(true);
 
                         this.Movimiento(true, new Lbl.Cajas.Concepto(comprob.DataBase, 11000), comprob.ToString() + " por $ " + Lfx.Types.Formatting.FormatCurrency(comprob.Total, this.Workspace.CurrentConfig.Moneda.Decimales), comprob.Tipo.EsNotaCredito ? -comprob.Total : comprob.Total, null, comprob, null, comprob.Tipo.EsFacturaNCoND);
                         double FacturaSaldo = comprob.Total - comprob.ImporteCancelado;

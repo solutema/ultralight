@@ -40,10 +40,10 @@ namespace Lbl.Articulos
 		public Margen(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
 		public Margen(Lfx.Data.DataBase dataBase, int itemId)
-			: this(dataBase)
-		{
-			m_ItemId = itemId;
-		}
+			: base(dataBase, itemId) { }
+
+                public Margen(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
 		{

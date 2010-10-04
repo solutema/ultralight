@@ -38,16 +38,14 @@ namespace Lbl.Cajas
 	public class Caja : ElementoDeDatos
 	{
 		//Heredar constructores
-		public Caja(Lfx.Data.DataBase dataBase, int idCaja)
-			: base(dataBase)
-		{
-			m_ItemId = idCaja;
-		}
+                public Caja(Lfx.Data.DataBase dataBase) 
+                        : base(dataBase) { }
 
-                public Caja(Lfx.Data.DataBase dataBase, Lfx.Data.Row row)
-                        : base(dataBase, row)
-                {
-                }
+		public Caja(Lfx.Data.DataBase dataBase, int itemId)
+			: base(dataBase, itemId) { }
+
+                public Caja(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
 		{

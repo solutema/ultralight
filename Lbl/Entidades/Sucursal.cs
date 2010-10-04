@@ -38,13 +38,14 @@ namespace Lbl.Entidades
 	public class Sucursal : ElementoDeDatos
 	{
 		//Heredar constructor
-		public Sucursal(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+		public Sucursal(Lfx.Data.DataBase dataBase)
+                        : base(dataBase) { }
 
 		public Sucursal(Lfx.Data.DataBase dataBase, int itemId)
-			: this(dataBase)
-		{
-			m_ItemId = itemId;
-		}
+			: base(dataBase, itemId) { }
+
+                public Sucursal(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
 		{

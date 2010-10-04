@@ -47,13 +47,14 @@ namespace Lbl.Entidades
                 private Localidad m_Parent = null;
 
 		//Heredar constructor
-		public Localidad(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+		public Localidad(Lfx.Data.DataBase dataBase)
+                        : base(dataBase) { }
 
 		public Localidad(Lfx.Data.DataBase dataBase, int itemId)
-			: this(dataBase)
-		{
-			m_ItemId = itemId;
-		}
+			: base(dataBase, itemId) { }
+
+                public Localidad(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
 		{

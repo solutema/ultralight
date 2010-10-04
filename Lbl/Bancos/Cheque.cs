@@ -54,6 +54,9 @@ namespace Lbl.Bancos
                         this.Cargar();
 		}
 
+                public Cheque(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
+
                 public Cheque(Lfx.Data.DataBase dataBase, Lbl.Comprobantes.ComprobanteConArticulos factura)
                         : this(dataBase)
                 {

@@ -55,7 +55,8 @@ namespace Lbl.Cuotas
                 public Lbl.Personas.Persona Cliente, Comercio;
 
 		//Heredar constructores
-		public Cuota(Lfx.Data.DataBase dataBase) : base(dataBase)
+		public Cuota(Lfx.Data.DataBase dataBase)
+                        : base(dataBase)
                 {
                         for (int i = 1; i < 120; i++) {
                                 EstadosCuotas[i] = Estados.Nueva;
@@ -64,10 +65,7 @@ namespace Lbl.Cuotas
                 }
 
                 public Cuota(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
-                        : this(dataBase)
-                {
-                        this.FromRow(fromRow);
-                }
+                        : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
 		{
@@ -137,18 +135,18 @@ namespace Lbl.Cuotas
                 {
                         if (this.Registro != null) {
                                 if (this.FieldInt("id_cliente") != 0)
-                                        Cliente = new Lbl.Personas.Persona(DataBase, this.FieldInt("id_cliente"), false);
+                                        this.Cliente = new Lbl.Personas.Persona(DataBase, this.FieldInt("id_cliente"));
 
                                 if (this.FieldInt("id_comercio") != 0)
-                                        Comercio = new Lbl.Personas.Persona(DataBase, this.FieldInt("id_comercio"), false);
+                                        this.Comercio = new Lbl.Personas.Persona(DataBase, this.FieldInt("id_comercio"));
 
                                 if (this.FieldInt("id_recibo") != 0)
-                                        Recibo = new Lbl.Comprobantes.Recibo(DataBase, this.FieldInt("id_recibo"));
+                                        this.Recibo = new Lbl.Comprobantes.Recibo(DataBase, this.FieldInt("id_recibo"));
                         }
                         base.OnLoad();
                 }
 
-                public new Estados Estado
+                new public Estados Estado
                 {
                         get
                         {

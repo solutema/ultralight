@@ -35,21 +35,8 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        public class ColeccionComprobanteConArticulos : System.Collections.CollectionBase
+        public class ColeccionComprobanteConArticulos : System.Collections.Generic.List<ComprobanteConArticulos>
         {
-                public void Add(ComprobanteConArticulos comp)
-                {
-                        List.Add(comp);
-                }
-
-                public virtual ComprobanteConArticulos this[int index]
-                {
-                        get
-                        {
-                                return (ComprobanteConArticulos)this.List[index];
-                        }
-                }
-
                 public double Total
                 {
                         get
@@ -62,7 +49,7 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                public double Cancelado
+                public double ImporteCancelado
                 {
                         get
                         {

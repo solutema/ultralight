@@ -64,7 +64,7 @@ namespace Lbl.Comprobantes
 
 		private Articulos.Articulo m_Articulo = null;
                 private int m_IdArticulo;
-                public double Cantidad, Unitario, Costo, Recargo;
+                public double Cantidad, Unitario, Costo;
 		public string Descripcion;
 		public int Orden;
 
@@ -118,6 +118,18 @@ namespace Lbl.Comprobantes
                         set
                         {
                                 Registro["series"] = value;
+                        }
+                }
+
+                public double Recargo
+                {
+                        get
+                        {
+                                return this.FieldDouble("recargo");
+                        }
+                        set
+                        {
+                                Registro["recargo"] = value;
                         }
                 }
 

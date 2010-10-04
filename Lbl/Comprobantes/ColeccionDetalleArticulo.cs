@@ -29,31 +29,33 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        public class ColeccionDetalleArticulos : System.Collections.CollectionBase
+        public class ColeccionDetalleArticulos : List<DetalleArticulo>
         {
-                public void Add(DetalleArticulo art)
+                public Lbl.Comprobantes.ComprobanteConArticulos Comprobante = null;
+
+                public ColeccionDetalleArticulos(Lbl.Comprobantes.ComprobanteConArticulos comprobante)
                 {
-                        List.Add(art);
+                        this.Comprobante = comprobante;
                 }
 
-                public virtual DetalleArticulo this[int index]
+                public void AddWithValue(Lbl.Articulos.Articulo articulo, double cantidad, double unitario, string obs)
                 {
-                        get
-                        {
-                                return (DetalleArticulo)this.List[index];
-                        }
+                        DetalleArticulo Det = new DetalleArticulo(this.Comprobante.DataBase);
+                        Det.Articulo = articulo;
+                        Det.Cantidad = cantidad;
+                        Det.Unitario = unitario;
+                        Det.Obs = obs;
                 }
 
                 public ColeccionDetalleArticulos Clone()
                 {
-                        ColeccionDetalleArticulos Res = new ColeccionDetalleArticulos();
-                        foreach (DetalleArticulo Det in this.List) {
+                        ColeccionDetalleArticulos Res = new ColeccionDetalleArticulos(this.Comprobante);
+                        foreach (DetalleArticulo Det in this) {
                                 // FIXME: debería clonar también Det
                                 Res.Add(Det);
                         }
@@ -68,11 +70,14 @@ namespace Lbl.Comprobantes
                 /// </summary>
                 public ColeccionDetalleArticulos Unificar()
                 {
-                        ColeccionDetalleArticulos Res = new ColeccionDetalleArticulos();
+                        ColeccionDetalleArticulos Res = new ColeccionDetalleArticulos(this.Comprobante);
                         foreach (DetalleArticulo Det in this) {
                                 bool Encontre = false;
                                 foreach (DetalleArticulo Det2 in Res) {
-                                        if (Det2.IdArticulo == Det.IdArticulo) {
+                                        if (Det2.IdArticulo == Det.IdArticulo
+                                                && Det2.Unitario == Det.Unitario
+                                                && Det2.Obs == Det.Obs
+                                                && Det2.Nombre == Det.Nombre) {
                                                 //Si ya existe, sumo la cantidad
                                                 Encontre = true;
                                                 Det2.Cantidad += Det.Cantidad;
@@ -94,12 +99,12 @@ namespace Lbl.Comprobantes
                 {
                         ColeccionDetalleArticulos Desde;
                         if (original == null)
-                                Desde = new ColeccionDetalleArticulos();
+                                Desde = new ColeccionDetalleArticulos(this.Comprobante);
                         else
                                 Desde = original.Unificar();
                         ColeccionDetalleArticulos Hacia = this.Unificar();
 
-                        ColeccionDetalleArticulos Res = new ColeccionDetalleArticulos();
+                        ColeccionDetalleArticulos Res = new ColeccionDetalleArticulos(this.Comprobante);
 
                         foreach (DetalleArticulo DetHacia in Hacia) {
                                 bool Encontre = false;
@@ -148,7 +153,7 @@ namespace Lbl.Comprobantes
                         get
                         {
                                 StringBuilder Res = new StringBuilder();
-                                foreach (Lbl.Comprobantes.DetalleArticulo Art in this.List) {
+                                foreach (Lbl.Comprobantes.DetalleArticulo Art in this) {
                                         if (Art.Series != null)
                                                 Res.AppendLine(Art.Series);
                                 }

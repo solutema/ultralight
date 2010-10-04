@@ -33,48 +33,67 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lbl
+namespace Lbl.Articulos
 {
-        public class Etiqueta : ElementoDeDatos
+        public class ItemReceta
         {
-                //Heredar constructor
-		public Etiqueta(Lfx.Data.DataBase dataBase)
-                        : base(dataBase) { }
+                public Lbl.Articulos.Articulo Articulo = null;
+                public double Cantidad = 0;
 
-                public Etiqueta(Lfx.Data.DataBase dataBase, int itemId)
-			: base(dataBase, itemId) { }
+                public ItemReceta(Lbl.Articulos.Articulo articulo, double cantidad)
+                {
+                        this.Articulo = articulo;
+                        this.Cantidad = cantidad;
+                }
 
-                public Etiqueta(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public override string ToString()
+                {
+                        if (this.Articulo == null)
+                                return "";
+                        else
+                                return this.Cantidad.ToString() + " " + this.Articulo.ToString();
+                }
 
-                public override string TablaDatos
+                public double Costo
                 {
                         get
                         {
-                                return "sys_labels";
+                                return this.Articulo.Costo * this.Cantidad;
                         }
                 }
 
-                public override string CampoId
+                public double Pvp
                 {
                         get
                         {
-                                return "id_label";
+                                return this.Articulo.Pvp * this.Cantidad;
+                        }
+                }
+        }
+
+        public class Receta : List<ItemReceta>
+        {
+                public double Costo
+                {
+                        get
+                        {
+                                double Res = 0;
+                                foreach (ItemReceta Itm in this) {
+                                        Res += Itm.Costo;
+                                }
+                                return Res;
                         }
                 }
 
-                public static implicit operator Etiqueta(Lfx.Data.Row row)
-                {
-                        Etiqueta Res = new Etiqueta(((Lfx.Data.Table)(row.Table)).DataBase);
-                        Res.FromRow(row);
-                        return Res;
-                }
-
-                public string TablaReferencia
+                public double Pvp
                 {
                         get
                         {
-                                return this.FieldString("tablas");
+                                double Res = 0;
+                                foreach (ItemReceta Itm in this) {
+                                        Res += Itm.Pvp;
+                                }
+                                return Res;
                         }
                 }
         }

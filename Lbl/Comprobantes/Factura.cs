@@ -40,11 +40,11 @@ namespace Lbl.Comprobantes
 		//Heredar constructor
 		public Factura(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-		public Factura(Lfx.Data.DataBase dataBase, int idComprobante)
-			: this(dataBase)
-		{
-			m_ItemId = idComprobante;
+                public Factura(Lfx.Data.DataBase dataBase, int idComprobante)
+                        : this(dataBase)
+                {
+                        m_ItemId = idComprobante;
                         this.Cargar();
-		}
+                }
 	}
 }

@@ -112,7 +112,7 @@ namespace Lbl.Comprobantes.Impresion
                                                                 ComprobConArt.Id,
                                                                 0,
                                                                 "");
-							ComprobConArt.CancelarImporte(ComprobConArt.ImporteImpago);
+							ComprobConArt.CancelarImporte(ComprobConArt.ImporteImpago, null);
                                                 }
                                                 break;
                                         case Lbl.Pagos.TipoFormasDePago.CuentaCorriente:

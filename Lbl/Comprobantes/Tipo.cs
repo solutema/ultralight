@@ -40,13 +40,14 @@ namespace Lbl.Comprobantes
                 public Articulos.Situacion SituacionOrigen, SituacionDestino;
 
                 //Heredar constructor
-		public Tipo(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+		public Tipo(Lfx.Data.DataBase dataBase)
+                        : base(dataBase) { }
 
-                public Tipo(Lfx.Data.DataBase dataBase, int idTipo)
-			: this(dataBase)
-		{
-                        m_ItemId = idTipo;
-		}
+                public Tipo(Lfx.Data.DataBase dataBase, int itemId)
+			: base(dataBase, itemId) { }
+
+                public Tipo(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
 
                 public Tipo(Lfx.Data.DataBase dataBase, string letraTipo)
                         : this(dataBase)

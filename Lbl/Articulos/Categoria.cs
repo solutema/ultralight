@@ -37,18 +37,15 @@ namespace Lbl.Articulos
 {
 	public class Categoria : ElementoDeDatos
 	{
+                protected Rubro m_Rubro = null;
+
 		public Categoria(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
 		public Categoria(Lfx.Data.DataBase dataBase, int itemId)
-			: this(dataBase)
-		{
-			m_ItemId = itemId;
-		}
+			: base(dataBase, itemId) { }
 
                 public Categoria(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow)
-                {
-                }
+                        : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
 		{
@@ -114,16 +111,38 @@ namespace Lbl.Articulos
 			}
 		}
 
-                public bool RequiereNS
+                public Seguimientos Seguimiento
                 {
                         get
                         {
-                                return this.FieldInt("requierens") != 0;
+                                return ((Seguimientos)(this.FieldInt("requierens")));
                         }
                         set
                         {
-                                this.Registro["requierens"] = value ? 1 : 0;
+                                this.Registro["requierens"] = (int)value;
                         }
+                }
+
+                public Rubro Rubro
+                {
+                        get
+                        {
+                                return m_Rubro;
+                        }
+                        set
+                        {
+                                m_Rubro = value;
+                        }
+                }
+
+                public override void OnLoad()
+                {
+                        if (this.FieldInt("id_rubro") != 0)
+                                m_Rubro = new Rubro(this.DataBase, this.FieldInt("id_rubro"));
+                        else
+                                m_Rubro = null;
+
+                        base.OnLoad();
                 }
 
 		public override Lfx.Types.OperationResult Guardar()
@@ -141,8 +160,12 @@ namespace Lbl.Articulos
                         Comando.Fields.AddWithValue("nombresing", this.NombreSingular);
                         Comando.Fields.AddWithValue("stock_minimo", this.StockMinimo);
                         Comando.Fields.AddWithValue("web", this.PublicacionWeb);
-                        Comando.Fields.AddWithValue("requierens", this.RequiereNS ? 1 : 0);
+                        Comando.Fields.AddWithValue("requierens", ((int)(this.Seguimiento)));
                         Comando.Fields.AddWithValue("obs", this.Obs);
+                        if (this.Rubro == null)
+                                Comando.Fields.AddWithValue("id_rubro", null);
+                        else
+                                Comando.Fields.AddWithValue("id_rubro", this.Rubro.Id);
                         Comando.Fields.AddWithValue("garantia", this.Garantia);
 
 			this.AgregarTags(Comando);

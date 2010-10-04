@@ -35,19 +35,6 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
-	public enum Tipos
-	{
-		Regular = 0,
-		Compuesto = 1
-	}
-
-	public enum Publicacion
-	{
-		Nunca = 0,
-		Siempre = 1,
-		SoloSiHayStockOPedidos = 2
-	}
-
 	public class Articulo : ElementoDeDatos
 	{
                 public Lbl.Articulos.Categoria Categoria = null;
@@ -56,19 +43,16 @@ namespace Lbl.Articulos
                 public Lbl.Articulos.Marca Marca = null;
                 public Lbl.Cajas.Caja Caja = null;
                 private ColeccionItem m_ListaItem = null;
+                private Receta m_Receta = null;
 
 		//Heredar constructor
 		public Articulo(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-		public Articulo(Lfx.Data.DataBase dataBase, int idArticulo)
-			: base(dataBase, idArticulo)
-		{
-		}
+		public Articulo(Lfx.Data.DataBase dataBase, int itemId)
+			: base(dataBase, itemId) { }
 
                 public Articulo(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow)
-                {
-                }
+                        : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
 		{
@@ -214,7 +198,7 @@ namespace Lbl.Articulos
 			}
 		}
 
-		public double PVP
+		public double Pvp
 		{
 			get
 			{
@@ -225,6 +209,22 @@ namespace Lbl.Articulos
 				Registro["pvp"] = value;
 			}
 		}
+
+                public Lfx.Types.LDateTime FechaPrecio
+                {
+                        get
+                        {
+                                return this.FieldDateTime("fecha_precio");
+                        }
+                }
+
+                public Lfx.Types.LDateTime FechaAlta
+                {
+                        get
+                        {
+                                return this.FieldDateTime("fecha_creado");
+                        }
+                }
 
 		public string Url
 		{
@@ -298,15 +298,15 @@ namespace Lbl.Articulos
 			}
 		}
 
-		public bool ControlaStock
+                public ControlStock ControlStock
 		{
 			get
 			{
-				return System.Convert.ToBoolean(Registro["control_stock"]);
+				return (ControlStock)(Registro.Fields["control_stock"].ValueInt);
 			}
 			set
 			{
-				Registro["control_stock"] = value;
+				Registro["control_stock"] = (int)value;
 			}
 		}
 
@@ -322,11 +322,11 @@ namespace Lbl.Articulos
                         }
                 }
 
-                public bool RequiereNS
+                public Seguimientos Seguimiento
                 {
                         get
                         {
-                                return this.Categoria == null ? false : this.Categoria.RequiereNS;
+                                return this.Categoria == null ? Seguimientos.Ninguno : this.Categoria.Seguimiento;
                         }
                 }
 
@@ -357,31 +357,84 @@ namespace Lbl.Articulos
                         }
 		}
 
+                public double Pedido
+                {
+                        get
+                        {
+                                return this.FieldDouble("pedido");
+                        }
+                }
+
+                public double ObtenerCosto()
+                {
+                        if (this.ControlStock == Articulos.ControlStock.Compuesto && this.Receta != null) {
+                                return Receta.Costo;
+                        } else {
+                                return this.Costo;
+                        }
+                }
+
                 public double ObtenerStockActual()
                 {
-                        return this.DataBase.FieldDouble("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion IN (SELECT id_situacion FROM articulos_situaciones WHERE cuenta_stock<>0)");
+                        switch(this.ControlStock) {
+                                case Articulos.ControlStock.No:
+                                        return 0;
+                                case Articulos.ControlStock.Normal:
+                                        return this.DataBase.FieldDouble(@"SELECT cantidad FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion IN (SELECT id_situacion FROM articulos_situaciones WHERE cuenta_stock<>0)");
+                                case Articulos.ControlStock.Compuesto:
+                                        // Calculo el stock según el elemento de la receta que se acabe primero
+                                        return this.DataBase.FieldDouble(@"SELECT MIN(articulos.stock_actual / articulos_recetas.cantidad) FROM articulos_recetas, articulos WHERE articulos_recetas.id_item=articulos.id_articulo AND articulos_recetas.id_articulo=" + this.Id.ToString());
+                                        /* double CantMin = double.MaxValue;
+                                        foreach (ItemReceta Itm in this.Receta) {
+                                                double Cant = Itm.Articulo.ObtenerStockActual() / Itm.Cantidad;
+                                                if (Cant < CantMin)
+                                                        CantMin = Cant;
+                                        }
+                                        if (CantMin == double.MaxValue)
+                                                return 0;
+                                        else
+                                                return CantMin; */
+                                default:
+                                        throw new NotImplementedException("ObtenerStockActual(): No se puede calcular el stock para " + this.ControlStock.ToString());
+                        }
                 }
 
 		public double ObtenerStockActual(Situacion situacion)
 		{
-			return this.DataBase.FieldDouble("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion=" + situacion.Id.ToString());
+                        switch (this.ControlStock) {
+                                case Articulos.ControlStock.No:
+                                        return 0;
+                                case Articulos.ControlStock.Normal:
+                                        return this.DataBase.FieldDouble("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion=" + situacion.Id.ToString());
+                                case Articulos.ControlStock.Compuesto:
+                                        // Calculo el stock según el elemento de la receta que se acabe primero
+                                        double CantMin = double.MaxValue;
+                                        foreach (ItemReceta Itm in this.Receta) {
+                                                double Cant = Itm.Articulo.ObtenerStockActual(situacion) / Itm.Cantidad;
+                                                if (Cant < CantMin)
+                                                        CantMin = Cant;
+                                        }
+                                        if (CantMin == double.MaxValue)
+                                                return 0;
+                                        else
+                                                return CantMin;
+                                default:
+                                        throw new NotImplementedException("ObtenerStockActual(Situacion): No se puede calcular el stock para " + this.ControlStock.ToString());
+                        }
 		}
 
 		
 		public void MoverStock(double cantidad, string obs, Situacion situacionOrigen, Situacion situacionDestino, string series)
 		{
-                        if (this.ControlaStock) {
+                        if (this.ControlStock != Articulos.ControlStock.No) {
                                 double CantidadEntranteOSalienteDeStock = 0;
 
                                 string[] ListaSeries;
-                                //string ListaSeriesSql;
                                 if (series != null) {
                                         series = series.Replace('\r', '\n');
                                         ListaSeries = series.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
-                                        //ListaSeriesSql = "'" + string.Join("', '", ListaSeries) + "'";
                                 } else {
                                         ListaSeries = new string[0];
-                                        //ListaSeriesSql = "";
                                 }
 
                                 // stock saliente (situación de origen)
@@ -449,16 +502,39 @@ namespace Lbl.Articulos
                                         CantidadEntranteOSalienteDeStock += cantidad;
                                 }
 
+                                // Actualizo el stock actual
                                 if (CantidadEntranteOSalienteDeStock != 0) {
                                         qGen.Update ActualizarCantidad = new qGen.Update("articulos");
                                         ActualizarCantidad.Fields.AddWithValue("stock_actual", new qGen.SqlExpression(@"""stock_actual""+" + Lfx.Types.Formatting.FormatStockSql(CantidadEntranteOSalienteDeStock)));
                                         ActualizarCantidad.WhereClause = new qGen.Where("id_articulo", this.Id);
                                         this.DataBase.Execute(ActualizarCantidad);
-                                        //this.DataBase.Execute("UPDATE articulos SET stock_actual=stock_actual+(" + Lfx.Types.Formatting.FormatNumberSql(CantidadMovida, this.Workspace.CurrentConfig.Products.StockDecimalPlaces) + ") WHERE id_articulo=" + this.Id.ToString());
+
+                                        // Si ees un artículo compuesto
+                                        // Propagar los cambios de stock hacia abajo.
+                                        // Es decir, hacer movimientos de stock de los ingredientes (sub-artículos)
+                                        if (this.ControlStock == Articulos.ControlStock.Compuesto) {
+                                                string ObsSubItems = "Movim. s/salida de " + this.ToString();
+                                                foreach (ItemReceta Itm in this.Receta) {
+                                                        Itm.Articulo.MoverStock(Itm.Cantidad * cantidad, ObsSubItems, situacionOrigen, situacionDestino, series);
+                                                }
+                                        }
+
+                                        // Propagar los cambios de stock hacia arriba.
+                                        // Es decir, si este artículo es ingrediente en la receta de otros artículos, actualizar los artículos padre para que reflejen el cambio de stock de este ingrediente.
+                                        ColeccionGenerica<Articulo> SuperArts = this.SuperArticulos();
+                                        if (SuperArts != null) {
+                                                foreach (Articulo SuperArt in SuperArts.List) {
+                                                        qGen.Update UpdateSuperArt = new qGen.Update("articulos");
+                                                        UpdateSuperArt.Fields.AddWithValue("stock_actual", SuperArt.ObtenerStockActual());
+                                                        UpdateSuperArt.WhereClause = new qGen.Where("id_articulo", SuperArt.Id);
+                                                        this.DataBase.Execute(UpdateSuperArt);
+                                                }
+                                        }
                                 }
 
+
                                 if (this.Caja != null && this.Caja.Existe)
-                                        this.Caja.Movimiento(true, 30000, "Movimiento de stock de artículo " + this.ToString(), this.Workspace.CurrentUser.Id, this.PVP * cantidad, Obs, 0, 0, string.Empty);
+                                        this.Caja.Movimiento(true, 30000, "Movimiento de stock de artículo " + this.ToString(), this.Workspace.CurrentUser.Id, this.Pvp * cantidad, Obs, 0, 0, string.Empty);
                         }
 
 			double Saldo = this.DataBase.FieldDouble("SELECT stock_actual FROM articulos WHERE id_articulo=" + this.Id.ToString());
@@ -482,6 +558,18 @@ namespace Lbl.Articulos
 			this.DataBase.Execute(Comando);
 		}
 
+                /// <summary>
+                /// Devuelve una colección de artículos de los cuales este es un ingrediente.
+                /// </summary>
+                public ColeccionGenerica<Articulo> SuperArticulos()
+                {
+                        System.Data.DataTable SuperArticulos = this.DataBase.Select("SELECT DISTINCT id_articulo FROM articulos_recetas WHERE id_item=" + this.Id.ToString());
+                        if (SuperArticulos == null || SuperArticulos.Rows.Count == 0)
+                                return null;
+                        ColeccionGenerica<Articulo> Res = new ColeccionGenerica<Articulo>(this.DataBase, SuperArticulos);
+                        return Res;
+                }
+
 		public double Costo
 		{
 			get
@@ -494,6 +582,28 @@ namespace Lbl.Articulos
 			}
 		}
 
+                public Receta Receta
+                {
+                        get
+                        {
+                                if (m_Receta == null) {
+                                        m_Receta = new Receta();
+                                        if (this.Existe) {
+                                                System.Data.DataTable Arts = this.DataBase.Select("SELECT id_item, cantidad FROM articulos_recetas WHERE id_articulo=" + this.Id.ToString());
+                                                foreach (System.Data.DataRow Art in Arts.Rows) {
+                                                        ItemReceta Itm = new ItemReceta(new Articulo(this.DataBase, System.Convert.ToInt32(Art["id_item"])), System.Convert.ToDouble(Art["cantidad"]));
+                                                        m_Receta.Add(Itm);
+                                                }
+                                        }
+                                }
+                                return m_Receta;
+                        }
+                        set
+                        {
+                                m_Receta = value;
+                        }
+                }
+
                 public override Lfx.Types.OperationResult Crear()
                 {
                         Lfx.Types.OperationResult Res = base.Crear();
@@ -502,7 +612,8 @@ namespace Lbl.Articulos
                         this.Caja = null;
                         this.Margen = null;
                         this.Proveedor = null;
-                        this.ControlaStock = true;
+                        this.Unidad = "u";
+                        this.ControlStock = Articulos.ControlStock.Normal;
                         int MargenPredet = this.DataBase.FieldInt("SELECT id_margen FROM margenes WHERE predet=1 AND estado<50");
                         if (MargenPredet > 0)
                                 this.Margen = new Margen(this.DataBase, MargenPredet);
@@ -516,36 +627,38 @@ namespace Lbl.Articulos
                         if (Registro["id_categoria"] == null)
                                 this.Categoria = null;
                         else
-                                this.Categoria = new Categoria(this.DataBase, System.Convert.ToInt32(Registro["id_categoria"]));
+                                this.Categoria = new Categoria(this.DataBase, this.FieldInt("id_categoria"));
 
                         if (Registro["id_marca"] == null)
                                 this.Marca = null;
                         else
-                                this.Marca = new Marca(this.DataBase, System.Convert.ToInt32(Registro["id_marca"]));
+                                this.Marca = new Marca(this.DataBase, this.FieldInt("id_marca"));
 
                         if (Registro["id_caja"] == null)
                                 this.Caja = null;
                         else
-                                this.Caja = new Lbl.Cajas.Caja(this.DataBase, System.Convert.ToInt32(Registro["id_caja"]));
+                                this.Caja = new Lbl.Cajas.Caja(this.DataBase, this.FieldInt("id_caja"));
 
                         if (Registro["id_margen"] == null)
                                 this.Margen = null;
                         else
-                                this.Margen = new Margen(this.DataBase, System.Convert.ToInt32(Registro["id_margen"]));
+                                this.Margen = new Margen(this.DataBase, this.FieldInt("id_margen"));
 
                         if (Registro["id_proveedor"] == null)
                                 this.Proveedor = null;
                         else
-                                this.Proveedor = new Lbl.Personas.Persona(this.DataBase, System.Convert.ToInt32(Registro["id_proveedor"]));
+                                this.Proveedor = new Lbl.Personas.Persona(this.DataBase, this.FieldInt("id_proveedor"));
                 }
 
 
                 public override Lfx.Types.OperationResult Guardar()
                 {
-                        double PrecioOriginal = 0;
+                        double PvpOriginal = 0, CostoOriginal = 0;
 
-                        if(this.Existe)
-                                PrecioOriginal = System.Convert.ToDouble(this.RegistroOriginal["pvp"]);
+                        if (this.Existe) {
+                                PvpOriginal = System.Convert.ToDouble(this.RegistroOriginal["pvp"]);
+                                CostoOriginal = System.Convert.ToDouble(this.RegistroOriginal["costo"]);
+                        }
 
 			qGen.TableCommand Comando;
 
@@ -598,9 +711,9 @@ namespace Lbl.Articulos
                         else
                                 Comando.Fields.AddWithValue("id_margen", this.Margen.Id);
                         
-                        Comando.Fields.AddWithValue("pvp", this.PVP);
+                        Comando.Fields.AddWithValue("pvp", this.Pvp);
                         //control_stock, stock_minimo, unidad_stock, rendimiento, unidad_rend, estado, web, fecha_creado, fecha_precio
-                        Comando.Fields.AddWithValue("control_stock", this.ControlaStock ? 1 : 0);
+                        Comando.Fields.AddWithValue("control_stock", (int)(this.ControlStock));
                         Comando.Fields.AddWithValue("stock_minimo", this.StockMinimo);
                         if (this.Existe)
                                 Comando.Fields.AddWithValue("stock_actual", this.ObtenerStockActual());
@@ -630,10 +743,15 @@ namespace Lbl.Articulos
                         if (this.Existe == false) {
                                 m_ItemId = this.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
                         } else {
-                                if (PrecioOriginal != System.Convert.ToDouble(this.Registro["pvp"])) {
+                                if (CostoOriginal != System.Convert.ToDouble(this.Registro["costo"])) {
+                                        // Cambió el costo
+                                        this.RecalcularCostoSuperArticulos();
+                                }
+                                if (PvpOriginal != System.Convert.ToDouble(this.Registro["pvp"])) {
+                                        // Cambió el PVP
                                         // Actualizo la fecha del precio
                                         qGen.Update ActualizarPrecio = new qGen.Update(this.TablaDatos);
-                                        ActualizarPrecio.Fields.AddWithValue("pvp", this.PVP);
+                                        ActualizarPrecio.Fields.AddWithValue("pvp", this.Pvp);
                                         ActualizarPrecio.Fields.AddWithValue("fecha_precio", qGen.SqlFunctions.Now);
                                         ActualizarPrecio.WhereClause = new qGen.Where(this.CampoId, this.Id);
                                         this.DataBase.Execute(ActualizarPrecio);
@@ -647,13 +765,53 @@ namespace Lbl.Articulos
                                                 AgregarAlHistorialDePrecios.Fields.AddWithValue("id_margen", null);
                                         else
                                                 AgregarAlHistorialDePrecios.Fields.AddWithValue("id_margen", this.Margen.Id);
-                                        AgregarAlHistorialDePrecios.Fields.AddWithValue("pvp", this.PVP);
+                                        AgregarAlHistorialDePrecios.Fields.AddWithValue("pvp", this.Pvp);
                                         AgregarAlHistorialDePrecios.Fields.AddWithValue("id_persona", this.Workspace.CurrentUser.Id);
                                         this.DataBase.Execute(AgregarAlHistorialDePrecios);
                                 }
                         }
 
+                        // Si hay una receta guardada, la elimino
+                        qGen.Delete EliminarReceta = new qGen.Delete("articulos_recetas");
+                        EliminarReceta.WhereClause = new qGen.Where("id_articulo", this.Id);
+                        this.DataBase.Execute(EliminarReceta);
+
+                        // Guardar la receta del artículo, si corresponde
+                        if (this.ControlStock == Articulos.ControlStock.Compuesto && this.Receta != null) {
+                                foreach (ItemReceta Itm in this.Receta) {
+                                        qGen.Insert InsertarItemReceta = new qGen.Insert(this.DataBase, "articulos_recetas");
+                                        InsertarItemReceta.Fields.AddWithValue("id_articulo", this.Id);
+                                        InsertarItemReceta.Fields.AddWithValue("id_item", Itm.Articulo.Id);
+                                        InsertarItemReceta.Fields.AddWithValue("cantidad", Itm.Cantidad);
+                                        this.DataBase.Execute(InsertarItemReceta);
+                                }
+                        }
+
                         return base.Guardar();
+                }
+
+                /// <summary>
+                /// Propaga los cambios de costo hacia arriba.
+                /// Es decir, si este artículo es ingrediente en la receta de otros artículos, actualizar los artículos padre para que reflejen el cambio de costo de este ingrediente.
+                /// </summary>
+                public void RecalcularCostoSuperArticulos()
+                {
+                        ColeccionGenerica<Articulo> SuperArts = this.SuperArticulos();
+                        if (SuperArts != null) {
+                                foreach (Articulo SuperArt in SuperArts.List) {
+                                        SuperArt.Cargar();
+                                        qGen.Update UpdateSuperArt = new qGen.Update("articulos");
+                                        UpdateSuperArt.Fields.AddWithValue("costo", SuperArt.ObtenerCosto());
+                                        UpdateSuperArt.WhereClause = new qGen.Where("id_articulo", SuperArt.Id);
+                                        this.DataBase.Execute(UpdateSuperArt);
+                                        SuperArt.RecalcularCostoSuperArticulos();
+                                }
+                        }
+                }
+
+                public override string ToString()
+                {
+                        return this.Nombre;
                 }
 	}
 }

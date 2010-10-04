@@ -38,11 +38,11 @@ namespace Lbl.Cajas
         public class Concepto : ElementoDeDatos
         {
                 //Heredar constructor
-		public Concepto(Lfx.Data.DataBase dataBase, int idConcepto)
-			: base(dataBase)
-		{
-                        m_ItemId = idConcepto;
-		}
+		public Concepto(Lfx.Data.DataBase dataBase, int itemId)
+			: base(dataBase, itemId) { }
+
+                public Concepto(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
 		{

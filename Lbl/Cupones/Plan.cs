@@ -40,11 +40,11 @@ namespace Lbl.Cupones
 		//Heredar constructor
 		public Plan(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-		public Plan(Lfx.Data.DataBase dataBase, int IdPlan)
-			: base(dataBase)
-		{
-			m_ItemId = IdPlan;
-		}
+		public Plan(Lfx.Data.DataBase dataBase, int itemId)
+			: base(dataBase, itemId) { }
+
+                public Plan(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
 
                 public override string TablaDatos
 		{

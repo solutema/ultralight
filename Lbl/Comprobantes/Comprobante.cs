@@ -40,6 +40,9 @@ namespace Lbl.Comprobantes
 		//Heredar constructor
 		protected Comprobante(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
+                public Comprobante(Lfx.Data.DataBase dataBase, Lfx.Data.Row row)
+			: base(dataBase, row) { }
+
 		public Personas.Persona Vendedor, Cliente;
 		public Entidades.Sucursal Sucursal;
                 private Comprobante m_ComprobanteOriginal;

@@ -59,6 +59,9 @@ namespace Lbl.Comprobantes
                         this.Cargar();
                 }
 
+                public Recibo(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
+
                 public override string TablaDatos
                 {
                         get
@@ -456,30 +459,8 @@ namespace Lbl.Comprobantes
                         // Doy las comprob por canceladas
                         double TotalACancelar = this.Importe;
 
-                        if (this.Facturas == null || this.Facturas.Count == 0) {
-                                // No se especificaron comprob. Busco comprob a cancelar.
-                                using (System.Data.DataTable FacturasConSaldo = this.DataBase.Select("SELECT id_comprob,total,cancelado FROM comprob WHERE impresa>0 AND anulada=0 AND numero>0 AND tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND id_formapago IN (1, 3, 99) AND cancelado<total AND id_cliente=" + this.Cliente.Id.ToString() + " ORDER BY id_comprob")) {
-
-                                        double ImporteRestante = this.Importe;
-
-                                        foreach (System.Data.DataRow Factura in FacturasConSaldo.Rows) {
-                                                double SaldoFactura = System.Convert.ToDouble(Factura["total"]) - System.Convert.ToDouble(Factura["cancelado"]);
-                                                double ImporteASaldar = SaldoFactura;
-
-                                                if (ImporteASaldar > Math.Abs(ImporteRestante))
-                                                        ImporteASaldar = Math.Abs(ImporteRestante);
-
-                                                this.Facturas.Add(new ComprobanteConArticulos(DataBase, System.Convert.ToInt32(Factura["id_comprob"])));
-                                                ImporteRestante += ImporteASaldar;
-
-                                                if (ImporteRestante >= 0)
-                                                        break;
-                                        }
-                                }
-                        }
-
                         if (this.Facturas != null && this.Facturas.Count > 0) {
-                                // Si hay una lista de comprob, las cancelo
+                                // Si hay una lista de facturas, las cancelo
                                 foreach (Comprobantes.ComprobanteConArticulos Fact in this.Facturas) {
                                         // Calculo cuanto queda por cancelar en esta factura
                                         double ImportePendiente = Fact.Total - Fact.ImporteCancelado;
@@ -493,23 +474,41 @@ namespace Lbl.Comprobantes
 
                                         // Si alcanzo a cancelar algo, lo asiento
                                         if (Cancelando > 0) {
-                                                qGen.Insert AsentarComprobantesDeEsteRecibo = new qGen.Insert("recibos_comprob");
-                                                AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("id_recibo", this.Id);
-                                                AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("id_comprob", Fact.Id);
-                                                AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("importe", Cancelando);
-                                                this.DataBase.Execute(AsentarComprobantesDeEsteRecibo);
+                                                Fact.CancelarImporte(Cancelando, this);
+
                                                 if (Fact.FormaDePago.Tipo == Lbl.Pagos.TipoFormasDePago.CuentaCorriente)
                                                         this.Cliente.CuentaCorriente.Movimiento(true, 30000, "Cancelación s/" + this.ToString(), this.DePago ? Cancelando : -Cancelando, this.Obs, Fact.Id, this.Id, false);
-
-                                                qGen.Update ActualizarCancelado = new qGen.Update("comprob");
-                                                ActualizarCancelado.Fields.AddWithValue("cancelado", new qGen.SqlExpression("cancelado+" + Lfx.Types.Formatting.FormatCurrencySql(Cancelando)));
-                                                ActualizarCancelado.WhereClause = new qGen.Where("id_comprob", Fact.Id);
-                                                this.DataBase.Execute(ActualizarCancelado);
                                         }
 
                                         TotalACancelar = TotalACancelar - Cancelando;
                                         if (TotalACancelar == 0)
                                                 break;
+                                }
+                        }
+
+                        if (TotalACancelar > 0) {
+                                // Si queda más saldo, sigo buscando facturas a cancelar
+                                using (System.Data.DataTable FacturasConSaldo = this.DataBase.Select("SELECT * FROM comprob WHERE impresa>0 AND anulada=0 AND numero>0 AND tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND id_formapago IN (1, 3, 99) AND cancelado<total AND id_cliente=" + this.Cliente.Id.ToString() + " ORDER BY id_comprob")) {
+
+                                        double ImporteRestante = this.Importe;
+
+                                        foreach (System.Data.DataRow Factura in FacturasConSaldo.Rows) {
+                                                Lbl.Comprobantes.ComprobanteConArticulos Fact = new ComprobanteConArticulos(this.DataBase, (Lfx.Data.Row)Factura);
+
+                                                double SaldoFactura = Fact.Total - Fact.ImporteCancelado;
+                                                double ImporteASaldar = SaldoFactura;
+
+                                                if (ImporteASaldar > Math.Abs(ImporteRestante))
+                                                        ImporteASaldar = Math.Abs(ImporteRestante);
+
+                                                this.Facturas.Add(Fact);
+                                                Fact.CancelarImporte(ImporteASaldar, this);
+
+                                                ImporteRestante += ImporteASaldar;
+
+                                                if (ImporteRestante >= 0)
+                                                        break;
+                                        }
                                 }
                         }
 

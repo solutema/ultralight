@@ -31,60 +31,27 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Diagnostics;
-using System.Windows.Forms;
+using System.Text;
 
-namespace Lbl.Impresion
+namespace Lbl.Articulos
 {
-	public partial class ManualFeedDialog : System.Windows.Forms.Form
-	{
-		public ManualFeedDialog() : base()
-		{
-			// Necesario para admitir el Diseñador de Windows Forms
-			InitializeComponent();
-		}
+        public enum Tipos
+        {
+                Regular = 0,
+                Compuesto = 1
+        }
 
-		private void ManualFeedForm_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
-		{
-			switch (e.KeyChar)
-			{
-				case ' ':
-					e.Handled = true;
-					this.DialogResult = DialogResult.OK;
-					this.Close();
-					break;
-				case (char)Keys.Escape:
-					e.Handled = true;
-					this.DialogResult = DialogResult.Cancel;
-					this.Close();
-					break;
-			}		
-		}
+        public enum Publicacion
+        {
+                Nunca = 0,
+                Siempre = 1,
+                SoloSiHayStockOPedidos = 2
+        }
 
-		public string DocumentName
-		{
-			get
-			{
-				return txtDocumento.Text;
-			}
-			set
-			{
-				txtDocumento.Text = value;
-			}
-		}
-
-		public string PrinterName
-		{
-			get
-			{
-				return txtImpresora.Text;
-			}
-			set
-			{
-				txtImpresora.Text = value;
-			}
-		}
-	}
+        public enum Seguimientos
+        {
+                Ninguno = 0,
+                NumerosDeSerie = 3,
+                TallesYColores = 5
+        }
 }

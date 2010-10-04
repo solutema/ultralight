@@ -42,10 +42,10 @@ namespace Lbl.Articulos
 		public Marca(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
 		public Marca(Lfx.Data.DataBase dataBase, int itemId)
-			: this(dataBase)
-		{
-			m_ItemId = itemId;
-		}
+			: base(dataBase, itemId) { }
+
+                public Marca(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
 		{

@@ -42,12 +42,16 @@ namespace Lbl.Comprobantes
                 private Lbl.Pagos.FormaDePago m_FormaDePago = null;
                 
                 //Heredar constructor
-                public ComprobanteConArticulos(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+                public ComprobanteConArticulos(Lfx.Data.DataBase dataBase)
+                        : base(dataBase) { }
 
-		public ComprobanteConArticulos(Lfx.Data.DataBase dataBase, int idComprobante)
+                public ComprobanteConArticulos(Lfx.Data.DataBase dataBase, Lfx.Data.Row row)
+			: base(dataBase, row) { }
+
+		public ComprobanteConArticulos(Lfx.Data.DataBase dataBase, int itemId)
 			: this(dataBase)
 		{
-			m_ItemId = idComprobante;
+			m_ItemId = itemId;
                         this.Cargar();
 		}
 
@@ -399,7 +403,9 @@ namespace Lbl.Comprobantes
 			{
 				foreach (Comprobantes.DetalleArticulo Det in this.Articulos)
 				{
-					if(Det.Id > 0 && Det.Articulo != null && Det.Articulo.ControlaStock && Det.Articulo.StockActual < Det.Cantidad)
+					if(Det.Id > 0 && Det.Articulo != null 
+                                                && Det.Articulo.ControlStock != Lbl.Articulos.ControlStock.No 
+                                                && Det.Articulo.StockActual < Det.Cantidad)
 						return false;
 				}
 			}
@@ -422,12 +428,11 @@ namespace Lbl.Comprobantes
                 }
 
                 public ColeccionDetalleArticulos Articulos
-		{
-			get
-			{
-				if (m_Articulos == null)
-				{
-                                        m_Articulos = new ColeccionDetalleArticulos();
+                {
+                        get
+                        {
+                                if (m_Articulos == null) {
+                                        m_Articulos = new ColeccionDetalleArticulos(this);
                                         if (this.Existe) {
                                                 System.Data.DataTable Arts = this.DataBase.Select("SELECT id_comprob_detalle, id_articulo, orden, cantidad, precio, costo, nombre, descripcion FROM comprob_detalle WHERE id_comprob=" + this.Id.ToString());
                                                 foreach (System.Data.DataRow Art in Arts.Rows) {
@@ -442,10 +447,10 @@ namespace Lbl.Comprobantes
                                                         m_Articulos.Add(DetArt);
                                                 }
                                         }
-				}
-				return m_Articulos;
-			}
-		}
+                                }
+                                return m_Articulos;
+                        }
+                }
 
                 public ColeccionRecibos Recibos
                 {
@@ -464,7 +469,7 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-		public Lfx.Types.OperationResult CancelarImporte(double importe)
+                public Lfx.Types.OperationResult CancelarImporte(double importe, Lbl.Comprobantes.Recibo recibo)
 		{
 			if(this.ImporteCancelado + importe > this.Total)
 				throw new InvalidOperationException("ComprobanteConArticulos.CancelarImporte: El importe a cancelar no puede ser mayor que el saldo impago");
@@ -472,6 +477,14 @@ namespace Lbl.Comprobantes
 			qGen.Update Actualizar = new qGen.Update("comprob", new qGen.Where("id_comprob", this.Id));
 			Actualizar.Fields.AddWithValue("cancelado", this.ImporteCancelado);
 			this.DataBase.Execute(Actualizar);
+
+                        if (recibo != null) {
+                                qGen.Insert AsentarComprobantesDeEsteRecibo = new qGen.Insert("recibos_comprob");
+                                AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("id_recibo", recibo.Id);
+                                AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("id_comprob", this.Id);
+                                AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("importe", importe);
+                                this.DataBase.Execute(AsentarComprobantesDeEsteRecibo);
+                        }
 			return new Lfx.Types.SuccessOperationResult();
 		}
 
@@ -643,10 +656,10 @@ namespace Lbl.Comprobantes
                                         foreach (DetalleArticulo Det in Diferencia) {
                                                 if (Det.Articulo != null) {
                                                         if (Det.Cantidad > 0)
-                                                                Det.Articulo.MoverStock(Det.Cantidad, "Movimiento s/Compr. Proveed. " + this.ToString() + " de " + this.Cliente.Nombre, new Lbl.Articulos.Situacion(DataBase, 998), this.SituacionDestino, Det.Series);
+                                                                Det.Articulo.MoverStock(Det.Cantidad, "Movimiento s/Compr. Proveed. " + this.ToString(), new Lbl.Articulos.Situacion(DataBase, 998), this.SituacionDestino, Det.Series);
                                                         else
                                                                 //Cantidad negativa. Hago el movimiento con cantidad positiva, pero en sentido inverso
-                                                                Det.Articulo.MoverStock(-Det.Cantidad, "Movimiento s/Compr. Proveed. " + this.ToString() + " de " + this.Cliente.Nombre, this.SituacionDestino, new Lbl.Articulos.Situacion(DataBase, 998), Det.Series);
+                                                                Det.Articulo.MoverStock(-Det.Cantidad, "Movimiento s/Compr. Proveed. " + this.ToString(), this.SituacionDestino, new Lbl.Articulos.Situacion(DataBase, 998), Det.Series);
                                                 }
                                         }
                                 }
@@ -692,7 +705,7 @@ namespace Lbl.Comprobantes
                 public Lfx.Types.OperationResult VerificarSeries()
                 {
                         foreach (Lbl.Comprobantes.DetalleArticulo Art in this.Articulos) {
-                                if (Art.Articulo != null && Art.Articulo.RequiereNS)
+                                if (Art.Articulo != null && Art.Articulo.Seguimiento != Lbl.Articulos.Seguimientos.Ninguno)
                                         if (Art.Series == null) {
                                                 return new Lfx.Types.FailureOperationResult("Debe ingresar el número de serie del artículo '" + Art.Nombre + "' para poder realizar movimientos de stock.");
                                         } else {
@@ -742,6 +755,7 @@ namespace Lbl.Comprobantes
                                                         Comando.Fields.AddWithValue("costo", Art.Costo);
                                                 Comando.Fields.AddWithValue("importe", Art.ImporteFinal);
                                                 Comando.Fields.AddWithValue("series", Art.Series);
+                                                Comando.Fields.AddWithValue("obs", Art.Obs);
 
                                                 this.AgregarTags(Comando, Art.Registro, "comprob_detalle");
 

@@ -29,9 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Lbl.Comprobantes
 {
@@ -224,34 +222,14 @@ namespace Lbl.Comprobantes
                 }
         }
 
-        public class ColeccionDeCobros : System.Collections.CollectionBase
+        public class ColeccionDeCobros : List<Cobro>
         {
-                public void Add(Cobro pago)
-                {
-                        List.Add(pago);
-                }
-
-                public new void RemoveAt(int index)
-                {
-                        if ((index > (Count - 1)) || (index < 0))
-                                throw new ArgumentOutOfRangeException("Índice fuera de rango en " + this.GetType().ToString());
-                        List.RemoveAt(index);
-                }
-
-                public virtual Cobro this[int index]
-                {
-                        get
-                        {
-                                return (Cobro)this.List[index];
-                        }
-                }
-
                 public double ImporteTotal
                 {
                         get
                         {
                                 double Res = 0;
-                                foreach (Lbl.Comprobantes.Cobro Pg in this.List) {
+                                foreach (Lbl.Comprobantes.Cobro Pg in this) {
                                         Res += Pg.Importe;
                                 }
                                 return Res;

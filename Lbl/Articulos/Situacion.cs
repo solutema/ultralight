@@ -40,11 +40,11 @@ namespace Lbl.Articulos
 		//Heredar constructor
 		public Situacion(Lfx.Data.DataBase dataBase) : base(dataBase) { }
 
-		public Situacion(Lfx.Data.DataBase dataBase, int idArticulo)
-			: this(dataBase)
-		{
-			m_ItemId = idArticulo;
-		}
+		public Situacion(Lfx.Data.DataBase dataBase, int itemId)
+			: base(dataBase, itemId) { }
+
+                public Situacion(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
 		{

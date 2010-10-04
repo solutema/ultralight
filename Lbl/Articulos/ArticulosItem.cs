@@ -47,24 +47,11 @@ namespace Lbl.Articulos
                 }
         }
 
-        public class ColeccionItem : System.Collections.CollectionBase
+        public class ColeccionItem : List<Item>
         {
-                public void Add(Item comp)
-                {
-                        List.Add(comp);
-                }
-
-                public virtual Item this[int index]
-                {
-                        get
-                        {
-                                return (Item)this.List[index];
-                        }
-                }
-
                 public bool Contains(string serie, Situacion situacion)
                 {
-                        foreach (Item Itm in this.List) {
+                        foreach (Item Itm in this) {
                                 if (Itm.Situacion.Id == situacion.Id && Itm.Serie == serie)
                                         return true;
                         }

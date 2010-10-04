@@ -66,6 +66,9 @@ namespace Lbl.Cupones
                         this.Cargar();
 		}
 
+                public Cupon(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
+
                 public Cupon(Lfx.Data.DataBase dataBase, Lbl.Comprobantes.ComprobanteConArticulos factura)
                         : this(dataBase)
                 {

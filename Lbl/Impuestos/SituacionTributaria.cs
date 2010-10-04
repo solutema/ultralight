@@ -31,60 +31,52 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Diagnostics;
-using System.Windows.Forms;
+using System.Text;
 
-namespace Lbl.Impresion
+namespace Lbl.Impuestos
 {
-	public partial class ManualFeedDialog : System.Windows.Forms.Form
+	public class SituacionTributaria : ElementoDeDatos
 	{
-		public ManualFeedDialog() : base()
-		{
-			// Necesario para admitir el Diseñador de Windows Forms
-			InitializeComponent();
-		}
+		public SituacionTributaria(Lfx.Data.DataBase dataBase)
+                        : base(dataBase) { }
 
-		private void ManualFeedForm_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
-		{
-			switch (e.KeyChar)
-			{
-				case ' ':
-					e.Handled = true;
-					this.DialogResult = DialogResult.OK;
-					this.Close();
-					break;
-				case (char)Keys.Escape:
-					e.Handled = true;
-					this.DialogResult = DialogResult.Cancel;
-					this.Close();
-					break;
-			}		
-		}
+                public SituacionTributaria(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
 
-		public string DocumentName
+		public SituacionTributaria(Lfx.Data.DataBase dataBase, int itemId)
+                        : base(dataBase, itemId) { }
+
+		public override string TablaDatos
 		{
 			get
 			{
-				return txtDocumento.Text;
-			}
-			set
-			{
-				txtDocumento.Text = value;
+				return "situaciones";
 			}
 		}
 
-		public string PrinterName
+		public override string CampoId
 		{
 			get
 			{
-				return txtImpresora.Text;
-			}
-			set
-			{
-				txtImpresora.Text = value;
+				return "id_situacion";
 			}
 		}
+
+                public string LetraPredeterminada()
+                {
+                        if (Workspace.CurrentConfig.Empresa.SituacionTributaria == 2) {
+                                //Si soy responsable inscripto, facturo según la siguiente tabla
+                                switch (this.Id) {
+                                        case 2:
+                                        case 3:
+                                                return "A";
+                                        default:
+                                                return "B";
+                                }
+                        } else {
+                                //De lo contrario, C para todo el mundo
+                                return "C";
+                        }
+                }
 	}
 }

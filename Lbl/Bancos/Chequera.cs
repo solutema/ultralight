@@ -55,6 +55,9 @@ namespace Lbl.Bancos
                         this.Cargar();
 		}
 
+                public Chequera(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
+
                 public override string TablaDatos
                 {
                         get

@@ -35,22 +35,9 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        public class ColeccionRecibos : System.Collections.CollectionBase
+        public class ColeccionRecibos : List<Recibo>
         {
-                public void Add(Recibo comp)
-                {
-                        List.Add(comp);
-                }
-
-                public virtual Recibo this[int index]
-                {
-                        get
-                        {
-                                return (Recibo)this.List[index];
-                        }
-                }
-
-                public double Total
+                public double ImporteTotal
                 {
                         get
                         {

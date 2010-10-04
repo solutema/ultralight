@@ -180,27 +180,14 @@ namespace Lbl.Comprobantes
                 }
         }
 
-        public class ColeccionDePagos : System.Collections.CollectionBase
+        public class ColeccionDePagos : List<Pago>
         {
-                public void Add(Pago pago)
-                {
-                        List.Add(pago);
-                }
-
-                public virtual Pago this[int index]
-                {
-                        get
-                        {
-                                return (Pago)this.List[index];
-                        }
-                }
-
                 public double ImporteTotal
                 {
                         get
                         {
                                 double Res = 0;
-                                foreach (Lbl.Comprobantes.Pago Pg in this.List) {
+                                foreach (Lbl.Comprobantes.Pago Pg in this) {
                                         Res += Pg.Importe;
                                 }
                                 return Res;

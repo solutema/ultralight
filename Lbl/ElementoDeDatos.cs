@@ -98,7 +98,7 @@ namespace Lbl
                                         m_Etiquetas = null;
                                         Lfx.Data.Row Reg = null;
                                         if (this.Id != 0) {
-                                                if (this.CampoId == this.DataBase.Tables[this.TablaDatos].PrimaryKey
+                                                if (this.DataBase.InTransaction == false && this.CampoId == this.DataBase.Tables[this.TablaDatos].PrimaryKey
                                                                 && this.DataBase.InTransaction == false)
                                                         // Si estoy accediendo a través de una clave primaria y no estoy en una transacción
                                                         // puedo usar directamente DataBase.Tables.FastRows, que es cacheable
