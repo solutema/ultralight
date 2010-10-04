@@ -39,13 +39,14 @@ namespace Lbl.Personas
 	{
                 private Grupo m_Parent = null;
 
-		public Grupo(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+		public Grupo(Lfx.Data.DataBase dataBase)
+                        : base(dataBase) { }
 
-		public Grupo(Lfx.Data.DataBase dataBase, int idGrupo)
-			: this(dataBase)
-		{
-			m_ItemId = idGrupo;
-		}
+		public Grupo(Lfx.Data.DataBase dataBase, int itemId)
+			: base(dataBase, itemId) { }
+
+                public Grupo(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
 		{

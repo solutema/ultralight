@@ -40,13 +40,14 @@ namespace Lbl.Tareas
                 public Lbl.Personas.Persona Cliente, Encargado;
                 public Lbl.Tareas.Tipo Tipo;
 
-                public Tarea(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+                public Tarea(Lfx.Data.DataBase dataBase)
+                        : base(dataBase) { }
 
-                public Tarea(Lfx.Data.DataBase dataBase, int idTarea)
-			: this(dataBase)
-		{
-			m_ItemId = idTarea;
-		}
+                public Tarea(Lfx.Data.DataBase dataBase, int itemId)
+			: base(dataBase, itemId) { }
+
+                public Tarea(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
 		{

@@ -80,10 +80,14 @@
   <ItemGroup>
     <Compile Include="Articulos\ArticulosItem.cs" />
     <Compile Include="Articulos\Categoria.cs" />
+    <Compile Include="Articulos\Enums.cs" />
     <Compile Include="Articulos\Marca.cs" />
     <Compile Include="Articulos\Margen.cs" />
+    <Compile Include="Articulos\Receta.cs" />
+    <Compile Include="Articulos\Rubro.cs" />
     <Compile Include="Articulos\Situacion.cs" />
     <Compile Include="Articulos\Stock.cs" />
+    <Compile Include="Articulos\ControlStock.cs" />
     <Compile Include="Bancos\Cheque.cs" />
     <Compile Include="Bancos\Chequera.cs" />
     <Compile Include="ColeccionGenerica.cs" />
@@ -93,6 +97,9 @@
     <Compile Include="Comprobantes\Impresion\Fiscal\EstadoImpresora.cs" />
     <Compile Include="Comprobantes\Impresion\Fiscal\Impresora.cs" />
     <Compile Include="Comprobantes\Impresion\Fiscal\Respuesta.cs" />
+    <Compile Include="Comprobantes\Pv.cs" />
+    <Compile Include="Impuestos\Alicuota.cs" />
+    <Compile Include="Instanciador.cs" />
     <Compile Include="Servicios\Desduplicador.cs" />
     <Compile Include="Servicios\Importar\Filtro.cs" />
     <Compile Include="Servicios\Importar\FiltroArchivos.cs" />
@@ -143,7 +150,7 @@
     <Compile Include="Impresion\Services.cs" />
     <Compile Include="Personas\EstadoCredito.cs" />
     <Compile Include="Personas\Grupo.cs" />
-    <Compile Include="Personas\SituacionTributaria.cs" />
+    <Compile Include="Impuestos\SituacionTributaria.cs" />
     <Compile Include="Charts\Charts.cs" />
     <Compile Include="Reportes\Reporte.cs" />
     <Compile Include="Sys\Log\Entry.cs" />

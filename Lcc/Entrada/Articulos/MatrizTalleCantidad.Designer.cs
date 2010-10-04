@@ -29,49 +29,39 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Lcc.Edicion
+namespace Lcc.Edicion.Articulos
 {
-        public class ControlEdicion : Lcc.ControlDeDatos
+        partial class MatrizTalleCantidad
         {
-                /// <summary>
-                /// Actualiza el elemento con los datos del control.
+                /// <summary> 
+                /// Variable del diseñador requerida.
                 /// </summary>
-                public virtual void ActualizarElemento()
-                {
-                }
+                private System.ComponentModel.IContainer components = null;
 
-                /// <summary>
-                /// Valida los datos del control.
+                /// <summary> 
+                /// Limpiar los recursos que se estén utilizando.
                 /// </summary>
-                public virtual Lfx.Types.OperationResult ValidarControl()
+                /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+                protected override void Dispose(bool disposing)
                 {
-                        return new Lfx.Types.SuccessOperationResult();
+                        if (disposing && (components != null)) {
+                                components.Dispose();
+                        }
+                        base.Dispose(disposing);
                 }
 
-                // ******************* Compatibilidad con Lui.Forms.EditForm
-                public virtual Lfx.Types.OperationResult Create()
+                #region Código generado por el Diseñador de componentes
+
+                /// <summary> 
+                /// Método necesario para admitir el Diseñador. No se puede modificar 
+                /// el contenido del método con el editor de código.
+                /// </summary>
+                private void InitializeComponent()
                 {
-                        return new Lfx.Types.SuccessOperationResult();
+                        components = new System.ComponentModel.Container();
+                        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                 }
 
-                public virtual void FromRow(Lbl.ElementoDeDatos row)
-                {
-                        // Si todavía no conozco el tipo de elemento de este formulario, lo tomo de row
-                        if (this.ElementType == typeof(Lbl.ElementoDeDatos))
-                                this.ElementType = row.GetType();
-
-                        this.Elemento = row;
-                        this.ActualizarControl();
-                }
-
-                public virtual Lbl.ElementoDeDatos ToRow()
-                {
-                        this.ActualizarElemento();
-                        return this.Elemento;
-                }
+                #endregion
         }
 }

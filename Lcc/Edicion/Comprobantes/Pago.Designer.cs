@@ -69,12 +69,12 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFechaEmision = new Lui.Forms.TextBox();
                         this.EntradaNumeroCheque = new Lui.Forms.TextBox();
                         this.lblFecha1 = new System.Windows.Forms.Label();
-                        this.EntradaBanco = new Lui.Forms.DetailBox();
+                        this.EntradaBanco = new Lcc.Entrada.CodigoDetalle();
                         this.PanelTitulo = new System.Windows.Forms.Panel();
                         this.FrameTitulo = new Lui.Forms.Frame();
                         this.PanelCaja = new System.Windows.Forms.Panel();
                         this.label9 = new System.Windows.Forms.Label();
-                        this.EntradaCaja = new Lui.Forms.DetailBox();
+                        this.EntradaCaja = new Lcc.Entrada.CodigoDetalle();
                         this.PanelEfectivo = new System.Windows.Forms.Panel();
                         this.label8 = new System.Windows.Forms.Label();
                         this.PanelTarjeta = new System.Windows.Forms.Panel();
@@ -84,7 +84,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.Label14 = new System.Windows.Forms.Label();
                         this.EntradaCuotas = new Lui.Forms.TextBox();
                         this.label4 = new System.Windows.Forms.Label();
-                        this.EntradaPlan = new Lui.Forms.DetailBox();
+                        this.EntradaPlan = new Lcc.Entrada.CodigoDetalle();
                         this.Label10 = new System.Windows.Forms.Label();
                         this.Label11 = new System.Windows.Forms.Label();
                         this.Label15 = new System.Windows.Forms.Label();
@@ -94,16 +94,16 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelCuentaCorriente = new System.Windows.Forms.Panel();
                         this.label7 = new System.Windows.Forms.Label();
                         this.PanelFormaDePago = new System.Windows.Forms.Panel();
-                        this.EntradaFormaDePago = new Lui.Forms.DetailBox();
+                        this.EntradaFormaDePago = new Lcc.Entrada.CodigoDetalle();
                         this.label13 = new System.Windows.Forms.Label();
                         this.label12 = new System.Windows.Forms.Label();
                         this.PanelSeparadorInferior = new System.Windows.Forms.Panel();
                         this.PanelChequeTerceros = new System.Windows.Forms.Panel();
                         this.label5 = new System.Windows.Forms.Label();
-                        this.EntradaChequeTerceros = new Lui.Forms.DetailBox();
+                        this.EntradaChequeTerceros = new Lcc.Entrada.CodigoDetalle();
                         this.PanelValor = new System.Windows.Forms.Panel();
                         this.EtiquetaPagoConValor = new System.Windows.Forms.Label();
-                        this.EntradaValor = new Lui.Forms.DetailBox();
+                        this.EntradaValor = new Lcc.Entrada.CodigoDetalle();
                         this.PanelImporte.SuspendLayout();
                         this.PanelChequePropio.SuspendLayout();
                         this.PanelTitulo.SuspendLayout();
@@ -317,7 +317,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBanco.ReadOnly = false;
                         this.EntradaBanco.Required = true;
-                        this.EntradaBanco.SelectOnFocus = false;
                         this.EntradaBanco.Size = new System.Drawing.Size(320, 24);
                         this.EntradaBanco.TabIndex = 1;
                         this.EntradaBanco.Table = "bancos";
@@ -391,7 +390,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCaja.ReadOnly = false;
                         this.EntradaCaja.Required = true;
-                        this.EntradaCaja.SelectOnFocus = false;
                         this.EntradaCaja.Size = new System.Drawing.Size(320, 24);
                         this.EntradaCaja.TabIndex = 1;
                         this.EntradaCaja.Table = "cajas";
@@ -586,7 +584,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaPlan.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPlan.ReadOnly = false;
                         this.EntradaPlan.Required = false;
-                        this.EntradaPlan.SelectOnFocus = true;
                         this.EntradaPlan.Size = new System.Drawing.Size(320, 24);
                         this.EntradaPlan.TabIndex = 3;
                         this.EntradaPlan.Table = "tarjetas_planes";
@@ -724,7 +721,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFormaDePago.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFormaDePago.ReadOnly = false;
                         this.EntradaFormaDePago.Required = true;
-                        this.EntradaFormaDePago.SelectOnFocus = false;
                         this.EntradaFormaDePago.Size = new System.Drawing.Size(324, 24);
                         this.EntradaFormaDePago.TabIndex = 1;
                         this.EntradaFormaDePago.Table = "formaspago";
@@ -802,7 +798,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaChequeTerceros.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaChequeTerceros.ReadOnly = false;
                         this.EntradaChequeTerceros.Required = true;
-                        this.EntradaChequeTerceros.SelectOnFocus = false;
                         this.EntradaChequeTerceros.Size = new System.Drawing.Size(320, 24);
                         this.EntradaChequeTerceros.TabIndex = 1;
                         this.EntradaChequeTerceros.Table = "bancos_cheques";
@@ -853,7 +848,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaValor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaValor.ReadOnly = false;
                         this.EntradaValor.Required = true;
-                        this.EntradaValor.SelectOnFocus = false;
                         this.EntradaValor.Size = new System.Drawing.Size(320, 24);
                         this.EntradaValor.TabIndex = 1;
                         this.EntradaValor.Table = "pagos_valores";
@@ -921,7 +915,7 @@ namespace Lcc.Edicion.Comprobantes
                 internal System.Windows.Forms.Label Label14;
                 public Lui.Forms.TextBox EntradaCuotas;
                 internal System.Windows.Forms.Label label4;
-                public Lui.Forms.DetailBox EntradaPlan;
+                public Lcc.Entrada.CodigoDetalle EntradaPlan;
                 internal System.Windows.Forms.Label Label10;
                 internal System.Windows.Forms.Label Label11;
                 internal System.Windows.Forms.Label Label15;
@@ -935,14 +929,14 @@ namespace Lcc.Edicion.Comprobantes
                 private System.Windows.Forms.Label label13;
                 private System.Windows.Forms.Label label12;
                 private System.Windows.Forms.Panel PanelSeparadorInferior;
-                public Lui.Forms.DetailBox EntradaCaja;
-                public Lui.Forms.DetailBox EntradaBanco;
-                internal Lui.Forms.DetailBox EntradaFormaDePago;
+                public Lcc.Entrada.CodigoDetalle EntradaCaja;
+                public Lcc.Entrada.CodigoDetalle EntradaBanco;
+                internal Lcc.Entrada.CodigoDetalle EntradaFormaDePago;
                 private System.Windows.Forms.Panel PanelChequeTerceros;
                 private System.Windows.Forms.Label label5;
-                public Lui.Forms.DetailBox EntradaChequeTerceros;
+                public Lcc.Entrada.CodigoDetalle EntradaChequeTerceros;
                 private System.Windows.Forms.Panel PanelValor;
                 private System.Windows.Forms.Label EtiquetaPagoConValor;
-                public Lui.Forms.DetailBox EntradaValor;
+                public Lcc.Entrada.CodigoDetalle EntradaValor;
         }
 }

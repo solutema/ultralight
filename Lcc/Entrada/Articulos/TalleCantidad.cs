@@ -31,47 +31,48 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
 using System.Text;
+using System.Windows.Forms;
 
-namespace Lcc.Edicion
+namespace Lcc.Edicion.Articulos
 {
-        public class ControlEdicion : Lcc.ControlDeDatos
+        public partial class TalleCantidad : ControlEdicion
         {
-                /// <summary>
-                /// Actualiza el elemento con los datos del control.
-                /// </summary>
-                public virtual void ActualizarElemento()
+                public TalleCantidad()
                 {
+                        InitializeComponent();
+
+                        EntradaCantidad.DecimalPlaces = this.Workspace.CurrentConfig.Productos.DecimalesStock;
                 }
 
-                /// <summary>
-                /// Valida los datos del control.
-                /// </summary>
-                public virtual Lfx.Types.OperationResult ValidarControl()
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public string Talle
                 {
-                        return new Lfx.Types.SuccessOperationResult();
+                        get
+                        {
+                                return EntradaTalle.Text;
+                        }
+                        set
+                        {
+                                EntradaTalle.Text = value;
+                        }
                 }
 
-                // ******************* Compatibilidad con Lui.Forms.EditForm
-                public virtual Lfx.Types.OperationResult Create()
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public double Cantidad
                 {
-                        return new Lfx.Types.SuccessOperationResult();
+                        get
+                        {
+                                return Lfx.Types.Parsing.ParseStock(EntradaCantidad.Text);
+                        }
+                        set
+                        {
+                                EntradaCantidad.Text = Lfx.Types.Formatting.FormatStock(value);
+                        }
                 }
+}
 
-                public virtual void FromRow(Lbl.ElementoDeDatos row)
-                {
-                        // Si todavía no conozco el tipo de elemento de este formulario, lo tomo de row
-                        if (this.ElementType == typeof(Lbl.ElementoDeDatos))
-                                this.ElementType = row.GetType();
-
-                        this.Elemento = row;
-                        this.ActualizarControl();
-                }
-
-                public virtual Lbl.ElementoDeDatos ToRow()
-                {
-                        this.ActualizarElemento();
-                        return this.Elemento;
-                }
-        }
 }

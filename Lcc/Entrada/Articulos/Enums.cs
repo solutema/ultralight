@@ -33,45 +33,18 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lcc.Edicion
+namespace Lcc.Entrada.Articulos
 {
-        public class ControlEdicion : Lcc.ControlDeDatos
+        public enum Precios
         {
-                /// <summary>
-                /// Actualiza el elemento con los datos del control.
-                /// </summary>
-                public virtual void ActualizarElemento()
-                {
-                }
+                Costo = 0,
+                Pvp = 1,
+        }
 
-                /// <summary>
-                /// Valida los datos del control.
-                /// </summary>
-                public virtual Lfx.Types.OperationResult ValidarControl()
-                {
-                        return new Lfx.Types.SuccessOperationResult();
-                }
-
-                // ******************* Compatibilidad con Lui.Forms.EditForm
-                public virtual Lfx.Types.OperationResult Create()
-                {
-                        return new Lfx.Types.SuccessOperationResult();
-                }
-
-                public virtual void FromRow(Lbl.ElementoDeDatos row)
-                {
-                        // Si todavía no conozco el tipo de elemento de este formulario, lo tomo de row
-                        if (this.ElementType == typeof(Lbl.ElementoDeDatos))
-                                this.ElementType = row.GetType();
-
-                        this.Elemento = row;
-                        this.ActualizarControl();
-                }
-
-                public virtual Lbl.ElementoDeDatos ToRow()
-                {
-                        this.ActualizarElemento();
-                        return this.Elemento;
-                }
+        public enum ControlesSock
+        {
+                Ambos = 0,
+                ConControlStock = 1,
+                SinControlStock = 2
         }
 }

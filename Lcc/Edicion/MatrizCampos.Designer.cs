@@ -31,14 +31,14 @@
 
 namespace Lcc.Edicion
 {
-        partial class FormularioImagen
+        partial class MatrizCampos : ControlEdicion
         {
-                /// <summary>
+                /// <summary> 
                 /// Variable del diseñador requerida.
                 /// </summary>
                 private System.ComponentModel.IContainer components = null;
 
-                /// <summary>
+                /// <summary> 
                 /// Limpiar los recursos que se estén utilizando.
                 /// </summary>
                 /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
@@ -50,57 +50,59 @@ namespace Lcc.Edicion
                         base.Dispose(disposing);
                 }
 
-                #region Código generado por el Diseñador de Windows Forms
+                #region Código generado por el Diseñador de componentes
 
-                /// <summary>
+                /// <summary> 
                 /// Método necesario para admitir el Diseñador. No se puede modificar
                 /// el contenido del método con el editor de código.
                 /// </summary>
                 private void InitializeComponent()
                 {
-                        this.EntradaImagen = new Lcc.Entrada.Imagen();
+                        this.FieldContainer = new System.Windows.Forms.FlowLayoutPanel();
+                        this.GroupLabel = new System.Windows.Forms.Label();
                         this.SuspendLayout();
                         // 
-                        // OkButton
+                        // FieldContainer
                         // 
-                        this.OkButton.Location = new System.Drawing.Point(394, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
-                        // 
-                        // EntradaImagen
-                        // 
-                        this.EntradaImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        this.FieldContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaImagen.AutoHeight = true;
-                        this.EntradaImagen.AutoNav = true;
-                        this.EntradaImagen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaImagen.Location = new System.Drawing.Point(8, 8);
-                        this.EntradaImagen.Name = "EntradaImagen";
-                        this.EntradaImagen.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaImagen.ReadOnly = false;
-                        this.EntradaImagen.Size = new System.Drawing.Size(620, 298);
-                        this.EntradaImagen.TabIndex = 51;
-                        this.EntradaImagen.ToolTipText = "";
+                        this.FieldContainer.AutoScroll = true;
+                        this.FieldContainer.Location = new System.Drawing.Point(0, 20);
+                        this.FieldContainer.Margin = new System.Windows.Forms.Padding(4);
+                        this.FieldContainer.Name = "FieldContainer";
+                        this.FieldContainer.Size = new System.Drawing.Size(460, 64);
+                        this.FieldContainer.TabIndex = 0;
+                        this.FieldContainer.ClientSizeChanged += new System.EventHandler(this.FieldContainer_ClientSizeChanged);
+                        this.FieldContainer.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.FieldContainer_ControlAdded);
                         // 
-                        // FormularioImagen
+                        // GroupLabel
+                        // 
+                        this.GroupLabel.AutoSize = true;
+                        this.GroupLabel.Location = new System.Drawing.Point(0, 0);
+                        this.GroupLabel.Name = "GroupLabel";
+                        this.GroupLabel.Size = new System.Drawing.Size(70, 15);
+                        this.GroupLabel.TabIndex = 1;
+                        this.GroupLabel.Text = "fieldgroup";
+                        this.GroupLabel.UseMnemonic = false;
+                        // 
+                        // MatrizCampos
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.ClientSize = new System.Drawing.Size(634, 372);
-                        this.Controls.Add(this.EntradaImagen);
-                        this.Name = "FormularioImagen";
-                        this.Text = "Imagen";
-                        this.Controls.SetChildIndex(this.EntradaImagen, 0);
+                        this.Controls.Add(this.GroupLabel);
+                        this.Controls.Add(this.FieldContainer);
+                        this.Name = "MatrizCampos";
+                        this.Controls.SetChildIndex(this.FieldContainer, 0);
+                        this.Controls.SetChildIndex(this.GroupLabel, 0);
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
                 }
 
                 #endregion
 
-                public Entrada.Imagen EntradaImagen;
-
+                public System.Windows.Forms.FlowLayoutPanel FieldContainer;
+                private System.Windows.Forms.Label GroupLabel;
         }
 }

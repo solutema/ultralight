@@ -1,0 +1,173 @@
+#region License
+// Copyright 2004-2010 South Bridge S.R.L.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// Este programa es software libre; puede distribuirlo y/o moficiarlo de
+// acuerdo a los términos de la Licencia Pública General de GNU (GNU
+// General Public License), como la publica la Fundación para el Software
+// Libre (Free Software Foundation), tanto la versión 3 de la Licencia
+// como (a su elección) cualquier versión posterior.
+//
+// Este programa se distribuye con la esperanza de que sea útil, pero SIN
+// GARANTÍA ALGUNA; ni siquiera la garantía MERCANTIL implícita y sin
+// garantizar su CONVENIENCIA PARA UN PROPÓSITO PARTICULAR. Véase la
+// Licencia Pública General de GNU para más detalles. 
+//
+// Debería haber recibido una copia de la Licencia Pública General junto
+// con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
+
+namespace Lcc.Edicion
+{
+        partial class Comentarios
+        {
+                /// <summary> 
+                /// Variable del diseñador requerida.
+                /// </summary>
+                private System.ComponentModel.IContainer components = null;
+
+                /// <summary> 
+                /// Limpiar los recursos que se estén utilizando.
+                /// </summary>
+                /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+                protected override void Dispose(bool disposing)
+                {
+                        if (disposing && (components != null)) {
+                                components.Dispose();
+                        }
+                        base.Dispose(disposing);
+                }
+
+                #region Código generado por el Diseñador de componentes
+
+                /// <summary> 
+                /// Método necesario para admitir el Diseñador. No se puede modificar 
+                /// el contenido del método con el editor de código.
+                /// </summary>
+                private void InitializeComponent()
+                {
+                        this.ListaComentarios = new Lui.Forms.ListView();
+                        this.ColId = new System.Windows.Forms.ColumnHeader();
+                        this.ColFecha = new System.Windows.Forms.ColumnHeader();
+                        this.ColPersona = new System.Windows.Forms.ColumnHeader();
+                        this.ColComentario = new System.Windows.Forms.ColumnHeader();
+                        this.EntradaComentario = new Lui.Forms.TextBox();
+                        this.BotonAgregar = new Lui.Forms.Button();
+                        this.SuspendLayout();
+                        // 
+                        // ListaComentarios
+                        // 
+                        this.ListaComentarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                                    | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.ListaComentarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                        this.ListaComentarios.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ColId,
+            this.ColFecha,
+            this.ColPersona,
+            this.ColComentario});
+                        this.ListaComentarios.FullRowSelect = true;
+                        this.ListaComentarios.GridLines = true;
+                        this.ListaComentarios.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+                        this.ListaComentarios.LabelWrap = false;
+                        this.ListaComentarios.Location = new System.Drawing.Point(0, 0);
+                        this.ListaComentarios.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+                        this.ListaComentarios.MultiSelect = false;
+                        this.ListaComentarios.Name = "ListaComentarios";
+                        this.ListaComentarios.Size = new System.Drawing.Size(552, 228);
+                        this.ListaComentarios.TabIndex = 50;
+                        this.ListaComentarios.TabStop = false;
+                        this.ListaComentarios.UseCompatibleStateImageBehavior = false;
+                        this.ListaComentarios.View = System.Windows.Forms.View.Details;
+                        this.ListaComentarios.SizeChanged += new System.EventHandler(this.ListaComentarios_SizeChanged);
+                        // 
+                        // ColId
+                        // 
+                        this.ColId.Width = 0;
+                        // 
+                        // ColFecha
+                        // 
+                        this.ColFecha.Width = 96;
+                        // 
+                        // ColPersona
+                        // 
+                        this.ColPersona.Width = 120;
+                        // 
+                        // ColComentario
+                        // 
+                        this.ColComentario.Width = 320;
+                        // 
+                        // EntradaComentario
+                        // 
+                        this.EntradaComentario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaComentario.AutoHeight = true;
+                        this.EntradaComentario.AutoNav = true;
+                        this.EntradaComentario.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaComentario.Location = new System.Drawing.Point(0, 234);
+                        this.EntradaComentario.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+                        this.EntradaComentario.Name = "EntradaComentario";
+                        this.EntradaComentario.SelectOnFocus = true;
+                        this.EntradaComentario.Size = new System.Drawing.Size(464, 23);
+                        this.EntradaComentario.TabIndex = 0;
+                        this.EntradaComentario.TipWhenBlank = null;
+                        this.EntradaComentario.ToolTipText = null;
+                        this.EntradaComentario.TextChanged += new System.EventHandler(this.EntradaComentario_TextChanged);
+                        this.EntradaComentario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaComentario_KeyDown);
+                        // 
+                        // BotonAgregar
+                        // 
+                        this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonAgregar.AutoHeight = false;
+                        this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonAgregar.Image = null;
+                        this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonAgregar.Location = new System.Drawing.Point(468, 234);
+                        this.BotonAgregar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+                        this.BotonAgregar.Name = "BotonAgregar";
+                        this.BotonAgregar.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+                        this.BotonAgregar.ReadOnly = false;
+                        this.BotonAgregar.Size = new System.Drawing.Size(85, 24);
+                        this.BotonAgregar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonAgregar.Subtext = "Tecla";
+                        this.BotonAgregar.TabIndex = 1;
+                        this.BotonAgregar.Text = "Agregar";
+                        this.BotonAgregar.ToolTipText = "";
+                        this.BotonAgregar.Click += new System.EventHandler(this.BotonAgregar_Click);
+                        // 
+                        // Comentarios
+                        // 
+                        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+                        this.Controls.Add(this.BotonAgregar);
+                        this.Controls.Add(this.EntradaComentario);
+                        this.Controls.Add(this.ListaComentarios);
+                        this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+                        this.Name = "Comentarios";
+                        this.Size = new System.Drawing.Size(552, 260);
+                        this.ResumeLayout(false);
+
+                }
+
+                #endregion
+
+                private Lui.Forms.ListView ListaComentarios;
+                private Lui.Forms.TextBox EntradaComentario;
+                private Lui.Forms.Button BotonAgregar;
+                private System.Windows.Forms.ColumnHeader ColId;
+                private System.Windows.Forms.ColumnHeader ColFecha;
+                private System.Windows.Forms.ColumnHeader ColPersona;
+                private System.Windows.Forms.ColumnHeader ColComentario;
+        }
+}

@@ -93,6 +93,7 @@ HAVING SUM(ctacte.importe)<>(SELECT saldo FROM ctacte WHERE ctacte.id_cliente=pe
                                         this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã\\‘', 'Ñ')");
                                         this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Âº', 'º')");
                                         this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Â¿', '¿')");
+                                        this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'ÃƒÂ©', 'é')");
 
                                         this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã‚º', 'º')");
                                         this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'ÃƒÂ±', 'ñ')");

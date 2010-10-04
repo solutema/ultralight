@@ -66,7 +66,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFechaCobro = new Lui.Forms.TextBox();
                         this.EntradaFechaEmision = new Lui.Forms.TextBox();
                         this.EntradaNumeroCheque = new Lui.Forms.TextBox();
-                        this.EntradaBanco = new Lui.Forms.DetailBox();
+                        this.EntradaBanco = new Lcc.Entrada.CodigoDetalle();
                         this.label2 = new System.Windows.Forms.Label();
                         this.label3 = new System.Windows.Forms.Label();
                         this.label6 = new System.Windows.Forms.Label();
@@ -75,7 +75,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelTitulo = new System.Windows.Forms.Panel();
                         this.FrameTitulo = new Lui.Forms.Frame();
                         this.PanelCaja = new System.Windows.Forms.Panel();
-                        this.EntradaCaja = new Lui.Forms.DetailBox();
+                        this.EntradaCaja = new Lcc.Entrada.CodigoDetalle();
                         this.label9 = new System.Windows.Forms.Label();
                         this.PanelEfectivo = new System.Windows.Forms.Panel();
                         this.label8 = new System.Windows.Forms.Label();
@@ -85,7 +85,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.Label14 = new System.Windows.Forms.Label();
                         this.EntradaCuotas = new Lui.Forms.TextBox();
                         this.label4 = new System.Windows.Forms.Label();
-                        this.EntradaPlan = new Lui.Forms.DetailBox();
+                        this.EntradaPlan = new Lcc.Entrada.CodigoDetalle();
                         this.Label11 = new System.Windows.Forms.Label();
                         this.Label15 = new System.Windows.Forms.Label();
                         this.PanelObs = new System.Windows.Forms.Panel();
@@ -94,7 +94,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelCuentaCorriente = new System.Windows.Forms.Panel();
                         this.label7 = new System.Windows.Forms.Label();
                         this.PanelFormaDePago = new System.Windows.Forms.Panel();
-                        this.EntradaFormaDePago = new Lui.Forms.DetailBox();
+                        this.EntradaFormaDePago = new Lcc.Entrada.CodigoDetalle();
                         this.AyudaFormaDePago = new System.Windows.Forms.Label();
                         this.label12 = new System.Windows.Forms.Label();
                         this.PanelSeparadorInferior = new System.Windows.Forms.Panel();
@@ -306,7 +306,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBanco.ReadOnly = false;
                         this.EntradaBanco.Required = true;
-                        this.EntradaBanco.SelectOnFocus = false;
                         this.EntradaBanco.Size = new System.Drawing.Size(320, 24);
                         this.EntradaBanco.TabIndex = 3;
                         this.EntradaBanco.Table = "bancos";
@@ -417,7 +416,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCaja.ReadOnly = false;
                         this.EntradaCaja.Required = true;
-                        this.EntradaCaja.SelectOnFocus = false;
                         this.EntradaCaja.Size = new System.Drawing.Size(320, 24);
                         this.EntradaCaja.TabIndex = 1;
                         this.EntradaCaja.Table = "cajas";
@@ -592,7 +590,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaPlan.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPlan.ReadOnly = false;
                         this.EntradaPlan.Required = false;
-                        this.EntradaPlan.SelectOnFocus = true;
                         this.EntradaPlan.Size = new System.Drawing.Size(320, 24);
                         this.EntradaPlan.TabIndex = 3;
                         this.EntradaPlan.Table = "tarjetas_planes";
@@ -721,7 +718,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFormaDePago.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFormaDePago.ReadOnly = false;
                         this.EntradaFormaDePago.Required = true;
-                        this.EntradaFormaDePago.SelectOnFocus = false;
                         this.EntradaFormaDePago.Size = new System.Drawing.Size(324, 24);
                         this.EntradaFormaDePago.TabIndex = 1;
                         this.EntradaFormaDePago.Table = "formaspago";
@@ -849,12 +845,12 @@ namespace Lcc.Edicion.Comprobantes
                 internal Lui.Forms.TextBox EntradaFechaEmision;
                 internal Lui.Forms.TextBox EntradaNumeroCheque;
                 internal System.Windows.Forms.Label lblFecha1;
-                internal Lui.Forms.DetailBox EntradaBanco;
+                internal Lcc.Entrada.CodigoDetalle EntradaBanco;
                 private System.Windows.Forms.Label label5;
                 private System.Windows.Forms.Panel PanelTitulo;
                 private Lui.Forms.Frame FrameTitulo;
                 private System.Windows.Forms.Panel PanelCaja;
-                public Lui.Forms.DetailBox EntradaCaja;
+                public Lcc.Entrada.CodigoDetalle EntradaCaja;
                 private System.Windows.Forms.Panel PanelEfectivo;
                 private System.Windows.Forms.Label label8;
                 private System.Windows.Forms.Panel PanelTarjeta;
@@ -863,7 +859,7 @@ namespace Lcc.Edicion.Comprobantes
                 internal System.Windows.Forms.Label Label14;
                 public Lui.Forms.TextBox EntradaCuotas;
                 internal System.Windows.Forms.Label label4;
-                public Lui.Forms.DetailBox EntradaPlan;
+                public Lcc.Entrada.CodigoDetalle EntradaPlan;
                 internal System.Windows.Forms.Label Label11;
                 internal System.Windows.Forms.Label Label15;
                 private System.Windows.Forms.Panel PanelObs;
@@ -877,7 +873,7 @@ namespace Lcc.Edicion.Comprobantes
                 private System.Windows.Forms.Label AyudaFormaDePago;
                 private System.Windows.Forms.Label label12;
                 private System.Windows.Forms.Panel PanelSeparadorInferior;
-                internal Lui.Forms.DetailBox EntradaFormaDePago;
+                internal Lcc.Entrada.CodigoDetalle EntradaFormaDePago;
                 private System.Windows.Forms.Panel PanelValor;
                 public Lui.Forms.TextBox EntradaValorNumero;
                 internal System.Windows.Forms.Label label16;

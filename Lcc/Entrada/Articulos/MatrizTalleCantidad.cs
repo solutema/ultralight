@@ -31,47 +31,19 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
 using System.Text;
+using System.Windows.Forms;
 
-namespace Lcc.Edicion
+namespace Lcc.Edicion.Articulos
 {
-        public class ControlEdicion : Lcc.ControlDeDatos
+        public partial class MatrizTalleCantidad : ControlEdicion
         {
-                /// <summary>
-                /// Actualiza el elemento con los datos del control.
-                /// </summary>
-                public virtual void ActualizarElemento()
+                public MatrizTalleCantidad()
                 {
-                }
-
-                /// <summary>
-                /// Valida los datos del control.
-                /// </summary>
-                public virtual Lfx.Types.OperationResult ValidarControl()
-                {
-                        return new Lfx.Types.SuccessOperationResult();
-                }
-
-                // ******************* Compatibilidad con Lui.Forms.EditForm
-                public virtual Lfx.Types.OperationResult Create()
-                {
-                        return new Lfx.Types.SuccessOperationResult();
-                }
-
-                public virtual void FromRow(Lbl.ElementoDeDatos row)
-                {
-                        // Si todavía no conozco el tipo de elemento de este formulario, lo tomo de row
-                        if (this.ElementType == typeof(Lbl.ElementoDeDatos))
-                                this.ElementType = row.GetType();
-
-                        this.Elemento = row;
-                        this.ActualizarControl();
-                }
-
-                public virtual Lbl.ElementoDeDatos ToRow()
-                {
-                        this.ActualizarElemento();
-                        return this.Elemento;
+                        InitializeComponent();
                 }
         }
 }

@@ -101,6 +101,31 @@
             <param name="original">La colección original.</param>
             <returns>La colección de los elementos no presentes en esta colección, pero si en la original.</returns>
         </member>
+        <member name="T:Lbl.Instanciador">
+            <summary>
+            Permite crear instancias de un objeto Lbl.ElementoDeDatos, o de una clase derivada, a partir de un registro o un id de registro.
+            </summary>
+        </member>
+        <member name="M:Lbl.Instanciador.Instanciar(System.Type,Lfx.Data.DataBase,Lfx.Data.Row)">
+            <summary>
+            Crea una instancia de un Lbl.ElementoDeDatos a partir de un registro de base de datos.
+            </summary>
+        </member>
+        <member name="M:Lbl.Instanciador.Instanciar(System.Type,Lfx.Data.DataBase,System.Int32)">
+            <summary>
+            Crea una instancia de un Lbl.ElementoDeDatos a partir de un id de registro.
+            </summary>
+        </member>
+        <member name="M:Lbl.Instanciador.Instanciar``1(Lfx.Data.DataBase,Lfx.Data.Row)">
+            <summary>
+            Crea una instancia de un Lbl.ElementoDeDatos a partir de un registro de base de datos.
+            </summary>
+        </member>
+        <member name="M:Lbl.Instanciador.InferirTipo(System.String)">
+            <summary>
+            Infiere el tipo (derivado de Lbl.ElementoDeDatos) a partir del nombre de la tabla.
+            </summary>
+        </member>
         <member name="T:Lbl.Servicios.Desduplicador">
             <summary>
             Fusiona dos elementos de datos, útil para eliminar duplicados. Cambia todas las referencias de claves foráneas al nuevo elemento.
@@ -235,7 +260,7 @@
             Representa la cuenta corriente de una persona (cliente o proveedor).
             </summary>
         </member>
-        <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.Saldo">
+        <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.Saldo(System.Boolean)">
             <summary>
             Calcula el saldo actual de la cuenta corriente.
             </summary>
@@ -335,6 +360,17 @@
         <member name="T:Lbl.Cupones.Cupon">
             <summary>
             Describe un pago con un cupón (por ejemplo pagos con tarjeta de crédito, vales, mutuales, etc.)
+            </summary>
+        </member>
+        <member name="M:Lbl.Articulos.Articulo.SuperArticulos">
+            <summary>
+            Devuelve una colección de artículos de los cuales este es un ingrediente.
+            </summary>
+        </member>
+        <member name="M:Lbl.Articulos.Articulo.RecalcularCostoSuperArticulos">
+            <summary>
+            Propaga los cambios de costo hacia arriba.
+            Es decir, si este artículo es ingrediente en la receta de otros artículos, actualizar los artículos padre para que reflejen el cambio de costo de este ingrediente.
             </summary>
         </member>
     </members>

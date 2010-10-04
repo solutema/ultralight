@@ -243,9 +243,10 @@ namespace Lbl.Servicios.Importar
                 /// <returns>Un objeto de alguna clase derivada de ElementoDeDatos.</returns>
                 public Lbl.ElementoDeDatos CrearElemento(MapaDeTabla mapa, Lfx.Data.Row row)
                 {
-                        System.Reflection.ConstructorInfo TConstr = mapa.TipoElemento.GetConstructor(new Type[] { typeof(Lfx.Data.DataBase), typeof(Lfx.Data.Row) });
-                        object Elem = TConstr.Invoke(new object[] { this.DataBase, row });
-                        return (Lbl.ElementoDeDatos)Elem;
+                        return Lbl.Instanciador.Instanciar(mapa.TipoElemento, this.DataBase, row);
+                        //System.Reflection.ConstructorInfo TConstr = mapa.TipoElemento.GetConstructor(new Type[] { typeof(Lfx.Data.DataBase), typeof(Lfx.Data.Row) });
+                        //object Elem = TConstr.Invoke(new object[] { this.DataBase, row });
+                        //return (Lbl.ElementoDeDatos)Elem;
                 }
 
                 /// <summary>
@@ -256,9 +257,10 @@ namespace Lbl.Servicios.Importar
                 /// <returns></returns>
                 public Lbl.ElementoDeDatos CargarElemento(MapaDeTabla mapa, Lfx.Data.Row row)
                 {
-                        System.Reflection.ConstructorInfo TConstr = mapa.TipoElemento.GetConstructor(new Type[] { typeof(Lfx.Data.DataBase), typeof(int) });
-                        object Elem = TConstr.Invoke(new object[] { this.DataBase, row.Fields[this.DataBase.Tables[mapa.TablaLazaro].PrimaryKey].ValueInt });
-                        return (Lbl.ElementoDeDatos)Elem;
+                        return Lbl.Instanciador.Instanciar(mapa.TipoElemento, this.DataBase, row.Fields[this.DataBase.Tables[mapa.TablaLazaro].PrimaryKey].ValueInt);
+                        //System.Reflection.ConstructorInfo TConstr = mapa.TipoElemento.GetConstructor(new Type[] { typeof(Lfx.Data.DataBase), typeof(int) });
+                        //object Elem = TConstr.Invoke(new object[] { this.DataBase, row.Fields[this.DataBase.Tables[mapa.TablaLazaro].PrimaryKey].ValueInt });
+                        //return (Lbl.ElementoDeDatos)Elem;
                 }
         }
 }

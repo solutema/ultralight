@@ -37,46 +37,36 @@ namespace Lbl.Personas
 {
 	public class Persona : ElementoDeDatos
 	{
-		//Heredar constructor
-		public Persona(Lfx.Data.DataBase dataBase) : base(dataBase) { }
-
 		public Entidades.Localidad Localidad;
 		public Grupo Grupo, SubGrupo;
-		public SituacionTributaria SituacionTributaria;
+		public Lbl.Impuestos.SituacionTributaria SituacionTributaria;
                 private Lbl.CuentasCorrientes.CuentaCorriente m_CuentaCorriente = null;
                 private Lbl.Personas.Persona m_Vendedor = null;
 
                 // Heredar constructores
-		public Persona(Lfx.Data.DataBase dataBase, int idPersona)
-			:this(dataBase, idPersona, true)
-		{
-		}
+                public Persona(Lfx.Data.DataBase dataBase)
+                        : base(dataBase) { }
+
+		public Persona(Lfx.Data.DataBase dataBase, int itemId)
+			: base(dataBase, itemId) { }
 
                 public Persona(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow)
-                {
-                }
-
-		public Persona(Lfx.Data.DataBase dataBase, int idPersona, bool cargar)
-			: this(dataBase)
-		{
-			m_ItemId = idPersona;
-                        m_CuentaCorriente = null;
-                        m_Vendedor = null;
-			if(cargar)
-				this.Cargar();
-		}
+                        : base(dataBase, fromRow) { }
 
                 public override Lfx.Types.OperationResult Crear()
                 {
                         m_CuentaCorriente = null;
                         Lfx.Types.OperationResult Res = base.Crear();
                         if (Res.Success) {
+                                m_CuentaCorriente = null;
+                                m_Vendedor = null;
                                 this.Tipo = 1;
                                 this.Grupo = null;
+                                this.SubGrupo = null;
                                 this.TipoDocumento = 1;
-                                this.SituacionTributaria = new SituacionTributaria(this.DataBase, 1);
+                                this.SituacionTributaria = new Lbl.Impuestos.SituacionTributaria(this.DataBase, 1);
                                 this.Localidad = new Lbl.Entidades.Localidad(this.DataBase, this.Workspace.CurrentConfig.Empresa.Ciudad);
+                                this.Estado = 1;
                                 m_Vendedor = new Persona(this.DataBase, this.Workspace.CurrentUser.Id);
                         }
                         return Res;
@@ -144,6 +134,9 @@ namespace Lbl.Personas
                         Comando.Fields.AddWithValue("url", this.Url);
                         Comando.Fields.AddWithValue("obs", this.Obs);
                         Comando.Fields.AddWithValue("estado", this.Estado);
+                        if (this.Estado == 0 && this.Existe && System.Convert.ToInt32(this.RegistroOriginal["estado"]) != 0)
+                                // Esta dado de baja y antes no lo estaba
+                                Comando.Fields.AddWithValue("fechabaja", qGen.SqlFunctions.Now);
                         Comando.Fields.AddWithValue("limitecredito", this.LimiteCredito);
                         Comando.Fields.AddWithValue("fechanac", this.FechaNacimiento);
                         Comando.Fields.AddWithValue("numerocuenta", this.NumeroCuenta);
@@ -411,6 +404,30 @@ namespace Lbl.Personas
                         }
 		}
 
+                public Lfx.Types.LDateTime FechaAlta
+                {
+                        get
+                        {
+                                return this.FieldDateTime("fechaalta");
+                        }
+                        set
+                        {
+                                this.Registro["fechaalta"] = value;
+                        }
+                }
+
+                public Lfx.Types.LDateTime FechaBaja
+                {
+                        get
+                        {
+                                return this.FieldDateTime("fechabaja");
+                        }
+                        set
+                        {
+                                this.Registro["fechabaja"] = value;
+                        }
+                }
+
 		public string Extra1
 		{
 			get
@@ -454,7 +471,7 @@ namespace Lbl.Personas
                                         this.Localidad = null;
 
                                 if (Lfx.Data.DataBase.ConvertDBNullToZero(m_Registro["id_situacion"]) > 0)
-                                        this.SituacionTributaria = new SituacionTributaria(this.DataBase, System.Convert.ToInt32(m_Registro["id_situacion"]));
+                                        this.SituacionTributaria = new Lbl.Impuestos.SituacionTributaria(this.DataBase, System.Convert.ToInt32(m_Registro["id_situacion"]));
                                 else
                                         this.SituacionTributaria = null;
 

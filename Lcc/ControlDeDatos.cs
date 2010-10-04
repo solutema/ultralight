@@ -32,88 +32,59 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
 
-namespace Lbl.Sys.Log
+namespace Lcc
 {
-        public enum Comandos
+        public class ControlDeDatos : Lcc.LccControl
         {
-                Guardar,
-                Otro
-        }
+                public Type m_ElementType = null;
+                protected Lbl.ElementoDeDatos m_Elemento = null;
 
-        public class Entry : Lbl.ElementoDeDatos
-        {
-                //Heredar constructor
-                public Entry(Lfx.Data.DataBase dataBase, int itemId)
-			: base(dataBase, itemId) { }
-
-                public Entry(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
-
-		public override string TablaDatos
-		{
-			get
-			{
-				return "sys_log";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_log";
-			}
-		}
-
-                public DateTime Fecha
+                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public Type ElementType
                 {
                         get
                         {
-                                return this.FieldDateTime("fecha");
+                                return m_ElementType;
+                        }
+                        set
+                        {
+                                m_ElementType = value;
                         }
                 }
 
-                public string ComandoTexto
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public virtual Lbl.ElementoDeDatos Elemento
                 {
                         get
                         {
-                                return this.FieldString("comando");
+                                return m_Elemento;
                         }
-                }
-
-                public int IdUsuario
-                {
-                        get
+                        set
                         {
-                                return this.FieldInt("usuario");
-                        }
-                }
+                                m_Elemento = value;
+                                if(m_Elemento != null && (m_ElementType == null || m_ElementType == typeof(Lbl.ElementoDeDatos)))
+                                        this.ElementType = value.GetType();
 
-                public Comandos Comando
-                {
-                        get
-                        {
-                                string CmdTxt = this.FieldString("comando");
-                                switch (CmdTxt) {
-                                        case "SAVE":
-                                                return Comandos.Guardar;
-                                        default:
-                                                return Comandos.Otro;
+                                foreach (System.Windows.Forms.Control Ctl in this.Controls) {
+                                        if (Ctl is ControlDeDatos) {
+                                                ((ControlDeDatos)Ctl).Elemento = value;
+                                                ((ControlDeDatos)Ctl).ElementType = this.ElementType;
+                                        }
                                 }
+                                this.ActualizarControl();
                         }
                 }
 
-                public override string ToString()
+
+                /// <summary>
+                /// Actualiza el control con los datos del elemento.
+                /// </summary>
+                public virtual void ActualizarControl() 
                 {
-                        string Res = this.FieldString("extra1");
-                        if (Res == null) {
-                                return "sin cambios";
-                        } else {
-                                Res = Res.Replace("NULL->", ": ");
-                                Res = Res.Replace("->", " se cambió por ");
-                        }
-                        return Res;
                 }
         }
 }

@@ -41,7 +41,8 @@ namespace Lbl.Pagos
                 public Lbl.Comprobantes.Recibo Recibo;
 
                 //Heredar constructor
-		public Valor(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+		public Valor(Lfx.Data.DataBase dataBase)
+                        : base(dataBase) { }
 
                 public Valor(Lfx.Data.DataBase dataBase, int idValor)
 			: this(dataBase)
@@ -49,6 +50,9 @@ namespace Lbl.Pagos
                         m_ItemId = idValor;
                         this.Cargar();
 		}
+
+                public Valor(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
 
                 public override string TablaDatos
                 {
