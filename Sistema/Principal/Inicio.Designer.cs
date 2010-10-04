@@ -65,6 +65,7 @@ namespace Lazaro.Principal
                 this.MainMenu = new System.Windows.Forms.MainMenu(this.components);
                 this.BarraTareas = new System.Windows.Forms.ToolBar();
                 this.BarraTareasImagenes = new System.Windows.Forms.ImageList(this.components);
+                this.ListaBd = new System.Windows.Forms.ListBox();
                 this.BarraInferior = new Lazaro.Principal.BarraInferior();
                 this.SuspendLayout();
                 // 
@@ -95,6 +96,17 @@ namespace Lazaro.Principal
                 this.BarraTareasImagenes.Images.SetKeyName(0, "inicio.gif");
                 this.BarraTareasImagenes.Images.SetKeyName(1, "editar.gif");
                 // 
+                // ListaBd
+                // 
+                this.ListaBd.Dock = System.Windows.Forms.DockStyle.Left;
+                this.ListaBd.FormattingEnabled = true;
+                this.ListaBd.IntegralHeight = false;
+                this.ListaBd.Location = new System.Drawing.Point(0, 28);
+                this.ListaBd.Name = "ListaBd";
+                this.ListaBd.Size = new System.Drawing.Size(184, 357);
+                this.ListaBd.TabIndex = 10;
+                this.ListaBd.Visible = false;
+                // 
                 // BarraInferior
                 // 
                 this.BarraInferior.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -110,6 +122,7 @@ namespace Lazaro.Principal
                 this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
                 this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                 this.ClientSize = new System.Drawing.Size(950, 437);
+                this.Controls.Add(this.ListaBd);
                 this.Controls.Add(this.BarraInferior);
                 this.Controls.Add(this.BarraTareas);
                 this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -119,8 +132,8 @@ namespace Lazaro.Principal
                 this.Name = "Inicio";
                 this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
                 this.Text = "Lázaro";
-                this.Load += new System.EventHandler(this.FormPrincipal_Load);
                 this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPrincipal_FormClosing);
+                this.Load += new System.EventHandler(this.FormPrincipal_Load);
                 this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormPrincipal_KeyDown);
                 this.ResumeLayout(false);
                 this.PerformLayout();
@@ -134,5 +147,6 @@ namespace Lazaro.Principal
 		public System.Windows.Forms.ToolBar BarraTareas;
 		private System.Windows.Forms.ImageList BarraTareasImagenes;
                 private BarraInferior BarraInferior;
+                private System.Windows.Forms.ListBox ListaBd;
     }
 }

@@ -30,10 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
-using System.Data;
-using System.Drawing;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Lui.Forms
@@ -41,7 +38,7 @@ namespace Lui.Forms
 	public partial class ListingFormExport : Lui.Forms.DialogForm
 	{
 		public qGen.Select SelectCommand;
-		public Lfx.Data.FormField[] FormFields;
+                public List<Lfx.Data.FormField> FormFields;
 		public Lfx.Data.FormField KeyField;
 		public string Nombre = "Datos Exportados del sistema Lázaro";
                 public Lfx.FileFormats.Office.Spreadsheet.Workbook Report = null;
@@ -83,7 +80,7 @@ namespace Lui.Forms
 			}
 
                         if (FormFields != null) {
-                                for (int i = 0; i <= FormFields.Length - 1; i++) {
+                                for (int i = 0; i <= FormFields.Count - 1; i++) {
                                         if (FormFields[i].Width > 28) {
                                                 Planilla.Sheets[0].ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader(FormFields[i].Label, FormFields[i].Width));
                                         }
@@ -96,7 +93,7 @@ namespace Lui.Forms
 			{
 				Lfx.FileFormats.Office.Spreadsheet.Row Reng = new Lfx.FileFormats.Office.Spreadsheet.Row();
 
-				for(int i = KeyField == null ? 0 : -1; i < FormFields.Length; i++)
+				for(int i = KeyField == null ? 0 : -1; i < FormFields.Count; i++)
 				{
 					Lfx.Data.FormField ThisField;
 					if(i == -1)
@@ -195,7 +192,7 @@ namespace Lui.Forms
 
 		private void FormTablaInicioExportar_Load(object sender, System.EventArgs e)
 		{
-			OkButton.Visible = false;
+                        this.OkButton.Enabled = false;
 		}
 
                 private void cmdImprimir_Click(object sender, EventArgs e)

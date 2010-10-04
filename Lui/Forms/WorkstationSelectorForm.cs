@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -76,16 +76,6 @@ namespace Lui.Forms
                         this.NombreEstacion = new System.Windows.Forms.ColumnHeader();
                         this.Nombre = new System.Windows.Forms.ColumnHeader();
                         this.SuspendLayout();
-                        // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(234, 8);
-                        this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(354, 8);
-                        this.CancelCommandButton.Click += new System.EventHandler(this.CancelCommandButton_Click);
                         // 
                         // lvItems
                         // 

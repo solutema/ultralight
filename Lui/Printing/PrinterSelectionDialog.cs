@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -83,19 +83,6 @@ namespace Lui.Printing
 			this.Nombre = new System.Windows.Forms.ColumnHeader();
 			this.NombreVisible = new System.Windows.Forms.ColumnHeader();
 			this.SuspendLayout();
-			// 
-			// OkButton
-			// 
-			this.OkButton.DockPadding.All = 2;
-			this.OkButton.Location = new System.Drawing.Point(164, 8);
-			this.OkButton.Name = "OkButton";
-			this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
-			// 
-			// CancelCommandButton
-			// 
-			this.CancelCommandButton.DockPadding.All = 2;
-			this.CancelCommandButton.Location = new System.Drawing.Point(268, 8);
-			this.CancelCommandButton.Name = "CancelCommandButton";
 			// 
 			// lvItems
 			// 

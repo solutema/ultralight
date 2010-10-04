@@ -47,9 +47,9 @@ namespace Lui.Forms
                         if (disposing && (components != null)) {
                                 components.Dispose();
                         }
-                        base.Dispose(disposing);
                         if (m_DataBase != null)
                                 m_DataBase.Dispose();
+                        base.Dispose(disposing);
                 }
 
 		#region Código generado por el Diseñador de Windows Forms

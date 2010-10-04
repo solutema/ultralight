@@ -75,8 +75,8 @@ namespace Lui.Forms
                         this.menuItem1 = new System.Windows.Forms.MenuItem();
                         this.MenuItemPegadoRapido = new System.Windows.Forms.MenuItem();
                         this.MenuItemPegadoRapidoAgregar = new System.Windows.Forms.MenuItem();
-                        this.lblPrefijo = new System.Windows.Forms.Label();
-                        this.lblSufijo = new System.Windows.Forms.Label();
+                        this.EtiquetaPrefijo = new System.Windows.Forms.Label();
+                        this.EtiquetaSufijo = new System.Windows.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // MiContextMenu
@@ -167,34 +167,34 @@ namespace Lui.Forms
                         // 
                         // lblPrefijo
                         // 
-                        this.lblPrefijo.AutoSize = true;
-                        this.lblPrefijo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-                        this.lblPrefijo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.lblPrefijo.Location = new System.Drawing.Point(4, 2);
-                        this.lblPrefijo.Name = "lblPrefijo";
-                        this.lblPrefijo.Size = new System.Drawing.Size(0, 13);
-                        this.lblPrefijo.TabIndex = 3;
-                        this.lblPrefijo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        this.lblPrefijo.UseMnemonic = false;
-                        this.lblPrefijo.Visible = false;
+                        this.EtiquetaPrefijo.AutoSize = true;
+                        this.EtiquetaPrefijo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+                        this.EtiquetaPrefijo.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaPrefijo.Location = new System.Drawing.Point(4, 2);
+                        this.EtiquetaPrefijo.Name = "lblPrefijo";
+                        this.EtiquetaPrefijo.Size = new System.Drawing.Size(0, 13);
+                        this.EtiquetaPrefijo.TabIndex = 3;
+                        this.EtiquetaPrefijo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaPrefijo.UseMnemonic = false;
+                        this.EtiquetaPrefijo.Visible = false;
                         // 
                         // lblSufijo
                         // 
-                        this.lblSufijo.AutoSize = true;
-                        this.lblSufijo.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.lblSufijo.Location = new System.Drawing.Point(368, 4);
-                        this.lblSufijo.Name = "lblSufijo";
-                        this.lblSufijo.Size = new System.Drawing.Size(0, 13);
-                        this.lblSufijo.TabIndex = 4;
-                        this.lblSufijo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        this.lblSufijo.UseMnemonic = false;
-                        this.lblSufijo.Visible = false;
+                        this.EtiquetaSufijo.AutoSize = true;
+                        this.EtiquetaSufijo.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaSufijo.Location = new System.Drawing.Point(368, 4);
+                        this.EtiquetaSufijo.Name = "lblSufijo";
+                        this.EtiquetaSufijo.Size = new System.Drawing.Size(0, 13);
+                        this.EtiquetaSufijo.TabIndex = 4;
+                        this.EtiquetaSufijo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaSufijo.UseMnemonic = false;
+                        this.EtiquetaSufijo.Visible = false;
                         // 
                         // TextBox
                         // 
 			this.FontChanged += new System.EventHandler(this.TextBox_FontChanged);
-                        this.Controls.Add(this.lblPrefijo);
-                        this.Controls.Add(this.lblSufijo);
+                        this.Controls.Add(this.EtiquetaPrefijo);
+                        this.Controls.Add(this.EtiquetaSufijo);
                         this.Name = "TextBox";
                         this.Size = new System.Drawing.Size(384, 40);
                         this.ResumeLayout(false);
@@ -204,8 +204,8 @@ namespace Lui.Forms
 
                 #endregion
 
-                internal System.Windows.Forms.Label lblPrefijo;
-                internal System.Windows.Forms.Label lblSufijo;
+                internal System.Windows.Forms.Label EtiquetaPrefijo;
+                internal System.Windows.Forms.Label EtiquetaSufijo;
                 internal System.Windows.Forms.MenuItem MenuItem2;
                 internal System.Windows.Forms.MenuItem MenuItem4;
                 internal System.Windows.Forms.MenuItem MenuItemCopiar;

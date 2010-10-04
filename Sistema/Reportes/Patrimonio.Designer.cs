@@ -88,7 +88,7 @@ namespace Lazaro.Reportes
                     this.label12 = new System.Windows.Forms.Label();
                     this.txtPasivosStock = new Lui.Forms.TextBox();
                     this.label13 = new System.Windows.Forms.Label();
-                    this.txtCC = new Lui.Forms.TextBox();
+                    this.EntradaCC = new Lui.Forms.TextBox();
                     this.label14 = new System.Windows.Forms.Label();
                     this.SuspendLayout();
                     // 
@@ -645,31 +645,30 @@ namespace Lazaro.Reportes
                     // 
                     // txtCC
                     // 
-                    this.txtCC.AutoHeight = false;
-                    this.txtCC.AutoNav = true;
-                    this.txtCC.AutoTab = true;
-                    this.txtCC.DataType = Lui.Forms.DataTypes.Money;
-                    this.txtCC.DecimalPlaces = -1;
-                    this.txtCC.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                    this.txtCC.ForceCase = Lui.Forms.TextCasing.None;
-                    this.txtCC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                    this.txtCC.Location = new System.Drawing.Point(640, 83);
-                    this.txtCC.MaxLenght = 32767;
-                    this.txtCC.MultiLine = false;
-                    this.txtCC.Name = "txtCC";
-                    this.txtCC.Padding = new System.Windows.Forms.Padding(2);
-                    this.txtCC.PasswordChar = '\0';
-                    this.txtCC.Prefijo = "$";
-                    this.txtCC.ReadOnly = true;
-                    this.txtCC.SelectOnFocus = true;
-                    this.txtCC.Size = new System.Drawing.Size(100, 24);
-                    this.txtCC.Sufijo = "";
-                    this.txtCC.TabIndex = 37;
-                    this.txtCC.Text = "0.00";
-                    this.txtCC.TextRaw = "0.00";
-                    this.txtCC.TipWhenBlank = "";
-                    this.txtCC.ToolTipText = "";
-                    this.txtCC.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+                    this.EntradaCC.AutoHeight = false;
+                    this.EntradaCC.AutoNav = true;
+                    this.EntradaCC.AutoTab = true;
+                    this.EntradaCC.DataType = Lui.Forms.DataTypes.Money;
+                    this.EntradaCC.DecimalPlaces = -1;
+                    this.EntradaCC.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                    this.EntradaCC.ForceCase = Lui.Forms.TextCasing.None;
+                    this.EntradaCC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                    this.EntradaCC.Location = new System.Drawing.Point(640, 83);
+                    this.EntradaCC.MaxLenght = 32767;
+                    this.EntradaCC.MultiLine = false;
+                    this.EntradaCC.Name = "txtCC";
+                    this.EntradaCC.Padding = new System.Windows.Forms.Padding(2);
+                    this.EntradaCC.PasswordChar = '\0';
+                    this.EntradaCC.Prefijo = "$";
+                    this.EntradaCC.ReadOnly = true;
+                    this.EntradaCC.SelectOnFocus = true;
+                    this.EntradaCC.Size = new System.Drawing.Size(100, 24);
+                    this.EntradaCC.Sufijo = "";
+                    this.EntradaCC.TabIndex = 37;
+                    this.EntradaCC.Text = "0.00";
+                    this.EntradaCC.TextRaw = "0.00";
+                    this.EntradaCC.TipWhenBlank = "";
+                    this.EntradaCC.ToolTipText = "";
                     // 
                     // label14
                     // 
@@ -680,14 +679,13 @@ namespace Lazaro.Reportes
                     this.label14.Text = "Cuentas corrientes";
                     this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                     this.label14.UseMnemonic = false;
-                    this.label14.Click += new System.EventHandler(this.label14_Click);
                     // 
                     // Patrimonio
                     // 
                     this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                     this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                     this.ClientSize = new System.Drawing.Size(757, 391);
-                    this.Controls.Add(this.txtCC);
+                    this.Controls.Add(this.EntradaCC);
                     this.Controls.Add(this.label14);
                     this.Controls.Add(this.txtPasivosStock);
                     this.Controls.Add(this.label13);
@@ -758,7 +756,7 @@ namespace Lazaro.Reportes
                 private System.Windows.Forms.Label label12;
                 private Lui.Forms.TextBox txtPasivosStock;
                 private System.Windows.Forms.Label label13;
-                private Lui.Forms.TextBox txtCC;
+                private Lui.Forms.TextBox EntradaCC;
                 private System.Windows.Forms.Label label14;
         }
 }

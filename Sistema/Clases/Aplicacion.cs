@@ -30,11 +30,9 @@
 #endregion
 
 using System;
-using System.Data;
-using System.Diagnostics;
-using System.Windows.Forms;
 using System.Net.Mail;
 using System.Security.Permissions;
+using System.Windows.Forms;
 
 namespace Lazaro
 {
@@ -294,7 +292,7 @@ namespace Lazaro
                 /// </summary>
                 private static Lfx.Types.OperationResult IniciarNormal()
                 {
-                        if (Lfx.Environment.SystemInformation.DesignMode == false) {
+                        if (Lfx.Workspace.Master.SlowLink == false && Lfx.Environment.SystemInformation.DesignMode == false) {
                                 Lfx.Services.Updater.Master.UpdateFromDbCache();
 
                                 if (Lfx.Services.Updater.Master.UpdatedFiles > 0) {
@@ -332,8 +330,9 @@ namespace Lazaro
                         }
 
                         Lazaro.Misc.Ingreso FormIngreso = new Lazaro.Misc.Ingreso();
-
                         FormIngreso.ShowDialog();
+                        FormIngreso.Dispose();
+                        FormIngreso = null;
 
                         if (Lfx.Workspace.Master.CurrentUser.Id > 0) {
                                 if (Lfx.Workspace.Master.DefaultDataBase.SlowLink == false && Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Backup.Tipo", "0") == "2") {
@@ -483,17 +482,6 @@ namespace Lazaro
                                         Fil.Carpeta = @"C:\Ventre\";
                                         Fil.Cargar();
                                         Fil.Fusionar();
-                                        break;
-
-                                case "TEST":
-                                        /* Lbl.Servicios.Importar.FiltroEscorpion Fil = new Lbl.Servicios.Importar.FiltroEscorpion(Lfx.Workspace.Master.DefaultDataBase);
-                                        Fil.Carpeta = @"C:\Projects\Ventre\";
-                                        Fil.Cargar();
-                                        Fil.Fusionar(); */
-
-                                        Misc.Form1 Frm = new Lazaro.Misc.Form1();
-                                        Frm.MdiParent = FormularioPrincipal;
-                                        Frm.Show();
                                         break;
 
                                 case "CHECK":
@@ -788,7 +776,7 @@ namespace Lazaro
                 private static object ExecListado(string Comando)
                 {
                         string SubComando = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();
-                        Lui.Forms.ListingForm FormularioListado = null;
+                        Lui.Forms.Form FormularioListado = null;
 
                         switch (SubComando) {
                                 case "ALICUOTAS":
@@ -838,7 +826,7 @@ namespace Lazaro
 
                                 case "CAJA":
                                 case "CAJAS":
-                                        if (Lui.Login.LoginData.ValidateAccess(Lfx.Workspace.Master.CurrentUser, "accounts.admin")) {
+                                        if (Lui.Login.LoginData.ValidateAccess(Lfx.Workspace.Master.CurrentUser, "accounts.read")) {
                                                 FormularioListado = (Lui.Forms.ListingForm)BuscarVentana("Lfc.Cajas.Admin.Inicio");
                                                 if (FormularioListado == null)
                                                         FormularioListado = new Lfc.Cajas.Admin.Inicio();
@@ -1078,7 +1066,7 @@ namespace Lazaro
                                 case "ALICUOTA":
                                 case "alicuotas":
                                         if (Lui.Login.LoginData.ValidateAccess(Lfx.Workspace.Master.CurrentUser, "global.admin")) {
-                                                FormularioDeEdicion = new Lfc.Alicuotas.Editar();
+                                                Lfc.Alicuotas.Inicio ControlEdicion = new Lfc.Alicuotas.Inicio();
                                                 MdiChild = false;
                                         }
                                         break;
@@ -1124,11 +1112,6 @@ namespace Lazaro
                                         FormularioDeEdicion = new Lfc.Articulos.Editar();
                                         break;
 
-                                case "RECETA":
-                                case "articulos_recetas":
-                                        FormularioDeEdicion = new Lfc.Articulos.Recetas.Editar();
-                                        break;
-
                                 case "ARTICULO_CATEG":
                                 case "articulos_categorias":
                                         if (Lui.Login.LoginData.ValidateAccess(Lfx.Workspace.Master.CurrentUser, "global.admin")) {
@@ -1169,8 +1152,10 @@ namespace Lazaro
 
                                 case "CAJA":
                                 case "caja":
-                                        FormularioDeEdicion = new Lfc.Cajas.Admin.Editar();
-                                        MdiChild = false;
+                                        if (Lui.Login.LoginData.ValidateAccess(Lfx.Workspace.Master.CurrentUser, "accounts.admin")) {
+                                                FormularioDeEdicion = new Lfc.Cajas.Admin.Editar();
+                                                MdiChild = false;
+                                        }
                                         break;
 
                                 case "CONCEPTO":
@@ -1509,6 +1494,7 @@ namespace Lazaro
                                 while (ex2 != null) {
                                         if (string.Compare(ex2.Message,"Reading from the stream has failed.", true) == 0
                                                 || string.Compare(ex2.Message, "Connection unexpectedly terminated.", true) == 0
+                                                || string.Compare(ex2.Message, "error connecting: Timeout expired.", true) == 0
                                                 || string.Compare(ex2.Message, "No se pueden leer los datos de la conexión de transporte: Se ha forzado la interrupción de una conexión existente por el host remoto.", true) == 0) {
                                                 KnownExceptionHandler(ex, "Error de comunicación con el servidor");
                                                 Found = true;
@@ -1533,6 +1519,7 @@ namespace Lazaro
 
                 /// <summary>
                 /// Manejador de excepciones conocidas. Presenta una ventana con el error. Se utiliza para excepciones como InvalidPrinterException.
+                /// No genera un reporte por correo electrónico.
                 /// </summary>
                 /// <param name="ex">La excepción a reportar.</param>
                 /// <param name="mensajeDescriptivo">Una mejor descripción de la excepción que el mensaje orginal.</param>

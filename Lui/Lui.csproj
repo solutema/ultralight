@@ -76,6 +76,10 @@
     <Compile Include="Forms\Bracket.Designer.cs">
       <DependentUpon>Bracket.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ButtonCollection.cs" />
+    <Compile Include="Forms\ButtonGroup.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\ChildDialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,30 +95,10 @@
     <Compile Include="Forms\ContainerControl.Designer.cs">
       <DependentUpon>ContainerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DetailBox.Designer.cs">
-      <DependentUpon>DetailBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FieldGroup.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\FieldGroup.Designer.cs">
-      <DependentUpon>FieldGroup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FieldTags.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\FieldTags.Designer.cs">
-      <DependentUpon>FieldTags.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\IDataControl.cs" />
+    <Compile Include="Forms\IDataForm.cs" />
     <Compile Include="Forms\ListView.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Forms\LuiControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\LuiControl.Designer.cs">
-      <DependentUpon>LuiControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\AuxForms\CalendarPopUp.cs">
       <SubType>Form</SubType>
@@ -127,12 +111,6 @@
     </Compile>
     <Compile Include="Forms\AuxForms\DataSetHelp.Designer.cs">
       <DependentUpon>DataSetHelp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\AuxForms\DetailBoxQuickSelect.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AuxForms\DetailBoxQuickSelect.Designer.cs">
-      <DependentUpon>DetailBoxQuickSelect.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\AuxForms\TextEdit.cs">
       <SubType>Form</SubType>
@@ -155,15 +133,6 @@
     <Compile Include="Forms\Control.Designer.cs">
       <DependentUpon>Control.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DetailBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\Field.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\Field.Designer.cs">
-      <DependentUpon>Field.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Frame.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -178,15 +147,6 @@
     </Compile>
     <Compile Include="Forms\OrientedLabel.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Forms\Product.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\Product.Designer.cs">
-      <DependentUpon>Product.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ProductArray.cs">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\ProgressBar.cs">
       <SubType>Component</SubType>
@@ -203,7 +163,6 @@
     <Compile Include="Forms\WorkstationSelectorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Statics.cs" />
     <Compile Include="Forms\WorkspaceSelectorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -322,28 +281,12 @@
       <DependentUpon>ComboBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Field.resx">
-      <DependentUpon>Field.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FieldGroup.resx">
-      <DependentUpon>FieldGroup.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LuiControl.resx">
-      <DependentUpon>LuiControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AuxForms\CalendarPopUp.resx">
       <DependentUpon>CalendarPopUp.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AuxForms\DataSetHelp.resx">
       <DependentUpon>DataSetHelp.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AuxForms\DetailBoxQuickSelect.resx">
-      <DependentUpon>DetailBoxQuickSelect.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AuxForms\TextEdit.resx">
@@ -366,24 +309,12 @@
       <DependentUpon>Control.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DetailBox.resx">
-      <DependentUpon>DetailBox.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Frame.resx">
       <DependentUpon>Frame.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Note.resx">
       <DependentUpon>Note.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Product.resx">
-      <DependentUpon>Product.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ProductArray.resx">
-      <DependentUpon>ProductArray.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TextBoxBase.resx">

@@ -54,13 +54,13 @@ namespace Lazaro.Misc
                 private void InitializeComponent()
                 {
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ingreso));
-                        this.txtContrasena = new Lui.Forms.TextBox();
+                        this.EntradaContrasena = new Lui.Forms.TextBox();
                         this.Label1 = new System.Windows.Forms.Label();
                         this.Label2 = new System.Windows.Forms.Label();
                         this.Titulo = new System.Windows.Forms.Label();
                         this.CancelCommandButton = new Lui.Forms.Button();
                         this.OkButton = new Lui.Forms.Button();
-                        this.txtUsuario = new Lui.Forms.DetailBox();
+                        this.EntradaUsuario = new Lcc.Entrada.CodigoDetalle();
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
                         this.PictureBox2 = new System.Windows.Forms.PictureBox();
                         this.LowerPanel = new System.Windows.Forms.Panel();
@@ -74,24 +74,24 @@ namespace Lazaro.Misc
                         // 
                         // txtContrasena
                         // 
-                        this.txtContrasena.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaContrasena.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtContrasena.AutoNav = true;
-                        this.txtContrasena.AutoTab = true;
-                        this.txtContrasena.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.txtContrasena.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtContrasena.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtContrasena.Location = new System.Drawing.Point(148, 169);
-                        this.txtContrasena.MaxLenght = 32767;
-                        this.txtContrasena.Name = "txtContrasena";
-                        this.txtContrasena.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtContrasena.PasswordChar = '*';
-                        this.txtContrasena.ReadOnly = false;
-                        this.txtContrasena.Size = new System.Drawing.Size(198, 24);
-                        this.txtContrasena.TabIndex = 6;
-                        this.txtContrasena.TipWhenBlank = "";
-                        this.txtContrasena.ToolTipText = "";
-                        this.txtContrasena.TextChanged += new System.EventHandler(this.CambioDatos);
+                        this.EntradaContrasena.AutoNav = true;
+                        this.EntradaContrasena.AutoTab = true;
+                        this.EntradaContrasena.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaContrasena.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaContrasena.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaContrasena.Location = new System.Drawing.Point(148, 169);
+                        this.EntradaContrasena.MaxLenght = 32767;
+                        this.EntradaContrasena.Name = "txtContrasena";
+                        this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaContrasena.PasswordChar = '*';
+                        this.EntradaContrasena.ReadOnly = false;
+                        this.EntradaContrasena.Size = new System.Drawing.Size(198, 24);
+                        this.EntradaContrasena.TabIndex = 6;
+                        this.EntradaContrasena.TipWhenBlank = "";
+                        this.EntradaContrasena.ToolTipText = "";
+                        this.EntradaContrasena.TextChanged += new System.EventHandler(this.CambioDatos);
                         // 
                         // Label1
                         // 
@@ -148,7 +148,7 @@ namespace Lazaro.Misc
                         this.CancelCommandButton.TabIndex = 8;
                         this.CancelCommandButton.Text = "Cancelar";
                         this.CancelCommandButton.ToolTipText = "";
-                        this.CancelCommandButton.Click += new System.EventHandler(this.cmdCancelar_Click);
+                        this.CancelCommandButton.Click += new System.EventHandler(this.BotonCancelar_Click);
                         // 
                         // OkButton
                         // 
@@ -169,37 +169,37 @@ namespace Lazaro.Misc
                         this.OkButton.TabIndex = 7;
                         this.OkButton.Text = "Aceptar";
                         this.OkButton.ToolTipText = "";
-                        this.OkButton.Click += new System.EventHandler(this.cmdAceptar_Click);
+                        this.OkButton.Click += new System.EventHandler(this.BotonAceptar_Click);
                         // 
                         // txtUsuario
                         // 
-                        this.txtUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtUsuario.AutoTab = true;
-                        this.txtUsuario.CanCreate = false;
-                        this.txtUsuario.DetailField = "nombre_visible";
-                        this.txtUsuario.ExtraDetailFields = null;
-                        this.txtUsuario.Filter = "(tipo&4)=4 AND contrasena<>\'\'";
-                        this.txtUsuario.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtUsuario.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtUsuario.FreeTextCode = "";
-                        this.txtUsuario.KeyField = "id_persona";
-                        this.txtUsuario.Location = new System.Drawing.Point(148, 137);
-                        this.txtUsuario.MaxLength = 200;
-                        this.txtUsuario.Name = "txtUsuario";
-                        this.txtUsuario.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtUsuario.ReadOnly = false;
-                        this.txtUsuario.Required = true;
-                        this.txtUsuario.Size = new System.Drawing.Size(306, 24);
-                        this.txtUsuario.TabIndex = 4;
-                        this.txtUsuario.Table = "personas";
-                        this.txtUsuario.TeclaDespuesDeEnter = "{tab}";
-                        this.txtUsuario.Text = "0";
-                        this.txtUsuario.TextDetail = "";
-                        this.txtUsuario.TextInt = 0;
-                        this.txtUsuario.TipWhenBlank = "";
-                        this.txtUsuario.ToolTipText = "";
-                        this.txtUsuario.TextChanged += new System.EventHandler(this.CambioDatos);
+                        this.EntradaUsuario.AutoTab = true;
+                        this.EntradaUsuario.CanCreate = false;
+                        this.EntradaUsuario.DetailField = "nombre_visible";
+                        this.EntradaUsuario.ExtraDetailFields = null;
+                        this.EntradaUsuario.Filter = "(tipo&4)=4 AND contrasena<>\'\'";
+                        this.EntradaUsuario.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaUsuario.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaUsuario.FreeTextCode = "";
+                        this.EntradaUsuario.KeyField = "id_persona";
+                        this.EntradaUsuario.Location = new System.Drawing.Point(148, 137);
+                        this.EntradaUsuario.MaxLength = 200;
+                        this.EntradaUsuario.Name = "txtUsuario";
+                        this.EntradaUsuario.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaUsuario.ReadOnly = false;
+                        this.EntradaUsuario.Required = true;
+                        this.EntradaUsuario.Size = new System.Drawing.Size(306, 24);
+                        this.EntradaUsuario.TabIndex = 4;
+                        this.EntradaUsuario.Table = "personas";
+                        this.EntradaUsuario.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaUsuario.Text = "0";
+                        this.EntradaUsuario.TextDetail = "";
+                        this.EntradaUsuario.TextInt = 0;
+                        this.EntradaUsuario.TipWhenBlank = "";
+                        this.EntradaUsuario.ToolTipText = "";
+                        this.EntradaUsuario.TextChanged += new System.EventHandler(this.CambioDatos);
                         // 
                         // PictureBox1
                         // 
@@ -257,8 +257,8 @@ namespace Lazaro.Misc
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(474, 274);
                         this.ControlBox = false;
-                        this.Controls.Add(this.txtUsuario);
-                        this.Controls.Add(this.txtContrasena);
+                        this.Controls.Add(this.EntradaUsuario);
+                        this.Controls.Add(this.EntradaContrasena);
                         this.Controls.Add(this.UpperPanel);
                         this.Controls.Add(this.PictureBox2);
                         this.Controls.Add(this.Titulo);
@@ -286,8 +286,8 @@ namespace Lazaro.Misc
                 internal System.Windows.Forms.Label Label1;
                 internal System.Windows.Forms.Label Label2;
                 internal Lui.Forms.Button OkButton;
-                internal Lui.Forms.TextBox txtContrasena;
-                internal Lui.Forms.DetailBox txtUsuario;
+                internal Lui.Forms.TextBox EntradaContrasena;
+                internal Lcc.Entrada.CodigoDetalle EntradaUsuario;
                 internal Lui.Forms.Button CancelCommandButton;
                 internal System.Windows.Forms.PictureBox PictureBox1;
                 internal System.Windows.Forms.PictureBox PictureBox2;

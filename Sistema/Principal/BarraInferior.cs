@@ -92,6 +92,9 @@ namespace Lazaro.Principal
 			if (this.Workspace == null)
 				return;
 
+                        if (this.Visible == false)
+                                return;
+
 			TablaSolicitada = tabla;
 			ItemSolicitado = item;
 
@@ -132,7 +135,7 @@ namespace Lazaro.Principal
                                                 ArticuloCodigos.Text = Codigos;
                                                 ArticuloNombre.Text = Art.ToString();
                                                 ArticuloDescripcion.Text = Art.Descripcion;
-                                                ArticuloPVP.Text = Lfx.Types.Formatting.FormatCurrency(Art.PVP, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                                ArticuloPvp.Text = Lfx.Types.Formatting.FormatCurrency(Art.Pvp, this.Workspace.CurrentConfig.Moneda.Decimales);
                                                 ArticuloStock.Text = Lfx.Types.Formatting.FormatCurrency(Art.StockActual, this.Workspace.CurrentConfig.Moneda.Decimales);
                                                 PanelArticulo.Visible = true;
                                         }
@@ -155,7 +158,7 @@ namespace Lazaro.Principal
                                                         PersonaGrupo.Text = Per.Grupo.ToString();
                                                 else
                                                         PersonaGrupo.Text = "-";
-                                                double Saldo = Per.CuentaCorriente.Saldo();
+                                                double Saldo = Per.CuentaCorriente.Saldo(false);
                                                 if (Saldo > 0) {
                                                         PersonaComentario.Text = "Esta persona registra saldo impago en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
                                                         PersonaComentario.BackColor = System.Drawing.Color.Tomato;
@@ -188,12 +191,14 @@ namespace Lazaro.Principal
 
 		private void ArticuloNombre_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			Aplicacion.Exec("EDITAR " + TablaActual + " " + ItemActual.ToString());
+                        if (TablaActual != null && ItemActual > 0)
+                                Aplicacion.Exec("EDITAR " + TablaActual + " " + ItemActual.ToString());
 		}
 
                 private void PersonaNombre_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
-                        Aplicacion.Exec("EDITAR " + TablaActual + " " + ItemActual.ToString());
+                        if (TablaActual != null && ItemActual > 0)
+                                Aplicacion.Exec("EDITAR " + TablaActual + " " + ItemActual.ToString());
                 }
 
                 private void EnlaceEtiquetas_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

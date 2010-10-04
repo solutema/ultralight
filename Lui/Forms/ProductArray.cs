@@ -49,7 +49,7 @@ namespace Lui.Forms
 		private Product.Precios m_Precio = Product.Precios.PVP;
 
 		public event System.EventHandler TotalChanged;
-		public new event System.EventHandler TextChanged;
+		new public event System.EventHandler TextChanged;
                 public event System.EventHandler AskForSerials;
 
 		#region Código generado por el Diseñador de Windows Forms
@@ -203,6 +203,7 @@ namespace Lui.Forms
                         return m_Articulos;
                 }
 
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public bool Changed
 		{
 			get

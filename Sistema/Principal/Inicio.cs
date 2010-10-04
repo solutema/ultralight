@@ -81,7 +81,8 @@ namespace Lazaro.Principal
                                 //y en Linux el modo MDI no es bienvenido
                                 ModoPredeterminado = "flotante";
                         }
-                              
+
+                        BarraInferior.Visible = this.Workspace.CurrentConfig.ReadLocalSettingInt("Sistema", "Apariencia.BarraInformacion", 1) != 0;
                         switch (this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Apariencia.ModoPantalla", ModoPredeterminado))
                         {
                                 case "normal":
@@ -122,6 +123,13 @@ namespace Lazaro.Principal
 
                         if (this.Visible)
                         {
+                                if (ListaBd.Visible) {
+                                        ListaBd.Items.Clear();
+                                        foreach (Lfx.Data.DataBase Bd in this.Workspace.DataBases) {
+                                                ListaBd.Items.Add(Bd.Name);
+                                        }
+                                }
+
                                 //Ejecuto tareas del programador
                                 Lfx.Services.Task ProximaTarea = null;
                                 //En conexiones lentas, 1 vez por minuto
@@ -140,7 +148,7 @@ namespace Lazaro.Principal
                                 if (Lfx.Services.Updater.Master.RebootNeeded && YaPregunteReiniciar == false) {
                                         YaPregunteReiniciar = true;
                                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Existe una nueva versión del sistema Lázaro. Debe reiniciar la aplicación para instalar la actualización.", "¿Desea reiniciar ahora?");
-                                        Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+                                        Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                         DialogResult Respuesta = Pregunta.ShowDialog();
                                         if (Respuesta == DialogResult.OK)
                                                 Aplicacion.Exec("REBOOT");
@@ -197,9 +205,17 @@ namespace Lazaro.Principal
                                                 }
                                         }
                                         break;
+                                case Keys.D:
+                                        if (e.Control && e.Alt == false && e.Shift == false)
+                                                ListaBd.Visible = !ListaBd.Visible;
+                                        break;
+                                case Keys.B:
+                                        if (e.Control && e.Alt == false && e.Shift == false)
+                                                BarraInferior.Visible = !BarraInferior.Visible;
+                                        this.Workspace.CurrentConfig.WriteLocalSetting("Sistema", "Apariencia.BarraInformacion", BarraInferior.Visible ? "1" : "0");
+                                        break;
                                 case Keys.R:
-                                        if (e.Control == true && e.Alt == false && e.Shift == false)
-                                        {
+                                        if (e.Control == true && e.Alt == false && e.Shift == false) {
                                                 e.Handled = true;
                                                 string Cmd = Lui.Forms.InputBox.ShowInputBox("Comando");
                                                 if (Cmd != null && Cmd.Length > 0)
@@ -241,13 +257,16 @@ namespace Lazaro.Principal
                 {
                         /* if (this.Visible) {
                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Está a punto de cerrar completamente la aplicación.", "¿Desea cerrar el sistema Lázaro?");
-                                Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+                                Pregunta.DialogButton = Lui.Forms.DialogButtons.YesNo;
                                 if (Pregunta.ShowDialog() != DialogResult.OK) {
                                         e.Cancel = true;
                                 } else { */
-                                        if (this.Workspace != null)
-                                                this.Workspace.CurrentConfig.WriteGlobalSetting("", "Sistema.Ingreso.UltimoEgreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "");
-                                        System.Environment.Exit(0);
+                        if (this.Workspace != null) {
+                                this.Workspace.CurrentConfig.WriteGlobalSetting("", "Sistema.Ingreso.UltimoEgreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "");
+                                Lfx.Services.Updater.Master.Stop();
+                                Lfx.Services.Updater.Master.Dispose();
+                        }
+                                System.Environment.Exit(0);
                                 /*}
                         }*/
                 }
@@ -281,12 +300,14 @@ namespace Lazaro.Principal
 
                 public void MostrarItem(string tabla, int item)
                 {
-                        BarraInferior.MostrarItem(tabla, item);
+                        if (BarraInferior.Visible)
+                                BarraInferior.MostrarItem(tabla, item);
                 }
 
                 public void MostrarAyuda(string titulo, string texto)
                 {
-                        BarraInferior.MostrarAyuda(titulo, texto);
+                        if (BarraInferior.Visible)
+                                BarraInferior.MostrarAyuda(titulo, texto);
                 }
 
 

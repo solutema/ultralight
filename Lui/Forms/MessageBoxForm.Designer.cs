@@ -73,7 +73,6 @@ namespace Lui.Forms
                 this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                 this.OkButton.AutoHeight = false;
                 this.OkButton.DialogResult = System.Windows.Forms.DialogResult.None;
-                this.OkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
                 this.OkButton.Image = null;
                 this.OkButton.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -132,7 +131,6 @@ namespace Lui.Forms
                 this.Controls.Add(this.MessageText);
                 this.Controls.Add(this.pictureBox1);
                 this.Controls.Add(this.LowerPanel);
-                this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.KeyPreview = true;
                 this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                 this.Name = "MessageBoxForm";

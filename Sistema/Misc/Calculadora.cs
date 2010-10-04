@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -109,8 +109,6 @@ namespace Lazaro.Misc
 			this.txtFormula.AutoNav = false;
 			this.txtFormula.AutoTab = false;
 			this.txtFormula.BackColor = System.Drawing.Color.White;
-			//WAS: BorderStyle
-			this.txtFormula.Changed = false;
 			this.txtFormula.DataType = Lui.Forms.DataTypes.FreeText;
 			this.txtFormula.DockPadding.All = 2;
 			this.txtFormula.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, System.Convert.ToByte(0));

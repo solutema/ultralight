@@ -58,152 +58,167 @@ namespace Lui.Login
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRevalidateAccess));
-			this.Titulo = new System.Windows.Forms.Label();
-			this.txtContrasena = new Lui.Forms.TextBox();
-			this.PictureBox2 = new System.Windows.Forms.PictureBox();
-			this.Label2 = new System.Windows.Forms.Label();
-			this.txtUsuario = new Lui.Forms.DetailBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.LabelExplain = new System.Windows.Forms.Label();
-			((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
-			this.SuspendLayout();
-			// 
-			// OkButton
-			// 
-			this.OkButton.Location = new System.Drawing.Point(261, 8);
-			// 
-			// CancelCommandButton
-			// 
-			this.CancelCommandButton.Location = new System.Drawing.Point(369, 8);
-			// 
-			// Titulo
-			// 
-			this.Titulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-				    | System.Windows.Forms.AnchorStyles.Right)));
-			this.Titulo.Location = new System.Drawing.Point(16, 20);
-			this.Titulo.Name = "Titulo";
-			this.Titulo.Size = new System.Drawing.Size(445, 24);
-			this.Titulo.TabIndex = 0;
-			this.Titulo.Text = "Para continuar, por favor escriba su contraseña.";
-			this.Titulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// txtContrasena
-			// 
-			this.txtContrasena.AutoNav = true;
-			this.txtContrasena.AutoTab = true;
-			this.txtContrasena.DataType = Lui.Forms.DataTypes.FreeText;
-			this.txtContrasena.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtContrasena.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtContrasena.Location = new System.Drawing.Point(160, 148);
-			this.txtContrasena.MaxLenght = 32767;
-			this.txtContrasena.Name = "txtContrasena";
-			this.txtContrasena.Padding = new System.Windows.Forms.Padding(2);
-			this.txtContrasena.PasswordChar = '*';
-			this.txtContrasena.ReadOnly = false;
-			this.txtContrasena.Size = new System.Drawing.Size(180, 24);
-			this.txtContrasena.TabIndex = 4;
-			this.txtContrasena.TipWhenBlank = "";
-			this.txtContrasena.ToolTipText = "";
-			// 
-			// PictureBox2
-			// 
-			this.PictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox2.Image")));
-			this.PictureBox2.Location = new System.Drawing.Point(32, 116);
-			this.PictureBox2.Name = "PictureBox2";
-			this.PictureBox2.Size = new System.Drawing.Size(32, 32);
-			this.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.PictureBox2.TabIndex = 54;
-			this.PictureBox2.TabStop = false;
-			// 
-			// Label2
-			// 
-			this.Label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-			this.Label2.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.Label2.Location = new System.Drawing.Point(72, 148);
-			this.Label2.Name = "Label2";
-			this.Label2.Size = new System.Drawing.Size(88, 24);
-			this.Label2.TabIndex = 3;
-			this.Label2.Text = "Contraseña";
-			this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// txtUsuario
-			// 
-			this.txtUsuario.AutoTab = true;
-			this.txtUsuario.CanCreate = false;
-			this.txtUsuario.DetailField = "nombre_visible";
-			this.txtUsuario.Enabled = false;
-			this.txtUsuario.ExtraDetailFields = null;
-			this.txtUsuario.Filter = "(tipo&4)=4 AND contrasena<>\'\'";
-			this.txtUsuario.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtUsuario.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtUsuario.FreeTextCode = "";
-			this.txtUsuario.KeyField = "id_persona";
-			this.txtUsuario.Location = new System.Drawing.Point(160, 116);
-			this.txtUsuario.MaxLength = 200;
-			this.txtUsuario.Name = "txtUsuario";
-			this.txtUsuario.Padding = new System.Windows.Forms.Padding(2);
-			this.txtUsuario.ReadOnly = false;
-			this.txtUsuario.Required = true;
-			this.txtUsuario.Size = new System.Drawing.Size(288, 24);
-			this.txtUsuario.TabIndex = 2;
-			this.txtUsuario.Table = "personas";
-			this.txtUsuario.TeclaDespuesDeEnter = "{tab}";
-			this.txtUsuario.Text = "0";
-			this.txtUsuario.TextDetail = "";
-			this.txtUsuario.TextInt = 0;
-			this.txtUsuario.TipWhenBlank = "";
-			this.txtUsuario.ToolTipText = "";
-			// 
-			// label3
-			// 
-			this.label3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-			this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label3.Location = new System.Drawing.Point(72, 116);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(88, 24);
-			this.label3.TabIndex = 1;
-			this.label3.Text = "Usuario";
-			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// LabelExplain
-			// 
-			this.LabelExplain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-				    | System.Windows.Forms.AnchorStyles.Right)));
-			this.LabelExplain.Location = new System.Drawing.Point(20, 52);
-			this.LabelExplain.Name = "Explain";
-			this.LabelExplain.Size = new System.Drawing.Size(445, 40);
-			this.LabelExplain.TabIndex = 55;
-			this.LabelExplain.Text = "La operación que intenta realizar requiere por motivos de seguridad que vuelva a " +
-			    "escribir su contraseña.";
-			this.LabelExplain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// FormRevalidateAccess
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(477, 267);
-			this.Controls.Add(this.LabelExplain);
-			this.Controls.Add(this.txtUsuario);
-			this.Controls.Add(this.label3);
-			this.Controls.Add(this.txtContrasena);
-			this.Controls.Add(this.PictureBox2);
-			this.Controls.Add(this.Label2);
-			this.Controls.Add(this.Titulo);
-			this.Name = "FormRevalidateAccess";
-			this.Text = "Revalidar autorización";
-			((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).EndInit();
-			this.ResumeLayout(false);
+                        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRevalidateAccess));
+                        this.Titulo = new System.Windows.Forms.Label();
+                        this.EntradaContrasena = new Lui.Forms.TextBox();
+                        this.PictureBox2 = new System.Windows.Forms.PictureBox();
+                        this.Label2 = new System.Windows.Forms.Label();
+                        this.EntradaUsuario = new Lui.Forms.TextBox();
+                        this.label3 = new System.Windows.Forms.Label();
+                        this.LabelExplain = new System.Windows.Forms.Label();
+                        ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
+                        this.SuspendLayout();
+                        // 
+                        // OkButton
+                        // 
+                        this.OkButton.Location = new System.Drawing.Point(237, 8);
+                        // 
+                        // CancelCommandButton
+                        // 
+                        this.CancelCommandButton.Location = new System.Drawing.Point(357, 8);
+                        // 
+                        // Titulo
+                        // 
+                        this.Titulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Titulo.Location = new System.Drawing.Point(16, 20);
+                        this.Titulo.Name = "Titulo";
+                        this.Titulo.Size = new System.Drawing.Size(445, 24);
+                        this.Titulo.TabIndex = 0;
+                        this.Titulo.Text = "Para continuar, por favor escriba su contraseña.";
+                        this.Titulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        // 
+                        // EntradaContrasena
+                        // 
+                        this.EntradaContrasena.AutoHeight = false;
+                        this.EntradaContrasena.AutoNav = true;
+                        this.EntradaContrasena.AutoTab = true;
+                        this.EntradaContrasena.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaContrasena.DecimalPlaces = -1;
+                        this.EntradaContrasena.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaContrasena.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaContrasena.Location = new System.Drawing.Point(160, 148);
+                        this.EntradaContrasena.MaxLenght = 32767;
+                        this.EntradaContrasena.MultiLine = false;
+                        this.EntradaContrasena.Name = "EntradaContrasena";
+                        this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaContrasena.PasswordChar = '*';
+                        this.EntradaContrasena.Prefijo = "";
+                        this.EntradaContrasena.ReadOnly = false;
+                        this.EntradaContrasena.SelectOnFocus = true;
+                        this.EntradaContrasena.Size = new System.Drawing.Size(180, 24);
+                        this.EntradaContrasena.Sufijo = "";
+                        this.EntradaContrasena.TabIndex = 4;
+                        this.EntradaContrasena.TextRaw = "";
+                        this.EntradaContrasena.TipWhenBlank = "";
+                        this.EntradaContrasena.ToolTipText = "";
+                        // 
+                        // PictureBox2
+                        // 
+                        this.PictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox2.Image")));
+                        this.PictureBox2.Location = new System.Drawing.Point(32, 116);
+                        this.PictureBox2.Name = "PictureBox2";
+                        this.PictureBox2.Size = new System.Drawing.Size(32, 32);
+                        this.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+                        this.PictureBox2.TabIndex = 54;
+                        this.PictureBox2.TabStop = false;
+                        // 
+                        // Label2
+                        // 
+                        this.Label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.Label2.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.Label2.Location = new System.Drawing.Point(72, 148);
+                        this.Label2.Name = "Label2";
+                        this.Label2.Size = new System.Drawing.Size(88, 24);
+                        this.Label2.TabIndex = 3;
+                        this.Label2.Text = "Contraseña";
+                        this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EntradaUsuario
+                        // 
+                        this.EntradaUsuario.AutoHeight = false;
+                        this.EntradaUsuario.AutoNav = true;
+                        this.EntradaUsuario.AutoTab = true;
+                        this.EntradaUsuario.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaUsuario.DecimalPlaces = -1;
+                        this.EntradaUsuario.Enabled = false;
+                        this.EntradaUsuario.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaUsuario.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaUsuario.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaUsuario.Location = new System.Drawing.Point(160, 116);
+                        this.EntradaUsuario.MaxLenght = 32767;
+                        this.EntradaUsuario.MultiLine = false;
+                        this.EntradaUsuario.Name = "EntradaUsuario";
+                        this.EntradaUsuario.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaUsuario.PasswordChar = '\0';
+                        this.EntradaUsuario.Prefijo = "";
+                        this.EntradaUsuario.ReadOnly = true;
+                        this.EntradaUsuario.SelectOnFocus = true;
+                        this.EntradaUsuario.Size = new System.Drawing.Size(288, 24);
+                        this.EntradaUsuario.Sufijo = "";
+                        this.EntradaUsuario.TabIndex = 2;
+                        this.EntradaUsuario.Text = "0";
+                        this.EntradaUsuario.TextRaw = "0";
+                        this.EntradaUsuario.TipWhenBlank = "";
+                        this.EntradaUsuario.ToolTipText = "";
+                        // 
+                        // label3
+                        // 
+                        this.label3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.label3.Location = new System.Drawing.Point(72, 116);
+                        this.label3.Name = "label3";
+                        this.label3.Size = new System.Drawing.Size(88, 24);
+                        this.label3.TabIndex = 1;
+                        this.label3.Text = "Usuario";
+                        this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // LabelExplain
+                        // 
+                        this.LabelExplain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.LabelExplain.Location = new System.Drawing.Point(20, 52);
+                        this.LabelExplain.Name = "LabelExplain";
+                        this.LabelExplain.Size = new System.Drawing.Size(445, 40);
+                        this.LabelExplain.TabIndex = 55;
+                        this.LabelExplain.Text = "La operación que intenta realizar requiere por motivos de seguridad que vuelva a " +
+                            "escribir su contraseña.";
+                        this.LabelExplain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        // 
+                        // FormRevalidateAccess
+                        // 
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+                        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+                        this.ClientSize = new System.Drawing.Size(477, 267);
+                        this.Controls.Add(this.LabelExplain);
+                        this.Controls.Add(this.EntradaUsuario);
+                        this.Controls.Add(this.label3);
+                        this.Controls.Add(this.EntradaContrasena);
+                        this.Controls.Add(this.PictureBox2);
+                        this.Controls.Add(this.Label2);
+                        this.Controls.Add(this.Titulo);
+                        this.Name = "FormRevalidateAccess";
+                        this.Text = "Revalidar autorización";
+                        this.Controls.SetChildIndex(this.Titulo, 0);
+                        this.Controls.SetChildIndex(this.Label2, 0);
+                        this.Controls.SetChildIndex(this.PictureBox2, 0);
+                        this.Controls.SetChildIndex(this.EntradaContrasena, 0);
+                        this.Controls.SetChildIndex(this.label3, 0);
+                        this.Controls.SetChildIndex(this.EntradaUsuario, 0);
+                        this.Controls.SetChildIndex(this.LabelExplain, 0);
+                        ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).EndInit();
+                        this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
 		private System.Windows.Forms.Label Titulo;
-		internal Lui.Forms.TextBox txtContrasena;
+		internal Lui.Forms.TextBox EntradaContrasena;
 		internal System.Windows.Forms.PictureBox PictureBox2;
 		internal System.Windows.Forms.Label Label2;
-		internal Lui.Forms.DetailBox txtUsuario;
+		internal Lui.Forms.TextBox EntradaUsuario;
 		internal System.Windows.Forms.Label label3;
 		protected internal System.Windows.Forms.Label LabelExplain;
 	}

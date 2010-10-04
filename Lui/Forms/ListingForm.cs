@@ -30,10 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
-using System.Data;
-using System.Drawing;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Lui.Forms
@@ -42,24 +39,30 @@ namespace Lui.Forms
 	{
 		//Miembros privados
 		private int m_Limit = 5000;
-		private Lfx.Data.FormField m_Agrupar = null;
-		private Lfx.Data.FormField[] m_FormFields, m_ExtraSearchFields = null;
+		private List<Lfx.Data.FormField> m_FormFields = null, m_ExtraSearchFields = null;
+                private Lfx.Data.FormField m_GroupBy = null;
 		private string m_DataTableName;
 		private Lfx.Data.FormField m_KeyField;
 		private string m_OrderBy = null;
                 private System.Collections.Generic.List<qGen.Join> m_Joins = new System.Collections.Generic.List<qGen.Join>();
-		private string m_SearchText = "";
+		private string m_SearchText = null;
 		private qGen.Where m_CustomFilters = new qGen.Where();
                 private bool Virtual = false;
                 private ListViewItem[] VirtualModeCache = null;
-                
+                protected Dictionary<string, int> FormFieldToSubItem;
+
+                // Grouping
+                private string m_GroupingColumnName = null;
+                private static string LastGroupingValue = null;
+                private static ListViewGroup LastGroup = null;
+                private static System.Collections.Generic.Dictionary<string, int> GroupItemCount = new Dictionary<string, int>();
+
+                // Labels
                 private int[] m_Labels = null;
                 private string m_LabelField = null;
 
                 public ListingForm()
-                        : base()
                 {
-                        // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
 
                         PanelBotonera.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
@@ -93,7 +96,22 @@ namespace Lui.Forms
                         }
                 }
 
-		public Lfx.Data.FormField[] FormFields
+                public string GroupingColumnName
+                {
+                        get
+                        {
+                                return m_GroupingColumnName;
+                        }
+                        set
+                        {
+                                if (value == null || value.Length == 0)
+                                        m_GroupingColumnName = null;
+                                else
+                                        m_GroupingColumnName = value;
+                        }
+                }
+
+		public List<Lfx.Data.FormField> FormFields
 		{
 			get
 			{
@@ -102,31 +120,47 @@ namespace Lui.Forms
 			set
 			{
 				m_FormFields = value;
-				if(m_FormFields != null) {
-					int i = 1;
-					foreach(Lfx.Data.FormField CurField in m_FormFields) {
-                                                if (Listado.Columns.Count <= i)
-                                                        Listado.Columns.Add(new ColumnHeader());
-						Listado.Columns[i].Width = CurField.Width;
-						Listado.Columns[i].Text = CurField.Label;
-						switch(CurField.DataType) {
-							case Lfx.Data.InputFieldTypes.Integer:
-                                                        case Lfx.Data.InputFieldTypes.Serial:
-                                                        case Lfx.Data.InputFieldTypes.Numeric:
-                                                        case Lfx.Data.InputFieldTypes.Currency:
-								Listado.Columns[i].TextAlign = HorizontalAlignment.Right;
-								break;
-							default:
-								Listado.Columns[i].TextAlign = HorizontalAlignment.Left;
-								break;
-						}
-						i++;
-					}
-				}
+                                this.UpdateFormFields();
 			}
 		}
 
-		public Lfx.Data.FormField[] ExtraSearchFields
+                private void UpdateFormFields()
+                {
+                        if (this.Workspace != null && this.DataBase != null && m_FormFields != null) {
+                                FormFieldToSubItem = new Dictionary<string, int>();
+
+                                int ColNum = 1;
+                                for (int i = 0; i < m_FormFields.Count; i++) {
+                                        if (Listado.Columns.Count <= ColNum)
+                                                Listado.Columns.Add(new ColumnHeader());
+
+                                        Listado.Columns[ColNum].Name = Lfx.Data.DataBase.GetFieldName(m_FormFields[i].ColumnName);
+                                        Listado.Columns[ColNum].Width = m_FormFields[i].Width;
+                                        Listado.Columns[ColNum].Text = m_FormFields[i].Label;
+
+                                        if (FormFieldToSubItem.ContainsKey(Listado.Columns[ColNum].Name) == false)
+                                                FormFieldToSubItem.Add(Listado.Columns[ColNum].Name, ColNum);
+                                        if (FormFieldToSubItem.ContainsKey(m_FormFields[i].ColumnName) == false)
+                                                FormFieldToSubItem.Add(m_FormFields[i].ColumnName, ColNum);
+
+                                        switch (m_FormFields[i].DataType) {
+                                                case Lfx.Data.InputFieldTypes.Integer:
+                                                case Lfx.Data.InputFieldTypes.Serial:
+                                                case Lfx.Data.InputFieldTypes.Numeric:
+                                                case Lfx.Data.InputFieldTypes.Currency:
+                                                        Listado.Columns[ColNum].TextAlign = HorizontalAlignment.Right;
+                                                        break;
+                                                default:
+                                                        Listado.Columns[ColNum].TextAlign = HorizontalAlignment.Left;
+                                                        break;
+                                        }
+
+                                        ColNum++;
+                                }
+                        }
+                }
+
+                public List<Lfx.Data.FormField> ExtraSearchFields
 		{
 			get
 			{
@@ -169,7 +203,7 @@ namespace Lui.Forms
 			this.RefreshList();
 		}
 
-		public string SearchText
+		public virtual string SearchText
 		{
 			get
 			{
@@ -177,7 +211,10 @@ namespace Lui.Forms
 			}
 			set
 			{
-				m_SearchText = value;
+                                if (value == "")
+                                        m_SearchText = null;
+                                else
+                                        m_SearchText = value;
 			}
 		}
 
@@ -237,11 +274,11 @@ namespace Lui.Forms
 		{
 			get
 			{
-				return m_Agrupar;
+				return m_GroupBy;
 			}
 			set
 			{
-				m_Agrupar = value;
+                                m_GroupBy = value;
 			}
 		}
 
@@ -252,7 +289,10 @@ namespace Lui.Forms
 
                 public virtual Lfx.Types.OperationResult OnDelete(int[] itemIds)
                 {
-                        return new Lfx.Types.CancelOperationResult();
+                        foreach (int itemId in itemIds) {
+                                this.DataBase.Tables[this.DataTableName].FastRows.RemoveFromCache(itemId);
+                        }
+                        return new Lfx.Types.SuccessOperationResult();
                 }
 
 		public virtual Lfx.Types.OperationResult OnPrint(bool selectPrinter)
@@ -272,10 +312,18 @@ namespace Lui.Forms
 			return new Lfx.Types.SuccessOperationResult();
 		}
 
-		public virtual void RefreshList()
+		public void RefreshList()
 		{
+                        if (this.Workspace == null || this.DataBase == null)
+                                return;
+
+                        GroupItemCount.Clear();
+                        LastGroup = null;
+
+                        this.UpdateFormFields();
                         this.LoadColumns();
                         this.BeginRefreshList();
+
                         if (this.Virtual) {
                                 this.Listado.VirtualMode = true;
                                 this.Listado.VirtualListSize = this.DataBase.FieldInt(this.SelectCommand(true));
@@ -284,27 +332,22 @@ namespace Lui.Forms
                                 this.Listado.VirtualMode = false;
                                 this.Fill(this.SelectCommand(false));
                         }
+
+                        // Muestro los totales de grupo
+                        if (m_GroupingColumnName != null) {
+                                foreach (ListViewGroup Grp in Listado.Groups) {
+                                        if (GroupItemCount.ContainsKey(Grp.Name))
+                                                Grp.Header = Grp.Name + " (" + GroupItemCount[Grp.Name].ToString() + ")";
+                                }
+                        }
+
                         this.EndRefreshList();
 		}
 
-		private static string NombreCampo(string sCampo)
-		{
-			int r = sCampo.IndexOf("(") + 1;
-			if (r > 0)
-			{
-				// Si hay un paréntesis asumo que hay una función y no hago nada
-				return sCampo;
-			}
-			r = sCampo.IndexOf(".") + 1;
-			if (r > 0)
-				return sCampo.Substring(r, sCampo.Length - r);
-			else
-				return sCampo;
-		}
 
                 private qGen.Select SelectCommand(bool forCount)
                 {
-                        if (m_DataTableName != null) {
+                        if (this.Workspace != null && this.DataBase != null && m_DataTableName != null) {
                                 qGen.Select ComandoSelect = new qGen.Select(this.DataBase.SqlMode);
 
                                 // Genero la lista de tablas, con JOIN y todo
@@ -328,19 +371,19 @@ namespace Lui.Forms
                                 qGen.Where WhereBuscarTexto = new qGen.Where();
                                 WhereBuscarTexto.Operator = qGen.AndOr.Or;
 
-                                if (m_SearchText != null && m_SearchText.Length > 0) {
-                                        if (Lfx.Types.Strings.IsNumericInt(m_SearchText))
-                                                WhereBuscarTexto.AddWithValue(m_KeyField.ColumnName, Lfx.Types.Parsing.ParseInt(m_SearchText).ToString());
+                                if (this.SearchText != null) {
+                                        if (Lfx.Types.Strings.IsNumericInt(this.SearchText))
+                                                WhereBuscarTexto.AddWithValue(m_KeyField.ColumnName, Lfx.Types.Parsing.ParseInt(this.SearchText).ToString());
 
                                         if (m_FormFields != null) {
                                                 foreach (Lfx.Data.FormField CurField in m_FormFields) {
                                                         if (CurField.ColumnName.IndexOf(" AS ") == -1 && CurField.ColumnName.IndexOf("(") == -1)
-                                                                WhereBuscarTexto.AddWithValue(CurField.ColumnName, qGen.ComparisonOperators.InsensitiveLike, "%" + m_SearchText + "%");
+                                                                WhereBuscarTexto.AddWithValue(CurField.ColumnName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
                                                 }
                                         }
                                         if (m_ExtraSearchFields != null) {
                                                 foreach (Lfx.Data.FormField CurField in m_ExtraSearchFields) {
-                                                        WhereBuscarTexto.AddWithValue(CurField.ColumnName, qGen.ComparisonOperators.InsensitiveLike, "%" + m_SearchText + "%");
+                                                        WhereBuscarTexto.AddWithValue(CurField.ColumnName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
                                                 }
                                         }
                                 }
@@ -372,9 +415,8 @@ namespace Lui.Forms
                                 ComandoSelect.Tables = ListaTablas;
                                 ComandoSelect.Fields = ListaCampos;
                                 ComandoSelect.WhereClause = WhereCompleto;
-                                if (m_Agrupar != null)
-                                        ComandoSelect.Group = m_Agrupar.ColumnName;
-
+                                if (m_GroupBy != null)
+                                        ComandoSelect.Group = m_GroupBy.ColumnName;
                                 ComandoSelect.Order = m_OrderBy;
                                 return ComandoSelect;
                         } else {
@@ -382,12 +424,12 @@ namespace Lui.Forms
                         }
                 }
 
-                public virtual void Fill(qGen.Select command)
+                public void Fill(qGen.Select command)
                 {
                         this.Fill(command, 0);
                 }
 
-		public virtual void Fill(qGen.Select command, int virtualModeOffset)
+		public void Fill(qGen.Select command, int virtualModeOffset)
 		{
         		if (this.Workspace == null || command == null)
 				return;
@@ -424,117 +466,17 @@ namespace Lui.Forms
                                 Listado.Items.Clear();
                         }
 
-			if (Tabla != null && Tabla.Rows.Count > 0)
-			{
-				int CurrencyDecimalPlaces = this.Workspace.CurrentConfig.Moneda.Decimales;
-				string NombreCampoId = NombreCampo(m_KeyField.ColumnName);
-				foreach(System.Data.DataRow Registro in Tabla.Rows)
-				{
-					int ii;
-                                        int ItemId = System.Convert.ToInt32(Registro[NombreCampoId]);
-                                        ListViewItem Itm = new ListViewItem(ItemId.ToString("000000"));
+                        if (Tabla != null && Tabla.Rows.Count > 0) {
+                                foreach (System.Data.DataRow DtRow in Tabla.Rows) {
+                                        Lfx.Data.Row Registro = (Lfx.Data.Row)DtRow;
+
+                                        string NombreCampoId = Lfx.Data.DataBase.GetFieldName(m_KeyField.ColumnName);
+                                        int ItemId = Registro.Fields[NombreCampoId].ValueInt;
+
+                                        ListViewItem Itm = this.FormatDataRow(ItemId, Registro);
+
                                         if (CheckedItems != null && CheckedItems.Contains(ItemId))
                                                 Itm.Checked = true;
-
-					for (int i = 0; i < m_FormFields.Length; i++)
-					{
-						ii = i + 1;
-
-						switch(m_FormFields[i].DataType)
-						{
-							case Lfx.Data.InputFieldTypes.Integer:
-                                                        case Lfx.Data.InputFieldTypes.Serial:
-                                                                if (Registro[ii] == null || Registro[ii] is DBNull)
-                                                                        Itm.SubItems.Add("");
-                                                                else if (m_FormFields[i].Format != null)
-                                                                        Itm.SubItems.Add(System.Convert.ToInt32(Registro[ii]).ToString(m_FormFields[i].Format));
-                                                                else
-                                                                        Itm.SubItems.Add(System.Convert.ToInt32(Registro[ii]).ToString());
-								break;
-
-                                                        case Lfx.Data.InputFieldTypes.Text:
-                                                        case Lfx.Data.InputFieldTypes.Memo:
-                                                                if (Registro[ii] is System.Byte[])
-                                                                        Itm.SubItems.Add(System.Text.Encoding.Default.GetString(((System.Byte[])(Registro[ii]))));
-                                                                else
-                                                                        Itm.SubItems.Add(Registro[ii].ToString());
-								break;
-
-                                                        case Lfx.Data.InputFieldTypes.Currency:
-								double ValorCur = (Registro[ii] == null || Registro[ii] is DBNull) ? 0 : System.Convert.ToDouble(Registro[ii]);
-								if(ValorCur == 0)
-									Itm.SubItems.Add("-");
-								else
-									Itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(ValorCur, CurrencyDecimalPlaces));
-								break;
-
-                                                        case Lfx.Data.InputFieldTypes.Numeric:
-                                                                if (Registro[ii] == null || Registro[ii] is DBNull)
-                                                                        Itm.SubItems.Add("");
-                                                                else
-                                                                        Itm.SubItems.Add(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Registro[ii])));
-								break;
-
-                                                        case Lfx.Data.InputFieldTypes.Date:
-								Itm.SubItems.Add(Lfx.Types.Formatting.FormatDate(Registro[ii]));
-								break;
-
-                                                        case Lfx.Data.InputFieldTypes.DateTime:
-                                                                Itm.SubItems.Add(Lfx.Types.Formatting.FormatDateAndTime(Registro[ii]));
-                                                                break;
-
-                                                        case Lfx.Data.InputFieldTypes.Bool:
-                                                                if (System.Convert.ToBoolean(Registro[ii]))
-                                                                        Itm.SubItems.Add("Si");
-                                                                else
-                                                                        Itm.SubItems.Add("No");
-                                                                break;
-
-                                                        default:
-								switch (Registro[ii].GetType().ToString())
-								{
-									case "System.Single":
-									case "System.Decimal":
-									case "System.Double":
-										if (System.Convert.ToDouble(Registro[ii]) == 0)
-											Itm.SubItems.Add("-");
-										else
-											Itm.SubItems.Add(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Registro[ii])));
-										break;
-
-									case "System.Integer":
-									case "System.Int16":
-									case "System.Int32":
-									case "System.Int64":
-										if (System.Convert.ToInt32(Registro[ii]) == 0)
-											Itm.SubItems.Add("-");
-										else
-											Itm.SubItems.Add(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Registro[ii]), 0));
-										break;
-
-									case "System.DateTime":
-										Itm.SubItems.Add(Lfx.Types.Formatting.FormatDate(Registro[ii]));
-										break;
-
-									case "System.String":
-										Itm.SubItems.Add(System.Convert.ToString(Registro[ii]));
-										break;
-
-									case "System.Byte[]":
-										Itm.SubItems.Add(System.Text.Encoding.Default.GetString((byte[])Registro[ii]));
-										break;
-
-									case "System.DBNull":
-										Itm.SubItems.Add("");
-										break;
-
-									default:
-										Itm.SubItems.Add(Registro[ii].ToString());
-										break;
-								}
-								break;
-						}
-					}
 
                                         if (this.Virtual) {
                                                 if (Itm.SubItems.Count < Listado.Columns.Count) {
@@ -545,12 +487,29 @@ namespace Lui.Forms
                                                 VirtualModeCache[virtualModeOffset++] = Itm;
                                         } else {
                                                 Listado.Items.Add(Itm);
-                                                ItemAdded(Itm, (Lfx.Data.Row)Registro);
+                                                // Agrego el item a un grupo, si hay agrupación activa
+                                                if (m_GroupingColumnName != null) {
+                                                        if (LastGroupingValue != Registro.Fields[m_GroupingColumnName].ValueString) {
+                                                                LastGroupingValue = Registro.Fields[m_GroupingColumnName].ValueString;
+                                                                if (Listado.Groups[LastGroupingValue] != null)
+                                                                        LastGroup = Listado.Groups[LastGroupingValue];
+                                                                else
+                                                                        LastGroup = Listado.Groups.Add(LastGroupingValue, LastGroupingValue);
+                                                        }
+
+                                                        if (GroupItemCount.ContainsKey(LastGroupingValue))
+                                                                GroupItemCount[LastGroupingValue]++;
+                                                        else
+                                                                GroupItemCount[LastGroupingValue] = 1;
+                                                }
+                                                Itm.Group = LastGroup;
+
+                                                ItemAdded(Itm, Registro);
                                                 if (CurItem != null && Itm.Text == CurItem.Text)
-						CurItem = Itm;
+                                                        CurItem = Itm;
                                         }
-				}
-			}
+                                }
+                        }
 
                         if (this.Virtual == false) {
                                 Listado.EndUpdate();
@@ -578,9 +537,138 @@ namespace Lui.Forms
 			}
 		}
 
+                private ListViewItem FormatDataRow(int itemId, Lfx.Data.Row row)
+                {
+                        ListViewItem Itm = new ListViewItem(itemId.ToString("000000"));
+
+                        for (int ColNum = 1; ColNum < Listado.Columns.Count; ColNum++) {
+                                string FieldName = Listado.Columns[ColNum].Name;
+
+                                int FieldNum = -1;
+                                for (int fi = 0; fi < FormFields.Count; fi++) {
+                                        if (Lfx.Data.DataBase.GetFieldName(FormFields[fi].ColumnName) == FieldName) {
+                                                FieldNum = fi;
+                                                break;
+                                        }
+                                }
+
+                                if (FieldNum >= 0) {
+                                        int RowField = FieldNum + 1;
+                                        ListViewItem.ListViewSubItem SubItm = Itm.SubItems.Add("");
+                                        SubItm.Name = FieldName;
+
+                                        switch (m_FormFields[FieldNum].DataType) {
+                                                case Lfx.Data.InputFieldTypes.Integer:
+                                                case Lfx.Data.InputFieldTypes.Serial:
+                                                case Lfx.Data.InputFieldTypes.Relation:
+                                                        if (row[RowField] == null || row[RowField] is DBNull)
+                                                                SubItm.Text = "";
+                                                        else if (m_FormFields[FieldNum].Format != null)
+                                                                SubItm.Text = System.Convert.ToInt32(row[RowField]).ToString(m_FormFields[FieldNum].Format);
+                                                        else
+                                                                SubItm.Text = System.Convert.ToInt32(row[RowField]).ToString();
+                                                        break;
+
+                                                case Lfx.Data.InputFieldTypes.Text:
+                                                case Lfx.Data.InputFieldTypes.Memo:
+                                                        if (row[RowField] == null)
+                                                                SubItm.Text = "";
+                                                        else if (row[RowField] is System.Byte[])
+                                                                SubItm.Text = System.Text.Encoding.Default.GetString(((System.Byte[])(row[RowField])));
+                                                        else
+                                                                SubItm.Text = row[RowField].ToString();
+                                                        break;
+
+                                                case Lfx.Data.InputFieldTypes.Currency:
+                                                        double ValorCur = (row[RowField] == null || row[RowField] is DBNull) ? 0 : System.Convert.ToDouble(row[RowField]);
+                                                        if (ValorCur == 0)
+                                                                SubItm.Text = "-";
+                                                        else
+                                                                SubItm.Text = Lfx.Types.Formatting.FormatCurrency(ValorCur, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                                        break;
+
+                                                case Lfx.Data.InputFieldTypes.Numeric:
+                                                        if (row[RowField] == null || row[RowField] is DBNull)
+                                                                SubItm.Text = "";
+                                                        else
+                                                                SubItm.Text = Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(row[RowField]));
+                                                        break;
+
+                                                case Lfx.Data.InputFieldTypes.Date:
+                                                        if (row.Fields[RowField].Value != null)
+                                                                SubItm.Text = Lfx.Types.Formatting.FormatDate(row.Fields[RowField].ValueDateTime);
+                                                        break;
+
+                                                case Lfx.Data.InputFieldTypes.DateTime:
+                                                        SubItm.Text = Lfx.Types.Formatting.FormatDateAndTime(row[RowField]);
+                                                        break;
+
+                                                case Lfx.Data.InputFieldTypes.Bool:
+                                                        if (System.Convert.ToBoolean(row[RowField]))
+                                                                SubItm.Text = "Si";
+                                                        else
+                                                                SubItm.Text = "No";
+                                                        break;
+
+                                                case Lfx.Data.InputFieldTypes.Set:
+                                                        int SetValue = System.Convert.ToInt32(row[RowField]);
+                                                        if (m_FormFields[FieldNum] != null && m_FormFields[FieldNum] .SetValues != null & m_FormFields[FieldNum].SetValues.ContainsKey(SetValue))
+                                                                SubItm.Text = m_FormFields[FieldNum].SetValues[SetValue];
+                                                        else
+                                                                SubItm.Text = "???";
+                                                        break;
+
+                                                default:
+                                                        switch (row[RowField].GetType().ToString()) {
+                                                                case "System.Single":
+                                                                case "System.Decimal":
+                                                                case "System.Double":
+                                                                        if (System.Convert.ToDouble(row[RowField]) == 0)
+                                                                                SubItm.Text = "-";
+                                                                        else
+                                                                                SubItm.Text = Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(row[RowField]));
+                                                                        break;
+
+                                                                case "System.Integer":
+                                                                case "System.Int16":
+                                                                case "System.Int32":
+                                                                case "System.Int64":
+                                                                        if (System.Convert.ToInt32(row[RowField]) == 0)
+                                                                                SubItm.Text = "-";
+                                                                        else
+                                                                                SubItm.Text = Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(row[RowField]), 0);
+                                                                        break;
+
+                                                                case "System.DateTime":
+                                                                        SubItm.Text = Lfx.Types.Formatting.FormatDate(row[RowField]);
+                                                                        break;
+
+                                                                case "System.String":
+                                                                        SubItm.Text = System.Convert.ToString(row[RowField]);
+                                                                        break;
+
+                                                                case "System.Byte[]":
+                                                                        SubItm.Text = System.Text.Encoding.Default.GetString((byte[])row[RowField]);
+                                                                        break;
+
+                                                                case "System.DBNull":
+                                                                        SubItm.Text = "";
+                                                                        break;
+
+                                                                default:
+                                                                        SubItm.Text = row[RowField].ToString();
+                                                                        break;
+                                                        }
+                                                        break;
+                                        }
+                                }
+                        }
+                        return Itm;
+                }
+
 		public virtual void ItemAdded(ListViewItem item, Lfx.Data.Row row) { }
-		public virtual void EndRefreshList() { }
-		public virtual void BeginRefreshList() { }
+                public virtual void EndRefreshList() { }
+                public virtual void BeginRefreshList() { }
 
 		private void EntradaBuscar_KeyPress(System.Object sender, System.Windows.Forms.KeyPressEventArgs e)
 		{
@@ -757,15 +845,24 @@ namespace Lui.Forms
                                         case Keys.Delete:
                                                 e.Handled = true;
                                                 int[] Codigos = this.CodigosSeleccionados;
-                                                if (Codigos != null)
-                                                        this.OnDelete(Codigos);
+                                                if (Codigos != null && Codigos.Length > 0) {
+                                                        string EstaSeguro = "¿Está seguro de que desea eliminar ";
+                                                        if (Codigos.Length == 1)
+                                                                EstaSeguro += "el elemento seleccionado?";
+                                                        else
+                                                                EstaSeguro += "los " + Codigos.Length.ToString() + " elementos seleccionado?";
+                                                        Lui.Forms.YesNoDialog Pregunta = new YesNoDialog(EstaSeguro, "Eliminar");
+                                                        Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
+                                                        if (Pregunta.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                                                                this.OnDelete(Codigos);
+                                                }
                                                 break;
 				}
                         } else if (e.Control == true) {
                                 switch(e.KeyCode) {
                                         case Keys.U:
                                                 foreach (ColumnHeader Ch in Listado.Columns) {
-                                                        if (Ch.Index < this.FormFields.Length)
+                                                        if (Ch.Index < this.FormFields.Count)
                                                                 Ch.Width = this.FormFields[Ch.Index].Width;
                                                 }
                                                 e.Handled = true;
@@ -781,8 +878,10 @@ namespace Lui.Forms
 
                         if (e.Column == 0)
                                 NuevoOrden = this.m_KeyField.ColumnName;
-                        else if ((e.Column - 1) < m_FormFields.Length)
+                        else if ((e.Column - 1) < m_FormFields.Count)
                                 NuevoOrden = m_FormFields[e.Column - 1].ColumnName;
+
+                        NuevoOrden = Lfx.Data.DataBase.GetFieldName(NuevoOrden);
 
                         if (NuevoOrden != null) {
                                 if (this.m_OrderBy == NuevoOrden)

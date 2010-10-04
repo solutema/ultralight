@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -152,7 +152,7 @@ namespace Lazaro.Misc
                                 Lui.Forms.MessageBox.Show("Ya está utilizando la versión más nueva disponible.", "Actualizar");
                         } else {
                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Se descargó una nueva versión de Lázaro. Debe reiniciar la aplicación para instalar la actualización.", "¿Desea reiniciar ahora?");
-                                Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+                                Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                 DialogResult Respuesta = Pregunta.ShowDialog();
                                 if (Respuesta == DialogResult.OK)
                                         Aplicacion.Exec("REBOOT");

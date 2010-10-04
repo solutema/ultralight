@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -75,14 +75,6 @@ namespace Lui.Forms
                         this.label1 = new System.Windows.Forms.Label();
                         this.Espacios = new System.Windows.Forms.ListBox();
                         this.SuspendLayout();
-                        // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(258, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(366, 8);
                         // 
                         // label1
                         // 
@@ -144,19 +136,15 @@ namespace Lui.Forms
 				Espacios.SelectedIndex = 0;
 		}
 
-		private void Espacios_SelectedValueChanged(object sender, System.EventArgs e)
-		{
-			if (Espacios.SelectedItem != null)
-			{
-				m_WorkspaceName = Espacios.SelectedItem.ToString();
-				OkButton.Enabled = true;
-			}
-			else
-			{
-				OkButton.Enabled = false;
-			}
-
-		}
+                private void Espacios_SelectedValueChanged(object sender, System.EventArgs e)
+                {
+                        if (Espacios.SelectedItem != null) {
+                                m_WorkspaceName = Espacios.SelectedItem.ToString();
+                                this.OkButton.Enabled = true;
+                        } else {
+                                this.OkButton.Enabled = false;
+                        }
+                }
 
 		public string WorkspaceName
 		{

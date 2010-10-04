@@ -36,7 +36,7 @@ namespace Lazaro.Misc.Config
                 #region Código generado por el Diseñador de Windows Forms
                 internal Lui.Forms.Frame FrmGeneral;
 		internal System.Windows.Forms.Label label26;
-		internal Lui.Forms.DetailBox EntradaStockDepositoPredetSuc;
+		internal Lcc.Entrada.CodigoDetalle EntradaStockDepositoPredetSuc;
 		internal System.Windows.Forms.Label label11;
 		internal System.Windows.Forms.Label label12;
                 internal Lui.Forms.TextBox EntradaPVR;
@@ -77,15 +77,15 @@ namespace Lazaro.Misc.Config
                 internal Lui.Forms.ComboBox txtImpresionPredetCarga;
 		internal Lui.Forms.Button txtImpresionPredetImpresoraBrowse;
 		internal System.Windows.Forms.Label Label16;
-		internal Lui.Forms.DetailBox EntradaClientePredet;
+		internal Lcc.Entrada.CodigoDetalle EntradaClientePredet;
 		internal System.Windows.Forms.Label Label15;
-		internal Lui.Forms.DetailBox EntradaFormaPagoPredet;
+		internal Lcc.Entrada.CodigoDetalle EntradaFormaPagoPredet;
 		internal System.Windows.Forms.Label Label17;
 		internal Lui.Forms.TextBox EntradaEmpresaNombre;
 		internal System.Windows.Forms.Label Label18;
 		internal System.Windows.Forms.Label Label19;
 		internal Lui.Forms.TextBox EntradaEmpresaCuit;
-		internal Lui.Forms.DetailBox EntradaEmpresaSituacion;
+		internal Lcc.Entrada.CodigoDetalle EntradaEmpresaSituacion;
 		internal System.Windows.Forms.Label Label9;
 		internal Lui.Forms.TextBox EntradaPVND;
 		internal System.Windows.Forms.Label Label10;
@@ -102,7 +102,7 @@ namespace Lazaro.Misc.Config
                 internal Lui.Forms.ComboBox EntradaStockMultideposito;
 		internal System.Windows.Forms.Label Label23;
 		internal System.Windows.Forms.Label Label24;
-		internal Lui.Forms.DetailBox EntradaStockDepositoPredet;
+		internal Lcc.Entrada.CodigoDetalle EntradaStockDepositoPredet;
 		internal System.Windows.Forms.Label Label25;
                 internal Lui.Forms.ComboBox EntradaStockDecimales;
 		private System.Windows.Forms.ColumnHeader nombrecomprob;
@@ -115,7 +115,7 @@ namespace Lazaro.Misc.Config
 		{
                         this.cmdOk = new Lui.Forms.Button();
                         this.CancelCommandButton = new Lui.Forms.Button();
-                        this.EntradaEmpresaSituacion = new Lui.Forms.DetailBox();
+                        this.EntradaEmpresaSituacion = new Lcc.Entrada.CodigoDetalle();
                         this.Label19 = new System.Windows.Forms.Label();
                         this.EntradaEmpresaCuit = new Lui.Forms.TextBox();
                         this.Label18 = new System.Windows.Forms.Label();
@@ -133,7 +133,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockDecimales = new Lui.Forms.ComboBox();
                         this.Label25 = new System.Windows.Forms.Label();
                         this.Label24 = new System.Windows.Forms.Label();
-                        this.EntradaStockDepositoPredet = new Lui.Forms.DetailBox();
+                        this.EntradaStockDepositoPredet = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaStockMultideposito = new Lui.Forms.ComboBox();
                         this.Label23 = new System.Windows.Forms.Label();
                         this.EntradaArticulosCodigoPredet = new Lui.Forms.ComboBox();
@@ -150,9 +150,9 @@ namespace Lazaro.Misc.Config
                         this.Label5 = new System.Windows.Forms.Label();
                         this.Label4 = new System.Windows.Forms.Label();
                         this.Label16 = new System.Windows.Forms.Label();
-                        this.EntradaClientePredet = new Lui.Forms.DetailBox();
+                        this.EntradaClientePredet = new Lcc.Entrada.CodigoDetalle();
                         this.Label15 = new System.Windows.Forms.Label();
-                        this.EntradaFormaPagoPredet = new Lui.Forms.DetailBox();
+                        this.EntradaFormaPagoPredet = new Lcc.Entrada.CodigoDetalle();
                         this.txtImpresionPredetImpresoraBrowse = new Lui.Forms.Button();
                         this.txtImpresionPredetCarga = new Lui.Forms.ComboBox();
                         this.txtImpresionPredetImpresora = new Lui.Forms.TextBox();
@@ -168,7 +168,7 @@ namespace Lazaro.Misc.Config
                         this.BotonSiguiente = new Lui.Forms.Button();
                         this.FrmArticulos = new Lui.Forms.Frame();
                         this.label26 = new System.Windows.Forms.Label();
-                        this.EntradaStockDepositoPredetSuc = new Lui.Forms.DetailBox();
+                        this.EntradaStockDepositoPredetSuc = new Lcc.Entrada.CodigoDetalle();
                         this.FrmComprobantes = new Lui.Forms.Frame();
                         this.EntradaRedondeo = new Lui.Forms.TextBox();
                         this.label22 = new System.Windows.Forms.Label();
@@ -250,7 +250,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaSituacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEmpresaSituacion.ReadOnly = false;
                         this.EntradaEmpresaSituacion.Required = true;
-                        this.EntradaEmpresaSituacion.SelectOnFocus = true;
                         this.EntradaEmpresaSituacion.Size = new System.Drawing.Size(388, 24);
                         this.EntradaEmpresaSituacion.TabIndex = 5;
                         this.EntradaEmpresaSituacion.Table = "situaciones";
@@ -588,7 +587,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockDepositoPredet.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaStockDepositoPredet.ReadOnly = false;
                         this.EntradaStockDepositoPredet.Required = false;
-                        this.EntradaStockDepositoPredet.SelectOnFocus = true;
                         this.EntradaStockDepositoPredet.Size = new System.Drawing.Size(416, 24);
                         this.EntradaStockDepositoPredet.TabIndex = 7;
                         this.EntradaStockDepositoPredet.Table = "articulos_situaciones";
@@ -877,7 +875,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaClientePredet.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaClientePredet.ReadOnly = false;
                         this.EntradaClientePredet.Required = false;
-                        this.EntradaClientePredet.SelectOnFocus = true;
                         this.EntradaClientePredet.Size = new System.Drawing.Size(428, 24);
                         this.EntradaClientePredet.TabIndex = 1;
                         this.EntradaClientePredet.Table = "personas";
@@ -917,7 +914,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaFormaPagoPredet.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFormaPagoPredet.ReadOnly = false;
                         this.EntradaFormaPagoPredet.Required = false;
-                        this.EntradaFormaPagoPredet.SelectOnFocus = true;
                         this.EntradaFormaPagoPredet.Size = new System.Drawing.Size(280, 24);
                         this.EntradaFormaPagoPredet.TabIndex = 3;
                         this.EntradaFormaPagoPredet.Table = "formaspago";
@@ -1193,7 +1189,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockDepositoPredetSuc.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaStockDepositoPredetSuc.ReadOnly = false;
                         this.EntradaStockDepositoPredetSuc.Required = false;
-                        this.EntradaStockDepositoPredetSuc.SelectOnFocus = true;
                         this.EntradaStockDepositoPredetSuc.Size = new System.Drawing.Size(416, 24);
                         this.EntradaStockDepositoPredetSuc.TabIndex = 9;
                         this.EntradaStockDepositoPredetSuc.Table = "articulos_situaciones";

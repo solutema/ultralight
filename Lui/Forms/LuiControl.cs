@@ -36,6 +36,8 @@ namespace Lui.Forms
 {
         public partial class LuiControl : UserControl, IDataControl
         {
+                private bool m_Changed = false;
+
                 public LuiControl()
                 {
                         InitializeComponent();
@@ -66,6 +68,19 @@ namespace Lui.Forms
                                         return Lfx.Workspace.Master;
                                 else
                                         return this.DataBase.Workspace;
+                        }
+                }
+
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public bool Changed
+                {
+                        get
+                        {
+                                return m_Changed;
+                        }
+                        set
+                        {
+                                m_Changed = value;
                         }
                 }
 

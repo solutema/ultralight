@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -41,13 +41,11 @@ namespace Lui.Forms
 {
         public partial class Product : System.Windows.Forms.UserControl, IDataControl
 	{
-
 		public enum Precios
 		{
 			Costo = 0,
 			PVP = 1,
 		}
-
 
 		public enum ControlesSock
 		{
@@ -56,7 +54,6 @@ namespace Lui.Forms
 			SinControlStock = 2,
 		}
 
-
 		protected bool m_ShowStock;
 		protected Precios m_Precio = Precios.PVP;
 		protected ControlesSock m_ControlStock = ControlesSock.Ambos;
@@ -64,8 +61,8 @@ namespace Lui.Forms
 		protected int ArticuloId;
 		protected string m_Serials = "";
 
-		public new event System.EventHandler TextChanged;
-		public new event System.Windows.Forms.KeyEventHandler KeyDown;
+		new public event System.EventHandler TextChanged;
+		new public event System.Windows.Forms.KeyEventHandler KeyDown;
 		public event System.EventHandler PrecioCantidadChanged;
                 public event System.EventHandler AskForSerials;
 
@@ -151,7 +148,7 @@ namespace Lui.Forms
                                 if (m_Serials == null) {
                                         LabelSerials.Visible = false;
                                 } else {
-                                        LabelSerials.Text = "NS: " + m_Serials.Replace(System.Environment.NewLine, ", ");
+                                        LabelSerials.Text = "Seguimiento: " + m_Serials.Replace(System.Environment.NewLine, ", ");
                                         LabelSerials.Visible = m_Serials.Length > 1;
                                 }
 			}

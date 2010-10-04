@@ -43,12 +43,12 @@ namespace Lui.Forms
                 protected internal bool m_AutoNav = true;
                 protected internal string m_TipWhenBlank = "";
 
-                public new event KeyPressEventHandler KeyPress;
+                new public event KeyPressEventHandler KeyPress;
                 [System.ComponentModel.EditorBrowsable(EditorBrowsableState.Always), Browsable(true)]
-                public new event System.EventHandler TextChanged;
-                public new event System.Windows.Forms.KeyEventHandler KeyDown;
-                public new event System.EventHandler GotFocus;
-                public new event System.EventHandler LostFocus;
+                new public event System.EventHandler TextChanged;
+                new public event System.Windows.Forms.KeyEventHandler KeyDown;
+                new public event System.EventHandler GotFocus;
+                new public event System.EventHandler LostFocus;
                 protected internal int IgnorarEventos;
 
                 public TextBoxBase()

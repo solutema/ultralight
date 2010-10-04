@@ -91,7 +91,7 @@ namespace Lazaro.Misc.Backup
 			{
 				string NombreCarpeta = lvItems.SelectedItems[0].Text;
 				Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Puede eliminar una copia de respaldo antigua o que ya no sea de utilidad. Al eliminar una copia de respaldo no se modifican los datos actualmente almacenados en el sistema, ni tampoco se impide que el sistema haga nuevas copias de respaldo.", "¿Desea eliminar la copia de respaldo seleccionada?");
-				Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+				Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
 				if (Pregunta.ShowDialog() == DialogResult.OK)
 				{
 					Misc.Backup.Services.DeleteBackup(NombreCarpeta);
@@ -101,7 +101,7 @@ namespace Lazaro.Misc.Backup
 		}
 
 
-		private void cmdRestaurar_Click(object sender, System.EventArgs e)
+		private void BotonRestaurar_Click(object sender, System.EventArgs e)
 		{
 			if (lvItems.SelectedItems.Count > 0 && lvItems.SelectedItems[0] != null)
 			{
@@ -117,7 +117,7 @@ namespace Lazaro.Misc.Backup
 			}
 		}
 
-		private void cmdCopiar_Click(object sender, EventArgs e)
+		private void BotonCopiar_Click(object sender, EventArgs e)
 		{
 			Lfx.Environment.Shell.Execute(Lfx.Environment.Folders.ApplicationDataFolder + @"Backup\", "", ProcessWindowStyle.Normal, false);
 		}

@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -53,13 +53,13 @@ namespace Lazaro.Misc
 
 		private void FormIngreso_Load(object sender, System.EventArgs e)
 		{
-			txtUsuario.Text = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingString(null, "Sistema.Ingreso.UltimoUsuario", "0");
+			EntradaUsuario.Text = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingString(null, "Sistema.Ingreso.UltimoUsuario", "0");
 		}
 
 
-		private void cmdAceptar_Click(object sender, System.EventArgs e)
+		private void BotonAceptar_Click(object sender, System.EventArgs e)
 		{
-                        if (txtUsuario.TextInt == 1 && Lfx.Environment.SystemInformation.DesignMode == false) {
+                        if (EntradaUsuario.TextInt == 1 && Lfx.Environment.SystemInformation.DesignMode == false) {
                                 string[] EstacionesAdministrador = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Ingreso.Administrador.Estaciones", "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                                 bool Puede = false;
                                 if (EstacionesAdministrador.Length == 0) {
@@ -75,21 +75,21 @@ namespace Lazaro.Misc
 
                                 if (Puede == false) {
                                         System.Threading.Thread.Sleep(800);
-                                        this.Workspace.ActionLog("LOGON.FAIL", null, txtUsuario.TextInt, "Estación no permitida.");
+                                        this.Workspace.ActionLog("LOGON.FAIL", null, EntradaUsuario.TextInt, "Estación no permitida.");
                                         MessageBox.Show("No se permite el acceso como Administrador desde este equipo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                         return;
                                 }
                         }
 			Lfx.Data.Row row = Lfx.Workspace.Master.DefaultDataBase.FirstRowFromSelect(@"SELECT id_persona, nombre, nombre_visible
                                 FROM personas
-                                WHERE id_persona=" + txtUsuario.TextInt.ToString()
-                                                   + " AND contrasena='" + Lfx.Workspace.Master.DefaultDataBase.EscapeString(txtContrasena.Text) + "'"
+                                WHERE id_persona=" + EntradaUsuario.TextInt.ToString()
+                                                   + " AND contrasena='" + Lfx.Workspace.Master.DefaultDataBase.EscapeString(EntradaContrasena.Text) + "'"
                                                    + " AND id_persona IN (SELECT id_persona FROM sys_accesslist)");
 			if(row == null) {
 				System.Threading.Thread.Sleep(800);
-                                this.Workspace.ActionLog("LOGON.FAIL", null, txtUsuario.TextInt, "Usuario o contraseña incorrecto.");
+                                this.Workspace.ActionLog("LOGON.FAIL", null, EntradaUsuario.TextInt, "Usuario o contraseña incorrecto.");
 				MessageBox.Show("El nombre de usuario o la contraseña son incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				txtContrasena.Focus();
+				EntradaContrasena.Focus();
 			} else {
 				OkButton.Text = "Ingresando...";
 				OkButton.Refresh();
@@ -104,7 +104,7 @@ namespace Lazaro.Misc
 		}
 
 
-		private void cmdCancelar_Click(object sender, System.EventArgs e)
+		private void BotonCancelar_Click(object sender, System.EventArgs e)
 		{
 			if(MessageBox.Show("¿Está seguro de que desea abandonar el programa?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
 				System.Environment.Exit(0);
@@ -114,7 +114,7 @@ namespace Lazaro.Misc
 
 		private void CambioDatos(object sender, System.EventArgs e)
 		{
-			OkButton.Enabled = txtUsuario.Text.Length > 0;
+			OkButton.Enabled = EntradaUsuario.Text.Length > 0;
 		}
 	}
 }

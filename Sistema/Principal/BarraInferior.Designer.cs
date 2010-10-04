@@ -70,7 +70,7 @@ namespace Lazaro.Principal
                         this.ArticuloNombre = new System.Windows.Forms.LinkLabel();
                         this.ArticuloStock = new System.Windows.Forms.Label();
                         this.label5 = new System.Windows.Forms.Label();
-                        this.ArticuloPVP = new System.Windows.Forms.Label();
+                        this.ArticuloPvp = new System.Windows.Forms.Label();
                         this.ArticuloPrecio = new System.Windows.Forms.Label();
                         this.ArticuloDescripcion = new System.Windows.Forms.Label();
                         this.ArticuloCodigos = new System.Windows.Forms.Label();
@@ -152,7 +152,7 @@ namespace Lazaro.Principal
                         this.PanelArticulo.Controls.Add(this.ArticuloNombre);
                         this.PanelArticulo.Controls.Add(this.ArticuloStock);
                         this.PanelArticulo.Controls.Add(this.label5);
-                        this.PanelArticulo.Controls.Add(this.ArticuloPVP);
+                        this.PanelArticulo.Controls.Add(this.ArticuloPvp);
                         this.PanelArticulo.Controls.Add(this.ArticuloPrecio);
                         this.PanelArticulo.Controls.Add(this.ArticuloDescripcion);
                         this.PanelArticulo.Controls.Add(this.ArticuloCodigos);
@@ -196,16 +196,16 @@ namespace Lazaro.Principal
                         this.label5.Text = "Stock";
                         this.label5.UseMnemonic = false;
                         // 
-                        // ArticuloPVP
+                        // ArticuloPvp
                         // 
-                        this.ArticuloPVP.AutoEllipsis = true;
-                        this.ArticuloPVP.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.ArticuloPVP.Location = new System.Drawing.Point(416, 0);
-                        this.ArticuloPVP.Name = "ArticuloPVP";
-                        this.ArticuloPVP.Size = new System.Drawing.Size(80, 16);
-                        this.ArticuloPVP.TabIndex = 4;
-                        this.ArticuloPVP.Text = "12.345.67";
-                        this.ArticuloPVP.UseMnemonic = false;
+                        this.ArticuloPvp.AutoEllipsis = true;
+                        this.ArticuloPvp.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.ArticuloPvp.Location = new System.Drawing.Point(416, 0);
+                        this.ArticuloPvp.Name = "ArticuloPvp";
+                        this.ArticuloPvp.Size = new System.Drawing.Size(80, 16);
+                        this.ArticuloPvp.TabIndex = 4;
+                        this.ArticuloPvp.Text = "12.345.67";
+                        this.ArticuloPvp.UseMnemonic = false;
                         // 
                         // ArticuloPrecio
                         // 
@@ -493,7 +493,7 @@ namespace Lazaro.Principal
 		private System.Windows.Forms.LinkLabel ArticuloNombre;
 		private System.Windows.Forms.Label ArticuloStock;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.Label ArticuloPVP;
+		private System.Windows.Forms.Label ArticuloPvp;
 		private System.Windows.Forms.Label ArticuloPrecio;
 		private System.Windows.Forms.Label ArticuloDescripcion;
 		private System.Windows.Forms.Timer TimerReloj;

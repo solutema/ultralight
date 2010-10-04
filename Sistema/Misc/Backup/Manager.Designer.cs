@@ -193,7 +193,7 @@ namespace Lazaro.Misc.Backup
                         this.cmdRestaurar.TabIndex = 5;
                         this.cmdRestaurar.Text = "Restaurar";
                         this.cmdRestaurar.ToolTipText = "";
-                        this.cmdRestaurar.Click += new System.EventHandler(this.cmdRestaurar_Click);
+                        this.cmdRestaurar.Click += new System.EventHandler(this.BotonRestaurar_Click);
                         // 
                         // cmdCopiar
                         // 
@@ -214,7 +214,7 @@ namespace Lazaro.Misc.Backup
                         this.cmdCopiar.TabIndex = 6;
                         this.cmdCopiar.Text = "Examinar";
                         this.cmdCopiar.ToolTipText = "";
-                        this.cmdCopiar.Click += new System.EventHandler(this.cmdCopiar_Click);
+                        this.cmdCopiar.Click += new System.EventHandler(this.BotonCopiar_Click);
                         // 
                         // note1
                         // 

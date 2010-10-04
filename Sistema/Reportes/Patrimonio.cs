@@ -51,17 +51,15 @@ namespace Lazaro.Reportes
                         double ActivosCajas = 0;
                         double PasivosCajas = 0;
 			
-			Lfx.Data.DataBase CajasDataBase = this.Workspace.GetDataBase("Reporte de patrimonio");
-                        System.Data.DataTable Cajas = CajasDataBase.Select("SELECT * FROM cajas WHERE estado>0");
+                        System.Data.DataTable Cajas = this.DataBase.Select("SELECT * FROM cajas WHERE estado>0");
                         foreach(System.Data.DataRow Rw in Cajas.Rows) {
-                                Lbl.Cajas.Caja Cta = new Lbl.Cajas.Caja(DataBase, (Lfx.Data.Row)Rw);
+                                Lbl.Cajas.Caja Cta = new Lbl.Cajas.Caja(this.DataBase, (Lfx.Data.Row)Rw);
                                 double Saldo = Cta.Saldo();
                                 if (Saldo > 0)
                                         ActivosCajas += Saldo;
                                 else
                                         PasivosCajas += Math.Abs(Saldo);
                         }
-			CajasDataBase.Dispose();
 
                         EntradaActivosCajas.Text = Lfx.Types.Formatting.FormatCurrency(ActivosCajas, this.Workspace.CurrentConfig.Moneda.Decimales);
                         EntradaPasivosCajas.Text = Lfx.Types.Formatting.FormatCurrency(PasivosCajas, this.Workspace.CurrentConfig.Moneda.Decimales);
@@ -75,7 +73,7 @@ namespace Lazaro.Reportes
                         double FuturosTarjetas = 0.92 * DataBase.FieldDouble("SELECT SUM(importe) FROM tarjetas_cupones WHERE estado=10 OR (estado=0 AND fecha>DATE_SUB(NOW(), INTERVAL 45 DAY))");
                                                 //Tarjetas resta el 8% (estimado) de comisiones
                         double Facturas = DataBase.FieldDouble("SELECT SUM(total)-SUM(cancelado) FROM comprob WHERE tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha >= '" + Lfx.Types.Formatting.FormatDateSql(DateTime.Now.AddYears(-2)) + "'");
-                        txtCC.Text = Lfx.Types.Formatting.FormatCurrency(Facturas, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaCC.Text = Lfx.Types.Formatting.FormatCurrency(Facturas, this.Workspace.CurrentConfig.Moneda.Decimales);
 
                         double FuturosPedidos = DataBase.FieldDouble("SELECT SUM(total-gastosenvio) FROM comprob WHERE tipo_fac='PD' AND anulada=0 AND compra>0 AND estado=50");
                         txtFuturosTarjetas.Text = Lfx.Types.Formatting.FormatCurrency(FuturosTarjetas, this.Workspace.CurrentConfig.Moneda.Decimales);
@@ -97,16 +95,6 @@ namespace Lazaro.Reportes
 
                         txtPatrimonioActual.Text = Lfx.Types.Formatting.FormatCurrency(Activos - Pasivos, this.Workspace.CurrentConfig.Moneda.Decimales);
                         txtPatrimonioFuturo.Text = Lfx.Types.Formatting.FormatCurrency(Activos + Futuros - Pasivos, this.Workspace.CurrentConfig.Moneda.Decimales);
-                }
-
-                private void label14_Click(object sender, EventArgs e)
-                {
-
-                }
-
-                private void textBox1_TextChanged(object sender, EventArgs e)
-                {
-
                 }
         }
 }

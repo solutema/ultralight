@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -39,13 +39,12 @@ using System.ComponentModel;
 
 namespace Lui.Forms
 {
-        public partial class Form : System.Windows.Forms.Form, IDataControl
+        public partial class Form : System.Windows.Forms.Form, IDataForm
 	{
                 private Lfx.Data.DataBase m_DataBase = null;
 		public event System.EventHandler WorkspaceChanged;
 
 		public Form()
-                        : base()
 		{
 			InitializeComponent();
 		}
@@ -54,18 +53,16 @@ namespace Lui.Forms
 		{
 			this.Font = Lfx.Config.Display.CurrentTemplate.DefaultFont;
 			//Cambio la fuente de todos los controles en el formulario
-			foreach (System.Windows.Forms.Control ctl in controles)
-			{
-				if (ctl == null)
-				{
-					//Nada
-				} else if (ctl is Lui.Forms.Frame || ctl is System.Windows.Forms.Panel) {
+                        foreach (System.Windows.Forms.Control ctl in controles) {
+                                if (ctl == null) {
+                                        //Nada
+                                } else if (ctl is Lui.Forms.Frame || ctl is System.Windows.Forms.Panel) {
                                         SetControlsFont(ctl.Controls);
                                 } else {
                                         //Cambiar fuente
                                         ctl.Font = Lfx.Config.Display.CurrentTemplate.DefaultFont;
                                 }
-			}
+                        }
 		}
 
 		private void Form_Load(object sender, System.EventArgs e)
@@ -109,6 +106,60 @@ namespace Lui.Forms
 
                                 return m_DataBase;
                         }
+                }
+
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public bool Changed
+                {
+                        get
+                        {
+                                return GetControlsChanged(this.Controls, false);
+                        }
+                        set
+                        {
+                                SetControlsChanged(this.Controls, value);
+                        }
+                }
+
+                internal void SetControlsChanged(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
+                {
+                        // Pongo los Changed en newValue
+                        foreach (System.Windows.Forms.Control ctl in controles) {
+                                if (ctl == null) {
+                                        //Nada
+                                } else if (ctl is Lui.Forms.Frame || ctl is System.Windows.Forms.Panel) {
+                                        SetControlsChanged(ctl.Controls, newValue);
+                                } else if (ctl is Lui.Forms.Control) {
+                                        ((Lui.Forms.Control)ctl).Changed = newValue;
+                                } else if (ctl is IDataControl) {
+                                        ((IDataControl)ctl).Changed = newValue;
+                                }
+                        }
+                }
+
+                internal bool GetControlsChanged(System.Windows.Forms.Control.ControlCollection controls, bool showChanges)
+                {
+                        bool Result = false;
+                        // Ver si algo cambió
+                        foreach (System.Windows.Forms.Control ctl in controls) {
+                                if (ctl == null) {
+                                        //Nada
+                                } else if (ctl is Lui.Forms.Frame || ctl is System.Windows.Forms.Panel) {
+                                        // Es un conteneder. Uso recursión
+                                        if (this.GetControlsChanged(ctl.Controls, showChanges))
+                                                Result = true;
+                                } else if (ctl is Lui.Forms.Control) {
+                                        if (((Lui.Forms.Control)ctl).Changed) {
+                                                Result = true;
+                                                ((Lui.Forms.Control)ctl).ShowChanged = showChanges;
+                                        }
+                                } else if (ctl is IDataControl) {
+                                        if (((IDataControl)ctl).Changed) {
+                                                Result = true;
+                                        }
+                                }
+                        }
+                        return Result;
                 }
 	}
 }

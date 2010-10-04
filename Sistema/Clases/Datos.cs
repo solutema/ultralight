@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -82,7 +82,7 @@ namespace Lazaro
                         if (TieneDB == false) {
                                 using (Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog(@"Aparentemente es la primera vez que conecta a este servidor. Antes de poder utilizarlo debe preparar el servidor con una carga inicial de datos.
 Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o está restaurando desde una copia de seguridad.", @"¿Desea preparar el servidor """ + Lfx.Workspace.Master.DefaultDataBase.ToString() + @"""?")) {
-                                        Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+                                        Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                         if (Pregunta.ShowDialog() == DialogResult.OK) {
                                                 Lfx.Types.OperationResult Res;
                                                 using (Lfx.Data.DataBase DataBase = Lfx.Workspace.Master.GetDataBase("Preparar servidor")) {

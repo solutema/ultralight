@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -38,23 +38,23 @@ using System.Windows.Forms;
 
 namespace Lui.Forms
 {
+        public enum DialogButtons
+        {
+                YesNo = 0,
+                AcceptCancel = 1,
+                OkOnly = 2,
+        }
+
+        public enum DialogIcons
+        {
+                Question = 0,
+                Information = 1,
+                Exclamation = 2,
+        }
+
 	public partial class YesNoDialog : DialogForm
 	{
-		public enum DialogButtons : int
-		{
-			YesNo = 0,
-			AcceptCancel = 1,
-			OkOnly = 2,
-		}
-
-		public enum DialogIcons : int
-		{
-			Question = 0,
-			Information = 1,
-			Exclamation = 2,
-		}
-
-		protected internal DialogButtons m_Respuestas = DialogButtons.YesNo;
+		protected internal DialogButtons m_DialogButtons = DialogButtons.YesNo;
 		internal System.Windows.Forms.Label DialogCaption;
 		private System.Windows.Forms.RichTextBox DialogText;
 		protected internal DialogIcons m_Icono = DialogIcons.Question;
@@ -82,17 +82,17 @@ namespace Lui.Forms
 			}
 		}
 
-		public DialogButtons DialogButton
+		public DialogButtons DialogButtons
 		{
 			get
 			{
-				return m_Respuestas;
+				return m_DialogButtons;
 			}
 			set
 			{
-				m_Respuestas = value;
+				m_DialogButtons = value;
 
-				switch (m_Respuestas)
+				switch (m_DialogButtons)
 				{
 					case DialogButtons.YesNo:
 						OkButton.Text = "Si";

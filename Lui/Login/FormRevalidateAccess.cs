@@ -67,17 +67,17 @@ namespace Lui.Login
 				else
 					LabelExplain.Text = Explain;
 			} else if(userId != this.Workspace.CurrentUser.Id) {
-				this.Titulo.Text = "Para continuar, por favor la contraseña del usuario.";
+				this.Titulo.Text = "Para continuar, por favor escriba la contraseña del usuario.";
 				if(Explain == null)
 					this.LabelExplain.Text = "La operación que intenta realizar requiere por motivos de seguridad que escribir la contraseña de un usuario con permiso.";
 				else
 					LabelExplain.Text = Explain;
 			}
 
-			txtUsuario.TextInt = userId;
-			txtContrasena.Text = "";
+			EntradaUsuario.Text = this.DataBase.Tables["personas"].FastRows[userId].Fields["nombre_visible"].ValueString;
+			EntradaContrasena.Text = "";
 			if(this.ShowDialog() == DialogResult.OK) {
-				Lfx.Data.Row Usuario = this.DataBase.FirstRowFromSelect("SELECT id_persona, nombre, nombre_visible FROM personas WHERE id_persona=" + txtUsuario.TextInt.ToString() + " AND contrasena='" + this.DataBase.EscapeString(txtContrasena.Text) + "'");
+				Lfx.Data.Row Usuario = this.DataBase.FirstRowFromSelect("SELECT id_persona, nombre, nombre_visible FROM personas WHERE id_persona=" + userId.ToString() + " AND contrasena='" + this.DataBase.EscapeString(EntradaContrasena.Text) + "'");
 				if(Usuario != null && System.Convert.ToInt32(Usuario["id_persona"]) == userId) {
 					return true;
 				} else {

@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Diagnostics;
@@ -52,19 +52,17 @@ namespace Lui.Forms
 		private System.Windows.Forms.MenuItem MenuItemPegadoRapidoAgregar;
 
                 public TextBox()
-                        : base()
                 {
-                        // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
 
                         this.BorderStyle = BorderStyles.TextBox;
                         this.BackColor = TextBox1.BackColor;
                         TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
                         TextBox1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
-                        lblPrefijo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
-                        lblPrefijo.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
-                        lblSufijo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
-                        lblSufijo.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
+                        EtiquetaPrefijo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
+                        EtiquetaPrefijo.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
+                        EtiquetaSufijo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
+                        EtiquetaSufijo.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
                         this.SizeChanged += new System.EventHandler(this.TextBox_SizeChanged);
                         this.TextBox1.ContextMenu = this.MiContextMenu;
                         this.TextBox1.DoubleClick += new System.EventHandler(this.TextBox1_DoubleClick);
@@ -91,13 +89,13 @@ namespace Lui.Forms
 		{
 			get
 			{
-				return lblPrefijo.Text;
+				return EtiquetaPrefijo.Text;
 			}
 			set
 			{
 				this.SuspendLayout();
-				lblPrefijo.Text = value;
-				lblPrefijo.Visible = lblPrefijo.Text.Length > 0;
+				EtiquetaPrefijo.Text = value;
+				EtiquetaPrefijo.Visible = EtiquetaPrefijo.Text.Length > 0;
 				TextBox_SizeChanged(this, null);
 				this.ResumeLayout();
 			}
@@ -107,13 +105,13 @@ namespace Lui.Forms
 		{
 			get
 			{
-				return lblSufijo.Text;
+				return EtiquetaSufijo.Text;
 			}
 			set
 			{
 				this.SuspendLayout();
-				lblSufijo.Text = value;
-				lblSufijo.Visible = lblSufijo.Text.Length > 0;
+				EtiquetaSufijo.Text = value;
+				EtiquetaSufijo.Visible = EtiquetaSufijo.Text.Length > 0;
 				TextBox_SizeChanged(this, null);
 				this.ResumeLayout();
 			}
@@ -220,6 +218,7 @@ namespace Lui.Forms
 					case DataTypes.Float:
 					case DataTypes.Integer:
 					case DataTypes.Money:
+                                        case DataTypes.Stock:
 						TextBox1.TextAlign = HorizontalAlignment.Right;
 						break;
 					default:
@@ -272,7 +271,7 @@ namespace Lui.Forms
 			MenuItemCalendario.Visible = (this.ReadOnly == false && (m_DataType == DataTypes.Date || m_DataType == DataTypes.DateTime));
 			MenuItemHoy.Visible = MenuItemCalendario.Visible;
 			MenuItemAyer.Visible = MenuItemCalendario.Visible;
-			MenuItemCalculadora.Visible = (m_DataType == DataTypes.Float || m_DataType == DataTypes.Money || m_DataType == DataTypes.Integer);
+			MenuItemCalculadora.Visible = (m_DataType == DataTypes.Float || m_DataType == DataTypes.Money  || m_DataType == DataTypes.Stock || m_DataType == DataTypes.Integer);
 			MenuItemCalculadora.Enabled = !this.ReadOnly;
 			MenuItemEditor.Enabled = (this.ReadOnly == false && m_DataType == DataTypes.FreeText && m_PasswordChar == Lfx.Types.ControlChars.Null);
 			MenuItemCopiar.Enabled = m_PasswordChar == Lfx.Types.ControlChars.Null && this.Text.Length > 0;
@@ -403,9 +402,45 @@ namespace Lui.Forms
                         }
                 }
 
+                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public double ValueDouble
+                {
+                        get
+                        {
+                                return Lfx.Types.Parsing.ParseDouble(this.Text);
+                        }
+                        set
+                        {
+                                int Decimals = this.DecimalPlaces;
+                                if (Decimals < 0 && Lfx.Workspace.Master != null) {
+                                        switch (this.DataType) {
+                                                case DataTypes.Money:
+                                                        Decimals = Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales;
+                                                        break;
+                                                case DataTypes.Stock:
+                                                        Decimals = Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock;
+                                                        break;
+                                        }
+                                }
+                                this.Text = Lfx.Types.Formatting.FormatNumber(value, Decimals);
+                        }
+                }
+
+                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public int ValueInt
+                {
+                        get
+                        {
+                                return Lfx.Types.Parsing.ParseInt(this.Text);
+                        }
+                        set
+                        {
+                                this.Text = value.ToString();
+                        }
+                }
+
                 private string FormatearDatos(string Dato)
                 {
-                        // IgnorarEventos++
                         string Res = null;
                         switch (m_DataType) {
                                 case DataTypes.Integer:
@@ -417,13 +452,21 @@ namespace Lui.Forms
                                         break;
                                 case DataTypes.Float:
                                         if (m_DecimalPlaces == -1)
-                                                Res = Lfx.Types.Formatting.FormatNumber(Lfx.Types.Evaluator.EvaluateDouble(Dato), 2);
+                                                Res = Lfx.Types.Formatting.FormatNumber(Lfx.Types.Evaluator.EvaluateDouble(Dato), 4);
                                         else
                                                 Res = Lfx.Types.Formatting.FormatNumber(Lfx.Types.Evaluator.EvaluateDouble(Dato), m_DecimalPlaces);
                                         break;
                                 case DataTypes.Money:
                                         if (m_DecimalPlaces == -1 && this.Workspace != null)
                                                 Res = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Evaluator.EvaluateDouble(Dato), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                        else if (m_DecimalPlaces == -1)
+                                                Res = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Evaluator.EvaluateDouble(Dato), 2);
+                                        else
+                                                Res = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Evaluator.EvaluateDouble(Dato), m_DecimalPlaces);
+                                        break;
+                                case DataTypes.Stock:
+                                        if (m_DecimalPlaces == -1 && this.Workspace != null)
+                                                Res = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Evaluator.EvaluateDouble(Dato), this.Workspace.CurrentConfig.Productos.DecimalesStock);
                                         else if (m_DecimalPlaces == -1)
                                                 Res = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Evaluator.EvaluateDouble(Dato), 2);
                                         else
@@ -452,7 +495,6 @@ namespace Lui.Forms
                                         break;
                         }
 
-                        // IgnorarEventos--
                         return Res;
                 }
 
@@ -485,25 +527,25 @@ namespace Lui.Forms
 
                 private void TextBox_FontChanged(object sender, System.EventArgs e)
                 {
-                        lblPrefijo.Font = new Font(this.Font.Name, this.Font.Size * 0.8F);
-                        lblSufijo.Font = new Font(this.Font.Name, this.Font.Size * 0.8F);
+                        EtiquetaPrefijo.Font = new Font(this.Font.Name, this.Font.Size * 0.8F);
+                        EtiquetaSufijo.Font = new Font(this.Font.Name, this.Font.Size * 0.8F);
                 }
 
                 private void TextBox_SizeChanged(object sender, System.EventArgs e)
                 {
-                        if (lblPrefijo.Visible) {
-                                lblPrefijo.Top = (this.Height - lblPrefijo.Height) / 2;
-                                TextBox1.Left = lblPrefijo.Left + lblPrefijo.Width + 2;
+                        if (EtiquetaPrefijo.Visible) {
+                                EtiquetaPrefijo.Top = (this.Height - EtiquetaPrefijo.Height) / 2;
+                                TextBox1.Left = EtiquetaPrefijo.Left + EtiquetaPrefijo.Width + 2;
                         } else {
                                 TextBox1.Left = 4;
                         }
-                        if (lblSufijo.Visible) {
-                                lblSufijo.Top = (this.Height - lblSufijo.Height) / 2;
-                                lblSufijo.Left = this.Width - lblSufijo.Width - 4;
+                        if (EtiquetaSufijo.Visible) {
+                                EtiquetaSufijo.Top = (this.Height - EtiquetaSufijo.Height) / 2;
+                                EtiquetaSufijo.Left = this.Width - EtiquetaSufijo.Width - 4;
                         }
                         int SufijoWidth = 4;
-                        if (lblSufijo.Visible)
-                                SufijoWidth = lblSufijo.Width + 4;
+                        if (EtiquetaSufijo.Visible)
+                                SufijoWidth = EtiquetaSufijo.Width + 4;
 
                         TextBox1.Top = 4;
                         TextBox1.Width = this.Width - TextBox1.Left - SufijoWidth;

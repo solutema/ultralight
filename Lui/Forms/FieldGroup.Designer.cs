@@ -68,7 +68,7 @@ namespace Lui.Forms
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.FieldContainer.AutoScroll = true;
-                        this.FieldContainer.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+                        this.FieldContainer.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
                         this.FieldContainer.Location = new System.Drawing.Point(0, 20);
                         this.FieldContainer.Margin = new System.Windows.Forms.Padding(4);
                         this.FieldContainer.Name = "FieldContainer";
