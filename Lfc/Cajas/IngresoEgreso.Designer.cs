@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -42,13 +42,6 @@ namespace Lfc.Cajas
         {
                 #region Código generado por el Diseñador de Windows Forms
 
-                public IngresoEgreso()
-                        : base()
-                {
-                        InitializeComponent();
-                }
-
-                // Limpiar los recursos que se estén utilizando.
                 protected override void Dispose(bool disposing)
                 {
                         if (disposing) {
@@ -66,14 +59,14 @@ namespace Lfc.Cajas
                         this.Label1 = new System.Windows.Forms.Label();
                         this.EntradaImporte = new Lui.Forms.TextBox();
                         this.Label2 = new System.Windows.Forms.Label();
-                        this.EntradaConcepto = new Lui.Forms.DetailBox();
+                        this.EntradaConcepto = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaComprobante = new Lui.Forms.TextBox();
                         this.Label3 = new System.Windows.Forms.Label();
                         this.EntradaObs = new Lui.Forms.TextBox();
                         this.Label4 = new System.Windows.Forms.Label();
-                        this.EntradaPersona = new Lui.Forms.DetailBox();
+                        this.EntradaPersona = new Lcc.Entrada.CodigoDetalle();
                         this.Label5 = new System.Windows.Forms.Label();
-                        this.EntradaCaja = new Lui.Forms.DetailBox();
+                        this.EntradaCaja = new Lcc.Entrada.CodigoDetalle();
                         this.label6 = new System.Windows.Forms.Label();
                         this.EntradaNuevoSaldo = new Lui.Forms.TextBox();
                         this.label7 = new System.Windows.Forms.Label();
@@ -153,14 +146,12 @@ namespace Lfc.Cajas
                         this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConcepto.ReadOnly = false;
                         this.EntradaConcepto.Required = true;
-                        this.EntradaConcepto.SelectOnFocus = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(500, 24);
                         this.EntradaConcepto.TabIndex = 3;
                         this.EntradaConcepto.Table = "conceptos";
                         this.EntradaConcepto.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaConcepto.Text = "0";
                         this.EntradaConcepto.TextDetail = "";
-                        this.EntradaConcepto.TextInt = 0;
                         this.EntradaConcepto.TipWhenBlank = "";
                         this.EntradaConcepto.ToolTipText = "";
                         // 
@@ -259,14 +250,12 @@ namespace Lfc.Cajas
                         this.EntradaPersona.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPersona.ReadOnly = false;
                         this.EntradaPersona.Required = true;
-                        this.EntradaPersona.SelectOnFocus = true;
                         this.EntradaPersona.Size = new System.Drawing.Size(500, 24);
                         this.EntradaPersona.TabIndex = 7;
                         this.EntradaPersona.Table = "personas";
                         this.EntradaPersona.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaPersona.Text = "0";
                         this.EntradaPersona.TextDetail = "";
-                        this.EntradaPersona.TextInt = 0;
                         this.EntradaPersona.TipWhenBlank = "";
                         this.EntradaPersona.ToolTipText = "";
                         // 
@@ -299,14 +288,12 @@ namespace Lfc.Cajas
                         this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCaja.ReadOnly = false;
                         this.EntradaCaja.Required = true;
-                        this.EntradaCaja.SelectOnFocus = true;
                         this.EntradaCaja.Size = new System.Drawing.Size(500, 24);
                         this.EntradaCaja.TabIndex = 1;
                         this.EntradaCaja.Table = "cajas";
                         this.EntradaCaja.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCaja.Text = "0";
                         this.EntradaCaja.TextDetail = "";
-                        this.EntradaCaja.TextInt = 0;
                         this.EntradaCaja.TipWhenBlank = "";
                         this.EntradaCaja.ToolTipText = "";
                         // 
@@ -399,15 +386,15 @@ namespace Lfc.Cajas
 
                 internal System.Windows.Forms.Label Label1;
                 internal System.Windows.Forms.Label Label2;
-                internal Lui.Forms.DetailBox EntradaConcepto;
+                internal Lcc.Entrada.CodigoDetalle EntradaConcepto;
                 internal Lui.Forms.TextBox EntradaComprobante;
                 internal System.Windows.Forms.Label Label3;
                 internal Lui.Forms.TextBox EntradaObs;
                 internal System.Windows.Forms.Label Label4;
-                internal Lui.Forms.DetailBox EntradaPersona;
+                internal Lcc.Entrada.CodigoDetalle EntradaPersona;
                 internal System.Windows.Forms.Label Label5;
                 internal Lui.Forms.TextBox EntradaImporte;
-                internal Lui.Forms.DetailBox EntradaCaja;
+                internal Lcc.Entrada.CodigoDetalle EntradaCaja;
                 internal Label label6;
                 internal Lui.Forms.TextBox EntradaNuevoSaldo;
                 internal Label label7;

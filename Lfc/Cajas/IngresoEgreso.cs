@@ -30,11 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
-using System.Data;
-using System.Drawing;
-using System.Diagnostics;
-using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace Lfc.Cajas
 {
@@ -43,18 +39,29 @@ namespace Lfc.Cajas
                 protected internal int m_Id;
                 protected internal bool m_Ingreso = true;
                 protected internal double SaldoActual = 0;
-                protected internal int m_Caja = 999;
+                protected internal Lbl.Cajas.Caja m_Caja = null;
 
-                public int Caja
+                public IngresoEgreso()
+                {
+                        this.InitializeComponent();
+
+                        if (this.DataBase != null)
+                                this.Caja = new Lbl.Cajas.Caja(this.DataBase, 999);
+                }
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public Lbl.Cajas.Caja Caja
                 {
                         get
                         {
-                                return EntradaCaja.TextInt;
+                                return EntradaCaja.Elemento as Lbl.Cajas.Caja;
                         }
                         set
                         {
                                 m_Caja = value;
-                                EntradaCaja.TextInt = value;
+                                EntradaCaja.Elemento = value;
                         }
                 }
 
@@ -98,26 +105,41 @@ namespace Lfc.Cajas
                         }
 
                         if (aceptarReturn.Success == true) {
-                                Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(this.DataBase, this.Caja);
                                 if (m_Ingreso)
-                                        Caja.Movimiento(false, EntradaConcepto.TextInt, EntradaConcepto.TextDetail, EntradaPersona.TextInt, Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text), EntradaObs.Text, 0, 0, EntradaComprobante.Text);
+                                        this.Caja.Movimiento(false, 
+                                                EntradaConcepto.Elemento as Lbl.Cajas.Concepto,
+                                                EntradaConcepto.TextDetail,
+                                                EntradaPersona.Elemento as Lbl.Personas.Persona,
+                                                EntradaImporte.ValueDouble,
+                                                EntradaObs.Text,
+                                                null,
+                                                null,
+                                                EntradaComprobante.Text);
                                 else
-                                        Caja.Movimiento(false, EntradaConcepto.TextInt, EntradaConcepto.TextDetail, EntradaPersona.TextInt, -Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text), EntradaObs.Text, 0, 0, EntradaComprobante.Text);
+                                        this.Caja.Movimiento(false, 
+                                                EntradaConcepto.Elemento as Lbl.Cajas.Concepto, 
+                                                EntradaConcepto.TextDetail, 
+                                                EntradaPersona.Elemento as Lbl.Personas.Persona,
+                                                -EntradaImporte.ValueDouble, 
+                                                EntradaObs.Text, 
+                                                null,
+                                                null, 
+                                                EntradaComprobante.Text);
                         }
                         return aceptarReturn;
                 }
 
                 private void IngresoEgreso_WorkspaceChanged(object sender, EventArgs e)
                 {
-                        EntradaPersona.Text = this.Workspace.CurrentUser.Id.ToString();
+                        EntradaPersona.TextInt = this.Workspace.CurrentUser.Id;
                 }
 
                 private void EntradaImporte_TextChanged(object sender, EventArgs e)
                 {
                         if (Ingreso)
-                                EntradaNuevoSaldo.Text = Lfx.Types.Formatting.FormatCurrency(SaldoActual + Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                EntradaNuevoSaldo.ValueDouble = SaldoActual + EntradaImporte.ValueDouble;
                         else
-                                EntradaNuevoSaldo.Text = Lfx.Types.Formatting.FormatCurrency(SaldoActual - Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                EntradaNuevoSaldo.ValueDouble = SaldoActual - EntradaImporte.ValueDouble;
                 }
         }
 }

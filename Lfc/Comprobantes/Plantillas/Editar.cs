@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -39,7 +39,6 @@ namespace Lfc.Comprobantes.Plantillas
 {
         public partial class Editar : Lui.Forms.EditForm
         {
-                Lbl.Comprobantes.Impresion.Plantilla Plantilla;
                 Lbl.Comprobantes.Impresion.Campo CampoSeleccionado;
 
                 private int KnobSize = 24, GridSize = 10;
@@ -54,6 +53,7 @@ namespace Lfc.Comprobantes.Plantillas
                 public Editar()
                 {
                         InitializeComponent();
+                        this.ElementType = typeof(Lbl.Comprobantes.Impresion.Plantilla);
                         ZoomBar_Scroll(null, null);
                 }
 
@@ -62,8 +62,8 @@ namespace Lfc.Comprobantes.Plantillas
                         if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.templates.create"))
                                 return new Lfx.Types.NoAccessOperationResult();
 
-                        this.Plantilla = new Lbl.Comprobantes.Impresion.Plantilla(this.DataBase);
-                        this.Plantilla.Crear();
+                        this.CachedRow = new Lbl.Comprobantes.Impresion.Plantilla(this.DataBase);
+                        this.CachedRow.Crear();
 
                         this.Text = "Plantillas: Nueva";
                         return new Lfx.Types.SuccessOperationResult();
@@ -87,7 +87,7 @@ namespace Lfc.Comprobantes.Plantillas
 
                         this.ActualizarListaCampos();
 
-                        SaveButton.Visible = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.templates.write");
+                        this.ReadOnly = !Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.templates.write");
 
                         this.Text = "Plantilla: " + EntradaNombre.Text;
                 }
@@ -119,6 +119,8 @@ namespace Lfc.Comprobantes.Plantillas
 
                 private void ImagePreview_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
                 {
+                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
+
                         e.Graphics.Clear(Color.Ivory);
                         e.Graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
                         e.Graphics.PageUnit = GraphicsUnit.Document;
@@ -131,17 +133,17 @@ namespace Lfc.Comprobantes.Plantillas
 
                         PointF EscalaMm = new PointF(300F / 25.4F, 300F / 25.4F);
 
+                        if (Plantilla == null || Plantilla.Campos == null)
+                                return;
+
                         Size TamPap = TamanoPapel(EntradaPapelTamano.TextKey);
-			if (Plantilla.Landscape)
-				TamPap = new Size(TamPap.Height, TamPap.Width);
+                        if (Plantilla.Landscape)
+                                TamPap = new Size(TamPap.Height, TamPap.Width);
 
                         e.Graphics.FillRectangle(Brushes.DarkGray, new System.Drawing.RectangleF(2 * EscalaMm.X, 2 * EscalaMm.Y, TamPap.Width * EscalaMm.X, TamPap.Height * EscalaMm.Y));
                         e.Graphics.FillRectangle(Brushes.White, new System.Drawing.RectangleF(0 * EscalaMm.X, 0 * EscalaMm.Y, TamPap.Width * EscalaMm.X, TamPap.Height * EscalaMm.Y));
                         //e.Graphics.DrawRectangle(Pens.Black, new System.Drawing.RectangleF(0 * EscalaMm.X, 0 * EscalaMm.Y, TamPap.Width * EscalaMm.X, TamPap.Height * EscalaMm.Y));
                         //e.Graphics.Clip = new Region(new System.Drawing.Rectangle(new Point(0, 0), TamanoPapel(txtPapelTamano.TextKey)));
-
-                        if (Plantilla == null || Plantilla.Campos == null)
-                                return;
 
                         foreach (Lbl.Comprobantes.Impresion.Campo Cam in Plantilla.Campos) {
                                 Rectangle DrawRect = Cam.Rectangle;
@@ -215,8 +217,10 @@ namespace Lfc.Comprobantes.Plantillas
                         }
                 }
 
-                private void lvCampos_SelectedIndexChanged(object sender, System.EventArgs e)
+                private void ListaCampos_SelectedIndexChanged(object sender, System.EventArgs e)
                 {
+                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
+
                         if (Plantilla.Campos != null && ListaCampos.SelectedItems.Count > 0) {
                                 foreach (Lbl.Comprobantes.Impresion.Campo Cam in Plantilla.Campos) {
                                         if (Cam.GetHashCode().ToString() == ListaCampos.SelectedItems[0].Text) {
@@ -262,6 +266,8 @@ namespace Lfc.Comprobantes.Plantillas
                                                 return;
                                         }
                                 }
+
+                                Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
 
                                 bool Select = false;
                                 foreach (Lbl.Comprobantes.Impresion.Campo Cam in Plantilla.Campos) {
@@ -334,6 +340,8 @@ namespace Lfc.Comprobantes.Plantillas
 
                 private void EntradaPapelTamano_TextChanged(object sender, System.EventArgs e)
                 {
+                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
+
                         Plantilla.TamanoPapel = EntradaPapelTamano.TextKey;
 			Plantilla.Landscape = EntradaLandscape.TextKey == "1";
                         ImagePreview.Invalidate();
@@ -433,6 +441,8 @@ namespace Lfc.Comprobantes.Plantillas
 
                 private void BotonAgregar_Click(object sender, EventArgs e)
                 {
+                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
+
                         Lbl.Comprobantes.Impresion.Campo Cam = new Lbl.Comprobantes.Impresion.Campo();
                         Cam.Valor = "Nuevo campo";
                         Cam.Rectangle = new Rectangle(10, 10, 280, 52);
@@ -445,6 +455,8 @@ namespace Lfc.Comprobantes.Plantillas
 
                 private void ActualizarListaCampos()
                 {
+                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
+
                         ListaCampos.Items.Clear();
                         if (Plantilla.Campos != null) {
                                 foreach (Lbl.Comprobantes.Impresion.Campo Cam in Plantilla.Campos) {
@@ -457,6 +469,8 @@ namespace Lfc.Comprobantes.Plantillas
                 private void BotonQuitar_Click(object sender, EventArgs e)
                 {
                         if (CampoSeleccionado != null) {
+                                Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
+
                                 Plantilla.Campos.Remove(CampoSeleccionado);
                                 this.ActualizarListaCampos();
                                 ImagePreview.Invalidate();
@@ -465,6 +479,8 @@ namespace Lfc.Comprobantes.Plantillas
 
                 private void EntradaFuenteFuenteTamano_TextChanged(object sender, EventArgs e)
                 {
+                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
+
                         EntradaFuenteTamano.Enabled = (EntradaFuente.TextKey != "*");
                         if(EntradaFuente.TextKey != "*" && Lfx.Types.Parsing.ParseInt(EntradaFuenteTamano.Text) > 0)
                                 Plantilla.Font = new Font(EntradaFuente.TextKey, Lfx.Types.Parsing.ParseInt(EntradaFuenteTamano.Text));
@@ -480,6 +496,8 @@ namespace Lfc.Comprobantes.Plantillas
 
                 private void BotonGuardar_Click(object sender, EventArgs e)
                 {
+                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
+
                         SaveFileDialog FileDialog = new SaveFileDialog();
                         FileDialog.Filter = "Archivos de plantilla|*.ltx";
                         FileDialog.DefaultExt = "ltx";
@@ -493,6 +511,8 @@ namespace Lfc.Comprobantes.Plantillas
 
                 private void BotonCargar_Click(object sender, EventArgs e)
                 {
+                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
+
                         OpenFileDialog FileDialog = new OpenFileDialog();
                         FileDialog.Filter = "Archivos de plantilla|*.ltx";
                         FileDialog.DefaultExt = "ltx";

@@ -71,7 +71,7 @@ namespace Lfc.Cajas.Vencimientos
                         this.label1 = new System.Windows.Forms.Label();
                         this.EntradaFechaInicio = new Lui.Forms.TextBox();
                         this.label5 = new System.Windows.Forms.Label();
-                        this.EntradaConcepto = new Lui.Forms.DetailBox();
+                        this.EntradaConcepto = new Lcc.Entrada.CodigoDetalle();
                         this.frame2 = new Lui.Forms.Frame();
                         this.label6 = new System.Windows.Forms.Label();
                         this.EntradaImporte = new Lui.Forms.TextBox();
@@ -82,14 +82,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.frame1.SuspendLayout();
                         this.frame2.SuspendLayout();
                         this.SuspendLayout();
-                        // 
-                        // SaveButton
-                        // 
-                        this.SaveButton.Location = new System.Drawing.Point(568, 10);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(680, 10);
                         // 
                         // EntradaFrecuencia
                         // 
@@ -301,14 +293,12 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConcepto.ReadOnly = false;
                         this.EntradaConcepto.Required = true;
-                        this.EntradaConcepto.SelectOnFocus = false;
                         this.EntradaConcepto.Size = new System.Drawing.Size(652, 24);
                         this.EntradaConcepto.TabIndex = 1;
                         this.EntradaConcepto.Table = "conceptos";
                         this.EntradaConcepto.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaConcepto.Text = "0";
                         this.EntradaConcepto.TextDetail = "";
-                        this.EntradaConcepto.TextInt = 0;
                         this.EntradaConcepto.TipWhenBlank = "";
                         this.EntradaConcepto.ToolTipText = "";
                         // 
@@ -458,7 +448,7 @@ namespace Lfc.Cajas.Vencimientos
                 internal System.Windows.Forms.Label label2;
                 internal Lui.Forms.TextBox EntradaFechaFin;
                 private System.Windows.Forms.Label label5;
-                internal Lui.Forms.DetailBox EntradaConcepto;
+                internal Lcc.Entrada.CodigoDetalle EntradaConcepto;
                 private Lui.Forms.Frame frame2;
                 internal System.Windows.Forms.Label label6;
                 internal Lui.Forms.TextBox EntradaImporte;

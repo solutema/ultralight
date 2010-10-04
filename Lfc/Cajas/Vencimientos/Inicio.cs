@@ -31,10 +31,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Lfc.Cajas.Vencimientos
@@ -48,7 +44,7 @@ namespace Lfc.Cajas.Vencimientos
                         DataTableName = "vencimientos";
                         KeyField = new Lfx.Data.FormField("vencimientos.id_vencimiento", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20);
                         OrderBy = "vencimientos.fecha_proxima DESC";
-                        FormFields = new Lfx.Data.FormField[]
+                        FormFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("vencimientos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 120),
 				new Lfx.Data.FormField("vencimientos.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
@@ -64,26 +60,26 @@ namespace Lfc.Cajas.Vencimientos
 
                 public override void ItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
-                        switch (Lfx.Types.Parsing.ParseInt(item.SubItems[6].Text)) {
+                        switch (row.Fields["estado"].ValueInt) {
                                 case 1:
-                                        item.SubItems[6].Text = "Activo";
-                                        Lfx.Types.LDateTime Vencimiento = Lfx.Types.Parsing.ParseDate(item.SubItems[4].Text);
+                                        item.SubItems["estado"].Text = "Activo";
+                                        Lfx.Types.LDateTime Vencimiento = row.Fields["fecha_proxima"].ValueDateTime;
                                         if (Vencimiento != null && Vencimiento <= DateTime.Now)
                                                 item.ForeColor = System.Drawing.Color.Red;
                                         else if (Vencimiento != null && Vencimiento <= DateTime.Now.AddDays(5))
                                                 item.ForeColor = System.Drawing.Color.Orange;
                                         break;
                                 case 2:
-                                        item.SubItems[6].Text = "Inactivo";
+                                        item.SubItems["estado"].Text = "Inactivo";
                                         break;
                                 case 100:
-                                        item.SubItems[6].Text = "Terminado";
+                                        item.SubItems["estado"].Text = "Terminado";
                                         break;
                         }
 
-                        Lfx.Data.Row Concepto = this.DataBase.Tables["conceptos"].FastRows[Lfx.Types.Parsing.ParseInt(item.SubItems[5].Text)];
+                        Lfx.Data.Row Concepto = this.DataBase.Tables["conceptos"].FastRows[row.Fields["id_concepto"].ValueInt];
                         if (Concepto != null)
-                                item.SubItems[5].Text = Concepto.Fields["nombre"].ToString();
+                                item.SubItems["id_concepto"].Text = Concepto.Fields["nombre"].ToString();
 
                         
                 }

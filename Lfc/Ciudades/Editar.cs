@@ -66,10 +66,7 @@ namespace Lfc.Ciudades
                                 EntradaParent.Enabled = false;
                                 EntradaParent.TabStop = false;
                         }
-                        if (Ciudad.Parent == null)
-                                EntradaParent.TextInt = 0;
-                        else
-                                EntradaParent.TextInt = Ciudad.Parent.Id;
+                        EntradaParent.Elemento = Ciudad.Parent;
 
                         this.Text = "Ciudades: " + Ciudad.Nombre;
 
@@ -82,11 +79,7 @@ namespace Lfc.Ciudades
 
                         Res.Nombre = EntradaNombre.Text;
                         Res.CodigoPostal = EntradaCp.Text;
-                        if (EntradaParent.TextInt == 0)
-                                Res.Parent = null;
-                        else
-                                Res.Parent = new Lbl.Entidades.Localidad(Res.DataBase, EntradaParent.TextInt);
-
+                        Res.Parent = EntradaParent.Elemento as Lbl.Entidades.Localidad;
                         EntradaTags.ActualizarElemento();
 
                         return base.ToRow();

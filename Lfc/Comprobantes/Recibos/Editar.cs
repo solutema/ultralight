@@ -87,15 +87,10 @@ namespace Lfc.Comprobantes.Recibos
                         set
                         {
                                 base.ReadOnly = value;
-                                SaveButton.Visible = !value;
                                 BotonAgregarFactura.Enabled = !value;
                                 BotonQuitarFactura.Enabled = !value;
                                 BotonAgregarValor.Enabled = !value;
                                 BotonQuitarValor.Enabled = !value;
-                                if (value)
-                                        CancelCommandButton.Text = "Volver";
-                                else
-                                        CancelCommandButton.Text = "Cancelar";
                                 EntradaCliente.ReadOnly = value;
                                 EntradaVendedor.ReadOnly = value;
                                 EntradaNumero.ReadOnly = value;
@@ -119,18 +114,9 @@ namespace Lfc.Comprobantes.Recibos
 
                         EntradaPV.Text = Rec.PV.ToString();
                         EntradaNumero.Text = Rec.Numero.ToString();
-                        if (Rec.Vendedor != null)
-                                EntradaVendedor.TextInt = Rec.Vendedor.Id;
-                        else
-                                EntradaVendedor.TextInt = 0;
-                        if (Rec.Cliente != null)
-                                EntradaCliente.TextInt = Rec.Cliente.Id;
-                        else
-                                EntradaCliente.TextInt = 0;
-                        if (Rec.Concepto != null)
-                                EntradaConcepto.TextInt = Rec.Concepto.Id;
-                        else
-                                EntradaConcepto.TextInt = 0;
+                        EntradaVendedor.Elemento = Rec.Vendedor;
+                        EntradaCliente.Elemento = Rec.Cliente;
+                        EntradaConcepto.Elemento = Rec.Concepto;
                         EntradaConceptoTexto.Text = Rec.ConceptoTexto;
 
                         if (Rec.DePago) {
@@ -224,7 +210,7 @@ namespace Lfc.Comprobantes.Recibos
                         return Rec;
                 }
 
-                private void cmdFacturasAgregar_Click(object sender, System.EventArgs e)
+                private void BotonFacturasAgregar_Click(object sender, System.EventArgs e)
                 {
                         Comprobantes.Facturas.FormSeleccionarFactura FormularioSeleccionarFactura = new Comprobantes.Facturas.FormSeleccionarFactura();
                         FormularioSeleccionarFactura.Owner = this;
@@ -234,8 +220,8 @@ namespace Lfc.Comprobantes.Recibos
                         FormularioSeleccionarFactura.DeCompra = this.DePago;
 
                         if (EntradaCliente.TextInt > 0) {
-                                FormularioSeleccionarFactura.txtCliente.TextInt = EntradaCliente.TextInt;
-                                FormularioSeleccionarFactura.txtCliente.Enabled = false;
+                                FormularioSeleccionarFactura.EntradaCliente.Elemento = EntradaCliente.Elemento;
+                                FormularioSeleccionarFactura.EntradaCliente.Enabled = false;
                         }
 
                         if (FormularioSeleccionarFactura.ShowDialog() == DialogResult.OK)
@@ -260,7 +246,7 @@ namespace Lfc.Comprobantes.Recibos
                         Rec.Facturas.Add(Fac);
 
                         if (EntradaCliente.TextInt <= 0)
-                                EntradaCliente.TextInt = Fac.Cliente.Id;
+                                EntradaCliente.Elemento = Fac.Cliente;
 
                         this.MostrarFacturas();
 
@@ -288,13 +274,13 @@ namespace Lfc.Comprobantes.Recibos
                                 ListaFacturas.Items[0].Focused = true;
                         }
 
-                        EtiquetaFacturasImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Facturas.Total - Rec.Facturas.Cancelado, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EtiquetaFacturasImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Facturas.Total - Rec.Facturas.ImporteCancelado, this.Workspace.CurrentConfig.Moneda.Decimales);
 
                         ListaFacturas.EndUpdate();
                 }
 
 
-                private void cmdFacturasQuitar_Click(object sender, System.EventArgs e)
+                private void BotonFacturasQuitar_Click(object sender, System.EventArgs e)
                 {
                         if (ListaFacturas.SelectedItems.Count == 0) {
                                 Lui.Forms.MessageBox.Show("Debe seleccionar una factura para quitar.", "Error");
@@ -314,7 +300,7 @@ namespace Lfc.Comprobantes.Recibos
                 }
 
 
-                private void cmdValoresAgregar_Click(object sender, System.EventArgs e)
+                private void BotonValoresAgregar_Click(object sender, System.EventArgs e)
                 {
                         if (this.DePago) {
                                 Comprobantes.Recibos.EditarPago FormularioEditarPago = new Comprobantes.Recibos.EditarPago();
@@ -407,7 +393,7 @@ namespace Lfc.Comprobantes.Recibos
                 }
 
 
-                private void cmdValoresQuitar_Click(object sender, System.EventArgs e)
+                private void BotonValoresQuitar_Click(object sender, System.EventArgs e)
                 {
                         if (ListaValores.SelectedItems.Count == 0) {
                                 Lui.Forms.MessageBox.Show("Debe seleccionar un valor para quitar.", "Error");
@@ -583,7 +569,7 @@ namespace Lfc.Comprobantes.Recibos
                 }
 
 
-                private void cmdImprimir_Click(object sender, System.EventArgs e)
+                private void BotonImprimir_Click(object sender, System.EventArgs e)
                 {
                         Lfx.Types.OperationResult Res;
 

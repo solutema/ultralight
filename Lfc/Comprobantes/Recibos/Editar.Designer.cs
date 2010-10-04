@@ -55,7 +55,7 @@ namespace Lfc.Comprobantes.Recibos
                 {
                         this.Label3 = new System.Windows.Forms.Label();
                         this.Label1 = new System.Windows.Forms.Label();
-                        this.EntradaVendedor = new Lui.Forms.DetailBox();
+                        this.EntradaVendedor = new Lcc.Entrada.CodigoDetalle();
                         this.Label2 = new System.Windows.Forms.Label();
                         this.EntradaNumero = new Lui.Forms.TextBox();
                         this.frmFacturas = new Lui.Forms.Frame();
@@ -80,7 +80,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.Label4 = new System.Windows.Forms.Label();
                         this.EtiquetaValoresImporte = new System.Windows.Forms.Label();
                         this.Label5 = new System.Windows.Forms.Label();
-                        this.EntradaCliente = new Lui.Forms.DetailBox();
+                        this.EntradaCliente = new Lcc.Entrada.CodigoDetalle();
                         this.PrintButton = new Lui.Forms.Button();
                         this.EtiquetaTitulo = new System.Windows.Forms.Label();
                         this.EntradaConceptoTexto = new Lui.Forms.TextBox();
@@ -88,19 +88,11 @@ namespace Lfc.Comprobantes.Recibos
                         this.TablaCentral = new System.Windows.Forms.TableLayoutPanel();
                         this.EntradaPV = new Lui.Forms.TextBox();
                         this.label7 = new System.Windows.Forms.Label();
-                        this.EntradaConcepto = new Lui.Forms.DetailBox();
+                        this.EntradaConcepto = new Lcc.Entrada.CodigoDetalle();
                         this.frmFacturas.SuspendLayout();
                         this.Frame1.SuspendLayout();
                         this.TablaCentral.SuspendLayout();
                         this.SuspendLayout();
-                        // 
-                        // SaveButton
-                        // 
-                        this.SaveButton.Location = new System.Drawing.Point(476, 6);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(584, 6);
                         // 
                         // Label3
                         // 
@@ -138,14 +130,12 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaVendedor.ReadOnly = false;
                         this.EntradaVendedor.Required = true;
-                        this.EntradaVendedor.SelectOnFocus = true;
                         this.EntradaVendedor.Size = new System.Drawing.Size(200, 24);
                         this.EntradaVendedor.TabIndex = 5;
                         this.EntradaVendedor.Table = "personas";
                         this.EntradaVendedor.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaVendedor.Text = "0";
                         this.EntradaVendedor.TextDetail = "";
-                        this.EntradaVendedor.TextInt = 0;
                         this.EntradaVendedor.TipWhenBlank = "";
                         this.EntradaVendedor.ToolTipText = "";
                         // 
@@ -296,7 +286,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.BotonAgregarFactura.TabIndex = 10;
                         this.BotonAgregarFactura.Text = "Agregar";
                         this.BotonAgregarFactura.ToolTipText = "";
-                        this.BotonAgregarFactura.Click += new System.EventHandler(this.cmdFacturasAgregar_Click);
+                        this.BotonAgregarFactura.Click += new System.EventHandler(this.BotonFacturasAgregar_Click);
                         // 
                         // BotonQuitarFactura
                         // 
@@ -318,7 +308,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.BotonQuitarFactura.Text = "Quitar";
                         this.BotonQuitarFactura.ToolTipText = "";
                         this.BotonQuitarFactura.Visible = false;
-                        this.BotonQuitarFactura.Click += new System.EventHandler(this.cmdFacturasQuitar_Click);
+                        this.BotonQuitarFactura.Click += new System.EventHandler(this.BotonFacturasQuitar_Click);
                         // 
                         // Frame1
                         // 
@@ -406,7 +396,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.BotonAgregarValor.TabIndex = 16;
                         this.BotonAgregarValor.Text = "Agregar";
                         this.BotonAgregarValor.ToolTipText = "";
-                        this.BotonAgregarValor.Click += new System.EventHandler(this.cmdValoresAgregar_Click);
+                        this.BotonAgregarValor.Click += new System.EventHandler(this.BotonValoresAgregar_Click);
                         // 
                         // BotonQuitarValor
                         // 
@@ -427,7 +417,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.BotonQuitarValor.TabIndex = 17;
                         this.BotonQuitarValor.Text = "Quitar";
                         this.BotonQuitarValor.ToolTipText = "";
-                        this.BotonQuitarValor.Click += new System.EventHandler(this.cmdValoresQuitar_Click);
+                        this.BotonQuitarValor.Click += new System.EventHandler(this.BotonValoresQuitar_Click);
                         // 
                         // Label4
                         // 
@@ -480,14 +470,12 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCliente.ReadOnly = false;
                         this.EntradaCliente.Required = true;
-                        this.EntradaCliente.SelectOnFocus = true;
                         this.EntradaCliente.Size = new System.Drawing.Size(104, 24);
                         this.EntradaCliente.TabIndex = 7;
                         this.EntradaCliente.Table = "personas";
                         this.EntradaCliente.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
-                        this.EntradaCliente.TextInt = 0;
                         this.EntradaCliente.TipWhenBlank = "";
                         this.EntradaCliente.ToolTipText = "";
                         // 
@@ -510,7 +498,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.PrintButton.TabIndex = 49;
                         this.PrintButton.Text = "Imprimir";
                         this.PrintButton.ToolTipText = "";
-                        this.PrintButton.Click += new System.EventHandler(this.cmdImprimir_Click);
+                        this.PrintButton.Click += new System.EventHandler(this.BotonImprimir_Click);
                         // 
                         // EtiquetaTitulo
                         // 
@@ -637,14 +625,12 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConcepto.ReadOnly = false;
                         this.EntradaConcepto.Required = true;
-                        this.EntradaConcepto.SelectOnFocus = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(216, 24);
                         this.EntradaConcepto.TabIndex = 11;
                         this.EntradaConcepto.Table = "conceptos";
                         this.EntradaConcepto.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaConcepto.Text = "0";
                         this.EntradaConcepto.TextDetail = "";
-                        this.EntradaConcepto.TextInt = 0;
                         this.EntradaConcepto.TipWhenBlank = "Sin especificar";
                         this.EntradaConcepto.ToolTipText = "";
                         // 
@@ -700,7 +686,7 @@ namespace Lfc.Comprobantes.Recibos
                 private System.ComponentModel.Container components = null;
                 internal System.Windows.Forms.Label Label3;
                 internal System.Windows.Forms.Label Label1;
-                internal Lui.Forms.DetailBox EntradaVendedor;
+                internal Lcc.Entrada.CodigoDetalle EntradaVendedor;
                 internal System.Windows.Forms.Label Label2;
                 internal Lui.Forms.TextBox EntradaNumero;
                 internal Lui.Forms.Frame frmFacturas;
@@ -725,7 +711,7 @@ namespace Lfc.Comprobantes.Recibos
                 internal System.Windows.Forms.ColumnHeader FacturasImporte;
                 internal System.Windows.Forms.Label Label4;
                 internal System.Windows.Forms.Label Label5;
-                internal Lui.Forms.DetailBox EntradaCliente;
+                internal Lcc.Entrada.CodigoDetalle EntradaCliente;
                 internal Lui.Forms.Button PrintButton;
                 private System.Windows.Forms.Label EtiquetaTitulo;
                 internal Lui.Forms.TextBox EntradaConceptoTexto;
@@ -733,7 +719,7 @@ namespace Lfc.Comprobantes.Recibos
                 private TableLayoutPanel TablaCentral;
                 internal Lui.Forms.TextBox EntradaPV;
                 internal Label label7;
-                internal Lui.Forms.DetailBox EntradaConcepto;
+                internal Lcc.Entrada.CodigoDetalle EntradaConcepto;
 
         }
 }

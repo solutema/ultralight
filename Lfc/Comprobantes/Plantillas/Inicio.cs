@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -47,7 +47,7 @@ namespace Lfc.Comprobantes.Plantillas
 
 			DataTableName = "sys_plantillas";
                         KeyField = new Lfx.Data.FormField("sys_plantillas.id_plantilla", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-			FormFields = new Lfx.Data.FormField[]
+			FormFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("sys_plantillas.codigo", "Código", Lfx.Data.InputFieldTypes.Text, 96),
 				new Lfx.Data.FormField("sys_plantillas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 160),

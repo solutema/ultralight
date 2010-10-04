@@ -100,7 +100,7 @@ namespace Lfc.Comprobantes.Recibos
                                 return new Lfx.Types.NoAccessOperationResult();
 
                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Una vez anulado, el comprobante deberá ser archivado en todas sus copias y no podrá ser rehabilitado ni reutilizado.", "¿Está seguro de que desea anular el comprobante?");
-                        Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+                        Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
 
                         if (Pregunta.ShowDialog() == DialogResult.OK) {
                                 int Numero = Lfx.Types.Parsing.ParseInt(EntradaNumero.Text);

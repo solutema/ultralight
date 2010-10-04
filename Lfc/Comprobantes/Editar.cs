@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -70,7 +70,7 @@ namespace Lfc.Comprobantes
                                 validarReturn.Message += "El comprobante debe tener un Importe superior a $ 0.00." + Environment.NewLine;
                         }
 
-                        int PV = Lfx.Types.Parsing.ParseInt(txtPV.Text);
+                        int PV = Lfx.Types.Parsing.ParseInt(EntradaPV.Text);
                         System.Data.DataTable PVAdmitidos = this.DataBase.Select(@"SELECT * FROM pvs WHERE (
                                 CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.LetraSola + @",%'
                                 OR CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.TipoBase + @",%'
@@ -157,17 +157,11 @@ namespace Lfc.Comprobantes
                         Lbl.Comprobantes.ComprobanteConArticulos Registro = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
 
                         this.SuspendLayout();
-                        txtPV.Text = Registro.PV.ToString();
-                        if (Registro.Vendedor != null)
-                                EntradaVendedor.TextInt = Registro.Vendedor.Id;
-                        else
-                                EntradaVendedor.TextInt = 0;
+                        EntradaPV.Text = Registro.PV.ToString();
+                        EntradaVendedor.Elemento = Registro.Vendedor;
 
                         Ignorar_EntradaCliente_TextChanged = true;
-                        if (Registro.Cliente != null)
-                                EntradaCliente.TextInt = Registro.Cliente.Id;
-                        else
-                                EntradaCliente.TextInt = 0;
+                        EntradaCliente.Elemento = Registro.Cliente;
 
                         Ignorar_EntradaCliente_TextChanged = false;
                         txtSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Registro.SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales);
@@ -188,7 +182,7 @@ namespace Lfc.Comprobantes
                                 if (Registro.Articulos[i].Articulo == null)
                                         ProductArray.ChildControls[i].Text = ProductArray.FreeTextCode;
                                 else
-                                        ProductArray.ChildControls[i].TextInt = Registro.Articulos[i].Articulo.Id;
+                                        ProductArray.ChildControls[i].Elemento = Registro.Articulos[i].Articulo;
 
                                 ProductArray.ChildControls[i].TextDetail = Registro.Articulos[i].Nombre;
                                 ProductArray.ChildControls[i].Cantidad = Registro.Articulos[i].Cantidad;
@@ -197,7 +191,7 @@ namespace Lfc.Comprobantes
                         }
 
                         if (Registro.Estado == 1)
-                                SaveButton.Visible = false;
+                                this.ReadOnly = true;
                         else
                                 ProductArray.AutoAgregar = true;
 
@@ -208,7 +202,7 @@ namespace Lfc.Comprobantes
                 public override Lbl.ElementoDeDatos ToRow()
                 {
                         Lbl.Comprobantes.ComprobanteConArticulos Res = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
-                        Res.PV = Lfx.Types.Parsing.ParseInt(txtPV.Text);
+                        Res.PV = Lfx.Types.Parsing.ParseInt(EntradaPV.Text);
                         Res.Vendedor = new Lbl.Personas.Persona(Res.DataBase, EntradaVendedor.TextInt);
                         Res.Cliente = new Lbl.Personas.Persona(Res.DataBase, EntradaCliente.TextInt);
 
@@ -473,7 +467,8 @@ namespace Lfc.Comprobantes
                         }
 
                         if (this.Tipo.EsFacturaNCoND && this.CachedRow.Existe == false && EntradaCliente.TextInt > 0) {
-                                Lbl.Personas.Persona Persona = new Lbl.Personas.Persona(CachedRow.DataBase, EntradaCliente.TextInt, true);
+                                Lbl.Personas.Persona Persona = EntradaCliente.Elemento as Lbl.Personas.Persona;
+
                                 string LetraComprob = Persona.LetraPredeterminada();
 
                                 switch (LetraComprob) {
@@ -498,10 +493,8 @@ namespace Lfc.Comprobantes
                         Lbl.Comprobantes.Comprobante Registro = this.CachedRow as Lbl.Comprobantes.Comprobante;
 			Comprobantes.FormComprobanteMasDatos OFormMasDatos = new Comprobantes.FormComprobanteMasDatos();
 			OFormMasDatos.Owner = this;
-                        if (Registro.SituacionOrigen != null)
-                                OFormMasDatos.txtDesdeSituacion.TextInt = Registro.SituacionOrigen.Id;
-                        if (Registro.SituacionDestino != null)
-                                OFormMasDatos.txtHaciaSituacion.TextInt = Registro.SituacionDestino.Id;
+                        OFormMasDatos.txtDesdeSituacion.Elemento = Registro.SituacionOrigen;
+                        OFormMasDatos.txtHaciaSituacion.Elemento = Registro.SituacionDestino;
                         OFormMasDatos.txtDesdeSituacion.ReadOnly = EntradaCliente.ReadOnly;
                         OFormMasDatos.txtHaciaSituacion.ReadOnly = EntradaCliente.ReadOnly;
                         OFormMasDatos.txtBloqueada.TextKey = this.CachedRow.Registro["estado"].ToString();
@@ -600,13 +593,13 @@ namespace Lfc.Comprobantes
 
                 private void ProductArray_AskForSerials(object sender, EventArgs e)
                 {
-                        Lui.Forms.Product Prod = ((Lui.Forms.Product)(sender));
+                        Lcc.Entrada.Articulos.DetalleComprobante Prod = ((Lcc.Entrada.Articulos.DetalleComprobante)(sender));
                         int IdArticulo = Prod.TextInt;
                         double Cant = Prod.Cantidad;
 
                         Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
 
-                        EditSerials Editar = new EditSerials();
+                        EditarSeries Editar = new EditarSeries();
                         Editar.Articulo = new Lbl.Articulos.Articulo(this.DataBase, IdArticulo);
                         Editar.Cantidad = Math.Abs(System.Convert.ToInt32(Cant));
                         Editar.Situacion = Comprob.SituacionOrigen;

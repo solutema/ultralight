@@ -41,10 +41,10 @@ namespace Lfc.Comprobantes
                         this.Label5 = new System.Windows.Forms.Label();
                         this.Label3 = new System.Windows.Forms.Label();
                         this.Label4 = new System.Windows.Forms.Label();
-                        this.txtTotal = new Lui.Forms.TextBox();
+                        this.EntradaTotal = new Lui.Forms.TextBox();
                         this.Label2 = new System.Windows.Forms.Label();
                         this.Label6 = new System.Windows.Forms.Label();
-                        this.txtPendiente = new Lui.Forms.TextBox();
+                        this.EntradaPendiente = new Lui.Forms.TextBox();
                         this.Frame.SuspendLayout();
                         this.SuspendLayout();
                         // 
@@ -100,31 +100,31 @@ namespace Lfc.Comprobantes
                         // 
                         // EntradaTotal
                         // 
-                        this.txtTotal.AutoHeight = false;
-                        this.txtTotal.AutoNav = true;
-                        this.txtTotal.AutoTab = true;
-                        this.txtTotal.DataType = Lui.Forms.DataTypes.Money;
-                        this.txtTotal.DecimalPlaces = -1;
-                        this.txtTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtTotal.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtTotal.Location = new System.Drawing.Point(44, 68);
-                        this.txtTotal.MaxLenght = 32767;
-                        this.txtTotal.MultiLine = false;
-                        this.txtTotal.Name = "EntradaTotal";
-                        this.txtTotal.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtTotal.PasswordChar = '\0';
-                        this.txtTotal.Prefijo = "";
-                        this.txtTotal.ReadOnly = true;
-                        this.txtTotal.SelectOnFocus = true;
-                        this.txtTotal.Size = new System.Drawing.Size(92, 20);
-                        this.txtTotal.Sufijo = "";
-                        this.txtTotal.TabIndex = 3;
-                        this.txtTotal.TabStop = false;
-                        this.txtTotal.Text = "0.00";
-                        this.txtTotal.TextRaw = "0.00";
-                        this.txtTotal.TipWhenBlank = "";
-                        this.txtTotal.ToolTipText = "";
+                        this.EntradaTotal.AutoHeight = false;
+                        this.EntradaTotal.AutoNav = true;
+                        this.EntradaTotal.AutoTab = true;
+                        this.EntradaTotal.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaTotal.DecimalPlaces = -1;
+                        this.EntradaTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaTotal.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaTotal.Location = new System.Drawing.Point(44, 68);
+                        this.EntradaTotal.MaxLenght = 32767;
+                        this.EntradaTotal.MultiLine = false;
+                        this.EntradaTotal.Name = "EntradaTotal";
+                        this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTotal.PasswordChar = '\0';
+                        this.EntradaTotal.Prefijo = "";
+                        this.EntradaTotal.ReadOnly = true;
+                        this.EntradaTotal.SelectOnFocus = true;
+                        this.EntradaTotal.Size = new System.Drawing.Size(92, 20);
+                        this.EntradaTotal.Sufijo = "";
+                        this.EntradaTotal.TabIndex = 3;
+                        this.EntradaTotal.TabStop = false;
+                        this.EntradaTotal.Text = "0.00";
+                        this.EntradaTotal.TextRaw = "0.00";
+                        this.EntradaTotal.TipWhenBlank = "";
+                        this.EntradaTotal.ToolTipText = "";
                         // 
                         // Label2
                         // 
@@ -148,38 +148,38 @@ namespace Lfc.Comprobantes
                         // 
                         // txtPendiente
                         // 
-                        this.txtPendiente.AutoHeight = false;
-                        this.txtPendiente.AutoNav = true;
-                        this.txtPendiente.AutoTab = true;
-                        this.txtPendiente.DataType = Lui.Forms.DataTypes.Money;
-                        this.txtPendiente.DecimalPlaces = -1;
-                        this.txtPendiente.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtPendiente.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtPendiente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtPendiente.Location = new System.Drawing.Point(44, 92);
-                        this.txtPendiente.MaxLenght = 32767;
-                        this.txtPendiente.MultiLine = false;
-                        this.txtPendiente.Name = "txtPendiente";
-                        this.txtPendiente.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtPendiente.PasswordChar = '\0';
-                        this.txtPendiente.Prefijo = "";
-                        this.txtPendiente.ReadOnly = true;
-                        this.txtPendiente.SelectOnFocus = true;
-                        this.txtPendiente.Size = new System.Drawing.Size(92, 20);
-                        this.txtPendiente.Sufijo = "";
-                        this.txtPendiente.TabIndex = 52;
-                        this.txtPendiente.TabStop = false;
-                        this.txtPendiente.Text = "0.00";
-                        this.txtPendiente.TextRaw = "0.00";
-                        this.txtPendiente.TipWhenBlank = "";
-                        this.txtPendiente.ToolTipText = "";
+                        this.EntradaPendiente.AutoHeight = false;
+                        this.EntradaPendiente.AutoNav = true;
+                        this.EntradaPendiente.AutoTab = true;
+                        this.EntradaPendiente.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaPendiente.DecimalPlaces = -1;
+                        this.EntradaPendiente.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaPendiente.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaPendiente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaPendiente.Location = new System.Drawing.Point(44, 92);
+                        this.EntradaPendiente.MaxLenght = 32767;
+                        this.EntradaPendiente.MultiLine = false;
+                        this.EntradaPendiente.Name = "txtPendiente";
+                        this.EntradaPendiente.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaPendiente.PasswordChar = '\0';
+                        this.EntradaPendiente.Prefijo = "";
+                        this.EntradaPendiente.ReadOnly = true;
+                        this.EntradaPendiente.SelectOnFocus = true;
+                        this.EntradaPendiente.Size = new System.Drawing.Size(92, 20);
+                        this.EntradaPendiente.Sufijo = "";
+                        this.EntradaPendiente.TabIndex = 52;
+                        this.EntradaPendiente.TabStop = false;
+                        this.EntradaPendiente.Text = "0.00";
+                        this.EntradaPendiente.TextRaw = "0.00";
+                        this.EntradaPendiente.TipWhenBlank = "";
+                        this.EntradaPendiente.ToolTipText = "";
                         // 
                         // Inicio
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(768, 480);
-                        this.Controls.Add(this.txtPendiente);
-                        this.Controls.Add(this.txtTotal);
+                        this.Controls.Add(this.EntradaPendiente);
+                        this.Controls.Add(this.EntradaTotal);
                         this.Controls.Add(this.Label6);
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.Frame);
@@ -196,10 +196,10 @@ namespace Lfc.Comprobantes
                 internal System.Windows.Forms.Label Label5;
                 internal System.Windows.Forms.Label Label4;
                 internal System.Windows.Forms.Label Label3;
-                internal Lui.Forms.TextBox txtTotal;
+                internal Lui.Forms.TextBox EntradaTotal;
                 internal System.Windows.Forms.Label Label2;
                 internal System.Windows.Forms.Label Label6;
-                internal Lui.Forms.TextBox txtPendiente;
+                internal Lui.Forms.TextBox EntradaPendiente;
                 internal Lui.Forms.Frame Frame;
                 
         }

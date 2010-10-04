@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -79,20 +79,20 @@ namespace Lfc.Comprobantes.Compra
                 internal System.Windows.Forms.Label label3;
                 internal Lui.Forms.ComboBox txtEstado;
                 private TableLayoutPanel tableLayoutPanel1;
-                internal Lcc.Controles.RangoFechas EntradaFechas;
-                internal Lui.Forms.DetailBox txtProveedor;
+                internal Lcc.Entrada.RangoFechas EntradaFechas;
+                internal Lcc.Entrada.CodigoDetalle txtProveedor;
 
                 private void InitializeComponent()
                 {
                         this.txtTipo = new Lui.Forms.ComboBox();
                         this.Label4 = new System.Windows.Forms.Label();
-                        this.txtProveedor = new Lui.Forms.DetailBox();
+                        this.txtProveedor = new Lcc.Entrada.CodigoDetalle();
                         this.Label2 = new System.Windows.Forms.Label();
                         this.Label1 = new System.Windows.Forms.Label();
                         this.txtEstado = new Lui.Forms.ComboBox();
                         this.label3 = new System.Windows.Forms.Label();
                         this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-                        this.EntradaFechas = new Lcc.Controles.RangoFechas();
+                        this.EntradaFechas = new Lcc.Entrada.RangoFechas();
                         this.tableLayoutPanel1.SuspendLayout();
                         this.SuspendLayout();
                         // 
@@ -171,14 +171,12 @@ namespace Lfc.Comprobantes.Compra
                         this.txtProveedor.Padding = new System.Windows.Forms.Padding(2);
                         this.txtProveedor.ReadOnly = false;
                         this.txtProveedor.Required = false;
-                        this.txtProveedor.SelectOnFocus = true;
                         this.txtProveedor.Size = new System.Drawing.Size(440, 25);
                         this.txtProveedor.TabIndex = 5;
                         this.txtProveedor.Table = "personas";
                         this.txtProveedor.TeclaDespuesDeEnter = "{tab}";
                         this.txtProveedor.Text = "0";
                         this.txtProveedor.TextDetail = "";
-                        this.txtProveedor.TextInt = 0;
                         this.txtProveedor.TipWhenBlank = "";
                         this.txtProveedor.ToolTipText = "";
                         // 

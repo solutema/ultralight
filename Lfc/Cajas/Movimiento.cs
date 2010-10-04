@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -80,31 +80,31 @@ namespace Lfc.Cajas
                 internal System.Windows.Forms.Label Label3;
                 internal Lui.Forms.TextBox txtImporte;
                 internal System.Windows.Forms.Label Label2;
-                internal Lui.Forms.DetailBox txtConcepto;
+                internal Lcc.Entrada.CodigoDetalle EntradaConcepto;
                 internal System.Windows.Forms.Label Label1;
                 internal Lui.Forms.TextBox txtObs;
                 internal System.Windows.Forms.Label Label4;
                 internal Lui.Forms.TextBox txtComprob;
                 internal System.Windows.Forms.Label Label5;
                 internal System.Windows.Forms.Label Label6;
-                internal Lui.Forms.DetailBox txtDestino;
-                internal Lui.Forms.DetailBox txtOrigen;
+                internal Lcc.Entrada.CodigoDetalle txtDestino;
+                internal Lcc.Entrada.CodigoDetalle EntradaOrigen;
                 internal Lui.Forms.TextBox txtImporteDestino;
                 internal System.Windows.Forms.Label lblImporteDestino;
 
                 private void InitializeComponent()
                 {
-                        this.txtDestino = new Lui.Forms.DetailBox();
+                        this.txtDestino = new Lcc.Entrada.CodigoDetalle();
                         this.Label3 = new System.Windows.Forms.Label();
                         this.txtImporte = new Lui.Forms.TextBox();
                         this.Label2 = new System.Windows.Forms.Label();
-                        this.txtConcepto = new Lui.Forms.DetailBox();
+                        this.EntradaConcepto = new Lcc.Entrada.CodigoDetalle();
                         this.Label1 = new System.Windows.Forms.Label();
                         this.txtObs = new Lui.Forms.TextBox();
                         this.Label4 = new System.Windows.Forms.Label();
                         this.txtComprob = new Lui.Forms.TextBox();
                         this.Label5 = new System.Windows.Forms.Label();
-                        this.txtOrigen = new Lui.Forms.DetailBox();
+                        this.EntradaOrigen = new Lcc.Entrada.CodigoDetalle();
                         this.Label6 = new System.Windows.Forms.Label();
                         this.txtImporteDestino = new Lui.Forms.TextBox();
                         this.lblImporteDestino = new System.Windows.Forms.Label();
@@ -143,7 +143,6 @@ namespace Lfc.Cajas
                         this.txtDestino.TeclaDespuesDeEnter = "{tab}";
                         this.txtDestino.Text = "0";
                         this.txtDestino.TextDetail = "";
-                        this.txtDestino.TextInt = 0;
                         this.txtDestino.ToolTipText = "";
                         this.txtDestino.TextChanged += new System.EventHandler(this.txtOrigenDestino_TextChanged);
                         // 
@@ -186,28 +185,27 @@ namespace Lfc.Cajas
                         // 
                         // txtConcepto
                         // 
-                        this.txtConcepto.AutoTab = true;
-                        this.txtConcepto.CanCreate = false;
-                        this.txtConcepto.DetailField = "nombre";
-                        this.txtConcepto.DockPadding.All = 2;
-                        this.txtConcepto.ExtraDetailFields = null;
-                        this.txtConcepto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.txtConcepto.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtConcepto.FreeTextCode = "*";
-                        this.txtConcepto.KeyField = "id_concepto";
-                        this.txtConcepto.Location = new System.Drawing.Point(112, 164);
-                        this.txtConcepto.MaxLength = 200;
-                        this.txtConcepto.Name = "txtConcepto";
-                        this.txtConcepto.ReadOnly = false;
-                        this.txtConcepto.Required = true;
-                        this.txtConcepto.Size = new System.Drawing.Size(356, 24);
-                        this.txtConcepto.TabIndex = 9;
-                        this.txtConcepto.Table = "conceptos";
-                        this.txtConcepto.TeclaDespuesDeEnter = "{tab}";
-                        this.txtConcepto.Text = "0";
-                        this.txtConcepto.TextDetail = "";
-                        this.txtConcepto.TextInt = 0;
-                        this.txtConcepto.ToolTipText = "";
+                        this.EntradaConcepto.AutoTab = true;
+                        this.EntradaConcepto.CanCreate = false;
+                        this.EntradaConcepto.DetailField = "nombre";
+                        this.EntradaConcepto.DockPadding.All = 2;
+                        this.EntradaConcepto.ExtraDetailFields = null;
+                        this.EntradaConcepto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+                        this.EntradaConcepto.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaConcepto.FreeTextCode = "*";
+                        this.EntradaConcepto.KeyField = "id_concepto";
+                        this.EntradaConcepto.Location = new System.Drawing.Point(112, 164);
+                        this.EntradaConcepto.MaxLength = 200;
+                        this.EntradaConcepto.Name = "txtConcepto";
+                        this.EntradaConcepto.ReadOnly = false;
+                        this.EntradaConcepto.Required = true;
+                        this.EntradaConcepto.Size = new System.Drawing.Size(356, 24);
+                        this.EntradaConcepto.TabIndex = 9;
+                        this.EntradaConcepto.Table = "conceptos";
+                        this.EntradaConcepto.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaConcepto.Text = "0";
+                        this.EntradaConcepto.TextDetail = "";
+                        this.EntradaConcepto.ToolTipText = "";
                         // 
                         // Label1
                         // 
@@ -273,30 +271,29 @@ namespace Lfc.Cajas
                         // 
                         // txtOrigen
                         // 
-                        this.txtOrigen.AutoTab = true;
-                        this.txtOrigen.CanCreate = false;
-                        this.txtOrigen.DetailField = "nombre";
-                        this.txtOrigen.DockPadding.All = 2;
-                        this.txtOrigen.ExtraDetailFields = null;
-                        this.txtOrigen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.txtOrigen.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtOrigen.FreeTextCode = "";
-                        this.txtOrigen.KeyField = "id_caja";
-                        this.txtOrigen.Location = new System.Drawing.Point(112, 68);
-                        this.txtOrigen.MaxLength = 200;
-                        this.txtOrigen.Name = "txtOrigen";
-                        this.txtOrigen.ReadOnly = true;
-                        this.txtOrigen.Required = false;
-                        this.txtOrigen.Size = new System.Drawing.Size(356, 24);
-                        this.txtOrigen.TabIndex = 1;
-                        this.txtOrigen.Table = "cajas";
-                        this.txtOrigen.TabStop = false;
-                        this.txtOrigen.TeclaDespuesDeEnter = "{tab}";
-                        this.txtOrigen.Text = "0";
-                        this.txtOrigen.TextDetail = "";
-                        this.txtOrigen.TextInt = 0;
-                        this.txtOrigen.ToolTipText = "";
-                        this.txtOrigen.TextChanged += new System.EventHandler(this.txtOrigenDestino_TextChanged);
+                        this.EntradaOrigen.AutoTab = true;
+                        this.EntradaOrigen.CanCreate = false;
+                        this.EntradaOrigen.DetailField = "nombre";
+                        this.EntradaOrigen.DockPadding.All = 2;
+                        this.EntradaOrigen.ExtraDetailFields = null;
+                        this.EntradaOrigen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+                        this.EntradaOrigen.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaOrigen.FreeTextCode = "";
+                        this.EntradaOrigen.KeyField = "id_caja";
+                        this.EntradaOrigen.Location = new System.Drawing.Point(112, 68);
+                        this.EntradaOrigen.MaxLength = 200;
+                        this.EntradaOrigen.Name = "txtOrigen";
+                        this.EntradaOrigen.ReadOnly = true;
+                        this.EntradaOrigen.Required = false;
+                        this.EntradaOrigen.Size = new System.Drawing.Size(356, 24);
+                        this.EntradaOrigen.TabIndex = 1;
+                        this.EntradaOrigen.Table = "cajas";
+                        this.EntradaOrigen.TabStop = false;
+                        this.EntradaOrigen.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaOrigen.Text = "0";
+                        this.EntradaOrigen.TextDetail = "";
+                        this.EntradaOrigen.ToolTipText = "";
+                        this.EntradaOrigen.TextChanged += new System.EventHandler(this.txtOrigenDestino_TextChanged);
                         // 
                         // Label6
                         // 
@@ -353,13 +350,13 @@ namespace Lfc.Cajas
                         this.Controls.Add(this.label7);
                         this.Controls.Add(this.txtImporteDestino);
                         this.Controls.Add(this.lblImporteDestino);
-                        this.Controls.Add(this.txtOrigen);
+                        this.Controls.Add(this.EntradaOrigen);
                         this.Controls.Add(this.Label6);
                         this.Controls.Add(this.txtObs);
                         this.Controls.Add(this.Label4);
                         this.Controls.Add(this.txtComprob);
                         this.Controls.Add(this.Label5);
-                        this.Controls.Add(this.txtConcepto);
+                        this.Controls.Add(this.EntradaConcepto);
                         this.Controls.Add(this.Label1);
                         this.Controls.Add(this.txtImporte);
                         this.Controls.Add(this.Label2);
@@ -377,7 +374,7 @@ namespace Lfc.Cajas
                 {
                         Lfx.Types.OperationResult aceptarReturn = new Lfx.Types.SuccessOperationResult();
 
-                        int iOrigen = txtOrigen.TextInt;
+                        int iOrigen = EntradaOrigen.TextInt;
                         int iDestino = txtDestino.TextInt;
 
                         if (iOrigen == 0) {
@@ -392,7 +389,7 @@ namespace Lfc.Cajas
                                 aceptarReturn.Success = false;
                                 aceptarReturn.Message += "Debe especificar el importe." + Environment.NewLine;
                         }
-                        if (txtConcepto.TextInt == 0) {
+                        if (EntradaConcepto.TextInt == 0) {
                                 aceptarReturn.Success = false;
                                 aceptarReturn.Message += "Debe especificar el Concepto." + Environment.NewLine;
                         }
@@ -401,11 +398,11 @@ namespace Lfc.Cajas
                                 double Importe = Lfx.Types.Parsing.ParseCurrency(txtImporte.Text);
                                 DataBase.BeginTransaction(true);
                                 Lbl.Cajas.Caja CajaOrigen = new Lbl.Cajas.Caja(DataBase, iOrigen);
-                                CajaOrigen.Movimiento(false, txtConcepto.TextInt, txtConcepto.TextDetail, this.Workspace.CurrentUser.Id, -Importe, txtObs.Text, 0, 0, txtComprob.Text);
+                                CajaOrigen.Movimiento(false, EntradaConcepto.TextInt, EntradaConcepto.TextDetail, this.Workspace.CurrentUser.Id, -Importe, txtObs.Text, 0, 0, txtComprob.Text);
                                 if (txtImporteDestino.Visible)
                                         Importe = Lfx.Types.Parsing.ParseCurrency(txtImporteDestino.Text);
                                 Lbl.Cajas.Caja CajaaDestino = new Lbl.Cajas.Caja(DataBase, iDestino);
-                                CajaaDestino.Movimiento(false, txtConcepto.TextInt, txtConcepto.TextDetail, this.Workspace.CurrentUser.Id, Importe, txtObs.Text, 0, 0, txtComprob.Text);
+                                CajaaDestino.Movimiento(false, EntradaConcepto.TextInt, EntradaConcepto.TextDetail, this.Workspace.CurrentUser.Id, Importe, txtObs.Text, 0, 0, txtComprob.Text);
                                 DataBase.Commit();
                         }
                         return aceptarReturn;
@@ -414,7 +411,7 @@ namespace Lfc.Cajas
 
                 private void txtObs_Enter(object sender, System.EventArgs e)
                 {
-                        int iOrigen = txtOrigen.TextInt;
+                        int iOrigen = EntradaOrigen.TextInt;
                         int iDestino = txtDestino.TextInt;
                         if (txtObs.Text.Length == 0 && iOrigen != 0 && iDestino != 0) {
                                 txtObs.Text = "Movimiento entre " + this.DataBase.FieldString("SELECT nombre FROM cajas WHERE id_caja=" + iOrigen.ToString()) + " y " + this.DataBase.FieldString("SELECT nombre FROM cajas WHERE id_caja=" + iDestino.ToString());
@@ -424,7 +421,7 @@ namespace Lfc.Cajas
 
                 private void txtOrigenDestino_TextChanged(object sender, System.EventArgs e)
                 {
-                        iMonedaOrigen = this.DataBase.FieldInt("SELECT id_moneda FROM cajas WHERE id_caja=" + txtOrigen.TextInt);
+                        iMonedaOrigen = this.DataBase.FieldInt("SELECT id_moneda FROM cajas WHERE id_caja=" + EntradaOrigen.TextInt);
                         iMonedaDestino = this.DataBase.FieldInt("SELECT id_moneda FROM cajas WHERE id_caja=" + txtDestino.TextInt);
                         MonedaOrigen = this.DataBase.Row("monedas", "id_moneda", iMonedaOrigen);
                         MonedaDestino = this.DataBase.Row("monedas", "id_moneda", iMonedaDestino);

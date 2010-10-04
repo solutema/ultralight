@@ -50,7 +50,7 @@ namespace Lfc.Bancos.Cheques
 		internal System.Windows.Forms.Label Label3;
 		internal Lui.Forms.TextBox txtTotal;
                 internal System.Windows.Forms.Label Label8;
-                public Lui.Forms.DetailBox EntradaCajaOrigen;
+                public Lcc.Entrada.CodigoDetalle EntradaCajaOrigen;
 		private System.ComponentModel.IContainer components = null;
 
 		public Pagar()
@@ -87,7 +87,7 @@ namespace Lfc.Bancos.Cheques
                         this.Label1 = new System.Windows.Forms.Label();
                         this.txtCantidad = new Lui.Forms.TextBox();
                         this.lblLabel1 = new System.Windows.Forms.Label();
-                        this.EntradaCajaOrigen = new Lui.Forms.DetailBox();
+                        this.EntradaCajaOrigen = new Lcc.Entrada.CodigoDetalle();
                         this.Label3 = new System.Windows.Forms.Label();
                         this.txtTotal = new Lui.Forms.TextBox();
                         this.Label8 = new System.Windows.Forms.Label();
@@ -216,14 +216,12 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaCajaOrigen.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCajaOrigen.ReadOnly = false;
                         this.EntradaCajaOrigen.Required = true;
-                        this.EntradaCajaOrigen.SelectOnFocus = false;
                         this.EntradaCajaOrigen.Size = new System.Drawing.Size(308, 24);
                         this.EntradaCajaOrigen.TabIndex = 12;
                         this.EntradaCajaOrigen.Table = "cajas";
                         this.EntradaCajaOrigen.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCajaOrigen.Text = "0";
                         this.EntradaCajaOrigen.TextDetail = "";
-                        this.EntradaCajaOrigen.TextInt = 0;
                         this.EntradaCajaOrigen.TipWhenBlank = "";
                         this.EntradaCajaOrigen.ToolTipText = "";
                         // 

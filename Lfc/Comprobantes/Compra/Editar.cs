@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -42,7 +42,7 @@ namespace Lfc.Comprobantes.Compra
 	{
 		protected internal string m_TipoComprob = "R";
 		protected internal string m_Numero = "";
-		protected internal int m_FacturaIdOrig;
+		protected internal Lbl.Comprobantes.ComprobanteConArticulos FacturaIdOrig;
                 public string CrearTipo = "PD";
                 System.Collections.Hashtable ArticulosCantidadesOriginales = new System.Collections.Hashtable();
 
@@ -64,7 +64,7 @@ namespace Lfc.Comprobantes.Compra
                                 return new Lfx.Types.NoAccessOperationResult();
 
                         EntradaHaciaSituacion.Visible = this.Workspace.CurrentConfig.Productos.StockMultideposito;
-                        lblHaciaSituacion.Visible = this.Workspace.CurrentConfig.Productos.StockMultideposito;
+                        EtiquetaHaciaSituacion.Visible = this.Workspace.CurrentConfig.Productos.StockMultideposito;
 
                         Lbl.Comprobantes.ComprobanteConArticulos NewRow = new Lbl.Comprobantes.ComprobanteConArticulos(this.DataBase);
                         NewRow.Crear(CrearTipo, true);
@@ -116,10 +116,7 @@ namespace Lfc.Comprobantes.Compra
 			this.SuspendLayout();
 			this.TipoComprob = Fac.Tipo;
 
-                        if (Fac.Cliente != null)
-                                EntradaProveedor.TextInt = Fac.Cliente.Id;
-                        else
-                                EntradaProveedor.TextInt = 0;
+                        EntradaProveedor.Elemento = Fac.Cliente;
 
                         if (Fac.FormaDePago != null)
                                 EntradaFormaPago.TextKey = Fac.FormaDePago.Id.ToString();
@@ -130,13 +127,9 @@ namespace Lfc.Comprobantes.Compra
 
 			EntradaPV.Text = Fac.PV.ToString("0000");
                         EntradaNumero.Text = Fac.Numero.ToString("00000000");
-
-                        if (Fac.SituacionDestino != null)
-                                EntradaHaciaSituacion.TextInt = Fac.SituacionDestino.Id;
-                        else
-                                EntradaHaciaSituacion.TextInt = 0;
+                        EntradaHaciaSituacion.Elemento = Fac.SituacionDestino;
+                        EntradaHaciaSituacion.ReadOnly = Fac.Existe;
                         EntradaTipo.TextKey = Fac.Tipo.Nomenclatura;
-			EntradaHaciaSituacion.ReadOnly = Fac.Existe;
 			EntradaEstado.TextKey = Fac.Estado.ToString();
 			EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Fac.Total, this.Workspace.CurrentConfig.Moneda.Decimales);
 			EntradaCancelado.Text = Lfx.Types.Formatting.FormatCurrency(Fac.ImporteCancelado, this.Workspace.CurrentConfig.Moneda.Decimales);
@@ -153,7 +146,7 @@ namespace Lfc.Comprobantes.Compra
 				if(Art.IdArticulo == 0) {
 					EntradaProductos.ChildControls[i].Text = EntradaProductos.FreeTextCode;
 				} else {
-                                        EntradaProductos.ChildControls[i].TextInt = Art.IdArticulo;
+                                        EntradaProductos.ChildControls[i].Elemento = Art.Articulo;
                                         if (ArticulosCantidadesOriginales.ContainsKey(Art.IdArticulo) == false)
                                                 ArticulosCantidadesOriginales.Add(Art.IdArticulo, Art.Cantidad);
 				}
@@ -182,22 +175,14 @@ namespace Lfc.Comprobantes.Compra
                                 Res.FormaDePago = new Lbl.Pagos.FormaDePago(Res.DataBase, Lfx.Types.Parsing.ParseInt(EntradaFormaPago.TextKey));
                         else
                                 Res.FormaDePago = null;
-                        if(m_FacturaIdOrig == 0)
-                                Res.ComprobanteOriginal = null;
-                        else
-                                Res.ComprobanteOriginal = new Lbl.Comprobantes.ComprobanteConArticulos(Res.DataBase, m_FacturaIdOrig);
+
+                        Res.ComprobanteOriginal = FacturaIdOrig;
                         Res.Vendedor = new Lbl.Personas.Persona(Res.DataBase, this.Workspace.CurrentUser.Id);
-                        if (EntradaProveedor.TextInt == 0)
-                                Res.Cliente = null;
-                        else
-                                Res.Cliente = new Lbl.Personas.Persona(Res.DataBase, EntradaProveedor.TextInt);
+                        Res.Cliente = EntradaProveedor.Elemento as Lbl.Personas.Persona;
                         Res.Tipo = new Lbl.Comprobantes.Tipo(Res.DataBase, EntradaTipo.TextKey);
                         Res.PV = Lfx.Types.Parsing.ParseInt(EntradaPV.Text);
 			Res.Numero = Lfx.Types.Parsing.ParseInt(EntradaNumero.Text);
-                        if (EntradaHaciaSituacion.TextInt == 0)
-                                Res.SituacionDestino = null;
-                        else
-                                Res.SituacionDestino = new Lbl.Articulos.Situacion(Res.DataBase, EntradaHaciaSituacion.TextInt);
+                        Res.SituacionDestino = EntradaHaciaSituacion.Elemento as Lbl.Articulos.Situacion;
 			Res.GastosDeEnvio = Lfx.Types.Parsing.ParseCurrency(EntradaGastosEnvio.Text);
                         Res.OtrosGastos = Lfx.Types.Parsing.ParseCurrency(EntradaOtrosGastos.Text);
                         Res.Obs = EntradaObs.Text;
@@ -237,7 +222,7 @@ namespace Lfc.Comprobantes.Compra
 			{
                                 Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
 				Comprob.Tipo = value;
-				EntradaTipo.TextKey = m_TipoComprob;
+				EntradaTipo.TextKey = Comprob.Tipo.Nomenclatura;
 
                                 switch (Comprob.Tipo.Nomenclatura)
 				{
@@ -264,9 +249,8 @@ namespace Lfc.Comprobantes.Compra
 						break;
 				}
 
-				this.Titulo = Lbl.Comprobantes.Comprobante.NombreTipo(m_TipoComprob) + " " + EntradaNumero.Text;
 				EntradaNumero.Enabled = (Comprob.Tipo.Nomenclatura != "NP");
-                                lblHaciaSituacion.Visible = Comprob.Tipo.EsFactura;
+                                EtiquetaHaciaSituacion.Visible = Comprob.Tipo.EsFactura;
                                 EntradaHaciaSituacion.Visible = Comprob.Tipo.EsFactura;
 			}
 		}
@@ -283,7 +267,7 @@ namespace Lfc.Comprobantes.Compra
 			}
 		}
 
-		private void cmdConvertir_Click(object sender, System.EventArgs e)
+		private void BotonConvertir_Click(object sender, System.EventArgs e)
 		{
 			Lfc.Comprobantes.Compra.Crear FormularioConvertir = new Lfc.Comprobantes.Compra.Crear();
 			if (FormularioConvertir.ShowDialog() == DialogResult.OK)
@@ -302,11 +286,13 @@ namespace Lfc.Comprobantes.Compra
 				Lfc.Comprobantes.Compra.Editar FormularioEdicion = new Lfc.Comprobantes.Compra.Editar();
                                 FormularioEdicion.MdiParent = this.MdiParent;
 				FormularioEdicion.Create();
-                                if (FormularioConvertir.TipoComprob == "FP")
+                                if (FormularioConvertir.TipoComprob == "FP") {
                                         FormularioEdicion.TipoComprob = new Lbl.Comprobantes.Tipo(this.DataBase, "FA");
-                                else
+                                        FormularioEdicion.EntradaFormaPago.TextKey = "3";
+                                } else {
                                         FormularioEdicion.TipoComprob = new Lbl.Comprobantes.Tipo(this.DataBase, FormularioConvertir.TipoComprob);
-				FormularioEdicion.m_FacturaIdOrig = m_Id;
+                                }
+				FormularioEdicion.FacturaIdOrig = Fac;
                                 FormularioEdicion.EntradaGastosEnvio.Text = this.EntradaGastosEnvio.Text;
 				FormularioEdicion.EntradaProveedor.Text = EntradaProveedor.Text;
 				FormularioEdicion.EntradaObs.Text = "Según " + this.TipoComprob + " Nº " + EntradaNumero.Text;
@@ -356,7 +342,7 @@ namespace Lfc.Comprobantes.Compra
 		{
                         Lui.Forms.AuxForms.TextEdit FormularioObs = new Lui.Forms.AuxForms.TextEdit();
 			FormularioObs.EditText = EntradaObs.Text;
-			FormularioObs.ReadOnly = !SaveButton.Visible;
+                        FormularioObs.ReadOnly = this.ReadOnly;
 			if (FormularioObs.ShowDialog() == DialogResult.OK)
 				EntradaObs.Text = FormularioObs.EditText;
 		}
@@ -377,13 +363,13 @@ namespace Lfc.Comprobantes.Compra
 
                 private void EntradaProductos_AskForSerials(object sender, EventArgs e)
                 {
-                        Lui.Forms.Product Prod = ((Lui.Forms.Product)(sender));
+                        Lcc.Entrada.Articulos.DetalleComprobante Prod = ((Lcc.Entrada.Articulos.DetalleComprobante)(sender));
                         int IdArticulo = Prod.TextInt;
                         double Cant = Prod.Cantidad;
 
                         Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.CachedRow as Lbl.Comprobantes.ComprobanteConArticulos;
 
-                        EditSerials Editar = new EditSerials();
+                        EditarSeries Editar = new EditarSeries();
                         Editar.Articulo = new Lbl.Articulos.Articulo(this.DataBase, IdArticulo);
                         Editar.Cantidad = Math.Abs(System.Convert.ToInt32(Cant));
                         Editar.Situacion = Comprob.SituacionOrigen;
@@ -402,6 +388,17 @@ namespace Lfc.Comprobantes.Compra
                                 CargarImagen.Dispose();
                                 CargarImagen = null;
                         }
+                }
+
+                private void EntradaTipo_TextChanged(object sender, EventArgs e)
+                {
+                        Lbl.Comprobantes.Tipo Tipo = new Lbl.Comprobantes.Tipo(this.DataBase, EntradaTipo.TextKey);
+                        if (Tipo.Existe)
+                                EntradaFormaPago.Enabled = Tipo.EsFacturaNCoND;
+                        else
+                                EntradaFormaPago.Enabled = false;
+
+                        this.Titulo = Tipo.ToString() + " " + EntradaNumero.Text;
                 }
 	}
 }

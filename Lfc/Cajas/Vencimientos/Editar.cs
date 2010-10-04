@@ -74,11 +74,7 @@ namespace Lfc.Cajas.Vencimientos
 
                         Lbl.Cajas.Vencimiento Res = row as Lbl.Cajas.Vencimiento;
 
-                        if (Res.Concepto == null)
-                                EntradaConcepto.TextInt = 0;
-                        else
-                                EntradaConcepto.TextInt = Res.Concepto.Id;
-                        
+                        EntradaConcepto.Elemento = Res.Concepto;
                         EntradaFechaFin.Text = Lfx.Types.Formatting.FormatDate(Res.FechaFin);
                         EntradaFechaInicio.Text = Lfx.Types.Formatting.FormatDate(Res.FechaInicio);
                         EntradaFrecuencia.TextKey = ((int)(Res.Frecuencia)).ToString();
@@ -88,7 +84,7 @@ namespace Lfc.Cajas.Vencimientos
                         EntradaRepetir.Text = Res.Repetir.ToString();
                         EntradaEstado.TextKey = Res.Estado.ToString();
                                 
-                        SaveButton.Visible = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "vencimientos.write");
+                        this.ReadOnly = !Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "vencimientos.write");
 
                         if (this.CachedRow.Existe)
                                 this.Text = "Vencimiento: " + Res.Nombre;
@@ -100,11 +96,7 @@ namespace Lfc.Cajas.Vencimientos
                 {
                         Lbl.Cajas.Vencimiento Res = this.CachedRow as Lbl.Cajas.Vencimiento;
 
-                        if (EntradaConcepto.TextInt == 0)
-                                Res.Concepto = null;
-                        else
-                                Res.Concepto = new Lbl.Cajas.Concepto(Res.DataBase, EntradaConcepto.TextInt);
-
+                        Res.Concepto = EntradaConcepto.Elemento as Lbl.Cajas.Concepto;
                         Res.Estado = Lfx.Types.Parsing.ParseInt(EntradaEstado.TextKey);
                         Res.FechaFin = Lfx.Types.Parsing.ParseDate(EntradaFechaFin.Text);
                         Res.FechaInicio = Lfx.Types.Parsing.ParseDate(EntradaFechaInicio.Text);

@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -119,10 +119,7 @@ namespace Lfc.Comprobantes.Facturas
                                         "Factura E|FE",
                                         "Ticket|T"
                                 };
-                                if (Res.FormaDePago == null)
-                                        EntradaFormaPago.TextInt = 0;
-                                else
-                                        EntradaFormaPago.TextInt = Res.FormaDePago.Id;
+                                EntradaFormaPago.Elemento = Res.FormaDePago;
                                 EntradaFormaPago.Visible = true;
                         } else if (this.Tipo.EsNotaCredito || this.Tipo.EsNotaDebito) {
                                 EntradaTipo.SetData = new string[] {
@@ -160,18 +157,6 @@ namespace Lfc.Comprobantes.Facturas
                         return Res;
                 }
 
-		/* public override bool ReadOnly
-		{
-			get
-			{
-                                return base.ReadOnly;
-			}
-			set
-			{
-                                base.ReadOnly = value;
-			}
-		} */
-
 		public override Lfx.Types.OperationResult Edit(int iId)
 		{
                         if (Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.read") == false)
@@ -207,6 +192,7 @@ namespace Lfc.Comprobantes.Facturas
                                 if(Registro.Articulos.Count >= 1 && (Registro.Articulos[0].Cantidad < 0 || Registro.Articulos[0].Unitario < 0))
                                         return new Lfx.Types.OperationResult(false, "El primer ítem de la factura no puede ser negativo. Utilice los ítem negativos en último lugar.");
 
+                                Registro.Cliente.Cargar();
                                 if (Registro.Cliente == null)
                                         return new Lfx.Types.OperationResult(false, "Debe proporcionar un Cliente válido.");
                                 else if (Registro.Cliente.SituacionTributaria == null)
@@ -216,7 +202,7 @@ namespace Lfc.Comprobantes.Facturas
                                         Lui.Forms.YesNoDialog OPregunta = new Lui.Forms.YesNoDialog(@"La situación tributaria del cliente y el tipo de comprobante no se corresponden.
 Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería llevar un comprobante tipo " + Registro.Cliente.LetraPredeterminada() + @". No debería continuar con la impresión. 
 ¿Desea continuar de todos modos?", "Tipo de comprobante incorrecto");
-                                        OPregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+                                        OPregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                         if (OPregunta.ShowDialog() == DialogResult.Cancel)
                                                 return new Lfx.Types.OperationResult(false, "Corrija la Situación Tributaria del Cliente o el Tipo de Comprobante.");
                                 }
@@ -235,23 +221,24 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
 
                                 if (ProductArray.ShowStock && this.Tipo.MueveStock && Registro.HayStock() == false) {
                                         Lui.Forms.YesNoDialog OPregunta = new Lui.Forms.YesNoDialog("Las existencias actuales no son suficientes para cubrir la operación que intenta realizar.\n¿Desea continuar de todos modos?", "No hay existencias suficientes");
-                                        OPregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+                                        OPregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                         if (OPregunta.ShowDialog() == DialogResult.Cancel)
                                                 return new Lfx.Types.OperationResult(false, "No se imprimir el comprobante por falta de existencias.");
                                 }
 
                                 if (Registro.Cliente.Id != 999 && (Registro.Tipo.EsFactura || Registro.Tipo.EsNotaDebito)) {
+                                        double SaldoCtaCte = Registro.Cliente.CuentaCorriente.Saldo(false);
+
                                         if (Registro.FormaDePago != null && Registro.FormaDePago.Tipo == Lbl.Pagos.TipoFormasDePago.CuentaCorriente) {
                                                 double LimiteCredito = Registro.Cliente.LimiteCredito;
 
                                                 if (LimiteCredito == 0)
                                                         LimiteCredito = Lfx.Types.Parsing.ParseCurrency(this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Cuentas.LimiteCreditoPredet", "0"));
 
-                                                double Saldo = Registro.Cliente.CuentaCorriente.Saldo();
-                                                if ((Registro.Total + Saldo) > LimiteCredito)
+                                                if ((Registro.Total + SaldoCtaCte) > LimiteCredito)
                                                         return new Lfx.Types.OperationResult(false, "El valor de la factura y/o el saldo en cuenta corriente supera el Límite de Crédito de este cliente.");
                                         } else {
-                                                if (Registro.Cliente.CuentaCorriente.Saldo() < 0) {
+                                                if (SaldoCtaCte < 0) {
                                                         SaldoEnCuentaCorriente FormularioError = new SaldoEnCuentaCorriente();
 
                                                         switch (FormularioError.ShowDialog()) {
@@ -295,7 +282,7 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                                         if (Numero == 0) {
                                                                 //Dió un timeout y no se imprimió.
                                                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("El servidor fiscal está demorando mucho para imprimir el comprobante. Debe asegurarse de que el servidor fiscal está cargado y configurado correctamente.", "¿Desea seguir esperando?");
-                                                                Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+                                                                Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                                                 if (Pregunta.ShowDialog() == DialogResult.Cancel) {
                                                                         Progreso.Dispose();
                                                                         return new Lfx.Types.FailureOperationResult("Se terminó el tiempo de espera y el Servidor Fiscal no terminó de imprimir el comprobante. Si fuera necesario intente imprimir el comprobante nuevamente.");
@@ -383,19 +370,19 @@ Un cliente " + Registro.Cliente.SituacionTributaria.ToString() + @" debería lle
                                                 // Tengo que actualizar la forma de pago
                                                 Factura.DataBase.BeginTransaction();
                                                 Factura.FormaDePago = MiCobro.FormaDePago;
-                                                EntradaFormaPago.TextInt = MiCobro.Id;
+                                                EntradaFormaPago.Elemento = MiCobro;
                                                 Factura.DataBase.FieldInt("UPDATE comprob SET id_formapago=" + MiCobro.FormaDePago.Id.ToString() + " WHERE id_comprob=" + Factura.Id.ToString());
                                                 if (MiCobro.FormaDePago.Tipo == Lbl.Pagos.TipoFormasDePago.CuentaCorriente) {
                                                         // Si la nueva forma de pago es cta. cte., asiento el saldo
                                                         // Y uso saldo a favor, si lo hay
-                                                        double Saldo = Factura.Cliente.CuentaCorriente.Saldo();
+                                                        double Saldo = Factura.Cliente.CuentaCorriente.Saldo(true);
                                                         Factura.Cliente.CuentaCorriente.Movimiento(true, 11000, "Saldo a Cta. Cte. s/" + Factura.ToString(), Factura.ImporteImpago, "", Factura.Id, 0, false);
                                                         if (Saldo < 0) {
                                                                 Saldo = Math.Abs(Saldo);
                                                                 if (Saldo > Factura.Total)
-                                                                        Factura.CancelarImporte(Factura.Total);
+                                                                        Factura.CancelarImporte(Factura.Total, null);
                                                                 else
-                                                                        Factura.CancelarImporte(Saldo);
+                                                                        Factura.CancelarImporte(Saldo, null);
                                                         }
                                                 }
                                                 Factura.DataBase.Commit();

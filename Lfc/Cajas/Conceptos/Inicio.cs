@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -54,7 +54,7 @@ namespace Lfc.Cajas.Conceptos
 			// agregar código de constructor después de llamar a InitializeComponent
 			DataTableName = "conceptos";
                         KeyField = new Lfx.Data.FormField("conceptos.id_concepto", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-			FormFields = new Lfx.Data.FormField[]
+			FormFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("conceptos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 				new Lfx.Data.FormField("conceptos.es", "Tipo", Lfx.Data.InputFieldTypes.Text, 120),
@@ -121,69 +121,68 @@ namespace Lfc.Cajas.Conceptos
 		{
 			string Codigo = itm.Text;
 			if(Codigo.Substring(2, 1) != "0")
-				itm.SubItems[1].Text = "    " + itm.SubItems[1].Text;
+                                itm.SubItems["nombre"].Text = "    " + itm.SubItems["nombre"].Text;
 			if(Codigo.Substring(3, 1) != "0")
-				itm.SubItems[1].Text = "    " + itm.SubItems[1].Text;
+                                itm.SubItems["nombre"].Text = "    " + itm.SubItems["nombre"].Text;
 
-			switch(Lfx.Types.Parsing.ParseInt(itm.SubItems[2].Text)) {
+			switch(row.Fields["es"].ValueInt) {
 				case 1:
-					itm.SubItems[2].Text = "Entrada";
+					itm.SubItems["es"].Text = "Entrada";
 					break;
 				case 2:
-					itm.SubItems[2].Text = "Salida";
+                                        itm.SubItems["es"].Text = "Salida";
 					break;
 				case 0:
-					itm.SubItems[2].Text = "Entrada/Salida";
+                                        itm.SubItems["es"].Text = "Entrada/Salida";
 					break;
 				default:
-					itm.SubItems[2].Text = "???";
+                                        itm.SubItems["es"].Text = "???";
 					break;
 			}
 
-			switch(Lfx.Types.Parsing.ParseInt(itm.SubItems[3].Text)) {
+			switch(row.Fields["grupo"].ValueInt) {
 				case 0:
-					itm.SubItems[3].Text = "-";
+					itm.SubItems["grupo"].Text = "-";
 					break;
 				case 110:
-					itm.SubItems[3].Text = "Cobros";
+                                        itm.SubItems["grupo"].Text = "Cobros";
 					break;
 				case 100:
-					itm.SubItems[3].Text = "Otros ingresos";
+                                        itm.SubItems["grupo"].Text = "Otros ingresos";
 					break;
 				case 230:
-					itm.SubItems[3].Text = "Gastos fijos";
+                                        itm.SubItems["grupo"].Text = "Gastos fijos";
 					break;
 				case 240:
-					itm.SubItems[3].Text = "Gastos variables";
+                                        itm.SubItems["grupo"].Text = "Gastos variables";
 					break;
 				case 200:
-					itm.SubItems[3].Text = "Otros gastos";
+                                        itm.SubItems["grupo"].Text = "Otros gastos";
 					break;
 				case 260:
-					itm.SubItems[3].Text = "Pérdida";
+                                        itm.SubItems["grupo"].Text = "Pérdida";
 					break;
 				case 250:
-					itm.SubItems[3].Text = "Reinversión";
+                                        itm.SubItems["grupo"].Text = "Reinversión";
 					break;
 				case 210:
-					itm.SubItems[3].Text = "Costo materiales";
+                                        itm.SubItems["grupo"].Text = "Costo materiales";
 					break;
 				case 220:
-					itm.SubItems[3].Text = "Costo capital";
+                                        itm.SubItems["grupo"].Text = "Costo capital";
 					break;
 				case 231:
-					itm.SubItems[3].Text = "Sueldos y salarios";
+                                        itm.SubItems["grupo"].Text = "Sueldos y salarios";
 					break;
 				case 300:
-					itm.SubItems[3].Text = "Movimientos y ajustes";
+                                        itm.SubItems["grupo"].Text = "Movimientos y ajustes";
 					break;
 				default:
-					itm.SubItems[3].Text = "???";
+                                        itm.SubItems["grupo"].Text = "???";
 					break;
 			}
 
 		}
-
 
 		public override Lfx.Types.OperationResult OnCreate()
 		{

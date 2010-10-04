@@ -61,13 +61,13 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaEstado = new Lui.Forms.ComboBox();
                         this.Label7 = new System.Windows.Forms.Label();
                         this.LabelCaja = new System.Windows.Forms.Label();
-                        this.EntradaPersona = new Lui.Forms.DetailBox();
+                        this.EntradaPersona = new Lcc.Entrada.CodigoDetalle();
                         this.Label1 = new System.Windows.Forms.Label();
-                        this.EntradaBanco = new Lui.Forms.DetailBox();
+                        this.EntradaBanco = new Lcc.Entrada.CodigoDetalle();
                         this.label2 = new System.Windows.Forms.Label();
-                        this.EntradaFechas = new Lcc.Controles.RangoFechas();
+                        this.EntradaFechas = new Lcc.Entrada.RangoFechas();
                         this.label3 = new System.Windows.Forms.Label();
-                        this.EntradaSucursal = new Lui.Forms.DetailBox();
+                        this.EntradaSucursal = new Lcc.Entrada.CodigoDetalle();
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -138,14 +138,12 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaPersona.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPersona.ReadOnly = false;
                         this.EntradaPersona.Required = false;
-                        this.EntradaPersona.SelectOnFocus = false;
                         this.EntradaPersona.Size = new System.Drawing.Size(366, 24);
                         this.EntradaPersona.TabIndex = 7;
                         this.EntradaPersona.Table = "personas";
                         this.EntradaPersona.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaPersona.Text = "0";
                         this.EntradaPersona.TextDetail = "";
-                        this.EntradaPersona.TextInt = 0;
                         this.EntradaPersona.TipWhenBlank = "";
                         this.EntradaPersona.ToolTipText = "";
                         // 
@@ -176,14 +174,12 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBanco.ReadOnly = false;
                         this.EntradaBanco.Required = false;
-                        this.EntradaBanco.SelectOnFocus = false;
                         this.EntradaBanco.Size = new System.Drawing.Size(366, 24);
                         this.EntradaBanco.TabIndex = 5;
                         this.EntradaBanco.Table = "bancos";
                         this.EntradaBanco.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
-                        this.EntradaBanco.TextInt = 0;
                         this.EntradaBanco.TipWhenBlank = "";
                         this.EntradaBanco.ToolTipText = "";
                         // 
@@ -237,14 +233,12 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaSucursal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSucursal.ReadOnly = false;
                         this.EntradaSucursal.Required = false;
-                        this.EntradaSucursal.SelectOnFocus = false;
                         this.EntradaSucursal.Size = new System.Drawing.Size(366, 24);
                         this.EntradaSucursal.TabIndex = 3;
                         this.EntradaSucursal.Table = "sucursales";
                         this.EntradaSucursal.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaSucursal.Text = "0";
                         this.EntradaSucursal.TextDetail = "";
-                        this.EntradaSucursal.TextInt = 0;
                         this.EntradaSucursal.TipWhenBlank = "";
                         this.EntradaSucursal.ToolTipText = "";
                         // 
@@ -272,13 +266,13 @@ namespace Lfc.Bancos.Cheques
                 internal Lui.Forms.ComboBox EntradaEstado;
                 private System.Windows.Forms.Label Label7;
                 private System.Windows.Forms.Label LabelCaja;
-                internal Lui.Forms.DetailBox EntradaPersona;
+                internal Lcc.Entrada.CodigoDetalle EntradaPersona;
                 private System.Windows.Forms.Label Label1;
-                internal Lui.Forms.DetailBox EntradaBanco;
+                internal Lcc.Entrada.CodigoDetalle EntradaBanco;
                 private System.ComponentModel.IContainer components = null;
                 private System.Windows.Forms.Label label2;
-                internal Lcc.Controles.RangoFechas EntradaFechas;
+                internal Lcc.Entrada.RangoFechas EntradaFechas;
                 private System.Windows.Forms.Label label3;
-                internal Lui.Forms.DetailBox EntradaSucursal;
+                internal Lcc.Entrada.CodigoDetalle EntradaSucursal;
         }
 }

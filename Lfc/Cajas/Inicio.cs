@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -52,7 +52,7 @@ namespace Lfc.Cajas
                         m_Fechas = new Lfx.Types.DateRange("dia-0");
                         FilterButton.Visible = true;
 
-                        m_FormFields = new Lfx.Data.FormField[] {
+                        m_FormFields = new List<Lfx.Data.FormField>() {
                                 new Lfx.Data.FormField("cajas_movim.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 new Lfx.Data.FormField("cajas_movim.id_caja", "Caja", Lfx.Data.InputFieldTypes.Relation, 0),
                                 new Lfx.Data.FormField("cajas_movim.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Relation, 0),
@@ -191,7 +191,10 @@ namespace Lfc.Cajas
                                                         }
                                                         */
                                                         int IdPersona = Movimiento["id_persona"] is DBNull || Movimiento["id_persona"] == null ? 0 : System.Convert.ToInt32(Movimiento["id_persona"]);
-                                                        itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, this.DataBase.Tables["personas"].FastRows[IdPersona].Fields["nombre_visible"].Value.ToString()));
+                                                        if (IdPersona != 0 && this.DataBase.Tables["personas"].FastRows[IdPersona] != null)
+                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, this.DataBase.Tables["personas"].FastRows[IdPersona].Fields["nombre_visible"].Value.ToString()));
+                                                        else
+                                                                itm.SubItems.Add("");
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Movimiento["nombre_visible"])));
                                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Movimiento["obs"])));
                                                         if (System.Convert.ToString(Movimiento["comprob"]).Length > 0)
@@ -247,19 +250,19 @@ namespace Lfc.Cajas
                         FormularioFiltros.Fechas.Rango = m_Fechas;
 
                         if (m_Cliente == -1)
-                                FormularioFiltros.txtPersona.Text = FormularioFiltros.txtPersona.FreeTextCode;
+                                FormularioFiltros.EntradaPersona.Text = FormularioFiltros.EntradaPersona.FreeTextCode;
                         else
-                                FormularioFiltros.txtPersona.TextInt = m_Cliente;
+                                FormularioFiltros.EntradaPersona.TextInt = m_Cliente;
                         if (m_Concepto == -1)
-                                FormularioFiltros.txtConcepto.Text = FormularioFiltros.txtConcepto.FreeTextCode;
+                                FormularioFiltros.EntradaConcepto.Text = FormularioFiltros.EntradaConcepto.FreeTextCode;
                         else
-                                FormularioFiltros.txtConcepto.TextInt = m_Concepto;
+                                FormularioFiltros.EntradaConcepto.TextInt = m_Concepto;
 
                         FormularioFiltros.txtTipoConcepto.TextKey = m_TipoConcepto.ToString();
 
                         FormularioFiltros.txtDireccion.TextKey = m_Direccion.ToString();
                         if (m_Concepto == -1)
-                                FormularioFiltros.txtConcepto.TextDetail = m_ConceptoStr.ToString();
+                                FormularioFiltros.EntradaConcepto.TextDetail = m_ConceptoStr.ToString();
 
                         FormularioFiltros.Owner = this;
                         if (FormularioFiltros.ShowDialog() == DialogResult.OK) {
@@ -269,17 +272,17 @@ namespace Lfc.Cajas
                                         EtiquetaTitulo.Text = this.DataBase.FieldString("SELECT nombre FROM cajas WHERE id_caja=" + m_Caja.ToString());
                                 else
                                         EtiquetaTitulo.Text = "Movimientos de Cajas";
-                                if (FormularioFiltros.txtPersona.Text == FormularioFiltros.txtPersona.FreeTextCode)
+                                if (FormularioFiltros.EntradaPersona.Text == FormularioFiltros.EntradaPersona.FreeTextCode)
                                         m_Cliente = -1;
                                 else
-                                        m_Cliente = FormularioFiltros.txtPersona.TextInt;
-                                if (FormularioFiltros.txtConcepto.Text == FormularioFiltros.txtConcepto.FreeTextCode)
+                                        m_Cliente = FormularioFiltros.EntradaPersona.TextInt;
+                                if (FormularioFiltros.EntradaConcepto.Text == FormularioFiltros.EntradaConcepto.FreeTextCode)
                                         m_Concepto = -1;
                                 else
-                                        m_Concepto = FormularioFiltros.txtConcepto.TextInt;
+                                        m_Concepto = FormularioFiltros.EntradaConcepto.TextInt;
                                 m_Direccion = Lfx.Types.Parsing.ParseInt(FormularioFiltros.txtDireccion.TextKey);
                                 if (m_Concepto == -1)
-                                        m_ConceptoStr = FormularioFiltros.txtConcepto.TextDetail;
+                                        m_ConceptoStr = FormularioFiltros.EntradaConcepto.TextDetail;
 
                                 m_TipoConcepto = Lfx.Types.Parsing.ParseInt(FormularioFiltros.txtTipoConcepto.TextKey);
 
@@ -305,11 +308,11 @@ namespace Lfc.Cajas
                 }
 
 
-                private void cmdIngreso_Click(object sender, System.EventArgs e)
+                private void BotonIngreso_Click(object sender, System.EventArgs e)
                 {
                         if (Lui.Login.LoginData.ValidateAccess(this.Workspace.CurrentUser, "accounts.write")) {
                                 Cajas.IngresoEgreso FormularioIngreso = new Cajas.IngresoEgreso();
-                                FormularioIngreso.Caja = m_Caja;
+                                FormularioIngreso.Caja = new Lbl.Cajas.Caja(this.DataBase, m_Caja);
                                 FormularioIngreso.SaldoActual = Lfx.Types.Parsing.ParseCurrency(EtiquetaSaldo.Text);
                                 FormularioIngreso.Ingreso = true;
                                 if (FormularioIngreso.ShowDialog() == DialogResult.OK)
@@ -318,11 +321,11 @@ namespace Lfc.Cajas
                 }
 
 
-                private void cmdEgreso_Click(object sender, System.EventArgs e)
+                private void BotonEgreso_Click(object sender, System.EventArgs e)
                 {
                         if (Lui.Login.LoginData.ValidateAccess(this.Workspace.CurrentUser, "accounts.write")) {
                                 Cajas.IngresoEgreso FormularioEgreso = new Cajas.IngresoEgreso();
-                                FormularioEgreso.Caja = m_Caja;
+                                FormularioEgreso.Caja = new Lbl.Cajas.Caja(this.DataBase, m_Caja);
                                 FormularioEgreso.SaldoActual = Lfx.Types.Parsing.ParseCurrency(EtiquetaSaldo.Text);
                                 FormularioEgreso.Ingreso = false;
                                 if (FormularioEgreso.ShowDialog() == DialogResult.OK)
@@ -359,22 +362,22 @@ namespace Lfc.Cajas
                 }
 
 
-                private void cmdMovim_Click(object sender, System.EventArgs e)
+                private void BotonMovimiento_Click(object sender, System.EventArgs e)
                 {
                         if (Lui.Login.LoginData.ValidateAccess(this.Workspace.CurrentUser, "accounts.write")) {
                                 Cajas.Movimiento FormularioMovimiento = new Cajas.Movimiento();
-                                FormularioMovimiento.txtOrigen.TextInt = m_Caja;
-                                FormularioMovimiento.txtConcepto.Text = "30000";
+                                FormularioMovimiento.EntradaOrigen.TextInt = m_Caja;
+                                FormularioMovimiento.EntradaConcepto.TextInt = 30000;
                                 if (FormularioMovimiento.ShowDialog() == DialogResult.OK)
                                         this.RefreshList();
                         }
                 }
 
 
-                private void cmdArqueo_Click(object sender, System.EventArgs e)
+                private void BotonArqueo_Click(object sender, System.EventArgs e)
                 {
                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Si confirma que el saldo de la cuenta es el indicado se asentará una marca de 'Arqueo', para su propio control.", "¿Confirma que el saldo de la cuenta es de $ " + EtiquetaSaldo.Text + "?");
-                        Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+                        Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                         if (Pregunta.ShowDialog() == DialogResult.OK) {
                                 Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(this.DataBase, m_Caja);
                                 Caja.Movimiento(false, null, "Arqueo - Saldo: " + EtiquetaSaldo.Text, new Lbl.Personas.Persona(Caja.DataBase, this.Workspace.CurrentUser.Id), 0, null, null, null, null);

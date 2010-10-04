@@ -38,7 +38,7 @@ namespace Lfc.Comprobantes.Facturas
                 private void InitializeComponent()
                 {
                         this.Label2 = new System.Windows.Forms.Label();
-                        this.EntradaFormaPago = new Lui.Forms.DetailBox();
+                        this.EntradaFormaPago = new Lcc.Entrada.CodigoDetalle();
                         this.Label10 = new System.Windows.Forms.Label();
                         this.EntradaTipo = new Lui.Forms.ComboBox();
                         this.Label11 = new System.Windows.Forms.Label();
@@ -82,14 +82,12 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaFormaPago.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFormaPago.ReadOnly = false;
                         this.EntradaFormaPago.Required = true;
-                        this.EntradaFormaPago.SelectOnFocus = true;
                         this.EntradaFormaPago.Size = new System.Drawing.Size(216, 24);
                         this.EntradaFormaPago.TabIndex = 1;
                         this.EntradaFormaPago.Table = "formaspago";
                         this.EntradaFormaPago.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaFormaPago.Text = "0";
                         this.EntradaFormaPago.TextDetail = "";
-                        this.EntradaFormaPago.TextInt = 0;
                         this.EntradaFormaPago.TipWhenBlank = "";
                         this.EntradaFormaPago.ToolTipText = "";
                         this.EntradaFormaPago.Leave += new System.EventHandler(this.EntradaFormaPago_Leave);
@@ -259,7 +257,7 @@ namespace Lfc.Comprobantes.Facturas
                 public Lui.Forms.ComboBox EntradaTipo;
                 internal System.Windows.Forms.Label Label11;
                 internal Lui.Forms.Button BotonPago;
-                public Lui.Forms.DetailBox EntradaFormaPago;
+                public Lcc.Entrada.CodigoDetalle EntradaFormaPago;
                 public Lui.Forms.TextBox EntradaRemito;
                 internal System.Windows.Forms.Panel PnlFormaPago;
                 internal Lui.Forms.Button cmdPago;

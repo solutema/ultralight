@@ -30,10 +30,8 @@
 #endregion
 
 using System;
-using System.Collections;
-using System.Data;
+using System.Collections.Generic;
 using System.Drawing;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Lfc.Comprobantes
@@ -45,6 +43,8 @@ namespace Lfc.Comprobantes
                 protected internal string m_Estado = "0";
                 protected internal int m_Sucursal, m_FormaPago, m_Cliente, m_Vendedor, m_Anuladas = 1, m_PV = 0;
                 protected internal double m_MontoDesde = 0, m_MontoHasta = 0;
+                
+                private double Total = 0, Pendiente = 0;
 
                 public Inicio()
                         : base()
@@ -55,7 +55,7 @@ namespace Lfc.Comprobantes
                         DataTableName = "comprob";
                         KeyField = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
                         this.Joins.Add(new qGen.Join("personas", "comprob.id_cliente=personas.id_persona"));
-                        FormFields = new Lfx.Data.FormField[]
+                        FormFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 40),
 				new Lfx.Data.FormField("CONCAT(LPAD(comprob.pv, 4, '0'), '-', LPAD(comprob.numero, 8, '0'))", "Número", Lfx.Data.InputFieldTypes.Text, 120),
@@ -64,13 +64,13 @@ namespace Lfc.Comprobantes
 				new Lfx.Data.FormField("comprob.total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
 				new Lfx.Data.FormField("comprob.impresa", "Impresa", Lfx.Data.InputFieldTypes.Bool, 0),
 				new Lfx.Data.FormField("comprob.anulada", "Anulada", Lfx.Data.InputFieldTypes.Bool, 0),
-				new Lfx.Data.FormField("comprob.total-comprob.cancelado", "Pendiente", Lfx.Data.InputFieldTypes.Currency, 96),
+				new Lfx.Data.FormField("comprob.total-comprob.cancelado AS pendiente", "Pendiente", Lfx.Data.InputFieldTypes.Currency, 96),
 				new Lfx.Data.FormField("comprob.id_vendedor", "Vendedor", Lfx.Data.InputFieldTypes.Relation, 160),
 				new Lfx.Data.FormField("comprob.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 160),
                                 
 			};
                         OrderBy = "comprob.id_comprob DESC";
-                        ExtraSearchFields = new Lfx.Data.FormField[] {
+                        ExtraSearchFields = new List<Lfx.Data.FormField>() {
                                 new Lfx.Data.FormField("series", "Series")
                         };
 
@@ -139,8 +139,8 @@ namespace Lfc.Comprobantes
                                 FormFiltros.txtLetra.TextKey = m_Letra;
                                 FormFiltros.txtSucursal.TextInt = m_Sucursal;
                                 FormFiltros.txtFormaPago.TextInt = m_FormaPago;
-                                FormFiltros.txtCliente.TextInt = m_Cliente;
-                                FormFiltros.txtVendedor.TextInt = m_Vendedor;
+                                FormFiltros.EntradaCliente.TextInt = m_Cliente;
+                                FormFiltros.EntradaVendedor.TextInt = m_Vendedor;
                                 FormFiltros.EntradaFechas.Rango = m_Fechas;
                                 FormFiltros.txtEstado.TextKey = m_Estado;
                                 FormFiltros.txtAnuladas.TextKey = m_Anuladas.ToString();
@@ -152,8 +152,8 @@ namespace Lfc.Comprobantes
                                 if (FormFiltros.DialogResult == DialogResult.OK) {
                                         m_Sucursal = FormFiltros.txtSucursal.TextInt;
                                         m_FormaPago = FormFiltros.txtFormaPago.TextInt;
-                                        m_Cliente = FormFiltros.txtCliente.TextInt;
-                                        m_Vendedor = FormFiltros.txtVendedor.TextInt;
+                                        m_Cliente = FormFiltros.EntradaCliente.TextInt;
+                                        m_Vendedor = FormFiltros.EntradaVendedor.TextInt;
                                         m_Fechas = FormFiltros.EntradaFechas.Rango;
                                         m_Estado = FormFiltros.txtEstado.TextKey;
                                         m_Anuladas = Lfx.Types.Parsing.ParseInt(FormFiltros.txtAnuladas.TextKey);
@@ -203,13 +203,30 @@ namespace Lfc.Comprobantes
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
+                public override string SearchText
+                {
+                        get
+                        {
+                                return base.SearchText;
+                        }
+                        set
+                        {
+                                if (value == null) {
+                                        base.SearchText = null;
+                                } else if (System.Text.RegularExpressions.Regex.IsMatch(value, @"^[0-3]\d(-|/)[0-1]\d(-|/)(\d{2}|\d{4})$")) {
+                                        this.SearchText = Lfx.Types.Formatting.FormatDateTimeSql(value).ToString();
+                                } else if (System.Text.RegularExpressions.Regex.IsMatch(value, @"^[0-3]\d(-|/)[0-1]\d$")) {
+                                        this.SearchText = Lfx.Types.Formatting.FormatDateTimeSql(value + System.DateTime.Now.ToString("yyyy")).ToString();
+                                } else {
+                                        base.SearchText = value;
+                                }
+                        }
+                }
+
                 public override void BeginRefreshList()
                 {
-                        if (System.Text.RegularExpressions.Regex.IsMatch(SearchText, @"^[0-3]\d(-|/)[0-1]\d(-|/)(\d{2}|\d{4})$")) {
-                                this.SearchText = Lfx.Types.Formatting.FormatDateTimeSql(SearchText).ToString();
-                        } else if (System.Text.RegularExpressions.Regex.IsMatch(SearchText, @"^[0-3]\d(-|/)[0-1]\d$")) {
-                                this.SearchText = Lfx.Types.Formatting.FormatDateTimeSql(SearchText + System.DateTime.Now.ToString("yyyy")).ToString();
-                        }
+                        Total = 0;
+                        Pendiente = 0;
 
                         this.CustomFilters.Clear();
                         this.CustomFilters.AddWithValue("compra", 0);
@@ -276,7 +293,7 @@ namespace Lfc.Comprobantes
                         if (m_Vendedor > 0)
                                 this.CustomFilters.AddWithValue("comprob.id_vendedor", m_Vendedor);
 
-                        if (SearchText != null && SearchText.Length == 0) {
+                        if (SearchText == null) {
                                 if (m_Sucursal > 0)
                                         this.CustomFilters.AddWithValue("comprob.id_sucursal", m_Sucursal);
 
@@ -326,45 +343,40 @@ namespace Lfc.Comprobantes
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
-                public override void Fill(qGen.Select command)
+                public override void EndRefreshList()
                 {
-                        base.Fill(command);
-                        double dTotal = 0;
-                        double dPendiente = 0;
+                        EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaPendiente.Text = Lfx.Types.Formatting.FormatCurrency(Pendiente, this.Workspace.CurrentConfig.Moneda.Decimales);
+                }
 
-                        foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
-                                if (itm.SubItems[7].Text != "Si" && itm.SubItems[6].Text != "No") {
-                                        // SubItems(7) == 1 significa que el comprobante está anulado
-                                        // SubItems(6) != 0 significa que el comprobante está impreso
-                                        if (itm.SubItems[1].Text.Length >= 2 && itm.SubItems[1].Text.Substring(0, 2) == "NC")
-                                                dTotal -= Lfx.Types.Parsing.ParseCurrency(itm.SubItems[5].Text);
-                                        else
-                                                dTotal += Lfx.Types.Parsing.ParseCurrency(itm.SubItems[5].Text);
-                                }
-
-                                if (Lfx.Types.Parsing.ParseBool(itm.SubItems[7].Text)) {
-                                        // Si está anulada, la tacho
-                                        itm.Font = new Font("Bitstream Vera Sans", 10, FontStyle.Strikeout);
-                                } else if (Lfx.Types.Parsing.ParseBool(itm.SubItems[6].Text) == false) {
-                                        // No impresa, en gris
-                                        itm.ForeColor = System.Drawing.Color.Gray;
-                                } else if (m_Tipo != "PS" && Lfx.Types.Parsing.ParseCurrency(itm.SubItems[8].Text) > 0) {
-                                        // Impaga, en rojo
-                                        dPendiente = dPendiente + Lfx.Types.Parsing.ParseCurrency(itm.SubItems[8].Text.Replace(",", "."));
-                                        itm.SubItems[8].Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(itm.SubItems[8].Text.Replace(",", ".")), this.Workspace.CurrentConfig.Moneda.Decimales);
-                                        itm.ForeColor = System.Drawing.Color.Red;
-                                }
-
-                                int IdVendedor = Lfx.Types.Parsing.ParseInt(itm.SubItems[9].Text);
-                                if (IdVendedor > 0) {
-                                        Lfx.Data.Row Vend = this.DataBase.Tables["personas"].FastRows[IdVendedor];
-                                        if (Vend != null)
-                                                itm.SubItems[9].Text = Vend.Fields["nombre_visible"].Value.ToString();
-                                }
+                public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                {
+                        if (row.Fields["anulada"].ValueInt == 0 && row.Fields["impresa"].ValueInt != 0) {
+                                string TipoComprob = row.Fields["tipo_fac"].ValueString;
+                                if (TipoComprob.Length >= 2 && TipoComprob.Substring(0, 2) == "NC")
+                                        Total -= row.Fields["total"].ValueDouble;
+                                else
+                                        Total += row.Fields["total"].ValueDouble;
                         }
 
-                        txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(dTotal, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtPendiente.Text = Lfx.Types.Formatting.FormatCurrency(dPendiente, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        if (row.Fields["anulada"].ValueInt != 0) {
+                                // Si está anulada, la tacho
+                                itm.Font = new Font("Bitstream Vera Sans", 10, FontStyle.Strikeout);
+                        } else if (row.Fields["impresa"].ValueInt == 0) {
+                                // No impresa, en gris
+                                itm.ForeColor = System.Drawing.Color.Gray;
+                        } else if (m_Tipo != "PS" && row.Fields["pendiente"].ValueDouble > 0) {
+                                // Impaga, en rojo
+                                Pendiente = Pendiente + row.Fields["pendiente"].ValueDouble;
+                                itm.ForeColor = System.Drawing.Color.Red;
+                        }
+
+                        int IdVendedor = row.Fields["id_vendedor"].ValueInt;
+                        if (IdVendedor > 0) {
+                                Lfx.Data.Row Vend = this.DataBase.Tables["personas"].FastRows[IdVendedor];
+                                if (Vend != null)
+                                        itm.SubItems["id_vendedor"].Text = Vend.Fields["nombre_visible"].Value.ToString();
+                        }
                 }
 
                 private void FormComprobantesInicio_WorkspaceChanged(object sender, System.EventArgs e)

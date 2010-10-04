@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -74,18 +74,18 @@ namespace Lfc.Comprobantes
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
                 // No lo modifique con el editor de código.
                 internal System.Windows.Forms.Label lblHaciaSituacion;
-                internal Lui.Forms.DetailBox txtHaciaSituacion;
+                internal Lcc.Entrada.CodigoDetalle txtHaciaSituacion;
                 internal System.Windows.Forms.Label lblDesdeSituacion;
                 internal System.Windows.Forms.Label label1;
                 internal Lui.Forms.ComboBox txtBloqueada;
-                internal Lui.Forms.DetailBox txtDesdeSituacion;
+                internal Lcc.Entrada.CodigoDetalle txtDesdeSituacion;
 
                 private void InitializeComponent()
                 {
                         this.lblHaciaSituacion = new System.Windows.Forms.Label();
-                        this.txtHaciaSituacion = new Lui.Forms.DetailBox();
+                        this.txtHaciaSituacion = new Lcc.Entrada.CodigoDetalle();
                         this.lblDesdeSituacion = new System.Windows.Forms.Label();
-                        this.txtDesdeSituacion = new Lui.Forms.DetailBox();
+                        this.txtDesdeSituacion = new Lcc.Entrada.CodigoDetalle();
                         this.label1 = new System.Windows.Forms.Label();
                         this.txtBloqueada = new Lui.Forms.ComboBox();
                         this.SuspendLayout();
@@ -132,7 +132,6 @@ namespace Lfc.Comprobantes
                         this.txtHaciaSituacion.TeclaDespuesDeEnter = "{tab}";
                         this.txtHaciaSituacion.Text = "0";
                         this.txtHaciaSituacion.TextDetail = "";
-                        this.txtHaciaSituacion.TextInt = 0;
                         this.txtHaciaSituacion.TipWhenBlank = "";
                         this.txtHaciaSituacion.ToolTipText = "";
                         // 
@@ -171,7 +170,6 @@ namespace Lfc.Comprobantes
                         this.txtDesdeSituacion.TeclaDespuesDeEnter = "{tab}";
                         this.txtDesdeSituacion.Text = "0";
                         this.txtDesdeSituacion.TextDetail = "";
-                        this.txtDesdeSituacion.TextInt = 0;
                         this.txtDesdeSituacion.TipWhenBlank = "";
                         this.txtDesdeSituacion.ToolTipText = "";
                         // 

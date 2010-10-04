@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -57,7 +57,7 @@ namespace Lfc.Comprobantes.Compra
                         KeyField = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
 			GroupBy = KeyField;
 			OrderBy = "comprob.fecha DESC";
-			FormFields = new Lfx.Data.FormField[]
+			FormFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 28),
 				new Lfx.Data.FormField("comprob.pv", "PV", Lfx.Data.InputFieldTypes.Integer, 32),
@@ -65,11 +65,11 @@ namespace Lfc.Comprobantes.Compra
 				new Lfx.Data.FormField("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
 				new Lfx.Data.FormField("comprob.id_cliente", "Proveedor", Lfx.Data.InputFieldTypes.Relation, 160),
 				new Lfx.Data.FormField("comprob.total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
-                                new Lfx.Data.FormField("comprob.total-comprob.cancelado", "Pendiente", Lfx.Data.InputFieldTypes.Currency, 96),
+                                new Lfx.Data.FormField("comprob.total-comprob.cancelado AS pendiente", "Pendiente", Lfx.Data.InputFieldTypes.Currency, 96),
 				new Lfx.Data.FormField("comprob.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 0),
                                 new Lfx.Data.FormField("comprob.id_formapago", "Pago", Lfx.Data.InputFieldTypes.Text, 0)
 			};
-			ExtraSearchFields = new Lfx.Data.FormField[]
+			ExtraSearchFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("comprob_detalle.series", "Números de Serie", Lfx.Data.InputFieldTypes.Text, 0),
 				new Lfx.Data.FormField("comprob.obs", "Observaciones", Lfx.Data.InputFieldTypes.Memo, 0)
@@ -83,21 +83,21 @@ namespace Lfc.Comprobantes.Compra
 
                 public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
                 {
-                        itm.SubItems[2].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[2].Text).ToString("0000");
-                        itm.SubItems[3].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[3].Text).ToString("00000000");
+                        itm.SubItems["pv"].Text = row.Fields["pv"].ValueInt.ToString("0000");
+                        itm.SubItems["numero"].Text = row.Fields["numero"].ValueInt.ToString("00000000");
 
-                        Lfx.Data.Row Persona = this.DataBase.Tables["personas"].FastRows[Lfx.Types.Parsing.ParseInt(itm.SubItems[5].Text)];
+                        Lfx.Data.Row Persona = this.DataBase.Tables["personas"].FastRows[row.Fields["id_cliente"].ValueInt];
                         if (Persona != null)
-                                itm.SubItems[5].Text = Persona.Fields["nombre_visible"].ToString();
+                                itm.SubItems["id_cliente"].Text = Persona.Fields["nombre_visible"].ToString();
 
-                        switch (Lfx.Types.Parsing.ParseInt(itm.SubItems[8].Text)) {
+                        switch (row.Fields["estado"].ValueInt) {
                                 case 50:
                                         itm.ForeColor = System.Drawing.Color.DarkOrange;
-                                        EnNaranja += Lfx.Types.Parsing.ParseCurrency(itm.SubItems[6].Text);
+                                        EnNaranja += row.Fields["total"].ValueDouble;
                                         break;
                                 case 100:
                                         itm.ForeColor = System.Drawing.Color.DarkGreen;
-                                        EnVerde += Lfx.Types.Parsing.ParseCurrency(itm.SubItems[6].Text);
+                                        EnVerde += row.Fields["total"].ValueDouble;
                                         break;
                                 case 200:
                                         itm.ForeColor = System.Drawing.Color.DarkRed;
@@ -105,13 +105,15 @@ namespace Lfc.Comprobantes.Compra
                                         break;
                         }
 
-                        switch (Lfx.Types.Parsing.ParseInt(itm.SubItems[9].Text)) {
-                                case 3:
-                                        //Controla Pago
-                                        break;
-                                default:
-                                        itm.SubItems[7].Text = "";
-                                        break;
+                        if (row.Fields["id_formapago"] != null) {
+                                switch (row.Fields["id_formapago"].ValueInt) {
+                                        case 3:
+                                                //Controla Pago
+                                                break;
+                                        default:
+                                                itm.SubItems["pendiente"].Text = "";
+                                                break;
+                                }
                         }
                 }
 
@@ -179,26 +181,25 @@ namespace Lfc.Comprobantes.Compra
 			return filtrarReturn;
 		}
 
-		public override void RefreshList()
-		{
+                public override void BeginRefreshList()
+                {
                         EnNaranja = EnVerde = 0;
 
                         this.CustomFilters.Clear();
                         this.CustomFilters.AddWithValue("compra", 1);
-			switch (m_Tipo)
-			{
-				case "NP":
-					this.CustomFilters.AddWithValue("comprob.tipo_fac", "NP");
+                        switch (m_Tipo) {
+                                case "NP":
+                                        this.CustomFilters.AddWithValue("comprob.tipo_fac", "NP");
                                         if (m_Estado == -1)
                                                 this.CustomFilters.AddWithValue("(comprob.estado<=50)");
-					break;
-				case "PD":
-					this.CustomFilters.AddWithValue("comprob.tipo_fac", "PD");
+                                        break;
+                                case "PD":
+                                        this.CustomFilters.AddWithValue("comprob.tipo_fac", "PD");
                                         if (m_Estado == -1)
                                                 this.CustomFilters.AddWithValue("(comprob.estado<=50)");
-					break;
-				
-				case "FP":
+                                        break;
+
+                                case "FP":
                                         this.CustomFilters.AddWithValue("comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE')");
                                         break;
                                 case "R":
@@ -210,24 +211,24 @@ namespace Lfc.Comprobantes.Compra
                                         this.CustomFilters.AddWithValue("comprob.tipo_fac", m_Tipo);
                                         break;
                                 default:
-					// Nada
-					break;
-			}
+                                        // Nada
+                                        break;
+                        }
 
-			if (m_Proveedor > 0)
-				this.CustomFilters.AddWithValue("comprob.id_cliente", m_Proveedor);
+                        if (m_Proveedor > 0)
+                                this.CustomFilters.AddWithValue("comprob.id_cliente", m_Proveedor);
 
-			if (m_Estado >= 0)
-				this.CustomFilters.AddWithValue("comprob.estado", m_Estado);
+                        if (m_Estado >= 0)
+                                this.CustomFilters.AddWithValue("comprob.estado", m_Estado);
 
                         if (m_Fecha.HasRange)
                                 this.CustomFilters.AddWithValue("(comprob.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')");
+                }
 
-			base.RefreshList();
-
-                        txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(EnVerde + EnNaranja, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtPendiente.Text = Lfx.Types.Formatting.FormatCurrency(EnNaranja, this.Workspace.CurrentConfig.Moneda.Decimales);
-		}
-
+                public override void EndRefreshList()
+                {
+                        EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(EnVerde + EnNaranja, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaPendiente.Text = Lfx.Types.Formatting.FormatCurrency(EnNaranja, this.Workspace.CurrentConfig.Moneda.Decimales);
+                }
 	}
 }

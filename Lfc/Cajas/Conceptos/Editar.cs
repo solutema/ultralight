@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -93,18 +93,6 @@ namespace Lfc.Cajas.Conceptos
 			this.txtCodigo = new Lui.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
-			// 
-			// SaveButton
-			// 
-			this.SaveButton.DockPadding.All = 2;
-			this.SaveButton.Location = new System.Drawing.Point(344, 8);
-			this.SaveButton.Name = "SaveButton";
-			// 
-			// CancelCommandButton
-			// 
-			this.CancelCommandButton.DockPadding.All = 2;
-			this.CancelCommandButton.Location = new System.Drawing.Point(452, 8);
-			this.CancelCommandButton.Name = "CancelCommandButton";
 			// 
 			// Label1
 			// 

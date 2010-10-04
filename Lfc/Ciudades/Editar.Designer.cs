@@ -55,20 +55,12 @@ namespace Lfc.Ciudades
                         this.Label2 = new System.Windows.Forms.Label();
                         this.EntradaNombre = new Lui.Forms.TextBox();
                         this.EntradaCp = new Lui.Forms.TextBox();
-                        this.EntradaParent = new Lui.Forms.DetailBox();
+                        this.EntradaParent = new Lcc.Entrada.CodigoDetalle();
                         this.EtiquetaParent = new System.Windows.Forms.Label();
                         this.label3 = new System.Windows.Forms.Label();
                         this.EntradaNivel = new Lui.Forms.ComboBox();
-                        this.EntradaTags = new Lui.Forms.FieldTags();
+                        this.EntradaTags = new Lcc.Edicion.MatrizTags();
                         this.SuspendLayout();
-                        // 
-                        // SaveButton
-                        // 
-                        this.SaveButton.Location = new System.Drawing.Point(376, 10);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(484, 10);
                         // 
                         // Label1
                         // 
@@ -162,14 +154,12 @@ namespace Lfc.Ciudades
                         this.EntradaParent.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaParent.ReadOnly = false;
                         this.EntradaParent.Required = false;
-                        this.EntradaParent.SelectOnFocus = false;
                         this.EntradaParent.Size = new System.Drawing.Size(432, 24);
                         this.EntradaParent.TabIndex = 7;
                         this.EntradaParent.Table = "ciudades";
                         this.EntradaParent.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaParent.Text = "0";
                         this.EntradaParent.TextDetail = "";
-                        this.EntradaParent.TextInt = 0;
                         this.EntradaParent.TipWhenBlank = "Ninguna";
                         this.EntradaParent.ToolTipText = "";
                         // 
@@ -267,11 +257,11 @@ namespace Lfc.Ciudades
                 private System.Windows.Forms.Label Label1;
                 private System.Windows.Forms.Label Label2;
                 private Lui.Forms.TextBox EntradaNombre;
-                private Lui.Forms.DetailBox EntradaParent;
+                private Lcc.Entrada.CodigoDetalle EntradaParent;
                 private Label EtiquetaParent;
                 private Label label3;
                 private Lui.Forms.ComboBox EntradaNivel;
-                private Lui.Forms.FieldTags EntradaTags;
+                private Lcc.Edicion.MatrizTags EntradaTags;
                 private Lui.Forms.TextBox EntradaCp;
         }
 }

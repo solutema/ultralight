@@ -54,7 +54,7 @@ namespace Lfc.Bancos.Cheques
                         DataTableName = "bancos_cheques";
                         KeyField = new Lfx.Data.FormField("bancos_cheques.id_cheque", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20);
                         OrderBy = "bancos_cheques.fecha DESC";
-                        FormFields = new Lfx.Data.FormField[]
+                        FormFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("bancos_cheques.numero", "Número", Lfx.Data.InputFieldTypes.Text, 120),
 				new Lfx.Data.FormField("bancos_cheques.fechaemision", "Fecha Emision", Lfx.Data.InputFieldTypes.Date, 96),
@@ -90,73 +90,43 @@ namespace Lfc.Bancos.Cheques
                         }
                 }
 
-                public override void RefreshList()
-                {
-                        this.CustomFilters.Clear();
-
-                        if (this.Emitidos)
-                                this.CustomFilters.AddWithValue("emitido", 1);
-                        else
-                                this.CustomFilters.AddWithValue("emitido", 0);
-
-                        if (m_Estado == -2)
-                                this.CustomFilters.AddWithValue("estado IN (0, 5)");
-                        if (m_Estado >= 0)
-                                this.CustomFilters.AddWithValue("estado", m_Estado);
-
-                        if (m_Sucursal > 0)
-                                this.CustomFilters.AddWithValue("id_sucursal", m_Sucursal);
-
-                        if (m_Banco > 0)
-                                this.CustomFilters.AddWithValue("id_banco", m_Banco);
-
-                        if (m_Cliente > 0)
-                                this.CustomFilters.AddWithValue("id_cliente", m_Cliente);
-
-                        if (m_Fechas.HasRange)
-                                this.CustomFilters.AddWithValue("fechaemision BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.From) + "  00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.To) + " 23:59:59'");
-
-                        base.RefreshList();
-                }
-
                 public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
                 {
-                        itm.SubItems[1].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[1].Text).ToString("00000000");
+                        itm.SubItems["numero"].Text = row.Fields["numero"].ValueInt.ToString("00000000");
+
+                        double Importe = row.Fields["importe"].ValueDouble;
+                        Total += Importe;
+                        itm.SubItems["id_banco"].Text = this.DataBase.FieldString("SELECT nombre FROM bancos WHERE id_banco=" + row.Fields["id_banco"].ValueInt.ToString());
                         
-                        Total += Lfx.Types.Parsing.ParseCurrency(itm.SubItems[4].Text);
-                        itm.SubItems[7].Text = this.DataBase.FieldString("SELECT nombre FROM bancos WHERE id_banco=" + Lfx.Types.Parsing.ParseInt(itm.SubItems[7].Text).ToString());
-                        
-                        switch (itm.SubItems[8].Text) {
-                                case "0":
-                                case "-":
-                                case "":
+                        switch (row.Fields["estado"].ValueInt) {
+                                case 0:
                                         if (m_Emitidos)
-                                                itm.SubItems[8].Text = "A pagar";
+                                                itm.SubItems["estado"].Text = "A pagar";
                                         else
-                                                itm.SubItems[8].Text = "A cobrar";
-                                        if (string.Compare(Lfx.Types.Formatting.FormatDateTimeSql(itm.SubItems[5].Text).ToString(), Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now).ToString()) <= 0)
+                                                itm.SubItems["estado"].Text = "A cobrar";
+                                        if (DateTime.Compare(row.Fields["fechacobro"].ValueDateTime, System.DateTime.Now) <= 0)
                                                 itm.ForeColor = System.Drawing.Color.Green;
                                         else
                                                 itm.ForeColor = System.Drawing.Color.Black;
-                                        SinCobrar += Lfx.Types.Parsing.ParseCurrency(itm.SubItems[4].Text);
+                                        SinCobrar += Importe;
                                         break;
-                                case "5":
-                                        itm.SubItems[8].Text = "Depositado";
-                                        SinCobrar += Lfx.Types.Parsing.ParseCurrency(itm.SubItems[4].Text);
+                                case 5:
+                                        itm.SubItems["estado"].Text = "Depositado";
+                                        SinCobrar += Importe;
                                         break;
-                                case "10":
+                                case 10:
                                         if (m_Emitidos)
-                                                itm.SubItems[8].Text = "Pagado";
+                                                itm.SubItems["estado"].Text = "Pagado";
                                         else
-                                                itm.SubItems[8].Text = "Cobrado";
+                                                itm.SubItems["estado"].Text = "Cobrado";
                                         itm.ForeColor = System.Drawing.Color.Gray;
                                         break;
-                                case "11":
-                                        itm.SubItems[8].Text = "Entregado";
+                                case 11:
+                                        itm.SubItems["estado"].Text = "Entregado";
                                         itm.ForeColor = System.Drawing.Color.Gray;
                                         break;
-                                case "90":
-                                        itm.SubItems[8].Text = "Anulado";
+                                case 90:
+                                        itm.SubItems["estado"].Text = "Anulado";
                                         itm.ForeColor = System.Drawing.Color.Gray;
                                         itm.Font = new Font(itm.Font, FontStyle.Strikeout);
                                         break;
@@ -176,16 +146,12 @@ namespace Lfc.Bancos.Cheques
                 public override Lfx.Types.OperationResult OnDelete(int[] itemIds)
                 {
                         if (Lui.Login.LoginData.ValidateAccess(this.Workspace.CurrentUser, "bancos.cheques.delete")) {
-                                Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("¿Desea anular los cheques seleccionados?", "Pregunta");
-                                if (Pregunta.ShowDialog() == DialogResult.OK) {
-                                        qGen.Update Actua = new qGen.Update("bancos_cheques");
-                                        Actua.Fields.AddWithValue("estado", 90);
-                                        Actua.WhereClause = new qGen.Where("id_cheque", qGen.ComparisonOperators.In, itemIds);
-                                        this.DataBase.Execute(Actua);
-                                        //this.DataBase.Execute("UPDATE bancos_cheques SET estado=90 WHERE id_cheque IN (" + Lfx.Types.Strings.Ints2CSV(itemIds, ",") + ")");
-                                        this.RefreshList();
-                                        return new Lfx.Types.SuccessOperationResult();
-                                }
+                                qGen.Update Actua = new qGen.Update("bancos_cheques");
+                                Actua.Fields.AddWithValue("estado", 90);
+                                Actua.WhereClause = new qGen.Where("id_cheque", qGen.ComparisonOperators.In, itemIds);
+                                this.DataBase.Execute(Actua);
+                                this.RefreshList();
+                                return base.OnDelete(itemIds);
                         }
                         return new Lfx.Types.CancelOperationResult();
                 }
@@ -234,12 +200,38 @@ namespace Lfc.Bancos.Cheques
                         return filtrarReturn;
                 }
 
-                public override void Fill(qGen.Select command)
+                public override void BeginRefreshList()
                 {
                         Total = 0;
                         SinCobrar = 0;
-                        base.Fill(command);
 
+                        this.CustomFilters.Clear();
+
+                        if (this.Emitidos)
+                                this.CustomFilters.AddWithValue("emitido", 1);
+                        else
+                                this.CustomFilters.AddWithValue("emitido", 0);
+
+                        if (m_Estado == -2)
+                                this.CustomFilters.AddWithValue("estado IN (0, 5)");
+                        if (m_Estado >= 0)
+                                this.CustomFilters.AddWithValue("estado", m_Estado);
+
+                        if (m_Sucursal > 0)
+                                this.CustomFilters.AddWithValue("id_sucursal", m_Sucursal);
+
+                        if (m_Banco > 0)
+                                this.CustomFilters.AddWithValue("id_banco", m_Banco);
+
+                        if (m_Cliente > 0)
+                                this.CustomFilters.AddWithValue("id_cliente", m_Cliente);
+
+                        if (m_Fechas.HasRange)
+                                this.CustomFilters.AddWithValue("fechaemision BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.From) + "  00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.To) + " 23:59:59'");
+                }
+
+                public override void EndRefreshList()
+                {
                         EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales);
                         EntradaSinCobrar.Text = Lfx.Types.Formatting.FormatCurrency(SinCobrar, this.Workspace.CurrentConfig.Moneda.Decimales);
                 }
@@ -254,7 +246,7 @@ namespace Lfc.Bancos.Cheques
                         System.Text.StringBuilder ListaChequesId = new System.Text.StringBuilder();
 
                         foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
-                                if (itm.Checked && (itm.SubItems[8].Text == "A cobrar" || itm.SubItems[8].Text == "Depositado")) {
+                                if (itm.Checked && (itm.SubItems["estado"].Text == "A cobrar" || itm.SubItems["estado"].Text == "Depositado")) {
                                         Cantidad++;
                                         Lfx.Data.Row Cheque = this.DataBase.Row("bancos_cheques", "id_cheque", Lfx.Types.Parsing.ParseInt(itm.Text));
                                         Total += System.Convert.ToDouble(Cheque["importe"]);
@@ -304,6 +296,7 @@ namespace Lfc.Bancos.Cheques
                                         if (Pregunta.ShowDialog() == DialogResult.OK) {
                                                 qGen.Update Depo = new qGen.Update("bancos_cheques");
                                                 Depo.Fields.AddWithValue("estado", 5);
+                                                Depo.WhereClause = new qGen.Where();
                                                 Depo.WhereClause.AddWithValue("estado", 0);
                                                 Depo.WhereClause.AddWithValue("id_cheque", qGen.ComparisonOperators.In, Codigos);
                                                 this.DataBase.Execute(Depo);
@@ -322,7 +315,7 @@ namespace Lfc.Bancos.Cheques
                         int IdCajaOrigen = 0;
                         List<string> Cheques = new List<string>();
                         foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
-                                if (itm.Checked && (itm.SubItems[8].Text == "A pagar")) {
+                                if (itm.Checked && (itm.SubItems["estado"].Text == "A pagar")) {
                                         Cheques.Add(itm.Text);
                                         if (IdCajaOrigen == 0)
                                                 IdCajaOrigen = this.DataBase.FieldInt("SELECT id_caja FROM chequeras WHERE (SELECT numero FROM bancos_cheques WHERE id_cheque=" + itm.Text + ") BETWEEN desde AND hasta AND estado=1");

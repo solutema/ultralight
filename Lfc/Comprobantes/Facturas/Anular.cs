@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -131,7 +131,7 @@ namespace Lfc.Comprobantes.Facturas
 		public override Lfx.Types.OperationResult Ok()
 		{
 			Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Una vez anulado, el comprobante deberá ser archivado en todas sus copias y no podrá ser rehabilitado ni reutilizado.", "¿Está seguro de que desea anular el comprobante?");
-			Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+			Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
 
 			if (Pregunta.ShowDialog() == DialogResult.OK)
 			{

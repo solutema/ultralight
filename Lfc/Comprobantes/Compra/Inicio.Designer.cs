@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -63,8 +63,8 @@ namespace Lfc.Comprobantes.Compra
 
                 private void InitializeComponent()
                 {
-                        this.txtPendiente = new Lui.Forms.TextBox();
-                        this.txtTotal = new Lui.Forms.TextBox();
+                        this.EntradaPendiente = new Lui.Forms.TextBox();
+                        this.EntradaTotal = new Lui.Forms.TextBox();
                         this.Label6 = new System.Windows.Forms.Label();
                         this.Label2 = new System.Windows.Forms.Label();
                         this.SuspendLayout();
@@ -75,41 +75,41 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         // txtPendiente
                         // 
-                        this.txtPendiente.AutoNav = true;
-                        this.txtPendiente.AutoTab = true;
-                        this.txtPendiente.DataType = Lui.Forms.DataTypes.Money;
-                        this.txtPendiente.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtPendiente.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtPendiente.Location = new System.Drawing.Point(44, 84);
-                        this.txtPendiente.MaxLenght = 32767;
-                        this.txtPendiente.Name = "txtPendiente";
-                        this.txtPendiente.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtPendiente.ReadOnly = true;
-                        this.txtPendiente.Size = new System.Drawing.Size(88, 20);
-                        this.txtPendiente.TabIndex = 56;
-                        this.txtPendiente.TabStop = false;
-                        this.txtPendiente.Text = "0.00";
-                        this.txtPendiente.TipWhenBlank = "";
-                        this.txtPendiente.ToolTipText = "";
+                        this.EntradaPendiente.AutoNav = true;
+                        this.EntradaPendiente.AutoTab = true;
+                        this.EntradaPendiente.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaPendiente.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaPendiente.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaPendiente.Location = new System.Drawing.Point(44, 84);
+                        this.EntradaPendiente.MaxLenght = 32767;
+                        this.EntradaPendiente.Name = "txtPendiente";
+                        this.EntradaPendiente.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaPendiente.ReadOnly = true;
+                        this.EntradaPendiente.Size = new System.Drawing.Size(88, 20);
+                        this.EntradaPendiente.TabIndex = 56;
+                        this.EntradaPendiente.TabStop = false;
+                        this.EntradaPendiente.Text = "0.00";
+                        this.EntradaPendiente.TipWhenBlank = "";
+                        this.EntradaPendiente.ToolTipText = "";
                         // 
                         // EntradaTotal
                         // 
-                        this.txtTotal.AutoNav = true;
-                        this.txtTotal.AutoTab = true;
-                        this.txtTotal.DataType = Lui.Forms.DataTypes.Money;
-                        this.txtTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtTotal.Location = new System.Drawing.Point(44, 60);
-                        this.txtTotal.MaxLenght = 32767;
-                        this.txtTotal.Name = "EntradaTotal";
-                        this.txtTotal.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtTotal.ReadOnly = true;
-                        this.txtTotal.Size = new System.Drawing.Size(88, 20);
-                        this.txtTotal.TabIndex = 54;
-                        this.txtTotal.TabStop = false;
-                        this.txtTotal.Text = "0.00";
-                        this.txtTotal.TipWhenBlank = "";
-                        this.txtTotal.ToolTipText = "";
+                        this.EntradaTotal.AutoNav = true;
+                        this.EntradaTotal.AutoTab = true;
+                        this.EntradaTotal.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaTotal.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaTotal.Location = new System.Drawing.Point(44, 60);
+                        this.EntradaTotal.MaxLenght = 32767;
+                        this.EntradaTotal.Name = "EntradaTotal";
+                        this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTotal.ReadOnly = true;
+                        this.EntradaTotal.Size = new System.Drawing.Size(88, 20);
+                        this.EntradaTotal.TabIndex = 54;
+                        this.EntradaTotal.TabStop = false;
+                        this.EntradaTotal.Text = "0.00";
+                        this.EntradaTotal.TipWhenBlank = "";
+                        this.EntradaTotal.ToolTipText = "";
                         // 
                         // Label6
                         // 
@@ -135,8 +135,8 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
                         this.ClientSize = new System.Drawing.Size(692, 473);
-                        this.Controls.Add(this.txtPendiente);
-                        this.Controls.Add(this.txtTotal);
+                        this.Controls.Add(this.EntradaPendiente);
+                        this.Controls.Add(this.EntradaTotal);
                         this.Controls.Add(this.Label6);
                         this.Controls.Add(this.Label2);
                         this.Name = "Inicio";
@@ -148,8 +148,8 @@ namespace Lfc.Comprobantes.Compra
 
                 #endregion
 
-                internal Lui.Forms.TextBox txtPendiente;
-                internal Lui.Forms.TextBox txtTotal;
+                internal Lui.Forms.TextBox EntradaPendiente;
+                internal Lui.Forms.TextBox EntradaTotal;
                 internal Label Label6;
                 internal Label Label2;
         }

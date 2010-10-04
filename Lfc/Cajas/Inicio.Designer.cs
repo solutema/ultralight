@@ -78,7 +78,7 @@ namespace Lfc.Cajas
                         this.cmdIngreso.TabIndex = 40;
                         this.cmdIngreso.Text = "Ingreso";
                         this.cmdIngreso.ToolTipText = "";
-                        this.cmdIngreso.Click += new System.EventHandler(this.cmdIngreso_Click);
+                        this.cmdIngreso.Click += new System.EventHandler(this.BotonIngreso_Click);
                         // 
                         // cmdEgreso
                         // 
@@ -99,7 +99,7 @@ namespace Lfc.Cajas
                         this.cmdEgreso.TabIndex = 41;
                         this.cmdEgreso.Text = "Egreso";
                         this.cmdEgreso.ToolTipText = "";
-                        this.cmdEgreso.Click += new System.EventHandler(this.cmdEgreso_Click);
+                        this.cmdEgreso.Click += new System.EventHandler(this.BotonEgreso_Click);
                         // 
                         // cmdMovim
                         // 
@@ -120,7 +120,7 @@ namespace Lfc.Cajas
                         this.cmdMovim.TabIndex = 42;
                         this.cmdMovim.Text = "Movim.";
                         this.cmdMovim.ToolTipText = "";
-                        this.cmdMovim.Click += new System.EventHandler(this.cmdMovim_Click);
+                        this.cmdMovim.Click += new System.EventHandler(this.BotonMovimiento_Click);
                         // 
                         // cmdArqueo
                         // 
@@ -141,7 +141,7 @@ namespace Lfc.Cajas
                         this.cmdArqueo.TabIndex = 43;
                         this.cmdArqueo.Text = "Arqueo";
                         this.cmdArqueo.ToolTipText = "";
-                        this.cmdArqueo.Click += new System.EventHandler(this.cmdArqueo_Click);
+                        this.cmdArqueo.Click += new System.EventHandler(this.BotonArqueo_Click);
                         // 
                         // Inicio
                         // 

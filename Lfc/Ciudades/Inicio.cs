@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -50,7 +50,7 @@ namespace Lfc.Ciudades
 			DataTableName = "ciudades";
                         KeyField = new Lfx.Data.FormField("ciudades.id_ciudad", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
 			OrderBy = "ciudades.parent, ciudades.nombre";
-			FormFields = new Lfx.Data.FormField[]
+			FormFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 				new Lfx.Data.FormField("cp", "Cód. Postal", Lfx.Data.InputFieldTypes.Text, 120)

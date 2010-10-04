@@ -38,8 +38,8 @@ namespace Lfc.Comprobantes.Compra
                 private void InitializeComponent()
                 {
                         this.Label3 = new System.Windows.Forms.Label();
-                        this.EntradaProveedor = new Lui.Forms.DetailBox();
-                        this.EntradaProductos = new Lui.Forms.ProductArray();
+                        this.EntradaProveedor = new Lcc.Entrada.CodigoDetalle();
+                        this.EntradaProductos = new Lcc.Entrada.Articulos.MatrizDetalleComprobante();
                         this.Label2 = new System.Windows.Forms.Label();
                         this.EntradaNumero = new Lui.Forms.TextBox();
                         this.EntradaObs = new System.Windows.Forms.TextBox();
@@ -48,8 +48,8 @@ namespace Lfc.Comprobantes.Compra
                         this.Label4 = new System.Windows.Forms.Label();
                         this.EntradaTotal = new Lui.Forms.TextBox();
                         this.EntradaTipo = new Lui.Forms.ComboBox();
-                        this.lblHaciaSituacion = new System.Windows.Forms.Label();
-                        this.EntradaHaciaSituacion = new Lui.Forms.DetailBox();
+                        this.EtiquetaHaciaSituacion = new System.Windows.Forms.Label();
+                        this.EntradaHaciaSituacion = new Lcc.Entrada.CodigoDetalle();
                         this.EtiquetaTitulo = new System.Windows.Forms.Label();
                         this.EntradaPV = new Lui.Forms.TextBox();
                         this.EntradaGastosEnvio = new Lui.Forms.TextBox();
@@ -66,14 +66,6 @@ namespace Lfc.Comprobantes.Compra
                         this.label9 = new System.Windows.Forms.Label();
                         this.BotonImagen = new Lui.Forms.Button();
                         this.SuspendLayout();
-                        // 
-                        // SaveButton
-                        // 
-                        this.SaveButton.Location = new System.Drawing.Point(592, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(700, 8);
                         // 
                         // Label3
                         // 
@@ -102,14 +94,12 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProveedor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaProveedor.ReadOnly = false;
                         this.EntradaProveedor.Required = true;
-                        this.EntradaProveedor.SelectOnFocus = true;
                         this.EntradaProveedor.Size = new System.Drawing.Size(244, 24);
                         this.EntradaProveedor.TabIndex = 2;
                         this.EntradaProveedor.Table = "personas";
                         this.EntradaProveedor.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaProveedor.Text = "0";
                         this.EntradaProveedor.TextDetail = "";
-                        this.EntradaProveedor.TextInt = 0;
                         this.EntradaProveedor.TipWhenBlank = "";
                         this.EntradaProveedor.ToolTipText = "";
                         // 
@@ -132,7 +122,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProductos.LockText = false;
                         this.EntradaProductos.MaxLength = 200;
                         this.EntradaProductos.Name = "EntradaProductos";
-                        this.EntradaProductos.Precio = Lui.Forms.Product.Precios.Costo;
+                        this.EntradaProductos.Precio = Lcc.Entrada.Articulos.Precios.Costo;
                         this.EntradaProductos.ShowStock = false;
                         this.EntradaProductos.Size = new System.Drawing.Size(792, 228);
                         this.EntradaProductos.TabIndex = 13;
@@ -204,7 +194,7 @@ namespace Lfc.Comprobantes.Compra
                         this.cmdConvertir.TabIndex = 48;
                         this.cmdConvertir.Text = "Convertir";
                         this.cmdConvertir.ToolTipText = "Puede convertir este comprobante en Nota de Pedido, Pedido o Arribo.";
-                        this.cmdConvertir.Click += new System.EventHandler(this.cmdConvertir_Click);
+                        this.cmdConvertir.Click += new System.EventHandler(this.BotonConvertir_Click);
                         // 
                         // cmdObs
                         // 
@@ -299,15 +289,16 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTipo.TextRaw = "Factura A";
                         this.EntradaTipo.TipWhenBlank = "";
                         this.EntradaTipo.ToolTipText = "";
+                        this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
                         // 
-                        // lblHaciaSituacion
+                        // EtiquetaHaciaSituacion
                         // 
-                        this.lblHaciaSituacion.Location = new System.Drawing.Point(412, 84);
-                        this.lblHaciaSituacion.Name = "lblHaciaSituacion";
-                        this.lblHaciaSituacion.Size = new System.Drawing.Size(68, 24);
-                        this.lblHaciaSituacion.TabIndex = 11;
-                        this.lblHaciaSituacion.Text = "Destino";
-                        this.lblHaciaSituacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaHaciaSituacion.Location = new System.Drawing.Point(412, 84);
+                        this.EtiquetaHaciaSituacion.Name = "EtiquetaHaciaSituacion";
+                        this.EtiquetaHaciaSituacion.Size = new System.Drawing.Size(68, 24);
+                        this.EtiquetaHaciaSituacion.TabIndex = 11;
+                        this.EtiquetaHaciaSituacion.Text = "Destino";
+                        this.EtiquetaHaciaSituacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaHaciaSituacion
                         // 
@@ -329,14 +320,12 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaHaciaSituacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaHaciaSituacion.ReadOnly = false;
                         this.EntradaHaciaSituacion.Required = true;
-                        this.EntradaHaciaSituacion.SelectOnFocus = true;
                         this.EntradaHaciaSituacion.Size = new System.Drawing.Size(320, 24);
                         this.EntradaHaciaSituacion.TabIndex = 12;
                         this.EntradaHaciaSituacion.Table = "articulos_situaciones";
                         this.EntradaHaciaSituacion.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaHaciaSituacion.Text = "0";
                         this.EntradaHaciaSituacion.TextDetail = "";
-                        this.EntradaHaciaSituacion.TextInt = 0;
                         this.EntradaHaciaSituacion.TipWhenBlank = "";
                         this.EntradaHaciaSituacion.ToolTipText = "";
                         // 
@@ -647,7 +636,7 @@ namespace Lfc.Comprobantes.Compra
                         this.Controls.Add(this.EntradaGastosEnvio);
                         this.Controls.Add(this.label1);
                         this.Controls.Add(this.EntradaPV);
-                        this.Controls.Add(this.lblHaciaSituacion);
+                        this.Controls.Add(this.EtiquetaHaciaSituacion);
                         this.Controls.Add(this.EntradaHaciaSituacion);
                         this.Controls.Add(this.EntradaTipo);
                         this.Controls.Add(this.Label4);
@@ -672,7 +661,7 @@ namespace Lfc.Comprobantes.Compra
                         this.Controls.SetChildIndex(this.Label4, 0);
                         this.Controls.SetChildIndex(this.EntradaTipo, 0);
                         this.Controls.SetChildIndex(this.EntradaHaciaSituacion, 0);
-                        this.Controls.SetChildIndex(this.lblHaciaSituacion, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaHaciaSituacion, 0);
                         this.Controls.SetChildIndex(this.EntradaPV, 0);
                         this.Controls.SetChildIndex(this.label1, 0);
                         this.Controls.SetChildIndex(this.EntradaGastosEnvio, 0);
@@ -706,8 +695,8 @@ namespace Lfc.Comprobantes.Compra
                 internal Lui.Forms.TextBox EntradaFecha;
                 internal System.Windows.Forms.Label label7;
                 internal System.Windows.Forms.Label Label3;
-                internal Lui.Forms.DetailBox EntradaProveedor;
-                internal Lui.Forms.ProductArray EntradaProductos;
+                internal Lcc.Entrada.CodigoDetalle EntradaProveedor;
+                internal Lcc.Entrada.Articulos.MatrizDetalleComprobante EntradaProductos;
                 internal System.Windows.Forms.Label Label2;
                 internal Lui.Forms.TextBox EntradaNumero;
                 internal System.Windows.Forms.TextBox EntradaObs;
@@ -716,8 +705,8 @@ namespace Lfc.Comprobantes.Compra
                 internal System.Windows.Forms.Label Label4;
                 internal Lui.Forms.TextBox EntradaTotal;
                 internal Lui.Forms.ComboBox EntradaTipo;
-                internal Lui.Forms.DetailBox EntradaHaciaSituacion;
-                internal System.Windows.Forms.Label lblHaciaSituacion;
+                internal Lcc.Entrada.CodigoDetalle EntradaHaciaSituacion;
+                internal System.Windows.Forms.Label EtiquetaHaciaSituacion;
                 internal System.Windows.Forms.Label label8;
                 internal Lui.Forms.ComboBox EntradaFormaPago;
                 internal Lui.Forms.TextBox EntradaOtrosGastos;

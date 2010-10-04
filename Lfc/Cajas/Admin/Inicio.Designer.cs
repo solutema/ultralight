@@ -50,8 +50,8 @@ namespace Lfc.Cajas.Admin
                         base.Dispose(disposing);
                 }
 
-                private Lui.Forms.TextBox txtTotal;
-                private Lui.Forms.TextBox txtActivos;
+                private Lui.Forms.TextBox EntradaTotal;
+                private Lui.Forms.TextBox EntradaActivos;
                 private System.Windows.Forms.Label label2;
                 private System.Windows.Forms.Label label3;
 
@@ -65,8 +65,8 @@ namespace Lfc.Cajas.Admin
 
                 private void InitializeComponent()
                 {
-                        this.txtTotal = new Lui.Forms.TextBox();
-                        this.txtActivos = new Lui.Forms.TextBox();
+                        this.EntradaTotal = new Lui.Forms.TextBox();
+                        this.EntradaActivos = new Lui.Forms.TextBox();
                         this.label2 = new System.Windows.Forms.Label();
                         this.label3 = new System.Windows.Forms.Label();
                         this.SuspendLayout();
@@ -77,43 +77,43 @@ namespace Lfc.Cajas.Admin
                         // 
                         // EntradaTotal
                         // 
-                        this.txtTotal.AutoNav = true;
-                        this.txtTotal.AutoTab = true;
-                        this.txtTotal.DataType = Lui.Forms.DataTypes.Money;
-                        this.txtTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtTotal.Location = new System.Drawing.Point(32, 140);
-                        this.txtTotal.MaxLenght = 32767;
-                        this.txtTotal.Name = "EntradaTotal";
-                        this.txtTotal.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtTotal.Prefijo = "$";
-                        this.txtTotal.ReadOnly = true;
-                        this.txtTotal.Size = new System.Drawing.Size(104, 24);
-                        this.txtTotal.TabIndex = 52;
-                        this.txtTotal.TabStop = false;
-                        this.txtTotal.Text = "0.00";
-                        this.txtTotal.TipWhenBlank = "";
-                        this.txtTotal.ToolTipText = "";
+                        this.EntradaTotal.AutoNav = true;
+                        this.EntradaTotal.AutoTab = true;
+                        this.EntradaTotal.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaTotal.Location = new System.Drawing.Point(32, 140);
+                        this.EntradaTotal.MaxLenght = 32767;
+                        this.EntradaTotal.Name = "EntradaTotal";
+                        this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTotal.Prefijo = "$";
+                        this.EntradaTotal.ReadOnly = true;
+                        this.EntradaTotal.Size = new System.Drawing.Size(104, 24);
+                        this.EntradaTotal.TabIndex = 52;
+                        this.EntradaTotal.TabStop = false;
+                        this.EntradaTotal.Text = "0.00";
+                        this.EntradaTotal.TipWhenBlank = "";
+                        this.EntradaTotal.ToolTipText = "";
                         // 
                         // txtActivos
                         // 
-                        this.txtActivos.AutoNav = true;
-                        this.txtActivos.AutoTab = true;
-                        this.txtActivos.DataType = Lui.Forms.DataTypes.Money;
-                        this.txtActivos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtActivos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtActivos.Location = new System.Drawing.Point(32, 88);
-                        this.txtActivos.MaxLenght = 32767;
-                        this.txtActivos.Name = "txtActivos";
-                        this.txtActivos.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtActivos.Prefijo = "$";
-                        this.txtActivos.ReadOnly = true;
-                        this.txtActivos.Size = new System.Drawing.Size(104, 24);
-                        this.txtActivos.TabIndex = 53;
-                        this.txtActivos.TabStop = false;
-                        this.txtActivos.Text = "0.00";
-                        this.txtActivos.TipWhenBlank = "";
-                        this.txtActivos.ToolTipText = "";
+                        this.EntradaActivos.AutoNav = true;
+                        this.EntradaActivos.AutoTab = true;
+                        this.EntradaActivos.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaActivos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaActivos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaActivos.Location = new System.Drawing.Point(32, 88);
+                        this.EntradaActivos.MaxLenght = 32767;
+                        this.EntradaActivos.Name = "txtActivos";
+                        this.EntradaActivos.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaActivos.Prefijo = "$";
+                        this.EntradaActivos.ReadOnly = true;
+                        this.EntradaActivos.Size = new System.Drawing.Size(104, 24);
+                        this.EntradaActivos.TabIndex = 53;
+                        this.EntradaActivos.TabStop = false;
+                        this.EntradaActivos.Text = "0.00";
+                        this.EntradaActivos.TipWhenBlank = "";
+                        this.EntradaActivos.ToolTipText = "";
                         // 
                         // label2
                         // 
@@ -137,8 +137,8 @@ namespace Lfc.Cajas.Admin
                         this.ClientSize = new System.Drawing.Size(692, 473);
                         this.Controls.Add(this.label3);
                         this.Controls.Add(this.label2);
-                        this.Controls.Add(this.txtActivos);
-                        this.Controls.Add(this.txtTotal);
+                        this.Controls.Add(this.EntradaActivos);
+                        this.Controls.Add(this.EntradaTotal);
                         this.Name = "Inicio";
                         this.Text = "Cajas: Listado";
                         this.ResumeLayout(false);

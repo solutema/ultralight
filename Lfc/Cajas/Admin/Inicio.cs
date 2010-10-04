@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -46,86 +46,78 @@ namespace Lfc.Cajas.Admin
 
                         DataTableName = "cajas";
                         KeyField = new Lfx.Data.FormField("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        FormFields = new Lfx.Data.FormField[]
+
+                        Dictionary<int, string> SetTipos = new Dictionary<int, string>()
+                        {
+                                {0, "Efectivo"},
+                                {1, "Caja de Ahorro"},
+                                {2, "Cuenta Corriente"}
+                        };
+
+                        Dictionary<int, string> SetEstados = new Dictionary<int, string>()
+                        {
+                                {0, "Inactiva"},
+                                {1, "Activa"}
+                        };
+
+                        FormFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Relation, 96),
 				new Lfx.Data.FormField("cajas.id_banco", "Banco", Lfx.Data.InputFieldTypes.Relation, 120),
 				new Lfx.Data.FormField("cajas.numero", "Número", Lfx.Data.InputFieldTypes.Text, 120),
 				new Lfx.Data.FormField("cajas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
-				new Lfx.Data.FormField("cajas.tipo", "Tipo", Lfx.Data.InputFieldTypes.Text, 80),
+				new Lfx.Data.FormField("cajas.tipo", "Tipo", 80, SetTipos),
 				new Lfx.Data.FormField("0", "Saldo Actual", Lfx.Data.InputFieldTypes.Currency, 120),
-                                new Lfx.Data.FormField("0", "Saldo Futuro", Lfx.Data.InputFieldTypes.Currency, 120),
-                                new Lfx.Data.FormField("estado", "Estado", Lfx.Data.InputFieldTypes.Text, 96),
+                                new Lfx.Data.FormField("1", "Saldo Futuro", Lfx.Data.InputFieldTypes.Currency, 120),
+                                new Lfx.Data.FormField("estado", "Estado", 96, SetEstados),
 			};
                 }
 
 		public override void BeginRefreshList()
 		{
-			txtTotal.Text = "0";
-			txtActivos.Text = "0";
+			EntradaTotal.Text = "0";
+			EntradaActivos.Text = "0";
 		}
 
                 public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
 		{
-			switch (itm.SubItems[5].Text)
-			{
-				case "0":
-				case "-":
-				case "":
-                                        itm.SubItems[5].Text = "Efectivo";
-					break;
-				case "1":
-					itm.SubItems[5].Text = "Caja de Ahorro";
-					break;
-				case "2":
-					itm.SubItems[5].Text = "Cuenta Corriente";
-					break;
-				default:
-					itm.SubItems[5].Text = "???";
-					break;
-			}
-
-                        switch (itm.SubItems[8].Text)
-                        {
-                                case "0":
-                                case "-":
-                                case "":
-                                        itm.SubItems[8].Text = "Inactiva";
-                                        itm.ForeColor = Color.Gray;
-                                        break;
-                                default:
-                                        itm.SubItems[8].Text = "Activa";
-                                        break;
-                        }
-
-			itm.SubItems[2].Text = this.DataBase.FieldString("SELECT nombre FROM bancos WHERE id_banco=" + Lfx.Types.Parsing.ParseInt(itm.SubItems[2].Text).ToString());
+			itm.SubItems["id_banco"].Text = this.DataBase.FieldString("SELECT nombre FROM bancos WHERE id_banco=" + Lfx.Types.Parsing.ParseInt(itm.SubItems[2].Text).ToString());
 
                         int IdCaja = Lfx.Types.Parsing.ParseInt(itm.Text);
                         double Saldo = this.DataBase.FieldDouble("SELECT saldo FROM cajas_movim WHERE id_caja=" + IdCaja.ToString() + " ORDER BY id_movim DESC LIMIT 1");
                         double Pasivos = this.DataBase.FieldDouble("SELECT SUM(importe) FROM bancos_cheques WHERE estado IN (0, 5) AND emitido=1 AND id_chequera IN (SELECT chequeras.id_chequera FROM chequeras WHERE estado=1 AND id_caja=" + IdCaja.ToString() + ")");
 
-			txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtTotal.Text) + Saldo, this.Workspace.CurrentConfig.Moneda.Decimales);
+			EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text) + Saldo, this.Workspace.CurrentConfig.Moneda.Decimales);
 			if (Saldo > 0)
-				txtActivos.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtActivos.Text) + Saldo, this.Workspace.CurrentConfig.Moneda.Decimales);
+				EntradaActivos.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(EntradaActivos.Text) + Saldo, this.Workspace.CurrentConfig.Moneda.Decimales);
 			
-                        itm.SubItems[6].Text = Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        itm.SubItems[7].Text = Lfx.Types.Formatting.FormatCurrency(Saldo - Pasivos, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        itm.SubItems["0"].Text = Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        itm.SubItems["1"].Text = Lfx.Types.Formatting.FormatCurrency(Saldo - Pasivos, this.Workspace.CurrentConfig.Moneda.Decimales);
 		}
 
 		public override Lfx.Types.OperationResult OnCreate()
 		{
-			this.Workspace.RunTime.Execute("CREAR CAJA");
-			return new Lfx.Types.SuccessOperationResult();
+                        if (Lui.Login.LoginData.ValidateAccess(Lfx.Workspace.Master.CurrentUser, "global.admin")) {
+                                this.Workspace.RunTime.Execute("CREAR CAJA");
+                                return new Lfx.Types.SuccessOperationResult();
+                        } else {
+                                return new Lfx.Types.NoAccessOperationResult();
+                        }
 		}
 
 
 		public override Lfx.Types.OperationResult OnEdit(int lCodigo)
 		{
-			if (lCodigo < 1000)
-				Lui.Forms.MessageBox.Show("No se puede editar la caja seleccionada", "Caja del Sistema");
-			else
-				this.Workspace.RunTime.Execute("EDITAR CAJA " + lCodigo.ToString());
-			return new Lfx.Types.SuccessOperationResult();
+                        if (Lui.Login.LoginData.ValidateAccess(Lfx.Workspace.Master.CurrentUser, "global.admin")) {
+                                if (lCodigo < 1000) {
+                                        return new Lfx.Types.FailureOperationResult("No se puede editar la caja seleccionada");
+                                } else {
+                                        this.Workspace.RunTime.Execute("EDITAR CAJA " + lCodigo.ToString());
+                                        return new Lfx.Types.SuccessOperationResult();
+                                }
+                        } else {
+                                return new Lfx.Types.NoAccessOperationResult();
+                        }
 		}
 
 	}

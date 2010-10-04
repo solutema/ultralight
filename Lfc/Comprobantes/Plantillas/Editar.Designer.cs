@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -122,14 +122,6 @@ namespace Lfc.Comprobantes.Plantillas
                         ((System.ComponentModel.ISupportInitialize)(this.ImagePreview)).BeginInit();
                         this.SuspendLayout();
                         // 
-                        // SaveButton
-                        // 
-                        this.SaveButton.Location = new System.Drawing.Point(654, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(762, 8);
-                        // 
                         // ListaCampos
                         // 
                         this.ListaCampos.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -154,7 +146,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.ListaCampos.TabIndex = 0;
                         this.ListaCampos.UseCompatibleStateImageBehavior = false;
                         this.ListaCampos.View = System.Windows.Forms.View.Details;
-                        this.ListaCampos.SelectedIndexChanged += new System.EventHandler(this.lvCampos_SelectedIndexChanged);
+                        this.ListaCampos.SelectedIndexChanged += new System.EventHandler(this.ListaCampos_SelectedIndexChanged);
                         this.ListaCampos.DoubleClick += new System.EventHandler(this.ListaCampos_DoubleClick);
                         // 
                         // Campo
