@@ -9,9 +9,9 @@ using System.Security.Permissions;
 
 #endregion
 
-[assembly: AssemblyTitle("Lázaro Control Collection")]
+[assembly: AssemblyTitle("Lázaro Data Controls")]
 [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyDescription("Lázaro Control Collection versión 1.0")]
+[assembly: AssemblyDescription("Lázaro Data Controls versión 1.0")]
 [assembly: AssemblyCompany("South Bridge SRL")]
 [assembly: AssemblyProduct("Lázaro")]
 [assembly: AssemblyCopyright("Copyright 2004-2010 South Bridge S.R.L.")]

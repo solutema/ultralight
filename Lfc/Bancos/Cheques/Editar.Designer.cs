@@ -60,7 +60,7 @@ namespace Lfc.Bancos.Cheques
                 {
                         this.EntradaEmisor = new Lui.Forms.TextBox();
                         this.EntradaNumero = new Lui.Forms.TextBox();
-                        this.EntradaBanco = new Lui.Forms.DetailBox();
+                        this.EntradaBanco = new Lcc.Entrada.CodigoDetalle();
                         this.label5 = new System.Windows.Forms.Label();
                         this.Label3 = new System.Windows.Forms.Label();
                         this.Label1 = new System.Windows.Forms.Label();
@@ -69,14 +69,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaFechaEmision = new Lui.Forms.TextBox();
                         this.lblFecha1 = new System.Windows.Forms.Label();
                         this.SuspendLayout();
-                        // 
-                        // SaveButton
-                        // 
-                        this.SaveButton.Location = new System.Drawing.Point(568, 10);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(680, 10);
                         // 
                         // EntradaEmisor
                         // 
@@ -132,14 +124,12 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBanco.ReadOnly = false;
                         this.EntradaBanco.Required = true;
-                        this.EntradaBanco.SelectOnFocus = false;
                         this.EntradaBanco.Size = new System.Drawing.Size(608, 24);
                         this.EntradaBanco.TabIndex = 3;
                         this.EntradaBanco.Table = "bancos";
                         this.EntradaBanco.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
-                        this.EntradaBanco.TextInt = 0;
                         this.EntradaBanco.TipWhenBlank = "";
                         this.EntradaBanco.ToolTipText = "";
                         // 
@@ -247,7 +237,7 @@ namespace Lfc.Bancos.Cheques
 
                 internal Lui.Forms.TextBox EntradaEmisor;
                 internal Lui.Forms.TextBox EntradaNumero;
-                internal Lui.Forms.DetailBox EntradaBanco;
+                internal Lcc.Entrada.CodigoDetalle EntradaBanco;
                 internal System.Windows.Forms.Label label5;
                 internal System.Windows.Forms.Label Label3;
                 internal System.Windows.Forms.Label Label1;

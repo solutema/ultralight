@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -72,29 +72,20 @@ namespace Lfc.Bancos.Chequeras
 
                         Lbl.Bancos.Chequera Res = this.CachedRow as Lbl.Bancos.Chequera;
 
-                        if (Res.Banco == null)
-                                EntradaBanco.TextInt = 0;
-                        else
-                                EntradaBanco.TextInt = Res.Banco.Id;
+                        EntradaBanco.Elemento = Res.Banco;
                         EntradaDesde.Text = Res.Desde.ToString();
                         EntradaHasta.Text = Res.Hasta.ToString();
-                        if (Res.Caja == null)
-                                EntradaCaja.TextInt = 0;
-                        else
-                                EntradaCaja.TextInt = Res.Caja.Id;
+                        EntradaCaja.Elemento = Res.Caja;
                         EntradaTitular.Text = Res.Titular;
                         EntradaEstado.TextKey = Res.Estado.ToString();
-                        if (Res.Sucursal == null)
-                                EntradaSucursal.TextInt = 0;
-                        else
-                                EntradaSucursal.TextInt = Res.Sucursal.Id;
+                        EntradaSucursal.Elemento = Res.Sucursal;
 
                         if (Res.Existe)
                                 EntradaCaja.Filter = null;
                         else
                                 EntradaCaja.Filter = "estado=1";
 
-                        SaveButton.Visible = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "chequeras.write");
+                        this.ReadOnly = !Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "chequeras.write");
 
                         if (this.CachedRow.Existe)
                                 this.Text = Res.ToString();
@@ -106,21 +97,9 @@ namespace Lfc.Bancos.Chequeras
                 {
                         Lbl.Bancos.Chequera Res = this.CachedRow as Lbl.Bancos.Chequera;
 
-                        if (EntradaBanco.TextInt == 0)
-                                Res.Banco = null;
-                        else
-                                Res.Banco = new Lbl.Bancos.Banco(Res.DataBase, EntradaBanco.TextInt);
-
-                        if (EntradaCaja.TextInt == 0)
-                                Res.Caja = null;
-                        else
-                                Res.Caja = new Lbl.Cajas.Caja(Res.DataBase, EntradaCaja.TextInt);
-
-                        if (EntradaSucursal.TextInt == 0)
-                                Res.Sucursal = null;
-                        else
-                                Res.Sucursal = new Lbl.Entidades.Sucursal(Res.DataBase, EntradaSucursal.TextInt);
-
+                        Res.Banco = EntradaBanco.Elemento as Lbl.Bancos.Banco;
+                        Res.Caja = EntradaCaja.Elemento as Lbl.Cajas.Caja;
+                        Res.Sucursal = EntradaSucursal.Elemento as Lbl.Entidades.Sucursal;
                         Res.Prefijo = Lfx.Types.Parsing.ParseInt(EntradaPrefijo.Text);
                         Res.Desde = Lfx.Types.Parsing.ParseInt(EntradaDesde.Text);
                         Res.Hasta = Lfx.Types.Parsing.ParseInt(EntradaHasta.Text);

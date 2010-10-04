@@ -30,40 +30,55 @@
 #endregion
 
 using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Lcc
 {
-        public interface ILccControl
+        public partial class LccControl : Lui.Forms.Control, ILccControl, Lui.Forms.IDataControl
         {
-                /// <summary>
-                /// Indica si el control permite navegación mejorada.
-                /// </summary>
-                [System.ComponentModel.Category("Comportamiento")]
-                bool AutoNav
+                private bool m_AutoNav = true;
+                // private bool m_AutoHeight = true;
+                // protected bool m_ReadOnly = false;
+                // private bool m_Changed = false;
+                // private Lfx.Data.DataBase m_DataBase = null;
+
+                public LccControl()
                 {
-                        get;
-                        set;
+                        InitializeComponent();
                 }
 
-                /// <summary>
-                /// Indica si el control debe cambiar automáticamente su altura.
-                /// </summary>
-                [System.ComponentModel.Category("Comportamiento")]
-                bool AutoHeight
+                [EditorBrowsable(EditorBrowsableState.Always),
+                        Browsable(true),
+                        DefaultValue(""),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+                public override string Text
                 {
-                        get;
-                        set;
+                        get
+                        {
+                                return base.Text;
+                        }
+                        set
+                        {
+                                base.Text = value;
+                        }
                 }
 
                 /// <summary>
                 /// Indica si el control es sólo de lectura.
                 /// </summary>
-                bool ReadOnly
+                public virtual bool AutoNav
                 {
-                        get;
-                        set;
+                        get
+                        {
+                                return m_AutoNav;
+                        }
+                        set
+                        {
+                                m_AutoNav = value;
+                        }
                 }
         }
 }

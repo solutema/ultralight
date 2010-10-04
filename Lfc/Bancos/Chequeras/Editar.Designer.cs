@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -53,13 +53,13 @@ namespace Lfc.Bancos.Chequeras
                 private void InitializeComponent()
                 {
                         this.Label1 = new System.Windows.Forms.Label();
-                        this.EntradaBanco = new Lui.Forms.DetailBox();
+                        this.EntradaBanco = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaDesde = new Lui.Forms.TextBox();
                         this.Label3 = new System.Windows.Forms.Label();
                         this.EntradaHasta = new Lui.Forms.TextBox();
                         this.label2 = new System.Windows.Forms.Label();
                         this.LabelCaja = new System.Windows.Forms.Label();
-                        this.EntradaCaja = new Lui.Forms.DetailBox();
+                        this.EntradaCaja = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaEstado = new Lui.Forms.ComboBox();
                         this.Label7 = new System.Windows.Forms.Label();
                         this.label5 = new System.Windows.Forms.Label();
@@ -68,16 +68,8 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaPrefijo = new Lui.Forms.TextBox();
                         this.label6 = new System.Windows.Forms.Label();
                         this.label8 = new System.Windows.Forms.Label();
-                        this.EntradaSucursal = new Lui.Forms.DetailBox();
+                        this.EntradaSucursal = new Lcc.Entrada.CodigoDetalle();
                         this.SuspendLayout();
-                        // 
-                        // SaveButton
-                        // 
-                        this.SaveButton.Location = new System.Drawing.Point(476, 10);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(584, 10);
                         // 
                         // Label1
                         // 
@@ -106,14 +98,12 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBanco.ReadOnly = false;
                         this.EntradaBanco.Required = true;
-                        this.EntradaBanco.SelectOnFocus = false;
                         this.EntradaBanco.Size = new System.Drawing.Size(532, 24);
                         this.EntradaBanco.TabIndex = 3;
                         this.EntradaBanco.Table = "bancos";
                         this.EntradaBanco.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
-                        this.EntradaBanco.TextInt = 0;
                         this.EntradaBanco.TipWhenBlank = "";
                         this.EntradaBanco.ToolTipText = "";
                         // 
@@ -196,14 +186,12 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCaja.ReadOnly = false;
                         this.EntradaCaja.Required = false;
-                        this.EntradaCaja.SelectOnFocus = false;
                         this.EntradaCaja.Size = new System.Drawing.Size(532, 24);
                         this.EntradaCaja.TabIndex = 14;
                         this.EntradaCaja.Table = "cajas";
                         this.EntradaCaja.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCaja.Text = "0";
                         this.EntradaCaja.TextDetail = "";
-                        this.EntradaCaja.TextInt = 0;
                         this.EntradaCaja.TipWhenBlank = "Ninguna";
                         this.EntradaCaja.ToolTipText = "";
                         // 
@@ -327,14 +315,12 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaSucursal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSucursal.ReadOnly = false;
                         this.EntradaSucursal.Required = false;
-                        this.EntradaSucursal.SelectOnFocus = false;
                         this.EntradaSucursal.Size = new System.Drawing.Size(532, 24);
                         this.EntradaSucursal.TabIndex = 12;
                         this.EntradaSucursal.Table = "sucursales";
                         this.EntradaSucursal.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaSucursal.Text = "0";
                         this.EntradaSucursal.TextDetail = "";
-                        this.EntradaSucursal.TextInt = 0;
                         this.EntradaSucursal.TipWhenBlank = "Todas";
                         this.EntradaSucursal.ToolTipText = "";
                         // 
@@ -367,13 +353,13 @@ namespace Lfc.Bancos.Chequeras
                 #endregion
 
                 internal System.Windows.Forms.Label Label1;
-                internal Lui.Forms.DetailBox EntradaBanco;
+                internal Lcc.Entrada.CodigoDetalle EntradaBanco;
                 internal System.Windows.Forms.Label Label3;
                 internal System.Windows.Forms.Label label2;
                 internal System.Windows.Forms.Label Label7;
                 internal Lui.Forms.TextBox EntradaDesde;
                 internal Lui.Forms.TextBox EntradaHasta;
-                internal Lui.Forms.DetailBox EntradaCaja;
+                internal Lcc.Entrada.CodigoDetalle EntradaCaja;
                 internal Lui.Forms.ComboBox EntradaEstado;
                 internal System.Windows.Forms.Label label5;
                 internal System.Windows.Forms.Label LabelCaja;
@@ -382,7 +368,7 @@ namespace Lfc.Bancos.Chequeras
                 internal Lui.Forms.TextBox EntradaPrefijo;
                 internal Label label6;
                 internal Label label8;
-                internal Lui.Forms.DetailBox EntradaSucursal;
+                internal Lcc.Entrada.CodigoDetalle EntradaSucursal;
                 private System.ComponentModel.IContainer components = null;
         }
 }

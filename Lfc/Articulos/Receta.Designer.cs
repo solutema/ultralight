@@ -31,7 +31,7 @@
 
 namespace Lfc.Articulos
 {
-        partial class VerConformacion
+        partial class Receta
         {
                 /// <summary>
                 /// Variable del diseñador requerida.
@@ -58,58 +58,55 @@ namespace Lfc.Articulos
                 /// </summary>
                 private void InitializeComponent()
                 {
-                        this.ListaConformacion = new Lui.Forms.ListView();
-                        this.articulo = new System.Windows.Forms.ColumnHeader();
-                        this.serie = new System.Windows.Forms.ColumnHeader();
+                        this.ProductArray = new Lcc.Entrada.Articulos.MatrizDetalleComprobante();
                         this.SuspendLayout();
                         // 
-                        // ListaConformacion
+                        // OkButton
                         // 
-                        this.ListaConformacion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        this.OkButton.Location = new System.Drawing.Point(394, 8);
+                        // 
+                        // CancelCommandButton
+                        // 
+                        this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
+                        // 
+                        // ProductArray
+                        // 
+                        this.ProductArray.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.ListaConformacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.ListaConformacion.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.articulo,
-            this.serie});
-                        this.ListaConformacion.FullRowSelect = true;
-                        this.ListaConformacion.GridLines = true;
-                        this.ListaConformacion.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-                        this.ListaConformacion.LabelWrap = false;
-                        this.ListaConformacion.Location = new System.Drawing.Point(8, 8);
-                        this.ListaConformacion.MultiSelect = false;
-                        this.ListaConformacion.Name = "ListaConformacion";
-                        this.ListaConformacion.Size = new System.Drawing.Size(676, 400);
-                        this.ListaConformacion.TabIndex = 0;
-                        this.ListaConformacion.UseCompatibleStateImageBehavior = false;
-                        this.ListaConformacion.View = System.Windows.Forms.View.Details;
+                        this.ProductArray.AutoAgregar = true;
+                        this.ProductArray.AutoScroll = true;
+                        this.ProductArray.AutoScrollMargin = new System.Drawing.Size(4, 4);
+                        this.ProductArray.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.ProductArray.Count = 0;
+                        this.ProductArray.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.ProductArray.FreeTextCode = "*";
+                        this.ProductArray.Location = new System.Drawing.Point(12, 12);
+                        this.ProductArray.LockPrice = true;
+                        this.ProductArray.LockQuantity = false;
+                        this.ProductArray.LockText = false;
+                        this.ProductArray.MaxLength = 200;
+                        this.ProductArray.Name = "ProductArray";
+                        this.ProductArray.Precio = Lcc.Entrada.Articulos.Precios.Costo;
+                        this.ProductArray.ShowStock = false;
+                        this.ProductArray.Size = new System.Drawing.Size(610, 294);
+                        this.ProductArray.TabIndex = 0;
                         // 
-                        // articulo
-                        // 
-                        this.articulo.Text = "Artículo";
-                        this.articulo.Width = 320;
-                        // 
-                        // serie
-                        // 
-                        this.serie.Width = 320;
-                        // 
-                        // VerConformacion
+                        // Receta
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.ClientSize = new System.Drawing.Size(692, 473);
-                        this.Controls.Add(this.ListaConformacion);
-                        this.Name = "VerConformacion";
-                        this.Text = "Conformación del stock";
-                        this.Controls.SetChildIndex(this.ListaConformacion, 0);
+                        this.ClientSize = new System.Drawing.Size(634, 372);
+                        this.Controls.Add(this.ProductArray);
+                        this.Name = "Receta";
+                        this.Text = "Receta";
+                        this.Controls.SetChildIndex(this.ProductArray, 0);
                         this.ResumeLayout(false);
 
                 }
 
                 #endregion
 
-                private Lui.Forms.ListView ListaConformacion;
-                private System.Windows.Forms.ColumnHeader articulo;
-                private System.Windows.Forms.ColumnHeader serie;
+                public Lcc.Entrada.Articulos.MatrizDetalleComprobante ProductArray;
         }
 }

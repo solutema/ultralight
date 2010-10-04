@@ -35,35 +35,17 @@ using System.Text;
 
 namespace Lcc
 {
-        public interface ILccControl
+        public partial class LccControl
         {
-                /// <summary>
-                /// Indica si el control permite navegación mejorada.
-                /// </summary>
-                [System.ComponentModel.Category("Comportamiento")]
-                bool AutoNav
+                private void InitializeComponent()
                 {
-                        get;
-                        set;
-                }
-
-                /// <summary>
-                /// Indica si el control debe cambiar automáticamente su altura.
-                /// </summary>
-                [System.ComponentModel.Category("Comportamiento")]
-                bool AutoHeight
-                {
-                        get;
-                        set;
-                }
-
-                /// <summary>
-                /// Indica si el control es sólo de lectura.
-                /// </summary>
-                bool ReadOnly
-                {
-                        get;
-                        set;
+                        this.SuspendLayout();
+                        // 
+                        // LccControl
+                        // 
+                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.Name = "LccControl";
+                        this.ResumeLayout(false);
                 }
         }
 }

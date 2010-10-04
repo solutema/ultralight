@@ -61,10 +61,10 @@ namespace Lfc.Articulos
 		{
 			this.label19 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this.txtRendimiento = new Lui.Forms.TextBox();
+			this.EntradaRendimiento = new Lui.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
-                        this.txtUnidad = new Lui.Forms.ComboBox();
-                        this.txtUnidadRend = new Lui.Forms.ComboBox();
+                        this.EntradaUnidad = new Lui.Forms.ComboBox();
+                        this.EntradaUnidadRend = new Lui.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
 			// OkButton
@@ -95,21 +95,21 @@ namespace Lfc.Articulos
 			// 
 			// txtRendimiento
 			// 
-			this.txtRendimiento.AutoNav = true;
-			this.txtRendimiento.AutoTab = true;
-			this.txtRendimiento.DataType = Lui.Forms.DataTypes.Money;
-			this.txtRendimiento.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtRendimiento.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtRendimiento.Location = new System.Drawing.Point(60, 60);
-			this.txtRendimiento.MaxLenght = 32767;
-			this.txtRendimiento.Name = "txtRendimiento";
-			this.txtRendimiento.Padding = new System.Windows.Forms.Padding(2);
-			this.txtRendimiento.ReadOnly = false;
-			this.txtRendimiento.Size = new System.Drawing.Size(96, 24);
-			this.txtRendimiento.TabIndex = 3;
-			this.txtRendimiento.Text = "0.00";
-			this.txtRendimiento.TipWhenBlank = "";
-			this.txtRendimiento.ToolTipText = "Precio de costo o de compra.";
+			this.EntradaRendimiento.AutoNav = true;
+			this.EntradaRendimiento.AutoTab = true;
+			this.EntradaRendimiento.DataType = Lui.Forms.DataTypes.Money;
+			this.EntradaRendimiento.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.EntradaRendimiento.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.EntradaRendimiento.Location = new System.Drawing.Point(60, 60);
+			this.EntradaRendimiento.MaxLenght = 32767;
+			this.EntradaRendimiento.Name = "txtRendimiento";
+			this.EntradaRendimiento.Padding = new System.Windows.Forms.Padding(2);
+			this.EntradaRendimiento.ReadOnly = false;
+			this.EntradaRendimiento.Size = new System.Drawing.Size(96, 24);
+			this.EntradaRendimiento.TabIndex = 3;
+			this.EntradaRendimiento.Text = "0.00";
+			this.EntradaRendimiento.TipWhenBlank = "";
+			this.EntradaRendimiento.ToolTipText = "Precio de costo o de compra.";
 			// 
 			// label2
 			// 
@@ -122,16 +122,16 @@ namespace Lfc.Articulos
 			// 
 			// txtUnidad
 			// 
-			this.txtUnidad.AutoNav = true;
-			this.txtUnidad.AutoTab = true;
-			this.txtUnidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtUnidad.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtUnidad.Location = new System.Drawing.Point(195, 25);
-			this.txtUnidad.MaxLenght = 32767;
-			this.txtUnidad.Name = "txtUnidad";
-			this.txtUnidad.Padding = new System.Windows.Forms.Padding(2);
-			this.txtUnidad.ReadOnly = false;
-			this.txtUnidad.SetData = new string[] {
+			this.EntradaUnidad.AutoNav = true;
+			this.EntradaUnidad.AutoTab = true;
+			this.EntradaUnidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.EntradaUnidad.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.EntradaUnidad.Location = new System.Drawing.Point(195, 25);
+			this.EntradaUnidad.MaxLenght = 32767;
+			this.EntradaUnidad.Name = "txtUnidad";
+			this.EntradaUnidad.Padding = new System.Windows.Forms.Padding(2);
+			this.EntradaUnidad.ReadOnly = false;
+			this.EntradaUnidad.SetData = new string[] {
         "N/A|",
         "Unidades|u",
         "Bolsas|bolsa",
@@ -146,25 +146,25 @@ namespace Lfc.Articulos
         "Centímetros³|cm³",
         "Litros|l",
         "Kg|kg"};
-			this.txtUnidad.Size = new System.Drawing.Size(140, 25);
-			this.txtUnidad.TabIndex = 1;
-			this.txtUnidad.Text = "Unidades";
-			this.txtUnidad.TextKey = "u";
-			this.txtUnidad.TipWhenBlank = "";
-			this.txtUnidad.ToolTipText = "¿El artículo usa control de stock?";
+			this.EntradaUnidad.Size = new System.Drawing.Size(140, 25);
+			this.EntradaUnidad.TabIndex = 1;
+			this.EntradaUnidad.Text = "Unidades";
+			this.EntradaUnidad.TextKey = "u";
+			this.EntradaUnidad.TipWhenBlank = "";
+			this.EntradaUnidad.ToolTipText = "¿El artículo usa control de stock?";
 			// 
 			// txtUnidadRend
 			// 
-			this.txtUnidadRend.AutoNav = true;
-			this.txtUnidadRend.AutoTab = true;
-			this.txtUnidadRend.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtUnidadRend.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtUnidadRend.Location = new System.Drawing.Point(160, 60);
-			this.txtUnidadRend.MaxLenght = 32767;
-			this.txtUnidadRend.Name = "txtUnidadRend";
-			this.txtUnidadRend.Padding = new System.Windows.Forms.Padding(2);
-			this.txtUnidadRend.ReadOnly = false;
-			this.txtUnidadRend.SetData = new string[] {
+			this.EntradaUnidadRend.AutoNav = true;
+			this.EntradaUnidadRend.AutoTab = true;
+			this.EntradaUnidadRend.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.EntradaUnidadRend.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.EntradaUnidadRend.Location = new System.Drawing.Point(160, 60);
+			this.EntradaUnidadRend.MaxLenght = 32767;
+			this.EntradaUnidadRend.Name = "txtUnidadRend";
+			this.EntradaUnidadRend.Padding = new System.Windows.Forms.Padding(2);
+			this.EntradaUnidadRend.ReadOnly = false;
+			this.EntradaUnidadRend.SetData = new string[] {
         "N/A|",
         "Unidades|u",
         "Bolsas|bolsa",
@@ -179,20 +179,20 @@ namespace Lfc.Articulos
         "Centímetros³|cm³",
         "Litros|l",
         "Kg|kg"};
-			this.txtUnidadRend.Size = new System.Drawing.Size(140, 25);
-			this.txtUnidadRend.TabIndex = 4;
-			this.txtUnidadRend.Text = "N/A";
-			this.txtUnidadRend.TipWhenBlank = "";
-			this.txtUnidadRend.ToolTipText = "¿El artículo usa control de stock?";
+			this.EntradaUnidadRend.Size = new System.Drawing.Size(140, 25);
+			this.EntradaUnidadRend.TabIndex = 4;
+			this.EntradaUnidadRend.Text = "N/A";
+			this.EntradaUnidadRend.TipWhenBlank = "";
+			this.EntradaUnidadRend.ToolTipText = "¿El artículo usa control de stock?";
 			// 
 			// Rendimiento
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(375, 319);
-			this.Controls.Add(this.txtUnidadRend);
-			this.Controls.Add(this.txtUnidad);
-			this.Controls.Add(this.txtRendimiento);
+			this.Controls.Add(this.EntradaUnidadRend);
+			this.Controls.Add(this.EntradaUnidad);
+			this.Controls.Add(this.EntradaRendimiento);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.label19);
@@ -206,9 +206,9 @@ namespace Lfc.Articulos
 
 		internal System.Windows.Forms.Label label19;
 		internal System.Windows.Forms.Label label1;
-		internal Lui.Forms.TextBox txtRendimiento;
+		internal Lui.Forms.TextBox EntradaRendimiento;
 		internal System.Windows.Forms.Label label2;
-                internal Lui.Forms.ComboBox txtUnidad;
-                internal Lui.Forms.ComboBox txtUnidadRend;
+                internal Lui.Forms.ComboBox EntradaUnidad;
+                internal Lui.Forms.ComboBox EntradaUnidadRend;
 	}
 }

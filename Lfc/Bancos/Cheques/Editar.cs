@@ -75,15 +75,12 @@ namespace Lfc.Bancos.Cheques
                         Lbl.Bancos.Cheque Res = this.CachedRow as Lbl.Bancos.Cheque;
 
                         EntradaEmisor.Text = Res.Emisor;
-                        if (Res.Banco == null)
-                                EntradaBanco.TextInt = 0;
-                        else
-                                EntradaBanco.TextInt = Res.Banco.Id;
+                        EntradaBanco.Elemento = Res.Banco;
                         EntradaNumero.Text = Res.Numero.ToString();
                         EntradaFechaCobro.Text = Lfx.Types.Formatting.FormatDate(Res.FechaCobro);
                         EntradaFechaEmision.Text = Lfx.Types.Formatting.FormatDate(Res.FechaEmision);
                         
-                        SaveButton.Visible = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "cheques.write");
+                        this.ReadOnly = !Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "cheques.write");
 
                         if (this.CachedRow.Existe)
                                 this.Text = Res.ToString();
@@ -96,11 +93,7 @@ namespace Lfc.Bancos.Cheques
                         Lbl.Bancos.Cheque Res = this.CachedRow as Lbl.Bancos.Cheque;
 
                         Res.Emisor =  EntradaEmisor.Text;
-                        if (EntradaBanco.TextInt == 0)
-                                Res.Banco = null;
-                        else
-                                Res.Banco = new Lbl.Bancos.Banco(Res.DataBase, EntradaBanco.TextInt);
-
+                        Res.Banco = EntradaBanco.Elemento as Lbl.Bancos.Banco;
                         Res.Numero = Lfx.Types.Parsing.ParseInt(EntradaNumero.Text);
                         Res.FechaCobro = Lfx.Types.Parsing.ParseDate(EntradaFechaCobro.Text);
                         Res.FechaEmision = Lfx.Types.Parsing.ParseDate(EntradaFechaEmision.Text);

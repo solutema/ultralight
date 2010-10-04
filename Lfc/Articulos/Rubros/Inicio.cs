@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -49,7 +49,7 @@ namespace Lfc.Articulos.Rubros
 			DataTableName = "articulos_rubros";
                         KeyField = new Lfx.Data.FormField("articulos_rubros.id_rubro", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
 			OrderBy = "articulos_rubros.nombre";
-			FormFields = new Lfx.Data.FormField[]
+			FormFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("articulos_rubros.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 				new Lfx.Data.FormField("articulos_rubros.id_alicuota", "Alícuota", Lfx.Data.InputFieldTypes.Integer, 160)

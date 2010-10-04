@@ -35,11 +35,8 @@ using System.Text;
 
 namespace Lcc.Vista
 {
-        public partial class ControlVista : Lcc.Controles.Datos.ControlDatos
+        public partial class ControlVista : Lcc.ControlDeDatos
         {
-                public ControlVista()
-                {
-                        InitializeComponent();
-                }
+
         }
 }

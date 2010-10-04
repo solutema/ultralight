@@ -57,14 +57,14 @@ namespace Lfc.Articulos
                 // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
                 // No lo modifique con el editor de código.
-                internal Lui.Forms.Button cmdMovim;
+                internal Lui.Forms.Button BotonMovim;
 
                 private void InitializeComponent()
                 {
-                        this.cmdMovim = new Lui.Forms.Button();
+                        this.BotonMovim = new Lui.Forms.Button();
                         this.Frame = new Lui.Forms.Frame();
-                        this.txtValorPVP = new Lui.Forms.TextBox();
-                        this.txtValorCosto = new Lui.Forms.TextBox();
+                        this.EntradatValorizacionPvp = new Lui.Forms.TextBox();
+                        this.EntradaValorizacionCosto = new Lui.Forms.TextBox();
                         this.label2 = new System.Windows.Forms.Label();
                         this.label3 = new System.Windows.Forms.Label();
                         this.Frame.SuspendLayout();
@@ -72,30 +72,30 @@ namespace Lfc.Articulos
                         // 
                         // cmdMovim
                         // 
-                        this.cmdMovim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.cmdMovim.AutoHeight = false;
-                        this.cmdMovim.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdMovim.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdMovim.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdMovim.Image = null;
-                        this.cmdMovim.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdMovim.Location = new System.Drawing.Point(12, 284);
-                        this.cmdMovim.Name = "cmdMovim";
-                        this.cmdMovim.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdMovim.ReadOnly = false;
-                        this.cmdMovim.Size = new System.Drawing.Size(112, 32);
-                        this.cmdMovim.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
-                        this.cmdMovim.Subtext = "F5";
-                        this.cmdMovim.TabIndex = 51;
-                        this.cmdMovim.Text = "Movimiento";
-                        this.cmdMovim.ToolTipText = "";
-                        this.cmdMovim.Click += new System.EventHandler(this.cmdMovim_Click);
+                        this.BotonMovim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonMovim.AutoHeight = false;
+                        this.BotonMovim.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonMovim.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonMovim.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonMovim.Image = null;
+                        this.BotonMovim.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonMovim.Location = new System.Drawing.Point(12, 284);
+                        this.BotonMovim.Name = "cmdMovim";
+                        this.BotonMovim.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonMovim.ReadOnly = false;
+                        this.BotonMovim.Size = new System.Drawing.Size(112, 32);
+                        this.BotonMovim.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonMovim.Subtext = "F5";
+                        this.BotonMovim.TabIndex = 51;
+                        this.BotonMovim.Text = "Movimiento";
+                        this.BotonMovim.ToolTipText = "";
+                        this.BotonMovim.Click += new System.EventHandler(this.BotonMovim_Click);
                         // 
                         // Frame
                         // 
                         this.Frame.AutoHeight = false;
-                        this.Frame.Controls.Add(this.txtValorPVP);
-                        this.Frame.Controls.Add(this.txtValorCosto);
+                        this.Frame.Controls.Add(this.EntradatValorizacionPvp);
+                        this.Frame.Controls.Add(this.EntradaValorizacionCosto);
                         this.Frame.Controls.Add(this.label2);
                         this.Frame.Controls.Add(this.label3);
                         this.Frame.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
@@ -110,65 +110,65 @@ namespace Lfc.Articulos
                         this.Frame.Text = "Valorización";
                         this.Frame.ToolTipText = "";
                         // 
-                        // txtValorPVP
+                        // EntradatValorizacionPvp
                         // 
-                        this.txtValorPVP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradatValorizacionPvp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtValorPVP.AutoHeight = false;
-                        this.txtValorPVP.AutoNav = true;
-                        this.txtValorPVP.AutoTab = true;
-                        this.txtValorPVP.DataType = Lui.Forms.DataTypes.Money;
-                        this.txtValorPVP.DecimalPlaces = -1;
-                        this.txtValorPVP.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.txtValorPVP.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtValorPVP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtValorPVP.Location = new System.Drawing.Point(20, 112);
-                        this.txtValorPVP.MaxLenght = 32767;
-                        this.txtValorPVP.MultiLine = false;
-                        this.txtValorPVP.Name = "txtValorPVP";
-                        this.txtValorPVP.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtValorPVP.PasswordChar = '\0';
-                        this.txtValorPVP.Prefijo = "$";
-                        this.txtValorPVP.ReadOnly = true;
-                        this.txtValorPVP.SelectOnFocus = true;
-                        this.txtValorPVP.Size = new System.Drawing.Size(108, 23);
-                        this.txtValorPVP.Sufijo = "";
-                        this.txtValorPVP.TabIndex = 5;
-                        this.txtValorPVP.TabStop = false;
-                        this.txtValorPVP.Text = "0.00";
-                        this.txtValorPVP.TextRaw = "0.00";
-                        this.txtValorPVP.TipWhenBlank = "";
-                        this.txtValorPVP.ToolTipText = "";
+                        this.EntradatValorizacionPvp.AutoHeight = false;
+                        this.EntradatValorizacionPvp.AutoNav = true;
+                        this.EntradatValorizacionPvp.AutoTab = true;
+                        this.EntradatValorizacionPvp.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradatValorizacionPvp.DecimalPlaces = -1;
+                        this.EntradatValorizacionPvp.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EntradatValorizacionPvp.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradatValorizacionPvp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradatValorizacionPvp.Location = new System.Drawing.Point(20, 112);
+                        this.EntradatValorizacionPvp.MaxLenght = 32767;
+                        this.EntradatValorizacionPvp.MultiLine = false;
+                        this.EntradatValorizacionPvp.Name = "EntradatValorizacionPvp";
+                        this.EntradatValorizacionPvp.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradatValorizacionPvp.PasswordChar = '\0';
+                        this.EntradatValorizacionPvp.Prefijo = "$";
+                        this.EntradatValorizacionPvp.ReadOnly = true;
+                        this.EntradatValorizacionPvp.SelectOnFocus = true;
+                        this.EntradatValorizacionPvp.Size = new System.Drawing.Size(108, 23);
+                        this.EntradatValorizacionPvp.Sufijo = "";
+                        this.EntradatValorizacionPvp.TabIndex = 5;
+                        this.EntradatValorizacionPvp.TabStop = false;
+                        this.EntradatValorizacionPvp.Text = "0.00";
+                        this.EntradatValorizacionPvp.TextRaw = "0.00";
+                        this.EntradatValorizacionPvp.TipWhenBlank = "";
+                        this.EntradatValorizacionPvp.ToolTipText = "";
                         // 
                         // txtValorCosto
                         // 
-                        this.txtValorCosto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaValorizacionCosto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtValorCosto.AutoHeight = false;
-                        this.txtValorCosto.AutoNav = true;
-                        this.txtValorCosto.AutoTab = true;
-                        this.txtValorCosto.DataType = Lui.Forms.DataTypes.Money;
-                        this.txtValorCosto.DecimalPlaces = -1;
-                        this.txtValorCosto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.txtValorCosto.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtValorCosto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtValorCosto.Location = new System.Drawing.Point(20, 52);
-                        this.txtValorCosto.MaxLenght = 32767;
-                        this.txtValorCosto.MultiLine = false;
-                        this.txtValorCosto.Name = "txtValorCosto";
-                        this.txtValorCosto.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtValorCosto.PasswordChar = '\0';
-                        this.txtValorCosto.Prefijo = "$";
-                        this.txtValorCosto.ReadOnly = true;
-                        this.txtValorCosto.SelectOnFocus = true;
-                        this.txtValorCosto.Size = new System.Drawing.Size(108, 22);
-                        this.txtValorCosto.Sufijo = "";
-                        this.txtValorCosto.TabIndex = 4;
-                        this.txtValorCosto.TabStop = false;
-                        this.txtValorCosto.Text = "0.00";
-                        this.txtValorCosto.TextRaw = "0.00";
-                        this.txtValorCosto.TipWhenBlank = "";
-                        this.txtValorCosto.ToolTipText = "";
+                        this.EntradaValorizacionCosto.AutoHeight = false;
+                        this.EntradaValorizacionCosto.AutoNav = true;
+                        this.EntradaValorizacionCosto.AutoTab = true;
+                        this.EntradaValorizacionCosto.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaValorizacionCosto.DecimalPlaces = -1;
+                        this.EntradaValorizacionCosto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EntradaValorizacionCosto.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaValorizacionCosto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaValorizacionCosto.Location = new System.Drawing.Point(20, 52);
+                        this.EntradaValorizacionCosto.MaxLenght = 32767;
+                        this.EntradaValorizacionCosto.MultiLine = false;
+                        this.EntradaValorizacionCosto.Name = "txtValorCosto";
+                        this.EntradaValorizacionCosto.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaValorizacionCosto.PasswordChar = '\0';
+                        this.EntradaValorizacionCosto.Prefijo = "$";
+                        this.EntradaValorizacionCosto.ReadOnly = true;
+                        this.EntradaValorizacionCosto.SelectOnFocus = true;
+                        this.EntradaValorizacionCosto.Size = new System.Drawing.Size(108, 22);
+                        this.EntradaValorizacionCosto.Sufijo = "";
+                        this.EntradaValorizacionCosto.TabIndex = 4;
+                        this.EntradaValorizacionCosto.TabStop = false;
+                        this.EntradaValorizacionCosto.Text = "0.00";
+                        this.EntradaValorizacionCosto.TextRaw = "0.00";
+                        this.EntradaValorizacionCosto.TipWhenBlank = "";
+                        this.EntradaValorizacionCosto.ToolTipText = "";
                         // 
                         // label2
                         // 
@@ -196,15 +196,14 @@ namespace Lfc.Articulos
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(768, 480);
-                        this.Controls.Add(this.cmdMovim);
+                        this.Controls.Add(this.BotonMovim);
                         this.Controls.Add(this.Frame);
                         this.Name = "Inicio";
                         this.Text = "Artículos: Listado";
-                        this.WorkspaceChanged += new System.EventHandler(this.Inicio_WorkspaceChanged);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormArticulosInicio_KeyDown);
                         this.Controls.SetChildIndex(this.Frame, 0);
                         this.Controls.SetChildIndex(this.Listado, 0);
-                        this.Controls.SetChildIndex(this.cmdMovim, 0);
+                        this.Controls.SetChildIndex(this.BotonMovim, 0);
                         this.Frame.ResumeLayout(false);
                         this.Frame.PerformLayout();
                         this.ResumeLayout(false);
@@ -216,7 +215,7 @@ namespace Lfc.Articulos
                 internal Lui.Forms.Frame Frame;
                 private System.Windows.Forms.Label label2;
                 private System.Windows.Forms.Label label3;
-                internal Lui.Forms.TextBox txtValorCosto;
-                internal Lui.Forms.TextBox txtValorPVP;
+                internal Lui.Forms.TextBox EntradaValorizacionCosto;
+                internal Lui.Forms.TextBox EntradatValorizacionPvp;
         }
 }

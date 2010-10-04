@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -40,136 +40,71 @@ namespace Lfc.Articulos.Categorias
 {
         public partial class Editar : Lui.Forms.EditForm
         {
-
                 public Editar()
-                        : base()
                 {
                         InitializeComponent();
+
+                        this.ElementType = typeof(Lbl.Articulos.Categoria);
                 }
 
-                public override Lfx.Types.OperationResult Edit(int lId)
+                public override Lfx.Types.OperationResult Create()
                 {
-                        Lfx.Data.Row Registro = this.DataBase.Row("articulos_categorias", "id_categoria", lId);
+                        if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "products.create"))
+                                return new Lfx.Types.NoAccessOperationResult();
 
-                        if (Registro == null) {
-                                return new Lfx.Types.FailureOperationResult("El registro no existe.");
-                        } else {
-                                EntradaNombre.Text = System.Convert.ToString(Registro["nombre"]);
-                                EntradaNombreSing.Text = System.Convert.ToString(Registro["nombresing"]);
-                                EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatStock(System.Convert.ToDouble(Registro["stock_minimo"]));
-                                EntradaWeb.TextKey = System.Convert.ToInt32(Registro["web"]).ToString();
-                                EntradaRequiereNS.TextKey = System.Convert.ToInt32(Registro["requierens"]).ToString();
-                                EntradaItem.Text = Lfx.Types.Formatting.FormatStock(this.DataBase.FieldDouble("SELECT COUNT(id_articulo) FROM articulos WHERE id_categoria=" + lId.ToString()));
-                                EntradaItemStock.Text = Lfx.Types.Formatting.FormatStock(this.DataBase.FieldDouble("SELECT COUNT(id_articulo) FROM articulos WHERE stock_actual>0 AND id_categoria=" + lId.ToString()));
-                                EntradaStockActual.Text = Lfx.Types.Formatting.FormatStock(this.DataBase.FieldDouble("SELECT SUM(stock_actual) FROM articulos WHERE id_categoria=" + lId.ToString()));
-                                EntradaCosto.Text = Lfx.Types.Formatting.FormatStock(this.DataBase.FieldDouble("SELECT SUM(costo) FROM articulos WHERE id_categoria=" + lId.ToString()));
-                                EntradaGarantia.Text = Registro["garantia"].ToString();
+                        Lbl.Articulos.Categoria Cat = new Lbl.Articulos.Categoria(this.DataBase);
+                        Cat.Crear();
+                        EntradaImagen.Elemento = Cat;
 
-                                if (Registro["imagen"] != null && ((byte[])(Registro["imagen"])).Length > 5) {
-                                        byte[] ByteArr = ((byte[])(Registro["imagen"]));
-                                        System.IO.MemoryStream loStream = new System.IO.MemoryStream(ByteArr);
-                                        pctImagen.SizeMode = PictureBoxSizeMode.StretchImage;
-                                        pctImagen.Image = Image.FromStream(loStream);
-                                        pctImagen.Tag = "*";
-                                }
-
-                                m_Id = lId;
-                                m_Nuevo = false;
-
-                                return new Lfx.Types.SuccessOperationResult();
-                        }
+                        this.FromRow(Cat);
+                        return new Lfx.Types.SuccessOperationResult();
                 }
 
-                public override Lfx.Types.OperationResult Save()
+                public override void FromRow(Lbl.ElementoDeDatos row)
                 {
-                        Lfx.Types.OperationResult ResultadoGuardar = ValidateData();
+                        base.FromRow(row);
 
-                        if (ResultadoGuardar.Success == true)
-                        {
-                                this.DataBase.BeginTransaction();
+                        Lbl.Articulos.Categoria Cat = row as Lbl.Articulos.Categoria;
 
-				Lbl.Articulos.Categoria Cat = new Lbl.Articulos.Categoria(DataBase, m_Id);
-				Cat.Nombre = EntradaNombre.Text;
-	                        Cat.NombreSingular = EntradaNombreSing.Text;
-	                        Cat.StockMinimo = Lfx.Types.Parsing.ParseStock(EntradaStockMinimo.Text);
-	                        Cat.PublicacionWeb = Lfx.Types.Parsing.ParseInt(EntradaWeb.TextKey);
-                                Cat.RequiereNS = Lfx.Types.Parsing.ParseInt(EntradaRequiereNS.TextKey) != 0;
-                                Cat.Garantia = Lfx.Types.Parsing.ParseInt(EntradaGarantia.Text);
-				Cat.Guardar();
-				m_Id = Cat.Id;
-				
-                                switch (System.Convert.ToString(pctImagen.Tag))
-                                {
-                                        case "*":
-                                                // Queda la que está
-                                                break;
+                        EntradaNombre.Text = Cat.Nombre;
+                        EntradaNombreSing.Text = Cat.NombreSingular;
+                        EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatStock(Cat.StockMinimo);
+                        EntradaWeb.TextKey = Cat.PublicacionWeb.ToString();
+                        EntradaSeguimiento.TextKey = ((int)(Cat.Seguimiento)).ToString();
+                        EntradaItem.Text = Lfx.Types.Formatting.FormatStock(this.DataBase.FieldDouble("SELECT COUNT(id_articulo) FROM articulos WHERE id_categoria=" + Cat.Id.ToString()));
+                        EntradaItemStock.Text = Lfx.Types.Formatting.FormatStock(this.DataBase.FieldDouble("SELECT COUNT(id_articulo) FROM articulos WHERE stock_actual>0 AND id_categoria=" + Cat.Id.ToString()));
+                        EntradaStockActual.Text = Lfx.Types.Formatting.FormatStock(this.DataBase.FieldDouble("SELECT SUM(stock_actual) FROM articulos WHERE id_categoria=" + Cat.Id.ToString()));
+                        EntradaCosto.Text = Lfx.Types.Formatting.FormatStock(this.DataBase.FieldDouble("SELECT SUM(costo) FROM articulos WHERE id_categoria=" + Cat.Id.ToString()));
+                        EntradaGarantia.Text = Cat.Garantia.ToString();
+                        EntradaRubro.Elemento = Cat.Rubro;
+                        EntradaImagen.Elemento = Cat;
 
-                                        case "":
-                                                // Quitar imagen actual
-                                                DataBase.Execute("UPDATE articulos_categorias SET imagen=NULL WHERE id_categoria=" + m_Id.ToString());
-                                                break;
+                        this.ReadOnly = !Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "products.write");
 
-                                        default:
-                                                // Guardar imagen nueva
-                                                qGen.Insert InsertarImagen = new qGen.Insert(DataBase, "articulos_categorias");
-                                                InsertarImagen.Fields.AddWithValue("id_categoria", m_Id);
-                                                InsertarImagen.Fields.AddWithValue("imagen", pctImagen.Image);
-                                                DataBase.Execute(InsertarImagen);
-                                                break;
-                                }
+                        if (this.CachedRow.Existe)
+                                this.Text = "Categoría: " + Cat.Nombre;
+                        else
+                                this.Text = "Categoría: Nueva";
 
-                                this.DataBase.Commit();
-
-                                if (m_Nuevo && ControlDestino != null) {
-                                        ControlDestino.Text = m_Id.ToString();
-                                        ControlDestino.Focus();
-                                }
-
-                                m_Nuevo = false;
-
-                                ResultadoGuardar = base.Save();
-                        }
-
-                        return ResultadoGuardar;
+                        this.Changed = false;
+                        
                 }
 
-                private void FormArticulosCategEditar_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+                public override Lbl.ElementoDeDatos ToRow()
                 {
-                        switch (e.KeyCode)
-                        {
-                                case Keys.F4:
-                                        e.Handled = true;
-                                        if (cmdImagen.Enabled && cmdImagen.Visible)
-                                                cmdImagen.PerformClick();
-                                        break;
+                        Lbl.Articulos.Categoria Cat = this.CachedRow as Lbl.Articulos.Categoria;
 
-                                case Keys.F5:
-                                        e.Handled = true;
-                                        if (cmdImagenQuitar.Enabled && cmdImagenQuitar.Visible)
-                                                cmdImagenQuitar.PerformClick();
-                                        break;
-                        }
-                }
+                        Cat.Nombre = EntradaNombre.Text;
+                        Cat.NombreSingular = EntradaNombreSing.Text;
+                        Cat.StockMinimo = Lfx.Types.Parsing.ParseStock(EntradaStockMinimo.Text);
+                        Cat.PublicacionWeb = Lfx.Types.Parsing.ParseInt(EntradaWeb.TextKey);
+                        Cat.Seguimiento = ((Lbl.Articulos.Seguimientos)(Lfx.Types.Parsing.ParseInt(EntradaSeguimiento.TextKey)));
+                        Cat.Garantia = Lfx.Types.Parsing.ParseInt(EntradaGarantia.Text);
+                        Cat.Rubro = EntradaRubro.Elemento as Lbl.Articulos.Rubro;
 
-                private void cmdImagenQuitar_Click(object sender, System.EventArgs e)
-                {
-                        pctImagen.Image = null;
-                        pctImagen.Tag = string.Empty;
-                }
+                        EntradaImagen.ActualizarElemento();
 
-                private void cmdImagen_Click(object sender, System.EventArgs e)
-                {
-                        OpenFileDialog Abrir = new OpenFileDialog();
-                        Abrir.Filter = "Archivos JPEG|*.jpg";
-                        Abrir.Multiselect = false;
-                        Abrir.ValidateNames = true;
-
-                        if (Abrir.ShowDialog() == DialogResult.OK)
-                        {
-                                pctImagen.SizeMode = PictureBoxSizeMode.StretchImage;
-                                pctImagen.Image = Image.FromFile(Abrir.FileName);
-                                pctImagen.Tag = Abrir.FileName;
-                        }
+                        return base.ToRow();
                 }
         }
 }

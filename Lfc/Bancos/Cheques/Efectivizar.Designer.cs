@@ -64,7 +64,7 @@ namespace Lfc.Bancos.Cheques
                 internal Lui.Forms.TextBox txtTotal;
                 internal System.Windows.Forms.Label Label8;
                 internal System.Windows.Forms.Label Label3;
-                internal Lui.Forms.DetailBox EntradaCajaDestino;
+                internal Lcc.Entrada.CodigoDetalle EntradaCajaDestino;
                 internal Lui.Forms.TextBox txtCantidad;
 
                 private void InitializeComponent()
@@ -78,7 +78,7 @@ namespace Lfc.Bancos.Cheques
                         this.txtTotal = new Lui.Forms.TextBox();
                         this.Label8 = new System.Windows.Forms.Label();
                         this.Label3 = new System.Windows.Forms.Label();
-                        this.EntradaCajaDestino = new Lui.Forms.DetailBox();
+                        this.EntradaCajaDestino = new Lcc.Entrada.CodigoDetalle();
                         this.txtImpuestos = new Lui.Forms.TextBox();
                         this.label4 = new System.Windows.Forms.Label();
                         this.label5 = new System.Windows.Forms.Label();
@@ -239,14 +239,12 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaCajaDestino.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCajaDestino.ReadOnly = false;
                         this.EntradaCajaDestino.Required = true;
-                        this.EntradaCajaDestino.SelectOnFocus = false;
                         this.EntradaCajaDestino.Size = new System.Drawing.Size(348, 24);
                         this.EntradaCajaDestino.TabIndex = 12;
                         this.EntradaCajaDestino.Table = "cajas";
                         this.EntradaCajaDestino.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCajaDestino.Text = "0";
                         this.EntradaCajaDestino.TextDetail = "";
-                        this.EntradaCajaDestino.TextInt = 0;
                         this.EntradaCajaDestino.TipWhenBlank = "";
                         this.EntradaCajaDestino.ToolTipText = "";
                         // 

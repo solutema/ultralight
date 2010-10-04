@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -38,83 +38,19 @@ using System.Windows.Forms;
 
 namespace Lfc.Articulos.Marcas
 {
-	public class Inicio :
-	    Lui.Forms.ListingForm
+	public class Inicio : Lui.Forms.ListingForm
 	{
-
-		#region Código generado por el Diseñador de Windows Forms
-
 		public Inicio()
-			: base()
 		{
-
-			// Necesario para admitir el Diseñador de Windows Forms
-			InitializeComponent();
-
-			// agregar código de constructor después de llamar a InitializeComponent
-			DataTableName = "marcas";
-			OrderBy = "nombre";
-                        KeyField = new Lfx.Data.FormField("id_marca", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-			FormFields = new Lfx.Data.FormField[]
+			this.DataTableName = "marcas";
+                        this.OrderBy = "nombre";
+                        this.KeyField = new Lfx.Data.FormField("id_marca", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        this.FormFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 480),
 				new Lfx.Data.FormField("url", "Web", Lfx.Data.InputFieldTypes.Text, 120)
 			};
 		}
-
-		// Limpiar los recursos que se estén utilizando.
-		protected override void Dispose(bool disposing)
-		{
-			if(disposing) {
-				if(components != null) {
-					components.Dispose();
-				}
-			}
-
-			base.Dispose(disposing);
-		}
-
-		// Requerido por el Diseñador de Windows Forms
-		private System.ComponentModel.Container components = null;
-
-		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
-		// Puede modificarse utilizando el Diseñador de Windows Forms. 
-		// No lo modifique con el editor de código.
-
-		private void InitializeComponent()
-		{
-			this.SuspendLayout();
-			// 
-			// lvItems
-			// 
-			this.Listado.Name = "lvItems";
-			this.Listado.Size = new System.Drawing.Size(546, 466);
-			// 
-			// CreateButton
-			// 
-			this.BotonCrear.DockPadding.All = 2;
-			this.BotonCrear.Name = "CreateButton";
-			// 
-			// FiltersButton
-			// 
-			this.BotonFiltrar.DockPadding.All = 2;
-			this.BotonFiltrar.Name = "FiltersButton";
-			// 
-			// PrintButton
-			// 
-			this.BotonImprimir.DockPadding.All = 2;
-			this.BotonImprimir.Name = "PrintButton";
-			// 
-			// Inicio
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
-			this.ClientSize = new System.Drawing.Size(692, 473);
-			this.Name = "Inicio";
-			this.ResumeLayout(false);
-
-		}
-
-		#endregion
 
 		public override Lfx.Types.OperationResult OnCreate()
 		{

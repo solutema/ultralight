@@ -30,58 +30,27 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace Lfc.Alicuotas
 {
-	public class Inicio : Lui.Forms.ListingForm
+	public partial class Inicio : Lui.Forms.ListingForm
 	{
-		private System.ComponentModel.IContainer components = null;
-
 		public Inicio()
 		{
-			// Llamada necesaria para el Diseñador de Windows Forms.
-			InitializeComponent();
-
-			DataTableName = "alicuotas";
-			OrderBy = "nombre";
-                        KeyField = new Lfx.Data.FormField("id_alicuota", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-			FormFields = new Lfx.Data.FormField[]
+			this.DataTableName = "alicuotas";
+                        this.OrderBy = "nombre";
+                        this.KeyField = new Lfx.Data.FormField("id_alicuota", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        this.FormFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
 				new Lfx.Data.FormField("porcentaje", "Porcentaje", Lfx.Data.InputFieldTypes.Numeric, 160),
 				new Lfx.Data.FormField("importe_minimo", "Imp. Mín.", Lfx.Data.InputFieldTypes.Currency, 160)
 			};
 		}
-
-		/// <summary>
-		/// Limpiar los recursos que se estén utilizando.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if (components != null) 
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
-
-		#region Código generado por el diseñador
-		/// <summary>
-		/// Método necesario para admitir el Diseñador. No se puede modificar
-		/// el contenido del método con el editor de código.
-		/// </summary>
-		private void InitializeComponent()
-		{
-			components = new System.ComponentModel.Container();
-		}
-		#endregion
 	}
 }
 

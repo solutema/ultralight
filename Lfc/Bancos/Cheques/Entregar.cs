@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -40,7 +40,7 @@ namespace Lfc.Bancos.Cheques
 	public class Entregar : Lui.Forms.DialogForm
 	{
 		internal System.Windows.Forms.Label label3;
-		internal Lui.Forms.DetailBox txtConcepto;
+		internal Lcc.Entrada.CodigoDetalle txtConcepto;
 		internal Lui.Forms.TextBox txtObs;
 		internal System.Windows.Forms.Label Label4;
 		internal System.Windows.Forms.Label label5;
@@ -49,7 +49,7 @@ namespace Lfc.Bancos.Cheques
 		internal Lui.Forms.TextBox txtCantidad;
 		internal System.Windows.Forms.Label lblLabel1;
 		internal System.Windows.Forms.Label label2;
-		internal Lui.Forms.DetailBox gDetailBox1;
+		internal Lcc.Entrada.CodigoDetalle gDetailBox1;
 		private System.ComponentModel.IContainer components = null;
 
 		public Entregar()
@@ -80,7 +80,7 @@ namespace Lfc.Bancos.Cheques
 		private void InitializeComponent()
 		{
 			this.label3 = new System.Windows.Forms.Label();
-			this.txtConcepto = new Lui.Forms.DetailBox();
+			this.txtConcepto = new Lcc.Entrada.CodigoDetalle();
 			this.txtObs = new Lui.Forms.TextBox();
 			this.Label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
@@ -89,7 +89,7 @@ namespace Lfc.Bancos.Cheques
 			this.txtCantidad = new Lui.Forms.TextBox();
 			this.lblLabel1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.gDetailBox1 = new Lui.Forms.DetailBox();
+			this.gDetailBox1 = new Lcc.Entrada.CodigoDetalle();
 			this.SuspendLayout();
 			// 
 			// OkButton
@@ -131,14 +131,12 @@ namespace Lfc.Bancos.Cheques
 			this.txtConcepto.Name = "txtConcepto";
 			this.txtConcepto.ReadOnly = false;
 			this.txtConcepto.Required = false;
-			this.txtConcepto.SelectOnFocus = false;
 			this.txtConcepto.Size = new System.Drawing.Size(404, 24);
 			this.txtConcepto.TabIndex = 8;
 			this.txtConcepto.Table = "conceptos";
 			this.txtConcepto.TeclaDespuesDeEnter = "{tab}";
 			this.txtConcepto.Text = "0";
 			this.txtConcepto.TextDetail = "";
-			this.txtConcepto.TextInt = 0;
 			this.txtConcepto.ToolTipText = "";
 			// 
 			// txtObs
@@ -262,14 +260,12 @@ namespace Lfc.Bancos.Cheques
 			this.gDetailBox1.Name = "gDetailBox1";
 			this.gDetailBox1.ReadOnly = false;
 			this.gDetailBox1.Required = false;
-			this.gDetailBox1.SelectOnFocus = false;
 			this.gDetailBox1.Size = new System.Drawing.Size(404, 24);
 			this.gDetailBox1.TabIndex = 6;
 			this.gDetailBox1.Table = "personas";
 			this.gDetailBox1.TeclaDespuesDeEnter = "{tab}";
 			this.gDetailBox1.Text = "0";
 			this.gDetailBox1.TextDetail = "";
-			this.gDetailBox1.TextInt = 0;
 			this.gDetailBox1.ToolTipText = "";
 			// 
 			// Entregar

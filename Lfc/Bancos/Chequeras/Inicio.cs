@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -57,7 +57,7 @@ namespace Lfc.Bancos.Chequeras
                         // agregar código de constructor después de llamar a InitializeComponent
                         DataTableName = "chequeras";
                         KeyField = new Lfx.Data.FormField("chequeras.id_chequera", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        FormFields = new Lfx.Data.FormField[]
+                        FormFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("chequeras.id_banco", "Banco", Lfx.Data.InputFieldTypes.Relation, 240),
                                 new Lfx.Data.FormField("chequeras.cheques_emitidos", "Emitidos", Lfx.Data.InputFieldTypes.Integer, 90),
@@ -91,46 +91,42 @@ namespace Lfc.Bancos.Chequeras
                         }
                         return filtrarReturn;
                 }
-		
-		public override void RefreshList()
-		{
-			this.CustomFilters = new qGen.Where();
+
+                public override void BeginRefreshList()
+                {
+                        this.CustomFilters = new qGen.Where();
 
                         if (m_Estado != Estados.Todos)
                                 this.CustomFilters.AddWithValue("estado", (int)m_Estado);
-                        
-                        if(m_Banco > 0)
+
+                        if (m_Banco > 0)
                                 this.CustomFilters.AddWithValue("id_banco", m_Banco);
 
                         if (m_Caja > 0)
                                 this.CustomFilters.AddWithValue("id_caja", m_Caja);
-
-			base.RefreshList();
-		}
+                }
 
                 public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
 		{
-			switch(itm.SubItems[7].Text)
+			switch(row.Fields["estado"].ValueInt)
 			{
-				case "0":
-				case "-":
-                                        itm.SubItems[7].Text = "Fuera de uso";
+				case 0:
+                                        itm.SubItems["estado"].Text = "Fuera de uso";
                                         break;
-				case "1":
-					itm.SubItems[7].Text = "Activa";
+				case 1:
+                                        itm.SubItems["estado"].Text = "Activa";
 					break;
 				default:
-					itm.SubItems[7].Text = "???";
+                                        itm.SubItems["estado"].Text = "???";
 					break;
 			}
 
-                        itm.SubItems[1].Text = this.DataBase.Tables["bancos"].FastRows[Lfx.Types.Parsing.ParseInt(itm.SubItems[1].Text)].Fields["nombre"].ToString();
-                        itm.SubItems[2].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[2].Text).ToString("0000");
-                        itm.SubItems[3].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[3].Text).ToString("00000000");
-                        itm.SubItems[4].Text = Lfx.Types.Parsing.ParseInt(itm.SubItems[4].Text).ToString("00000000");
-                        int IdCaja = Lfx.Types.Parsing.ParseInt(itm.SubItems[5].Text);
+                        itm.SubItems["id_banco"].Text = this.DataBase.Tables["bancos"].FastRows[System.Convert.ToInt32(row["id_banco"])].Fields["nombre"].ToString();
+                        itm.SubItems["desde"].Text = row.Fields["desde"].ValueInt.ToString("00000000");
+                        itm.SubItems["desde"].Text = row.Fields["hasta"].ValueInt.ToString("00000000");
+                        int IdCaja = row.Fields["id_caja"].ValueInt;
                         if (IdCaja > 0)
-                                itm.SubItems[5].Text = this.DataBase.Tables["cajas"].FastRows[IdCaja].Fields["nombre"].ToString();
+                                itm.SubItems["id_caja"].Text = this.DataBase.Tables["cajas"].FastRows[IdCaja].Fields["nombre"].ToString();
 		}
 
 		public override Lfx.Types.OperationResult OnEdit(int lCodigo)

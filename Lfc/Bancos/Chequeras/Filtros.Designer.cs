@@ -61,9 +61,9 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaEstado = new Lui.Forms.ComboBox();
                         this.Label7 = new System.Windows.Forms.Label();
                         this.LabelCaja = new System.Windows.Forms.Label();
-                        this.EntradaCaja = new Lui.Forms.DetailBox();
+                        this.EntradaCaja = new Lcc.Entrada.CodigoDetalle();
                         this.Label1 = new System.Windows.Forms.Label();
-                        this.EntradaBanco = new Lui.Forms.DetailBox();
+                        this.EntradaBanco = new Lcc.Entrada.CodigoDetalle();
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -132,14 +132,12 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCaja.ReadOnly = false;
                         this.EntradaCaja.Required = false;
-                        this.EntradaCaja.SelectOnFocus = false;
                         this.EntradaCaja.Size = new System.Drawing.Size(280, 24);
                         this.EntradaCaja.TabIndex = 5;
                         this.EntradaCaja.Table = "cajas";
                         this.EntradaCaja.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCaja.Text = "0";
                         this.EntradaCaja.TextDetail = "";
-                        this.EntradaCaja.TextInt = 0;
                         this.EntradaCaja.TipWhenBlank = "";
                         this.EntradaCaja.ToolTipText = "";
                         // 
@@ -170,14 +168,12 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBanco.ReadOnly = false;
                         this.EntradaBanco.Required = true;
-                        this.EntradaBanco.SelectOnFocus = false;
                         this.EntradaBanco.Size = new System.Drawing.Size(280, 24);
                         this.EntradaBanco.TabIndex = 3;
                         this.EntradaBanco.Table = "bancos";
                         this.EntradaBanco.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
-                        this.EntradaBanco.TextInt = 0;
                         this.EntradaBanco.TipWhenBlank = "";
                         this.EntradaBanco.ToolTipText = "";
                         // 
@@ -202,9 +198,9 @@ namespace Lfc.Bancos.Chequeras
                 internal Lui.Forms.ComboBox EntradaEstado;
                 private System.Windows.Forms.Label Label7;
                 private System.Windows.Forms.Label LabelCaja;
-                internal Lui.Forms.DetailBox EntradaCaja;
+                internal Lcc.Entrada.CodigoDetalle EntradaCaja;
                 private System.Windows.Forms.Label Label1;
-                internal Lui.Forms.DetailBox EntradaBanco;
+                internal Lcc.Entrada.CodigoDetalle EntradaBanco;
                 private System.ComponentModel.IContainer components = null;
         }
 }

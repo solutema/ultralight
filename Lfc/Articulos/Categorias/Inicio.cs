@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -44,22 +44,19 @@ namespace Lfc.Articulos.Categorias
                 internal double m_ValorizacionCostoTotal = 0;
 
                 public Inicio()
-                        : base()
                 {
-                        InitializeComponent();
-
-                        DataTableName = "articulos_categorias";
-                        KeyField = new Lfx.Data.FormField("articulos_categorias.id_categoria", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        Joins.Add(new qGen.Join("articulos", "articulos_categorias.id_categoria"));
-                        GroupBy = KeyField;
-                        OrderBy = "articulos_categorias.nombre";
-                        FormFields = new Lfx.Data.FormField[]
+                        this.DataTableName = "articulos_categorias";
+                        this.KeyField = new Lfx.Data.FormField("articulos_categorias.id_categoria", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        this.Joins.Add(new qGen.Join("articulos", "articulos_categorias.id_categoria"));
+                        this.GroupBy = KeyField;
+                        this.OrderBy = "articulos_categorias.nombre";
+                        this.FormFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("articulos_categorias.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 				new Lfx.Data.FormField("articulos_categorias.stock_minimo", "Stock Mín", Lfx.Data.InputFieldTypes.Numeric, 96),
 				new Lfx.Data.FormField("articulos_categorias.cache_stock_actual", "Stock Act", Lfx.Data.InputFieldTypes.Numeric, 96),
                                 new Lfx.Data.FormField("articulos_categorias.cache_costo", "Valorización", Lfx.Data.InputFieldTypes.Numeric, 96),
-                                new Lfx.Data.FormField("articulos_categorias.cache_costo", "Valorización %", Lfx.Data.InputFieldTypes.Numeric, 96)
+                                new Lfx.Data.FormField("0", "Valorización %", Lfx.Data.InputFieldTypes.Numeric, 96)
 			};
                         BotonFiltrar.Visible = true;
                 }
@@ -105,16 +102,10 @@ namespace Lfc.Articulos.Categorias
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
-                public override void Fill(qGen.Select sqlCommand)
+                public override void BeginRefreshList()
                 {
                         this.DataBase.Execute("UPDATE articulos_categorias SET cache_stock_actual=(SELECT SUM(stock_actual) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria), cache_costo=(SELECT SUM(stock_actual*costo) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria)");
                         m_ValorizacionCostoTotal = this.DataBase.FieldDouble("SELECT SUM(cache_costo) FROM articulos_categorias");
-                        base.Fill(sqlCommand);
-
-                        foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
-                                if (Lfx.Types.Parsing.ParseStock(itm.SubItems[3].Text) < Lfx.Types.Parsing.ParseStock(itm.SubItems[2].Text))
-                                        itm.ForeColor = System.Drawing.Color.Red;
-                        }
                 }
 
                 public override void ItemAdded(ListViewItem item, Lfx.Data.Row row)
@@ -123,8 +114,11 @@ namespace Lfc.Articulos.Categorias
                         if (m_ValorizacionCostoTotal <= 0)
                                 ValPct = 0;
                         else
-                                ValPct = Lfx.Types.Parsing.ParseDouble(item.SubItems[5].Text) / m_ValorizacionCostoTotal * 100;
-                        item.SubItems[5].Text = Lfx.Types.Formatting.FormatNumber(ValPct, 2);
+                                ValPct = System.Convert.ToDouble(row["cache_costo"]) / m_ValorizacionCostoTotal * 100;
+                        item.SubItems["0"].Text = Lfx.Types.Formatting.FormatNumber(ValPct, 2) + "%";
+
+                        if (row.Fields["cache_stock_actual"].ValueDouble < row.Fields["stock_minimo"].ValueDouble)
+                                item.ForeColor = System.Drawing.Color.Red;
                 }
         }
 }

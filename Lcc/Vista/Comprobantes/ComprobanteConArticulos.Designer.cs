@@ -251,7 +251,6 @@ namespace Lcc.Vista.Comprobantes
                         // 
                         this.EtiquetaNumero.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EtiquetaNumero.Location = new System.Drawing.Point(16, 12);
                         this.EtiquetaNumero.Name = "EtiquetaNumero";
                         this.EtiquetaNumero.Size = new System.Drawing.Size(185, 29);
@@ -264,7 +263,6 @@ namespace Lcc.Vista.Comprobantes
                         // 
                         this.EtiquetaTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-                        this.EtiquetaTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EtiquetaTotal.Location = new System.Drawing.Point(276, 360);
                         this.EtiquetaTotal.Name = "EtiquetaTotal";
                         this.EtiquetaTotal.Size = new System.Drawing.Size(158, 32);
@@ -339,7 +337,6 @@ namespace Lcc.Vista.Comprobantes
                         // EtiquetaTipo
                         // 
                         this.EtiquetaTipo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-                        this.EtiquetaTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EtiquetaTipo.Location = new System.Drawing.Point(204, 12);
                         this.EtiquetaTipo.Name = "EtiquetaTipo";
                         this.EtiquetaTipo.Size = new System.Drawing.Size(31, 28);

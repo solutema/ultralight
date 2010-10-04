@@ -33,37 +33,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lcc
+namespace Lcc.Entrada
 {
-        public interface ILccControl
+        public class ControlEntrada : ControlDeDatos
         {
-                /// <summary>
-                /// Indica si el control permite navegación mejorada.
-                /// </summary>
-                [System.ComponentModel.Category("Comportamiento")]
-                bool AutoNav
-                {
-                        get;
-                        set;
-                }
-
-                /// <summary>
-                /// Indica si el control debe cambiar automáticamente su altura.
-                /// </summary>
-                [System.ComponentModel.Category("Comportamiento")]
-                bool AutoHeight
-                {
-                        get;
-                        set;
-                }
-
-                /// <summary>
-                /// Indica si el control es sólo de lectura.
-                /// </summary>
-                bool ReadOnly
-                {
-                        get;
-                        set;
-                }
         }
 }

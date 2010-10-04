@@ -43,9 +43,7 @@ namespace Lfc.Articulos
                 private string UnidadRendimiento = "";
                 private int IgnorarCostoTextChanged;
 
-
                 public Editar()
-                        : base()
                 {
                         InitializeComponent();
 
@@ -111,16 +109,19 @@ namespace Lfc.Articulos
                         return base.Edit(lId);
                 }
 
-                private void txtCategoriaMarcaModeloSerie_TextChanged(System.Object sender, System.EventArgs e)
+                private void EntradaCategoriaMarcaModeloSerie_TextChanged(System.Object sender, System.EventArgs e)
                 {
                         if (CustomName == false) {
-                                string NombreSing = this.DataBase.FieldString("SELECT nombresing FROM articulos_categorias WHERE id_categoria=" + EntradaCategoria.TextInt.ToString());
-                                string Texto = (NombreSing + " " + EntradaMarca.TextDetail + " " + EntradaModelo.Text + " " + EntradaSerie.Text).Trim();
-                                EntradaNombre.Text = Texto;
+                                Lbl.Articulos.Categoria Cat = EntradaCategoria.Elemento as Lbl.Articulos.Categoria;
+                                if (Cat != null) {
+                                        string NombreSing = Cat.NombreSingular;
+                                        string Texto = (NombreSing + " " + EntradaMarca.TextDetail + " " + EntradaModelo.Text + " " + EntradaSerie.Text).Trim();
+                                        EntradaNombre.Text = Texto;
+                                }
                         }
                 }
 
-                private void txtNombre_KeyPress(System.Object sender, System.Windows.Forms.KeyPressEventArgs e)
+                private void EntradaNombre_KeyPress(System.Object sender, System.Windows.Forms.KeyPressEventArgs e)
                 {
                         CustomName = true;
                 }
@@ -142,22 +143,22 @@ namespace Lfc.Articulos
                         }
                 }
 
-                private void cmdInfo_Click(object sender, System.EventArgs e)
+                private void BotonMasInfo_Click(object sender, System.EventArgs e)
                 {
-                        Articulos.MasInfo OInfo = new Articulos.MasInfo();
-                        OInfo.Articulo = m_Id;
+                        Articulos.MasInfo FormMasInfo = new Articulos.MasInfo();
+                        FormMasInfo.Articulo = this.CachedRow as Lbl.Articulos.Articulo;
 
-                        if (OInfo.ShowDialog() == DialogResult.OK) {
+                        if (FormMasInfo.ShowDialog() == DialogResult.OK) {
                                 // Guardar algo si fuera editable
                         }
                 }
 
-                private void txtCostoMargen_TextChanged(System.Object sender, System.EventArgs e)
+                private void EntradaCostoMargen_TextChanged(System.Object sender, System.EventArgs e)
                 {
                         if (this.Workspace == null)
                                 return;
 
-                        if (Lfx.Types.Parsing.ParseCurrency(EntradaCosto.Text) < 0)
+                        if (EntradaCosto.ValueDouble < 0)
                                 EntradaCosto.ErrorText = "El costo no debería ser menor que cero.";
                         else
                                 EntradaCosto.ErrorText = "";
@@ -167,33 +168,33 @@ namespace Lfc.Articulos
                                         Lfx.Data.Row Margen = this.DataBase.Tables["margenes"].FastRows[Lfx.Types.Parsing.ParseInt(EntradaMargen.TextKey)];
 
                                         if (Margen != null) {
-                                                double dPVP = Lfx.Types.Parsing.ParseCurrency(EntradaCosto.Text);
-                                                dPVP += System.Convert.ToDouble(Margen["sumar"]);
+                                                double Pvp = EntradaCosto.ValueDouble;
+                                                Pvp += System.Convert.ToDouble(Margen["sumar"]);
                                                 double MargenCompleto = System.Convert.ToDouble(Margen["porcentaje"]) + System.Convert.ToDouble(Margen["porcentaje2"]) + System.Convert.ToDouble(Margen["porcentaje3"]);
-                                                dPVP *= (1 + MargenCompleto / 100);
-                                                dPVP += System.Convert.ToDouble(Margen["sumar2"]);
+                                                Pvp *= (1 + MargenCompleto / 100);
+                                                Pvp += System.Convert.ToDouble(Margen["sumar2"]);
                                                 IgnorarCostoTextChanged++;
-                                                EntradaPvp.Text = Lfx.Types.Formatting.FormatCurrency(dPVP, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
+                                                EntradaPvp.Text = Lfx.Types.Formatting.FormatCurrency(Pvp, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
                                                 IgnorarCostoTextChanged--;
                                         }
                                 } else {
                                         IgnorarCostoTextChanged++;
-                                        txtPVP_TextChanged(sender, e);
+                                        EntradaPvp_TextChanged(sender, e);
                                         IgnorarCostoTextChanged--;
                                 }
                         }
                 }
 
-                private void txtPVP_TextChanged(object sender, System.EventArgs e)
+                private void EntradaPvp_TextChanged(object sender, System.EventArgs e)
                 {
                         if (IgnorarCostoTextChanged <= 0) {
                                 IgnorarCostoTextChanged++;
                                 EntradaMargen.TextKey = "";
 
-                                if (Lfx.Types.Parsing.ParseCurrency(EntradaCosto.Text) == 0)
+                                if (EntradaCosto.ValueDouble == 0)
                                         EntradaMargen.Text = "N/A";
                                 else
-                                        EntradaMargen.Text = "Otro (" + Lfx.Types.Formatting.FormatNumber(Lfx.Types.Parsing.ParseCurrency(EntradaPvp.Text) / Lfx.Types.Parsing.ParseCurrency(EntradaCosto.Text) * 100 - 100, this.Workspace.CurrentConfig.Moneda.DecimalesCosto) + "%)";
+                                        EntradaMargen.Text = "Otro (" + Lfx.Types.Formatting.FormatNumber(EntradaPvp.ValueDouble / EntradaCosto.ValueDouble * 100 - 100, this.Workspace.CurrentConfig.Moneda.DecimalesCosto) + "%)";
 
                                 IgnorarCostoTextChanged--;
                         }
@@ -247,7 +248,7 @@ namespace Lfc.Articulos
                         return validarReturn;
                 }
 
-                private void cmdArticulosMovimDetalles_GotFocus(object sender, System.EventArgs e)
+                private void BotonArticulosMovimDetalles_GotFocus(object sender, System.EventArgs e)
                 {
                         if (m_Id > 0 && this.Workspace.CurrentConfig.Productos.StockMultideposito) {
                                 DataTable Stocks = this.DataBase.Select("SELECT id_articulo, id_situacion, cantidad FROM articulos_stock WHERE id_articulo=" + m_Id.ToString() + " AND cantidad<>0 AND id_situacion<>998 AND id_situacion<>999 ORDER BY id_situacion");
@@ -274,7 +275,7 @@ namespace Lfc.Articulos
                         }
                 }
 
-                private void txtCosto_GotFocus(object sender, System.EventArgs e)
+                private void EntradaCosto_GotFocus(object sender, System.EventArgs e)
                 {
                         if (m_Id > 0) {
                                 string Res = "";
@@ -302,7 +303,7 @@ namespace Lfc.Articulos
                         }
                 }
 
-                private void txtStockActual_TextChanged(object sender, System.EventArgs e)
+                private void EntradaStockActual_TextChanged(object sender, System.EventArgs e)
                 {
                         if (Lfx.Types.Parsing.ParseStock(EntradaStockActual.Text) < Lfx.Types.Parsing.ParseStock(EntradaStockMinimo.Text))
                                 EntradaStockActual.ErrorText = "El stock actual está por debajo del mínimo.";
@@ -310,18 +311,18 @@ namespace Lfc.Articulos
                                 EntradaStockActual.ErrorText = "";
                 }
 
-                private void cmdDescripcion_Click(object sender, System.EventArgs e)
+                private void BotonDescripcion_Click(object sender, System.EventArgs e)
                 {
-                        Lui.Forms.AuxForms.TextEdit OFormObservacionesEditar = new Lui.Forms.AuxForms.TextEdit();
-                        OFormObservacionesEditar.EditText = EntradaDescripcion2.Text;
-                        OFormObservacionesEditar.ReadOnly = !SaveButton.Visible;
-                        OFormObservacionesEditar.Text = "Descripción Extendida";
+                        Lui.Forms.AuxForms.TextEdit FormObservacionesEditar = new Lui.Forms.AuxForms.TextEdit();
+                        FormObservacionesEditar.EditText = EntradaDescripcion2.Text;
+                        FormObservacionesEditar.ReadOnly = this.ReadOnly;
+                        FormObservacionesEditar.Text = "Descripción Extendida";
 
-                        if (OFormObservacionesEditar.ShowDialog() == DialogResult.OK)
-                                EntradaDescripcion2.Text = OFormObservacionesEditar.EditText;
+                        if (FormObservacionesEditar.ShowDialog() == DialogResult.OK)
+                                EntradaDescripcion2.Text = FormObservacionesEditar.EditText;
                 }
 
-                private void txtNombre_TextChanged(object sender, System.EventArgs e)
+                private void EntradaNombre_TextChanged(object sender, System.EventArgs e)
                 {
                         if (EntradaNombre.Text.Length > 0)
                                 EntradaNombre.ErrorText = null;
@@ -329,7 +330,7 @@ namespace Lfc.Articulos
                                 EntradaNombre.ErrorText = "Debe escribir un nombre para el artículo.";
                 }
 
-                private void FormArticulosEditar_WorkspaceChanged(object sender, System.EventArgs e)
+                private void Editar_WorkspaceChanged(object sender, System.EventArgs e)
                 {
                         EntradaStockActual.DecimalPlaces = this.Workspace.CurrentConfig.Productos.DecimalesStock;
                         EntradaStockMinimo.DecimalPlaces = this.Workspace.CurrentConfig.Productos.DecimalesStock;
@@ -368,22 +369,22 @@ namespace Lfc.Articulos
                         EntradaMargen.SetData = ListaMargenes;
                 }
 
-                private void cmdUnidad_Click(object sender, EventArgs e)
+                private void BotonUnidad_Click(object sender, EventArgs e)
                 {
                         Rendimiento FormRend = new Rendimiento();
-                        FormRend.txtUnidad.TextKey = EntradaUnidad.TextKey;
-                        FormRend.txtRendimiento.Text = Lfx.Types.Formatting.FormatNumber(Rendimiento);
-                        FormRend.txtUnidadRend.TextKey = UnidadRendimiento;
+                        FormRend.EntradaUnidad.TextKey = EntradaUnidad.TextKey;
+                        FormRend.EntradaRendimiento.Text = Lfx.Types.Formatting.FormatNumber(Rendimiento);
+                        FormRend.EntradaUnidadRend.TextKey = UnidadRendimiento;
                         if (FormRend.ShowDialog() == DialogResult.OK) {
-                                EntradaUnidad.TextKey = FormRend.txtUnidad.TextKey;
-                                Rendimiento = Lfx.Types.Parsing.ParseDouble(FormRend.txtRendimiento.Text);
-                                UnidadRendimiento = FormRend.txtUnidadRend.TextKey;
+                                EntradaUnidad.TextKey = FormRend.EntradaUnidad.TextKey;
+                                Rendimiento = Lfx.Types.Parsing.ParseDouble(FormRend.EntradaRendimiento.Text);
+                                UnidadRendimiento = FormRend.EntradaUnidadRend.TextKey;
                         }
                 }
 
-                private void txtPVP_Enter(object sender, EventArgs e)
+                private void EntradaPvp_Enter(object sender, EventArgs e)
                 {
-                        if (EntradaUnidad.TextKey.Length > 0 && UnidadRendimiento.Length > 0) {
+                        if (EntradaUnidad.TextKey.Length > 0 && UnidadRendimiento != null && UnidadRendimiento.Length > 0) {
                                 EntradaPvp.ShowBalloon("En " + EntradaUnidad.TextKey + " de " + Lfx.Types.Formatting.FormatNumber(Rendimiento) + " " + UnidadRendimiento + " a razón de " + Lfx.Types.Currency.CurrencySymbol + Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(EntradaPvp.Text) / Rendimiento, this.Workspace.CurrentConfig.Moneda.Decimales) + " (PVP) el " + UnidadRendimiento + ".");
                         }
                 }
@@ -392,122 +393,95 @@ namespace Lfc.Articulos
                 {
                         base.FromRow(row);
 
-                        Lbl.Articulos.Articulo Item = row as Lbl.Articulos.Articulo;
+                        Lbl.Articulos.Articulo Art = row as Lbl.Articulos.Articulo;
 
-                        EntradaCodigo1.Text = Item.Codigo1;
-                        EntradaCodigo2.Text = Item.Codigo2;
-                        EntradaCodigo3.Text = Item.Codigo3;
-                        EntradaCodigo4.Text = Item.Codigo4;
-                        if (Item.Categoria == null)
-                                EntradaCategoria.TextInt = 0;
-                        else
-                                EntradaCategoria.TextInt = Item.Categoria.Id;
-                        if (Item.Marca == null)
-                                EntradaMarca.TextInt = 0;
-                        else
-                                EntradaMarca.TextInt = Item.Marca.Id;
-
-                        if (Item.Caja == null)
-                                EntradaCaja.TextInt = 0;
-                        else
-                                EntradaCaja.TextInt = Item.Caja.Id;
-
-                        EntradaModelo.Text = Item.Modelo;
-                        EntradaSerie.Text = Item.Serie;
-                        EntradaNombre.Text = Item.Nombre;
-                        EntradaUrl.Text = Item.Url;
-                        if (Item.Proveedor == null)
-                                EntradaProveedor.TextInt = 0;
-                        else
-                                EntradaProveedor.TextInt = Item.Proveedor.Id;
-                        EntradaDescripcion.Text = Item.Descripcion;
-                        EntradaDescripcion2.Text = Item.Descripcion2;
-                        EntradaDestacado.TextKey = Item.Destacado ? "1" : "0";
-                        EntradaWeb.TextKey = System.Convert.ToInt32(Item.Destacado).ToString();
+                        EntradaCodigo1.Text = Art.Codigo1;
+                        EntradaCodigo2.Text = Art.Codigo2;
+                        EntradaCodigo3.Text = Art.Codigo3;
+                        EntradaCodigo4.Text = Art.Codigo4;
+                        EntradaCategoria.Elemento = Art.Categoria;
+                        EntradaMarca.Elemento = Art.Marca;
+                        EntradaCaja.Elemento = Art.Caja;
+                        EntradaModelo.Text = Art.Modelo;
+                        EntradaSerie.Text = Art.Serie;
+                        EntradaNombre.Text = Art.Nombre;
+                        EntradaUrl.Text = Art.Url;
+                        EntradaProveedor.Elemento = Art.Proveedor;
+                        EntradaDescripcion.Text = Art.Descripcion;
+                        EntradaDescripcion2.Text = Art.Descripcion2;
+                        EntradaDestacado.TextKey = Art.Destacado ? "1" : "0";
+                        EntradaWeb.TextKey = System.Convert.ToInt32(Art.Destacado).ToString();
 
                         IgnorarCostoTextChanged++;
-                        EntradaCosto.Text = Lfx.Types.Formatting.FormatCurrency(Item.Costo, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
-                        if (Item.Margen == null) {
+                        EntradaCosto.Text = Lfx.Types.Formatting.FormatCurrency(Art.Costo, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
+                        if (Art.Margen == null) {
                                 EntradaMargen.TextKey = "";
                                 EntradaMargen.Text = "Otro";
                         } else {
-                                EntradaMargen.TextKey = Item.Margen.Id.ToString();
+                                EntradaMargen.TextKey = Art.Margen.Id.ToString();
                         }
-                        EntradaPvp.Text = Lfx.Types.Formatting.FormatCurrency(Item.PVP, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
+                        EntradaPvp.Text = Lfx.Types.Formatting.FormatCurrency(Art.Pvp, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
 
                         IgnorarCostoTextChanged--;
 
-                        EntradaUsaStock.TextKey = Item.ControlaStock ? "1" : "0";
-                        EntradaStockActual.Text = Lfx.Types.Formatting.FormatNumber(Item.StockActual, this.Workspace.CurrentConfig.Productos.DecimalesStock);
-                        EntradaUnidad.TextKey = Item.Unidad;
-                        Rendimiento = Item.Rendimiento;
-                        UnidadRendimiento = Item.UnidadRendimiento;
-                        EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatNumber(Item.StockMinimo, this.Workspace.CurrentConfig.Productos.DecimalesStock);
-                        EntradaGarantia.Text = Item.Garantia.ToString();
-                        EntradaImagen.Elemento = Item;
-                        EntradaTags.Elemento = Item;
-                        EntradaEtiquetas.Elemento = Item;
+                        EntradaUsaStock.TextKey = ((int)(Art.ControlStock)).ToString();
+                        EntradaStockActual.Text = Lfx.Types.Formatting.FormatNumber(Art.StockActual, this.Workspace.CurrentConfig.Productos.DecimalesStock);
+                        EntradaUnidad.TextKey = Art.Unidad;
+                        Rendimiento = Art.Rendimiento;
+                        UnidadRendimiento = Art.UnidadRendimiento;
+                        EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatNumber(Art.StockMinimo, this.Workspace.CurrentConfig.Productos.DecimalesStock);
+                        EntradaGarantia.Text = Art.Garantia.ToString();
+                        EntradaImagen.Elemento = Art;
+                        EntradaTags.Elemento = Art;
+                        EntradaEtiquetas.Elemento = Art;
 
-                        SaveButton.Visible = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "products.write");
+                        this.ReadOnly = !Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "products.write");
 
                         if (this.CachedRow.Existe)
-                                this.Text = "Artículos: " + Item.Nombre;
+                                this.Text = "Artículos: " + Art.Nombre;
                         else
                                 this.Text = "Artículos: Nuevo";
                 }
 
                 public override Lbl.ElementoDeDatos ToRow()
                 {
-                        Lbl.Articulos.Articulo Item = this.CachedRow as Lbl.Articulos.Articulo;
+                        Lbl.Articulos.Articulo Art = base.ToRow() as Lbl.Articulos.Articulo;
 
-                        Item.Codigo1 = EntradaCodigo1.Text;
-                        Item.Codigo2 = EntradaCodigo2.Text;
-                        Item.Codigo3 = EntradaCodigo3.Text;
-                        Item.Codigo4 = EntradaCodigo4.Text;
-                        if (EntradaCategoria.TextInt != 0)
-                                Item.Categoria = new Lbl.Articulos.Categoria(Item.DataBase, EntradaCategoria.TextInt);
-                        else
-                                Item.Categoria = null;
-                        if (EntradaMarca.TextInt != 0)
-                                Item.Marca = new Lbl.Articulos.Marca(Item.DataBase, EntradaMarca.TextInt);
-                        else
-                                Item.Marca = null;
-                        if (EntradaCaja.TextInt != 0)
-                                Item.Caja = new Lbl.Cajas.Caja(Item.DataBase, EntradaCaja.TextInt);
-                        else
-                                Item.Caja = null;
-
-                        Item.Modelo = EntradaModelo.Text;
-                        Item.Serie = EntradaSerie.Text;
-                        Item.Nombre = EntradaNombre.Text;
-                        Item.Url = EntradaUrl.Text;
-                        if (EntradaProveedor.TextInt != 0)
-                                Item.Proveedor = new Lbl.Personas.Persona(Item.DataBase, EntradaProveedor.TextInt);
-                        else
-                                Item.Proveedor = null;
-                        Item.Descripcion = EntradaDescripcion.Text;
-                        Item.Descripcion2 = EntradaDescripcion2.Text;
-                        Item.Destacado = Lfx.Types.Parsing.ParseInt(EntradaDestacado.TextKey) != 0;
-                        Item.Costo = Lfx.Types.Parsing.ParseCurrency(EntradaCosto.Text);
+                        Art.Codigo1 = EntradaCodigo1.Text;
+                        Art.Codigo2 = EntradaCodigo2.Text;
+                        Art.Codigo3 = EntradaCodigo3.Text;
+                        Art.Codigo4 = EntradaCodigo4.Text;
+                        Art.Categoria = EntradaCategoria.Elemento as Lbl.Articulos.Categoria;
+                        Art.Marca = EntradaMarca.Elemento as Lbl.Articulos.Marca;
+                        Art.Caja = EntradaCaja.Elemento as Lbl.Cajas.Caja;
+                        Art.Modelo = EntradaModelo.Text;
+                        Art.Serie = EntradaSerie.Text;
+                        Art.Nombre = EntradaNombre.Text;
+                        Art.Url = EntradaUrl.Text;
+                        Art.Proveedor = EntradaProveedor.Elemento as Lbl.Personas.Persona;
+                        Art.Descripcion = EntradaDescripcion.Text;
+                        Art.Descripcion2 = EntradaDescripcion2.Text;
+                        Art.Destacado = Lfx.Types.Parsing.ParseInt(EntradaDestacado.TextKey) != 0;
+                        Art.Costo = Lfx.Types.Parsing.ParseCurrency(EntradaCosto.Text);
 
                         if (Lfx.Types.Parsing.ParseInt(EntradaMargen.TextKey) != 0)
-                                Item.Margen = new Lbl.Articulos.Margen(Item.DataBase, Lfx.Types.Parsing.ParseInt(EntradaMargen.TextKey));
+                                Art.Margen = new Lbl.Articulos.Margen(Art.DataBase, Lfx.Types.Parsing.ParseInt(EntradaMargen.TextKey));
                         else
-                                Item.Margen = null;
+                                Art.Margen = null;
 
-                        Item.PVP = Lfx.Types.Parsing.ParseCurrency(EntradaPvp.Text);
-                        Item.ControlaStock = Lfx.Types.Parsing.ParseInt(EntradaUsaStock.TextKey) != 0;
-                        Item.StockMinimo = Lfx.Types.Parsing.ParseStock(EntradaStockMinimo.Text);
-                        Item.Unidad = EntradaUnidad.TextKey;
-                        Item.Rendimiento = Rendimiento;
-                        Item.UnidadRendimiento = UnidadRendimiento;
-                        Item.Estado = 1;
-                        Item.Garantia = Lfx.Types.Parsing.ParseInt(EntradaGarantia.Text);
-                        Item.Publicacion = ((Lbl.Articulos.Publicacion)Lfx.Types.Parsing.ParseInt(EntradaWeb.TextKey));
+                        Art.Pvp = Lfx.Types.Parsing.ParseCurrency(EntradaPvp.Text);
+                        Art.ControlStock = (Lbl.Articulos.ControlStock)(Lfx.Types.Parsing.ParseInt(EntradaUsaStock.TextKey));
+                        Art.StockMinimo = Lfx.Types.Parsing.ParseStock(EntradaStockMinimo.Text);
+                        Art.Unidad = EntradaUnidad.TextKey;
+                        Art.Rendimiento = Rendimiento;
+                        Art.UnidadRendimiento = UnidadRendimiento;
+                        Art.Estado = 1;
+                        Art.Garantia = Lfx.Types.Parsing.ParseInt(EntradaGarantia.Text);
+                        Art.Publicacion = ((Lbl.Articulos.Publicacion)Lfx.Types.Parsing.ParseInt(EntradaWeb.TextKey));
                         EntradaTags.ActualizarElemento();
                         EntradaImagen.ActualizarElemento();
 
-                        return base.ToRow();
+                        return Art;
                 }
 
 
@@ -525,6 +499,41 @@ namespace Lfc.Articulos
                         FormularioDetalles.MdiParent = this.MdiParent;
                         FormularioDetalles.Mostrar(this.CachedRow as Lbl.Articulos.Articulo);
                         FormularioDetalles.Show();
+                }
+
+                private void EntradaUsaStock_TextChanged(object sender, EventArgs e)
+                {
+                        BotonReceta.Visible = EntradaUsaStock.TextKey == "2";
+                        EntradaCosto.Enabled = EntradaUsaStock.TextKey != "2";
+                        this.ActualizarCostoYStockSegunReceta();
+                }
+
+                private void BotonReceta_Click(object sender, EventArgs e)
+                {
+                        if (EntradaUsaStock.TextKey == "2") {
+                                Lbl.Articulos.Articulo Art = this.CachedRow as Lbl.Articulos.Articulo;
+                                Receta FormReceta = new Receta();
+                                FormReceta.ReadOnly = this.ReadOnly;
+                                FormReceta.Articulo = Art;
+                                if (FormReceta.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                                        this.Changed = true;
+                                        this.ActualizarCostoYStockSegunReceta();
+                                }
+                        }
+                }
+
+                private void ActualizarCostoYStockSegunReceta()
+                {
+                        Lbl.Articulos.Articulo Art = this.CachedRow as Lbl.Articulos.Articulo;
+
+                        if (EntradaUsaStock.TextKey == "2") {
+                                if (Art.Receta == null)
+                                        EntradaCosto.Text = "0";
+                                else
+                                        EntradaCosto.Text = Lfx.Types.Formatting.FormatCurrency(Art.Receta.Costo, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
+
+                                EntradaStockActual.Text = Lfx.Types.Formatting.FormatStock(Art.ObtenerStockActual());
+                        }
                 }
         }
 }
