@@ -46,14 +46,14 @@ namespace Lui.Forms
                         // 
                         // SaveButton
                         // 
-                        this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.SaveButton.AutoHeight = false;
                         this.SaveButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.SaveButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.SaveButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.SaveButton.Image = null;
                         this.SaveButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.SaveButton.Location = new System.Drawing.Point(544, 10);
+                        this.SaveButton.Location = new System.Drawing.Point(568, 10);
                         this.SaveButton.Name = "SaveButton";
                         this.SaveButton.Padding = new System.Windows.Forms.Padding(2);
                         this.SaveButton.ReadOnly = false;
@@ -67,14 +67,14 @@ namespace Lui.Forms
                         // 
                         // CancelCommandButton
                         // 
-                        this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.CancelCommandButton.AutoHeight = false;
                         this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.CancelCommandButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.CancelCommandButton.Image = null;
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.CancelCommandButton.Location = new System.Drawing.Point(656, 10);
+                        this.CancelCommandButton.Location = new System.Drawing.Point(680, 10);
                         this.CancelCommandButton.Name = "CancelCommandButton";
                         this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(2);
                         this.CancelCommandButton.ReadOnly = false;
@@ -92,16 +92,16 @@ namespace Lui.Forms
                         this.LowerPanel.Controls.Add(this.CancelCommandButton);
                         this.LowerPanel.Controls.Add(this.SaveButton);
                         this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-                        this.LowerPanel.Location = new System.Drawing.Point(0, 420);
+                        this.LowerPanel.Location = new System.Drawing.Point(0, 413);
                         this.LowerPanel.Name = "LowerPanel";
-                        this.LowerPanel.Size = new System.Drawing.Size(768, 60);
-                        this.LowerPanel.TabIndex = 103;
+                        this.LowerPanel.Size = new System.Drawing.Size(792, 60);
+                        this.LowerPanel.TabIndex = 100;
                         // 
                         // BotonHistorial
                         // 
-                        this.BotonHistorial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonHistorial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonHistorial.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonHistorial.Location = new System.Drawing.Point(468, 36);
+                        this.BotonHistorial.Location = new System.Drawing.Point(492, 36);
                         this.BotonHistorial.Name = "BotonHistorial";
                         this.BotonHistorial.Size = new System.Drawing.Size(72, 16);
                         this.BotonHistorial.TabIndex = 103;
@@ -114,26 +114,25 @@ namespace Lui.Forms
                         // EditForm
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(768, 480);
+                        this.ClientSize = new System.Drawing.Size(792, 473);
                         this.Controls.Add(this.LowerPanel);
                         this.KeyPreview = true;
                         this.Name = "EditForm";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
                         this.Text = "Editar";
                         this.Closing += new System.ComponentModel.CancelEventHandler(this.EditForm_Closing);
-                        this.Load += new System.EventHandler(this.FormTablaEditar_Load);
-                        this.SizeChanged += new System.EventHandler(this.EditForm_SizeChanged);
+                        this.Load += new System.EventHandler(this.EditForm_Load);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditForm_KeyDown);
                         this.LowerPanel.ResumeLayout(false);
                         this.ResumeLayout(false);
 
                 }
 
-                public Lui.Forms.Button SaveButton;
-                public Lui.Forms.Button CancelCommandButton;
-                internal System.Windows.Forms.Panel LowerPanel;
-
                 #endregion
+
+                private Lui.Forms.Button SaveButton;
+                private Lui.Forms.Button CancelCommandButton;
+                private System.Windows.Forms.Panel LowerPanel;
                 private System.Windows.Forms.LinkLabel BotonHistorial;
         }
 }

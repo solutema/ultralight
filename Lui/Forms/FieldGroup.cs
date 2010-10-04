@@ -80,11 +80,17 @@ namespace Lui.Forms
                 {
                         e.Control.Width = FieldContainer.ClientSize.Width - FieldContainer.Margin.Left - FieldContainer.Margin.Right;
                         //Pongo los anchos de las etiquetas para todos los fields iguales (busco el mayor)
+                        int MaxHeight = 0;
                         foreach (System.Windows.Forms.Control Ctl in FieldContainer.Controls) {
                                 if (Ctl is Field) {
                                         ((Field)Ctl).LabelWidth = this.AutoLabelWidth;
                                 }
+                                if (Ctl.Top + Ctl.Height > MaxHeight)
+                                        MaxHeight = Ctl.Top + Ctl.Height;
                         }
+                        FieldContainer.Height = MaxHeight;
+
+                        this.Height = FieldContainer.Top + FieldContainer.Height;
                 }
 
                 private void FieldContainer_ClientSizeChanged(object sender, EventArgs e)

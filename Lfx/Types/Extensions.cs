@@ -37,9 +37,9 @@ namespace Lfx.Types
         /// <summary>
         /// Métodos de extension para el tipo Int.
         /// </summary>
-        public static class IntExtensions
+        public static class Extensions
         {
-                public static int SafeParse(this string s)
+                public static int SafeParseInt(this string s)
                 {
                         if (s == null || s.Length == 0)
                                 return 0;
@@ -50,27 +50,15 @@ namespace Lfx.Types
                         else
                                 return System.Convert.ToInt32(Resultado);
                 }
-        }
 
-        /// <summary>
-        /// Métodos de extension para el tipo Double.
-        /// </summary>
-        public static class DoubleExtensions
-        {
-                public static double SafeParse(this string s)
+                public static double SafeParseDouble(this string s)
                 {
                         double Resultado = 0;
                         double.TryParse(s, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out Resultado);
                         return Resultado;
                 }
-        }
 
-        /// <summary>
-        /// Métodos de extension para el tipo Bool.
-        /// </summary>
-        public static class BoolExtensions
-        {
-                public static bool SafeParse(this string s)
+                public static bool SafeParseBool(this string s)
                 {
                         if (s == null)
                                 return false;
@@ -90,14 +78,8 @@ namespace Lfx.Types
                                         return Lfx.Types.Parsing.ParseInt(s) != 0;
                         }
                 }
-        }
 
-        /// <summary>
-        /// Métodos de extension para los tipos DateTime y LDateTime.
-        /// </summary>
-        public static class DateTimeExtensions
-        {
-                public static LDateTime SafeParse(this string s)
+                public static LDateTime SafeParseDateTime(this string s)
                 {
                         // Toma una fecha DD-MM-YYYY y devuelve un Date
                         string FechaTemp = s.Replace("  ", " ").Replace("/", "-").Trim();
@@ -122,7 +104,7 @@ namespace Lfx.Types
                 /// <summary>
                 /// Toma una fecha YYYY-MM-DD HH:MM:SS y devuelve un DateTime
                 /// </summary>
-                public static DateTime ParseSql(this string s)
+                public static DateTime SafeParseSqlDateTime(this string s)
                 {
                         string FechaTemp = s.Replace("  ", " ").Replace("/", "-").Trim();
                         string[] FormatosAceptados =

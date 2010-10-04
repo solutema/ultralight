@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -76,45 +76,35 @@ namespace Lfc.Sucursales
 		internal System.Windows.Forms.Label Label1;
 		internal System.Windows.Forms.Label label2;
 		internal System.Windows.Forms.Label label3;
-		internal Lui.Forms.DetailBox txtCiudad;
+		internal Lcc.Entrada.CodigoDetalle EntradaCiudad;
 		internal System.Windows.Forms.Label Label9;
-		internal Lui.Forms.TextBox txtDireccion;
-		internal Lui.Forms.TextBox txtTelefono;
-		internal Lui.Forms.DetailBox txtSituacionOrigen;
+		internal Lui.Forms.TextBox EntradaDireccion;
+		internal Lui.Forms.TextBox EntradaTelefono;
+		internal Lcc.Entrada.CodigoDetalle EntradaSituacionOrigen;
 		internal System.Windows.Forms.Label label4;
 		internal System.Windows.Forms.Label label5;
 		internal System.Windows.Forms.Label label6;
-		internal Lui.Forms.DetailBox EntradaCajaDiaria;
-		internal Lui.Forms.DetailBox EntradaCajaCheques;
-		internal Lui.Forms.TextBox txtNombre;
+		internal Lcc.Entrada.CodigoDetalle EntradaCajaDiaria;
+		internal Lcc.Entrada.CodigoDetalle EntradaCajaCheques;
+		internal Lui.Forms.TextBox EntradaNombre;
 
 		private void InitializeComponent()
 		{
 			this.Label1 = new System.Windows.Forms.Label();
-			this.txtNombre = new Lui.Forms.TextBox();
-			this.txtDireccion = new Lui.Forms.TextBox();
+			this.EntradaNombre = new Lui.Forms.TextBox();
+			this.EntradaDireccion = new Lui.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
-			this.txtTelefono = new Lui.Forms.TextBox();
+			this.EntradaTelefono = new Lui.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.txtCiudad = new Lui.Forms.DetailBox();
+			this.EntradaCiudad = new Lcc.Entrada.CodigoDetalle();
 			this.Label9 = new System.Windows.Forms.Label();
-			this.txtSituacionOrigen = new Lui.Forms.DetailBox();
+			this.EntradaSituacionOrigen = new Lcc.Entrada.CodigoDetalle();
 			this.label4 = new System.Windows.Forms.Label();
-			this.EntradaCajaDiaria = new Lui.Forms.DetailBox();
+			this.EntradaCajaDiaria = new Lcc.Entrada.CodigoDetalle();
 			this.label5 = new System.Windows.Forms.Label();
-			this.EntradaCajaCheques = new Lui.Forms.DetailBox();
+			this.EntradaCajaCheques = new Lcc.Entrada.CodigoDetalle();
 			this.label6 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
-			// 
-			// SaveButton
-			// 
-			this.SaveButton.DockPadding.All = 2;
-			this.SaveButton.Name = "SaveButton";
-			// 
-			// CancelCommandButton
-			// 
-			this.CancelCommandButton.DockPadding.All = 2;
-			this.CancelCommandButton.Name = "CancelCommandButton";
 			// 
 			// Label1
 			// 
@@ -127,41 +117,41 @@ namespace Lfc.Sucursales
 			// 
 			// txtNombre
 			// 
-			this.txtNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
-			this.txtNombre.AutoNav = true;
-			this.txtNombre.AutoTab = true;
-			this.txtNombre.DataType = Lui.Forms.DataTypes.FreeText;
-			this.txtNombre.DockPadding.All = 2;
-			this.txtNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txtNombre.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtNombre.Location = new System.Drawing.Point(112, 16);
-			this.txtNombre.MaxLenght = 32767;
-			this.txtNombre.Name = "txtNombre";
-			this.txtNombre.ReadOnly = false;
-			this.txtNombre.SelectOnFocus = false;
-			this.txtNombre.Size = new System.Drawing.Size(464, 24);
-			this.txtNombre.TabIndex = 1;
-			this.txtNombre.ToolTipText = "";
+			this.EntradaNombre.AutoNav = true;
+			this.EntradaNombre.AutoTab = true;
+			this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
+			this.EntradaNombre.DockPadding.All = 2;
+			this.EntradaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.EntradaNombre.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.EntradaNombre.Location = new System.Drawing.Point(112, 16);
+			this.EntradaNombre.MaxLenght = 32767;
+			this.EntradaNombre.Name = "txtNombre";
+			this.EntradaNombre.ReadOnly = false;
+			this.EntradaNombre.SelectOnFocus = false;
+			this.EntradaNombre.Size = new System.Drawing.Size(464, 24);
+			this.EntradaNombre.TabIndex = 1;
+			this.EntradaNombre.ToolTipText = "";
 			// 
 			// txtDireccion
 			// 
-			this.txtDireccion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			this.EntradaDireccion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
-			this.txtDireccion.AutoNav = true;
-			this.txtDireccion.AutoTab = true;
-			this.txtDireccion.DataType = Lui.Forms.DataTypes.FreeText;
-			this.txtDireccion.DockPadding.All = 2;
-			this.txtDireccion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txtDireccion.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtDireccion.Location = new System.Drawing.Point(112, 48);
-			this.txtDireccion.MaxLenght = 32767;
-			this.txtDireccion.Name = "txtDireccion";
-			this.txtDireccion.ReadOnly = false;
-			this.txtDireccion.SelectOnFocus = false;
-			this.txtDireccion.Size = new System.Drawing.Size(464, 24);
-			this.txtDireccion.TabIndex = 3;
-			this.txtDireccion.ToolTipText = "";
+			this.EntradaDireccion.AutoNav = true;
+			this.EntradaDireccion.AutoTab = true;
+			this.EntradaDireccion.DataType = Lui.Forms.DataTypes.FreeText;
+			this.EntradaDireccion.DockPadding.All = 2;
+			this.EntradaDireccion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.EntradaDireccion.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.EntradaDireccion.Location = new System.Drawing.Point(112, 48);
+			this.EntradaDireccion.MaxLenght = 32767;
+			this.EntradaDireccion.Name = "txtDireccion";
+			this.EntradaDireccion.ReadOnly = false;
+			this.EntradaDireccion.SelectOnFocus = false;
+			this.EntradaDireccion.Size = new System.Drawing.Size(464, 24);
+			this.EntradaDireccion.TabIndex = 3;
+			this.EntradaDireccion.ToolTipText = "";
 			// 
 			// label2
 			// 
@@ -174,22 +164,22 @@ namespace Lfc.Sucursales
 			// 
 			// txtTelefono
 			// 
-			this.txtTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			this.EntradaTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
-			this.txtTelefono.AutoNav = true;
-			this.txtTelefono.AutoTab = true;
-			this.txtTelefono.DataType = Lui.Forms.DataTypes.FreeText;
-			this.txtTelefono.DockPadding.All = 2;
-			this.txtTelefono.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txtTelefono.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtTelefono.Location = new System.Drawing.Point(112, 80);
-			this.txtTelefono.MaxLenght = 32767;
-			this.txtTelefono.Name = "txtTelefono";
-			this.txtTelefono.ReadOnly = false;
-			this.txtTelefono.SelectOnFocus = false;
-			this.txtTelefono.Size = new System.Drawing.Size(332, 24);
-			this.txtTelefono.TabIndex = 5;
-			this.txtTelefono.ToolTipText = "";
+			this.EntradaTelefono.AutoNav = true;
+			this.EntradaTelefono.AutoTab = true;
+			this.EntradaTelefono.DataType = Lui.Forms.DataTypes.FreeText;
+			this.EntradaTelefono.DockPadding.All = 2;
+			this.EntradaTelefono.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.EntradaTelefono.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.EntradaTelefono.Location = new System.Drawing.Point(112, 80);
+			this.EntradaTelefono.MaxLenght = 32767;
+			this.EntradaTelefono.Name = "txtTelefono";
+			this.EntradaTelefono.ReadOnly = false;
+			this.EntradaTelefono.SelectOnFocus = false;
+			this.EntradaTelefono.Size = new System.Drawing.Size(332, 24);
+			this.EntradaTelefono.TabIndex = 5;
+			this.EntradaTelefono.ToolTipText = "";
 			// 
 			// label3
 			// 
@@ -202,28 +192,27 @@ namespace Lfc.Sucursales
 			// 
 			// txtCiudad
 			// 
-			this.txtCiudad.AutoTab = true;
-			this.txtCiudad.CanCreate = true;
-			this.txtCiudad.DetailField = "nombre";
-			this.txtCiudad.DockPadding.All = 2;
-			this.txtCiudad.ExtraDetailFields = null;
-			this.txtCiudad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txtCiudad.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtCiudad.FreeTextCode = "";
-			this.txtCiudad.KeyField = "id_ciudad";
-			this.txtCiudad.Location = new System.Drawing.Point(112, 112);
-			this.txtCiudad.MaxLength = 200;
-			this.txtCiudad.Name = "txtCiudad";
-			this.txtCiudad.ReadOnly = false;
-			this.txtCiudad.Required = true;
-			this.txtCiudad.Size = new System.Drawing.Size(280, 24);
-			this.txtCiudad.TabIndex = 7;
-			this.txtCiudad.Table = "ciudades";
-			this.txtCiudad.TeclaDespuesDeEnter = "{tab}";
-			this.txtCiudad.Text = "0";
-			this.txtCiudad.TextDetail = "";
-			this.txtCiudad.TextInt = 0;
-			this.txtCiudad.ToolTipText = "";
+			this.EntradaCiudad.AutoTab = true;
+			this.EntradaCiudad.CanCreate = true;
+			this.EntradaCiudad.DetailField = "nombre";
+			this.EntradaCiudad.DockPadding.All = 2;
+			this.EntradaCiudad.ExtraDetailFields = null;
+			this.EntradaCiudad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.EntradaCiudad.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.EntradaCiudad.FreeTextCode = "";
+			this.EntradaCiudad.KeyField = "id_ciudad";
+			this.EntradaCiudad.Location = new System.Drawing.Point(112, 112);
+			this.EntradaCiudad.MaxLength = 200;
+			this.EntradaCiudad.Name = "txtCiudad";
+			this.EntradaCiudad.ReadOnly = false;
+			this.EntradaCiudad.Required = true;
+			this.EntradaCiudad.Size = new System.Drawing.Size(280, 24);
+			this.EntradaCiudad.TabIndex = 7;
+			this.EntradaCiudad.Table = "ciudades";
+			this.EntradaCiudad.TeclaDespuesDeEnter = "{tab}";
+			this.EntradaCiudad.Text = "0";
+			this.EntradaCiudad.TextDetail = "";
+			this.EntradaCiudad.ToolTipText = "";
 			// 
 			// Label9
 			// 
@@ -236,29 +225,28 @@ namespace Lfc.Sucursales
 			// 
 			// txtSituacionOrigen
 			// 
-			this.txtSituacionOrigen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.txtSituacionOrigen.AutoTab = true;
-			this.txtSituacionOrigen.CanCreate = true;
-			this.txtSituacionOrigen.DetailField = "nombre";
-			this.txtSituacionOrigen.DockPadding.All = 2;
-			this.txtSituacionOrigen.ExtraDetailFields = null;
-			this.txtSituacionOrigen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txtSituacionOrigen.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtSituacionOrigen.FreeTextCode = "";
-			this.txtSituacionOrigen.KeyField = "id_situacion";
-			this.txtSituacionOrigen.Location = new System.Drawing.Point(228, 148);
-			this.txtSituacionOrigen.MaxLength = 200;
-			this.txtSituacionOrigen.Name = "txtSituacionOrigen";
-			this.txtSituacionOrigen.ReadOnly = false;
-			this.txtSituacionOrigen.Required = true;
-			this.txtSituacionOrigen.Size = new System.Drawing.Size(280, 24);
-			this.txtSituacionOrigen.TabIndex = 9;
-			this.txtSituacionOrigen.Table = "articulos_situaciones";
-			this.txtSituacionOrigen.TeclaDespuesDeEnter = "{tab}";
-			this.txtSituacionOrigen.Text = "0";
-			this.txtSituacionOrigen.TextDetail = "";
-			this.txtSituacionOrigen.TextInt = 0;
-			this.txtSituacionOrigen.ToolTipText = "";
+			this.EntradaSituacionOrigen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.EntradaSituacionOrigen.AutoTab = true;
+			this.EntradaSituacionOrigen.CanCreate = true;
+			this.EntradaSituacionOrigen.DetailField = "nombre";
+			this.EntradaSituacionOrigen.DockPadding.All = 2;
+			this.EntradaSituacionOrigen.ExtraDetailFields = null;
+			this.EntradaSituacionOrigen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.EntradaSituacionOrigen.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.EntradaSituacionOrigen.FreeTextCode = "";
+			this.EntradaSituacionOrigen.KeyField = "id_situacion";
+			this.EntradaSituacionOrigen.Location = new System.Drawing.Point(228, 148);
+			this.EntradaSituacionOrigen.MaxLength = 200;
+			this.EntradaSituacionOrigen.Name = "txtSituacionOrigen";
+			this.EntradaSituacionOrigen.ReadOnly = false;
+			this.EntradaSituacionOrigen.Required = true;
+			this.EntradaSituacionOrigen.Size = new System.Drawing.Size(280, 24);
+			this.EntradaSituacionOrigen.TabIndex = 9;
+			this.EntradaSituacionOrigen.Table = "articulos_situaciones";
+			this.EntradaSituacionOrigen.TeclaDespuesDeEnter = "{tab}";
+			this.EntradaSituacionOrigen.Text = "0";
+			this.EntradaSituacionOrigen.TextDetail = "";
+			this.EntradaSituacionOrigen.ToolTipText = "";
 			// 
 			// label4
 			// 
@@ -293,7 +281,6 @@ namespace Lfc.Sucursales
 			this.EntradaCajaDiaria.TeclaDespuesDeEnter = "{tab}";
 			this.EntradaCajaDiaria.Text = "0";
 			this.EntradaCajaDiaria.TextDetail = "";
-			this.EntradaCajaDiaria.TextInt = 0;
 			this.EntradaCajaDiaria.ToolTipText = "";
 			// 
 			// label5
@@ -329,7 +316,6 @@ namespace Lfc.Sucursales
 			this.EntradaCajaCheques.TeclaDespuesDeEnter = "{tab}";
 			this.EntradaCajaCheques.Text = "0";
 			this.EntradaCajaCheques.TextDetail = "";
-			this.EntradaCajaCheques.TextInt = 0;
 			this.EntradaCajaCheques.ToolTipText = "";
 
 			// 
@@ -351,15 +337,15 @@ namespace Lfc.Sucursales
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.EntradaCajaDiaria);
 			this.Controls.Add(this.label5);
-			this.Controls.Add(this.txtSituacionOrigen);
+			this.Controls.Add(this.EntradaSituacionOrigen);
 			this.Controls.Add(this.label4);
-			this.Controls.Add(this.txtCiudad);
+			this.Controls.Add(this.EntradaCiudad);
 			this.Controls.Add(this.Label9);
-			this.Controls.Add(this.txtTelefono);
+			this.Controls.Add(this.EntradaTelefono);
 			this.Controls.Add(this.label3);
-			this.Controls.Add(this.txtDireccion);
+			this.Controls.Add(this.EntradaDireccion);
 			this.Controls.Add(this.label2);
-			this.Controls.Add(this.txtNombre);
+			this.Controls.Add(this.EntradaNombre);
 			this.Controls.Add(this.Label1);
 			this.Name = "FormSucursalesEditar";
 			this.Text = "Editar: Sucursales";
@@ -380,18 +366,18 @@ namespace Lfc.Sucursales
 				ResultadoEditar.Success = false;
 				ResultadoEditar.Message = "El registro no existe";
 			} else {
-				txtNombre.Text = System.Convert.ToString(row["nombre"]);
-				txtDireccion.Text = System.Convert.ToString(row["direccion"]);
-				txtTelefono.Text = System.Convert.ToString(row["telefono"]);
-				txtCiudad.TextInt = Lfx.Data.DataBase.ConvertDBNullToZero(row["id_ciudad"]);
-				txtSituacionOrigen.TextInt = Lfx.Data.DataBase.ConvertDBNullToZero(row["situacionorigen"]);
+				EntradaNombre.Text = System.Convert.ToString(row["nombre"]);
+				EntradaDireccion.Text = System.Convert.ToString(row["direccion"]);
+				EntradaTelefono.Text = System.Convert.ToString(row["telefono"]);
+				EntradaCiudad.TextInt = Lfx.Data.DataBase.ConvertDBNullToZero(row["id_ciudad"]);
+				EntradaSituacionOrigen.TextInt = Lfx.Data.DataBase.ConvertDBNullToZero(row["situacionorigen"]);
 				EntradaCajaDiaria.TextInt = Lfx.Data.DataBase.ConvertDBNullToZero(row["id_caja_diaria"]);
 				EntradaCajaCheques.TextInt = Lfx.Data.DataBase.ConvertDBNullToZero(row["id_caja_cheques"]);
 
 				m_Id = lId;
 				m_Nuevo = false;
 
-				this.Text = "Sucursales: " + txtNombre.Text;
+				this.Text = "Sucursales: " + EntradaNombre.Text;
 				ResultadoEditar.Success = true;
 			}
 
@@ -415,11 +401,11 @@ namespace Lfc.Sucursales
                                         Comando.WhereClause = new qGen.Where("id_sucursal", m_Id);
                                 }
 
-				Comando.Fields.AddWithValue("nombre", txtNombre.Text);
-				Comando.Fields.AddWithValue("direccion", txtDireccion.Text);
-				Comando.Fields.AddWithValue("telefono", txtTelefono.Text);
-				Comando.Fields.AddWithValue("id_ciudad", txtCiudad.TextInt);
-				Comando.Fields.AddWithValue("situacionorigen", Lfx.Data.DataBase.ConvertZeroToDBNull(txtSituacionOrigen.TextInt));
+				Comando.Fields.AddWithValue("nombre", EntradaNombre.Text);
+				Comando.Fields.AddWithValue("direccion", EntradaDireccion.Text);
+				Comando.Fields.AddWithValue("telefono", EntradaTelefono.Text);
+				Comando.Fields.AddWithValue("id_ciudad", EntradaCiudad.TextInt);
+				Comando.Fields.AddWithValue("situacionorigen", Lfx.Data.DataBase.ConvertZeroToDBNull(EntradaSituacionOrigen.TextInt));
 				Comando.Fields.AddWithValue("id_caja_diaria", Lfx.Data.DataBase.ConvertZeroToDBNull(EntradaCajaDiaria.TextInt));
 				Comando.Fields.AddWithValue("id_caja_cheques", Lfx.Data.DataBase.ConvertZeroToDBNull(EntradaCajaCheques.TextInt));
 

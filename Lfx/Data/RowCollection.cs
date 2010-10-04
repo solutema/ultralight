@@ -63,7 +63,7 @@ namespace Lfx.Data
                         LoadAll_Loaded = true;
                 }
 
-                public new System.Collections.IEnumerator GetEnumerator()
+                new public System.Collections.IEnumerator GetEnumerator()
                 {
                         //GetEnumerator es llamado antes de un foreach. En ese caso, se cargan todos los registros en memoria.
                         this.LoadAll();
@@ -88,7 +88,7 @@ namespace Lfx.Data
                         return null;    //Or throw?
                 }
                 */
-                public new Lfx.Data.Row this[int id]
+                new public Lfx.Data.Row this[int id]
                 {
                         get
                         {
@@ -136,13 +136,8 @@ namespace Lfx.Data
 
                 public void RemoveFromCache(int id)
                 {
-                        this.Remove(id);
-                        /* foreach (Lfx.Data.Row Rw in this.List) {
-                                if (System.Convert.ToInt32(Rw.Fields[this.Table.PrimaryKey].Value) == id) {
-                                        this.List.Remove(Rw);
-                                        return;
-                                }
-                        } */
+                        if (this.ContainsKey(id))
+                                this.Remove(id);
                 }
         }
 }

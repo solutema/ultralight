@@ -60,7 +60,7 @@ namespace Lfc
                 {
                         this.EntradaEtiquetas = new Lcc.Controles.Datos.Etiquetas();
                         this.EtiquetaTitulo = new System.Windows.Forms.Label();
-                        this.EntradaComentarios = new Lcc.Controles.Datos.Comentarios();
+                        this.EntradaComentarios = new Lcc.Edicion.Comentarios();
                         this.label1 = new System.Windows.Forms.Label();
                         this.SuspendLayout();
                         // 
@@ -79,7 +79,7 @@ namespace Lfc
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEtiquetas.AutoHeight = true;
                         this.EntradaEtiquetas.AutoNav = true;
-                        this.EntradaEtiquetas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaEtiquetas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaEtiquetas.Location = new System.Drawing.Point(464, 36);
                         this.EntradaEtiquetas.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
                         this.EntradaEtiquetas.Name = "EntradaEtiquetas";
@@ -142,7 +142,7 @@ namespace Lfc
 
                 private Lcc.Controles.Datos.Etiquetas EntradaEtiquetas;
                 private System.Windows.Forms.Label EtiquetaTitulo;
-                protected internal Lcc.Controles.Datos.Comentarios EntradaComentarios;
+                protected internal Lcc.Edicion.Comentarios EntradaComentarios;
                 private System.Windows.Forms.Label label1;
         }
 }

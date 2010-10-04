@@ -52,7 +52,7 @@ namespace Lui.Forms
 
                 public event System.EventHandler SelectedDatesChanged;
                 public event System.EventHandler CurrentDateChanged;
-                public new event System.EventHandler DoubleClick;
+                new public event System.EventHandler DoubleClick;
 
                 #region Código generado por el Diseñador de Windows Forms
 

@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -53,7 +53,7 @@ namespace Lfc.Sucursales
 			// agregar código de constructor después de llamar a InitializeComponent
 			this.DataTableName = "sucursales";
                         this.KeyField = new Lfx.Data.FormField("sucursales.id_sucursal", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-			this.FormFields = new Lfx.Data.FormField[] 
+			this.FormFields = new List<Lfx.Data.FormField>() 
 			{
 				new Lfx.Data.FormField("sucursales.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 300),
 				new Lfx.Data.FormField("sucursales.direccion", "Dirección", Lfx.Data.InputFieldTypes.Text, 160),

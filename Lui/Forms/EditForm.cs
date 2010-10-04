@@ -30,10 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
-using System.Data;
-using System.Drawing;
-using System.Diagnostics;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Lui.Forms
@@ -49,13 +46,26 @@ namespace Lui.Forms
                 public Type ElementType = null;
 
                 public EditForm()
-                        : base()
                 {
                         InitializeComponent();
 
                         LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
                 }
 
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public virtual bool SaveEnable
+                {
+                        get
+                        {
+                                return SaveButton.Visible && SaveButton.Enabled;
+                        }
+                        set
+                        {
+                                this.SaveButton.Visible = value;
+                        }
+                }
+
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public virtual bool ReadOnly
                 {
                         get
@@ -65,7 +75,7 @@ namespace Lui.Forms
                         set
                         {
                                 m_ReadOnly = value;
-                                SaveButton.Visible = !m_ReadOnly;
+                                this.SaveEnable = !m_ReadOnly;
                                 if (value)
                                         CancelCommandButton.Text = "Cerrar";
                                 else
@@ -85,9 +95,7 @@ namespace Lui.Forms
                         m_Id = itemId;
 
                         if (this.ElementType != null) {
-                                System.Reflection.ConstructorInfo TConstr = this.ElementType.GetConstructor(new Type[] { typeof(Lfx.Data.DataBase), typeof(int) });
-                                Lbl.ElementoDeDatos Elem = (Lbl.ElementoDeDatos)(TConstr.Invoke(new object[] { this.DataBase, m_Id }));
-
+                                Lbl.ElementoDeDatos Elem = Lbl.Instanciador.Instanciar(this.ElementType, this.DataBase, m_Id);
                                 if (Elem != null)
                                         this.FromRow(Elem);
                         }
@@ -96,7 +104,8 @@ namespace Lui.Forms
 
                 public virtual Printing.ItemPrint FormatForPrinting(Printing.ItemPrint ImprimirItem)
                 {
-                        ImprimirItem.Titulo = "ERROR: Formato no definido"; ImprimirItem.AgregarPar("", "No se ha definido el formato de impresión para este tipo de elementos.", 1);
+                        ImprimirItem.Titulo = "ERROR: Formato no definido";
+                        ImprimirItem.AgregarPar("", "No se ha definido el formato de impresión para este tipo de elementos.", 1);
                         return ImprimirItem;
                 }
 
@@ -176,7 +185,7 @@ namespace Lui.Forms
                         if (this.CachedRow != null) {
                                 WasNew = !this.CachedRow.Existe;
                                 this.CachedRow = this.ToRow();
-                                if (SomethingChanged(this.Controls, false) || this.CachedRow.Registro.IsModified || this.CachedRow.ImagenCambio) {
+                                if (this.GetControlsChanged(this.Controls, false) || this.CachedRow.Registro.IsModified || this.CachedRow.ImagenCambio) {
                                         // Guardo sólo si hubo cambios
                                         bool WasInTransaction = this.CachedRow.DataBase.InTransaction;
                                         if (WasInTransaction == false)
@@ -230,16 +239,18 @@ namespace Lui.Forms
 
                 private void SaveButton_Click(object sender, System.EventArgs e)
                 {
-                        SaveButton.Enabled = false;
+                        if (SaveButton.Visible && SaveButton.Enabled) {
+                                SaveButton.Enabled = false;
 
-                        Lfx.Types.OperationResult Result = this.Save();
+                                Lfx.Types.OperationResult Result = this.Save();
 
-                        if (Result.Success == true) {
-                                this.Close();
-                        } else {
-                                if (Result.Message != null && Result.Message.Length > 0)
-                                        Lui.Forms.MessageBox.Show(Result.Message, "Error");
-                                SaveButton.Enabled = true;
+                                if (Result.Success == true) {
+                                        this.Close();
+                                } else {
+                                        if (Result.Message != null && Result.Message.Length > 0)
+                                                Lui.Forms.MessageBox.Show(Result.Message, "Error");
+                                        SaveButton.Enabled = true;
+                                }
                         }
                 }
 
@@ -276,44 +287,17 @@ namespace Lui.Forms
 
                 private void EditForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
                 {
-                        if (SomethingChanged(this.Controls, true)) {
-
+                        if (this.GetControlsChanged(this.Controls, true)) {
                                 Lui.Forms.YesNoDialog OPreguna = new Lui.Forms.YesNoDialog("Si cierra el formulario en este momento, no se guardarán los cambios realizados (subrayados en color rojo). ¿Desea cerrar el formulario de todos modos y perder los cambios realizados?", "Hay cambios sin guardar");
-                                OPreguna.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+                                OPreguna.DialogButtons = Lui.Forms.DialogButtons.YesNo;
 
                                 if (OPreguna.ShowDialog() == DialogResult.Cancel) {
                                         e.Cancel = true;
-                                        SomethingChanged(this.Controls, false);
+                                        this.GetControlsChanged(this.Controls, false);
                                 } else {
                                         e.Cancel = false;
                                 }
                         }
-                }
-
-                private bool SomethingChanged(System.Windows.Forms.Control.ControlCollection controls, bool showChanges)
-                {
-                        bool Result = false;
-                        // Ver si algo cambió
-                        foreach (System.Windows.Forms.Control ctl in controls) {
-                                if (ctl == null) {
-                                        //Nada
-                                } else if (ctl is Lui.Forms.ProductArray) {
-                                        if (((Lui.Forms.ProductArray)ctl).Changed) {
-                                                Result = true;
-                                                ((Lui.Forms.ProductArray)ctl).ShowChanged = showChanges;
-                                        }
-                                } else if (ctl is Lui.Forms.Frame || ctl is System.Windows.Forms.Panel) {
-                                        // Es un conteneder. Uso recursión
-                                        if (SomethingChanged(ctl.Controls, showChanges))
-                                                Result = true;
-                                } else if (ctl is Lui.Forms.Control) {
-                                        if (((Lui.Forms.Control)ctl).Changed) {
-                                                Result = true;
-                                                ((Lui.Forms.Control)ctl).ShowChanged = showChanges;
-                                        }
-                                }
-                        }
-                        return Result;
                 }
 
                 internal void SetControlsReadOnly(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
@@ -331,36 +315,18 @@ namespace Lui.Forms
                         }
                 }
 
-                internal void SetControlsChanged(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
-                {
-                        // Pongo los Changed en False
-                        foreach (System.Windows.Forms.Control ctl in controles) {
-                                if (ctl == null) {
-                                        //Nada
-                                } else if (ctl is Lui.Forms.ProductArray) {
-                                        ((Lui.Forms.ProductArray)ctl).Changed = newValue;
-                                } else if (ctl is Lui.Forms.Frame || ctl is System.Windows.Forms.Panel) {
-                                        SetControlsChanged(ctl.Controls, newValue);
-                                } else if (ctl is Lui.Forms.Control) {
-                                        ((Lui.Forms.Control)ctl).Changed = newValue;
-                                }
-                        }
-                }
-
-                private void FormTablaEditar_Load(object sender, System.EventArgs e)
+                private void EditForm_Load(object sender, System.EventArgs e)
                 {
                         if (this.MyToolBarButton != null)
                                 this.MyToolBarButton.ImageIndex = 1;
                 }
 
-                private void EditForm_SizeChanged(object sender, System.EventArgs e)
-                {
-                        CancelCommandButton.Left = LowerPanel.Width - CancelCommandButton.Width - 4;
-                        SaveButton.Left = CancelCommandButton.Left - SaveButton.Width - 4;
-                }
-
                 public virtual void FromRow(Lbl.ElementoDeDatos row)
                 {
+                        // Si todavía no conozco el tipo de elemento de este formulario, lo tomo de row
+                        if (this.ElementType == typeof(Lbl.ElementoDeDatos))
+                                this.ElementType = row.GetType();
+
                         this.CachedRow = row;
                         this.m_Id = row.Id;
                         BotonHistorial.Visible = this.CachedRow.Existe && this.Workspace.CurrentUser.AccessList.HasGlobalAcccess();

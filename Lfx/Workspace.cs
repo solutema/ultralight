@@ -1,4 +1,4 @@
-#region License
+ #region License
 // Copyright 2004-2010 South Bridge S.R.L.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -30,6 +30,7 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 
 namespace Lfx
 {
@@ -38,7 +39,7 @@ namespace Lfx
 	/// </summary>
         public class Workspace : System.MarshalByRefObject
 	{
-                public static Lfx.Workspace Master;
+                public static Lfx.Workspace Master = null;
                 public static Lfx.Data.TableCollection m_MasterTableCollection = null;
 
 		private string m_Name;
@@ -50,6 +51,7 @@ namespace Lfx
 		public Access.LoginData CurrentUser;
 		public int DataBaseCount = 0;
 		public bool DebugMode = false;
+                public List<Data.DataBase> DataBases = new List<Data.DataBase>();
 
 		public Workspace()
 			: this("default")

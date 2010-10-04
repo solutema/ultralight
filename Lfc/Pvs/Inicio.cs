@@ -30,9 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Lfc.Pvs
@@ -48,7 +46,7 @@ namespace Lfc.Pvs
 			DataTableName = "pvs";
                         KeyField = new Lfx.Data.FormField("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
                         this.Joins.Add(new qGen.Join("sucursales", "pvs.id_sucursal=sucursales.id_sucursal"));
-			FormFields = new Lfx.Data.FormField[]
+			FormFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 new Lfx.Data.FormField("pvs.tipo_fac", "Comprobantes", Lfx.Data.InputFieldTypes.Text, 180),
@@ -89,43 +87,42 @@ namespace Lfc.Pvs
 		}
 		#endregion
 
-                public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
-		{
-                        switch(row.Fields["tipo_fac"].ValueString)
-                        {
+                public override void ItemAdded(ListViewItem item, Lfx.Data.Row row)
+                {
+                        switch (row.Fields["tipo_fac"].ValueString) {
                                 case "F":
-                                        itm.SubItems[2].Text = "Facturas";
+                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Facturas";
                                         break;
                                 case "F,ND":
-                                        itm.SubItems[2].Text = "Facturas, Notas de Débito";
+                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Facturas, Notas de Débito";
                                         break;
                                 case "F,NC,ND":
-                                        itm.SubItems[2].Text = "Facturas, Notas de Crédito y Débito";
+                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Facturas, Notas de Crédito y Débito";
                                         break;
                                 case "R":
-                                        itm.SubItems[2].Text = "Remitos";
+                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Remitos";
                                         break;
                                 case "RC":
-                                        itm.SubItems[2].Text = "Recibos de Cobro";
+                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Recibos de Cobro";
                                         break;
                                 case "RP":
-                                        itm.SubItems[2].Text = "Recibos de Pago";
+                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Recibos de Pago";
                                         break;
                         }
 
                         int TipoPv = row.Fields["tipo"].ValueInt;
                         if (TipoPv == 0)
-				itm.SubItems[5].Text = "Inactivo";
+                                item.SubItems[Listado.Columns["pvs.tipo"].Index].Text = "Inactivo";
                         if (TipoPv == 1)
-				itm.SubItems[5].Text = "Normal";
+                                item.SubItems[Listado.Columns["pvs.tipo"].Index].Text = "Normal";
                         else if (TipoPv == 2)
-				itm.SubItems[5].Text = "Fiscal";
+                                item.SubItems[Listado.Columns["pvs.tipo"].Index].Text = "Fiscal";
 
-			if(itm.SubItems[7].Text == "0")
-				itm.SubItems[7].Text = "Automática";
-			else if(itm.SubItems[7].Text == "1")
-				itm.SubItems[7].Text = "Manual";
-		}
+                        if (item.SubItems[Listado.Columns["pvs.carga"].Index].Text == "0")
+                                item.SubItems[Listado.Columns["pvs.carga"].Index].Text = "Automática";
+                        else if (item.SubItems[Listado.Columns["pvs.carga"].Index].Text == "1")
+                                item.SubItems[Listado.Columns["pvs.carga"].Index].Text = "Manual";
+                }
 
 		public override Lfx.Types.OperationResult OnCreate()
 		{

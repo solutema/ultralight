@@ -59,9 +59,9 @@ namespace Lfc.Misc
                 private void InitializeComponent()
                 {
                         this.EtiquetaElemento1 = new System.Windows.Forms.Label();
-                        this.EntradaElementoDuplicado = new Lui.Forms.DetailBox();
+                        this.EntradaElementoDuplicado = new Lcc.Entrada.CodigoDetalle();
                         this.EtiquetaElemento2 = new System.Windows.Forms.Label();
-                        this.EntradaElementoOriginal = new Lui.Forms.DetailBox();
+                        this.EntradaElementoOriginal = new Lcc.Entrada.CodigoDetalle();
                         this.txtTipo = new Lui.Forms.ComboBox();
                         this.label3 = new System.Windows.Forms.Label();
                         this.note1 = new Lui.Forms.Note();
@@ -111,14 +111,12 @@ namespace Lfc.Misc
                         this.EntradaElementoDuplicado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaElementoDuplicado.ReadOnly = false;
                         this.EntradaElementoDuplicado.Required = true;
-                        this.EntradaElementoDuplicado.SelectOnFocus = true;
                         this.EntradaElementoDuplicado.Size = new System.Drawing.Size(456, 24);
                         this.EntradaElementoDuplicado.TabIndex = 5;
                         this.EntradaElementoDuplicado.Table = "personas";
                         this.EntradaElementoDuplicado.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaElementoDuplicado.Text = "0";
                         this.EntradaElementoDuplicado.TextDetail = "";
-                        this.EntradaElementoDuplicado.TextInt = 0;
                         this.EntradaElementoDuplicado.TipWhenBlank = "";
                         this.EntradaElementoDuplicado.ToolTipText = "";
                         this.EntradaElementoDuplicado.TextChanged += new System.EventHandler(this.EntradaElementoDuplicado_TextChanged);
@@ -151,14 +149,12 @@ namespace Lfc.Misc
                         this.EntradaElementoOriginal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaElementoOriginal.ReadOnly = false;
                         this.EntradaElementoOriginal.Required = true;
-                        this.EntradaElementoOriginal.SelectOnFocus = true;
                         this.EntradaElementoOriginal.Size = new System.Drawing.Size(456, 24);
                         this.EntradaElementoOriginal.TabIndex = 3;
                         this.EntradaElementoOriginal.Table = "personas";
                         this.EntradaElementoOriginal.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaElementoOriginal.Text = "0";
                         this.EntradaElementoOriginal.TextDetail = "";
-                        this.EntradaElementoOriginal.TextInt = 0;
                         this.EntradaElementoOriginal.TipWhenBlank = "";
                         this.EntradaElementoOriginal.ToolTipText = "";
                         this.EntradaElementoOriginal.TextChanged += new System.EventHandler(this.EntradaElementoOriginal_TextChanged);
@@ -373,9 +369,9 @@ namespace Lfc.Misc
                 #endregion
 
                 internal System.Windows.Forms.Label EtiquetaElemento1;
-                internal Lui.Forms.DetailBox EntradaElementoDuplicado;
+                internal Lcc.Entrada.CodigoDetalle EntradaElementoDuplicado;
                 internal System.Windows.Forms.Label EtiquetaElemento2;
-                internal Lui.Forms.DetailBox EntradaElementoOriginal;
+                internal Lcc.Entrada.CodigoDetalle EntradaElementoOriginal;
                 internal Lui.Forms.ComboBox txtTipo;
                 internal System.Windows.Forms.Label label3;
                 private Lui.Forms.Note note1;

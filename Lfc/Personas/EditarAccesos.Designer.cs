@@ -82,18 +82,6 @@ namespace Lfc.Personas
                         this.lblNombreAcceso = new System.Windows.Forms.Label();
                         this.SuspendLayout();
                         // 
-                        // SaveButton
-                        // 
-                        this.SaveButton.DockPadding.All = 2;
-                        this.SaveButton.Location = new System.Drawing.Point(476, 8);
-                        this.SaveButton.Name = "SaveButton";
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.DockPadding.All = 2;
-                        this.CancelCommandButton.Location = new System.Drawing.Point(584, 8);
-                        this.CancelCommandButton.Name = "CancelCommandButton";
-                        // 
                         // Accesos
                         // 
                         this.Accesos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)

@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -79,35 +79,35 @@ namespace Lfc.Cupones.Cupones
                 internal System.Windows.Forms.Label lblFecha1;
                 internal System.Windows.Forms.Label Label15;
                 internal System.Windows.Forms.Label Label1;
-                internal Lui.Forms.DetailBox txtTarjeta;
+                internal Lcc.Entrada.CodigoDetalle txtTarjeta;
                 internal Lui.Forms.TextBox txtPlanInteres;
                 internal Lui.Forms.TextBox txtPlanCuotas;
-                internal Lui.Forms.DetailBox txtPlan;
-                internal Lui.Forms.DetailBox txtCliente;
+                internal Lcc.Entrada.CodigoDetalle txtPlan;
+                internal Lcc.Entrada.CodigoDetalle txtCliente;
                 internal Label label3;
                 private Panel panel1;
                 private TableLayoutPanel tableLayoutPanel1;
-                internal Lcc.Controles.RangoFechas EntradaFechas;
+                internal Lcc.Entrada.RangoFechas EntradaFechas;
                 internal Lui.Forms.ComboBox txtEstado;
 
                 private void InitializeComponent()
                 {
-                        this.txtTarjeta = new Lui.Forms.DetailBox();
+                        this.txtTarjeta = new Lcc.Entrada.CodigoDetalle();
                         this.Label16 = new System.Windows.Forms.Label();
                         this.Label11 = new System.Windows.Forms.Label();
                         this.txtPlanInteres = new Lui.Forms.TextBox();
                         this.Label14 = new System.Windows.Forms.Label();
                         this.txtPlanCuotas = new Lui.Forms.TextBox();
                         this.lblFecha1 = new System.Windows.Forms.Label();
-                        this.txtPlan = new Lui.Forms.DetailBox();
+                        this.txtPlan = new Lcc.Entrada.CodigoDetalle();
                         this.Label15 = new System.Windows.Forms.Label();
-                        this.txtCliente = new Lui.Forms.DetailBox();
+                        this.txtCliente = new Lcc.Entrada.CodigoDetalle();
                         this.Label1 = new System.Windows.Forms.Label();
                         this.txtEstado = new Lui.Forms.ComboBox();
                         this.label3 = new System.Windows.Forms.Label();
                         this.panel1 = new System.Windows.Forms.Panel();
                         this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-                        this.EntradaFechas = new Lcc.Controles.RangoFechas();
+                        this.EntradaFechas = new Lcc.Entrada.RangoFechas();
                         this.panel1.SuspendLayout();
                         this.tableLayoutPanel1.SuspendLayout();
                         this.SuspendLayout();
@@ -140,7 +140,6 @@ namespace Lfc.Cupones.Cupones
                         this.txtTarjeta.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTarjeta.ReadOnly = false;
                         this.txtTarjeta.Required = true;
-                        this.txtTarjeta.SelectOnFocus = false;
                         this.txtTarjeta.Size = new System.Drawing.Size(456, 24);
                         this.txtTarjeta.TabIndex = 1;
                         this.txtTarjeta.Table = "formaspago";
@@ -268,7 +267,6 @@ namespace Lfc.Cupones.Cupones
                         this.txtPlan.Padding = new System.Windows.Forms.Padding(2);
                         this.txtPlan.ReadOnly = false;
                         this.txtPlan.Required = false;
-                        this.txtPlan.SelectOnFocus = false;
                         this.txtPlan.Size = new System.Drawing.Size(456, 24);
                         this.txtPlan.TabIndex = 3;
                         this.txtPlan.Table = "tarjetas_planes";
@@ -310,7 +308,6 @@ namespace Lfc.Cupones.Cupones
                         this.txtCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCliente.ReadOnly = false;
                         this.txtCliente.Required = false;
-                        this.txtCliente.SelectOnFocus = false;
                         this.txtCliente.Size = new System.Drawing.Size(456, 24);
                         this.txtCliente.TabIndex = 8;
                         this.txtCliente.Table = "personas";

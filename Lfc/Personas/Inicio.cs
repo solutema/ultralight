@@ -30,10 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
-using System.Data;
-using System.Drawing;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Lfc.Personas
@@ -41,7 +38,7 @@ namespace Lfc.Personas
         public partial class Inicio : Lui.Forms.ListingForm
         {
                 public int m_Tipo;
-                private int m_Ciudad, m_Grupo, m_SubGrupo, m_Situacion, m_EstadoCredito = -1;
+                private int m_Ciudad, m_Grupo, m_SubGrupo, m_Situacion, m_EstadoCredito = -1, m_Estado = 1;
 
                 public Inicio()
                 {
@@ -52,7 +49,7 @@ namespace Lfc.Personas
                         this.Joins.Add(new qGen.Join("ciudades", "personas.id_ciudad=ciudades.id_ciudad"));
                         OrderBy = "personas.nombre_visible";
                         KeyField = new Lfx.Data.FormField("personas.id_persona", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80);
-                        FormFields = new Lfx.Data.FormField[]
+                        FormFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("personas.nombre_visible", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
 				new Lfx.Data.FormField("personas.telefono", "Teléfono", Lfx.Data.InputFieldTypes.Text, 140),
@@ -61,9 +58,10 @@ namespace Lfc.Personas
 				new Lfx.Data.FormField("personas.cuit", "CUIT", Lfx.Data.InputFieldTypes.Text, 120),
                                 new Lfx.Data.FormField("personas_grupos.nombre", "Grupo", Lfx.Data.InputFieldTypes.Text, 120),
                                 new Lfx.Data.FormField("personas.id_subgrupo", "Sub-grupo", Lfx.Data.InputFieldTypes.Text, 120),
-                                new Lfx.Data.FormField("ciudades.nombre", "Ciudad", Lfx.Data.InputFieldTypes.Text, 120)
+                                new Lfx.Data.FormField("ciudades.nombre", "Ciudad", Lfx.Data.InputFieldTypes.Text, 120),
+                                new Lfx.Data.FormField("personas.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 0)
 			};
-                        ExtraSearchFields = new Lfx.Data.FormField[]
+                        ExtraSearchFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("personas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 0),
 				new Lfx.Data.FormField("personas.apellido", "Apellido", Lfx.Data.InputFieldTypes.Text, 0),
@@ -74,20 +72,26 @@ namespace Lfc.Personas
 
                 public override void ItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
-                        if (item.SubItems[5].Text.Length > 0 && Lfx.Types.Strings.ValidCUIT(item.SubItems[5].Text) == false) {
+                        base.ItemAdded(item, row);
+
+                        if (row.Fields["estado"].ValueInt == 0)
+                                item.ForeColor = System.Drawing.Color.Gray;
+
+                        string Cuit = row.Fields["cuit"].ValueString;
+                        if (Cuit != null && Cuit.Length > 0 && Lfx.Types.Strings.ValidCUIT(Cuit) == false) {
                                 item.UseItemStyleForSubItems = false;
-                                item.SubItems[5].BackColor = System.Drawing.Color.Pink;
+                                item.SubItems["cuit"].BackColor = System.Drawing.Color.Pink;
                         }
 
-                        int IdSubGrupo = Lfx.Types.Parsing.ParseInt(item.SubItems[7].Text);
+                        int IdSubGrupo = row.Fields["id_subgrupo"].ValueInt;
                         if (IdSubGrupo != 0) {
                                 Lfx.Data.Row SubGrupo = this.DataBase.Tables["personas_grupos"].FastRows[IdSubGrupo];
                                 if (SubGrupo != null)
-                                        item.SubItems[7].Text = SubGrupo["nombre"].ToString();
+                                        item.SubItems["id_subgrupo"].Text = SubGrupo.Fields["nombre"].ValueString;
                         }
                 }
 
-                public override void RefreshList()
+                public override void BeginRefreshList()
                 {
                         switch (m_Tipo) {
                                 case 1:
@@ -120,10 +124,12 @@ namespace Lfc.Personas
                         if (m_Ciudad > 0)
                                 this.CustomFilters.AddWithValue("(personas.id_ciudad=" + m_Ciudad.ToString() + " OR personas.id_ciudad IS NULL)");
 
+                        if (m_Estado >= 0 && this.SearchText == null)
+                                // Sólo filtro por estado si no estoy buscando
+                                this.CustomFilters.AddWithValue("personas.estado", m_Estado);
+
                         // Cargo la tabla en memoria, ya que la voy a usar mucho
                         this.DataBase.Tables["personas_grupos"].PreLoad();
-
-                        base.RefreshList();
                 }
 
                 public override Lfx.Types.OperationResult OnFilter()
@@ -134,6 +140,7 @@ namespace Lfc.Personas
                         FormFiltros.EntradaGrupo.TextInt = m_Grupo;
                         FormFiltros.EntradaSubGrupo.TextInt = m_SubGrupo;
                         FormFiltros.EntradaCiudad.TextInt = m_Ciudad;
+                        FormFiltros.EntradaEstado.TextKey = m_Estado.ToString();
                         FormFiltros.EntradaEstadoCredito.TextKey = m_EstadoCredito.ToString();
 
                         string[] Etiquetas = new string[1];
@@ -158,6 +165,7 @@ namespace Lfc.Personas
                                 m_Grupo = FormFiltros.EntradaGrupo.TextInt;
                                 m_SubGrupo = FormFiltros.EntradaSubGrupo.TextInt;
                                 m_Ciudad = FormFiltros.EntradaCiudad.TextInt;
+                                m_Estado = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstado.TextKey);
                                 m_EstadoCredito = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstadoCredito.TextKey);
                                 if (FormFiltros.EntradaEtiquetas.TextKey == "0")
                                         this.Labels = null;
@@ -175,7 +183,7 @@ namespace Lfc.Personas
                 public override Lfx.Types.OperationResult OnCreate()
                 {
                         object OFormNuevoCliente = this.Workspace.RunTime.Execute("CREAR CLIENTE");
-                        if (m_Tipo > 0) {
+                        if (m_Tipo > 0 && OFormNuevoCliente != null) {
                                 if (OFormNuevoCliente.GetType().ToString() == "Lfc.Personas.Editar")
                                         ((Lfc.Personas.Editar)OFormNuevoCliente).EntradaTipo.TextInt = m_Tipo;
                         }
@@ -186,6 +194,25 @@ namespace Lfc.Personas
                 {
                         this.Workspace.RunTime.Execute("EDITAR CLIENTE " + lCodigo.ToString());
                         return new Lfx.Types.SuccessOperationResult();
+                }
+
+                public override Lfx.Types.OperationResult OnDelete(int[] itemIds)
+                {
+                        if (Lui.Login.LoginData.ValidateAccess(Lfx.Workspace.Master.CurrentUser, "people.delete")) {
+                                foreach (int IdPersona in itemIds) {
+                                        qGen.Update DarDeBaja = new qGen.Update("personas");
+                                        DarDeBaja.Fields.AddWithValue("estado", 0);
+                                        DarDeBaja.Fields.AddWithValue("fechabaja", qGen.SqlFunctions.Now);
+                                        DarDeBaja.WhereClause = new qGen.Where();
+                                        DarDeBaja.WhereClause.AddWithValue("id_persona", IdPersona);
+                                        DarDeBaja.WhereClause.AddWithValue("estado", 1);
+                                        this.DataBase.Execute(DarDeBaja);
+                                }
+                                this.RefreshList();
+                                return base.OnDelete(itemIds);
+                        } else {
+                                return new Lfx.Types.CancelOperationResult();
+                        }
                 }
         }
 }

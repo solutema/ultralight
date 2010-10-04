@@ -30,26 +30,16 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Lfc.Personas
 {
-        public partial class Filtros : Lui.Forms.DialogForm
+        public class Edit : Lazaro.Forms.EditForm
         {
-                public Filtros()
+                public Edit(Lbl.Personas.Persona persona)
                 {
-                        InitializeComponent();
-                }
-
-                private void EntradaGrupo_TextChanged(object sender, EventArgs e)
-                {
-                        if (EntradaGrupo.TextInt != 0) {
-                                EntradaSubGrupo.Filter = "parent=" + EntradaGrupo.TextInt.ToString();
-                                EntradaSubGrupo.Enabled = true;
-                        } else {
-                                EntradaSubGrupo.Filter = "0";
-                                EntradaSubGrupo.TextInt = 0;
-                                EntradaSubGrupo.Enabled = false;
-                        }
+                        this.LoadFromElement(persona);
                 }
         }
 }

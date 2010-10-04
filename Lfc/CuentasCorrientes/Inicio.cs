@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -120,7 +120,7 @@ namespace Lfc.CuentasCorrientes
                         m_SelectCommand.Group = "personas.id_persona";
                         m_SelectCommand.Order = "personas.nombre_visible";
 
-                        m_FormFields = new Lfx.Data.FormField[]
+                        m_FormFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("id_persona", "Cód. Cliente", Lfx.Data.InputFieldTypes.Serial, 0),
 				new Lfx.Data.FormField("nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 320),
@@ -167,7 +167,7 @@ namespace Lfc.CuentasCorrientes
 
                 private void MostrarCliente()
                 {
-                        m_FormFields = new Lfx.Data.FormField[]
+                        m_FormFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("ctacte.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Integer, 0),
 				new Lfx.Data.FormField("ctacte.fecha", "Fecha", Lfx.Data.InputFieldTypes.DateTime, 96),

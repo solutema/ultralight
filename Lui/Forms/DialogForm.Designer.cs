@@ -33,29 +33,16 @@ namespace Lui.Forms
 {
 	partial class DialogForm
 	{
-
-		#region Código generado por el Diseñador de Windows Forms
-
 		public DialogForm()
-			:
-		    base()
 		{
-
-			// Necesario para admitir el Diseñador de Windows Forms
 			InitializeComponent();
 
-			// agregar código de constructor después de llamar a InitializeComponent
 			LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
 		}
 
-		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
-		// Puede modificarse utilizando el Diseñador de Windows Forms. 
-		// No lo modifique con el editor de código.
-		internal System.Windows.Forms.Panel LowerPanel;
-		public Lui.Forms.Button OkButton;
-		public Lui.Forms.Button CancelCommandButton;
-
-		private void InitializeComponent()
+                #region Código generado por el Diseñador de Windows Forms
+                
+                private void InitializeComponent()
 		{
                         this.LowerPanel = new System.Windows.Forms.Panel();
                         this.OkButton = new Lui.Forms.Button();
@@ -134,5 +121,9 @@ namespace Lui.Forms
 		}
 
 		#endregion
-	}
+
+                private System.Windows.Forms.Panel LowerPanel;
+                protected Lui.Forms.Button OkButton;
+                protected Lui.Forms.Button CancelCommandButton;
+        }
 }

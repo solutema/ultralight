@@ -42,7 +42,7 @@ namespace Lfx.Data
                         this.DataBase = dataBase;
                 }
 
-                public new void Add(Table table)
+                new public void Add(Table table)
                 {
                         table.DataBase = this.DataBase;
                         base.Add(table);

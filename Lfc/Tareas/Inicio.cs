@@ -30,9 +30,9 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Lfc.Tareas
@@ -43,24 +43,27 @@ namespace Lfc.Tareas
                 private string m_Estado = "sin_entregar";
                 private int Activos, Terminados, Retrasados, Nuevos;
 
-                public Inicio() : base()
+                public Inicio()
                 {
-                        // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
 
-                        // agregar código de constructor después de llamar a InitializeComponent
                         DataTableName = "tickets";
                         this.Joins.Add(new qGen.Join("personas", "tickets.id_persona=personas.id_persona"));
                         KeyField = new Lfx.Data.FormField("tickets.id_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64);
-                        FormFields = new Lfx.Data.FormField[]
+                        FormFields = new List<Lfx.Data.FormField>()
 			{
 				new Lfx.Data.FormField("tickets.nombre", "Asunto", Lfx.Data.InputFieldTypes.Text, 320),
 				new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 240),
 				new Lfx.Data.FormField("tickets.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 96),
 				new Lfx.Data.FormField("tickets.fecha_ingreso", "Fecha", Lfx.Data.InputFieldTypes.DateTime, 120),
-                                new Lfx.Data.FormField("DATEDIFF(NOW(), tickets.fecha_ingreso)", "Tiempo", Lfx.Data.InputFieldTypes.Relation, 160)
+                                new Lfx.Data.FormField("DATEDIFF(NOW(), tickets.fecha_ingreso) AS fechadiff", "Tiempo", Lfx.Data.InputFieldTypes.Relation, 160)
 			};
                         OrderBy = "tickets.id_ticket DESC";
+                        m_Sucursal = this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada;
+
+                        // Cargo la tabla en memoria, ya que la voy a usar mucho
+                        this.DataBase.Tables["tickets_estados"].PreLoad();
+
                         BotonFiltrar.Visible = true;
                 }
 
@@ -132,9 +135,6 @@ namespace Lfc.Tareas
 					break;
 			}
 
-                        // Cargo la tabla en memoria, ya que la voy a usar mucho
-                        this.DataBase.Tables["tickets_estados"].PreLoad();
-
 			base.BeginRefreshList();
 		}
 
@@ -177,65 +177,52 @@ namespace Lfc.Tareas
 		}
 
 
-		public override void Fill(qGen.Select command)
-		{
-			base.Fill(command);
-			foreach (System.Windows.Forms.ListViewItem itm in Listado.Items)
-			{
-				int IdEstado = Lfx.Types.Parsing.ParseInt(itm.SubItems[3].Text);
-                                int Dias = Lfx.Types.Parsing.ParseInt(itm.SubItems[5].Text);
-				switch (IdEstado)
-				{
-					case 0:
-                                        case 1:
-                                                Nuevos++;
-                                                if (Dias > 1) {
-                                                        itm.ForeColor = Color.Crimson;
-                                                        Retrasados++;
-                                                }
-						break;
-                                        case 5:
-                                                Activos++;
-                                                if (Dias > 3) {
-                                                        itm.ForeColor = Color.Crimson;
-                                                        Retrasados++;
-                                                }
-                                                break;
-                                        case 10:
-                                        case 20:
-                                                Activos++;
-                                                if (Dias > 4) {
-                                                        itm.ForeColor = Color.Crimson;
-                                                        Retrasados++;
-                                                }
-                                                break;
-                                        case 30:
-                                        case 35:
-                                                itm.ForeColor = Color.DarkGreen;
-                                                Terminados++;
-                                                break;
-					case 50:
-                                                itm.ForeColor = System.Drawing.Color.Gray;
-						break;
-                                        case 80:
-					case 90:
-						itm.Font = new Font(itm.Font, FontStyle.Strikeout);
-						break;
-				}
+                public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                {
+                        int IdEstado = row.Fields["estado"].ValueInt;
+                        int Dias = row.Fields["fechadiff"].ValueInt;
+                        switch (IdEstado) {
+                                case 0:
+                                case 1:
+                                        Nuevos++;
+                                        if (Dias > 1) {
+                                                itm.ForeColor = Color.Crimson;
+                                                Retrasados++;
+                                        }
+                                        break;
+                                case 5:
+                                        Activos++;
+                                        if (Dias > 3) {
+                                                itm.ForeColor = Color.Crimson;
+                                                Retrasados++;
+                                        }
+                                        break;
+                                case 10:
+                                case 20:
+                                        Activos++;
+                                        if (Dias > 4) {
+                                                itm.ForeColor = Color.Crimson;
+                                                Retrasados++;
+                                        }
+                                        break;
+                                case 30:
+                                case 35:
+                                        itm.ForeColor = Color.DarkGreen;
+                                        Terminados++;
+                                        break;
+                                case 50:
+                                        itm.ForeColor = System.Drawing.Color.Gray;
+                                        break;
+                                case 80:
+                                case 90:
+                                        itm.Font = new Font(itm.Font, FontStyle.Strikeout);
+                                        break;
+                        }
 
-                                Lfx.Data.Row Estado = this.DataBase.Tables["tickets_estados"].FastRows[IdEstado];
-				if (Estado != null)
-					itm.SubItems[3].Text = Estado["nombre"].ToString();
+                        Lfx.Data.Row Estado = this.DataBase.Tables["tickets_estados"].FastRows[IdEstado];
+                        if (Estado != null)
+                                itm.SubItems["estado"].Text = Estado.Fields["nombre"].ValueString;
 
-                                //Lfx.Data.Row Tecnico = this.DataBase.Tables["personas"].FastRows[Lfx.Types.Parsing.ParseInt(itm.SubItems[5].Text)];
-                                //if (Tecnico != null)
-                                //        itm.SubItems[5].Text = Tecnico["nombre"].ToString();
-			}
-		}
-
-		private void FormTicketsInicio_WorkspaceChanged(object sender, System.EventArgs e)
-		{
-			m_Sucursal = this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada;
-		}
+                }
 	}
 }

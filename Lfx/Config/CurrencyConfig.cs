@@ -45,35 +45,47 @@ namespace Lfx.Config
                 }
 
                 // La cantidad de decimales para el stock
+                private static int m_Decimales = -1;
                 public int Decimales
                 {
                         get
                         {
-                                return ConfigManager.ReadGlobalSettingInt(null, "Sistema.Moneda.Decimales", 2);
+                                if (m_Decimales == -1)
+                                        m_Decimales = ConfigManager.ReadGlobalSettingInt(null, "Sistema.Moneda.Decimales", 2);
+                                return m_Decimales;
                         }
                 }
 
+                private static int m_DecimalesCosto = -1;
                 public int DecimalesCosto
                 {
                         get
                         {
-                                return ConfigManager.ReadGlobalSettingInt(null, "Sistema.Moneda.DecimalesCosto", this.Decimales);
+                                if (m_DecimalesCosto == -1)
+                                        m_DecimalesCosto = ConfigManager.ReadGlobalSettingInt(null, "Sistema.Moneda.DecimalesCosto", this.Decimales);
+                                return m_DecimalesCosto;
                         }
                 }
 
+                private static int m_DecimalesFinal = -1;
                 public int DecimalesFinal
                 {
                         get
                         {
-                                return ConfigManager.ReadGlobalSettingInt(null, "Sistema.Moneda.DecimalesFinal", this.Decimales);
+                                if (m_DecimalesFinal == -1)
+                                        m_DecimalesFinal = ConfigManager.ReadGlobalSettingInt(null, "Sistema.Moneda.DecimalesFinal", this.Decimales);
+                                return m_DecimalesFinal;
                         }
                 }
 
+                private static double m_Redodeo = -1;
                 public double Redondeo
                 {
                         get
                         {
-                                return Lfx.Types.Parsing.ParseDouble(ConfigManager.ReadGlobalSettingString("", "Sistema.Moneda.Redondeo", "0"));
+                                if(m_Redodeo == -1)
+                                        m_Redodeo = Lfx.Types.Parsing.ParseDouble(ConfigManager.ReadGlobalSettingString("", "Sistema.Moneda.Redondeo", "0"));
+                                return m_Redodeo;
                         }
                 }
         }

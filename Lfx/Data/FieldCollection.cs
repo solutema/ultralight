@@ -30,19 +30,15 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 
 namespace Lfx.Data
 {
-	public class FieldCollection : System.Collections.CollectionBase
+	public class FieldCollection : List<Field>
 	{
 		public FieldCollection()
 		{
 		}
-
-                public virtual int Add(Field field)
-                {
-                        return this.List.Add(field);
-                }
 
 		public virtual Field this[string columnName]
 		{
@@ -54,7 +50,7 @@ namespace Lfx.Data
 				}
 				//Si no existe, creo dinámicamente el campo
 				Field Res = new Field(columnName);
-				this.List.Add(Res);
+				this.Add(Res);
 				return Res;
 			}
 			set
@@ -70,20 +66,8 @@ namespace Lfx.Data
 				if(Encontrado == false) {
 					//Si no existe, creo dinámicamente el campo
 					value.ColumnName = columnName;
-					this.List.Add(value);
+					this.Add(value);
 				}
-			}
-		}
-
-		public virtual Field this[int index]
-		{
-			get
-			{
-				return (Field)this.List[index];
-			}
-			set
-			{
-				this[index] = value;
 			}
 		}
 
@@ -111,9 +95,9 @@ namespace Lfx.Data
 			return Res + FlList + "}";
 		}
 
-                public virtual int AddWithValue(string fieldName, object fieldValue)
+                public virtual void AddWithValue(string fieldName, object fieldValue)
                 {
-                        return this.Add(new Field(fieldName, fieldValue));
+                        this.Add(new Field(fieldName, fieldValue));
                 }
 	}
 }

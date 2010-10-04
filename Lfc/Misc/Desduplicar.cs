@@ -75,8 +75,8 @@ namespace Lfc.Misc
                                 PersonaOriginal = null;
                                 EntradaCtaCte1.Text = "0";
                         } else {
-                                PersonaOriginal = new Lbl.Personas.Persona(this.DataBase, EntradaElementoOriginal.TextInt);
-                                EntradaCtaCte1.Text = Lfx.Types.Formatting.FormatCurrency(PersonaOriginal.CuentaCorriente.Saldo(), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                PersonaOriginal = EntradaElementoOriginal.Elemento as Lbl.Personas.Persona;
+                                EntradaCtaCte1.Text = Lfx.Types.Formatting.FormatCurrency(PersonaOriginal.CuentaCorriente.Saldo(false), this.Workspace.CurrentConfig.Moneda.Decimales);
                         }
                 }
 
@@ -86,8 +86,8 @@ namespace Lfc.Misc
                                 PersonaDuplicada = null;
                                 EntradaCtaCte2.Text = "0";
                         } else {
-                                PersonaDuplicada = new Lbl.Personas.Persona(this.DataBase, EntradaElementoDuplicado.TextInt);
-                                EntradaCtaCte2.Text = Lfx.Types.Formatting.FormatCurrency(PersonaDuplicada.CuentaCorriente.Saldo(), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                PersonaDuplicada = EntradaElementoDuplicado.Elemento as Lbl.Personas.Persona;
+                                EntradaCtaCte2.Text = Lfx.Types.Formatting.FormatCurrency(PersonaDuplicada.CuentaCorriente.Saldo(false), this.Workspace.CurrentConfig.Moneda.Decimales);
                         }
                 }
 

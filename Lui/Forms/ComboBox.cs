@@ -48,7 +48,7 @@ namespace Lui.Forms
                 private string m_Table = null, m_KeyField = null, m_DetailField = null, m_Filter = null;
 
                 [System.ComponentModel.EditorBrowsable(EditorBrowsableState.Always), Browsable(true)]
-                public new event System.EventHandler TextChanged;
+                new public event System.EventHandler TextChanged;
 
                 public ComboBox()
                         : base()
@@ -346,7 +346,7 @@ namespace Lui.Forms
 
                 private void UpdateDetail()
                 {
-                        if (m_Table != null && m_Table.Length > 0 && m_KeyField != null && m_KeyField.Length > 0 && m_DetailField != null && m_DetailField.Length > 0 && this.Workspace != null) {
+                        if (m_Table != null && m_Table.Length > 0 && m_KeyField != null && m_KeyField.Length > 0 && m_DetailField != null && m_DetailField.Length > 0 && this.Workspace != null && this.DataBase != null) {
                                 if (this.DataBase.IsOpen()) {
                                         string TextoSql = null;
                                         if (m_Table.Length >= 7 && m_Table.Substring(0, 7) == "SELECT ") {

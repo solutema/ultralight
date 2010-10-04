@@ -54,6 +54,7 @@ namespace Lfx.Data
                 public DataBase(Lfx.Workspace workspace, string ownerName)
                 {
                         this.Workspace = workspace;
+                        this.Workspace.DataBases.Add(this);
                         this.Name = ownerName;
                         this.Handle = LastHandle++;
                         if (Lfx.Data.DataBaseCache.DefaultCache == null)
@@ -190,7 +191,11 @@ namespace Lfx.Data
 
                 private void KeepAliveTimer_Elapsed(object source, System.Timers.ElapsedEventArgs e)
                 {
-                        this.Execute("SELECT 1");
+                        try {
+                                this.Execute("SELECT 1");
+                        } catch {
+                                // Nada
+                        }
                 }
 
                 private void ResetKeepAliveTimer()
@@ -843,6 +848,7 @@ LEFT JOIN pg_attribute
                                         throw new InvalidOperationException("No se puede deshechar el espacio de trabajo maestro");
                                 return;
                         }
+                        this.Workspace.DataBases.Remove(this);
                         this.Workspace.DebugLog(this.Handle, "Deshechando " + this.Name);
 			this.Close();
                         if (DbConnection != null) {
@@ -854,7 +860,7 @@ LEFT JOIN pg_attribute
 
                 public bool Close()
                 {
-                        if (DbConnection != null) {
+                        if (this.DbConnection != null) {
                                 m_Closing = true;
                                 try {
                                         if (DbConnection.State == System.Data.ConnectionState.Open)
@@ -891,6 +897,8 @@ LEFT JOIN pg_attribute
 
                 public int Update(qGen.Update updateCommand)
                 {
+                        updateCommand.SqlMode = this.SqlMode;
+
                         if (this.IsOpen() == false)
                                 this.Open();
 
@@ -898,9 +906,9 @@ LEFT JOIN pg_attribute
                         while (true) {
                                 try {
                                         TempCommand.Connection = this.DbConnection;
+                                        this.ResetKeepAliveTimer();
                                         int Res = TempCommand.ExecuteNonQuery();
                                         TempCommand.Dispose();
-                                        this.ResetKeepAliveTimer();
                                         return Res;
                                 }
                                 catch (Exception ex) {
@@ -912,6 +920,8 @@ LEFT JOIN pg_attribute
 
                 public int Delete(qGen.Delete deleteCommand)
                 {
+                        deleteCommand.SqlMode = this.SqlMode;
+
                         if (this.IsOpen() == false)
                                 this.Open();
 
@@ -920,6 +930,8 @@ LEFT JOIN pg_attribute
 
                 public int Insert(qGen.Insert insertCommand)
                 {
+                        insertCommand.SqlMode = this.SqlMode;
+
                         if (this.IsOpen() == false)
                                 this.Open();
 
@@ -965,8 +977,8 @@ LEFT JOIN pg_attribute
                                                 command.Connection = this.DbConnection;
 
                                         this.Workspace.DebugLog(this.Handle, command.CommandText);
-                                        int Res = command.ExecuteNonQuery();
                                         this.ResetKeepAliveTimer();
+                                        int Res = command.ExecuteNonQuery();
                                         return Res;
                                 } catch (Exception ex)  {
                                         if (this.TryToRecover(ex)) {
@@ -981,6 +993,7 @@ LEFT JOIN pg_attribute
 
                 public string FieldString(qGen.Select selectCommand)
                 {
+                        selectCommand.SqlMode = this.SqlMode;
                         object Res = this.ConnExecuteScalar(selectCommand.ToString());
                         if (Res == null || Res is DBNull)
                                 return null;
@@ -1048,6 +1061,7 @@ LEFT JOIN pg_attribute
 
                 public int FieldInt(qGen.Select selectCommand)
                 {
+                        selectCommand.SqlMode = this.SqlMode;
                         object Res = this.ConnExecuteScalar(selectCommand.ToString());
                         if (Res == null || Res is DBNull)
                                 return 0;
@@ -1066,6 +1080,7 @@ LEFT JOIN pg_attribute
 
                 public double FieldDouble(qGen.Select selectCommand)
                 {
+                        selectCommand.SqlMode = this.SqlMode;
                         object Res = this.ConnExecuteScalar(selectCommand.ToString());
                         if (Res == null || Res is DBNull)
                                 return 0;
@@ -1126,6 +1141,7 @@ LEFT JOIN pg_attribute
 
                 public Lfx.Data.Row FirstRowFromSelect(qGen.Select selectCommand)
                 {
+                        selectCommand.SqlMode = this.SqlMode;
                         return this.FirstRowFromSelect(selectCommand.ToString());
                 }
 
@@ -1136,6 +1152,7 @@ LEFT JOIN pg_attribute
 
                 public System.Data.IDataReader GetReader(qGen.Select comando)
                 {
+                        comando.SqlMode = this.SqlMode;
                         return this.GetReader(comando.ToString());
                 }
 
@@ -1148,8 +1165,8 @@ LEFT JOIN pg_attribute
                         while (true) {
                                 try {
                                         Cmd.Connection = this.DbConnection;
-                                        System.Data.IDataReader Rdr = Cmd.ExecuteReader(System.Data.CommandBehavior.SingleResult);
                                         this.ResetKeepAliveTimer();
+                                        System.Data.IDataReader Rdr = Cmd.ExecuteReader(System.Data.CommandBehavior.SingleResult);
                                         this.Workspace.DebugLog(this.Handle, selectCommand);
                                         return Rdr;
                                 }
@@ -1166,6 +1183,7 @@ LEFT JOIN pg_attribute
 
                 public System.Data.DataTable Select(qGen.Select selectCommand)
                 {
+                        selectCommand.SqlMode = this.SqlMode;
                         return Select(selectCommand.ToString());
                 }
 
@@ -1212,8 +1230,8 @@ LEFT JOIN pg_attribute
                         using (System.Data.DataSet Lector = new System.Data.DataSet()) {
                                 while (true) {
                                         try {
-                                                Adaptador.Fill(Lector);
                                                 this.ResetKeepAliveTimer();
+                                                Adaptador.Fill(Lector);
                                                 this.Workspace.DebugLog(this.Handle, selectCommand);
                                                 break;
                                         } catch (Exception ex) {
@@ -1383,18 +1401,25 @@ LEFT JOIN pg_attribute
                 /// <summary>
                 /// Toma "tabla.campo" y devulve "campo"
                 /// </summary>
-                public static string GetFieldName(string sCampo)
+                public static string GetFieldName(string fieldName)
                 {
-                        int r = sCampo.IndexOf("(") + 1;
-                        if (r > 0) {
-                                // Si hay un parntesis asumo que hay una función y no hago nada
-                                return sCampo;
+                        int r = fieldName.IndexOf(" AS ");
+                        if (r >= 0) {
+                                // Si tiene una cláusula AS, ese es el nombre de la columna
+                                return fieldName.Substring(r + 4, fieldName.Length - r - 4).Trim();
                         }
-                        r = sCampo.IndexOf(".") + 1;
+
+                        r = fieldName.IndexOf("(") + 1;
                         if (r > 0) {
-                                return sCampo.Substring(r, sCampo.Length - r);
+                                // Si hay un parntesis asumo que es una función sin cláusula AS y por lo tanto lo devuelvo como viene
+                                return fieldName;
+                        }
+
+                        r = fieldName.IndexOf(".") + 1;
+                        if (r > 0) {
+                                return fieldName.Substring(r, fieldName.Length - r).Trim();
                         } else {
-                                return sCampo;
+                                return fieldName.Trim();
                         }
                 }
 

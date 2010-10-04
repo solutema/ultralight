@@ -51,7 +51,9 @@ namespace Lfc.Personas
 
                         Lbl.Personas.Persona Cliente = new Lbl.Personas.Persona(this.DataBase);
                         Cliente.Crear();
-                        Cliente.Grupo = new Lbl.Personas.Grupo(Cliente.DataBase, this.DataBase.FieldInt("SELECT id_grupo FROM personas_grupos WHERE predet=1"));
+                        int IdGrupoPredet = this.DataBase.FieldInt("SELECT id_grupo FROM personas_grupos WHERE predet=1");
+                        if (IdGrupoPredet != 0)
+                                Cliente.Grupo = new Lbl.Personas.Grupo(Cliente.DataBase, IdGrupoPredet);
                         this.FromRow(Cliente);
 
                         this.Text = "Clientes: Nuevo";
@@ -210,7 +212,7 @@ namespace Lfc.Personas
                                         if (rowVeriCUIT != null) {
                                                 if (Cliente.Existe == false) {
                                                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Ya existe una empresa o persona con esa CUIT en la base de datos. ¿Desea continuar y crear una nueva de todos modos?", "CUIT duplicada");
-                                                        Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+                                                        Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                                         if (Pregunta.ShowDialog() != DialogResult.OK) {
                                                                 validarReturn.Success = false;
                                                                 validarReturn.Message += "Cambie la CUIT para antes de continuar." + Environment.NewLine;
@@ -218,7 +220,7 @@ namespace Lfc.Personas
                                                 } else {
                                                         if (System.Convert.ToInt32(rowVeriCUIT["id_persona"]) != m_Id) {
                                                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Ya existe una empresa o persona con esa CUIT en la base de datos. ¿Desea continuar y crear una nueva de todos modos?", "CUIT duplicada");
-                                                                Pregunta.DialogButton = Lui.Forms.YesNoDialog.DialogButtons.YesNo;
+                                                                Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                                                 if (Pregunta.ShowDialog() != DialogResult.OK) {
                                                                         validarReturn.Success = false;
                                                                         validarReturn.Message += "Cambie la CUIT para antes de continuar." + Environment.NewLine;
@@ -241,87 +243,91 @@ namespace Lfc.Personas
 
                         Lbl.Personas.Persona Cliente = row as Lbl.Personas.Persona;
 
-                        bool NegarEdicionAvanzada = !Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.write");
+                        bool PermitirEdicionAvanzada = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.write");
+                        bool PermitirEdicion = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.basicwrite") || PermitirEdicionAvanzada;
+                        bool PermitirEdicionCredito = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.creditlimit");
+
+                        this.ReadOnly = !PermitirEdicion;
+
                         EntradaNombre.Text = Cliente.NombreSolo;
-                        EntradaNombre.ReadOnly = NegarEdicionAvanzada;
+                        EntradaNombre.ReadOnly = !PermitirEdicionAvanzada;
                         EntradaApellido.Text = System.Convert.ToString(Cliente.Registro["apellido"]);
-                        EntradaApellido.ReadOnly = NegarEdicionAvanzada;
+                        EntradaApellido.ReadOnly = !PermitirEdicionAvanzada;
                         EntradaNombreVisible.Text = Cliente.Nombre;
                         EntradaTipoDoc.TextInt = Cliente.TipoDocumento;
-                        EntradaTipoDoc.ReadOnly = NegarEdicionAvanzada;
+                        EntradaTipoDoc.ReadOnly = !PermitirEdicionAvanzada;
                         EntradaNumDoc.Text = Cliente.NumeroDocumento;
-                        EntradaNumDoc.ReadOnly = NegarEdicionAvanzada;
+                        EntradaNumDoc.ReadOnly = !PermitirEdicionAvanzada;
 
                         EntradaRazonSocial.Text = Cliente.RazonSocial;
-                        EntradaRazonSocial.ReadOnly = NegarEdicionAvanzada;
+                        EntradaRazonSocial.ReadOnly = !PermitirEdicionAvanzada;
                         EntradaCuit.Text = Cliente.Cuit;
-                        EntradaCuit.ReadOnly = NegarEdicionAvanzada;
-
-                        if (Cliente.SituacionTributaria == null)
-                                EntradaSituacion.TextInt = 0;
-                        else
-                                EntradaSituacion.TextInt = Cliente.SituacionTributaria.Id;
-                        EntradaSituacion.ReadOnly = NegarEdicionAvanzada;
+                        EntradaCuit.ReadOnly = !PermitirEdicionAvanzada;
+                        EntradaSituacion.Elemento = Cliente.SituacionTributaria;
+                        EntradaSituacion.ReadOnly = !PermitirEdicionAvanzada;
                         if (Cliente.Registro["tipo_fac"] == null || Cliente.Registro["tipo_fac"].ToString().Length == 0)
                                 EntradaTipoFac.TextKey = "*";
                         else
                                 EntradaTipoFac.TextKey = System.Convert.ToString(Cliente.Registro["tipo_fac"]);
-                        EntradaTipoFac.ReadOnly = NegarEdicionAvanzada;
+                        EntradaTipoFac.ReadOnly = !PermitirEdicionAvanzada;
 
                         EntradaTipo.TextInt = Cliente.Tipo;
-                        EntradaTipo.ReadOnly = NegarEdicionAvanzada;
-                        if (Cliente.Grupo == null)
-                                EntradaGrupo.TextInt = 0;
-                        else
-                                EntradaGrupo.TextInt = Cliente.Grupo.Id;
-                        if (Cliente.SubGrupo == null)
-                                EntradaSubGrupo.TextInt = 0;
-                        else
-                                EntradaSubGrupo.TextInt = Cliente.SubGrupo.Id;
-                        EntradaGrupo.ReadOnly = NegarEdicionAvanzada;
+                        EntradaTipo.ReadOnly = !PermitirEdicionAvanzada;
+                        EntradaGrupo.Elemento = Cliente.Grupo;
+                        EntradaSubGrupo.Elemento = Cliente.SubGrupo;
+                        EntradaGrupo.ReadOnly = !PermitirEdicionAvanzada;
                         EntradaDomicilio.Text = Cliente.Domicilio;
                         EntradaDomicilioTrabajo.Text = Cliente.DomicilioLaboral;
-                        if (Cliente.Localidad == null)
-                                EntradaCiudad.TextInt = 0;
-                        else
-                                EntradaCiudad.TextInt = Cliente.Localidad.Id;
+                        EntradaCiudad.Elemento = Cliente.Localidad;
                         EntradaTelefono.Text = Cliente.Telefono;
                         EntradaEmail.Text = Cliente.Email;
-                        if (Cliente.Vendedor == null)
-                                EntradaVendedor.TextInt = 0;
-                        else
-                                EntradaVendedor.TextInt = Cliente.Vendedor.Id;
-
+                        EntradaVendedor.Elemento = Cliente.Vendedor;
                         EntradaLimiteCredito.Text = Lfx.Types.Formatting.FormatCurrency(Cliente.LimiteCredito, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        EntradaLimiteCredito.ReadOnly = !Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.creditlimit"); ;
+                        EntradaLimiteCredito.ReadOnly = !(PermitirEdicionCredito && PermitirEdicion);
                         if (Cliente.Registro["fechanac"] == null || Cliente.Registro["fechanac"] is DBNull)
                                 EntradaFechaNac.Text = "";
                         else
                                 EntradaFechaNac.Text = Lfx.Types.Formatting.FormatDate(Cliente.FechaNacimiento);
-                        EntradaFechaNac.ReadOnly = NegarEdicionAvanzada;
+                        EntradaFechaNac.ReadOnly = !PermitirEdicionAvanzada;
 
                         EntradaEstadoCredito.TextKey = ((int)(Cliente.EstadoCredito)).ToString();
-                        EntradaEstadoCredito.ReadOnly = NegarEdicionAvanzada;
+                        EntradaEstadoCredito.ReadOnly = !(PermitirEdicionCredito && PermitirEdicion);
                         EntradaNumeroCuenta.Text = Cliente.NumeroCuenta;
-                        EntradaNumeroCuenta.ReadOnly = NegarEdicionAvanzada;
+                        EntradaNumeroCuenta.ReadOnly = !PermitirEdicionAvanzada;
 
                         string CBU = System.Convert.ToString(Cliente.Registro["cbu"]);
                         if (CBU.Length == 22)
                                 EntradaCbu.Text = CBU.Substring(0, 8) + "-" + CBU.Substring(8, 14);
                         else
                                 EntradaCbu.Text = CBU;
-                        EntradaCbu.ReadOnly = NegarEdicionAvanzada;
+                        EntradaCbu.ReadOnly = !PermitirEdicionAvanzada;
                         EntradaObs.Text = System.Convert.ToString(Cliente.Registro["obs"]);
-                        EntradaObs.ReadOnly = NegarEdicionAvanzada;
+                        EntradaObs.ReadOnly = !PermitirEdicionAvanzada;
 
-                        EntradaImagen.Enabled = !NegarEdicionAvanzada;
+                        EntradaEstado.TextKey = Cliente.Estado.ToString();
+                        EntradaEstado.ReadOnly = !Lui.Login.LoginData.Access(Lfx.Workspace.Master.CurrentUser, "personas.delete");
+                        
+                        if (Cliente.FechaAlta == null)
+                                EntradaFechaAlta.Text = "";
+                        else
+                                EntradaFechaAlta.Text = Cliente.FechaAlta.Value.ToString(Lfx.Types.Formatting.DateTime.DefaultDateFormat);
+                        
+                        EntradaFechaAlta.ReadOnly = true;
+                        EntradaFechaBaja.ReadOnly = true;
+
+                        if (Cliente.FechaBaja == null)
+                                EntradaFechaBaja.Text = "";
+                        else
+                                EntradaFechaBaja.Text = Cliente.FechaBaja.Value.ToString(Lfx.Types.Formatting.DateTime.DefaultDateFormat);
+
+                        EntradaImagen.Enabled = PermitirEdicionAvanzada;
                         EntradaImagen.Elemento = Cliente;
                         EntradaTags.Elemento = Cliente;
-                        EntradaTags.Enabled = !NegarEdicionAvanzada;
+                        EntradaTags.Enabled = PermitirEdicionAvanzada;
 
                         this.Text = "Clientes: " + EntradaNombreVisible.Text;
+                        EntradaEstado.Enabled = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.delete");
                         BotonAcceso.Visible = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.access");
-                        SaveButton.Visible = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.basicwrite") || !NegarEdicionAvanzada;
                 }
 
                 private void GenerarNombreVisible(System.Object sender, System.EventArgs e)
@@ -368,11 +374,6 @@ namespace Lfc.Personas
                         }
                 }
 
-                private void FormClientesEditar_WorkspaceChanged(object sender, System.EventArgs e)
-                {
-                        EntradaCiudad.TextInt = this.Workspace.CurrentConfig.Empresa.Ciudad;
-                }
-
                 private void FormClientesEditar_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
                 {
                         if (e.Alt == false && e.Control == false) {
@@ -404,14 +405,8 @@ namespace Lfc.Personas
                         Lbl.Personas.Persona Res = this.CachedRow as Lbl.Personas.Persona;
 
                         Res.Tipo = EntradaTipo.TextInt;
-                        if (EntradaGrupo.TextInt == 0)
-                                Res.Grupo = null;
-                        else
-                                Res.Grupo = new Lbl.Personas.Grupo(Res.DataBase, EntradaGrupo.TextInt);
-                        if (EntradaSubGrupo.TextInt == 0)
-                                Res.SubGrupo = null;
-                        else
-                                Res.SubGrupo = new Lbl.Personas.Grupo(Res.DataBase, EntradaSubGrupo.TextInt);
+                        Res.Grupo = EntradaGrupo.Elemento as Lbl.Personas.Grupo;
+                        Res.SubGrupo = EntradaSubGrupo.Elemento as Lbl.Personas.Grupo;
                         Res.NombreSolo = EntradaNombre.Text.Trim();
                         Res.Apellido = EntradaApellido.Text.Trim();
                         Res.RazonSocial = EntradaRazonSocial.Text.Trim();
@@ -419,11 +414,8 @@ namespace Lfc.Personas
                         Res.TipoDocumento = EntradaTipoDoc.TextInt;
                         Res.NumeroDocumento = EntradaNumDoc.Text;
                         Res.Cuit = EntradaCuit.Text;
-
-                        if (EntradaSituacion.TextInt == 0)
-                                Res.SituacionTributaria = null;
-                        else
-                                Res.SituacionTributaria = new Lbl.Personas.SituacionTributaria(Res.DataBase, EntradaSituacion.TextInt);
+                        Res.Estado = Lfx.Types.Parsing.ParseInt(EntradaEstado.TextKey);
+                        Res.SituacionTributaria = EntradaSituacion.Elemento as Lbl.Impuestos.SituacionTributaria;
 
                         if (EntradaTipoFac.TextKey == "*")
                                 Res.FacturaPreferida = null;
@@ -432,16 +424,10 @@ namespace Lfc.Personas
 
                         Res.Domicilio = EntradaDomicilio.Text;
                         Res.DomicilioLaboral = EntradaDomicilioTrabajo.Text;
-                        if (EntradaCiudad.TextInt == 0)
-                                Res.Localidad = null;
-                        else
-                                Res.Localidad = new Lbl.Entidades.Localidad(Res.DataBase, EntradaCiudad.TextInt);
+                        Res.Localidad = EntradaCiudad.Elemento as Lbl.Entidades.Localidad;
                         Res.Telefono = EntradaTelefono.Text;
                         Res.Email = EntradaEmail.Text;
-                        if (EntradaVendedor.TextInt == 0)
-                                Res.Vendedor = null;
-                        else
-                                Res.Vendedor = new Lbl.Personas.Persona(Res.DataBase, EntradaVendedor.TextInt);
+                        Res.Vendedor = EntradaVendedor.Elemento as Lbl.Personas.Persona;
                         Res.Obs = EntradaObs.Text;
                         Res.Estado = 1;
                         Res.LimiteCredito = Lfx.Types.Parsing.ParseCurrency(EntradaLimiteCredito.Text);

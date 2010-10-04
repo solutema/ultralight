@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -74,7 +74,7 @@ namespace Lfc.Tareas
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
                 // No lo modifique con el editor de código.
                 internal System.Windows.Forms.Label Label1;
-                internal Lui.Forms.DetailBox txtTecnico;
+                internal Lcc.Entrada.CodigoDetalle txtTecnico;
                 internal Lui.Forms.TextBox txtDescripcion;
                 internal System.Windows.Forms.Label Label2;
                 internal Lui.Forms.TextBox txtMinutos;
@@ -82,29 +82,21 @@ namespace Lfc.Tareas
                 internal Lui.Forms.ComboBox txtCondicion;
                 internal System.Windows.Forms.Label Label4;
                 internal System.Windows.Forms.Label Label5;
-                internal Lui.Forms.DetailBox txtTicket;
+                internal Lcc.Entrada.CodigoDetalle EntradaTicket;
 
                 private void InitializeComponent()
                 {
                         this.Label1 = new System.Windows.Forms.Label();
-                        this.txtTecnico = new Lui.Forms.DetailBox();
+                        this.txtTecnico = new Lcc.Entrada.CodigoDetalle();
                         this.txtDescripcion = new Lui.Forms.TextBox();
                         this.Label2 = new System.Windows.Forms.Label();
                         this.txtMinutos = new Lui.Forms.TextBox();
                         this.txtCondicion = new Lui.Forms.ComboBox();
                         this.Label3 = new System.Windows.Forms.Label();
                         this.Label4 = new System.Windows.Forms.Label();
-                        this.txtTicket = new Lui.Forms.DetailBox();
+                        this.EntradaTicket = new Lcc.Entrada.CodigoDetalle();
                         this.Label5 = new System.Windows.Forms.Label();
                         this.SuspendLayout();
-                        // 
-                        // SaveButton
-                        // 
-                        this.SaveButton.Location = new System.Drawing.Point(418, 10);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(526, 10);
                         // 
                         // Label1
                         // 
@@ -135,7 +127,6 @@ namespace Lfc.Tareas
                         this.txtTecnico.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTecnico.ReadOnly = false;
                         this.txtTecnico.Required = true;
-                        this.txtTecnico.SelectOnFocus = true;
                         this.txtTecnico.Size = new System.Drawing.Size(516, 24);
                         this.txtTecnico.TabIndex = 9;
                         this.txtTecnico.Table = "personas";
@@ -258,34 +249,33 @@ namespace Lfc.Tareas
                         // 
                         // txtTicket
                         // 
-                        this.txtTicket.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaTicket.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtTicket.AutoHeight = false;
-                        this.txtTicket.AutoTab = true;
-                        this.txtTicket.CanCreate = true;
-                        this.txtTicket.DetailField = "nombre";
-                        this.txtTicket.ExtraDetailFields = null;
-                        this.txtTicket.Filter = "";
-                        this.txtTicket.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtTicket.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtTicket.FreeTextCode = "";
-                        this.txtTicket.KeyField = "id_ticket";
-                        this.txtTicket.Location = new System.Drawing.Point(96, 24);
-                        this.txtTicket.MaxLength = 200;
-                        this.txtTicket.Name = "txtTicket";
-                        this.txtTicket.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtTicket.ReadOnly = false;
-                        this.txtTicket.Required = true;
-                        this.txtTicket.SelectOnFocus = true;
-                        this.txtTicket.Size = new System.Drawing.Size(516, 24);
-                        this.txtTicket.TabIndex = 1;
-                        this.txtTicket.Table = "tickets";
-                        this.txtTicket.TeclaDespuesDeEnter = "{tab}";
-                        this.txtTicket.Text = "0";
-                        this.txtTicket.TextDetail = "";
-                        this.txtTicket.TextInt = 0;
-                        this.txtTicket.TipWhenBlank = "";
-                        this.txtTicket.ToolTipText = "";
+                        this.EntradaTicket.AutoHeight = false;
+                        this.EntradaTicket.AutoTab = true;
+                        this.EntradaTicket.CanCreate = true;
+                        this.EntradaTicket.DetailField = "nombre";
+                        this.EntradaTicket.ExtraDetailFields = null;
+                        this.EntradaTicket.Filter = "";
+                        this.EntradaTicket.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaTicket.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaTicket.FreeTextCode = "";
+                        this.EntradaTicket.KeyField = "id_ticket";
+                        this.EntradaTicket.Location = new System.Drawing.Point(96, 24);
+                        this.EntradaTicket.MaxLength = 200;
+                        this.EntradaTicket.Name = "txtTicket";
+                        this.EntradaTicket.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTicket.ReadOnly = false;
+                        this.EntradaTicket.Required = true;
+                        this.EntradaTicket.Size = new System.Drawing.Size(516, 24);
+                        this.EntradaTicket.TabIndex = 1;
+                        this.EntradaTicket.Table = "tickets";
+                        this.EntradaTicket.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaTicket.Text = "0";
+                        this.EntradaTicket.TextDetail = "";
+                        this.EntradaTicket.TextInt = 0;
+                        this.EntradaTicket.TipWhenBlank = "";
+                        this.EntradaTicket.ToolTipText = "";
                         // 
                         // Label5
                         // 
@@ -302,7 +292,7 @@ namespace Lfc.Tareas
                         this.ClientSize = new System.Drawing.Size(634, 374);
                         this.ControlBox = false;
                         this.Controls.Add(this.txtMinutos);
-                        this.Controls.Add(this.txtTicket);
+                        this.Controls.Add(this.EntradaTicket);
                         this.Controls.Add(this.txtCondicion);
                         this.Controls.Add(this.txtDescripcion);
                         this.Controls.Add(this.txtTecnico);
@@ -324,7 +314,7 @@ namespace Lfc.Tareas
                         this.Controls.SetChildIndex(this.txtTecnico, 0);
                         this.Controls.SetChildIndex(this.txtDescripcion, 0);
                         this.Controls.SetChildIndex(this.txtCondicion, 0);
-                        this.Controls.SetChildIndex(this.txtTicket, 0);
+                        this.Controls.SetChildIndex(this.EntradaTicket, 0);
                         this.Controls.SetChildIndex(this.txtMinutos, 0);
                         this.ResumeLayout(false);
 
@@ -341,7 +331,7 @@ namespace Lfc.Tareas
 
                         if (ResultadoGuardar.Success == true) {
                                 qGen.Insert InsertarNovedad = new qGen.Insert(DataBase, "tickets_eventos");
-                                InsertarNovedad.Fields.AddWithValue("id_ticket", txtTicket.TextInt);
+                                InsertarNovedad.Fields.AddWithValue("id_ticket", EntradaTicket.TextInt);
                                 InsertarNovedad.Fields.AddWithValue("id_tecnico", txtTecnico.Text);
                                 InsertarNovedad.Fields.AddWithValue("minutos_tecnico", Lfx.Types.Parsing.ParseInt(txtMinutos.Text));
                                 InsertarNovedad.Fields.AddWithValue("privado", txtCondicion.TextKey);
@@ -360,7 +350,7 @@ namespace Lfc.Tareas
                 {
                         Lfx.Types.OperationResult validarReturn = new Lfx.Types.SuccessOperationResult();
 
-                        if (txtTicket.TextInt == 0) {
+                        if (EntradaTicket.TextInt == 0) {
                                 validarReturn.Success = false;
                                 validarReturn.Message = "Escriba el código de Ticket" + Environment.NewLine;
                         }

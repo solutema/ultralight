@@ -33,7 +33,6 @@ using System;
 
 namespace Lfx.Environment
 {
-
 	public class Threading
 	{
 		public static void Sleep(int millisecondsTimeout)

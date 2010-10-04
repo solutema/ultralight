@@ -191,6 +191,8 @@ namespace Lfx.Data
 
                                         if (ColumnaXml.Attributes["label"] != null)
                                                 Columna.Label = ColumnaXml.Attributes["label"].Value;
+                                        else
+                                                Columna.Label = Columna.Name;
 
                                         if (ColumnaXml.Attributes["section"] != null)
                                                 Columna.Section = ColumnaXml.Attributes["section"].Value;

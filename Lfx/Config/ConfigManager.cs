@@ -31,6 +31,7 @@
 
 using System;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace Lfx.Config
 {
@@ -49,7 +50,7 @@ namespace Lfx.Config
                 public Lfx.Config.PrintersConfig Impresion;
                 public Lfx.Config.CompanyConfig Empresa;
 
-                private System.Collections.Hashtable SysConfigCache = null;
+                private Dictionary<string, string> SysConfigCache = null;
                 private System.DateTime SysConfigCacheLastRefresh;
 
                 public ConfigManager(Workspace workspace)
@@ -100,7 +101,6 @@ namespace Lfx.Config
                                 if (m_DataBase == null)
                                         m_DataBase = m_Workspace.GetDataBase("Administrador de configuración");
                                 return m_DataBase;
-                                //return this.Workspace.DefaultDataBase;
                         }
                 }
 
@@ -233,7 +233,7 @@ namespace Lfx.Config
 			}
 
                         if (SysConfigCache == null) {
-                                SysConfigCache = new System.Collections.Hashtable();
+                                SysConfigCache = new Dictionary<string, string>();
 
                                 qGen.Select SelectConfig = new qGen.Select("sys_config");
                                 SelectConfig.Fields = "nombre, valor, estacion, id_sucursal";
@@ -254,7 +254,7 @@ namespace Lfx.Config
 
 			//Busco una variable para la estación
                         Busco = (terminalName == null ? System.Environment.MachineName.ToUpperInvariant() : terminalName) + "//" + CompleteSettingName;
-			if(sucursal == 0 && SysConfigCache.Contains(Busco)) {
+			if(sucursal == 0 && SysConfigCache.ContainsKey(Busco)) {
                                 string Res = (string)SysConfigCache[Busco];
                                 if (Res.Length > 0)
                                         return Res;
@@ -262,7 +262,7 @@ namespace Lfx.Config
 
 			//Busco una variable para la sucursal
                         Busco = "*/" + m_Workspace.CurrentConfig.Empresa.SucursalPredeterminada.ToString() + "/" + DataBase.EscapeString(CompleteSettingName);
-                        if (terminalName == null && SysConfigCache.Contains(Busco)) {
+                        if (terminalName == null && SysConfigCache.ContainsKey(Busco)) {
                                 string Res = (string)SysConfigCache[Busco];
                                 if (Res.Length > 0)
                                         return Res;
@@ -272,7 +272,7 @@ namespace Lfx.Config
 			{
 				//Busco una variable global
                                 Busco = "*//" + DataBase.EscapeString(CompleteSettingName);
-                                if (SysConfigCache.Contains(Busco)) {
+                                if (SysConfigCache.ContainsKey(Busco)) {
                                         string Res = (string)SysConfigCache[Busco];
                                         if (Res.Length > 0)
                                                 return Res;

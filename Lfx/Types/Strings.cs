@@ -140,8 +140,7 @@ namespace Lfx.Types
         	public static bool IsDate(string Fecha)
 		{
 			try {
-				Lfx.Types.Parsing.ParseDate(Fecha);
-				return true;
+				return Lfx.Types.Parsing.ParseDate(Fecha) != null;
 			}
 			catch {
 				return false;

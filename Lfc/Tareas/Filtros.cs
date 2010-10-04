@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -76,25 +76,25 @@ namespace Lfc.Tareas
                 internal System.Windows.Forms.Label Label1;
                 internal System.Windows.Forms.Label Label3;
                 internal Lui.Forms.ComboBox txtOrden;
-                internal Lui.Forms.DetailBox txtCliente;
-                internal Lui.Forms.DetailBox txtTarea;
+                internal Lcc.Entrada.CodigoDetalle txtCliente;
+                internal Lcc.Entrada.CodigoDetalle txtTarea;
                 internal System.Windows.Forms.Label Label4;
-                internal Lui.Forms.DetailBox txtSucursal;
+                internal Lcc.Entrada.CodigoDetalle txtSucursal;
                 internal System.Windows.Forms.Label label5;
                 private TableLayoutPanel tableLayoutPanel1;
                 internal Lui.Forms.ComboBox txtEstado;
 
                 private void InitializeComponent()
                 {
-                        this.txtCliente = new Lui.Forms.DetailBox();
+                        this.txtCliente = new Lcc.Entrada.CodigoDetalle();
                         this.Label2 = new System.Windows.Forms.Label();
                         this.Label1 = new System.Windows.Forms.Label();
                         this.txtOrden = new Lui.Forms.ComboBox();
                         this.Label3 = new System.Windows.Forms.Label();
-                        this.txtTarea = new Lui.Forms.DetailBox();
+                        this.txtTarea = new Lcc.Entrada.CodigoDetalle();
                         this.Label4 = new System.Windows.Forms.Label();
                         this.txtEstado = new Lui.Forms.ComboBox();
-                        this.txtSucursal = new Lui.Forms.DetailBox();
+                        this.txtSucursal = new Lcc.Entrada.CodigoDetalle();
                         this.label5 = new System.Windows.Forms.Label();
                         this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
                         this.tableLayoutPanel1.SuspendLayout();
@@ -128,7 +128,6 @@ namespace Lfc.Tareas
                         this.txtCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCliente.ReadOnly = false;
                         this.txtCliente.Required = false;
-                        this.txtCliente.SelectOnFocus = true;
                         this.txtCliente.Size = new System.Drawing.Size(444, 24);
                         this.txtCliente.TabIndex = 3;
                         this.txtCliente.Table = "personas";
@@ -213,7 +212,6 @@ namespace Lfc.Tareas
                         this.txtTarea.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTarea.ReadOnly = false;
                         this.txtTarea.Required = false;
-                        this.txtTarea.SelectOnFocus = true;
                         this.txtTarea.Size = new System.Drawing.Size(444, 24);
                         this.txtTarea.TabIndex = 5;
                         this.txtTarea.Table = "tickets_tipos";
@@ -286,7 +284,6 @@ namespace Lfc.Tareas
                         this.txtSucursal.Padding = new System.Windows.Forms.Padding(2);
                         this.txtSucursal.ReadOnly = false;
                         this.txtSucursal.Required = false;
-                        this.txtSucursal.SelectOnFocus = true;
                         this.txtSucursal.Size = new System.Drawing.Size(444, 24);
                         this.txtSucursal.TabIndex = 1;
                         this.txtSucursal.Table = "sucursales";

@@ -158,7 +158,11 @@ namespace qGen
                                         string[] RightValStr = Array.ConvertAll<int, string>((int[])m_RightValue, new Converter<int, string>(Convert.ToString));
                                         return string.Join(",", RightValStr);
                                 } else if (m_RightValue is string[]) {
-                                        return "'" + string.Join("','", (string[])m_RightValue) + "'";
+                                        string[] EscapedStrings = ((string[])(m_RightValue));
+                                        for(int i = 0; i < EscapedStrings.Length; i++) {
+                                                EscapedStrings[i] = Lfx.Data.DataBase.EscapeString(EscapedStrings[i], m_Mode);
+                                        }
+                                        return "'" + string.Join("','", EscapedStrings) + "'";
                                 } else {
                                         return "'" + Lfx.Data.DataBase.EscapeString(m_RightValue.ToString(), m_Mode) + "'";
                                 }

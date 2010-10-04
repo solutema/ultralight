@@ -74,6 +74,10 @@ namespace Lfx.Data
                 /// </summary>
                 Text,
                 /// <summary>
+                /// Número entero dentro de una serie
+                /// </summary>
+                Set,
+                /// <summary>
                 /// Texto de largo variable de largo extendido.
                 /// </summary>
                 Memo,

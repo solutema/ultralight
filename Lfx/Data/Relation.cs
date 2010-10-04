@@ -53,7 +53,20 @@ namespace Lfx.Data
                 public Relation(string column, string referenceTable, string referenceColumn, string detailColumn)
                         : this (column, referenceTable, referenceColumn)
                 {
-                        this.DetailColumn = detailColumn;
+                        if (detailColumn == null)
+                                this.DetailColumn = "nombre";
+                        else
+                                this.DetailColumn = detailColumn;
+                }
+
+                public bool IsEmpty()
+                {
+                        return this.ReferenceColumn == null
+                                || this.ReferenceColumn.Length == 0
+                                || this.ReferenceTable == null
+                                || this.ReferenceTable.Length == 0
+                                || this.DetailColumn == null
+                                || this.DetailColumn.Length == 0;
                 }
         }
 }

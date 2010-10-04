@@ -29,40 +29,30 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections;
-using System.Data;
+using System.Collections.Generic;
 using System.Drawing;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Lfc.Comprobantes.Recibos
 {
-	public class Inicio : Lui.Forms.ListingForm
+	public partial class Inicio : Lui.Forms.ListingForm
 	{
 		protected internal Lfx.Types.DateRange m_Fecha = new Lfx.Types.DateRange("mes-0");
 		protected internal int m_Sucursal, m_Cliente, m_Tipo = 0;
 		protected internal double Total = 0;
                 protected internal Label Label2;
-                protected internal Lui.Forms.TextBox txtTotal;
+                protected internal Lui.Forms.TextBox EntradaTotal;
 		protected internal int m_Vendedor;
 
-		#region Código generado por el Diseñador de Windows Forms
+                public Inicio()
+                {
+                        InitializeComponent();
 
-		public Inicio()
-			: base()
-		{
-
-
-			// Necesario para admitir el Diseñador de Windows Forms
-			InitializeComponent();
-
-			// agregar código de constructor después de llamar a InitializeComponent
-			DataTableName = "recibos";
-			this.Joins.Add(new qGen.Join("personas", "recibos.id_cliente=personas.id_persona"));
+                        DataTableName = "recibos";
+                        this.Joins.Add(new qGen.Join("personas", "recibos.id_cliente=personas.id_persona"));
                         KeyField = new Lfx.Data.FormField("recibos.id_recibo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-			OrderBy = "recibos.fecha DESC";
-			FormFields = new Lfx.Data.FormField[]
+                        OrderBy = "recibos.fecha DESC";
+                        FormFields = new List<Lfx.Data.FormField>()
 			{
                                 new Lfx.Data.FormField("recibos.pv", "PV", Lfx.Data.InputFieldTypes.Integer, 28),
 				new Lfx.Data.FormField("recibos.numero", "Número", Lfx.Data.InputFieldTypes.Integer, 96),
@@ -74,103 +64,23 @@ namespace Lfc.Comprobantes.Recibos
 				new Lfx.Data.FormField("recibos.obs", "Obs.", Lfx.Data.InputFieldTypes.Memo, 320),
                                 new Lfx.Data.FormField("recibos.estado", "Estado", Lfx.Data.InputFieldTypes.Integer, 0)
 			};
-		}
-
-		// Limpiar los recursos que se estén utilizando.
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing)
-			{
-				if (components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose(disposing);
-		}
-
-
-		// Requerido por el Diseñador de Windows Forms
-		private System.ComponentModel.Container components = null;
-
-		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
-		// Puede modificarse utilizando el Diseñador de Windows Forms. 
-		// No lo modifique con el editor de código.
-
-		private void InitializeComponent()
-		{
-			this.Label2 = new System.Windows.Forms.Label();
-			this.txtTotal = new Lui.Forms.TextBox();
-			this.SuspendLayout();
-			// 
-			// lvItems
-			// 
-			this.Listado.Size = new System.Drawing.Size(546, 466);
-			// 
-			// FiltersButton
-			// 
-			this.BotonFiltrar.Visible = true;
-			// 
-			// Label2
-			// 
-			this.Label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.Label2.Location = new System.Drawing.Point(8, 60);
-			this.Label2.Name = "Label2";
-			this.Label2.Size = new System.Drawing.Size(40, 20);
-			this.Label2.TabIndex = 53;
-			this.Label2.Text = "Total";
-			this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// EntradaTotal
-			// 
-			this.txtTotal.AutoNav = true;
-			this.txtTotal.AutoTab = true;
-			this.txtTotal.DataType = Lui.Forms.DataTypes.Money;
-			this.txtTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtTotal.Location = new System.Drawing.Point(44, 60);
-			this.txtTotal.MaxLenght = 32767;
-			this.txtTotal.Name = "EntradaTotal";
-			this.txtTotal.Padding = new System.Windows.Forms.Padding(2);
-			this.txtTotal.ReadOnly = true;
-			this.txtTotal.Size = new System.Drawing.Size(88, 20);
-			this.txtTotal.TabIndex = 54;
-			this.txtTotal.TabStop = false;
-			this.txtTotal.Text = "0.00";
-			this.txtTotal.TipWhenBlank = "";
-			this.txtTotal.ToolTipText = "";
-			// 
-			// Inicio
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
-			this.ClientSize = new System.Drawing.Size(692, 473);
-			this.Controls.Add(this.txtTotal);
-			this.Controls.Add(this.Label2);
-			this.Name = "Inicio";
-			this.Text = "Recibos: Listado";
-			this.ResumeLayout(false);
-			this.PerformLayout();
-
-		}
-
-
-		#endregion
+                }
 
                 public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
 		{
-			Total += Lfx.Types.Parsing.ParseCurrency(itm.SubItems[4].Text);
-                        if (this.Workspace.SlowLink ||this.Listado.Items.Count > 300)
-                                itm.SubItems[5].Text = "";
+			Total += row.Fields["total"].ValueDouble;
+                        if (this.Workspace.SlowLink || this.Listado.Items.Count > 300)
+                                itm.SubItems["0"].Text = "";
                         else
-                                itm.SubItems[5].Text = Lbl.Comprobantes.Comprobante.FacturasDeUnRecibo(this.DataBase, Lfx.Types.Parsing.ParseInt(itm.Text));
+                                itm.SubItems["0"].Text = Lbl.Comprobantes.Comprobante.FacturasDeUnRecibo(this.DataBase, row.Fields["id_recibo"].ValueInt);
 
-                        if (itm.SubItems[9].Text == "90")
+                        if (row.Fields["estado"].ValueInt == 90)
                                 itm.Font = new Font(itm.Font, FontStyle.Strikeout);
 		}
 
 		public override void EndRefreshList()
 		{
-			txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales);
+			EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales);
 			base.EndRefreshList();
 		}
 
@@ -223,8 +133,32 @@ namespace Lfc.Comprobantes.Recibos
 
                 public override Lfx.Types.OperationResult OnDelete(int[] itemIds)
                 {
-                        this.Workspace.RunTime.Execute("ANULAR RC " + itemIds[0].ToString());
-                        return new Lfx.Types.SuccessOperationResult();
+                        if (Lui.Login.LoginData.ValidateAccess(Lfx.Workspace.Master.CurrentUser, "documents.delete")) {
+                                this.Workspace.RunTime.Execute("ANULAR RC " + itemIds[0].ToString());
+                                return base.OnDelete(itemIds);
+                        } else {
+                                return new Lfx.Types.NoAccessOperationResult();
+                        }
+                }
+
+                public override string SearchText
+                {
+                        get
+                        {
+                                return base.SearchText;
+                        }
+                        set
+                        {
+                                if (value == null) {
+                                        base.SearchText = null;
+                                } else if (System.Text.RegularExpressions.Regex.IsMatch(value, @"^[0-3]\d(-|/)[0-1]\d(-|/)(\d{2}|\d{4})$")) {
+                                        this.SearchText = Lfx.Types.Formatting.FormatDateTimeSql(value).ToString();
+                                } else if (System.Text.RegularExpressions.Regex.IsMatch(value, @"^[0-3]\d(-|/)[0-1]\d$")) {
+                                        this.SearchText = Lfx.Types.Formatting.FormatDateTimeSql(value + System.DateTime.Now.ToString("yyyy")).ToString();
+                                } else {
+                                        base.SearchText = value;
+                                }
+                        }
                 }
 
 		public override void BeginRefreshList()
@@ -232,31 +166,24 @@ namespace Lfc.Comprobantes.Recibos
 			this.Total = 0;
                         this.CustomFilters.Clear();
 
-			if(System.Text.RegularExpressions.Regex.IsMatch(SearchText, @"^[0-3]\d(-|/)[0-1]\d(-|/)(\d{2}|\d{4})$")) {
-				this.SearchText = Lfx.Types.Formatting.FormatDateTimeSql(SearchText).ToString();
-			} else if(System.Text.RegularExpressions.Regex.IsMatch(SearchText, @"^[0-3]\d(-|/)[0-1]\d$")) {
-				this.SearchText = Lfx.Types.Formatting.FormatDateTimeSql(SearchText + System.DateTime.Now.ToString("yyyy")).ToString();
-			}
+                        if (m_Tipo == 0)
+                                this.CustomFilters.AddWithValue("recibos.tipo_fac", "RC");
+                        else
+                                this.CustomFilters.AddWithValue("recibos.tipo_fac", "RCP");
 
-			if(SearchText != null && SearchText.Length == 0)
-			{
-				if (m_Sucursal > 0)
-					this.CustomFilters.AddWithValue("recibos.id_sucursal", m_Sucursal);
+                        if (SearchText == null) {
+                                if (m_Sucursal > 0)
+                                        this.CustomFilters.AddWithValue("recibos.id_sucursal", m_Sucursal);
 
-				if (m_Cliente > 0)
-					this.CustomFilters.AddWithValue("recibos.id_cliente", m_Cliente);
+                                if (m_Cliente > 0)
+                                        this.CustomFilters.AddWithValue("recibos.id_cliente", m_Cliente);
 
-				if (m_Vendedor > 0)
-					this.CustomFilters.AddWithValue("recibos.id_vendedor", m_Vendedor);
-
-                                if (m_Tipo == 0)
-                                        this.CustomFilters.AddWithValue("recibos.tipo_fac", "RC");
-                                else
-                                        this.CustomFilters.AddWithValue("recibos.tipo_fac", "RCP");
+                                if (m_Vendedor > 0)
+                                        this.CustomFilters.AddWithValue("recibos.id_vendedor", m_Vendedor);
 
                                 if (m_Fecha.HasRange)
                                         this.CustomFilters.AddWithValue("(fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')");
-			}
+                        }
 		}
 	}
 }

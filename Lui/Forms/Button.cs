@@ -31,7 +31,7 @@
 
 using System.ComponentModel;
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -48,8 +48,8 @@ namespace Lui.Forms
 		private ImagePositions m_ImagePos = ImagePositions.Top;
                 private System.Windows.Forms.DialogResult m_DialogResult = DialogResult.None;
 
-		public new event System.EventHandler Click;
-		public new event System.Windows.Forms.KeyEventHandler KeyDown;
+		new public event System.EventHandler Click;
+		new public event System.Windows.Forms.KeyEventHandler KeyDown;
 
 		#region Código generado por el Diseñador de Windows Forms
 

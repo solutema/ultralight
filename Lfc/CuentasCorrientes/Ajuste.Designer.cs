@@ -56,7 +56,7 @@ namespace Lfc.CuentasCorrientes
 
                 private void InitializeComponent()
                 {
-                        this.EntradaConcepto = new Lui.Forms.DetailBox();
+                        this.EntradaConcepto = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaImporte = new Lui.Forms.TextBox();
                         this.Label2 = new System.Windows.Forms.Label();
                         this.Label1 = new System.Windows.Forms.Label();
@@ -96,14 +96,12 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConcepto.ReadOnly = false;
                         this.EntradaConcepto.Required = true;
-                        this.EntradaConcepto.SelectOnFocus = false;
                         this.EntradaConcepto.Size = new System.Drawing.Size(496, 24);
                         this.EntradaConcepto.TabIndex = 1;
                         this.EntradaConcepto.Table = "conceptos";
                         this.EntradaConcepto.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaConcepto.Text = "0";
                         this.EntradaConcepto.TextDetail = "";
-                        this.EntradaConcepto.TextInt = 0;
                         this.EntradaConcepto.TipWhenBlank = "";
                         this.EntradaConcepto.ToolTipText = "";
                         this.EntradaConcepto.Leave += new System.EventHandler(this.EntradaConcepto_Leave);
@@ -297,7 +295,7 @@ namespace Lfc.CuentasCorrientes
 
                 #endregion
 
-                internal Lui.Forms.DetailBox EntradaConcepto;
+                internal Lcc.Entrada.CodigoDetalle EntradaConcepto;
                 internal Lui.Forms.TextBox EntradaImporte;
                 internal System.Windows.Forms.Label Label2;
                 internal System.Windows.Forms.Label Label1;

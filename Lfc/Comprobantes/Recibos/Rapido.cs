@@ -51,23 +51,23 @@ namespace Lfc.Comprobantes.Recibos
 			if(EntradaCaja.TextInt <= 0)
 				return new Lfx.Types.FailureOperationResult("Debe especificar la Caja de destino");
 
-			if(Lfx.Types.Parsing.ParseCurrency(txtImporte.Text) <= 0)
+			if(Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text) <= 0)
 				return new Lfx.Types.FailureOperationResult("Debe especificar el importe");
 
 			this.DataBase.BeginTransaction(true);
 
-			Lbl.Personas.Persona Cliente = new Lbl.Personas.Persona(DataBase, txtCliente.TextInt);
+			Lbl.Personas.Persona Cliente = new Lbl.Personas.Persona(DataBase, EntradaCliente.TextInt);
 			Lbl.Comprobantes.ReciboDeCobro Rec = new Lbl.Comprobantes.ReciboDeCobro(DataBase, Cliente);
 			Rec.Crear();
-			Rec.Cobros.Add(new Lbl.Comprobantes.Cobro(DataBase, Lbl.Pagos.TipoFormasDePago.Caja, Lfx.Types.Parsing.ParseCurrency(txtImporte.Text)));
+			Rec.Cobros.Add(new Lbl.Comprobantes.Cobro(DataBase, Lbl.Pagos.TipoFormasDePago.Caja, Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text)));
 			Rec.Cobros[0].CajaDestino = new Lbl.Cajas.Caja(DataBase, EntradaCaja.TextInt);
 			Rec.Vendedor = new Lbl.Personas.Persona(DataBase, this.Workspace.CurrentUser.Id);
 			Lfx.Types.OperationResult Res = Rec.Guardar();
                         if (Res.Success) {
                                 this.DataBase.Commit();
-                                string Nombrecliente = txtCliente.TextDetail;
-                                txtCliente.TextInt = 0;
-                                txtCliente.Focus();
+                                string Nombrecliente = EntradaCliente.TextDetail;
+                                EntradaCliente.TextInt = 0;
+                                EntradaCliente.Focus();
                                 return new Lfx.Types.FailureOperationResult("Se creo el recibo para el cliente " + Nombrecliente);
                         } else {
                                 this.DataBase.RollBack();
@@ -75,12 +75,12 @@ namespace Lfc.Comprobantes.Recibos
                         }
         	}
 
-		private void txtCliente_TextChanged(object sender, EventArgs e)
+		private void EntradaCliente_TextChanged(object sender, EventArgs e)
 		{
-			if(txtCliente.TextInt > 0)
-                                txtImporte.Text = Lfx.Types.Formatting.FormatCurrency(new Lbl.CuentasCorrientes.CuentaCorriente(this.DataBase, txtCliente.TextInt).Saldo(), this.Workspace.CurrentConfig.Moneda.Decimales);
+			if(EntradaCliente.TextInt > 0)
+                                EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(new Lbl.CuentasCorrientes.CuentaCorriente(this.DataBase, EntradaCliente.TextInt).Saldo(false), this.Workspace.CurrentConfig.Moneda.Decimales);
 			else
-				txtImporte.Text = "0";
+				EntradaImporte.Text = "0";
 		}
 	}
 }

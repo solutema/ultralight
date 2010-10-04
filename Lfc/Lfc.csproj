@@ -63,7 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Alicuotas\Editar.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Alicuotas\Editar.Designer.cs">
+      <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
     <Compile Include="Alicuotas\Inicio.cs">
       <SubType>Form</SubType>
@@ -77,9 +80,6 @@
     <Compile Include="Articulos\Categorias\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Articulos\Categorias\Inicio.Designer.cs">
-      <DependentUpon>Inicio.cs</DependentUpon>
-    </Compile>
     <Compile Include="Articulos\Editar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +91,24 @@
     </Compile>
     <Compile Include="Articulos\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Articulos\Marcas\Editar.Designer.cs">
+      <DependentUpon>Editar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Articulos\MasInfo.Designer.cs">
+      <DependentUpon>MasInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Articulos\Movimiento.Designer.cs">
+      <DependentUpon>Movimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Articulos\Receta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Articulos\Receta.Designer.cs">
+      <DependentUpon>Receta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Articulos\Rubros\Editar.Designer.cs">
+      <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
     <Compile Include="Articulos\TablaDetalles.cs">
       <SubType>Form</SubType>
@@ -109,12 +127,6 @@
     </Compile>
     <Compile Include="Articulos\Movimiento.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Articulos\Recetas\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Articulos\Recetas\Editar.Designer.cs">
-      <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
     <Compile Include="Articulos\Rendimiento.cs">
       <SubType>Form</SubType>
@@ -164,7 +176,6 @@
     <Compile Include="Bancos\Cheques\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ciudades\Edit.cs" />
     <Compile Include="Ciudades\Editar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,11 +188,17 @@
     <Compile Include="Comprobantes\Compra\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprobantes\EditSerials.cs">
+    <Compile Include="Comprobantes\EditarTallesYColores.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprobantes\EditSerials.Designer.cs">
-      <DependentUpon>EditSerials.cs</DependentUpon>
+    <Compile Include="Comprobantes\EditarTallesYColores.Designer.cs">
+      <DependentUpon>EditarTallesYColores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comprobantes\EditarSeries.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprobantes\EditarSeries.Designer.cs">
+      <DependentUpon>EditarSeries.cs</DependentUpon>
     </Compile>
     <Compile Include="Comprobantes\Facturas\Anular.Designer.cs">
       <DependentUpon>Anular.cs</DependentUpon>
@@ -207,6 +224,9 @@
     <Compile Include="Cajas\Admin\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comprobantes\Recibos\Inicio.Designer.cs">
+      <DependentUpon>Inicio.cs</DependentUpon>
+    </Compile>
     <Compile Include="CuentasCorrientes\Ajuste.Designer.cs">
       <DependentUpon>Ajuste.cs</DependentUpon>
     </Compile>
@@ -230,6 +250,9 @@
     </Compile>
     <Compile Include="Cajas\Vencimientos\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editar.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Etiquetas.cs">
       <SubType>Form</SubType>
@@ -266,6 +289,9 @@
     </Compile>
     <Compile Include="Personas\Filtros.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personas\Filtros.Designer.cs">
+      <DependentUpon>Filtros.cs</DependentUpon>
     </Compile>
     <Compile Include="Personas\Grupos\Editar.cs">
       <SubType>Form</SubType>
@@ -452,6 +478,9 @@
     <Compile Include="Pvs\Editar.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Pvs\Editar.Designer.cs">
+      <DependentUpon>Editar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pvs\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -503,10 +532,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lazaro.Forms\Lazaro.Forms.csproj">
-      <Project>{65AD7811-6304-4ABF-9DF4-1CBA15297684}</Project>
-      <Name>Lazaro.Forms</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Lbl\Lbl.csproj">
       <Project>{56F39851-6542-405C-9F47-E8414B757EF6}</Project>
       <Name>Lbl</Name>
@@ -529,16 +554,8 @@
       <DependentUpon>Editar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Alicuotas\Inicio.resx">
-      <DependentUpon>Inicio.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Articulos\Categorias\Editar.resx">
       <DependentUpon>Editar.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Articulos\Categorias\Inicio.resx">
-      <DependentUpon>Inicio.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Articulos\Editar.resx">
@@ -548,6 +565,9 @@
     <EmbeddedResource Include="Articulos\Filtros.resx">
       <DependentUpon>Filtros.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Articulos\Receta.resx">
+      <DependentUpon>Receta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Articulos\TablaDetalles.resx">
       <DependentUpon>TablaDetalles.cs</DependentUpon>
@@ -561,20 +581,12 @@
       <DependentUpon>Editar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Articulos\Marcas\Inicio.resx">
-      <DependentUpon>Inicio.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Articulos\MasInfo.resx">
       <DependentUpon>MasInfo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Articulos\Movimiento.resx">
       <DependentUpon>Movimiento.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Articulos\Recetas\Editar.resx">
-      <DependentUpon>Editar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Articulos\Rendimiento.resx">
@@ -614,9 +626,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Comprobantes\Convertir.resx">
       <DependentUpon>Convertir.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Comprobantes\EditSerials.resx">
-      <DependentUpon>EditSerials.cs</DependentUpon>
+    <EmbeddedResource Include="Comprobantes\EditarTallesYColores.resx">
+      <DependentUpon>EditarTallesYColores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprobantes\EditarSeries.resx">
+      <DependentUpon>EditarSeries.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprobantes\Facturas\SaldoEnCuentaCorriente.resx">
       <DependentUpon>SaldoEnCuentaCorriente.cs</DependentUpon>

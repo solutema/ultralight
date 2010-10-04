@@ -40,10 +40,11 @@ namespace qGen
         /// </summary>
         public class Select : TableCommand
         {
-                public new string Fields = "*";
+                new public string Fields = "*";
                 public Window Window = null;
                 public string Order = null;
                 public string Group = "";
+                public bool ForUpdate = false;
                 public System.Collections.Generic.List<Join> Joins = new System.Collections.Generic.List<Join>();
 
                 public Where HavingClause = null;
@@ -57,6 +58,12 @@ namespace qGen
                 public Select(string Tables)
                         : base(Tables) { }
 
+                public Select(string Tables, bool forUpdate)
+                        : this(Tables)
+                {
+                        this.ForUpdate = true;
+                }
+
                 public override string ToString()
                 {
                         System.Text.StringBuilder Command = new System.Text.StringBuilder();
@@ -69,7 +76,8 @@ namespace qGen
                                                 // Nada. Se hace con LIMIT x OFFSET y
                                                 break;
                                         case SqlModes.Ansi:
-                                        // Nada. Se hace con OFFSET x FETCH y
+                                                // Nada. Se hace con OFFSET x FETCH y
+                                                break;
                                         default:
                                                 Command.Append("ROW_NUMBER() OVER (ORDER BY key ASC) AS window_function_rownum, ");
                                                 break;
@@ -140,6 +148,9 @@ namespace qGen
                                                 break;
                                 }
                         }
+
+                        if (this.ForUpdate)
+                                Command.Append(" FOR UPDATE");
 
                         return Command.ToString();
                 }

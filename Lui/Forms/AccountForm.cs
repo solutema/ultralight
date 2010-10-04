@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -44,7 +44,7 @@ namespace Lui.Forms
                 public int m_Cliente;
                 public Lfx.Types.DateRange m_Fechas = new Lfx.Types.DateRange("dia-0");
 		protected qGen.Select m_SelectCommand;
-		protected Lfx.Data.FormField[] m_FormFields;
+		protected List<Lfx.Data.FormField> m_FormFields;
 
                 public AccountForm()
                 {

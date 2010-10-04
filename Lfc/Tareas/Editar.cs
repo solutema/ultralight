@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -43,7 +43,7 @@ namespace Lfc.Tareas
                 internal int iEstadoOriginal = 0;
                 internal double Descuento = 0;
                 
-                public Editar() : base()
+                public Editar()
                 {
                         InitializeComponent();
 
@@ -65,25 +65,17 @@ namespace Lfc.Tareas
                 {
                         Lbl.Tareas.Tarea Res = this.CachedRow as Lbl.Tareas.Tarea;
 
-                        if (txtCliente.TextInt == 0)
-                                Res.Cliente = null;
-                        else
-                                Res.Cliente = new Lbl.Personas.Persona(Res.DataBase, txtCliente.TextInt);
-
-                        if (txtTecnico.TextInt == 0)
-                                Res.Encargado = null;
-                        else
-                                Res.Encargado = new Lbl.Personas.Persona(Res.DataBase, txtTecnico.TextInt);
-                        
-                        Res.Tipo = new Lbl.Tareas.Tipo(Res.DataBase, txtTarea.TextInt);
-                        Res.Prioridad = Lfx.Types.Parsing.ParseInt(txtPrioridad.TextKey);
+                        Res.Cliente = EntradaCliente.Elemento as Lbl.Personas.Persona;
+                        Res.Encargado = EntradaTecnico.Elemento as Lbl.Personas.Persona;
+                        Res.Tipo = new Lbl.Tareas.Tipo(Res.DataBase, EntradaTarea.TextInt);
+                        Res.Prioridad = Lfx.Types.Parsing.ParseInt(EntradaPrioridad.TextKey);
                         Res.Nombre = txtAsunto.Text;
-                        Res.Descripcion = txtDescripcion.Text;
-                        Res.Estado = txtEstado.TextInt;
-                        Res.FechaEstimada = Lfx.Types.Parsing.ParseDate(txtEntregaEstimada.Text);
-                        Res.FechaLimite = Lfx.Types.Parsing.ParseDate(txtEntregaLimite.Text);
-                        Res.Presupuesto = Lfx.Types.Parsing.ParseCurrency(txtPresupuesto.Text);
-                        Res.Obs = txtObs.Text;
+                        Res.Descripcion = EntradaDescripcion.Text;
+                        Res.Estado = EntradaEstado.TextInt;
+                        Res.FechaEstimada = Lfx.Types.Parsing.ParseDate(EntradaEntregaEstimada.Text);
+                        Res.FechaLimite = Lfx.Types.Parsing.ParseDate(EntradaEntregaLimite.Text);
+                        Res.Presupuesto = Lfx.Types.Parsing.ParseCurrency(EntradaPresupuesto.Text);
+                        Res.Obs = EntradaObs.Text;
 
                         return base.ToRow();
                 }
@@ -96,29 +88,17 @@ namespace Lfc.Tareas
 
                         txtNumero.Text = Res.Id.ToString();
                         txtAsunto.Text = Res.Nombre;
-                        if (Res.Cliente == null)
-                                txtCliente.TextInt = 0;
-                        else
-                                txtCliente.TextInt = Res.Cliente.Id;
-
-                        if (Res.Encargado == null)
-                                txtTecnico.TextInt = 0;
-                        else
-                                txtTecnico.TextInt = Res.Encargado.Id;
-
-                        if (Res.Tipo == null)
-                                txtTarea.TextInt = 0;
-                        else
-                                txtTarea.TextInt = Res.Tipo.Id;
-
-                        txtPrioridad.TextKey = Res.Prioridad.ToString();
-                        txtDescripcion.Text = Res.Descripcion;
-                        txtEstado.TextInt = Res.Estado;
-                        txtFechaIngreso.Text = Lfx.Types.Formatting.FormatDateAndTime(Res.Fecha);
-                        txtEntregaEstimada.Text = Lfx.Types.Formatting.FormatDate(Res.FechaEstimada);
-                        txtEntregaLimite.Text = Lfx.Types.Formatting.FormatDate(Res.FechaLimite);
-                        txtPresupuesto.Text = Lfx.Types.Formatting.FormatCurrency(Res.Presupuesto, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtObs.Text = Res.Obs;
+                        EntradaCliente.Elemento = Res.Cliente;
+                        EntradaTecnico.Elemento = Res.Encargado;
+                        EntradaTarea.Elemento = Res.Tipo;
+                        EntradaPrioridad.TextKey = Res.Prioridad.ToString();
+                        EntradaDescripcion.Text = Res.Descripcion;
+                        EntradaEstado.TextInt = Res.Estado;
+                        EntradaFechaIngreso.Text = Lfx.Types.Formatting.FormatDateAndTime(Res.Fecha);
+                        EntradaEntregaEstimada.Text = Lfx.Types.Formatting.FormatDate(Res.FechaEstimada);
+                        EntradaEntregaLimite.Text = Lfx.Types.Formatting.FormatDate(Res.FechaLimite);
+                        EntradaPresupuesto.Text = Lfx.Types.Formatting.FormatCurrency(Res.Presupuesto, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaObs.Text = Res.Obs;
 
                         if (Res.Existe) {
                                 this.Text = "Tareas: " + Res.ToString();
@@ -132,18 +112,18 @@ namespace Lfc.Tareas
                 public override Lui.Printing.ItemPrint FormatForPrinting(Lui.Printing.ItemPrint ImprimirItem)
                 {
                         ImprimirItem.Titulo = "Tarea Nº " + txtNumero.Text;
-                        ImprimirItem.AgregarPar("Tipo de Tarea", txtTarea.TextDetail, 1);
+                        ImprimirItem.AgregarPar("Tipo de Tarea", EntradaTarea.TextDetail, 1);
                         ImprimirItem.AgregarPar("Asunto", txtAsunto.Text, 1);
-                        ImprimirItem.AgregarPar("Cliente", txtCliente.TextDetail, 1);
+                        ImprimirItem.AgregarPar("Cliente", EntradaCliente.TextDetail, 1);
                         // Datos del cliente
-                        if (txtDescripcion.Text.Length > 0)
-                                ImprimirItem.AgregarPar("Descripción", txtDescripcion.Text, 1);
+                        if (EntradaDescripcion.Text.Length > 0)
+                                ImprimirItem.AgregarPar("Descripción", EntradaDescripcion.Text, 1);
 
-                        ImprimirItem.AgregarPar("Encargado", txtTecnico.TextDetail, 1);
-                        ImprimirItem.AgregarPar("Estado", txtEstado.TextDetail, 1);
-                        ImprimirItem.AgregarPar("Fecha de Ingreso", txtFechaIngreso.Text, 1);
-                        if (Lfx.Types.Parsing.ParseCurrency(txtPresupuesto.Text) != 0)
-                                ImprimirItem.AgregarPar("Presupuesto", Lfx.Types.Currency.CurrencySymbol + " " + txtPresupuesto.Text, 1);
+                        ImprimirItem.AgregarPar("Encargado", EntradaTecnico.TextDetail, 1);
+                        ImprimirItem.AgregarPar("Estado", EntradaEstado.TextDetail, 1);
+                        ImprimirItem.AgregarPar("Fecha de Ingreso", EntradaFechaIngreso.Text, 1);
+                        if (Lfx.Types.Parsing.ParseCurrency(EntradaPresupuesto.Text) != 0)
+                                ImprimirItem.AgregarPar("Presupuesto", Lfx.Types.Currency.CurrencySymbol + " " + EntradaPresupuesto.Text, 1);
 
                         if (Lfx.Types.Parsing.ParseCurrency(txtPresupuesto2.Text) != 0) {
                                 ImprimirItem.AgregarPar("Artículos", Lfx.Types.Currency.CurrencySymbol + " " + txtPresupuesto2.Text, 1);
@@ -170,15 +150,15 @@ namespace Lfc.Tareas
                 {
                         Lfx.Types.OperationResult validarReturn = new Lfx.Types.SuccessOperationResult();
 
-                        if (txtTecnico.TextInt == 0) {
+                        if (EntradaTecnico.TextInt == 0) {
                                 validarReturn.Success = false;
                                 validarReturn.Message += "Debe seleccionar el Encargado." + Environment.NewLine;
                         }
-                        if (txtCliente.TextInt == 0) {
+                        if (EntradaCliente.TextInt == 0) {
                                 validarReturn.Success = false;
                                 validarReturn.Message += "Debe seleccionar el Cliente." + Environment.NewLine;
                         }
-                        if (txtTarea.TextInt == 0) {
+                        if (EntradaTarea.TextInt == 0) {
                                 validarReturn.Success = false;
                                 validarReturn.Message += "Debe seleccionar el tipo de Tarea." + Environment.NewLine;
                         }
@@ -217,7 +197,7 @@ namespace Lfc.Tareas
                         lvHistorial.BeginUpdate();
                         lvHistorial.Items.Clear();
 
-                        string TextoSql = "SELECT tickets_eventos.id_ticket, tickets_eventos.fecha, tickets_eventos.descripcion, personas.nombre FROM tickets_eventos, personas WHERE tickets_eventos.id_tecnico=personas.id_persona AND tickets_eventos.id_ticket IN (SELECT id_ticket FROM tickets WHERE id_persona=" + txtCliente.TextInt.ToString() + ") ORDER BY tickets_eventos.id_evento DESC";
+                        string TextoSql = "SELECT tickets_eventos.id_ticket, tickets_eventos.fecha, tickets_eventos.descripcion, personas.nombre FROM tickets_eventos, personas WHERE tickets_eventos.id_tecnico=personas.id_persona AND tickets_eventos.id_ticket IN (SELECT id_ticket FROM tickets WHERE id_persona=" + EntradaCliente.TextInt.ToString() + ") ORDER BY tickets_eventos.id_evento DESC";
                         System.Data.DataTable Eventos = this.DataBase.Select(TextoSql);
                         if (Eventos.Rows.Count > 0) {
 
@@ -277,8 +257,8 @@ namespace Lfc.Tareas
                         } else {
                                 Tareas.Novedad OFormNovedadCargar = new Tareas.Novedad();
                                 OFormNovedadCargar.Create();
-                                OFormNovedadCargar.txtTicket.TextInt = m_Id;
-                                OFormNovedadCargar.txtTicket.Enabled = false;
+                                OFormNovedadCargar.EntradaTicket.TextInt = m_Id;
+                                OFormNovedadCargar.EntradaTicket.Enabled = false;
                                 if (OFormNovedadCargar.ShowDialog() == DialogResult.OK)
                                         this.CargarHistorial();
                         }
@@ -298,12 +278,12 @@ namespace Lfc.Tareas
                                 FacturaNueva.Show();
                         } else {
                                 if (this.Save().Success == true) {
-                                        txtEstado.Text = "50";
+                                        EntradaEstado.Text = "50";
                                         FacturaNueva.Create("FB");
 
-                                        FacturaNueva.EntradaCliente.Text = txtCliente.Text;
-                                        FacturaNueva.EntradaVendedor.Text = txtTecnico.Text;
-                                        ((Lbl.Comprobantes.Comprobante)FacturaNueva.CachedRow).Obs = txtTarea.TextDetail + " s/tarea #" + m_Id.ToString();
+                                        FacturaNueva.EntradaCliente.Text = EntradaCliente.Text;
+                                        FacturaNueva.EntradaVendedor.Text = EntradaTecnico.Text;
+                                        ((Lbl.Comprobantes.Comprobante)FacturaNueva.CachedRow).Obs = EntradaTarea.TextDetail + " s/tarea #" + m_Id.ToString();
 
                                         System.Data.DataTable Articulos = this.DataBase.Select("SELECT * FROM tickets_articulos WHERE id_ticket=" + m_Id.ToString() + " ORDER BY orden");
                                         FacturaNueva.ProductArray.Count = Articulos.Rows.Count;
@@ -314,12 +294,12 @@ namespace Lfc.Tareas
                                                 //TODO: Descuento por item
                                                 FacturaNueva.ProductArray.ChildControls[i].Unitario = System.Convert.ToDouble(Articulos.Rows[i]["precio"]) * (1 - Descuento / 100);
                                         }
-                                        if (Lfx.Types.Parsing.ParseCurrency(txtPresupuesto.Text) > 0) {
+                                        if (Lfx.Types.Parsing.ParseCurrency(EntradaPresupuesto.Text) > 0) {
                                                 FacturaNueva.ProductArray.Count++;
                                                 int i = FacturaNueva.ProductArray.Count - 1;
                                                 FacturaNueva.ProductArray.ChildControls[i].TextInt = 282;
                                                 FacturaNueva.ProductArray.ChildControls[i].Cantidad = 1;
-                                                FacturaNueva.ProductArray.ChildControls[i].Unitario = Lfx.Types.Parsing.ParseCurrency(txtPresupuesto.Text);
+                                                FacturaNueva.ProductArray.ChildControls[i].Unitario = Lfx.Types.Parsing.ParseCurrency(EntradaPresupuesto.Text);
                                         }
                                         FacturaNueva.ProductArray.AutoAgregar = true;
 

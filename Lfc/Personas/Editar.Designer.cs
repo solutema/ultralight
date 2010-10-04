@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Lfc.Personas
@@ -58,10 +58,10 @@ namespace Lfc.Personas
                 {
                         this.EntradaEmail = new Lui.Forms.TextBox();
                         this.EntradaTelefono = new Lui.Forms.TextBox();
-                        this.EntradaCiudad = new Lui.Forms.DetailBox();
+                        this.EntradaCiudad = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaDomicilio = new Lui.Forms.TextBox();
                         this.EntradaNumDoc = new Lui.Forms.TextBox();
-                        this.EntradaTipoDoc = new Lui.Forms.DetailBox();
+                        this.EntradaTipoDoc = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaApellido = new Lui.Forms.TextBox();
                         this.EntradaNombre = new Lui.Forms.TextBox();
                         this.EntradaCuit = new Lui.Forms.TextBox();
@@ -80,11 +80,11 @@ namespace Lfc.Personas
                         this.Frame2 = new Lui.Forms.Frame();
                         this.Label15 = new System.Windows.Forms.Label();
                         this.Label12 = new System.Windows.Forms.Label();
-                        this.EntradaSituacion = new Lui.Forms.DetailBox();
+                        this.EntradaSituacion = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaTipoFac = new Lui.Forms.ComboBox();
-                        this.EntradaTipo = new Lui.Forms.DetailBox();
+                        this.EntradaTipo = new Lcc.Entrada.CodigoDetalle();
                         this.Label14 = new System.Windows.Forms.Label();
-                        this.EntradaGrupo = new Lui.Forms.DetailBox();
+                        this.EntradaGrupo = new Lcc.Entrada.CodigoDetalle();
                         this.Label16 = new System.Windows.Forms.Label();
                         this.BotonAcceso = new Lui.Forms.Button();
                         this.EntradaLimiteCredito = new Lui.Forms.TextBox();
@@ -100,33 +100,33 @@ namespace Lfc.Personas
                         this.EntradaNumeroCuenta = new Lui.Forms.TextBox();
                         this.label22 = new System.Windows.Forms.Label();
                         this.frame3 = new Lui.Forms.Frame();
-                        this.EntradaVendedor = new Lui.Forms.DetailBox();
+                        this.EntradaVendedor = new Lcc.Entrada.CodigoDetalle();
                         this.label23 = new System.Windows.Forms.Label();
                         this.frame4 = new Lui.Forms.Frame();
-                        this.EntradaSubGrupo = new Lui.Forms.DetailBox();
+                        this.EntradaSubGrupo = new Lcc.Entrada.CodigoDetalle();
                         this.label13 = new System.Windows.Forms.Label();
                         this.EntradaObs = new Lui.Forms.TextBox();
                         this.EntradaNombreVisible = new Lui.Forms.TextBox();
                         this.Label4 = new System.Windows.Forms.Label();
                         this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-                        this.EntradaTags = new Lui.Forms.FieldTags();
-                        this.EntradaImagen = new Lcc.Edicion.Imagen();
+                        this.EntradaTags = new Lcc.Edicion.MatrizTags();
+                        this.EntradaImagen = new Lcc.Entrada.Imagen();
                         this.ContenedorScroll = new System.Windows.Forms.Panel();
+                        this.frame5 = new Lui.Forms.Frame();
+                        this.label24 = new System.Windows.Forms.Label();
+                        this.EntradaEstado = new Lui.Forms.ComboBox();
+                        this.label25 = new System.Windows.Forms.Label();
+                        this.EntradaFechaAlta = new Lui.Forms.TextBox();
+                        this.label26 = new System.Windows.Forms.Label();
+                        this.EntradaFechaBaja = new Lui.Forms.TextBox();
                         this.Frame1.SuspendLayout();
                         this.Frame2.SuspendLayout();
                         this.frame3.SuspendLayout();
                         this.frame4.SuspendLayout();
                         this.tableLayoutPanel1.SuspendLayout();
                         this.ContenedorScroll.SuspendLayout();
+                        this.frame5.SuspendLayout();
                         this.SuspendLayout();
-                        // 
-                        // SaveButton
-                        // 
-                        this.SaveButton.Location = new System.Drawing.Point(576, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(684, 8);
                         // 
                         // EntradaEmail
                         // 
@@ -205,14 +205,12 @@ namespace Lfc.Personas
                         this.EntradaCiudad.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCiudad.ReadOnly = false;
                         this.EntradaCiudad.Required = true;
-                        this.EntradaCiudad.SelectOnFocus = false;
                         this.EntradaCiudad.Size = new System.Drawing.Size(316, 24);
                         this.EntradaCiudad.TabIndex = 9;
                         this.EntradaCiudad.Table = "ciudades";
                         this.EntradaCiudad.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCiudad.Text = "0";
                         this.EntradaCiudad.TextDetail = "";
-                        this.EntradaCiudad.TextInt = 0;
                         this.EntradaCiudad.TipWhenBlank = "Sin especificar";
                         this.EntradaCiudad.ToolTipText = "";
                         // 
@@ -288,14 +286,12 @@ namespace Lfc.Personas
                         this.EntradaTipoDoc.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipoDoc.ReadOnly = false;
                         this.EntradaTipoDoc.Required = true;
-                        this.EntradaTipoDoc.SelectOnFocus = false;
                         this.EntradaTipoDoc.Size = new System.Drawing.Size(160, 24);
                         this.EntradaTipoDoc.TabIndex = 5;
                         this.EntradaTipoDoc.Table = "tipo_doc";
                         this.EntradaTipoDoc.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaTipoDoc.Text = "0";
                         this.EntradaTipoDoc.TextDetail = "";
-                        this.EntradaTipoDoc.TextInt = 0;
                         this.EntradaTipoDoc.TipWhenBlank = "";
                         this.EntradaTipoDoc.ToolTipText = "";
                         // 
@@ -589,14 +585,12 @@ namespace Lfc.Personas
                         this.EntradaSituacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSituacion.ReadOnly = false;
                         this.EntradaSituacion.Required = true;
-                        this.EntradaSituacion.SelectOnFocus = false;
                         this.EntradaSituacion.Size = new System.Drawing.Size(215, 24);
                         this.EntradaSituacion.TabIndex = 5;
                         this.EntradaSituacion.Table = "situaciones";
                         this.EntradaSituacion.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaSituacion.Text = "0";
                         this.EntradaSituacion.TextDetail = "";
-                        this.EntradaSituacion.TextInt = 0;
                         this.EntradaSituacion.TipWhenBlank = "";
                         this.EntradaSituacion.ToolTipText = "";
                         this.EntradaSituacion.Leave += new System.EventHandler(this.txtSituacion_Leave);
@@ -652,14 +646,12 @@ namespace Lfc.Personas
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.Required = true;
-                        this.EntradaTipo.SelectOnFocus = false;
                         this.EntradaTipo.Size = new System.Drawing.Size(255, 24);
                         this.EntradaTipo.TabIndex = 5;
                         this.EntradaTipo.Table = "personas_tipos";
                         this.EntradaTipo.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaTipo.Text = "0";
                         this.EntradaTipo.TextDetail = "";
-                        this.EntradaTipo.TextInt = 0;
                         this.EntradaTipo.TipWhenBlank = "Sin especificar";
                         this.EntradaTipo.ToolTipText = "";
                         // 
@@ -692,14 +684,12 @@ namespace Lfc.Personas
                         this.EntradaGrupo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaGrupo.ReadOnly = false;
                         this.EntradaGrupo.Required = false;
-                        this.EntradaGrupo.SelectOnFocus = false;
                         this.EntradaGrupo.Size = new System.Drawing.Size(255, 24);
                         this.EntradaGrupo.TabIndex = 1;
                         this.EntradaGrupo.Table = "personas_grupos";
                         this.EntradaGrupo.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaGrupo.Text = "0";
                         this.EntradaGrupo.TextDetail = "";
-                        this.EntradaGrupo.TextInt = 0;
                         this.EntradaGrupo.TipWhenBlank = "Ninguno";
                         this.EntradaGrupo.ToolTipText = "";
                         this.EntradaGrupo.TextChanged += new System.EventHandler(this.EntradaGrupo_TextChanged);
@@ -1008,14 +998,12 @@ namespace Lfc.Personas
                         this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaVendedor.ReadOnly = false;
                         this.EntradaVendedor.Required = false;
-                        this.EntradaVendedor.SelectOnFocus = false;
                         this.EntradaVendedor.Size = new System.Drawing.Size(316, 24);
                         this.EntradaVendedor.TabIndex = 11;
                         this.EntradaVendedor.Table = "personas";
                         this.EntradaVendedor.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaVendedor.Text = "0";
                         this.EntradaVendedor.TextDetail = "";
-                        this.EntradaVendedor.TextInt = 0;
                         this.EntradaVendedor.TipWhenBlank = "Ninguno";
                         this.EntradaVendedor.ToolTipText = "";
                         // 
@@ -1077,14 +1065,12 @@ namespace Lfc.Personas
                         this.EntradaSubGrupo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSubGrupo.ReadOnly = false;
                         this.EntradaSubGrupo.Required = false;
-                        this.EntradaSubGrupo.SelectOnFocus = false;
                         this.EntradaSubGrupo.Size = new System.Drawing.Size(255, 24);
                         this.EntradaSubGrupo.TabIndex = 3;
                         this.EntradaSubGrupo.Table = "personas_grupos";
                         this.EntradaSubGrupo.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaSubGrupo.Text = "0";
                         this.EntradaSubGrupo.TextDetail = "";
-                        this.EntradaSubGrupo.TextInt = 0;
                         this.EntradaSubGrupo.TipWhenBlank = "Ninguno";
                         this.EntradaSubGrupo.ToolTipText = "";
                         // 
@@ -1118,7 +1104,7 @@ namespace Lfc.Personas
                         this.EntradaObs.Prefijo = "";
                         this.EntradaObs.ReadOnly = false;
                         this.EntradaObs.SelectOnFocus = true;
-                        this.EntradaObs.Size = new System.Drawing.Size(420, 78);
+                        this.EntradaObs.Size = new System.Drawing.Size(420, 122);
                         this.EntradaObs.Sufijo = "";
                         this.EntradaObs.TabIndex = 5;
                         this.EntradaObs.TextRaw = "";
@@ -1175,6 +1161,7 @@ namespace Lfc.Personas
                         this.tableLayoutPanel1.Controls.Add(this.Frame1, 0, 0);
                         this.tableLayoutPanel1.Controls.Add(this.EntradaObs, 0, 3);
                         this.tableLayoutPanel1.Controls.Add(this.EntradaImagen, 1, 2);
+                        this.tableLayoutPanel1.Controls.Add(this.frame5, 1, 3);
                         this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
                         this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
                         this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -1183,7 +1170,8 @@ namespace Lfc.Personas
                         this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
                         this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
                         this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.tableLayoutPanel1.Size = new System.Drawing.Size(775, 640);
+                        this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+                        this.tableLayoutPanel1.Size = new System.Drawing.Size(775, 680);
                         this.tableLayoutPanel1.TabIndex = 0;
                         // 
                         // EntradaTags
@@ -1224,6 +1212,133 @@ namespace Lfc.Personas
                         this.ContenedorScroll.Size = new System.Drawing.Size(792, 372);
                         this.ContenedorScroll.TabIndex = 0;
                         // 
+                        // frame5
+                        // 
+                        this.frame5.AutoHeight = false;
+                        this.frame5.Controls.Add(this.label26);
+                        this.frame5.Controls.Add(this.EntradaFechaBaja);
+                        this.frame5.Controls.Add(this.label25);
+                        this.frame5.Controls.Add(this.EntradaFechaAlta);
+                        this.frame5.Controls.Add(this.label24);
+                        this.frame5.Controls.Add(this.EntradaEstado);
+                        this.frame5.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.frame5.Location = new System.Drawing.Point(429, 558);
+                        this.frame5.Name = "frame5";
+                        this.frame5.Padding = new System.Windows.Forms.Padding(2);
+                        this.frame5.ReadOnly = false;
+                        this.frame5.Size = new System.Drawing.Size(343, 122);
+                        this.frame5.TabIndex = 0;
+                        this.frame5.Text = "Estado";
+                        this.frame5.ToolTipText = "";
+                        // 
+                        // label24
+                        // 
+                        this.label24.Location = new System.Drawing.Point(4, 24);
+                        this.label24.Name = "label24";
+                        this.label24.Size = new System.Drawing.Size(116, 24);
+                        this.label24.TabIndex = 0;
+                        this.label24.Text = "Estado";
+                        this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EntradaEstado
+                        // 
+                        this.EntradaEstado.AutoHeight = false;
+                        this.EntradaEstado.AutoNav = true;
+                        this.EntradaEstado.AutoTab = true;
+                        this.EntradaEstado.DetailField = null;
+                        this.EntradaEstado.Filter = null;
+                        this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaEstado.KeyField = null;
+                        this.EntradaEstado.Location = new System.Drawing.Point(120, 24);
+                        this.EntradaEstado.MaxLenght = 32767;
+                        this.EntradaEstado.Name = "EntradaEstado";
+                        this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEstado.ReadOnly = false;
+                        this.EntradaEstado.SetData = new string[] {
+        "Inactivo|0",
+        "Activo|1"};
+                        this.EntradaEstado.Size = new System.Drawing.Size(188, 24);
+                        this.EntradaEstado.TabIndex = 1;
+                        this.EntradaEstado.Table = null;
+                        this.EntradaEstado.Text = "Activo";
+                        this.EntradaEstado.TextKey = "1";
+                        this.EntradaEstado.TextRaw = "Activo";
+                        this.EntradaEstado.TipWhenBlank = "";
+                        this.EntradaEstado.ToolTipText = "";
+                        // 
+                        // label25
+                        // 
+                        this.label25.Location = new System.Drawing.Point(4, 52);
+                        this.label25.Name = "label25";
+                        this.label25.Size = new System.Drawing.Size(116, 24);
+                        this.label25.TabIndex = 2;
+                        this.label25.Text = "Fecha de Alta";
+                        this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EntradaFechaAlta
+                        // 
+                        this.EntradaFechaAlta.AutoHeight = false;
+                        this.EntradaFechaAlta.AutoNav = true;
+                        this.EntradaFechaAlta.AutoTab = true;
+                        this.EntradaFechaAlta.DataType = Lui.Forms.DataTypes.Date;
+                        this.EntradaFechaAlta.DecimalPlaces = -1;
+                        this.EntradaFechaAlta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaFechaAlta.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaFechaAlta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaFechaAlta.Location = new System.Drawing.Point(120, 52);
+                        this.EntradaFechaAlta.MaxLenght = 32767;
+                        this.EntradaFechaAlta.MultiLine = false;
+                        this.EntradaFechaAlta.Name = "EntradaFechaAlta";
+                        this.EntradaFechaAlta.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaFechaAlta.PasswordChar = '\0';
+                        this.EntradaFechaAlta.Prefijo = "";
+                        this.EntradaFechaAlta.ReadOnly = true;
+                        this.EntradaFechaAlta.SelectOnFocus = true;
+                        this.EntradaFechaAlta.Size = new System.Drawing.Size(152, 24);
+                        this.EntradaFechaAlta.Sufijo = "";
+                        this.EntradaFechaAlta.TabIndex = 3;
+                        this.EntradaFechaAlta.TabStop = false;
+                        this.EntradaFechaAlta.TextRaw = "";
+                        this.EntradaFechaAlta.TipWhenBlank = "";
+                        this.EntradaFechaAlta.ToolTipText = "";
+                        // 
+                        // label26
+                        // 
+                        this.label26.Location = new System.Drawing.Point(4, 80);
+                        this.label26.Name = "label26";
+                        this.label26.Size = new System.Drawing.Size(116, 24);
+                        this.label26.TabIndex = 4;
+                        this.label26.Text = "Fecha de Baja";
+                        this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EntradaFechaBaja
+                        // 
+                        this.EntradaFechaBaja.AutoHeight = false;
+                        this.EntradaFechaBaja.AutoNav = true;
+                        this.EntradaFechaBaja.AutoTab = true;
+                        this.EntradaFechaBaja.DataType = Lui.Forms.DataTypes.Date;
+                        this.EntradaFechaBaja.DecimalPlaces = -1;
+                        this.EntradaFechaBaja.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaFechaBaja.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaFechaBaja.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaFechaBaja.Location = new System.Drawing.Point(120, 80);
+                        this.EntradaFechaBaja.MaxLenght = 32767;
+                        this.EntradaFechaBaja.MultiLine = false;
+                        this.EntradaFechaBaja.Name = "EntradaFechaBaja";
+                        this.EntradaFechaBaja.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaFechaBaja.PasswordChar = '\0';
+                        this.EntradaFechaBaja.Prefijo = "";
+                        this.EntradaFechaBaja.ReadOnly = true;
+                        this.EntradaFechaBaja.SelectOnFocus = true;
+                        this.EntradaFechaBaja.Size = new System.Drawing.Size(152, 24);
+                        this.EntradaFechaBaja.Sufijo = "";
+                        this.EntradaFechaBaja.TabIndex = 5;
+                        this.EntradaFechaBaja.TabStop = false;
+                        this.EntradaFechaBaja.TextRaw = "";
+                        this.EntradaFechaBaja.TipWhenBlank = "";
+                        this.EntradaFechaBaja.ToolTipText = "";
+                        // 
                         // Editar
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -1234,7 +1349,6 @@ namespace Lfc.Personas
                         this.Controls.Add(this.Label4);
                         this.Name = "Editar";
                         this.Text = "Clientes: Editar";
-                        this.WorkspaceChanged += new System.EventHandler(this.FormClientesEditar_WorkspaceChanged);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormClientesEditar_KeyDown);
                         this.Controls.SetChildIndex(this.Label4, 0);
                         this.Controls.SetChildIndex(this.ContenedorScroll, 0);
@@ -1250,6 +1364,8 @@ namespace Lfc.Personas
                         this.frame4.PerformLayout();
                         this.tableLayoutPanel1.ResumeLayout(false);
                         this.ContenedorScroll.ResumeLayout(false);
+                        this.frame5.ResumeLayout(false);
+                        this.frame5.PerformLayout();
                         this.ResumeLayout(false);
 
                 }
@@ -1258,10 +1374,10 @@ namespace Lfc.Personas
 
                 internal Lui.Forms.TextBox EntradaEmail;
                 internal Lui.Forms.TextBox EntradaTelefono;
-                internal Lui.Forms.DetailBox EntradaCiudad;
+                internal Lcc.Entrada.CodigoDetalle EntradaCiudad;
                 internal Lui.Forms.TextBox EntradaDomicilio;
                 internal Lui.Forms.TextBox EntradaNumDoc;
-                internal Lui.Forms.DetailBox EntradaTipoDoc;
+                internal Lcc.Entrada.CodigoDetalle EntradaTipoDoc;
                 internal Lui.Forms.TextBox EntradaApellido;
                 internal Lui.Forms.TextBox EntradaNombre;
                 internal Lui.Forms.TextBox EntradaCuit;
@@ -1278,10 +1394,10 @@ namespace Lfc.Personas
                 internal System.Windows.Forms.Label Label11;
                 internal Lui.Forms.Frame Frame1;
                 internal Lui.Forms.Frame Frame2;
-                internal Lui.Forms.DetailBox EntradaSituacion;
+                internal Lcc.Entrada.CodigoDetalle EntradaSituacion;
                 internal System.Windows.Forms.Label Label12;
                 internal System.Windows.Forms.Label Label14;
-                public Lui.Forms.DetailBox EntradaTipo;
+                public Lcc.Entrada.CodigoDetalle EntradaTipo;
                 internal System.Windows.Forms.Label Label15;
                 internal Lui.Forms.ComboBox EntradaTipoFac;
                 internal System.Windows.Forms.Label Label16;
@@ -1298,20 +1414,27 @@ namespace Lfc.Personas
                 internal System.Windows.Forms.Label label22;
                 internal Lui.Forms.TextBox EntradaCbu;
                 internal Label label20;
-                internal Lui.Forms.DetailBox EntradaGrupo;
+                internal Lcc.Entrada.CodigoDetalle EntradaGrupo;
                 private Lui.Forms.Frame frame3;
                 private Lui.Forms.Frame frame4;
                 private Lui.Forms.TextBox EntradaObs;
                 internal Lui.Forms.TextBox EntradaNombreVisible;
                 internal Label Label4;
                 private TableLayoutPanel tableLayoutPanel1;
-                private Lui.Forms.FieldTags EntradaTags;
+                private Lcc.Edicion.MatrizTags EntradaTags;
                 private Panel ContenedorScroll;
-                internal Lui.Forms.DetailBox EntradaSubGrupo;
+                internal Lcc.Entrada.CodigoDetalle EntradaSubGrupo;
                 internal Label label13;
-                private Lcc.Edicion.Imagen EntradaImagen;
-                internal Lui.Forms.DetailBox EntradaVendedor;
+                private Lcc.Entrada.Imagen EntradaImagen;
+                internal Lcc.Entrada.CodigoDetalle EntradaVendedor;
                 internal Label label23;
+                private Lui.Forms.Frame frame5;
+                internal Label label26;
+                internal Lui.Forms.TextBox EntradaFechaBaja;
+                internal Label label25;
+                internal Lui.Forms.TextBox EntradaFechaAlta;
+                internal Label label24;
+                internal Lui.Forms.ComboBox EntradaEstado;
 
         }
 }

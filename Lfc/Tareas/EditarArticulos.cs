@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -75,7 +75,7 @@ namespace Lfc.Tareas
                 // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
                 // No lo modifique con el editor de código.
-                internal Lui.Forms.ProductArray ProductArray;
+                internal Lcc.Entrada.Articulos.MatrizDetalleComprobante ProductArray;
                 internal System.Windows.Forms.Label lblTitulo;
                 internal System.Windows.Forms.Label Label4;
                 internal Lui.Forms.TextBox txtTotal;
@@ -86,7 +86,7 @@ namespace Lfc.Tareas
 
                 private void InitializeComponent()
                 {
-                        this.ProductArray = new Lui.Forms.ProductArray();
+                        this.ProductArray = new Lcc.Entrada.Articulos.MatrizDetalleComprobante();
                         this.lblTitulo = new System.Windows.Forms.Label();
                         this.Label4 = new System.Windows.Forms.Label();
                         this.txtTotal = new Lui.Forms.TextBox();
@@ -95,18 +95,6 @@ namespace Lfc.Tareas
                         this.txtSubTotal = new Lui.Forms.TextBox();
                         this.Label5 = new System.Windows.Forms.Label();
                         this.SuspendLayout();
-                        // 
-                        // SaveButton
-                        // 
-                        this.SaveButton.DockPadding.All = 2;
-                        this.SaveButton.Location = new System.Drawing.Point(376, 10);
-                        this.SaveButton.Name = "SaveButton";
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.DockPadding.All = 2;
-                        this.CancelCommandButton.Location = new System.Drawing.Point(484, 10);
-                        this.CancelCommandButton.Name = "CancelCommandButton";
                         // 
                         // ProductArray
                         // 
@@ -127,7 +115,7 @@ namespace Lfc.Tareas
                         this.ProductArray.LockText = false;
                         this.ProductArray.MaxLength = 200;
                         this.ProductArray.Name = "ProductArray";
-                        this.ProductArray.Precio = Lui.Forms.Product.Precios.PVP;
+                        this.ProductArray.Precio = Lcc.Entrada.Articulos.Precios.Pvp;
                         this.ProductArray.ShowStock = true;
                         this.ProductArray.Size = new System.Drawing.Size(576, 220);
                         this.ProductArray.TabIndex = 1;

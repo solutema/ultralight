@@ -35,7 +35,7 @@ using System.Text;
 
 namespace Lfx.Cpx
 {
-        public class CommandList : System.Collections.CollectionBase
+        public class CommandList : List<Command>
         {
                 private Printer m_Printer = null;
 
@@ -48,7 +48,7 @@ namespace Lfx.Cpx
                         set
                         {
                                 m_Printer = value;
-                                foreach (Command cmd in this.List) {
+                                foreach (Command cmd in this) {
                                         cmd.Printer = value;
                                 }
                         }
@@ -59,17 +59,17 @@ namespace Lfx.Cpx
                         this.Printer = printer;
                 }
 
-                public void Add(Command command)
+                new public void Add(Command command)
                 {
                         command.Printer = this.Printer;
-                        this.List.Add(command);
+                        base.Add(command);
                 }
 
                 public override string ToString()
                 {
                         StringBuilder Res = new StringBuilder();
 
-                        foreach (Command cmd in this.List) {
+                        foreach (Command cmd in this) {
                                 Res.Append(cmd.ToString());
                         }
 

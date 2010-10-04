@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -40,12 +40,12 @@ namespace Lfc.Personas.Grupos
 	public class Editar : Lui.Forms.EditForm
 	{
 		internal System.Windows.Forms.Label label4;
-		internal Lui.Forms.TextBox txtNombre;
+		internal Lui.Forms.TextBox EntradaNombre;
 		internal System.Windows.Forms.Label Label1;
-		internal Lui.Forms.TextBox txtDescuento;
-		internal Lui.Forms.ComboBox txtPredet;
+		internal Lui.Forms.TextBox EntradaDescuento;
+		internal Lui.Forms.ComboBox EntradaPredet;
 		internal Label label2;
-                internal Lui.Forms.DetailBox txtGrupo;
+                internal Lcc.Entrada.CodigoDetalle EntradaGrupo;
                 internal Label Label16;
 		private System.ComponentModel.IContainer components = null;
 
@@ -76,42 +76,34 @@ namespace Lfc.Personas.Grupos
 		/// </summary>
 		private void InitializeComponent()
 		{
-                        this.txtDescuento = new Lui.Forms.TextBox();
+                        this.EntradaDescuento = new Lui.Forms.TextBox();
                         this.label4 = new System.Windows.Forms.Label();
-                        this.txtNombre = new Lui.Forms.TextBox();
+                        this.EntradaNombre = new Lui.Forms.TextBox();
                         this.Label1 = new System.Windows.Forms.Label();
-                        this.txtPredet = new Lui.Forms.ComboBox();
+                        this.EntradaPredet = new Lui.Forms.ComboBox();
                         this.label2 = new System.Windows.Forms.Label();
-                        this.txtGrupo = new Lui.Forms.DetailBox();
+                        this.EntradaGrupo = new Lcc.Entrada.CodigoDetalle();
                         this.Label16 = new System.Windows.Forms.Label();
                         this.SuspendLayout();
                         // 
-                        // SaveButton
-                        // 
-                        this.SaveButton.Location = new System.Drawing.Point(301, 10);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(409, 10);
-                        // 
                         // txtDescuento
                         // 
-                        this.txtDescuento.AutoNav = true;
-                        this.txtDescuento.AutoTab = true;
-                        this.txtDescuento.DataType = Lui.Forms.DataTypes.Float;
-                        this.txtDescuento.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtDescuento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtDescuento.Location = new System.Drawing.Point(140, 84);
-                        this.txtDescuento.MaxLenght = 32767;
-                        this.txtDescuento.Name = "txtDescuento";
-                        this.txtDescuento.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtDescuento.ReadOnly = false;
-                        this.txtDescuento.Size = new System.Drawing.Size(84, 24);
-                        this.txtDescuento.Sufijo = "%";
-                        this.txtDescuento.TabIndex = 5;
-                        this.txtDescuento.Text = "0.00";
-                        this.txtDescuento.TipWhenBlank = "";
-                        this.txtDescuento.ToolTipText = "";
+                        this.EntradaDescuento.AutoNav = true;
+                        this.EntradaDescuento.AutoTab = true;
+                        this.EntradaDescuento.DataType = Lui.Forms.DataTypes.Float;
+                        this.EntradaDescuento.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaDescuento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaDescuento.Location = new System.Drawing.Point(140, 84);
+                        this.EntradaDescuento.MaxLenght = 32767;
+                        this.EntradaDescuento.Name = "txtDescuento";
+                        this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaDescuento.ReadOnly = false;
+                        this.EntradaDescuento.Size = new System.Drawing.Size(84, 24);
+                        this.EntradaDescuento.Sufijo = "%";
+                        this.EntradaDescuento.TabIndex = 5;
+                        this.EntradaDescuento.Text = "0.00";
+                        this.EntradaDescuento.TipWhenBlank = "";
+                        this.EntradaDescuento.ToolTipText = "";
                         // 
                         // label4
                         // 
@@ -124,23 +116,23 @@ namespace Lfc.Personas.Grupos
                         // 
                         // txtNombre
                         // 
-                        this.txtNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtNombre.AutoNav = true;
-                        this.txtNombre.AutoTab = true;
-                        this.txtNombre.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.txtNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtNombre.Location = new System.Drawing.Point(140, 52);
-                        this.txtNombre.MaxLenght = 32767;
-                        this.txtNombre.Name = "txtNombre";
-                        this.txtNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtNombre.ReadOnly = false;
-                        this.txtNombre.SelectOnFocus = false;
-                        this.txtNombre.Size = new System.Drawing.Size(364, 24);
-                        this.txtNombre.TabIndex = 3;
-                        this.txtNombre.TipWhenBlank = "";
-                        this.txtNombre.ToolTipText = "";
+                        this.EntradaNombre.AutoNav = true;
+                        this.EntradaNombre.AutoTab = true;
+                        this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaNombre.Location = new System.Drawing.Point(140, 52);
+                        this.EntradaNombre.MaxLenght = 32767;
+                        this.EntradaNombre.Name = "txtNombre";
+                        this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaNombre.ReadOnly = false;
+                        this.EntradaNombre.SelectOnFocus = false;
+                        this.EntradaNombre.Size = new System.Drawing.Size(364, 24);
+                        this.EntradaNombre.TabIndex = 3;
+                        this.EntradaNombre.TipWhenBlank = "";
+                        this.EntradaNombre.ToolTipText = "";
                         // 
                         // Label1
                         // 
@@ -153,24 +145,24 @@ namespace Lfc.Personas.Grupos
                         // 
                         // txtPredet
                         // 
-                        this.txtPredet.AutoNav = true;
-                        this.txtPredet.AutoTab = true;
-                        this.txtPredet.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtPredet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtPredet.Location = new System.Drawing.Point(140, 116);
-                        this.txtPredet.MaxLenght = 32767;
-                        this.txtPredet.Name = "txtPredet";
-                        this.txtPredet.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtPredet.ReadOnly = false;
-                        this.txtPredet.SetData = new string[] {
+                        this.EntradaPredet.AutoNav = true;
+                        this.EntradaPredet.AutoTab = true;
+                        this.EntradaPredet.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaPredet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaPredet.Location = new System.Drawing.Point(140, 116);
+                        this.EntradaPredet.MaxLenght = 32767;
+                        this.EntradaPredet.Name = "txtPredet";
+                        this.EntradaPredet.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaPredet.ReadOnly = false;
+                        this.EntradaPredet.SetData = new string[] {
         "Si|1",
         "No|0"};
-                        this.txtPredet.Size = new System.Drawing.Size(84, 24);
-                        this.txtPredet.TabIndex = 7;
-                        this.txtPredet.Text = "No";
-                        this.txtPredet.TextKey = "0";
-                        this.txtPredet.TipWhenBlank = "";
-                        this.txtPredet.ToolTipText = "";
+                        this.EntradaPredet.Size = new System.Drawing.Size(84, 24);
+                        this.EntradaPredet.TabIndex = 7;
+                        this.EntradaPredet.Text = "No";
+                        this.EntradaPredet.TextKey = "0";
+                        this.EntradaPredet.TipWhenBlank = "";
+                        this.EntradaPredet.ToolTipText = "";
                         // 
                         // label2
                         // 
@@ -183,32 +175,30 @@ namespace Lfc.Personas.Grupos
                         // 
                         // txtGrupo
                         // 
-                        this.txtGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtGrupo.AutoTab = true;
-                        this.txtGrupo.CanCreate = true;
-                        this.txtGrupo.DetailField = "nombre";
-                        this.txtGrupo.ExtraDetailFields = null;
-                        this.txtGrupo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtGrupo.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtGrupo.FreeTextCode = "";
-                        this.txtGrupo.KeyField = "id_grupo";
-                        this.txtGrupo.Location = new System.Drawing.Point(140, 20);
-                        this.txtGrupo.MaxLength = 200;
-                        this.txtGrupo.Name = "txtGrupo";
-                        this.txtGrupo.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtGrupo.ReadOnly = false;
-                        this.txtGrupo.Required = false;
-                        this.txtGrupo.SelectOnFocus = false;
-                        this.txtGrupo.Size = new System.Drawing.Size(364, 24);
-                        this.txtGrupo.TabIndex = 1;
-                        this.txtGrupo.Table = "personas_grupos";
-                        this.txtGrupo.TeclaDespuesDeEnter = "{tab}";
-                        this.txtGrupo.Text = "0";
-                        this.txtGrupo.TextDetail = "";
-                        this.txtGrupo.TextInt = 0;
-                        this.txtGrupo.TipWhenBlank = "Ninguno";
-                        this.txtGrupo.ToolTipText = "";
+                        this.EntradaGrupo.AutoTab = true;
+                        this.EntradaGrupo.CanCreate = true;
+                        this.EntradaGrupo.DetailField = "nombre";
+                        this.EntradaGrupo.ExtraDetailFields = null;
+                        this.EntradaGrupo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaGrupo.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaGrupo.FreeTextCode = "";
+                        this.EntradaGrupo.KeyField = "id_grupo";
+                        this.EntradaGrupo.Location = new System.Drawing.Point(140, 20);
+                        this.EntradaGrupo.MaxLength = 200;
+                        this.EntradaGrupo.Name = "txtGrupo";
+                        this.EntradaGrupo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaGrupo.ReadOnly = false;
+                        this.EntradaGrupo.Required = false;
+                        this.EntradaGrupo.Size = new System.Drawing.Size(364, 24);
+                        this.EntradaGrupo.TabIndex = 1;
+                        this.EntradaGrupo.Table = "personas_grupos";
+                        this.EntradaGrupo.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaGrupo.Text = "0";
+                        this.EntradaGrupo.TextDetail = "";
+                        this.EntradaGrupo.TipWhenBlank = "Ninguno";
+                        this.EntradaGrupo.ToolTipText = "";
                         // 
                         // Label16
                         // 
@@ -223,13 +213,13 @@ namespace Lfc.Personas.Grupos
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(520, 277);
-                        this.Controls.Add(this.txtGrupo);
+                        this.Controls.Add(this.EntradaGrupo);
                         this.Controls.Add(this.Label16);
-                        this.Controls.Add(this.txtPredet);
+                        this.Controls.Add(this.EntradaPredet);
                         this.Controls.Add(this.label2);
-                        this.Controls.Add(this.txtDescuento);
+                        this.Controls.Add(this.EntradaDescuento);
                         this.Controls.Add(this.label4);
-                        this.Controls.Add(this.txtNombre);
+                        this.Controls.Add(this.EntradaNombre);
                         this.Controls.Add(this.Label1);
                         this.Name = "Editar";
                         this.ResumeLayout(false);
@@ -251,16 +241,16 @@ namespace Lfc.Personas.Grupos
 			}
 			else
 			{
-				txtNombre.Text = System.Convert.ToString(Registro["nombre"]);
-				txtDescuento.Text = Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Registro["descuento"]), 2);
-				txtPredet.TextKey = Registro["predet"].ToString();
-                                txtGrupo.TextInt = Lfx.Data.DataBase.ConvertDBNullToZero(Registro["parent"]);
-                                txtGrupo.Filter = "id_grupo<>" + lId;
+				EntradaNombre.Text = System.Convert.ToString(Registro["nombre"]);
+				EntradaDescuento.Text = Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Registro["descuento"]), 2);
+				EntradaPredet.TextKey = Registro["predet"].ToString();
+                                EntradaGrupo.TextInt = Lfx.Data.DataBase.ConvertDBNullToZero(Registro["parent"]);
+                                EntradaGrupo.Filter = "id_grupo<>" + lId;
 
 				m_Id = lId;
 				m_Nuevo = false;
 
-				this.Text = "Grupos: " + txtNombre.Text;
+				this.Text = "Grupos: " + EntradaNombre.Text;
 				ResultadoEditar.Success = true;
 			}
 			return ResultadoEditar;
@@ -283,10 +273,10 @@ namespace Lfc.Personas.Grupos
                                         Comando.WhereClause = new qGen.Where("id_grupo", m_Id);
                                 }
 
-                                Comando.Fields.AddWithValue("nombre", txtNombre.Text);
-                                Comando.Fields.AddWithValue("descuento", Lfx.Types.Parsing.ParseDouble(txtDescuento.Text));
-                                Comando.Fields.AddWithValue("predet", Lfx.Types.Parsing.ParseInt(txtPredet.TextKey));
-                                Comando.Fields.AddWithValue("parent", Lfx.Data.DataBase.ConvertZeroToDBNull(txtGrupo.TextInt));
+                                Comando.Fields.AddWithValue("nombre", EntradaNombre.Text);
+                                Comando.Fields.AddWithValue("descuento", Lfx.Types.Parsing.ParseDouble(EntradaDescuento.Text));
+                                Comando.Fields.AddWithValue("predet", Lfx.Types.Parsing.ParseInt(EntradaPredet.TextKey));
+                                Comando.Fields.AddWithValue("parent", Lfx.Data.DataBase.ConvertZeroToDBNull(EntradaGrupo.TextInt));
 
                                 DataBase.Execute(Comando);
                                 DataBase.Commit();

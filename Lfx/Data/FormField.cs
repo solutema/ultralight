@@ -40,6 +40,7 @@ namespace Lfx.Data
 		public string ColumnName, m_Label, Format = null;
                 public Lfx.Data.InputFieldTypes DataType = Lfx.Data.InputFieldTypes.Text;
 		public int Width = 120;
+                public Dictionary<int, string> SetValues = null;
 
 		public FormField(string columnName, string label)
 		{
@@ -53,6 +54,12 @@ namespace Lfx.Data
 			this.DataType = dataType;
 			this.Width = width;
 		}
+
+                public FormField(string columnName, string label, int width, Dictionary<int,string> setValues)
+                        : this(columnName, label, InputFieldTypes.Set, width)
+                {
+                        this.SetValues = setValues;
+                }
 
                 public FormField(string columnName, string label, Lfx.Data.InputFieldTypes dataType, int width, string format)
 			:this(columnName, label, dataType, width)

@@ -75,7 +75,7 @@ namespace Lui.Forms
                         // 
                         this.ImagenMasMenos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.ImagenMasMenos.BackColor = System.Drawing.Color.Gray;
-                        this.ImagenMasMenos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.ImagenMasMenos.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.ImagenMasMenos.ForeColor = System.Drawing.Color.White;
                         this.ImagenMasMenos.Image = ((System.Drawing.Image)(resources.GetObject("ImagenMasMenos.Image")));
                         this.ImagenMasMenos.Location = new System.Drawing.Point(446, 4);

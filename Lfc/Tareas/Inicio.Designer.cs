@@ -41,10 +41,8 @@ namespace Lfc.Tareas
         {
                 #region Código generado por el Diseñador de Windows Forms
 
-                // Requerido por el Diseñador de Windows Forms
                 private System.ComponentModel.Container components = null;
 
-                // Limpiar los recursos que se estén utilizando.
                 protected override void Dispose(bool disposing)
                 {
                         if (disposing) {
@@ -123,7 +121,6 @@ namespace Lfc.Tareas
                         this.Controls.Add(this.EtiquetaRetrasados);
                         this.Name = "Inicio";
                         this.Text = "Tickets: Listado";
-                        this.WorkspaceChanged += new System.EventHandler(this.FormTicketsInicio_WorkspaceChanged);
                         this.Controls.SetChildIndex(this.EtiquetaRetrasados, 0);
                         this.Controls.SetChildIndex(this.Listado, 0);
                         this.Controls.SetChildIndex(this.EtiquetasTerminados, 0);
@@ -131,7 +128,6 @@ namespace Lfc.Tareas
                         this.Controls.SetChildIndex(this.EtiquetaNuevos, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
-
                 }
 
                 #endregion
@@ -140,6 +136,5 @@ namespace Lfc.Tareas
                 private Label EtiquetasTerminados;
                 private Label EtiquetaActivos;
                 private Label EtiquetaNuevos;
-
         }
 }

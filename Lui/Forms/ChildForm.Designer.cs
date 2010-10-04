@@ -64,9 +64,7 @@ namespace Lui.Forms
                         // 
                         // ChildForm
                         // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.BackColor = System.Drawing.SystemColors.Control;
-                        this.ClientSize = new System.Drawing.Size(768, 480);
                         this.MaximizeBox = true;
                         this.MinimizeBox = true;
                         this.Name = "ChildForm";

@@ -54,22 +54,24 @@ namespace Lfx.Services
         {
                 public int UpdatedFiles;
                 public string ErrorMessage = null;
-                private bool IgnoreOthersUpdating = false, Updating = false, Running = false;
                 public static Updater Master = null;
-                System.Threading.Thread UpdaterThread = null;
-                
+
+                private bool IgnoreOthersUpdating = false, Updating = false, Running = false;
+                private System.Threading.Thread UpdaterThread = null;
                 private Lfx.Data.DataBase m_DataBase = null;
 
                 public Updater()
                 {
-                        this.UpdaterThread = new System.Threading.Thread(new System.Threading.ThreadStart(UpdateProc));
-                        this.UpdaterThread.Priority = System.Threading.ThreadPriority.Lowest;
                 }
 
                 public void Start()
                 {
+                        if (this.UpdaterThread == null) {
+                                this.UpdaterThread = new System.Threading.Thread(new System.Threading.ThreadStart(UpdateProc));
+                                this.UpdaterThread.Priority = System.Threading.ThreadPriority.Lowest;
+                                this.UpdaterThread.Start();
+                        }
                         this.Running = true;
-                        this.UpdaterThread.Start();
                 }
 
                 private void UpdateProc()
@@ -84,14 +86,15 @@ namespace Lfx.Services
                                 } else {
                                         this.UpdateFromDbCache();
                                 }
-                                System.Threading.Thread.Sleep(10 * 60 * 1000);  // Dormir 10 minutos
+                                System.Threading.Thread.Sleep(30 * 60 * 1000);  // Dormir 30 minutos
                         }
                 }
 
                 public void Stop()
                 {
                         this.Running = false;
-                        this.UpdaterThread.Abort();
+                        if (this.UpdaterThread != null)
+                                this.UpdaterThread.Abort();
                 }
 
                 public void UpdateFromWeb()
@@ -156,24 +159,24 @@ namespace Lfx.Services
                                         m_DataBase = Lfx.Workspace.Master.GetDataBase("Actualizador");
                                 return m_DataBase;
                         }
+                        set
+                        {
+                                m_DataBase = value;
+                        }
                 }
 
 
-                private int UpdateAllFromDbCache(string nombreCarpeta)
+                private void UpdateAllFromDbCache(string nombreCarpeta)
                 {
                         try {
-                                DataTable Archivos = this.DataBase.Select("SELECT nombre, fecha, checksum FROM sys_asl");
-                                foreach (System.Data.DataRow Archivo in Archivos.Rows) {
-                                        if (UpdateFileFromDbCache((Lfx.Data.Row)Archivo, false, nombreCarpeta))
-                                                UpdatedFiles++;
+                                using (DataTable Archivos = this.DataBase.Select("SELECT nombre, fecha, checksum FROM sys_asl")) {
+                                        foreach (System.Data.DataRow Archivo in Archivos.Rows) {
+                                                if (UpdateFileFromDbCache((Lfx.Data.Row)Archivo, false, nombreCarpeta))
+                                                        UpdatedFiles++;
+                                        }
                                 }
-
-                                return UpdatedFiles;
                         } catch (Exception ex) {
-                                System.Console.WriteLine("ActualizarAplicacionDesdeBD: " + ex.Message);
-                                if (Lfx.Environment.SystemInformation.DesignMode)
-                                        throw;
-                                return 0;
+                                System.Console.WriteLine("UpdateAllFromDbCache: " + ex.Message);
                         }
                 }
 

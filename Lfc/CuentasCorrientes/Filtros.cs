@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -59,7 +59,7 @@ namespace Lfc.CuentasCorrientes
                 }
 
                 private TableLayoutPanel tableLayoutPanel1;
-                internal Lui.Forms.DetailBox EntradaGrupo;
+                internal Lcc.Entrada.CodigoDetalle EntradaGrupo;
                 internal Label label3;
 
                 private System.ComponentModel.Container components = null;
@@ -68,10 +68,10 @@ namespace Lfc.CuentasCorrientes
                 {
                         this.Label1 = new System.Windows.Forms.Label();
                         this.Label2 = new System.Windows.Forms.Label();
-                        this.EntradaCliente = new Lui.Forms.DetailBox();
-                        this.EntradaFechas = new Lcc.Controles.RangoFechas();
+                        this.EntradaCliente = new Lcc.Entrada.CodigoDetalle();
+                        this.EntradaFechas = new Lcc.Entrada.RangoFechas();
                         this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-                        this.EntradaGrupo = new Lui.Forms.DetailBox();
+                        this.EntradaGrupo = new Lcc.Entrada.CodigoDetalle();
                         this.label3 = new System.Windows.Forms.Label();
                         this.tableLayoutPanel1.SuspendLayout();
                         this.SuspendLayout();
@@ -122,14 +122,12 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCliente.ReadOnly = false;
                         this.EntradaCliente.Required = false;
-                        this.EntradaCliente.SelectOnFocus = false;
                         this.EntradaCliente.Size = new System.Drawing.Size(492, 24);
                         this.EntradaCliente.TabIndex = 1;
                         this.EntradaCliente.Table = "personas";
                         this.EntradaCliente.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
-                        this.EntradaCliente.TextInt = 0;
                         this.EntradaCliente.TipWhenBlank = "Todos";
                         this.EntradaCliente.ToolTipText = "";
                         // 
@@ -192,14 +190,12 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaGrupo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaGrupo.ReadOnly = false;
                         this.EntradaGrupo.Required = false;
-                        this.EntradaGrupo.SelectOnFocus = false;
                         this.EntradaGrupo.Size = new System.Drawing.Size(492, 24);
                         this.EntradaGrupo.TabIndex = 3;
                         this.EntradaGrupo.Table = "personas_grupos";
                         this.EntradaGrupo.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaGrupo.Text = "0";
                         this.EntradaGrupo.TextDetail = "";
-                        this.EntradaGrupo.TextInt = 0;
                         this.EntradaGrupo.TipWhenBlank = "Todos";
                         this.EntradaGrupo.ToolTipText = "";
                         // 
@@ -228,7 +224,7 @@ namespace Lfc.CuentasCorrientes
 
                 internal System.Windows.Forms.Label Label1;
                 internal System.Windows.Forms.Label Label2;
-                internal Lcc.Controles.RangoFechas EntradaFechas;
-                internal Lui.Forms.DetailBox EntradaCliente;
+                internal Lcc.Entrada.RangoFechas EntradaFechas;
+                internal Lcc.Entrada.CodigoDetalle EntradaCliente;
         }
 }

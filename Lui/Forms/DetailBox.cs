@@ -31,7 +31,7 @@
 
 using System;
 using System.ComponentModel;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -61,8 +61,8 @@ namespace Lui.Forms
                 private Lfx.Data.Row CurrentRow = null;
 
                 [System.ComponentModel.EditorBrowsable(EditorBrowsableState.Always), Browsable(true)]
-                public new event System.EventHandler TextChanged;
-                public new event System.Windows.Forms.KeyEventHandler KeyDown;
+                new public event System.EventHandler TextChanged;
+                new public event System.Windows.Forms.KeyEventHandler KeyDown;
 
                 public DetailBox()
                         : base()
@@ -447,7 +447,7 @@ namespace Lui.Forms
 
                 private void UpdateDetail()
                 {
-                        if (this.DataBase != null) {
+                        if (this.Workspace != null && this.DataBase != null) {
                                 //Actualizo sólo si cambió el código
                                 string KeyFieldAlt = m_KeyField; // KeyField Alternativo
                                 if (m_Table == "articulos" && KeyFieldAlt == "id_articulo")

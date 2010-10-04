@@ -42,6 +42,7 @@ namespace Lui.Forms.AuxForms
                 private string m_DetailField = "";
                 private string m_ExtraDetailFields = "";
                 private string m_Filter = "";
+                private bool m_Changed = false;
                 private bool f_IgnoreEvents;
                 public System.Windows.Forms.Control ControlDestino;
 
@@ -88,6 +89,19 @@ namespace Lui.Forms.AuxForms
                         {
                                 m_DetailField = value;
                                 UpdateDetail();
+                        }
+                }
+
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public bool Changed
+                {
+                        get
+                        {
+                                return m_Changed;
+                        }
+                        set
+                        {
+                                m_Changed = value;
                         }
                 }
 
@@ -172,7 +186,7 @@ namespace Lui.Forms.AuxForms
                 internal void Refrescar()
                 {
                         ListaItem.Items.Clear();
-                        if (this.Workspace != null) {
+                        if (this.Workspace != null && this.DataBase != null) {
                                 if (m_Table.Length > 0 && m_KeyField.Length > 0 && m_DetailField.Length > 0) {
                                         string TextoSql = null;
                                         string sBuscar = EntradaBuscar.Text;

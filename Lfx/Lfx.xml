@@ -1222,6 +1222,11 @@
             Texto de largo variable de hasta 200 caracteres.
             </summary>
         </member>
+        <member name="F:Lfx.Data.InputFieldTypes.Set">
+            <summary>
+            Número entero dentro de una serie
+            </summary>
+        </member>
         <member name="F:Lfx.Data.InputFieldTypes.Memo">
             <summary>
             Texto de largo variable de largo extendido.
@@ -1313,27 +1318,12 @@
             Devuelve lo mismo que this.To, pero sin tener cuidado de la hora.
             </summary>
         </member>
-        <member name="T:Lfx.Types.IntExtensions">
+        <member name="T:Lfx.Types.Extensions">
             <summary>
             Métodos de extension para el tipo Int.
             </summary>
         </member>
-        <member name="T:Lfx.Types.DoubleExtensions">
-            <summary>
-            Métodos de extension para el tipo Double.
-            </summary>
-        </member>
-        <member name="T:Lfx.Types.BoolExtensions">
-            <summary>
-            Métodos de extension para el tipo Bool.
-            </summary>
-        </member>
-        <member name="T:Lfx.Types.DateTimeExtensions">
-            <summary>
-            Métodos de extension para los tipos DateTime y LDateTime.
-            </summary>
-        </member>
-        <member name="M:Lfx.Types.DateTimeExtensions.ParseSql(System.String)">
+        <member name="M:Lfx.Types.Extensions.SafeParseSqlDateTime(System.String)">
             <summary>
             Toma una fecha YYYY-MM-DD HH:MM:SS y devuelve un DateTime
             </summary>

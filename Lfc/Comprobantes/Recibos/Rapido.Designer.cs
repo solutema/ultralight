@@ -59,11 +59,11 @@ namespace Lfc.Comprobantes.Recibos
         /// </summary>
         private void InitializeComponent()
         {
-            this.EntradaCaja = new Lui.Forms.DetailBox();
+            this.EntradaCaja = new Lcc.Entrada.CodigoDetalle();
             this.Label3 = new System.Windows.Forms.Label();
-            this.txtCliente = new Lui.Forms.DetailBox();
+            this.EntradaCliente = new Lcc.Entrada.CodigoDetalle();
             this.Label5 = new System.Windows.Forms.Label();
-            this.txtImporte = new Lui.Forms.TextBox();
+            this.EntradaImporte = new Lui.Forms.TextBox();
             this.lblFecha1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -93,14 +93,12 @@ namespace Lfc.Comprobantes.Recibos
             this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
             this.EntradaCaja.ReadOnly = false;
             this.EntradaCaja.Required = true;
-            this.EntradaCaja.SelectOnFocus = false;
             this.EntradaCaja.Size = new System.Drawing.Size(404, 24);
             this.EntradaCaja.TabIndex = 5;
             this.EntradaCaja.Table = "cajas";
             this.EntradaCaja.TeclaDespuesDeEnter = "{tab}";
             this.EntradaCaja.Text = "0";
             this.EntradaCaja.TextDetail = "";
-            this.EntradaCaja.TextInt = 0;
             this.EntradaCaja.TipWhenBlank = "";
             this.EntradaCaja.ToolTipText = "";
             // 
@@ -115,33 +113,31 @@ namespace Lfc.Comprobantes.Recibos
             // 
             // EntradaCliente
             // 
-            this.txtCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.EntradaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCliente.AutoTab = true;
-            this.txtCliente.CanCreate = false;
-            this.txtCliente.DetailField = "nombre_visible";
-            this.txtCliente.ExtraDetailFields = null;
-            this.txtCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCliente.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtCliente.FreeTextCode = "";
-            this.txtCliente.KeyField = "id_persona";
-            this.txtCliente.Location = new System.Drawing.Point(104, 20);
-            this.txtCliente.MaxLength = 200;
-            this.txtCliente.Name = "EntradaCliente";
-            this.txtCliente.Padding = new System.Windows.Forms.Padding(2);
-            this.txtCliente.ReadOnly = false;
-            this.txtCliente.Required = true;
-            this.txtCliente.SelectOnFocus = false;
-            this.txtCliente.Size = new System.Drawing.Size(404, 24);
-            this.txtCliente.TabIndex = 1;
-            this.txtCliente.Table = "personas";
-            this.txtCliente.TeclaDespuesDeEnter = "{tab}";
-            this.txtCliente.Text = "0";
-            this.txtCliente.TextDetail = "";
-            this.txtCliente.TextInt = 0;
-            this.txtCliente.TipWhenBlank = "";
-            this.txtCliente.ToolTipText = "";
-            this.txtCliente.TextChanged += new System.EventHandler(this.txtCliente_TextChanged);
+            this.EntradaCliente.AutoTab = true;
+            this.EntradaCliente.CanCreate = false;
+            this.EntradaCliente.DetailField = "nombre_visible";
+            this.EntradaCliente.ExtraDetailFields = null;
+            this.EntradaCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EntradaCliente.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.EntradaCliente.FreeTextCode = "";
+            this.EntradaCliente.KeyField = "id_persona";
+            this.EntradaCliente.Location = new System.Drawing.Point(104, 20);
+            this.EntradaCliente.MaxLength = 200;
+            this.EntradaCliente.Name = "EntradaCliente";
+            this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
+            this.EntradaCliente.ReadOnly = false;
+            this.EntradaCliente.Required = true;
+            this.EntradaCliente.Size = new System.Drawing.Size(404, 24);
+            this.EntradaCliente.TabIndex = 1;
+            this.EntradaCliente.Table = "personas";
+            this.EntradaCliente.TeclaDespuesDeEnter = "{tab}";
+            this.EntradaCliente.Text = "0";
+            this.EntradaCliente.TextDetail = "";
+            this.EntradaCliente.TipWhenBlank = "";
+            this.EntradaCliente.ToolTipText = "";
+            this.EntradaCliente.TextChanged += new System.EventHandler(this.EntradaCliente_TextChanged);
             // 
             // Label5
             // 
@@ -154,22 +150,22 @@ namespace Lfc.Comprobantes.Recibos
             // 
             // txtImporte
             // 
-            this.txtImporte.AutoNav = true;
-            this.txtImporte.AutoTab = true;
-            this.txtImporte.DataType = Lui.Forms.DataTypes.Money;
-            this.txtImporte.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtImporte.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtImporte.Location = new System.Drawing.Point(104, 52);
-            this.txtImporte.MaxLenght = 32767;
-            this.txtImporte.Name = "txtImporte";
-            this.txtImporte.Padding = new System.Windows.Forms.Padding(2);
-            this.txtImporte.Prefijo = "$";
-            this.txtImporte.ReadOnly = false;
-            this.txtImporte.Size = new System.Drawing.Size(104, 24);
-            this.txtImporte.TabIndex = 3;
-            this.txtImporte.Text = "0.00";
-            this.txtImporte.TipWhenBlank = "";
-            this.txtImporte.ToolTipText = "";
+            this.EntradaImporte.AutoNav = true;
+            this.EntradaImporte.AutoTab = true;
+            this.EntradaImporte.DataType = Lui.Forms.DataTypes.Money;
+            this.EntradaImporte.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EntradaImporte.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.EntradaImporte.Location = new System.Drawing.Point(104, 52);
+            this.EntradaImporte.MaxLenght = 32767;
+            this.EntradaImporte.Name = "txtImporte";
+            this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
+            this.EntradaImporte.Prefijo = "$";
+            this.EntradaImporte.ReadOnly = false;
+            this.EntradaImporte.Size = new System.Drawing.Size(104, 24);
+            this.EntradaImporte.TabIndex = 3;
+            this.EntradaImporte.Text = "0.00";
+            this.EntradaImporte.TipWhenBlank = "";
+            this.EntradaImporte.ToolTipText = "";
             // 
             // lblFecha1
             // 
@@ -185,11 +181,11 @@ namespace Lfc.Comprobantes.Recibos
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(529, 293);
-            this.Controls.Add(this.txtImporte);
+            this.Controls.Add(this.EntradaImporte);
             this.Controls.Add(this.lblFecha1);
             this.Controls.Add(this.EntradaCaja);
             this.Controls.Add(this.Label3);
-            this.Controls.Add(this.txtCliente);
+            this.Controls.Add(this.EntradaCliente);
             this.Controls.Add(this.Label5);
             this.Name = "Rapido";
             this.Text = "Recibo rápido";
@@ -199,11 +195,11 @@ namespace Lfc.Comprobantes.Recibos
 
         #endregion
 
-        internal Lui.Forms.DetailBox EntradaCaja;
+        internal Lcc.Entrada.CodigoDetalle EntradaCaja;
         internal System.Windows.Forms.Label Label3;
-        internal Lui.Forms.DetailBox txtCliente;
+        internal Lcc.Entrada.CodigoDetalle EntradaCliente;
         internal System.Windows.Forms.Label Label5;
-        internal Lui.Forms.TextBox txtImporte;
+        internal Lui.Forms.TextBox EntradaImporte;
         internal System.Windows.Forms.Label lblFecha1;
     }
 }

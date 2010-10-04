@@ -63,6 +63,7 @@ namespace Lfc.Personas
                         // Inicio
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+                        this.ClientSize = new System.Drawing.Size(768, 480);
                         this.Name = "Inicio";
                         this.Text = "Clientes: Listado";
                         this.ResumeLayout(false);

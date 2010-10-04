@@ -31,7 +31,7 @@
 
 using System;
 using System.ComponentModel;
-using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -53,6 +53,9 @@ namespace Lui.Forms
 		protected System.Windows.Forms.ToolTip ToolTipBalloon;
 		protected string m_Error = "";
 
+                // IDataControl
+                private Lfx.Data.DataBase m_DataBase = null;
+
 		public enum BorderStyles
 		{
 			None = 0,
@@ -63,7 +66,6 @@ namespace Lui.Forms
 		}
 
                 public Control()
-                        : base()
                 {
                         InitializeComponent();
                 }
@@ -123,20 +125,6 @@ namespace Lui.Forms
 			set
 			{
 				m_ReadOnly = value;
-				Invalidate();
-			}
-		}
-
-		[EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public bool Changed
-		{
-			get
-			{
-				return m_Changed;
-			}
-			set
-			{
-				m_Changed = value;
 				Invalidate();
 			}
 		}
@@ -252,7 +240,7 @@ namespace Lui.Forms
 		}
 
 		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public bool ShowChanged
+		virtual public bool ShowChanged
 		{
 			set
 			{
@@ -334,19 +322,43 @@ namespace Lui.Forms
                 /// <summary>
                 /// IDataControl
                 /// </summary>
+                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public Lfx.Data.DataBase DataBase
                 {
                         get
                         {
-                                System.Windows.Forms.Control MiParent = this.Parent;
-                                while (MiParent != null) {
-                                        if (MiParent is Lui.Forms.IDataControl) {
-                                                return ((Lui.Forms.IDataControl)(MiParent)).DataBase;
-                                        } else {
-                                                MiParent = MiParent.Parent;
+                                if (m_DataBase == null) {
+                                        System.Windows.Forms.Control MiParent = this.Parent;
+                                        while (MiParent != null) {
+                                                if (MiParent is Lui.Forms.IDataControl) {
+                                                        m_DataBase = ((Lui.Forms.IDataControl)(MiParent)).DataBase;
+                                                        break;
+                                                } else {
+                                                        MiParent = MiParent.Parent;
+                                                }
                                         }
+
+                                        if (m_DataBase == null && Lfx.Workspace.Master != null)
+                                                m_DataBase = Lfx.Workspace.Master.DefaultDataBase;
                                 }
-                                return null;
+                                return m_DataBase;
+                        }
+                }
+
+                /// <summary>
+                /// IDataControl
+                /// </summary>
+                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public bool Changed
+                {
+                        get
+                        {
+                                return m_Changed;
+                        }
+                        set
+                        {
+                                m_Changed = value;
+                                Invalidate();
                         }
                 }
 	}

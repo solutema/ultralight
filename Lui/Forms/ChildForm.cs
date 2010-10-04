@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -45,10 +45,9 @@ namespace Lui.Forms
                 private ToolBarButton m_MyToolBarButton = null;
 
 		public ChildForm()
-			: base()
 		{
-			// Necesario para admitir el Diseñador de Windows Forms
 			InitializeComponent();
+
                         this.Uid = new Random().Next();
 		}
 
@@ -89,10 +88,14 @@ namespace Lui.Forms
 
                 private void ChildForm_Activated(object sender, System.EventArgs e)
                 {
-                        if (this.ParentToolBar != null) {
-                                foreach (System.Windows.Forms.ToolBarButton Btn in this.ParentToolBar.Buttons) {
-                                        Btn.Pushed = ((int)Btn.Tag) == this.Uid;
+                        try {
+                                if (this.ParentToolBar != null && this.ParentToolBar.Buttons != null) {
+                                        foreach (System.Windows.Forms.ToolBarButton Btn in this.ParentToolBar.Buttons) {
+                                                Btn.Pushed = ((int)Btn.Tag) == this.Uid;
+                                        }
                                 }
+                        } catch {
+                                // Nada
                         }
                 }
 

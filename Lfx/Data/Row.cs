@@ -56,7 +56,10 @@ namespace Lfx.Data
 				Res.DataTable = row.Table;
 				foreach (System.Data.DataColumn Col in row.Table.Columns)
 				{
-					Res[Col.ColumnName] = row[Col];
+                                        if (row[Col] is DBNull)
+                                                Res[Col.ColumnName] = null;
+                                        else
+                                                Res[Col.ColumnName] = row[Col];
 				}
 				Res.IsNew = false;
 				Res.IsModified = false;

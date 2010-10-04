@@ -30,7 +30,7 @@
 #endregion
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Diagnostics;
@@ -72,31 +72,31 @@ namespace Lfc.Comprobantes.Recibos
                 // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
                 // No lo modifique con el editor de código.
-                internal Lui.Forms.DetailBox txtCliente;
+                internal Lcc.Entrada.CodigoDetalle txtCliente;
                 internal System.Windows.Forms.Label Label2;
                 internal System.Windows.Forms.Label Label1;
-                internal Lui.Forms.DetailBox txtVendedor;
+                internal Lcc.Entrada.CodigoDetalle txtVendedor;
                 internal System.Windows.Forms.Label Label5;
                 internal System.Windows.Forms.Label label7;
                 internal Lui.Forms.ComboBox EntradaTipo;
                 internal Label label3;
                 private TableLayoutPanel tableLayoutPanel1;
-                internal Lcc.Controles.RangoFechas EntradaFechas;
-                internal Lui.Forms.DetailBox txtSucursal;
+                internal Lcc.Entrada.RangoFechas EntradaFechas;
+                internal Lcc.Entrada.CodigoDetalle txtSucursal;
 
                 private void InitializeComponent()
                 {
-                        this.txtCliente = new Lui.Forms.DetailBox();
+                        this.txtCliente = new Lcc.Entrada.CodigoDetalle();
                         this.Label2 = new System.Windows.Forms.Label();
                         this.Label1 = new System.Windows.Forms.Label();
-                        this.txtVendedor = new Lui.Forms.DetailBox();
+                        this.txtVendedor = new Lcc.Entrada.CodigoDetalle();
                         this.Label5 = new System.Windows.Forms.Label();
-                        this.txtSucursal = new Lui.Forms.DetailBox();
+                        this.txtSucursal = new Lcc.Entrada.CodigoDetalle();
                         this.label7 = new System.Windows.Forms.Label();
                         this.EntradaTipo = new Lui.Forms.ComboBox();
                         this.label3 = new System.Windows.Forms.Label();
                         this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-                        this.EntradaFechas = new Lcc.Controles.RangoFechas();
+                        this.EntradaFechas = new Lcc.Entrada.RangoFechas();
                         this.tableLayoutPanel1.SuspendLayout();
                         this.SuspendLayout();
                         // 
@@ -128,14 +128,12 @@ namespace Lfc.Comprobantes.Recibos
                         this.txtCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCliente.ReadOnly = false;
                         this.txtCliente.Required = false;
-                        this.txtCliente.SelectOnFocus = true;
                         this.txtCliente.Size = new System.Drawing.Size(448, 24);
                         this.txtCliente.TabIndex = 5;
                         this.txtCliente.Table = "personas";
                         this.txtCliente.TeclaDespuesDeEnter = "{tab}";
                         this.txtCliente.Text = "0";
                         this.txtCliente.TextDetail = "";
-                        this.txtCliente.TextInt = 0;
                         this.txtCliente.TipWhenBlank = "";
                         this.txtCliente.ToolTipText = "";
                         // 
@@ -177,14 +175,12 @@ namespace Lfc.Comprobantes.Recibos
                         this.txtVendedor.Padding = new System.Windows.Forms.Padding(2);
                         this.txtVendedor.ReadOnly = false;
                         this.txtVendedor.Required = false;
-                        this.txtVendedor.SelectOnFocus = true;
                         this.txtVendedor.Size = new System.Drawing.Size(448, 24);
                         this.txtVendedor.TabIndex = 7;
                         this.txtVendedor.Table = "personas";
                         this.txtVendedor.TeclaDespuesDeEnter = "{tab}";
                         this.txtVendedor.Text = "0";
                         this.txtVendedor.TextDetail = "";
-                        this.txtVendedor.TextInt = 0;
                         this.txtVendedor.TipWhenBlank = "";
                         this.txtVendedor.ToolTipText = "";
                         // 
@@ -217,14 +213,12 @@ namespace Lfc.Comprobantes.Recibos
                         this.txtSucursal.Padding = new System.Windows.Forms.Padding(2);
                         this.txtSucursal.ReadOnly = false;
                         this.txtSucursal.Required = false;
-                        this.txtSucursal.SelectOnFocus = true;
                         this.txtSucursal.Size = new System.Drawing.Size(448, 24);
                         this.txtSucursal.TabIndex = 3;
                         this.txtSucursal.Table = "sucursales";
                         this.txtSucursal.TeclaDespuesDeEnter = "{tab}";
                         this.txtSucursal.Text = "0";
                         this.txtSucursal.TextDetail = "";
-                        this.txtSucursal.TextInt = 0;
                         this.txtSucursal.TipWhenBlank = "";
                         this.txtSucursal.ToolTipText = "";
                         // 
