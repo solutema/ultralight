@@ -207,7 +207,7 @@ namespace Lazaro.Misc.Config
                         this.cmdOk.TabIndex = 6;
                         this.cmdOk.Text = "Guardar";
                         this.cmdOk.ToolTipText = "";
-                        this.cmdOk.Click += new System.EventHandler(this.cmdOk_Click);
+                        this.cmdOk.Click += new System.EventHandler(this.BotonAceptar_Click);
                         // 
                         // CancelCommandButton
                         // 
@@ -228,7 +228,7 @@ namespace Lazaro.Misc.Config
                         this.CancelCommandButton.TabIndex = 7;
                         this.CancelCommandButton.Text = "Cancelar";
                         this.CancelCommandButton.ToolTipText = "";
-                        this.CancelCommandButton.Click += new System.EventHandler(this.cmdCancelar_Click);
+                        this.CancelCommandButton.Click += new System.EventHandler(this.BotonCancelar_Click);
                         // 
                         // EntradaEmpresaSituacion
                         // 
@@ -943,7 +943,7 @@ namespace Lazaro.Misc.Config
                         this.txtImpresionPredetImpresoraBrowse.TabIndex = 5;
                         this.txtImpresionPredetImpresoraBrowse.Text = "Seleccionar";
                         this.txtImpresionPredetImpresoraBrowse.ToolTipText = "";
-                        this.txtImpresionPredetImpresoraBrowse.Click += new System.EventHandler(this.cmdImpresionPredetImpresoraBrowse_Click);
+                        this.txtImpresionPredetImpresoraBrowse.Click += new System.EventHandler(this.BotonImpresionPredetImpresoraBrowse_Click);
                         // 
                         // txtImpresionPredetCarga
                         // 
@@ -1129,7 +1129,7 @@ namespace Lazaro.Misc.Config
                         this.BotonSiguiente.TabIndex = 5;
                         this.BotonSiguiente.Text = "Más...";
                         this.BotonSiguiente.ToolTipText = "";
-                        this.BotonSiguiente.Click += new System.EventHandler(this.cmdSiguiente_Click);
+                        this.BotonSiguiente.Click += new System.EventHandler(this.BotonSiguiente_Click);
                         // 
                         // FrmArticulos
                         // 

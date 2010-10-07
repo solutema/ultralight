@@ -41,15 +41,11 @@ namespace Lazaro.Misc.Config
 		const int TabCount = 4;
 
                 public Preferencias()
-                        : base()
                 {
-                        // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
-
-                        // agregar código de constructor después de llamar a InitializeComponent
                 }
 
-		private void cmdCancelar_Click(object sender, System.EventArgs e)
+		private void BotonCancelar_Click(object sender, System.EventArgs e)
 		{
 			this.DialogResult = DialogResult.Cancel;
 			this.Close();
@@ -67,7 +63,7 @@ namespace Lazaro.Misc.Config
 		}
 
 
-		private void cmdImpresionPredetImpresoraBrowse_Click(object sender, System.EventArgs e)
+		private void BotonImpresionPredetImpresoraBrowse_Click(object sender, System.EventArgs e)
 		{
 			Lui.Printing.PrinterSelectionDialog OFormSeleccionarImpresora = new Lui.Printing.PrinterSelectionDialog();
 
@@ -215,7 +211,7 @@ namespace Lazaro.Misc.Config
 			}
 		}
 
-                private void cmdOk_Click(object sender, System.EventArgs e)
+                private void BotonAceptar_Click(object sender, System.EventArgs e)
                 {
                         if (BotonSiguiente.Visible == false) {
                                 this.DialogResult = DialogResult.OK;
@@ -338,7 +334,7 @@ namespace Lazaro.Misc.Config
 			CargarConfig();
 		}
 
-		private void cmdSiguiente_Click(object sender, System.EventArgs e)
+		private void BotonSiguiente_Click(object sender, System.EventArgs e)
 		{
 			CurrentTab += 1;
 			if (CurrentTab > TabCount)
