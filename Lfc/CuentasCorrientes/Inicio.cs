@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,268 +38,196 @@ using System.Windows.Forms;
 
 namespace Lfc.CuentasCorrientes
 {
-        public partial class Inicio : Lui.Forms.AccountForm
+        public partial class Inicio : Lfc.FormularioCuenta
         {
-                private int m_Grupo = 0;
+                private int m_Grupo = 0, m_Localidad = 0;
+                private decimal Transporte = 0;
 
                 public Inicio()
-                        : base()
                 {
                         InitializeComponent();
 
-                        this.ColIngreso.Text = "Crédito";
-                        this.ColEgreso.Text = "Débito";
+                        this.NombreTabla = "ctacte";
+                        this.KeyField = new Lfx.Data.FormField("ctacte.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        this.Joins.Add(new qGen.Join("personas", "ctacte.id_cliente=personas.id_persona"));
+                        this.FormFields = new Lfx.Data.FormFieldCollection() {
+                                new Lfx.Data.FormField("personas.nombre_visible", "Persona", Lfx.Data.InputFieldTypes.Text, 320),
+                                new Lfx.Data.FormField("ctacte.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Relation, 0),
+                                new Lfx.Data.FormField("ctacte.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
+                                new Lfx.Data.FormField("ctacte.fecha", "Fecha.", Lfx.Data.InputFieldTypes.Date, 100),
+                                new Lfx.Data.FormField("ctacte.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
+                                new Lfx.Data.FormField("ctacte.saldo", "Saldo", Lfx.Data.InputFieldTypes.Currency, 96),
+                                new Lfx.Data.FormField("ctacte.obs", "Obs.", Lfx.Data.InputFieldTypes.Text, 320),
+                                new Lfx.Data.FormField("ctacte.comprob", "Comprobante", Lfx.Data.InputFieldTypes.Text, 160),
+                                new Lfx.Data.FormField("ctacte.id_recibo", "Recibo", Lfx.Data.InputFieldTypes.Relation, 0)
+                        };
+                        this.OrderBy = "personas.nombre_visible";
 
-                        FilterButton.Visible = true;
-                        m_Fechas = new Lfx.Types.DateRange("*");
+                        this.Fechas = new Lfx.Types.DateRange("*");
+
+                        this.HabilitarFiltrar = true;
                 }
 
-                public override Lfx.Types.OperationResult Edit(int lCodigo)
+
+                public override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
-                        if (m_Cliente == 0) {
-                                m_Cliente = lCodigo;
+                        decimal Importe = row.Fields["importe"].ValueDecimal;
+                        decimal Saldo = row.Fields["saldo"].ValueDecimal;
+
+                        if (this.Cliente == null) {
+                                if (Saldo < 0) {
+                                        this.Contadores[2].AddValue(-Saldo);          // Pasivos
+                                        if (item.SubItems.ContainsKey("saldo"))
+                                                item.SubItems["saldo"].ForeColor = Color.Red;
+                                        item.UseItemStyleForSubItems = false;
+                                } else if (Importe > 0) {
+                                        this.Contadores[1].AddValue(Saldo);           // Crédito
+                                }
+                        } else {
+                                if (Importe < 0) {
+                                        this.Contadores[2].AddValue(-Importe);        // Egresos
+                                        item.SubItems["importe"].ForeColor = Color.Red;
+                                        item.UseItemStyleForSubItems = false;
+                                } else if (Importe > 0) {
+                                        this.Contadores[1].AddValue(Importe);         // Ingresos
+                                }
+                        }
+
+                        base.OnItemAdded(item, row);
+                }
+
+
+                public override void OnBeginRefreshList()
+                {
+                        this.CustomFilters.Clear();
+
+                        // TODO: si estoy usando rago de fechas, obtener el transporte
+                        Transporte = 0;
+
+                        if (this.Cliente == null) {
+                                // Es para todas los clientes
+                                this.GroupBy = new Lfx.Data.FormField("ctacte.id_cliente", "Cliente");
+                                this.OrderBy = "personas.nombre_visible";
+                                this.Text = "Listado de Cuentas Corrientes";
+
+                                this.FormFields["nombre_visible"].Visible = true;
+                                this.FormFields["fecha"].Visible = false;
+                                this.FormFields["concepto"].Visible = false;
+                                this.FormFields["importe"].Visible = false;
+                                this.FormFields["saldo"].Visible = true;
+                                this.FormFields["obs"].Visible = false;
+                                this.FormFields["comprob"].Visible = false;
+
+                                this.FormFields["saldo"].ColumnName = "SUM(ctacte.importe) AS saldo";
+                                this.Having = new qGen.Where("saldo", qGen.ComparisonOperators.NotEquals, 0);
+
+                                this.UpdateFormFields();
+
+                                this.Contadores[1].Etiqueta = "Créditos";
+                                this.Contadores[2].Etiqueta = "Pasivos";
+
+                                if (m_Grupo != 0)
+                                        this.CustomFilters.AddWithValue("personas.id_grupo", m_Grupo);
+                                
+                                if (m_Localidad != 0)
+                                        this.CustomFilters.AddWithValue("personas.id_ciudad", m_Localidad);
+                        } else {
+                                // Es un cliente en particular
+                                this.CustomFilters.AddWithValue("ctacte.id_cliente", this.Cliente.Id);
+                                this.GroupBy = null;
+                                this.OrderBy = "ctacte.id_movim";
+                                this.Text = "Cuenta Corriente de " + this.Cliente.ToString();
+
+                                this.FormFields["nombre_visible"].Visible = false;
+                                this.FormFields["fecha"].Visible = true;
+                                this.FormFields["concepto"].Visible = true;
+                                this.FormFields["importe"].Visible = true;
+                                this.FormFields["saldo"].Visible = true;
+                                this.FormFields["obs"].Visible = true;
+                                this.FormFields["comprob"].Visible = true;
+
+                                this.FormFields["saldo"].ColumnName = "ctacte.saldo";
+                                this.Having = null;
+
+                                this.UpdateFormFields();
+
+                                this.Contadores[1].Etiqueta = "Créditos";
+                                this.Contadores[2].Etiqueta = "Débitos";
+                        }
+
+                        if (Fechas.HasRange)
+                                this.CustomFilters.AddWithValue("ctacte.fecha", Fechas.From, Fechas.To);
+
+                        base.OnBeginRefreshList();
+                }
+
+
+                public override void OnEndRefreshList()
+                {
+                        this.Contadores[0].AddValue(Transporte);
+                        this.Contadores[3].AddValue(Transporte + this.Contadores[1].Total - this.Contadores[2].Total);
+
+                        base.OnEndRefreshList();
+                }
+
+
+                public override Lfx.Types.OperationResult OnEdit(int itemId)
+                {
+                        Lfx.Data.Row Movim = this.Connection.Tables["ctacte"].FastRows[itemId];
+                        if (this.Cliente == null) {
+                                this.Cliente = new Lbl.Personas.Persona(this.Connection, System.Convert.ToInt32(Movim["id_cliente"]));
                                 RefreshList();
                         } else {
-                                Lfx.Data.Row Movim = this.DataBase.Tables["ctacte"].FastRows[lCodigo];
                                 if (Movim != null) {
                                         if (Movim["id_recibo"] != null) {
                                                 int IdRecibo = System.Convert.ToInt32(Movim["id_recibo"]);
-                                                this.Workspace.RunTime.Execute("EDITAR RECIBO " + IdRecibo.ToString());
+                                                this.Workspace.RunTime.Execute("EDITAR Lbl.Comprobantes.Recibo " + IdRecibo.ToString());
                                         }
                                         if (Movim["id_comprob"] != null) {
                                                 int IdFactura = System.Convert.ToInt32(Movim["id_comprob"]);
-                                                this.Workspace.RunTime.Execute("EDITAR COMPROB " + IdFactura.ToString());
+                                                this.Workspace.RunTime.Execute("EDITAR Lbl.Comprobantes.ComprobanteConArticulos " + IdFactura.ToString());
                                         }
                                 }
                         }
+
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
 
-                public override Lfx.Types.OperationResult RefreshList()
+                public override Lfx.Types.OperationResult OnFilter()
                 {
-                        Lfx.Types.OperationResult mostrarReturn = base.RefreshList();
+                        using (Filtros FormFiltros = new Filtros()) {
+                                FormFiltros.Connection = this.Connection;
+                                FormFiltros.EntradaCliente.Elemento = this.Cliente;
+                                FormFiltros.EntradaGrupo.TextInt = m_Grupo;
+                                FormFiltros.EntradaLocalidad.TextInt = m_Localidad;
+                                FormFiltros.EntradaFechas.Rango = Fechas;
 
-                        if (mostrarReturn.Success == true) {
-                                if (m_Cliente > 0)
-                                        MostrarCliente();
-                                else
-                                        MostrarResumen();
-                        }
-                        return mostrarReturn;
-                }
-
-
-                private void MostrarResumen()
-                {
-                        this.Text = "Resumen de Cuenta Corriente";
-
-                        ItemList.BeginUpdate();
-                        ItemList.Items.Clear();
-
-                        ItemList.Columns[1].Width = 0;
-                        ItemList.Columns[2].Text = "Cliente";
-                        ItemList.Columns[2].Width = 480;
-                        ItemList.Columns[3].Width = 0;
-                        ItemList.Columns[4].Width = 0;
-                        ItemList.Columns[6].Width = 0;
-                        ItemList.Columns[7].Width = 0;
-                        ItemList.Columns[8].Width = 320;
-
-                        m_SelectCommand = new qGen.Select("personas");
-                        m_SelectCommand.Joins.Clear();
-                        m_SelectCommand.Joins.Add(new qGen.Join("ctacte", "personas.id_persona=ctacte.id_cliente"));
-                        m_SelectCommand.Fields = "personas.id_persona, personas.nombre_visible, SUM(ctacte.importe) AS saldo";
-
-                        qGen.Where Where = new qGen.Where();
-                        if (m_Fechas != null && m_Fechas.HasRange)
-                                Where.AddWithValue("fecha", m_Fechas.From, m_Fechas.To);
-                        if (m_Grupo != 0)
-                                Where.AddWithValue("personas.id_grupo", m_Grupo);
-                        m_SelectCommand.WhereClause = Where;
-                        m_SelectCommand.Group = "personas.id_persona";
-                        m_SelectCommand.Order = "personas.nombre_visible";
-
-                        m_FormFields = new List<Lfx.Data.FormField>()
-			{
-				new Lfx.Data.FormField("id_persona", "Cód. Cliente", Lfx.Data.InputFieldTypes.Serial, 0),
-				new Lfx.Data.FormField("nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 320),
-				new Lfx.Data.FormField("saldo", "Saldo", Lfx.Data.InputFieldTypes.Currency, 160)
-			};
-
-                        double Total = 0;
-                        DataTable Clientes = this.DataBase.Select(this.SelectCommand());
-                        foreach (System.Data.DataRow Cliente in Clientes.Rows) {
-                                double Saldo = Cliente["saldo"] is DBNull ? 0 : System.Convert.ToDouble(Cliente["saldo"]);
-                                if (Saldo != 0) {
-                                        ListViewItem itm = ItemList.Items.Add(System.Convert.ToString(Cliente["id_persona"]));
-                                        itm.SubItems.Add("fecha");
-                                        itm.SubItems.Add(System.Convert.ToString(Cliente["nombre_visible"]));
-                                        Total += Saldo;
-                                        itm.SubItems.Add("-");
-                                        itm.SubItems.Add("-");
-                                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Saldo, Workspace.CurrentConfig.Moneda.Decimales));
-                                        itm.SubItems.Add("");
-                                        itm.SubItems.Add("");
-                                        itm.SubItems.Add("");
-                                }
-                        }
-
-                        ItemList.EndUpdate();
-                        ItemList.Focus();
-                        if (ItemList.Items.Count > 0) {
-                                ItemList.Items[0].Focused = true;
-                                ItemList.Items[0].Selected = true;
-                        }
-
-                        EtiquetaSaldo.Text = Lfx.Types.Formatting.FormatCurrency(Total, Workspace.CurrentConfig.Moneda.Decimales);
-                        EtiquetaTransporte.Text = "-";
-                        EtiquetaIngresos.Text = "-";
-                        EtiquetaEgresos.Text = "-";
-                }
-
-
-                public override qGen.Select SelectCommand()
-                {
-                        return m_SelectCommand;
-                }
-
-
-                private void MostrarCliente()
-                {
-                        m_FormFields = new List<Lfx.Data.FormField>()
-			{
-				new Lfx.Data.FormField("ctacte.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Integer, 0),
-				new Lfx.Data.FormField("ctacte.fecha", "Fecha", Lfx.Data.InputFieldTypes.DateTime, 96),
-				new Lfx.Data.FormField("ctacte.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
-				new Lfx.Data.FormField("ctacte.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 120),
-				new Lfx.Data.FormField("0", "0", Lfx.Data.InputFieldTypes.Text, 0),
-				new Lfx.Data.FormField("ctacte.saldo", "saldo", Lfx.Data.InputFieldTypes.Currency, 120),
-				new Lfx.Data.FormField("ctacte.id_comprob", "Comprobante", Lfx.Data.InputFieldTypes.Text, 0),
-				new Lfx.Data.FormField("ctacte.id_persona", "Persona", Lfx.Data.InputFieldTypes.Text, 160),
-                                new Lfx.Data.FormField("ctacte.obs", "Obs.", Lfx.Data.InputFieldTypes.Memo, 320)
-			};
-
-                        m_SelectCommand = new qGen.Select("ctacte");
-
-                        m_SelectCommand.Fields = "ctacte.id_movim, ctacte.fecha, ctacte.concepto, ctacte.importe, 0, ctacte.saldo, ctacte.id_comprob, ctacte.id_cliente, ctacte.obs";
-                        qGen.Where Where = new qGen.Where();
-                        if (m_Fechas.HasRange)
-                                Where.AddWithValue("ctacte.fecha", m_Fechas.From, m_Fechas.To);
-
-                        Where.AddWithValue("ctacte.id_cliente", m_Cliente);
-
-                        m_SelectCommand.Group = "ctacte.id_movim";
-                        m_SelectCommand.WhereClause = Where;
-                        m_SelectCommand.Order = "ctacte.id_movim";
-
-                        System.Data.DataTable Registros = this.DataBase.Select(this.SelectCommand());
-                        ListViewItem itm = null;
-                        double dTransporte = 0, dIngresos = 0, dEgresos = 0;
-
-                        ListViewItem CurItem = null;
-                        if (ItemList.SelectedItems.Count > 0)
-                                CurItem = ((ListViewItem)(ItemList.SelectedItems[0].Clone()));
-                        else
-                                CurItem = null;
-
-                        ItemList.BeginUpdate();
-                        ItemList.Items.Clear();
-
-                        ItemList.Columns[1].Width = 86;
-                        ItemList.Columns[2].Text = "Concepto";
-                        ItemList.Columns[2].Width = 240;
-                        ItemList.Columns[3].Width = 86;
-                        ItemList.Columns[4].Width = 86;
-                        ItemList.Columns[6].Width = 104;
-                        ItemList.Columns[7].Width = 120;
-                        ItemList.Columns[8].Width = 240;
-
-                        if (Registros.Rows.Count > 0) {
-                                foreach (System.Data.DataRow Registro in Registros.Rows) {
-                                        itm = ItemList.Items.Add(System.Convert.ToString(Registro["id_movim"]));
-                                        itm.SubItems.Add(Lfx.Types.Formatting.FormatDate(Registro["fecha"]));
-                                        itm.SubItems.Add(System.Convert.ToString(Registro["concepto"]));
-                                        if (System.Convert.ToDouble(Registro["importe"]) > 0) {
-                                                dIngresos += System.Convert.ToDouble(Registro["importe"]);
-                                                itm.SubItems.Add("-");
-                                                itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Registro["importe"]), Workspace.CurrentConfig.Moneda.Decimales));
-                                        } else {
-                                                dEgresos += Math.Abs(System.Convert.ToDouble(Registro["importe"]));
-                                                itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(-System.Convert.ToDouble(Registro["importe"]), Workspace.CurrentConfig.Moneda.Decimales));
-                                                itm.SubItems.Add("-");
-                                        }
-                                        //UltimoSaldo = System.Convert.ToDouble(Registro["saldo"]);
-                                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Registro["saldo"]), Workspace.CurrentConfig.Moneda.Decimales));
-                                        int IdComprob = Lfx.Data.DataBase.ConvertDBNullToZero(Registro["id_comprob"]);
-                                        if (IdComprob != 0)
-                                                itm.SubItems.Add(Lbl.Comprobantes.Comprobante.NumeroCompleto(this.DataBase, IdComprob));
-                                        else
-                                                itm.SubItems.Add("");
-                                        itm.SubItems.Add("");
-                                        itm.SubItems.Add(System.Convert.ToString(Registro["obs"]));
-                                }
-                                if (CurItem != null) {
-                                        if (itm.Text == CurItem.Text)
-                                                itm.Selected = true; itm.Focused = true;
-                                }
-                        }
-
-                        if (m_Fechas.HasRange)
-                                dTransporte = Workspace.DefaultDataBase.FieldDouble("SELECT saldo FROM ctacte WHERE fecha<'" + Lfx.Types.Formatting.FormatDateTimeSql(m_Fechas.From).ToString() + "' ORDER BY fecha DESC");
-                        else
-                                dTransporte = 0;
-                        EtiquetaTransporte.Text = Lfx.Types.Formatting.FormatCurrency(dTransporte, Workspace.CurrentConfig.Moneda.Decimales);
-                        EtiquetaIngresos.Text = Lfx.Types.Formatting.FormatCurrency(dIngresos, Workspace.CurrentConfig.Moneda.Decimales);
-                        EtiquetaEgresos.Text = Lfx.Types.Formatting.FormatCurrency(dEgresos, Workspace.CurrentConfig.Moneda.Decimales);
-                        EtiquetaSaldo.Text = Lfx.Types.Formatting.FormatCurrency(dTransporte + dIngresos - dEgresos, Workspace.CurrentConfig.Moneda.Decimales);
-
-                        ItemList.EndUpdate();
-                        ItemList.Focus();
-                        if (ItemList.Items.Count > 0) {
-                                ItemList.Items[0].Focused = true;
-                                ItemList.Items[0].Selected = true;
-                        }
-                }
-
-
-                public override Lfx.Types.OperationResult Print()
-                {
-                        this.ShowExportDialog();
-                        return new Lfx.Types.SuccessOperationResult();
-                }
-
-
-                public override Lfx.Types.OperationResult Filter()
-                {
-                        Lfx.Types.OperationResult Res = base.Filter();
-                        if (Res.Success == true) {
-                                Filtros FormularioFiltros = new Filtros();
-                                FormularioFiltros.EntradaCliente.TextInt = m_Cliente;
-                                FormularioFiltros.EntradaGrupo.TextInt = m_Grupo;
-                                FormularioFiltros.EntradaFechas.Rango = m_Fechas;
-
-                                FormularioFiltros.ShowDialog();
-                                if (FormularioFiltros.DialogResult == DialogResult.OK) {
-                                        m_Cliente = FormularioFiltros.EntradaCliente.TextInt;
-                                        m_Grupo = FormularioFiltros.EntradaGrupo.TextInt;
-                                        m_Fechas = FormularioFiltros.EntradaFechas.Rango;
-                                        RefreshList();
-                                        Res.Success = true;
+                                FormFiltros.ShowDialog();
+                                if (FormFiltros.DialogResult == DialogResult.OK) {
+                                        this.Cliente = FormFiltros.EntradaCliente.Elemento as Lbl.Personas.Persona;
+                                        m_Grupo = FormFiltros.EntradaGrupo.TextInt;
+                                        m_Localidad = FormFiltros.EntradaLocalidad.TextInt;
+                                        Fechas = FormFiltros.EntradaFechas.Rango;
+                                        this.RefreshList();
+                                        return base.OnFilter();
                                 } else {
-                                        Res.Success = false;
+                                        return new Lfx.Types.CancelOperationResult();
                                 }
                         }
-                        return Res;
                 }
 
 
                 private void BotonNotaCred_Click(object sender, System.EventArgs e)
                 {
-                        if (m_Cliente > 0) {
-                                Lfc.Comprobantes.Facturas.Editar OFormNota = ((Lfc.Comprobantes.Facturas.Editar)(this.Workspace.RunTime.Execute("CREAR NCB")));
-                                if (OFormNota != null)
-                                        OFormNota.EntradaCliente.Text = m_Cliente.ToString();
+                        if (this.Cliente != null) {
+                                Lbl.Comprobantes.NotaDeCredito Nota = new Lbl.Comprobantes.NotaDeCredito(this.Connection);
+                                Nota.Crear();
+                                Nota.Cliente = this.Cliente;
+                                Lfc.FormularioEdicion FormularioNota = Lfc.Instanciador.InstanciarFormularioEdicion(Nota);
+                                FormularioNota.Connection = this.Connection;
+                                FormularioNota.MdiParent = this.MdiParent;
+                                FormularioNota.Show();
                         } else {
                                 Lui.Forms.MessageBox.Show("Debe seleccionar una persona. Utilice la opción Filtros (tecla <F2>).", "Error");
                         }
@@ -308,10 +236,14 @@ namespace Lfc.CuentasCorrientes
 
                 private void BotonNotaDeb_Click(object sender, System.EventArgs e)
                 {
-                        if (m_Cliente > 0) {
-                                Lfc.Comprobantes.Facturas.Editar OFormNota = ((Lfc.Comprobantes.Facturas.Editar)(this.Workspace.RunTime.Execute("CREAR NDB")));
-                                if (OFormNota != null)
-                                        OFormNota.EntradaCliente.Text = m_Cliente.ToString();
+                        if (this.Cliente != null) {
+                                Lbl.Comprobantes.NotaDeDebito Nota = new Lbl.Comprobantes.NotaDeDebito(this.Connection);
+                                Nota.Crear();
+                                Nota.Cliente = this.Cliente;
+                                Lfc.FormularioEdicion FormularioNota = Lfc.Instanciador.InstanciarFormularioEdicion(Nota);
+                                FormularioNota.Connection = this.Connection;
+                                FormularioNota.MdiParent = this.MdiParent;
+                                FormularioNota.Show();
                         } else {
                                 Lui.Forms.MessageBox.Show("Debe seleccionar una persona. Utilice la opción Filtros (tecla <F2>).", "Error");
                         }
@@ -320,75 +252,62 @@ namespace Lfc.CuentasCorrientes
 
                 private void Inicio_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
                 {
-                        switch (e.KeyCode) {
-                                case Keys.F3:
-                                        e.Handled = true;
-                                        if (cmdNotaCred.Enabled && cmdNotaCred.Visible) {
-                                                cmdNotaCred.PerformClick();
-                                        }
-                                        break;
-                                case Keys.F4:
-                                        e.Handled = true;
-                                        if (cmdNotaDeb.Enabled && cmdNotaDeb.Visible) {
-                                                cmdNotaDeb.PerformClick();
-                                        }
-                                        break;
-                                case Keys.F5:
-                                        e.Handled = true;
-                                        if (cmdAjuste.Enabled && cmdAjuste.Visible) {
-                                                cmdAjuste.PerformClick();
-                                        }
-                                        break;
-
-                                case Keys.F6:
-                                        if (e.Shift) {
-                                                if (m_Cliente != 0) {
+                        if (e.Shift) {
+                                switch (e.KeyCode) {
+                                        case Keys.F6:
+                                                if (this.Cliente != null) {
                                                         // Recalculo la cuenta del cliente
-                                                        Lbl.Personas.Persona Cliente = new Lbl.Personas.Persona(this.DataBase, m_Cliente);
-                                                        Cliente.CuentaCorriente.Recalcular();
-                                                        this.MostrarCliente();
+                                                        Lui.Forms.MessageBox.Show("Se va a recalcular la Cuenta Corriente", "Aviso");
+                                                        this.Cliente.Connection.BeginTransaction();
+                                                        this.Cliente.CuentaCorriente.Recalcular();
+                                                        this.Cliente.Connection.Commit();
+                                                        this.RefreshList();
                                                 }
                                                 e.Handled = true;
-                                        }
-                                        break;
-                        }
 
+                                                break;
+                                }
+                        }
                 }
 
 
                 private void BotonAjuste_Click(object sender, System.EventArgs e)
                 {
-                        if (Lui.Login.LoginData.ValidateAccess(this.Workspace.CurrentUser, "ctacte.write")) {
-                                Ajuste OAjuste = new Ajuste();
-                                OAjuste.Owner = this;
-                                OAjuste.SaldoActual = Lfx.Types.Parsing.ParseCurrency(EtiquetaSaldo.Text);
-                                if (OAjuste.ShowDialog() == DialogResult.OK) {
-                                        double Importe = Lfx.Types.Parsing.ParseCurrency(OAjuste.EntradaImporte.Text);
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.CuentasCorrientes.CuentaCorriente), Lbl.Sys.Permisos.Operaciones.Mover)) {
+                                Ajuste FormAjuste = new Ajuste();
+                                FormAjuste.Owner = this;
+                                FormAjuste.SaldoActual = this.Contadores[3].Total;
+                                if (FormAjuste.ShowDialog() == DialogResult.OK) {
+                                        decimal Importe = FormAjuste.EntradaImporte.ValueDecimal;
                                         if (Importe == 0) {
                                                 Lui.Forms.MessageBox.Show("El Importe debe ser mayor o menor que cero.", "Error");
                                         } else {
-                                                int Cliente = 0;
-                                                if (m_Cliente != 0)
-                                                        Cliente = m_Cliente;
-                                                else if (ItemList.SelectedItems.Count == 1)
-                                                        Cliente = Lfx.Types.Parsing.ParseInt(ItemList.SelectedItems[0].Text);
+                                                int ClienteId = 0;
+                                                if (this.Cliente != null)
+                                                        ClienteId = this.Cliente.Id;
+                                                else if (Listado.SelectedItems.Count == 1)
+                                                        ClienteId = Lfx.Types.Parsing.ParseInt(Listado.SelectedItems[0].Text);
                                                 else
                                                         Lui.Forms.MessageBox.Show("Debe seleccionar un cliente", "Ajuste");
 
-                                                if (Cliente > 0) {
-                                                        Lbl.CuentasCorrientes.CuentaCorriente CtaCte = new Lbl.CuentasCorrientes.CuentaCorriente(this.DataBase, Cliente);
-                                                        CtaCte.Movimiento(false, OAjuste.EntradaConcepto.TextInt, OAjuste.EntradaConcepto.TextDetail, Importe, OAjuste.EntradaObs.Text, 0, 0, false);
+                                                if (ClienteId > 0) {
+                                                        Lbl.CuentasCorrientes.CuentaCorriente CtaCte = new Lbl.CuentasCorrientes.CuentaCorriente(new Lbl.Personas.Persona(this.Connection, ClienteId));
+                                                        CtaCte.Connection.BeginTransaction();
+                                                        CtaCte.Movimiento(false,
+                                                                FormAjuste.EntradaConcepto.Elemento as Lbl.Cajas.Concepto,
+                                                                FormAjuste.EntradaConcepto.TextDetail,
+                                                                Importe,
+                                                                FormAjuste.EntradaObs.Text,
+                                                                null,
+                                                                null,
+                                                                null,
+                                                                false);
+                                                        CtaCte.Connection.Commit();
                                                         this.RefreshList();
                                                 }
                                         }
                                 }
                         }
-                }
-
-                private void Inicio_WorkspaceChanged(object sender, EventArgs e)
-                {
-                        if (Lui.Login.LoginData.ValidateAccess(this.Workspace.CurrentUser, "ctacte.read") == false)
-                                this.Close();
                 }
         }
 }

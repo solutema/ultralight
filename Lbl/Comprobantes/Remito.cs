@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,13 +38,19 @@ namespace Lbl.Comprobantes
 	public class Remito : ComprobanteConArticulos
 	{
 		//Heredar constructor
-		public Remito(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+                public Remito(Lfx.Data.Connection dataBase)
+                        : base(dataBase) { }
 
-		public Remito(Lfx.Data.DataBase dataBase, int idComprobante)
-			: this(dataBase)
-		{
-			m_ItemId = idComprobante;
-                        this.Cargar();
-		}
+                public Remito(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+			: base(dataBase, row) { }
+
+                public Remito(Lfx.Data.Connection dataBase, int itemId)
+			: base(dataBase, itemId) { }
+
+                public override void Crear()
+                {
+                        base.Crear();
+                        this.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra["R"];
+                }
 	}
 }

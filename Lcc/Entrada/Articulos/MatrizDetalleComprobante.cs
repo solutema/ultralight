@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,18 +29,18 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
+using System.Windows.Forms;
 using Lui.Forms;
 
 namespace Lcc.Entrada.Articulos
 {
-        public partial class MatrizDetalleComprobante : ControlEntrada
+        public partial class MatrizDetalleComprobante : MatrizControlesEntrada<DetalleComprobante>
         {
-                private System.Collections.Generic.List<Lbl.Comprobantes.DetalleArticulo> m_Articulos = null;
-                public System.Collections.Generic.List<DetalleComprobante> m_ChildControls = new System.Collections.Generic.List<DetalleComprobante>();
+                private Lbl.Comprobantes.ColeccionDetalleArticulos m_Articulos = null;
 
-                private bool m_AutoAgregar;
                 private bool m_ShowStock;
                 private string m_FreeTextCode = "";
                 private bool m_LockText;
@@ -50,7 +50,6 @@ namespace Lcc.Entrada.Articulos
                 private Precios m_Precio = Precios.Pvp;
 
                 public event System.EventHandler TotalChanged;
-                new public event System.EventHandler TextChanged;
                 public event System.EventHandler AskForSerials;
 
                 public MatrizDetalleComprobante()
@@ -58,15 +57,14 @@ namespace Lcc.Entrada.Articulos
                         InitializeComponent();
 
                         PanelGrilla.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
-                        lblHeaderDetalle.BackColor = Lfx.Config.Display.CurrentTemplate.Header2Background;
-                        lblHeaderDetalle.ForeColor = Lfx.Config.Display.CurrentTemplate.Header2Text;
-                        lblHeaderUnitario.BackColor = lblHeaderDetalle.BackColor;
-                        lblHeaderUnitario.ForeColor = lblHeaderDetalle.ForeColor;
-                        lblHeaderCantidad.BackColor = lblHeaderDetalle.BackColor;
-                        lblHeaderCantidad.ForeColor = lblHeaderDetalle.ForeColor;
-                        lblHeaderImporte.BackColor = lblHeaderDetalle.BackColor;
-                        lblHeaderImporte.ForeColor = lblHeaderDetalle.ForeColor;
-
+                        EtiquetaHeaderDetalle.BackColor = Lfx.Config.Display.CurrentTemplate.Header2Background;
+                        EtiquetaHeaderDetalle.ForeColor = Lfx.Config.Display.CurrentTemplate.Header2Text;
+                        EtiquetaHeaderUnitario.BackColor = EtiquetaHeaderDetalle.BackColor;
+                        EtiquetaHeaderUnitario.ForeColor = EtiquetaHeaderDetalle.ForeColor;
+                        EtiquetaHeaderCantidad.BackColor = EtiquetaHeaderDetalle.BackColor;
+                        EtiquetaHeaderCantidad.ForeColor = EtiquetaHeaderDetalle.ForeColor;
+                        EtiquetaHeaderImporte.BackColor = EtiquetaHeaderDetalle.BackColor;
+                        EtiquetaHeaderImporte.ForeColor = EtiquetaHeaderDetalle.ForeColor;
                 }
 
 
@@ -75,30 +73,78 @@ namespace Lcc.Entrada.Articulos
                 {
                         get
                         {
-                                return m_ChildControls;
+                                return Controles;
                         }
                 }
 
-                public System.Collections.Generic.List<Lbl.Comprobantes.DetalleArticulo> ObtenerArticulos()
+                public void CargarArticulos(List<Lbl.Comprobantes.DetalleArticulo> articulos)
                 {
-                        if (m_Articulos == null) {
-                                m_Articulos = new System.Collections.Generic.List<Lbl.Comprobantes.DetalleArticulo>();
-                                int i = 1;
-                                foreach (DetalleComprobante Pro in this.ChildControls) {
-                                        Lbl.Comprobantes.DetalleArticulo DetArt = new Lbl.Comprobantes.DetalleArticulo(this.DataBase, 0);
-                                        DetArt.IdArticulo = Pro.TextInt;
+                        if (articulos == null || articulos.Count == 0) {
+                                this.Count = 1;
+                                this.ChildControls[0].TextInt = 0;
+                                this.ChildControls[0].Cantidad = 1;
+                        } else {
+                                this.Count = articulos.Count;
+
+                                for (int i = 0; i < articulos.Count; i++) {
+                                        if (articulos[i].Articulo == null)
+                                                this.ChildControls[i].Text = this.FreeTextCode;
+                                        else
+                                                this.ChildControls[i].Elemento = articulos[i].Articulo;
+
+                                        this.ChildControls[i].TextDetail = articulos[i].Nombre;
+                                        this.ChildControls[i].Cantidad = articulos[i].Cantidad;
+                                        this.ChildControls[i].Unitario = articulos[i].Unitario;
+                                        this.ChildControls[i].Series = articulos[i].Series;
+                                }
+                        }
+                }
+
+                public Lbl.Comprobantes.ColeccionDetalleArticulos ObtenerArticulos(Lfx.Data.Connection dataBase)
+                {
+                        m_Articulos = new Lbl.Comprobantes.ColeccionDetalleArticulos(dataBase);
+                        int i = 1;
+                        foreach (DetalleComprobante Pro in this.ChildControls) {
+                                if (Pro.IsEmpty == false) {
+                                        Lbl.Comprobantes.DetalleArticulo DetArt = new Lbl.Comprobantes.DetalleArticulo(dataBase);
+                                        DetArt.Articulo = Pro.Elemento as Lbl.Articulos.Articulo;
+                                        DetArt.Nombre = Pro.TextDetail;
                                         DetArt.Orden = i++;
                                         DetArt.Cantidad = Pro.Cantidad;
                                         DetArt.Unitario = Pro.Unitario;
-                                        DetArt.Nombre = Pro.TextDetail;
+                                        DetArt.Series = Pro.Series;
                                         m_Articulos.Add(DetArt);
+                                }
+                        }
+
+                        return m_Articulos;
+                }
+
+                public Lbl.Comprobantes.ColeccionDetalleArticulos ObtenerArticulos(Lbl.Comprobantes.ComprobanteConArticulos comprobante)
+                {
+                        if (m_Articulos == null) {
+                                m_Articulos = new Lbl.Comprobantes.ColeccionDetalleArticulos(comprobante);
+                                int i = 1;
+                                foreach (DetalleComprobante Pro in this.ChildControls) {
+                                        if (Pro.IsEmpty == false) {
+                                                Lbl.Comprobantes.DetalleArticulo DetArt = new Lbl.Comprobantes.DetalleArticulo(comprobante);
+                                                DetArt.Articulo = Pro.Elemento as Lbl.Articulos.Articulo;
+                                                DetArt.Nombre = Pro.TextDetail;
+                                                DetArt.Orden = i++;
+                                                DetArt.Cantidad = Pro.Cantidad;
+                                                DetArt.Unitario = Pro.Unitario;
+                                                DetArt.Series = Pro.Series;
+                                                m_Articulos.Add(DetArt);
+                                        }
                                 }
                         }
                         return m_Articulos;
                 }
 
 
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 new public bool Changed
                 {
                         get
@@ -117,7 +163,9 @@ namespace Lcc.Entrada.Articulos
                 }
 
 
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 override public bool ShowChanged
                 {
                         set
@@ -231,38 +279,12 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
-                [System.ComponentModel.Browsable(false)]
-                public int Count
-                {
-                        get
-                        {
-                                if (m_AutoAgregar) {
-                                        return this.ChildControls.Count - 1;
-                                } else {
-                                        return this.ChildControls.Count;
-                                }
-                        }
-                        set
-                        {
-                                this.AutoAgregar = false;
-                                int CantidadControles = this.ChildControls.Count;
-                                if (value < CantidadControles) {
-                                        for (int i = CantidadControles - 1; i >= value; i--) {
-                                                this.Quitar(i);
-                                        }
-                                } else if (value > CantidadControles) {
-                                        for (int i = CantidadControles; i < value; i++) {
-                                                this.Agregar();
-                                        }
-                                }
-                        }
-                }
 
-                public double Total
+                public decimal Total
                 {
                         get
                         {
-                                double m_Total = 0;
+                                decimal m_Total = 0;
                                 foreach (DetalleComprobante Control in this.ChildControls) {
                                         m_Total += Control.Importe;
                                 }
@@ -270,52 +292,30 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
-                public bool AutoAgregar
+
+                public override bool ReadOnly
                 {
                         get
                         {
-                                return m_AutoAgregar;
+                                return base.ReadOnly;
                         }
                         set
                         {
-                                m_AutoAgregar = value;
+                                base.ReadOnly = value;
                                 this.AutoAgregarOQuitar(false);
                         }
                 }
 
-                public void Agregar()
+
+                protected override DetalleComprobante Agregar()
                 {
-                        DetalleComprobante ctrl = new DetalleComprobante();
+                        DetalleComprobante Ctrl = base.Agregar();
 
-                        this.SuspendLayout();
-                        ctrl.Size = new Size(this.Width - 20, 24);
-                        ctrl.Location = new Point(0, 24 * this.ChildControls.Count + this.PanelGrilla.AutoScrollPosition.Y);
-                        ctrl.TabIndex = this.ChildControls.Count;
-                        ctrl.FreeTextCode = m_FreeTextCode;
-                        ctrl.ProductoSoloLectura = m_LockText;
-                        ctrl.PrecioSoloLectura = m_LockPrice;
-                        ctrl.CantidadSoloLectura = m_LockQuantity;
-                        ctrl.MaxLength = m_MaxLength;
-                        ctrl.MuestraStock = m_ShowStock;
-                        ctrl.Required = true;
-                        ctrl.Precio = m_Precio;
-                        this.PanelGrilla.Controls.Add(ctrl);
-                        this.ChildControls.Add(ctrl);
-                        this.ReubicarControles();
+                        Ctrl.TextChanged += new System.EventHandler(Product_TextChanged);
+                        Ctrl.PrecioCantidadChanged += new System.EventHandler(Product_PrecioCantidadChanged);
+                        Ctrl.AskForSerials += new System.EventHandler(Product_AskForSerials);
 
-                        ctrl.TextChanged += new System.EventHandler(Product_TextChanged);
-                        ctrl.PrecioCantidadChanged += new System.EventHandler(Product_PrecioCantidadChanged);
-                        ctrl.Leave += new System.EventHandler(Product_Leave);
-                        ctrl.SizeChanged += new System.EventHandler(Product_SizeChanged);
-                        ctrl.AskForSerials += new System.EventHandler(Product_AskForSerials);
-                        this.ResumeLayout();
-                }
-
-
-                public void Quitar(int iIndex)
-                {
-                        this.PanelGrilla.Controls.Remove(this.ChildControls[iIndex]);
-                        this.ChildControls.RemoveAt(iIndex);
+                        return Ctrl;
                 }
 
 
@@ -331,78 +331,18 @@ namespace Lcc.Entrada.Articulos
                 }
 
 
-                internal void AutoAgregarOQuitar(bool QuitarDelMedio)
-                {
-                        // Agrega o quita controles al final segn corresponda
-                        // sólo si el AutoAgregar está en True
-                        if (this.ChildControls != null && m_AutoAgregar) {
-                                DetalleComprobante Ultimo = null;
-                                switch (this.ChildControls.Count) {
-                                        case 0:
-                                                this.Agregar();
-                                                break;
-                                        case 1:
-                                                Ultimo = this.ChildControls[0];
-                                                if (Ultimo.IsEmpty == false)
-                                                        this.Agregar();
-                                                break;
-                                        default:
-                                                bool QuiteAlgo = false;
-                                                if (QuitarDelMedio) {
-                                                        bool QuiteEnEstaPasada = false;
-                                                        do {
-                                                                QuiteEnEstaPasada = false;
-                                                                for (int i = 0; i <= this.ChildControls.Count - 1; i++) {
-                                                                        DetalleComprobante Control = this.ChildControls[i];
-                                                                        if (i < this.ChildControls.Count - 1 && Control.Text.Length == 0) {
-                                                                                this.Quitar(i);
-                                                                                QuiteAlgo = true;
-                                                                                QuiteEnEstaPasada = true;
-                                                                                break;
-                                                                        }
-                                                                }
-                                                        }
-                                                        while (QuiteEnEstaPasada);
-                                                }
-                                                if (QuiteAlgo) {
-                                                        this.ReubicarControles();
-                                                } else {
-                                                        DetalleComprobante Penultimo = null;
-                                                        Ultimo = this.ChildControls[this.ChildControls.Count - 1];
-                                                        if (this.ChildControls.Count > 1)
-                                                                Penultimo = this.ChildControls[this.ChildControls.Count - 2];
-                                                        if (Ultimo.IsEmpty == false && Penultimo != null && Penultimo.IsEmpty == false)
-                                                                this.Agregar();
-                                                }
-                                                break;
-                                }
-                        }
-                }
-
-
                 private void Product_TextChanged(object sender, System.EventArgs e)
                 {
                         this.AutoAgregarOQuitar(false);
-                        if (null != TextChanged) TextChanged(sender, e);
-                        if (null != TotalChanged) TotalChanged(sender, e);
+                        this.OnTextChanged(EventArgs.Empty);
+                        if (null != TotalChanged)
+                                TotalChanged(sender, e);
                 }
 
                 private void Product_PrecioCantidadChanged(object sender, System.EventArgs e)
                 {
                         if (null != TotalChanged)
                                 TotalChanged(sender, e);
-                }
-
-
-                private void Product_SizeChanged(object sender, System.EventArgs e)
-                {
-                        if (this.Visible)
-                                this.ReubicarControles();
-                }
-
-                private void Product_Leave(object sender, System.EventArgs e)
-                {
-                        this.AutoAgregarOQuitar(true);
                 }
 
 
@@ -416,20 +356,11 @@ namespace Lcc.Entrada.Articulos
                         this.ResumeLayout();
                 }
 
-                private void ReubicarControles()
+                protected override void ReubicarControles()
                 {
                         if (this.ChildControls != null && this.ChildControls.Count > 0) {
-                                this.SuspendLayout();
-                                int ControlNumber = 0, AlturaActual = 0;
-                                foreach (DetalleComprobante Control in this.ChildControls) {
-                                        Control.Top = AlturaActual + this.PanelGrilla.AutoScrollPosition.Y;
-                                        AlturaActual += Control.Height;
-                                        Control.TabIndex = ControlNumber;
-                                        Control.Width = this.Width - 20;
-                                        ControlNumber++;
-                                }
+                                base.ReubicarControles();
                                 ReubicarEncabs();
-                                this.ResumeLayout();
                         }
                 }
 
@@ -438,13 +369,13 @@ namespace Lcc.Entrada.Articulos
                         this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
                         if (this.ChildControls != null && this.ChildControls.Count > 0) {
                                 DetalleComprobante ctrl = this.ChildControls[0];
-                                lblHeaderDetalle.Width = ctrl.UnitarioLeft - 2;
-                                lblHeaderUnitario.Left = ctrl.UnitarioLeft;
-                                lblHeaderUnitario.Width = ctrl.CantidadLeft - lblHeaderUnitario.Left - 2;
-                                lblHeaderCantidad.Left = ctrl.CantidadLeft;
-                                lblHeaderCantidad.Width = ctrl.ImporteLeft - lblHeaderCantidad.Left - 2;
-                                lblHeaderImporte.Left = ctrl.ImporteLeft;
-                                lblHeaderImporte.Width = ctrl.Width - ctrl.ImporteLeft - 2;
+                                EtiquetaHeaderDetalle.Width = ctrl.UnitarioLeft - 2;
+                                EtiquetaHeaderUnitario.Left = ctrl.UnitarioLeft;
+                                EtiquetaHeaderUnitario.Width = ctrl.CantidadLeft - EtiquetaHeaderUnitario.Left - 2;
+                                EtiquetaHeaderCantidad.Left = ctrl.CantidadLeft;
+                                EtiquetaHeaderCantidad.Width = ctrl.ImporteLeft - EtiquetaHeaderCantidad.Left - 2;
+                                EtiquetaHeaderImporte.Left = ctrl.ImporteLeft;
+                                EtiquetaHeaderImporte.Width = ctrl.Width - ctrl.ImporteLeft - 2;
                         }
                 }
         }

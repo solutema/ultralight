@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -126,12 +126,12 @@ namespace Lfc.Bancos.Cheques
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPersona.AutoTab = true;
                         this.EntradaPersona.CanCreate = true;
-                        this.EntradaPersona.DetailField = "nombre_visible";
+                        this.EntradaPersona.DataTextField = "nombre_visible";
                         this.EntradaPersona.ExtraDetailFields = null;
                         this.EntradaPersona.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaPersona.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaPersona.FreeTextCode = "";
-                        this.EntradaPersona.KeyField = "id_persona";
+                        this.EntradaPersona.DataValueField = "id_persona";
                         this.EntradaPersona.Location = new System.Drawing.Point(108, 116);
                         this.EntradaPersona.MaxLength = 200;
                         this.EntradaPersona.Name = "EntradaPersona";
@@ -162,12 +162,12 @@ namespace Lfc.Bancos.Cheques
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaBanco.AutoTab = true;
                         this.EntradaBanco.CanCreate = true;
-                        this.EntradaBanco.DetailField = "nombre";
+                        this.EntradaBanco.DataTextField = "nombre";
                         this.EntradaBanco.ExtraDetailFields = null;
                         this.EntradaBanco.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaBanco.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaBanco.FreeTextCode = "";
-                        this.EntradaBanco.KeyField = "id_banco";
+                        this.EntradaBanco.DataValueField = "id_banco";
                         this.EntradaBanco.Location = new System.Drawing.Point(108, 84);
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
@@ -221,12 +221,12 @@ namespace Lfc.Bancos.Cheques
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSucursal.AutoTab = true;
                         this.EntradaSucursal.CanCreate = true;
-                        this.EntradaSucursal.DetailField = "nombre";
+                        this.EntradaSucursal.DataTextField = "nombre";
                         this.EntradaSucursal.ExtraDetailFields = null;
                         this.EntradaSucursal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaSucursal.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaSucursal.FreeTextCode = "";
-                        this.EntradaSucursal.KeyField = "id_sucursal";
+                        this.EntradaSucursal.DataValueField = "id_sucursal";
                         this.EntradaSucursal.Location = new System.Drawing.Point(108, 52);
                         this.EntradaSucursal.MaxLength = 200;
                         this.EntradaSucursal.Name = "EntradaSucursal";

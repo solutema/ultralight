@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -59,79 +59,89 @@ namespace Lfc.Articulos
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.label19 = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
-			this.EntradaRendimiento = new Lui.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
+                        this.label19 = new System.Windows.Forms.Label();
+                        this.label1 = new System.Windows.Forms.Label();
+                        this.EntradaRendimiento = new Lui.Forms.TextBox();
+                        this.label2 = new System.Windows.Forms.Label();
                         this.EntradaUnidad = new Lui.Forms.ComboBox();
                         this.EntradaUnidadRend = new Lui.Forms.ComboBox();
-			this.SuspendLayout();
-			// 
-			// OkButton
-			// 
-			this.OkButton.Location = new System.Drawing.Point(159, 8);
-			// 
-			// CancelCommandButton
-			// 
-			this.CancelCommandButton.Location = new System.Drawing.Point(267, 8);
-			// 
-			// label19
-			// 
-			this.label19.Location = new System.Drawing.Point(25, 25);
-			this.label19.Name = "label19";
-			this.label19.Size = new System.Drawing.Size(170, 24);
-			this.label19.TabIndex = 0;
-			this.label19.Text = "El artículo se compra en";
-			this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// label1
-			// 
-			this.label1.Location = new System.Drawing.Point(25, 60);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(30, 24);
-			this.label1.TabIndex = 2;
-			this.label1.Text = "de";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// txtRendimiento
-			// 
-			this.EntradaRendimiento.AutoNav = true;
-			this.EntradaRendimiento.AutoTab = true;
-			this.EntradaRendimiento.DataType = Lui.Forms.DataTypes.Money;
-			this.EntradaRendimiento.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.EntradaRendimiento.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.EntradaRendimiento.Location = new System.Drawing.Point(60, 60);
-			this.EntradaRendimiento.MaxLenght = 32767;
-			this.EntradaRendimiento.Name = "txtRendimiento";
-			this.EntradaRendimiento.Padding = new System.Windows.Forms.Padding(2);
-			this.EntradaRendimiento.ReadOnly = false;
-			this.EntradaRendimiento.Size = new System.Drawing.Size(96, 24);
-			this.EntradaRendimiento.TabIndex = 3;
-			this.EntradaRendimiento.Text = "0.00";
-			this.EntradaRendimiento.TipWhenBlank = "";
-			this.EntradaRendimiento.ToolTipText = "Precio de costo o de compra.";
-			// 
-			// label2
-			// 
-			this.label2.Location = new System.Drawing.Point(305, 60);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(40, 24);
-			this.label2.TabIndex = 5;
-			this.label2.Text = "c/u.";
-			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// txtUnidad
-			// 
-			this.EntradaUnidad.AutoNav = true;
-			this.EntradaUnidad.AutoTab = true;
-			this.EntradaUnidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.EntradaUnidad.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.EntradaUnidad.Location = new System.Drawing.Point(195, 25);
-			this.EntradaUnidad.MaxLenght = 32767;
-			this.EntradaUnidad.Name = "txtUnidad";
-			this.EntradaUnidad.Padding = new System.Windows.Forms.Padding(2);
-			this.EntradaUnidad.ReadOnly = false;
-			this.EntradaUnidad.SetData = new string[] {
+                        this.SuspendLayout();
+                        // 
+                        // OkButton
+                        // 
+                        this.OkButton.Location = new System.Drawing.Point(135, 8);
+                        // 
+                        // CancelCommandButton
+                        // 
+                        this.CancelCommandButton.Location = new System.Drawing.Point(255, 8);
+                        // 
+                        // label19
+                        // 
+                        this.label19.Location = new System.Drawing.Point(25, 25);
+                        this.label19.Name = "label19";
+                        this.label19.Size = new System.Drawing.Size(170, 24);
+                        this.label19.TabIndex = 0;
+                        this.label19.Text = "El artículo se compra en";
+                        this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // label1
+                        // 
+                        this.label1.Location = new System.Drawing.Point(68, 120);
+                        this.label1.Name = "label1";
+                        this.label1.Size = new System.Drawing.Size(30, 24);
+                        this.label1.TabIndex = 2;
+                        this.label1.Text = "de";
+                        this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EntradaRendimiento
+                        // 
+                        this.EntradaRendimiento.AutoNav = true;
+                        this.EntradaRendimiento.AutoTab = true;
+                        this.EntradaRendimiento.DataType = Lui.Forms.DataTypes.Currency;
+                        this.EntradaRendimiento.DecimalPlaces = -1;
+                        this.EntradaRendimiento.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaRendimiento.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaRendimiento.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaRendimiento.Location = new System.Drawing.Point(100, 120);
+                        this.EntradaRendimiento.MaxLenght = 32767;
+                        this.EntradaRendimiento.MultiLine = false;
+                        this.EntradaRendimiento.Name = "EntradaRendimiento";
+                        this.EntradaRendimiento.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaRendimiento.PasswordChar = '\0';
+                        this.EntradaRendimiento.Prefijo = "";
+                        this.EntradaRendimiento.SelectOnFocus = true;
+                        this.EntradaRendimiento.Size = new System.Drawing.Size(96, 24);
+                        this.EntradaRendimiento.Sufijo = "";
+                        this.EntradaRendimiento.TabIndex = 3;
+                        this.EntradaRendimiento.Text = "0.00";
+                        this.EntradaRendimiento.TipWhenBlank = "";
+                        this.EntradaRendimiento.ToolTipText = "Precio de costo o de compra.";
+                        // 
+                        // label2
+                        // 
+                        this.label2.Location = new System.Drawing.Point(316, 120);
+                        this.label2.Name = "label2";
+                        this.label2.Size = new System.Drawing.Size(40, 24);
+                        this.label2.TabIndex = 5;
+                        this.label2.Text = "c/u.";
+                        this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EntradaUnidad
+                        // 
+                        this.EntradaUnidad.AlwaysExpanded = true;
+                        this.EntradaUnidad.AutoNav = true;
+                        this.EntradaUnidad.AutoSize = true;
+                        this.EntradaUnidad.AutoTab = true;
+                        this.EntradaUnidad.DetailField = null;
+                        this.EntradaUnidad.Filter = null;
+                        this.EntradaUnidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaUnidad.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaUnidad.KeyField = null;
+                        this.EntradaUnidad.Location = new System.Drawing.Point(200, 24);
+                        this.EntradaUnidad.MaxLenght = 32767;
+                        this.EntradaUnidad.Name = "EntradaUnidad";
+                        this.EntradaUnidad.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaUnidad.SetData = new string[] {
         "N/A|",
         "Unidades|u",
         "Bolsas|bolsa",
@@ -146,25 +156,29 @@ namespace Lfc.Articulos
         "Centímetros³|cm³",
         "Litros|l",
         "Kg|kg"};
-			this.EntradaUnidad.Size = new System.Drawing.Size(140, 25);
-			this.EntradaUnidad.TabIndex = 1;
-			this.EntradaUnidad.Text = "Unidades";
-			this.EntradaUnidad.TextKey = "u";
-			this.EntradaUnidad.TipWhenBlank = "";
-			this.EntradaUnidad.ToolTipText = "¿El artículo usa control de stock?";
-			// 
-			// txtUnidadRend
-			// 
-			this.EntradaUnidadRend.AutoNav = true;
-			this.EntradaUnidadRend.AutoTab = true;
-			this.EntradaUnidadRend.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.EntradaUnidadRend.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.EntradaUnidadRend.Location = new System.Drawing.Point(160, 60);
-			this.EntradaUnidadRend.MaxLenght = 32767;
-			this.EntradaUnidadRend.Name = "txtUnidadRend";
-			this.EntradaUnidadRend.Padding = new System.Windows.Forms.Padding(2);
-			this.EntradaUnidadRend.ReadOnly = false;
-			this.EntradaUnidadRend.SetData = new string[] {
+                        this.EntradaUnidad.Size = new System.Drawing.Size(112, 81);
+                        this.EntradaUnidad.TabIndex = 1;
+                        this.EntradaUnidad.Table = null;
+                        this.EntradaUnidad.TextKey = "u";
+                        this.EntradaUnidad.TipWhenBlank = "";
+                        this.EntradaUnidad.ToolTipText = "¿El artículo usa control de stock?";
+                        // 
+                        // EntradaUnidadRend
+                        // 
+                        this.EntradaUnidadRend.AlwaysExpanded = true;
+                        this.EntradaUnidadRend.AutoNav = true;
+                        this.EntradaUnidadRend.AutoSize = true;
+                        this.EntradaUnidadRend.AutoTab = true;
+                        this.EntradaUnidadRend.DetailField = null;
+                        this.EntradaUnidadRend.Filter = null;
+                        this.EntradaUnidadRend.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaUnidadRend.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaUnidadRend.KeyField = null;
+                        this.EntradaUnidadRend.Location = new System.Drawing.Point(200, 120);
+                        this.EntradaUnidadRend.MaxLenght = 32767;
+                        this.EntradaUnidadRend.Name = "EntradaUnidadRend";
+                        this.EntradaUnidadRend.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaUnidadRend.SetData = new string[] {
         "N/A|",
         "Unidades|u",
         "Bolsas|bolsa",
@@ -179,26 +193,34 @@ namespace Lfc.Articulos
         "Centímetros³|cm³",
         "Litros|l",
         "Kg|kg"};
-			this.EntradaUnidadRend.Size = new System.Drawing.Size(140, 25);
-			this.EntradaUnidadRend.TabIndex = 4;
-			this.EntradaUnidadRend.Text = "N/A";
-			this.EntradaUnidadRend.TipWhenBlank = "";
-			this.EntradaUnidadRend.ToolTipText = "¿El artículo usa control de stock?";
-			// 
-			// Rendimiento
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(375, 319);
-			this.Controls.Add(this.EntradaUnidadRend);
-			this.Controls.Add(this.EntradaUnidad);
-			this.Controls.Add(this.EntradaRendimiento);
-			this.Controls.Add(this.label2);
-			this.Controls.Add(this.label1);
-			this.Controls.Add(this.label19);
-			this.Name = "Rendimiento";
-			this.Text = "Rendimiento";
-			this.ResumeLayout(false);
+                        this.EntradaUnidadRend.Size = new System.Drawing.Size(112, 81);
+                        this.EntradaUnidadRend.TabIndex = 4;
+                        this.EntradaUnidadRend.Table = null;
+                        this.EntradaUnidadRend.TextKey = "";
+                        this.EntradaUnidadRend.TipWhenBlank = "";
+                        this.EntradaUnidadRend.ToolTipText = "¿El artículo usa control de stock?";
+                        // 
+                        // Rendimiento
+                        // 
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+                        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+                        this.ClientSize = new System.Drawing.Size(375, 319);
+                        this.Controls.Add(this.EntradaUnidad);
+                        this.Controls.Add(this.EntradaUnidadRend);
+                        this.Controls.Add(this.label19);
+                        this.Controls.Add(this.label2);
+                        this.Controls.Add(this.label1);
+                        this.Controls.Add(this.EntradaRendimiento);
+                        this.Name = "Rendimiento";
+                        this.Text = "Rendimiento";
+                        this.Controls.SetChildIndex(this.EntradaRendimiento, 0);
+                        this.Controls.SetChildIndex(this.label1, 0);
+                        this.Controls.SetChildIndex(this.label2, 0);
+                        this.Controls.SetChildIndex(this.label19, 0);
+                        this.Controls.SetChildIndex(this.EntradaUnidadRend, 0);
+                        this.Controls.SetChildIndex(this.EntradaUnidad, 0);
+                        this.ResumeLayout(false);
+                        this.PerformLayout();
 
 		}
 

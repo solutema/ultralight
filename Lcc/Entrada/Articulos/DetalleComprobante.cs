@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -41,13 +41,11 @@ namespace Lcc.Entrada.Articulos
 {
         public partial class DetalleComprobante : ControlSeleccionElemento
         {
-
                 protected bool m_ShowStock;
                 protected Precios m_Precio = Precios.Pvp;
                 protected ControlesSock m_ControlStock = ControlesSock.Ambos;
                 protected string m_Serials = "";
 
-                new public event System.EventHandler TextChanged;
                 new public event System.Windows.Forms.KeyEventHandler KeyDown;
                 public event System.EventHandler PrecioCantidadChanged;
                 public event System.EventHandler AskForSerials;
@@ -56,9 +54,7 @@ namespace Lcc.Entrada.Articulos
                 {
                         InitializeComponent();
 
-                        this.ElementType = typeof(Lbl.Articulos.Articulo);
-
-                        if (this.Workspace != null) {
+                        if (this.HasWorkspace) {
                                 switch (m_Precio) {
                                         case Precios.Costo:
                                                 EntradaUnitario.DecimalPlaces = this.Workspace.CurrentConfig.Moneda.DecimalesCosto;
@@ -110,7 +106,7 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
-                public bool IsEmpty
+                public override bool IsEmpty
                 {
                         get
                         {
@@ -118,7 +114,9 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false), 
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 new public int TextInt
                 {
                         get
@@ -127,11 +125,15 @@ namespace Lcc.Entrada.Articulos
                         }
                         set
                         {
-                                EntradaArticulo.TextInt = value;
+                                if (EntradaArticulo.TextInt != value)
+                                        EntradaArticulo.TextInt = value;
                         }
                 }
 
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false),
+                        DefaultValue(""),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public string Series
                 {
                         get
@@ -170,7 +172,9 @@ namespace Lcc.Entrada.Articulos
 
 
                 // Oculta al changed de abajo
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 new public bool Changed
                 {
                         get
@@ -339,29 +343,29 @@ namespace Lcc.Entrada.Articulos
                 }
 
                 [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public double Importe
+                public decimal Importe
                 {
                         get
                         {
-                                return Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text);
+                                return EntradaImporte.ValueDecimal;
                         }
                         set
                         {
-                                EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(value, EntradaImporte.DecimalPlaces);
+                                EntradaImporte.ValueDecimal = value;
                                 this.Changed = false;
                         }
                 }
 
                 [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public double Unitario
+                public decimal Unitario
                 {
                         get
                         {
-                                return Lfx.Types.Parsing.ParseCurrency(EntradaUnitario.Text);
+                                return EntradaUnitario.ValueDecimal;
                         }
                         set
                         {
-                                EntradaUnitario.Text = Lfx.Types.Formatting.FormatCurrency(value, EntradaUnitario.DecimalPlaces);
+                                EntradaUnitario.ValueDecimal = value;
                                 this.Changed = false;
                         }
                 }
@@ -380,21 +384,21 @@ namespace Lcc.Entrada.Articulos
                 }
 
                 [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public double Cantidad
+                public decimal Cantidad
                 {
                         get
                         {
                                 if (this.EstoyUsandoUnidadPrimaria())
-                                        return EntradaCantidad.ValueDouble;
+                                        return EntradaCantidad.ValueDecimal;
                                 else
-                                        return EntradaCantidad.ValueDouble / Articulo.Rendimiento;
+                                        return EntradaCantidad.ValueDecimal / Articulo.Rendimiento;
                         }
                         set
                         {
                                 if (this.EstoyUsandoUnidadPrimaria())
-                                        EntradaCantidad.ValueDouble = value;
+                                        EntradaCantidad.ValueDecimal = value;
                                 else
-                                        EntradaCantidad.ValueDouble = value * this.Articulo.Rendimiento;
+                                        EntradaCantidad.ValueDecimal = value * this.Articulo.Rendimiento;
                                 this.Changed = false;
                         }
                 }
@@ -407,28 +411,11 @@ namespace Lcc.Entrada.Articulos
 
                 private void EntradaArticulo_TextChanged(object sender, System.EventArgs e)
                 {
-                        if (this.Workspace == null)
+                        if (this.HasWorkspace == false)
                                 return;
 
-                        this.Elemento = EntradaArticulo.Elemento;
-
-                        string CodPredet = this.Workspace.CurrentConfig.Productos.CodigoPredeterminado();
-                        /* try {
-                                ArticuloId = EntradaArticulo.TextInt;
-                        } catch {
-                                // Puede haber un overflow, si se escribe un código exageradamente largo
-                                ArticuloId = 0;
-                        }
-
-                        if (EntradaArticulo.Text.Trim().Length == 0 || EntradaArticulo.Text.Trim() == "0") {
-                                Articulo = null;
-                        } else if (CodPredet == "id_articulo") {
-                                Articulo = this.DataBase.Row("articulos", "id_articulo, costo, pvp, control_stock, stock_actual, unidad_stock, rendimiento, unidad_rend, pedido", "id_articulo", ArticuloId);
-                        } else {
-                                Articulo = this.DataBase.FirstRowFromSelect("SELECT id_articulo, costo, pvp, control_stock, stock_actual, unidad_stock, rendimiento, unidad_rend, pedido FROM articulos WHERE " + CodPredet + "='" + EntradaArticulo.Text.Trim() + "'");
-                                if (Articulo == null)
-                                        Articulo = this.DataBase.Row("articulos", "id_articulo, costo, pvp, control_stock, stock_actual, unidad_stock, rendimiento, unidad_rend, pedido", "id_articulo", ArticuloId);
-                        } */
+                        if (this.Elemento != EntradaArticulo.Elemento)
+                                this.Elemento = EntradaArticulo.Elemento;
 
                         if (this.Articulo != null) {
                                 EntradaUnitario.Enabled = true;
@@ -440,9 +427,9 @@ namespace Lcc.Entrada.Articulos
                                         EntradaCantidad.Sufijo = "";
 
                                 if (m_Precio == Precios.Costo)
-                                        EntradaUnitario.ValueDouble = Articulo.Costo;
+                                        EntradaUnitario.ValueDecimal = Articulo.Costo;
                                 else
-                                        EntradaUnitario.ValueDouble = Articulo.Pvp;
+                                        EntradaUnitario.ValueDecimal = Articulo.Pvp;
 
                                 if (m_ShowStock)
                                         VerificarStock();
@@ -455,7 +442,7 @@ namespace Lcc.Entrada.Articulos
                                 EntradaImporte.Enabled = true;
                                 if (this.Cantidad == 0)
                                         this.Cantidad = 1;
-                        } else if (EntradaArticulo.Text.Length == 0 || (Lfx.Types.Strings.IsNumericInt(EntradaArticulo.Text) && EntradaArticulo.TextInt == 0)) {
+                        } else if (EntradaArticulo.Text.Length == 0 || (EntradaArticulo.Text.IsNumericInt() && EntradaArticulo.TextInt == 0)) {
                                 EntradaUnitario.Text = "0";
                                 EntradaCantidad.Sufijo = "";
                                 EntradaCantidad.Text = "0";
@@ -463,14 +450,13 @@ namespace Lcc.Entrada.Articulos
                                 EntradaUnitario.Text = "0";
                         }
                         this.Changed = true;
-                        if (null != TextChanged)
-                                TextChanged(this, null);
+                        this.OnTextChanged(EventArgs.Empty);
                 }
 
 
                 private void EntradaPrecioCantidad_TextChanged(object sender, System.EventArgs e)
                 {
-                        if (this.Workspace != null) {
+                        if (this.HasWorkspace) {
                                 EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(EntradaUnitario.Text) * this.Cantidad, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
                                 VerificarStock();
                                 this.Changed = true;
@@ -482,30 +468,37 @@ namespace Lcc.Entrada.Articulos
 
                 private void VerificarStock()
                 {
-                        try {
-                                if (m_ShowStock && Articulo != null) {
-                                        if (this.Articulo.ControlStock != Lbl.Articulos.ControlStock.No && this.Articulo.StockActual < this.Cantidad) {
-                                                if (this.Articulo.StockActual + this.Articulo.Pedido >= this.Cantidad) {
-                                                        EntradaArticulo.Font = new Font("Bitstream Vera Sans", 10);
-                                                        EntradaArticulo.ForeColor = Color.OrangeRed;
-                                                } else {
-                                                        EntradaArticulo.Font = new Font("Bitstream Vera Sans", 10, FontStyle.Strikeout);
-                                                        EntradaArticulo.ForeColor = Color.Red;
-                                                }
+                        if (m_ShowStock && Articulo != null) {
+                                if (this.ReadOnly == false && this.Articulo.ControlStock != Lbl.Articulos.ControlStock.No && this.Articulo.StockActual < this.Cantidad) {
+                                        if (this.Articulo.StockActual + this.Articulo.Pedido >= this.Cantidad) {
+                                                EntradaArticulo.Font = null;
+                                                EntradaArticulo.ForeColor = Color.OrangeRed;
                                         } else {
-                                                EntradaArticulo.Font = new Font("Bitstream Vera Sans", 10);
-                                                EntradaArticulo.ForeColor = Color.Black;
+                                                EntradaArticulo.Font = new Font(this.Font, FontStyle.Strikeout);
+                                                EntradaArticulo.ForeColor = Color.Red;
                                         }
                                 } else {
-                                        EntradaArticulo.Font = new Font("Bitstream Vera Sans", 10);
-                                        EntradaArticulo.ForeColor = Color.Black;
+                                        EntradaArticulo.Font = null;
+                                        EntradaArticulo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
                                 }
-                        } catch {
-                                EntradaArticulo.Font = new Font("Bitstream Vera Sans", 10);
-                                EntradaArticulo.ForeColor = Color.Black;
+                        } else {
+                                EntradaArticulo.Font = null;
+                                EntradaArticulo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
                         }
                 }
 
+                public override bool ReadOnly
+                {
+                        get
+                        {
+                                return base.ReadOnly;
+                        }
+                        set
+                        {
+                                base.ReadOnly = value;
+                                this.VerificarStock();
+                        }
+                }
 
                 private void EntradaArticulo_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
                 {

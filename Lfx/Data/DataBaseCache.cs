@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -40,15 +40,12 @@ namespace Lfx.Data
         {
                 public static DataBaseCache DefaultCache;
 
-                private Lfx.Data.DataBase DataBase;
+                private Lfx.Data.Connection Connection;
 
-                public DataBaseCache(Lfx.Data.DataBase dataBase)
+                public DataBaseCache(Lfx.Data.Connection connection)
                 {
-                        this.DataBase = dataBase;
+                        this.Connection = connection;
                 }
-
-                private System.Collections.Generic.List<string> m_TableList = null;
-                private System.Collections.Generic.Dictionary<string, Lfx.Data.TagCollection> m_TagList = null; // Si... una colección de colecciones
                 
                 public Lfx.Data.Providers.Provider Provider = null;
                 public string OdbcDriver = null;
@@ -58,321 +55,98 @@ namespace Lfx.Data
                 public qGen.SqlModes SqlMode = qGen.SqlModes.Ansi;
                 public Lfx.Data.IsolationLevels DefaultIsolationLevel = IsolationLevels.Serializable;
 
-                private System.Collections.Generic.Dictionary<string, Lfx.Data.ConstraintDefinition> m_Constraints = null;
-                private System.Collections.Generic.Dictionary<string, Lfx.Data.TableStructure> m_TableStructures = null;
-
                 public void Clear()
                 {
                         ServerName = null;
                         DataBaseName = null;
                         UserName = null;
                         Password = null;
-                        m_TableList = null;
-                        m_TagList = null;
-                        m_Constraints = null;
-                        m_TableStructures = null;
                 }
 
-                public void CargarEstructuraDesdeXml(string nombreArchivo)
-                {
-                        System.IO.StreamReader Lector;
-                        System.Xml.XmlDocument Doc = new System.Xml.XmlDocument();
-                        if (nombreArchivo == null) {
-                                string Espacio = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name.ToString();
-                                System.IO.Stream RecursoXml = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(Espacio + ".Data.dbstruct.xml");
-                                Lector = new System.IO.StreamReader(RecursoXml);
-                                Doc.Load(Lector);
-                                Lector.Close();
-                                RecursoXml.Close();
-                        } else {
-                                Lector = new System.IO.StreamReader(nombreArchivo, System.Text.Encoding.Default);
-                                Doc.Load(Lector);
-                                Lector.Close();
-                        }
 
-                        m_Constraints = new System.Collections.Generic.Dictionary<string, Lfx.Data.ConstraintDefinition>();
-                        System.Xml.XmlNodeList ClavesXml = Doc.SelectNodes("/Database/Constraint");
-                        foreach (System.Xml.XmlNode ClaveXml in ClavesXml) {
-                                Lfx.Data.ConstraintDefinition Con = new Lfx.Data.ConstraintDefinition(ClaveXml.Attributes["table"].Value);
-                                Con.Name = ClaveXml.Attributes["name"].Value;
-                                Con.Column = ClaveXml.Attributes["column"].Value;
-                                Con.ReferenceTable = ClaveXml.Attributes["reference_table"].Value;
-                                Con.ReferenceColumn = ClaveXml.Attributes["reference_column"].Value;
-                                Constraints.Add(Con.Name, Con);
-                        }
-
-                        m_TableStructures = new System.Collections.Generic.Dictionary<string, Lfx.Data.TableStructure>();
-                        System.Xml.XmlNodeList TablasXml = Doc.SelectNodes("/Database/Table");
-                        foreach (System.Xml.XmlNode TablaXml in TablasXml) {
-                                Lfx.Data.TableStructure Tabla = new Lfx.Data.TableStructure();
-                                Tabla.Name = TablaXml.Attributes["name"].Value;
-                                Tabla.Columns = new System.Collections.Generic.Dictionary<string, Lfx.Data.ColumnDefinition>();
-
-                                System.Xml.XmlNodeList ColumnasXml = TablaXml.SelectNodes("Column");
-                                foreach (System.Xml.XmlNode ColumnaXml in ColumnasXml) {
-                                        Lfx.Data.ColumnDefinition Columna = new Lfx.Data.ColumnDefinition();
-                                        Columna.Name = ColumnaXml.Attributes["name"].Value;
-
-                                        if (ColumnaXml.Attributes["inputtype"] != null) {
-                                                switch(ColumnaXml.Attributes["inputtype"].Value){
-                                                        case "AlphanumericSet":
-                                                                Columna.InputFieldType = InputFieldTypes.AlphanumericSet;
-                                                                Columna.FieldType = DbTypes.VarChar;
-                                                                break;
-                                                        case "Binary":
-                                                                Columna.InputFieldType = InputFieldTypes.Binary;
-                                                                Columna.FieldType = DbTypes.Blob;
-                                                                break;
-                                                        case "Bool":
-                                                                Columna.InputFieldType = InputFieldTypes.Bool;
-                                                                Columna.FieldType = DbTypes.SmallInt;
-                                                                break;
-                                                        case "Currency":
-                                                                Columna.InputFieldType = InputFieldTypes.Currency;
-                                                                Columna.FieldType = DbTypes.Currency;
-                                                                Columna.Lenght = 14;
-                                                                Columna.Precision = 4;
-                                                                break;
-                                                        case "Date":
-                                                                Columna.InputFieldType = InputFieldTypes.Date;
-                                                                Columna.FieldType = DbTypes.DateTime;
-                                                                break;
-                                                        case "DateTime":
-                                                                Columna.InputFieldType = InputFieldTypes.DateTime;
-                                                                Columna.FieldType = DbTypes.DateTime;
-                                                                break;
-                                                        case "Image":
-                                                                Columna.InputFieldType = InputFieldTypes.Image;
-                                                                Columna.FieldType = DbTypes.Blob;
-                                                                break;
-                                                        case "Integer":
-                                                                Columna.InputFieldType = InputFieldTypes.Integer;
-                                                                Columna.FieldType = DbTypes.Integer;
-                                                                break;
-                                                        case "Memo":
-                                                                Columna.InputFieldType = InputFieldTypes.Memo;
-                                                                Columna.FieldType = DbTypes.Text;
-                                                                break;
-                                                        case "Numeric":
-                                                                Columna.InputFieldType = InputFieldTypes.Numeric;
-                                                                Columna.FieldType = DbTypes.Numeric;
-                                                                Columna.Lenght = 14;
-                                                                Columna.Precision = 4;
-                                                                break;
-                                                        case "NumericSet":
-                                                                Columna.InputFieldType = InputFieldTypes.NumericSet;
-                                                                Columna.FieldType = DbTypes.SmallInt;
-                                                                break;
-                                                        case "Relation":
-                                                                Columna.InputFieldType = InputFieldTypes.Relation;
-                                                                Columna.Relation = new Relation(Columna.Name, ColumnaXml.Attributes["relation_table"].Value, ColumnaXml.Attributes["relation_key"].Value, ColumnaXml.Attributes["relation_detail"].Value);
-                                                                Columna.FieldType = DbTypes.Integer;
-                                                                break;
-                                                        case "Serial":
-                                                                Columna.InputFieldType = InputFieldTypes.Serial;
-                                                                Columna.FieldType = DbTypes.Serial;
-                                                                break;
-                                                        case "Text":
-                                                                Columna.InputFieldType = InputFieldTypes.Text;
-                                                                Columna.FieldType = DbTypes.VarChar;
-                                                                break;
-                                                        default:
-                                                                throw new NotImplementedException("Lfx.Data.DataBaseCache.CargarEstructuraDesdeXml: Falta implementar " + ColumnaXml.Attributes["inputtype"].Value);
-                                                }
-                                        } else {
-                                                Columna.FieldType = Lfx.Data.Types.FromSQLType(ColumnaXml.Attributes["datatype"].Value);
-                                        }
-
-                                        if (ColumnaXml.Attributes["lenght"] != null)
-                                                Columna.Lenght = Lfx.Types.Parsing.ParseInt(ColumnaXml.Attributes["lenght"].Value);
-
-                                        if (ColumnaXml.Attributes["precision"] != null)
-                                                Columna.Precision = Lfx.Types.Parsing.ParseInt(ColumnaXml.Attributes["precision"].Value);
-
-                                        if (ColumnaXml.Attributes["label"] != null)
-                                                Columna.Label = ColumnaXml.Attributes["label"].Value;
-                                        else
-                                                Columna.Label = Columna.Name;
-
-                                        if (ColumnaXml.Attributes["section"] != null)
-                                                Columna.Section = ColumnaXml.Attributes["section"].Value;
-
-                                        if (ColumnaXml.Attributes["required"] != null && ColumnaXml.Attributes["required"].Value == "!")
-                                                Columna.Required = true;
-                                        else
-                                                Columna.Required = false;
-
-                                        if (ColumnaXml.Attributes["nullable"] == null)
-                                                Columna.Nullable = false;
-                                        else if (ColumnaXml.Attributes["nullable"].Value == "1")
-                                                Columna.Nullable = true;
-                                        else
-                                                Columna.Nullable = false;
-
-                                        if (ColumnaXml.Attributes["primary_key"] != null)
-                                                Columna.PrimaryKey = System.Convert.ToBoolean(Lfx.Types.Parsing.ParseInt(ColumnaXml.Attributes["primary_key"].Value));
-                                                                                
-                                        if (ColumnaXml.Attributes["default"] != null && ColumnaXml.Attributes["default"].Value.Length > 0) {
-                                                Columna.DefaultValue = ColumnaXml.Attributes["default"].Value;
-                                        } else {
-                                                switch(Columna.FieldType) {
-                                                        case DbTypes.VarChar:
-                                                                Columna.DefaultValue = "";
-                                                                break;
-                                                        case DbTypes.Text:
-                                                        case DbTypes.Blob:
-                                                                Columna.DefaultValue = null;
-                                                                break;
-                                                        case DbTypes.Currency:
-                                                        case DbTypes.Integer:
-                                                        case DbTypes.NonExactDecimal:
-                                                        case DbTypes.Numeric:
-                                                        case DbTypes.Serial:
-                                                        case DbTypes.SmallInt:
-                                                                if (Columna.Nullable)
-                                                                        Columna.DefaultValue = "NULL";
-                                                                else
-                                                                        Columna.DefaultValue = "0";
-                                                                break;
-                                                        case DbTypes.DateTime:
-                                                                Columna.DefaultValue = null;
-                                                                break;
-                                                        default:
-                                                                Columna.DefaultValue = "";
-                                                                break;
-                                                }
-                                        }
-                                        Tabla.Columns.Add(Columna.Name, Columna);
-                                }
-
-                                //Agrego los campos de sys_tags
-                                if (this.TagList.ContainsKey(Tabla.Name)) {
-                                        foreach (Data.Tag Tg in this.TagList[Tabla.Name]) {
-                                                Lfx.Data.ColumnDefinition Columna = new Lfx.Data.ColumnDefinition(Tg.FieldName, Tg.FieldType);
-                                                switch (Columna.FieldType) {
-                                                        case Lfx.Data.DbTypes.VarChar:
-                                                                Columna.Lenght = 200;
-                                                                break;
-                                                        case Lfx.Data.DbTypes.Numeric:
-                                                                Columna.Lenght = 14;
-                                                                Columna.Precision = 4;
-                                                                break;
-                                                }
-                                                Columna.Nullable = Tg.Nullable;
-                                                Columna.PrimaryKey = false;
-
-                                                if (Tg.DefaultValue != null)
-                                                        Columna.DefaultValue = Tg.DefaultValue.ToString();
-
-                                                if (Tabla.Columns.ContainsKey(Tg.FieldName))
-                                                        Tabla.Columns[Columna.Name] = Columna;
-                                                else
-                                                        Tabla.Columns.Add(Columna.Name, Columna);
-                                        }
-                                }
-
-                                Tabla.Indexes = new System.Collections.Generic.Dictionary<string, Lfx.Data.IndexDefinition>();
-                                System.Xml.XmlNodeList IndicesXml = TablaXml.SelectNodes("Index");
-                                foreach (System.Xml.XmlNode IndiceXml in IndicesXml) {
-                                        Lfx.Data.IndexDefinition Indice = new Lfx.Data.IndexDefinition(Tabla.Name);
-                                        Indice.Name = IndiceXml.Attributes["name"].Value;
-                                        Indice.Unique = System.Convert.ToBoolean(Lfx.Types.Parsing.ParseInt(IndiceXml.Attributes["unique"].Value));
-                                        Indice.Primary = System.Convert.ToBoolean(Lfx.Types.Parsing.ParseInt(IndiceXml.Attributes["primary"].Value));
-                                        Indice.Columns = IndiceXml.Attributes["columns"].Value.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                                        Tabla.Indexes.Add(Indice.Name, Indice);
-                                }
-
-                                this.m_TableStructures.Add(Tabla.Name, Tabla);
-                        }
-                }
-
-                public void CargarTagList()
-                {
-                        m_TagList = null;
-                }
-
-                public System.Collections.Generic.Dictionary<string, Lfx.Data.TagCollection> TagList
-                {
-                        get
-                        {
-                                if (m_TagList == null || m_TagList.Count == 0) {
-                                        if (m_TagList == null)
-                                                m_TagList = new System.Collections.Generic.Dictionary<string, Data.TagCollection>();
-                                        if (this.TableList.Contains("sys_tags")) {
-                                                System.Data.DataTable TagsTable = this.DataBase.Select("SELECT * FROM sys_tags ORDER BY tablename");
-                                                foreach(System.Data.DataRow TagRow in TagsTable.Rows) {
-                                                        string TableName = TagRow["tablename"].ToString();
-                                                        if (m_TagList.ContainsKey(TableName) == false)
-                                                                m_TagList.Add(TableName, new Data.TagCollection());
-
-                                                        Data.TagCollection CurrentCol = m_TagList[TableName];
-
-                                                        Data.Tag NewTag = new Data.Tag(this.DataBase, TableName, (Lfx.Data.Row)TagRow);
-                                                        CurrentCol.Add(NewTag);
-                                                }
-                                        }
-                                }
-                                return m_TagList;
-                        }
-                }
+                public Lfx.Data.TableCollection m_Tables = null;
 
                 /// <summary>
-                /// Obtiene una lista de tablas actualmente presente en la base de datos (puede no coincidir con dbstruct.xml)
+                /// Devuelve una colección con las tablas de datos.
                 /// </summary>
-                public System.Collections.Generic.List<string> TableList
+                public Lfx.Data.TableCollection Tables
                 {
                         get
                         {
-                                if (m_TableList == null || m_TableList.Count == 0) {
-                                        if (m_TableList == null)
-                                                m_TableList = new System.Collections.Generic.List<string>();
-                                        System.Data.DataTable Tablas = null;
-                                        switch (SqlMode) {
-                                                case qGen.SqlModes.MySql:
-                                                case qGen.SqlModes.Oracle:
-                                                        Tablas = this.DataBase.Select("SHOW TABLES");
-                                                        break;
-                                                default:
-                                                        Tablas = this.DataBase.Select("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE' AND TABLE_SCHEMA='public'");
-                                                        break;
-                                        }
+                                if (m_Tables == null || m_Tables.Count == 0) {
+                                        m_Tables = new Lfx.Data.TableCollection(Lfx.Workspace.Master.MasterConnection);
+                                        foreach (string TblName in Lfx.Data.DataBaseCache.DefaultCache.GetTableNames()) {
+                                                Lfx.Data.Table NewTable = new Lfx.Data.Table(Lfx.Workspace.Master.MasterConnection, TblName);
+                                                switch (TblName) {
+                                                        case "alicuotas":
+                                                        case "articulos_codigos":
+                                                        case "articulos_situaciones":
+                                                        case "bancos":
+                                                        case "cajas":
+                                                        case "conceptos":
+                                                        case "ciudades":
+                                                        case "documentos_tipos":
+                                                        case "formaspago":
+                                                        case "impresoras":
+                                                        case "lared_convenios":
+                                                        case "margenes":
+                                                        case "monedas":
+                                                        case "personas_tipos":
+                                                        case "pvs":
+                                                        case "situaciones":
+                                                        case "sucursales":
+                                                        case "sys_permisos_objetos":
+                                                        case "sys_plantillas":
+                                                        case "sys_tags":
+                                                        case "tickets_estados":
+                                                        case "tipo_doc":
+                                                                NewTable.AlwaysCache = true;
+                                                                break;
 
-                                        if (m_TableList != null) {
-                                                foreach (System.Data.DataRow Tabla in Tablas.Rows) {
-                                                        if (m_TableList.Contains(Tabla[0].ToString()) == false)
-                                                                m_TableList.Add(Tabla[0].ToString());
+                                                        case "sys_asl":
+                                                        case "sys_log":
+                                                        case "sys_programador":
+                                                        case "sys_quickpaste":
+                                                                NewTable.Cacheable = false;
+                                                                break;
                                                 }
+                                                m_Tables.Add(NewTable);
                                         }
                                 }
-                                return m_TableList;
-                        }
-                }
-
-                /// <summary>
-                /// Obtiene las claves foráneas desde dbstruct.xml (puede no coincidir con el contenido actual de la base de datos)
-                /// </summary>
-                public System.Collections.Generic.Dictionary<string, Lfx.Data.ConstraintDefinition> Constraints
-                {
-                        get
-                        {
-                                if (m_Constraints == null)
-                                        this.CargarEstructuraDesdeXml(null);
-                                return m_Constraints;
+                                return m_Tables;
                         }
                 }
 
 
                 /// <summary>
-                /// Obtiene las estructuras de las tablas desde dbstruct.xml (puede no coincidir con el contenido actual de la base de datos)
+                /// Obtiene una lista de tablas actualmente presente en la base de datos (puede no coincidir con dbstruct.xml)
                 /// </summary>
-                public System.Collections.Generic.Dictionary<string, Lfx.Data.TableStructure> TableStructures
+                public System.Collections.Generic.List<string> GetTableNames()
                 {
-                        get
-                        {
-                                if (m_TableStructures == null)
-                                        this.CargarEstructuraDesdeXml(null);
-                                return m_TableStructures;
+                        System.Collections.Generic.List<string> m_TableList = new List<string>();
+
+                        if (m_TableList == null || m_TableList.Count == 0) {
+                                if (m_TableList == null)
+                                        m_TableList = new System.Collections.Generic.List<string>();
+                                System.Data.DataTable Tablas = null;
+                                switch (SqlMode) {
+                                        case qGen.SqlModes.MySql:
+                                        case qGen.SqlModes.Oracle:
+                                                Tablas = this.Connection.Select("SHOW TABLES");
+                                                break;
+                                        default:
+                                                Tablas = this.Connection.Select("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE' AND TABLE_SCHEMA='public'");
+                                                break;
+                                }
+
+                                if (m_TableList != null) {
+                                        foreach (System.Data.DataRow Tabla in Tablas.Rows) {
+                                                if (m_TableList.Contains(Tabla[0].ToString()) == false)
+                                                        m_TableList.Add(Tabla[0].ToString());
+                                        }
+                                }
                         }
+                        return m_TableList;
                 }
         }
 }

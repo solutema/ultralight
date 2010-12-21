@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -139,21 +139,21 @@ namespace Lfx.Types
 			return readRectangleReturn;
 		}
 
-		public static System.Collections.Hashtable SectionToCollection(string sSeccion)
+		public static Dictionary<string, string> SectionToCollection(string seccion)
 		{
-			string sS = sSeccion;
-			System.Collections.Hashtable cResult = new System.Collections.Hashtable();
+			string Seccion = seccion;
+                        Dictionary<string, string> Res = new Dictionary<string, string>();
 
-			while(sS.Length > 0) {
-				string sLinea = Lfx.Types.Strings.GetNextToken(ref sS, System.Environment.NewLine);
+			while(Seccion.Length > 0) {
+				string Linea = Lfx.Types.Strings.GetNextToken(ref Seccion, System.Environment.NewLine);
 
-				if(sLinea.Length > 0) {
-					string sClave = Lfx.Types.Strings.GetNextToken(ref sLinea, "=");
-					cResult.Add(sClave, sLinea);
+				if(Linea.Length > 0) {
+					string Clave = Lfx.Types.Strings.GetNextToken(ref Linea, "=");
+					Res.Add(Clave, Linea);
 				}
 			}
 
-			return cResult;
+			return Res;
 		}
 
 		public static string CollectionToSection(System.Collections.Hashtable c)

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -31,10 +31,7 @@
 
 using System;
 using System.ComponentModel;
-using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Lcc.Entrada
@@ -54,8 +51,6 @@ namespace Lcc.Entrada
                 private bool m_CanCreate = true;
                 private int RowMisses = 0;
 
-                [System.ComponentModel.EditorBrowsable(EditorBrowsableState.Always), Browsable(true)]
-                new public event System.EventHandler TextChanged;
                 new public event System.Windows.Forms.KeyEventHandler KeyDown;
 
                 public CodigoDetalle()
@@ -70,7 +65,7 @@ namespace Lcc.Entrada
                         EntradaFreeText.ForeColor = Label1.ForeColor;
                         this.BorderStyle = Lui.Forms.Control.BorderStyles.TextBox;
 
-                        ActualizarDetalle();
+                        // ActualizarDetalle();
                 }
 
                 [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -149,11 +144,11 @@ namespace Lcc.Entrada
                         }
                 }
 
-                public bool IsEmpty
+                public override bool IsEmpty
                 {
                         get
                         {
-                                return this.Text.Length == 0 || this.Text == "0";
+                                return this.Text != this.FreeTextCode && (this.Text.Length == 0 || this.Text == "0");
                         }
                 }
 
@@ -167,6 +162,8 @@ namespace Lcc.Entrada
                         {
                                 base.ReadOnly = value;
                                 TextBox1.ReadOnly = value;
+                                if (Label1.Text == "???")
+                                        this.ActualizarDetalle();
                         }
                 }
 
@@ -190,28 +187,28 @@ namespace Lcc.Entrada
                 }
 
                 [System.ComponentModel.Category("Datos")]
-                override public string KeyField
+                override public string DataValueField
                 {
                         get
                         {
-                                return base.KeyField;
+                                return base.DataValueField;
                         }
                         set
                         {
-                                base.KeyField = value;
+                                base.DataValueField = value;
                         }
                 }
 
                 [System.ComponentModel.Category("Datos")]
-                override public string DetailField
+                override public string DataTextField
                 {
                         get
                         {
-                                return base.DetailField;
+                                return base.DataTextField;
                         }
                         set
                         {
-                                base.DetailField = value;
+                                base.DataTextField = value;
                                 ActualizarDetalle();
                         }
                 }
@@ -275,8 +272,8 @@ namespace Lcc.Entrada
                 {
                         get
                         {
-                                if (m_FreeTextCode.Length > 0 && TextBox1.Text == m_FreeTextCode)
-                                        return TextBox1.Text;
+                                if (m_FreeTextCode.Length > 0 && this.TextBox1.Text == m_FreeTextCode)
+                                        return this.TextBox1.Text;
                                 else if (Label1.Text == "???")
                                         return "";
                                 else
@@ -285,9 +282,9 @@ namespace Lcc.Entrada
                         set
                         {
                                 if (value == "0")
-                                        TextBox1.Text = "";
+                                        this.TextBox1.Text = "";
                                 else
-                                        TextBox1.Text = value;
+                                        this.TextBox1.Text = value;
 
                                 if (m_AutoUpdate)
                                         this.ActualizarDetalle();
@@ -301,7 +298,7 @@ namespace Lcc.Entrada
                 {
                         get
                         {
-                                if (TextBox1.Text == m_FreeTextCode)
+                                if (m_FreeTextCode.Length > 0 && this.TextBox1.Text == m_FreeTextCode)
                                         return EntradaFreeText.Text;
                                 else if (Label1.Text == "???")
                                         return "";
@@ -310,7 +307,7 @@ namespace Lcc.Entrada
                         }
                         set
                         {
-                                if (TextBox1.Text == m_FreeTextCode)
+                                if (m_FreeTextCode.Length > 0 && this.TextBox1.Text == m_FreeTextCode)
                                         EntradaFreeText.Text = value;
                                 else
                                         Label1.Text = value;
@@ -368,7 +365,7 @@ namespace Lcc.Entrada
                                 TextBox1.SelectAll();
                 }
 
-                private void txtFreeText_GotFocus(object sender, System.EventArgs e)
+                private void EntradaFreeText_GotFocus(object sender, System.EventArgs e)
                 {
                         if (m_ReadOnly == false)
                                 EntradaFreeText.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
@@ -380,7 +377,7 @@ namespace Lcc.Entrada
                         TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
                 }
 
-                private void txtFreeText_LostFocus(object sender, System.EventArgs e)
+                private void EntradaFreeText_LostFocus(object sender, System.EventArgs e)
                 {
                         EntradaFreeText.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
                 }
@@ -416,19 +413,19 @@ namespace Lcc.Entrada
                                 MostrarBuscador(TextBox1.Text);
 
                         this.Changed = true;
-                        if (null != TextChanged) TextChanged(sender, e);
+                        this.OnTextChanged(EventArgs.Empty);
                 }
 
 
                 private void ActualizarDetalle()
                 {
-                        if (this.Workspace != null && this.DataBase != null) {
+                        if (this.HasWorkspace && this.Connection != null) {
                                 //Actualizo sólo si cambió el código
                                 string KeyFieldAlt = this.Relation.ReferenceColumn; // KeyField Alternativo
                                 if (this.Relation.ReferenceTable == "articulos" && KeyFieldAlt == "id_articulo")
                                         KeyFieldAlt = this.Workspace.CurrentConfig.Productos.CodigoPredeterminado();
 
-                                if (TextBox1.Text == m_FreeTextCode && FreeTextCode.Length > 0) {
+                                if (m_FreeTextCode.Length > 0 && TextBox1.Text == m_FreeTextCode) {
                                         m_ItemId = 0;
                                         m_LastText1 = "";
                                         EntradaFreeText.Visible = true;
@@ -437,20 +434,17 @@ namespace Lcc.Entrada
                                         if (TextBox1.Text != m_LastText1) {
                                                 EntradaFreeText.Visible = false;
                                                 string TextoSql = "", Campos = "*";
-                                                //Campos = KeyFieldAlt + ", " + this.Relation.DetailColumn;
-                                                //if (this.Relation.ReferenceColumn != KeyFieldAlt)
-                                                //        Campos += ", " + this.Relation.ReferenceColumn;
 
-                                                TextoSql = "SELECT " + Campos + " FROM " + this.Relation.ReferenceTable + " WHERE " + KeyFieldAlt + "='" + this.DataBase.EscapeString(TextBox1.Text) + "'";
-                                                if (m_Filter != null && m_Filter.Length > 0)
+                                                TextoSql = "SELECT " + Campos + " FROM " + this.Relation.ReferenceTable + " WHERE " + KeyFieldAlt + "='" + this.Connection.EscapeString(TextBox1.Text) + "'";
+                                                if (m_Filter != null && m_Filter.Length > 0 && this.ReadOnly == false)
                                                         TextoSql += " AND (" + m_Filter + ")";
 
-                                                CurrentRow = this.DataBase.FirstRowFromSelect(TextoSql);
+                                                CurrentRow = this.Connection.FirstRowFromSelect(TextoSql);
                                                 if (CurrentRow == null && this.Relation.ReferenceColumn != KeyFieldAlt) {
-                                                        TextoSql = "SELECT " + Campos + " FROM " + this.Relation.ReferenceTable + " WHERE " + this.Relation.ReferenceColumn + "='" + this.DataBase.EscapeString(TextBox1.Text) + "'";
-                                                        if (m_Filter != null && m_Filter.Length > 0)
+                                                        TextoSql = "SELECT " + Campos + " FROM " + this.Relation.ReferenceTable + " WHERE " + this.Relation.ReferenceColumn + "='" + this.Connection.EscapeString(TextBox1.Text) + "'";
+                                                        if (m_Filter != null && m_Filter.Length > 0 && this.ReadOnly == false)
                                                                 TextoSql += " AND (" + m_Filter + ")";
-                                                        CurrentRow = this.DataBase.FirstRowFromSelect(TextoSql);
+                                                        CurrentRow = this.Connection.FirstRowFromSelect(TextoSql);
                                                 }
                                                 if (CurrentRow == null) {
                                                         m_ItemId = 0;
@@ -551,14 +545,13 @@ namespace Lcc.Entrada
                                         if (EntradaFreeText.SelectionStart == 0) {
                                                 e.Handled = true;
                                                 TextBox1.Focus();
-                                                // RaiseEvent KeyDown(sender, e)
                                         }
                                         break;
                                 case Keys.Right:
                                         if (EntradaFreeText.SelectionStart >= EntradaFreeText.Text.Length) {
                                                 e.Handled = true;
-                                                if (null != KeyDown) KeyDown(sender, e);
-                                                // Lui.Forms.SendKeys.Send("{enter}")
+                                                if (null != KeyDown)
+                                                        KeyDown(sender, e);
                                         }
                                         break;
                                 case Keys.Down:
@@ -572,9 +565,11 @@ namespace Lcc.Entrada
                                 case Keys.Return:
                                         if (EntradaFreeText.Text.Length > 0 || m_Required == false) {
                                                 e.Handled = true;
-                                                if (null != KeyDown) KeyDown(sender, e);
+                                                if (null != KeyDown) 
+                                                        KeyDown(sender, e);
                                         } else {
-                                                if (null != KeyDown) KeyDown(sender, e);
+                                                if (null != KeyDown) 
+                                                        KeyDown(sender, e);
                                         }
                                         break;
                                 default:

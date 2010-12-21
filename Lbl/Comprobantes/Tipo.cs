@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,27 +35,29 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
+        [Lbl.Atributos.NombreItem("Tipo de Comprobante")]
         public class Tipo : ElementoDeDatos
         {
-                public Articulos.Situacion SituacionOrigen, SituacionDestino;
+                private Articulos.Situacion m_SituacionOrigen, m_SituacionDestino;
+                public ColeccionGenerica<Lbl.Impresion.TipoImpresora> m_Impresoras = null;
 
                 //Heredar constructor
-		public Tipo(Lfx.Data.DataBase dataBase)
+		public Tipo(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
 
-                public Tipo(Lfx.Data.DataBase dataBase, int itemId)
+                public Tipo(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Tipo(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                public Tipo(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
-                public Tipo(Lfx.Data.DataBase dataBase, string letraTipo)
+                /* public Tipo(Lfx.Data.Connection dataBase, string letraTipo)
                         : this(dataBase)
                 {
                         m_ItemId = dataBase.FieldInt("SELECT id_tipo FROM documentos_tipos WHERE letra='" + letraTipo + "'");
                         if (m_ItemId == 0)
                                 throw new InvalidOperationException("No existe el tipo de documento " + letraTipo);
-                }
+                } */
 
 		public override string TablaDatos
 		{
@@ -73,29 +75,44 @@ namespace Lbl.Comprobantes
 			}
 		}
 
-                public override Lfx.Types.OperationResult Cargar()
+
+                public Lbl.Articulos.Situacion SituacionOrigen
                 {
-                        Lfx.Types.OperationResult Res = base.Cargar();
-                        if (Res.Success) {
-                                if (Registro["situacionorigen"] == null)
-                                        SituacionOrigen = null;
-                                else
-                                        SituacionOrigen = new Lbl.Articulos.Situacion(this.DataBase, System.Convert.ToInt32(Registro["situacionorigen"]));
-
-                                if (Registro["situaciondestino"] == null)
-                                        SituacionDestino = null;
-                                else
-                                        SituacionDestino = new Lbl.Articulos.Situacion(this.DataBase, System.Convert.ToInt32(Registro["situaciondestino"]));
+                        get
+                        {
+                                if (m_SituacionOrigen == null && this.GetFieldValue<int>("situacionorigen") > 0)
+                                        m_SituacionOrigen = new Lbl.Articulos.Situacion(this.Connection, System.Convert.ToInt32(Registro["situacionorigen"]));
+                                return m_SituacionOrigen;
                         }
+                        set
+                        {
+                                m_SituacionOrigen = value;
+                        }
+                }
 
-                        return Res;
+                public Lbl.Articulos.Situacion SituacionDestino
+                {
+                        get
+                        {
+                                if (m_SituacionDestino == null && this.GetFieldValue<int>("situaciondestino") > 0)
+                                        m_SituacionDestino = new Lbl.Articulos.Situacion(this.Connection, System.Convert.ToInt32(Registro["situaciondestino"]));
+                                return m_SituacionDestino;
+                        }
+                        set
+                        {
+                                m_SituacionDestino = value;
+                        }
                 }
 
                 public bool NumerarAlImprimir
                 {
                         get
                         {
-                                return System.Convert.ToBoolean(Registro["numerar_imprimir"]);
+                                return this.GetFieldValue<int>("numerar_imprimir") != 0;
+                        }
+                        set
+                        {
+                                this.Registro["numerar_imprimir"] = value ? 1 : 0;
                         }
                 }
 
@@ -127,7 +144,11 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                return System.Convert.ToBoolean(Registro["mueve_stock"]);
+                                return this.GetFieldValue<int>("mueve_stock") != 0;
+                        }
+                        set
+                        {
+                                this.Registro["mueve_stock"] = value ? 1 : 0;
                         }
                 }
 
@@ -166,6 +187,18 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+                public ColeccionGenerica<Lbl.Impresion.TipoImpresora> Impresoras
+                {
+                        get
+                        {
+                                if (m_Impresoras == null && this.Existe) {
+                                        System.Data.DataTable Impr = this.Connection.Select("SELECT * FROM comprob_tipo_impresoras WHERE id_tipo=" + this.Id);
+                                        m_Impresoras = new ColeccionGenerica<Lbl.Impresion.TipoImpresora>(this.Connection, Impr);
+                                }
+                                return m_Impresoras;
+                        }
+                }
+
                 /// <summary>
                 /// Devuelve sólamente el tipo (F, NC, ND, sin letra A, B, etc.)
                 /// </summary>
@@ -192,7 +225,11 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                return Registro["letra"].ToString();
+                                return this.GetFieldValue<string>("letra");
+                        }
+                        set
+                        {
+                                this.Registro["letra"] = value;
                         }
                 }
 
@@ -280,7 +317,11 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                return System.Convert.ToBoolean(this.Registro["imprimir_repetir"]);
+                                return this.GetFieldValue<int>("imprimir_repetir") != 0;
+                        }
+                        set
+                        {
+                                this.Registro["imprimir_repetir"] = value ? 1 : 0;
                         }
                 }
 
@@ -288,7 +329,11 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                return System.Convert.ToBoolean(this.Registro["imprimir_modificar"]);
+                                return this.GetFieldValue<int>("imprimir_modificar") != 0;
+                        }
+                        set
+                        {
+                                this.Registro["imprimir_modificar"] = value ? 1 : 0;
                         }
                 }
 
@@ -297,9 +342,9 @@ namespace Lbl.Comprobantes
                         qGen.TableCommand Comando;
 
                         if (this.Existe == false) {
-                                Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
+                                Comando = new qGen.Insert(this.Connection, this.TablaDatos);
                         } else {
-                                Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando = new qGen.Update(this.Connection, this.TablaDatos);
                                 Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
@@ -324,9 +369,51 @@ namespace Lbl.Comprobantes
 
                         this.AgregarTags(Comando);
 
-                        this.DataBase.Execute(Comando);
+                        this.Connection.Execute(Comando);
+
+                        if (this.Impresoras != null && this.Impresoras.HayCambios) {
+                                // Eliminar todas las impresoras asociadas con el tipo
+                                qGen.Delete EliminarImpresorasActuales = new qGen.Delete("comprob_tipo_impresoras");
+                                EliminarImpresorasActuales.WhereClause = new qGen.Where("id_tipo", this.Id);
+                                this.Connection.Execute(EliminarImpresorasActuales);
+
+                                // Guardar la nueva lista de permisos del usuario
+                                foreach (Lbl.Impresion.TipoImpresora Impr in this.Impresoras) {
+                                        qGen.Insert InsertarImpresora = new qGen.Insert("comprob_tipo_impresoras");
+                                        InsertarImpresora.Fields.AddWithValue("id_tipo", this.Id);
+                                        InsertarImpresora.Fields.AddWithValue("id_impresora", Impr.Impresora.Id);
+                                        if (Impr.Sucursal == null)
+                                                InsertarImpresora.Fields.AddWithValue("id_sucursal", null);
+                                        else
+                                                InsertarImpresora.Fields.AddWithValue("id_sucursal", Impr.Sucursal.Id);
+                                        if (Impr.PuntoDeVenta == null)
+                                                InsertarImpresora.Fields.AddWithValue("id_pv", null);
+                                        else
+                                                InsertarImpresora.Fields.AddWithValue("id_pv", Impr.PuntoDeVenta.Id);
+                                        InsertarImpresora.Fields.AddWithValue("estacion", Impr.Estacion);
+                                        InsertarImpresora.Fields.AddWithValue("nombre", Impr.Nombre);
+
+                                        this.Connection.Execute(InsertarImpresora);
+                                }
+                        }
 
                         return base.Guardar();
+                }
+
+                private static Dictionary<string, Tipo> m_TodosPorLetra = null;
+                public static Dictionary<string, Tipo> TodosPorLetra
+                {
+                        get
+                        {
+                                if (m_TodosPorLetra == null) {
+                                        m_TodosPorLetra = new Dictionary<string,Tipo>();
+                                        System.Data.DataTable TablaTipos = Lfx.Workspace.Master.MasterConnection.Select("SELECT * FROM documentos_tipos");
+                                        foreach (System.Data.DataRow RegTipo in TablaTipos.Rows) {
+                                                m_TodosPorLetra.Add(RegTipo["letra"].ToString(), new Lbl.Comprobantes.Tipo(Lfx.Workspace.Master.MasterConnection, (Lfx.Data.Row)RegTipo));
+                                        }
+                                }
+                                return m_TodosPorLetra;
+                        }
                 }
         }
 }

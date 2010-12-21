@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,96 +38,18 @@ using System.Windows.Forms;
 
 namespace Lfc.Articulos
 {
-        public class TablaDetalles : Lui.Forms.ChildForm
+        public partial class TablaDetalles : Lui.Forms.ChildForm
         {
 
-                #region Código generado por el Diseñador de Windows Forms
-
                 public TablaDetalles()
-                        : base()
                 {
-
-                        // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
-
-                        // agregar código de constructor después de llamar a InitializeComponent
-
                 }
 
-                // Limpiar los recursos que se estén utilizando.
-                protected override void Dispose(bool disposing)
+                
+                private void BotonCancelar_Click(object sender, System.EventArgs e)
                 {
-                        if (disposing) {
-                                if (components != null) {
-                                        components.Dispose();
-                                }
-                        }
-
-                        base.Dispose(disposing);
-                }
-
-                // Requerido por el Diseñador de Windows Forms
-                private System.ComponentModel.Container components = null;
-
-                // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
-                // Puede modificarse utilizando el Diseñador de Windows Forms. 
-                // No lo modifique con el editor de código.
-                internal System.Windows.Forms.Panel LowerPanel;
-                internal Lui.Forms.Button CancelCommandButton;
-
-                private void InitializeComponent()
-                {
-                        this.LowerPanel = new System.Windows.Forms.Panel();
-                        this.CancelCommandButton = new Lui.Forms.Button();
-                        this.LowerPanel.SuspendLayout();
-                        this.SuspendLayout();
-                        // 
-                        // LowerPanel
-                        // 
-                        this.LowerPanel.Controls.Add(this.CancelCommandButton);
-                        this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-                        this.LowerPanel.Location = new System.Drawing.Point(0, 413);
-                        this.LowerPanel.Name = "LowerPanel";
-                        this.LowerPanel.Size = new System.Drawing.Size(692, 60);
-                        this.LowerPanel.TabIndex = 51;
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.CancelCommandButton.DockPadding.All = 2;
-                        this.CancelCommandButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.CancelCommandButton.Image = null;
-                        this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.CancelCommandButton.Location = new System.Drawing.Point(580, 8);
-                        this.CancelCommandButton.Name = "CancelCommandButton";
-                        this.CancelCommandButton.ReadOnly = false;
-                        this.CancelCommandButton.Size = new System.Drawing.Size(104, 44);
-                        this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
-                        this.CancelCommandButton.Subtext = "Esc";
-                        this.CancelCommandButton.TabIndex = 1;
-                        this.CancelCommandButton.Text = "Volver";
-                        this.CancelCommandButton.ToolTipText = "";
-                        this.CancelCommandButton.Click += new System.EventHandler(this.cmdCancelar_Click);
-                        // 
-                        // FormTablaDetalles
-                        // 
-                        this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
-                        this.ClientSize = new System.Drawing.Size(692, 473);
-                        this.Controls.Add(this.LowerPanel);
-                        this.KeyPreview = true;
-                        this.Name = "FormTablaDetalles";
-                        this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormTablaDetalles_KeyPress);
-                        this.LowerPanel.ResumeLayout(false);
-                        this.ResumeLayout(false);
-
-                }
-
-                #endregion
-
-                private void cmdCancelar_Click(object sender, System.EventArgs e)
-                {
-                        this.Dispose();
+                        this.Close();
                 }
 
                 private void FormTablaDetalles_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)

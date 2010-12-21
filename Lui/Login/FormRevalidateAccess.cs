@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -55,7 +55,7 @@ namespace Lui.Login
 
 		public bool Revalidate()
 		{
-			return this.ValidateAs(this.Workspace.CurrentUser.Id);
+                        return this.ValidateAs(Lbl.Sys.Config.Actual.UsuarioConectado.Id);
 		}
 
 		public bool ValidateAs(int userId)
@@ -66,7 +66,7 @@ namespace Lui.Login
 					LabelExplain.Text = "La operación que intenta realizar requiere por motivos de seguridad que escriba la contraseña de Administrador.";
 				else
 					LabelExplain.Text = Explain;
-			} else if(userId != this.Workspace.CurrentUser.Id) {
+                        } else if (userId != Lbl.Sys.Config.Actual.UsuarioConectado.Id) {
 				this.Titulo.Text = "Para continuar, por favor escriba la contraseña del usuario.";
 				if(Explain == null)
 					this.LabelExplain.Text = "La operación que intenta realizar requiere por motivos de seguridad que escribir la contraseña de un usuario con permiso.";
@@ -74,10 +74,10 @@ namespace Lui.Login
 					LabelExplain.Text = Explain;
 			}
 
-			EntradaUsuario.Text = this.DataBase.Tables["personas"].FastRows[userId].Fields["nombre_visible"].ValueString;
+			EntradaUsuario.Text = this.Connection.Tables["personas"].FastRows[userId].Fields["nombre_visible"].ValueString;
 			EntradaContrasena.Text = "";
 			if(this.ShowDialog() == DialogResult.OK) {
-				Lfx.Data.Row Usuario = this.DataBase.FirstRowFromSelect("SELECT id_persona, nombre, nombre_visible FROM personas WHERE id_persona=" + userId.ToString() + " AND contrasena='" + this.DataBase.EscapeString(EntradaContrasena.Text) + "'");
+				Lfx.Data.Row Usuario = this.Connection.FirstRowFromSelect("SELECT id_persona, nombre, nombre_visible FROM personas WHERE id_persona=" + userId.ToString() + " AND contrasena='" + this.Connection.EscapeString(EntradaContrasena.Text) + "'");
 				if(Usuario != null && System.Convert.ToInt32(Usuario["id_persona"]) == userId) {
 					return true;
 				} else {

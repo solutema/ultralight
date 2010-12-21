@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -36,29 +36,25 @@ using System.Windows.Forms;
 
 namespace Lfc.Comprobantes
 {
-        public partial class Inicio : Lui.Forms.ListingForm
+        public partial class Inicio : Lfc.FormularioListado
         {
-                protected internal string m_Tipo = "FNCND", m_Letra = "*";
-                protected internal Lfx.Types.DateRange m_Fechas;
+                protected internal string m_Letra = "*";
+                protected internal Lfx.Types.DateRange m_Fechas = new Lfx.Types.DateRange("mes-0");
                 protected internal string m_Estado = "0";
                 protected internal int m_Sucursal, m_FormaPago, m_Cliente, m_Vendedor, m_Anuladas = 1, m_PV = 0;
-                protected internal double m_MontoDesde = 0, m_MontoHasta = 0;
-                
-                private double Total = 0, Pendiente = 0;
+                protected internal decimal m_MontoDesde = 0, m_MontoHasta = 0;
 
                 public Inicio()
-                        : base()
                 {
-                        InitializeComponent();
+                        this.ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteConArticulos);
 
-                        m_Fechas = new Lfx.Types.DateRange("mes-0");
-                        DataTableName = "comprob";
-                        KeyField = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        this.NombreTabla = "comprob";
+                        this.KeyField = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
                         this.Joins.Add(new qGen.Join("personas", "comprob.id_cliente=personas.id_persona"));
-                        FormFields = new List<Lfx.Data.FormField>()
+                        this.FormFields = new Lfx.Data.FormFieldCollection()
 			{
 				new Lfx.Data.FormField("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 40),
-				new Lfx.Data.FormField("CONCAT(LPAD(comprob.pv, 4, '0'), '-', LPAD(comprob.numero, 8, '0'))", "Número", Lfx.Data.InputFieldTypes.Text, 120),
+				new Lfx.Data.FormField("CONCAT(LPAD(comprob.pv, 4, '0'), '-', LPAD(comprob.numero, 8, '0')) AS numero", "Número", Lfx.Data.InputFieldTypes.Text, 120),
 				new Lfx.Data.FormField("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
 				new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 320),
 				new Lfx.Data.FormField("comprob.total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
@@ -69,25 +65,23 @@ namespace Lfc.Comprobantes
 				new Lfx.Data.FormField("comprob.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 160),
                                 
 			};
-                        OrderBy = "comprob.id_comprob DESC";
-                        ExtraSearchFields = new List<Lfx.Data.FormField>() {
+
+                        this.FormFields["total"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+                        this.FormFields["pendiente"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+
+                        this.OrderBy = "comprob.id_comprob DESC";
+                        this.ExtraSearchFields = new Lfx.Data.FormFieldCollection() {
                                 new Lfx.Data.FormField("series", "Series")
                         };
 
-                        BotonFiltrar.Visible = true;
-                        BotonImprimir.Visible = true;
-                }
+                        this.Contadores.Add(new Lfc.Contador("Total", Lui.Forms.DataTypes.Currency));
+                        this.Contadores.Add(new Lfc.Contador("Pendiente", Lui.Forms.DataTypes.Currency));
 
-                public string Tipo
-                {
-                        get
-                        {
-                                return m_Tipo;
-                        }
-                        set
-                        {
-                                m_Tipo = value;
-                        }
+                        this.HabilitarFiltrar = true;
+                        this.HabilitarImprimir = true;
+
+                        if (this.HasWorkspace)
+                                m_Sucursal = this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada;
                 }
 
                 public string Letra
@@ -102,73 +96,49 @@ namespace Lfc.Comprobantes
                         }
                 }
 
-                public override Lfx.Types.OperationResult OnPrint(bool selectPrinter)
-                {
-                        Comprobantes.FormComprobantesListado FormListado = new Comprobantes.FormComprobantesListado();
-                        FormListado.MdiParent = this.MdiParent;
-                        FormListado.m_Tipo = m_Tipo;
-                        FormListado.m_Letra = m_Letra;
-                        FormListado.m_Cliente = m_Cliente;
-                        FormListado.m_Vendedor = m_Vendedor;
-                        FormListado.m_Sucursal = m_Sucursal;
-                        FormListado.m_Anuladas = m_Anuladas;
-                        FormListado.m_PV = m_PV;
-                        FormListado.m_FormaPago = m_FormaPago;
-                        FormListado.m_MontoDesde = m_MontoDesde;
-                        FormListado.m_MontoHasta = m_MontoHasta;
-
-                        if (m_Estado == "0")
-                                FormListado.m_Estado = "3";
-                        else
-                                FormListado.m_Estado = m_Estado;
-
-                        FormListado.m_Fechas = m_Fechas;
-                        FormListado.Show();
-                        FormListado.RefreshList();
-                        return new Lfx.Types.SuccessOperationResult();
-                }
 
                 public override Lfx.Types.OperationResult OnFilter()
                 {
                         Lfx.Types.OperationResult ResultadoFiltrar = base.OnFilter();
 
                         if (ResultadoFiltrar.Success == true) {
-                                Comprobantes.Filtros FormFiltros = new Comprobantes.Filtros();
-                                FormFiltros.txtTipo.TextKey = m_Tipo;
-                                FormFiltros.txtPV.Text = m_PV.ToString();
-                                FormFiltros.txtLetra.TextKey = m_Letra;
-                                FormFiltros.txtSucursal.TextInt = m_Sucursal;
-                                FormFiltros.txtFormaPago.TextInt = m_FormaPago;
-                                FormFiltros.EntradaCliente.TextInt = m_Cliente;
-                                FormFiltros.EntradaVendedor.TextInt = m_Vendedor;
-                                FormFiltros.EntradaFechas.Rango = m_Fechas;
-                                FormFiltros.txtEstado.TextKey = m_Estado;
-                                FormFiltros.txtAnuladas.TextKey = m_Anuladas.ToString();
-                                FormFiltros.EntradaMontoDesde.Text = Lfx.Types.Formatting.FormatCurrency(m_MontoDesde, this.Workspace.CurrentConfig.Moneda.Decimales);
-                                FormFiltros.EntradaMontoHasta.Text = Lfx.Types.Formatting.FormatCurrency(m_MontoHasta, this.Workspace.CurrentConfig.Moneda.Decimales);
-                                FormFiltros.Owner = this;
-                                FormFiltros.ShowDialog();
+                                using (Comprobantes.Filtros FormFiltros = new Comprobantes.Filtros()) {
+                                        FormFiltros.Connection = this.Connection;
+                                        FormFiltros.EntradaTipo.TextKey = this.ElementoTipo.ToString();
+                                        FormFiltros.EntradaPv.Text = m_PV.ToString();
+                                        FormFiltros.EntradaLetra.TextKey = m_Letra;
+                                        FormFiltros.EntradaSucursal.TextInt = m_Sucursal;
+                                        FormFiltros.EntradaFormaPago.TextInt = m_FormaPago;
+                                        FormFiltros.EntradaCliente.TextInt = m_Cliente;
+                                        FormFiltros.EntradaVendedor.TextInt = m_Vendedor;
+                                        FormFiltros.EntradaFechas.Rango = m_Fechas;
+                                        FormFiltros.EntradaEstado.TextKey = m_Estado;
+                                        FormFiltros.EntradaAnuladas.TextKey = m_Anuladas.ToString();
+                                        FormFiltros.EntradaMontoDesde.Text = Lfx.Types.Formatting.FormatCurrency(m_MontoDesde, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                        FormFiltros.EntradaMontoHasta.Text = Lfx.Types.Formatting.FormatCurrency(m_MontoHasta, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                        FormFiltros.Owner = this;
+                                        FormFiltros.ShowDialog();
 
-                                if (FormFiltros.DialogResult == DialogResult.OK) {
-                                        m_Sucursal = FormFiltros.txtSucursal.TextInt;
-                                        m_FormaPago = FormFiltros.txtFormaPago.TextInt;
-                                        m_Cliente = FormFiltros.EntradaCliente.TextInt;
-                                        m_Vendedor = FormFiltros.EntradaVendedor.TextInt;
-                                        m_Fechas = FormFiltros.EntradaFechas.Rango;
-                                        m_Estado = FormFiltros.txtEstado.TextKey;
-                                        m_Anuladas = Lfx.Types.Parsing.ParseInt(FormFiltros.txtAnuladas.TextKey);
-                                        m_PV = Lfx.Types.Parsing.ParseInt(FormFiltros.txtPV.Text);
-                                        m_MontoDesde = Lfx.Types.Parsing.ParseCurrency(FormFiltros.EntradaMontoDesde.Text);
-                                        m_MontoHasta = Lfx.Types.Parsing.ParseCurrency(FormFiltros.EntradaMontoHasta.Text);
-                                        m_Tipo = FormFiltros.txtTipo.TextKey;
-                                        m_Letra = FormFiltros.txtLetra.TextKey;
+                                        if (FormFiltros.DialogResult == DialogResult.OK) {
+                                                m_Sucursal = FormFiltros.EntradaSucursal.TextInt;
+                                                m_FormaPago = FormFiltros.EntradaFormaPago.TextInt;
+                                                m_Cliente = FormFiltros.EntradaCliente.TextInt;
+                                                m_Vendedor = FormFiltros.EntradaVendedor.TextInt;
+                                                m_Fechas = FormFiltros.EntradaFechas.Rango;
+                                                m_Estado = FormFiltros.EntradaEstado.TextKey;
+                                                m_Anuladas = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaAnuladas.TextKey);
+                                                m_PV = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaPv.Text);
+                                                m_MontoDesde = Lfx.Types.Parsing.ParseCurrency(FormFiltros.EntradaMontoDesde.Text);
+                                                m_MontoHasta = Lfx.Types.Parsing.ParseCurrency(FormFiltros.EntradaMontoHasta.Text);
+                                                this.ElementoTipo = Lbl.Instanciador.InferirTipo(FormFiltros.EntradaTipo.TextKey);
+                                                m_Letra = FormFiltros.EntradaLetra.TextKey;
 
-                                        this.RefreshList();
-                                        ResultadoFiltrar.Success = true;
-                                } else {
-                                        ResultadoFiltrar.Success = false;
+                                                this.RefreshList();
+                                                ResultadoFiltrar.Success = true;
+                                        } else {
+                                                ResultadoFiltrar.Success = false;
+                                        }
                                 }
-                                FormFiltros = null;
                         }
 
                         return ResultadoFiltrar;
@@ -176,30 +146,7 @@ namespace Lfc.Comprobantes
 
                 public override Lfx.Types.OperationResult OnCreate()
                 {
-                        switch (m_Tipo) {
-                                case "F":
-                                        if (m_Letra == "*")
-                                                this.Workspace.RunTime.Execute("CREAR FB");
-                                        else
-                                                this.Workspace.RunTime.Execute("CREAR F" + m_Letra);
-                                        break;
-                                case "NC":
-                                case "NCD":
-                                        if (m_Letra == "*")
-                                                this.Workspace.RunTime.Execute("CREAR NCB");
-                                        else
-                                                this.Workspace.RunTime.Execute("CREAR NC" + m_Letra);
-                                        break;
-                                case "ND":
-                                        if (m_Letra == "*")
-                                                this.Workspace.RunTime.Execute("CREAR NDB");
-                                        else
-                                                this.Workspace.RunTime.Execute("CREAR ND" + m_Letra);
-                                        break;
-                                default:
-                                        this.Workspace.RunTime.Execute("CREAR " + m_Tipo);
-                                        break;
-                        }
+                        this.Workspace.RunTime.Execute("CREAR " + this.ElementoTipo.ToString() + " " + this.Letra);
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
@@ -223,70 +170,57 @@ namespace Lfc.Comprobantes
                         }
                 }
 
-                public override void BeginRefreshList()
+                public override void OnBeginRefreshList()
                 {
-                        Total = 0;
-                        Pendiente = 0;
-
                         this.CustomFilters.Clear();
                         this.CustomFilters.AddWithValue("compra", 0);
 
-                        switch (m_Tipo) {
-                                case "":
-                                case "*":
-                                        Listado.Columns[8].Width = 0;
-                                        break;
-
-                                case "NC":
-                                        Listado.Columns[8].Width = 80;
+                        switch (this.ElementoTipo.ToString()) {
+                                case "Lbl.Comprobantes.NotaDeCredito":
+                                        this.FormFields["pendiente"].Visible = true;
                                         if (m_Letra == "*")
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM')");
                                         else
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac", "NC" + m_Letra);
                                         break;
 
-                                case "ND":
-                                        Listado.Columns[8].Width = 80;
+                                case "Lbl.Comprobantes.NotaDeDebito":
+                                        this.FormFields["pendiente"].Visible = true;
                                         if (m_Letra == "*")
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac IN ('NDA', 'NDB', 'NDC', 'NDE', 'NDM')");
                                         else
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac", "ND" + m_Letra);
                                         break;
 
-                                case "NCD":
-                                        Listado.Columns[8].Width = 80;
-                                        if (m_Letra == "*")
-                                                this.CustomFilters.AddWithValue("comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM')");
-                                        else
-                                                this.CustomFilters.AddWithValue("(comprob.tipo_fac='NC" + m_Letra + "' OR comprob.tipo_fac='ND" + m_Letra + "')");
-                                        break;
-
-                                case "F":
-                                        Listado.Columns[8].Width = 80;
+                                case "Lbl.Comprobantes.Factura":
+                                        this.FormFields["pendiente"].Visible = true;
                                         if (m_Letra == "*")
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM')");
                                         else
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac", "F" + m_Letra);
                                         break;
 
-                                case "T":
-                                        Listado.Columns[8].Width = 80;
+                                case "Lbl.Comprobantes.Presupuesto":
+                                        this.FormFields["pendiente"].Visible = false;
+                                        this.CustomFilters.AddWithValue("comprob.tipo_fac", "PS");
+                                        break;
+
+                                case "Lbl.Comprobantes.Remito":
+                                        this.FormFields["pendiente"].Visible = false;
+                                        this.CustomFilters.AddWithValue("comprob.tipo_fac", "R");
+                                        break;
+
+                                case "Lbl.Comprobantes.Ticket":
+                                        this.FormFields["pendiente"].Visible = true;
                                         this.CustomFilters.AddWithValue("comprob.tipo_fac", "T");
                                         break;
 
-                                case "FNCND":
-                                        Listado.Columns[8].Width = 0;
+                                case "Lbl.Comprobantes.ComprobanteConArticulos":
+                                        this.FormFields["pendiente"].Visible = false;
                                         if (m_Letra == "*")
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NCA', 'NCB', 'NCC', 'NCE', 'NCM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM')");
                                         else
                                                 this.CustomFilters.AddWithValue("(comprob.tipo_fac='F" + m_Letra + "' OR comprob.tipo_fac='NC" + m_Letra + "' OR comprob.tipo_fac='ND" + m_Letra + "')");
-                                        break;
-
-                                default:
-                                        if (m_Letra == "*")
-                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", m_Tipo);
-                                        else
-                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", m_Tipo + m_Letra);
                                         break;
                         }
 
@@ -334,29 +268,27 @@ namespace Lfc.Comprobantes
                                 this.CustomFilters.AddWithValue("total>=" + Lfx.Types.Formatting.FormatCurrencySql(m_MontoDesde));
                         else if (m_MontoHasta != 0)
                                 this.CustomFilters.AddWithValue("total<=" + Lfx.Types.Formatting.FormatCurrencySql(m_MontoHasta));
+
+                        this.UpdateFormFields();
+
+                        base.OnBeginRefreshList();
                 }
 
                 public override Lfx.Types.OperationResult OnEdit(int lCodigo)
                 {
-                        string sTipo = this.DataBase.FieldString("SELECT tipo_fac FROM comprob WHERE id_comprob=" + lCodigo.ToString());
+                        string sTipo = this.Connection.FieldString("SELECT tipo_fac FROM comprob WHERE id_comprob=" + lCodigo.ToString());
                         this.Workspace.RunTime.Execute("EDITAR " + sTipo + " " + lCodigo.ToString());
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
-                public override void EndRefreshList()
-                {
-                        EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        EntradaPendiente.Text = Lfx.Types.Formatting.FormatCurrency(Pendiente, this.Workspace.CurrentConfig.Moneda.Decimales);
-                }
-
-                public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                public override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
                 {
                         if (row.Fields["anulada"].ValueInt == 0 && row.Fields["impresa"].ValueInt != 0) {
                                 string TipoComprob = row.Fields["tipo_fac"].ValueString;
                                 if (TipoComprob.Length >= 2 && TipoComprob.Substring(0, 2) == "NC")
-                                        Total -= row.Fields["total"].ValueDouble;
+                                        this.Contadores[0].AddValue(-row.Fields["total"].ValueDecimal);
                                 else
-                                        Total += row.Fields["total"].ValueDouble;
+                                        this.Contadores[0].AddValue(row.Fields["total"].ValueDecimal);
                         }
 
                         if (row.Fields["anulada"].ValueInt != 0) {
@@ -365,23 +297,18 @@ namespace Lfc.Comprobantes
                         } else if (row.Fields["impresa"].ValueInt == 0) {
                                 // No impresa, en gris
                                 itm.ForeColor = System.Drawing.Color.Gray;
-                        } else if (m_Tipo != "PS" && row.Fields["pendiente"].ValueDouble > 0) {
+                        } else if (this.ElementoTipo != typeof(Lbl.Comprobantes.Presupuesto) && row.Fields["pendiente"].ValueDecimal > 0) {
                                 // Impaga, en rojo
-                                Pendiente = Pendiente + row.Fields["pendiente"].ValueDouble;
+                                this.Contadores[1].AddValue(row.Fields["pendiente"].ValueDecimal);
                                 itm.ForeColor = System.Drawing.Color.Red;
                         }
 
                         int IdVendedor = row.Fields["id_vendedor"].ValueInt;
                         if (IdVendedor > 0) {
-                                Lfx.Data.Row Vend = this.DataBase.Tables["personas"].FastRows[IdVendedor];
+                                Lfx.Data.Row Vend = this.Connection.Tables["personas"].FastRows[IdVendedor];
                                 if (Vend != null)
                                         itm.SubItems["id_vendedor"].Text = Vend.Fields["nombre_visible"].Value.ToString();
                         }
-                }
-
-                private void FormComprobantesInicio_WorkspaceChanged(object sender, System.EventArgs e)
-                {
-                        m_Sucursal = this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada;
                 }
         }
 }

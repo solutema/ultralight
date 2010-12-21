@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,82 +37,26 @@ using System.Windows.Forms;
 
 namespace Lfc.Comprobantes.Plantillas
 {
-	public class Inicio : Lui.Forms.ListingForm
+	public class Inicio : Lfc.FormularioListado
 	{
-		private System.ComponentModel.IContainer components = null;
-
 		public Inicio()
 		{
-			InitializeComponent();
+                        this.ElementoTipo = typeof(Lbl.Impresion.Plantilla);
 
-			DataTableName = "sys_plantillas";
-                        KeyField = new Lfx.Data.FormField("sys_plantillas.id_plantilla", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-			FormFields = new List<Lfx.Data.FormField>()
+                        this.NombreTabla = "sys_plantillas";
+                        this.KeyField = new Lfx.Data.FormField("sys_plantillas.id_plantilla", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        this.FormFields = new Lfx.Data.FormFieldCollection()
 			{
-				new Lfx.Data.FormField("sys_plantillas.codigo", "Código", Lfx.Data.InputFieldTypes.Text, 96),
-				new Lfx.Data.FormField("sys_plantillas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 160),
+				new Lfx.Data.FormField("sys_plantillas.codigo", "Código", Lfx.Data.InputFieldTypes.Text, 240),
+				new Lfx.Data.FormField("sys_plantillas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
                                 new Lfx.Data.FormField("sys_plantillas.tamanopapel", "Papel", Lfx.Data.InputFieldTypes.Text, 64),
 				new Lfx.Data.FormField("sys_plantillas.copias", "Copias", Lfx.Data.InputFieldTypes.Integer, 64)
 			};
-			OrderBy = "sys_plantillas.codigo";
+                        this.OrderBy = "sys_plantillas.codigo";
 
-			BotonFiltrar.Visible = false;
-			BotonImprimir.Visible = false;
+			this.HabilitarFiltrar = false;
+			this.HabilitarImprimir = false;
 		}
-
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose(bool disposing)
-		{
-			if(disposing)
-			{
-				if(components != null) 
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose(disposing);
-		}
-
-		#region Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
-			this.SuspendLayout();
-			// 
-			// lvItems
-			// 
-			this.Listado.Name = "lvItems";
-			this.Listado.Size = new System.Drawing.Size(546, 466);
-			// 
-			// CreateButton
-			// 
-			this.BotonCrear.DockPadding.All = 2;
-			this.BotonCrear.Name = "CreateButton";
-			// 
-			// FiltersButton
-			// 
-			this.BotonFiltrar.DockPadding.All = 2;
-			this.BotonFiltrar.Name = "FiltersButton";
-			// 
-			// PrintButton
-			// 
-			this.BotonImprimir.DockPadding.All = 2;
-			this.BotonImprimir.Name = "PrintButton";
-			// 
-			// Inicio
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
-			this.ClientSize = new System.Drawing.Size(692, 473);
-			this.Name = "Inicio";
-			this.ResumeLayout(false);
-
-		}
-		#endregion
 	}
 }
 

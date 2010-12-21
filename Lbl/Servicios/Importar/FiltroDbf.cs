@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -42,26 +42,35 @@ namespace Lbl.Servicios.Importar
         {
                 private System.Data.Odbc.OdbcConnection DbfConnection;
 
-                public FiltroDbf(Lfx.Data.DataBase dataBase)
+                public FiltroDbf(Lfx.Data.Connection dataBase)
                         : base(dataBase)
                 {
                 }
 
                 public override void CargarDatos()
                 {
+                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Importando Datos", "Se van a importar datos utilizando el filtro " + this.ToString());
+                        Progreso.Begin();
+
                         DbfConnection = new System.Data.Odbc.OdbcConnection();
                         DbfConnection.ConnectionString = @"Driver={Microsoft dBase Driver (*.dbf)};SourceType=DBF;SourceDB=" + this.Carpeta + ";Exclusive=No;Collate=Machine;NULL=NO;DELETED=NO;BACKGROUNDFETCH=NO;";
                         DbfConnection.Open();
 
+                        Progreso.Max = MapaDeTablas.Count;
                         foreach (MapaDeTabla Map in MapaDeTablas) {
                                 Map.ImportedRows = CargarTablaDesdeArchivo(Map);
+                                Progreso.Advance(1);
                         }
 
                         DbfConnection.Close();
+                        Progreso.End();
                 }
 
                 public virtual System.Collections.Generic.List<Lfx.Data.Row> CargarTablaDesdeArchivo(MapaDeTabla mapa)
                 {
+                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Importando Tabla", "Se van a importar datos del mapa " + mapa.ToString() + " utilizando el filtro " + this.ToString());
+                        Progreso.Begin();
+
                         System.Collections.Generic.List<Lfx.Data.Row> Res = new List<Lfx.Data.Row>();
 
                         string SqlSelect = @"SELECT * FROM " + this.Carpeta + mapa.Archivo;
@@ -74,11 +83,15 @@ namespace Lbl.Servicios.Importar
                         System.Data.DataTable ReadTable = new System.Data.DataTable();
                         ReadTable.Load(TableCommand.ExecuteReader());
 
+                        Progreso.Max = ReadTable.Rows.Count;
                         // Navegar todos los registros
                         foreach (System.Data.DataRow Rw in ReadTable.Rows) {
                                 Lfx.Data.Row Lrw = this.ProcesarRegistro(mapa, Rw);
                                 Res.Add(Lrw);
+                                Progreso.Advance(1);
                         }
+
+                        Progreso.End();
                         return Res;
                 }
         }

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -74,8 +74,15 @@ namespace Lfx.Types
 					"d-M-yyyy",
 					"dd-MM-yy",
 					"d-M-yy",
-                                        "yyyyMMdd",
-                                        "yyMMdd",
+                                        "ddMMyyyy",
+                                        "ddMMyy",
+                                        "ddMM",
+                                        "yyyy-MM-dd HH:mm:ss",
+                                        "yyyy-MM-dd HH:mm",
+                                        "dd-MM-yyyy  HH:mm:ss",
+                                        "dd-MM-yyyy HH:mm",
+                                        "dd-MM-yy HH:mm:ss",
+                                        "dd-MM-yy HH:mm"
 				};
 
                         try {
@@ -86,11 +93,9 @@ namespace Lfx.Types
                 }
 
                 /// <summary>
-                /// Devuelve true si la cadena tiene formato de double
+                /// Devuelve true si la cadena tiene formato numérico.
                 /// </summary>
-                /// <param name="valor"></param>
-                /// <returns></returns>
-                public static bool IsDouble(string valor)
+                public static bool IsNumeric(string valor)
                 {
                         try {
                                 if (valor == null || valor == string.Empty)
@@ -118,7 +123,7 @@ namespace Lfx.Types
                 {
                         string ValorMejorado = valor.Replace("$", "").Trim();
 
-                        if (IsDouble(ValorMejorado)) {
+                        if (IsNumeric(ValorMejorado)) {
                                 double Resultado = 0;
                                 double.TryParse(ValorMejorado, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out Resultado);
                                 return Resultado;
@@ -127,21 +132,37 @@ namespace Lfx.Types
                         }
                 }
 
+                /// <summary>
+                /// Interpreta un valor de punto flotante. Devuelve cero para cualquier valor desconocido.
+                /// </summary>
+                public static decimal ParseDecimal(string valor)
+                {
+                        string ValorMejorado = valor.Replace("$", "").Trim();
+
+                        if (IsNumeric(ValorMejorado)) {
+                                decimal Resultado = 0;
+                                decimal.TryParse(ValorMejorado, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out Resultado);
+                                return Resultado;
+                        } else {
+                                return 0;
+                        }
+                }
+
 
                 /// <summary>
-                /// Interpreta una cantidad de stock (actualmente un double). Devuelve cero para cualquier valor desconocido.
+                /// Interpreta una cantidad de stock (actualmente un decimal). Devuelve cero para cualquier valor desconocido.
                 /// </summary>
-                public static double ParseStock(string valor)
+                public static decimal ParseStock(string valor)
                 {
-                        return ParseDouble(valor);
+                        return ParseDecimal(valor);
                 }
 
                 /// <summary>
-                /// Interpreta un valor monetario (actualemente un double). Devuelve cero para cualquier valor desconocido.
+                /// Interpreta un valor monetario (actualemente un decimal). Devuelve cero para cualquier valor desconocido.
                 /// </summary>
-                public static double ParseCurrency(string valor)
+                public static decimal ParseCurrency(string valor)
                 {
-                        return ParseDouble(valor);
+                        return ParseDecimal(valor);
                 }
                 
 

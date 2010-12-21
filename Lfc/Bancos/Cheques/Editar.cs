@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -39,66 +39,39 @@ using System.Windows.Forms;
 
 namespace Lfc.Bancos.Cheques
 {
-        public partial class Editar : Lui.Forms.EditForm
+        public partial class Editar : Lcc.Edicion.ControlEdicion
         {
                 public Editar()
                 {
+                        this.ElementoTipo = typeof(Lbl.Bancos.Cheque);
+
                         InitializeComponent();
-
-                        this.ElementType = typeof(Lbl.Bancos.Cheque);
                 }
 
-                public override Lfx.Types.OperationResult Create()
+                public override void ActualizarControl()
                 {
-                        if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "cheques.create"))
-                                return new Lfx.Types.NoAccessOperationResult();
-
-                        Lbl.Bancos.Cheque Cheque = new Lbl.Bancos.Cheque(this.DataBase);
-                        Cheque.Crear();
-
-                        this.FromRow(Cheque);
-                        return new Lfx.Types.SuccessOperationResult();
-                }
-
-                public override Lfx.Types.OperationResult Edit(int lId)
-                {
-                        if (Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "cheques.read") == false)
-                                return new Lfx.Types.NoAccessOperationResult();
-
-                        return base.Edit(lId);
-                }
-
-                public override void FromRow(Lbl.ElementoDeDatos row)
-                {
-                        base.FromRow(row);
-
-                        Lbl.Bancos.Cheque Res = this.CachedRow as Lbl.Bancos.Cheque;
+                        Lbl.Bancos.Cheque Res = this.Elemento as Lbl.Bancos.Cheque;
 
                         EntradaEmisor.Text = Res.Emisor;
                         EntradaBanco.Elemento = Res.Banco;
                         EntradaNumero.Text = Res.Numero.ToString();
                         EntradaFechaCobro.Text = Lfx.Types.Formatting.FormatDate(Res.FechaCobro);
                         EntradaFechaEmision.Text = Lfx.Types.Formatting.FormatDate(Res.FechaEmision);
-                        
-                        this.ReadOnly = !Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "cheques.write");
 
-                        if (this.CachedRow.Existe)
-                                this.Text = Res.ToString();
-                        else
-                                this.Text = "Cheques: Nuevo";
+                        base.ActualizarControl();
                 }
 
-                public override Lbl.ElementoDeDatos ToRow()
+                public override void ActualizarElemento()
                 {
-                        Lbl.Bancos.Cheque Res = this.CachedRow as Lbl.Bancos.Cheque;
+                        Lbl.Bancos.Cheque Res = this.Elemento as Lbl.Bancos.Cheque;
 
-                        Res.Emisor =  EntradaEmisor.Text;
+                        Res.Emisor = EntradaEmisor.Text;
                         Res.Banco = EntradaBanco.Elemento as Lbl.Bancos.Banco;
                         Res.Numero = Lfx.Types.Parsing.ParseInt(EntradaNumero.Text);
                         Res.FechaCobro = Lfx.Types.Parsing.ParseDate(EntradaFechaCobro.Text);
                         Res.FechaEmision = Lfx.Types.Parsing.ParseDate(EntradaFechaEmision.Text);
 
-                        return base.ToRow();
+                        base.ActualizarElemento();
                 }
         }
 }

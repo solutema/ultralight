@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -95,16 +95,16 @@ namespace Lfc.Misc
                         // 
                         // EntradaElementoDuplicado
                         // 
-                        this.EntradaElementoDuplicado.AutoHeight = false;
+                        this.EntradaElementoDuplicado.AutoSize = false;
                         this.EntradaElementoDuplicado.AutoTab = true;
                         this.EntradaElementoDuplicado.CanCreate = true;
-                        this.EntradaElementoDuplicado.DetailField = "nombre_visible";
+                        this.EntradaElementoDuplicado.DataTextField = "nombre_visible";
                         this.EntradaElementoDuplicado.ExtraDetailFields = null;
                         this.EntradaElementoDuplicado.Filter = "";
                         this.EntradaElementoDuplicado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaElementoDuplicado.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaElementoDuplicado.FreeTextCode = "";
-                        this.EntradaElementoDuplicado.KeyField = "id_persona";
+                        this.EntradaElementoDuplicado.DataValueField = "id_persona";
                         this.EntradaElementoDuplicado.Location = new System.Drawing.Point(152, 88);
                         this.EntradaElementoDuplicado.MaxLength = 200;
                         this.EntradaElementoDuplicado.Name = "EntradaElementoDuplicado";
@@ -133,16 +133,16 @@ namespace Lfc.Misc
                         // 
                         // EntradaElementoOriginal
                         // 
-                        this.EntradaElementoOriginal.AutoHeight = false;
+                        this.EntradaElementoOriginal.AutoSize = false;
                         this.EntradaElementoOriginal.AutoTab = true;
                         this.EntradaElementoOriginal.CanCreate = true;
-                        this.EntradaElementoOriginal.DetailField = "nombre_visible";
+                        this.EntradaElementoOriginal.DataTextField = "nombre_visible";
                         this.EntradaElementoOriginal.ExtraDetailFields = null;
                         this.EntradaElementoOriginal.Filter = "";
                         this.EntradaElementoOriginal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaElementoOriginal.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaElementoOriginal.FreeTextCode = "";
-                        this.EntradaElementoOriginal.KeyField = "id_persona";
+                        this.EntradaElementoOriginal.DataValueField = "id_persona";
                         this.EntradaElementoOriginal.Location = new System.Drawing.Point(152, 56);
                         this.EntradaElementoOriginal.MaxLength = 200;
                         this.EntradaElementoOriginal.Name = "EntradaElementoOriginal";
@@ -159,9 +159,9 @@ namespace Lfc.Misc
                         this.EntradaElementoOriginal.ToolTipText = "";
                         this.EntradaElementoOriginal.TextChanged += new System.EventHandler(this.EntradaElementoOriginal_TextChanged);
                         // 
-                        // txtTipo
+                        // EntradaTipo
                         // 
-                        this.txtTipo.AutoHeight = false;
+                        this.txtTipo.AutoSize = false;
                         this.txtTipo.AutoNav = true;
                         this.txtTipo.AutoTab = true;
                         this.txtTipo.DetailField = null;
@@ -171,7 +171,7 @@ namespace Lfc.Misc
                         this.txtTipo.KeyField = null;
                         this.txtTipo.Location = new System.Drawing.Point(152, 24);
                         this.txtTipo.MaxLenght = 32767;
-                        this.txtTipo.Name = "txtTipo";
+                        this.txtTipo.Name = "EntradaTipo";
                         this.txtTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTipo.ReadOnly = false;
                         this.txtTipo.SetData = new string[] {
@@ -179,9 +179,7 @@ namespace Lfc.Misc
                         this.txtTipo.Size = new System.Drawing.Size(140, 24);
                         this.txtTipo.TabIndex = 1;
                         this.txtTipo.Table = null;
-                        this.txtTipo.Text = "Persona";
                         this.txtTipo.TextKey = "personas";
-                        this.txtTipo.TextRaw = "Persona";
                         this.txtTipo.TipWhenBlank = "";
                         this.txtTipo.ToolTipText = "";
                         // 
@@ -196,7 +194,7 @@ namespace Lfc.Misc
                         // 
                         // note1
                         // 
-                        this.note1.AutoHeight = false;
+                        this.note1.AutoSize = false;
                         this.note1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.note1.Location = new System.Drawing.Point(16, 232);
                         this.note1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -227,10 +225,10 @@ namespace Lfc.Misc
                         // 
                         // EntradaCtaCteFinal
                         // 
-                        this.EntradaCtaCteFinal.AutoHeight = false;
+                        this.EntradaCtaCteFinal.AutoSize = false;
                         this.EntradaCtaCteFinal.AutoNav = true;
                         this.EntradaCtaCteFinal.AutoTab = true;
-                        this.EntradaCtaCteFinal.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaCtaCteFinal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCtaCteFinal.DecimalPlaces = -1;
                         this.EntradaCtaCteFinal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaCtaCteFinal.ForceCase = Lui.Forms.TextCasing.None;
@@ -248,7 +246,6 @@ namespace Lfc.Misc
                         this.EntradaCtaCteFinal.TabIndex = 5;
                         this.EntradaCtaCteFinal.TabStop = false;
                         this.EntradaCtaCteFinal.Text = "0.00";
-                        this.EntradaCtaCteFinal.TextRaw = "0.00";
                         this.EntradaCtaCteFinal.TipWhenBlank = "";
                         this.EntradaCtaCteFinal.ToolTipText = "";
                         // 
@@ -264,10 +261,10 @@ namespace Lfc.Misc
                         // 
                         // EntradaCtaCte2
                         // 
-                        this.EntradaCtaCte2.AutoHeight = false;
+                        this.EntradaCtaCte2.AutoSize = false;
                         this.EntradaCtaCte2.AutoNav = true;
                         this.EntradaCtaCte2.AutoTab = true;
-                        this.EntradaCtaCte2.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaCtaCte2.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCtaCte2.DecimalPlaces = -1;
                         this.EntradaCtaCte2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaCtaCte2.ForceCase = Lui.Forms.TextCasing.None;
@@ -285,7 +282,6 @@ namespace Lfc.Misc
                         this.EntradaCtaCte2.TabIndex = 3;
                         this.EntradaCtaCte2.TabStop = false;
                         this.EntradaCtaCte2.Text = "0.00";
-                        this.EntradaCtaCte2.TextRaw = "0.00";
                         this.EntradaCtaCte2.TipWhenBlank = "";
                         this.EntradaCtaCte2.ToolTipText = "";
                         this.EntradaCtaCte2.TextChanged += new System.EventHandler(this.EntradaCtaCte1CtaCte2_TextChanged);
@@ -302,10 +298,10 @@ namespace Lfc.Misc
                         // 
                         // EntradaCtaCte1
                         // 
-                        this.EntradaCtaCte1.AutoHeight = false;
+                        this.EntradaCtaCte1.AutoSize = false;
                         this.EntradaCtaCte1.AutoNav = true;
                         this.EntradaCtaCte1.AutoTab = true;
-                        this.EntradaCtaCte1.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaCtaCte1.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCtaCte1.DecimalPlaces = -1;
                         this.EntradaCtaCte1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaCtaCte1.ForceCase = Lui.Forms.TextCasing.None;
@@ -323,7 +319,6 @@ namespace Lfc.Misc
                         this.EntradaCtaCte1.TabIndex = 1;
                         this.EntradaCtaCte1.TabStop = false;
                         this.EntradaCtaCte1.Text = "0.00";
-                        this.EntradaCtaCte1.TextRaw = "0.00";
                         this.EntradaCtaCte1.TipWhenBlank = "";
                         this.EntradaCtaCte1.ToolTipText = "";
                         this.EntradaCtaCte1.TextChanged += new System.EventHandler(this.EntradaCtaCte1CtaCte2_TextChanged);

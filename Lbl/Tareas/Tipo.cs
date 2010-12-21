@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,13 +37,13 @@ namespace Lbl.Tareas
 {
         public class Tipo : ElementoDeDatos
         {
-                public Tipo(Lfx.Data.DataBase dataBase)
+                public Tipo(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
 
-                public Tipo(Lfx.Data.DataBase dataBase, int itemId)
+                public Tipo(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Tipo(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                public Tipo(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
 		public override string TablaDatos

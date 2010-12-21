@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -45,6 +45,19 @@ namespace Lcc.Entrada.AuxForms
                 private bool m_Changed = false;
                 private bool f_IgnoreEvents;
                 public System.Windows.Forms.Control ControlDestino;
+
+                public DetailBoxQuickSelect()
+                {
+                        InitializeComponent();
+
+                        if (this.HasWorkspace) {
+                                if (this.Workspace.SlowLink)
+                                        Timer1.Interval = 750;
+                                else
+                                        Timer1.Interval = 75;
+                        }
+                }
+
 
                 public bool CanCreate
                 {
@@ -186,12 +199,12 @@ namespace Lcc.Entrada.AuxForms
                 internal void Refrescar()
                 {
                         ListaItem.Items.Clear();
-                        if (this.Workspace != null && this.DataBase != null) {
+                        if (this.HasWorkspace && this.Connection != null) {
                                 if (m_Table.Length > 0 && m_KeyField.Length > 0 && m_DetailField.Length > 0) {
                                         string TextoSql = null;
                                         string sBuscar = EntradaBuscar.Text;
 
-                                        sBuscar = this.DataBase.EscapeString(sBuscar.Replace("  ", " ").Trim());
+                                        sBuscar = this.Connection.EscapeString(sBuscar.Replace("  ", " ").Trim());
 
                                         if (m_Table.Length >= 7 && m_Table.Substring(0, 7) == "SELECT ") {
                                                 TextoSql = m_Table;
@@ -208,7 +221,7 @@ namespace Lcc.Entrada.AuxForms
                                                 if (sBuscar != null && sBuscar.Length > 1)
                                                         TextoSql += " WHERE (" + m_DetailField + " LIKE '%" + sBuscar.Replace(" ", "%' AND " + m_DetailField + " LIKE '%") + "%'";
                                                 else if (sBuscar != null && sBuscar.Length > 0)
-                                                        TextoSql += " WHERE (" + m_DetailField + " LIKE '" + this.DataBase.EscapeString(sBuscar) + "%'";
+                                                        TextoSql += " WHERE (" + m_DetailField + " LIKE '" + this.Connection.EscapeString(sBuscar) + "%'";
 
                                                 if (m_ExtraDetailFields != null && m_ExtraDetailFields.Length > 0 && sBuscar != null && sBuscar.Length > 1) {
                                                         string TempExtraDetailFields = m_ExtraDetailFields;
@@ -245,7 +258,7 @@ namespace Lcc.Entrada.AuxForms
                                                         TextoSql += " LIMIT 100";
                                         }
 
-                                        System.Data.DataTable dt = this.DataBase.Select(TextoSql);
+                                        System.Data.DataTable dt = this.Connection.Select(TextoSql);
                                         ListaItem.SuspendLayout();
                                         ListaItem.BeginUpdate();
                                         foreach (System.Data.DataRow row in dt.Rows) {
@@ -257,10 +270,14 @@ namespace Lcc.Entrada.AuxForms
                                                         while (Campo.Length > 0) {
                                                                 switch (row[Campo].GetType().ToString()) {
                                                                         case "System.Single":
-                                                                        case "System.Decimal":
                                                                         case "System.Double":
                                                                                 itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(row[Campo]))));
                                                                                 break;
+
+                                                                        case "System.Decimal":
+                                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDecimal(row[Campo]), 4)));
+                                                                                break;
+
                                                                         default:
                                                                                 itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(row[Campo])));
                                                                                 break;
@@ -300,14 +317,8 @@ namespace Lcc.Entrada.AuxForms
 
                 private void EntradaBuscar_TextChanged(object sender, System.EventArgs e)
                 {
-                        if (f_IgnoreEvents == false && this.Workspace != null) {
-                                if (this.Workspace.SlowLink) {
-                                        Timer1.Enabled = false;
-                                        Timer1.Enabled = true;
-                                } else {
-                                        Refrescar();
-                                }
-                        }
+                        if (f_IgnoreEvents == false && this.HasWorkspace)
+                                Timer1.Start();
                 }
 
 
@@ -397,7 +408,7 @@ namespace Lcc.Entrada.AuxForms
                 {
                         if (ListaItem.SelectedItems.Count > 0) {
                                 if (m_Table == "articulos") {
-                                        string Codigo = this.DataBase.FieldString("SELECT " + this.Workspace.CurrentConfig.Productos.CodigoPredeterminado() + " FROM articulos WHERE id_articulo=" + int.Parse(ListaItem.SelectedItems[0].Text).ToString());
+                                        string Codigo = this.Connection.FieldString("SELECT " + this.Workspace.CurrentConfig.Productos.CodigoPredeterminado() + " FROM articulos WHERE id_articulo=" + int.Parse(ListaItem.SelectedItems[0].Text).ToString());
                                         if (Codigo.Length == 0)
                                                 Codigo = int.Parse(ListaItem.SelectedItems[0].Text).ToString();
                                         ControlDestino.Text = Codigo;
@@ -416,8 +427,13 @@ namespace Lcc.Entrada.AuxForms
                         if (Resultado == null) {
                                 // No se puede crear
                                 this.Show();
-                        } else if (Resultado is Lui.Forms.EditForm) {
-                                ((Lui.Forms.EditForm)Resultado).ControlDestino = this.ControlDestino;
+                        } else if (Resultado.GetType().ToString() == "Lfc.FormularioEdicion") {
+                                // Como no puedo establecer la propiedad porque no conozco el tipo Lfc.FormularioEdicion,
+                                // lo hago usando reflexión
+                                System.Type Tipo = Resultado.GetType();
+                                System.Reflection.PropertyInfo PropInfo = Tipo.GetProperty("ControlDestino");
+                                if (PropInfo != null)
+                                        PropInfo.SetValue(Resultado, this.ControlDestino, null);
                                 this.DialogResult = DialogResult.Retry;
                                 this.Tag = Resultado;
                                 this.Close();
@@ -428,18 +444,6 @@ namespace Lcc.Entrada.AuxForms
                                 Lui.Forms.MessageBox.Show(((Lfx.Types.OperationResult)(Resultado)).Message, "Mensaje");
                         } else {
                                 // Devolvió algo raro.
-                        }
-                }
-
-
-                private void DetailBoxQuickSelect_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-                {
-                        switch (e.KeyCode) {
-                                case Keys.F6:
-                                        e.Handled = true;
-                                        if (BotonNuevo.Enabled && BotonNuevo.Visible)
-                                                BotonNuevo.PerformClick();
-                                        break;
                         }
                 }
 
@@ -487,17 +491,43 @@ namespace Lcc.Entrada.AuxForms
                         }
                 }
 
+
                 /// <summary>
                 /// IDataControl
                 /// </summary>
-                public Lfx.Data.DataBase DataBase
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public bool HasWorkspace
+                {
+                        get
+                        {
+                                return this.Workspace != null;
+                        }
+                }
+
+                /// <summary>
+                /// IDataControl
+                /// </summary>
+                public Lfx.Data.Connection Connection
                 {
                         get
                         {
                                 if (this.Parent is Lui.Forms.IDataControl) {
-                                        return ((Lui.Forms.IDataControl)(this.Parent)).DataBase;
+                                        return ((Lui.Forms.IDataControl)(this.Parent)).Connection;
                                 } else {
-                                        return this.Workspace.DefaultDataBase;
+                                        return this.Workspace.MasterConnection;
+                                }
+                        }
+                }
+
+                private void DetailBoxQuickSelect_KeyDown(object sender, KeyEventArgs e)
+                {
+                        if (e.Alt == false && e.Control == false) {
+                                switch(e.KeyCode) {
+                                        case Keys.F6:
+                                                e.Handled = true;
+                                                if (BotonNuevo.Visible && BotonNuevo.Enabled)
+                                                        BotonNuevo.PerformClick();
+                                                break;
                                 }
                         }
                 }

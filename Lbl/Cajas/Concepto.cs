@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,11 +37,16 @@ namespace Lbl.Cajas
 {
         public class Concepto : ElementoDeDatos
         {
+                private static Concepto m_IngresosPorFacturacion = null, m_AjustesYMovimientos = null;
+
                 //Heredar constructor
-		public Concepto(Lfx.Data.DataBase dataBase, int itemId)
+                public Concepto(Lfx.Data.Connection dataBase)
+                        : base(dataBase) { }
+
+		public Concepto(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Concepto(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                public Concepto(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
@@ -59,5 +64,73 @@ namespace Lbl.Cajas
 				return "id_concepto";
 			}
 		}
+
+                public int Direccion
+                {
+                        get
+                        {
+                                return this.GetFieldValue<int>("es");
+                        }
+                        set
+                        {
+                                this.Registro["es"] = value;
+                        }
+                }
+
+                public int Grupo
+                {
+                        get
+                        {
+                                return this.GetFieldValue<int>("grupo");
+                        }
+                        set
+                        {
+                                this.Registro["grupo"] = value;
+                        }
+                }
+
+                public override Lfx.Types.OperationResult Guardar()
+                {
+                        qGen.TableCommand Comando;
+                        if (this.Existe == false) {
+                                Comando = new qGen.Insert(Connection, "conceptos");
+                        } else {
+                                Comando = new qGen.Update(Connection, "conceptos");
+                                Comando.WhereClause = new qGen.Where("id_concepto", this.Id);
+                        }
+
+                        Comando.Fields.AddWithValue("nombre", this.Nombre);
+                        Comando.Fields.AddWithValue("es", this.Direccion);
+                        if (this.Grupo == 0)
+                                Comando.Fields.AddWithValue("grupo", null);
+                        else
+                                Comando.Fields.AddWithValue("grupo", this.Grupo);
+
+                        Connection.Execute(Comando);
+
+                        return base.Guardar();
+                }
+
+                public static Cajas.Concepto IngresosPorFacturacion
+                {
+                        get
+                        {
+                                if (m_IngresosPorFacturacion == null)
+                                        m_IngresosPorFacturacion = new Concepto(Lfx.Workspace.Master.MasterConnection, 11000);
+
+                                return m_IngresosPorFacturacion;
+                        }
+                }
+
+                public static Cajas.Concepto AjustesYMovimientos
+                {
+                        get
+                        {
+                                if (m_AjustesYMovimientos == null)
+                                        m_AjustesYMovimientos = new Concepto(Lfx.Workspace.Master.MasterConnection, 30000);
+
+                                return m_AjustesYMovimientos;
+                        }
+                }
         }
 }

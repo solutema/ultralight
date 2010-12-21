@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ using System.Windows.Forms;
 
 namespace Lfc.Bancos.Chequeras
 {
-	public partial class Inicio: Lui.Forms.ListingForm
+	public partial class Inicio: Lfc.FormularioListado
 	{
 		private enum Estados
 		{
@@ -52,12 +52,11 @@ namespace Lfc.Bancos.Chequeras
 
                 public Inicio()
                 {
-                        InitializeComponent();
+                        this.ElementoTipo = typeof(Lbl.Bancos.Chequera);
 
-                        // agregar código de constructor después de llamar a InitializeComponent
-                        DataTableName = "chequeras";
-                        KeyField = new Lfx.Data.FormField("chequeras.id_chequera", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        FormFields = new List<Lfx.Data.FormField>()
+                        this.NombreTabla = "chequeras";
+                        this.KeyField = new Lfx.Data.FormField("chequeras.id_chequera", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        this.FormFields = new Lfx.Data.FormFieldCollection()
 			{
 				new Lfx.Data.FormField("chequeras.id_banco", "Banco", Lfx.Data.InputFieldTypes.Relation, 240),
                                 new Lfx.Data.FormField("chequeras.cheques_emitidos", "Emitidos", Lfx.Data.InputFieldTypes.Integer, 90),
@@ -65,7 +64,7 @@ namespace Lfc.Bancos.Chequeras
 				new Lfx.Data.FormField("chequeras.hasta", "Hasta", Lfx.Data.InputFieldTypes.Integer, 120),
 				new Lfx.Data.FormField("chequeras.id_caja", "Caja", Lfx.Data.InputFieldTypes.Relation, 240),
 				new Lfx.Data.FormField("chequeras.titular", "Titular", Lfx.Data.InputFieldTypes.Text, 240),
-				new Lfx.Data.FormField("chequeras.estado", "Estado", Lfx.Data.InputFieldTypes.Text,80),
+				new Lfx.Data.FormField("chequeras.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 80),
 			};
                 }
 
@@ -73,26 +72,28 @@ namespace Lfc.Bancos.Chequeras
                 {
                         Lfx.Types.OperationResult filtrarReturn = base.OnFilter();
                         if (filtrarReturn.Success == true) {
-                                Bancos.Chequeras.Filtros FormularioFiltros = new Bancos.Chequeras.Filtros();
-                                FormularioFiltros.EntradaEstado.TextKey = ((int)m_Estado).ToString();
-                                FormularioFiltros.EntradaBanco.TextInt = m_Banco;
-                                FormularioFiltros.EntradaCaja.TextInt = m_Caja;
+                                using (Bancos.Chequeras.Filtros FormFiltros = new Bancos.Chequeras.Filtros()) {
+                                        FormFiltros.Connection = this.Connection;
+                                        FormFiltros.EntradaEstado.TextKey = ((int)m_Estado).ToString();
+                                        FormFiltros.EntradaBanco.TextInt = m_Banco;
+                                        FormFiltros.EntradaCaja.TextInt = m_Caja;
 
-                                FormularioFiltros.ShowDialog();
-                                if (FormularioFiltros.DialogResult == DialogResult.OK) {
-                                        m_Estado = (Estados)Lfx.Types.Parsing.ParseInt(FormularioFiltros.EntradaEstado.TextKey);
-                                        m_Banco = FormularioFiltros.EntradaBanco.TextInt;
-                                        m_Caja = FormularioFiltros.EntradaCaja.TextInt;
-                                        RefreshList();
-                                        filtrarReturn.Success = true;
-                                } else {
-                                        filtrarReturn.Success = false;
+                                        FormFiltros.ShowDialog();
+                                        if (FormFiltros.DialogResult == DialogResult.OK) {
+                                                m_Estado = (Estados)Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstado.TextKey);
+                                                m_Banco = FormFiltros.EntradaBanco.TextInt;
+                                                m_Caja = FormFiltros.EntradaCaja.TextInt;
+                                                RefreshList();
+                                                filtrarReturn.Success = true;
+                                        } else {
+                                                filtrarReturn.Success = false;
+                                        }
                                 }
                         }
                         return filtrarReturn;
                 }
 
-                public override void BeginRefreshList()
+                public override void OnBeginRefreshList()
                 {
                         this.CustomFilters = new qGen.Where();
 
@@ -106,7 +107,7 @@ namespace Lfc.Bancos.Chequeras
                                 this.CustomFilters.AddWithValue("id_caja", m_Caja);
                 }
 
-                public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                public override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
 		{
 			switch(row.Fields["estado"].ValueInt)
 			{
@@ -121,20 +122,13 @@ namespace Lfc.Bancos.Chequeras
 					break;
 			}
 
-                        itm.SubItems["id_banco"].Text = this.DataBase.Tables["bancos"].FastRows[System.Convert.ToInt32(row["id_banco"])].Fields["nombre"].ToString();
+                        itm.SubItems["id_banco"].Text = this.Connection.Tables["bancos"].FastRows[System.Convert.ToInt32(row["id_banco"])].Fields["nombre"].ToString();
                         itm.SubItems["desde"].Text = row.Fields["desde"].ValueInt.ToString("00000000");
-                        itm.SubItems["desde"].Text = row.Fields["hasta"].ValueInt.ToString("00000000");
+                        itm.SubItems["hasta"].Text = row.Fields["hasta"].ValueInt.ToString("00000000");
                         int IdCaja = row.Fields["id_caja"].ValueInt;
                         if (IdCaja > 0)
-                                itm.SubItems["id_caja"].Text = this.DataBase.Tables["cajas"].FastRows[IdCaja].Fields["nombre"].ToString();
+                                itm.SubItems["id_caja"].Text = this.Connection.Tables["cajas"].FastRows[IdCaja].Fields["nombre"].ToString();
 		}
-
-		public override Lfx.Types.OperationResult OnEdit(int lCodigo)
-		{
-			this.Workspace.RunTime.Execute("EDITAR CHEQUERA " + lCodigo.ToString());
-			return new Lfx.Types.SuccessOperationResult();
-		}
-
 	}
 
 }

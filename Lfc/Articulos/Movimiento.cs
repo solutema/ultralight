@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -66,10 +66,10 @@ namespace Lfc.Articulos
                         }
 
 
-                        Lbl.Articulos.Articulo Art = new Lbl.Articulos.Articulo(this.DataBase, EntradaArticulo.TextInt);
+                        Lbl.Articulos.Articulo Art = new Lbl.Articulos.Articulo(this.Connection, EntradaArticulo.TextInt);
                         Art.Cargar();
                         if (Art.Seguimiento != Lbl.Articulos.Seguimientos.Ninguno ) {
-                                if (this.Workspace.CurrentUser.AccessList.HasGlobalAcccess()) {
+                                if (Lbl.Sys.Config.Actual.UsuarioConectado.TieneAccesoGlobal()) {
                                         Lui.Forms.YesNoDialog Preg = new Lui.Forms.YesNoDialog("No debe realizar movimientos manuales de artículos con seguimiento. ¿Desea continuar de todos modos?", "Advertencia");
                                         if (Preg.ShowDialog() != DialogResult.OK) {
                                                 aceptarReturn.Message += "Debe confeccionar un Remito o una Factura." + Environment.NewLine;
@@ -82,13 +82,13 @@ namespace Lfc.Articulos
                         }
 
                         if (aceptarReturn.Success == true) {
-                                DataBase.BeginTransaction(true);
-                                double Cantidad = Lfx.Types.Parsing.ParseDouble(EntradaCantidad.Text);
+                                Connection.BeginTransaction(true);
+                                decimal Cantidad = EntradaCantidad.ValueDecimal;
                                 Lbl.Articulos.Situacion Origen, Destino;
                                 Origen = EntradaDesdeSituacion.Elemento as Lbl.Articulos.Situacion;
                                 Destino = EntradaHaciaSituacion.Elemento as Lbl.Articulos.Situacion;
                                 Art.MoverStock(Cantidad, EntradaObs.Text, Origen, Destino, null);
-                                DataBase.Commit();
+                                Connection.Commit();
                         }
 
                         return aceptarReturn;
@@ -146,9 +146,9 @@ namespace Lfc.Articulos
                         Lbl.Articulos.Articulo Articulo = EntradaArticulo.Elemento as Lbl.Articulos.Articulo;
 
                         if (Articulo != null && (EntradaDesdeSituacion.TextInt != EntradaHaciaSituacion.TextInt)) {
-                                double Cantidad = Lfx.Types.Parsing.ParseStock(EntradaCantidad.Text);
-                                double DesdeCantidad = this.DataBase.FieldDouble("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + Articulo.Id.ToString() + " AND id_situacion=" + EntradaDesdeSituacion.TextInt.ToString());
-                                double HaciaCantidad = this.DataBase.FieldDouble("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + Articulo.Id.ToString() + " AND id_situacion=" + EntradaHaciaSituacion.TextInt.ToString());
+                                decimal Cantidad = EntradaCantidad.ValueDecimal;
+                                decimal DesdeCantidad = this.Connection.FieldDecimal("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + Articulo.Id.ToString() + " AND id_situacion=" + EntradaDesdeSituacion.TextInt.ToString());
+                                decimal HaciaCantidad = this.Connection.FieldDecimal("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + Articulo.Id.ToString() + " AND id_situacion=" + EntradaHaciaSituacion.TextInt.ToString());
 
                                 if (EntradaDesdeSituacion.TextInt < 998 || EntradaDesdeSituacion.TextInt > 999) {
                                         EntradaStockActual.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad, this.Workspace.CurrentConfig.Productos.DecimalesStock);

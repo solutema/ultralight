@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -69,7 +69,7 @@ namespace Lazaro.Misc.Config
 
 
 		// Requerido por el Diseñador de Windows Forms
-		private System.ComponentModel.Container components = null;
+		private System.ComponentModel.IContainer components = null;
 
 		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
 		// Puede modificarse utilizando el Diseñador de Windows Forms. 
@@ -85,9 +85,9 @@ namespace Lazaro.Misc.Config
 		internal System.Windows.Forms.Label Label10;
 		internal System.Windows.Forms.Label Label11;
 		internal System.Windows.Forms.Label Label12;
-		internal Lui.Forms.Button cmdConfigurar;
-		internal Lui.Forms.Button cmdReintentar;
-		internal Lui.Forms.Button cmdSalir;
+		internal Lui.Forms.Button BotonConfigurar;
+		internal Lui.Forms.Button BotonReintentar;
+		internal Lui.Forms.Button BotonSalir;
 		internal System.Windows.Forms.Label lblHeader1;
 		internal System.Windows.Forms.PictureBox PictureBox1;
 		internal System.Windows.Forms.PictureBox PictureBox2;
@@ -109,10 +109,10 @@ namespace Lazaro.Misc.Config
 			this.Label9 = new System.Windows.Forms.Label();
 			this.Label10 = new System.Windows.Forms.Label();
 			this.Label11 = new System.Windows.Forms.Label();
-			this.cmdConfigurar = new Lui.Forms.Button();
+			this.BotonConfigurar = new Lui.Forms.Button();
 			this.Label12 = new System.Windows.Forms.Label();
-			this.cmdReintentar = new Lui.Forms.Button();
-			this.cmdSalir = new Lui.Forms.Button();
+			this.BotonReintentar = new Lui.Forms.Button();
+			this.BotonSalir = new Lui.Forms.Button();
 			this.PictureBox1 = new System.Windows.Forms.PictureBox();
 			this.PictureBox2 = new System.Windows.Forms.PictureBox();
 			this.Label1 = new System.Windows.Forms.Label();
@@ -246,23 +246,23 @@ namespace Lazaro.Misc.Config
 			this.Label11.Text = "Su computadora no está configurada correctamente.";
 			this.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// cmdConfigurar
+			// BotonConfigurar
 			// 
-			this.cmdConfigurar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.cmdConfigurar.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.cmdConfigurar.Image = null;
-			this.cmdConfigurar.ImagePos = Lui.Forms.ImagePositions.Top;
-			this.cmdConfigurar.Location = new System.Drawing.Point(148, 8);
-			this.cmdConfigurar.Name = "cmdConfigurar";
-			this.cmdConfigurar.Padding = new System.Windows.Forms.Padding(2);
-			this.cmdConfigurar.ReadOnly = false;
-			this.cmdConfigurar.Size = new System.Drawing.Size(116, 32);
-			this.cmdConfigurar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-			this.cmdConfigurar.Subtext = "F8";
-			this.cmdConfigurar.TabIndex = 13;
-			this.cmdConfigurar.Text = "Configurar BD";
-			this.cmdConfigurar.ToolTipText = "";
-			this.cmdConfigurar.Click += new System.EventHandler(this.cmdConfigurar_Click);
+			this.BotonConfigurar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.BotonConfigurar.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.BotonConfigurar.Image = null;
+			this.BotonConfigurar.ImagePos = Lui.Forms.ImagePositions.Top;
+			this.BotonConfigurar.Location = new System.Drawing.Point(148, 8);
+			this.BotonConfigurar.Name = "BotonConfigurar";
+			this.BotonConfigurar.Padding = new System.Windows.Forms.Padding(2);
+			this.BotonConfigurar.ReadOnly = false;
+			this.BotonConfigurar.Size = new System.Drawing.Size(116, 32);
+			this.BotonConfigurar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+			this.BotonConfigurar.Subtext = "F8";
+			this.BotonConfigurar.TabIndex = 13;
+			this.BotonConfigurar.Text = "Configurar BD";
+			this.BotonConfigurar.ToolTipText = "";
+			this.BotonConfigurar.Click += new System.EventHandler(this.BotonConfigurar_Click);
 			// 
 			// Label12
 			// 
@@ -275,42 +275,42 @@ namespace Lazaro.Misc.Config
 			this.Label12.Text = "Si fuera \"b\" o \"e\", haga clic en el botón \"Configurar BD\".";
 			this.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// cmdReintentar
+			// BotonReintentar
 			// 
-			this.cmdReintentar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.cmdReintentar.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.cmdReintentar.Image = null;
-			this.cmdReintentar.ImagePos = Lui.Forms.ImagePositions.Top;
-			this.cmdReintentar.Location = new System.Drawing.Point(8, 8);
-			this.cmdReintentar.Name = "cmdReintentar";
-			this.cmdReintentar.Padding = new System.Windows.Forms.Padding(2);
-			this.cmdReintentar.ReadOnly = false;
-			this.cmdReintentar.Size = new System.Drawing.Size(132, 32);
-			this.cmdReintentar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-			this.cmdReintentar.Subtext = "F8";
-			this.cmdReintentar.TabIndex = 12;
-			this.cmdReintentar.Text = "Volver a Intentar";
-			this.cmdReintentar.ToolTipText = "";
-			this.cmdReintentar.Click += new System.EventHandler(this.cmdReintentar_Click);
+			this.BotonReintentar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.BotonReintentar.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.BotonReintentar.Image = null;
+			this.BotonReintentar.ImagePos = Lui.Forms.ImagePositions.Top;
+			this.BotonReintentar.Location = new System.Drawing.Point(8, 8);
+			this.BotonReintentar.Name = "BotonReintentar";
+			this.BotonReintentar.Padding = new System.Windows.Forms.Padding(2);
+			this.BotonReintentar.ReadOnly = false;
+			this.BotonReintentar.Size = new System.Drawing.Size(132, 32);
+			this.BotonReintentar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+			this.BotonReintentar.Subtext = "F8";
+			this.BotonReintentar.TabIndex = 12;
+			this.BotonReintentar.Text = "Volver a Intentar";
+			this.BotonReintentar.ToolTipText = "";
+			this.BotonReintentar.Click += new System.EventHandler(this.BotonReintentar_Click);
 			// 
-			// cmdSalir
+			// BotonSalir
 			// 
-			this.cmdSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.cmdSalir.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.cmdSalir.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.cmdSalir.Image = null;
-			this.cmdSalir.ImagePos = Lui.Forms.ImagePositions.Top;
-			this.cmdSalir.Location = new System.Drawing.Point(528, 8);
-			this.cmdSalir.Name = "cmdSalir";
-			this.cmdSalir.Padding = new System.Windows.Forms.Padding(2);
-			this.cmdSalir.ReadOnly = false;
-			this.cmdSalir.Size = new System.Drawing.Size(88, 32);
-			this.cmdSalir.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-			this.cmdSalir.Subtext = "F8";
-			this.cmdSalir.TabIndex = 14;
-			this.cmdSalir.Text = "Salir";
-			this.cmdSalir.ToolTipText = "";
-			this.cmdSalir.Click += new System.EventHandler(this.cmdSalir_Click);
+			this.BotonSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.BotonSalir.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.BotonSalir.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.BotonSalir.Image = null;
+			this.BotonSalir.ImagePos = Lui.Forms.ImagePositions.Top;
+			this.BotonSalir.Location = new System.Drawing.Point(528, 8);
+			this.BotonSalir.Name = "BotonSalir";
+			this.BotonSalir.Padding = new System.Windows.Forms.Padding(2);
+			this.BotonSalir.ReadOnly = false;
+			this.BotonSalir.Size = new System.Drawing.Size(88, 32);
+			this.BotonSalir.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+			this.BotonSalir.Subtext = "F8";
+			this.BotonSalir.TabIndex = 14;
+			this.BotonSalir.Text = "Salir";
+			this.BotonSalir.ToolTipText = "";
+			this.BotonSalir.Click += new System.EventHandler(this.BotonSalir_Click);
 			// 
 			// PictureBox1
 			// 
@@ -345,9 +345,9 @@ namespace Lazaro.Misc.Config
 			// 
 			// LowerPanel
 			// 
-			this.LowerPanel.Controls.Add(this.cmdReintentar);
-			this.LowerPanel.Controls.Add(this.cmdConfigurar);
-			this.LowerPanel.Controls.Add(this.cmdSalir);
+			this.LowerPanel.Controls.Add(this.BotonReintentar);
+			this.LowerPanel.Controls.Add(this.BotonConfigurar);
+			this.LowerPanel.Controls.Add(this.BotonSalir);
 			this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.LowerPanel.Location = new System.Drawing.Point(0, 359);
 			this.LowerPanel.Name = "LowerPanel";
@@ -404,19 +404,19 @@ namespace Lazaro.Misc.Config
 
 		#endregion
 
-		private void cmdSalir_Click(object sender, System.EventArgs e)
+		private void BotonSalir_Click(object sender, System.EventArgs e)
 		{
 			this.DialogResult = DialogResult.Cancel;
 		}
 
 
-		private void cmdReintentar_Click(object sender, System.EventArgs e)
+		private void BotonReintentar_Click(object sender, System.EventArgs e)
 		{
 			this.DialogResult = DialogResult.Retry;
 		}
 
 
-		private void cmdConfigurar_Click(object sender, System.EventArgs e)
+		private void BotonConfigurar_Click(object sender, System.EventArgs e)
 		{
 			this.DialogResult = DialogResult.Yes;
 		}

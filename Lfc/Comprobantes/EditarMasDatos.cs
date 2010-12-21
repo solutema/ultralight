@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -68,26 +68,26 @@ namespace Lfc.Comprobantes
                 }
 
                 // Requerido por el Diseñador de Windows Forms
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
 
                 // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
                 // No lo modifique con el editor de código.
                 internal System.Windows.Forms.Label lblHaciaSituacion;
-                internal Lcc.Entrada.CodigoDetalle txtHaciaSituacion;
+                internal Lcc.Entrada.CodigoDetalle EntradaHaciaSituacion;
                 internal System.Windows.Forms.Label lblDesdeSituacion;
                 internal System.Windows.Forms.Label label1;
-                internal Lui.Forms.ComboBox txtBloqueada;
-                internal Lcc.Entrada.CodigoDetalle txtDesdeSituacion;
+                internal Lui.Forms.ComboBox EntradaBloqueada;
+                internal Lcc.Entrada.CodigoDetalle EntradaDesdeSituacion;
 
                 private void InitializeComponent()
                 {
                         this.lblHaciaSituacion = new System.Windows.Forms.Label();
-                        this.txtHaciaSituacion = new Lcc.Entrada.CodigoDetalle();
+                        this.EntradaHaciaSituacion = new Lcc.Entrada.CodigoDetalle();
                         this.lblDesdeSituacion = new System.Windows.Forms.Label();
-                        this.txtDesdeSituacion = new Lcc.Entrada.CodigoDetalle();
+                        this.EntradaDesdeSituacion = new Lcc.Entrada.CodigoDetalle();
                         this.label1 = new System.Windows.Forms.Label();
-                        this.txtBloqueada = new Lui.Forms.ComboBox();
+                        this.EntradaBloqueada = new Lui.Forms.ComboBox();
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -108,32 +108,32 @@ namespace Lfc.Comprobantes
                         this.lblHaciaSituacion.Text = "Situación Destino";
                         this.lblHaciaSituacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtHaciaSituacion
+                        // EntradaHaciaSituacion
                         // 
-                        this.txtHaciaSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaHaciaSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtHaciaSituacion.AutoTab = true;
-                        this.txtHaciaSituacion.CanCreate = false;
-                        this.txtHaciaSituacion.DetailField = "nombre";
-                        this.txtHaciaSituacion.ExtraDetailFields = null;
-                        this.txtHaciaSituacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtHaciaSituacion.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtHaciaSituacion.FreeTextCode = "";
-                        this.txtHaciaSituacion.KeyField = "id_situacion";
-                        this.txtHaciaSituacion.Location = new System.Drawing.Point(140, 48);
-                        this.txtHaciaSituacion.MaxLength = 200;
-                        this.txtHaciaSituacion.Name = "txtHaciaSituacion";
-                        this.txtHaciaSituacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtHaciaSituacion.ReadOnly = false;
-                        this.txtHaciaSituacion.Required = true;
-                        this.txtHaciaSituacion.Size = new System.Drawing.Size(476, 24);
-                        this.txtHaciaSituacion.TabIndex = 3;
-                        this.txtHaciaSituacion.Table = "articulos_situaciones";
-                        this.txtHaciaSituacion.TeclaDespuesDeEnter = "{tab}";
-                        this.txtHaciaSituacion.Text = "0";
-                        this.txtHaciaSituacion.TextDetail = "";
-                        this.txtHaciaSituacion.TipWhenBlank = "";
-                        this.txtHaciaSituacion.ToolTipText = "";
+                        this.EntradaHaciaSituacion.AutoTab = true;
+                        this.EntradaHaciaSituacion.CanCreate = false;
+                        this.EntradaHaciaSituacion.DataTextField = "nombre";
+                        this.EntradaHaciaSituacion.ExtraDetailFields = null;
+                        this.EntradaHaciaSituacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaHaciaSituacion.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaHaciaSituacion.FreeTextCode = "";
+                        this.EntradaHaciaSituacion.DataValueField = "id_situacion";
+                        this.EntradaHaciaSituacion.Location = new System.Drawing.Point(140, 48);
+                        this.EntradaHaciaSituacion.MaxLength = 200;
+                        this.EntradaHaciaSituacion.Name = "EntradaHaciaSituacion";
+                        this.EntradaHaciaSituacion.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaHaciaSituacion.ReadOnly = false;
+                        this.EntradaHaciaSituacion.Required = true;
+                        this.EntradaHaciaSituacion.Size = new System.Drawing.Size(476, 24);
+                        this.EntradaHaciaSituacion.TabIndex = 3;
+                        this.EntradaHaciaSituacion.Table = "articulos_situaciones";
+                        this.EntradaHaciaSituacion.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaHaciaSituacion.Text = "0";
+                        this.EntradaHaciaSituacion.TextDetail = "";
+                        this.EntradaHaciaSituacion.TipWhenBlank = "";
+                        this.EntradaHaciaSituacion.ToolTipText = "";
                         // 
                         // lblDesdeSituacion
                         // 
@@ -145,33 +145,33 @@ namespace Lfc.Comprobantes
                         this.lblDesdeSituacion.Text = "Situación Origen";
                         this.lblDesdeSituacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtDesdeSituacion
+                        // EntradaDesdeSituacion
                         // 
-                        this.txtDesdeSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaDesdeSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtDesdeSituacion.AutoTab = true;
-                        this.txtDesdeSituacion.CanCreate = false;
-                        this.txtDesdeSituacion.DetailField = "nombre";
-                        this.txtDesdeSituacion.ExtraDetailFields = null;
-                        this.txtDesdeSituacion.Filter = "facturable=1";
-                        this.txtDesdeSituacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtDesdeSituacion.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtDesdeSituacion.FreeTextCode = "";
-                        this.txtDesdeSituacion.KeyField = "id_situacion";
-                        this.txtDesdeSituacion.Location = new System.Drawing.Point(140, 20);
-                        this.txtDesdeSituacion.MaxLength = 200;
-                        this.txtDesdeSituacion.Name = "txtDesdeSituacion";
-                        this.txtDesdeSituacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtDesdeSituacion.ReadOnly = false;
-                        this.txtDesdeSituacion.Required = true;
-                        this.txtDesdeSituacion.Size = new System.Drawing.Size(476, 24);
-                        this.txtDesdeSituacion.TabIndex = 1;
-                        this.txtDesdeSituacion.Table = "articulos_situaciones";
-                        this.txtDesdeSituacion.TeclaDespuesDeEnter = "{tab}";
-                        this.txtDesdeSituacion.Text = "0";
-                        this.txtDesdeSituacion.TextDetail = "";
-                        this.txtDesdeSituacion.TipWhenBlank = "";
-                        this.txtDesdeSituacion.ToolTipText = "";
+                        this.EntradaDesdeSituacion.AutoTab = true;
+                        this.EntradaDesdeSituacion.CanCreate = false;
+                        this.EntradaDesdeSituacion.DataTextField = "nombre";
+                        this.EntradaDesdeSituacion.ExtraDetailFields = null;
+                        this.EntradaDesdeSituacion.Filter = "facturable=1";
+                        this.EntradaDesdeSituacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaDesdeSituacion.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaDesdeSituacion.FreeTextCode = "";
+                        this.EntradaDesdeSituacion.DataValueField = "id_situacion";
+                        this.EntradaDesdeSituacion.Location = new System.Drawing.Point(140, 20);
+                        this.EntradaDesdeSituacion.MaxLength = 200;
+                        this.EntradaDesdeSituacion.Name = "EntradaDesdeSituacion";
+                        this.EntradaDesdeSituacion.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaDesdeSituacion.ReadOnly = false;
+                        this.EntradaDesdeSituacion.Required = true;
+                        this.EntradaDesdeSituacion.Size = new System.Drawing.Size(476, 24);
+                        this.EntradaDesdeSituacion.TabIndex = 1;
+                        this.EntradaDesdeSituacion.Table = "articulos_situaciones";
+                        this.EntradaDesdeSituacion.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaDesdeSituacion.Text = "0";
+                        this.EntradaDesdeSituacion.TextDetail = "";
+                        this.EntradaDesdeSituacion.TipWhenBlank = "";
+                        this.EntradaDesdeSituacion.ToolTipText = "";
                         // 
                         // label1
                         // 
@@ -183,38 +183,38 @@ namespace Lfc.Comprobantes
                         this.label1.Text = "Accesibilidad";
                         this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtBloqueada
+                        // EntradaBloqueada
                         // 
-                        this.txtBloqueada.AutoNav = true;
-                        this.txtBloqueada.AutoTab = true;
-                        this.txtBloqueada.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.txtBloqueada.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtBloqueada.Location = new System.Drawing.Point(140, 280);
-                        this.txtBloqueada.MaxLenght = 32767;
-                        this.txtBloqueada.Name = "txtBloqueada";
-                        this.txtBloqueada.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtBloqueada.ReadOnly = false;
-                        this.txtBloqueada.SetData = new string[] {
+                        this.EntradaBloqueada.AutoNav = true;
+                        this.EntradaBloqueada.AutoTab = true;
+                        this.EntradaBloqueada.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EntradaBloqueada.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaBloqueada.Location = new System.Drawing.Point(140, 280);
+                        this.EntradaBloqueada.MaxLenght = 32767;
+                        this.EntradaBloqueada.Name = "EntradaBloqueada";
+                        this.EntradaBloqueada.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaBloqueada.ReadOnly = false;
+                        this.EntradaBloqueada.SetData = new string[] {
         "Editable|0",
         "Bloqueado|1"};
-                        this.txtBloqueada.Size = new System.Drawing.Size(152, 24);
-                        this.txtBloqueada.TabIndex = 5;
-                        this.txtBloqueada.Text = "Editable";
-                        this.txtBloqueada.TextKey = "0";
-                        this.txtBloqueada.TipWhenBlank = "";
-                        this.txtBloqueada.ToolTipText = "";
-                        this.txtBloqueada.TextChanged += new System.EventHandler(this.txtBloqueada_TextChanged);
+                        this.EntradaBloqueada.Size = new System.Drawing.Size(152, 24);
+                        this.EntradaBloqueada.TabIndex = 5;
+                        this.EntradaBloqueada.Text = "Editable";
+                        this.EntradaBloqueada.TextKey = "0";
+                        this.EntradaBloqueada.TipWhenBlank = "";
+                        this.EntradaBloqueada.ToolTipText = "";
+                        this.EntradaBloqueada.TextChanged += new System.EventHandler(this.EntradaBloqueada_TextChanged);
                         // 
                         // FormComprobanteMasDatos
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(634, 374);
-                        this.Controls.Add(this.txtBloqueada);
+                        this.Controls.Add(this.EntradaBloqueada);
                         this.Controls.Add(this.label1);
                         this.Controls.Add(this.lblHaciaSituacion);
-                        this.Controls.Add(this.txtHaciaSituacion);
+                        this.Controls.Add(this.EntradaHaciaSituacion);
                         this.Controls.Add(this.lblDesdeSituacion);
-                        this.Controls.Add(this.txtDesdeSituacion);
+                        this.Controls.Add(this.EntradaDesdeSituacion);
                         this.Name = "FormComprobanteMasDatos";
                         this.ResumeLayout(false);
 
@@ -222,10 +222,10 @@ namespace Lfc.Comprobantes
 
                 #endregion
 
-                private void txtBloqueada_TextChanged(object sender, System.EventArgs e)
+                private void EntradaBloqueada_TextChanged(object sender, System.EventArgs e)
                 {
-                        txtDesdeSituacion.ReadOnly = (txtBloqueada.TextKey == "1");
-                        txtHaciaSituacion.ReadOnly = (txtBloqueada.TextKey == "1");
+                        EntradaDesdeSituacion.ReadOnly = (EntradaBloqueada.TextKey == "1");
+                        EntradaHaciaSituacion.ReadOnly = (EntradaBloqueada.TextKey == "1");
                 }
         }
 }

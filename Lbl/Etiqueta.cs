@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,16 +35,22 @@ using System.Text;
 
 namespace Lbl
 {
+        /// <summary>
+        /// Describe una etiqueta que se puede asociar a un ElementoDeDatos, por ejemplo "Destacado", "Nuevo", etc.
+        /// Se pueden asociar cero o más etiquetas a un elemento mediante la propiedad Etiquetas y el método GuardarEtiquetas().
+        /// </summary>
         public class Etiqueta : ElementoDeDatos
         {
+                private static ColeccionGenerica<Etiqueta> m_Todas;
+
                 //Heredar constructor
-		public Etiqueta(Lfx.Data.DataBase dataBase)
+		public Etiqueta(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
 
-                public Etiqueta(Lfx.Data.DataBase dataBase, int itemId)
+                public Etiqueta(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Etiqueta(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                public Etiqueta(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
                 public override string TablaDatos
@@ -74,8 +80,31 @@ namespace Lbl
                 {
                         get
                         {
-                                return this.FieldString("tablas");
+                                return this.GetFieldValue<string>("tablas");
                         }
+                }
+
+                public static ColeccionGenerica<Etiqueta> Todas
+                {
+                        get
+                        {
+                                if (m_Todas == null) {
+                                        System.Data.DataTable EtiquetasElem = Lfx.Workspace.Master.MasterConnection.Select("SELECT id_label FROM sys_labels");
+                                        m_Todas = new ColeccionGenerica<Etiqueta>(Lfx.Workspace.Master.MasterConnection, EtiquetasElem);
+                                }
+
+                                return m_Todas;
+                        }
+                }
+
+                public static ColeccionGenerica<Etiqueta> ObtenerPorTabla(string tablaDeDatos)
+                {
+                        ColeccionGenerica<Etiqueta> Res = new ColeccionGenerica<Etiqueta>();
+                        foreach (Etiqueta Et in Lbl.Etiqueta.Todas) {
+                                if (Et.TablaDatos == tablaDeDatos)
+                                        Res.Add(Et);
+                        }
+                        return Res;
                 }
         }
 }

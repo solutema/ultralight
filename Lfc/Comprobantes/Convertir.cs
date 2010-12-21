@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -69,7 +69,7 @@ namespace Lfc.Comprobantes
                 }
 
                 // Requerido por el Diseñador de Windows Forms
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
 
                 // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
@@ -80,19 +80,19 @@ namespace Lfc.Comprobantes
                 internal System.Windows.Forms.PictureBox PictureBox1;
                 internal System.Windows.Forms.PictureBox PictureBox2;
                 internal System.Windows.Forms.PictureBox PictureBox3;
-                internal Lui.Forms.ComboBox txtDestinoTipo;
+                internal Lui.Forms.ComboBox EntradaDestinoTipo;
                 internal System.Windows.Forms.Label lblOrigenTipo;
                 internal System.Windows.Forms.Label lblDestinoTipo;
                 internal System.Windows.Forms.Label lblDuplicado;
-                internal Lui.Forms.TextBox txtOrigen;
+                internal Lui.Forms.TextBox EntradaOrigen;
 
                 private void InitializeComponent()
                 {
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Convertir));
-                        this.txtOrigen = new Lui.Forms.TextBox();
+                        this.EntradaOrigen = new Lui.Forms.TextBox();
                         this.Label6 = new System.Windows.Forms.Label();
                         this.Label7 = new System.Windows.Forms.Label();
-                        this.txtDestinoTipo = new Lui.Forms.ComboBox();
+                        this.EntradaDestinoTipo = new Lui.Forms.ComboBox();
                         this.lblInfo = new System.Windows.Forms.Label();
                         this.lblOrigenTipo = new System.Windows.Forms.Label();
                         this.lblDestinoTipo = new System.Windows.Forms.Label();
@@ -113,34 +113,31 @@ namespace Lfc.Comprobantes
                         // 
                         this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
                         // 
-                        // txtOrigen
+                        // EntradaOrigen
                         // 
-                        this.txtOrigen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaOrigen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtOrigen.AutoHeight = false;
-                        this.txtOrigen.AutoNav = true;
-                        this.txtOrigen.AutoTab = true;
-                        this.txtOrigen.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.txtOrigen.DecimalPlaces = -1;
-                        this.txtOrigen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtOrigen.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtOrigen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtOrigen.Location = new System.Drawing.Point(300, 20);
-                        this.txtOrigen.MaxLenght = 32767;
-                        this.txtOrigen.MultiLine = false;
-                        this.txtOrigen.Name = "txtOrigen";
-                        this.txtOrigen.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtOrigen.PasswordChar = '\0';
-                        this.txtOrigen.Prefijo = "";
-                        this.txtOrigen.ReadOnly = true;
-                        this.txtOrigen.SelectOnFocus = true;
-                        this.txtOrigen.Size = new System.Drawing.Size(312, 24);
-                        this.txtOrigen.Sufijo = "";
-                        this.txtOrigen.TabIndex = 1;
-                        this.txtOrigen.TabStop = false;
-                        this.txtOrigen.TextRaw = "";
-                        this.txtOrigen.TipWhenBlank = "";
-                        this.txtOrigen.ToolTipText = "";
+                        this.EntradaOrigen.AutoNav = true;
+                        this.EntradaOrigen.AutoTab = true;
+                        this.EntradaOrigen.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaOrigen.DecimalPlaces = -1;
+                        this.EntradaOrigen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaOrigen.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaOrigen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaOrigen.Location = new System.Drawing.Point(300, 20);
+                        this.EntradaOrigen.MaxLenght = 32767;
+                        this.EntradaOrigen.MultiLine = false;
+                        this.EntradaOrigen.Name = "EntradaOrigen";
+                        this.EntradaOrigen.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaOrigen.PasswordChar = '\0';
+                        this.EntradaOrigen.Prefijo = "";
+                        this.EntradaOrigen.SelectOnFocus = true;
+                        this.EntradaOrigen.Size = new System.Drawing.Size(312, 24);
+                        this.EntradaOrigen.Sufijo = "";
+                        this.EntradaOrigen.TabIndex = 1;
+                        this.EntradaOrigen.TabStop = false;
+                        this.EntradaOrigen.TipWhenBlank = "";
+                        this.EntradaOrigen.ToolTipText = "";
                         // 
                         // Label6
                         // 
@@ -160,38 +157,36 @@ namespace Lfc.Comprobantes
                         this.Label7.Text = "Se generará un nuevo comprobante tipo";
                         this.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtDestinoTipo
+                        // EntradaDestinoTipo
                         // 
-                        this.txtDestinoTipo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaDestinoTipo.AlwaysExpanded = true;
+                        this.EntradaDestinoTipo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtDestinoTipo.AutoHeight = true;
-                        this.txtDestinoTipo.AutoNav = true;
-                        this.txtDestinoTipo.AutoTab = true;
-                        this.txtDestinoTipo.DetailField = null;
-                        this.txtDestinoTipo.Filter = null;
-                        this.txtDestinoTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtDestinoTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtDestinoTipo.KeyField = null;
-                        this.txtDestinoTipo.Location = new System.Drawing.Point(300, 48);
-                        this.txtDestinoTipo.MaxLenght = 32767;
-                        this.txtDestinoTipo.Name = "txtDestinoTipo";
-                        this.txtDestinoTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtDestinoTipo.ReadOnly = false;
-                        this.txtDestinoTipo.SetData = new string[] {
+                        this.EntradaDestinoTipo.AutoNav = true;
+                        this.EntradaDestinoTipo.AutoSize = true;
+                        this.EntradaDestinoTipo.AutoTab = true;
+                        this.EntradaDestinoTipo.DetailField = null;
+                        this.EntradaDestinoTipo.Filter = null;
+                        this.EntradaDestinoTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaDestinoTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaDestinoTipo.KeyField = null;
+                        this.EntradaDestinoTipo.Location = new System.Drawing.Point(300, 48);
+                        this.EntradaDestinoTipo.MaxLenght = 32767;
+                        this.EntradaDestinoTipo.Name = "EntradaDestinoTipo";
+                        this.EntradaDestinoTipo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaDestinoTipo.SetData = new string[] {
         "Factura|F",
         "Presupuesto|PS",
         "Remito|R",
         "Nota de Crédito|NC",
         "Nota de Débito B|ND"};
-                        this.txtDestinoTipo.Size = new System.Drawing.Size(312, 24);
-                        this.txtDestinoTipo.TabIndex = 3;
-                        this.txtDestinoTipo.Table = null;
-                        this.txtDestinoTipo.Text = "Factura";
-                        this.txtDestinoTipo.TextKey = "F";
-                        this.txtDestinoTipo.TextRaw = "Factura";
-                        this.txtDestinoTipo.TipWhenBlank = "";
-                        this.txtDestinoTipo.ToolTipText = "";
-                        this.txtDestinoTipo.TextChanged += new System.EventHandler(this.txtDestinoTipo_TextChanged);
+                        this.EntradaDestinoTipo.Size = new System.Drawing.Size(312, 81);
+                        this.EntradaDestinoTipo.TabIndex = 3;
+                        this.EntradaDestinoTipo.Table = null;
+                        this.EntradaDestinoTipo.TextKey = "F";
+                        this.EntradaDestinoTipo.TipWhenBlank = "";
+                        this.EntradaDestinoTipo.ToolTipText = "";
+                        this.EntradaDestinoTipo.TextChanged += new System.EventHandler(this.EntradaDestinoTipo_TextChanged);
                         // 
                         // lblInfo
                         // 
@@ -277,16 +272,16 @@ namespace Lfc.Comprobantes
                         this.Controls.Add(this.PictureBox1);
                         this.Controls.Add(this.lblInfo);
                         this.Controls.Add(this.Label7);
-                        this.Controls.Add(this.txtDestinoTipo);
+                        this.Controls.Add(this.EntradaDestinoTipo);
                         this.Controls.Add(this.Label6);
-                        this.Controls.Add(this.txtOrigen);
+                        this.Controls.Add(this.EntradaOrigen);
                         this.Controls.Add(this.PictureBox3);
                         this.Name = "Convertir";
                         this.Text = "Convertir Comprobante";
                         this.Controls.SetChildIndex(this.PictureBox3, 0);
-                        this.Controls.SetChildIndex(this.txtOrigen, 0);
+                        this.Controls.SetChildIndex(this.EntradaOrigen, 0);
                         this.Controls.SetChildIndex(this.Label6, 0);
-                        this.Controls.SetChildIndex(this.txtDestinoTipo, 0);
+                        this.Controls.SetChildIndex(this.EntradaDestinoTipo, 0);
                         this.Controls.SetChildIndex(this.Label7, 0);
                         this.Controls.SetChildIndex(this.lblInfo, 0);
                         this.Controls.SetChildIndex(this.PictureBox1, 0);
@@ -298,6 +293,7 @@ namespace Lfc.Comprobantes
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).EndInit();
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
                 }
 
@@ -307,11 +303,11 @@ namespace Lfc.Comprobantes
                 {
                         get
                         {
-                                return txtDestinoTipo.TextKey;
+                                return EntradaDestinoTipo.TextKey;
                         }
                         set
                         {
-                                txtDestinoTipo.TextKey = value;
+                                EntradaDestinoTipo.TextKey = value;
                         }
                 }
 
@@ -332,22 +328,22 @@ namespace Lfc.Comprobantes
                 {
                         get
                         {
-                                return txtOrigen.Text;
+                                return EntradaOrigen.Text;
                         }
                         set
                         {
-                                txtOrigen.Text = value;
+                                EntradaOrigen.Text = value;
                         }
                 }
 
-                private void txtDestinoTipo_TextChanged(object sender, System.EventArgs e)
+                private void EntradaDestinoTipo_TextChanged(object sender, System.EventArgs e)
                 {
-                        lblDestinoTipo.Text = Lbl.Comprobantes.Comprobante.NombreTipo(txtDestinoTipo.TextKey);
+                        lblDestinoTipo.Text = Lbl.Comprobantes.Comprobante.NombreTipo(EntradaDestinoTipo.TextKey);
                 }
 
                 public override Lfx.Types.OperationResult Ok()
                 {
-                        if (txtDestinoTipo.TextKey.Length == 0)
+                        if (EntradaDestinoTipo.TextKey.Length == 0)
                                 return new Lfx.Types.FailureOperationResult("Seleccione el tipo de comprobante de destino.");
                         else
                                 return new Lfx.Types.SuccessOperationResult();

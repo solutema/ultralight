@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -58,10 +58,8 @@ namespace Lfc
                 /// </summary>
                 private void InitializeComponent()
                 {
-                        this.EntradaEtiquetas = new Lcc.Controles.Datos.Etiquetas();
-                        this.EtiquetaTitulo = new System.Windows.Forms.Label();
+                        this.EntradaEtiquetas = new Lcc.Edicion.Etiquetas();
                         this.EntradaComentarios = new Lcc.Edicion.Comentarios();
-                        this.label1 = new System.Windows.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -74,75 +72,51 @@ namespace Lfc
                         // 
                         // EntradaEtiquetas
                         // 
-                        this.EntradaEtiquetas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaEtiquetas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaEtiquetas.AutoHeight = true;
                         this.EntradaEtiquetas.AutoNav = true;
-                        this.EntradaEtiquetas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaEtiquetas.Location = new System.Drawing.Point(464, 36);
+                        this.EntradaEtiquetas.Location = new System.Drawing.Point(453, 11);
                         this.EntradaEtiquetas.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
                         this.EntradaEtiquetas.Name = "EntradaEtiquetas";
-                        this.EntradaEtiquetas.ReadOnly = false;
-                        this.EntradaEtiquetas.Size = new System.Drawing.Size(152, 260);
+                        this.EntradaEtiquetas.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEtiquetas.Size = new System.Drawing.Size(160, 287);
                         this.EntradaEtiquetas.TabIndex = 3;
-                        this.EntradaEtiquetas.Text = "etiquetas1";
-                        // 
-                        // EtiquetaTitulo
-                        // 
-                        this.EtiquetaTitulo.Location = new System.Drawing.Point(464, 12);
-                        this.EtiquetaTitulo.Name = "EtiquetaTitulo";
-                        this.EtiquetaTitulo.Size = new System.Drawing.Size(152, 20);
-                        this.EtiquetaTitulo.TabIndex = 2;
-                        this.EtiquetaTitulo.Text = "Etiquetas";
-                        this.EtiquetaTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EntradaEtiquetas.Text = "Etiquetas";
+                        this.EntradaEtiquetas.ToolTipText = "";
                         // 
                         // EntradaComentarios
                         // 
-                        this.EntradaComentarios.AutoHeight = true;
+                        this.EntradaComentarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                                    | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaComentarios.AutoNav = true;
-                        this.EntradaComentarios.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaComentarios.Location = new System.Drawing.Point(8, 36);
+                        this.EntradaComentarios.Location = new System.Drawing.Point(13, 11);
                         this.EntradaComentarios.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaComentarios.Name = "EntradaComentarios";
-                        this.EntradaComentarios.ReadOnly = false;
-                        this.EntradaComentarios.Size = new System.Drawing.Size(444, 260);
+                        this.EntradaComentarios.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaComentarios.Size = new System.Drawing.Size(434, 287);
                         this.EntradaComentarios.TabIndex = 1;
-                        this.EntradaComentarios.Text = "comentarios1";
-                        // 
-                        // label1
-                        // 
-                        this.label1.Location = new System.Drawing.Point(8, 12);
-                        this.label1.Name = "label1";
-                        this.label1.Size = new System.Drawing.Size(444, 20);
-                        this.label1.TabIndex = 0;
-                        this.label1.Text = "Comentarios";
-                        this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EntradaComentarios.Text = "Comentarios";
+                        this.EntradaComentarios.ToolTipText = "";
                         // 
                         // Etiquetas
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(624, 364);
-                        this.Controls.Add(this.label1);
                         this.Controls.Add(this.EntradaComentarios);
                         this.Controls.Add(this.EntradaEtiquetas);
-                        this.Controls.Add(this.EtiquetaTitulo);
                         this.Name = "Etiquetas";
                         this.Text = "Etiquetas";
-                        this.Controls.SetChildIndex(this.EtiquetaTitulo, 0);
                         this.Controls.SetChildIndex(this.EntradaEtiquetas, 0);
                         this.Controls.SetChildIndex(this.EntradaComentarios, 0);
-                        this.Controls.SetChildIndex(this.label1, 0);
                         this.ResumeLayout(false);
 
                 }
 
                 #endregion
 
-                private Lcc.Controles.Datos.Etiquetas EntradaEtiquetas;
-                private System.Windows.Forms.Label EtiquetaTitulo;
+                private Lcc.Edicion.Etiquetas EntradaEtiquetas;
                 protected internal Lcc.Edicion.Comentarios EntradaComentarios;
-                private System.Windows.Forms.Label label1;
         }
 }

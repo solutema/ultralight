@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -41,17 +41,17 @@ namespace Lbl.Pagos
                 public Lbl.Comprobantes.Recibo Recibo;
 
                 //Heredar constructor
-		public Valor(Lfx.Data.DataBase dataBase)
+		public Valor(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
 
-                public Valor(Lfx.Data.DataBase dataBase, int idValor)
+                public Valor(Lfx.Data.Connection dataBase, int idValor)
 			: this(dataBase)
 		{
                         m_ItemId = idValor;
                         this.Cargar();
 		}
 
-                public Valor(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                public Valor(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
                 public override string TablaDatos
@@ -73,13 +73,13 @@ namespace Lbl.Pagos
                 public override void OnLoad()
                 {
                         if (this.Registro != null) {
-                                if (this.FieldInt("id_formapago") > 0)
-                                        this.FormaDePago = new Lbl.Pagos.FormaDePago(this.DataBase, this.FieldInt("id_formapago"));
+                                if (this.GetFieldValue<int>("id_formapago") > 0)
+                                        this.FormaDePago = new Lbl.Pagos.FormaDePago(this.Connection, this.GetFieldValue<int>("id_formapago"));
                                 else
                                         this.FormaDePago = null;
 
-                                /* if (this.FieldInt("id_recibo") > 0)
-                                        this.Recibo = new Lbl.Comprobantes.Recibo(this.DataBase, this.FieldInt("id_recibo"));
+                                /* if (this.GetFieldValue<int>("id_recibo") > 0)
+                                        this.Recibo = new Lbl.Comprobantes.Recibo(this.DataBase, this.GetFieldValue<int>("id_recibo"));
                                 else
                                         this.Recibo = null; */
                         }
@@ -99,7 +99,7 @@ namespace Lbl.Pagos
                 {
                         get
                         {
-                                return this.FieldString("numero");
+                                return this.GetFieldValue<string>("numero");
                         }
                         set
                         {
@@ -111,7 +111,7 @@ namespace Lbl.Pagos
                 {
                         get
                         {
-                                return this.FieldInt("id_item");
+                                return this.GetFieldValue<int>("id_item");
                         }
                         set
                         {
@@ -119,11 +119,11 @@ namespace Lbl.Pagos
                         }
                 }
 
-                public double Importe
+                public decimal Importe
                 {
                         get
                         {
-                                return this.FieldDouble("importe");
+                                return this.GetFieldValue<decimal>("importe");
                         }
                         set
                         {
@@ -140,10 +140,10 @@ namespace Lbl.Pagos
                 {
                         qGen.TableCommand Comando;
                         if (this.Existe) {
-                                Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando = new qGen.Update(this.Connection, this.TablaDatos);
                                 Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         } else {
-                                Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
+                                Comando = new qGen.Insert(this.Connection, this.TablaDatos);
                         }
 
                         Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
@@ -171,7 +171,7 @@ namespace Lbl.Pagos
 
                         this.AgregarTags(Comando);
 
-                        this.DataBase.Execute(Comando);
+                        this.Connection.Execute(Comando);
 
                         return base.Guardar();
                 }

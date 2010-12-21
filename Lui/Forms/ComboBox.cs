@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -46,14 +46,10 @@ namespace Lui.Forms
                 private string[] m_SetDataKey = { "" };
                 private int m_SetIndex; private string m_TextKey;
                 private string m_Table = null, m_KeyField = null, m_DetailField = null, m_Filter = null;
-
-                [System.ComponentModel.EditorBrowsable(EditorBrowsableState.Always), Browsable(true)]
-                new public event System.EventHandler TextChanged;
+                private bool m_AlwaysExpanded = false;
 
                 public ComboBox()
-                        : base()
                 {
-                        // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
 
                         this.BorderStyle = BorderStyles.TextBox;
@@ -90,8 +86,8 @@ namespace Lui.Forms
                                                 m_SetDataKey[i] = sItem;
                                         }
 
-                                        if (TextBox1.Text.Length == 0 && m_SetData.Length >= 1)
-                                                TextBox1.Text = m_SetData[0];
+                                        if (this.TextRaw.Length == 0 && m_SetData.Length >= 1)
+                                                this.TextRaw = m_SetData[0];
 
                                         DetectarSetIndex();
                                 }
@@ -112,12 +108,48 @@ namespace Lui.Forms
                         }
                 }
 
+                public bool AlwaysExpanded
+                {
+                        get
+                        {
+                                return m_AlwaysExpanded;
+                        }
+                        set
+                        {
+                                m_AlwaysExpanded = value;
+                                if (this.AutoSize) {
+                                        if (m_AlwaysExpanded)
+                                                this.ItemList.Visible = true;
+                                        else if (this.ContainsFocus == false)
+                                                this.ItemList.Visible = false;
+                                }
+                        }
+                }
+
+                public override bool AutoSize
+                {
+                        get
+                        {
+                                return base.AutoSize;
+                        }
+                        set
+                        {
+                                base.AutoSize = value;
+                                if (this.AutoSize) {
+                                        if (m_AlwaysExpanded)
+                                                this.ItemList.Visible = true;
+                                        else if (this.ContainsFocus == false)
+                                                this.ItemList.Visible = false;
+                                }
+                        }
+                }
+
                 [System.ComponentModel.Category("Apariencia"), RefreshProperties(RefreshProperties.Repaint)]
                 public string TextKey
                 {
                         get
                         {
-                                if (m_SetIndex >= 0)
+                                if (m_SetIndex >= 0 && m_SetDataKey.Length >= (m_SetIndex + 1))
                                         return m_SetDataKey[m_SetIndex];
                                 else
                                         return "";
@@ -127,8 +159,8 @@ namespace Lui.Forms
                                 bool EraIgual = m_TextKey == value;
                                 m_TextKey = value;
                                 DetectarSetIndex();
-                                if (EraIgual == false && this.TextChanged != null)
-                                        this.TextChanged(this, null);
+                                if (EraIgual == false)
+                                        this.OnTextChanged(EventArgs.Empty);
                         }
                 }
 
@@ -141,7 +173,7 @@ namespace Lui.Forms
                                         if (m_SetDataKey[i] == m_TextKey) {
                                                 m_SetIndex = i;
                                                 m_IgnoreChanges++;
-                                                TextBox1.Text = m_SetDataText[m_SetIndex];
+                                                this.TextRaw = m_SetDataText[m_SetIndex];
                                                 m_IgnoreChanges--;
                                                 break;
                                         }
@@ -172,11 +204,11 @@ namespace Lui.Forms
                                 if (m_SetIndex == -1)
                                         m_SetIndex = 0;
 
-                                TextBox1.Text = NextValueInSet();
+                                this.TextRaw = NextValueInSet();
                                 this.TextKey = m_SetDataKey[m_SetIndex];
 
                                 if (ItemList.Visible)
-                                        ItemList.SelectedItem = TextBox1.Text;
+                                        ItemList.SelectedItem = this.TextRaw;
 
                                 if (PopUps.ODataSetHelp != null) {
                                         if (this.TextKey.Length == 0)
@@ -205,11 +237,11 @@ namespace Lui.Forms
                                 if (m_SetIndex == -1)
                                         m_SetIndex = m_SetDataKey.GetUpperBound(0);
 
-                                TextBox1.Text = PrevValueInSet();
+                                this.TextRaw = PrevValueInSet();
                                 this.TextKey = m_SetDataKey[m_SetIndex];
 
                                 if (ItemList.Visible)
-                                        ItemList.SelectedItem = TextBox1.Text;
+                                        ItemList.SelectedItem = this.TextRaw;
 
                                 if (PopUps.ODataSetHelp != null) {
                                         if (this.TextKey.Length == 0)
@@ -231,12 +263,10 @@ namespace Lui.Forms
                         return prevValueInSetReturn;
                 }
 
-                /* private void ComboBox_LocationChanged(object sender, System.EventArgs e)
-                {
-                        if (PopUps.ODataSetHelp != null)
-                                PopUps.ODataSetHelp.Ocultar();
-                } */
 
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public override System.String Text
                 {
                         get
@@ -248,7 +278,8 @@ namespace Lui.Forms
                                 base.Text = value;
                                 for (int i = 0; i <= m_SetDataText.GetUpperBound(0); i++) {
                                         if (this.TextRaw == m_SetDataText[i]) {
-                                                this.TextKey = m_SetDataKey[i];
+                                                if (this.TextKey != m_SetDataKey[i])
+                                                        this.TextKey = m_SetDataKey[i];
                                                 break;
                                         }
                                 }
@@ -273,7 +304,7 @@ namespace Lui.Forms
                 {
                         if (IgnorarEventos == 0 && this.ReadOnly == false) {
                                 IgnorarEventos++;
-                                if (this.AutoHeight == false) {
+                                if (this.AutoSize == false && this.AlwaysExpanded == false) {
                                         if (PopUps.ODataSetHelp == null && Lfx.Environment.SystemInformation.RunTime == Lfx.Environment.SystemInformation.RunTimes.DotNet)
                                                 PopUps.ODataSetHelp = new DataSetHelp();
                                         if (PopUps.ODataSetHelp != null && this.ReadOnly == false) {
@@ -346,8 +377,8 @@ namespace Lui.Forms
 
                 private void UpdateDetail()
                 {
-                        if (m_Table != null && m_Table.Length > 0 && m_KeyField != null && m_KeyField.Length > 0 && m_DetailField != null && m_DetailField.Length > 0 && this.Workspace != null && this.DataBase != null) {
-                                if (this.DataBase.IsOpen()) {
+                        if (m_Table != null && m_Table.Length > 0 && m_KeyField != null && m_KeyField.Length > 0 && m_DetailField != null && m_DetailField.Length > 0 && this.HasWorkspace && this.Connection != null) {
+                                if (this.Connection.IsOpen()) {
                                         string TextoSql = null;
                                         if (m_Table.Length >= 7 && m_Table.Substring(0, 7) == "SELECT ") {
                                                 TextoSql = m_Table;
@@ -356,7 +387,7 @@ namespace Lui.Forms
                                                 if (m_Filter != null && m_Filter.Length > 0)
                                                         TextoSql += " WHERE " + m_Filter;
                                         }
-                                        System.Data.DataTable m_DataTable = this.DataBase.Select(TextoSql);
+                                        System.Data.DataTable m_DataTable = this.Connection.Select(TextoSql);
                                         if (m_DataTable != null) {
                                                 string[] Resultado = new string[m_DataTable.Rows.Count];
                                                 int i = 0;
@@ -372,22 +403,26 @@ namespace Lui.Forms
                                                 this.SetData = Resultado;
                                         }
                                 } else {
-                                        TextBox1.Text = "(this.DataBase is closed)";
+                                        this.TextRaw = "(this.DataBase is closed)";
                                 }
                         }
                 }
 
                 private void ComboBox_Enter(object sender, EventArgs e)
                 {
-                        if (this.AutoHeight)
+                        if (this.AutoSize || this.AlwaysExpanded)
                                 ItemList.Visible = true;
-                        else if (this.ActiveControl != TextBox1)
+
+                        if (ItemList.Visible && this.ActiveControl != ItemList) {
+                                ItemList.Select();
+                        } else if (TextBox1.Visible && this.ActiveControl != TextBox1) {
                                 TextBox1.Select();
+                        }
                 }
 
                 private void ComboBox_Leave(object sender, EventArgs e)
                 {
-                        if (ItemList.Visible)
+                        if (ItemList.Visible && m_AlwaysExpanded == false && this.AutoSize == true)
                                 ItemList.Visible = false;
                 }
 
@@ -400,36 +435,71 @@ namespace Lui.Forms
                         ItemList.Width = this.Width - ItemList.Left * 2;
                 }
 
-                private int Previous_Height;
                 private void ItemList_VisibleChanged(object sender, EventArgs e)
                 {
                         TextBox1.Visible = !ItemList.Visible;
                         ImagenMasMenos.Visible = TextBox1.Visible;
                         if (ItemList.Visible) {
-                                ItemList.Items.Clear();
-                                for (int i = m_SetDataText.GetLowerBound(0); i <= m_SetDataText.GetUpperBound(0); i++) {
-                                        if (m_SetDataText[i] != null)
-                                                ItemList.Items.Add(m_SetDataText[i]);
-                                        if (m_SetDataText[i] == this.Text)
-                                                ItemList.SelectedIndex = ItemList.Items.Count - 1;
+                                if (m_SetDataText != null && ItemList.Items.Count != m_SetDataText.Length) {
+                                        ItemList.Items.Clear();
+                                        for (int i = m_SetDataText.GetLowerBound(0); i <= m_SetDataText.GetUpperBound(0); i++) {
+                                                if (m_SetDataText[i] != null)
+                                                        ItemList.Items.Add(m_SetDataText[i]);
+                                                if (m_SetDataText[i] == this.Text)
+                                                        ItemList.SelectedIndex = ItemList.Items.Count - 1;
+                                        }
                                 }
 
-                                Previous_Height = this.Height;
                                 ItemList.Location = new System.Drawing.Point(3, 3);
-                                if (m_SetDataText.Length > 5)
-                                        ItemList.Height = ItemList.ItemHeight * 5;
-                                else
-                                        ItemList.Height = ItemList.ItemHeight * m_SetDataText.Length;
-                                this.Height = ItemList.Height + ItemList.Top * 2;
-                                ItemList.Select();
+                                if (this.AutoSize) {
+                                        // Manejo el tamaño del control de acuerdo a la lista
+                                        if (m_SetDataText.Length > 5)
+                                                ItemList.Height = ItemList.ItemHeight * 5;
+                                        else
+                                                ItemList.Height = ItemList.ItemHeight * m_SetDataText.Length;
+                                        this.Height = ItemList.Top + ItemList.Height + ItemList.Margin.Top + ItemList.Margin.Bottom;
+                                } else {
+                                        // Manejo el tamaño de la lista de acuerdo al control
+                                        ItemList.Height = this.ClientRectangle.Height - ItemList.Top - ItemList.Margin.Top + ItemList.Margin.Bottom;
+                                }
+                                if (this.ActiveControl != ItemList)
+                                        ItemList.Select();
 
                                 if (ItemList.SelectedIndex < ItemList.TopIndex)
                                         ItemList.TopIndex = ItemList.SelectedIndex;
                                 else if (ItemList.SelectedIndex >= ItemList.TopIndex + (ItemList.Height / ItemList.ItemHeight))
                                         ItemList.TopIndex = ItemList.SelectedIndex;
                         } else {
-                                this.Height = Previous_Height;
+                                this.Height = TextBox1.Top + TextBox1.Height + TextBox1.Margin.Top + TextBox1.Margin.Bottom;
                         }
+                }
+
+                protected override void OnSizeChanged(EventArgs e)
+                {
+                        if (ItemList != null && this.AutoSize == false) {
+                                ItemList.Height = this.ClientRectangle.Height - ItemList.Top - ItemList.Margin.Top + ItemList.Margin.Bottom;
+                        }
+                        base.OnSizeChanged(e);
+                }
+
+                protected override void OnKeyDown(KeyEventArgs e)
+                {
+                        switch (e.KeyCode) {
+                                case Keys.Up:
+                                        if (e.Shift == false && e.Alt == false && e.Control == false) {
+                                                e.Handled = true;
+                                                System.Windows.Forms.SendKeys.Send("+{tab}");
+                                        }
+                                        break;
+                                case Keys.Down:
+                                        if (e.Shift == false && e.Alt == false && e.Control == false) {
+                                                e.Handled = true;
+                                                System.Windows.Forms.SendKeys.Send("{tab}");
+                                        }
+                                        break;
+                        }
+
+                        base.OnKeyDown(e);
                 }
 
                 private void ItemList_KeyDown(object sender, KeyEventArgs e)

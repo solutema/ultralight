@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,15 +35,19 @@ using System.Text;
 
 namespace Lbl.Impuestos
 {
+        /// <summary>
+        /// Representa la situación de una persona frente al fisco.
+        /// </summary>
+        [Lbl.Atributos.NombreItem("Situación Tributaria")]
 	public class SituacionTributaria : ElementoDeDatos
 	{
-		public SituacionTributaria(Lfx.Data.DataBase dataBase)
+		public SituacionTributaria(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
 
-                public SituacionTributaria(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                public SituacionTributaria(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
-		public SituacionTributaria(Lfx.Data.DataBase dataBase, int itemId)
+		public SituacionTributaria(Lfx.Data.Connection dataBase, int itemId)
                         : base(dataBase, itemId) { }
 
 		public override string TablaDatos
@@ -62,7 +66,43 @@ namespace Lbl.Impuestos
 			}
 		}
 
-                public string LetraPredeterminada()
+                public string Abreviatura
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("abrev");
+                        }
+                        set
+                        {
+                                this.Registro["abrev"] = value;
+                        }
+                }
+
+                public string Comprobante
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("comprob");
+                        }
+                        set
+                        {
+                                this.Registro["comprob"] = value;
+                        }
+                }
+
+                public string Comprobante2
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("comprob2");
+                        }
+                        set
+                        {
+                                this.Registro["comprob2"] = value;
+                        }
+                }
+
+                public string ObtenerLetraPredeterminada()
                 {
                         if (Workspace.CurrentConfig.Empresa.SituacionTributaria == 2) {
                                 //Si soy responsable inscripto, facturo según la siguiente tabla
@@ -77,6 +117,29 @@ namespace Lbl.Impuestos
                                 //De lo contrario, C para todo el mundo
                                 return "C";
                         }
+                }
+
+                public override Lfx.Types.OperationResult Guardar()
+                {
+                        qGen.TableCommand Comando;
+
+                        if (this.Existe == false) {
+                                Comando = new qGen.Insert(this.Connection, this.TablaDatos);
+                        } else {
+                                Comando = new qGen.Update(this.Connection, this.TablaDatos);
+                                Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
+                        }
+
+                        Comando.Fields.AddWithValue("nombre", this.Nombre);
+                        Comando.Fields.AddWithValue("abrev", this.Abreviatura);
+                        Comando.Fields.AddWithValue("comprob", this.Comprobante);
+                        Comando.Fields.AddWithValue("comprob2", this.Comprobante2);
+
+                        this.AgregarTags(Comando);
+
+                        this.Connection.Execute(Comando);
+
+                        return base.Guardar();
                 }
 	}
 }

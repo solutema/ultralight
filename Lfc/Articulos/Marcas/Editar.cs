@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,45 +38,30 @@ using System.Windows.Forms;
 
 namespace Lfc.Articulos.Marcas
 {
-	public partial class Editar : Lui.Forms.EditForm
-	{
+        public partial class Editar : Lcc.Edicion.ControlEdicion
+        {
                 public Editar()
                 {
+                        this.ElementoTipo = typeof(Lbl.Articulos.Marca);
+
                         InitializeComponent();
                 }
 
-                public override Lfx.Types.OperationResult Create()
+                public override void ActualizarControl()
                 {
-                        if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "products.create"))
-                                return new Lfx.Types.NoAccessOperationResult();
-
-                        Lbl.Articulos.Marca Mar = new Lbl.Articulos.Marca(this.DataBase);
-                        Mar.Crear();
-                        this.FromRow(Mar);
-
-                        return new Lfx.Types.SuccessOperationResult();
-                }
-
-                public override void FromRow(Lbl.ElementoDeDatos row)
-                {
-                        base.FromRow(row);
-
-                        Lbl.Articulos.Marca Mar = row as Lbl.Articulos.Marca;
+                        Lbl.Articulos.Marca Mar = this.Elemento as Lbl.Articulos.Marca;
 
                         EntradaNombre.Text = Mar.Nombre;
                         EntradaUrl.Text = Mar.Url;
                         EntradaProveedor.Elemento = Mar.Proveedor;
                         EntradaObs.Text = Mar.Obs;
 
-                        if (Mar.Existe)
-                                this.Text = "Marca: " + Mar.ToString();
-                        else
-                                this.Text = "Marca: nueva";
+                        base.ActualizarControl();
                 }
 
-                public override Lbl.ElementoDeDatos ToRow()
+                public override void ActualizarElemento()
                 {
-                        Lbl.Articulos.Marca Mar = base.ToRow() as Lbl.Articulos.Marca;
+                        Lbl.Articulos.Marca Mar = this.Elemento as Lbl.Articulos.Marca;
 
                         Mar.Nombre = EntradaNombre.Text;
                         Mar.Url = EntradaUrl.Text;
@@ -84,7 +69,7 @@ namespace Lfc.Articulos.Marcas
                         Mar.Obs = EntradaObs.Text;
                         Mar.Estado = 1;
 
-                        return Mar;
+                        base.ActualizarElemento();
                 }
-	}
+        }
 }

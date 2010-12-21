@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -61,32 +61,32 @@ namespace Lazaro.Reportes
                     this.label1 = new System.Windows.Forms.Label();
                     this.note1 = new Lui.Forms.Note();
                     this.EntradaActivosCajas = new Lui.Forms.TextBox();
-                    this.txtFuturosTarjetas = new Lui.Forms.TextBox();
+                    this.EntradaFuturosTarjetas = new Lui.Forms.TextBox();
                     this.label2 = new System.Windows.Forms.Label();
-                    this.txtActivosStock = new Lui.Forms.TextBox();
+                    this.EntradaActivosStock = new Lui.Forms.TextBox();
                     this.label3 = new System.Windows.Forms.Label();
-                    this.txtFuturosPedidos = new Lui.Forms.TextBox();
+                    this.EntradaFuturosPedidos = new Lui.Forms.TextBox();
                     this.label4 = new System.Windows.Forms.Label();
-                    this.txtPasivosCheques = new Lui.Forms.TextBox();
+                    this.EntradaPasivosCheques = new Lui.Forms.TextBox();
                     this.label7 = new System.Windows.Forms.Label();
                     this.EntradaPasivosCajas = new Lui.Forms.TextBox();
                     this.note2 = new Lui.Forms.Note();
                     this.label8 = new System.Windows.Forms.Label();
                     this.note3 = new Lui.Forms.Note();
-                    this.txtActivosSubtotal = new Lui.Forms.TextBox();
+                    this.EntradaActivosSubtotal = new Lui.Forms.TextBox();
                     this.label5 = new System.Windows.Forms.Label();
-                    this.txtPasivosSubtotal = new Lui.Forms.TextBox();
+                    this.EntradaPasivosSubtotal = new Lui.Forms.TextBox();
                     this.label6 = new System.Windows.Forms.Label();
-                    this.txtFuturosSubtotal = new Lui.Forms.TextBox();
+                    this.EntradaFuturosSubtotal = new Lui.Forms.TextBox();
                     this.label9 = new System.Windows.Forms.Label();
-                    this.txtPatrimonioActual = new Lui.Forms.TextBox();
+                    this.EntradaPatrimonioActual = new Lui.Forms.TextBox();
                     this.label10 = new System.Windows.Forms.Label();
                     this.note4 = new Lui.Forms.Note();
-                    this.txtPatrimonioFuturo = new Lui.Forms.TextBox();
+                    this.EntradaPatrimonioFuturo = new Lui.Forms.TextBox();
                     this.label11 = new System.Windows.Forms.Label();
-                    this.txtActivosActualesFuturos = new Lui.Forms.TextBox();
+                    this.EntradaActivosActualesFuturos = new Lui.Forms.TextBox();
                     this.label12 = new System.Windows.Forms.Label();
-                    this.txtPasivosStock = new Lui.Forms.TextBox();
+                    this.EntradaPasivosStock = new Lui.Forms.TextBox();
                     this.label13 = new System.Windows.Forms.Label();
                     this.EntradaCC = new Lui.Forms.TextBox();
                     this.label14 = new System.Windows.Forms.Label();
@@ -104,7 +104,7 @@ namespace Lazaro.Reportes
                     // 
                     // note1
                     // 
-                    this.note1.AutoHeight = false;
+                    this.note1.AutoSize = false;
                     this.note1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.note1.ForeColor = System.Drawing.SystemColors.ControlText;
                     this.note1.Location = new System.Drawing.Point(16, 16);
@@ -120,10 +120,10 @@ namespace Lazaro.Reportes
                     // 
                     // EntradaActivosCajas
                     // 
-                    this.EntradaActivosCajas.AutoHeight = false;
+                    this.EntradaActivosCajas.AutoSize = false;
                     this.EntradaActivosCajas.AutoNav = true;
                     this.EntradaActivosCajas.AutoTab = true;
-                    this.EntradaActivosCajas.DataType = Lui.Forms.DataTypes.Money;
+                    this.EntradaActivosCajas.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaActivosCajas.DecimalPlaces = -1;
                     this.EntradaActivosCajas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.EntradaActivosCajas.ForceCase = Lui.Forms.TextCasing.None;
@@ -141,36 +141,34 @@ namespace Lazaro.Reportes
                     this.EntradaActivosCajas.Sufijo = "";
                     this.EntradaActivosCajas.TabIndex = 2;
                     this.EntradaActivosCajas.Text = "0.00";
-                    this.EntradaActivosCajas.TextRaw = "0.00";
                     this.EntradaActivosCajas.TipWhenBlank = "";
                     this.EntradaActivosCajas.ToolTipText = "";
                     // 
                     // txtFuturosTarjetas
                     // 
-                    this.txtFuturosTarjetas.AutoHeight = false;
-                    this.txtFuturosTarjetas.AutoNav = true;
-                    this.txtFuturosTarjetas.AutoTab = true;
-                    this.txtFuturosTarjetas.DataType = Lui.Forms.DataTypes.Money;
-                    this.txtFuturosTarjetas.DecimalPlaces = -1;
-                    this.txtFuturosTarjetas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                    this.txtFuturosTarjetas.ForceCase = Lui.Forms.TextCasing.None;
-                    this.txtFuturosTarjetas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                    this.txtFuturosTarjetas.Location = new System.Drawing.Point(640, 52);
-                    this.txtFuturosTarjetas.MaxLenght = 32767;
-                    this.txtFuturosTarjetas.MultiLine = false;
-                    this.txtFuturosTarjetas.Name = "txtFuturosTarjetas";
-                    this.txtFuturosTarjetas.Padding = new System.Windows.Forms.Padding(2);
-                    this.txtFuturosTarjetas.PasswordChar = '\0';
-                    this.txtFuturosTarjetas.Prefijo = "$";
-                    this.txtFuturosTarjetas.ReadOnly = true;
-                    this.txtFuturosTarjetas.SelectOnFocus = true;
-                    this.txtFuturosTarjetas.Size = new System.Drawing.Size(100, 24);
-                    this.txtFuturosTarjetas.Sufijo = "";
-                    this.txtFuturosTarjetas.TabIndex = 4;
-                    this.txtFuturosTarjetas.Text = "0.00";
-                    this.txtFuturosTarjetas.TextRaw = "0.00";
-                    this.txtFuturosTarjetas.TipWhenBlank = "";
-                    this.txtFuturosTarjetas.ToolTipText = "";
+                    this.EntradaFuturosTarjetas.AutoSize = false;
+                    this.EntradaFuturosTarjetas.AutoNav = true;
+                    this.EntradaFuturosTarjetas.AutoTab = true;
+                    this.EntradaFuturosTarjetas.DataType = Lui.Forms.DataTypes.Currency;
+                    this.EntradaFuturosTarjetas.DecimalPlaces = -1;
+                    this.EntradaFuturosTarjetas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                    this.EntradaFuturosTarjetas.ForceCase = Lui.Forms.TextCasing.None;
+                    this.EntradaFuturosTarjetas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                    this.EntradaFuturosTarjetas.Location = new System.Drawing.Point(640, 52);
+                    this.EntradaFuturosTarjetas.MaxLenght = 32767;
+                    this.EntradaFuturosTarjetas.MultiLine = false;
+                    this.EntradaFuturosTarjetas.Name = "txtFuturosTarjetas";
+                    this.EntradaFuturosTarjetas.Padding = new System.Windows.Forms.Padding(2);
+                    this.EntradaFuturosTarjetas.PasswordChar = '\0';
+                    this.EntradaFuturosTarjetas.Prefijo = "$";
+                    this.EntradaFuturosTarjetas.ReadOnly = true;
+                    this.EntradaFuturosTarjetas.SelectOnFocus = true;
+                    this.EntradaFuturosTarjetas.Size = new System.Drawing.Size(100, 24);
+                    this.EntradaFuturosTarjetas.Sufijo = "";
+                    this.EntradaFuturosTarjetas.TabIndex = 4;
+                    this.EntradaFuturosTarjetas.Text = "0.00";
+                    this.EntradaFuturosTarjetas.TipWhenBlank = "";
+                    this.EntradaFuturosTarjetas.ToolTipText = "";
                     // 
                     // label2
                     // 
@@ -184,30 +182,29 @@ namespace Lazaro.Reportes
                     // 
                     // txtActivosStock
                     // 
-                    this.txtActivosStock.AutoHeight = false;
-                    this.txtActivosStock.AutoNav = true;
-                    this.txtActivosStock.AutoTab = true;
-                    this.txtActivosStock.DataType = Lui.Forms.DataTypes.Money;
-                    this.txtActivosStock.DecimalPlaces = -1;
-                    this.txtActivosStock.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                    this.txtActivosStock.ForceCase = Lui.Forms.TextCasing.None;
-                    this.txtActivosStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                    this.txtActivosStock.Location = new System.Drawing.Point(268, 80);
-                    this.txtActivosStock.MaxLenght = 32767;
-                    this.txtActivosStock.MultiLine = false;
-                    this.txtActivosStock.Name = "txtActivosStock";
-                    this.txtActivosStock.Padding = new System.Windows.Forms.Padding(2);
-                    this.txtActivosStock.PasswordChar = '\0';
-                    this.txtActivosStock.Prefijo = "$";
-                    this.txtActivosStock.ReadOnly = true;
-                    this.txtActivosStock.SelectOnFocus = true;
-                    this.txtActivosStock.Size = new System.Drawing.Size(100, 24);
-                    this.txtActivosStock.Sufijo = "";
-                    this.txtActivosStock.TabIndex = 6;
-                    this.txtActivosStock.Text = "0.00";
-                    this.txtActivosStock.TextRaw = "0.00";
-                    this.txtActivosStock.TipWhenBlank = "";
-                    this.txtActivosStock.ToolTipText = "";
+                    this.EntradaActivosStock.AutoSize = false;
+                    this.EntradaActivosStock.AutoNav = true;
+                    this.EntradaActivosStock.AutoTab = true;
+                    this.EntradaActivosStock.DataType = Lui.Forms.DataTypes.Currency;
+                    this.EntradaActivosStock.DecimalPlaces = -1;
+                    this.EntradaActivosStock.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                    this.EntradaActivosStock.ForceCase = Lui.Forms.TextCasing.None;
+                    this.EntradaActivosStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                    this.EntradaActivosStock.Location = new System.Drawing.Point(268, 80);
+                    this.EntradaActivosStock.MaxLenght = 32767;
+                    this.EntradaActivosStock.MultiLine = false;
+                    this.EntradaActivosStock.Name = "txtActivosStock";
+                    this.EntradaActivosStock.Padding = new System.Windows.Forms.Padding(2);
+                    this.EntradaActivosStock.PasswordChar = '\0';
+                    this.EntradaActivosStock.Prefijo = "$";
+                    this.EntradaActivosStock.ReadOnly = true;
+                    this.EntradaActivosStock.SelectOnFocus = true;
+                    this.EntradaActivosStock.Size = new System.Drawing.Size(100, 24);
+                    this.EntradaActivosStock.Sufijo = "";
+                    this.EntradaActivosStock.TabIndex = 6;
+                    this.EntradaActivosStock.Text = "0.00";
+                    this.EntradaActivosStock.TipWhenBlank = "";
+                    this.EntradaActivosStock.ToolTipText = "";
                     // 
                     // label3
                     // 
@@ -221,30 +218,29 @@ namespace Lazaro.Reportes
                     // 
                     // txtFuturosPedidos
                     // 
-                    this.txtFuturosPedidos.AutoHeight = false;
-                    this.txtFuturosPedidos.AutoNav = true;
-                    this.txtFuturosPedidos.AutoTab = true;
-                    this.txtFuturosPedidos.DataType = Lui.Forms.DataTypes.Money;
-                    this.txtFuturosPedidos.DecimalPlaces = -1;
-                    this.txtFuturosPedidos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                    this.txtFuturosPedidos.ForceCase = Lui.Forms.TextCasing.None;
-                    this.txtFuturosPedidos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                    this.txtFuturosPedidos.Location = new System.Drawing.Point(640, 114);
-                    this.txtFuturosPedidos.MaxLenght = 32767;
-                    this.txtFuturosPedidos.MultiLine = false;
-                    this.txtFuturosPedidos.Name = "txtFuturosPedidos";
-                    this.txtFuturosPedidos.Padding = new System.Windows.Forms.Padding(2);
-                    this.txtFuturosPedidos.PasswordChar = '\0';
-                    this.txtFuturosPedidos.Prefijo = "$";
-                    this.txtFuturosPedidos.ReadOnly = true;
-                    this.txtFuturosPedidos.SelectOnFocus = true;
-                    this.txtFuturosPedidos.Size = new System.Drawing.Size(100, 24);
-                    this.txtFuturosPedidos.Sufijo = "";
-                    this.txtFuturosPedidos.TabIndex = 8;
-                    this.txtFuturosPedidos.Text = "0.00";
-                    this.txtFuturosPedidos.TextRaw = "0.00";
-                    this.txtFuturosPedidos.TipWhenBlank = "";
-                    this.txtFuturosPedidos.ToolTipText = "";
+                    this.EntradaFuturosPedidos.AutoSize = false;
+                    this.EntradaFuturosPedidos.AutoNav = true;
+                    this.EntradaFuturosPedidos.AutoTab = true;
+                    this.EntradaFuturosPedidos.DataType = Lui.Forms.DataTypes.Currency;
+                    this.EntradaFuturosPedidos.DecimalPlaces = -1;
+                    this.EntradaFuturosPedidos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                    this.EntradaFuturosPedidos.ForceCase = Lui.Forms.TextCasing.None;
+                    this.EntradaFuturosPedidos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                    this.EntradaFuturosPedidos.Location = new System.Drawing.Point(640, 114);
+                    this.EntradaFuturosPedidos.MaxLenght = 32767;
+                    this.EntradaFuturosPedidos.MultiLine = false;
+                    this.EntradaFuturosPedidos.Name = "txtFuturosPedidos";
+                    this.EntradaFuturosPedidos.Padding = new System.Windows.Forms.Padding(2);
+                    this.EntradaFuturosPedidos.PasswordChar = '\0';
+                    this.EntradaFuturosPedidos.Prefijo = "$";
+                    this.EntradaFuturosPedidos.ReadOnly = true;
+                    this.EntradaFuturosPedidos.SelectOnFocus = true;
+                    this.EntradaFuturosPedidos.Size = new System.Drawing.Size(100, 24);
+                    this.EntradaFuturosPedidos.Sufijo = "";
+                    this.EntradaFuturosPedidos.TabIndex = 8;
+                    this.EntradaFuturosPedidos.Text = "0.00";
+                    this.EntradaFuturosPedidos.TipWhenBlank = "";
+                    this.EntradaFuturosPedidos.ToolTipText = "";
                     // 
                     // label4
                     // 
@@ -258,30 +254,29 @@ namespace Lazaro.Reportes
                     // 
                     // txtPasivosCheques
                     // 
-                    this.txtPasivosCheques.AutoHeight = false;
-                    this.txtPasivosCheques.AutoNav = true;
-                    this.txtPasivosCheques.AutoTab = true;
-                    this.txtPasivosCheques.DataType = Lui.Forms.DataTypes.Money;
-                    this.txtPasivosCheques.DecimalPlaces = -1;
-                    this.txtPasivosCheques.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                    this.txtPasivosCheques.ForceCase = Lui.Forms.TextCasing.None;
-                    this.txtPasivosCheques.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                    this.txtPasivosCheques.Location = new System.Drawing.Point(268, 260);
-                    this.txtPasivosCheques.MaxLenght = 32767;
-                    this.txtPasivosCheques.MultiLine = false;
-                    this.txtPasivosCheques.Name = "txtPasivosCheques";
-                    this.txtPasivosCheques.Padding = new System.Windows.Forms.Padding(2);
-                    this.txtPasivosCheques.PasswordChar = '\0';
-                    this.txtPasivosCheques.Prefijo = "$";
-                    this.txtPasivosCheques.ReadOnly = true;
-                    this.txtPasivosCheques.SelectOnFocus = true;
-                    this.txtPasivosCheques.Size = new System.Drawing.Size(100, 24);
-                    this.txtPasivosCheques.Sufijo = "";
-                    this.txtPasivosCheques.TabIndex = 13;
-                    this.txtPasivosCheques.Text = "0.00";
-                    this.txtPasivosCheques.TextRaw = "0.00";
-                    this.txtPasivosCheques.TipWhenBlank = "";
-                    this.txtPasivosCheques.ToolTipText = "";
+                    this.EntradaPasivosCheques.AutoSize = false;
+                    this.EntradaPasivosCheques.AutoNav = true;
+                    this.EntradaPasivosCheques.AutoTab = true;
+                    this.EntradaPasivosCheques.DataType = Lui.Forms.DataTypes.Currency;
+                    this.EntradaPasivosCheques.DecimalPlaces = -1;
+                    this.EntradaPasivosCheques.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                    this.EntradaPasivosCheques.ForceCase = Lui.Forms.TextCasing.None;
+                    this.EntradaPasivosCheques.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                    this.EntradaPasivosCheques.Location = new System.Drawing.Point(268, 260);
+                    this.EntradaPasivosCheques.MaxLenght = 32767;
+                    this.EntradaPasivosCheques.MultiLine = false;
+                    this.EntradaPasivosCheques.Name = "txtPasivosCheques";
+                    this.EntradaPasivosCheques.Padding = new System.Windows.Forms.Padding(2);
+                    this.EntradaPasivosCheques.PasswordChar = '\0';
+                    this.EntradaPasivosCheques.Prefijo = "$";
+                    this.EntradaPasivosCheques.ReadOnly = true;
+                    this.EntradaPasivosCheques.SelectOnFocus = true;
+                    this.EntradaPasivosCheques.Size = new System.Drawing.Size(100, 24);
+                    this.EntradaPasivosCheques.Sufijo = "";
+                    this.EntradaPasivosCheques.TabIndex = 13;
+                    this.EntradaPasivosCheques.Text = "0.00";
+                    this.EntradaPasivosCheques.TipWhenBlank = "";
+                    this.EntradaPasivosCheques.ToolTipText = "";
                     // 
                     // label7
                     // 
@@ -295,10 +290,10 @@ namespace Lazaro.Reportes
                     // 
                     // EntradaPasivosCajas
                     // 
-                    this.EntradaPasivosCajas.AutoHeight = false;
+                    this.EntradaPasivosCajas.AutoSize = false;
                     this.EntradaPasivosCajas.AutoNav = true;
                     this.EntradaPasivosCajas.AutoTab = true;
-                    this.EntradaPasivosCajas.DataType = Lui.Forms.DataTypes.Money;
+                    this.EntradaPasivosCajas.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaPasivosCajas.DecimalPlaces = -1;
                     this.EntradaPasivosCajas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.EntradaPasivosCajas.ForceCase = Lui.Forms.TextCasing.None;
@@ -316,13 +311,12 @@ namespace Lazaro.Reportes
                     this.EntradaPasivosCajas.Sufijo = "";
                     this.EntradaPasivosCajas.TabIndex = 11;
                     this.EntradaPasivosCajas.Text = "0.00";
-                    this.EntradaPasivosCajas.TextRaw = "0.00";
                     this.EntradaPasivosCajas.TipWhenBlank = "";
                     this.EntradaPasivosCajas.ToolTipText = "";
                     // 
                     // note2
                     // 
-                    this.note2.AutoHeight = false;
+                    this.note2.AutoSize = false;
                     this.note2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.note2.ForeColor = System.Drawing.SystemColors.ControlText;
                     this.note2.Location = new System.Drawing.Point(16, 168);
@@ -348,7 +342,7 @@ namespace Lazaro.Reportes
                     // 
                     // note3
                     // 
-                    this.note3.AutoHeight = false;
+                    this.note3.AutoSize = false;
                     this.note3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.note3.ForeColor = System.Drawing.SystemColors.ControlText;
                     this.note3.Location = new System.Drawing.Point(388, 16);
@@ -364,30 +358,29 @@ namespace Lazaro.Reportes
                     // 
                     // txtActivosSubtotal
                     // 
-                    this.txtActivosSubtotal.AutoHeight = false;
-                    this.txtActivosSubtotal.AutoNav = true;
-                    this.txtActivosSubtotal.AutoTab = true;
-                    this.txtActivosSubtotal.DataType = Lui.Forms.DataTypes.Money;
-                    this.txtActivosSubtotal.DecimalPlaces = -1;
-                    this.txtActivosSubtotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                    this.txtActivosSubtotal.ForceCase = Lui.Forms.TextCasing.None;
-                    this.txtActivosSubtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                    this.txtActivosSubtotal.Location = new System.Drawing.Point(268, 112);
-                    this.txtActivosSubtotal.MaxLenght = 32767;
-                    this.txtActivosSubtotal.MultiLine = false;
-                    this.txtActivosSubtotal.Name = "txtActivosSubtotal";
-                    this.txtActivosSubtotal.Padding = new System.Windows.Forms.Padding(2);
-                    this.txtActivosSubtotal.PasswordChar = '\0';
-                    this.txtActivosSubtotal.Prefijo = "$";
-                    this.txtActivosSubtotal.ReadOnly = true;
-                    this.txtActivosSubtotal.SelectOnFocus = true;
-                    this.txtActivosSubtotal.Size = new System.Drawing.Size(100, 24);
-                    this.txtActivosSubtotal.Sufijo = "";
-                    this.txtActivosSubtotal.TabIndex = 20;
-                    this.txtActivosSubtotal.Text = "0.00";
-                    this.txtActivosSubtotal.TextRaw = "0.00";
-                    this.txtActivosSubtotal.TipWhenBlank = "";
-                    this.txtActivosSubtotal.ToolTipText = "";
+                    this.EntradaActivosSubtotal.AutoSize = false;
+                    this.EntradaActivosSubtotal.AutoNav = true;
+                    this.EntradaActivosSubtotal.AutoTab = true;
+                    this.EntradaActivosSubtotal.DataType = Lui.Forms.DataTypes.Currency;
+                    this.EntradaActivosSubtotal.DecimalPlaces = -1;
+                    this.EntradaActivosSubtotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                    this.EntradaActivosSubtotal.ForceCase = Lui.Forms.TextCasing.None;
+                    this.EntradaActivosSubtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                    this.EntradaActivosSubtotal.Location = new System.Drawing.Point(268, 112);
+                    this.EntradaActivosSubtotal.MaxLenght = 32767;
+                    this.EntradaActivosSubtotal.MultiLine = false;
+                    this.EntradaActivosSubtotal.Name = "txtActivosSubtotal";
+                    this.EntradaActivosSubtotal.Padding = new System.Windows.Forms.Padding(2);
+                    this.EntradaActivosSubtotal.PasswordChar = '\0';
+                    this.EntradaActivosSubtotal.Prefijo = "$";
+                    this.EntradaActivosSubtotal.ReadOnly = true;
+                    this.EntradaActivosSubtotal.SelectOnFocus = true;
+                    this.EntradaActivosSubtotal.Size = new System.Drawing.Size(100, 24);
+                    this.EntradaActivosSubtotal.Sufijo = "";
+                    this.EntradaActivosSubtotal.TabIndex = 20;
+                    this.EntradaActivosSubtotal.Text = "0.00";
+                    this.EntradaActivosSubtotal.TipWhenBlank = "";
+                    this.EntradaActivosSubtotal.ToolTipText = "";
                     // 
                     // label5
                     // 
@@ -402,30 +395,29 @@ namespace Lazaro.Reportes
                     // 
                     // txtPasivosSubtotal
                     // 
-                    this.txtPasivosSubtotal.AutoHeight = false;
-                    this.txtPasivosSubtotal.AutoNav = true;
-                    this.txtPasivosSubtotal.AutoTab = true;
-                    this.txtPasivosSubtotal.DataType = Lui.Forms.DataTypes.Money;
-                    this.txtPasivosSubtotal.DecimalPlaces = -1;
-                    this.txtPasivosSubtotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                    this.txtPasivosSubtotal.ForceCase = Lui.Forms.TextCasing.None;
-                    this.txtPasivosSubtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                    this.txtPasivosSubtotal.Location = new System.Drawing.Point(268, 292);
-                    this.txtPasivosSubtotal.MaxLenght = 32767;
-                    this.txtPasivosSubtotal.MultiLine = false;
-                    this.txtPasivosSubtotal.Name = "txtPasivosSubtotal";
-                    this.txtPasivosSubtotal.Padding = new System.Windows.Forms.Padding(2);
-                    this.txtPasivosSubtotal.PasswordChar = '\0';
-                    this.txtPasivosSubtotal.Prefijo = "$";
-                    this.txtPasivosSubtotal.ReadOnly = true;
-                    this.txtPasivosSubtotal.SelectOnFocus = true;
-                    this.txtPasivosSubtotal.Size = new System.Drawing.Size(100, 24);
-                    this.txtPasivosSubtotal.Sufijo = "";
-                    this.txtPasivosSubtotal.TabIndex = 22;
-                    this.txtPasivosSubtotal.Text = "0.00";
-                    this.txtPasivosSubtotal.TextRaw = "0.00";
-                    this.txtPasivosSubtotal.TipWhenBlank = "";
-                    this.txtPasivosSubtotal.ToolTipText = "";
+                    this.EntradaPasivosSubtotal.AutoSize = false;
+                    this.EntradaPasivosSubtotal.AutoNav = true;
+                    this.EntradaPasivosSubtotal.AutoTab = true;
+                    this.EntradaPasivosSubtotal.DataType = Lui.Forms.DataTypes.Currency;
+                    this.EntradaPasivosSubtotal.DecimalPlaces = -1;
+                    this.EntradaPasivosSubtotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                    this.EntradaPasivosSubtotal.ForceCase = Lui.Forms.TextCasing.None;
+                    this.EntradaPasivosSubtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                    this.EntradaPasivosSubtotal.Location = new System.Drawing.Point(268, 292);
+                    this.EntradaPasivosSubtotal.MaxLenght = 32767;
+                    this.EntradaPasivosSubtotal.MultiLine = false;
+                    this.EntradaPasivosSubtotal.Name = "txtPasivosSubtotal";
+                    this.EntradaPasivosSubtotal.Padding = new System.Windows.Forms.Padding(2);
+                    this.EntradaPasivosSubtotal.PasswordChar = '\0';
+                    this.EntradaPasivosSubtotal.Prefijo = "$";
+                    this.EntradaPasivosSubtotal.ReadOnly = true;
+                    this.EntradaPasivosSubtotal.SelectOnFocus = true;
+                    this.EntradaPasivosSubtotal.Size = new System.Drawing.Size(100, 24);
+                    this.EntradaPasivosSubtotal.Sufijo = "";
+                    this.EntradaPasivosSubtotal.TabIndex = 22;
+                    this.EntradaPasivosSubtotal.Text = "0.00";
+                    this.EntradaPasivosSubtotal.TipWhenBlank = "";
+                    this.EntradaPasivosSubtotal.ToolTipText = "";
                     // 
                     // label6
                     // 
@@ -440,30 +432,29 @@ namespace Lazaro.Reportes
                     // 
                     // txtFuturosSubtotal
                     // 
-                    this.txtFuturosSubtotal.AutoHeight = false;
-                    this.txtFuturosSubtotal.AutoNav = true;
-                    this.txtFuturosSubtotal.AutoTab = true;
-                    this.txtFuturosSubtotal.DataType = Lui.Forms.DataTypes.Money;
-                    this.txtFuturosSubtotal.DecimalPlaces = -1;
-                    this.txtFuturosSubtotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                    this.txtFuturosSubtotal.ForceCase = Lui.Forms.TextCasing.None;
-                    this.txtFuturosSubtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                    this.txtFuturosSubtotal.Location = new System.Drawing.Point(640, 146);
-                    this.txtFuturosSubtotal.MaxLenght = 32767;
-                    this.txtFuturosSubtotal.MultiLine = false;
-                    this.txtFuturosSubtotal.Name = "txtFuturosSubtotal";
-                    this.txtFuturosSubtotal.Padding = new System.Windows.Forms.Padding(2);
-                    this.txtFuturosSubtotal.PasswordChar = '\0';
-                    this.txtFuturosSubtotal.Prefijo = "$";
-                    this.txtFuturosSubtotal.ReadOnly = true;
-                    this.txtFuturosSubtotal.SelectOnFocus = true;
-                    this.txtFuturosSubtotal.Size = new System.Drawing.Size(100, 24);
-                    this.txtFuturosSubtotal.Sufijo = "";
-                    this.txtFuturosSubtotal.TabIndex = 24;
-                    this.txtFuturosSubtotal.Text = "0.00";
-                    this.txtFuturosSubtotal.TextRaw = "0.00";
-                    this.txtFuturosSubtotal.TipWhenBlank = "";
-                    this.txtFuturosSubtotal.ToolTipText = "";
+                    this.EntradaFuturosSubtotal.AutoSize = false;
+                    this.EntradaFuturosSubtotal.AutoNav = true;
+                    this.EntradaFuturosSubtotal.AutoTab = true;
+                    this.EntradaFuturosSubtotal.DataType = Lui.Forms.DataTypes.Currency;
+                    this.EntradaFuturosSubtotal.DecimalPlaces = -1;
+                    this.EntradaFuturosSubtotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                    this.EntradaFuturosSubtotal.ForceCase = Lui.Forms.TextCasing.None;
+                    this.EntradaFuturosSubtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                    this.EntradaFuturosSubtotal.Location = new System.Drawing.Point(640, 146);
+                    this.EntradaFuturosSubtotal.MaxLenght = 32767;
+                    this.EntradaFuturosSubtotal.MultiLine = false;
+                    this.EntradaFuturosSubtotal.Name = "txtFuturosSubtotal";
+                    this.EntradaFuturosSubtotal.Padding = new System.Windows.Forms.Padding(2);
+                    this.EntradaFuturosSubtotal.PasswordChar = '\0';
+                    this.EntradaFuturosSubtotal.Prefijo = "$";
+                    this.EntradaFuturosSubtotal.ReadOnly = true;
+                    this.EntradaFuturosSubtotal.SelectOnFocus = true;
+                    this.EntradaFuturosSubtotal.Size = new System.Drawing.Size(100, 24);
+                    this.EntradaFuturosSubtotal.Sufijo = "";
+                    this.EntradaFuturosSubtotal.TabIndex = 24;
+                    this.EntradaFuturosSubtotal.Text = "0.00";
+                    this.EntradaFuturosSubtotal.TipWhenBlank = "";
+                    this.EntradaFuturosSubtotal.ToolTipText = "";
                     // 
                     // label9
                     // 
@@ -478,30 +469,29 @@ namespace Lazaro.Reportes
                     // 
                     // txtPatrimonioActual
                     // 
-                    this.txtPatrimonioActual.AutoHeight = false;
-                    this.txtPatrimonioActual.AutoNav = true;
-                    this.txtPatrimonioActual.AutoTab = true;
-                    this.txtPatrimonioActual.DataType = Lui.Forms.DataTypes.Money;
-                    this.txtPatrimonioActual.DecimalPlaces = -1;
-                    this.txtPatrimonioActual.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                    this.txtPatrimonioActual.ForceCase = Lui.Forms.TextCasing.None;
-                    this.txtPatrimonioActual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                    this.txtPatrimonioActual.Location = new System.Drawing.Point(644, 266);
-                    this.txtPatrimonioActual.MaxLenght = 32767;
-                    this.txtPatrimonioActual.MultiLine = false;
-                    this.txtPatrimonioActual.Name = "txtPatrimonioActual";
-                    this.txtPatrimonioActual.Padding = new System.Windows.Forms.Padding(2);
-                    this.txtPatrimonioActual.PasswordChar = '\0';
-                    this.txtPatrimonioActual.Prefijo = "$";
-                    this.txtPatrimonioActual.ReadOnly = true;
-                    this.txtPatrimonioActual.SelectOnFocus = true;
-                    this.txtPatrimonioActual.Size = new System.Drawing.Size(100, 24);
-                    this.txtPatrimonioActual.Sufijo = "";
-                    this.txtPatrimonioActual.TabIndex = 26;
-                    this.txtPatrimonioActual.Text = "0.00";
-                    this.txtPatrimonioActual.TextRaw = "0.00";
-                    this.txtPatrimonioActual.TipWhenBlank = "";
-                    this.txtPatrimonioActual.ToolTipText = "";
+                    this.EntradaPatrimonioActual.AutoSize = false;
+                    this.EntradaPatrimonioActual.AutoNav = true;
+                    this.EntradaPatrimonioActual.AutoTab = true;
+                    this.EntradaPatrimonioActual.DataType = Lui.Forms.DataTypes.Currency;
+                    this.EntradaPatrimonioActual.DecimalPlaces = -1;
+                    this.EntradaPatrimonioActual.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                    this.EntradaPatrimonioActual.ForceCase = Lui.Forms.TextCasing.None;
+                    this.EntradaPatrimonioActual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                    this.EntradaPatrimonioActual.Location = new System.Drawing.Point(644, 266);
+                    this.EntradaPatrimonioActual.MaxLenght = 32767;
+                    this.EntradaPatrimonioActual.MultiLine = false;
+                    this.EntradaPatrimonioActual.Name = "txtPatrimonioActual";
+                    this.EntradaPatrimonioActual.Padding = new System.Windows.Forms.Padding(2);
+                    this.EntradaPatrimonioActual.PasswordChar = '\0';
+                    this.EntradaPatrimonioActual.Prefijo = "$";
+                    this.EntradaPatrimonioActual.ReadOnly = true;
+                    this.EntradaPatrimonioActual.SelectOnFocus = true;
+                    this.EntradaPatrimonioActual.Size = new System.Drawing.Size(100, 24);
+                    this.EntradaPatrimonioActual.Sufijo = "";
+                    this.EntradaPatrimonioActual.TabIndex = 26;
+                    this.EntradaPatrimonioActual.Text = "0.00";
+                    this.EntradaPatrimonioActual.TipWhenBlank = "";
+                    this.EntradaPatrimonioActual.ToolTipText = "";
                     // 
                     // label10
                     // 
@@ -516,7 +506,7 @@ namespace Lazaro.Reportes
                     // 
                     // note4
                     // 
-                    this.note4.AutoHeight = false;
+                    this.note4.AutoSize = false;
                     this.note4.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.note4.ForeColor = System.Drawing.SystemColors.ControlText;
                     this.note4.Location = new System.Drawing.Point(392, 230);
@@ -532,30 +522,29 @@ namespace Lazaro.Reportes
                     // 
                     // txtPatrimonioFuturo
                     // 
-                    this.txtPatrimonioFuturo.AutoHeight = false;
-                    this.txtPatrimonioFuturo.AutoNav = true;
-                    this.txtPatrimonioFuturo.AutoTab = true;
-                    this.txtPatrimonioFuturo.DataType = Lui.Forms.DataTypes.Money;
-                    this.txtPatrimonioFuturo.DecimalPlaces = -1;
-                    this.txtPatrimonioFuturo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                    this.txtPatrimonioFuturo.ForceCase = Lui.Forms.TextCasing.None;
-                    this.txtPatrimonioFuturo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                    this.txtPatrimonioFuturo.Location = new System.Drawing.Point(644, 294);
-                    this.txtPatrimonioFuturo.MaxLenght = 32767;
-                    this.txtPatrimonioFuturo.MultiLine = false;
-                    this.txtPatrimonioFuturo.Name = "txtPatrimonioFuturo";
-                    this.txtPatrimonioFuturo.Padding = new System.Windows.Forms.Padding(2);
-                    this.txtPatrimonioFuturo.PasswordChar = '\0';
-                    this.txtPatrimonioFuturo.Prefijo = "$";
-                    this.txtPatrimonioFuturo.ReadOnly = true;
-                    this.txtPatrimonioFuturo.SelectOnFocus = true;
-                    this.txtPatrimonioFuturo.Size = new System.Drawing.Size(100, 24);
-                    this.txtPatrimonioFuturo.Sufijo = "";
-                    this.txtPatrimonioFuturo.TabIndex = 29;
-                    this.txtPatrimonioFuturo.Text = "0.00";
-                    this.txtPatrimonioFuturo.TextRaw = "0.00";
-                    this.txtPatrimonioFuturo.TipWhenBlank = "";
-                    this.txtPatrimonioFuturo.ToolTipText = "";
+                    this.EntradaPatrimonioFuturo.AutoSize = false;
+                    this.EntradaPatrimonioFuturo.AutoNav = true;
+                    this.EntradaPatrimonioFuturo.AutoTab = true;
+                    this.EntradaPatrimonioFuturo.DataType = Lui.Forms.DataTypes.Currency;
+                    this.EntradaPatrimonioFuturo.DecimalPlaces = -1;
+                    this.EntradaPatrimonioFuturo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                    this.EntradaPatrimonioFuturo.ForceCase = Lui.Forms.TextCasing.None;
+                    this.EntradaPatrimonioFuturo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                    this.EntradaPatrimonioFuturo.Location = new System.Drawing.Point(644, 294);
+                    this.EntradaPatrimonioFuturo.MaxLenght = 32767;
+                    this.EntradaPatrimonioFuturo.MultiLine = false;
+                    this.EntradaPatrimonioFuturo.Name = "txtPatrimonioFuturo";
+                    this.EntradaPatrimonioFuturo.Padding = new System.Windows.Forms.Padding(2);
+                    this.EntradaPatrimonioFuturo.PasswordChar = '\0';
+                    this.EntradaPatrimonioFuturo.Prefijo = "$";
+                    this.EntradaPatrimonioFuturo.ReadOnly = true;
+                    this.EntradaPatrimonioFuturo.SelectOnFocus = true;
+                    this.EntradaPatrimonioFuturo.Size = new System.Drawing.Size(100, 24);
+                    this.EntradaPatrimonioFuturo.Sufijo = "";
+                    this.EntradaPatrimonioFuturo.TabIndex = 29;
+                    this.EntradaPatrimonioFuturo.Text = "0.00";
+                    this.EntradaPatrimonioFuturo.TipWhenBlank = "";
+                    this.EntradaPatrimonioFuturo.ToolTipText = "";
                     // 
                     // label11
                     // 
@@ -570,30 +559,29 @@ namespace Lazaro.Reportes
                     // 
                     // txtActivosActualesFuturos
                     // 
-                    this.txtActivosActualesFuturos.AutoHeight = false;
-                    this.txtActivosActualesFuturos.AutoNav = true;
-                    this.txtActivosActualesFuturos.AutoTab = true;
-                    this.txtActivosActualesFuturos.DataType = Lui.Forms.DataTypes.Money;
-                    this.txtActivosActualesFuturos.DecimalPlaces = -1;
-                    this.txtActivosActualesFuturos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                    this.txtActivosActualesFuturos.ForceCase = Lui.Forms.TextCasing.None;
-                    this.txtActivosActualesFuturos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                    this.txtActivosActualesFuturos.Location = new System.Drawing.Point(640, 178);
-                    this.txtActivosActualesFuturos.MaxLenght = 32767;
-                    this.txtActivosActualesFuturos.MultiLine = false;
-                    this.txtActivosActualesFuturos.Name = "txtActivosActualesFuturos";
-                    this.txtActivosActualesFuturos.Padding = new System.Windows.Forms.Padding(2);
-                    this.txtActivosActualesFuturos.PasswordChar = '\0';
-                    this.txtActivosActualesFuturos.Prefijo = "$";
-                    this.txtActivosActualesFuturos.ReadOnly = true;
-                    this.txtActivosActualesFuturos.SelectOnFocus = true;
-                    this.txtActivosActualesFuturos.Size = new System.Drawing.Size(100, 24);
-                    this.txtActivosActualesFuturos.Sufijo = "";
-                    this.txtActivosActualesFuturos.TabIndex = 33;
-                    this.txtActivosActualesFuturos.Text = "0.00";
-                    this.txtActivosActualesFuturos.TextRaw = "0.00";
-                    this.txtActivosActualesFuturos.TipWhenBlank = "";
-                    this.txtActivosActualesFuturos.ToolTipText = "";
+                    this.EntradaActivosActualesFuturos.AutoSize = false;
+                    this.EntradaActivosActualesFuturos.AutoNav = true;
+                    this.EntradaActivosActualesFuturos.AutoTab = true;
+                    this.EntradaActivosActualesFuturos.DataType = Lui.Forms.DataTypes.Currency;
+                    this.EntradaActivosActualesFuturos.DecimalPlaces = -1;
+                    this.EntradaActivosActualesFuturos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                    this.EntradaActivosActualesFuturos.ForceCase = Lui.Forms.TextCasing.None;
+                    this.EntradaActivosActualesFuturos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                    this.EntradaActivosActualesFuturos.Location = new System.Drawing.Point(640, 178);
+                    this.EntradaActivosActualesFuturos.MaxLenght = 32767;
+                    this.EntradaActivosActualesFuturos.MultiLine = false;
+                    this.EntradaActivosActualesFuturos.Name = "txtActivosActualesFuturos";
+                    this.EntradaActivosActualesFuturos.Padding = new System.Windows.Forms.Padding(2);
+                    this.EntradaActivosActualesFuturos.PasswordChar = '\0';
+                    this.EntradaActivosActualesFuturos.Prefijo = "$";
+                    this.EntradaActivosActualesFuturos.ReadOnly = true;
+                    this.EntradaActivosActualesFuturos.SelectOnFocus = true;
+                    this.EntradaActivosActualesFuturos.Size = new System.Drawing.Size(100, 24);
+                    this.EntradaActivosActualesFuturos.Sufijo = "";
+                    this.EntradaActivosActualesFuturos.TabIndex = 33;
+                    this.EntradaActivosActualesFuturos.Text = "0.00";
+                    this.EntradaActivosActualesFuturos.TipWhenBlank = "";
+                    this.EntradaActivosActualesFuturos.ToolTipText = "";
                     // 
                     // label12
                     // 
@@ -608,30 +596,29 @@ namespace Lazaro.Reportes
                     // 
                     // txtPasivosStock
                     // 
-                    this.txtPasivosStock.AutoHeight = false;
-                    this.txtPasivosStock.AutoNav = true;
-                    this.txtPasivosStock.AutoTab = true;
-                    this.txtPasivosStock.DataType = Lui.Forms.DataTypes.Money;
-                    this.txtPasivosStock.DecimalPlaces = -1;
-                    this.txtPasivosStock.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                    this.txtPasivosStock.ForceCase = Lui.Forms.TextCasing.None;
-                    this.txtPasivosStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                    this.txtPasivosStock.Location = new System.Drawing.Point(268, 232);
-                    this.txtPasivosStock.MaxLenght = 32767;
-                    this.txtPasivosStock.MultiLine = false;
-                    this.txtPasivosStock.Name = "txtPasivosStock";
-                    this.txtPasivosStock.Padding = new System.Windows.Forms.Padding(2);
-                    this.txtPasivosStock.PasswordChar = '\0';
-                    this.txtPasivosStock.Prefijo = "$";
-                    this.txtPasivosStock.ReadOnly = true;
-                    this.txtPasivosStock.SelectOnFocus = true;
-                    this.txtPasivosStock.Size = new System.Drawing.Size(100, 24);
-                    this.txtPasivosStock.Sufijo = "";
-                    this.txtPasivosStock.TabIndex = 35;
-                    this.txtPasivosStock.Text = "0.00";
-                    this.txtPasivosStock.TextRaw = "0.00";
-                    this.txtPasivosStock.TipWhenBlank = "";
-                    this.txtPasivosStock.ToolTipText = "";
+                    this.EntradaPasivosStock.AutoSize = false;
+                    this.EntradaPasivosStock.AutoNav = true;
+                    this.EntradaPasivosStock.AutoTab = true;
+                    this.EntradaPasivosStock.DataType = Lui.Forms.DataTypes.Currency;
+                    this.EntradaPasivosStock.DecimalPlaces = -1;
+                    this.EntradaPasivosStock.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                    this.EntradaPasivosStock.ForceCase = Lui.Forms.TextCasing.None;
+                    this.EntradaPasivosStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                    this.EntradaPasivosStock.Location = new System.Drawing.Point(268, 232);
+                    this.EntradaPasivosStock.MaxLenght = 32767;
+                    this.EntradaPasivosStock.MultiLine = false;
+                    this.EntradaPasivosStock.Name = "txtPasivosStock";
+                    this.EntradaPasivosStock.Padding = new System.Windows.Forms.Padding(2);
+                    this.EntradaPasivosStock.PasswordChar = '\0';
+                    this.EntradaPasivosStock.Prefijo = "$";
+                    this.EntradaPasivosStock.ReadOnly = true;
+                    this.EntradaPasivosStock.SelectOnFocus = true;
+                    this.EntradaPasivosStock.Size = new System.Drawing.Size(100, 24);
+                    this.EntradaPasivosStock.Sufijo = "";
+                    this.EntradaPasivosStock.TabIndex = 35;
+                    this.EntradaPasivosStock.Text = "0.00";
+                    this.EntradaPasivosStock.TipWhenBlank = "";
+                    this.EntradaPasivosStock.ToolTipText = "";
                     // 
                     // label13
                     // 
@@ -645,10 +632,10 @@ namespace Lazaro.Reportes
                     // 
                     // txtCC
                     // 
-                    this.EntradaCC.AutoHeight = false;
+                    this.EntradaCC.AutoSize = false;
                     this.EntradaCC.AutoNav = true;
                     this.EntradaCC.AutoTab = true;
-                    this.EntradaCC.DataType = Lui.Forms.DataTypes.Money;
+                    this.EntradaCC.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaCC.DecimalPlaces = -1;
                     this.EntradaCC.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.EntradaCC.ForceCase = Lui.Forms.TextCasing.None;
@@ -666,8 +653,6 @@ namespace Lazaro.Reportes
                     this.EntradaCC.Sufijo = "";
                     this.EntradaCC.TabIndex = 37;
                     this.EntradaCC.Text = "0.00";
-                    this.EntradaCC.TextRaw = "0.00";
-                    this.EntradaCC.TipWhenBlank = "";
                     this.EntradaCC.ToolTipText = "";
                     // 
                     // label14
@@ -687,39 +672,38 @@ namespace Lazaro.Reportes
                     this.ClientSize = new System.Drawing.Size(757, 391);
                     this.Controls.Add(this.EntradaCC);
                     this.Controls.Add(this.label14);
-                    this.Controls.Add(this.txtPasivosStock);
+                    this.Controls.Add(this.EntradaPasivosStock);
                     this.Controls.Add(this.label13);
-                    this.Controls.Add(this.txtActivosActualesFuturos);
+                    this.Controls.Add(this.EntradaActivosActualesFuturos);
                     this.Controls.Add(this.label12);
-                    this.Controls.Add(this.txtPatrimonioFuturo);
+                    this.Controls.Add(this.EntradaPatrimonioFuturo);
                     this.Controls.Add(this.label11);
                     this.Controls.Add(this.note4);
-                    this.Controls.Add(this.txtPatrimonioActual);
+                    this.Controls.Add(this.EntradaPatrimonioActual);
                     this.Controls.Add(this.label10);
-                    this.Controls.Add(this.txtFuturosSubtotal);
+                    this.Controls.Add(this.EntradaFuturosSubtotal);
                     this.Controls.Add(this.label9);
-                    this.Controls.Add(this.txtPasivosSubtotal);
+                    this.Controls.Add(this.EntradaPasivosSubtotal);
                     this.Controls.Add(this.label6);
-                    this.Controls.Add(this.txtActivosSubtotal);
+                    this.Controls.Add(this.EntradaActivosSubtotal);
                     this.Controls.Add(this.label5);
                     this.Controls.Add(this.note3);
-                    this.Controls.Add(this.txtPasivosCheques);
+                    this.Controls.Add(this.EntradaPasivosCheques);
                     this.Controls.Add(this.label7);
                     this.Controls.Add(this.EntradaPasivosCajas);
                     this.Controls.Add(this.note2);
                     this.Controls.Add(this.label8);
-                    this.Controls.Add(this.txtFuturosPedidos);
+                    this.Controls.Add(this.EntradaFuturosPedidos);
                     this.Controls.Add(this.label4);
-                    this.Controls.Add(this.txtActivosStock);
+                    this.Controls.Add(this.EntradaActivosStock);
                     this.Controls.Add(this.label3);
-                    this.Controls.Add(this.txtFuturosTarjetas);
+                    this.Controls.Add(this.EntradaFuturosTarjetas);
                     this.Controls.Add(this.label2);
                     this.Controls.Add(this.EntradaActivosCajas);
                     this.Controls.Add(this.note1);
                     this.Controls.Add(this.label1);
                     this.Name = "Patrimonio";
                     this.Text = "Patrimonio";
-                    this.WorkspaceChanged += new System.EventHandler(this.Patrimonio_WorkspaceChanged);
                     this.ResumeLayout(false);
 
                 }
@@ -729,32 +713,32 @@ namespace Lazaro.Reportes
                 private System.Windows.Forms.Label label1;
                 private Lui.Forms.Note note1;
                 private Lui.Forms.TextBox EntradaActivosCajas;
-                private Lui.Forms.TextBox txtFuturosTarjetas;
+                private Lui.Forms.TextBox EntradaFuturosTarjetas;
                 private System.Windows.Forms.Label label2;
-                private Lui.Forms.TextBox txtActivosStock;
+                private Lui.Forms.TextBox EntradaActivosStock;
                 private System.Windows.Forms.Label label3;
-                private Lui.Forms.TextBox txtFuturosPedidos;
+                private Lui.Forms.TextBox EntradaFuturosPedidos;
                 private System.Windows.Forms.Label label4;
-                private Lui.Forms.TextBox txtPasivosCheques;
+                private Lui.Forms.TextBox EntradaPasivosCheques;
                 private System.Windows.Forms.Label label7;
                 private Lui.Forms.TextBox EntradaPasivosCajas;
                 private Lui.Forms.Note note2;
                 private System.Windows.Forms.Label label8;
                 private Lui.Forms.Note note3;
-                private Lui.Forms.TextBox txtActivosSubtotal;
+                private Lui.Forms.TextBox EntradaActivosSubtotal;
                 private System.Windows.Forms.Label label5;
-                private Lui.Forms.TextBox txtPasivosSubtotal;
+                private Lui.Forms.TextBox EntradaPasivosSubtotal;
                 private System.Windows.Forms.Label label6;
-                private Lui.Forms.TextBox txtFuturosSubtotal;
+                private Lui.Forms.TextBox EntradaFuturosSubtotal;
                 private System.Windows.Forms.Label label9;
-                private Lui.Forms.TextBox txtPatrimonioActual;
+                private Lui.Forms.TextBox EntradaPatrimonioActual;
                 private System.Windows.Forms.Label label10;
                 private Lui.Forms.Note note4;
-                private Lui.Forms.TextBox txtPatrimonioFuturo;
+                private Lui.Forms.TextBox EntradaPatrimonioFuturo;
                 private System.Windows.Forms.Label label11;
-                private Lui.Forms.TextBox txtActivosActualesFuturos;
+                private Lui.Forms.TextBox EntradaActivosActualesFuturos;
                 private System.Windows.Forms.Label label12;
-                private Lui.Forms.TextBox txtPasivosStock;
+                private Lui.Forms.TextBox EntradaPasivosStock;
                 private System.Windows.Forms.Label label13;
                 private Lui.Forms.TextBox EntradaCC;
                 private System.Windows.Forms.Label label14;

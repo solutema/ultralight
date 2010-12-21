@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -41,10 +41,10 @@ namespace Lazaro.Principal
 {
 	public partial class BarraInferior : UserControl
 	{
-                private Lfx.Data.DataBase m_DataBase;
+                private Lfx.Data.Connection m_DataBase;
 		private int ItemActual, ItemSolicitado;
 		private string TablaActual, TablaSolicitada;
-                private Lbl.ElementoDeDatos ElementoActual = null;
+                private Lbl.IElementoDeDatos ElementoActual = null;
 
 		public BarraInferior()
 		{
@@ -63,12 +63,12 @@ namespace Lazaro.Principal
 		}
 
                 [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public Lfx.Data.DataBase DataBase
+                public Lfx.Data.Connection DataBase
                 {
                         get
                         {
                                 if (m_DataBase == null)
-                                        m_DataBase = this.Workspace.GetDataBase("Formulario principal: Barra inferior");
+                                        m_DataBase = this.Workspace.GetNewConnection("Formulario principal: Barra inferior");
                                 return m_DataBase;
                         }
                 }
@@ -158,7 +158,7 @@ namespace Lazaro.Principal
                                                         PersonaGrupo.Text = Per.Grupo.ToString();
                                                 else
                                                         PersonaGrupo.Text = "-";
-                                                double Saldo = Per.CuentaCorriente.Saldo(false);
+                                                decimal Saldo = Per.CuentaCorriente.Saldo(false);
                                                 if (Saldo > 0) {
                                                         PersonaComentario.Text = "Esta persona registra saldo impago en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
                                                         PersonaComentario.BackColor = System.Drawing.Color.Tomato;
@@ -188,6 +188,27 @@ namespace Lazaro.Principal
 			PanelAyuda.Visible = true;
 			this.ResumeLayout();
 		}
+
+
+                public void MostrarProgreso(Lfx.Types.OperationProgress progreso)
+                {
+                        if (progreso.IsDone) {
+                                PanelProgreso.Visible = false;
+                        } else {
+                                if (progreso.Value > 0) {
+                                        ProgressBar.Maximum = progreso.Max;
+                                        ProgressBar.Style = ProgressBarStyle.Continuous;
+                                        if (progreso.Value <= ProgressBar.Maximum)
+                                                ProgressBar.Value = progreso.Value;
+                                } else {
+                                        ProgressBar.Style = ProgressBarStyle.Marquee;
+                                }
+                                PanelProgreso.Visible = true;
+                                EtiquetaOperacion.Text = progreso.Name;
+                                EtiquetaDescripcion.Text = progreso.Description;
+                                PanelProgreso.Refresh();
+                        }
+                }
 
 		private void ArticuloNombre_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -39,12 +39,12 @@ namespace Lbl.Articulos
 	{
 		public Personas.Persona Proveedor;
 		
-		public Marca(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+		public Marca(Lfx.Data.Connection dataBase) : base(dataBase) { }
 
-		public Marca(Lfx.Data.DataBase dataBase, int itemId)
+		public Marca(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Marca(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                public Marca(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
@@ -83,16 +83,16 @@ namespace Lbl.Articulos
 			qGen.TableCommand Comando;
 
                         if (this.Existe == false) {
-                                Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
+                                Comando = new qGen.Insert(this.Connection, this.TablaDatos);
                         } else {
-                                Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando = new qGen.Update(this.Connection, this.TablaDatos);
                                 Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
                         Comando.Fields.AddWithValue("nombre", this.Nombre);
 			Comando.Fields.AddWithValue("url", this.Url);
 			if(this.Proveedor == null)
-				Comando.Fields.AddWithValue("id_proveedor", DBNull.Value);
+				Comando.Fields.AddWithValue("id_proveedor", null);
 			else
 				Comando.Fields.AddWithValue("id_proveedor", this.Proveedor.Id);
 			Comando.Fields.AddWithValue("obs", this.Obs);
@@ -100,7 +100,7 @@ namespace Lbl.Articulos
 
 			this.AgregarTags(Comando);
 
-                        this.DataBase.Execute(Comando);
+                        this.Connection.Execute(Comando);
 
 			return base.Guardar();
 		}

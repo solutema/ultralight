@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,61 +38,38 @@ using System.Windows.Forms;
 
 namespace Lfc.Articulos.Categorias
 {
-        public partial class Editar : Lui.Forms.EditForm
+        public partial class Editar : Lcc.Edicion.ControlEdicion
         {
                 public Editar()
                 {
+                        this.ElementoTipo = typeof(Lbl.Articulos.Categoria);
+
                         InitializeComponent();
-
-                        this.ElementType = typeof(Lbl.Articulos.Categoria);
                 }
 
-                public override Lfx.Types.OperationResult Create()
+                public override void ActualizarControl()
                 {
-                        if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "products.create"))
-                                return new Lfx.Types.NoAccessOperationResult();
-
-                        Lbl.Articulos.Categoria Cat = new Lbl.Articulos.Categoria(this.DataBase);
-                        Cat.Crear();
-                        EntradaImagen.Elemento = Cat;
-
-                        this.FromRow(Cat);
-                        return new Lfx.Types.SuccessOperationResult();
-                }
-
-                public override void FromRow(Lbl.ElementoDeDatos row)
-                {
-                        base.FromRow(row);
-
-                        Lbl.Articulos.Categoria Cat = row as Lbl.Articulos.Categoria;
+                        Lbl.Articulos.Categoria Cat = this.Elemento as Lbl.Articulos.Categoria;
 
                         EntradaNombre.Text = Cat.Nombre;
                         EntradaNombreSing.Text = Cat.NombreSingular;
                         EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatStock(Cat.StockMinimo);
                         EntradaWeb.TextKey = Cat.PublicacionWeb.ToString();
                         EntradaSeguimiento.TextKey = ((int)(Cat.Seguimiento)).ToString();
-                        EntradaItem.Text = Lfx.Types.Formatting.FormatStock(this.DataBase.FieldDouble("SELECT COUNT(id_articulo) FROM articulos WHERE id_categoria=" + Cat.Id.ToString()));
-                        EntradaItemStock.Text = Lfx.Types.Formatting.FormatStock(this.DataBase.FieldDouble("SELECT COUNT(id_articulo) FROM articulos WHERE stock_actual>0 AND id_categoria=" + Cat.Id.ToString()));
-                        EntradaStockActual.Text = Lfx.Types.Formatting.FormatStock(this.DataBase.FieldDouble("SELECT SUM(stock_actual) FROM articulos WHERE id_categoria=" + Cat.Id.ToString()));
-                        EntradaCosto.Text = Lfx.Types.Formatting.FormatStock(this.DataBase.FieldDouble("SELECT SUM(costo) FROM articulos WHERE id_categoria=" + Cat.Id.ToString()));
+                        EntradaItem.Text = Lfx.Types.Formatting.FormatStock(this.Connection.FieldDecimal("SELECT COUNT(id_articulo) FROM articulos WHERE id_categoria=" + Cat.Id.ToString()));
+                        EntradaItemStock.Text = Lfx.Types.Formatting.FormatStock(this.Connection.FieldDecimal("SELECT COUNT(id_articulo) FROM articulos WHERE stock_actual>0 AND id_categoria=" + Cat.Id.ToString()));
+                        EntradaStockActual.Text = Lfx.Types.Formatting.FormatStock(this.Connection.FieldDecimal("SELECT SUM(stock_actual) FROM articulos WHERE id_categoria=" + Cat.Id.ToString()));
+                        EntradaCosto.Text = Lfx.Types.Formatting.FormatStock(this.Connection.FieldDecimal("SELECT SUM(costo) FROM articulos WHERE id_categoria=" + Cat.Id.ToString()));
                         EntradaGarantia.Text = Cat.Garantia.ToString();
                         EntradaRubro.Elemento = Cat.Rubro;
-                        EntradaImagen.Elemento = Cat;
+                        //EntradaImagen.Elemento = Cat;
 
-                        this.ReadOnly = !Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "products.write");
-
-                        if (this.CachedRow.Existe)
-                                this.Text = "Categoría: " + Cat.Nombre;
-                        else
-                                this.Text = "Categoría: Nueva";
-
-                        this.Changed = false;
-                        
+                        base.ActualizarControl();
                 }
 
-                public override Lbl.ElementoDeDatos ToRow()
+                public override void ActualizarElemento()
                 {
-                        Lbl.Articulos.Categoria Cat = this.CachedRow as Lbl.Articulos.Categoria;
+                        Lbl.Articulos.Categoria Cat = this.Elemento as Lbl.Articulos.Categoria;
 
                         Cat.Nombre = EntradaNombre.Text;
                         Cat.NombreSingular = EntradaNombreSing.Text;
@@ -102,9 +79,9 @@ namespace Lfc.Articulos.Categorias
                         Cat.Garantia = Lfx.Types.Parsing.ParseInt(EntradaGarantia.Text);
                         Cat.Rubro = EntradaRubro.Elemento as Lbl.Articulos.Rubro;
 
-                        EntradaImagen.ActualizarElemento();
+                        //EntradaImagen.ActualizarElemento();
 
-                        return base.ToRow();
+                        base.ActualizarElemento();
                 }
         }
 }

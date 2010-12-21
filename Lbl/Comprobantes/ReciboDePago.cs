@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,36 +35,35 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
+        [Lbl.Atributos.NombreItem("Recibo de Pago")]
         public class ReciboDePago : Recibo
         {
                 //Heredar constructor
-                public ReciboDePago(Lfx.Data.DataBase dataBase)
+                public ReciboDePago(Lfx.Data.Connection dataBase)
                         : base(dataBase)
                 {
                         this.Crear();
-                        this.Vendedor = new Personas.Persona(dataBase, dataBase.Workspace.CurrentUser.Id);
+                        this.Vendedor = new Personas.Persona(dataBase, Lbl.Sys.Config.Actual.UsuarioConectado.Id);
                 }
 
-                public ReciboDePago(Lfx.Data.DataBase dataBase, Personas.Persona cliente)
+                public ReciboDePago(Lfx.Data.Connection dataBase, Personas.Persona cliente)
                         : this(dataBase)
                 {
                         this.Crear();
                         this.Cliente = cliente;
                 }
 
-                public ReciboDePago(Lfx.Data.DataBase dataBase, int idRecibo)
+                public ReciboDePago(Lfx.Data.Connection dataBase, int idRecibo)
                         : this(dataBase)
                 {
                         this.m_ItemId = idRecibo;
                         this.Cargar();
                 }
 
-                public override Lfx.Types.OperationResult Crear()
+                public override void Crear()
                 {
-                        Lfx.Types.OperationResult Res = base.Crear();
-                        this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.RCP.PV", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
-                        this.Tipo = new Tipo(this.DataBase, "RCP");
-                        return Res;
+                        base.Crear();
+                        this.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra["RCP"];
                 }
         }
 }

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,33 +35,72 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-	public abstract class Comprobante : ElementoDeDatos
+        [Lbl.Atributos.NombreItem("Comprobante"),
+                Lbl.Atributos.MuestraMensajeAlCrear(false),
+                Lbl.Atributos.MuestraPanelExtendido(false)]
+        public abstract class Comprobante : ElementoDeDatos, IElementoConImagen, ICamposBaseEstandar
 	{
-		//Heredar constructor
-		protected Comprobante(Lfx.Data.DataBase dataBase) : base(dataBase) { }
-
-                public Comprobante(Lfx.Data.DataBase dataBase, Lfx.Data.Row row)
-			: base(dataBase, row) { }
-
-		public Personas.Persona Vendedor, Cliente;
-		public Entidades.Sucursal Sucursal;
+                private Personas.Persona m_Vendedor, m_Cliente;
+                private Entidades.Sucursal m_Sucursal;
                 private Comprobante m_ComprobanteOriginal;
-                public Articulos.Situacion SituacionOrigen, SituacionDestino;
+                private Articulos.Situacion m_SituacionOrigen, m_SituacionDestino;
                 private Tipo m_Tipo;
 
-		#region Propiedades
+		//Heredar constructor
+		protected Comprobante(Lfx.Data.Connection dataBase)
+                        : base(dataBase) { }
+
+                public Comprobante(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+			: base(dataBase, row) { }
+
+                public Comprobante(Lfx.Data.Connection dataBase, int itemId)
+			: base(dataBase, itemId) { }
+
 
 		public virtual Tipo Tipo
 		{
 			get
 			{
-                                if(m_Tipo == null && this.FieldString("tipo_fac") != null)
-                                        Tipo = new Tipo(this.DataBase, this.FieldString("tipo_fac"));
+                                if(m_Tipo == null && this.GetFieldValue<string>("tipo_fac") != null)
+                                        Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra[this.GetFieldValue<string>("tipo_fac")];
                                 return m_Tipo;
 			}
                         set
                         {
                                 m_Tipo = value;
+
+                                if (value == null) {
+                                        this.Registro["tipo_fac"] = null;
+                                } else {
+                                        this.Registro["tipo_fac"] = value.Nomenclatura;
+
+                                        if (this.SituacionOrigen == null)
+                                                this.SituacionOrigen = Tipo.SituacionOrigen;
+                                        if (this.SituacionDestino == null)
+                                                this.SituacionDestino = Tipo.SituacionDestino;
+
+                                        if (this.PV == 0) {
+                                                this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos." + Tipo.Nomenclatura + ".PV", 0);
+                                                if (this.PV /* still */ == 0) {
+                                                        if (Tipo.EsFactura)
+                                                                this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.ABC.PV", 0);
+                                                        else if (Tipo.EsNotaCredito)
+                                                                this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.NC.PV", 0);
+                                                        else if (Tipo.EsNotaDebito)
+                                                                this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.ND.PV", 0);
+                                                }
+
+                                                if (this.PV /* still */ == 0)
+                                                        this.PV = this.Connection.FieldInt("SELECT MIN(numero) FROM pvs WHERE CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.Nomenclatura + ",%' AND tipo>0");
+                                                if (this.PV /* still */ == 0)
+                                                        this.PV = this.Connection.FieldInt("SELECT MIN(numero) FROM pvs WHERE CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.TipoBase + ",%' AND tipo>0");
+                                                if (this.PV /* still */ == 0)
+                                                        this.PV = this.Connection.FieldInt("SELECT MIN(numero) FROM pvs WHERE CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.LetraSola + ",%' AND tipo>0");
+
+                                                if (this.PV /* still */ == 0)
+                                                        this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.PV", 1);
+                                        }
+                                }
                         }
 		}
 
@@ -77,40 +116,222 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-		#endregion
+                /// <summary>
+                /// Numera el comprobante (usando el número especificado), guardando automáticamente los cambios.
+                /// </summary>
+                /// <param name="numero">El número que se asignó a este comprobante.</param>
+                /// <param name="yMarcarComoImpreso">Si es Verdadero, el comprobante se marca como impreso y se actualiza la fecha.</param>
+                public void Numerar(int numero, bool yMarcarComoImpreso)
+                {
+                        qGen.Update ActualizarComprob = new qGen.Update(this.TablaDatos);
+
+                        // Modifico Registro para no volver a cargar el comprobante desde la BD
+                        Registro["numero"] = numero;
+                        ActualizarComprob.Fields.AddWithValue("numero", numero);
+
+                        if (yMarcarComoImpreso) {
+                                Registro["impresa"] = 1;
+                                Registro["estado"] = 1;
+
+                                Registro["fecha"] = this.Connection.ServerDateTime;
+                                //Registro["fecha"] = new DateTime(2010, 11, 30, 22, 01, 00);
+
+                                ActualizarComprob.Fields.AddWithValue("impresa", 1);
+                                ActualizarComprob.Fields.AddWithValue("estado", 1);
+                                ActualizarComprob.Fields.AddWithValue("fecha", Registro["fecha"]);
+                        }
+                        ActualizarComprob.WhereClause = new qGen.Where(this.CampoId, this.Id);
+
+                        this.Connection.Execute(ActualizarComprob);
+                }
+                
+                /// <summary>
+                /// Numera el comprobante (usando el próximo número en el talonario), guardando automáticamente los cambios.
+                /// </summary>
+                /// <param name="yMarcarComoImpreso">Si es Verdadero, el comprobante se marca como impreso y se actualiza la fecha.</param>
+                public void Numerar(bool yMarcarComoImpreso)
+                {
+                        if (this.Numero == 0) {
+                                int NumeroNuevo = Numerador.ProximoNumero(this);
+                                this.Numerar(NumeroNuevo, yMarcarComoImpreso);
+                        }
+                }
+
+
+                public int PV
+                {
+                        get
+                        {
+                                return System.Convert.ToInt32(Registro["pv"]);
+                        }
+                        set
+                        {
+                                Registro["pv"] = value;
+                        }
+                }
+
+
+                public Lfx.Types.LDateTime Fecha
+                {
+                        get
+                        {
+                                if (Registro["fecha"] == null || Registro["fecha"] is DBNull)
+                                        return null;
+                                else
+                                        return new Lfx.Types.LDateTime(System.Convert.ToDateTime(Registro["fecha"]));
+                        }
+                        set
+                        {
+                                if (value != null)
+                                        Registro["fecha"] = value.Value;
+                                else
+                                        Registro["fecha"] = null;
+                        }
+                }
+
+
+                public override void Crear()
+                {
+                        base.Crear();
+                        this.Estado = 0;
+                }
 
 		public override string ToString()
 		{
-                        string Res = this.FieldString("tipo_fac") + " " + this.FieldInt("pv").ToString("0000") + "-" + this.FieldInt("numero").ToString("00000000");
+                        string Res = this.Tipo.ToString() + " " + this.PV.ToString("0000") + "-" + this.Numero.ToString("00000000");
                         if (this.Cliente != null)
                                 Res += " de " + this.Cliente.ToString();
                         return Res;
 		}
 
-                public override Lfx.Types.OperationResult Cargar()
+
+                public Lbl.Personas.Persona Cliente
                 {
-                        m_ComprobanteOriginal = null;
-                        Lfx.Types.OperationResult Res = base.Cargar();
-                        if (Res.Success) {
-                                if (this.Registro["situacionorigen"] == null) {
-                                        if(Tipo != null)
-                                                SituacionOrigen = Tipo.SituacionOrigen;
-                                } else {
-                                        SituacionOrigen = new Lbl.Articulos.Situacion(this.DataBase, System.Convert.ToInt32(Registro["situacionorigen"]));
-                                }
-
-                                if (this.Registro["situaciondestino"] == null) {
-                                        if (Tipo != null)
-                                                SituacionDestino = Tipo.SituacionDestino;
-                                } else {
-                                        SituacionDestino = new Lbl.Articulos.Situacion(this.DataBase, System.Convert.ToInt32(Registro["situaciondestino"]));
-                                }
+                        get
+                        {
+                                if (m_Cliente == null && this.GetFieldValue<int>("id_cliente") > 0)
+                                        m_Cliente = new Personas.Persona(this.Connection, this.GetFieldValue<int>("id_cliente"));
+                                return m_Cliente;
                         }
-
-                        return Res;
+                        set
+                        {
+                                m_Cliente = value;
+                                this.SetFieldValue("id_cliente", value);
+                        }
                 }
 
-		public static string FacturasDeUnRecibo(Lfx.Data.DataBase dataBase, int ReciboId)
+                public Lbl.Personas.Persona Vendedor
+                {
+                        get
+                        {
+                                if (m_Vendedor == null && this.GetFieldValue<int>("id_vendedor") > 0)
+                                        m_Vendedor = new Personas.Persona(this.Connection, this.GetFieldValue<int>("id_vendedor"));
+                                return m_Vendedor;
+                        }
+                        set
+                        {
+                                m_Vendedor = value;
+                                this.SetFieldValue("id_vendedor", value);
+                        }
+                }
+
+                public Lbl.Entidades.Sucursal Sucursal
+                {
+                        get
+                        {
+                                if (m_Sucursal == null && this.GetFieldValue<int>("id_sucursal") > 0)
+                                        m_Sucursal = new Lbl.Entidades.Sucursal(this.Connection, this.GetFieldValue<int>("id_sucursal"));
+                                return m_Sucursal;
+                        }
+                        set
+                        {
+                                m_Sucursal = value;
+                                this.SetFieldValue("id_sucursal", value);
+                        }
+                }
+
+                public Articulos.Situacion SituacionOrigen
+                {
+                        get
+                        {
+                                if (m_SituacionOrigen == null && this.GetFieldValue<int>("situacionorigen") > 0)
+                                        m_SituacionOrigen = new Lbl.Articulos.Situacion(this.Connection, this.GetFieldValue<int>("situacionorigen"));
+
+                                return m_SituacionOrigen;
+                        }
+                        set
+                        {
+                                m_SituacionOrigen = value;
+                                this.SetFieldValue("situacionorigen", value);
+                        }
+                }
+
+                public Articulos.Situacion SituacionDestino
+                {
+                        get
+                        {
+                                if (m_SituacionDestino == null && this.GetFieldValue<int>("situaciondestino") > 0)
+                                        m_SituacionDestino = new Lbl.Articulos.Situacion(this.Connection, this.GetFieldValue<int>("situaciondestino"));
+
+                                return m_SituacionDestino;
+                        }
+                        set
+                        {
+                                m_SituacionDestino = value;
+                                this.SetFieldValue("situaciondestino", value);
+                        }
+                }
+
+
+                public virtual Lbl.Impresion.Impresora ObtenerImpresora()
+                {
+                        if (this.Tipo == null || this.Tipo.Impresoras == null || this.Tipo.Impresoras.Count == 0)
+                                return null;
+
+                        // Intento obtener una impresora para esta susursal, para esta estación
+                        foreach (Lbl.Impresion.TipoImpresora Impr in Tipo.Impresoras) {
+                                if (Impr.Estacion != null && Impr.Estacion.Equals(System.Environment.MachineName, StringComparison.InvariantCultureIgnoreCase)
+                                        && Impr.Sucursal != null && Impr.Sucursal.Id == Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.Id)
+                                        return Impr.Impresora;
+                        }
+
+                        // Intento obtener una impresora para esta estación, cualquier sucursal
+                        foreach (Lbl.Impresion.TipoImpresora Impr in Tipo.Impresoras) {
+                                if (Impr.Estacion != null && Impr.Estacion.Equals(System.Environment.MachineName, StringComparison.InvariantCultureIgnoreCase)
+                                        && Impr.Sucursal == null)
+                                        return Impr.Impresora;
+                        }
+
+                        // Intento obtener una impresora para esta sucursal, cualquier estacion
+                        foreach (Lbl.Impresion.TipoImpresora Impr in Tipo.Impresoras) {
+                                if (Impr.Estacion == null
+                                        && Impr.Sucursal != null && Impr.Sucursal.Id == Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.Id)
+                                        return Impr.Impresora;
+                        }
+
+                        // Intento obtener una impresora para cual sucursal, cualquier estacion
+                        foreach (Lbl.Impresion.TipoImpresora Impr in Tipo.Impresoras) {
+                                if (Impr.Estacion == null && Impr.Sucursal == null)
+                                        return Impr.Impresora;
+                        }
+
+                        return null;
+                }
+
+                public bool Impreso
+                {
+                        get
+                        {
+                                return System.Convert.ToBoolean(Registro["impresa"]);
+                        }
+                        set
+                        {
+                                Registro["impresa"] = value ? 1 : 0;
+                        }
+                }
+
+
+		public static string FacturasDeUnRecibo(Lfx.Data.Connection dataBase, int ReciboId)
 		{
 			System.Text.StringBuilder Facturas = new System.Text.StringBuilder();
 			System.Data.DataTable TablaFacturas = dataBase.Select("SELECT id_comprob FROM recibos_comprob WHERE id_recibo=" + ReciboId.ToString());
@@ -118,9 +339,9 @@ namespace Lbl.Comprobantes
 			foreach (System.Data.DataRow Factura in TablaFacturas.Rows)
 			{
 				if (Facturas.Length == 0)
-					Facturas.Append(Lbl.Comprobantes.Comprobante.NumeroCompleto(dataBase, Lfx.Data.DataBase.ConvertDBNullToZero(Factura["id_comprob"])));
+					Facturas.Append(Lbl.Comprobantes.Comprobante.NumeroCompleto(dataBase, Lfx.Data.Connection.ConvertDBNullToZero(Factura["id_comprob"])));
 				else
-					Facturas.Append(", " + Lbl.Comprobantes.Comprobante.NumeroCompleto(dataBase, Lfx.Data.DataBase.ConvertDBNullToZero(Factura["id_comprob"])));
+					Facturas.Append(", " + Lbl.Comprobantes.Comprobante.NumeroCompleto(dataBase, Lfx.Data.Connection.ConvertDBNullToZero(Factura["id_comprob"])));
 			}
 
 			return Facturas.ToString();
@@ -206,29 +427,30 @@ namespace Lbl.Comprobantes
 					return tipoComprob;
 			}
 		}
-		
-		public virtual Lfx.Types.OperationResult Imprimir() {
-			return this.Imprimir(null);
-		}
-		
-		public virtual Lfx.Types.OperationResult Imprimir(string nombreImpresora)
-		{
-			// Determino la impresora que le corresponde
-			if (nombreImpresora != null && nombreImpresora.Length == 0)
-                                nombreImpresora = this.Workspace.CurrentConfig.Impresion.PreferredPrinter(this.Tipo.Nomenclatura);
 
-			// Si es de carga manual, presento el formulario correspondiente
-                        if (this.Workspace.CurrentConfig.Impresion.PrinterFeed(this.Tipo.Nomenclatura, "manual") == "manual")
-			{
-                                if (Lbl.Impresion.Services.ShowManualFeedDialog(nombreImpresora, this.ToString()).Success == false)
-					return new Lfx.Types.FailureOperationResult("Operación cancelada");
-			}
+                /* public virtual Lfx.Types.OperationResult Imprimir() {
+                        return this.Imprimir(null);
+                }
+		
+                public virtual Lfx.Types.OperationResult Imprimir(Lbl.Impresion.Impresora impresora)
+                {
+                        // Determino la impresora que le corresponde
+                        if (impresora == null)
+                                impresora = this.ObtenerImpresora();
+
+                        // Si es de carga manual, presento el formulario correspondiente
+                        if (impresora.CargaPapel == Lbl.Impresion.CargasPapel.Manual)
+                        {
+                                if (Lbl.Impresion.Services.ShowManualFeedDialog(impresora, this).Success == false)
+                                        return new Lfx.Types.FailureOperationResult("Operación cancelada");
+                        }
 			
-			Impresion.ImpresorComprobante Impresor = new Impresion.ImpresorComprobante(this);
-			return Impresor.Imprimir(nombreImpresora);
-		}
+                        Impresion.ImpresorComprobante Impresor = new Impresion.ImpresorComprobante(this);
+                        Impresor.Impresora = impresora;
+                        return Impresor.Imprimir();
+                } */
 
-		public static string NumeroCompleto(Lfx.Data.DataBase dataBase, int iId)
+		public static string NumeroCompleto(Lfx.Data.Connection dataBase, int iId)
 		{
 			// Toma el Id de factura y devuelve el tipo y número (por ejemplo: B 0001-00000135)
                         Lfx.Data.Row TmpFactura = dataBase.Tables["comprob"].FastRows[iId]; //dataBase.Row("comprob", "tipo_fac, pv, numero", "id_comprob", iId);
@@ -239,7 +461,7 @@ namespace Lbl.Comprobantes
 				return (string)TmpFactura["tipo_fac"].ToString() + " " + System.Convert.ToInt32(TmpFactura["pv"]).ToString("0000") + "-" + System.Convert.ToInt32(TmpFactura["numero"]).ToString("00000000");
 		}
 
-		public static string NombreCompletoRecibo(Lfx.Data.DataBase dataBase, int iId)
+		public static string NombreCompletoRecibo(Lfx.Data.Connection dataBase, int iId)
 		{
 			// Toma el Id del recibo y devuelve el tipo y número (por ejemplo: "Recibo #003" o "Comprobante de Pago #256")
 			Lfx.Data.Row TmpRecibo = dataBase.Row("recibos", "id_recibo", iId);
@@ -260,7 +482,7 @@ namespace Lbl.Comprobantes
                                         if (Registro["id_comprob_orig"] == null)
                                                 m_ComprobanteOriginal = null;
                                         else
-                                                m_ComprobanteOriginal = new ComprobanteConArticulos(this.DataBase, System.Convert.ToInt32(Registro["id_comprob_orig"]));
+                                                m_ComprobanteOriginal = new ComprobanteConArticulos(this.Connection, System.Convert.ToInt32(Registro["id_comprob_orig"]));
                                 }
                                 return m_ComprobanteOriginal;
                         }

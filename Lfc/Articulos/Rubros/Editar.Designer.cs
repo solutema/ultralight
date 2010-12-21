@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -42,6 +42,10 @@ namespace Lfc.Articulos.Rubros
                 internal System.Windows.Forms.Label Label5;
                 private Lcc.Entrada.CodigoDetalle EntradaAlicuota;
 
+                #region Código generado por el diseñador
+
+                private System.ComponentModel.IContainer components = null;
+
                 protected override void Dispose(bool disposing)
                 {
                         if (disposing) {
@@ -51,8 +55,6 @@ namespace Lfc.Articulos.Rubros
                         }
                         base.Dispose(disposing);
                 }
-
-                #region Código generado por el diseñador
 
                 private void InitializeComponent()
                 {
@@ -71,49 +73,54 @@ namespace Lfc.Articulos.Rubros
                         this.label9.Text = "Alícuota";
                         this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtAlicuota
+                        // EntradaAlicuota
                         // 
                         this.EntradaAlicuota.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaAlicuota.AutoNav = true;
                         this.EntradaAlicuota.AutoTab = true;
                         this.EntradaAlicuota.CanCreate = true;
-                        this.EntradaAlicuota.DetailField = "nombre";
+                        this.EntradaAlicuota.DataTextField = "nombre";
                         this.EntradaAlicuota.ExtraDetailFields = "";
+                        this.EntradaAlicuota.Filter = "";
                         this.EntradaAlicuota.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaAlicuota.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaAlicuota.FreeTextCode = "";
-                        this.EntradaAlicuota.KeyField = "id_alicuota";
+                        this.EntradaAlicuota.DataValueField = "id_alicuota";
                         this.EntradaAlicuota.Location = new System.Drawing.Point(116, 48);
                         this.EntradaAlicuota.MaxLength = 200;
-                        this.EntradaAlicuota.Name = "txtAlicuota";
+                        this.EntradaAlicuota.Name = "EntradaAlicuota";
                         this.EntradaAlicuota.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaAlicuota.ReadOnly = false;
                         this.EntradaAlicuota.Required = true;
                         this.EntradaAlicuota.Size = new System.Drawing.Size(356, 24);
                         this.EntradaAlicuota.TabIndex = 3;
                         this.EntradaAlicuota.Table = "alicuotas";
-                        this.EntradaAlicuota.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaAlicuota.Text = "0";
                         this.EntradaAlicuota.TextDetail = "";
                         this.EntradaAlicuota.TipWhenBlank = "Sin especificar";
                         this.EntradaAlicuota.ToolTipText = "";
                         // 
-                        // txtNombre
+                        // EntradaNombre
                         // 
                         this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNombre.AutoNav = true;
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaNombre.DecimalPlaces = -1;
                         this.EntradaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNombre.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaNombre.Location = new System.Drawing.Point(116, 16);
                         this.EntradaNombre.MaxLenght = 32767;
-                        this.EntradaNombre.Name = "txtNombre";
+                        this.EntradaNombre.MultiLine = false;
+                        this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.ReadOnly = false;
+                        this.EntradaNombre.PasswordChar = '\0';
+                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(356, 24);
+                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         this.EntradaNombre.TipWhenBlank = "";
                         this.EntradaNombre.ToolTipText = "";
@@ -129,15 +136,18 @@ namespace Lfc.Articulos.Rubros
                         // 
                         // Editar
                         // 
-                        this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
-                        this.ClientSize = new System.Drawing.Size(488, 237);
                         this.Controls.Add(this.label9);
                         this.Controls.Add(this.EntradaAlicuota);
                         this.Controls.Add(this.EntradaNombre);
                         this.Controls.Add(this.Label5);
                         this.Name = "Editar";
-                        this.Text = "Artículos: Rubros: Editar";
+                        this.Size = new System.Drawing.Size(488, 237);
+                        this.Controls.SetChildIndex(this.Label5, 0);
+                        this.Controls.SetChildIndex(this.EntradaNombre, 0);
+                        this.Controls.SetChildIndex(this.EntradaAlicuota, 0);
+                        this.Controls.SetChildIndex(this.label9, 0);
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
                 }
 

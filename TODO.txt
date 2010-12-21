@@ -2,6 +2,11 @@
 
 Tareas pendientes (sin orden particular)
 
-* Terminar de implementar IVA
 * Mejorar Lui.ListingForm para que puedan personalizarse las columnas. -- Parcialmente hecho
 * Al quitar imagen de un elemento de datos, la imagen queda en caché
+* Al exportar a HTML, también exportar grupos y subtotales
+
+* Que los módulos puedan agregar tablas a la estructura y datos a la carga inicial
+
+* Unit-tests
+* Documentación

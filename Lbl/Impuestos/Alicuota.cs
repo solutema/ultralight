@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,15 +35,19 @@ using System.Text;
 
 namespace Lbl.Impuestos
 {
+        /// <summary>
+        /// Representa una alícuota de IVA.
+        /// </summary>
+        [Lbl.Atributos.NombreItem("Alícuota")]
         public class Alicuota : ElementoDeDatos
         {
-                public Alicuota(Lfx.Data.DataBase dataBase)
+                public Alicuota(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
 
-                public Alicuota(Lfx.Data.DataBase dataBase, int itemId)
+                public Alicuota(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Alicuota(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                public Alicuota(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
@@ -62,11 +66,11 @@ namespace Lbl.Impuestos
 			}
 		}
 
-                public double Porcentaje
+                public decimal Porcentaje
                 {
                         get
                         {
-                                return this.FieldDouble("porcentaje");
+                                return this.GetFieldValue<decimal>("porcentaje");
                         }
                         set
                         {
@@ -74,16 +78,38 @@ namespace Lbl.Impuestos
                         }
                 }
 
-                public double ImporteMinimo
+                public decimal ImporteMinimo
                 {
                         get
                         {
-                                return this.FieldDouble("importe_minimo");
+                                return this.GetFieldValue<decimal>("importe_minimo");
                         }
                         set
                         {
                                 this.Registro["importe_minimo"] = value;
                         }
+                }
+
+                public override Lfx.Types.OperationResult Guardar()
+                {
+                        qGen.TableCommand Comando;
+
+                        if (this.Existe == false) {
+                                Comando = new qGen.Insert(this.Connection, this.TablaDatos);
+                        } else {
+                                Comando = new qGen.Update(this.Connection, this.TablaDatos);
+                                Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
+                        }
+
+                        Comando.Fields.AddWithValue("nombre", this.Nombre);
+                        Comando.Fields.AddWithValue("porcentaje", this.Porcentaje);
+                        Comando.Fields.AddWithValue("importe_minimo", this.ImporteMinimo);
+
+                        this.AgregarTags(Comando);
+
+                        this.Connection.Execute(Comando);
+
+                        return base.Guardar();
                 }
         }
 }

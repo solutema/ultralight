@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -39,13 +39,21 @@ namespace Lfx.Types
 	{
 		// La moneda utilizada de manera predeterminada en el sistema
 		// Es un id_moneda de la tabla "monedas" (3 = pesos)
-		public static int DefaultCurrency = 3;
-		public static string CurrencySymbol = "$";
-
-		public static double Truncate(double number, int decimals)
+                public static decimal Truncate(decimal number, int decimals)
 		{
 			long Expo = System.Convert.ToInt64(Math.Pow(10, decimals));
 			return Math.Truncate(number * Expo) / Expo;
 		}
+
+
+                public static decimal QuitarIva(decimal importe, decimal alicuota)
+                {
+                        decimal ImporteOriginal = importe / (1 + alicuota / 100);
+                        decimal Iva = Math.Round(importe - ImporteOriginal, 4);
+
+                        ImporteOriginal = Math.Round(importe - Iva, 4);
+
+                        return ImporteOriginal;
+                }
 	}
 }

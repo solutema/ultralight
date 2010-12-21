@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -36,8 +36,7 @@ namespace Lfx.Data
         public enum AccessModes
         {
                 Undefined,
-                ODBC,
-                MyOdbc,         // MySQL Connector/ODBC, obsoleto
+                Odbc,
                 MySql,          // MySQL Connector/NET
                 Npgsql,
                 MSSql,
@@ -81,6 +80,10 @@ namespace Lfx.Data
                 /// Texto de largo variable de largo extendido.
                 /// </summary>
                 Memo,
+                /// <summary>
+                /// Año y mes.
+                /// </summary>
+                YearMonth,
                 /// <summary>
                 /// Fecha.
                 /// </summary>

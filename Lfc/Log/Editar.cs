@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,14 +37,14 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Lui.Forms
+namespace Lfc.Log
 {
-        public partial class EditHistory : Lui.Forms.ChildDialogForm
+        public partial class Editar : Lui.Forms.ChildDialogForm
         {
                 public string Tabla;
                 public int ItemId;
 
-                public EditHistory()
+                public Editar()
                 {
                         InitializeComponent();
 
@@ -61,12 +61,12 @@ namespace Lui.Forms
                         this.Tabla = tabla;
                         this.ItemId = itemId;
                         
-                        System.Data.DataTable LogsTable = this.DataBase.Select("SELECT * FROM sys_log WHERE tabla='" + this.Tabla + "' AND item_id=" + this.ItemId.ToString() + " ORDER BY fecha DESC");
-                        Lbl.ColeccionGenerica<Lbl.Sys.Log.Entry> Logs = new Lbl.ColeccionGenerica<Lbl.Sys.Log.Entry>(this.DataBase, LogsTable);
+                        System.Data.DataTable LogsTable = this.Connection.Select("SELECT * FROM sys_log WHERE tabla='" + this.Tabla + "' AND item_id=" + this.ItemId.ToString() + " ORDER BY fecha DESC");
+                        Lbl.ColeccionGenerica<Lbl.Sys.Log.Entrada> Logs = new Lbl.ColeccionGenerica<Lbl.Sys.Log.Entrada>(this.Connection, LogsTable);
                         for (int i = 0; i < Logs.Count; i++) {
-                                Lbl.Sys.Log.Entry Log = Logs[i];
-                                Lfx.Data.Row Usuario = this.DataBase.Tables["personas"].FastRows[Log.IdUsuario];
-                                ListViewItem Itm = ListaHistoral.Items.Add(Log.Fecha.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
+                                Lbl.Sys.Log.Entrada Log = Logs[i];
+                                Lfx.Data.Row Usuario = this.Connection.Tables["personas"].FastRows[Log.IdUsuario];
+                                ListViewItem Itm = ListaHistoral.Items.Add(Lfx.Types.Formatting.FormatShortestDateAndTime(Log.Fecha));
                                 if (Usuario == null)
                                         Itm.SubItems.Add("");
                                 else

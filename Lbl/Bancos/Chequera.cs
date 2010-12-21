@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -42,20 +42,16 @@ namespace Lbl.Bancos
                 public Lbl.Entidades.Sucursal Sucursal;
 
                 //Heredar constructor
-                public Chequera(Lfx.Data.DataBase dataBase)
+                public Chequera(Lfx.Data.Connection dataBase)
                         : base(dataBase)
                 {
                         this.Estado = 1;
                 }
 
-                public Chequera(Lfx.Data.DataBase dataBase, int idChequera)
-			: this(dataBase)
-		{
-			m_ItemId = idChequera;
-                        this.Cargar();
-		}
+                public Chequera(Lfx.Data.Connection dataBase, int itemId)
+			: base(dataBase, itemId) { }
 
-                public Chequera(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                public Chequera(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
                 public override string TablaDatos
@@ -78,7 +74,7 @@ namespace Lbl.Bancos
                 {
                         get
                         {
-                                return this.FieldString("titular");
+                                return this.GetFieldValue<string>("titular");
                         }
                         set
                         {
@@ -90,7 +86,7 @@ namespace Lbl.Bancos
                 {
                         get
                         {
-                                return this.FieldInt("prefijo");
+                                return this.GetFieldValue<int>("prefijo");
                         }
                         set
                         {
@@ -102,7 +98,7 @@ namespace Lbl.Bancos
                 {
                         get
                         {
-                                return this.FieldInt("desde");
+                                return this.GetFieldValue<int>("desde");
                         }
                         set
                         {
@@ -114,7 +110,7 @@ namespace Lbl.Bancos
                 {
                         get
                         {
-                                return this.FieldInt("hasta");
+                                return this.GetFieldValue<int>("hasta");
                         }
                         set
                         {
@@ -125,18 +121,18 @@ namespace Lbl.Bancos
                 public override void OnLoad()
                 {
                         if (this.Registro != null) {
-                                if (this.FieldInt("id_banco") > 0)
-                                        this.Banco = new Bancos.Banco(this.DataBase, this.FieldInt("id_banco"));
+                                if (this.GetFieldValue<int>("id_banco") > 0)
+                                        this.Banco = new Bancos.Banco(this.Connection, this.GetFieldValue<int>("id_banco"));
                                 else
                                         this.Banco = null;
 
-                                if (this.FieldInt("id_caja") > 0)
-                                        this.Caja = new Cajas.Caja(this.DataBase, this.FieldInt("id_caja"));
+                                if (this.GetFieldValue<int>("id_caja") > 0)
+                                        this.Caja = new Cajas.Caja(this.Connection, this.GetFieldValue<int>("id_caja"));
                                 else
                                         this.Caja = null;
 
-                                if (this.FieldInt("id_sucursal") > 0)
-                                        this.Sucursal = new Lbl.Entidades.Sucursal(this.DataBase, this.FieldInt("id_sucursal"));
+                                if (this.GetFieldValue<int>("id_sucursal") > 0)
+                                        this.Sucursal = new Lbl.Entidades.Sucursal(this.Connection, this.GetFieldValue<int>("id_sucursal"));
                                 else
                                         this.Sucursal = null;
                         }
@@ -147,10 +143,10 @@ namespace Lbl.Bancos
                 {
                         qGen.TableCommand Comando;
                         if (this.Existe == false) {
-                                Comando = new qGen.Insert(DataBase, "chequeras");
+                                Comando = new qGen.Insert(Connection, "chequeras");
                                 Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                         } else {
-                                Comando = new qGen.Update(DataBase, "chequeras");
+                                Comando = new qGen.Update(Connection, "chequeras");
                                 Comando.WhereClause = new qGen.Where("id_chequera", m_ItemId);
                         }
 
@@ -172,10 +168,10 @@ namespace Lbl.Bancos
                         Comando.Fields.AddWithValue("titular", this.Titular);
                         Comando.Fields.AddWithValue("estado", this.Estado);
 
-                        DataBase.Execute(Comando);
+                        Connection.Execute(Comando);
 
                         if (m_ItemId == 0)
-                                m_ItemId = DataBase.FieldInt("SELECT LAST_INSERT_ID()");
+                                m_ItemId = Connection.FieldInt("SELECT LAST_INSERT_ID()");
 
                         if (this.Desde > 0 && this.Hasta > 0 && this.Hasta > this.Desde) {
 				qGen.Update Actua = new qGen.Update("bancos_cheques");
@@ -184,7 +180,7 @@ namespace Lbl.Bancos
                                 Actua.WhereClause.AddWithValue("emitido", 1);
                                 Actua.WhereClause.AddWithValue("id_banco", this.Banco.Id);
                                 Actua.WhereClause.AddWithValue("numero", this.Desde, this.Hasta);
-				DataBase.Execute(Actua);
+				Connection.Execute(Actua);
 				
 				Actua = new qGen.Update("bancos_cheques");
 				Actua.Fields.Add(new Lfx.Data.Field("id_chequera", Lfx.Data.DbTypes.Integer, null));
@@ -196,7 +192,7 @@ namespace Lbl.Bancos
                                 Numeros.AddWithValue("numero", qGen.ComparisonOperators.LessThan, this.Desde);
                                 Numeros.AddWithValue("numero", qGen.ComparisonOperators.GreaterThan, this.Hasta);
                                 Actua.WhereClause.AddWithValue(Numeros);
-				DataBase.Execute(Actua);
+				Connection.Execute(Actua);
 
                         }
 

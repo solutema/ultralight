@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -81,7 +81,7 @@ namespace Lui.Forms
                         set
                         {
                                 m_ForceCase = value;
-                                TextBox1.Text = FormatearDatos(TextBox1.Text);
+                                this.TextRaw = FormatearDatos(this.TextRaw);
                         }
                 }
 
@@ -127,12 +127,14 @@ namespace Lui.Forms
 			{
 				m_DecimalPlaces = value;
 				m_IgnoreChanges++;
-				TextBox1.Text = FormatearDatos(TextBox1.Text);
+                                this.TextRaw = FormatearDatos(this.TextRaw);
 				m_IgnoreChanges--;
 			}
 		}
 
-		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		[EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public int SelectionStart
 		{
 			get
@@ -145,7 +147,9 @@ namespace Lui.Forms
 			}
 		}
 
-		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		[EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false), 
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public int SelectionLength
 		{
 			get
@@ -217,7 +221,7 @@ namespace Lui.Forms
 				{
 					case DataTypes.Float:
 					case DataTypes.Integer:
-					case DataTypes.Money:
+					case DataTypes.Currency:
                                         case DataTypes.Stock:
 						TextBox1.TextAlign = HorizontalAlignment.Right;
 						break;
@@ -225,9 +229,58 @@ namespace Lui.Forms
 						TextBox1.TextAlign = HorizontalAlignment.Left;
 						break;
 				}
-				TextBox1.Text = FormatearDatos(TextBox1.Text);
+                                this.TextRaw = FormatearDatos(this.TextRaw);
 			}
 		}
+
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public double ValueDouble
+                {
+                        get
+                        {
+                                return Lfx.Types.Parsing.ParseDouble(this.Text);
+                        }
+                        set
+                        {
+                                this.TextRaw = FormatearDatos(value);
+                        }
+                }
+
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public decimal ValueDecimal
+                {
+                        get
+                        {
+                                return this.Text.ParseDecimal();
+                        }
+                        set
+                        {
+                                this.TextRaw = FormatearDatos(value);
+                        }
+                }
+
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public int ValueInt
+                {
+                        get
+                        {
+                                return Lfx.Types.Parsing.ParseInt(this.Text);
+                        }
+                        set
+                        {
+                                this.TextRaw = FormatearDatos(value);
+                        }
+                }
+
 
                 private void MenuItemCopiar_Click(System.Object sender, System.EventArgs e)
 		{
@@ -242,7 +295,7 @@ namespace Lui.Forms
                 {
                         try {
                                 string DatosPortapapeles = System.Convert.ToString(Clipboard.GetDataObject().GetData(DataFormats.Text, true));
-                                this.Text = DatosPortapapeles;
+                                this.Text = FormatearDatos(DatosPortapapeles);
                         } catch {
                                 // Nada
                         }
@@ -271,7 +324,7 @@ namespace Lui.Forms
 			MenuItemCalendario.Visible = (this.ReadOnly == false && (m_DataType == DataTypes.Date || m_DataType == DataTypes.DateTime));
 			MenuItemHoy.Visible = MenuItemCalendario.Visible;
 			MenuItemAyer.Visible = MenuItemCalendario.Visible;
-			MenuItemCalculadora.Visible = (m_DataType == DataTypes.Float || m_DataType == DataTypes.Money  || m_DataType == DataTypes.Stock || m_DataType == DataTypes.Integer);
+			MenuItemCalculadora.Visible = (m_DataType == DataTypes.Float || m_DataType == DataTypes.Currency  || m_DataType == DataTypes.Stock || m_DataType == DataTypes.Integer);
 			MenuItemCalculadora.Enabled = !this.ReadOnly;
 			MenuItemEditor.Enabled = (this.ReadOnly == false && m_DataType == DataTypes.FreeText && m_PasswordChar == Lfx.Types.ControlChars.Null);
 			MenuItemCopiar.Enabled = m_PasswordChar == Lfx.Types.ControlChars.Null && this.Text.Length > 0;
@@ -305,22 +358,22 @@ namespace Lui.Forms
 
 		private void MenuItemHoy_Click(object sender, System.EventArgs e)
 		{
-			this.Text = Lfx.Types.Formatting.FormatDate(System.DateTime.Now);
+			this.Text = FormatearDatos(System.DateTime.Now);
 		}
 
 
 		private void MenuItemAyer_Click(System.Object sender, System.EventArgs e)
 		{
-			this.Text = Lfx.Types.Formatting.FormatDate(System.DateTime.Now.AddDays(-1));
+			this.Text = FormatearDatos(System.DateTime.Now.AddDays(-1));
 		}
 
 		private void MostrarCalendario()
 		{
 			CalendarPopUp Calendario = new CalendarPopUp();
-			if (Lfx.Types.Strings.IsDate(this.Text))
+			if (this.Text.IsDate())
 				Calendario.Calendar.CurrentDate = Lfx.Types.Parsing.ParseDate(this.Text).Value;
 			if (Calendario.ShowDialog() == DialogResult.OK)
-				this.Text = Lfx.Types.Formatting.FormatDate(Calendario.Calendar.CurrentDate);
+				this.Text = FormatearDatos(Calendario.Calendar.CurrentDate);
 			Calendario.Close();
 			Calendario = null;
 		}
@@ -352,17 +405,15 @@ namespace Lui.Forms
 			{
 				MenuItemPegadoRapido.MenuItems.RemoveAt(i);
 			}
-			if (this.Workspace != null)
-			{
-                                System.Data.DataTable QuickPastes = this.DataBase.Select("SELECT texto FROM sys_quickpaste ORDER BY fecha DESC LIMIT 12");
-				foreach (System.Data.DataRow QuickPaste in QuickPastes.Rows)
-				{
-					System.Windows.Forms.MenuItem NuevoItem = new System.Windows.Forms.MenuItem();
-					NuevoItem.Text = QuickPaste["texto"].ToString();
-					NuevoItem.Click += new System.EventHandler(this.MenuItemPegadoRapidoTexto_Click);
-					MenuItemPegadoRapido.MenuItems.Add(NuevoItem);
-				}
-			}
+                        if (this.HasWorkspace) {
+                                System.Data.DataTable QuickPastes = this.Connection.Select("SELECT texto FROM sys_quickpaste ORDER BY fecha DESC LIMIT 12");
+                                foreach (System.Data.DataRow QuickPaste in QuickPastes.Rows) {
+                                        System.Windows.Forms.MenuItem NuevoItem = new System.Windows.Forms.MenuItem();
+                                        NuevoItem.Text = QuickPaste["texto"].ToString();
+                                        NuevoItem.Click += new System.EventHandler(this.MenuItemPegadoRapidoTexto_Click);
+                                        MenuItemPegadoRapido.MenuItems.Add(NuevoItem);
+                                }
+                        }
 		}
 
 		private void MenuItemPegadoRapidoAgregar_Click(object sender, System.EventArgs e)
@@ -370,14 +421,14 @@ namespace Lui.Forms
                         qGen.Insert Comando = new qGen.Insert("sys_quickpaste");
 			Comando.Fields.AddWithValue("texto", this.Text);
 			Comando.Fields.AddWithValue("estacion", System.Environment.MachineName.ToUpperInvariant());
-			Comando.Fields.AddWithValue("usuario", this.Workspace.CurrentUser.Id);
+			Comando.Fields.AddWithValue("usuario", Lbl.Sys.Config.Actual.UsuarioConectado.Id);
 			Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
-                        this.DataBase.Execute(Comando);
+                        this.Connection.Execute(Comando);
 		}
 
 		private void MenuItemPegadoRapidoTexto_Click(object sender, System.EventArgs e)
 		{
-			this.Text = ((System.Windows.Forms.MenuItem)sender).Text;
+			this.Text = FormatearDatos(((System.Windows.Forms.MenuItem)sender).Text);
 		}
 
                 public override System.String Text
@@ -395,91 +446,126 @@ namespace Lui.Forms
 
                                 if (m_SelectOnFocus) {
                                         TextBox1.SelectionStart = 0;
-                                        TextBox1.SelectionLength = TextBox1.Text.Length;
+                                        TextBox1.SelectionLength = this.TextRaw.Length;
                                 } else {
-                                        TextBox1.SelectionStart = TextBox1.Text.Length;
+                                        TextBox1.SelectionStart = this.TextRaw.Length;
                                 }
                         }
                 }
 
-                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public double ValueDouble
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public AutoCompleteStringCollection AutoCompleteStringCollection
                 {
                         get
                         {
-                                return Lfx.Types.Parsing.ParseDouble(this.Text);
+                                return TextBox1.AutoCompleteCustomSource;
                         }
                         set
                         {
-                                int Decimals = this.DecimalPlaces;
-                                if (Decimals < 0 && Lfx.Workspace.Master != null) {
-                                        switch (this.DataType) {
-                                                case DataTypes.Money:
-                                                        Decimals = Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales;
-                                                        break;
-                                                case DataTypes.Stock:
-                                                        Decimals = Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock;
-                                                        break;
-                                        }
-                                }
-                                this.Text = Lfx.Types.Formatting.FormatNumber(value, Decimals);
+                                TextBox1.AutoCompleteCustomSource = value;
+                                if (value == null)
+                                        TextBox1.AutoCompleteMode = AutoCompleteMode.None;
+                                else
+                                        TextBox1.AutoCompleteMode = AutoCompleteMode.Append;
+                                TextBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
                         }
                 }
 
-                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public int ValueInt
-                {
-                        get
-                        {
-                                return Lfx.Types.Parsing.ParseInt(this.Text);
-                        }
-                        set
-                        {
-                                this.Text = value.ToString();
-                        }
-                }
 
-                private string FormatearDatos(string Dato)
+                private string FormatearDatos(object datos)
                 {
                         string Res = null;
                         switch (m_DataType) {
                                 case DataTypes.Integer:
-                                        double Eval = Lfx.Types.Evaluator.EvaluateDouble(Dato);
-                                        if (Eval > int.MaxValue || Eval < int.MinValue)
+                                        long DatoInt;
+                                        if (datos is Int16 || datos is Int32 || datos is Int64) {
+                                                DatoInt = System.Convert.ToInt32(datos);
+                                        } else {
+                                                DatoInt = System.Convert.ToInt64(Lfx.Types.Evaluator.EvaluateDouble(datos.ToString()));
+                                                
+                                        }
+                                        if (DatoInt > int.MaxValue || DatoInt < int.MinValue)
                                                 Res = "0";
                                         else
-                                                Res = System.Convert.ToInt32(Eval).ToString();
+                                                Res = System.Convert.ToInt32(DatoInt).ToString();
                                         break;
+
                                 case DataTypes.Float:
+                                        double DatoDouble;
+                                        if (datos is double || datos is Single || datos is float)
+                                                DatoDouble = System.Convert.ToDouble(datos);
+                                        else
+                                                DatoDouble = Lfx.Types.Evaluator.EvaluateDouble(datos.ToString());
+
                                         if (m_DecimalPlaces == -1)
-                                                Res = Lfx.Types.Formatting.FormatNumber(Lfx.Types.Evaluator.EvaluateDouble(Dato), 4);
+                                                Res = Lfx.Types.Formatting.FormatNumber(DatoDouble, 4);
                                         else
-                                                Res = Lfx.Types.Formatting.FormatNumber(Lfx.Types.Evaluator.EvaluateDouble(Dato), m_DecimalPlaces);
+                                                Res = Lfx.Types.Formatting.FormatNumber(DatoDouble, m_DecimalPlaces);
                                         break;
-                                case DataTypes.Money:
-                                        if (m_DecimalPlaces == -1 && this.Workspace != null)
-                                                Res = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Evaluator.EvaluateDouble(Dato), this.Workspace.CurrentConfig.Moneda.Decimales);
+
+                                case DataTypes.Currency:
+                                        decimal DatoDinero;
+                                        if(datos is decimal || datos is double)
+                                                DatoDinero = System.Convert.ToDecimal(datos);
+                                        else
+                                                DatoDinero =Lfx.Types.Evaluator.EvaluateDecimal(datos.ToString());
+
+                                        if (m_DecimalPlaces == -1 && this.HasWorkspace)
+                                                Res = Lfx.Types.Formatting.FormatCurrency(DatoDinero, this.Workspace.CurrentConfig.Moneda.Decimales);
                                         else if (m_DecimalPlaces == -1)
-                                                Res = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Evaluator.EvaluateDouble(Dato), 2);
+                                                Res = Lfx.Types.Formatting.FormatCurrency(DatoDinero, 2);
                                         else
-                                                Res = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Evaluator.EvaluateDouble(Dato), m_DecimalPlaces);
+                                                Res = Lfx.Types.Formatting.FormatCurrency(DatoDinero, m_DecimalPlaces);
                                         break;
+
                                 case DataTypes.Stock:
-                                        if (m_DecimalPlaces == -1 && this.Workspace != null)
-                                                Res = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Evaluator.EvaluateDouble(Dato), this.Workspace.CurrentConfig.Productos.DecimalesStock);
-                                        else if (m_DecimalPlaces == -1)
-                                                Res = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Evaluator.EvaluateDouble(Dato), 2);
+                                        decimal DatoStock;
+                                        if(datos is decimal || datos is double)
+                                                DatoStock = System.Convert.ToDecimal(datos);
                                         else
-                                                Res = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Evaluator.EvaluateDouble(Dato), m_DecimalPlaces);
+                                                DatoStock =Lfx.Types.Evaluator.EvaluateDecimal(datos.ToString());
+
+                                        if (m_DecimalPlaces == -1 && this.HasWorkspace)
+                                                Res = Lfx.Types.Formatting.FormatCurrency(DatoStock, this.Workspace.CurrentConfig.Productos.DecimalesStock);
+                                        else if (m_DecimalPlaces == -1)
+                                                Res = Lfx.Types.Formatting.FormatCurrency(DatoStock, 2);
+                                        else
+                                                Res = Lfx.Types.Formatting.FormatCurrency(DatoStock, m_DecimalPlaces);
                                         break;
+
                                 case DataTypes.Date:
-                                        Res = Lfx.Types.Formatting.FormatDate(Dato);
+                                        if (datos is DateTime) {
+                                                Res = Lfx.Types.Formatting.FormatDate(System.Convert.ToDateTime(datos));
+                                        } else {
+                                                if (datos == null)
+                                                        Res = "";
+                                                else if (datos.ToString().IsDate())
+                                                        // Reformateo la fecha
+                                                        Res = Lfx.Types.Formatting.FormatDate(Lfx.Types.Parsing.ParseDate(datos.ToString()));
+                                                else
+                                                        Res = "";
+                                        }
                                         break;
+
                                 case DataTypes.DateTime:
-                                        Res = Lfx.Types.Formatting.FormatDateAndTime(Dato);
+                                        if (datos is DateTime) {
+                                                Res = Lfx.Types.Formatting.FormatDateAndTime(System.Convert.ToDateTime(datos));
+                                        } else {
+                                                if (datos == null)
+                                                        Res = "";
+                                                else if (datos.ToString().IsDate())
+                                                        // Reformateo la fecha
+                                                        Res = Lfx.Types.Formatting.FormatDateAndTime(Lfx.Types.Parsing.ParseDate(datos.ToString()));
+                                                else
+                                                        Res = "";
+                                        }
                                         break;
+
                                 default:
-                                        Res = Lfx.Types.Strings.UnixToWindows(Dato);
+                                        Res = datos.ToString().UnixToWindows();
                                         break;
                         }
 
@@ -491,7 +577,7 @@ namespace Lui.Forms
                                         Res = Res.ToUpper();
                                         break;
                                 case TextCasing.Caption:
-                                        Res = Lfx.Types.Strings.ULCase(Res);
+                                        Res = Res.ToTitleCase();
                                         break;
                         }
 
@@ -510,8 +596,9 @@ namespace Lui.Forms
                 private void TextBox1_LostFocus(object sender, System.EventArgs e)
                 {
                         if (IgnorarEventos == 0) {
-                                string Res = FormatearDatos(TextBox1.Text);
-                                TextBox1.Text = Res;
+                                string Res = FormatearDatos(this.TextRaw);
+                                if (this.TextRaw != Res)
+                                        this.TextRaw = Res;
                         }
                 }
 
@@ -521,7 +608,7 @@ namespace Lui.Forms
                                 if (m_SelectOnFocus)
                                         TextBox1.SelectAll();
                                 else
-                                        TextBox1.SelectionStart = TextBox1.Text.Length;
+                                        TextBox1.SelectionStart = this.TextRaw.Length;
                         }
                 }
 

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -77,15 +77,15 @@ namespace Lazaro.Misc.Backup
 		}
 
 
-		private void cmdBackup_Click(System.Object sender, System.EventArgs e)
+		private void BotonBackup_Click(System.Object sender, System.EventArgs e)
 		{
-			cmdBackup.Enabled = false;
+			BotonBackup.Enabled = false;
 			Aplicacion.Exec("BACKUP NOW");
 			MostrarListaBackups();
 		}
 
 
-		private void cmdEliminar_Click(object sender, System.EventArgs e)
+		private void BotonEliminar_Click(object sender, System.EventArgs e)
 		{
 			if (lvItems.SelectedItems.Count > 0 && lvItems.SelectedItems[0] != null)
 			{

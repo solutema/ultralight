@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -81,12 +81,12 @@ namespace Lfc.Comprobantes.Recibos
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.EntradaCaja.AutoTab = true;
             this.EntradaCaja.CanCreate = false;
-            this.EntradaCaja.DetailField = "nombre";
+            this.EntradaCaja.DataTextField = "nombre";
             this.EntradaCaja.ExtraDetailFields = null;
             this.EntradaCaja.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EntradaCaja.ForeColor = System.Drawing.SystemColors.ControlText;
             this.EntradaCaja.FreeTextCode = "";
-            this.EntradaCaja.KeyField = "id_caja";
+            this.EntradaCaja.DataValueField = "id_caja";
             this.EntradaCaja.Location = new System.Drawing.Point(104, 160);
             this.EntradaCaja.MaxLength = 200;
             this.EntradaCaja.Name = "EntradaCaja";
@@ -117,12 +117,12 @@ namespace Lfc.Comprobantes.Recibos
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.EntradaCliente.AutoTab = true;
             this.EntradaCliente.CanCreate = false;
-            this.EntradaCliente.DetailField = "nombre_visible";
+            this.EntradaCliente.DataTextField = "nombre_visible";
             this.EntradaCliente.ExtraDetailFields = null;
             this.EntradaCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EntradaCliente.ForeColor = System.Drawing.SystemColors.ControlText;
             this.EntradaCliente.FreeTextCode = "";
-            this.EntradaCliente.KeyField = "id_persona";
+            this.EntradaCliente.DataValueField = "id_persona";
             this.EntradaCliente.Location = new System.Drawing.Point(104, 20);
             this.EntradaCliente.MaxLength = 200;
             this.EntradaCliente.Name = "EntradaCliente";
@@ -148,16 +148,16 @@ namespace Lfc.Comprobantes.Recibos
             this.Label5.Text = "Cliente";
             this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtImporte
+            // EntradaImporte
             // 
             this.EntradaImporte.AutoNav = true;
             this.EntradaImporte.AutoTab = true;
-            this.EntradaImporte.DataType = Lui.Forms.DataTypes.Money;
+            this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
             this.EntradaImporte.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EntradaImporte.ForeColor = System.Drawing.SystemColors.ControlText;
             this.EntradaImporte.Location = new System.Drawing.Point(104, 52);
             this.EntradaImporte.MaxLenght = 32767;
-            this.EntradaImporte.Name = "txtImporte";
+            this.EntradaImporte.Name = "EntradaImporte";
             this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
             this.EntradaImporte.Prefijo = "$";
             this.EntradaImporte.ReadOnly = false;

@@ -36,8 +36,7 @@
     <RemoteDebugMachine>
     </RemoteDebugMachine>
     <StartAction>Project</StartAction>
-    <StartArguments>
-    </StartArguments>
+    <StartArguments>ServidorFiscal</StartArguments>
     <StartPage>
     </StartPage>
     <StartProgram>

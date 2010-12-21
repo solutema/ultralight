@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -46,16 +46,12 @@ namespace Lui.Forms
 
         public class InputBox : System.Windows.Forms.Form
         {
-
-                #region "Atributos"
                 private System.Windows.Forms.Label lblInfo;
                 private Button OkButton;
                 private TextBox Texto;
                 private Button CancelBtn;
-                private System.ComponentModel.Container components = null;
-                #endregion
+                private System.ComponentModel.IContainer components = null;
 
-                #region "Constructor/InitializeComponent/Dispose"
                 private InputBox()
                 {
                         InitializeComponent();
@@ -162,8 +158,6 @@ namespace Lui.Forms
                         this.ResumeLayout(false);
 
                 }
-
-                #endregion
 
                 /// <summary>
                 /// Ejecuta InputBox.

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -40,13 +40,13 @@ namespace Lfc.Bancos.Cheques
 	public class Entregar : Lui.Forms.DialogForm
 	{
 		internal System.Windows.Forms.Label label3;
-		internal Lcc.Entrada.CodigoDetalle txtConcepto;
-		internal Lui.Forms.TextBox txtObs;
+		internal Lcc.Entrada.CodigoDetalle EntradaConcepto;
+		internal Lui.Forms.TextBox EntradaObs;
 		internal System.Windows.Forms.Label Label4;
 		internal System.Windows.Forms.Label label5;
-		internal Lui.Forms.TextBox txtSubTotal;
+		internal Lui.Forms.TextBox EntradaSubTotal;
 		internal System.Windows.Forms.Label Label1;
-		internal Lui.Forms.TextBox txtCantidad;
+		internal Lui.Forms.TextBox EntradaCantidad;
 		internal System.Windows.Forms.Label lblLabel1;
 		internal System.Windows.Forms.Label label2;
 		internal Lcc.Entrada.CodigoDetalle gDetailBox1;
@@ -80,13 +80,13 @@ namespace Lfc.Bancos.Cheques
 		private void InitializeComponent()
 		{
 			this.label3 = new System.Windows.Forms.Label();
-			this.txtConcepto = new Lcc.Entrada.CodigoDetalle();
-			this.txtObs = new Lui.Forms.TextBox();
+			this.EntradaConcepto = new Lcc.Entrada.CodigoDetalle();
+			this.EntradaObs = new Lui.Forms.TextBox();
 			this.Label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
-			this.txtSubTotal = new Lui.Forms.TextBox();
+			this.EntradaSubTotal = new Lui.Forms.TextBox();
 			this.Label1 = new System.Windows.Forms.Label();
-			this.txtCantidad = new Lui.Forms.TextBox();
+			this.EntradaCantidad = new Lui.Forms.TextBox();
 			this.lblLabel1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.gDetailBox1 = new Lcc.Entrada.CodigoDetalle();
@@ -113,49 +113,49 @@ namespace Lfc.Bancos.Cheques
 			this.label3.Text = "En concepto de";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// txtConcepto
+			// EntradaConcepto
 			// 
-			this.txtConcepto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.EntradaConcepto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
-			this.txtConcepto.AutoTab = true;
-			this.txtConcepto.CanCreate = true;
-			this.txtConcepto.DetailField = "nombre";
-			this.txtConcepto.DockPadding.All = 2;
-			this.txtConcepto.ExtraDetailFields = null;
-			this.txtConcepto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txtConcepto.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtConcepto.FreeTextCode = "";
-			this.txtConcepto.KeyField = "id_concepto";
-			this.txtConcepto.Location = new System.Drawing.Point(128, 136);
-			this.txtConcepto.MaxLength = 200;
-			this.txtConcepto.Name = "txtConcepto";
-			this.txtConcepto.ReadOnly = false;
-			this.txtConcepto.Required = false;
-			this.txtConcepto.Size = new System.Drawing.Size(404, 24);
-			this.txtConcepto.TabIndex = 8;
-			this.txtConcepto.Table = "conceptos";
-			this.txtConcepto.TeclaDespuesDeEnter = "{tab}";
-			this.txtConcepto.Text = "0";
-			this.txtConcepto.TextDetail = "";
-			this.txtConcepto.ToolTipText = "";
+			this.EntradaConcepto.AutoTab = true;
+			this.EntradaConcepto.CanCreate = true;
+			this.EntradaConcepto.DataTextField = "nombre";
+			this.EntradaConcepto.DockPadding.All = 2;
+			this.EntradaConcepto.ExtraDetailFields = null;
+			this.EntradaConcepto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.EntradaConcepto.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.EntradaConcepto.FreeTextCode = "";
+			this.EntradaConcepto.DataValueField = "id_concepto";
+			this.EntradaConcepto.Location = new System.Drawing.Point(128, 136);
+			this.EntradaConcepto.MaxLength = 200;
+			this.EntradaConcepto.Name = "EntradaConcepto";
+			this.EntradaConcepto.ReadOnly = false;
+			this.EntradaConcepto.Required = false;
+			this.EntradaConcepto.Size = new System.Drawing.Size(404, 24);
+			this.EntradaConcepto.TabIndex = 8;
+			this.EntradaConcepto.Table = "conceptos";
+			this.EntradaConcepto.TeclaDespuesDeEnter = "{tab}";
+			this.EntradaConcepto.Text = "0";
+			this.EntradaConcepto.TextDetail = "";
+			this.EntradaConcepto.ToolTipText = "";
 			// 
-			// txtObs
+			// EntradaObs
 			// 
-			this.txtObs.AutoNav = true;
-			this.txtObs.AutoTab = true;
-			this.txtObs.DataType = Lui.Forms.DataTypes.FreeText;
-			this.txtObs.DockPadding.All = 2;
-			this.txtObs.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txtObs.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtObs.Location = new System.Drawing.Point(128, 172);
-			this.txtObs.MaxLenght = 32767;
-			this.txtObs.MultiLine = true;
-			this.txtObs.Name = "txtObs";
-			this.txtObs.ReadOnly = false;
-			this.txtObs.SelectOnFocus = false;
-			this.txtObs.Size = new System.Drawing.Size(404, 92);
-			this.txtObs.TabIndex = 10;
-			this.txtObs.ToolTipText = "";
+			this.EntradaObs.AutoNav = true;
+			this.EntradaObs.AutoTab = true;
+			this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
+			this.EntradaObs.DockPadding.All = 2;
+			this.EntradaObs.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.EntradaObs.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.EntradaObs.Location = new System.Drawing.Point(128, 172);
+			this.EntradaObs.MaxLenght = 32767;
+			this.EntradaObs.MultiLine = true;
+			this.EntradaObs.Name = "EntradaObs";
+			this.EntradaObs.ReadOnly = false;
+			this.EntradaObs.SelectOnFocus = false;
+			this.EntradaObs.Size = new System.Drawing.Size(404, 92);
+			this.EntradaObs.TabIndex = 10;
+			this.EntradaObs.ToolTipText = "";
 			// 
 			// Label4
 			// 
@@ -176,24 +176,24 @@ namespace Lfc.Bancos.Cheques
 			this.label5.Text = "Va a realizar un egreso del cheque sin efectivizar (por ejemplo, al realizar un p" +
 				"ago con cheques de terceros).";
 			// 
-			// txtSubTotal
+			// EntradaSubTotal
 			// 
-			this.txtSubTotal.AutoNav = true;
-			this.txtSubTotal.AutoTab = true;
-			this.txtSubTotal.DataType = Lui.Forms.DataTypes.Money;
-			this.txtSubTotal.DockPadding.All = 2;
-			this.txtSubTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txtSubTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtSubTotal.Location = new System.Drawing.Point(368, 68);
-			this.txtSubTotal.MaxLenght = 32767;
-			this.txtSubTotal.Name = "txtSubTotal";
-			this.txtSubTotal.Prefijo = "$";
-			this.txtSubTotal.ReadOnly = true;
-			this.txtSubTotal.Size = new System.Drawing.Size(108, 24);
-			this.txtSubTotal.TabIndex = 4;
-			this.txtSubTotal.TabStop = false;
-			this.txtSubTotal.Text = "0.00";
-			this.txtSubTotal.ToolTipText = "";
+			this.EntradaSubTotal.AutoNav = true;
+			this.EntradaSubTotal.AutoTab = true;
+			this.EntradaSubTotal.DataType = Lui.Forms.DataTypes.Currency;
+			this.EntradaSubTotal.DockPadding.All = 2;
+			this.EntradaSubTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.EntradaSubTotal.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.EntradaSubTotal.Location = new System.Drawing.Point(368, 68);
+			this.EntradaSubTotal.MaxLenght = 32767;
+			this.EntradaSubTotal.Name = "EntradaSubTotal";
+			this.EntradaSubTotal.Prefijo = "$";
+			this.EntradaSubTotal.ReadOnly = true;
+			this.EntradaSubTotal.Size = new System.Drawing.Size(108, 24);
+			this.EntradaSubTotal.TabIndex = 4;
+			this.EntradaSubTotal.TabStop = false;
+			this.EntradaSubTotal.Text = "0.00";
+			this.EntradaSubTotal.ToolTipText = "";
 			// 
 			// Label1
 			// 
@@ -205,23 +205,23 @@ namespace Lfc.Bancos.Cheques
 			this.Label1.Text = "cheque(s) por un total de";
 			this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// txtCantidad
+			// EntradaCantidad
 			// 
-			this.txtCantidad.AutoNav = true;
-			this.txtCantidad.AutoTab = true;
-			this.txtCantidad.DataType = Lui.Forms.DataTypes.Integer;
-			this.txtCantidad.DockPadding.All = 2;
-			this.txtCantidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txtCantidad.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtCantidad.Location = new System.Drawing.Point(128, 68);
-			this.txtCantidad.MaxLenght = 32767;
-			this.txtCantidad.Name = "txtCantidad";
-			this.txtCantidad.ReadOnly = true;
-			this.txtCantidad.Size = new System.Drawing.Size(56, 24);
-			this.txtCantidad.TabIndex = 2;
-			this.txtCantidad.TabStop = false;
-			this.txtCantidad.Text = "0";
-			this.txtCantidad.ToolTipText = "";
+			this.EntradaCantidad.AutoNav = true;
+			this.EntradaCantidad.AutoTab = true;
+			this.EntradaCantidad.DataType = Lui.Forms.DataTypes.Integer;
+			this.EntradaCantidad.DockPadding.All = 2;
+			this.EntradaCantidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.EntradaCantidad.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.EntradaCantidad.Location = new System.Drawing.Point(128, 68);
+			this.EntradaCantidad.MaxLenght = 32767;
+			this.EntradaCantidad.Name = "EntradaCantidad";
+			this.EntradaCantidad.ReadOnly = true;
+			this.EntradaCantidad.Size = new System.Drawing.Size(56, 24);
+			this.EntradaCantidad.TabIndex = 2;
+			this.EntradaCantidad.TabStop = false;
+			this.EntradaCantidad.Text = "0";
+			this.EntradaCantidad.ToolTipText = "";
 			// 
 			// lblLabel1
 			// 
@@ -248,13 +248,13 @@ namespace Lfc.Bancos.Cheques
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.gDetailBox1.AutoTab = true;
 			this.gDetailBox1.CanCreate = true;
-			this.gDetailBox1.DetailField = "nombre_visible";
+			this.gDetailBox1.DataTextField = "nombre_visible";
 			this.gDetailBox1.DockPadding.All = 2;
 			this.gDetailBox1.ExtraDetailFields = null;
 			this.gDetailBox1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.gDetailBox1.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.gDetailBox1.FreeTextCode = "";
-			this.gDetailBox1.KeyField = "id_persona";
+			this.gDetailBox1.DataValueField = "id_persona";
 			this.gDetailBox1.Location = new System.Drawing.Point(128, 104);
 			this.gDetailBox1.MaxLength = 200;
 			this.gDetailBox1.Name = "gDetailBox1";
@@ -274,15 +274,15 @@ namespace Lfc.Bancos.Cheques
 			this.ClientSize = new System.Drawing.Size(554, 347);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.gDetailBox1);
-			this.Controls.Add(this.txtSubTotal);
+			this.Controls.Add(this.EntradaSubTotal);
 			this.Controls.Add(this.Label1);
-			this.Controls.Add(this.txtCantidad);
+			this.Controls.Add(this.EntradaCantidad);
 			this.Controls.Add(this.lblLabel1);
 			this.Controls.Add(this.label5);
-			this.Controls.Add(this.txtObs);
+			this.Controls.Add(this.EntradaObs);
 			this.Controls.Add(this.Label4);
 			this.Controls.Add(this.label3);
-			this.Controls.Add(this.txtConcepto);
+			this.Controls.Add(this.EntradaConcepto);
 			this.Name = "Entregar";
 			this.Text = "Entrega de cheque(s)";
 			this.ResumeLayout(false);

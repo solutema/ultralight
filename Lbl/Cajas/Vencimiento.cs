@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -48,24 +48,25 @@ namespace Lbl.Cajas
                 Anual
         }
 
+        [Lbl.Atributos.NombreItem("Vencimiento")]
         public class Vencimiento : ElementoDeDatos
         {
                 public Cajas.Concepto Concepto;
 
                 //Heredar constructor
-                public Vencimiento(Lfx.Data.DataBase dataBase)
+                public Vencimiento(Lfx.Data.Connection dataBase)
                         : base(dataBase) {}
 
-                public Vencimiento(Lfx.Data.DataBase dataBase, int itemId)
+                public Vencimiento(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Vencimiento(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                public Vencimiento(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
-                public override Lfx.Types.OperationResult Crear()
+                public override void Crear()
                 {
+                        base.Crear();
                         this.Frecuencia = Frecuencias.Unica;
-                        return base.Crear();
                 }
 
 		public override string TablaDatos
@@ -84,11 +85,11 @@ namespace Lbl.Cajas
 			}
 		}
 
-                public double Importe
+                public decimal Importe
                 {
                         get
                         {
-                                return this.FieldDouble("importe");
+                                return this.GetFieldValue<decimal>("importe");
                         }
                         set
                         {
@@ -100,7 +101,7 @@ namespace Lbl.Cajas
                 {
                         get
                         {
-                                return this.FieldInt("repetir");
+                                return this.GetFieldValue<int>("repetir");
                         }
                         set
                         {
@@ -112,7 +113,7 @@ namespace Lbl.Cajas
                 {
                         get
                         {
-                                return this.FieldInt("ocurrencia");
+                                return this.GetFieldValue<int>("ocurrencia");
                         }
                         set
                         {
@@ -124,10 +125,10 @@ namespace Lbl.Cajas
                 {
                         get
                         {
-                                if (this.FieldString("frecuencia") == null)
+                                if (this.GetFieldValue<string>("frecuencia") == null)
                                         return Frecuencias.Unica;
 
-                                switch (this.FieldString("frecuencia").ToUpperInvariant()) {
+                                switch (this.GetFieldValue<string>("frecuencia").ToUpperInvariant()) {
                                         case "UNICA":
                                                 return Frecuencias.Unica;
                                         case "DIARIA":
@@ -195,8 +196,8 @@ namespace Lbl.Cajas
                 public override void OnLoad()
                 {
                         if (this.Registro != null) {
-                                if (Lfx.Data.DataBase.ConvertDBNullToZero(Registro["id_concepto"]) > 0)
-                                        this.Concepto = new Cajas.Concepto(this.DataBase, System.Convert.ToInt32(Registro["id_concepto"]));
+                                if (Lfx.Data.Connection.ConvertDBNullToZero(Registro["id_concepto"]) > 0)
+                                        this.Concepto = new Cajas.Concepto(this.Connection, System.Convert.ToInt32(Registro["id_concepto"]));
                                 else
                                         this.Concepto = null;
                         }
@@ -207,10 +208,10 @@ namespace Lbl.Cajas
                         qGen.TableCommand Comando;
 
                         if (this.Existe == false) {
-                                Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
+                                Comando = new qGen.Insert(this.Connection, this.TablaDatos);
                                 Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                         } else {
-                                Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando = new qGen.Update(this.Connection, this.TablaDatos);
                                 Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
@@ -259,7 +260,7 @@ namespace Lbl.Cajas
 
                         this.AgregarTags(Comando);
 
-                        this.DataBase.Execute(Comando);
+                        this.Connection.Execute(Comando);
 
                         return new Lfx.Types.SuccessOperationResult();
                 }

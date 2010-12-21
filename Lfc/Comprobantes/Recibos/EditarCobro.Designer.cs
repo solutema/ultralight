@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -41,7 +41,6 @@ namespace Lfc.Comprobantes.Recibos
         {
                 #region Código generado por el Diseñador de Windows Forms
 
-                // Limpiar los recursos que se están utilizando.
                 protected override void Dispose(bool disposing)
                 {
                         if (disposing) {
@@ -53,8 +52,7 @@ namespace Lfc.Comprobantes.Recibos
                         base.Dispose(disposing);
                 }
 
-                // Requerido por el Diseñador de Windows Forms
-                internal System.ComponentModel.Container components = null;
+                private System.ComponentModel.Container components = null;
 
                 internal void InitializeComponent()
                 {

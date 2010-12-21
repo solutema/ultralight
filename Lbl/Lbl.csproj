@@ -10,19 +10,17 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Lbl</RootNamespace>
     <AssemblyName>Lbl</AssemblyName>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ApplicationIcon>Lazaro.ico</ApplicationIcon>
     <CodePage>65001</CodePage>
     <ReleaseVersion>1.0</ReleaseVersion>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -74,10 +72,40 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Articulos\ItemReceta.cs" />
+    <Compile Include="Atributos\MuestraMensajeAlCrear.cs" />
+    <Compile Include="Atributos\MuestraPanelExtendido.cs" />
+    <Compile Include="Atributos\NombreItem.cs" />
+    <Compile Include="ColeccionCodigoDetalle.cs" />
+    <Compile Include="Comprobantes\Lote.cs" />
+    <Compile Include="ICuenta.cs" />
+    <Compile Include="IElementoDeDatos.cs" />
+    <Compile Include="Impresion\Campo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Cuotas\Estados.cs" />
+    <Compile Include="Entidades\TiposDeLocalidad.cs" />
+    <Compile Include="Impresion\CargasPapel.cs" />
+    <Compile Include="Impresion\ClasesImpresora.cs" />
+    <Compile Include="Impresion\Impresora.cs" />
+    <Compile Include="Impresion\ModelosFiscales.cs" />
+    <Compile Include="Impresion\TipoImpresora.cs" />
+    <Compile Include="Impuestos\SituacionIva.cs" />
+    <Compile Include="ListaIds.cs" />
+    <Compile Include="Personas\Usuario.cs" />
+    <Compile Include="Sys\Configuracion\Impresion.cs" />
+    <Compile Include="Sys\Configuracion\UsuarioConectado.cs" />
+    <Compile Include="Sys\Log\Acciones.cs" />
+    <Compile Include="Sys\Log\TiposDeComando.cs" />
+    <Compile Include="Sys\Permisos\Operaciones.cs" />
+    <Compile Include="Sys\Permisos\Objeto.cs" />
+    <Compile Include="Sys\Permisos\Permiso.cs" />
+    <Compile Include="Sys\Permisos\ListaDePermisos.cs" />
     <Compile Include="Articulos\ArticulosItem.cs" />
     <Compile Include="Articulos\Categoria.cs" />
     <Compile Include="Articulos\Enums.cs" />
@@ -90,16 +118,23 @@
     <Compile Include="Articulos\ControlStock.cs" />
     <Compile Include="Bancos\Cheque.cs" />
     <Compile Include="Bancos\Chequera.cs" />
+    <Compile Include="Cajas\TiposDeCaja.cs" />
     <Compile Include="ColeccionGenerica.cs" />
-    <Compile Include="Comprobantes\Impresion\Fiscal\Comando.cs" />
-    <Compile Include="Comprobantes\Impresion\Fiscal\ImpresoraEventArgs.cs" />
-    <Compile Include="Comprobantes\Impresion\Fiscal\EstadoAuxiliar.cs" />
-    <Compile Include="Comprobantes\Impresion\Fiscal\EstadoImpresora.cs" />
-    <Compile Include="Comprobantes\Impresion\Fiscal\Impresora.cs" />
-    <Compile Include="Comprobantes\Impresion\Fiscal\Respuesta.cs" />
-    <Compile Include="Comprobantes\Pv.cs" />
+    <Compile Include="Comprobantes\ComprobanteDeCompra.cs" />
+    <Compile Include="Comprobantes\Factura.cs" />
+    <Compile Include="Comprobantes\NotaDeCredito.cs" />
+    <Compile Include="Comprobantes\NotaDeDebito.cs" />
+    <Compile Include="Comprobantes\Presupuesto.cs" />
+    <Compile Include="Comprobantes\PuntoDeVenta.cs" />
+    <Compile Include="Comprobantes\Ticket.cs" />
+    <Compile Include="Entidades\Moneda.cs" />
+    <Compile Include="ICamposBaseEstandar.cs" />
+    <Compile Include="IElementoConImagen.cs" />
     <Compile Include="Impuestos\Alicuota.cs" />
     <Compile Include="Instanciador.cs" />
+    <Compile Include="Pagos\EstadosCupones.cs" />
+    <Compile Include="Pagos\TiposFormasDePago.cs" />
+    <Compile Include="Personas\Proveedor.cs" />
     <Compile Include="Servicios\Desduplicador.cs" />
     <Compile Include="Servicios\Importar\Filtro.cs" />
     <Compile Include="Servicios\Importar\FiltroArchivos.cs" />
@@ -117,11 +152,7 @@
     <Compile Include="Comprobantes\DetalleArticulo.cs" />
     <Compile Include="Comprobantes\Comprobante.cs" />
     <Compile Include="Comprobantes\ComprobanteConArticulos.cs" />
-    <Compile Include="Comprobantes\Factura.cs" />
     <Compile Include="Pagos\FormaDePago.cs" />
-    <Compile Include="Comprobantes\Impresion\Campo.cs" />
-    <Compile Include="Comprobantes\Impresion\DocumentoDeTexto.cs" />
-    <Compile Include="Comprobantes\Impresion\Fiscal\Enums.cs" />
     <Compile Include="Comprobantes\Numerador.cs" />
     <Compile Include="Comprobantes\Cobro.cs" />
     <Compile Include="Comprobantes\Pago.cs" />
@@ -138,39 +169,28 @@
     <Compile Include="Cuotas\Resumen.cs" />
     <Compile Include="ElementoDeDatos.cs" />
     <Compile Include="Bancos\Banco.cs" />
-    <Compile Include="Entidades\Ciudad.cs" />
+    <Compile Include="Entidades\Localidad.cs" />
     <Compile Include="Entidades\Sucursal.cs" />
     <Compile Include="Etiqueta.cs" />
-    <Compile Include="Impresion\ManualFeedDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Impresion\ManualFeedDialog.Designer.cs">
-      <DependentUpon>ManualFeedDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Impresion\Services.cs" />
     <Compile Include="Personas\EstadoCredito.cs" />
     <Compile Include="Personas\Grupo.cs" />
     <Compile Include="Impuestos\SituacionTributaria.cs" />
     <Compile Include="Charts\Charts.cs" />
     <Compile Include="Reportes\Reporte.cs" />
-    <Compile Include="Sys\Log\Entry.cs" />
+    <Compile Include="Sys\Config.cs" />
+    <Compile Include="Sys\Configuracion\Empresa.cs" />
+    <Compile Include="Sys\Configuracion\Global.cs" />
+    <Compile Include="Sys\Configuracion\Moneda.cs" />
+    <Compile Include="Sys\Configuracion\SeccionConfiguracion.cs" />
+    <Compile Include="Sys\Log\Entrada.cs" />
     <Compile Include="Tareas\Tarea.cs" />
     <Compile Include="Tareas\Tipo.cs" />
-    <Compile Include="Cupones\Cupon.cs" />
-    <Compile Include="Cupones\Plan.cs" />
+    <Compile Include="Pagos\Cupon.cs" />
+    <Compile Include="Pagos\Plan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Articulos\Articulo.cs" />
     <Compile Include="Personas\Persona.cs" />
-    <Compile Include="Comprobantes\Impresion\Plantilla.cs" />
-    <Compile Include="Comprobantes\Impresion\ImpresorComprobante.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Comprobantes\Impresion\ImpresorRecibo.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Comprobantes\Impresion\ImpresorComprobanteConArticulos.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Impresion\Plantilla.cs" />
     <Compile Include="Servicios\Verificador.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -181,12 +201,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Impresion\ManualFeedDialog.resx">
-      <DependentUpon>ManualFeedDialog.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -221,6 +235,7 @@
   <ItemGroup>
     <Content Include="Lazaro.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

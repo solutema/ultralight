@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,116 +37,41 @@ using System.Windows.Forms;
 
 namespace Lui.Forms
 {
-	public class WorkstationSelectorForm : Lui.Forms.DialogForm
+	public partial class WorkstationSelectorForm : Lui.Forms.DialogForm
 	{
 		private System.Windows.Forms.ColumnHeader NombreEstacion;
 		private System.Windows.Forms.ColumnHeader Nombre;
-                private Lui.Forms.ListView lvItems;
-		private System.ComponentModel.IContainer components = null;
+                private Lui.Forms.ListView Listado;
 		public string Estacion;
 
                 public WorkstationSelectorForm()
 		{
 			InitializeComponent();
+
+                        if (this.HasWorkspace)
+                                this.MostrarDatos();
 		}
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if (components != null) 
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
+                public override Lfx.Types.OperationResult Ok()
+                {
+                        if (Listado.SelectedItems != null)
+                                this.Estacion = Listado.SelectedItems[0].Text;
+                        return base.Ok();
+                }
 
-		#region Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
-                        this.lvItems = new Lui.Forms.ListView();
-                        this.NombreEstacion = new System.Windows.Forms.ColumnHeader();
-                        this.Nombre = new System.Windows.Forms.ColumnHeader();
-                        this.SuspendLayout();
-                        // 
-                        // lvItems
-                        // 
-                        this.lvItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lvItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.lvItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.NombreEstacion,
-            this.Nombre});
-                        this.lvItems.FullRowSelect = true;
-                        this.lvItems.GridLines = true;
-                        this.lvItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-                        this.lvItems.HideSelection = false;
-                        this.lvItems.LabelWrap = false;
-                        this.lvItems.Location = new System.Drawing.Point(8, 8);
-                        this.lvItems.MultiSelect = false;
-                        this.lvItems.Name = "lvItems";
-                        this.lvItems.Size = new System.Drawing.Size(460, 196);
-                        this.lvItems.TabIndex = 0;
-                        this.lvItems.UseCompatibleStateImageBehavior = false;
-                        this.lvItems.View = System.Windows.Forms.View.Details;
-                        // 
-                        // NombreEstacion
-                        // 
-                        this.NombreEstacion.Text = "Estación";
-                        this.NombreEstacion.Width = 0;
-                        // 
-                        // Nombre
-                        // 
-                        this.Nombre.Text = "Estación";
-                        this.Nombre.Width = 320;
-                        // 
-                        // SeleccionarEstacion
-                        // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(474, 274);
-                        this.Controls.Add(this.lvItems);
-                        this.Name = "SeleccionarEstacion";
-                        this.WorkspaceChanged += new System.EventHandler(this.SeleccionarEstacion_WorkspaceChanged);
-                        this.ResumeLayout(false);
 
-		}
-		#endregion
-
-                new protected void OkButton_Click(object sender, System.EventArgs e)
+		private void MostrarDatos()
 		{
-			if(lvItems.SelectedItems != null)
-				this.Estacion = lvItems.SelectedItems[0].Text;
-			this.DialogResult = DialogResult.OK;
-			this.Hide();
-		}
-
-                internal new void CancelCommandButton_Click(object sender, System.EventArgs e)
-		{
-			this.DialogResult = DialogResult.Cancel;
-			this.Hide();
-		}
-
-		private void SeleccionarEstacion_WorkspaceChanged(object sender, System.EventArgs e)
-		{
-			lvItems.Items.Clear();
-			ListViewItem itm = lvItems.Items.Add(new ListViewItem (new string[] {System.Environment.MachineName.ToUpperInvariant(), "Este equipo"}));
+			Listado.Items.Clear();
+			ListViewItem itm = Listado.Items.Add(new ListViewItem (new string[] {System.Environment.MachineName.ToUpperInvariant(), "Este equipo"}));
 			itm.Selected = (this.Estacion == System.Environment.MachineName.ToUpperInvariant());
 
-			System.Data.DataTable Estaciones = this.DataBase.Select("SELECT DISTINCT estacion FROM sys_config ORDER BY estacion");
+			System.Data.DataTable Estaciones = this.Connection.Select("SELECT DISTINCT estacion FROM sys_config ORDER BY estacion");
 			foreach(System.Data.DataRow RowEstacion in Estaciones.Rows)
 			{
 				if((string)RowEstacion["estacion"] != "*" && (string)RowEstacion["estacion"] != System.Environment.MachineName.ToUpperInvariant())
 				{
-					itm = lvItems.Items.Add(new ListViewItem (new string[] {(string)RowEstacion["estacion"], (string)RowEstacion["estacion"]}));
+					itm = Listado.Items.Add(new ListViewItem (new string[] {(string)RowEstacion["estacion"], (string)RowEstacion["estacion"]}));
 					itm.Selected = (this.Estacion == (string)RowEstacion["estacion"]);
 				}
 			}		

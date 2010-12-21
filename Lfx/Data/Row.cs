@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -92,12 +92,10 @@ namespace Lfx.Data
 		{
 			get
 			{
-				if(Fields == null)
-					return null;
-                                if (Fields[index].Value is DBNull)
+				if(this.Fields == null || this.Fields[index].Value is DBNull)
                                         return null;
                                 else
-                                        return Fields[index].Value;
+                                        return this.Fields[index].Value;
 			}
 		}
 

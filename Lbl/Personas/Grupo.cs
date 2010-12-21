@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,17 +35,18 @@ using System.Text;
 
 namespace Lbl.Personas
 {
+        [Lbl.Atributos.NombreItem("Grupo")]
 	public class Grupo : ElementoDeDatos
 	{
                 private Grupo m_Parent = null;
 
-		public Grupo(Lfx.Data.DataBase dataBase)
+		public Grupo(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
 
-		public Grupo(Lfx.Data.DataBase dataBase, int itemId)
+		public Grupo(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Grupo(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                public Grupo(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
@@ -66,17 +67,65 @@ namespace Lbl.Personas
 
                 public override void OnLoad()
                 {
-                        base.OnLoad();
-
                         m_Parent = null;
+
+                        base.OnLoad();
+                }
+
+                public override Lfx.Types.OperationResult Guardar()
+                {
+                        qGen.TableCommand Comando;
+                        if (this.Existe == false) {
+                                Comando = new qGen.Insert(Connection, "personas_grupos");
+                                Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
+                        } else {
+                                Comando = new qGen.Update(Connection, "personas_grupos");
+                                Comando.WhereClause = new qGen.Where("id_grupo", this.Id);
+                        }
+
+                        Comando.Fields.AddWithValue("nombre", this.Nombre);
+                        Comando.Fields.AddWithValue("descuento", this.Descuento);
+                        Comando.Fields.AddWithValue("predet", this.Predeterminado ? 1 : 0);
+                        if (this.Parent != null)
+                                Comando.Fields.AddWithValue("parent", this.Parent.Id);
+                        else
+                                Comando.Fields.AddWithValue("parent", null);
+
+                        Connection.Execute(Comando);
+                        
+                        return base.Guardar();
+                }
+
+                public decimal Descuento
+                {
+                        get
+                        {
+                                return this.GetFieldValue<decimal>("descuento");
+                        }
+                        set
+                        {
+                                this.Registro["descuento"] = value;
+                        }
+                }
+
+                public bool Predeterminado
+                {
+                        get
+                        {
+                                return this.GetFieldValue<int>("predet") == 1;
+                        }
+                        set
+                        {
+                                this.Registro["predet"] = value ? 1 : 0;
+                        }
                 }
 
                 public Grupo Parent
                 {
                         get
                         {
-                                if(m_Parent == null && this.FieldInt("parent") != 0)
-                                        m_Parent = new Grupo(this.DataBase, this.FieldInt("parent"));
+                                if(m_Parent == null && this.GetFieldValue<int>("parent") != 0)
+                                        m_Parent = new Grupo(this.Connection, this.GetFieldValue<int>("parent"));
 
                                 return m_Parent;
                         }

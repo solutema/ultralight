@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -32,6 +32,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
 
 namespace Lbl
 {
@@ -40,9 +41,13 @@ namespace Lbl
         /// Normalmente refleja un registro de la base de datos como un objeto con propiedades y métodos.
         /// </summary>
         [Serializable]
-        public abstract class ElementoDeDatos : System.MarshalByRefObject
+        public abstract class ElementoDeDatos : System.MarshalByRefObject, IElementoDeDatos
 	{
-		public Lfx.Data.DataBase DataBase = null;
+                [DefaultValue(null)]
+                public Lfx.Data.Connection Connection { get; set; }
+
+                [DefaultValue(null)]
+                public object Tag { get; set; }
 
 		protected int m_ItemId = 0;
 		protected Lfx.Data.Row m_Registro = null, m_RegistroOriginal = null;
@@ -50,30 +55,53 @@ namespace Lbl
                 protected bool m_ImagenCambio = false;
                 protected ColeccionGenerica<Etiqueta> m_Etiquetas = null, m_EtiquetasOriginal = null;
 
-		protected ElementoDeDatos(Lfx.Data.DataBase dataBase)
+		protected ElementoDeDatos(Lfx.Data.Connection conn)
 		{
-			this.DataBase = dataBase;
+			this.Connection = conn;
 		}
 
-                public ElementoDeDatos(Lfx.Data.DataBase dataBase, int itemId)
-                        : this(dataBase)
+                public ElementoDeDatos(Lfx.Data.Connection conn, int itemId)
+                        : this(conn)
                 {
                         m_ItemId = itemId;
+                        this.Cargar();
                 }
 
-                public ElementoDeDatos(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
-                        : this(dataBase)
+                public ElementoDeDatos(Lfx.Data.Connection conn, Lfx.Data.Row fromRow)
+                        : this(conn)
                 {
                         this.FromRow(fromRow);
                 }
 
+                /// <summary>
+                /// Instancia un ElementoDeDatos desde un registro de la base de datos.
+                /// </summary>
+                /// <param name="fromRow"></param>
                 protected void FromRow(Lfx.Data.Row fromRow)
                 {
-                        this.Cargar(fromRow);
+                        this.m_Etiquetas = null;
+                        this.m_ImagenCambio = false;
+                        this.m_Imagen = null;
+
+                        m_Registro = fromRow;
+                        if (m_Registro != null) {
+                                m_ItemId = System.Convert.ToInt32(m_Registro[this.CampoId]);
+                                m_Registro.IsNew = fromRow.IsNew;
+                                m_Registro.IsModified = fromRow.IsModified;
+                                m_RegistroOriginal = m_Registro.Clone();
+                                this.OnLoad();
+                        } else {
+                                m_ItemId = 0;
+                                m_Registro = new Lfx.Data.Row();
+                                m_RegistroOriginal = m_Registro.Clone();
+                        }
                 }
 
 		#region Propiedades
 
+                /// <summary>
+                /// El valor de la clave primaria.
+                /// </summary>
 		public int Id
 		{
 			get
@@ -82,6 +110,9 @@ namespace Lbl
 			}
 		}
 
+                /// <summary>
+                /// Obtiene una copia de this.Registro como fue cargado desde la base de datos (sin las modificaciones que se puedan haber hecho y que aun no hayan sido guardadas).
+                /// </summary>
                 public virtual Lfx.Data.Row RegistroOriginal
                 {
                         get
@@ -90,6 +121,10 @@ namespace Lbl
                         }
                 }
 
+                /// <summary>
+                /// Devuelve este elemento como un registro (Lfx.DataRow). Puede ser un registro existente en la base de datos
+                /// o uno nuevo.
+                /// </summary>
 		public virtual Lfx.Data.Row Registro
 		{
 			get
@@ -98,28 +133,33 @@ namespace Lbl
                                         m_Etiquetas = null;
                                         Lfx.Data.Row Reg = null;
                                         if (this.Id != 0) {
-                                                if (this.DataBase.InTransaction == false && this.CampoId == this.DataBase.Tables[this.TablaDatos].PrimaryKey
-                                                                && this.DataBase.InTransaction == false)
+                                                if ((this.Connection.InTransaction == false || this.Connection.Tables[this.TablaDatos].AlwaysCache)
+                                                        && this.CampoId == this.Connection.Tables[this.TablaDatos].PrimaryKey)
                                                         // Si estoy accediendo a través de una clave primaria y no estoy en una transacción
                                                         // puedo usar directamente DataBase.Tables.FastRows, que es cacheable
-                                                        Reg = this.DataBase.Tables[this.TablaDatos].FastRows[this.Id];
+                                                        Reg = this.Connection.Tables[this.TablaDatos].FastRows[this.Id];
                                                 else
                                                         //De lo contrario uso DataBase.Row que termina en un SELECT común
-                                                        Reg = this.DataBase.Row(this.TablaDatos, this.CampoId, this.Id);
+                                                        Reg = this.Connection.Row(this.TablaDatos, this.CampoId, this.Id);
                                         }
 
-                                        this.Cargar(Reg);
+                                        this.FromRow(Reg);
                                 }
 				return m_Registro;
 			}
 		}
 
+                /// <summary>
+                /// Se dispara cuando el elemento es cargado desde la base de datos.
+                /// </summary>
                 public virtual void OnLoad()
                 {
                         
                 }
 
-
+                /// <summary>
+                /// Devuelve el nombre de la tabla en la base de datos correspondiente a este elemento.
+                /// </summary>
                 public virtual string TablaDatos
 		{
 			get
@@ -128,6 +168,10 @@ namespace Lbl
                         }
 		}
 
+                /// <summary>
+                /// Devuelve el nombre de la tabla en la base de datos correspondiente a las imágenes de este elemento.
+                /// Puede ser la misma que la tabla de datos.
+                /// </summary>
                 public virtual string TablaImagenes
                 {
                         get
@@ -136,7 +180,9 @@ namespace Lbl
                         }
                 }
 
-
+                /// <summary>
+                /// Obtiene el nombre del campo que es clave primaria en la tabla de datos.
+                /// </summary>
                 public virtual string CampoId
 		{
                         get
@@ -145,6 +191,9 @@ namespace Lbl
                         }
 		}
 
+                /// <summary>
+                /// Obtiene el nombre del campo detalle en la tabla de datos.
+                /// </summary>
                 public virtual string CampoNombre
 		{
 			get
@@ -153,21 +202,27 @@ namespace Lbl
 			}
 		}
 
+                /// <summary>
+                /// Obtiene el espacio de trabajo actual.
+                /// </summary>
 		public Lfx.Workspace Workspace
 		{
 			get
 			{
-				return this.DataBase.Workspace;
+				return this.Connection.Workspace;
 			}
 		}
 
 		//Campos estándar
 		
+                /// <summary>
+                /// Obtiene o establece el nombre del elemento. Normalmente es el valor guadado en el el campo CampoNombre.
+                /// </summary>
 		public virtual string Nombre
 		{
 			get
 			{
-                                return this.FieldString(CampoNombre);
+                                return this.GetFieldValue<string>(CampoNombre);
 			}
 			set
 			{
@@ -175,6 +230,9 @@ namespace Lbl
 			}
 		}
 
+                /// <summary>
+                /// Obtiene o establece un texto que representa las observaciones del elemento.
+                /// </summary>
 		public virtual string Obs
 		{
 			get
@@ -204,11 +262,15 @@ namespace Lbl
 			}
 		}
 
+                /// <summary>
+                /// Obtiene o establece el estado del elemento. El valor de esta propiedad tiene diferentes significados para cada
+                /// clase derivada.
+                /// </summary>
 		public virtual int Estado
 		{
 			get
 			{
-				return this.FieldInt("estado");
+				return this.GetFieldValue<int>("estado");
 			}
 			set
 			{
@@ -216,8 +278,9 @@ namespace Lbl
 			}
 		}
 
+
                 /// <summary>
-                /// True si la imagen fue cambiada.
+                /// Devuelve True si se agregó, quitó o cambió la imagen del elemento.
                 /// </summary>
                 public bool ImagenCambio
                 {
@@ -227,6 +290,9 @@ namespace Lbl
                         }
                 }
 
+                /// <summary>
+                /// Devuelve o establece la imagen asociada con este elemento.
+                /// </summary>
                 public virtual System.Drawing.Image Imagen
                 {
                         get
@@ -234,10 +300,10 @@ namespace Lbl
                                 if (m_Imagen == null && m_ImagenCambio == false) {
                                         // FIXME: Para los artículos sin imagen, evitar hacer esta consulta cada vez que se accede a la propiedad
                                         Lfx.Data.Row Imagen = null;
-                                        if(DataBase.Tables[this.TablaImagenes].PrimaryKey == null)
-                                                Imagen = DataBase.Row(this.TablaImagenes, "imagen", this.CampoId, this.Id);
+                                        if(Connection.Tables[this.TablaImagenes].PrimaryKey == null)
+                                                Imagen = Connection.Row(this.TablaImagenes, "imagen", this.CampoId, this.Id);
                                         else
-                                                Imagen = DataBase.Tables[this.TablaImagenes].FastRows[this.Id];
+                                                Imagen = Connection.Tables[this.TablaImagenes].FastRows[this.Id];
 
                                         if (Imagen != null && Imagen["imagen"] != null && ((byte[])(Imagen["imagen"])).Length > 5) {
                                                 byte[] ByteArr = ((byte[])(Imagen["imagen"]));
@@ -260,54 +326,57 @@ namespace Lbl
                         }
                 }
 
-
 		#endregion
 
 		#region Métodos
 
                 /// <summary>
-                /// Crea un nuevo elemento, con sus valores predeterminados.
+                /// Crea un nuevo elemento nuevo, con sus valores predeterminados.
                 /// </summary>
-		public virtual Lfx.Types.OperationResult Crear()
+		public virtual void Crear()
 		{
                         m_ItemId = 0;
 			m_Registro = new Lfx.Data.Row();
                         m_RegistroOriginal = null;
                         m_Etiquetas = null;
-                        return new Lfx.Types.SuccessOperationResult();
+                        this.Estado = 1;
 		}
 
                 /// <summary>
-                /// Agrega un comentario al historial de este elemento.
+                /// Agrega un comentario al historial de este elemento. El comentario se guarda inmediatamente en el historial.
+                /// Sólo se pueden agregar comentarios al elemento una vez que este fue guardado.
                 /// </summary>
                 /// <param name="texto">El texto del comentario.</param>
                 public void AgregarComentario(string texto)
                 {
                         if (this.Existe == false)
-                                throw new InvalidOperationException("No se pueden agregar comentarios a un elemento que no existe en la base de datos");
+                                throw new InvalidOperationException("No se pueden agregar comentarios a un elemento que aun no ha sido guardado.");
 
                         qGen.Insert NuevoCom = new qGen.Insert("sys_comments");
                         NuevoCom.Fields.AddWithValue("tablas", this.TablaDatos);
                         NuevoCom.Fields.AddWithValue("item_id", this.Id);
-                        NuevoCom.Fields.AddWithValue("id_persona", this.Workspace.CurrentUser.Id);
+                        NuevoCom.Fields.AddWithValue("id_persona", Lbl.Sys.Config.Actual.UsuarioConectado.Id);
                         NuevoCom.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                         NuevoCom.Fields.AddWithValue("obs", texto);
 
-                        this.DataBase.Execute(NuevoCom);
+                        this.Connection.Execute(NuevoCom);
                 }
 
                 /// <summary>
-                /// Guarda los cambios en la base de datos.
+                /// Guarda todos los cambios en la base de datos. Si se trata de un elemento nuevo, se agrega un registro a la base de datos.
+                /// Si se trata de un elemento existente, se modifica el registro original.
                 /// </summary>
 		public virtual Lfx.Types.OperationResult Guardar()
 		{
                         if (this.Id == 0) {
                                 // Acabo de insertar, averiguo mi propio id
-                                m_ItemId = this.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
+                                m_ItemId = this.Connection.FieldInt("SELECT LAST_INSERT_ID()");
                         } else {
                                 // Es un registro antiguo, lo elimino de la caché
-                                this.DataBase.Tables[this.TablaDatos].FastRows.RemoveFromCache(this.Id);
+                                this.Connection.Tables[this.TablaDatos].FastRows.RemoveFromCache(this.Id);
                         }
+                        this.Registro.IsModified = false;
+                        this.Registro.IsNew = false;
 
                         if (this.m_ImagenCambio) {
                                 // Hay cambios en el campo imagen
@@ -318,14 +387,14 @@ namespace Lbl
                                                 qGen.Update ActualizarImagen = new qGen.Update(this.TablaImagenes);
                                                 ActualizarImagen.Fields.AddWithValue("imagen", null);
                                                 ActualizarImagen.WhereClause = new qGen.Where(this.CampoId, this.Id);
-                                                this.DataBase.Execute(ActualizarImagen);
+                                                this.Connection.Execute(ActualizarImagen);
                                         } else {
                                                 // Usa una tabla separada para las imágenes
                                                 qGen.Delete EliminarImagen = new qGen.Delete(this.TablaImagenes);
                                                 EliminarImagen.WhereClause = new qGen.Where(this.CampoId, this.Id);
-                                                this.DataBase.Execute(EliminarImagen);
+                                                this.Connection.Execute(EliminarImagen);
                                         }
-                                        this.Workspace.ActionLog("SAVE", this.TablaDatos, this.Id, "Se eliminó la imagen");
+                                        Lbl.Sys.Config.ActionLog(this.Connection, Sys.Log.Acciones.Save, this, "Se eliminó la imagen");
                                 } else {
                                         // Cargar imagen nueva
                                         using (System.IO.MemoryStream ByteStream = new System.IO.MemoryStream()) {
@@ -352,56 +421,68 @@ namespace Lbl
                                                 if (this.TablaImagenes != this.TablaDatos) {
                                                         qGen.Delete EliminarImagen = new qGen.Delete(this.TablaImagenes);
                                                         EliminarImagen.WhereClause = new qGen.Where(this.CampoId, this.Id);
-                                                        this.DataBase.Execute(EliminarImagen);
+                                                        this.Connection.Execute(EliminarImagen);
 
-                                                        CambiarImagen = new qGen.Insert(DataBase, this.TablaImagenes);
+                                                        CambiarImagen = new qGen.Insert(Connection, this.TablaImagenes);
                                                         CambiarImagen.Fields.AddWithValue(this.CampoId, this.Id);
                                                 } else {
-                                                        CambiarImagen = new qGen.Update(DataBase, this.TablaImagenes);
+                                                        CambiarImagen = new qGen.Update(Connection, this.TablaImagenes);
                                                         CambiarImagen.WhereClause = new qGen.Where(this.CampoId, this.Id);
                                                 }
 
                                                 CambiarImagen.Fields.AddWithValue("imagen", ImagenBytes);
-                                                this.DataBase.Execute(CambiarImagen);
-                                                this.Workspace.ActionLog("SAVE", this.TablaDatos, this.Id, "Se cargó una imagen nueva");
+                                                this.Connection.Execute(CambiarImagen);
+                                                Lbl.Sys.Config.ActionLog(this.Connection, Sys.Log.Acciones.Save, this, "Se cargó una imagen nueva");
                                         }
                                 }
                         }
 
-                        // Elimino las etiquetas que ya no están.
-                        ColeccionGenerica<Etiqueta> ListaEtiquetas = this.Etiquetas.Quitados(m_EtiquetasOriginal);
-                        if (ListaEtiquetas != null && ListaEtiquetas.Count > 0) {
-                                qGen.Delete EliminarEtiquetas = new qGen.Delete(this.DataBase, "sys_labels_values");
-                                EliminarEtiquetas.WhereClause = new qGen.Where("item_id", this.Id);
-                                EliminarEtiquetas.WhereClause.Add(new qGen.ComparisonCondition("id_label", qGen.ComparisonOperators.In, ListaEtiquetas.GetAllIds()));
-                                this.DataBase.Execute(EliminarEtiquetas);
-                        }
-
-                        // Agrego las etiquetas nuevas.
-                        ListaEtiquetas = this.Etiquetas.Agregados(m_EtiquetasOriginal);
-                        if (ListaEtiquetas != null && ListaEtiquetas.Count > 0) {
-                                foreach (ElementoDeDatos El in ListaEtiquetas.List) {
-                                        qGen.Insert CrearEtiquetas = new qGen.Insert(this.DataBase, "sys_labels_values");
-                                        CrearEtiquetas.Fields.AddWithValue("id_label", El.Id);
-                                        CrearEtiquetas.Fields.AddWithValue("item_id", this.Id);
-                                        this.DataBase.Execute(CrearEtiquetas);
-                                }
-                        }
-
+                        this.GuardarEtiquetas();
                         this.GuardarLog();
                         this.Workspace.NotifyTableChange(this.TablaDatos, this.Id);
 
                         this.m_RegistroOriginal = this.m_Registro.Clone();
                         this.m_EtiquetasOriginal = this.m_Etiquetas.Clone();
                         this.m_ImagenCambio = false;
-			this.m_Registro.IsNew = false;
-			
+
                         return new Lfx.Types.SuccessOperationResult();
 		}
 
+                /// <summary>
+                /// Guarda los cambios que se hayan efectuado en las etiquetas.
+                /// </summary>
+                public void GuardarEtiquetas()
+                {
+                        if (this.Existe == false)
+                                throw new InvalidOperationException("No se pueden agregar etiquetas a un elemento que aun no ha sido guardado.");
+
+                        // Elimino las etiquetas que ya no están.
+                        ColeccionGenerica<Etiqueta> ListaEtiquetas = this.Etiquetas.Quitados(m_EtiquetasOriginal);
+                        if (ListaEtiquetas != null && ListaEtiquetas.Count > 0) {
+                                qGen.Delete EliminarEtiquetas = new qGen.Delete(this.Connection, "sys_labels_values");
+                                EliminarEtiquetas.WhereClause = new qGen.Where("item_id", this.Id);
+                                EliminarEtiquetas.WhereClause.Add(new qGen.ComparisonCondition("id_label", qGen.ComparisonOperators.In, ListaEtiquetas.GetAllIds()));
+                                this.Connection.Execute(EliminarEtiquetas);
+                        }
+
+                        // Agrego las etiquetas nuevas.
+                        ListaEtiquetas = this.Etiquetas.Agregados(m_EtiquetasOriginal);
+                        if (ListaEtiquetas != null && ListaEtiquetas.Count > 0) {
+                                foreach (ElementoDeDatos El in ListaEtiquetas) {
+                                        qGen.Insert CrearEtiquetas = new qGen.Insert(this.Connection, "sys_labels_values");
+                                        CrearEtiquetas.Fields.AddWithValue("id_label", El.Id);
+                                        CrearEtiquetas.Fields.AddWithValue("item_id", this.Id);
+                                        this.Connection.Execute(CrearEtiquetas);
+                                }
+                        }
+                }
+
+                /// <summary>
+                /// Guarda una entrada en el registro del sistema, indicando los cambios que se realizaron en este elemento.
+                /// </summary>
                 private void GuardarLog()
                 {
-                        string Extra1 = null;
+                        System.Text.StringBuilder Extra1 = null;
                         try {
                                 // Genero una lista de cambios
                                 foreach (Lfx.Data.Field Fl in this.m_Registro.Fields) {
@@ -409,22 +490,22 @@ namespace Lbl
                                         if (this.m_RegistroOriginal != null && this.m_RegistroOriginal.Fields != null)
                                                 ValorOriginal = this.m_RegistroOriginal[Fl.ColumnName];
 
-                                        if (Lfx.Types.Object.ObjectsEqualByValue(ValorOriginal, ValorNuevo) == false) {
+                                        if (Lfx.Types.Object.CompareByValue(ValorOriginal, ValorNuevo) != 0) {
                                                 if (Extra1 == null)
-                                                        Extra1 = "";
+                                                        Extra1 = new StringBuilder();
                                                 else
-                                                        Extra1 += "; ";
+                                                        Extra1.Append("; ");
 
-                                                Extra1 += Fl.ColumnName + "=";
+                                                Extra1.Append(Fl.ColumnName + "=");
                                                 if (ValorOriginal != null)
-                                                        Extra1 += "\'" + this.DataBase.EscapeString(ValorOriginal.ToString()) + "\'->";
+                                                        Extra1.Append("\'" + this.Connection.EscapeString(ValorOriginal.ToString()) + "\'->");
                                                 else
-                                                        Extra1 += "NULL->";
+                                                        Extra1.Append("NULL->");
 
                                                 if (ValorNuevo != null)
-                                                        Extra1 += "\'" + this.DataBase.EscapeString(ValorNuevo.ToString()) + "\'";
+                                                        Extra1.Append("\'" + this.Connection.EscapeString(ValorNuevo.ToString()) + "\'");
                                                 else
-                                                        Extra1 += "NULL";
+                                                        Extra1.Append("NULL");
                                         }
                                 }
                         } catch {
@@ -434,7 +515,7 @@ namespace Lbl
 
                         try {
                                 //System.Console.WriteLine(Extra1);
-                                this.Workspace.ActionLog("SAVE", this.TablaDatos, this.Id, Extra1);
+                                Lbl.Sys.Config.ActionLog(this.Connection, Sys.Log.Acciones.Save, this, Extra1 == null ? null : Extra1.ToString());
                         } catch {
                                 if (Lfx.Environment.SystemInformation.DesignMode)
                                         throw;
@@ -445,14 +526,14 @@ namespace Lbl
                 /// Agrega los campos personalizados (tags) al comando, antes de guardar.
                 /// </summary>
                 /// <param name="comando">El parámetro al cual agregar los campos.</param>
-		public virtual void AgregarTags(qGen.Command comando)
+                protected virtual void AgregarTags(qGen.Command comando)
 		{
 			this.AgregarTags(comando, this.Registro, this.TablaDatos);
 		}
-		
-                public virtual void AgregarTags(qGen.Command comando, Lfx.Data.Row registro, string tabla)
+
+                protected virtual void AgregarTags(qGen.Command comando, Lfx.Data.Row registro, string tabla)
                 {
-                        Lfx.Data.Table Tabla = this.DataBase.Tables[tabla];
+                        Lfx.Data.Table Tabla = this.Connection.Tables[tabla];
                         if (Tabla.Tags != null) {
                                 foreach (Lfx.Data.Tag Tg in Tabla.Tags) {
                                         if (Tg.Nullable == false && registro[Tg.FieldName] == null) {
@@ -475,7 +556,7 @@ namespace Lbl
                 }
 
                 /// <summary>
-                /// Devuelve Verdadero si el elemento existe en la base de datos.
+                /// Devuelve Verdadero si el elemento representa un registro existente en la base de datos o False en caso contrario.
                 /// </summary>
 		public bool Existe
 		{
@@ -485,30 +566,66 @@ namespace Lbl
                         }
 		}
 
-		protected string FieldString(string fieldName)
-		{
-			if(this.Registro[fieldName] == null)
-				return null;
-			else
-				return this.Registro[fieldName].ToString();
-		}
+                public bool Modificado
+                {
+                        get
+                        {
+                                return this.Registro.IsModified || this.ImagenCambio;
+                        }
+                }
 
-		protected int FieldInt(string fieldName)
-		{
-                        if (this.Registro[fieldName] == null || this.Registro[fieldName] == DBNull.Value)
-                                return 0;
+                /// <summary>
+                /// Obtiene el valor de un campo del registro asociado.
+                /// </summary>
+                /// <typeparam name="T">El tipo de datos a utilizar para el valor devuelto.</typeparam>
+                /// <param name="fieldName">El nombre del campo.</param>
+                /// <returns>El valor del campo.</returns>
+                public T GetFieldValue<T>(string fieldName)
+                {
+                        if (typeof(T).BaseType == typeof(Lbl.ElementoDeDatos)) {
+                                // Si intento obtener un ElementoDeDatos (por ejemplo, la propiedad Persona.Localidad)
+                                // tengo que instanciar un elemento.
+                                int ItemId = this.GetFieldValue<int>(fieldName);
+                                if (ItemId == 0) {
+                                        object Res = null;
+                                        return (T)Res;
+                                } else {
+                                        object Res = Lbl.Instanciador.Instanciar(typeof(T), this.Connection, this.GetFieldValue<int>(fieldName));
+                                        return (T)Res;
+                                }
+                        } else {
+                                // De lo contrario, asumo que es un tipo intrínseco y lo convierto con System.Convert.
+                                if (this.Registro[fieldName] == null) {
+                                        return default(T);
+                                } else {
+                                        return (T)(System.Convert.ChangeType(this.Registro[fieldName], typeof(T)));
+                                }
+                        }
+                }
+
+                /// <summary>
+                /// Establece el valor de un campo del registro asociado.
+                /// </summary>
+                /// <param name="fieldName">El nombre del campo.</param>
+                /// <param name="newVal">El valor a asignar.</param>
+                public void SetFieldValue(string fieldName, object newVal)
+                {
+                        if (newVal == null)
+                                // null es null
+                                this.Registro[fieldName] = null;
+                        else if (newVal is Lbl.IElementoDeDatos)
+                                // Si es un ElementoDeDatos, no guardo el objeto, sino su Id.
+                                this.Registro[fieldName] = ((Lbl.IElementoDeDatos)(newVal)).Id;
                         else
-                                return System.Convert.ToInt32(this.Registro[fieldName]);
-		}
+                                // De lo contrario, asumo que es un tipo intrínseco y guardo su valor
+                                this.Registro[fieldName] = newVal;
+                }
 
-		protected double FieldDouble(string fieldName)
-		{
-                        if (this.Registro[fieldName] == null)
-                                return 0;
-                        else
-			        return System.Convert.ToDouble(this.Registro[fieldName]);
-		}
-
+                /// <summary>
+                /// Devuelve el valor de un campo, convertido a Lfx.Types.LDateTime.
+                /// </summary>
+                /// <param name="fieldName">El nombre del campo.</param>
+                /// <returns>El valor</returns>
                 protected Lfx.Types.LDateTime FieldDateTime(string fieldName)
 		{
 			if(this.Registro[fieldName] == null)
@@ -519,24 +636,33 @@ namespace Lbl
 				return new Lfx.Types.LDateTime(System.Convert.ToDateTime(this.Registro[fieldName]));
 		}
 
+                /// <summary>
+                /// Devuelve una representación de este elemento en formato de texto legible. Por ejemplo "Factura B 0001-000123".
+                /// </summary>
+                /// <returns></returns>
 		public override string ToString()
 		{
-			return this.Registro[this.CampoNombre].ToString();
+			return this.GetFieldValue<string>(this.CampoNombre);
 		}
 
                 /// <summary>
-                /// Carga el elemento desde la base de datos.
+                /// Carga (o vuelve a cargar) el elemento desde su registro asociado en la base de datos.
                 /// </summary>
 		public virtual Lfx.Types.OperationResult Cargar()
 		{
-			if(m_ItemId == 0)
-				return this.Crear();
+                        if (m_ItemId == 0) {
+                                throw new InvalidOperationException("No se puede cargar el registro desde la tabla " + this.TablaDatos + " porque no tiene Id.");
+                                //this.Crear();
+                                //return new Lfx.Types.SuccessOperationResult();
+                        }
 
+                        // En realidad, lo único que hago es vaciar los valores en memoria y dejo que this.Registro.Get() lo cargue.
 			this.m_Registro = null;
                         this.m_RegistroOriginal = null;
                         this.m_Etiquetas = null;
                         this.m_ImagenCambio = false;
                         this.m_Imagen = null;
+                        // Fuerzo la carga.
                         Lfx.Data.Row Dummy = this.Registro;
 
 			if (Dummy == null)
@@ -545,44 +671,11 @@ namespace Lbl
 				return new Lfx.Types.SuccessOperationResult();
 		}
 
-                /// <summary>
-                /// Carga un elemento por su Id desde la base de datos.
-                /// </summary>
-		public Lfx.Types.OperationResult Cargar(int itemId)
-		{
-			m_ItemId = itemId;
-			return this.Cargar();
-		}
-
-                /// <summary>
-                /// Carga un elemento por su Id desde un registro
-                /// </summary>
-                public Lfx.Types.OperationResult Cargar(Lfx.Data.Row row)
-                {
-                        this.m_Etiquetas = null;
-                        this.m_ImagenCambio = false;
-                        this.m_Imagen = null;
-
-                        m_Registro = row;
-                        if (m_Registro != null) {
-                                m_ItemId = System.Convert.ToInt32(m_Registro[this.CampoId]);
-                                m_Registro.IsNew = row.IsNew;
-                                m_Registro.IsModified = row.IsModified;
-                                m_RegistroOriginal = m_Registro.Clone();
-                                this.OnLoad();
-                        } else {
-                                m_ItemId = 0;
-                                m_Registro = new Lfx.Data.Row();
-                                m_RegistroOriginal = m_Registro.Clone();
-                        }
-
-                        return new Lfx.Types.SuccessOperationResult();
-                }
 
 		#endregion
                 
                 /// <summary>
-                /// Devuelve o establece una colección de etiquetas del elemento.
+                /// Obtiene o establece las etiquetas del elemento.
                 /// </summary>
                 public ColeccionGenerica<Etiqueta> Etiquetas
                 {
@@ -590,9 +683,11 @@ namespace Lbl
                         {
                                 if (m_Etiquetas == null) {
                                         m_Etiquetas = new ColeccionGenerica<Etiqueta>();
-                                        System.Data.DataTable EtiquetasElem = this.DataBase.Select("SELECT id_label FROM sys_labels_values WHERE id_label IN (SELECT id_label FROM sys_labels WHERE tablas='" + this.TablaDatos + "') AND item_id=" + this.Id.ToString());
-                                        foreach(System.Data.DataRow TagRow in EtiquetasElem.Rows) {
-                                                m_Etiquetas.Add(new Etiqueta(this.DataBase, (Lfx.Data.Row)TagRow));
+                                        if (this.Existe) {
+                                                Lbl.ListaIds IdsEtiquetas = new ListaIds(this.Connection.Select("SELECT id_label FROM sys_labels_values WHERE id_label IN (SELECT id_label FROM sys_labels WHERE tablas='" + this.TablaDatos + "') AND item_id=" + this.Id.ToString()));
+                                                foreach(int IdEtiqueta in IdsEtiquetas) {
+                                                        m_Etiquetas.Add(Lbl.Etiqueta.Todas.GetById(IdEtiqueta));
+                                                }
                                         }
                                         this.m_EtiquetasOriginal = m_Etiquetas.Clone();
                                 }

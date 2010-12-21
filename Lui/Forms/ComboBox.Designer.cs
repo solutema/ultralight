@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -78,13 +78,14 @@ namespace Lui.Forms
                         this.ImagenMasMenos.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.ImagenMasMenos.ForeColor = System.Drawing.Color.White;
                         this.ImagenMasMenos.Image = ((System.Drawing.Image)(resources.GetObject("ImagenMasMenos.Image")));
-                        this.ImagenMasMenos.Location = new System.Drawing.Point(446, 4);
+                        this.ImagenMasMenos.Location = new System.Drawing.Point(446, 3);
+                        this.ImagenMasMenos.Margin = new System.Windows.Forms.Padding(1);
                         this.ImagenMasMenos.Name = "ImagenMasMenos";
                         this.ImagenMasMenos.Size = new System.Drawing.Size(10, 30);
                         this.ImagenMasMenos.TabIndex = 4;
                         this.ImagenMasMenos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			this.ImagenMasMenos.Click += new System.EventHandler(this.ImagenMasMenos_Click);
-			this.ImagenMasMenos.DoubleClick += new System.EventHandler(this.ImagenMasMenos_DoubleClick);
+                        this.ImagenMasMenos.Click += new System.EventHandler(this.ImagenMasMenos_Click);
+                        this.ImagenMasMenos.DoubleClick += new System.EventHandler(this.ImagenMasMenos_DoubleClick);
                         // 
                         // ItemList
                         // 
@@ -92,13 +93,14 @@ namespace Lui.Forms
                         this.ItemList.ForeColor = System.Drawing.SystemColors.InfoText;
                         this.ItemList.ItemHeight = 15;
                         this.ItemList.Location = new System.Drawing.Point(4, 4);
+                        this.ItemList.Margin = new System.Windows.Forms.Padding(1);
                         this.ItemList.Name = "ItemList";
                         this.ItemList.Size = new System.Drawing.Size(452, 75);
                         this.ItemList.TabIndex = 5;
                         this.ItemList.TabStop = false;
                         this.ItemList.Visible = false;
-                        this.ItemList.VisibleChanged += new System.EventHandler(this.ItemList_VisibleChanged);
                         this.ItemList.SelectedIndexChanged += new System.EventHandler(this.ItemList_SelectedValueChanged);
+                        this.ItemList.VisibleChanged += new System.EventHandler(this.ItemList_VisibleChanged);
                         this.ItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ItemList_KeyDown);
                         // 
                         // ComboBox
@@ -107,9 +109,12 @@ namespace Lui.Forms
                         this.Controls.Add(this.ItemList);
                         this.Name = "ComboBox";
                         this.Size = new System.Drawing.Size(460, 110);
-                        this.Leave += new System.EventHandler(this.ComboBox_Leave);
-                        this.Enter += new System.EventHandler(this.ComboBox_Enter);
                         this.SizeChanged += new System.EventHandler(this.ComboBox_SizeChanged);
+                        this.Enter += new System.EventHandler(this.ComboBox_Enter);
+                        this.Leave += new System.EventHandler(this.ComboBox_Leave);
+                        this.Controls.SetChildIndex(this.ItemList, 0);
+                        this.Controls.SetChildIndex(this.ImagenMasMenos, 0);
+                        this.Controls.SetChildIndex(this.TextBox1, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

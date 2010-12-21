@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -36,9 +36,9 @@ namespace Lbl.Comprobantes
         public class Cobro : ElementoDeDatos
         {
                 public Lbl.Pagos.FormaDePago FormaDePago;
-                private double m_Importe = 0;
+                private decimal m_Importe = 0;
                 public Cajas.Caja CajaDestino;
-                public Cupones.Cupon Cupon;
+                public Pagos.Cupon Cupon;
                 public Bancos.Cheque Cheque;
                 public Cajas.Concepto Concepto;
                 public Pagos.Valor Valor;
@@ -46,34 +46,34 @@ namespace Lbl.Comprobantes
                 public Comprobantes.Recibo Recibo;
 
                 //Heredar constructor
-                public Cobro(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+                public Cobro(Lfx.Data.Connection dataBase) : base(dataBase) { }
 
-                public Cobro(Lfx.Data.DataBase dataBase, Lbl.Pagos.FormaDePago formaDePago)
+                public Cobro(Lfx.Data.Connection dataBase, Lbl.Pagos.FormaDePago formaDePago)
                         : this(dataBase)
                 {
                         FormaDePago = formaDePago;
                 }
 
-                public Cobro(Lfx.Data.DataBase dataBase, Lbl.Pagos.TipoFormasDePago tipoFormaDePago)
+                public Cobro(Lfx.Data.Connection dataBase, Lbl.Pagos.TiposFormasDePago tipoFormaDePago)
                         : this(dataBase)
                 {
                         switch(tipoFormaDePago) {
-                                case Lbl.Pagos.TipoFormasDePago.Efectivo:
+                                case Lbl.Pagos.TiposFormasDePago.Efectivo:
                                         FormaDePago = new Lbl.Pagos.FormaDePago(dataBase, 1);
                                         break;
-                                case Lbl.Pagos.TipoFormasDePago.ChequePropio:
+                                case Lbl.Pagos.TiposFormasDePago.ChequePropio:
                                         FormaDePago = new Lbl.Pagos.FormaDePago(dataBase, 2);
                                         break;
-                                case Lbl.Pagos.TipoFormasDePago.CuentaCorriente:
+                                case Lbl.Pagos.TiposFormasDePago.CuentaCorriente:
                                         FormaDePago = new Lbl.Pagos.FormaDePago(dataBase, 3);
                                         break;
-                                case Lbl.Pagos.TipoFormasDePago.Tarjeta:
+                                case Lbl.Pagos.TiposFormasDePago.Tarjeta:
                                         FormaDePago = new Lbl.Pagos.FormaDePago(dataBase, 4);
                                         break;
-                                case Lbl.Pagos.TipoFormasDePago.Caja:
+                                case Lbl.Pagos.TiposFormasDePago.Caja:
                                         FormaDePago = new Lbl.Pagos.FormaDePago(dataBase, 6);
                                         break;
-                                case Lbl.Pagos.TipoFormasDePago.ChequeTerceros:
+                                case Lbl.Pagos.TiposFormasDePago.ChequeTerceros:
                                         FormaDePago = new Lbl.Pagos.FormaDePago(dataBase, 8);
                                         break;
                                 default:
@@ -82,47 +82,47 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                public Cobro(Lfx.Data.DataBase dataBase, Lbl.Pagos.TipoFormasDePago formaDePago, double importe)
+                public Cobro(Lfx.Data.Connection dataBase, Lbl.Pagos.TiposFormasDePago formaDePago, decimal importe)
                         : this(dataBase, formaDePago)
                 {
                         this.Importe = importe;
                 }
 
                 public Cobro(Bancos.Cheque cheque)
-                        : this(cheque.DataBase, Lbl.Pagos.TipoFormasDePago.ChequeTerceros)
+                        : this(cheque.Connection, Lbl.Pagos.TiposFormasDePago.ChequeTerceros)
                 {
                         this.Cheque = cheque;
                 }
 
-                public Cobro(Cupones.Cupon cupon)
-                        : this(cupon.DataBase, cupon.FormaDePago)
+                public Cobro(Pagos.Cupon cupon)
+                        : this(cupon.Connection, cupon.FormaDePago)
                 {
                         this.Cupon = cupon;
                 }
 
                 public Cobro(Pagos.Valor valor)
-                        : this(valor.DataBase, valor.FormaDePago.Tipo)
+                        : this(valor.Connection, valor.FormaDePago.Tipo)
                 {
                         this.Valor = valor;
                 }
 
-                public double Importe
+                public decimal Importe
                 {
                         get
                         {
                                 switch (FormaDePago.Tipo) {
-                                        case Lbl.Pagos.TipoFormasDePago.ChequePropio:
-                                        case Lbl.Pagos.TipoFormasDePago.ChequeTerceros:
+                                        case Lbl.Pagos.TiposFormasDePago.ChequePropio:
+                                        case Lbl.Pagos.TiposFormasDePago.ChequeTerceros:
                                                 if (Cheque == null)
                                                         return 0;
                                                 else
                                                         return Cheque.Importe;
-                                        case Lbl.Pagos.TipoFormasDePago.Tarjeta:
+                                        case Lbl.Pagos.TiposFormasDePago.Tarjeta:
                                                 if (Cupon == null)
                                                         return 0;
                                                 else
                                                         return Cupon.Importe;
-                                        case Lbl.Pagos.TipoFormasDePago.OtroValor:
+                                        case Lbl.Pagos.TiposFormasDePago.OtroValor:
                                                 if (Valor == null)
                                                         return 0;
                                                 else
@@ -134,14 +134,14 @@ namespace Lbl.Comprobantes
                         set
                         {
                                 switch (FormaDePago.Tipo) {
-                                        case Lbl.Pagos.TipoFormasDePago.ChequePropio:
-                                        case Lbl.Pagos.TipoFormasDePago.ChequeTerceros:
+                                        case Lbl.Pagos.TiposFormasDePago.ChequePropio:
+                                        case Lbl.Pagos.TiposFormasDePago.ChequeTerceros:
                                                 Cheque.Importe = value;
                                                 break;
-                                        case Lbl.Pagos.TipoFormasDePago.Tarjeta:
+                                        case Lbl.Pagos.TiposFormasDePago.Tarjeta:
                                                 Cupon.Importe = value;
                                                 break;
-                                        case Lbl.Pagos.TipoFormasDePago.OtroValor:
+                                        case Lbl.Pagos.TiposFormasDePago.OtroValor:
                                                 Valor.Importe = value;
                                                 break;
                                         default:
@@ -167,23 +167,23 @@ namespace Lbl.Comprobantes
                         }
 
                         switch (FormaDePago.Tipo) {
-                                case Lbl.Pagos.TipoFormasDePago.Efectivo:
-                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(DataBase, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
+                                case Lbl.Pagos.TiposFormasDePago.Efectivo:
+                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(Connection, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
                                         Caja.Movimiento(true, this.Concepto, DescripConcepto, Cliente, -this.Importe, "", Factura, this.Recibo, "");
                                         break;
-                                case Lbl.Pagos.TipoFormasDePago.ChequePropio:
+                                case Lbl.Pagos.TiposFormasDePago.ChequePropio:
                                         if (this.Cheque != null)
                                                 this.Cheque.Anular();
                                         break;
-                                case Lbl.Pagos.TipoFormasDePago.Tarjeta:
+                                case Lbl.Pagos.TiposFormasDePago.Tarjeta:
                                         if (this.Cupon != null)
                                                 this.Cupon.Anular();
                                         break;
-                                case Lbl.Pagos.TipoFormasDePago.OtroValor:
+                                case Lbl.Pagos.TiposFormasDePago.OtroValor:
                                         if (this.Valor != null)
                                                 this.Valor.Anular();
                                         break;
-                                case Lbl.Pagos.TipoFormasDePago.Caja:
+                                case Lbl.Pagos.TiposFormasDePago.Caja:
                                         this.CajaDestino.Movimiento(true, this.Concepto, DescripConcepto, Cliente, -this.Importe, null, Factura, this.Recibo, null);
                                         break;
                         }
@@ -192,26 +192,26 @@ namespace Lbl.Comprobantes
                 public override string ToString()
                 {
                         switch (FormaDePago.Tipo) {
-                                case Lbl.Pagos.TipoFormasDePago.Efectivo:
+                                case Lbl.Pagos.TiposFormasDePago.Efectivo:
                                         return "Efectivo";
-                                case Lbl.Pagos.TipoFormasDePago.CuentaCorriente:
+                                case Lbl.Pagos.TiposFormasDePago.CuentaCorriente:
                                         return "Cuenta Corriente";
-                                case Lbl.Pagos.TipoFormasDePago.ChequePropio:
+                                case Lbl.Pagos.TiposFormasDePago.ChequePropio:
                                         if (Cheque == null)
                                                 return "Cheque";
                                         else
                                                 return Cheque.ToString();
-                                case Lbl.Pagos.TipoFormasDePago.Caja:
+                                case Lbl.Pagos.TiposFormasDePago.Caja:
                                         if (CajaDestino == null)
                                                 return "Acreditación en cuenta";
                                         else
                                                 return "Acreditación en " + CajaDestino.ToString();
-                                case Lbl.Pagos.TipoFormasDePago.Tarjeta:
+                                case Lbl.Pagos.TiposFormasDePago.Tarjeta:
                                         if (Cupon == null)
                                                 return "Tarjeta de Crédito/Débito";
                                         else
                                                 return Cupon.ToString();
-                                case Lbl.Pagos.TipoFormasDePago.OtroValor:
+                                case Lbl.Pagos.TiposFormasDePago.OtroValor:
                                         if (Valor == null)
                                                 return FormaDePago.ToString();
                                         else
@@ -224,11 +224,11 @@ namespace Lbl.Comprobantes
 
         public class ColeccionDeCobros : List<Cobro>
         {
-                public double ImporteTotal
+                public decimal ImporteTotal
                 {
                         get
                         {
-                                double Res = 0;
+                                decimal Res = 0;
                                 foreach (Lbl.Comprobantes.Cobro Pg in this) {
                                         Res += Pg.Importe;
                                 }

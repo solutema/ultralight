@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -30,17 +30,14 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace Lfc.Comprobantes.Plantillas
 {
-        public partial class Editar : Lui.Forms.EditForm
+        public partial class Editar : Lcc.Edicion.ControlEdicion
         {
-                Lbl.Comprobantes.Impresion.Campo CampoSeleccionado;
-
+                private Lbl.Impresion.Campo CampoSeleccionado;
                 private int KnobSize = 24, GridSize = 10;
                 private PointF Escala;
                 private Point Desplazamiento = new Point(0, 0);
@@ -48,80 +45,84 @@ namespace Lfc.Comprobantes.Plantillas
                 private Rectangle CampoDown;
                 private bool KnobGrabbed = false;
                 private float Zoom = 100;
+
+                private System.Drawing.Pen LapizBordeCampos = new Pen(Color.Silver, 1);
                 private Brush BrushSeleccion = new System.Drawing.SolidBrush(Color.FromArgb(100, SystemColors.Highlight));
 
                 public Editar()
                 {
+                        this.ElementoTipo = typeof(Lbl.Impresion.Plantilla);
+
                         InitializeComponent();
-                        this.ElementType = typeof(Lbl.Comprobantes.Impresion.Plantilla);
+
+                        LapizBordeCampos.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+
                         ZoomBar_Scroll(null, null);
                 }
 
-                public override Lfx.Types.OperationResult Create()
+
+                public override void ActualizarControl()
                 {
-                        if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.templates.create"))
-                                return new Lfx.Types.NoAccessOperationResult();
-
-                        this.CachedRow = new Lbl.Comprobantes.Impresion.Plantilla(this.DataBase);
-                        this.CachedRow.Crear();
-
-                        this.Text = "Plantillas: Nueva";
-                        return new Lfx.Types.SuccessOperationResult();
-                }
-
-
-                public override void FromRow(Lbl.ElementoDeDatos row)
-                {
-                        base.FromRow(row);
-
-                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = row as Lbl.Comprobantes.Impresion.Plantilla;
+                        Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
                         EntradaMembrete.TextKey = Plantilla.Membrete.ToString();
                         EntradaCodigo.Text = Plantilla.Codigo;
                         EntradaCodigo.ReadOnly = !Plantilla.Existe;
                         EntradaNombre.Text = Plantilla.Nombre;
                         EntradaPapelTamano.TextKey = Plantilla.TamanoPapel;
-                        EntradaFuente.TextKey = Plantilla.Font.Name;
-                        EntradaFuenteTamano.Text = Plantilla.Font.Size.ToString();
+                        if (Plantilla.Font != null) {
+                                EntradaFuente.TextKey = Plantilla.Font.Name;
+                                EntradaFuenteTamano.Text = Plantilla.Font.Size.ToString();
+                        }
                         EntradaLandscape.TextKey = Plantilla.Landscape ? "1" : "0";
 
-                        this.ActualizarListaCampos();
+                        System.Drawing.Printing.Margins Margen = Plantilla.Margenes;
+                        if (Margen == null) {
+                                EntradaMargenes.TextKey = "0";
+                        } else {
+                                EntradaMargenes.TextKey = "1";
+                                EntradaMargenIzquierda.ValueInt = Margen.Left;
+                                EntradaMargenDerecha.ValueInt = Margen.Right;
+                                EntradaMargenArriba.ValueInt = Margen.Top;
+                                EntradaMargenAbajo.ValueInt = Margen.Bottom;
+                        }
 
-                        this.ReadOnly = !Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.templates.write");
+                        this.MostrarListaCampos();
 
-                        this.Text = "Plantilla: " + EntradaNombre.Text;
+                        base.ActualizarControl();
                 }
 
 
-                public override Lfx.Types.OperationResult Edit(int itemId)
+                public override void ActualizarElemento()
                 {
-                        if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "documents.templates.read"))
-                                return new Lfx.Types.NoAccessOperationResult();
-
-                        return base.Edit(itemId);
-                }
-
-
-                public override Lbl.ElementoDeDatos ToRow()
-                {
-                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = base.ToRow() as Lbl.Comprobantes.Impresion.Plantilla;
+                        Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
                         Plantilla.Codigo = EntradaCodigo.Text;
                         Plantilla.Nombre = EntradaNombre.Text;
                         Plantilla.TamanoPapel = EntradaPapelTamano.TextKey;
                         Plantilla.Landscape = EntradaLandscape.TextKey == "1";
-                        Plantilla.Copias = Lfx.Types.Parsing.ParseInt(txtCopias.Text);
+                        Plantilla.Copias = Lfx.Types.Parsing.ParseInt(EntradaCopias.Text);
                         Plantilla.Membrete = Lfx.Types.Parsing.ParseInt(EntradaMembrete.TextKey);
 
-                        return Plantilla;
+                        if (EntradaMargenes.TextKey == "1") {
+                                Plantilla.Margenes = new System.Drawing.Printing.Margins(
+                                        EntradaMargenIzquierda.ValueInt,
+                                        EntradaMargenDerecha.ValueInt,
+                                        EntradaMargenArriba.ValueInt,
+                                        EntradaMargenAbajo.ValueInt);
+                        } else {
+                                Plantilla.Margenes = null;
+                        }
+
+                        base.ActualizarElemento();
                 }
 
 
                 private void ImagePreview_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
                 {
-                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
+                        Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
-                        e.Graphics.Clear(Color.Ivory);
+                        e.Graphics.Clear(Color.Beige);
                         e.Graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
                         e.Graphics.PageUnit = GraphicsUnit.Document;
                         e.Graphics.ScaleTransform(Zoom / 100F, Zoom / 100F);
@@ -142,10 +143,8 @@ namespace Lfc.Comprobantes.Plantillas
 
                         e.Graphics.FillRectangle(Brushes.DarkGray, new System.Drawing.RectangleF(2 * EscalaMm.X, 2 * EscalaMm.Y, TamPap.Width * EscalaMm.X, TamPap.Height * EscalaMm.Y));
                         e.Graphics.FillRectangle(Brushes.White, new System.Drawing.RectangleF(0 * EscalaMm.X, 0 * EscalaMm.Y, TamPap.Width * EscalaMm.X, TamPap.Height * EscalaMm.Y));
-                        //e.Graphics.DrawRectangle(Pens.Black, new System.Drawing.RectangleF(0 * EscalaMm.X, 0 * EscalaMm.Y, TamPap.Width * EscalaMm.X, TamPap.Height * EscalaMm.Y));
-                        //e.Graphics.Clip = new Region(new System.Drawing.Rectangle(new Point(0, 0), TamanoPapel(txtPapelTamano.TextKey)));
 
-                        foreach (Lbl.Comprobantes.Impresion.Campo Cam in Plantilla.Campos) {
+                        foreach (Lbl.Impresion.Campo Cam in Plantilla.Campos) {
                                 Rectangle DrawRect = Cam.Rectangle;
 
                                 //Invierto rectángulos con ancho o alto negativo, para poder dibujarlos
@@ -160,8 +159,10 @@ namespace Lfc.Comprobantes.Plantillas
 
                                 if (Cam.AnchoBorde > 0)
                                         e.Graphics.DrawRectangle(new Pen(Cam.ColorBorde, Cam.AnchoBorde), DrawRect);
+                                else
+                                        e.Graphics.DrawRectangle(LapizBordeCampos, DrawRect);
 
-                                if(Cam.ColorFondo != Color.Transparent)
+                                if (Cam.ColorFondo != Color.Transparent)
                                         e.Graphics.FillRectangle(new SolidBrush(Cam.ColorFondo), DrawRect);
 
                                 if (Cam == CampoSeleccionado) {
@@ -176,14 +177,19 @@ namespace Lfc.Comprobantes.Plantillas
 
                                 string Texto = Cam.Valor;
                                 Texto = Texto.Replace("{Cliente}", "Compañía La Estrella S.R.L.");
+                                Texto = Texto.Replace("{Cliente.Nombre}", "Compañía La Estrella S.R.L.");
                                 Texto = Texto.Replace("{Cliente.Documento}", "20-20123456-6");
                                 Texto = Texto.Replace("{IVA}", "Responsable no inscripto");
+                                Texto = Texto.Replace("{Cliente.Iva}", "Responsable no inscripto");
                                 Texto = Texto.Replace("{CUIT}", "30-12345678-9");
+                                Texto = Texto.Replace("{Cliente.Cuit}", "Responsable no inscripto");
                                 Texto = Texto.Replace("{Domicilio}", "Avenida San Martín 1234, 3ro. B");
                                 Texto = Texto.Replace("{Cliente.Domicilio}", "Avenida San Martín 1234, 3ro. B");
                                 Texto = Texto.Replace("{Fecha}", System.DateTime.Now.ToString("dd-MM-yyyy"));
                                 Texto = Texto.Replace("{FormaPago}", "Cuenta corriente");
                                 Texto = Texto.Replace("{Total}", "$ 123.456.789,00");
+                                Texto = Texto.Replace("{Comprobante.Total}", "$ 123.456.789,00");
+                                Texto = Texto.Replace("{Comprobante.IvaDiscriminado}", "$ 123.456,00");
                                 Texto = Texto.Replace("{SubTotal}", "$ 123.456.789,00");
                                 Texto = Texto.Replace("{SonPesos}", "ciento veintitres mil seiscientos setenta y ocho con 00/100");
                                 Texto = Texto.Replace("{Codigos}", "00123456\r\n00123456\r\nABR012PM\r\nCODIGO99");
@@ -219,15 +225,10 @@ namespace Lfc.Comprobantes.Plantillas
 
                 private void ListaCampos_SelectedIndexChanged(object sender, System.EventArgs e)
                 {
-                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
+                        Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
                         if (Plantilla.Campos != null && ListaCampos.SelectedItems.Count > 0) {
-                                foreach (Lbl.Comprobantes.Impresion.Campo Cam in Plantilla.Campos) {
-                                        if (Cam.GetHashCode().ToString() == ListaCampos.SelectedItems[0].Text) {
-                                                CampoSeleccionado = Cam;
-                                                break;
-                                        }
-                                }
+                                CampoSeleccionado = ListaCampos.SelectedItems[0].Tag as Lbl.Impresion.Campo;
                         } else {
                                 CampoSeleccionado = null;
                         }
@@ -239,6 +240,7 @@ namespace Lfc.Comprobantes.Plantillas
                 {
                         return PuntoDesdePantalla(pt, true);
                 }
+
                 private Point PuntoDesdePantalla(Point pt, bool usarGrilla)
                 {
                         Point Res = new Point(System.Convert.ToInt32(pt.X * this.Escala.X / (this.Zoom / 100F)), System.Convert.ToInt32(pt.Y * this.Escala.Y / (this.Zoom / 100F)));
@@ -258,6 +260,7 @@ namespace Lfc.Comprobantes.Plantillas
                                 ButtonDown = PuntoDesdePantalla(new Point(e.X, e.Y));
                                 Point MyButtonDown = PuntoDesdePantalla(new Point(e.X, e.Y), false);
 
+                                Lbl.Impresion.Campo CampoSeleccionadoOriginal = CampoSeleccionado;
                                 if (CampoSeleccionado != null) {
                                         Rectangle RectKnob = new Rectangle(CampoSeleccionado.Rectangle.Right - KnobSize / 2, CampoSeleccionado.Rectangle.Bottom - KnobSize / 2, KnobSize, KnobSize);
                                         if (CampoSeleccionado != null && RectKnob.Contains(MyButtonDown)) {
@@ -267,34 +270,34 @@ namespace Lfc.Comprobantes.Plantillas
                                         }
                                 }
 
-                                Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
+                                Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
                                 bool Select = false;
-                                foreach (Lbl.Comprobantes.Impresion.Campo Cam in Plantilla.Campos) {
+                                foreach (Lbl.Impresion.Campo Cam in Plantilla.Campos) {
                                         //Busco el campo del clic (según coordenadas)
-                                        if (Cam.Valor == null || Cam.Valor.Length == 0 && Cam.AnchoBorde > 0) {
-                                                //En el caso particular de los rectángulos con borde y sin texto, tiene que hacer clic en el contorno
-                                                if ((MyButtonDown.X >= (Cam.Rectangle.Left - 5) && (MyButtonDown.X <= (Cam.Rectangle.Left + 5)) ||
-                                                        MyButtonDown.X >= (Cam.Rectangle.Right - 5) && (MyButtonDown.X <= (Cam.Rectangle.Right + 5)) ||
-                                                        MyButtonDown.Y >= (Cam.Rectangle.Top - 5) && (MyButtonDown.Y <= (Cam.Rectangle.Top + 5)) ||
-                                                        MyButtonDown.Y >= (Cam.Rectangle.Bottom - 5) && (MyButtonDown.Y <= (Cam.Rectangle.Bottom + 5))))
+                                        if (CampoSeleccionadoOriginal != Cam) {
+                                                if (Cam.Valor == null || Cam.Valor.Length == 0 && Cam.AnchoBorde > 0) {
+                                                        //En el caso particular de los rectángulos con borde y sin texto, tiene que hacer clic en el contorno
+                                                        if ((MyButtonDown.X >= (Cam.Rectangle.Left - 5) && (MyButtonDown.X <= (Cam.Rectangle.Left + 5)) ||
+                                                                MyButtonDown.X >= (Cam.Rectangle.Right - 5) && (MyButtonDown.X <= (Cam.Rectangle.Right + 5)) ||
+                                                                MyButtonDown.Y >= (Cam.Rectangle.Top - 5) && (MyButtonDown.Y <= (Cam.Rectangle.Top + 5)) ||
+                                                                MyButtonDown.Y >= (Cam.Rectangle.Bottom - 5) && (MyButtonDown.Y <= (Cam.Rectangle.Bottom + 5))))
+                                                                Select = true;
+                                                        else
+                                                                Select = false;
+                                                        KnobGrabbed = false;
+                                                } else if (Cam.Rectangle.Contains(MyButtonDown)) {
+                                                        //El resto de los campos, se seleccionan haciendo clic en cualquier parte del rectángulo
                                                         Select = true;
-                                                else
-                                                        Select = false;
-                                                KnobGrabbed = false;
-                                        } else if (Cam.Rectangle.Contains(MyButtonDown)) {
-                                                //El resto de los campos, se seleccionan haciendo clic en cualquier parte del rectángulo
-                                                Select = true;
-                                                KnobGrabbed = false;
+                                                        KnobGrabbed = false;
+                                                }
                                         }
 
                                         if (Select) {
                                                 //Encontré el campo del Click
                                                 //Lo selecciono mediante la listview
                                                 CampoSeleccionado = Cam;
-                                                foreach (ListViewItem itm in ListaCampos.Items) {
-                                                        itm.Selected = (itm.Text == CampoSeleccionado.GetHashCode().ToString());
-                                                }
+                                                this.SeleccionarCampo(Cam);
                                                 break;
                                         } else {
                                                 while (ListaCampos.SelectedItems.Count > 0) {
@@ -302,6 +305,9 @@ namespace Lfc.Comprobantes.Plantillas
                                                 }
                                         }
                                 }
+
+                                if (CampoSeleccionado == null)
+                                        CampoSeleccionado = CampoSeleccionadoOriginal;
 
                                 if (CampoSeleccionado != null)
                                         CampoDown = CampoSeleccionado.Rectangle;
@@ -340,10 +346,10 @@ namespace Lfc.Comprobantes.Plantillas
 
                 private void EntradaPapelTamano_TextChanged(object sender, System.EventArgs e)
                 {
-                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
+                        Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
                         Plantilla.TamanoPapel = EntradaPapelTamano.TextKey;
-			Plantilla.Landscape = EntradaLandscape.TextKey == "1";
+                        Plantilla.Landscape = EntradaLandscape.TextKey == "1";
                         ImagePreview.Invalidate();
                 }
 
@@ -370,43 +376,41 @@ namespace Lfc.Comprobantes.Plantillas
                 {
                         if (CampoSeleccionado != null) {
                                 EditarCampo FormEditarCampo = new EditarCampo();
-                                //FormEditarCampo.EntradaTipo.TextKey = SelectedField.Attributes["type"].Value;
-                                FormEditarCampo.txtX.Text = CampoSeleccionado.Rectangle.X.ToString();
-                                FormEditarCampo.txtY.Text = CampoSeleccionado.Rectangle.Y.ToString();
-                                FormEditarCampo.txtW.Text = CampoSeleccionado.Rectangle.Width.ToString();
-                                FormEditarCampo.txtH.Text = CampoSeleccionado.Rectangle.Height.ToString();
-                                FormEditarCampo.txtTexto.Text = CampoSeleccionado.Valor;
+                                FormEditarCampo.EntradaX.Text = CampoSeleccionado.Rectangle.X.ToString();
+                                FormEditarCampo.EntradaY.Text = CampoSeleccionado.Rectangle.Y.ToString();
+                                FormEditarCampo.EntradaAncho.Text = CampoSeleccionado.Rectangle.Width.ToString();
+                                FormEditarCampo.EntradaAlto.Text = CampoSeleccionado.Rectangle.Height.ToString();
+                                FormEditarCampo.EntradaTexto.Text = CampoSeleccionado.Valor;
                                 FormEditarCampo.txtAlign.TextKey = CampoSeleccionado.Alignment.ToString();
                                 FormEditarCampo.txtLineAlign.TextKey = CampoSeleccionado.LineAlignment.ToString();
                                 FormEditarCampo.txtWrap.TextKey = CampoSeleccionado.Wrap ? "1" : "0";
-                                FormEditarCampo.txtAnchoBorde.Text = CampoSeleccionado.AnchoBorde.ToString();
+                                FormEditarCampo.EntradaAnchoBorde.Text = CampoSeleccionado.AnchoBorde.ToString();
                                 FormEditarCampo.ColorBorde.BackColor = CampoSeleccionado.ColorBorde;
                                 FormEditarCampo.ColorFondo.BackColor = CampoSeleccionado.ColorFondo;
                                 FormEditarCampo.ColorTexto.BackColor = CampoSeleccionado.ColorTexto;
                                 if (CampoSeleccionado.Font != null) {
-                                        FormEditarCampo.txtFuente.TextKey = CampoSeleccionado.Font.Name;
-                                        FormEditarCampo.txtFuenteTamano.Text = CampoSeleccionado.Font.Size.ToString();
+                                        FormEditarCampo.EntradaFuenteNombre.TextKey = CampoSeleccionado.Font.Name;
+                                        FormEditarCampo.EntradaFuenteTamano.Text = CampoSeleccionado.Font.Size.ToString();
                                 } else {
-                                        FormEditarCampo.txtFuente.TextKey = "*";
-                                        FormEditarCampo.txtFuenteTamano.Text = "0";
+                                        FormEditarCampo.EntradaFuenteNombre.TextKey = "*";
+                                        FormEditarCampo.EntradaFuenteTamano.Text = "0";
                                 }
                                 if (FormEditarCampo.ShowDialog() == DialogResult.OK) {
-                                        CampoSeleccionado.Rectangle.X = Lfx.Types.Parsing.ParseInt(FormEditarCampo.txtX.Text);
-                                        CampoSeleccionado.Rectangle.Y = Lfx.Types.Parsing.ParseInt(FormEditarCampo.txtY.Text);
-                                        CampoSeleccionado.Rectangle.Width = Lfx.Types.Parsing.ParseInt(FormEditarCampo.txtW.Text);
-                                        CampoSeleccionado.Rectangle.Height = Lfx.Types.Parsing.ParseInt(FormEditarCampo.txtH.Text);
-                                        CampoSeleccionado.Valor = FormEditarCampo.txtTexto.Text;
-                                        CampoSeleccionado.AnchoBorde = Lfx.Types.Parsing.ParseInt(FormEditarCampo.txtAnchoBorde.Text);
+                                        CampoSeleccionado.Rectangle.X = Lfx.Types.Parsing.ParseInt(FormEditarCampo.EntradaX.Text);
+                                        CampoSeleccionado.Rectangle.Y = Lfx.Types.Parsing.ParseInt(FormEditarCampo.EntradaY.Text);
+                                        CampoSeleccionado.Rectangle.Width = Lfx.Types.Parsing.ParseInt(FormEditarCampo.EntradaAncho.Text);
+                                        CampoSeleccionado.Rectangle.Height = Lfx.Types.Parsing.ParseInt(FormEditarCampo.EntradaAlto.Text);
+                                        CampoSeleccionado.Valor = FormEditarCampo.EntradaTexto.Text;
+                                        CampoSeleccionado.AnchoBorde = Lfx.Types.Parsing.ParseInt(FormEditarCampo.EntradaAnchoBorde.Text);
                                         CampoSeleccionado.ColorBorde = FormEditarCampo.ColorBorde.BackColor;
                                         CampoSeleccionado.ColorFondo = FormEditarCampo.ColorFondo.BackColor;
                                         CampoSeleccionado.ColorTexto = FormEditarCampo.ColorTexto.BackColor;
-                                        if (FormEditarCampo.txtFuente.TextKey != "*" && Lfx.Types.Parsing.ParseInt(FormEditarCampo.txtFuenteTamano.Text) > 0) {
-                                                CampoSeleccionado.Font = new Font(FormEditarCampo.txtFuente.TextKey, Lfx.Types.Parsing.ParseInt(FormEditarCampo.txtFuenteTamano.Text));
+                                        if (FormEditarCampo.EntradaFuenteNombre.TextKey != "*" && Lfx.Types.Parsing.ParseInt(FormEditarCampo.EntradaFuenteTamano.Text) > 0) {
+                                                CampoSeleccionado.Font = new Font(FormEditarCampo.EntradaFuenteNombre.TextKey, Lfx.Types.Parsing.ParseInt(FormEditarCampo.EntradaFuenteTamano.Text));
                                         } else {
                                                 CampoSeleccionado.Font = null;
                                         }
-                                        switch(FormEditarCampo.txtAlign.TextKey)
-                                        {
+                                        switch (FormEditarCampo.txtAlign.TextKey) {
                                                 case "Far":
                                                         CampoSeleccionado.Alignment = StringAlignment.Far;
                                                         break;
@@ -429,10 +433,12 @@ namespace Lfc.Comprobantes.Plantillas
                                                         break;
                                         }
                                         CampoSeleccionado.Wrap = FormEditarCampo.txtWrap.TextKey == "1";
+                                        this.ActualizarCampos();
                                         ImagePreview.Invalidate();
                                 }
                         }
                 }
+
 
                 private void ImagenPreview_DoubleClick(object sender, System.EventArgs e)
                 {
@@ -441,48 +447,78 @@ namespace Lfc.Comprobantes.Plantillas
 
                 private void BotonAgregar_Click(object sender, EventArgs e)
                 {
-                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
+                        Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
-                        Lbl.Comprobantes.Impresion.Campo Cam = new Lbl.Comprobantes.Impresion.Campo();
+                        Lbl.Impresion.Campo Cam = new Lbl.Impresion.Campo();
                         Cam.Valor = "Nuevo campo";
                         Cam.Rectangle = new Rectangle(10, 10, 280, 52);
                         Plantilla.Campos.Add(Cam);
-                        this.ActualizarListaCampos();
-                        ListaCampos.FindItemWithText(Cam.GetHashCode().ToString()).Selected = true;
+                        this.AgregarCampo(Cam);
+                        this.SeleccionarCampo(Cam);
                         ListaCampos_DoubleClick(sender, e);
                         ImagePreview.Invalidate();
                 }
 
-                private void ActualizarListaCampos()
+                private void SeleccionarCampo(Lbl.Impresion.Campo campo)
                 {
-                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
-
-                        ListaCampos.Items.Clear();
-                        if (Plantilla.Campos != null) {
-                                foreach (Lbl.Comprobantes.Impresion.Campo Cam in Plantilla.Campos) {
-                                        ListViewItem itm = ListaCampos.Items.Add(new ListViewItem(Cam.GetHashCode().ToString()));
-                                        itm.SubItems.Add(Cam.Valor);
+                        foreach (ListViewItem Itm in ListaCampos.Items) {
+                                if (Itm.Tag == campo) {
+                                        Itm.Selected = true;
+                                        Itm.EnsureVisible();
+                                } else {
+                                        Itm.Selected = false;
                                 }
                         }
                 }
 
+                private void MostrarListaCampos()
+                {
+                        Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
+
+                        ListaCampos.BeginUpdate();
+                        ListaCampos.Items.Clear();
+                        if (Plantilla.Campos != null) {
+                                foreach (Lbl.Impresion.Campo Cam in Plantilla.Campos) {
+                                        AgregarCampo(Cam);
+                                }
+                        }
+                        ListaCampos.EndUpdate();
+                }
+
+                private void AgregarCampo(Lbl.Impresion.Campo campo)
+                {
+                        ListViewItem Itm = ListaCampos.Items.Add(campo.Valor);
+                        Itm.Tag = campo;
+                }
+
+                private void ActualizarCampos()
+                {
+                        foreach (ListViewItem Itm in ListaCampos.Items) {
+                                Lbl.Impresion.Campo Cam = Itm.Tag as Lbl.Impresion.Campo;
+                                if (Cam != null) {
+                                        Itm.Text = Cam.Valor;
+                                }
+                        }
+                }
+
+
                 private void BotonQuitar_Click(object sender, EventArgs e)
                 {
                         if (CampoSeleccionado != null) {
-                                Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
+                                Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
                                 Plantilla.Campos.Remove(CampoSeleccionado);
-                                this.ActualizarListaCampos();
+                                this.MostrarListaCampos();
                                 ImagePreview.Invalidate();
                         }
                 }
 
                 private void EntradaFuenteFuenteTamano_TextChanged(object sender, EventArgs e)
                 {
-                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
+                        Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
                         EntradaFuenteTamano.Enabled = (EntradaFuente.TextKey != "*");
-                        if(EntradaFuente.TextKey != "*" && Lfx.Types.Parsing.ParseInt(EntradaFuenteTamano.Text) > 0)
+                        if (EntradaFuente.TextKey != "*" && Lfx.Types.Parsing.ParseInt(EntradaFuenteTamano.Text) > 0)
                                 Plantilla.Font = new Font(EntradaFuente.TextKey, Lfx.Types.Parsing.ParseInt(EntradaFuenteTamano.Text));
                         else
                                 Plantilla.Font = new Font("Courier New", 10);
@@ -496,13 +532,13 @@ namespace Lfc.Comprobantes.Plantillas
 
                 private void BotonGuardar_Click(object sender, EventArgs e)
                 {
-                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
+                        Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
                         SaveFileDialog FileDialog = new SaveFileDialog();
                         FileDialog.Filter = "Archivos de plantilla|*.ltx";
                         FileDialog.DefaultExt = "ltx";
                         FileDialog.FileName = Plantilla.ToString();
-                        if(FileDialog.ShowDialog() == DialogResult.OK) {
+                        if (FileDialog.ShowDialog() == DialogResult.OK) {
                                 System.IO.StreamWriter Str = new System.IO.StreamWriter(FileDialog.FileName, false);
                                 Str.Write(Plantilla.Definicion.InnerXml);
                                 Str.Close();
@@ -511,7 +547,7 @@ namespace Lfc.Comprobantes.Plantillas
 
                 private void BotonCargar_Click(object sender, EventArgs e)
                 {
-                        Lbl.Comprobantes.Impresion.Plantilla Plantilla = this.CachedRow as Lbl.Comprobantes.Impresion.Plantilla;
+                        Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
                         OpenFileDialog FileDialog = new OpenFileDialog();
                         FileDialog.Filter = "Archivos de plantilla|*.ltx";
@@ -544,6 +580,14 @@ namespace Lfc.Comprobantes.Plantillas
                         if (e.KeyCode == Keys.Delete && e.Alt == false && e.Control == false && e.Shift == false) {
                                 BotonQuitar.PerformClick();
                         }
+                }
+
+                private void EntradaMargenes_TextChanged(object sender, EventArgs e)
+                {
+                        EntradaMargenIzquierda.Visible = EntradaMargenes.TextKey == "1";
+                        EntradaMargenDerecha.Visible = EntradaMargenIzquierda.Visible;
+                        EntradaMargenArriba.Visible = EntradaMargenIzquierda.Visible;
+                        EntradaMargenAbajo.Visible = EntradaMargenIzquierda.Visible;
                 }
         }
 }

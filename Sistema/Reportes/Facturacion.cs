@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -519,14 +519,14 @@ namespace Lazaro.Reportes
                                         string Fecha1Sql = anio.ToString("0000") + "-" + mes.ToString("00") + "-01";
                                         string Fecha2Sql = anio.ToString("0000") + "-" + mes.ToString("00") + "-31";
 
-                                        double Facturas = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND compra=0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double NotasCredito = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND impresa>0 AND compra=0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double Costo = this.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND comprob.compra=0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double CostoNotasCredito = this.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND comprob.impresa>0 AND comprob.compra=0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double CostoCapital = this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=220) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double GastosFijos = this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=230) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double GastosVariables = this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=240) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        double OtrosEgresos = this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE importe<0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND id_concepto<>26030 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        decimal Facturas = this.Connection.FieldDecimal("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND compra=0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        decimal NotasCredito = this.Connection.FieldDecimal("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND impresa>0 AND compra=0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        decimal Costo = this.Connection.FieldDecimal("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND comprob.compra=0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        decimal CostoNotasCredito = this.Connection.FieldDecimal("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND comprob.impresa>0 AND comprob.compra=0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        decimal CostoCapital = this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=220) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        decimal GastosFijos = this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=230) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        decimal GastosVariables = this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=240) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        decimal OtrosEgresos = this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE importe<0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND id_concepto<>26030 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 
                                         ElFacturacion[mes - 1].Value = Facturas - NotasCredito;
                                         ElCosto[mes - 1].Value = Costo - CostoNotasCredito;
@@ -569,7 +569,7 @@ namespace Lazaro.Reportes
                                         string Fecha1Sql = anio.ToString("0000") + "-" + mes.ToString("00") + "-01";
                                         string Fecha2Sql = anio.ToString("0000") + "-" + mes.ToString("00") + "-31";
 
-                                        double ValoresSuma = 0, ValoresResta = 0;
+                                        decimal ValoresSuma = 0, ValoresResta = 0;
 
                                         string WhereSuc = "";
                                         if (sucursal > 0)
@@ -577,12 +577,12 @@ namespace Lazaro.Reportes
 
                                         if (costo == false) {
                                                 //Tomo la facturación
-                                                ValoresSuma = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND compra=0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                                ValoresResta = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND impresa>0 AND compra=0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                                ValoresSuma = this.Connection.FieldDecimal("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND compra=0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                                ValoresResta = this.Connection.FieldDecimal("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND impresa>0 AND compra=0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                                         } else {
                                                 //Tomo el costo de la facturación
-                                                ValoresSuma = this.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE " + WhereSuc + " comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND comprob.impresa>0 AND comprob.compra=0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                                ValoresResta = this.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE " + WhereSuc + " comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND comprob.impresa>0 AND comprob.compra=0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                                ValoresSuma = this.Connection.FieldDecimal("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE " + WhereSuc + " comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND comprob.impresa>0 AND comprob.compra=0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                                ValoresResta = this.Connection.FieldDecimal("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE " + WhereSuc + " comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND comprob.impresa>0 AND comprob.compra=0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                                         }
 
                                         if (ValoresSuma != 0) {
@@ -619,15 +619,15 @@ namespace Lazaro.Reportes
                                         string Fecha1Sql = anio1.ToString("0000") + "-" + mes1.ToString("00") + "-" + dia.ToString("00") + " 00:00:00";
                                         string Fecha2Sql = anio2.ToString("0000") + "-" + mes2.ToString("00") + "-" + dia.ToString("00") + " 23:59:59";
 
-                                        double ValoresSuma = 0, ValoresResta = 0;
+                                        decimal ValoresSuma = 0, ValoresResta = 0;
 
                                         string WhereSuc = "";
                                         if (sucursal > 0)
                                                 WhereSuc = " id_sucursal=" + sucursal.ToString() + " AND ";
 
                                         //Tomo la facturación
-                                        ValoresSuma = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND compra=0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                                        ValoresResta = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND impresa>0 AND compra=0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        ValoresSuma = this.Connection.FieldDecimal("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND impresa>0 AND compra=0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                                        ValoresResta = this.Connection.FieldDecimal("SELECT SUM(total) FROM comprob WHERE " + WhereSuc + " tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND impresa>0 AND compra=0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 
                                         if (ValoresSuma != 0) {
                                                 Elements[dia - 1] = new Lbl.Charts.Element();

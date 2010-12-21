@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,14 +37,16 @@ using System.Windows.Forms;
 
 namespace Lfc.Alicuotas
 {
-	public partial class Inicio : Lui.Forms.ListingForm
+	public partial class Inicio : Lfc.FormularioListado
 	{
 		public Inicio()
 		{
-			this.DataTableName = "alicuotas";
+                        this.ElementoTipo = typeof(Lbl.Impuestos.Alicuota);
+
+			this.NombreTabla = "alicuotas";
                         this.OrderBy = "nombre";
                         this.KeyField = new Lfx.Data.FormField("id_alicuota", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        this.FormFields = new List<Lfx.Data.FormField>()
+                        this.FormFields = new Lfx.Data.FormFieldCollection()
 			{
 				new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
 				new Lfx.Data.FormField("porcentaje", "Porcentaje", Lfx.Data.InputFieldTypes.Numeric, 160),

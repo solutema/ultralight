@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,16 +35,20 @@ using System.Text;
 
 namespace Lbl.Cajas
 {
-	public class Caja : ElementoDeDatos
+        [Lbl.Atributos.NombreItem("Caja")]
+	public class Caja : ElementoDeDatos, Lbl.ICamposBaseEstandar, Lbl.ICuenta
 	{
+                private Lbl.Bancos.Banco m_Banco = null;
+                private Lbl.Entidades.Moneda m_Moneda = null;
+
 		//Heredar constructores
-                public Caja(Lfx.Data.DataBase dataBase) 
+                public Caja(Lfx.Data.Connection dataBase) 
                         : base(dataBase) { }
 
-		public Caja(Lfx.Data.DataBase dataBase, int itemId)
+		public Caja(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Caja(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                public Caja(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
@@ -63,56 +67,162 @@ namespace Lbl.Cajas
 			}
 		}
 
-		public virtual double Saldo()
+                public virtual decimal Saldo(bool forUpdate)
 		{
-			return this.DataBase.FieldDouble("SELECT saldo FROM cajas_movim WHERE id_caja=" + m_ItemId.ToString() + " ORDER BY id_movim DESC");
+                        qGen.Select SelSaldo = new qGen.Select("cajas_movim", forUpdate);
+                        SelSaldo.Fields = "saldo";
+                        SelSaldo.WhereClause = new qGen.Where("id_caja", this.Id);
+                        SelSaldo.Order = "id_movim DESC";
+                        SelSaldo.Window = new qGen.Window(1);
+
+                        return this.Connection.FieldDecimal(SelSaldo);
 		}
 
-                
-                public Lfx.Types.OperationResult Movimiento(bool auto, Lbl.Cajas.Concepto concepto, string textoConcepto, Lbl.Personas.Persona cliente, double importe, string obs, Lbl.Comprobantes.ComprobanteConArticulos factura, Lbl.Comprobantes.Recibo recibo, string comprobantes)
+                public Bancos.Banco Banco
                 {
-                        return this.Movimiento(auto, concepto == null ? 0 : concepto.Id, textoConcepto, cliente == null ? 0 : cliente.Id, importe, obs, factura == null ? 0 : factura.Id, recibo == null ? 0 : recibo.Id, comprobantes);
+                        get
+                        {
+                                if (m_Banco == null && this.GetFieldValue<int>("id_banco") > 0)
+                                        m_Banco = new Bancos.Banco(this.Connection, this.GetFieldValue<int>("id_banco"));
+                                return m_Banco;
+                        }
+                        set
+                        {
+                                m_Banco = value;
+                                this.SetFieldValue("id_banco", value);
+                        }
                 }
 
-                public Lfx.Types.OperationResult Movimiento(bool auto, int idConcepto, string concepto, int idCliente, double importe, string obs, int idFactura, int idRecibo, string comprobantes)
-		{
-			double SaldoActual = this.Saldo();
+                public Entidades.Moneda Moneda
+                {
+                        get
+                        {
+                                if (m_Moneda == null && this.GetFieldValue<int>("id_moneda") > 0)
+                                        m_Moneda = new Entidades.Moneda(this.Connection, this.GetFieldValue<int>("id_moneda"));
+                                return m_Moneda;
+                        }
+                        set
+                        {
+                                m_Moneda = value;
+                                this.SetFieldValue("id_moneda", value);
+                        }
+                }
 
-                        qGen.TableCommand Comando; Comando = new qGen.Insert(this.DataBase, "cajas_movim");
-			Comando.Fields.AddWithValue("id_caja", m_ItemId);
-			Comando.Fields.AddWithValue("auto", auto ? (int)1 : (int)0);
-			Comando.Fields.AddWithValue("id_concepto", Lfx.Data.DataBase.ConvertZeroToDBNull(idConcepto));
-			Comando.Fields.AddWithValue("concepto", concepto);
-                        Comando.Fields.AddWithValue("id_persona", this.Workspace.CurrentUser.Id);
-			Comando.Fields.AddWithValue("id_cliente", Lfx.Data.DataBase.ConvertZeroToDBNull(idCliente));
+                public string Titular
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("titular");
+                        }
+                        set
+                        {
+                                this.Registro["titular"] = value;
+                        }
+                }
+
+                public string Numero
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("numero");
+                        }
+                        set
+                        {
+                                this.Registro["numero"] = value;
+                        }
+                }
+
+                public string Cbu
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("cbu");
+                        }
+                        set
+                        {
+                                this.Registro["cbu"] = value;
+                        }
+                }
+
+                public TiposDeCaja Tipo
+                {
+                        get
+                        {
+                                return (TiposDeCaja)(this.GetFieldValue<int>("tipo"));
+                        }
+                        set
+                        {
+                                this.Registro["tipo"] = (int)value;
+                        }
+                }
+
+                public override Lfx.Types.OperationResult Guardar()
+                {
+                        qGen.TableCommand Comando;
+                        if (this.Existe == false) {
+                                Comando = new qGen.Insert(Connection, "cajas");
+                                Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
+                        } else {
+                                Comando = new qGen.Update(Connection, "cajas");
+                                Comando.WhereClause = new qGen.Where("id_caja", this.Id);
+                        }
+
+                        Comando.Fields.AddWithValue("nombre", this.Nombre);
+                        Comando.Fields.AddWithValue("titular", this.Titular);
+                        if (Banco == null)
+                                Comando.Fields.AddWithValue("id_banco", null);
+                        else
+                                Comando.Fields.AddWithValue("id_banco", this.Banco.Id);
+                        if (this.Moneda == null)
+                                Comando.Fields.AddWithValue("id_moneda", null);
+                        else
+                                Comando.Fields.AddWithValue("id_moneda", this.Moneda.Id);
+                        Comando.Fields.AddWithValue("numero", this.Numero);
+                        Comando.Fields.AddWithValue("tipo", (int)(this.Tipo));
+                        Comando.Fields.AddWithValue("cbu", this.Cbu);
+                        Comando.Fields.AddWithValue("estado", this.Estado);
+
+                        Connection.Execute(Comando);
+
+                        return base.Guardar();
+                }
+
+                public void Arqueo()
+                {
+                        this.Movimiento(false, null, "Arqueo - Saldo: " + Lfx.Types.Formatting.FormatCurrency(this.Saldo(false)), Lbl.Sys.Config.Actual.UsuarioConectado.Persona, 0, null, null, null, null);
+                }
+
+                public void Movimiento(bool auto, Lbl.Cajas.Concepto concepto, string textoConcepto, Lbl.Personas.Persona cliente, decimal importe, string obs, Lbl.Comprobantes.ComprobanteConArticulos factura, Lbl.Comprobantes.Recibo recibo, string comprobantes)
+                {
+                        decimal SaldoActual = this.Saldo(true);
+
+                        qGen.TableCommand Comando; Comando = new qGen.Insert(this.Connection, "cajas_movim");
+			Comando.Fields.AddWithValue("id_caja", this.Id);
+			Comando.Fields.AddWithValue("auto", auto ? 1 : 0);
+                        if (concepto == null)
+                                Comando.Fields.AddWithValue("id_concepto", null);
+                        else
+                                Comando.Fields.AddWithValue("id_concepto", concepto.Id);
+                        Comando.Fields.AddWithValue("concepto", textoConcepto);
+                        Comando.Fields.AddWithValue("id_persona", Lbl.Sys.Config.Actual.UsuarioConectado.Id);
+                        if (cliente == null)
+                                Comando.Fields.AddWithValue("id_cliente", null);
+                        else
+                                Comando.Fields.AddWithValue("id_cliente", cliente.Id);
 			Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
 			Comando.Fields.AddWithValue("importe", importe);
-			Comando.Fields.AddWithValue("id_comprob", Lfx.Data.DataBase.ConvertZeroToDBNull(idFactura));
-			Comando.Fields.AddWithValue("id_recibo", Lfx.Data.DataBase.ConvertZeroToDBNull(idRecibo));
+                        if (factura == null)
+                                Comando.Fields.AddWithValue("id_comprob", null);
+                        else
+                                Comando.Fields.AddWithValue("id_comprob", factura.Id);
+                        if (recibo == null)
+                                Comando.Fields.AddWithValue("id_recibo", null);
+                        else
+                                Comando.Fields.AddWithValue("id_recibo", recibo.Id);
 			Comando.Fields.AddWithValue("comprob", comprobantes);
 			Comando.Fields.AddWithValue("saldo", SaldoActual + importe);
 			Comando.Fields.AddWithValue("obs", obs);
-			this.DataBase.Execute(Comando);
-
-			return new Lfx.Types.SuccessOperationResult();
+			this.Connection.Execute(Comando);
 		}
 	}
-
-        /* public class Movimiento
-        {
-                bool auto;
-                int idConcepto;
-                string concepto;
-                int idCliente;
-                double importe;
-                string obs;
-                int idFactura;
-                int idRecibo;
-                string comprobantes;
-
-                public Movimiento(Lbl.Cajas.Concepto concepto, Lbl.Personas.Persona persona, Lbl)
-                {
-
-                }
-        } */
 }

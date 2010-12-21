@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -71,18 +71,18 @@ namespace Lfc.Comprobantes.Compra
 		}
 
 		// Requerido por el Diseñador de Windows Forms
-		private System.ComponentModel.Container components = null;
-		internal Lui.Forms.Button cmdPedido;
-		internal Lui.Forms.Button cmdRequerimiento;
-		internal Lui.Forms.Button cmdRemito;
-		internal Lui.Forms.Button cmdFactura;
+		private System.ComponentModel.IContainer components = null;
+		internal Lui.Forms.Button BotonPedido;
+		internal Lui.Forms.Button BotonRequerimiento;
+		internal Lui.Forms.Button BotonRemito;
+		internal Lui.Forms.Button BotonFactura;
 
 		private void InitializeComponent()
 		{
-			this.cmdRemito = new Lui.Forms.Button();
-			this.cmdPedido = new Lui.Forms.Button();
-			this.cmdRequerimiento = new Lui.Forms.Button();
-			this.cmdFactura = new Lui.Forms.Button();
+			this.BotonRemito = new Lui.Forms.Button();
+			this.BotonPedido = new Lui.Forms.Button();
+			this.BotonRequerimiento = new Lui.Forms.Button();
+			this.BotonFactura = new Lui.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// OkButton
@@ -93,86 +93,86 @@ namespace Lfc.Comprobantes.Compra
 			// 
 			this.CancelCommandButton.Location = new System.Drawing.Point(322, 8);
 			// 
-			// cmdRemito
+			// BotonRemito
 			// 
-			this.cmdRemito.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.cmdRemito.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.cmdRemito.Image = null;
-			this.cmdRemito.ImagePos = Lui.Forms.ImagePositions.Top;
-			this.cmdRemito.Location = new System.Drawing.Point(16, 132);
-			this.cmdRemito.Name = "cmdRemito";
-			this.cmdRemito.Padding = new System.Windows.Forms.Padding(2);
-			this.cmdRemito.ReadOnly = false;
-			this.cmdRemito.Size = new System.Drawing.Size(396, 48);
-			this.cmdRemito.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
-			this.cmdRemito.Subtext = "Para asentar un remito de proveedor.";
-			this.cmdRemito.TabIndex = 4;
-			this.cmdRemito.Text = "Remito";
-			this.cmdRemito.ToolTipText = "";
-			this.cmdRemito.Click += new System.EventHandler(this.cmdArribo_Click);
+			this.BotonRemito.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.BotonRemito.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.BotonRemito.Image = null;
+			this.BotonRemito.ImagePos = Lui.Forms.ImagePositions.Top;
+			this.BotonRemito.Location = new System.Drawing.Point(16, 132);
+			this.BotonRemito.Name = "BotonRemito";
+			this.BotonRemito.Padding = new System.Windows.Forms.Padding(2);
+			this.BotonRemito.ReadOnly = false;
+			this.BotonRemito.Size = new System.Drawing.Size(396, 48);
+			this.BotonRemito.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
+			this.BotonRemito.Subtext = "Para asentar un remito de proveedor.";
+			this.BotonRemito.TabIndex = 4;
+			this.BotonRemito.Text = "Remito";
+			this.BotonRemito.ToolTipText = "";
+			this.BotonRemito.Click += new System.EventHandler(this.BotonArribo_Click);
 			// 
-			// cmdPedido
+			// BotonPedido
 			// 
-			this.cmdPedido.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.cmdPedido.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.cmdPedido.Image = null;
-			this.cmdPedido.ImagePos = Lui.Forms.ImagePositions.Top;
-			this.cmdPedido.Location = new System.Drawing.Point(16, 76);
-			this.cmdPedido.Name = "cmdPedido";
-			this.cmdPedido.Padding = new System.Windows.Forms.Padding(2);
-			this.cmdPedido.ReadOnly = false;
-			this.cmdPedido.Size = new System.Drawing.Size(396, 48);
-			this.cmdPedido.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
-			this.cmdPedido.Subtext = "Para asentar un pedido realizado.";
-			this.cmdPedido.TabIndex = 2;
-			this.cmdPedido.Text = "Pedido";
-			this.cmdPedido.ToolTipText = "";
-			this.cmdPedido.Click += new System.EventHandler(this.cmdPedido_Click);
+			this.BotonPedido.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.BotonPedido.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.BotonPedido.Image = null;
+			this.BotonPedido.ImagePos = Lui.Forms.ImagePositions.Top;
+			this.BotonPedido.Location = new System.Drawing.Point(16, 76);
+			this.BotonPedido.Name = "BotonPedido";
+			this.BotonPedido.Padding = new System.Windows.Forms.Padding(2);
+			this.BotonPedido.ReadOnly = false;
+			this.BotonPedido.Size = new System.Drawing.Size(396, 48);
+			this.BotonPedido.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
+			this.BotonPedido.Subtext = "Para asentar un pedido realizado.";
+			this.BotonPedido.TabIndex = 2;
+			this.BotonPedido.Text = "Pedido";
+			this.BotonPedido.ToolTipText = "";
+			this.BotonPedido.Click += new System.EventHandler(this.BotonPedido_Click);
 			// 
-			// cmdRequerimiento
+			// BotonRequerimiento
 			// 
-			this.cmdRequerimiento.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.cmdRequerimiento.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.cmdRequerimiento.Image = null;
-			this.cmdRequerimiento.ImagePos = Lui.Forms.ImagePositions.Top;
-			this.cmdRequerimiento.Location = new System.Drawing.Point(16, 20);
-			this.cmdRequerimiento.Name = "cmdRequerimiento";
-			this.cmdRequerimiento.Padding = new System.Windows.Forms.Padding(2);
-			this.cmdRequerimiento.ReadOnly = false;
-			this.cmdRequerimiento.Size = new System.Drawing.Size(396, 48);
-			this.cmdRequerimiento.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
-			this.cmdRequerimiento.Subtext = "Para solicitar un pedido.";
-			this.cmdRequerimiento.TabIndex = 0;
-			this.cmdRequerimiento.Text = "Nota de Pedido";
-			this.cmdRequerimiento.ToolTipText = "";
-			this.cmdRequerimiento.Click += new System.EventHandler(this.cmdRequerimiento_Click);
+			this.BotonRequerimiento.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.BotonRequerimiento.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.BotonRequerimiento.Image = null;
+			this.BotonRequerimiento.ImagePos = Lui.Forms.ImagePositions.Top;
+			this.BotonRequerimiento.Location = new System.Drawing.Point(16, 20);
+			this.BotonRequerimiento.Name = "BotonRequerimiento";
+			this.BotonRequerimiento.Padding = new System.Windows.Forms.Padding(2);
+			this.BotonRequerimiento.ReadOnly = false;
+			this.BotonRequerimiento.Size = new System.Drawing.Size(396, 48);
+			this.BotonRequerimiento.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
+			this.BotonRequerimiento.Subtext = "Para solicitar un pedido.";
+			this.BotonRequerimiento.TabIndex = 0;
+			this.BotonRequerimiento.Text = "Nota de Pedido";
+			this.BotonRequerimiento.ToolTipText = "";
+			this.BotonRequerimiento.Click += new System.EventHandler(this.BotonRequerimiento_Click);
 			// 
-			// cmdFactura
+			// BotonFactura
 			// 
-			this.cmdFactura.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.cmdFactura.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.cmdFactura.Image = null;
-			this.cmdFactura.ImagePos = Lui.Forms.ImagePositions.Top;
-			this.cmdFactura.Location = new System.Drawing.Point(16, 188);
-			this.cmdFactura.Name = "cmdFactura";
-			this.cmdFactura.Padding = new System.Windows.Forms.Padding(2);
-			this.cmdFactura.ReadOnly = false;
-			this.cmdFactura.Size = new System.Drawing.Size(396, 48);
-			this.cmdFactura.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
-			this.cmdFactura.Subtext = "Para asentar una factura de compra.";
-			this.cmdFactura.TabIndex = 6;
-			this.cmdFactura.Text = "Factura";
-			this.cmdFactura.ToolTipText = "";
-			this.cmdFactura.Click += new System.EventHandler(this.cmdFactura_Click);
+			this.BotonFactura.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.BotonFactura.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.BotonFactura.Image = null;
+			this.BotonFactura.ImagePos = Lui.Forms.ImagePositions.Top;
+			this.BotonFactura.Location = new System.Drawing.Point(16, 188);
+			this.BotonFactura.Name = "BotonFactura";
+			this.BotonFactura.Padding = new System.Windows.Forms.Padding(2);
+			this.BotonFactura.ReadOnly = false;
+			this.BotonFactura.Size = new System.Drawing.Size(396, 48);
+			this.BotonFactura.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
+			this.BotonFactura.Subtext = "Para asentar una factura de compra.";
+			this.BotonFactura.TabIndex = 6;
+			this.BotonFactura.Text = "Factura";
+			this.BotonFactura.ToolTipText = "";
+			this.BotonFactura.Click += new System.EventHandler(this.BotonFactura_Click);
 			// 
 			// Crear
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
 			this.ClientSize = new System.Drawing.Size(430, 335);
-			this.Controls.Add(this.cmdFactura);
-			this.Controls.Add(this.cmdRemito);
-			this.Controls.Add(this.cmdPedido);
-			this.Controls.Add(this.cmdRequerimiento);
+			this.Controls.Add(this.BotonFactura);
+			this.Controls.Add(this.BotonRemito);
+			this.Controls.Add(this.BotonPedido);
+			this.Controls.Add(this.BotonRequerimiento);
 			this.Name = "Crear";
 			this.Activated += new System.EventHandler(this.FormPedidosCrear_Activated);
 			this.Load += new System.EventHandler(this.Crear_Load);
@@ -182,28 +182,28 @@ namespace Lfc.Comprobantes.Compra
 
 		#endregion
 
-		private void cmdRequerimiento_Click(object sender, System.EventArgs e)
+		private void BotonRequerimiento_Click(object sender, System.EventArgs e)
 		{
 			TipoComprob = "NP";
 			this.DialogResult = DialogResult.OK;
 			this.Hide();
 		}
 
-		private void cmdPedido_Click(object sender, System.EventArgs e)
+		private void BotonPedido_Click(object sender, System.EventArgs e)
 		{
                         TipoComprob = "PD";
 			this.DialogResult = DialogResult.OK;
 			this.Hide();
 		}
 
-		private void cmdArribo_Click(System.Object sender, System.EventArgs e)
+		private void BotonArribo_Click(System.Object sender, System.EventArgs e)
 		{
                         TipoComprob = "PD";
 			this.DialogResult = DialogResult.OK;
 			this.Hide();
 		}
 
-		private void cmdFactura_Click(object sender, System.EventArgs e)
+		private void BotonFactura_Click(object sender, System.EventArgs e)
 		{
                         TipoComprob = "FP";
 			this.DialogResult = DialogResult.OK;
@@ -215,16 +215,16 @@ namespace Lfc.Comprobantes.Compra
 			switch (TipoComprob)
 			{
 				case "NP":
-					this.cmdRequerimiento.Focus();
+					this.BotonRequerimiento.Focus();
 					break;
 
 				case "PD":
-					this.cmdPedido.Focus();
+					this.BotonPedido.Focus();
 					break;
 
 				case "RP":
                                 case "R":
-					this.cmdRemito.Focus();
+					this.BotonRemito.Focus();
 					break;
 
 				case "FP":
@@ -238,7 +238,7 @@ namespace Lfc.Comprobantes.Compra
                                 case "FC":
                                 case "FE":
                                 case "FM":
-					this.cmdFactura.Focus();
+					this.BotonFactura.Focus();
 					break;
 			}
 		}

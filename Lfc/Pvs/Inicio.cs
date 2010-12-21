@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,106 +35,66 @@ using System.Windows.Forms;
 
 namespace Lfc.Pvs
 {
-	public class Inicio : Lui.Forms.ListingForm
+	public class Inicio : Lfc.FormularioListado
 	{
-		private System.ComponentModel.IContainer components = null;
-
 		public Inicio()
 		{
-			InitializeComponent();
+                        this.ElementoTipo = typeof(Lbl.Comprobantes.PuntoDeVenta);
 
-			DataTableName = "pvs";
-                        KeyField = new Lfx.Data.FormField("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        this.NombreTabla = "pvs";
+                        this.KeyField = new Lfx.Data.FormField("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
                         this.Joins.Add(new qGen.Join("sucursales", "pvs.id_sucursal=sucursales.id_sucursal"));
-			FormFields = new List<Lfx.Data.FormField>()
+                        this.FormFields = new Lfx.Data.FormFieldCollection()
 			{
 				new Lfx.Data.FormField("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                new Lfx.Data.FormField("pvs.tipo_fac", "Comprobantes", Lfx.Data.InputFieldTypes.Text, 180),
                                 new Lfx.Data.FormField("pvs.numero", "PV", Lfx.Data.InputFieldTypes.Integer, 96),
-				new Lfx.Data.FormField("sucursales.nombre", "Sucursal", Lfx.Data.InputFieldTypes.Text, 160),
 				new Lfx.Data.FormField("pvs.tipo", "Tipo", Lfx.Data.InputFieldTypes.Text, 120),
+                                new Lfx.Data.FormField("pvs.tipo_fac", "Comprobantes", Lfx.Data.InputFieldTypes.Text, 180),
+				new Lfx.Data.FormField("sucursales.nombre", "Sucursal", Lfx.Data.InputFieldTypes.Text, 160),
 				new Lfx.Data.FormField("pvs.estacion", "Estacion", Lfx.Data.InputFieldTypes.Text, 160),
 				new Lfx.Data.FormField("pvs.carga", "Carga", Lfx.Data.InputFieldTypes.Text, 120),
-                                new Lfx.Data.FormField("pvs.detalonario", "Usa Talonario", Lfx.Data.InputFieldTypes.Bool, 120)
+                                new Lfx.Data.FormField("pvs.detalonario", "Usa Talonarios", Lfx.Data.InputFieldTypes.Bool, 120)
 			};
 
-			BotonFiltrar.Visible = false;
+                        this.HabilitarFiltrar = false;
 		}
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if (components != null) 
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
-
-		#region Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
-			components = new System.ComponentModel.Container();
-		}
-		#endregion
-
-                public override void ItemAdded(ListViewItem item, Lfx.Data.Row row)
+                public override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
                         switch (row.Fields["tipo_fac"].ValueString) {
                                 case "F":
-                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Facturas";
+                                        item.SubItems[Listado.Columns["tipo_fac"].Index].Text = "Facturas";
                                         break;
                                 case "F,ND":
-                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Facturas, Notas de Débito";
+                                        item.SubItems[Listado.Columns["tipo_fac"].Index].Text = "Facturas, Notas de Débito";
                                         break;
                                 case "F,NC,ND":
-                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Facturas, Notas de Crédito y Débito";
+                                        item.SubItems[Listado.Columns["tipo_fac"].Index].Text = "Facturas, Notas de Crédito y Débito";
                                         break;
                                 case "R":
-                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Remitos";
+                                        item.SubItems[Listado.Columns["tipo_fac"].Index].Text = "Remitos";
                                         break;
                                 case "RC":
-                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Recibos de Cobro";
+                                        item.SubItems[Listado.Columns["tipo_fac"].Index].Text = "Recibos de Cobro";
                                         break;
                                 case "RP":
-                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Recibos de Pago";
+                                        item.SubItems[Listado.Columns["tipo_fac"].Index].Text = "Recibos de Pago";
                                         break;
                         }
 
                         int TipoPv = row.Fields["tipo"].ValueInt;
                         if (TipoPv == 0)
-                                item.SubItems[Listado.Columns["pvs.tipo"].Index].Text = "Inactivo";
+                                item.SubItems[Listado.Columns["tipo"].Index].Text = "Inactivo";
                         if (TipoPv == 1)
-                                item.SubItems[Listado.Columns["pvs.tipo"].Index].Text = "Normal";
+                                item.SubItems[Listado.Columns["tipo"].Index].Text = "Normal";
                         else if (TipoPv == 2)
-                                item.SubItems[Listado.Columns["pvs.tipo"].Index].Text = "Fiscal";
+                                item.SubItems[Listado.Columns["tipo"].Index].Text = "Fiscal";
 
-                        if (item.SubItems[Listado.Columns["pvs.carga"].Index].Text == "0")
-                                item.SubItems[Listado.Columns["pvs.carga"].Index].Text = "Automática";
-                        else if (item.SubItems[Listado.Columns["pvs.carga"].Index].Text == "1")
-                                item.SubItems[Listado.Columns["pvs.carga"].Index].Text = "Manual";
+                        if (item.SubItems[Listado.Columns["carga"].Index].Text == "0")
+                                item.SubItems[Listado.Columns["carga"].Index].Text = "Automática";
+                        else if (item.SubItems[Listado.Columns["carga"].Index].Text == "1")
+                                item.SubItems[Listado.Columns["carga"].Index].Text = "Manual";
                 }
-
-		public override Lfx.Types.OperationResult OnCreate()
-		{
-			this.Workspace.RunTime.Execute("CREAR PV");
-			return new Lfx.Types.SuccessOperationResult();
-		}
-
-		public override Lfx.Types.OperationResult OnEdit(int lCodigo)
-		{
-                        this.Workspace.RunTime.Execute("EDITAR PV " + lCodigo.ToString());
-			return new Lfx.Types.SuccessOperationResult();
-		}
 	}
 }
 

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-namespace Lcc.Controles.Datos
+namespace Lcc.Edicion
 {
         partial class Etiquetas
         {
@@ -59,8 +59,9 @@ namespace Lcc.Controles.Datos
                 private void InitializeComponent()
                 {
                         this.Lista = new Lui.Forms.ListView();
-                        this.Id = new System.Windows.Forms.ColumnHeader();
-                        this.Nombre = new System.Windows.Forms.ColumnHeader();
+                        this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.Nombre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.GroupLabel = new System.Windows.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // Lista
@@ -76,11 +77,11 @@ namespace Lcc.Controles.Datos
                         this.Lista.FullRowSelect = true;
                         this.Lista.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
                         this.Lista.LabelWrap = false;
-                        this.Lista.Location = new System.Drawing.Point(2, 2);
+                        this.Lista.Location = new System.Drawing.Point(2, 28);
                         this.Lista.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
                         this.Lista.MultiSelect = false;
                         this.Lista.Name = "Lista";
-                        this.Lista.Size = new System.Drawing.Size(237, 170);
+                        this.Lista.Size = new System.Drawing.Size(237, 144);
                         this.Lista.TabIndex = 0;
                         this.Lista.UseCompatibleStateImageBehavior = false;
                         this.Lista.View = System.Windows.Forms.View.Details;
@@ -92,17 +93,33 @@ namespace Lcc.Controles.Datos
                         // 
                         // Nombre
                         // 
-                        this.Nombre.Width = 316;
+                        this.Nombre.Width = 200;
+                        // 
+                        // GroupLabel
+                        // 
+                        this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.GroupLabel.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.GroupLabel.Location = new System.Drawing.Point(0, 0);
+                        this.GroupLabel.Name = "GroupLabel";
+                        this.GroupLabel.Size = new System.Drawing.Size(240, 24);
+                        this.GroupLabel.TabIndex = 2;
+                        this.GroupLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.GroupLabel.UseMnemonic = false;
                         // 
                         // Etiquetas
                         // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+                        this.Controls.Add(this.GroupLabel);
                         this.Controls.Add(this.Lista);
                         this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
                         this.Name = "Etiquetas";
                         this.Size = new System.Drawing.Size(240, 173);
+                        this.Controls.SetChildIndex(this.Lista, 0);
+                        this.Controls.SetChildIndex(this.GroupLabel, 0);
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
                 }
 
@@ -111,5 +128,6 @@ namespace Lcc.Controles.Datos
                 private Lui.Forms.ListView Lista;
                 private System.Windows.Forms.ColumnHeader Id;
                 private System.Windows.Forms.ColumnHeader Nombre;
+                private System.Windows.Forms.Label GroupLabel;
         }
 }

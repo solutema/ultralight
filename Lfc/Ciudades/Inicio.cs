@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,65 +38,20 @@ using System.Windows.Forms;
 
 namespace Lfc.Ciudades
 {
-	public class FormCiudadesInicio : Lui.Forms.ListingForm
+	public class Inicio : Lfc.FormularioListado
 	{
-		#region Windows Form Designer generated code
-
-		public FormCiudadesInicio()
-			: base()
+		public Inicio()
 		{
-			InitializeComponent();
+                        this.ElementoTipo = typeof(Lbl.Entidades.Localidad);
 
-			DataTableName = "ciudades";
-                        KeyField = new Lfx.Data.FormField("ciudades.id_ciudad", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-			OrderBy = "ciudades.parent, ciudades.nombre";
-			FormFields = new List<Lfx.Data.FormField>()
+			this.NombreTabla = "ciudades";
+                        this.KeyField = new Lfx.Data.FormField("ciudades.id_ciudad", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+			this.OrderBy = "ciudades.parent, ciudades.nombre";
+			this.FormFields = new Lfx.Data.FormFieldCollection()
 			{
 				new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 				new Lfx.Data.FormField("cp", "Cód. Postal", Lfx.Data.InputFieldTypes.Text, 120)
 			};
-		}
-
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing)
-			{
-				if (components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose(disposing);
-		}
-
-		private System.ComponentModel.Container components = null;
-
-		private void InitializeComponent()
-		{
-			this.SuspendLayout();
-			// 
-			// FormCiudadesInicio
-			// 
-			this.Name = "FormCiudadesInicio";
-			this.Text = "Listado: Ciudades";
-			this.ResumeLayout(false);
-
-		}
-
-
-		#endregion
-
-		public override Lfx.Types.OperationResult OnCreate()
-		{
-                        this.Workspace.RunTime.Execute("CREAR CIUDAD");
-			return new Lfx.Types.SuccessOperationResult();
-		}
-
-
-		public override Lfx.Types.OperationResult OnEdit(int lCodigo)
-		{
-                        this.Workspace.RunTime.Execute("EDITAR CIUDAD " + lCodigo.ToString());
-			return new Lfx.Types.SuccessOperationResult();
 		}
 	}
 }

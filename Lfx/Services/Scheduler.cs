@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -36,15 +36,21 @@ namespace Lfx.Services
         /// <summary>
         /// Programador de tareas
         /// </summary>
-        public class Scheduler
+        public class Scheduler : IDisposable
         {
                 private Lfx.Workspace Workspace;
-                private Lfx.Data.DataBase m_DataBase = null;
+                private Lfx.Data.Connection m_DataBase = null;
                 private DateTime m_LastGetTask = DateTime.MinValue;
 
                 public Scheduler(Workspace workspace)
                 {
                         Workspace = workspace;
+                }
+
+                public void Dispose()
+                {
+                        if (m_DataBase != null)
+                                m_DataBase.Dispose();
                 }
 
                 public bool AddTask(string commandString)
@@ -65,14 +71,15 @@ namespace Lfx.Services
                         }
                 }
 
-                private Lfx.Data.DataBase DataBase
+                private Lfx.Data.Connection DataBase
                 {
                         get
                         {
-                                if (m_DataBase == null)
-                                        m_DataBase = this.Workspace.GetDataBase("Programador de tareas");
+                                if (m_DataBase == null) {
+                                        m_DataBase = this.Workspace.GetNewConnection("Programador de tareas");
+                                        m_DataBase.RequiresTransaction = false;
+                                }
                                 return m_DataBase;
-                                //return this.Workspace.DefaultDataBase;
                         }
                 }
 
@@ -83,14 +90,16 @@ namespace Lfx.Services
 
                         qGen.Insert Comando = new qGen.Insert(this.DataBase, "sys_programador");
                         Comando.Fields.AddWithValue("crea_estacion", System.Environment.MachineName.ToUpperInvariant());
-                        Comando.Fields.AddWithValue("crea_usuario", Workspace.CurrentUser.CompleteName);
+                        Comando.Fields.AddWithValue("crea_usuario", "");        // TODO: que ponga el nombre de usuario
                         Comando.Fields.AddWithValue("estacion", terminalName);
                         Comando.Fields.AddWithValue("comando", commandString);
                         Comando.Fields.AddWithValue("componente", component);
                         Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
 
                         try {
+                                this.DataBase.BeginTransaction();
                                 this.DataBase.Execute(Comando);
+                                this.DataBase.Commit();
                         }
                         catch {
                                 return true;
@@ -107,14 +116,18 @@ namespace Lfx.Services
                         if (this.DataBase.ConectionState != System.Data.ConnectionState.Open)
                                 this.DataBase.Open();
 
+                        qGen.Where WhereEstacion = new qGen.Where(qGen.AndOr.Or);
+                        WhereEstacion.AddWithValue("estacion", this.DataBase.EscapeString(System.Environment.MachineName.ToUpperInvariant()));
+                        WhereEstacion.AddWithValue("estacion", "*");
+
                         m_LastGetTask = DateTime.Now;
-                        string Sql = "SELECT * FROM sys_programador WHERE estado=0";
+                        qGen.Select NextTask = new qGen.Select("sys_programador");
+                        NextTask.WhereClause = new qGen.Where("estado", 0);
+                        NextTask.WhereClause.AddWithValue("componente", component);
+                        NextTask.WhereClause.AddWithValue(WhereEstacion);
+                        NextTask.Order = "id_evento";
 
-                        Sql += " AND componente IN ('" + component + "', NULL)";
-                        Sql += " AND estacion IN ('*', '" + this.DataBase.EscapeString(System.Environment.MachineName.ToUpperInvariant()) + "')";
-
-                        Lfx.Data.Row TaskRow = this.DataBase.FirstRowFromSelect(Sql);
-
+                        Lfx.Data.Row TaskRow = this.DataBase.FirstRowFromSelect(NextTask);
                         if (TaskRow != null) {
                                 Task Result = new Task();
 
@@ -130,8 +143,11 @@ namespace Lfx.Services
                                 //Elimino tareas viejas
                                 qGen.Update Actualizar = new qGen.Update("sys_programador", new qGen.Where("id_evento", Result.Id));
                                 Actualizar.Fields.AddWithValue("estado", 1);
+
+                                this.DataBase.BeginTransaction();
                                 this.DataBase.Execute(Actualizar);
                                 this.DataBase.Execute(new qGen.Delete("sys_programador", new qGen.Where("fecha", qGen.ComparisonOperators.LessThan, System.DateTime.Now.AddDays(-7))));
+                                this.DataBase.Commit();
 
                                 return Result;
                         } else

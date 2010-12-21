@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -90,7 +90,7 @@ namespace Lfc.Reportes
                         // BotonActualizar
                         // 
                         this.BotonActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonActualizar.AutoHeight = false;
+                        this.BotonActualizar.AutoSize = false;
                         this.BotonActualizar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonActualizar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonActualizar.Image = null;
@@ -109,7 +109,7 @@ namespace Lfc.Reportes
                         // 
                         // EntradaExpandirGrupos
                         // 
-                        this.EntradaExpandirGrupos.AutoHeight = false;
+                        this.EntradaExpandirGrupos.AutoSize = false;
                         this.EntradaExpandirGrupos.AutoNav = true;
                         this.EntradaExpandirGrupos.AutoTab = true;
                         this.EntradaExpandirGrupos.DetailField = null;
@@ -128,9 +128,7 @@ namespace Lfc.Reportes
                         this.EntradaExpandirGrupos.Size = new System.Drawing.Size(148, 24);
                         this.EntradaExpandirGrupos.TabIndex = 0;
                         this.EntradaExpandirGrupos.Table = null;
-                        this.EntradaExpandirGrupos.Text = "Sólo subtotales";
                         this.EntradaExpandirGrupos.TextKey = "0";
-                        this.EntradaExpandirGrupos.TextRaw = "Sólo subtotales";
                         this.EntradaExpandirGrupos.TipWhenBlank = "";
                         this.EntradaExpandirGrupos.ToolTipText = "";
                         // 

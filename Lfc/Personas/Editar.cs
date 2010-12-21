@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,78 +35,17 @@ using System.Windows.Forms;
 
 namespace Lfc.Personas
 {
-        public partial class Editar : Lui.Forms.EditForm
+        public partial class Editar : Lcc.Edicion.ControlEdicion
         {
                 public Editar()
-                        : base()
                 {
-                        // Necesario para admitir el Diseñador de Windows Forms
+                        this.ElementoTipo = typeof(Lbl.Personas.Persona);
+
                         InitializeComponent();
                 }
 
-                public override Lfx.Types.OperationResult Create()
-                {
-                        if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.create"))
-                                return new Lfx.Types.NoAccessOperationResult();
 
-                        Lbl.Personas.Persona Cliente = new Lbl.Personas.Persona(this.DataBase);
-                        Cliente.Crear();
-                        int IdGrupoPredet = this.DataBase.FieldInt("SELECT id_grupo FROM personas_grupos WHERE predet=1");
-                        if (IdGrupoPredet != 0)
-                                Cliente.Grupo = new Lbl.Personas.Grupo(Cliente.DataBase, IdGrupoPredet);
-                        this.FromRow(Cliente);
-
-                        this.Text = "Clientes: Nuevo";
-                        return base.Create();
-                }
-
-
-                public override Lui.Printing.ItemPrint FormatForPrinting(Lui.Printing.ItemPrint ImprimirItem)
-                {
-                        ImprimirItem.Titulo = EntradaNombreVisible.Text;
-                        ImprimirItem.AgregarPar("Tipo", EntradaTipo.TextDetail, 1);
-                        if (EntradaNombre.Text.Length > 0)
-                                ImprimirItem.AgregarPar("Nombres", EntradaNombre.Text, 1);
-
-                        if (EntradaApellido.Text.Length > 0)
-                                ImprimirItem.AgregarPar("Apellidos", EntradaApellido.Text, 1);
-
-                        if (EntradaRazonSocial.Text.Length > 0)
-                                ImprimirItem.AgregarPar("Razón Social", EntradaRazonSocial.Text, 1);
-
-                        ImprimirItem.AgregarPar("Situación Tributaria", EntradaSituacion.TextDetail, 1);
-                        if (EntradaCuit.Text.Length > 0)
-                                ImprimirItem.AgregarPar("CUIT", EntradaCuit.Text, 1);
-
-                        ImprimirItem.AgregarPar("Nombre Visible", EntradaNombreVisible.Text, 1);
-                        ImprimirItem.AgregarPar("Domicilio", EntradaDomicilio.Text, 1);
-                        ImprimirItem.AgregarPar("", EntradaCiudad.TextDetail, 1);
-                        ImprimirItem.AgregarPar("Teléfono", EntradaTelefono.Text, 1);
-                        if (EntradaEmail.Text.Length > 0)
-                                ImprimirItem.AgregarPar("E-mail", EntradaEmail.Text, 1);
-
-                        if (EntradaObs.Text.Length > 0)
-                                ImprimirItem.AgregarPar("Observaciones", EntradaObs.Text, 1);
-
-                        return ImprimirItem;
-                }
-
-
-                public override Lfx.Types.OperationResult Edit(int iId)
-                {
-                        if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.read"))
-                                return new Lfx.Types.NoAccessOperationResult();
-
-                        if (iId == 999) {
-                                return new Lfx.Types.FailureOperationResult("No se pueden cambiar los datos de \"Consumidor Final\"");
-                        } else {
-                                Lbl.Personas.Persona Persona = new Lbl.Personas.Persona(this.DataBase, iId);
-                                this.FromRow(Persona);
-                                return new Lfx.Types.SuccessOperationResult();
-                        }
-                }
-
-                public override Lfx.Types.OperationResult ValidateData()
+                public override Lfx.Types.OperationResult ValidarControl()
                 {
                         Lfx.Types.OperationResult validarReturn = new Lfx.Types.SuccessOperationResult();
 
@@ -115,7 +54,7 @@ namespace Lfc.Personas
                                 validarReturn.Message += "Seleccione el tipo de cliente" + Environment.NewLine;
                         }
 
-                        Lbl.Personas.Persona Cliente = this.CachedRow as Lbl.Personas.Persona;
+                        Lbl.Personas.Persona Cliente = this.Elemento as Lbl.Personas.Persona;
 
                         if (EntradaRazonSocial.Text.Length == 0 && EntradaNombre.Text.Length == 0 && EntradaApellido.Text.Length == 0) {
                                 validarReturn.Success = false;
@@ -125,12 +64,12 @@ namespace Lfc.Personas
                                 Lfx.Data.Row rowVeriNombre = null;
                                 string Sql = @"SELECT id_persona, nombre_visible, domicilio, telefono, cuit, email FROM personas WHERE (";
                                 if (EntradaNombreVisible.Text.Length > 0)
-                                        Sql += @"nombre_visible LIKE '%" + this.DataBase.EscapeString(EntradaNombreVisible.Text.Replace("%", "").Replace("_", "")) + @"%'";
+                                        Sql += @"nombre_visible LIKE '%" + this.Connection.EscapeString(EntradaNombreVisible.Text.Replace("%", "").Replace("_", "")) + @"%'";
                                 if (EntradaDomicilio.Text.Length > 0)
-                                        Sql += @" OR domicilio LIKE '%" + Workspace.DefaultDataBase.EscapeString(EntradaDomicilio.Text) + @"%'";
+                                        Sql += @" OR domicilio LIKE '%" + Workspace.MasterConnection.EscapeString(EntradaDomicilio.Text) + @"%'";
 
                                 if (EntradaNumDoc.Text.Length > 0)
-                                        Sql += @" OR REPLACE(num_doc, '.', '') LIKE '%" + Workspace.DefaultDataBase.EscapeString(EntradaNumDoc.Text.Replace(".", "")) + @"%'";
+                                        Sql += @" OR REPLACE(num_doc, '.', '') LIKE '%" + Workspace.MasterConnection.EscapeString(EntradaNumDoc.Text.Replace(".", "")) + @"%'";
 
                                 if (EntradaTelefono.Text.Length > 0) {
                                         string Telefono = EntradaTelefono.Text.Replace(" -", "").Replace("- ", "").Replace("/", " ").Replace(",", " ").Replace(".", " ").Replace("  ", " ").Replace("%", "").Replace("_", "");
@@ -138,17 +77,17 @@ namespace Lfc.Personas
                                         if (Telefonos != null && Telefonos.Count > 0) {
                                                 foreach (string Tel in Telefonos) {
                                                         if (Tel != null && Tel.Length > 4)
-                                                                Sql += @" OR telefono LIKE '%" + Workspace.DefaultDataBase.EscapeString(Tel.Replace("%", "").Replace("_", "")) + @"%'";
+                                                                Sql += @" OR telefono LIKE '%" + Workspace.MasterConnection.EscapeString(Tel.Replace("%", "").Replace("_", "")) + @"%'";
                                                 }
                                         }
                                 }
                                 if (EntradaEmail.Text.Length > 0)
-                                        Sql += @" OR email LIKE '%" + Workspace.DefaultDataBase.EscapeString(EntradaEmail.Text.Replace("%", "").Replace("_", "")) + @"%'";
+                                        Sql += @" OR email LIKE '%" + Workspace.MasterConnection.EscapeString(EntradaEmail.Text.Replace("%", "").Replace("_", "")) + @"%'";
                                 if (EntradaCuit.Text.Length > 0)
-                                        Sql += @" OR cuit='" + Workspace.DefaultDataBase.EscapeString(EntradaCuit.Text.Replace("%", "").Replace("_", "")) + @"'";
-                                Sql += @") AND id_persona<>" + m_Id.ToString();
+                                        Sql += @" OR cuit='" + Workspace.MasterConnection.EscapeString(EntradaCuit.Text.Replace("%", "").Replace("_", "")) + @"'";
+                                Sql += @") AND id_persona<>" + this.Elemento.Id.ToString();
 
-                                rowVeriNombre = this.DataBase.FirstRowFromSelect(Sql);
+                                rowVeriNombre = this.Connection.FirstRowFromSelect(Sql);
                                 if (rowVeriNombre != null) {
                                         if (Cliente != null && Cliente.Existe == false) {
                                                 AltaDuplicada CliDup = new AltaDuplicada();
@@ -175,8 +114,8 @@ namespace Lfc.Personas
                                                                 return new Lfx.Types.SuccessOperationResult();
                                                         case DialogResult.No:
                                                                 //Actualizar
-                                                                this.m_Id = System.Convert.ToInt32(rowVeriNombre["id_persona"]);
-                                                                this.CachedRow = new Lbl.Personas.Persona(this.CachedRow.DataBase, m_Id);
+                                                                //this.m_Id = System.Convert.ToInt32(rowVeriNombre["id_persona"]);
+                                                                this.Elemento = new Lbl.Personas.Persona(this.Elemento.Connection, System.Convert.ToInt32(rowVeriNombre["id_persona"]));
                                                                 return new Lfx.Types.SuccessOperationResult();
                                                         case DialogResult.Cancel:
                                                                 //Volver a la edición
@@ -187,10 +126,15 @@ namespace Lfc.Personas
                         }
 
                         if (EntradaCbu.Text.Length > 0) {
-                                if (Lfx.Types.Strings.ValidCBU(EntradaCbu.Text) == false) {
+                                if (Lfx.Types.Strings.EsCbuValida(EntradaCbu.Text) == false) {
                                         validarReturn.Success = false;
                                         validarReturn.Message += "La CBU no es correcta." + Environment.NewLine + "El sistema le permite dejar la CBU en blanco, pero no aceptará una incorrecta." + Environment.NewLine;
                                 }
+                        }
+
+                        if (EntradaVendedor.TextInt == 0 && this.Elemento.Existe == false) {
+                                validarReturn.Success = false;
+                                validarReturn.Message += "Debe ingresar un vendedor.";
                         }
 
 
@@ -203,12 +147,12 @@ namespace Lfc.Personas
                                         EntradaCuit.Text = EntradaCuit.Text.Substring(0, 2) + "-" + EntradaCuit.Text.Substring(2, 8) + "-" + EntradaCuit.Text.Substring(10, 1);
                                 }
 
-                                if (Lfx.Types.Strings.ValidCUIT(EntradaCuit.Text)) {
+                                if (Lfx.Types.Strings.EsCuitValido(EntradaCuit.Text)) {
                                         //Agrego los guiones si no los tiene
                                         if (EntradaCuit.Text.Length == 11)
                                                 EntradaCuit.Text = EntradaCuit.Text.Substring(0, 2) + "-" + EntradaCuit.Text.Substring(2, 8) + "-" + EntradaCuit.Text.Substring(10, 1);
 
-                                        Lfx.Data.Row rowVeriCUIT = this.DataBase.FirstRowFromSelect("SELECT id_persona FROM personas WHERE cuit='" + EntradaCuit.Text + "' AND id_persona<>" + m_Id.ToString());
+                                        Lfx.Data.Row rowVeriCUIT = this.Connection.FirstRowFromSelect("SELECT id_persona FROM personas WHERE cuit='" + EntradaCuit.Text + "' AND id_persona<>" + this.Elemento.Id.ToString());
                                         if (rowVeriCUIT != null) {
                                                 if (Cliente.Existe == false) {
                                                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Ya existe una empresa o persona con esa CUIT en la base de datos. ¿Desea continuar y crear una nueva de todos modos?", "CUIT duplicada");
@@ -218,7 +162,7 @@ namespace Lfc.Personas
                                                                 validarReturn.Message += "Cambie la CUIT para antes de continuar." + Environment.NewLine;
                                                         }
                                                 } else {
-                                                        if (System.Convert.ToInt32(rowVeriCUIT["id_persona"]) != m_Id) {
+                                                        if (System.Convert.ToInt32(rowVeriCUIT["id_persona"]) != this.Elemento.Id) {
                                                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Ya existe una empresa o persona con esa CUIT en la base de datos. ¿Desea continuar y crear una nueva de todos modos?", "CUIT duplicada");
                                                                 Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                                                 if (Pregunta.ShowDialog() != DialogResult.OK) {
@@ -237,97 +181,94 @@ namespace Lfc.Personas
                         return validarReturn;
                 }
 
-                public override void FromRow(Lbl.ElementoDeDatos row)
+                public override void ActualizarControl()
                 {
-                        base.FromRow(row);
+                        Lbl.Personas.Persona Cliente = this.Elemento as Lbl.Personas.Persona;
 
-                        Lbl.Personas.Persona Cliente = row as Lbl.Personas.Persona;
-
-                        bool PermitirEdicionAvanzada = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.write");
-                        bool PermitirEdicion = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.basicwrite") || PermitirEdicionAvanzada;
-                        bool PermitirEdicionCredito = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.creditlimit");
-
-                        this.ReadOnly = !PermitirEdicion;
+                        bool PermitirEdicionAvanzada = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Cliente, Lbl.Sys.Permisos.Operaciones.EditarAvanzado);
+                        bool PermitirEdicionCredito = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Cliente, Lbl.Sys.Permisos.Operaciones.Extra1);
 
                         EntradaNombre.Text = Cliente.NombreSolo;
-                        EntradaNombre.ReadOnly = !PermitirEdicionAvanzada;
-                        EntradaApellido.Text = System.Convert.ToString(Cliente.Registro["apellido"]);
-                        EntradaApellido.ReadOnly = !PermitirEdicionAvanzada;
+                        EntradaNombre.Enabled = PermitirEdicionAvanzada;
+                        EntradaApellido.Text = Cliente.Apellido;
+                        EntradaApellido.Enabled = PermitirEdicionAvanzada;
                         EntradaNombreVisible.Text = Cliente.Nombre;
                         EntradaTipoDoc.TextInt = Cliente.TipoDocumento;
-                        EntradaTipoDoc.ReadOnly = !PermitirEdicionAvanzada;
+                        EntradaTipoDoc.Enabled = PermitirEdicionAvanzada;
                         EntradaNumDoc.Text = Cliente.NumeroDocumento;
-                        EntradaNumDoc.ReadOnly = !PermitirEdicionAvanzada;
+                        EntradaNumDoc.Enabled = PermitirEdicionAvanzada;
 
                         EntradaRazonSocial.Text = Cliente.RazonSocial;
-                        EntradaRazonSocial.ReadOnly = !PermitirEdicionAvanzada;
+                        EntradaRazonSocial.Enabled = PermitirEdicionAvanzada;
                         EntradaCuit.Text = Cliente.Cuit;
-                        EntradaCuit.ReadOnly = !PermitirEdicionAvanzada;
+                        EntradaCuit.Enabled = PermitirEdicionAvanzada;
                         EntradaSituacion.Elemento = Cliente.SituacionTributaria;
-                        EntradaSituacion.ReadOnly = !PermitirEdicionAvanzada;
-                        if (Cliente.Registro["tipo_fac"] == null || Cliente.Registro["tipo_fac"].ToString().Length == 0)
+                        EntradaSituacion.Enabled = PermitirEdicionAvanzada;
+                        if (Cliente.FacturaPreferida == null || Cliente.FacturaPreferida.Length == 0)
                                 EntradaTipoFac.TextKey = "*";
                         else
-                                EntradaTipoFac.TextKey = System.Convert.ToString(Cliente.Registro["tipo_fac"]);
-                        EntradaTipoFac.ReadOnly = !PermitirEdicionAvanzada;
+                                EntradaTipoFac.TextKey = Cliente.FacturaPreferida;
+                        EntradaTipoFac.Enabled = PermitirEdicionAvanzada;
 
                         EntradaTipo.TextInt = Cliente.Tipo;
-                        EntradaTipo.ReadOnly = !PermitirEdicionAvanzada;
+                        EntradaTipo.Enabled = PermitirEdicionAvanzada;
                         EntradaGrupo.Elemento = Cliente.Grupo;
                         EntradaSubGrupo.Elemento = Cliente.SubGrupo;
-                        EntradaGrupo.ReadOnly = !PermitirEdicionAvanzada;
+                        EntradaGrupo.Enabled = PermitirEdicionAvanzada;
                         EntradaDomicilio.Text = Cliente.Domicilio;
                         EntradaDomicilioTrabajo.Text = Cliente.DomicilioLaboral;
-                        EntradaCiudad.Elemento = Cliente.Localidad;
+                        EntradaLocalidad.Elemento = Cliente.Localidad;
                         EntradaTelefono.Text = Cliente.Telefono;
                         EntradaEmail.Text = Cliente.Email;
                         EntradaVendedor.Elemento = Cliente.Vendedor;
                         EntradaLimiteCredito.Text = Lfx.Types.Formatting.FormatCurrency(Cliente.LimiteCredito, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        EntradaLimiteCredito.ReadOnly = !(PermitirEdicionCredito && PermitirEdicion);
-                        if (Cliente.Registro["fechanac"] == null || Cliente.Registro["fechanac"] is DBNull)
+                        EntradaLimiteCredito.Enabled = PermitirEdicionCredito;
+                        if (Cliente.FechaNacimiento == null)
                                 EntradaFechaNac.Text = "";
                         else
                                 EntradaFechaNac.Text = Lfx.Types.Formatting.FormatDate(Cliente.FechaNacimiento);
-                        EntradaFechaNac.ReadOnly = !PermitirEdicionAvanzada;
+                        EntradaFechaNac.Enabled = PermitirEdicionAvanzada;
 
                         EntradaEstadoCredito.TextKey = ((int)(Cliente.EstadoCredito)).ToString();
-                        EntradaEstadoCredito.ReadOnly = !(PermitirEdicionCredito && PermitirEdicion);
+                        EntradaEstadoCredito.Enabled = PermitirEdicionCredito;
                         EntradaNumeroCuenta.Text = Cliente.NumeroCuenta;
-                        EntradaNumeroCuenta.ReadOnly = !PermitirEdicionAvanzada;
+                        EntradaNumeroCuenta.Enabled = PermitirEdicionAvanzada;
 
-                        string CBU = System.Convert.ToString(Cliente.Registro["cbu"]);
-                        if (CBU.Length == 22)
+                        string CBU = Cliente.GetFieldValue<string>("cbu");
+                        if (CBU == null)
+                                EntradaCbu.Text = "";
+                        else if (CBU.Length == 22)
                                 EntradaCbu.Text = CBU.Substring(0, 8) + "-" + CBU.Substring(8, 14);
                         else
                                 EntradaCbu.Text = CBU;
-                        EntradaCbu.ReadOnly = !PermitirEdicionAvanzada;
-                        EntradaObs.Text = System.Convert.ToString(Cliente.Registro["obs"]);
-                        EntradaObs.ReadOnly = !PermitirEdicionAvanzada;
+                        EntradaCbu.Enabled = PermitirEdicionAvanzada;
+                        EntradaObs.Text = Cliente.Obs;
+                        EntradaObs.Enabled = PermitirEdicionAvanzada;
 
                         EntradaEstado.TextKey = Cliente.Estado.ToString();
-                        EntradaEstado.ReadOnly = !Lui.Login.LoginData.Access(Lfx.Workspace.Master.CurrentUser, "personas.delete");
-                        
+
                         if (Cliente.FechaAlta == null)
                                 EntradaFechaAlta.Text = "";
                         else
-                                EntradaFechaAlta.Text = Cliente.FechaAlta.Value.ToString(Lfx.Types.Formatting.DateTime.DefaultDateFormat);
-                        
+                                EntradaFechaAlta.Text = Cliente.FechaAlta.Value.ToString(Lfx.Types.Formatting.DateTime.ShortDatePattern);
+
                         EntradaFechaAlta.ReadOnly = true;
                         EntradaFechaBaja.ReadOnly = true;
 
                         if (Cliente.FechaBaja == null)
                                 EntradaFechaBaja.Text = "";
                         else
-                                EntradaFechaBaja.Text = Cliente.FechaBaja.Value.ToString(Lfx.Types.Formatting.DateTime.DefaultDateFormat);
+                                EntradaFechaBaja.Text = Cliente.FechaBaja.Value.ToString(Lfx.Types.Formatting.DateTime.ShortDatePattern);
 
                         EntradaImagen.Enabled = PermitirEdicionAvanzada;
                         EntradaImagen.Elemento = Cliente;
                         EntradaTags.Elemento = Cliente;
                         EntradaTags.Enabled = PermitirEdicionAvanzada;
 
-                        this.Text = "Clientes: " + EntradaNombreVisible.Text;
-                        EntradaEstado.Enabled = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.delete");
-                        BotonAcceso.Visible = Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "people.access");
+                        EntradaEstado.Enabled = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Cliente, Lbl.Sys.Permisos.Operaciones.Eliminar);
+                        BotonAcceso.Visible = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Cliente, Lbl.Sys.Permisos.Operaciones.Eliminar);
+
+                        base.ActualizarControl();
                 }
 
                 private void GenerarNombreVisible(System.Object sender, System.EventArgs e)
@@ -335,7 +276,7 @@ namespace Lfc.Personas
 
                         EntradaNombreVisible.Text = "";
                         if (EntradaRazonSocial.Text.Length > 0) {
-                                EntradaNombreVisible.Text += Lfx.Types.Strings.ULCase(EntradaRazonSocial.Text.Trim());
+                                EntradaNombreVisible.Text += EntradaRazonSocial.Text.Trim().ToTitleCase();
                         } else {
                                 if (EntradaApellido.Text.Length > 0) {
                                         EntradaNombreVisible.Text += EntradaApellido.Text.Trim();
@@ -350,12 +291,12 @@ namespace Lfc.Personas
                 }
 
 
-                private void EntradaCUIT_Leave(object sender, System.EventArgs e)
+                private void EntradaCuit_Leave(object sender, System.EventArgs e)
                 {
                         if (EntradaCuit.Text.Length == 11)
                                 EntradaCuit.Text = EntradaCuit.Text.Substring(0, 2) + "-" + EntradaCuit.Text.Substring(2, 8) + "-" + EntradaCuit.Text.Substring(10, 1);
 
-                        if (EntradaCuit.Text.Length == 13 && Lfx.Types.Strings.ValidCUIT(EntradaCuit.Text) == false)
+                        if (EntradaCuit.Text.Length == 13 && Lfx.Types.Strings.EsCuitValido(EntradaCuit.Text) == false)
                                 EntradaCuit.ErrorText = "La CUIT ingresada no es válida.";
                         else if (EntradaCuit.Text.Length > 0 && EntradaCuit.Text.Length != 13)
                                 EntradaCuit.ErrorText = "La CUIT ingresada no es válida.";
@@ -364,7 +305,7 @@ namespace Lfc.Personas
                 }
 
 
-                private void txtSituacion_Leave(object sender, System.EventArgs e)
+                private void EntradaSituacion_Leave(object sender, System.EventArgs e)
                 {
                         if (EntradaCuit.Text.Length > 0) {
                                 if (EntradaSituacion.TextInt == 1)
@@ -374,35 +315,20 @@ namespace Lfc.Personas
                         }
                 }
 
-                private void FormClientesEditar_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-                {
-                        if (e.Alt == false && e.Control == false) {
-                                switch (e.KeyCode) {
-                                        case Keys.F2:
-                                                e.Handled = true;
-                                                if (BotonAcceso.Enabled && BotonAcceso.Visible)
-                                                        BotonAcceso.PerformClick();
-                                                break;
-                                }
-
-                        }
-                }
 
                 private void BotonAcceso_Click(object sender, System.EventArgs e)
                 {
-                        if (m_Id == 1) {
-                                Lui.Forms.MessageBox.Show("No puede editar el acceso del usuario Administrador.", "Error");
+                        if (this.Elemento.Existe == false) {
+                                Lui.Forms.MessageBox.Show("No puede editar el acceso del usuario porque aun no ha sido guardado.", "Error");
                         } else {
-                                this.Save();
-                                if (Lui.Login.LoginData.ValidateAccess(this.Workspace.CurrentUser, "people.access") && Lui.Login.LoginData.RevalidateAccess(this.Workspace.CurrentUser))
-                                        this.Workspace.RunTime.Execute("EDIT ACCESS " + m_Id.ToString());
-                                this.Close();
+                                if (Lui.Login.LoginData.ValidateAccess(this.Elemento, Lbl.Sys.Permisos.Operaciones.Administrar))
+                                        this.Workspace.RunTime.Execute("EDITAR Lbl.Personas.Usuario " + this.Elemento.Id.ToString());
                         }
                 }
 
-                public override Lbl.ElementoDeDatos ToRow()
+                public override void ActualizarElemento()
                 {
-                        Lbl.Personas.Persona Res = this.CachedRow as Lbl.Personas.Persona;
+                        Lbl.Personas.Persona Res = this.Elemento as Lbl.Personas.Persona;
 
                         Res.Tipo = EntradaTipo.TextInt;
                         Res.Grupo = EntradaGrupo.Elemento as Lbl.Personas.Grupo;
@@ -424,7 +350,7 @@ namespace Lfc.Personas
 
                         Res.Domicilio = EntradaDomicilio.Text;
                         Res.DomicilioLaboral = EntradaDomicilioTrabajo.Text;
-                        Res.Localidad = EntradaCiudad.Elemento as Lbl.Entidades.Localidad;
+                        Res.Localidad = EntradaLocalidad.Elemento as Lbl.Entidades.Localidad;
                         Res.Telefono = EntradaTelefono.Text;
                         Res.Email = EntradaEmail.Text;
                         Res.Vendedor = EntradaVendedor.Elemento as Lbl.Personas.Persona;
@@ -439,7 +365,7 @@ namespace Lfc.Personas
                         EntradaTags.ActualizarElemento();
                         EntradaImagen.ActualizarElemento();
 
-                        return base.ToRow();
+                        base.ActualizarElemento();
                 }
 
                 private void EntradaGrupo_TextChanged(object sender, EventArgs e)

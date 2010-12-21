@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -30,56 +30,108 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Lfx.Components
 {
-	/// <summary>
-	/// Esqueleto del componente.
-	/// </summary>
-	public class Component
-	{
-                protected Lfx.Workspace m_Workspace;
-		public string ExecutableName = null;
-		public string[] CommandLineArgs = null;
+        public class Component
+        {
+                public string Nombre, CifFileName;
+                public Dictionary<string, FunctionInfo> Funciones = null;
+                public List<MenuEntry> MenuEntries = null;
+                public System.Reflection.Assembly Assembly = null;
 
-		public Component()
-		{
-		}
+                public Component(string cifFileName)
+                {
+                        this.CifFileName = cifFileName;
+                        this.Nombre = System.IO.Path.GetFileNameWithoutExtension(cifFileName);
 
-		public Lfx.Workspace Workspace
-		{
-			get
-			{
-				return m_Workspace;
-			}
-			set
-			{
-				m_Workspace = value;
-			}
-		}
+                        if (System.IO.File.Exists(this.CifFileName)) {
+                                using (System.IO.TextReader ArchivoCif = new System.IO.StreamReader(this.CifFileName, true)) {
+                                        System.Xml.XmlDocument DocumentoCif = new System.Xml.XmlDocument();
+                                        DocumentoCif.Load(ArchivoCif);
+                                        System.Xml.XmlNodeList ListaComponentes = DocumentoCif.GetElementsByTagName("Component");
+                                        //Abro el/los nodo(s) de componentes
+                                        foreach (System.Xml.XmlNode Componente in ListaComponentes) {
+                                                if (Componente.Attributes["Disabled"] == null || Componente.Attributes["Disabled"].Value != "1") {
+                                                        
+                                                        System.Xml.XmlNodeList NodosMenu = DocumentoCif.GetElementsByTagName("MenuItem");
+                                                        foreach (System.Xml.XmlNode NodoMenu in NodosMenu) {
+                                                                if (this.MenuEntries == null)
+                                                                        this.MenuEntries = new List<MenuEntry>();
 
-                public virtual Lfx.Components.ComponentTypes ComponentType
-		{
-			get
-			{
-                                return Lfx.Components.ComponentTypes.Executable;
-			}
-		}
+                                                                MenuEntry Menu = new MenuEntry();
+                                                                Menu.Name = NodoMenu.Attributes["name"].Value;
+                                                                if (NodoMenu.Attributes["position"] == null)
+                                                                        Menu.Parent = "Componentes";
+                                                                else
+                                                                        Menu.Parent = NodoMenu.Attributes["position"].Value;
 
-		public virtual object Create(bool wait)
-		{
-			return null;
-		}
+                                                                if (NodoMenu.Attributes["function"] != null)
+                                                                        Menu.Function = NodoMenu.Attributes["function"].Value;
+                                                                
+                                                                this.MenuEntries.Add(Menu);
+                                                        }
 
-		public virtual object Create()
-		{
-			return Create(false);
-		}
+                                                        System.Xml.XmlNodeList NodosFunciones = DocumentoCif.GetElementsByTagName("Function");
+                                                        //Abro los nodos de funciones
+                                                        foreach (System.Xml.XmlNode NodoFuncion in NodosFunciones) {
+                                                                if (this.Funciones == null)
+                                                                        this.Funciones = new Dictionary<string, FunctionInfo>();
 
-		public virtual bool Try(out string message)
-		{
-			message = null;
-			return true;
-		}
-	}
+                                                                FunctionInfo Func = new FunctionInfo(this);
+                                                                Func.Nombre = NodoFuncion.Attributes["name"].Value;
+                                                                if (Func.Nombre != null && Func.Nombre.Length > 0 && Func.Nombre != "-") {
+                                                                        if (NodoFuncion.Attributes["autorun"] != null && NodoFuncion.Attributes["autorun"].Value == "1")
+                                                                                Func.AutoRun = true;
+
+                                                                        this.Funciones.Add(Func.Nombre, Func);
+                                                                }
+                                                        }
+                                                }
+                                        }
+                                        ArchivoCif.Close();
+                                }
+                        }
+                }
+
+                public Lfx.Types.OperationResult Load()
+                {
+                        if (this.Assembly == null) {
+                                string[] WhereToLook;
+
+                                if (Lfx.Environment.SystemInformation.DesignMode) {
+                                        WhereToLook = new string[] {
+                                        Lfx.Environment.Folders.ApplicationFolder + @"../../Componentes/bin/" + this.Nombre + ".dll",
+					Lfx.Environment.Folders.ApplicationFolder + @"../../Componentes/" + this.Nombre + @"/bin/" + this.Nombre + ".dll",
+					Lfx.Environment.Folders.ApplicationFolder + @"../../Componentes/" + this.Nombre + @"/bin/Debug/" + this.Nombre + ".dll",
+					Lfx.Environment.Folders.ComponentsFolder + this.Nombre + ".dll",
+					Lfx.Environment.Folders.ApplicationFolder + this.Nombre + ".dll"
+				};
+                                } else {
+                                        WhereToLook = new string[] {
+					Lfx.Environment.Folders.ComponentsFolder + this.Nombre + ".dll",
+					Lfx.Environment.Folders.ApplicationFolder + this.Nombre + ".dll"
+				};
+                                }
+
+                                foreach (string Archivo in WhereToLook) {
+                                        if (System.IO.File.Exists(Archivo)) {
+                                                try {
+                                                        this.Assembly = System.Reflection.Assembly.LoadFrom(Archivo);
+                                                        break;
+                                                } catch {
+                                                        // Nada
+                                                }
+                                        }
+                                }
+                        }
+
+                        if (this.Assembly == null)
+                                return new Types.FailureOperationResult("No se puede cargar el componente " + this.Nombre);
+                        else
+                                return new Types.SuccessOperationResult();
+                }
+        }
 }

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -39,65 +39,61 @@ using System.Windows.Forms;
 namespace Lfc.Bancos.Cheques
 {
         public partial class Efectivizar : Lui.Forms.DialogForm
-	{
-		internal string ListaCheques = "";
-		internal string ListaChequesId = "";
+        {
+                public Lbl.Bancos.Cheque m_Cheque;
 
                 public Efectivizar()
                 {
                         InitializeComponent();
                 }
 
-		private void txtImportes_TextChanged(object sender, System.EventArgs e)
-		{
-			txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text) - Lfx.Types.Parsing.ParseCurrency(txtGestionDeCobro.Text) - Lfx.Types.Parsing.ParseCurrency(txtImpuestos.Text), this.Workspace.CurrentConfig.Moneda.Decimales);
-		}
+                public Lbl.Bancos.Cheque Cheque
+                {
+                        get
+                        {
+                                return m_Cheque;
+                        }
+                        set
+                        {
+                                m_Cheque = value;
+                                this.Connection = m_Cheque.Connection;
+                                this.EntradaTotal.ValueDecimal = m_Cheque.Importe;
+                                this.EntradaGestionDeCobro.Text = "0";
+                                this.EntradaImpuestos.Text = "0";
+                                this.OkButton.Enabled = m_Cheque.Estado <= 5;
+                        }
+                }
+
+                private void EntradaImportes_TextChanged(object sender, System.EventArgs e)
+                {
+                        EntradaTotal.ValueDecimal = (EntradaSubTotal.ValueDecimal - EntradaGestionDeCobro.ValueDecimal - EntradaImpuestos.ValueDecimal);
+                }
 
 
-		public override Lfx.Types.OperationResult Ok()
-		{
-			Lfx.Types.OperationResult aceptarReturn = new Lfx.Types.SuccessOperationResult();
-			if (EntradaCajaDestino.TextInt <= 0)
-			{
-				aceptarReturn.Success = false;
-				aceptarReturn.Message += "Debe especificar la cuenta de destino." + Environment.NewLine;
-			}
-			if (Lfx.Types.Parsing.ParseCurrency(txtTotal.Text) <= 0)
-			{
-				aceptarReturn.Success = false;
-				aceptarReturn.Message += "El importe total debe ser mayor o igual a cero." + Environment.NewLine;
-			}
-			if (aceptarReturn.Success == true)
-			{
-				double ImporteOrigen = Lfx.Types.Parsing.ParseCurrency(txtSubTotal.Text);
-				double ImporteDestino = Lfx.Types.Parsing.ParseCurrency(txtTotal.Text);
-				double GestionDeCobro = Lfx.Types.Parsing.ParseCurrency(txtGestionDeCobro.Text);
-				double Impuestos = Lfx.Types.Parsing.ParseCurrency(txtImpuestos.Text);
+                public override Lfx.Types.OperationResult Ok()
+                {
+                        Lfx.Types.OperationResult aceptarReturn = new Lfx.Types.SuccessOperationResult();
+                        if (EntradaCajaDestino.TextInt <= 0) {
+                                aceptarReturn.Success = false;
+                                aceptarReturn.Message += "Debe especificar la cuenta de destino." + Environment.NewLine;
+                        }
+                        if (EntradaTotal.ValueDouble <= 0) {
+                                aceptarReturn.Success = false;
+                                aceptarReturn.Message += "El importe total debe ser mayor o igual a cero." + Environment.NewLine;
+                        }
+                        if (aceptarReturn.Success == true) {
+                                decimal GestionDeCobro = Lfx.Types.Parsing.ParseCurrency(EntradaGestionDeCobro.Text);
+                                decimal Impuestos = Lfx.Types.Parsing.ParseCurrency(EntradaImpuestos.Text);
 
-				DataBase.BeginTransaction(true);
+                                this.Connection.BeginTransaction(true);
 
-				Lbl.Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(DataBase, this.Workspace.CurrentConfig.Empresa.CajaCheques);
-				CajaCheques.Movimiento(true, 30000, "Efectivización de Cheques", 0, -ImporteOrigen, "Cheques Nº " + ListaCheques, 0, 0, "");
+                                Lbl.Cajas.Caja CajaDestino = EntradaCajaDestino.Elemento as Lbl.Cajas.Caja;
+                                this.Cheque.Efectivizar(CajaDestino, GestionDeCobro, Impuestos);
 
-				Lbl.Cajas.Caja CajaDestino = new Lbl.Cajas.Caja(DataBase, EntradaCajaDestino.TextInt);
-				CajaDestino.Movimiento(true, 30000, "Efectivización de Cheques", 0, ImporteDestino, "Cheques Nº " + ListaCheques, 0, 0, "");
+                                this.Connection.Commit();
+                        }
+                        return aceptarReturn;
+                }
 
-				if (GestionDeCobro != 0)
-					CajaDestino.Movimiento(true, 24010, "Gestion de Cobro Cheques", 0, -GestionDeCobro, "Cheques Nº " + ListaCheques, 0, 0, "");
-				if (Impuestos != 0)
-					CajaDestino.Movimiento(true, 23030, "Impuestos Cheques", 0, -Impuestos, "Cheques Nº " + ListaCheques, 0, 0, "");
-
-				string sCheque = Lfx.Types.Strings.GetNextToken(ref ListaChequesId, ",");
-				do
-				{
-					DataBase.Execute("UPDATE bancos_cheques SET estado=10 WHERE id_cheque=" + Lfx.Types.Parsing.ParseInt(sCheque).ToString());
-					sCheque = Lfx.Types.Strings.GetNextToken(ref ListaChequesId, ",");
-				}
-				while (sCheque.Length > 0);
-				DataBase.Commit();
-			}
-			return aceptarReturn;
-		}
-
-	}
+        }
 }

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -36,6 +36,15 @@ namespace Lfx.Types
 {
 	public static class Evaluator
 	{
+                public static decimal EvaluateDecimal(string evalString)
+                {
+                        try {
+                                return decimal.Parse(Evaluate(evalString), System.Globalization.CultureInfo.InvariantCulture);
+                        } catch {
+                                return 0;
+                        }
+                }
+
 		public static double EvaluateDouble(string evalString)
 		{
 			try

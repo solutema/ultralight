@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ using System.Windows.Forms;
 
 namespace Lfc.Comprobantes.Compra
 {
-        public class Listado : Lui.Forms.TextListingForm
+        public class Listado : Lfc.FormularioListadoTexto
         {
 
                 protected internal string m_Tipo = "FNCND", m_Letra = "*";
@@ -74,67 +74,67 @@ namespace Lfc.Comprobantes.Compra
 
 
                 // Requerido por el Diseñador de Windows Forms
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
 
                 // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
                 // No lo modifique con el editor de código.
-                internal Lui.Forms.TextBox txtReporte;
-                internal Lui.Forms.ComboBox txtMostrar;
+                internal Lui.Forms.TextBox EntradaReporte;
+                internal Lui.Forms.ComboBox EntradaMostrar;
                 internal System.Windows.Forms.Label Label2;
-                internal Lui.Forms.ComboBox txtAgrupar;
+                internal Lui.Forms.ComboBox EntradaAgrupar;
                 internal System.Windows.Forms.Label Label1;
 
                 private void InitializeComponent()
                 {
-                        this.txtReporte = new Lui.Forms.TextBox();
-                        this.txtMostrar = new Lui.Forms.ComboBox();
+                        this.EntradaReporte = new Lui.Forms.TextBox();
+                        this.EntradaMostrar = new Lui.Forms.ComboBox();
                         this.Label2 = new System.Windows.Forms.Label();
-                        this.txtAgrupar = new Lui.Forms.ComboBox();
+                        this.EntradaAgrupar = new Lui.Forms.ComboBox();
                         this.Label1 = new System.Windows.Forms.Label();
                         this.SuspendLayout();
                         // 
-                        // txtReporte
+                        // EntradaReporte
                         // 
-                        this.txtReporte.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        this.EntradaReporte.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                 | System.Windows.Forms.AnchorStyles.Left)
                                 | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtReporte.AutoNav = true;
-                        this.txtReporte.AutoTab = true;
-                        this.txtReporte.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.txtReporte.DockPadding.All = 2;
-                        this.txtReporte.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.txtReporte.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtReporte.Location = new System.Drawing.Point(4, 32);
-                        this.txtReporte.MaxLenght = 32767;
-                        this.txtReporte.MultiLine = true;
-                        this.txtReporte.Name = "txtReporte";
-                        this.txtReporte.ReadOnly = true;
-                        this.txtReporte.SelectOnFocus = false;
-                        this.txtReporte.Size = new System.Drawing.Size(568, 284);
-                        this.txtReporte.TabIndex = 51;
-                        this.txtReporte.ToolTipText = "";
+                        this.EntradaReporte.AutoNav = true;
+                        this.EntradaReporte.AutoTab = true;
+                        this.EntradaReporte.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaReporte.DockPadding.All = 2;
+                        this.EntradaReporte.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+                        this.EntradaReporte.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaReporte.Location = new System.Drawing.Point(4, 32);
+                        this.EntradaReporte.MaxLenght = 32767;
+                        this.EntradaReporte.MultiLine = true;
+                        this.EntradaReporte.Name = "EntradaReporte";
+                        this.EntradaReporte.ReadOnly = true;
+                        this.EntradaReporte.SelectOnFocus = false;
+                        this.EntradaReporte.Size = new System.Drawing.Size(568, 284);
+                        this.EntradaReporte.TabIndex = 51;
+                        this.EntradaReporte.ToolTipText = "";
                         // 
-                        // txtMostrar
+                        // EntradaMostrar
                         // 
-                        this.txtMostrar.AutoNav = true;
-                        this.txtMostrar.AutoTab = true;
-                        this.txtMostrar.DockPadding.All = 2;
-                        this.txtMostrar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.txtMostrar.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtMostrar.Location = new System.Drawing.Point(360, 4);
-                        this.txtMostrar.MaxLenght = 32767;
-                        this.txtMostrar.Name = "txtMostrar";
-                        this.txtMostrar.ReadOnly = false;
-                        this.txtMostrar.SetData = new string[] {
+                        this.EntradaMostrar.AutoNav = true;
+                        this.EntradaMostrar.AutoTab = true;
+                        this.EntradaMostrar.DockPadding.All = 2;
+                        this.EntradaMostrar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+                        this.EntradaMostrar.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaMostrar.Location = new System.Drawing.Point(360, 4);
+                        this.EntradaMostrar.MaxLenght = 32767;
+                        this.EntradaMostrar.Name = "EntradaMostrar";
+                        this.EntradaMostrar.ReadOnly = false;
+                        this.EntradaMostrar.SetData = new string[] {
 													   "Todo|1",
 													   "Sólo los Subtotales|0"};
-                        this.txtMostrar.Size = new System.Drawing.Size(196, 24);
-                        this.txtMostrar.TabIndex = 55;
-                        this.txtMostrar.Text = "Todo";
-                        this.txtMostrar.TextKey = "1";
-                        this.txtMostrar.ToolTipText = "";
-                        this.txtMostrar.TextChanged += new System.EventHandler(this.txtAgrupar_TextChanged);
+                        this.EntradaMostrar.Size = new System.Drawing.Size(196, 24);
+                        this.EntradaMostrar.TabIndex = 55;
+                        this.EntradaMostrar.Text = "Todo";
+                        this.EntradaMostrar.TextKey = "1";
+                        this.EntradaMostrar.ToolTipText = "";
+                        this.EntradaMostrar.TextChanged += new System.EventHandler(this.EntradaAgrupar_TextChanged);
                         // 
                         // Label2
                         // 
@@ -145,29 +145,29 @@ namespace Lfc.Comprobantes.Compra
                         this.Label2.Text = "Mostrar";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtAgrupar
+                        // EntradaAgrupar
                         // 
-                        this.txtAgrupar.AutoNav = true;
-                        this.txtAgrupar.AutoTab = true;
-                        this.txtAgrupar.DockPadding.All = 2;
-                        this.txtAgrupar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.txtAgrupar.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtAgrupar.Location = new System.Drawing.Point(96, 4);
-                        this.txtAgrupar.MaxLenght = 32767;
-                        this.txtAgrupar.Name = "txtAgrupar";
-                        this.txtAgrupar.ReadOnly = false;
-                        this.txtAgrupar.SetData = new string[] {
+                        this.EntradaAgrupar.AutoNav = true;
+                        this.EntradaAgrupar.AutoTab = true;
+                        this.EntradaAgrupar.DockPadding.All = 2;
+                        this.EntradaAgrupar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+                        this.EntradaAgrupar.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaAgrupar.Location = new System.Drawing.Point(96, 4);
+                        this.EntradaAgrupar.MaxLenght = 32767;
+                        this.EntradaAgrupar.Name = "EntradaAgrupar";
+                        this.EntradaAgrupar.ReadOnly = false;
+                        this.EntradaAgrupar.SetData = new string[] {
 													   "Sin Agrupar|*",
 													   "Por Tipo de Comprobante|tipo_fac",
 													   "Por Proveedor|id_proveedor",
 													   "Por Día de la Semana|DAYOFWEEK(fecha)",
 													   "Por Día del Mes|DAYOFMONTH(fecha)"};
-                        this.txtAgrupar.Size = new System.Drawing.Size(196, 24);
-                        this.txtAgrupar.TabIndex = 53;
-                        this.txtAgrupar.Text = "Sin Agrupar";
-                        this.txtAgrupar.TextKey = "*";
-                        this.txtAgrupar.ToolTipText = "";
-                        this.txtAgrupar.TextChanged += new System.EventHandler(this.txtAgrupar_TextChanged);
+                        this.EntradaAgrupar.Size = new System.Drawing.Size(196, 24);
+                        this.EntradaAgrupar.TabIndex = 53;
+                        this.EntradaAgrupar.Text = "Sin Agrupar";
+                        this.EntradaAgrupar.TextKey = "*";
+                        this.EntradaAgrupar.ToolTipText = "";
+                        this.EntradaAgrupar.TextChanged += new System.EventHandler(this.EntradaAgrupar_TextChanged);
                         // 
                         // Label1
                         // 
@@ -182,11 +182,11 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
                         this.ClientSize = new System.Drawing.Size(576, 377);
-                        this.Controls.Add(this.txtMostrar);
+                        this.Controls.Add(this.EntradaMostrar);
                         this.Controls.Add(this.Label2);
-                        this.Controls.Add(this.txtAgrupar);
+                        this.Controls.Add(this.EntradaAgrupar);
                         this.Controls.Add(this.Label1);
-                        this.Controls.Add(this.txtReporte);
+                        this.Controls.Add(this.EntradaReporte);
                         this.Name = "FormPedidosListado";
                         this.ResumeLayout(false);
 
@@ -201,7 +201,7 @@ namespace Lfc.Comprobantes.Compra
 
                         if (mostrarReturn.Success == true) {
                                 Filtro = "compra=1";
-                                bool MostrarDetalles = System.Convert.ToBoolean(Lfx.Types.Parsing.ParseInt(txtMostrar.TextKey));
+                                bool MostrarDetalles = System.Convert.ToBoolean(Lfx.Types.Parsing.ParseInt(EntradaMostrar.TextKey));
                                 switch (m_Tipo) {
                                         case "":
                                                 //Nana
@@ -246,12 +246,12 @@ namespace Lfc.Comprobantes.Compra
                                         TextoSql = "SELECT * FROM comprob WHERE (" + Filtro + ") ORDER BY RIGHT(tipo_fac, 1), pv, numero";
                                 }
 
-                                System.Data.DataTable TmpTabla = this.DataBase.Select(TextoSql);
+                                System.Data.DataTable TmpTabla = this.Connection.Select(TextoSql);
 
                                 ListingContent = new System.Text.StringBuilder();
-                                ListingContent.Append("LISTADO DE COMPROBANTES DE COMPRA - Fecha " + m_Fecha.From.ToString(Lfx.Types.Formatting.DateTime.DefaultDateFormat));
+                                ListingContent.Append("LISTADO DE COMPROBANTES DE COMPRA - Fecha " + m_Fecha.From.ToString(Lfx.Types.Formatting.DateTime.ShortDatePattern));
                                 if (m_Fecha.From != m_Fecha.To) {
-                                        ListingContent.Append(" al " + m_Fecha.To.ToString(Lfx.Types.Formatting.DateTime.DefaultDateFormat));
+                                        ListingContent.Append(" al " + m_Fecha.To.ToString(Lfx.Types.Formatting.DateTime.ShortDatePattern));
                                 }
 
                                 ListingContent.Append(Environment.NewLine);
@@ -260,19 +260,18 @@ namespace Lfc.Comprobantes.Compra
                                 ListingContent.Append("===============================================================================" + Environment.NewLine);
                                 ListingContent.Append(Environment.NewLine);
 
-                                double dTotal = 0;
-                                double dSubTotal = 0;
+                                decimal Total = 0, SubTotal = 0;
                                 string LastAgrupar = "slfadf*af*df*asdf";
                                 foreach (System.Data.DataRow row in TmpTabla.Rows) {
                                         if (m_Agrupar.Length > 0 && row[m_Agrupar].ToString() != LastAgrupar) {
                                                 LastAgrupar = row[m_Agrupar].ToString();
-                                                if (dSubTotal > 0) {
-                                                        ListingContent.Append("                    SUBTOTAL: " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(dSubTotal, this.Workspace.CurrentConfig.Moneda.Decimales) + Environment.NewLine);
-                                                        dSubTotal = 0;
+                                                if (SubTotal > 0) {
+                                                        ListingContent.Append("                    SUBTOTAL: " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales) + Environment.NewLine);
+                                                        SubTotal = 0;
                                                 }
                                                 switch (m_Agrupar) {
                                                         case "id_proveedor":
-                                                                ListingContent.Append(Environment.NewLine + this.DataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + LastAgrupar) + Environment.NewLine);
+                                                                ListingContent.Append(Environment.NewLine + this.Connection.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + LastAgrupar) + Environment.NewLine);
                                                                 break;
                                                         case "DAYOFWEEK(fecha)":
                                                                 switch (System.Convert.ToInt32(row[m_Agrupar])) {
@@ -317,39 +316,39 @@ namespace Lfc.Comprobantes.Compra
                                         Renglon.Append(System.Convert.ToString(row["numero"]).PadRight(13).Substring(0, 13) + " ");
                                         int ProveedorId = System.Convert.ToInt32(row["id_cliente"]);
                                         if (ProveedorId != 0) {
-                                                Lfx.Data.Row Proveedor = this.DataBase.Row("personas", "id_persona", ProveedorId);
+                                                Lfx.Data.Row Proveedor = this.Connection.Row("personas", "id_persona", ProveedorId);
                                                 Renglon.Append(System.Convert.ToString(Proveedor["nombre_visible"]).PadRight(25).Substring(0, 25) + " ");
                                                 Renglon.Append(System.Convert.ToString(Proveedor["cuit"]).PadRight(13).Substring(0, 13) + " ");
                                         } else {
                                                 Renglon.Append("".PadRight(25).Substring(0, 25) + " ");
                                                 Renglon.Append("".PadRight(13).Substring(0, 13) + " ");
                                         }
-                                        Renglon.Append(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(row["total"]), this.Workspace.CurrentConfig.Moneda.Decimales).PadLeft(10));
-                                        dTotal += System.Convert.ToDouble(row["total"]);
-                                        dSubTotal += System.Convert.ToDouble(row["total"]);
+                                        Renglon.Append(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(row["total"]), this.Workspace.CurrentConfig.Moneda.Decimales).PadLeft(10));
+                                        Total += System.Convert.ToDecimal(row["total"]);
+                                        SubTotal += System.Convert.ToDecimal(row["total"]);
                                         if (MostrarDetalles) {
                                                 ListingContent.Append(Renglon.ToString() + Environment.NewLine);
                                         }
 
                                 }
-                                if (m_Agrupar.Length > 0 && dSubTotal > 0) {
-                                        ListingContent.Append("                    SUBTOTAL: " + Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(dSubTotal, this.Workspace.CurrentConfig.Moneda.Decimales) + Environment.NewLine);
-                                        dSubTotal = 0;
+                                if (m_Agrupar.Length > 0 && SubTotal > 0) {
+                                        ListingContent.Append("                    SUBTOTAL: " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales) + Environment.NewLine);
+                                        SubTotal = 0;
                                 }
 
                                 ListingContent.Append(Environment.NewLine);
                                 ListingContent.Append("===============================================================================" + Environment.NewLine);
-                                ListingContent.Append("            Total   : " + Lfx.Types.Formatting.FormatCurrency(dTotal, this.Workspace.CurrentConfig.Moneda.Decimales) + Environment.NewLine);
-                                txtReporte.Text = ListingContent.ToString();
+                                ListingContent.Append("            Total   : " + Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales) + Environment.NewLine);
+                                EntradaReporte.Text = ListingContent.ToString();
                         }
 
                         return mostrarReturn;
                 }
 
 
-                private void txtAgrupar_TextChanged(System.Object sender, System.EventArgs e)
+                private void EntradaAgrupar_TextChanged(System.Object sender, System.EventArgs e)
                 {
-                        string NuevoAgrupar = txtAgrupar.TextKey;
+                        string NuevoAgrupar = EntradaAgrupar.TextKey;
                         if (NuevoAgrupar == "*") {
                                 NuevoAgrupar = "";
                         }

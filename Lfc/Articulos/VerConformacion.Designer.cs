@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -59,8 +59,8 @@ namespace Lfc.Articulos
                 private void InitializeComponent()
                 {
                         this.ListaConformacion = new Lui.Forms.ListView();
-                        this.articulo = new System.Windows.Forms.ColumnHeader();
-                        this.serie = new System.Windows.Forms.ColumnHeader();
+                        this.ColSituacion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColCantidad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.SuspendLayout();
                         // 
                         // ListaConformacion
@@ -70,11 +70,11 @@ namespace Lfc.Articulos
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.ListaConformacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.ListaConformacion.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.articulo,
-            this.serie});
+            this.ColSituacion,
+            this.ColCantidad});
                         this.ListaConformacion.FullRowSelect = true;
                         this.ListaConformacion.GridLines = true;
-                        this.ListaConformacion.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+                        this.ListaConformacion.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.ListaConformacion.LabelWrap = false;
                         this.ListaConformacion.Location = new System.Drawing.Point(8, 8);
                         this.ListaConformacion.MultiSelect = false;
@@ -84,14 +84,15 @@ namespace Lfc.Articulos
                         this.ListaConformacion.UseCompatibleStateImageBehavior = false;
                         this.ListaConformacion.View = System.Windows.Forms.View.Details;
                         // 
-                        // articulo
+                        // ColSituacion
                         // 
-                        this.articulo.Text = "Artículo";
-                        this.articulo.Width = 320;
+                        this.ColSituacion.Text = "Situación";
+                        this.ColSituacion.Width = 320;
                         // 
-                        // serie
+                        // ColCantidad
                         // 
-                        this.serie.Width = 320;
+                        this.ColCantidad.Text = "Cantidad";
+                        this.ColCantidad.Width = 108;
                         // 
                         // VerConformacion
                         // 
@@ -109,7 +110,7 @@ namespace Lfc.Articulos
                 #endregion
 
                 private Lui.Forms.ListView ListaConformacion;
-                private System.Windows.Forms.ColumnHeader articulo;
-                private System.Windows.Forms.ColumnHeader serie;
+                private System.Windows.Forms.ColumnHeader ColSituacion;
+                private System.Windows.Forms.ColumnHeader ColCantidad;
         }
 }

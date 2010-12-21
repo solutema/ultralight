@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ namespace Lfc.CuentasCorrientes
 {
         public partial class Ajuste : Lui.Forms.DialogForm
         {
-                protected internal double SaldoActual = 0;
+                protected internal decimal SaldoActual = 0;
 
                 public Ajuste()
                 {
@@ -49,7 +49,7 @@ namespace Lfc.CuentasCorrientes
 
                 private void EntradaImporte_TextChanged(object sender, System.EventArgs e)
                 {
-                        double Importe = Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text);
+                        decimal Importe = Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text);
                         if (Importe < 0 && EntradaDireccion.TextKey != "0")
                                 EntradaDireccion.TextKey = "0";
                         else if (Importe > 0 && EntradaDireccion.TextKey != "1")

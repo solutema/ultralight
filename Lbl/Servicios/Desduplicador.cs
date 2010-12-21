@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -40,11 +40,11 @@ namespace Lbl.Servicios
         /// </summary>
         public class Desduplicador
         {
-                public Lfx.Data.DataBase DataBase;
+                public Lfx.Data.Connection DataBase;
                 public string TablaOriginal, CampoIdOriginal;
                 public int IdOriginal, IdDuplicado;
 
-                public Desduplicador(Lfx.Data.DataBase dataBase, string tablaOriginal, string campoIdOriginal, int idOriginal, int idDuplicado)
+                public Desduplicador(Lfx.Data.Connection dataBase, string tablaOriginal, string campoIdOriginal, int idOriginal, int idDuplicado)
                 {
                         this.DataBase = dataBase;
                         this.TablaOriginal = tablaOriginal;
@@ -82,7 +82,7 @@ namespace Lbl.Servicios
                                         // En personas, recalculo la cuenta corriente, ya que la nueva cuenta corriente es la fusión de las dos anteriores
                                         Lbl.Personas.Persona PersonaOriginal = new Lbl.Personas.Persona(this.DataBase, IdOriginal);
                                         PersonaOriginal.CuentaCorriente.Recalcular();
-                                        PersonaOriginal.AgregarComentario("Desduplicador: Se fusionaron los datos del ítem " + IdDuplicado);
+                                        PersonaOriginal.AgregarComentario("Desduplicador: Se fusionaron los datos del elemento " + IdDuplicado);
                                         break;
                                         // En artículos, debería recalcular el historial de movimientos y el stock actual, pedidos, etc.
                         }
@@ -94,14 +94,14 @@ namespace Lbl.Servicios
                 public System.Collections.Generic.List<Lfx.Data.Relation> ListaRelaciones()
                 {
                         System.Collections.Generic.List<Lfx.Data.Relation> Res = new List<Lfx.Data.Relation>();
-                        foreach (Lfx.Data.ConstraintDefinition Cons in Lfx.Data.DataBaseCache.DefaultCache.Constraints.Values) {
+                        foreach (Lfx.Data.ConstraintDefinition Cons in Lfx.Workspace.Master.Structure.Constraints.Values) {
                                 if (Cons.ReferenceTable == TablaOriginal && Cons.ReferenceColumn == CampoIdOriginal) {
                                         Lfx.Data.Relation Rel = new Lfx.Data.Relation(CampoIdOriginal, Cons.TableName, Cons.Column, null);
                                         Res.Add(Rel);
                                 }
                         }
 
-                        foreach (Lfx.Data.TableStructure Tab in Lfx.Data.DataBaseCache.DefaultCache.TableStructures.Values) {
+                        foreach (Lfx.Data.TableStructure Tab in Lfx.Workspace.Master.Structure.Tables.Values) {
                                 if (Tab.Name != TablaOriginal) {
                                         foreach (Lfx.Data.ColumnDefinition Col in Tab.Columns.Values) {
                                                 if (Col.Name == CampoIdOriginal) {

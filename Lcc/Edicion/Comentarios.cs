@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -44,6 +44,10 @@ namespace Lcc.Edicion
                 public Comentarios()
                 {
                         InitializeComponent();
+
+                        this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
+                        GroupLabel.BackColor = Lfx.Config.Display.CurrentTemplate.Header2Background;
+                        GroupLabel.ForeColor = Lfx.Config.Display.CurrentTemplate.Header2Text;
                 }
 
                 public override void ActualizarControl()
@@ -56,11 +60,11 @@ namespace Lcc.Edicion
                         SelectComentarios.WhereClause.Add(new qGen.ComparisonCondition("item_id", this.Elemento.Id));
                         SelectComentarios.Order = "fecha DESC";
 
-                        System.Data.DataTable Comentarios = Elemento.DataBase.Select(SelectComentarios);
+                        System.Data.DataTable Comentarios = Elemento.Connection.Select(SelectComentarios);
                         foreach (System.Data.DataRow Com in Comentarios.Rows) {
                                 ListViewItem Itm = ListaComentarios.Items.Add(Com["id_comment"].ToString());
                                 Itm.SubItems.Add(Lfx.Types.Formatting.FormatShortestDateAndTime(System.Convert.ToDateTime(Com["fecha"])));
-                                Itm.SubItems.Add(this.Elemento.DataBase.Tables["personas"].FastRows[System.Convert.ToInt32(Com["id_persona"])].Fields["nombre_visible"].Value.ToString());
+                                Itm.SubItems.Add(this.Elemento.Connection.Tables["personas"].FastRows[System.Convert.ToInt32(Com["id_persona"])].Fields["nombre_visible"].Value.ToString());
                                 Itm.SubItems.Add(Com["obs"].ToString());
                         }
 
@@ -75,18 +79,14 @@ namespace Lcc.Edicion
 
                 private void BotonAgregar_Click(object sender, EventArgs e)
                 {
-                        qGen.Insert InsertarComentario = new qGen.Insert("sys_comments");
-                        InsertarComentario.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
-                        InsertarComentario.Fields.AddWithValue("tablas", this.Elemento.TablaDatos);
-                        InsertarComentario.Fields.AddWithValue("item_id", this.Elemento.Id);
-                        InsertarComentario.Fields.AddWithValue("id_persona", this.Workspace.CurrentUser.Id);
-                        InsertarComentario.Fields.AddWithValue("obs", EntradaComentario.Text);
-                        this.Elemento.DataBase.Execute(InsertarComentario);
+                        this.Elemento.Connection.BeginTransaction();
+                        this.Elemento.AgregarComentario(EntradaComentario.Text);
+                        this.Elemento.Connection.Commit();
 
                         ListaComentarios.BeginUpdate();
                         ListViewItem Itm = ListaComentarios.Items.Insert(0, new ListViewItem(new System.Random().Next().ToString()));
                         Itm.SubItems.Add(Lfx.Types.Formatting.FormatShortestDateAndTime(System.DateTime.Now));
-                        Itm.SubItems.Add(this.Workspace.CurrentUser.CompleteName);
+                        Itm.SubItems.Add(Lbl.Sys.Config.Actual.UsuarioConectado.Persona.Nombre);
                         Itm.SubItems.Add(EntradaComentario.Text);
                         ListaComentarios.EndUpdate();
 
@@ -104,6 +104,19 @@ namespace Lcc.Edicion
                 private void ListaComentarios_SizeChanged(object sender, EventArgs e)
                 {
                         ColComentario.Width = -2;
+                }
+
+                public override string Text
+                {
+                        get
+                        {
+                                return GroupLabel.Text;
+                        }
+                        set
+                        {
+                                GroupLabel.Text = value;
+                                base.Text = value;
+                        }
                 }
         }
 }

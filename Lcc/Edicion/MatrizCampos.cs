@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -47,7 +47,10 @@ namespace Lcc.Edicion
 
                         this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
                         this.Font = Lfx.Config.Display.CurrentTemplate.DefaultFont;
+                        GroupLabel.BackColor = Lfx.Config.Display.CurrentTemplate.Header2Background;
+                        GroupLabel.ForeColor = Lfx.Config.Display.CurrentTemplate.Header2Text;
                 }
+
 
                 public override string Text
                 {
@@ -58,8 +61,10 @@ namespace Lcc.Edicion
                         set
                         {
                                 GroupLabel.Text = value;
+                                base.Text = value;
                         }
                 }
+
 
                 public int AutoLabelWidth
                 {
@@ -76,14 +81,18 @@ namespace Lcc.Edicion
                         }
                 }
 
+
                 private void FieldContainer_ControlAdded(object sender, ControlEventArgs e)
                 {
+                        int Y = 0;
                         e.Control.Width = FieldContainer.ClientSize.Width - FieldContainer.Margin.Left - FieldContainer.Margin.Right;
                         //Pongo los anchos de las etiquetas para todos los fields iguales (busco el mayor)
                         int MaxHeight = 0;
                         foreach (System.Windows.Forms.Control Ctl in FieldContainer.Controls) {
                                 if (Ctl is Entrada.Campo) {
+                                        Ctl.Top = Y;
                                         ((Entrada.Campo)Ctl).LabelWidth = this.AutoLabelWidth;
+                                        Y += Ctl.Height + 4;
                                 }
                                 if (Ctl.Top + Ctl.Height > MaxHeight)
                                         MaxHeight = Ctl.Top + Ctl.Height;
@@ -93,12 +102,14 @@ namespace Lcc.Edicion
                         this.Height = FieldContainer.Top + FieldContainer.Height;
                 }
 
+
                 private void FieldContainer_ClientSizeChanged(object sender, EventArgs e)
                 {
                         foreach (System.Windows.Forms.Control Ctl in FieldContainer.Controls) {
                                 Ctl.Width = this.FieldContainer.ClientRectangle.Width - FieldContainer.Margin.Left - FieldContainer.Margin.Right;
                         }
                 }
+
 
                 public object this[string fieldName]
                 {

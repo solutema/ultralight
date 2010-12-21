@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -72,6 +72,9 @@ namespace Lfx.Data
                                 else
                                         FieldsSql += "," + System.Environment.NewLine + "  " + Col.Name + " " + Col.SqlDefinition();
 
+                                // Quito el PRIMARY KEY de la definición porque ya lo pongo al final del CREATE TABLE
+                                FieldsSql = FieldsSql.Replace("PRIMARY KEY", "");
+
                                 if (Col.PrimaryKey) {
                                         if (PrimaryKeys.Length == 0)
                                                 PrimaryKeys = Col.Name;
@@ -137,6 +140,5 @@ namespace Lfx.Data
                 {
                         return base.Equals(obj);
                 }
-
         }
 }

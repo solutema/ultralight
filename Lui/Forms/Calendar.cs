@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ namespace Lui.Forms
         /// <summary>
         /// Control calendario.
         /// </summary>
-        public class Calendar : Control
+        public partial class Calendar : Control
         {
 
                 private DateTime m_CurrentDate = System.DateTime.Now;
@@ -54,14 +54,8 @@ namespace Lui.Forms
                 public event System.EventHandler CurrentDateChanged;
                 new public event System.EventHandler DoubleClick;
 
-                #region Código generado por el Diseñador de Windows Forms
-
                 public Calendar()
-                        : base()
                 {
-
-
-                        // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
 
                         for (int s = 1; s <= 6; s++) {
@@ -85,169 +79,7 @@ namespace Lui.Forms
 
                 }
 
-                // Requerido por el Diseñador de Windows Forms
-                private System.ComponentModel.Container components;
-
-                // Limpiar los recursos que se estén utilizando.
-                protected override void Dispose(bool disposing)
-                {
-                        if (disposing) {
-                                if (components != null) {
-                                        components.Dispose();
-                                }
-                        }
-                        base.Dispose(disposing);
-                }
-
-                // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
-                // Puede modificarse utilizando el Diseñador de Windows Forms. 
-                // No lo modifique con el editor de código.
-                internal System.Windows.Forms.Label lblMes;
-                internal System.Windows.Forms.Label lblDia7;
-                internal System.Windows.Forms.Label lblDia6;
-                internal System.Windows.Forms.Label lblDia5;
-                internal System.Windows.Forms.Label lblDia4;
-                internal System.Windows.Forms.Label lblDia3;
-                internal System.Windows.Forms.Label lblDia2;
-                internal System.Windows.Forms.Label lblDia1;
-                internal System.Windows.Forms.PictureBox pctFondo;
-
-
-                private void InitializeComponent()
-                {
-                        this.components = new System.ComponentModel.Container();
-                        this.lblMes = new System.Windows.Forms.Label();
-                        this.lblDia7 = new System.Windows.Forms.Label();
-                        this.lblDia6 = new System.Windows.Forms.Label();
-                        this.lblDia5 = new System.Windows.Forms.Label();
-                        this.lblDia4 = new System.Windows.Forms.Label();
-                        this.lblDia3 = new System.Windows.Forms.Label();
-                        this.lblDia2 = new System.Windows.Forms.Label();
-                        this.lblDia1 = new System.Windows.Forms.Label();
-                        this.pctFondo = new System.Windows.Forms.PictureBox();
-                        this.SuspendLayout();
-                        // 
-                        // lblMes
-                        // 
-                        this.lblMes.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.lblMes.BackColor = Lfx.Config.Display.CurrentTemplate.ControlBackground;
-                        this.lblMes.Location = new System.Drawing.Point(8, 8);
-                        this.lblMes.Name = "lblMes";
-                        this.lblMes.Size = new System.Drawing.Size(220, 24);
-                        this.lblMes.TabIndex = 101;
-                        this.lblMes.Text = "Septiembre de 2004";
-                        this.lblMes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        // 
-                        // lblDia7
-                        // 
-                        this.lblDia7.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.lblDia7.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToByte(240), System.Convert.ToByte(236), System.Convert.ToByte(236));
-                        this.lblDia7.Location = new System.Drawing.Point(200, 36);
-                        this.lblDia7.Name = "lblDia7";
-                        this.lblDia7.Size = new System.Drawing.Size(28, 20);
-                        this.lblDia7.TabIndex = 100;
-                        this.lblDia7.Text = "S";
-                        this.lblDia7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        // 
-                        // lblDia6
-                        // 
-                        this.lblDia6.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.lblDia6.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToByte(240), System.Convert.ToByte(236), System.Convert.ToByte(236));
-                        this.lblDia6.Location = new System.Drawing.Point(168, 36);
-                        this.lblDia6.Name = "lblDia6";
-                        this.lblDia6.Size = new System.Drawing.Size(28, 20);
-                        this.lblDia6.TabIndex = 99;
-                        this.lblDia6.Text = "Vi";
-                        this.lblDia6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        // 
-                        // lblDia5
-                        // 
-                        this.lblDia5.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.lblDia5.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToByte(240), System.Convert.ToByte(236), System.Convert.ToByte(236));
-                        this.lblDia5.Location = new System.Drawing.Point(136, 36);
-                        this.lblDia5.Name = "lblDia5";
-                        this.lblDia5.Size = new System.Drawing.Size(28, 20);
-                        this.lblDia5.TabIndex = 98;
-                        this.lblDia5.Text = "Ju";
-                        this.lblDia5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        // 
-                        // lblDia4
-                        // 
-                        this.lblDia4.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.lblDia4.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToByte(240), System.Convert.ToByte(236), System.Convert.ToByte(236));
-                        this.lblDia4.Location = new System.Drawing.Point(104, 36);
-                        this.lblDia4.Name = "lblDia4";
-                        this.lblDia4.Size = new System.Drawing.Size(28, 20);
-                        this.lblDia4.TabIndex = 97;
-                        this.lblDia4.Text = "Mi";
-                        this.lblDia4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        // 
-                        // lblDia3
-                        // 
-                        this.lblDia3.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.lblDia3.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToByte(240), System.Convert.ToByte(236), System.Convert.ToByte(236));
-                        this.lblDia3.Location = new System.Drawing.Point(72, 36);
-                        this.lblDia3.Name = "lblDia3";
-                        this.lblDia3.Size = new System.Drawing.Size(28, 20);
-                        this.lblDia3.TabIndex = 96;
-                        this.lblDia3.Text = "Ma";
-                        this.lblDia3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        // 
-                        // lblDia2
-                        // 
-                        this.lblDia2.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.lblDia2.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToByte(240), System.Convert.ToByte(236), System.Convert.ToByte(236));
-                        this.lblDia2.Location = new System.Drawing.Point(40, 36);
-                        this.lblDia2.Name = "lblDia2";
-                        this.lblDia2.Size = new System.Drawing.Size(28, 20);
-                        this.lblDia2.TabIndex = 95;
-                        this.lblDia2.Text = "Lu";
-                        this.lblDia2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        // 
-                        // lblDia1
-                        // 
-                        this.lblDia1.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.lblDia1.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToByte(240), System.Convert.ToByte(236), System.Convert.ToByte(236));
-                        this.lblDia1.Location = new System.Drawing.Point(8, 36);
-                        this.lblDia1.Name = "lblDia1";
-                        this.lblDia1.Size = new System.Drawing.Size(28, 20);
-                        this.lblDia1.TabIndex = 94;
-                        this.lblDia1.Text = "Do";
-                        this.lblDia1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        // 
-                        // pctFondo
-                        // 
-                        this.pctFondo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-                        this.pctFondo.Location = new System.Drawing.Point(4, 4);
-                        this.pctFondo.Name = "pctFondo";
-                        this.pctFondo.Size = new System.Drawing.Size(228, 204);
-                        this.pctFondo.TabIndex = 102;
-                        this.pctFondo.TabStop = false;
-                        // 
-                        // Calendar
-                        // 
-                        this.Controls.Add(this.lblMes);
-                        this.Controls.Add(this.lblDia7);
-                        this.Controls.Add(this.lblDia6);
-                        this.Controls.Add(this.lblDia5);
-                        this.Controls.Add(this.lblDia4);
-                        this.Controls.Add(this.lblDia3);
-                        this.Controls.Add(this.lblDia2);
-                        this.Controls.Add(this.lblDia1);
-                        this.Controls.Add(this.pctFondo);
-                        this.DockPadding.All = 2;
-                        this.Name = "Calendar";
-                        this.Size = new System.Drawing.Size(236, 212);
-                        this.ResumeLayout(false);
-
-                        base.GotFocus += new System.EventHandler(Calendar_GotFocus);
-                        base.LostFocus += new System.EventHandler(Calendar_LostFocus);
-                        base.Resize += new System.EventHandler(Calendar_Resize);
-                        base.KeyDown += new System.Windows.Forms.KeyEventHandler(Calendar_KeyDown);
-                }
-
-
-                #endregion
+                
 
                 public string DateFormat
                 {
@@ -288,43 +120,18 @@ namespace Lui.Forms
                         }
                 }
 
-                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public string SelectedDates
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public List<DateTime> SelectedDates
                 {
                         get
                         {
-                                int i = 0;
-
-                                //Convierto en array de DateTimes
-                                System.DateTime[] SelectedDates = new System.DateTime[m_SelectedDates.Count];
-                                foreach (System.DateTime Fecha in m_SelectedDates) {
-                                        SelectedDates[i++] = Fecha;
-                                }
-
-                                //Ordeno
-                                Array.Sort(SelectedDates);
-
-                                //Convierto en string
-                                System.Text.StringBuilder SelectedDatesString = new System.Text.StringBuilder();
-                                for (i = 0; i <= SelectedDates.GetUpperBound(0); i++) {
-                                        if (SelectedDatesString.Length != 0)
-                                                SelectedDatesString.Append(",");
-                                        SelectedDatesString.Append(SelectedDates[i].ToString(m_DateFormat, System.Globalization.CultureInfo.InvariantCulture));
-                                }
-
-                                return SelectedDatesString.ToString();
+                                return m_SelectedDates;
                         }
                         set
                         {
-                                m_SelectedDates = new List<DateTime>();
-                                if (value == null || value.Length == 0) {
-                                        //Nada
-                                } else {
-                                        string[] SelectedDatesString = value.Split(',');
-                                        for (int i = 0; i <= SelectedDatesString.GetUpperBound(0); i++) {
-                                                m_SelectedDates.Add(DateTime.ParseExact(SelectedDatesString[i], m_DateFormat, System.Globalization.CultureInfo.InvariantCulture));
-                                        }
-                                }
+                                m_SelectedDates = value;
 
                                 this.MostrarCalendario();
 
@@ -333,7 +140,9 @@ namespace Lui.Forms
                         }
                 }
 
-                [System.ComponentModel.Browsable(true)]
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public DateTime CurrentDate
                 {
                         get
@@ -343,10 +152,14 @@ namespace Lui.Forms
                         set
                         {
                                 m_CurrentDate = new DateTime(value.Year, value.Month, value.Day);
+                                
                                 if (m_MultiSelect == false)
-                                        this.SelectedDates = m_CurrentDate.ToString(m_DateFormat, System.Globalization.CultureInfo.InvariantCulture);
-                                if (null != CurrentDateChanged) CurrentDateChanged(this, null);
+                                        this.SelectedDates = new List<DateTime>() { m_CurrentDate };
+
                                 MostrarCalendario();
+
+                                if (this.CurrentDateChanged != null)
+                                        this.CurrentDateChanged(this, null);
                         }
                 }
 
@@ -441,7 +254,8 @@ namespace Lui.Forms
 
                 private void lblDia_DoubleClick(object sender, System.EventArgs e)
                 {
-                        if (null != DoubleClick) DoubleClick(this, null);
+                        if (this.DoubleClick != null)
+                                this.DoubleClick(this, null);
                 }
 
                 private void lblDia_Click(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -454,7 +268,7 @@ namespace Lui.Forms
                                 if (m_MultiSelect)
                                         InvertSelectedState(m_CurrentDate);
                                 else
-                                        this.SelectedDates = this.CurrentDate.ToString(m_DateFormat, System.Globalization.CultureInfo.InvariantCulture);
+                                        this.SelectedDates = new List<DateTime>() { this.CurrentDate };
                                 MostrarCalendario();
                         }
                 }
@@ -520,6 +334,8 @@ namespace Lui.Forms
 
                 private void SelectionAdd(System.DateTime fecha)
                 {
+                        if (m_SelectedDates == null)
+                                m_SelectedDates = new List<DateTime>();
                         m_SelectedDates.Add(fecha);
                 }
 
@@ -536,6 +352,9 @@ namespace Lui.Forms
 
                 public bool IsSelected(System.DateTime fechaABuscar)
                 {
+                        if (m_SelectedDates == null)
+                                return false;
+
                         foreach (System.DateTime Fecha in m_SelectedDates) {
                                 if (Fecha == fechaABuscar)
                                         return true;

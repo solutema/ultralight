@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -93,7 +93,7 @@ namespace Lfc.Comprobantes
                         this.EntradaSeries.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaSeries.AutoHeight = true;
+                        this.EntradaSeries.AutoSize = true;
                         this.EntradaSeries.AutoNav = true;
                         this.EntradaSeries.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaSeries.Location = new System.Drawing.Point(8, 8);

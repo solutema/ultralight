@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,23 +38,19 @@ using System.Windows.Forms;
 
 namespace Lfc.Comprobantes
 {
-        public partial class FormComprobantesListado : Lui.Forms.TextListingForm
+        public partial class FormComprobantesListado : Lfc.FormularioListadoTexto
         {
                 internal string m_Tipo = "F", m_Letra = "*";
-                internal Lfx.Types.DateRange m_Fechas;
+                internal Lfx.Types.DateRange m_Fechas = null;
                 internal string m_Estado = "";
-                internal int m_Sucursal = 0, m_Cliente, m_Vendedor, m_Anuladas = 1, m_PV = 0, m_FormaPago;
-                internal double m_MontoDesde = 0, m_MontoHasta = 0;
+                internal int m_Sucursal = 0, m_Cliente = 0, m_Vendedor = 0, m_Anuladas = 1, m_PV = 0, m_FormaPago = 0;
+                internal decimal m_MontoDesde = 0, m_MontoHasta = 0;
                 internal string m_Agrupar = "";
                 internal Lfx.FileFormats.Office.Spreadsheet.Sheet ReportSheet;
 
                 public FormComprobantesListado()
-                        : base()
                 {
-                        // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
-
-                        // agregar código de constructor después de llamar a InitializeComponent
                 }
 
                 public override Lfx.Types.OperationResult RefreshList()
@@ -181,7 +177,7 @@ namespace Lfc.Comprobantes
                         TextoSql += " GROUP BY " + m_Agrupar;
                         TextoSql += " ORDER BY total DESC";
 
-                        System.Data.DataTable Comprobs = this.DataBase.Select(TextoSql);
+                        System.Data.DataTable Comprobs = this.Connection.Select(TextoSql);
 
                         ReportSheet = new Lfx.FileFormats.Office.Spreadsheet.Sheet("Listado de Comprobantes - Fecha " + m_Fechas.From + " al " + m_Fechas.To);
                         ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Detalle", 320));
@@ -192,9 +188,9 @@ namespace Lfc.Comprobantes
                         ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Pendiente", 120, Lfx.Types.StringAlignment.Far));
                         ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Diferencia", 120, Lfx.Types.StringAlignment.Far));
 
-                        double Total = 0, TotalCosto = 0;
-                        double TotalNC = 0, TotalNCCosto = 0;
-                        double Diferencia = 0;
+                        decimal Total = 0, TotalCosto = 0;
+                        decimal TotalNC = 0, TotalNCCosto = 0;
+                        decimal Diferencia = 0;
 
                         foreach (System.Data.DataRow Comrob in Comprobs.Rows) {
                                 Lfx.FileFormats.Office.Spreadsheet.Row Reng = new Lfx.FileFormats.Office.Spreadsheet.Row();
@@ -203,47 +199,47 @@ namespace Lfc.Comprobantes
 
                                 switch (m_Agrupar) {
                                         case "articulos.id_marca":
-                                                FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.DataBase.ConvertDBNullToZero(Comrob["id_marca"]);
+                                                FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.Connection.ConvertDBNullToZero(Comrob["id_marca"]);
                                                 break;
 
                                         case "articulos.id_proveedor":
-                                                FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.DataBase.ConvertDBNullToZero(Comrob["id_proveedor"]);
+                                                FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.Connection.ConvertDBNullToZero(Comrob["id_proveedor"]);
                                                 break;
 
                                         case "articulos.id_articulo":
-                                                FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.DataBase.ConvertDBNullToZero(Comrob["id_articulo"]);
+                                                FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.Connection.ConvertDBNullToZero(Comrob["id_articulo"]);
                                                 break;
 
                                         case "articulos.id_categoria":
-                                                FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.DataBase.ConvertDBNullToZero(Comrob["id_categoria"]);
+                                                FiltrosCompletos += " AND " + m_Agrupar + "=" + Lfx.Data.Connection.ConvertDBNullToZero(Comrob["id_categoria"]);
                                                 break;
                                 }
 
-                                TotalNC = this.DataBase.FieldDouble("SELECT SUM(comprob_detalle.importe*(1-comprob.descuento/100)*(1+comprob.interes/100)) AS total FROM comprob, comprob_detalle, articulos WHERE " + FiltrosCompletos + " GROUP BY comprob.id_comprob");
-                                TotalNCCosto = this.DataBase.FieldDouble("SELECT SUM(comprob_detalle.costo) AS total FROM comprob, comprob_detalle, articulos WHERE " + FiltrosCompletos + " GROUP BY " + m_Agrupar);
+                                TotalNC = this.Connection.FieldDecimal("SELECT SUM(comprob_detalle.importe*(1-comprob.descuento/100)*(1+comprob.interes/100)) AS total FROM comprob, comprob_detalle, articulos WHERE " + FiltrosCompletos + " GROUP BY comprob.id_comprob");
+                                TotalNCCosto = this.Connection.FieldDecimal("SELECT SUM(comprob_detalle.costo) AS total FROM comprob, comprob_detalle, articulos WHERE " + FiltrosCompletos + " GROUP BY " + m_Agrupar);
                                 string Detalle = null;
 
                                 switch (m_Agrupar) {
                                         case "articulos.id_proveedor":
-                                                Detalle = this.DataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + Lfx.Data.DataBase.ConvertDBNullToZero(Comrob["id_proveedor"]).ToString());
+                                                Detalle = this.Connection.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + Lfx.Data.Connection.ConvertDBNullToZero(Comrob["id_proveedor"]).ToString());
                                                 break;
 
                                         case "articulos.id_marca":
-                                                Detalle = this.DataBase.FieldString("SELECT nombre FROM marcas WHERE id_marca=" + Lfx.Data.DataBase.ConvertDBNullToZero(Comrob["id_marca"]).ToString());
+                                                Detalle = this.Connection.FieldString("SELECT nombre FROM marcas WHERE id_marca=" + Lfx.Data.Connection.ConvertDBNullToZero(Comrob["id_marca"]).ToString());
                                                 break;
 
                                         case "articulos.id_articulo":
-                                                Detalle = this.DataBase.FieldString("SELECT nombre FROM articulos WHERE id_articulo=" + Lfx.Data.DataBase.ConvertDBNullToZero(Comrob["id_articulo"]).ToString());
+                                                Detalle = this.Connection.FieldString("SELECT nombre FROM articulos WHERE id_articulo=" + Lfx.Data.Connection.ConvertDBNullToZero(Comrob["id_articulo"]).ToString());
                                                 break;
 
                                         case "articulos.id_categoria":
-                                                Detalle = this.DataBase.FieldString("SELECT nombre FROM articulos_categorias WHERE id_categoria=" + Lfx.Data.DataBase.ConvertDBNullToZero(Comrob["id_categoria"]).ToString());
+                                                Detalle = this.Connection.FieldString("SELECT nombre FROM articulos_categorias WHERE id_categoria=" + Lfx.Data.Connection.ConvertDBNullToZero(Comrob["id_categoria"]).ToString());
                                                 break;
                                 }
 
-                                double ComprobTotal = System.Convert.ToDouble(Comrob["total"]) - TotalNC;
-                                double ComprobTotalCosto = System.Convert.ToDouble(Comrob["totalcosto"]) - TotalNCCosto;
-                                double ComprobDiferencia = ComprobTotal - ComprobTotalCosto;
+                                decimal ComprobTotal = System.Convert.ToDecimal(Comrob["total"]) - TotalNC;
+                                decimal ComprobTotalCosto = System.Convert.ToDecimal(Comrob["totalcosto"]) - TotalNCCosto;
+                                decimal ComprobDiferencia = ComprobTotal - ComprobTotalCosto;
 
                                 if (Detalle == null || Detalle.Length == 0)
                                         Detalle = "(Sin especificar)";
@@ -307,9 +303,9 @@ namespace Lfc.Comprobantes
 
                         TextoSql += "RIGHT(comprob.tipo_fac, 1), comprob.pv, comprob.numero";
 
-                        System.Data.DataTable Comprobs = this.DataBase.Select(TextoSql);
+                        System.Data.DataTable Comprobs = this.Connection.Select(TextoSql);
 
-                        double Total = 0, SubTotal = 0;
+                        decimal Total = 0, SubTotal = 0;
                         //double Diferencia = 0;
                         string UltimoValorAgrupar = "slfadf*af*df*asdf";
 
@@ -332,13 +328,13 @@ namespace Lfc.Comprobantes
                         foreach (System.Data.DataRow Comprob in Comprobs.Rows) {
                                 Lfx.FileFormats.Office.Spreadsheet.Row Reng = new Lfx.FileFormats.Office.Spreadsheet.Row();
 
-                                if (m_Agrupar.Length > 0 && Comprob[Lfx.Data.DataBase.GetFieldName(m_Agrupar)].ToString() != UltimoValorAgrupar) {
-                                        UltimoValorAgrupar = Comprob[Lfx.Data.DataBase.GetFieldName(m_Agrupar)].ToString();
+                                if (m_Agrupar.Length > 0 && Comprob[Lfx.Data.Connection.GetFieldName(m_Agrupar)].ToString() != UltimoValorAgrupar) {
+                                        UltimoValorAgrupar = Comprob[Lfx.Data.Connection.GetFieldName(m_Agrupar)].ToString();
 
                                         if (SubTotal > 0) {
                                                 Lfx.FileFormats.Office.Spreadsheet.Row SubTotal1 = new Lfx.FileFormats.Office.Spreadsheet.Row();
                                                 SubTotal1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(NombreGrupo));
-                                                SubTotal1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                                SubTotal1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales)));
                                                 ReportSheet.Rows.Add(SubTotal1);
                                                 SubTotal = 0;
                                         }
@@ -347,21 +343,21 @@ namespace Lfc.Comprobantes
                                                 case "comprob.id_vendedor":
                                                 case "comprob.id_cliente":
                                                         if (UltimoValorAgrupar.Length > 0)
-                                                                NombreGrupo = this.DataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + UltimoValorAgrupar);
+                                                                NombreGrupo = this.Connection.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + UltimoValorAgrupar);
                                                         else
                                                                 NombreGrupo = "(Sin especificar)";
                                                         break;
 
                                                 case "comprob.id_formapago":
                                                         if (UltimoValorAgrupar.Length > 0)
-                                                                NombreGrupo = this.DataBase.FieldString("SELECT nombre FROM formaspago WHERE id_formapago=" + UltimoValorAgrupar);
+                                                                NombreGrupo = this.Connection.FieldString("SELECT nombre FROM formaspago WHERE id_formapago=" + UltimoValorAgrupar);
                                                         else
                                                                 NombreGrupo = "(Sin especificar)";
 
                                                         break;
 
                                                 case "DAYOFWEEK(comprob.fecha)":
-                                                        switch (System.Convert.ToInt32(Comprob[Lfx.Data.DataBase.GetFieldName(m_Agrupar)])) {
+                                                        switch (System.Convert.ToInt32(Comprob[Lfx.Data.Connection.GetFieldName(m_Agrupar)])) {
                                                                 case 1:
                                                                         NombreGrupo = "Domingo";
                                                                         break;
@@ -409,7 +405,7 @@ namespace Lfc.Comprobantes
                                         Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell((double)0));
                                         // No suma al total
                                 } else {
-                                        Lfx.Data.Row Cliente = this.DataBase.Row("personas", "id_persona", System.Convert.ToInt32(Comprob["id_cliente"]));
+                                        Lfx.Data.Row Cliente = this.Connection.Row("personas", "id_persona", System.Convert.ToInt32(Comprob["id_cliente"]));
                                         Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Cliente["nombre_visible"].ToString()));
                                         Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Cliente["cuit"].ToString()));
 
@@ -421,15 +417,15 @@ namespace Lfc.Comprobantes
                                                 case "NCM":
                                                         Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(-System.Convert.ToDouble(Comprob[ColumnaTotal])));
                                                         Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToDouble(Comprob["cancelado"])));
-                                                        Total -= System.Convert.ToDouble(Comprob[ColumnaTotal]);
-                                                        SubTotal -= System.Convert.ToDouble(Comprob[ColumnaTotal]);
+                                                        Total -= System.Convert.ToDecimal(Comprob[ColumnaTotal]);
+                                                        SubTotal -= System.Convert.ToDecimal(Comprob[ColumnaTotal]);
                                                         break;
 
                                                 default:
                                                         Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToDouble(Comprob[ColumnaTotal])));
                                                         Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToDouble(Comprob["cancelado"])));
-                                                        Total += System.Convert.ToDouble(Comprob[ColumnaTotal]);
-                                                        SubTotal += System.Convert.ToDouble(Comprob[ColumnaTotal]);
+                                                        Total += System.Convert.ToDecimal(Comprob[ColumnaTotal]);
+                                                        SubTotal += System.Convert.ToDecimal(Comprob[ColumnaTotal]);
                                                         break;
                                         }
                                 }
@@ -441,7 +437,7 @@ namespace Lfc.Comprobantes
                         if (m_Agrupar.Length > 0 && SubTotal > 0) {
                                 Lfx.FileFormats.Office.Spreadsheet.Row SubTotal2 = new Lfx.FileFormats.Office.Spreadsheet.Row();
                                 SubTotal2.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(NombreGrupo));
-                                SubTotal2.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                SubTotal2.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales)));
                                 ReportSheet.Rows.Add(SubTotal2);
                                 SubTotal = 0;
                         }
@@ -452,7 +448,7 @@ namespace Lfc.Comprobantes
                         Total1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(""));
                         Total1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell("Total"));
                         Total1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(""));
-                        Total1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                        Total1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales)));
                         ReportSheet.Rows.Add(Total1);
 
                         ReportSheet.ToListView(ReportListView);
@@ -462,10 +458,10 @@ namespace Lfc.Comprobantes
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
-                private void txtAgrupar_TextChanged(System.Object sender, System.EventArgs e)
+                private void EntradaAgrupar_TextChanged(System.Object sender, System.EventArgs e)
                 {
                         if (this.Visible) {
-                                string NuevoAgrupar = txtAgrupar.TextKey;
+                                string NuevoAgrupar = EntradaAgrupar.TextKey;
 
                                 if (NuevoAgrupar == "*")
                                         NuevoAgrupar = "";

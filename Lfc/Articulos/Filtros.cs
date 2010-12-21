@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -70,7 +70,7 @@ namespace Lfc.Articulos
         }
 
         // Requerido por el Diseñador de Windows Forms
-        private System.ComponentModel.Container components = null;
+        private System.ComponentModel.IContainer components = null;
 
         // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
         // Puede modificarse utilizando el Diseñador de Windows Forms. 
@@ -145,16 +145,16 @@ namespace Lfc.Articulos
                 // 
                 this.EntradaCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                             | System.Windows.Forms.AnchorStyles.Right)));
-                this.EntradaCategoria.AutoHeight = true;
+                this.EntradaCategoria.AutoSize = true;
                 this.EntradaCategoria.AutoTab = true;
                 this.EntradaCategoria.CanCreate = true;
-                this.EntradaCategoria.DetailField = "nombre";
+                this.EntradaCategoria.DataTextField = "nombre";
                 this.EntradaCategoria.ExtraDetailFields = null;
                 this.EntradaCategoria.Filter = "";
                 this.EntradaCategoria.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.EntradaCategoria.ForeColor = System.Drawing.SystemColors.ControlText;
                 this.EntradaCategoria.FreeTextCode = "";
-                this.EntradaCategoria.KeyField = "id_categoria";
+                this.EntradaCategoria.DataValueField = "id_categoria";
                 this.EntradaCategoria.Location = new System.Drawing.Point(97, 33);
                 this.EntradaCategoria.MaxLength = 200;
                 this.EntradaCategoria.Name = "EntradaCategoria";
@@ -181,7 +181,7 @@ namespace Lfc.Articulos
                 // 
                 // EntradaStock
                 // 
-                this.EntradaStock.AutoHeight = true;
+                this.EntradaStock.AutoSize = true;
                 this.EntradaStock.AutoNav = true;
                 this.EntradaStock.AutoTab = true;
                 this.EntradaStock.DetailField = null;
@@ -205,9 +205,7 @@ namespace Lfc.Articulos
                 this.EntradaStock.Size = new System.Drawing.Size(256, 24);
                 this.EntradaStock.TabIndex = 9;
                 this.EntradaStock.Table = null;
-                this.EntradaStock.Text = "Cualquiera";
                 this.EntradaStock.TextKey = "*";
-                this.EntradaStock.TextRaw = "Cualquiera";
                 this.EntradaStock.TipWhenBlank = "";
                 this.EntradaStock.ToolTipText = "";
                 // 
@@ -215,16 +213,16 @@ namespace Lfc.Articulos
                 // 
                 this.EntradaProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                             | System.Windows.Forms.AnchorStyles.Right)));
-                this.EntradaProveedor.AutoHeight = true;
+                this.EntradaProveedor.AutoSize = true;
                 this.EntradaProveedor.AutoTab = true;
                 this.EntradaProveedor.CanCreate = false;
-                this.EntradaProveedor.DetailField = "nombre_visible";
+                this.EntradaProveedor.DataTextField = "nombre_visible";
                 this.EntradaProveedor.ExtraDetailFields = null;
                 this.EntradaProveedor.Filter = "(tipo&2)=2";
                 this.EntradaProveedor.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.EntradaProveedor.ForeColor = System.Drawing.SystemColors.ControlText;
                 this.EntradaProveedor.FreeTextCode = "";
-                this.EntradaProveedor.KeyField = "id_persona";
+                this.EntradaProveedor.DataValueField = "id_persona";
                 this.EntradaProveedor.Location = new System.Drawing.Point(97, 93);
                 this.EntradaProveedor.MaxLength = 200;
                 this.EntradaProveedor.Name = "EntradaProveedor";
@@ -253,16 +251,16 @@ namespace Lfc.Articulos
                 // 
                 this.EntradaMarca.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                             | System.Windows.Forms.AnchorStyles.Right)));
-                this.EntradaMarca.AutoHeight = true;
+                this.EntradaMarca.AutoSize = true;
                 this.EntradaMarca.AutoTab = true;
                 this.EntradaMarca.CanCreate = true;
-                this.EntradaMarca.DetailField = "nombre";
+                this.EntradaMarca.DataTextField = "nombre";
                 this.EntradaMarca.ExtraDetailFields = null;
                 this.EntradaMarca.Filter = "";
                 this.EntradaMarca.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.EntradaMarca.ForeColor = System.Drawing.SystemColors.ControlText;
                 this.EntradaMarca.FreeTextCode = "";
-                this.EntradaMarca.KeyField = "id_marca";
+                this.EntradaMarca.DataValueField = "id_marca";
                 this.EntradaMarca.Location = new System.Drawing.Point(97, 63);
                 this.EntradaMarca.MaxLength = 200;
                 this.EntradaMarca.Name = "EntradaMarca";
@@ -291,16 +289,16 @@ namespace Lfc.Articulos
                 // 
                 this.EntradaSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                             | System.Windows.Forms.AnchorStyles.Right)));
-                this.EntradaSituacion.AutoHeight = true;
+                this.EntradaSituacion.AutoSize = true;
                 this.EntradaSituacion.AutoTab = true;
                 this.EntradaSituacion.CanCreate = false;
-                this.EntradaSituacion.DetailField = "nombre";
+                this.EntradaSituacion.DataTextField = "nombre";
                 this.EntradaSituacion.ExtraDetailFields = null;
                 this.EntradaSituacion.Filter = "";
                 this.EntradaSituacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.EntradaSituacion.ForeColor = System.Drawing.SystemColors.ControlText;
                 this.EntradaSituacion.FreeTextCode = "";
-                this.EntradaSituacion.KeyField = "id_situacion";
+                this.EntradaSituacion.DataValueField = "id_situacion";
                 this.EntradaSituacion.Location = new System.Drawing.Point(97, 153);
                 this.EntradaSituacion.MaxLength = 200;
                 this.EntradaSituacion.Name = "EntradaSituacion";
@@ -327,10 +325,10 @@ namespace Lfc.Articulos
                 // 
                 // EntradaPvpDesde
                 // 
-                this.EntradaPvpDesde.AutoHeight = false;
+                this.EntradaPvpDesde.AutoSize = false;
                 this.EntradaPvpDesde.AutoNav = true;
                 this.EntradaPvpDesde.AutoTab = true;
-                this.EntradaPvpDesde.DataType = Lui.Forms.DataTypes.Money;
+                this.EntradaPvpDesde.DataType = Lui.Forms.DataTypes.Currency;
                 this.EntradaPvpDesde.DecimalPlaces = -1;
                 this.EntradaPvpDesde.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.EntradaPvpDesde.ForceCase = Lui.Forms.TextCasing.None;
@@ -348,7 +346,6 @@ namespace Lfc.Articulos
                 this.EntradaPvpDesde.Sufijo = "";
                 this.EntradaPvpDesde.TabIndex = 1;
                 this.EntradaPvpDesde.Text = "0.00";
-                this.EntradaPvpDesde.TextRaw = "0.00";
                 this.EntradaPvpDesde.TipWhenBlank = "";
                 this.EntradaPvpDesde.ToolTipText = "";
                 // 
@@ -363,10 +360,10 @@ namespace Lfc.Articulos
                 // 
                 // EntradaPvpHasta
                 // 
-                this.EntradaPvpHasta.AutoHeight = false;
+                this.EntradaPvpHasta.AutoSize = false;
                 this.EntradaPvpHasta.AutoNav = true;
                 this.EntradaPvpHasta.AutoTab = true;
-                this.EntradaPvpHasta.DataType = Lui.Forms.DataTypes.Money;
+                this.EntradaPvpHasta.DataType = Lui.Forms.DataTypes.Currency;
                 this.EntradaPvpHasta.DecimalPlaces = -1;
                 this.EntradaPvpHasta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.EntradaPvpHasta.ForceCase = Lui.Forms.TextCasing.None;
@@ -384,7 +381,6 @@ namespace Lfc.Articulos
                 this.EntradaPvpHasta.Sufijo = "";
                 this.EntradaPvpHasta.TabIndex = 3;
                 this.EntradaPvpHasta.Text = "0.00";
-                this.EntradaPvpHasta.TextRaw = "0.00";
                 this.EntradaPvpHasta.TipWhenBlank = "";
                 this.EntradaPvpHasta.ToolTipText = "";
                 // 
@@ -438,16 +434,16 @@ namespace Lfc.Articulos
                 // 
                 this.EntradaRubro.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                             | System.Windows.Forms.AnchorStyles.Right)));
-                this.EntradaRubro.AutoHeight = true;
+                this.EntradaRubro.AutoSize = true;
                 this.EntradaRubro.AutoTab = true;
                 this.EntradaRubro.CanCreate = true;
-                this.EntradaRubro.DetailField = "nombre";
+                this.EntradaRubro.DataTextField = "nombre";
                 this.EntradaRubro.ExtraDetailFields = null;
                 this.EntradaRubro.Filter = "";
                 this.EntradaRubro.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.EntradaRubro.ForeColor = System.Drawing.SystemColors.ControlText;
                 this.EntradaRubro.FreeTextCode = "";
-                this.EntradaRubro.KeyField = "id_rubro";
+                this.EntradaRubro.DataValueField = "id_rubro";
                 this.EntradaRubro.Location = new System.Drawing.Point(97, 3);
                 this.EntradaRubro.MaxLength = 200;
                 this.EntradaRubro.Name = "EntradaRubro";
@@ -465,7 +461,7 @@ namespace Lfc.Articulos
                 // 
                 // EntradaAgrupar
                 // 
-                this.EntradaAgrupar.AutoHeight = true;
+                this.EntradaAgrupar.AutoSize = true;
                 this.EntradaAgrupar.AutoNav = true;
                 this.EntradaAgrupar.AutoTab = true;
                 this.EntradaAgrupar.DetailField = null;
@@ -486,7 +482,6 @@ namespace Lfc.Articulos
                 this.EntradaAgrupar.Table = null;
                 this.EntradaAgrupar.Text = "Sin agrupar";
                 this.EntradaAgrupar.TextKey = "*";
-                this.EntradaAgrupar.TextRaw = "Sin agrupar";
                 this.EntradaAgrupar.TipWhenBlank = "";
                 this.EntradaAgrupar.ToolTipText = "";
                 // 

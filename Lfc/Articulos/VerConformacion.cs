@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -50,19 +50,35 @@ namespace Lfc.Articulos
                 {
                         ListaConformacion.BeginUpdate();
                         ListaConformacion.Items.Clear();
-                        System.Data.DataTable Situaciones = this.DataBase.Select("SELECT id_situacion, nombre FROM articulos_situaciones WHERE id_situacion IN (SELECT DISTINCT id_situacion FROM articulos_stock WHERE id_articulo=" + articulo.Id.ToString() + ")");
+                        System.Data.DataTable Situaciones = this.Connection.Select("SELECT id_situacion, nombre FROM articulos_situaciones WHERE id_situacion IN (SELECT DISTINCT id_situacion FROM articulos_stock WHERE id_articulo=" + articulo.Id.ToString() + ")");
                         
                         foreach (System.Data.DataRow Situacion in Situaciones.Rows) {
                                 ListViewGroup Grupo = ListaConformacion.Groups.Add(Situacion["id_situacion"].ToString(), Situacion["nombre"].ToString());
-                                System.Data.DataTable Articulos = this.DataBase.Select("SELECT serie FROM articulos_series WHERE id_articulo=" + articulo.Id.ToString() + " AND id_situacion=" + Situacion["id_situacion"].ToString());
+                                System.Data.DataTable Articulos = this.Connection.Select("SELECT serie FROM articulos_series WHERE id_articulo=" + articulo.Id.ToString() + " AND id_situacion=" + Situacion["id_situacion"].ToString());
                                 foreach(System.Data.DataRow Articulo in Articulos.Rows){
                                         string Serie = Articulo["serie"].ToString();
                                         ListViewItem Itm = ListaConformacion.Items.Add(Serie);
-                                        Itm.SubItems[0].Text = articulo.Nombre;
-                                        Itm.SubItems.Add(Serie);
+                                        Itm.SubItems[0].Text = Serie;
+                                        Itm.SubItems.Add("1");
                                         Itm.Group = Grupo;
                                 }
                         }
+
+                        DataTable Stocks = this.Connection.Select("SELECT id_articulo, id_situacion, cantidad FROM articulos_stock WHERE id_articulo=" + articulo.Id.ToString() + " AND cantidad<>0 AND id_situacion<>998 AND id_situacion<>999 ORDER BY id_situacion");
+
+                        if (Stocks != null) {
+                                ListViewGroup Grupo = ListaConformacion.Groups.Add("000", "Totales por Depósito");
+
+                                foreach (System.Data.DataRow Stock in Stocks.Rows) {
+                                        Lfx.Data.Row Situacion = this.Connection.Row("articulos_situaciones", "id_situacion", System.Convert.ToInt32(Stock["id_situacion"]));
+
+                                        ListViewItem Itm = ListaConformacion.Items.Add(Situacion["nombre"].ToString());
+                                        Itm.SubItems.Add(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Stock["cantidad"]), this.Workspace.CurrentConfig.Productos.DecimalesStock));
+
+                                        Itm.Group = Grupo;
+                                }
+                        }
+
                         ListaConformacion.EndUpdate();
                 }
         }

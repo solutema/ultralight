@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -50,6 +50,10 @@ namespace Lfx.Types
                 public static System.Collections.Generic.List<string> SplitDelimitedString(string CurrentLine, char Delimiter, char Qualifier)
 		{
                         System.Collections.Generic.List<string> Result = new List<string>();
+
+                        if (CurrentLine == null)
+                                return Result;
+
 			bool CountDelimiter = true;
 			int Total = 0;
 			System.Text.StringBuilder Section = new System.Text.StringBuilder();
@@ -106,45 +110,12 @@ namespace Lfx.Types
 		}
 
 
-		public static bool ValueInCSV(string sCSV, string sValue, string sComa)
+		public static bool ValueInCsv(string csv, string strVal, string separador)
 		{
 			bool valueInCSVReturn = false;
 			// Devuelve Verdadero si el valor sValue se encuentra dentro de la lista sCSV
-			valueInCSVReturn = (sComa + sCSV + sComa).Replace(" ", "").IndexOf(sComa + sValue + sComa) != -1;
+			valueInCSVReturn = (separador + csv + separador).Replace(" ", "").IndexOf(separador + strVal + separador) != -1;
 			return valueInCSVReturn;
-		}
-
-
-                /// <summary>
-                /// Convierte o unifica fines de línea en formato Windows (CR+LF).
-                /// </summary>
-                public static string UnixToWindows(string str)
-                {
-                        return str.Replace(Lfx.Types.ControlChars.CrLf, Lfx.Types.ControlChars.Lf.ToString()).Replace(Lfx.Types.ControlChars.Lf.ToString(), Lfx.Types.ControlChars.CrLf);
-                }
-
-
-                /// <summary>
-                /// Invierte una cadena, caracter por caracter
-                /// </summary>
-		public static string StrReverse(string cadena)
-		{
-			System.Text.StringBuilder Resultado = new System.Text.StringBuilder();
-
-			for(int i = cadena.Length - 1; i >= 0; i--) {
-				Resultado.Append(cadena[i]);
-			}
-			return Resultado.ToString();
-		}
-
-        	public static bool IsDate(string Fecha)
-		{
-			try {
-				return Lfx.Types.Parsing.ParseDate(Fecha) != null;
-			}
-			catch {
-				return false;
-			}
 		}
 
 		public static string GetMD5HashFromFile(string fileName)
@@ -156,77 +127,9 @@ namespace Lfx.Types
 			return System.Text.Encoding.Default.GetString(retVal);
 		}
 
-		public static string ULCase(string pCadena)
-		{
-			string sTemp = " " + pCadena.ToLower() + " ";
-
-			char[] CaracteresSeparadores =
-				{
-					' ',
-					'.',
-                                        '(',
-                                        '"',
-					'-'
-				};
-
-			int r = 0;
-
-			do {
-				r = sTemp.IndexOfAny(CaracteresSeparadores, r) + 1;
-
-				if(r > 0 && r < sTemp.Length) {
-					sTemp = sTemp.Substring(0,
-						r) + sTemp.Substring(r,
-						1).ToUpper() + sTemp.Substring(r + 1,
-						sTemp.Length - r - 1);
-				}
-			} while(r > 0);
-
-			sTemp = sTemp.Replace(" De ", " de ");
-			sTemp = sTemp.Replace(" Del ", " del ");
-			sTemp = sTemp.Replace(" El ", " el ");
-			sTemp = sTemp.Replace(" La ", " la ");
-			sTemp = sTemp.Replace(" Pc ", " PC ");
-			sTemp = sTemp.Replace(" En ", " en ");
-			sTemp = sTemp.Replace(" Y ", " y ");
-			sTemp = sTemp.Replace(" Srl ", " SRL ");
-			sTemp = sTemp.Replace(" Sa ", " SA ");
-
-			sTemp = sTemp.Substring(1, sTemp.Length - 2);
-			if(sTemp.Length > 0)
-				sTemp = sTemp.Substring(0, 1).ToUpper() + sTemp.Remove(0, 1);
-
-			return sTemp;
-		}
-
-		public static bool IsNumericInt(string cadena)
-		{
-			double transTemp1 = 0;
-			if(double.TryParse(cadena,
-				System.Globalization.NumberStyles.Integer,
-				System.Globalization.CultureInfo.InvariantCulture,
-				out transTemp1)) {
-				if(transTemp1 <= int.MaxValue && transTemp1 >= int.MinValue)
-					return true;
-				else
-					return false;
-			} else {
-				return false;
-			}
-		}
-
-		public static bool IsNumericFloat(string cadena)
-		{
-			double transTemp0 = 0;
-			return double.TryParse(cadena,
-				System.Globalization.NumberStyles.Float,
-				System.Globalization.CultureInfo.InvariantCulture,
-				out transTemp0);
-		}
-
-                public static bool ValidCBU(string Cbu)
+                public static bool EsCbuValida(string cbu)
                 {
-                        string MiCopia = Cbu.Replace("-", "").Replace(" ", "").Replace(".", "").Replace("/", "");
+                        string MiCopia = cbu.Replace("-", "").Replace(" ", "").Replace(".", "").Replace("/", "");
                         if (MiCopia.Length != 22)
                                 return false;
 
@@ -254,25 +157,25 @@ namespace Lfx.Types
                         return true;
                 }
 
-                public static bool ValidCUIT(string Cuit)
+                public static bool EsCuitValido(string Cuit)
 		{
 			// Utiliza el digito verificador para determinar la validez de una CUIT
 			// Devuelve Verdadero si la CUIT es válida
 			// Espera la CUIT en formato XX-XXXXXXXX-X
 			if(System.Text.RegularExpressions.Regex.IsMatch(Cuit, @"^\d{2}-\d{8}-\d{1}$")
 				|| System.Text.RegularExpressions.Regex.IsMatch(Cuit, @"^\d{11}$")) {
-				string sCUITPlana = Cuit.Replace("-", "");
+				string CuitPlana = Cuit.Replace("-", "");
 				int Suma = 0;
-				Suma += int.Parse(sCUITPlana.Substring(0, 1)) * 5;
-				Suma += int.Parse(sCUITPlana.Substring(1, 1)) * 4;
-				Suma += int.Parse(sCUITPlana.Substring(2, 1)) * 3;
-				Suma += int.Parse(sCUITPlana.Substring(3, 1)) * 2;
-				Suma += int.Parse(sCUITPlana.Substring(4, 1)) * 7;
-				Suma += int.Parse(sCUITPlana.Substring(5, 1)) * 6;
-				Suma += int.Parse(sCUITPlana.Substring(6, 1)) * 5;
-				Suma += int.Parse(sCUITPlana.Substring(7, 1)) * 4;
-				Suma += int.Parse(sCUITPlana.Substring(8, 1)) * 3;
-				Suma += int.Parse(sCUITPlana.Substring(9, 1)) * 2;
+				Suma += int.Parse(CuitPlana.Substring(0, 1)) * 5;
+				Suma += int.Parse(CuitPlana.Substring(1, 1)) * 4;
+				Suma += int.Parse(CuitPlana.Substring(2, 1)) * 3;
+				Suma += int.Parse(CuitPlana.Substring(3, 1)) * 2;
+				Suma += int.Parse(CuitPlana.Substring(4, 1)) * 7;
+				Suma += int.Parse(CuitPlana.Substring(5, 1)) * 6;
+				Suma += int.Parse(CuitPlana.Substring(6, 1)) * 5;
+				Suma += int.Parse(CuitPlana.Substring(7, 1)) * 4;
+				Suma += int.Parse(CuitPlana.Substring(8, 1)) * 3;
+				Suma += int.Parse(CuitPlana.Substring(9, 1)) * 2;
 				// El digito verificador es 11 menos el mdulo de la suma y 11
 				int Verificador = 11 - (Suma % 11);
 
@@ -284,7 +187,7 @@ namespace Lfx.Types
 						Verificador = 9;
 						break;
 				}
-				return int.Parse(sCUITPlana.Substring(10, 1)) == Verificador;
+				return int.Parse(CuitPlana.Substring(10, 1)) == Verificador;
 			} else {
 				return false;
 			}
@@ -306,31 +209,6 @@ namespace Lfx.Types
 			Lector.Close();
 			Archivo.Close();
 			return readTextFileReturn;
-		}
-
-                /// <summary>
-                /// Quita acentos y otros caracteres no estándar.
-                /// </summary>
-		public static string SimplifyText(string sTexto)
-		{
-                        string res = sTexto;
-			res = res.Replace("&", "");
-			res = res.Replace("á", "a");
-			res = res.Replace("é", "e");
-			res = res.Replace("í", "i");
-			res = res.Replace("ó", "o");
-			res = res.Replace("ú", "u");
-			res = res.Replace("ü", "u");
-			res = res.Replace("ñ", "n");
-			res = res.Replace("Á", "A");
-			res = res.Replace("É", "E");
-			res = res.Replace("Í", "I");
-			res = res.Replace("Ó", "O");
-			res = res.Replace("Ú", "U");
-			res = res.Replace("Ü", "U");
-			res = res.Replace("Ñ", "n");
-                        res = res.Replace(" ", "_");
-			return res;
 		}
 
                 public static bool Like(string text, string patterns)

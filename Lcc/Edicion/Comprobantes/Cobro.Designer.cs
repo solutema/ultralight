@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -115,10 +115,9 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         // EntradaImporte
                         // 
-                        this.EntradaImporte.AutoHeight = false;
                         this.EntradaImporte.AutoNav = true;
                         this.EntradaImporte.AutoTab = true;
-                        this.EntradaImporte.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporte.DecimalPlaces = -1;
                         this.EntradaImporte.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
@@ -136,7 +135,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaImporte.Sufijo = "";
                         this.EntradaImporte.TabIndex = 1;
                         this.EntradaImporte.Text = "0.00";
-                        this.EntradaImporte.TextRaw = "0.00";
                         this.EntradaImporte.TipWhenBlank = "";
                         this.EntradaImporte.ToolTipText = "";
                         // 
@@ -182,7 +180,6 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.EntradaEmisor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaEmisor.AutoHeight = false;
                         this.EntradaEmisor.AutoNav = true;
                         this.EntradaEmisor.AutoTab = true;
                         this.EntradaEmisor.DataType = Lui.Forms.DataTypes.FreeText;
@@ -202,13 +199,10 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaEmisor.Size = new System.Drawing.Size(320, 24);
                         this.EntradaEmisor.Sufijo = "";
                         this.EntradaEmisor.TabIndex = 1;
-                        this.EntradaEmisor.TextRaw = "";
-                        this.EntradaEmisor.TipWhenBlank = "";
-                        this.EntradaEmisor.ToolTipText = "Estado para esta chequera.";
+                        this.EntradaEmisor.ToolTipText = "";
                         // 
                         // EntradaFechaCobro
                         // 
-                        this.EntradaFechaCobro.AutoHeight = false;
                         this.EntradaFechaCobro.AutoNav = true;
                         this.EntradaFechaCobro.AutoTab = true;
                         this.EntradaFechaCobro.DataType = Lui.Forms.DataTypes.Date;
@@ -228,14 +222,12 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFechaCobro.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaCobro.Sufijo = "";
                         this.EntradaFechaCobro.TabIndex = 9;
-                        this.EntradaFechaCobro.TextRaw = "";
                         this.EntradaFechaCobro.TipWhenBlank = "";
                         this.EntradaFechaCobro.ToolTipText = "";
                         this.EntradaFechaCobro.Enter += new System.EventHandler(this.EntradaFechaCobro_Enter);
                         // 
                         // EntradaFechaEmision
                         // 
-                        this.EntradaFechaEmision.AutoHeight = false;
                         this.EntradaFechaEmision.AutoNav = true;
                         this.EntradaFechaEmision.AutoTab = true;
                         this.EntradaFechaEmision.DataType = Lui.Forms.DataTypes.Date;
@@ -255,13 +247,12 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFechaEmision.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaEmision.Sufijo = "";
                         this.EntradaFechaEmision.TabIndex = 7;
-                        this.EntradaFechaEmision.TextRaw = "";
                         this.EntradaFechaEmision.TipWhenBlank = "";
                         this.EntradaFechaEmision.ToolTipText = "";
                         // 
                         // EntradaNumeroCheque
                         // 
-                        this.EntradaNumeroCheque.AutoHeight = false;
+                        this.EntradaNumeroCheque.AutoSize = false;
                         this.EntradaNumeroCheque.AutoNav = true;
                         this.EntradaNumeroCheque.AutoTab = true;
                         this.EntradaNumeroCheque.DataType = Lui.Forms.DataTypes.Integer;
@@ -282,7 +273,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaNumeroCheque.Sufijo = "";
                         this.EntradaNumeroCheque.TabIndex = 5;
                         this.EntradaNumeroCheque.Text = "0";
-                        this.EntradaNumeroCheque.TextRaw = "0";
                         this.EntradaNumeroCheque.TipWhenBlank = "";
                         this.EntradaNumeroCheque.ToolTipText = "Estado para esta chequera.";
                         // 
@@ -290,16 +280,15 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.EntradaBanco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaBanco.AutoHeight = false;
                         this.EntradaBanco.AutoTab = true;
                         this.EntradaBanco.CanCreate = true;
-                        this.EntradaBanco.DetailField = "nombre";
+                        this.EntradaBanco.DataTextField = "nombre";
                         this.EntradaBanco.ExtraDetailFields = null;
                         this.EntradaBanco.Filter = "";
                         this.EntradaBanco.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaBanco.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaBanco.FreeTextCode = "";
-                        this.EntradaBanco.KeyField = "id_banco";
+                        this.EntradaBanco.DataValueField = "id_banco";
                         this.EntradaBanco.Location = new System.Drawing.Point(140, 32);
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
@@ -372,7 +361,6 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         // FrameTitulo
                         // 
-                        this.FrameTitulo.AutoHeight = false;
                         this.FrameTitulo.Dock = System.Windows.Forms.DockStyle.Top;
                         this.FrameTitulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.FrameTitulo.Location = new System.Drawing.Point(0, 0);
@@ -400,16 +388,15 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.EntradaCaja.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaCaja.AutoHeight = false;
                         this.EntradaCaja.AutoTab = true;
                         this.EntradaCaja.CanCreate = true;
-                        this.EntradaCaja.DetailField = "nombre";
+                        this.EntradaCaja.DataTextField = "nombre";
                         this.EntradaCaja.ExtraDetailFields = null;
                         this.EntradaCaja.Filter = "";
                         this.EntradaCaja.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaCaja.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCaja.FreeTextCode = "";
-                        this.EntradaCaja.KeyField = "id_caja";
+                        this.EntradaCaja.DataValueField = "id_caja";
                         this.EntradaCaja.Location = new System.Drawing.Point(140, 20);
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
@@ -472,7 +459,6 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         // EntradaCupon
                         // 
-                        this.EntradaCupon.AutoHeight = false;
                         this.EntradaCupon.AutoNav = true;
                         this.EntradaCupon.AutoTab = true;
                         this.EntradaCupon.DataType = Lui.Forms.DataTypes.FreeText;
@@ -492,13 +478,11 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCupon.Size = new System.Drawing.Size(164, 24);
                         this.EntradaCupon.Sufijo = "";
                         this.EntradaCupon.TabIndex = 9;
-                        this.EntradaCupon.TextRaw = "";
                         this.EntradaCupon.TipWhenBlank = "";
                         this.EntradaCupon.ToolTipText = "";
                         // 
                         // EntradaInteres
                         // 
-                        this.EntradaInteres.AutoHeight = false;
                         this.EntradaInteres.AutoNav = true;
                         this.EntradaInteres.AutoTab = true;
                         this.EntradaInteres.DataType = Lui.Forms.DataTypes.Float;
@@ -520,7 +504,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaInteres.TabIndex = 7;
                         this.EntradaInteres.TabStop = false;
                         this.EntradaInteres.Text = "0.00";
-                        this.EntradaInteres.TextRaw = "0.00";
                         this.EntradaInteres.TipWhenBlank = "";
                         this.EntradaInteres.ToolTipText = "";
                         // 
@@ -535,7 +518,6 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         // EntradaCuotas
                         // 
-                        this.EntradaCuotas.AutoHeight = false;
                         this.EntradaCuotas.AutoNav = true;
                         this.EntradaCuotas.AutoTab = true;
                         this.EntradaCuotas.DataType = Lui.Forms.DataTypes.Integer;
@@ -557,7 +539,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCuotas.TabIndex = 5;
                         this.EntradaCuotas.TabStop = false;
                         this.EntradaCuotas.Text = "0";
-                        this.EntradaCuotas.TextRaw = "0";
                         this.EntradaCuotas.TipWhenBlank = "";
                         this.EntradaCuotas.ToolTipText = "";
                         // 
@@ -574,16 +555,15 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.EntradaPlan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaPlan.AutoHeight = false;
                         this.EntradaPlan.AutoTab = true;
                         this.EntradaPlan.CanCreate = false;
-                        this.EntradaPlan.DetailField = "nombre";
+                        this.EntradaPlan.DataTextField = "nombre";
                         this.EntradaPlan.ExtraDetailFields = null;
                         this.EntradaPlan.Filter = "";
                         this.EntradaPlan.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaPlan.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaPlan.FreeTextCode = "";
-                        this.EntradaPlan.KeyField = "id_plan";
+                        this.EntradaPlan.DataValueField = "id_plan";
                         this.EntradaPlan.Location = new System.Drawing.Point(140, 0);
                         this.EntradaPlan.MaxLength = 200;
                         this.EntradaPlan.Name = "EntradaPlan";
@@ -634,7 +614,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaObs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaObs.AutoHeight = false;
                         this.EntradaObs.AutoNav = true;
                         this.EntradaObs.AutoTab = true;
                         this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
@@ -654,7 +633,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaObs.Size = new System.Drawing.Size(320, 52);
                         this.EntradaObs.Sufijo = "";
                         this.EntradaObs.TabIndex = 1;
-                        this.EntradaObs.TextRaw = "";
                         this.EntradaObs.TipWhenBlank = "";
                         this.EntradaObs.ToolTipText = "";
                         // 
@@ -702,16 +680,15 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.EntradaFormaDePago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaFormaDePago.AutoHeight = false;
                         this.EntradaFormaDePago.AutoTab = true;
                         this.EntradaFormaDePago.CanCreate = true;
-                        this.EntradaFormaDePago.DetailField = "nombre";
+                        this.EntradaFormaDePago.DataTextField = "nombre";
                         this.EntradaFormaDePago.ExtraDetailFields = null;
                         this.EntradaFormaDePago.Filter = "cobros=1";
                         this.EntradaFormaDePago.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaFormaDePago.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFormaDePago.FreeTextCode = "";
-                        this.EntradaFormaDePago.KeyField = "id_formapago";
+                        this.EntradaFormaDePago.DataValueField = "id_formapago";
                         this.EntradaFormaDePago.Location = new System.Drawing.Point(136, 0);
                         this.EntradaFormaDePago.MaxLength = 200;
                         this.EntradaFormaDePago.Name = "EntradaFormaDePago";
@@ -770,7 +747,6 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         // EntradaValorNumero
                         // 
-                        this.EntradaValorNumero.AutoHeight = false;
                         this.EntradaValorNumero.AutoNav = true;
                         this.EntradaValorNumero.AutoTab = true;
                         this.EntradaValorNumero.DataType = Lui.Forms.DataTypes.FreeText;
@@ -790,7 +766,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaValorNumero.Size = new System.Drawing.Size(284, 24);
                         this.EntradaValorNumero.Sufijo = "";
                         this.EntradaValorNumero.TabIndex = 11;
-                        this.EntradaValorNumero.TextRaw = "";
                         this.EntradaValorNumero.TipWhenBlank = "";
                         this.EntradaValorNumero.ToolTipText = "";
                         // 

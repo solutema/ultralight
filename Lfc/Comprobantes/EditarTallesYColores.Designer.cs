@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -68,7 +68,7 @@ namespace Lfc.Comprobantes
                         // 
                         // textBox1
                         // 
-                        this.textBox1.AutoHeight = false;
+                        this.textBox1.AutoSize = false;
                         this.textBox1.AutoNav = true;
                         this.textBox1.AutoTab = true;
                         this.textBox1.DataType = Lui.Forms.DataTypes.FreeText;
@@ -87,13 +87,12 @@ namespace Lfc.Comprobantes
                         this.textBox1.Size = new System.Drawing.Size(316, 24);
                         this.textBox1.Sufijo = "";
                         this.textBox1.TabIndex = 51;
-                        this.textBox1.TextRaw = "";
                         this.textBox1.TipWhenBlank = "";
                         this.textBox1.ToolTipText = "";
                         // 
                         // textBox2
                         // 
-                        this.textBox2.AutoHeight = false;
+                        this.textBox2.AutoSize = false;
                         this.textBox2.AutoNav = true;
                         this.textBox2.AutoTab = true;
                         this.textBox2.DataType = Lui.Forms.DataTypes.FreeText;
@@ -112,13 +111,12 @@ namespace Lfc.Comprobantes
                         this.textBox2.Size = new System.Drawing.Size(108, 24);
                         this.textBox2.Sufijo = "";
                         this.textBox2.TabIndex = 52;
-                        this.textBox2.TextRaw = "";
                         this.textBox2.TipWhenBlank = "";
                         this.textBox2.ToolTipText = "";
                         // 
                         // textBox3
                         // 
-                        this.textBox3.AutoHeight = false;
+                        this.textBox3.AutoSize = false;
                         this.textBox3.AutoNav = true;
                         this.textBox3.AutoTab = true;
                         this.textBox3.DataType = Lui.Forms.DataTypes.FreeText;
@@ -137,13 +135,12 @@ namespace Lfc.Comprobantes
                         this.textBox3.Size = new System.Drawing.Size(108, 24);
                         this.textBox3.Sufijo = "";
                         this.textBox3.TabIndex = 54;
-                        this.textBox3.TextRaw = "";
                         this.textBox3.TipWhenBlank = "";
                         this.textBox3.ToolTipText = "";
                         // 
                         // textBox4
                         // 
-                        this.textBox4.AutoHeight = false;
+                        this.textBox4.AutoSize = false;
                         this.textBox4.AutoNav = true;
                         this.textBox4.AutoTab = true;
                         this.textBox4.DataType = Lui.Forms.DataTypes.FreeText;
@@ -162,13 +159,12 @@ namespace Lfc.Comprobantes
                         this.textBox4.Size = new System.Drawing.Size(316, 24);
                         this.textBox4.Sufijo = "";
                         this.textBox4.TabIndex = 53;
-                        this.textBox4.TextRaw = "";
                         this.textBox4.TipWhenBlank = "";
                         this.textBox4.ToolTipText = "";
                         // 
                         // textBox5
                         // 
-                        this.textBox5.AutoHeight = false;
+                        this.textBox5.AutoSize = false;
                         this.textBox5.AutoNav = true;
                         this.textBox5.AutoTab = true;
                         this.textBox5.DataType = Lui.Forms.DataTypes.FreeText;
@@ -187,13 +183,12 @@ namespace Lfc.Comprobantes
                         this.textBox5.Size = new System.Drawing.Size(108, 24);
                         this.textBox5.Sufijo = "";
                         this.textBox5.TabIndex = 56;
-                        this.textBox5.TextRaw = "";
                         this.textBox5.TipWhenBlank = "";
                         this.textBox5.ToolTipText = "";
                         // 
                         // textBox6
                         // 
-                        this.textBox6.AutoHeight = false;
+                        this.textBox6.AutoSize = false;
                         this.textBox6.AutoNav = true;
                         this.textBox6.AutoTab = true;
                         this.textBox6.DataType = Lui.Forms.DataTypes.FreeText;
@@ -212,7 +207,6 @@ namespace Lfc.Comprobantes
                         this.textBox6.Size = new System.Drawing.Size(316, 24);
                         this.textBox6.Sufijo = "";
                         this.textBox6.TabIndex = 55;
-                        this.textBox6.TextRaw = "";
                         this.textBox6.TipWhenBlank = "";
                         this.textBox6.ToolTipText = "";
                         // 

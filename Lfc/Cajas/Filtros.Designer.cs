@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@ namespace Lfc.Cajas
                         base.Dispose(disposing);
                 }
 
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
 
                 private void InitializeComponent()
                 {
@@ -60,9 +60,9 @@ namespace Lfc.Cajas
                         this.Label2 = new System.Windows.Forms.Label();
                         this.EntradaCaja = new Lcc.Entrada.CodigoDetalle();
                         this.Label3 = new System.Windows.Forms.Label();
-                        this.txtDireccion = new Lui.Forms.ComboBox();
+                        this.EntradaDireccion = new Lui.Forms.ComboBox();
                         this.Label4 = new System.Windows.Forms.Label();
-                        this.txtTipoConcepto = new Lui.Forms.ComboBox();
+                        this.EntradaTipoConcepto = new Lui.Forms.ComboBox();
                         this.label6 = new System.Windows.Forms.Label();
                         this.Fechas = new Lcc.Entrada.RangoFechas();
                         this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -86,23 +86,23 @@ namespace Lfc.Cajas
                         this.Label1.Text = "Fecha";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtPersona
+                        // EntradaPersona
                         // 
                         this.EntradaPersona.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaPersona.AutoHeight = true;
+                        this.EntradaPersona.AutoSize = true;
                         this.EntradaPersona.AutoTab = true;
                         this.EntradaPersona.CanCreate = false;
-                        this.EntradaPersona.DetailField = "nombre_visible";
+                        this.EntradaPersona.DataTextField = "nombre_visible";
                         this.EntradaPersona.ExtraDetailFields = null;
                         this.EntradaPersona.Filter = "";
                         this.EntradaPersona.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaPersona.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaPersona.FreeTextCode = "";
-                        this.EntradaPersona.KeyField = "id_persona";
+                        this.EntradaPersona.DataValueField = "id_persona";
                         this.EntradaPersona.Location = new System.Drawing.Point(93, 33);
                         this.EntradaPersona.MaxLength = 200;
-                        this.EntradaPersona.Name = "txtPersona";
+                        this.EntradaPersona.Name = "EntradaPersona";
                         this.EntradaPersona.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPersona.ReadOnly = false;
                         this.EntradaPersona.Required = false;
@@ -124,23 +124,23 @@ namespace Lfc.Cajas
                         this.Label5.Text = "Persona";
                         this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtConcepto
+                        // EntradaConcepto
                         // 
                         this.EntradaConcepto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaConcepto.AutoHeight = true;
+                        this.EntradaConcepto.AutoSize = true;
                         this.EntradaConcepto.AutoTab = true;
                         this.EntradaConcepto.CanCreate = false;
-                        this.EntradaConcepto.DetailField = "nombre";
+                        this.EntradaConcepto.DataTextField = "nombre";
                         this.EntradaConcepto.ExtraDetailFields = null;
                         this.EntradaConcepto.Filter = "";
                         this.EntradaConcepto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaConcepto.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaConcepto.FreeTextCode = "*";
-                        this.EntradaConcepto.KeyField = "id_concepto";
+                        this.EntradaConcepto.DataValueField = "id_concepto";
                         this.EntradaConcepto.Location = new System.Drawing.Point(93, 63);
                         this.EntradaConcepto.MaxLength = 200;
-                        this.EntradaConcepto.Name = "txtConcepto";
+                        this.EntradaConcepto.Name = "EntradaConcepto";
                         this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConcepto.ReadOnly = false;
                         this.EntradaConcepto.Required = false;
@@ -166,16 +166,16 @@ namespace Lfc.Cajas
                         // 
                         this.EntradaCaja.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaCaja.AutoHeight = true;
+                        this.EntradaCaja.AutoSize = true;
                         this.EntradaCaja.AutoTab = true;
                         this.EntradaCaja.CanCreate = false;
-                        this.EntradaCaja.DetailField = "nombre";
+                        this.EntradaCaja.DataTextField = "nombre";
                         this.EntradaCaja.ExtraDetailFields = null;
                         this.EntradaCaja.Filter = "";
                         this.EntradaCaja.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCaja.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCaja.FreeTextCode = "";
-                        this.EntradaCaja.KeyField = "id_caja";
+                        this.EntradaCaja.DataValueField = "id_caja";
                         this.EntradaCaja.Location = new System.Drawing.Point(93, 3);
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
@@ -200,33 +200,32 @@ namespace Lfc.Cajas
                         this.Label3.Text = "Caja";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtDireccion
+                        // EntradaDireccion
                         // 
-                        this.txtDireccion.AutoHeight = true;
-                        this.txtDireccion.AutoNav = true;
-                        this.txtDireccion.AutoTab = true;
-                        this.txtDireccion.DetailField = null;
-                        this.txtDireccion.Filter = null;
-                        this.txtDireccion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtDireccion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtDireccion.KeyField = null;
-                        this.txtDireccion.Location = new System.Drawing.Point(93, 123);
-                        this.txtDireccion.MaxLenght = 32767;
-                        this.txtDireccion.Name = "txtDireccion";
-                        this.txtDireccion.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtDireccion.ReadOnly = false;
-                        this.txtDireccion.SetData = new string[] {
+                        this.EntradaDireccion.AutoSize = true;
+                        this.EntradaDireccion.AutoNav = true;
+                        this.EntradaDireccion.AutoTab = true;
+                        this.EntradaDireccion.DetailField = null;
+                        this.EntradaDireccion.Filter = null;
+                        this.EntradaDireccion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaDireccion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaDireccion.KeyField = null;
+                        this.EntradaDireccion.Location = new System.Drawing.Point(93, 123);
+                        this.EntradaDireccion.MaxLenght = 32767;
+                        this.EntradaDireccion.Name = "EntradaDireccion";
+                        this.EntradaDireccion.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaDireccion.ReadOnly = false;
+                        this.EntradaDireccion.SetData = new string[] {
         "Ingresos|1",
         "Egresos|2",
         "Ingresos y Egresos|0"};
-                        this.txtDireccion.Size = new System.Drawing.Size(188, 24);
-                        this.txtDireccion.TabIndex = 9;
-                        this.txtDireccion.Table = null;
-                        this.txtDireccion.Text = "Ingresos y Egresos";
-                        this.txtDireccion.TextKey = "0";
-                        this.txtDireccion.TextRaw = "Ingresos y Egresos";
-                        this.txtDireccion.TipWhenBlank = "";
-                        this.txtDireccion.ToolTipText = "";
+                        this.EntradaDireccion.Size = new System.Drawing.Size(188, 24);
+                        this.EntradaDireccion.TabIndex = 9;
+                        this.EntradaDireccion.Table = null;
+                        this.EntradaDireccion.Text = "Ingresos y Egresos";
+                        this.EntradaDireccion.TextKey = "0";
+                        this.EntradaDireccion.TipWhenBlank = "";
+                        this.EntradaDireccion.ToolTipText = "";
                         // 
                         // Label4
                         // 
@@ -237,24 +236,24 @@ namespace Lfc.Cajas
                         this.Label4.Text = "Vista";
                         this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtTipoConcepto
+                        // EntradaTipoConcepto
                         // 
-                        this.txtTipoConcepto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaTipoConcepto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtTipoConcepto.AutoHeight = true;
-                        this.txtTipoConcepto.AutoNav = true;
-                        this.txtTipoConcepto.AutoTab = true;
-                        this.txtTipoConcepto.DetailField = null;
-                        this.txtTipoConcepto.Filter = null;
-                        this.txtTipoConcepto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtTipoConcepto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtTipoConcepto.KeyField = null;
-                        this.txtTipoConcepto.Location = new System.Drawing.Point(93, 93);
-                        this.txtTipoConcepto.MaxLenght = 32767;
-                        this.txtTipoConcepto.Name = "txtTipoConcepto";
-                        this.txtTipoConcepto.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtTipoConcepto.ReadOnly = false;
-                        this.txtTipoConcepto.SetData = new string[] {
+                        this.EntradaTipoConcepto.AutoSize = true;
+                        this.EntradaTipoConcepto.AutoNav = true;
+                        this.EntradaTipoConcepto.AutoTab = true;
+                        this.EntradaTipoConcepto.DetailField = null;
+                        this.EntradaTipoConcepto.Filter = null;
+                        this.EntradaTipoConcepto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaTipoConcepto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaTipoConcepto.KeyField = null;
+                        this.EntradaTipoConcepto.Location = new System.Drawing.Point(93, 93);
+                        this.EntradaTipoConcepto.MaxLenght = 32767;
+                        this.EntradaTipoConcepto.Name = "EntradaTipoConcepto";
+                        this.EntradaTipoConcepto.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTipoConcepto.ReadOnly = false;
+                        this.EntradaTipoConcepto.SetData = new string[] {
         "Todos|0",
         "Gastos fijos|1",
         "Gastos variables|2",
@@ -266,14 +265,13 @@ namespace Lfc.Cajas
         "Costo Capital|70",
         "Sueldos y Salarios|80",
         "Cobros|100"};
-                        this.txtTipoConcepto.Size = new System.Drawing.Size(495, 24);
-                        this.txtTipoConcepto.TabIndex = 7;
-                        this.txtTipoConcepto.Table = null;
-                        this.txtTipoConcepto.Text = "Todos";
-                        this.txtTipoConcepto.TextKey = "0";
-                        this.txtTipoConcepto.TextRaw = "Todos";
-                        this.txtTipoConcepto.TipWhenBlank = "";
-                        this.txtTipoConcepto.ToolTipText = "";
+                        this.EntradaTipoConcepto.Size = new System.Drawing.Size(495, 24);
+                        this.EntradaTipoConcepto.TabIndex = 7;
+                        this.EntradaTipoConcepto.Table = null;
+                        this.EntradaTipoConcepto.Text = "Todos";
+                        this.EntradaTipoConcepto.TextKey = "0";
+                        this.EntradaTipoConcepto.TipWhenBlank = "";
+                        this.EntradaTipoConcepto.ToolTipText = "";
                         // 
                         // label6
                         // 
@@ -288,7 +286,7 @@ namespace Lfc.Cajas
                         // 
                         this.Fechas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Fechas.AutoHeight = true;
+                        this.Fechas.AutoSize = true;
                         this.Fechas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.Fechas.Location = new System.Drawing.Point(93, 153);
                         this.Fechas.MuestraFuturos = false;
@@ -310,8 +308,8 @@ namespace Lfc.Cajas
                         this.tableLayoutPanel1.Controls.Add(this.Label3, 0, 0);
                         this.tableLayoutPanel1.Controls.Add(this.Fechas, 1, 5);
                         this.tableLayoutPanel1.Controls.Add(this.Label5, 0, 1);
-                        this.tableLayoutPanel1.Controls.Add(this.txtDireccion, 1, 4);
-                        this.tableLayoutPanel1.Controls.Add(this.txtTipoConcepto, 1, 3);
+                        this.tableLayoutPanel1.Controls.Add(this.EntradaDireccion, 1, 4);
+                        this.tableLayoutPanel1.Controls.Add(this.EntradaTipoConcepto, 1, 3);
                         this.tableLayoutPanel1.Controls.Add(this.Label2, 0, 2);
                         this.tableLayoutPanel1.Controls.Add(this.label6, 0, 3);
                         this.tableLayoutPanel1.Controls.Add(this.EntradaConcepto, 1, 2);
@@ -353,8 +351,8 @@ namespace Lfc.Cajas
                 internal System.Windows.Forms.Label Label2;
                 internal System.Windows.Forms.Label Label3;
                 internal Lcc.Entrada.CodigoDetalle EntradaCaja;
-                internal Lui.Forms.ComboBox txtDireccion;
-                internal Lui.Forms.ComboBox txtTipoConcepto;
+                internal Lui.Forms.ComboBox EntradaDireccion;
+                internal Lui.Forms.ComboBox EntradaTipoConcepto;
                 internal System.Windows.Forms.Label label6;
                 internal Lcc.Entrada.RangoFechas Fechas;
                 internal System.Windows.Forms.Label Label4;

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -72,6 +72,14 @@ namespace Lfx.Environment
 			Other
 		}
 
+                public static string PlatformName
+                {
+                        get
+                        {
+                                return System.Environment.OSVersion.ToString();
+                        }
+                }
+
 		public static Platforms Platform
 		{
 			get
@@ -90,6 +98,64 @@ namespace Lfx.Environment
 			DotNet,
 			Mono
 		}
+
+                public static string RuntimeName
+                {
+                        get
+                        {
+                                //Versión del Framework
+                                switch (Lfx.Environment.SystemInformation.RunTime) {
+                                        case Lfx.Environment.SystemInformation.RunTimes.DotNet:
+                                                bool TieneDotNet3 = false;
+                                                try {
+                                                        Microsoft.Win32.RegistryKey LocalMachine = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v3.0", false);
+                                                        object Installed = LocalMachine.GetValue("Install");
+                                                        if (System.Convert.ToInt32(Installed) == 1)
+                                                                TieneDotNet3 = true;
+                                                } catch (Exception ex) {
+                                                        System.Console.WriteLine(ex.Message);
+                                                        TieneDotNet3 = false;
+                                                }
+
+
+                                                bool TieneDotNet35 = false;
+                                                try {
+                                                        Microsoft.Win32.RegistryKey LocalMachine = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v3.5", false);
+                                                        object Installed = LocalMachine.GetValue("Install");
+                                                        if (System.Convert.ToInt32(Installed) == 1)
+                                                                TieneDotNet35 = true;
+                                                } catch (Exception ex) {
+                                                        System.Console.WriteLine(ex.Message);
+                                                        TieneDotNet35 = false;
+                                                }
+
+                                                bool TieneDotNet4 = false;
+                                                try {
+                                                        Microsoft.Win32.RegistryKey LocalMachine = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v4\\Client", false);
+                                                        object Installed = LocalMachine.GetValue("Install");
+                                                        if (System.Convert.ToInt32(Installed) == 1)
+                                                                TieneDotNet4 = true;
+                                                } catch (Exception ex) {
+                                                        System.Console.WriteLine(ex.Message);
+                                                        TieneDotNet4 = false;
+                                                }
+
+                                                string VersionesDotNet = "Microsoft .NET 2.0";
+                                                if (TieneDotNet3)
+                                                        VersionesDotNet += ", 3.0";
+                                                if (TieneDotNet35)
+                                                        VersionesDotNet += ", 3.5";
+                                                if (TieneDotNet4)
+                                                        VersionesDotNet += ", 4";
+
+                                                return VersionesDotNet;
+                                        case Lfx.Environment.SystemInformation.RunTimes.Mono:
+                                                return "Novell Mono";
+                                        default:
+                                                return "Desconocido";
+                                }
+                        }
+                }
 
 		public static RunTimes RunTime
 		{

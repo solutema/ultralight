@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -160,7 +160,7 @@ namespace Lfc.Personas
                         // BotonCancelar
                         // 
                         this.BotonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.BotonCancelar.AutoHeight = false;
+                        this.BotonCancelar.AutoSize = false;
                         this.BotonCancelar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonCancelar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -182,7 +182,7 @@ namespace Lfc.Personas
                         // BotonContinuar
                         // 
                         this.BotonContinuar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.BotonContinuar.AutoHeight = false;
+                        this.BotonContinuar.AutoSize = false;
                         this.BotonContinuar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonContinuar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonContinuar.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -204,7 +204,7 @@ namespace Lfc.Personas
                         // BotonCorregir
                         // 
                         this.BotonCorregir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.BotonCorregir.AutoHeight = false;
+                        this.BotonCorregir.AutoSize = false;
                         this.BotonCorregir.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonCorregir.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonCorregir.ForeColor = System.Drawing.SystemColors.ControlText;

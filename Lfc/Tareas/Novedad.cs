@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,338 +29,35 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Diagnostics;
-using System.Windows.Forms;
-
 namespace Lfc.Tareas
 {
-        public class Novedad : Lui.Forms.EditForm
+        public partial class Novedad : Lui.Forms.DialogForm
         {
-
-                #region Código generado por el Diseñador de Windows Forms
-
                 public Novedad()
-                        : base()
                 {
-
-
-                        // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
-
-                        // agregar código de constructor después de llamar a InitializeComponent
-
                 }
 
-                // Limpiar los recursos que se estén utilizando.
-                protected override void Dispose(bool disposing)
+                public override Lfx.Types.OperationResult Ok()
                 {
-                        if (disposing) {
-                                if (components != null) {
-                                        components.Dispose();
-                                }
-                        }
-                        base.Dispose(disposing);
-                }
+                        if (EntradaTicket.TextInt == 0)
+                                return new Lfx.Types.FailureOperationResult("Escriba el código de Ticket");
 
+                        qGen.Insert InsertarNovedad = new qGen.Insert(Connection, "tickets_eventos");
+                        InsertarNovedad.Fields.AddWithValue("id_ticket", EntradaTicket.TextInt);
+                        InsertarNovedad.Fields.AddWithValue("id_tecnico", EntradaTecnico.TextInt);
+                        InsertarNovedad.Fields.AddWithValue("minutos_tecnico", Lfx.Types.Parsing.ParseInt(EntradaMinutos.Text));
+                        InsertarNovedad.Fields.AddWithValue("privado", EntradaCondicion.TextKey);
+                        InsertarNovedad.Fields.AddWithValue("descripcion", EntradaDescripcion.Text);
+                        InsertarNovedad.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
+                        Connection.Execute(InsertarNovedad);
 
-                // Requerido por el Diseñador de Windows Forms
-                private System.ComponentModel.Container components = null;
-
-                // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
-                // Puede modificarse utilizando el Diseñador de Windows Forms. 
-                // No lo modifique con el editor de código.
-                internal System.Windows.Forms.Label Label1;
-                internal Lcc.Entrada.CodigoDetalle txtTecnico;
-                internal Lui.Forms.TextBox txtDescripcion;
-                internal System.Windows.Forms.Label Label2;
-                internal Lui.Forms.TextBox txtMinutos;
-                internal System.Windows.Forms.Label Label3;
-                internal Lui.Forms.ComboBox txtCondicion;
-                internal System.Windows.Forms.Label Label4;
-                internal System.Windows.Forms.Label Label5;
-                internal Lcc.Entrada.CodigoDetalle EntradaTicket;
-
-                private void InitializeComponent()
-                {
-                        this.Label1 = new System.Windows.Forms.Label();
-                        this.txtTecnico = new Lcc.Entrada.CodigoDetalle();
-                        this.txtDescripcion = new Lui.Forms.TextBox();
-                        this.Label2 = new System.Windows.Forms.Label();
-                        this.txtMinutos = new Lui.Forms.TextBox();
-                        this.txtCondicion = new Lui.Forms.ComboBox();
-                        this.Label3 = new System.Windows.Forms.Label();
-                        this.Label4 = new System.Windows.Forms.Label();
-                        this.EntradaTicket = new Lcc.Entrada.CodigoDetalle();
-                        this.Label5 = new System.Windows.Forms.Label();
-                        this.SuspendLayout();
-                        // 
-                        // Label1
-                        // 
-                        this.Label1.Location = new System.Drawing.Point(20, 224);
-                        this.Label1.Name = "Label1";
-                        this.Label1.Size = new System.Drawing.Size(88, 24);
-                        this.Label1.TabIndex = 8;
-                        this.Label1.Text = "Persona";
-                        this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // txtTecnico
-                        // 
-                        this.txtTecnico.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtTecnico.AutoHeight = false;
-                        this.txtTecnico.AutoTab = true;
-                        this.txtTecnico.CanCreate = true;
-                        this.txtTecnico.DetailField = "nombre_visible";
-                        this.txtTecnico.ExtraDetailFields = null;
-                        this.txtTecnico.Filter = "(tipo&4)=4";
-                        this.txtTecnico.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtTecnico.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtTecnico.FreeTextCode = "";
-                        this.txtTecnico.KeyField = "id_persona";
-                        this.txtTecnico.Location = new System.Drawing.Point(96, 224);
-                        this.txtTecnico.MaxLength = 200;
-                        this.txtTecnico.Name = "txtTecnico";
-                        this.txtTecnico.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtTecnico.ReadOnly = false;
-                        this.txtTecnico.Required = true;
-                        this.txtTecnico.Size = new System.Drawing.Size(516, 24);
-                        this.txtTecnico.TabIndex = 9;
-                        this.txtTecnico.Table = "personas";
-                        this.txtTecnico.TeclaDespuesDeEnter = "{tab}";
-                        this.txtTecnico.Text = "0";
-                        this.txtTecnico.TextDetail = "";
-                        this.txtTecnico.TextInt = 0;
-                        this.txtTecnico.TipWhenBlank = "";
-                        this.txtTecnico.ToolTipText = "";
-                        // 
-                        // txtDescripcion
-                        // 
-                        this.txtDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtDescripcion.AutoHeight = false;
-                        this.txtDescripcion.AutoNav = true;
-                        this.txtDescripcion.AutoTab = true;
-                        this.txtDescripcion.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.txtDescripcion.DecimalPlaces = -1;
-                        this.txtDescripcion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtDescripcion.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtDescripcion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtDescripcion.Location = new System.Drawing.Point(96, 56);
-                        this.txtDescripcion.MaxLenght = 32767;
-                        this.txtDescripcion.MultiLine = true;
-                        this.txtDescripcion.Name = "txtDescripcion";
-                        this.txtDescripcion.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtDescripcion.PasswordChar = '\0';
-                        this.txtDescripcion.Prefijo = "";
-                        this.txtDescripcion.ReadOnly = false;
-                        this.txtDescripcion.SelectOnFocus = true;
-                        this.txtDescripcion.Size = new System.Drawing.Size(516, 124);
-                        this.txtDescripcion.Sufijo = "";
-                        this.txtDescripcion.TabIndex = 3;
-                        this.txtDescripcion.TextRaw = "";
-                        this.txtDescripcion.TipWhenBlank = "";
-                        this.txtDescripcion.ToolTipText = "";
-                        // 
-                        // Label2
-                        // 
-                        this.Label2.Location = new System.Drawing.Point(276, 192);
-                        this.Label2.Name = "Label2";
-                        this.Label2.Size = new System.Drawing.Size(68, 24);
-                        this.Label2.TabIndex = 4;
-                        this.Label2.Text = "Tiempo";
-                        this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // txtMinutos
-                        // 
-                        this.txtMinutos.AutoHeight = false;
-                        this.txtMinutos.AutoNav = true;
-                        this.txtMinutos.AutoTab = true;
-                        this.txtMinutos.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.txtMinutos.DecimalPlaces = -1;
-                        this.txtMinutos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtMinutos.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtMinutos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtMinutos.Location = new System.Drawing.Point(344, 192);
-                        this.txtMinutos.MaxLenght = 32767;
-                        this.txtMinutos.MultiLine = false;
-                        this.txtMinutos.Name = "txtMinutos";
-                        this.txtMinutos.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtMinutos.PasswordChar = '\0';
-                        this.txtMinutos.Prefijo = "";
-                        this.txtMinutos.ReadOnly = false;
-                        this.txtMinutos.SelectOnFocus = true;
-                        this.txtMinutos.Size = new System.Drawing.Size(76, 24);
-                        this.txtMinutos.Sufijo = "";
-                        this.txtMinutos.TabIndex = 5;
-                        this.txtMinutos.TextRaw = "";
-                        this.txtMinutos.TipWhenBlank = "";
-                        this.txtMinutos.ToolTipText = "";
-                        // 
-                        // txtCondicion
-                        // 
-                        this.txtCondicion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtCondicion.AutoHeight = false;
-                        this.txtCondicion.AutoNav = true;
-                        this.txtCondicion.AutoTab = true;
-                        this.txtCondicion.DetailField = null;
-                        this.txtCondicion.Filter = null;
-                        this.txtCondicion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtCondicion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtCondicion.KeyField = null;
-                        this.txtCondicion.Location = new System.Drawing.Point(96, 192);
-                        this.txtCondicion.MaxLenght = 32767;
-                        this.txtCondicion.Name = "txtCondicion";
-                        this.txtCondicion.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtCondicion.ReadOnly = false;
-                        this.txtCondicion.SetData = new string[] {
-        "Publica|0",
-        "Interna|1"};
-                        this.txtCondicion.Size = new System.Drawing.Size(164, 24);
-                        this.txtCondicion.TabIndex = 7;
-                        this.txtCondicion.Table = null;
-                        this.txtCondicion.Text = "Publica";
-                        this.txtCondicion.TextKey = "0";
-                        this.txtCondicion.TextRaw = "Publica";
-                        this.txtCondicion.TipWhenBlank = "";
-                        this.txtCondicion.ToolTipText = "";
-                        // 
-                        // Label3
-                        // 
-                        this.Label3.Location = new System.Drawing.Point(20, 192);
-                        this.Label3.Name = "Label3";
-                        this.Label3.Size = new System.Drawing.Size(88, 24);
-                        this.Label3.TabIndex = 6;
-                        this.Label3.Text = "Novedad";
-                        this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // Label4
-                        // 
-                        this.Label4.Location = new System.Drawing.Point(20, 56);
-                        this.Label4.Name = "Label4";
-                        this.Label4.Size = new System.Drawing.Size(88, 24);
-                        this.Label4.TabIndex = 2;
-                        this.Label4.Text = "Asunto";
-                        this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // txtTicket
-                        // 
-                        this.EntradaTicket.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaTicket.AutoHeight = false;
-                        this.EntradaTicket.AutoTab = true;
-                        this.EntradaTicket.CanCreate = true;
-                        this.EntradaTicket.DetailField = "nombre";
-                        this.EntradaTicket.ExtraDetailFields = null;
-                        this.EntradaTicket.Filter = "";
-                        this.EntradaTicket.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaTicket.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaTicket.FreeTextCode = "";
-                        this.EntradaTicket.KeyField = "id_ticket";
-                        this.EntradaTicket.Location = new System.Drawing.Point(96, 24);
-                        this.EntradaTicket.MaxLength = 200;
-                        this.EntradaTicket.Name = "txtTicket";
-                        this.EntradaTicket.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTicket.ReadOnly = false;
-                        this.EntradaTicket.Required = true;
-                        this.EntradaTicket.Size = new System.Drawing.Size(516, 24);
-                        this.EntradaTicket.TabIndex = 1;
-                        this.EntradaTicket.Table = "tickets";
-                        this.EntradaTicket.TeclaDespuesDeEnter = "{tab}";
-                        this.EntradaTicket.Text = "0";
-                        this.EntradaTicket.TextDetail = "";
-                        this.EntradaTicket.TextInt = 0;
-                        this.EntradaTicket.TipWhenBlank = "";
-                        this.EntradaTicket.ToolTipText = "";
-                        // 
-                        // Label5
-                        // 
-                        this.Label5.Location = new System.Drawing.Point(20, 24);
-                        this.Label5.Name = "Label5";
-                        this.Label5.Size = new System.Drawing.Size(88, 24);
-                        this.Label5.TabIndex = 0;
-                        this.Label5.Text = "Tarea";
-                        this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // Novedad
-                        // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(634, 374);
-                        this.ControlBox = false;
-                        this.Controls.Add(this.txtMinutos);
-                        this.Controls.Add(this.EntradaTicket);
-                        this.Controls.Add(this.txtCondicion);
-                        this.Controls.Add(this.txtDescripcion);
-                        this.Controls.Add(this.txtTecnico);
-                        this.Controls.Add(this.Label2);
-                        this.Controls.Add(this.Label5);
-                        this.Controls.Add(this.Label4);
-                        this.Controls.Add(this.Label3);
-                        this.Controls.Add(this.Label1);
-                        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-                        this.Name = "Novedad";
-                        this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-                        this.Text = "Novedad: Cargar";
-                        this.WorkspaceChanged += new System.EventHandler(this.Novedad_WorkspaceChanged);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.Label4, 0);
-                        this.Controls.SetChildIndex(this.Label5, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.txtTecnico, 0);
-                        this.Controls.SetChildIndex(this.txtDescripcion, 0);
-                        this.Controls.SetChildIndex(this.txtCondicion, 0);
-                        this.Controls.SetChildIndex(this.EntradaTicket, 0);
-                        this.Controls.SetChildIndex(this.txtMinutos, 0);
-                        this.ResumeLayout(false);
-
-                }
-
-
-                #endregion
-
-                public override Lfx.Types.OperationResult Save()
-                {
-                        Lfx.Types.OperationResult ResultadoGuardar = new Lfx.Types.SuccessOperationResult();
-
-                       ResultadoGuardar = ValidateData();
-
-                        if (ResultadoGuardar.Success == true) {
-                                qGen.Insert InsertarNovedad = new qGen.Insert(DataBase, "tickets_eventos");
-                                InsertarNovedad.Fields.AddWithValue("id_ticket", EntradaTicket.TextInt);
-                                InsertarNovedad.Fields.AddWithValue("id_tecnico", txtTecnico.Text);
-                                InsertarNovedad.Fields.AddWithValue("minutos_tecnico", Lfx.Types.Parsing.ParseInt(txtMinutos.Text));
-                                InsertarNovedad.Fields.AddWithValue("privado", txtCondicion.TextKey);
-                                InsertarNovedad.Fields.AddWithValue("descripcion", txtDescripcion.Text);
-                                InsertarNovedad.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
-                                DataBase.Execute(InsertarNovedad);
-
-                                ResultadoGuardar = base.Save();
-                        }
-
-                        return ResultadoGuardar;
-                }
-
-
-                public override Lfx.Types.OperationResult ValidateData()
-                {
-                        Lfx.Types.OperationResult validarReturn = new Lfx.Types.SuccessOperationResult();
-
-                        if (EntradaTicket.TextInt == 0) {
-                                validarReturn.Success = false;
-                                validarReturn.Message = "Escriba el código de Ticket" + Environment.NewLine;
-                        }
-                        return validarReturn;
+                        return base.Ok();
                 }
 
                 private void Novedad_WorkspaceChanged(object sender, System.EventArgs e)
                 {
-                        txtTecnico.TextInt = this.Workspace.CurrentUser.Id;
-                        txtCondicion.TextKey = "0";
+                        EntradaTecnico.Elemento = Lbl.Sys.Config.Actual.UsuarioConectado.Persona;
                 }
         }
 }

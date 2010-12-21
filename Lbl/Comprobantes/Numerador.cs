@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,23 +37,7 @@ namespace Lbl.Comprobantes
 {
 	public class Numerador
 	{
-
-                public static int Numerar(Lfx.Data.DataBase dataBase, Lbl.Comprobantes.ComprobanteConArticulos comprobante)
-                {
-                        int NumeroSiguienteComprob = ProximoNumero(dataBase, comprobante);
-                        qGen.Update ActualizarNumero = new qGen.Update("comprob");
-                        ActualizarNumero.Fields.AddWithValue("numero", NumeroSiguienteComprob);
-                        ActualizarNumero.WhereClause = new qGen.Where("id_comprob", comprobante.Id);
-                        dataBase.Execute(ActualizarNumero);
-                        return NumeroSiguienteComprob;
-                }
-
-		public static int Numerar(Lfx.Data.DataBase dataBase, int idComprobante)
-		{
-			return Numerar(dataBase, new Lbl.Comprobantes.ComprobanteConArticulos(dataBase, idComprobante));
-		}
-
-                public static int ProximoNumero(Lfx.Data.DataBase dataBase, Lbl.Comprobantes.ComprobanteConArticulos comprobante)
+                public static int ProximoNumero(Lbl.Comprobantes.Comprobante comprobante)
                 {
                         string TipoReal = "";
 
@@ -99,7 +83,13 @@ namespace Lbl.Comprobantes
                                         break;
                         }
 
-                        return dataBase.FieldInt("SELECT MAX(numero) FROM comprob WHERE compra=0 AND pv=" + comprobante.PV.ToString() + " AND tipo_fac IN (" + TipoReal + ")") + 1;
+                        string SqlWhere = "pv=" + comprobante.PV.ToString() + " AND tipo_fac IN (" + TipoReal + ")";
+                        if (comprobante is Lbl.Comprobantes.ComprobanteConArticulos) {
+                                // Si es comprobante con artículos, agrego una condicion más para los comprobantes de compra
+                                SqlWhere += " AND compra=" + (((Lbl.Comprobantes.ComprobanteConArticulos)(comprobante)).Compra ? "1" : "0");
+                        }
+
+                        return comprobante.Connection.FieldInt("SELECT MAX(numero) FROM " + comprobante.TablaDatos + " WHERE " + SqlWhere) + 1;
                 }
 	}
 }

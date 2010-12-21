@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ namespace Lbl.Reportes
 {
         public class Reporte
         {
-                public Lfx.Data.DataBase DataBase;
+                public Lfx.Data.Connection DataBase;
                 public string Titulo = "Reporte";
 
                 public qGen.Select SelectCommand;
@@ -47,7 +47,7 @@ namespace Lbl.Reportes
                 public System.Collections.Generic.List<Lfx.Data.FormField> Fields = new List<Lfx.Data.FormField>();
                 public bool ExpandGroups = true;
 
-                public Reporte(Lfx.Data.DataBase dataBase, qGen.Select selectCommand)
+                public Reporte(Lfx.Data.Connection dataBase, qGen.Select selectCommand)
                 {
                         this.DataBase = dataBase;
                         this.SelectCommand = selectCommand;
@@ -78,14 +78,14 @@ namespace Lbl.Reportes
 
                         System.Data.DataTable Tabla = DataBase.Select(Sel);
                         foreach (System.Data.DataRow Registro in Tabla.Rows) {
-                                if (this.Grouping != null && Lfx.Types.Object.ObjectsEqualByValue(this.Grouping.LastValue, Registro[Lfx.Data.DataBase.GetFieldName(this.Grouping.Field.ColumnName)]) == false) {
+                                if (this.Grouping != null && Lfx.Types.Object.CompareByValue(this.Grouping.LastValue, Registro[Lfx.Data.Connection.GetFieldName(this.Grouping.Field.ColumnName)]) != 0) {
                                         // Agrego un renglón de subtotales
                                         if (this.Grouping.LastValue != null) {
                                                 Lfx.FileFormats.Office.Spreadsheet.Row SubTotales;
                                                 if (this.ExpandGroups)
-                                                        SubTotales = new Lfx.FileFormats.Office.Spreadsheet.AggregationRow();
+                                                        SubTotales = new Lfx.FileFormats.Office.Spreadsheet.AggregationRow(Res);
                                                 else
-                                                        SubTotales = new Lfx.FileFormats.Office.Spreadsheet.Row();
+                                                        SubTotales = new Lfx.FileFormats.Office.Spreadsheet.Row(Res);
                                                 for (int i = 0; i < this.Fields.Count; i++) {
                                                         Lfx.FileFormats.Office.Spreadsheet.Cell FuncCell = null;
                                                         if (this.Grouping != null && this.Fields[i].ColumnName == this.Grouping.Field.ColumnName && this.ExpandGroups == false) {
@@ -117,23 +117,23 @@ namespace Lbl.Reportes
                                                 }
                                                 Res.Rows.Add(SubTotales);
                                         }
-                                        this.Grouping.LastValue = Registro[Lfx.Data.DataBase.GetFieldName(this.Grouping.Field.ColumnName)];
+                                        this.Grouping.LastValue = Registro[Lfx.Data.Connection.GetFieldName(this.Grouping.Field.ColumnName)];
 
                                         // Agrego un encabezado
                                         if (ExpandGroups)
-                                                Res.Rows.Add(new Lfx.FileFormats.Office.Spreadsheet.HeaderRow(Registro[Lfx.Data.DataBase.GetFieldName(this.Grouping.Field.ColumnName)].ToString()));
+                                                Res.Rows.Add(new Lfx.FileFormats.Office.Spreadsheet.HeaderRow(Registro[Lfx.Data.Connection.GetFieldName(this.Grouping.Field.ColumnName)].ToString()));
                                 }
 
                                 if (Aggregates != null) {
                                         // Calculo las funciones de agregación
                                         foreach (Lfx.Data.Aggregate Agru in this.Aggregates) {
-                                                string ColName = Lfx.Data.DataBase.GetFieldName(Agru.Field.ColumnName);
+                                                string ColName = Lfx.Data.Connection.GetFieldName(Agru.Field.ColumnName);
                                                 switch (Agru.Function) {
                                                         case Lfx.Data.AggregationFunctions.Count:
                                                                 Agru.Count++;
                                                                 break;
                                                         case Lfx.Data.AggregationFunctions.Sum:
-                                                                Agru.Sum += System.Convert.ToDouble(Registro[Lfx.Data.DataBase.GetFieldName(Agru.Field.ColumnName)]);
+                                                                Agru.Sum += System.Convert.ToDecimal(Registro[Lfx.Data.Connection.GetFieldName(Agru.Field.ColumnName)]);
                                                                 break;
                                                 }
                                         }
@@ -141,7 +141,7 @@ namespace Lbl.Reportes
                                 if (ExpandGroups) {
                                         Lfx.FileFormats.Office.Spreadsheet.Row Renglon = new Lfx.FileFormats.Office.Spreadsheet.Row();
                                         foreach (Lfx.Data.FormField Field in this.Fields) {
-                                                Lfx.FileFormats.Office.Spreadsheet.Cell Celda = new Cell(Registro[Lfx.Data.DataBase.GetFieldName(Field.ColumnName)]);
+                                                Lfx.FileFormats.Office.Spreadsheet.Cell Celda = new Cell(Registro[Lfx.Data.Connection.GetFieldName(Field.ColumnName)]);
                                                 Renglon.Cells.Add(Celda);
                                         }
                                         Res.Rows.Add(Renglon);

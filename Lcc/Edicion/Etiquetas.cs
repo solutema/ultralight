@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,46 +37,36 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Lcc.Controles.Datos
+namespace Lcc.Edicion
 {
-        public partial class Etiquetas : ControlDeDatos
+        public partial class Etiquetas : Lcc.Edicion.ControlEdicion
         {
                 public Etiquetas()
                 {
                         InitializeComponent();
+
+                        this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
+                        this.Font = Lfx.Config.Display.CurrentTemplate.DefaultFont;
+                        GroupLabel.BackColor = Lfx.Config.Display.CurrentTemplate.Header2Background;
+                        GroupLabel.ForeColor = Lfx.Config.Display.CurrentTemplate.Header2Text;
                 }
 
-                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public override Lbl.ElementoDeDatos Elemento
+                public override string Text
                 {
                         get
                         {
-                                return base.Elemento;
+                                return GroupLabel.Text;
                         }
                         set
                         {
-                                base.Elemento = value;
-                                //Cargo tags para la nueva tabla
-                                Lista.SuspendLayout();
-                                Lista.Items.Clear();
-                                Lfx.Data.Table TablaEtiquetas = this.DataBase.Tables["sys_labels"];
-                                TablaEtiquetas.PreLoad();
-                                foreach (Lfx.Data.Row Rw in TablaEtiquetas.FastRows.Values) {
-                                        Lbl.Etiqueta Eti = new Lbl.Etiqueta(this.DataBase, Rw);
-                                        if (Eti.TablaReferencia == m_Elemento.TablaDatos) {
-                                                ListViewItem Itm = Lista.Items.Add(Eti.Id.ToString());
-                                                Itm.SubItems.Add(Eti.Nombre);
-                                                if (Elemento.Etiquetas.Contains(Eti.Id))
-                                                        Itm.Checked = true;
-                                        }
-                                }
-                                Lista.ResumeLayout();
+                                GroupLabel.Text = value;
+                                base.Text = value;
                         }
                 }
 
                 private void Lista_ItemChecked(object sender, ItemCheckedEventArgs e)
                 {
-                        int ItemId = Lfx.Types.Parsing.ParseInt(e.Item.Text);
+                        /* int ItemId = Lfx.Types.Parsing.ParseInt(e.Item.Text);
                         if (ItemId != 0) {
                                 if(e.Item.Checked) {
                                         //Agrego
@@ -87,7 +77,46 @@ namespace Lcc.Controles.Datos
                                         if (Elemento.Etiquetas.Contains(ItemId))
                                                 m_Elemento.Etiquetas.RemoveById(ItemId);
                                 }
+                        } */
+                }
+
+                public override void ActualizarControl()
+                {
+                        Lista.SuspendLayout();
+                        Lista.Items.Clear();
+                        Lfx.Data.Table TablaEtiquetas = this.Connection.Tables["sys_labels"];
+                        TablaEtiquetas.PreLoad();
+                        foreach (Lfx.Data.Row Rw in TablaEtiquetas.FastRows.Values) {
+                                Lbl.Etiqueta Eti = new Lbl.Etiqueta(this.Connection, Rw);
+                                if (Eti.TablaReferencia == m_Elemento.TablaDatos) {
+                                        ListViewItem Itm = Lista.Items.Add(Eti.Id.ToString());
+                                        Itm.SubItems.Add(Eti.Nombre);
+                                        if (Elemento.Etiquetas.Contains(Eti.Id))
+                                                Itm.Checked = true;
+                                }
                         }
+                        Lista.ResumeLayout();
+
+                        base.ActualizarControl();
+                }
+
+                public override void ActualizarElemento()
+                {
+                        foreach (ListViewItem Itm in Lista.Items) {
+                                int ItemId = Lfx.Types.Parsing.ParseInt(Itm.Text);
+                                if (ItemId != 0) {
+                                        if (Itm.Checked) {
+                                                //Agrego
+                                                if (Elemento.Etiquetas.Contains(ItemId) == false)
+                                                        m_Elemento.Etiquetas.Add(new Lbl.Etiqueta(m_Elemento.Connection, ItemId));
+                                        } else {
+                                                //Lo quito
+                                                if (Elemento.Etiquetas.Contains(ItemId))
+                                                        m_Elemento.Etiquetas.RemoveById(ItemId);
+                                        }
+                                }
+                        }
+                        base.ActualizarElemento();
                 }
         }
 }

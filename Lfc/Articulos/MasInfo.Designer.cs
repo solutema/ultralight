@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@ namespace Lfc.Articulos
                         base.Dispose(disposing);
                 }
 
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
 
                 private void InitializeComponent()
                 {
@@ -86,9 +86,9 @@ namespace Lfc.Articulos
                         this.Label1.Text = "Fecha de Creación";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtFechaCreado
+                        // EntradaFechaCreado
                         // 
-                        this.EntradaFechaCreado.AutoHeight = false;
+                        this.EntradaFechaCreado.AutoSize = false;
                         this.EntradaFechaCreado.AutoNav = true;
                         this.EntradaFechaCreado.AutoTab = true;
                         this.EntradaFechaCreado.DataType = Lui.Forms.DataTypes.FreeText;
@@ -99,7 +99,7 @@ namespace Lfc.Articulos
                         this.EntradaFechaCreado.Location = new System.Drawing.Point(144, 12);
                         this.EntradaFechaCreado.MaxLenght = 32767;
                         this.EntradaFechaCreado.MultiLine = false;
-                        this.EntradaFechaCreado.Name = "txtFechaCreado";
+                        this.EntradaFechaCreado.Name = "EntradaFechaCreado";
                         this.EntradaFechaCreado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaCreado.PasswordChar = '\0';
                         this.EntradaFechaCreado.Prefijo = "";
@@ -108,13 +108,12 @@ namespace Lfc.Articulos
                         this.EntradaFechaCreado.Size = new System.Drawing.Size(140, 24);
                         this.EntradaFechaCreado.Sufijo = "";
                         this.EntradaFechaCreado.TabIndex = 51;
-                        this.EntradaFechaCreado.TextRaw = "";
                         this.EntradaFechaCreado.TipWhenBlank = "";
                         this.EntradaFechaCreado.ToolTipText = "";
                         // 
-                        // txtFechaPrecio
+                        // EntradaFechaPrecio
                         // 
-                        this.EntradaFechaPrecio.AutoHeight = false;
+                        this.EntradaFechaPrecio.AutoSize = false;
                         this.EntradaFechaPrecio.AutoNav = true;
                         this.EntradaFechaPrecio.AutoTab = true;
                         this.EntradaFechaPrecio.DataType = Lui.Forms.DataTypes.FreeText;
@@ -125,7 +124,7 @@ namespace Lfc.Articulos
                         this.EntradaFechaPrecio.Location = new System.Drawing.Point(144, 40);
                         this.EntradaFechaPrecio.MaxLenght = 32767;
                         this.EntradaFechaPrecio.MultiLine = false;
-                        this.EntradaFechaPrecio.Name = "txtFechaPrecio";
+                        this.EntradaFechaPrecio.Name = "EntradaFechaPrecio";
                         this.EntradaFechaPrecio.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaPrecio.PasswordChar = '\0';
                         this.EntradaFechaPrecio.Prefijo = "";
@@ -134,7 +133,6 @@ namespace Lfc.Articulos
                         this.EntradaFechaPrecio.Size = new System.Drawing.Size(140, 24);
                         this.EntradaFechaPrecio.Sufijo = "";
                         this.EntradaFechaPrecio.TabIndex = 53;
-                        this.EntradaFechaPrecio.TextRaw = "";
                         this.EntradaFechaPrecio.TipWhenBlank = "";
                         this.EntradaFechaPrecio.ToolTipText = "";
                         // 
@@ -147,13 +145,13 @@ namespace Lfc.Articulos
                         this.Label2.Text = "Fecha del Precio";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtCostoUlt
+                        // EntradaCostoUlt
                         // 
                         this.EntradaCostoUltimaCompra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.EntradaCostoUltimaCompra.AutoHeight = false;
+                        this.EntradaCostoUltimaCompra.AutoSize = false;
                         this.EntradaCostoUltimaCompra.AutoNav = true;
                         this.EntradaCostoUltimaCompra.AutoTab = true;
-                        this.EntradaCostoUltimaCompra.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaCostoUltimaCompra.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCostoUltimaCompra.DecimalPlaces = -1;
                         this.EntradaCostoUltimaCompra.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCostoUltimaCompra.ForceCase = Lui.Forms.TextCasing.None;
@@ -161,7 +159,7 @@ namespace Lfc.Articulos
                         this.EntradaCostoUltimaCompra.Location = new System.Drawing.Point(368, 251);
                         this.EntradaCostoUltimaCompra.MaxLenght = 32767;
                         this.EntradaCostoUltimaCompra.MultiLine = false;
-                        this.EntradaCostoUltimaCompra.Name = "txtCostoUlt";
+                        this.EntradaCostoUltimaCompra.Name = "EntradaCostoUlt";
                         this.EntradaCostoUltimaCompra.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCostoUltimaCompra.PasswordChar = '\0';
                         this.EntradaCostoUltimaCompra.Prefijo = "";
@@ -171,7 +169,6 @@ namespace Lfc.Articulos
                         this.EntradaCostoUltimaCompra.Sufijo = "";
                         this.EntradaCostoUltimaCompra.TabIndex = 55;
                         this.EntradaCostoUltimaCompra.Text = "0.00";
-                        this.EntradaCostoUltimaCompra.TextRaw = "0.00";
                         this.EntradaCostoUltimaCompra.TipWhenBlank = "";
                         this.EntradaCostoUltimaCompra.ToolTipText = "";
                         // 
@@ -185,13 +182,13 @@ namespace Lfc.Articulos
                         this.Label3.Text = "Costo de la última Compra";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtCostoProm
+                        // EntradaCostoProm
                         // 
                         this.EntradaCostoUltimas5Compras.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.EntradaCostoUltimas5Compras.AutoHeight = false;
+                        this.EntradaCostoUltimas5Compras.AutoSize = false;
                         this.EntradaCostoUltimas5Compras.AutoNav = true;
                         this.EntradaCostoUltimas5Compras.AutoTab = true;
-                        this.EntradaCostoUltimas5Compras.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaCostoUltimas5Compras.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCostoUltimas5Compras.DecimalPlaces = -1;
                         this.EntradaCostoUltimas5Compras.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCostoUltimas5Compras.ForceCase = Lui.Forms.TextCasing.None;
@@ -199,7 +196,7 @@ namespace Lfc.Articulos
                         this.EntradaCostoUltimas5Compras.Location = new System.Drawing.Point(368, 279);
                         this.EntradaCostoUltimas5Compras.MaxLenght = 32767;
                         this.EntradaCostoUltimas5Compras.MultiLine = false;
-                        this.EntradaCostoUltimas5Compras.Name = "txtCostoProm";
+                        this.EntradaCostoUltimas5Compras.Name = "EntradaCostoProm";
                         this.EntradaCostoUltimas5Compras.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCostoUltimas5Compras.PasswordChar = '\0';
                         this.EntradaCostoUltimas5Compras.Prefijo = "";
@@ -209,7 +206,6 @@ namespace Lfc.Articulos
                         this.EntradaCostoUltimas5Compras.Sufijo = "";
                         this.EntradaCostoUltimas5Compras.TabIndex = 57;
                         this.EntradaCostoUltimas5Compras.Text = "0.00";
-                        this.EntradaCostoUltimas5Compras.TextRaw = "0.00";
                         this.EntradaCostoUltimas5Compras.TipWhenBlank = "";
                         this.EntradaCostoUltimas5Compras.ToolTipText = "";
                         // 

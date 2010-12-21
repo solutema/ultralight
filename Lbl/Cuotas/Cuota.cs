@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -36,26 +36,17 @@ using System.Reflection;
 
 namespace Lbl.Cuotas
 {
-	public enum Estados
-	{
-		Nueva = 0,
-                Autorizada = 1,
-		Precancelada = 5,
-		EnResumen = 10,
-                Pagada = 50,
-		Anulada = 90,
-		Historico = 100
-	}
-
+        [Lbl.Atributos.NombreItem("Cuota"), Lbl.Atributos.MuestraMensajeAlCrear(true), Lbl.Atributos.MuestraPanelExtendido(false)]
 	public class Cuota : ElementoDeDatos
 	{
                 public Estados[] EstadosCuotas = new Estados[120];
+                public int[] IdsCuotas = new int[120];
                 public Estados[] EstadosCuotasComercio = new Estados[120];
-                public Lbl.Comprobantes.Recibo Recibo;
+                private Lbl.Comprobantes.Recibo m_Recibo;
                 public Lbl.Personas.Persona Cliente, Comercio;
 
 		//Heredar constructores
-		public Cuota(Lfx.Data.DataBase dataBase)
+		public Cuota(Lfx.Data.Connection dataBase)
                         : base(dataBase)
                 {
                         for (int i = 1; i < 120; i++) {
@@ -64,7 +55,10 @@ namespace Lbl.Cuotas
                         }
                 }
 
-                public Cuota(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                public Cuota(Lfx.Data.Connection dataBase, int itemId)
+                        : base(dataBase, itemId) { }
+
+                public Cuota(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
@@ -83,30 +77,29 @@ namespace Lbl.Cuotas
 			}
 		}
 
-                public override Lfx.Types.OperationResult Crear()
+                public override void Crear()
                 {
-                        Lfx.Types.OperationResult Res = base.Crear();
-                        this.Fecha = DateTime.Now;
-                        if (Res.Success) {
-                                for (int i = 1; i < 120; i++) {
-                                        EstadosCuotas[i] = Estados.Nueva;
-                                        EstadosCuotasComercio[i] = Estados.Nueva;
-                                }
+                        base.Crear();
+
+                        this.Cuotas = 1;
+                        this.Fecha = this.Connection.ServerDateTime;
+
+                        for (int i = 1; i < 120; i++) {
+                                EstadosCuotas[i] = Estados.Nueva;
+                                EstadosCuotasComercio[i] = Estados.Nueva;
                         }
-                        return Res;
                 }
 
                 public override Lfx.Types.OperationResult Cargar()
                 {
-                        if (m_ItemId == 0)
-                                return this.Crear();
+                        Lfx.Types.OperationResult Res = base.Cargar();
 
-                        this.m_Registro = null;
-                        this.m_RegistroOriginal = null;
-                        Lfx.Data.Row Dummy = this.Registro;
-                        if (Dummy != null && System.Convert.ToInt32(Dummy["cuota"]) != 1) {
+                        if (Res.Success == false)
+                                return Res;
+
+                        if (this.GetFieldValue<int>("cuota") != 1) {
                                 //Busco la primera cuota
-                                int RegistroUno = this.DataBase.FieldInt("SELECT id_cuota FROM ventas_cuotas WHERE cuota=1 AND prefijo=" + Dummy["prefijo"].ToString() + " AND operacion=" + Dummy["operacion"].ToString());
+                                int RegistroUno = this.Connection.FieldInt("SELECT id_cuota FROM ventas_cuotas WHERE cuota=1 AND prefijo=" + this.GetFieldValue<int>("prefijo").ToString() + " AND operacion=" + this.GetFieldValue<int>("operacion").ToString());
                                 //Puede que no exista la cuota 1 (registros importados del sistema viejo)
                                 if (RegistroUno > 0) {
                                         m_ItemId = RegistroUno;
@@ -118,32 +111,43 @@ namespace Lbl.Cuotas
                         for (int i = 1; i < 120; i++)
                                 EstadosCuotas[i] = Estados.Nueva;
                         //Cargo los estados de las cuotas
-                        using (System.Data.DataTable Cuotas = this.DataBase.Select("SELECT cuota, estado, estado_com FROM ventas_cuotas WHERE prefijo=" + Dummy["prefijo"].ToString() + " AND operacion=" + Dummy["operacion"].ToString())) {
+                        using (System.Data.DataTable Cuotas = this.Connection.Select("SELECT id_cuota, cuota, estado, estado_com FROM ventas_cuotas WHERE prefijo=" + this.GetFieldValue<int>("prefijo").ToString() + " AND operacion=" + this.GetFieldValue<int>("operacion").ToString())) {
                                 foreach(System.Data.DataRow Cuota in Cuotas.Rows) {
-                                        EstadosCuotas[System.Convert.ToInt32(Cuota["cuota"])] = (Estados)(System.Convert.ToInt32(Cuota["estado"]));
-                                        EstadosCuotasComercio[System.Convert.ToInt32(Cuota["cuota"])] = (Estados)(System.Convert.ToInt32(Cuota["estado_com"]));
+                                        int CuotaNum = System.Convert.ToInt32(Cuota["cuota"]);
+                                        IdsCuotas[CuotaNum] = System.Convert.ToInt32(Cuota["id_cuota"]);
+                                        EstadosCuotas[CuotaNum] = (Estados)(System.Convert.ToInt32(Cuota["estado"]));
+                                        EstadosCuotasComercio[CuotaNum] = (Estados)(System.Convert.ToInt32(Cuota["estado_com"]));
                                 }
                         }
 
-                        if (Dummy == null)
-                                return new Lfx.Types.FailureOperationResult("No se pudo cargar el registro");
-                        else
-                                return new Lfx.Types.SuccessOperationResult();
+                        return new Lfx.Types.SuccessOperationResult();
                 }
 
                 public override void OnLoad()
                 {
                         if (this.Registro != null) {
-                                if (this.FieldInt("id_cliente") != 0)
-                                        this.Cliente = new Lbl.Personas.Persona(DataBase, this.FieldInt("id_cliente"));
+                                if (this.GetFieldValue<int>("id_cliente") != 0)
+                                        this.Cliente = new Lbl.Personas.Persona(Connection, this.GetFieldValue<int>("id_cliente"));
 
-                                if (this.FieldInt("id_comercio") != 0)
-                                        this.Comercio = new Lbl.Personas.Persona(DataBase, this.FieldInt("id_comercio"));
-
-                                if (this.FieldInt("id_recibo") != 0)
-                                        this.Recibo = new Lbl.Comprobantes.Recibo(DataBase, this.FieldInt("id_recibo"));
+                                if (this.GetFieldValue<int>("id_comercio") != 0)
+                                        this.Comercio = new Lbl.Personas.Persona(Connection, this.GetFieldValue<int>("id_comercio"));
                         }
                         base.OnLoad();
+                }
+
+
+                public Lbl.Comprobantes.Recibo Recibo
+                {
+                        get
+                        {
+                                if (m_Recibo == null && this.GetFieldValue<int>("id_recibo") != 0)
+                                        this.m_Recibo = new Lbl.Comprobantes.Recibo(Connection, this.GetFieldValue<int>("id_recibo"));
+                                return m_Recibo;
+                        }
+                        set
+                        {
+                                m_Recibo = value;
+                        }
                 }
 
                 new public Estados Estado
@@ -195,7 +199,7 @@ namespace Lbl.Cuotas
                 {
                         get
                         {
-                                return this.FieldInt("cuotas");
+                                return this.GetFieldValue<int>("cuotas");
                         }
                         set
                         {
@@ -210,7 +214,7 @@ namespace Lbl.Cuotas
                 {
                         get
                         {
-                                return this.FieldInt("autorizacion");
+                                return this.GetFieldValue<int>("autorizacion");
                         }
                         set
                         {
@@ -221,11 +225,11 @@ namespace Lbl.Cuotas
                 /// <summary>
                 /// Devuelve o establece el importe total de la operación, incluyendo los intereses.
                 /// </summary>
-                public double ImporteTotal
+                public decimal ImporteTotal
                 {
                         get
                         {
-                                return System.Convert.ToDouble(Registro["total"]);
+                                return this.GetFieldValue<decimal>("total");
                         }
                         set
                         {
@@ -238,11 +242,11 @@ namespace Lbl.Cuotas
                 /// <summary>
                 /// Devuelve o establece el importe bruto de la operación, sin incluir intereses.
                 /// </summary>
-                public double ImporteBruto
+                public decimal ImporteBruto
                 {
                         get
                         {
-                                return System.Convert.ToDouble(Registro["total_bruto"]);
+                                return this.GetFieldValue<decimal>("total_bruto");
                         }
                         set
                         {
@@ -253,7 +257,7 @@ namespace Lbl.Cuotas
                 /// <summary>
                 /// Devuelve el monto total de intereses aplicado a esta operación.
                 /// </summary>
-                public double ImporteIntereses
+                public decimal InteresTotal
                 {
                         get
                         {
@@ -264,24 +268,46 @@ namespace Lbl.Cuotas
                 /// <summary>
                 /// Devuelve el porcentaje de interés total aplicado a esta operación.
                 /// </summary>
-                public double Intereses
+                public decimal TasaInteresTotal
                 {
                         get
                         {
-                                return Math.Round(this.ImporteIntereses / this.ImporteBruto * 100, 4);
+                                if (this.ImporteBruto == 0)
+                                        return 0;
+                                else
+                                        return Math.Round(this.InteresTotal / this.ImporteBruto * 100, 4);
                         }
                 }
 
-                public double IntereseMensual
+                public decimal TasaNominalAnual
+                {
+                        get
+                        {
+                                if (this.ImporteBruto == 0)
+                                        return 0;
+                                else
+                                        return Math.Round(this.TasaInteresTotal / this.Cuotas * 12, 4);
+                        }
+                }
+
+                public decimal TasaEfectivaAnual
+                {
+                        get
+                        {
+                                return this.TasaNominalAnual;
+                        }
+                }
+
+                public decimal InteresMensual
                 {
                         get
                         {
                                 int DifMeses = this.DiferenciaMeses;
                                 if (DifMeses >= 1) {
-                                        return Math.Round(this.Intereses / System.Convert.ToDouble(this.Cuotas + DifMeses), 4);
+                                        return Math.Round(this.TasaInteresTotal / System.Convert.ToDecimal(this.Cuotas + DifMeses), 4);
                                 } else {
                                         // Es una operación normal a 30 días
-                                        return Math.Round(this.Intereses / System.Convert.ToDouble(this.Cuotas), 4);
+                                        return Math.Round(this.TasaInteresTotal / System.Convert.ToDecimal(this.Cuotas), 4);
                                 }
                         }
                 }
@@ -333,7 +359,7 @@ namespace Lbl.Cuotas
                 /// <summary>
                 /// Devuelve el monto de la cuota (es el importe total dividido por la cantidad de cuotas).
                 /// </summary>
-                public double MontoCuota
+                public decimal ImporteCuota
                 {
                         get
                         {

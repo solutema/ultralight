@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -49,17 +49,17 @@ namespace Lazaro.Reportes
                 internal Lui.Forms.TextBox txtCostoCapital;
                 internal System.Windows.Forms.Label label26;
                 internal System.Windows.Forms.Label label27;
-                internal Lui.Forms.Button cmdCostoCapital;
-                internal Lui.Forms.Button cmdCostoMateriales;
-                internal Lui.Forms.Button cmdIngresosOtros;
-                internal Lui.Forms.TextBox txtIngresosOtros;
+                internal Lui.Forms.Button BotonCostoCapital;
+                internal Lui.Forms.Button BotonCostoMateriales;
+                internal Lui.Forms.Button BotonIngresosOtros;
+                internal Lui.Forms.TextBox EntradaIngresosOtros;
                 internal System.Windows.Forms.Label label24;
                 internal Label label4;
                 internal Label label8;
                 internal Label label12;
                 internal Label label14;
-                internal Lui.Forms.TextBox txtGestionCobro;
-                internal Lui.Forms.Button cmdGestionCobro;
+                internal Lui.Forms.TextBox EntradaGestionCobro;
+                internal Lui.Forms.Button BotonGestionCobro;
                 internal Lui.Forms.Button PorTipo;
 
                 #region Código generado por el Diseñador de Windows Forms
@@ -83,7 +83,7 @@ namespace Lazaro.Reportes
 
 
                 // Requerido por el Diseñador de Windows Forms
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
 
                 // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
@@ -94,25 +94,25 @@ namespace Lazaro.Reportes
                 internal System.Windows.Forms.Label Label5;
                 internal System.Windows.Forms.Label Label6;
                 internal System.Windows.Forms.Label Label7;
-                internal Lui.Forms.TextBox txtFacturacion;
+                internal Lui.Forms.TextBox EntradaFacturacion;
                 internal Lui.Forms.TextBox txtCosto;
                 internal Lui.Forms.TextBox txtGastosFijos;
                 internal Lui.Forms.TextBox txtGastosVariables;
                 internal Lui.Forms.TextBox txtOtrosEgresos;
-                internal Lui.Forms.ListView lvItems;
+                internal Lui.Forms.ListView Listado;
                 internal System.Windows.Forms.ColumnHeader id;
                 internal System.Windows.Forms.ColumnHeader fecha;
                 internal System.Windows.Forms.ColumnHeader concepto;
                 internal System.Windows.Forms.ColumnHeader comprob;
-                internal Lui.Forms.Button cmdGastosFijos;
-                internal Lui.Forms.Button cmdGastosVariables;
-                internal Lui.Forms.Button cmdOtrosEgresos;
+                internal Lui.Forms.Button BotonGastosFijos;
+                internal Lui.Forms.Button BotonGastosVariables;
+                internal Lui.Forms.Button BotonOtrosEgresos;
                 internal System.Windows.Forms.ColumnHeader importe;
                 internal System.Windows.Forms.ColumnHeader cuenta;
                 internal System.Windows.Forms.ColumnHeader obs;
                 internal Lui.Forms.TextBox txtCobros;
                 internal System.Windows.Forms.Label Label10;
-                internal Lui.Forms.Button cmdCobros;
+                internal Lui.Forms.Button BotonCobros;
                 internal Lui.Forms.TextBox txtDiferenciaNeta;
                 internal System.Windows.Forms.Label Label9;
                 internal Lui.Forms.TextBox txtDiferenciaBruta;
@@ -128,7 +128,6 @@ namespace Lazaro.Reportes
                 internal System.Windows.Forms.Label Label22;
                 internal System.Windows.Forms.Label lblDiferenciaBrutaPct;
                 internal System.Windows.Forms.Label lblDiferenciaNetaPct;
-                internal Lui.Forms.Button PrintButton;
 
                 private void InitializeComponent()
                 {
@@ -138,15 +137,15 @@ namespace Lazaro.Reportes
                         this.Label5 = new System.Windows.Forms.Label();
                         this.Label6 = new System.Windows.Forms.Label();
                         this.Label7 = new System.Windows.Forms.Label();
-                        this.txtFacturacion = new Lui.Forms.TextBox();
+                        this.EntradaFacturacion = new Lui.Forms.TextBox();
                         this.txtCosto = new Lui.Forms.TextBox();
                         this.txtGastosFijos = new Lui.Forms.TextBox();
                         this.txtGastosVariables = new Lui.Forms.TextBox();
                         this.txtOtrosEgresos = new Lui.Forms.TextBox();
-                        this.cmdGastosFijos = new Lui.Forms.Button();
-                        this.cmdGastosVariables = new Lui.Forms.Button();
-                        this.cmdOtrosEgresos = new Lui.Forms.Button();
-                        this.lvItems = new Lui.Forms.ListView();
+                        this.BotonGastosFijos = new Lui.Forms.Button();
+                        this.BotonGastosVariables = new Lui.Forms.Button();
+                        this.BotonOtrosEgresos = new Lui.Forms.Button();
+                        this.Listado = new Lui.Forms.ListView();
                         this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.fecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.concepto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -156,7 +155,7 @@ namespace Lazaro.Reportes
                         this.obs = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.txtCobros = new Lui.Forms.TextBox();
                         this.Label10 = new System.Windows.Forms.Label();
-                        this.cmdCobros = new Lui.Forms.Button();
+                        this.BotonCobros = new Lui.Forms.Button();
                         this.txtDiferenciaNeta = new Lui.Forms.TextBox();
                         this.Label9 = new System.Windows.Forms.Label();
                         this.txtDiferenciaBruta = new Lui.Forms.TextBox();
@@ -172,25 +171,24 @@ namespace Lazaro.Reportes
                         this.Label22 = new System.Windows.Forms.Label();
                         this.lblDiferenciaBrutaPct = new System.Windows.Forms.Label();
                         this.lblDiferenciaNetaPct = new System.Windows.Forms.Label();
-                        this.PrintButton = new Lui.Forms.Button();
                         this.ChartButton = new Lui.Forms.Button();
                         this.PorTipo = new Lui.Forms.Button();
                         this.txtCompraMateriales = new Lui.Forms.TextBox();
                         this.label25 = new System.Windows.Forms.Label();
-                        this.cmdCostoCapital = new Lui.Forms.Button();
+                        this.BotonCostoCapital = new Lui.Forms.Button();
                         this.txtCostoCapital = new Lui.Forms.TextBox();
                         this.label26 = new System.Windows.Forms.Label();
                         this.label27 = new System.Windows.Forms.Label();
-                        this.cmdCostoMateriales = new Lui.Forms.Button();
-                        this.cmdIngresosOtros = new Lui.Forms.Button();
-                        this.txtIngresosOtros = new Lui.Forms.TextBox();
+                        this.BotonCostoMateriales = new Lui.Forms.Button();
+                        this.BotonIngresosOtros = new Lui.Forms.Button();
+                        this.EntradaIngresosOtros = new Lui.Forms.TextBox();
                         this.label24 = new System.Windows.Forms.Label();
                         this.label4 = new System.Windows.Forms.Label();
                         this.label8 = new System.Windows.Forms.Label();
                         this.label12 = new System.Windows.Forms.Label();
                         this.label14 = new System.Windows.Forms.Label();
-                        this.txtGestionCobro = new Lui.Forms.TextBox();
-                        this.cmdGestionCobro = new Lui.Forms.Button();
+                        this.EntradaGestionCobro = new Lui.Forms.TextBox();
+                        this.BotonGestionCobro = new Lui.Forms.Button();
                         this.SuspendLayout();
                         // 
                         // Label1
@@ -249,39 +247,38 @@ namespace Lazaro.Reportes
                         // 
                         // txtFacturacion
                         // 
-                        this.txtFacturacion.AutoHeight = false;
-                        this.txtFacturacion.AutoNav = true;
-                        this.txtFacturacion.AutoTab = true;
-                        this.txtFacturacion.DataType = Lui.Forms.DataTypes.Money;
-                        this.txtFacturacion.DecimalPlaces = -1;
-                        this.txtFacturacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtFacturacion.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtFacturacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtFacturacion.Location = new System.Drawing.Point(188, 68);
-                        this.txtFacturacion.MaxLenght = 32767;
-                        this.txtFacturacion.MultiLine = false;
-                        this.txtFacturacion.Name = "txtFacturacion";
-                        this.txtFacturacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtFacturacion.PasswordChar = '\0';
-                        this.txtFacturacion.Prefijo = "";
-                        this.txtFacturacion.ReadOnly = true;
-                        this.txtFacturacion.SelectOnFocus = true;
-                        this.txtFacturacion.Size = new System.Drawing.Size(104, 24);
-                        this.txtFacturacion.Sufijo = "";
-                        this.txtFacturacion.TabIndex = 29;
-                        this.txtFacturacion.TabStop = false;
-                        this.txtFacturacion.Text = "0.00";
-                        this.txtFacturacion.TextRaw = "0.00";
-                        this.txtFacturacion.TipWhenBlank = "";
-                        this.txtFacturacion.ToolTipText = "";
-                        this.txtFacturacion.GotFocus += new System.EventHandler(this.txtFacturacion_GotFocus);
+                        this.EntradaFacturacion.AutoSize = false;
+                        this.EntradaFacturacion.AutoNav = true;
+                        this.EntradaFacturacion.AutoTab = true;
+                        this.EntradaFacturacion.DataType = Lui.Forms.DataTypes.Currency;
+                        this.EntradaFacturacion.DecimalPlaces = -1;
+                        this.EntradaFacturacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaFacturacion.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaFacturacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaFacturacion.Location = new System.Drawing.Point(188, 68);
+                        this.EntradaFacturacion.MaxLenght = 32767;
+                        this.EntradaFacturacion.MultiLine = false;
+                        this.EntradaFacturacion.Name = "txtFacturacion";
+                        this.EntradaFacturacion.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaFacturacion.PasswordChar = '\0';
+                        this.EntradaFacturacion.Prefijo = "";
+                        this.EntradaFacturacion.ReadOnly = true;
+                        this.EntradaFacturacion.SelectOnFocus = true;
+                        this.EntradaFacturacion.Size = new System.Drawing.Size(104, 24);
+                        this.EntradaFacturacion.Sufijo = "";
+                        this.EntradaFacturacion.TabIndex = 29;
+                        this.EntradaFacturacion.TabStop = false;
+                        this.EntradaFacturacion.Text = "0.00";
+                        this.EntradaFacturacion.TipWhenBlank = "";
+                        this.EntradaFacturacion.ToolTipText = "";
+                        this.EntradaFacturacion.GotFocus += new System.EventHandler(this.EntradaFacturacion_GotFocus);
                         // 
                         // txtCosto
                         // 
-                        this.txtCosto.AutoHeight = false;
+                        this.txtCosto.AutoSize = false;
                         this.txtCosto.AutoNav = true;
                         this.txtCosto.AutoTab = true;
-                        this.txtCosto.DataType = Lui.Forms.DataTypes.Money;
+                        this.txtCosto.DataType = Lui.Forms.DataTypes.Currency;
                         this.txtCosto.DecimalPlaces = -1;
                         this.txtCosto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtCosto.ForceCase = Lui.Forms.TextCasing.None;
@@ -300,16 +297,15 @@ namespace Lazaro.Reportes
                         this.txtCosto.TabIndex = 31;
                         this.txtCosto.TabStop = false;
                         this.txtCosto.Text = "0.00";
-                        this.txtCosto.TextRaw = "0.00";
                         this.txtCosto.TipWhenBlank = "";
                         this.txtCosto.ToolTipText = "";
                         // 
                         // txtGastosFijos
                         // 
-                        this.txtGastosFijos.AutoHeight = false;
+                        this.txtGastosFijos.AutoSize = false;
                         this.txtGastosFijos.AutoNav = true;
                         this.txtGastosFijos.AutoTab = true;
-                        this.txtGastosFijos.DataType = Lui.Forms.DataTypes.Money;
+                        this.txtGastosFijos.DataType = Lui.Forms.DataTypes.Currency;
                         this.txtGastosFijos.DecimalPlaces = -1;
                         this.txtGastosFijos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtGastosFijos.ForceCase = Lui.Forms.TextCasing.None;
@@ -328,16 +324,15 @@ namespace Lazaro.Reportes
                         this.txtGastosFijos.TabIndex = 17;
                         this.txtGastosFijos.TabStop = false;
                         this.txtGastosFijos.Text = "0.00";
-                        this.txtGastosFijos.TextRaw = "0.00";
                         this.txtGastosFijos.TipWhenBlank = "";
                         this.txtGastosFijos.ToolTipText = "";
                         // 
                         // txtGastosVariables
                         // 
-                        this.txtGastosVariables.AutoHeight = false;
+                        this.txtGastosVariables.AutoSize = false;
                         this.txtGastosVariables.AutoNav = true;
                         this.txtGastosVariables.AutoTab = true;
-                        this.txtGastosVariables.DataType = Lui.Forms.DataTypes.Money;
+                        this.txtGastosVariables.DataType = Lui.Forms.DataTypes.Currency;
                         this.txtGastosVariables.DecimalPlaces = -1;
                         this.txtGastosVariables.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtGastosVariables.ForceCase = Lui.Forms.TextCasing.None;
@@ -356,16 +351,15 @@ namespace Lazaro.Reportes
                         this.txtGastosVariables.TabIndex = 20;
                         this.txtGastosVariables.TabStop = false;
                         this.txtGastosVariables.Text = "0.00";
-                        this.txtGastosVariables.TextRaw = "0.00";
                         this.txtGastosVariables.TipWhenBlank = "";
                         this.txtGastosVariables.ToolTipText = "";
                         // 
                         // txtOtrosEgresos
                         // 
-                        this.txtOtrosEgresos.AutoHeight = false;
+                        this.txtOtrosEgresos.AutoSize = false;
                         this.txtOtrosEgresos.AutoNav = true;
                         this.txtOtrosEgresos.AutoTab = true;
-                        this.txtOtrosEgresos.DataType = Lui.Forms.DataTypes.Money;
+                        this.txtOtrosEgresos.DataType = Lui.Forms.DataTypes.Currency;
                         this.txtOtrosEgresos.DecimalPlaces = -1;
                         this.txtOtrosEgresos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtOtrosEgresos.ForceCase = Lui.Forms.TextCasing.None;
@@ -384,78 +378,77 @@ namespace Lazaro.Reportes
                         this.txtOtrosEgresos.TabIndex = 23;
                         this.txtOtrosEgresos.TabStop = false;
                         this.txtOtrosEgresos.Text = "0.00";
-                        this.txtOtrosEgresos.TextRaw = "0.00";
                         this.txtOtrosEgresos.TipWhenBlank = "";
                         this.txtOtrosEgresos.ToolTipText = "";
                         // 
-                        // cmdGastosFijos
+                        // BotonGastosFijos
                         // 
-                        this.cmdGastosFijos.AutoHeight = false;
-                        this.cmdGastosFijos.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdGastosFijos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdGastosFijos.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdGastosFijos.Image = null;
-                        this.cmdGastosFijos.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdGastosFijos.Location = new System.Drawing.Point(296, 220);
-                        this.cmdGastosFijos.Name = "cmdGastosFijos";
-                        this.cmdGastosFijos.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdGastosFijos.ReadOnly = false;
-                        this.cmdGastosFijos.Size = new System.Drawing.Size(28, 24);
-                        this.cmdGastosFijos.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.cmdGastosFijos.Subtext = "";
-                        this.cmdGastosFijos.TabIndex = 18;
-                        this.cmdGastosFijos.Text = "...";
-                        this.cmdGastosFijos.ToolTipText = "";
-                        this.cmdGastosFijos.Click += new System.EventHandler(this.cmdGastosFijos_Click);
+                        this.BotonGastosFijos.AutoSize = false;
+                        this.BotonGastosFijos.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonGastosFijos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonGastosFijos.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonGastosFijos.Image = null;
+                        this.BotonGastosFijos.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonGastosFijos.Location = new System.Drawing.Point(296, 220);
+                        this.BotonGastosFijos.Name = "BotonGastosFijos";
+                        this.BotonGastosFijos.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonGastosFijos.ReadOnly = false;
+                        this.BotonGastosFijos.Size = new System.Drawing.Size(28, 24);
+                        this.BotonGastosFijos.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonGastosFijos.Subtext = "";
+                        this.BotonGastosFijos.TabIndex = 18;
+                        this.BotonGastosFijos.Text = "...";
+                        this.BotonGastosFijos.ToolTipText = "";
+                        this.BotonGastosFijos.Click += new System.EventHandler(this.BotonGastosFijos_Click);
                         // 
-                        // cmdGastosVariables
+                        // BotonGastosVariables
                         // 
-                        this.cmdGastosVariables.AutoHeight = false;
-                        this.cmdGastosVariables.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdGastosVariables.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdGastosVariables.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdGastosVariables.Image = null;
-                        this.cmdGastosVariables.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdGastosVariables.Location = new System.Drawing.Point(296, 248);
-                        this.cmdGastosVariables.Name = "cmdGastosVariables";
-                        this.cmdGastosVariables.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdGastosVariables.ReadOnly = false;
-                        this.cmdGastosVariables.Size = new System.Drawing.Size(28, 24);
-                        this.cmdGastosVariables.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.cmdGastosVariables.Subtext = "";
-                        this.cmdGastosVariables.TabIndex = 21;
-                        this.cmdGastosVariables.Text = "...";
-                        this.cmdGastosVariables.ToolTipText = "";
-                        this.cmdGastosVariables.Click += new System.EventHandler(this.cmdGastosVariables_Click);
+                        this.BotonGastosVariables.AutoSize = false;
+                        this.BotonGastosVariables.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonGastosVariables.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonGastosVariables.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonGastosVariables.Image = null;
+                        this.BotonGastosVariables.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonGastosVariables.Location = new System.Drawing.Point(296, 248);
+                        this.BotonGastosVariables.Name = "BotonGastosVariables";
+                        this.BotonGastosVariables.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonGastosVariables.ReadOnly = false;
+                        this.BotonGastosVariables.Size = new System.Drawing.Size(28, 24);
+                        this.BotonGastosVariables.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonGastosVariables.Subtext = "";
+                        this.BotonGastosVariables.TabIndex = 21;
+                        this.BotonGastosVariables.Text = "...";
+                        this.BotonGastosVariables.ToolTipText = "";
+                        this.BotonGastosVariables.Click += new System.EventHandler(this.BotonGastosVariables_Click);
                         // 
-                        // cmdOtrosEgresos
+                        // BotonOtrosEgresos
                         // 
-                        this.cmdOtrosEgresos.AutoHeight = false;
-                        this.cmdOtrosEgresos.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdOtrosEgresos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdOtrosEgresos.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdOtrosEgresos.Image = null;
-                        this.cmdOtrosEgresos.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdOtrosEgresos.Location = new System.Drawing.Point(296, 276);
-                        this.cmdOtrosEgresos.Name = "cmdOtrosEgresos";
-                        this.cmdOtrosEgresos.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdOtrosEgresos.ReadOnly = false;
-                        this.cmdOtrosEgresos.Size = new System.Drawing.Size(28, 24);
-                        this.cmdOtrosEgresos.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.cmdOtrosEgresos.Subtext = "";
-                        this.cmdOtrosEgresos.TabIndex = 24;
-                        this.cmdOtrosEgresos.Text = "...";
-                        this.cmdOtrosEgresos.ToolTipText = "";
-                        this.cmdOtrosEgresos.Click += new System.EventHandler(this.cmdOtrosEgresos_Click);
+                        this.BotonOtrosEgresos.AutoSize = false;
+                        this.BotonOtrosEgresos.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonOtrosEgresos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonOtrosEgresos.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonOtrosEgresos.Image = null;
+                        this.BotonOtrosEgresos.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonOtrosEgresos.Location = new System.Drawing.Point(296, 276);
+                        this.BotonOtrosEgresos.Name = "BotonOtrosEgresos";
+                        this.BotonOtrosEgresos.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonOtrosEgresos.ReadOnly = false;
+                        this.BotonOtrosEgresos.Size = new System.Drawing.Size(28, 24);
+                        this.BotonOtrosEgresos.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonOtrosEgresos.Subtext = "";
+                        this.BotonOtrosEgresos.TabIndex = 24;
+                        this.BotonOtrosEgresos.Text = "...";
+                        this.BotonOtrosEgresos.ToolTipText = "";
+                        this.BotonOtrosEgresos.Click += new System.EventHandler(this.BotonOtrosEgresos_Click);
                         // 
                         // lvItems
                         // 
-                        this.lvItems.AllowColumnReorder = true;
-                        this.lvItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        this.Listado.AllowColumnReorder = true;
+                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lvItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.lvItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+                        this.Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                        this.Listado.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.id,
             this.fecha,
             this.concepto,
@@ -463,18 +456,18 @@ namespace Lazaro.Reportes
             this.cuenta,
             this.comprob,
             this.obs});
-                        this.lvItems.FullRowSelect = true;
-                        this.lvItems.GridLines = true;
-                        this.lvItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-                        this.lvItems.HideSelection = false;
-                        this.lvItems.Location = new System.Drawing.Point(352, 8);
-                        this.lvItems.MultiSelect = false;
-                        this.lvItems.Name = "lvItems";
-                        this.lvItems.Size = new System.Drawing.Size(332, 522);
-                        this.lvItems.TabIndex = 37;
-                        this.lvItems.UseCompatibleStateImageBehavior = false;
-                        this.lvItems.View = System.Windows.Forms.View.Details;
-                        this.lvItems.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvItems_KeyDown);
+                        this.Listado.FullRowSelect = true;
+                        this.Listado.GridLines = true;
+                        this.Listado.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+                        this.Listado.HideSelection = false;
+                        this.Listado.Location = new System.Drawing.Point(352, 8);
+                        this.Listado.MultiSelect = false;
+                        this.Listado.Name = "lvItems";
+                        this.Listado.Size = new System.Drawing.Size(332, 522);
+                        this.Listado.TabIndex = 37;
+                        this.Listado.UseCompatibleStateImageBehavior = false;
+                        this.Listado.View = System.Windows.Forms.View.Details;
+                        this.Listado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvItems_KeyDown);
                         // 
                         // id
                         // 
@@ -515,10 +508,10 @@ namespace Lazaro.Reportes
                         // 
                         // txtCobros
                         // 
-                        this.txtCobros.AutoHeight = false;
+                        this.txtCobros.AutoSize = false;
                         this.txtCobros.AutoNav = true;
                         this.txtCobros.AutoTab = true;
-                        this.txtCobros.DataType = Lui.Forms.DataTypes.Money;
+                        this.txtCobros.DataType = Lui.Forms.DataTypes.Currency;
                         this.txtCobros.DecimalPlaces = -1;
                         this.txtCobros.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtCobros.ForceCase = Lui.Forms.TextCasing.None;
@@ -537,7 +530,6 @@ namespace Lazaro.Reportes
                         this.txtCobros.TabIndex = 5;
                         this.txtCobros.TabStop = false;
                         this.txtCobros.Text = "0.00";
-                        this.txtCobros.TextRaw = "0.00";
                         this.txtCobros.TipWhenBlank = "";
                         this.txtCobros.ToolTipText = "";
                         // 
@@ -551,32 +543,32 @@ namespace Lazaro.Reportes
                         this.Label10.Text = "Ingresos por Cobros";
                         this.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // cmdCobros
+                        // BotonCobros
                         // 
-                        this.cmdCobros.AutoHeight = false;
-                        this.cmdCobros.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdCobros.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdCobros.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdCobros.Image = null;
-                        this.cmdCobros.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdCobros.Location = new System.Drawing.Point(296, 372);
-                        this.cmdCobros.Name = "cmdCobros";
-                        this.cmdCobros.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdCobros.ReadOnly = false;
-                        this.cmdCobros.Size = new System.Drawing.Size(28, 24);
-                        this.cmdCobros.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.cmdCobros.Subtext = "";
-                        this.cmdCobros.TabIndex = 6;
-                        this.cmdCobros.Text = "...";
-                        this.cmdCobros.ToolTipText = "";
-                        this.cmdCobros.Click += new System.EventHandler(this.cmdCobros_Click);
+                        this.BotonCobros.AutoSize = false;
+                        this.BotonCobros.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonCobros.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonCobros.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonCobros.Image = null;
+                        this.BotonCobros.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonCobros.Location = new System.Drawing.Point(296, 372);
+                        this.BotonCobros.Name = "BotonCobros";
+                        this.BotonCobros.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonCobros.ReadOnly = false;
+                        this.BotonCobros.Size = new System.Drawing.Size(28, 24);
+                        this.BotonCobros.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonCobros.Subtext = "";
+                        this.BotonCobros.TabIndex = 6;
+                        this.BotonCobros.Text = "...";
+                        this.BotonCobros.ToolTipText = "";
+                        this.BotonCobros.Click += new System.EventHandler(this.BotonCobros_Click);
                         // 
                         // txtDiferenciaNeta
                         // 
-                        this.txtDiferenciaNeta.AutoHeight = false;
+                        this.txtDiferenciaNeta.AutoSize = false;
                         this.txtDiferenciaNeta.AutoNav = true;
                         this.txtDiferenciaNeta.AutoTab = true;
-                        this.txtDiferenciaNeta.DataType = Lui.Forms.DataTypes.Money;
+                        this.txtDiferenciaNeta.DataType = Lui.Forms.DataTypes.Currency;
                         this.txtDiferenciaNeta.DecimalPlaces = -1;
                         this.txtDiferenciaNeta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtDiferenciaNeta.ForceCase = Lui.Forms.TextCasing.None;
@@ -595,7 +587,6 @@ namespace Lazaro.Reportes
                         this.txtDiferenciaNeta.TabIndex = 26;
                         this.txtDiferenciaNeta.TabStop = false;
                         this.txtDiferenciaNeta.Text = "0.00";
-                        this.txtDiferenciaNeta.TextRaw = "0.00";
                         this.txtDiferenciaNeta.TipWhenBlank = "";
                         this.txtDiferenciaNeta.ToolTipText = "";
                         // 
@@ -610,10 +601,10 @@ namespace Lazaro.Reportes
                         // 
                         // txtDiferenciaBruta
                         // 
-                        this.txtDiferenciaBruta.AutoHeight = false;
+                        this.txtDiferenciaBruta.AutoSize = false;
                         this.txtDiferenciaBruta.AutoNav = true;
                         this.txtDiferenciaBruta.AutoTab = true;
-                        this.txtDiferenciaBruta.DataType = Lui.Forms.DataTypes.Money;
+                        this.txtDiferenciaBruta.DataType = Lui.Forms.DataTypes.Currency;
                         this.txtDiferenciaBruta.DecimalPlaces = -1;
                         this.txtDiferenciaBruta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtDiferenciaBruta.ForceCase = Lui.Forms.TextCasing.None;
@@ -632,7 +623,6 @@ namespace Lazaro.Reportes
                         this.txtDiferenciaBruta.TabIndex = 33;
                         this.txtDiferenciaBruta.TabStop = false;
                         this.txtDiferenciaBruta.Text = "0.00";
-                        this.txtDiferenciaBruta.TextRaw = "0.00";
                         this.txtDiferenciaBruta.TipWhenBlank = "";
                         this.txtDiferenciaBruta.ToolTipText = "";
                         // 
@@ -700,7 +690,7 @@ namespace Lazaro.Reportes
                         // 
                         // txtFecha1
                         // 
-                        this.txtFecha1.AutoHeight = false;
+                        this.txtFecha1.AutoSize = false;
                         this.txtFecha1.AutoNav = true;
                         this.txtFecha1.AutoTab = true;
                         this.txtFecha1.DataType = Lui.Forms.DataTypes.Date;
@@ -720,14 +710,13 @@ namespace Lazaro.Reportes
                         this.txtFecha1.Size = new System.Drawing.Size(92, 24);
                         this.txtFecha1.Sufijo = "";
                         this.txtFecha1.TabIndex = 1;
-                        this.txtFecha1.TextRaw = "";
                         this.txtFecha1.TipWhenBlank = "";
                         this.txtFecha1.ToolTipText = "";
                         this.txtFecha1.LostFocus += new System.EventHandler(this.txtFecha12_LostFocus);
                         // 
                         // txtFecha2
                         // 
-                        this.txtFecha2.AutoHeight = false;
+                        this.txtFecha2.AutoSize = false;
                         this.txtFecha2.AutoNav = true;
                         this.txtFecha2.AutoTab = true;
                         this.txtFecha2.DataType = Lui.Forms.DataTypes.Date;
@@ -747,7 +736,6 @@ namespace Lazaro.Reportes
                         this.txtFecha2.Size = new System.Drawing.Size(92, 24);
                         this.txtFecha2.Sufijo = "";
                         this.txtFecha2.TabIndex = 3;
-                        this.txtFecha2.TextRaw = "";
                         this.txtFecha2.TipWhenBlank = "";
                         this.txtFecha2.ToolTipText = "";
                         this.txtFecha2.LostFocus += new System.EventHandler(this.txtFecha12_LostFocus);
@@ -780,32 +768,12 @@ namespace Lazaro.Reportes
                         this.lblDiferenciaNetaPct.TabIndex = 27;
                         this.lblDiferenciaNetaPct.Text = "0%";
                         this.lblDiferenciaNetaPct.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // PrintButton
-                        // 
-                        this.PrintButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.PrintButton.AutoHeight = false;
-                        this.PrintButton.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.PrintButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.PrintButton.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.PrintButton.Image = null;
-                        this.PrintButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.PrintButton.Location = new System.Drawing.Point(8, 498);
-                        this.PrintButton.Name = "PrintButton";
-                        this.PrintButton.Padding = new System.Windows.Forms.Padding(2);
-                        this.PrintButton.ReadOnly = false;
-                        this.PrintButton.Size = new System.Drawing.Size(96, 28);
-                        this.PrintButton.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
-                        this.PrintButton.Subtext = "F8";
-                        this.PrintButton.TabIndex = 38;
-                        this.PrintButton.Text = "Imprimir";
-                        this.PrintButton.ToolTipText = "";
-                        this.PrintButton.Click += new System.EventHandler(this.cmdImprimir_Click);
+                        
                         // 
                         // ChartButton
                         // 
                         this.ChartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.ChartButton.AutoHeight = false;
+                        this.ChartButton.AutoSize = false;
                         this.ChartButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.ChartButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.ChartButton.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -826,7 +794,7 @@ namespace Lazaro.Reportes
                         // PorTipo
                         // 
                         this.PorTipo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.PorTipo.AutoHeight = false;
+                        this.PorTipo.AutoSize = false;
                         this.PorTipo.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.PorTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.PorTipo.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -846,10 +814,10 @@ namespace Lazaro.Reportes
                         // 
                         // txtCompraMateriales
                         // 
-                        this.txtCompraMateriales.AutoHeight = false;
+                        this.txtCompraMateriales.AutoSize = false;
                         this.txtCompraMateriales.AutoNav = true;
                         this.txtCompraMateriales.AutoTab = true;
-                        this.txtCompraMateriales.DataType = Lui.Forms.DataTypes.Money;
+                        this.txtCompraMateriales.DataType = Lui.Forms.DataTypes.Currency;
                         this.txtCompraMateriales.DecimalPlaces = -1;
                         this.txtCompraMateriales.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtCompraMateriales.ForceCase = Lui.Forms.TextCasing.None;
@@ -868,7 +836,6 @@ namespace Lazaro.Reportes
                         this.txtCompraMateriales.TabIndex = 11;
                         this.txtCompraMateriales.TabStop = false;
                         this.txtCompraMateriales.Text = "0.00";
-                        this.txtCompraMateriales.TextRaw = "0.00";
                         this.txtCompraMateriales.TipWhenBlank = "";
                         this.txtCompraMateriales.ToolTipText = "";
                         // 
@@ -881,32 +848,32 @@ namespace Lazaro.Reportes
                         this.label25.Text = "Costo Materiales";
                         this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // cmdCostoCapital
+                        // BotonCostoCapital
                         // 
-                        this.cmdCostoCapital.AutoHeight = false;
-                        this.cmdCostoCapital.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdCostoCapital.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdCostoCapital.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdCostoCapital.Image = null;
-                        this.cmdCostoCapital.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdCostoCapital.Location = new System.Drawing.Point(296, 192);
-                        this.cmdCostoCapital.Name = "cmdCostoCapital";
-                        this.cmdCostoCapital.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdCostoCapital.ReadOnly = false;
-                        this.cmdCostoCapital.Size = new System.Drawing.Size(28, 24);
-                        this.cmdCostoCapital.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.cmdCostoCapital.Subtext = "";
-                        this.cmdCostoCapital.TabIndex = 15;
-                        this.cmdCostoCapital.Text = "...";
-                        this.cmdCostoCapital.ToolTipText = "";
-                        this.cmdCostoCapital.Click += new System.EventHandler(this.cmdCostoCapital_Click);
+                        this.BotonCostoCapital.AutoSize = false;
+                        this.BotonCostoCapital.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonCostoCapital.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonCostoCapital.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonCostoCapital.Image = null;
+                        this.BotonCostoCapital.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonCostoCapital.Location = new System.Drawing.Point(296, 192);
+                        this.BotonCostoCapital.Name = "BotonCostoCapital";
+                        this.BotonCostoCapital.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonCostoCapital.ReadOnly = false;
+                        this.BotonCostoCapital.Size = new System.Drawing.Size(28, 24);
+                        this.BotonCostoCapital.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonCostoCapital.Subtext = "";
+                        this.BotonCostoCapital.TabIndex = 15;
+                        this.BotonCostoCapital.Text = "...";
+                        this.BotonCostoCapital.ToolTipText = "";
+                        this.BotonCostoCapital.Click += new System.EventHandler(this.BotonCostoCapital_Click);
                         // 
                         // txtCostoCapital
                         // 
-                        this.txtCostoCapital.AutoHeight = false;
+                        this.txtCostoCapital.AutoSize = false;
                         this.txtCostoCapital.AutoNav = true;
                         this.txtCostoCapital.AutoTab = true;
-                        this.txtCostoCapital.DataType = Lui.Forms.DataTypes.Money;
+                        this.txtCostoCapital.DataType = Lui.Forms.DataTypes.Currency;
                         this.txtCostoCapital.DecimalPlaces = -1;
                         this.txtCostoCapital.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtCostoCapital.ForceCase = Lui.Forms.TextCasing.None;
@@ -925,7 +892,6 @@ namespace Lazaro.Reportes
                         this.txtCostoCapital.TabIndex = 14;
                         this.txtCostoCapital.TabStop = false;
                         this.txtCostoCapital.Text = "0.00";
-                        this.txtCostoCapital.TextRaw = "0.00";
                         this.txtCostoCapital.TipWhenBlank = "";
                         this.txtCostoCapital.ToolTipText = "";
                         // 
@@ -947,73 +913,72 @@ namespace Lazaro.Reportes
                         this.label27.Text = "Costo Capital";
                         this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // cmdCostoMateriales
+                        // BotonCostoMateriales
                         // 
-                        this.cmdCostoMateriales.AutoHeight = false;
-                        this.cmdCostoMateriales.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdCostoMateriales.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdCostoMateriales.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdCostoMateriales.Image = null;
-                        this.cmdCostoMateriales.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdCostoMateriales.Location = new System.Drawing.Point(296, 428);
-                        this.cmdCostoMateriales.Name = "cmdCostoMateriales";
-                        this.cmdCostoMateriales.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdCostoMateriales.ReadOnly = false;
-                        this.cmdCostoMateriales.Size = new System.Drawing.Size(28, 24);
-                        this.cmdCostoMateriales.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.cmdCostoMateriales.Subtext = "";
-                        this.cmdCostoMateriales.TabIndex = 12;
-                        this.cmdCostoMateriales.Text = "...";
-                        this.cmdCostoMateriales.ToolTipText = "";
-                        this.cmdCostoMateriales.Click += new System.EventHandler(this.cmdCostoMateriales_Click);
+                        this.BotonCostoMateriales.AutoSize = false;
+                        this.BotonCostoMateriales.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonCostoMateriales.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonCostoMateriales.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonCostoMateriales.Image = null;
+                        this.BotonCostoMateriales.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonCostoMateriales.Location = new System.Drawing.Point(296, 428);
+                        this.BotonCostoMateriales.Name = "BotonCostoMateriales";
+                        this.BotonCostoMateriales.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonCostoMateriales.ReadOnly = false;
+                        this.BotonCostoMateriales.Size = new System.Drawing.Size(28, 24);
+                        this.BotonCostoMateriales.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonCostoMateriales.Subtext = "";
+                        this.BotonCostoMateriales.TabIndex = 12;
+                        this.BotonCostoMateriales.Text = "...";
+                        this.BotonCostoMateriales.ToolTipText = "";
+                        this.BotonCostoMateriales.Click += new System.EventHandler(this.BotonCostoMateriales_Click);
                         // 
-                        // cmdIngresosOtros
+                        // BotonIngresosOtros
                         // 
-                        this.cmdIngresosOtros.AutoHeight = false;
-                        this.cmdIngresosOtros.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdIngresosOtros.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdIngresosOtros.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdIngresosOtros.Image = null;
-                        this.cmdIngresosOtros.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdIngresosOtros.Location = new System.Drawing.Point(296, 400);
-                        this.cmdIngresosOtros.Name = "cmdIngresosOtros";
-                        this.cmdIngresosOtros.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdIngresosOtros.ReadOnly = false;
-                        this.cmdIngresosOtros.Size = new System.Drawing.Size(28, 24);
-                        this.cmdIngresosOtros.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.cmdIngresosOtros.Subtext = "";
-                        this.cmdIngresosOtros.TabIndex = 9;
-                        this.cmdIngresosOtros.Text = "...";
-                        this.cmdIngresosOtros.ToolTipText = "";
-                        this.cmdIngresosOtros.Click += new System.EventHandler(this.cmdIngresosOtros_Click);
+                        this.BotonIngresosOtros.AutoSize = false;
+                        this.BotonIngresosOtros.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonIngresosOtros.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonIngresosOtros.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonIngresosOtros.Image = null;
+                        this.BotonIngresosOtros.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonIngresosOtros.Location = new System.Drawing.Point(296, 400);
+                        this.BotonIngresosOtros.Name = "BotonIngresosOtros";
+                        this.BotonIngresosOtros.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonIngresosOtros.ReadOnly = false;
+                        this.BotonIngresosOtros.Size = new System.Drawing.Size(28, 24);
+                        this.BotonIngresosOtros.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonIngresosOtros.Subtext = "";
+                        this.BotonIngresosOtros.TabIndex = 9;
+                        this.BotonIngresosOtros.Text = "...";
+                        this.BotonIngresosOtros.ToolTipText = "";
+                        this.BotonIngresosOtros.Click += new System.EventHandler(this.BotonIngresosOtros_Click);
                         // 
-                        // txtIngresosOtros
+                        // EntradaIngresosOtros
                         // 
-                        this.txtIngresosOtros.AutoHeight = false;
-                        this.txtIngresosOtros.AutoNav = true;
-                        this.txtIngresosOtros.AutoTab = true;
-                        this.txtIngresosOtros.DataType = Lui.Forms.DataTypes.Money;
-                        this.txtIngresosOtros.DecimalPlaces = -1;
-                        this.txtIngresosOtros.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtIngresosOtros.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtIngresosOtros.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtIngresosOtros.Location = new System.Drawing.Point(188, 400);
-                        this.txtIngresosOtros.MaxLenght = 32767;
-                        this.txtIngresosOtros.MultiLine = false;
-                        this.txtIngresosOtros.Name = "txtIngresosOtros";
-                        this.txtIngresosOtros.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtIngresosOtros.PasswordChar = '\0';
-                        this.txtIngresosOtros.Prefijo = "";
-                        this.txtIngresosOtros.ReadOnly = true;
-                        this.txtIngresosOtros.SelectOnFocus = true;
-                        this.txtIngresosOtros.Size = new System.Drawing.Size(104, 24);
-                        this.txtIngresosOtros.Sufijo = "";
-                        this.txtIngresosOtros.TabIndex = 8;
-                        this.txtIngresosOtros.TabStop = false;
-                        this.txtIngresosOtros.Text = "0.00";
-                        this.txtIngresosOtros.TextRaw = "0.00";
-                        this.txtIngresosOtros.TipWhenBlank = "";
-                        this.txtIngresosOtros.ToolTipText = "";
+                        this.EntradaIngresosOtros.AutoSize = false;
+                        this.EntradaIngresosOtros.AutoNav = true;
+                        this.EntradaIngresosOtros.AutoTab = true;
+                        this.EntradaIngresosOtros.DataType = Lui.Forms.DataTypes.Currency;
+                        this.EntradaIngresosOtros.DecimalPlaces = -1;
+                        this.EntradaIngresosOtros.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaIngresosOtros.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaIngresosOtros.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaIngresosOtros.Location = new System.Drawing.Point(188, 400);
+                        this.EntradaIngresosOtros.MaxLenght = 32767;
+                        this.EntradaIngresosOtros.MultiLine = false;
+                        this.EntradaIngresosOtros.Name = "EntradaIngresosOtros";
+                        this.EntradaIngresosOtros.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaIngresosOtros.PasswordChar = '\0';
+                        this.EntradaIngresosOtros.Prefijo = "";
+                        this.EntradaIngresosOtros.ReadOnly = true;
+                        this.EntradaIngresosOtros.SelectOnFocus = true;
+                        this.EntradaIngresosOtros.Size = new System.Drawing.Size(104, 24);
+                        this.EntradaIngresosOtros.Sufijo = "";
+                        this.EntradaIngresosOtros.TabIndex = 8;
+                        this.EntradaIngresosOtros.TabStop = false;
+                        this.EntradaIngresosOtros.Text = "0.00";
+                        this.EntradaIngresosOtros.TipWhenBlank = "";
+                        this.EntradaIngresosOtros.ToolTipText = "";
                         // 
                         // label24
                         // 
@@ -1060,94 +1025,92 @@ namespace Lazaro.Reportes
                         this.label14.Text = "Gestión de Cobro";
                         this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtGestionCobro
+                        // EntradaGestionCobro
                         // 
-                        this.txtGestionCobro.AutoHeight = false;
-                        this.txtGestionCobro.AutoNav = true;
-                        this.txtGestionCobro.AutoTab = true;
-                        this.txtGestionCobro.DataType = Lui.Forms.DataTypes.Money;
-                        this.txtGestionCobro.DecimalPlaces = -1;
-                        this.txtGestionCobro.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtGestionCobro.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtGestionCobro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtGestionCobro.Location = new System.Drawing.Point(188, 124);
-                        this.txtGestionCobro.MaxLenght = 32767;
-                        this.txtGestionCobro.MultiLine = false;
-                        this.txtGestionCobro.Name = "txtGestionCobro";
-                        this.txtGestionCobro.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtGestionCobro.PasswordChar = '\0';
-                        this.txtGestionCobro.Prefijo = "";
-                        this.txtGestionCobro.ReadOnly = true;
-                        this.txtGestionCobro.SelectOnFocus = true;
-                        this.txtGestionCobro.Size = new System.Drawing.Size(104, 24);
-                        this.txtGestionCobro.Sufijo = "";
-                        this.txtGestionCobro.TabIndex = 72;
-                        this.txtGestionCobro.TabStop = false;
-                        this.txtGestionCobro.Text = "0.00";
-                        this.txtGestionCobro.TextRaw = "0.00";
-                        this.txtGestionCobro.TipWhenBlank = "";
-                        this.txtGestionCobro.ToolTipText = "";
+                        this.EntradaGestionCobro.AutoSize = false;
+                        this.EntradaGestionCobro.AutoNav = true;
+                        this.EntradaGestionCobro.AutoTab = true;
+                        this.EntradaGestionCobro.DataType = Lui.Forms.DataTypes.Currency;
+                        this.EntradaGestionCobro.DecimalPlaces = -1;
+                        this.EntradaGestionCobro.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaGestionCobro.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaGestionCobro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaGestionCobro.Location = new System.Drawing.Point(188, 124);
+                        this.EntradaGestionCobro.MaxLenght = 32767;
+                        this.EntradaGestionCobro.MultiLine = false;
+                        this.EntradaGestionCobro.Name = "EntradaGestionCobro";
+                        this.EntradaGestionCobro.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaGestionCobro.PasswordChar = '\0';
+                        this.EntradaGestionCobro.Prefijo = "";
+                        this.EntradaGestionCobro.ReadOnly = true;
+                        this.EntradaGestionCobro.SelectOnFocus = true;
+                        this.EntradaGestionCobro.Size = new System.Drawing.Size(104, 24);
+                        this.EntradaGestionCobro.Sufijo = "";
+                        this.EntradaGestionCobro.TabIndex = 72;
+                        this.EntradaGestionCobro.TabStop = false;
+                        this.EntradaGestionCobro.Text = "0.00";
+                        this.EntradaGestionCobro.TipWhenBlank = "";
+                        this.EntradaGestionCobro.ToolTipText = "";
                         // 
-                        // cmdGestionCobro
+                        // BotonGestionCobro
                         // 
-                        this.cmdGestionCobro.AutoHeight = false;
-                        this.cmdGestionCobro.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdGestionCobro.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdGestionCobro.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdGestionCobro.Image = null;
-                        this.cmdGestionCobro.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdGestionCobro.Location = new System.Drawing.Point(296, 124);
-                        this.cmdGestionCobro.Name = "cmdGestionCobro";
-                        this.cmdGestionCobro.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdGestionCobro.ReadOnly = false;
-                        this.cmdGestionCobro.Size = new System.Drawing.Size(28, 24);
-                        this.cmdGestionCobro.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.cmdGestionCobro.Subtext = "";
-                        this.cmdGestionCobro.TabIndex = 74;
-                        this.cmdGestionCobro.Text = "...";
-                        this.cmdGestionCobro.ToolTipText = "";
-                        this.cmdGestionCobro.Click += new System.EventHandler(this.cmdGestionCobro_Click);
+                        this.BotonGestionCobro.AutoSize = false;
+                        this.BotonGestionCobro.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonGestionCobro.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonGestionCobro.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonGestionCobro.Image = null;
+                        this.BotonGestionCobro.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonGestionCobro.Location = new System.Drawing.Point(296, 124);
+                        this.BotonGestionCobro.Name = "BotonGestionCobro";
+                        this.BotonGestionCobro.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonGestionCobro.ReadOnly = false;
+                        this.BotonGestionCobro.Size = new System.Drawing.Size(28, 24);
+                        this.BotonGestionCobro.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonGestionCobro.Subtext = "";
+                        this.BotonGestionCobro.TabIndex = 74;
+                        this.BotonGestionCobro.Text = "...";
+                        this.BotonGestionCobro.ToolTipText = "";
+                        this.BotonGestionCobro.Click += new System.EventHandler(this.BotonGestionCobro_Click);
                         // 
                         // IngresosEgresos
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(692, 535);
-                        this.Controls.Add(this.cmdGestionCobro);
+                        this.Controls.Add(this.BotonGestionCobro);
                         this.Controls.Add(this.label12);
                         this.Controls.Add(this.label14);
-                        this.Controls.Add(this.txtGestionCobro);
+                        this.Controls.Add(this.EntradaGestionCobro);
                         this.Controls.Add(this.label8);
                         this.Controls.Add(this.label4);
-                        this.Controls.Add(this.cmdIngresosOtros);
-                        this.Controls.Add(this.txtIngresosOtros);
+                        this.Controls.Add(this.BotonIngresosOtros);
+                        this.Controls.Add(this.EntradaIngresosOtros);
                         this.Controls.Add(this.label24);
-                        this.Controls.Add(this.cmdCostoMateriales);
+                        this.Controls.Add(this.BotonCostoMateriales);
                         this.Controls.Add(this.txtCompraMateriales);
-                        this.Controls.Add(this.cmdCobros);
+                        this.Controls.Add(this.BotonCobros);
                         this.Controls.Add(this.txtCobros);
                         this.Controls.Add(this.Label10);
                         this.Controls.Add(this.Label3);
-                        this.Controls.Add(this.lvItems);
-                        this.Controls.Add(this.cmdCostoCapital);
+                        this.Controls.Add(this.Listado);
+                        this.Controls.Add(this.BotonCostoCapital);
                         this.Controls.Add(this.txtCostoCapital);
                         this.Controls.Add(this.label26);
                         this.Controls.Add(this.label27);
                         this.Controls.Add(this.label25);
                         this.Controls.Add(this.PorTipo);
                         this.Controls.Add(this.ChartButton);
-                        this.Controls.Add(this.PrintButton);
                         this.Controls.Add(this.txtFecha2);
                         this.Controls.Add(this.txtFecha1);
                         this.Controls.Add(this.txtDiferenciaBruta);
                         this.Controls.Add(this.txtDiferenciaNeta);
-                        this.Controls.Add(this.cmdOtrosEgresos);
-                        this.Controls.Add(this.cmdGastosVariables);
-                        this.Controls.Add(this.cmdGastosFijos);
+                        this.Controls.Add(this.BotonOtrosEgresos);
+                        this.Controls.Add(this.BotonGastosVariables);
+                        this.Controls.Add(this.BotonGastosFijos);
                         this.Controls.Add(this.txtOtrosEgresos);
                         this.Controls.Add(this.txtGastosVariables);
                         this.Controls.Add(this.txtGastosFijos);
                         this.Controls.Add(this.txtCosto);
-                        this.Controls.Add(this.txtFacturacion);
+                        this.Controls.Add(this.EntradaFacturacion);
                         this.Controls.Add(this.lblDiferenciaNetaPct);
                         this.Controls.Add(this.lblDiferenciaBrutaPct);
                         this.Controls.Add(this.Label22);
@@ -1168,7 +1131,6 @@ namespace Lazaro.Reportes
                         this.Name = "IngresosEgresos";
                         this.Text = "Reporte Ingresos y Egresos";
                         this.Load += new System.EventHandler(this.FormRepRentabilidad_Load);
-                        this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormRepRentabilidad_KeyDown);
                         this.ResumeLayout(false);
 
                 }
@@ -1178,35 +1140,36 @@ namespace Lazaro.Reportes
 
                 public void MostrarReporte()
                 {
-                        double Facturas = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND compra=0 AND impresa>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                        double NotasCredito = this.DataBase.FieldDouble("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND compra=0 AND impresa>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        decimal Facturas = this.Connection.FieldDecimal("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND compra=0 AND impresa>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        decimal NotasCredito = this.Connection.FieldDecimal("SELECT SUM(total) FROM comprob WHERE tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND compra=0 AND impresa>0 AND anulada=0 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 
-                        double Costo = this.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND comprob.compra=0 AND comprob.impresa>0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                        double CostoNotasCredito = this.DataBase.FieldDouble("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND comprob.compra=0 AND comprob.impresa>0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
-                        
-                        double GestionCobro = -this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto=24010 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        decimal Costo = this.Connection.FieldDecimal("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND comprob.compra=0 AND comprob.impresa>0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob_detalle.precio>0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        decimal CostoNotasCredito = this.Connection.FieldDecimal("SELECT SUM(costo*cantidad) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND comprob.compra=0 AND comprob.impresa>0 AND comprob.numero>0 AND comprob.anulada=0 AND comprob.fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
 
-                        double Facturacion = Facturas - NotasCredito;
-                        txtFacturacion.Text = Lfx.Types.Formatting.FormatCurrency(Facturacion, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtFacturacion.Tag = "Facturas: " + Lfx.Types.Formatting.FormatCurrency(Facturas, this.Workspace.CurrentConfig.Moneda.Decimales) + " - Notas de Crédito: " + Lfx.Types.Formatting.FormatCurrency(NotasCredito, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        decimal GestionCobro = -this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto=24010 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+
+                        decimal Facturacion = Facturas - NotasCredito;
+
+                        EntradaFacturacion.Text = Lfx.Types.Formatting.FormatCurrency(Facturacion, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaFacturacion.Tag = "Facturas: " + Lfx.Types.Formatting.FormatCurrency(Facturas, this.Workspace.CurrentConfig.Moneda.Decimales) + " - Notas de Crédito: " + Lfx.Types.Formatting.FormatCurrency(NotasCredito, this.Workspace.CurrentConfig.Moneda.Decimales);
                         txtCosto.Text = Lfx.Types.Formatting.FormatCurrency(Costo - CostoNotasCredito, this.Workspace.CurrentConfig.Moneda.Decimales);
                         txtCosto.Tag = "Facturas: " + Lfx.Types.Formatting.FormatCurrency(Costo, this.Workspace.CurrentConfig.Moneda.Decimales) + " - Notas de Crédito: " + Lfx.Types.Formatting.FormatCurrency(CostoNotasCredito, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtGestionCobro.Text = Lfx.Types.Formatting.FormatCurrency(GestionCobro, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaGestionCobro.Text = Lfx.Types.Formatting.FormatCurrency(GestionCobro, this.Workspace.CurrentConfig.Moneda.Decimales);
                         txtDiferenciaBruta.Text = Lfx.Types.Formatting.FormatCurrency(Facturacion - Costo + CostoNotasCredito - GestionCobro, this.Workspace.CurrentConfig.Moneda.Decimales);
 
-                        txtCostoCapital.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=220) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtGastosFijos.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=230) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtGastosVariables.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=240) AND id_concepto NOT IN (24010) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtOtrosEgresos.Text = Lfx.Types.Formatting.FormatCurrency(-(this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE importe<0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND id_concepto<>26030 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtCostoCapital.Text = Lfx.Types.Formatting.FormatCurrency(-(this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=220) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtGastosFijos.Text = Lfx.Types.Formatting.FormatCurrency(-(this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=230) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtGastosVariables.Text = Lfx.Types.Formatting.FormatCurrency(-(this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=240) AND id_concepto NOT IN (24010) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtOtrosEgresos.Text = Lfx.Types.Formatting.FormatCurrency(-(this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE importe<0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND id_concepto<>26030 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
 
                         if (Facturacion == 0)
                                 lblDiferenciaBrutaPct.Text = "N/A";
                         else
-                                lblDiferenciaBrutaPct.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtDiferenciaBruta.Text) / Lfx.Types.Parsing.ParseCurrency(txtFacturacion.Text) * 100, 1) + "%";
+                                lblDiferenciaBrutaPct.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtDiferenciaBruta.Text) / Lfx.Types.Parsing.ParseCurrency(EntradaFacturacion.Text) * 100, 1) + "%";
 
                         txtDiferenciaNeta.Text = Lfx.Types.Formatting.FormatCurrency(
                                         Lfx.Types.Parsing.ParseCurrency(txtDiferenciaBruta.Text)
-                                        /* + Lfx.Types.Parsing.ParseCurrency(txtIngresosOtros.Text)
+                                        /* + Lfx.Types.Parsing.ParseCurrency(EntradaIngresosOtros.Text)
                                         - Lfx.Types.Parsing.ParseCurrency(txtCostoMateriales.Text) */
                                         - Lfx.Types.Parsing.ParseCurrency(txtCostoCapital.Text)
                                         - Lfx.Types.Parsing.ParseCurrency(txtGastosFijos.Text)
@@ -1217,13 +1180,13 @@ namespace Lazaro.Reportes
                         if (Facturacion == 0)
                                 lblDiferenciaNetaPct.Text = "N/A";
                         else
-                                lblDiferenciaNetaPct.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtDiferenciaNeta.Text) / Lfx.Types.Parsing.ParseCurrency(txtFacturacion.Text) * 100, 1) + "%";
+                                lblDiferenciaNetaPct.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtDiferenciaNeta.Text) / Lfx.Types.Parsing.ParseCurrency(EntradaFacturacion.Text) * 100, 1) + "%";
 
 
                         //Ingresos y egresos
-                        txtCobros.Text = Lfx.Types.Formatting.FormatCurrency(Math.Abs(this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE (id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=110) OR id_concepto=26030 ) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtIngresosOtros.Text = Lfx.Types.Formatting.FormatCurrency(Math.Abs(this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE importe>0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtCompraMateriales.Text = Lfx.Types.Formatting.FormatCurrency(-this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=210) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'"), this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtCobros.Text = Lfx.Types.Formatting.FormatCurrency(Math.Abs(this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE (id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=110) OR id_concepto=26030 ) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaIngresosOtros.Text = Lfx.Types.Formatting.FormatCurrency(Math.Abs(this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE importe>0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtCompraMateriales.Text = Lfx.Types.Formatting.FormatCurrency(-this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=210) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'"), this.Workspace.CurrentConfig.Moneda.Decimales);
 
                 }
 
@@ -1240,59 +1203,59 @@ namespace Lazaro.Reportes
 
                 public void MostrarDetalles(string Sql)
                 {
-                        lvItems.BeginUpdate();
-                        lvItems.Items.Clear();
+                        Listado.BeginUpdate();
+                        Listado.Items.Clear();
 
-                        System.Data.DataTable Detalles = this.DataBase.Select(Sql);
+                        System.Data.DataTable Detalles = this.Connection.Select(Sql);
                         foreach (System.Data.DataRow Detalle in Detalles.Rows) {
-                                ListViewItem itm = lvItems.Items.Add(System.Convert.ToString(Detalle["id_movim"]));
+                                ListViewItem itm = Listado.Items.Add(System.Convert.ToString(Detalle["id_movim"]));
                                 itm.SubItems.Add(Lfx.Types.Formatting.FormatDate(Detalle["fecha"]));
                                 itm.SubItems.Add(System.Convert.ToString(Detalle["concepto"]));
-                                itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Detalle["importe"]), this.Workspace.CurrentConfig.Moneda.Decimales));
+                                itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(Detalle["importe"]), this.Workspace.CurrentConfig.Moneda.Decimales));
                                 itm.SubItems.Add(System.Convert.ToString(Detalle["id_caja"]));
                                 itm.SubItems.Add(System.Convert.ToString(Detalle["comprob"]));
                                 itm.SubItems.Add(System.Convert.ToString(Detalle["obs"]));
                         }
 
-                        lvItems.EndUpdate();
+                        Listado.EndUpdate();
                 }
 
 
-                private void cmdOtrosEgresos_Click(object sender, System.EventArgs e)
+                private void BotonOtrosEgresos_Click(object sender, System.EventArgs e)
                 {
                         MostrarDetalles("SELECT * FROM cajas_movim WHERE importe<0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                 }
 
 
-                private void cmdGastosVariables_Click(object sender, System.EventArgs e)
+                private void BotonGastosVariables_Click(object sender, System.EventArgs e)
                 {
                         MostrarDetalles("SELECT * FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=240) AND id_concepto NOT IN (24010) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                 }
 
 
-                private void cmdCostoCapital_Click(object sender, System.EventArgs e)
+                private void BotonCostoCapital_Click(object sender, System.EventArgs e)
                 {
                         MostrarDetalles("SELECT * FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=220) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                 }
 
-                private void cmdCostoMateriales_Click(object sender, System.EventArgs e)
+                private void BotonCostoMateriales_Click(object sender, System.EventArgs e)
                 {
                         MostrarDetalles("SELECT * FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=210) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                 }
 
 
-                private void cmdGastosFijos_Click(object sender, System.EventArgs e)
+                private void BotonGastosFijos_Click(object sender, System.EventArgs e)
                 {
                         MostrarDetalles("SELECT * FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=230) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                 }
 
 
-                private void cmdCobros_Click(object sender, System.EventArgs e)
+                private void BotonCobros_Click(object sender, System.EventArgs e)
                 {
                         MostrarDetalles("SELECT * FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=110) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                 }
 
-                private void cmdIngresosOtros_Click(object sender, System.EventArgs e)
+                private void BotonIngresosOtros_Click(object sender, System.EventArgs e)
                 {
                         MostrarDetalles("SELECT * FROM cajas_movim WHERE importe>0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                 }
@@ -1321,19 +1284,19 @@ namespace Lazaro.Reportes
                 {
                         switch (e.KeyCode) {
                                 case Keys.Up:
-                                        if (lvItems.Items.Count == 0) {
+                                        if (Listado.Items.Count == 0) {
                                                 e.Handled = true;
                                                 System.Windows.Forms.SendKeys.Send("+{tab}");
-                                        } else if (lvItems.SelectedItems.Count > 0 && lvItems.SelectedItems[0].Index == 0) {
+                                        } else if (Listado.SelectedItems.Count > 0 && Listado.SelectedItems[0].Index == 0) {
                                                 e.Handled = true;
                                                 System.Windows.Forms.SendKeys.Send("+{tab}");
                                         }
                                         break;
                                 case Keys.Down:
-                                        if (lvItems.Items.Count == 0) {
+                                        if (Listado.Items.Count == 0) {
                                                 e.Handled = true;
                                                 System.Windows.Forms.SendKeys.Send("{tab}");
-                                        } else if (lvItems.SelectedItems.Count > 0 && lvItems.SelectedItems[0].Index == lvItems.Items.Count - 1) {
+                                        } else if (Listado.SelectedItems.Count > 0 && Listado.SelectedItems[0].Index == Listado.Items.Count - 1) {
                                                 e.Handled = true;
                                                 System.Windows.Forms.SendKeys.Send("{tab}");
                                         }
@@ -1343,73 +1306,11 @@ namespace Lazaro.Reportes
                 }
 
 
-                private void FormRepRentabilidad_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+                private void EntradaFacturacion_GotFocus(object sender, System.EventArgs e)
                 {
-                        switch (e.KeyCode) {
-                                case Keys.Escape:
-                                        e.Handled = true;
-                                        this.Close();
-                                        break;
-                                case Keys.F8:
-                                        e.Handled = true;
-                                        if (PrintButton.Visible && PrintButton.Enabled) {
-                                                PrintButton.PerformClick();
-                                        }
-                                        break;
-                        }
-
+                        EntradaFacturacion.ShowBalloon(System.Convert.ToString(EntradaFacturacion.Tag));
                 }
 
-
-                private void txtFacturacion_GotFocus(object sender, System.EventArgs e)
-                {
-                        txtFacturacion.ShowBalloon(System.Convert.ToString(txtFacturacion.Tag));
-                }
-
-
-                private void cmdImprimir_Click(System.Object sender, System.EventArgs e)
-                {
-                        Lui.Printing.ItemPrint ImprimirItem = new Lui.Printing.ItemPrint();
-                        ImprimirItem.TamanoFuente = -2;
-                        ImprimirItem.Titulo = "Reporte de Ingresos y Gastos - " + txtFecha1.Text + " al " + txtFecha2.Text;
-                        ImprimirItem.AgregarPar("+ Ingresos por Facturación", Lfx.Types.Currency.CurrencySymbol + " " + txtFacturacion.Text, 1);
-                        ImprimirItem.AgregarPar("- Costo de la Facturación", Lfx.Types.Currency.CurrencySymbol + " " + txtCosto.Text, 1);
-                        ImprimirItem.AgregarPar("= Diferencia Bruta", Lfx.Types.Currency.CurrencySymbol + " " + txtDiferenciaBruta.Text + " (" + lblDiferenciaBrutaPct.Text + "%)", 1);
-                        ImprimirItem.AgregarPar("-", "", 1);
-                        ImprimirItem.AgregarPar("+ Ingresos por cobros", Lfx.Types.Currency.CurrencySymbol + " " + txtCobros.Text, 1);
-                        ImprimirItem.AgregarPar("+ Otros ingresos", Lfx.Types.Currency.CurrencySymbol + " " + txtIngresosOtros.Text, 1);
-                        ImprimirItem.AgregarPar("- Compra materiales", Lfx.Types.Currency.CurrencySymbol + " " + txtCompraMateriales.Text, 1);
-                        ImprimirItem.AgregarPar("- Costo capital", Lfx.Types.Currency.CurrencySymbol + " " + txtCostoCapital.Text, 1);
-                        ImprimirItem.AgregarPar("- Gastos Fijos", Lfx.Types.Currency.CurrencySymbol + " " + txtGastosFijos.Text, 1);
-                        ImprimirItem.AgregarPar("- Gastos Variables", Lfx.Types.Currency.CurrencySymbol + " " + txtGastosVariables.Text, 1);
-                        ImprimirItem.AgregarPar("- Otros Egresos", Lfx.Types.Currency.CurrencySymbol + " " + txtOtrosEgresos.Text, 1);
-                        ImprimirItem.AgregarPar("-", "", 1);
-                        ImprimirItem.AgregarPar("= Diferencia Neta Aprox.", Lfx.Types.Currency.CurrencySymbol + " " + txtDiferenciaNeta.Text + " (" + lblDiferenciaNetaPct.Text + "%)", 1);
-
-                        // Determino la impresora que le corresponde
-                        string sImpresora = "";
-                        Lui.Printing.PrinterSelectionDialog OSeleccionarImpresora = new Lui.Printing.PrinterSelectionDialog();
-                        OSeleccionarImpresora.VistaPrevia = true;
-                        if (OSeleccionarImpresora.ShowDialog() == DialogResult.OK) {
-                                sImpresora = OSeleccionarImpresora.SelectedPrinter;
-                        }
-
-                        if (sImpresora == "lazaro!preview") {
-                                ImprimirItem.PrintController = new System.Drawing.Printing.PreviewPrintController();
-                                Lui.Printing.PrintPreviewForm VistaPrevia = new Lui.Printing.PrintPreviewForm();
-                                VistaPrevia.PrintPreview.Document = ImprimirItem;
-                                VistaPrevia.MdiParent = this.MdiParent;
-                                VistaPrevia.Show();
-                        } else {
-                                if (sImpresora.Length > 0) {
-                                        ImprimirItem.PrinterSettings.PrinterName = sImpresora;
-                                }
-
-                                ImprimirItem.PrintController = new System.Drawing.Printing.StandardPrintController();
-                                ImprimirItem.Print();
-                        }
-
-                }
 
                 private void ChartButton_Click(object sender, System.EventArgs e)
                 {
@@ -1420,10 +1321,10 @@ namespace Lazaro.Reportes
 
                 private void PorTipo_Click(object sender, System.EventArgs e)
                 {
-                        lvItems.BeginUpdate();
-                        lvItems.Items.Clear();
+                        Listado.BeginUpdate();
+                        Listado.Items.Clear();
 
-                        double Resultado = 0;
+                        decimal Resultado = 0;
                         Resultado += MostrarTipo(100);
                         Resultado += MostrarTipo(110);
                         Resultado += MostrarTipo(230);
@@ -1437,7 +1338,7 @@ namespace Lazaro.Reportes
                         Resultado += MostrarTipo(300);
 
                         ListViewItem itm = null;
-                        itm = lvItems.Items.Add(System.Convert.ToString("total"));
+                        itm = Listado.Items.Add(System.Convert.ToString("total"));
                         itm.SubItems.Add("-");
                         itm.SubItems.Add("Total");
                         itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Resultado, this.Workspace.CurrentConfig.Moneda.Decimales));
@@ -1445,12 +1346,12 @@ namespace Lazaro.Reportes
                         itm.SubItems.Add("-");
                         itm.SubItems.Add("-");
 
-                        lvItems.EndUpdate();
+                        Listado.EndUpdate();
                 }
 
-                private double MostrarTipo(int idTipo)
+                private decimal MostrarTipo(int idTipo)
                 {
-                        double Monto = this.DataBase.FieldDouble("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=" + idTipo.ToString() + ") AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
+                        decimal Monto = this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=" + idTipo.ToString() + ") AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                         string NombreConcepto = "?";
                         switch (idTipo) {
                                 case 0:
@@ -1495,7 +1396,7 @@ namespace Lazaro.Reportes
                         }
 
                         ListViewItem itm = null;
-                        itm = lvItems.Items.Add(System.Convert.ToString(idTipo.ToString()));
+                        itm = Listado.Items.Add(System.Convert.ToString(idTipo.ToString()));
                         itm.SubItems.Add("-");
                         itm.SubItems.Add(NombreConcepto);
                         itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Monto, this.Workspace.CurrentConfig.Moneda.Decimales));
@@ -1506,7 +1407,7 @@ namespace Lazaro.Reportes
                         return Monto;
                 }
 
-                private void cmdGestionCobro_Click(object sender, EventArgs e)
+                private void BotonGestionCobro_Click(object sender, EventArgs e)
                 {
                         MostrarDetalles("SELECT * FROM cajas_movim WHERE id_concepto=24010 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'");
                 }

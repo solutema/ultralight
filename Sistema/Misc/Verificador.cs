@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -69,10 +69,10 @@ namespace Lazaro.Misc
                 public void Verificar()
                 {
                         this.Estado = "Verificando existencias...";
-                        Lbl.ColeccionGenerica<Lbl.Articulos.Situacion> Situaciones = new Lbl.ColeccionGenerica<Lbl.Articulos.Situacion>(this.DataBase.Tables["articulos_situaciones"]);
+                        Lbl.ColeccionGenerica<Lbl.Articulos.Situacion> Situaciones = new Lbl.ColeccionGenerica<Lbl.Articulos.Situacion>(this.Connection.Tables["articulos_situaciones"]);
 
-                        Lbl.ColeccionGenerica<Lbl.Articulos.Articulo> Articulos = new Lbl.ColeccionGenerica<Lbl.Articulos.Articulo>(this.DataBase.Tables["articulos"]);
-                        foreach (Lbl.Articulos.Articulo Art in Articulos.List) {
+                        Lbl.ColeccionGenerica<Lbl.Articulos.Articulo> Articulos = new Lbl.ColeccionGenerica<Lbl.Articulos.Articulo>(this.Connection.Tables["articulos"]);
+                        foreach (Lbl.Articulos.Articulo Art in Articulos) {
                                 this.Estado = Art.ToString();
                         }
                 }

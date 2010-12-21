@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -10,19 +10,17 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Lui</RootNamespace>
     <AssemblyName>Lui</AssemblyName>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ApplicationIcon>Lazaro.ico</ApplicationIcon>
     <CodePage>65001</CodePage>
     <ReleaseVersion>1.0</ReleaseVersion>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -68,6 +66,8 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Forms\Bracket.cs">
@@ -76,9 +76,8 @@
     <Compile Include="Forms\Bracket.Designer.cs">
       <DependentUpon>Bracket.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ButtonCollection.cs" />
-    <Compile Include="Forms\ButtonGroup.cs">
-      <SubType>Component</SubType>
+    <Compile Include="Forms\Calendar.Designer.cs">
+      <DependentUpon>Calendar.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ChildDialogForm.cs">
       <SubType>Form</SubType>
@@ -170,12 +169,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\Forms.cs" />
-    <Compile Include="Forms\AccountForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AccountForm.Designer.cs">
-      <DependentUpon>AccountForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\ChildForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,12 +181,6 @@
     <Compile Include="Forms\DialogForm.Designer.cs">
       <DependentUpon>DialogForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\EditForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\EditForm.Designer.cs">
-      <DependentUpon>EditForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,18 +189,6 @@
     </Compile>
     <Compile Include="Forms\InputBox.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ListingForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ListingForm.Designer.cs">
-      <DependentUpon>ListingForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ListingFormExport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ListingFormExport.Designer.cs">
-      <DependentUpon>ListingFormExport.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MessageBox.cs" />
     <Compile Include="Forms\MessageBoxForm.cs">
@@ -228,11 +203,8 @@
     <Compile Include="Forms\ProgressForm.Designer.cs">
       <DependentUpon>ProgressForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TextListingForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\TextListingForm.Designer.cs">
-      <DependentUpon>TextListingForm.cs</DependentUpon>
+    <Compile Include="Forms\WorkstationSelectorForm.Designer.cs">
+      <DependentUpon>WorkstationSelectorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\YesNoDialog.cs">
       <SubType>Form</SubType>
@@ -247,17 +219,23 @@
       <DependentUpon>FormRevalidateAccess.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\LoginData.cs" />
-    <Compile Include="Printing\ItemPrint.cs">
-      <SubType>Component</SubType>
+    <Compile Include="Printing\ManualFeedDialog.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Printing\PrintDocument.cs">
-      <SubType>Component</SubType>
+    <Compile Include="Printing\ManualFeedDialog.Designer.cs">
+      <DependentUpon>ManualFeedDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Printing\PrinterSelectionDialog.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Printing\PrinterSelectionDialog.Designer.cs">
+      <DependentUpon>PrinterSelectionDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Printing\PrintPreviewForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Printing\PrintPreviewForm.Designer.cs">
+      <DependentUpon>PrintPreviewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Printing\Services.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -333,20 +311,12 @@
       <DependentUpon>TextBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AccountForm.resx">
-      <DependentUpon>AccountForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ChildForm.resx">
       <DependentUpon>ChildForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DialogForm.resx">
       <DependentUpon>DialogForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditForm.resx">
-      <DependentUpon>EditForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form.resx">
@@ -357,24 +327,12 @@
       <DependentUpon>InputBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ListingForm.resx">
-      <DependentUpon>ListingForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ListingFormExport.resx">
-      <DependentUpon>ListingFormExport.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MessageBoxForm.resx">
       <DependentUpon>MessageBoxForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProgressForm.resx">
       <DependentUpon>ProgressForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TextListingForm.resx">
-      <DependentUpon>TextListingForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\YesNoDialog.resx">
@@ -385,8 +343,8 @@
       <DependentUpon>FormRevalidateAccess.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Printing\ItemPrint.resx">
-      <DependentUpon>ItemPrint.cs</DependentUpon>
+    <EmbeddedResource Include="Printing\ManualFeedDialog.resx">
+      <DependentUpon>ManualFeedDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Printing\PrinterSelectionDialog.resx">
@@ -399,6 +357,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lazaro.Impresion\Lazaro.Impresion.csproj">
+      <Project>{EBF39B24-DF1A-4C99-8FC8-F9A24E9CB8FF}</Project>
+      <Name>Lazaro.Impresion</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lbl\Lbl.csproj">
       <Project>{56F39851-6542-405C-9F47-E8414B757EF6}</Project>
       <Name>Lbl</Name>

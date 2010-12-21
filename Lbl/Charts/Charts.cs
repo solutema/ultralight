@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -63,9 +63,9 @@ namespace Lbl.Charts
                         this.Color = System.Drawing.Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
                 }
 
-                public double GetSum()
+                public decimal GetSum()
                 {
-                        double Sum = 0;
+                        decimal Sum = 0;
                         foreach (Element El in this.Elements) {
                                 if (El != null)
                                         Sum += El.Value;
@@ -76,14 +76,14 @@ namespace Lbl.Charts
 
         public class Element
         {
-                public double Value = 0;
+                public decimal Value = 0;
                 public string Label = null;
 
                 public Element()
                 {
                 }
 
-                public Element(double value, string label)
+                public Element(decimal value, string label)
                 {
                         this.Value = value;
                         this.Label = label;

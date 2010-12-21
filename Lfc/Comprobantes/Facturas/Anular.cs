@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -40,10 +40,9 @@ namespace Lfc.Comprobantes.Facturas
 {
 	public partial class Anular : Lui.Forms.ChildDialogForm
 	{
-		System.Collections.Hashtable ProximosNumeros = new System.Collections.Hashtable();
+		Dictionary<int, int> ProximosNumeros = new Dictionary<int,int>();
 
                 public Anular()
-                        : base()
                 {
                         InitializeComponent();
 
@@ -51,21 +50,27 @@ namespace Lfc.Comprobantes.Facturas
                         OkButton.Visible = false;
                 }
 
-		private void EntradaNumeroTipoPV_TextChanged(object sender, System.EventArgs e)
-		{
-			int PV = Lfx.Types.Parsing.ParseInt(EntradaPV.Text);
-                        int Numero = Lfx.Types.Parsing.ParseInt(EntradaNumero.Text);
+                private void EntradaDesdeTipoPV_TextChanged(object sender, System.EventArgs e)
+                {
+                        int PV = EntradaPV.ValueInt;
+                        int Desde = EntradaDesde.ValueInt;
+
+                        if (EntradaHasta.ValueInt == 0 && this.ActiveControl != EntradaHasta)
+                                EntradaHasta.ValueInt = Desde;
+
+                        int Hasta = EntradaHasta.ValueInt;
+                        int Cantidad = Hasta - Desde + 1;
+
                         string IncluyeTipos = "";
 
-			switch (EntradaTipo.TextKey)
-			{
-				case "A":
-					IncluyeTipos = "'FA', 'NCA', 'NDA'";
-					break;
+                        switch (EntradaTipo.TextKey) {
+                                case "A":
+                                        IncluyeTipos = "'FA', 'NCA', 'NDA'";
+                                        break;
 
-				case "B":
-					IncluyeTipos = "'FB', 'NCB', 'NDB'";
-					break;
+                                case "B":
+                                        IncluyeTipos = "'FB', 'NCB', 'NDB'";
+                                        break;
 
                                 case "C":
                                         IncluyeTipos = "'FC', 'NCC', 'NDC'";
@@ -78,79 +83,115 @@ namespace Lfc.Comprobantes.Facturas
                                 case "M":
                                         IncluyeTipos = "'FM', 'NCM', 'NDM'";
                                         break;
-			}
+                        }
 
-                        int IdFactura = 0;
+                        if (ProximosNumeros.ContainsKey(PV) == false)
+                                ProximosNumeros[PV] = this.Connection.FieldInt("SELECT MAX(numero) FROM comprob WHERE impresa=1 AND tipo_fac IN (" + IncluyeTipos + ") AND pv=" + PV.ToString()) + 1;
 
-                        if(PV > 0 && Numero > 0)
-                                IdFactura = this.DataBase.FieldInt("SELECT id_comprob FROM comprob WHERE tipo_fac IN (" + IncluyeTipos + ") AND pv=" + PV.ToString() + " AND numero=" + Numero.ToString());
+                        if (PV <= 0 || Desde <= 0 || Cantidad <= 0) {
+                                EtiquetaAviso.Text = "El rango seleccionado no es válido.";
+                                ComprobanteVistaPrevia.Visible = false;
+                                ListadoFacturas.Visible = false;
+                                OkButton.Visible = false;
+                                return;
+                        }
 
-                        Lbl.Comprobantes.Factura Fac = null;
-                        if (IdFactura > 0)
-                                Fac = new Lbl.Comprobantes.Factura(this.DataBase, IdFactura);
+                        if (Desde > ProximosNumeros[PV]) {
+                                EtiquetaAviso.Text = "No se puede anular el rango seleccionado porque todavía no se utilizaron los comprobantes desde el " + ProximosNumeros[PV].ToString() + " al " + (Desde - 1).ToString();
+                                ComprobanteVistaPrevia.Visible = false;
+                                ListadoFacturas.Visible = false;
+                                OkButton.Visible = false;
+                                return;
+                        }
 
-                        if (Fac != null && Fac.Existe) {
-                                //Lfx.Data.Row row = this.DataBase.FirstRowFromSelect("SELECT * FROM comprob WHERE tipo_fac IN (" + TipoReal + ") AND pv=" + PV.ToString() + " AND numero=" + Lfx.Types.Parsing.ParseInt(EntradaNumero.Text).ToString());
-                                ComprobanteVistaPrevia.Elemento = Fac;
-                                ComprobanteVistaPrevia.Visible = true;
+                        ComprobanteVistaPrevia.Visible = Cantidad == 1;
+                        ListadoFacturas.Visible = Cantidad > 1;
 
-                                if (Fac.Anulado) {
-                                        EtiquetaAviso.Text = "El comprobante ya fue anulado y no puede anularse nuevamente.";
-                                        OkButton.Visible = false;
-                                } else if (Fac.Impreso == false) {
-                                        EtiquetaAviso.Text = "El comprobante no puede anularse porque todavía no fue impreso.";
-                                        OkButton.Visible = false;
-                                } else {
-                                        EtiquetaAviso.Text = "Recuerde que necesitar archivar todas las copias del comprobante anulado.";
-                                        OkButton.Visible = true;
-                                        if (Fac.FormaDePago.Tipo == Lbl.Pagos.TipoFormasDePago.CuentaCorriente) {
-                                                EntradaAnularPagos.TextKey = "1";
+                        if (Cantidad == 1) {
+                                int IdFactura = this.Connection.FieldInt("SELECT id_comprob FROM comprob WHERE impresa=1 AND tipo_fac IN (" + IncluyeTipos + ") AND pv=" + PV.ToString() + " AND numero=" + Desde.ToString());
+
+                                Lbl.Comprobantes.ComprobanteConArticulos FacturaInicial = null;
+                                if (IdFactura > 0)
+                                        FacturaInicial = new Lbl.Comprobantes.ComprobanteConArticulos(this.Connection, IdFactura);
+
+                                if (FacturaInicial != null && FacturaInicial.Existe) {
+                                        ComprobanteVistaPrevia.Elemento = FacturaInicial;
+                                        ComprobanteVistaPrevia.ActualizarControl();
+                                        ComprobanteVistaPrevia.ReadOnly = true;
+                                        ComprobanteVistaPrevia.Visible = true;
+
+                                        if (FacturaInicial.Anulado) {
+                                                EtiquetaAviso.Text = "El comprobante ya fue anulado y no puede anularse nuevamente.";
+                                                OkButton.Visible = false;
                                         } else {
+                                                EtiquetaAviso.Text = "Recuerde que necesitar archivar todas las copias del comprobante anulado.";
+                                                OkButton.Visible = true;
+                                                if (FacturaInicial.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente) {
+                                                        EntradaAnularPagos.TextKey = "1";
+                                                } else {
+                                                        EntradaAnularPagos.TextKey = "0";
+                                                }
+                                        }
+                                } else {
+                                        ComprobanteVistaPrevia.Visible = false;
+
+                                        if (Desde == ProximosNumeros[PV]) {
+                                                EtiquetaAviso.Text = "El comprobante " + EntradaTipo.TextKey + " " + PV.ToString("0000") + "-" + Desde.ToString("00000000") + " aun no fue impreso, pero es el próximo en el talonario. Si lo anula, el sistema salteará dicho comprobante.";
                                                 EntradaAnularPagos.TextKey = "0";
+                                                OkButton.Visible = true;
+                                        } else {
+                                                EtiquetaAviso.Text = "El comprobante " + EntradaTipo.TextKey + " " + PV.ToString("0000") + "-" + Lfx.Types.Parsing.ParseInt(EntradaDesde.Text).ToString("00000000") + " aun no fue impreso y no puede anularse.";
+                                                EntradaAnularPagos.TextKey = "0";
+                                                OkButton.Visible = false;
                                         }
                                 }
-                        } else {
-                                if (ProximosNumeros.ContainsKey(PV) == false)
-                                        ProximosNumeros[PV] = this.DataBase.FieldInt("SELECT MAX(numero) FROM comprob WHERE tipo_fac IN (" + IncluyeTipos + ") AND impresa>0 AND pv=" + PV.ToString()) + 1;
-
-                                if (Numero == ((int)(ProximosNumeros[PV]))) {
-                                        EtiquetaAviso.Text = "El comprobante " + EntradaTipo.TextKey + " " + PV.ToString("0000") + "-" + Numero.ToString("00000000") + " aun no fue impreso, pero es el próximo en el talonario. Si lo anula, el sistema salteará dicho comprobante.";
-                                        ComprobanteVistaPrevia.Elemento = null;
-                                        ComprobanteVistaPrevia.Visible = false;
-                                        OkButton.Visible = true;
-                                } else {
-                                        EtiquetaAviso.Text = "El comprobante " + EntradaTipo.TextKey + " " + PV.ToString("0000") + "-" + Lfx.Types.Parsing.ParseInt(EntradaNumero.Text).ToString("00000000") + " aun no fue impreso y no puede anularse.";
-                                        EntradaAnularPagos.TextKey = "0";
-                                        ComprobanteVistaPrevia.Elemento = null;
-                                        ComprobanteVistaPrevia.Visible = false;
-                                        OkButton.Visible = false;
+                        } else if (Cantidad > 1) {
+                                EntradaAnularPagos.TextKey = "1";
+                                System.Data.DataTable TablaFacturas = this.Connection.Select("SELECT * FROM comprob WHERE impresa=1 AND tipo_fac IN (" + IncluyeTipos + ") AND pv=" + PV.ToString() + " AND numero BETWEEN " + Desde.ToString() + " AND " + Hasta.ToString());
+                                Lbl.Comprobantes.ColeccionComprobanteConArticulos Facturas = new Lbl.Comprobantes.ColeccionComprobanteConArticulos(this.Connection, TablaFacturas);
+                                ListadoFacturas.BeginUpdate();
+                                ListadoFacturas.Items.Clear();
+                                foreach (Lbl.Comprobantes.ComprobanteConArticulos Fac in Facturas) {
+                                        ListViewItem Itm = ListadoFacturas.Items.Add(Fac.Tipo.ToString());
+                                        Itm.SubItems.Add(Fac.PV.ToString("0000") + "-" + Fac.Numero.ToString("00000000"));
+                                        Itm.SubItems.Add(Fac.Fecha.ToString(Lfx.Types.Formatting.DateTime.ShortDatePattern));
+                                        Itm.SubItems.Add(Fac.Cliente.ToString());
+                                        Itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Fac.Total));
                                 }
+                                ListadoFacturas.EndUpdate();
+                                EtiquetaAviso.Text = "Se van a anular " + Cantidad.ToString() + " comprobantes, incluyendo los que se detallan a continuación.";
+                                this.OkButton.Visible = true;
+                        } else {
+                                EtiquetaAviso.Text = "Debe seleccionar un rango que inlcuya al menos 1 comprobante.";
+                                this.OkButton.Visible = false;
                         }
-		}
+                }
 
-		public override Lfx.Types.OperationResult Ok()
-		{
-			Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Una vez anulado, el comprobante deberá ser archivado en todas sus copias y no podrá ser rehabilitado ni reutilizado.", "¿Está seguro de que desea anular el comprobante?");
-			Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
+                public override Lfx.Types.OperationResult Ok()
+                {
+                        int PV = EntradaPV.ValueInt;
+                        int Desde = EntradaDesde.ValueInt;
+                        int Hasta = EntradaHasta.ValueInt;
+                        int Cantidad = Hasta - Desde + 1;
 
-			if (Pregunta.ShowDialog() == DialogResult.OK)
-			{
-				int PV = Lfx.Types.Parsing.ParseInt(EntradaPV.Text);
+                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Una vez anulados, los comprobantes deberán ser archivados en todas sus copias y no podrán ser rehabilitados ni reutilizados.", "¿Está seguro de que desea anular " + Cantidad.ToString() + " comprobantes?");
+                        Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
+
+                        if (Pregunta.ShowDialog() == DialogResult.OK) {
                                 bool AnularPagos = Lfx.Types.Parsing.ParseInt(EntradaAnularPagos.TextKey) != 0;
 
-				this.DataBase.BeginTransaction(true);
-				int m_Id = 0;
-				string IncluyeTipos = "";
+                                this.Connection.BeginTransaction(true);
+                                int m_Id = 0;
+                                string IncluyeTipos = "";
 
-				switch (EntradaTipo.TextKey)
-				{
-					case "A":
-						IncluyeTipos = "'FA', 'NCA', 'NDA'";
-						break;
+                                switch (EntradaTipo.TextKey) {
+                                        case "A":
+                                                IncluyeTipos = "'FA', 'NCA', 'NDA'";
+                                                break;
 
-					case "B":
-						IncluyeTipos = "'FB', 'NCB', 'NDB'";
-						break;
+                                        case "B":
+                                                IncluyeTipos = "'FB', 'NCB', 'NDB'";
+                                                break;
 
                                         case "C":
                                                 IncluyeTipos = "'FC', 'NCC', 'NDC'";
@@ -163,47 +204,50 @@ namespace Lfc.Comprobantes.Facturas
                                         case "M":
                                                 IncluyeTipos = "'FM', 'NCM', 'NDM'";
                                                 break;
-				}
+                                }
 
-				int IdFactura = DataBase.FieldInt("SELECT id_comprob FROM comprob WHERE tipo_fac IN (" + IncluyeTipos + ") AND pv=" + PV.ToString() + " AND numero=" + Lfx.Types.Parsing.ParseInt(EntradaNumero.Text).ToString());
+                                for (int Numero = Desde; Numero <= Hasta; Numero++) {
+                                        int IdFactura = Connection.FieldInt("SELECT id_comprob FROM comprob WHERE impresa=1 AND tipo_fac IN (" + IncluyeTipos + ") AND pv=" + PV.ToString() + " AND numero=" + Numero.ToString());
 
-                                if (IdFactura == 0) {
-                                        // Es una factura que todava no existe
-                                        // Tengo que crear la factura y anularla
-                                        qGen.Insert InsertarComprob = new qGen.Insert("comprob");
-                                        InsertarComprob.Fields.AddWithValue("tipo_fac", "F" + EntradaTipo.TextKey);
-                                        InsertarComprob.Fields.AddWithValue("id_formapago", 3);
-                                        InsertarComprob.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
-                                        InsertarComprob.Fields.AddWithValue("pv", Lfx.Types.Parsing.ParseInt(EntradaPV.Text));
-                                        InsertarComprob.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
-                                        InsertarComprob.Fields.AddWithValue("id_vendedor", this.Workspace.CurrentUser.Id);
-                                        InsertarComprob.Fields.AddWithValue("id_cliente", this.Workspace.CurrentUser.Id);
-                                        InsertarComprob.Fields.AddWithValue("obs", "Comprobante anulado antes de ser impreso.");
-                                        InsertarComprob.Fields.AddWithValue("impresa", 1);
-                                        InsertarComprob.Fields.AddWithValue("anulada", 1);
-                                        DataBase.Execute(InsertarComprob);
-                                        m_Id = DataBase.FieldInt("SELECT LAST_INSERT_ID()");
-                                        Lbl.Comprobantes.Numerador.Numerar(DataBase, m_Id);
-                                        Lui.Forms.MessageBox.Show("Se anuló el comprobante " + Lbl.Comprobantes.Comprobante.NumeroCompleto(DataBase, m_Id) + ". Recuerde archivar ambas copias.", "Aviso");
-                                } else {
-                                        Lbl.Comprobantes.Factura Fac = new Lbl.Comprobantes.Factura(DataBase, IdFactura);
-                                        Fac.Anular(AnularPagos);
-                                        Lui.Forms.MessageBox.Show("Se anuló el comprobante " + Fac.ToString() + ". Recuerde archivar ambas copias.", "Aviso");
+                                        if (IdFactura == 0) {
+                                                // Es una factura que todava no existe
+                                                // Tengo que crear la factura y anularla
+                                                qGen.Insert InsertarComprob = new qGen.Insert("comprob");
+                                                InsertarComprob.Fields.AddWithValue("tipo_fac", "F" + EntradaTipo.TextKey);
+                                                InsertarComprob.Fields.AddWithValue("id_formapago", 3);
+                                                InsertarComprob.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
+                                                InsertarComprob.Fields.AddWithValue("pv", Lfx.Types.Parsing.ParseInt(EntradaPV.Text));
+                                                InsertarComprob.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
+                                                InsertarComprob.Fields.AddWithValue("id_vendedor", Lbl.Sys.Config.Actual.UsuarioConectado.Id);
+                                                InsertarComprob.Fields.AddWithValue("id_cliente", Lbl.Sys.Config.Actual.UsuarioConectado.Id);
+                                                InsertarComprob.Fields.AddWithValue("obs", "Comprobante anulado antes de ser impreso.");
+                                                InsertarComprob.Fields.AddWithValue("impresa", 1);
+                                                InsertarComprob.Fields.AddWithValue("anulada", 1);
+                                                Connection.Execute(InsertarComprob);
+                                                m_Id = Connection.FieldInt("SELECT LAST_INSERT_ID()");
+                                                Lbl.Comprobantes.ComprobanteConArticulos NuevoComprob = new Lbl.Comprobantes.ComprobanteConArticulos(this.Connection, m_Id);
+                                                NuevoComprob.Numerar(true);
+                                        } else {
+                                                Lbl.Comprobantes.ComprobanteConArticulos Fac = new Lbl.Comprobantes.ComprobanteConArticulos(Connection, IdFactura);
+                                                if (Fac.Anulado == false)
+                                                        Fac.Anular(AnularPagos);
+                                        }
                                 }
 
                                 ProximosNumeros.Clear();
 
-				this.DataBase.Commit();
+                                this.Connection.Commit();
 
-				EntradaNumero.Text = "";
-				EntradaNumero.Focus();
+                                Lui.Forms.MessageBox.Show("Se anularon los comprobantes seleccionados. Recuerde archivar ambas copias.", "Aviso");
 
-				return new Lfx.Types.OperationResult(false);
-			}
-			else
-			{
-				return new Lfx.Types.FailureOperationResult("La operación fue cancelada.");
-			}
-		}
+                                EntradaDesde.Text = "0";
+                                EntradaHasta.Text = "0";
+                                EntradaDesde.Focus();
+
+                                return base.Ok(); 
+                        } else {
+                                return new Lfx.Types.FailureOperationResult("La operación fue cancelada.");
+                        }
+                }
 	}
 }

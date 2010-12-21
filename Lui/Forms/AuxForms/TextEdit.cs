@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -41,13 +41,13 @@ namespace Lui.Forms.AuxForms
 	public partial class TextEdit : System.Windows.Forms.Form
 	{
 
-		private void cmdAceptar_Click(object sender, System.EventArgs e)
+		private void BotonAceptar_Click(object sender, System.EventArgs e)
 		{
 			this.DialogResult = DialogResult.OK;
 			this.Hide();
 		}
 
-		private void cmdCancelar_Click(object sender, System.EventArgs e)
+		private void BotonCancelar_Click(object sender, System.EventArgs e)
 		{
 			this.DialogResult = DialogResult.Cancel;
 			this.Close();
@@ -59,11 +59,11 @@ namespace Lui.Forms.AuxForms
 			{
 				case Keys.Escape:
 					e.Handled = true;
-					cmdCancelar.PerformClick();
+					BotonCancelar.PerformClick();
 					break;
 				case Keys.F9:
 					e.Handled = true;
-					cmdAceptar.PerformClick();
+					BotonAceptar.PerformClick();
 					break;
 			}
 
@@ -90,7 +90,7 @@ namespace Lui.Forms.AuxForms
                         set
                         {
                                 txtText.ReadOnly = value;
-                                cmdAceptar.Visible = !value;
+                                BotonAceptar.Visible = !value;
                         }
                 }
 	}

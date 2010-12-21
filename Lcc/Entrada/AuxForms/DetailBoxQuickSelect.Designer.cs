@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -33,31 +33,19 @@ namespace Lcc.Entrada.AuxForms
 {
 	partial class DetailBoxQuickSelect
 	{
-		#region Código generado por el Diseñador de Windows Forms
-
-		public DetailBoxQuickSelect()
-			: base()
-		{
-
-
-			// Necesario para admitir el Diseñador de Windows Forms
-			InitializeComponent();
-		}
 
 		// Limpiar los recursos que se estén utilizando.
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing)
-			{
-				if (components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose(disposing);
-		}
+                protected override void Dispose(bool disposing)
+                {
+                        if (disposing) {
+                                if (components != null) {
+                                        components.Dispose();
+                                }
+                        }
+                        base.Dispose(disposing);
+                }
 
-		private System.ComponentModel.IContainer components;
+		private System.ComponentModel.IContainer components = null;
 
 		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
 		// Puede modificarse utilizando el Diseñador de Windows Forms. 
@@ -77,18 +65,18 @@ namespace Lcc.Entrada.AuxForms
 		{
                         this.components = new System.ComponentModel.Container();
                         this.ListaItem = new System.Windows.Forms.ListView();
-                        this.id = new System.Windows.Forms.ColumnHeader();
-                        this.nombre = new System.Windows.Forms.ColumnHeader();
-                        this.extra1 = new System.Windows.Forms.ColumnHeader();
-                        this.extra2 = new System.Windows.Forms.ColumnHeader();
-                        this.extra3 = new System.Windows.Forms.ColumnHeader();
-                        this.extra4 = new System.Windows.Forms.ColumnHeader();
+                        this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.nombre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.extra1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.extra2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.extra3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.extra4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.EntradaBuscar = new Lui.Forms.TextBox();
                         this.BotonNuevo = new Lui.Forms.Button();
                         this.Timer1 = new System.Windows.Forms.Timer(this.components);
                         this.SuspendLayout();
                         // 
-                        // lvItems
+                        // ListaItem
                         // 
                         this.ListaItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
@@ -108,7 +96,7 @@ namespace Lcc.Entrada.AuxForms
                         this.ListaItem.LabelWrap = false;
                         this.ListaItem.Location = new System.Drawing.Point(0, 0);
                         this.ListaItem.MultiSelect = false;
-                        this.ListaItem.Name = "lvItems";
+                        this.ListaItem.Name = "ListaItem";
                         this.ListaItem.Size = new System.Drawing.Size(633, 336);
                         this.ListaItem.TabIndex = 2;
                         this.ListaItem.UseCompatibleStateImageBehavior = false;
@@ -147,11 +135,10 @@ namespace Lcc.Entrada.AuxForms
                         this.extra4.Text = "";
                         this.extra4.Width = 80;
                         // 
-                        // txtBuscar
+                        // EntradaBuscar
                         // 
                         this.EntradaBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaBuscar.AutoHeight = false;
                         this.EntradaBuscar.AutoNav = false;
                         this.EntradaBuscar.AutoTab = false;
                         this.EntradaBuscar.Cursor = System.Windows.Forms.Cursors.Default;
@@ -163,35 +150,31 @@ namespace Lcc.Entrada.AuxForms
                         this.EntradaBuscar.Location = new System.Drawing.Point(4, 344);
                         this.EntradaBuscar.MaxLenght = 32767;
                         this.EntradaBuscar.MultiLine = false;
-                        this.EntradaBuscar.Name = "txtBuscar";
+                        this.EntradaBuscar.Name = "EntradaBuscar";
                         this.EntradaBuscar.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBuscar.PasswordChar = '\0';
                         this.EntradaBuscar.Prefijo = "";
-                        this.EntradaBuscar.ReadOnly = false;
                         this.EntradaBuscar.SelectOnFocus = false;
                         this.EntradaBuscar.Size = new System.Drawing.Size(524, 24);
                         this.EntradaBuscar.Sufijo = "";
                         this.EntradaBuscar.TabIndex = 0;
-                        this.EntradaBuscar.TextRaw = "";
                         this.EntradaBuscar.TipWhenBlank = "";
                         this.EntradaBuscar.ToolTipText = "";
-                        this.EntradaBuscar.TextChanged += new System.EventHandler(this.EntradaBuscar_TextChanged);
                         this.EntradaBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaBuscar_KeyPress);
+                        this.EntradaBuscar.TextChanged += new System.EventHandler(this.EntradaBuscar_TextChanged);
                         this.EntradaBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaBuscar_KeyDown);
                         // 
-                        // cmdNuevo
+                        // BotonNuevo
                         // 
                         this.BotonNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonNuevo.AutoHeight = false;
                         this.BotonNuevo.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonNuevo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonNuevo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonNuevo.Image = null;
                         this.BotonNuevo.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonNuevo.Location = new System.Drawing.Point(532, 340);
-                        this.BotonNuevo.Name = "cmdNuevo";
+                        this.BotonNuevo.Name = "BotonNuevo";
                         this.BotonNuevo.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonNuevo.ReadOnly = false;
                         this.BotonNuevo.Size = new System.Drawing.Size(96, 30);
                         this.BotonNuevo.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonNuevo.Subtext = "F6";
@@ -224,8 +207,5 @@ namespace Lcc.Entrada.AuxForms
                         this.ResumeLayout(false);
 
 		}
-
-
-		#endregion
 	}
 }

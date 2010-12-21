@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -48,6 +48,11 @@ namespace Lfx.Data
 					if(Itm.ColumnName == columnName)
 						return Itm;
 				}
+
+                                foreach (Field Itm in this) {
+                                        if (Lfx.Data.Connection.GetFieldName(Itm.ColumnName) == columnName)
+                                                return Itm;
+                                }
 				//Si no existe, creo dinámicamente el campo
 				Field Res = new Field(columnName);
 				this.Add(Res);

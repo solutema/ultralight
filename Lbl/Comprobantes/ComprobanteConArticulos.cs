@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,22 +38,19 @@ namespace Lbl.Comprobantes
 	public class ComprobanteConArticulos : Comprobante
 	{
                 private ColeccionDetalleArticulos m_Articulos = null, m_ArticulosOriginales = null;
+                private Lbl.Articulos.Situacion m_SituacionDestinoOriginal = null;
                 private ColeccionRecibos m_Recibos = null;
                 private Lbl.Pagos.FormaDePago m_FormaDePago = null;
                 
                 //Heredar constructor
-                public ComprobanteConArticulos(Lfx.Data.DataBase dataBase)
+                public ComprobanteConArticulos(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
 
-                public ComprobanteConArticulos(Lfx.Data.DataBase dataBase, Lfx.Data.Row row)
+                public ComprobanteConArticulos(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
 			: base(dataBase, row) { }
 
-		public ComprobanteConArticulos(Lfx.Data.DataBase dataBase, int itemId)
-			: this(dataBase)
-		{
-			m_ItemId = itemId;
-                        this.Cargar();
-		}
+		public ComprobanteConArticulos(Lfx.Data.Connection dataBase, int itemId)
+			: base(dataBase, itemId) { }
 
 		public override string TablaDatos
 		{
@@ -79,64 +76,21 @@ namespace Lbl.Comprobantes
 			}
 		}
 
-                public override Lfx.Types.OperationResult Crear()
-                {
-                        return this.Crear("FB");
-                }
 
                 public bool Anulado
                 {
                         get
                         {
-                                return System.Convert.ToBoolean(this.FieldInt("anulada"));
+                                return System.Convert.ToBoolean(this.GetFieldValue<int>("anulada"));
                         }
                 }
 
-                public Lfx.Types.OperationResult Crear(string tipo, bool compra)
+
+                public override void Crear()
                 {
-                        Lfx.Types.OperationResult Res = this.Crear(tipo);
-                        if (Res.Success && compra) {
-                                this.SituacionDestino = new Lbl.Articulos.Situacion(this.DataBase, this.Workspace.CurrentConfig.Productos.DepositoPredeterminado);
-                                this.SituacionOrigen = new Lbl.Articulos.Situacion(this.DataBase, 998); //Proveedor
-                                this.Fecha = DateTime.Now;
-                        }
-                        return Res;
-                }
+                        base.Crear();
 
-                public Lfx.Types.OperationResult Crear(string tipo)
-                {
-                        Lfx.Types.OperationResult Res = base.Crear();
-                        if (Res.Success) {
-                                this.Vendedor = new Lbl.Personas.Persona(this.DataBase, this.Workspace.CurrentUser.Id);
-
-                                this.Tipo = new Tipo(this.DataBase, tipo);
-                                this.Tipo.Cargar();
-                                if (this.SituacionOrigen == null)
-                                        this.SituacionOrigen = Tipo.SituacionOrigen;
-                                if (this.SituacionDestino == null)
-                                        this.SituacionDestino = Tipo.SituacionDestino;
-
-                                this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos." + Tipo.Nomenclatura + ".PV", 0);
-                                if (this.PV /* still */ == 0) {
-                                        if(Tipo.EsFactura)
-                                                this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.ABC.PV", 0);
-                                        else if (Tipo.EsNotaCredito)
-                                                this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.NC.PV", 0);
-                                        else if (Tipo.EsNotaDebito)
-                                                this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.ND.PV", 0);
-                                }
-
-                                if (this.PV /* still */ == 0)
-                                        this.PV = this.DataBase.FieldInt("SELECT MIN(numero) FROM pvs WHERE CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.Nomenclatura + ",%' AND tipo>0");
-                                if (this.PV /* still */ == 0)
-                                        this.PV = this.DataBase.FieldInt("SELECT MIN(numero) FROM pvs WHERE CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.TipoBase + ",%' AND tipo>0");
-                                if (this.PV /* still */ == 0)
-                                        this.PV = this.DataBase.FieldInt("SELECT MIN(numero) FROM pvs WHERE CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.LetraSola + ",%' AND tipo>0");
-
-                                if (this.PV /* still */ == 0)
-                                        this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.PV", 1);
-                        }
-                        return Res;
+                        this.Vendedor = new Lbl.Personas.Persona(this.Connection, Lbl.Sys.Config.Actual.UsuarioConectado.Id);
                 }
 
                 public void Anular(bool anularPagos)
@@ -145,36 +99,34 @@ namespace Lbl.Comprobantes
                                 return;
 
                         if (this.Tipo.EsNotaDebito) {
-                                Lbl.CuentasCorrientes.CuentaCorriente CtaCteDeb = new Lbl.CuentasCorrientes.CuentaCorriente(DataBase, this.Cliente.Id);
-                                CtaCteDeb.Movimiento(true, 11000, "Anulación Comprob. " + this.ToString(), -this.Total, "", this.Id, 0, true);
+                                this.Cliente.CuentaCorriente.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Anulación Comprob. " + this.ToString(), -this.Total, null, this, null, null, true);
                         } else if (this.Tipo.EsNotaCredito) {
-                                Lbl.CuentasCorrientes.CuentaCorriente CtaCteCred = new Lbl.CuentasCorrientes.CuentaCorriente(DataBase, this.Cliente.Id);
-                                CtaCteCred.Movimiento(true, 11000, "Anulación Comprob. " + this.ToString(), this.Total, "", this.Id, 0, true);
+                                this.Cliente.CuentaCorriente.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Anulación Comprob. " + this.ToString(), this.Total, null, this, null, null, true);
                         } else if (this.Tipo.EsFactura) {
                                 Lbl.Articulos.Stock.MoverStockFactura(this, false);
                                 if (anularPagos) {
                                         switch (this.FormaDePago.Tipo) {
-                                                case Lbl.Pagos.TipoFormasDePago.Efectivo:
+                                                case Lbl.Pagos.TiposFormasDePago.Efectivo:
                                                         // Hago un egreso de caja
-                                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(DataBase, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
-                                                        Caja.Movimiento(true, 11000, "Anulación Comprob. " + this.ToString(), this.Cliente.Id, -this.ImporteCancelado, "", this.Id, 0, "");
+                                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(Connection, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
+                                                        Caja.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Anulación Comprob. " + this.ToString(), this.Cliente, -this.ImporteCancelado, null, this, null, null);
                                                         break;
 
-                                                case Lbl.Pagos.TipoFormasDePago.ChequePropio:
-                                                        Lbl.Bancos.Cheque Cheque = new Lbl.Bancos.Cheque(DataBase, this);
+                                                case Lbl.Pagos.TiposFormasDePago.ChequePropio:
+                                                        Lbl.Bancos.Cheque Cheque = new Lbl.Bancos.Cheque(Connection, this);
                                                         if (Cheque != null && Cheque.Existe)
                                                                 Cheque.Anular();
                                                         break;
 
-                                                case Lbl.Pagos.TipoFormasDePago.CuentaCorriente:
+                                                case Lbl.Pagos.TiposFormasDePago.CuentaCorriente:
                                                         if (this.ImporteCancelado < this.Total) {
                                                                 // Quito el saldo paga de la cuenta corriente
-                                                                this.Cliente.CuentaCorriente.Movimiento(true, new Lbl.Cajas.Concepto(this.DataBase, 11000), "Anulación Comprob. " + this.ToString(), -this.ImporteCancelado, "", this, null, false);
+                                                                this.Cliente.CuentaCorriente.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Anulación Comprob. " + this.ToString(), -this.ImporteCancelado, "", this, null, null, false);
                                                         }
                                                         break;
 
-                                                case Lbl.Pagos.TipoFormasDePago.Tarjeta:
-                                                        Lbl.Cupones.Cupon Cupon = new Lbl.Cupones.Cupon(DataBase, this);
+                                                case Lbl.Pagos.TiposFormasDePago.Tarjeta:
+                                                        Lbl.Pagos.Cupon Cupon = new Lbl.Pagos.Cupon(Connection, this);
                                                         if (Cupon != null && Cupon.Existe)
                                                                 Cupon.Anular();
                                                         break;
@@ -186,26 +138,17 @@ namespace Lbl.Comprobantes
                         qGen.Update Act = new qGen.Update(this.TablaDatos);
                         Act.Fields.AddWithValue("anulada", 1);
                         Act.WhereClause = new qGen.Where(this.CampoId, this.Id);
-                        this.DataBase.Execute(Act);
+                        this.Connection.Execute(Act);
+
+                        Lbl.Sys.Config.ActionLog(this.Connection, Lbl.Sys.Log.Acciones.Delete, this, null);
                 }
 
-		public double SubTotal
-		{
-			get
-			{
-                                double Res = 0;
-                                foreach (DetalleArticulo Art in this.Articulos) {
-                                        Res += Art.ImporteFinal;
-                                }
-				return Res;
-			}
-		}
 
-		public double Descuento
+                public decimal Descuento
 		{
 			get
 			{
-				return System.Convert.ToDouble(Registro["descuento"]);
+                                return this.GetFieldValue<decimal>("descuento");
 			}
                         set
                         {
@@ -213,11 +156,11 @@ namespace Lbl.Comprobantes
                         }
 		}
 
-		public double Recargo
+                public decimal Recargo
 		{
 			get
 			{
-				return System.Convert.ToDouble(Registro["interes"]);
+				return this.GetFieldValue<decimal>("interes");
 			}
                         set
                         {
@@ -225,11 +168,11 @@ namespace Lbl.Comprobantes
                         }
 		}
 
-		public double ImporteCancelado
+                public decimal ImporteCancelado
 		{
 			get
 			{
-				return System.Convert.ToDouble(Registro["cancelado"]);
+				return this.GetFieldValue<decimal>("cancelado");
 			}
 			set
 			{
@@ -237,11 +180,11 @@ namespace Lbl.Comprobantes
 			}
 		}
 
-                public double GastosDeEnvio
+                public decimal GastosDeEnvio
                 {
                         get
                         {
-                                return System.Convert.ToDouble(Registro["gastosenvio"]);
+                                return this.GetFieldValue<decimal>("gastosenvio");
                         }
                         set
                         {
@@ -249,11 +192,11 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                public double OtrosGastos
+                public decimal OtrosGastos
                 {
                         get
                         {
-                                return System.Convert.ToDouble(Registro["otrosgastos"]);
+                                return this.GetFieldValue<decimal>("otrosgastos");
                         }
                         set
                         {
@@ -261,35 +204,15 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                public Lfx.Types.LDateTime Fecha
-		{
-			get
-			{
-                                if (Registro["fecha"] == null || Registro["fecha"] is DBNull)
-                                        return null;
-                                else
-                                        return new Lfx.Types.LDateTime(System.Convert.ToDateTime(Registro["fecha"]));
-			}
-                        set
-                        {
-                                if (value != null)
-                                        Registro["fecha"] = value.Value;
-                                else
-                                        Registro["fecha"] = null;
-                        }
-		}
 
-		public bool Impreso
-		{
-			get
-			{
-				return System.Convert.ToBoolean(Registro["impresa"]);
-			}
-                        set
+                public bool DiscriminaIva
+                {
+                        get
                         {
-                                Registro["impresa"] = value ? 1 : 0;
+                                return this.Tipo.LetraSola == "A";
                         }
-		}
+                }
+
 
 		public bool Compra
 		{
@@ -301,19 +224,6 @@ namespace Lbl.Comprobantes
                         {
                                 Registro["compra"] = value ? 1 : 0;
                         }
-		}
-
-		public int PV
-		{
-			get
-			{
-				return System.Convert.ToInt32(Registro["pv"]);
-			}
-			set
-			{
-				//this.DataBase.Execute("UPDATE comprob SET pv=" + value + " WHERE id_comprob=" + this.Id.ToString());
-				Registro["pv"] = value;
-			}
 		}
 
                 public int Cuotas
@@ -328,7 +238,78 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                public double ImporteImpago
+
+                public override Lbl.Impresion.Impresora ObtenerImpresora()
+                {
+                        // Intento obtener una impresora para este PV, esta susursal, para esta estación
+                        foreach (Lbl.Impresion.TipoImpresora Impr in Tipo.Impresoras) {
+                                if (Impr.Estacion != null && Impr.Estacion.ToUpperInvariant() == System.Environment.MachineName.ToUpperInvariant()
+                                        && Impr.PuntoDeVenta != null && Impr.PuntoDeVenta.Numero == this.PV
+                                        && Impr.Sucursal != null && Impr.Sucursal.Id == Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.Id)
+                                        return Impr.Impresora;
+                        }
+
+                        // Caso contrario, obtengo la impresora para este tipo de comprobante
+                        Lbl.Impresion.Impresora Res = base.ObtenerImpresora();
+
+                        if (Res != null) {
+                                return Res;
+                        } else if (this.PV != 0) {
+                                // Si base.ObtenerImpresora() no pudo encontrar nada, busco en el punto de venta
+                                PuntoDeVenta Pun = new PuntoDeVenta(this.Connection, this.Connection.FieldInt("SELECT id_pv FROM pvs WHERE numero=" + this.PV.ToString()));
+                                return Pun.Impresora;
+                        } else {
+                                return null;
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve el subtotal, que es el importe de los artículos del comprobante, antes de descuentos y recargos.
+                /// </summary>
+                public decimal SubTotal
+                {
+                        get
+                        {
+                                decimal Res = 0;
+                                foreach (DetalleArticulo Art in this.Articulos) {
+                                        Res += Art.Importe;
+                                }
+                                return Math.Round(Res, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        }
+                }
+
+
+                /// <summary>
+                /// Devuelve el importe total de la factura, redondeado a la cantidad de decimales configurada para el sistema.
+                /// </summary>
+                public decimal Total
+                {
+                        get
+                        {
+                                return this.RedondearImporte(this.TotalSinRedondeo);
+                        }
+                }
+
+
+                /// <summary>
+                /// Devuelve el importe de la factura, sin redondeos adicionales.
+                /// </summary>
+                public decimal TotalSinRedondeo
+                {
+                        get
+                        {
+                                decimal Res = 0;
+                                foreach (Lbl.Comprobantes.DetalleArticulo Art in Articulos) {
+                                        Res += Art.Importe;
+                                }
+                                return Math.Round(Res * (1 + (Recargo - Descuento) / 100) + this.GastosDeEnvio + this.OtrosGastos + this.ImporteIva, 4);
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve el importe que aun está impago.
+                /// </summary>
+                public decimal ImporteImpago
                 {
                         get
                         {
@@ -336,45 +317,57 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                public double Total
+                /// <summary>
+                /// Devuelve el subtotal sin IVA, pero con descuentos, recargos y redondeos.
+                /// </summary>
+                public decimal SubTotalSinIva
                 {
                         get
                         {
-                                double Redondeo = this.Workspace.CurrentConfig.Moneda.Redondeo;
-                                if (this.Compra || Redondeo == 0)
-                                        return Lfx.Types.Currency.Truncate(this.TotalReal, this.Workspace.CurrentConfig.Moneda.Decimales);
-                                else
-                                        return Lfx.Types.Currency.Truncate(Math.Floor(this.TotalReal / Redondeo) * Redondeo, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                decimal Res = this.Total - this.ImporteIva;
+                                return Math.Round(Res, 4);
                         }
                 }
 
-                public double TotalReal
+
+                /// <summary>
+                /// Devuelve el importe de IVA para esta factura.
+                /// </summary>
+                public decimal ImporteIva
                 {
                         get
                         {
-                                double Res = 0;
-                                foreach (Lbl.Comprobantes.DetalleArticulo Art in Articulos) {
-                                        Res += Art.ImporteFinal;
+                                if (this.Cliente != null && this.Cliente.PagaIva == Impuestos.SituacionIva.Exento)
+                                        return 0;
+
+                                decimal Res = 0;
+                                foreach (DetalleArticulo Det in this.Articulos) {
+                                        Res += Det.ImporteIva;
                                 }
-                                return Res * (1 + (Recargo - Descuento) / 100) + this.GastosDeEnvio + this.OtrosGastos;
+                                return this.RedondearImporte(Math.Round(Res, 4));
                         }
                 }
 
-		internal void Numerar()
-		{
-                        if (this.Numero == 0) {
-                                int NumeroNuevo = Numerador.Numerar(this.DataBase, this);
-                                Registro["numero"] = NumeroNuevo;
-                                Registro["fecha"] = System.DateTime.Now;
-                        }
-		}
+                /// <summary>
+                /// Redondea y trunca un importe según la configuración de decimales y redondeo del sistema.
+                /// </summary>
+                /// <param name="importe">El importe a redondear.</param>
+                /// <returns>El importe redondeado y truncado.</returns>
+                public decimal RedondearImporte(decimal importe)
+                {
+                        decimal Redondeo = this.Workspace.CurrentConfig.Moneda.Redondeo;
+                        if (this.Compra || Redondeo == 0)
+                                return Lfx.Types.Currency.Truncate(importe, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        else
+                                return Lfx.Types.Currency.Truncate(Math.Floor(importe / Redondeo) * Redondeo, this.Workspace.CurrentConfig.Moneda.Decimales);
+                }
 
 		public Lbl.Pagos.FormaDePago FormaDePago
 		{
 			get
 			{
-                                if (m_FormaDePago == null && this.FieldInt("id_formapago") != 0)
-                                        m_FormaDePago = new Lbl.Pagos.FormaDePago(this.DataBase, this.FieldInt("id_formapago"));
+                                if (m_FormaDePago == null && this.GetFieldValue<int>("id_formapago") != 0)
+                                        m_FormaDePago = new Lbl.Pagos.FormaDePago(this.Connection, this.GetFieldValue<int>("id_formapago"));
                                 return m_FormaDePago;
 			}
 			set
@@ -387,7 +380,7 @@ namespace Lbl.Comprobantes
 		{
 			get
 			{
-				return this.FieldInt("remito");
+				return this.GetFieldValue<int>("remito");
 			}
                         set
                         {
@@ -395,7 +388,22 @@ namespace Lbl.Comprobantes
                         }
 		}
 
+                public decimal ImporteIvaDiscriminado
+                {
+                        get
+                        {
+                                if (this.Cliente != null && this.Cliente.PagaIva == Impuestos.SituacionIva.Exento)
+                                        return 0;
 
+                                decimal Res = 0;
+                                foreach (DetalleArticulo Det in this.Articulos) {
+                                        Res += Det.IvaDiscriminado;
+                                }
+                                return Math.Round(Res, 4);
+                        }
+                }
+
+               
 		public bool HayStock()
 		{
 			//Verifica si hay suficiente stock para el comprobante
@@ -414,16 +422,9 @@ namespace Lbl.Comprobantes
 
                 public override void OnLoad()
                 {
-                        if (this.Registro != null) {
-                                Vendedor = new Personas.Persona(this.DataBase, System.Convert.ToInt32(m_Registro["id_vendedor"]));
-                                if (this.FieldInt("id_cliente") > 0)
-                                        Cliente = new Personas.Persona(this.DataBase, this.FieldInt("id_cliente"));
-                                if (m_Registro["situacionorigen"] != null)
-                                        SituacionOrigen = new Articulos.Situacion(this.DataBase, System.Convert.ToInt32(m_Registro["situacionorigen"]));
-                                if (m_Registro["situaciondestino"] != null)
-                                        SituacionDestino = new Articulos.Situacion(this.DataBase, System.Convert.ToInt32(m_Registro["situaciondestino"]));
-                                this.m_ArticulosOriginales = this.Articulos.Clone();
-                        }
+                        this.m_ArticulosOriginales = this.Articulos.Clone();
+                        this.m_SituacionDestinoOriginal = this.SituacionDestino;
+                        
                         base.OnLoad();
                 }
 
@@ -434,21 +435,18 @@ namespace Lbl.Comprobantes
                                 if (m_Articulos == null) {
                                         m_Articulos = new ColeccionDetalleArticulos(this);
                                         if (this.Existe) {
-                                                System.Data.DataTable Arts = this.DataBase.Select("SELECT id_comprob_detalle, id_articulo, orden, cantidad, precio, costo, nombre, descripcion FROM comprob_detalle WHERE id_comprob=" + this.Id.ToString());
-                                                foreach (System.Data.DataRow Art in Arts.Rows) {
-                                                        Comprobantes.DetalleArticulo DetArt = new DetalleArticulo(this.DataBase, System.Convert.ToInt32(Art["id_comprob_detalle"]));
-                                                        DetArt.IdArticulo = Lfx.Data.DataBase.ConvertDBNullToZero(Art["id_articulo"]);
-                                                        DetArt.Orden = System.Convert.ToInt32(Art["orden"]);
-                                                        DetArt.Cantidad = System.Convert.ToDouble(Art["cantidad"]);
-                                                        DetArt.Unitario = System.Convert.ToDouble(Art["precio"]);
-                                                        DetArt.Costo = System.Convert.ToDouble(Art["costo"]);
-                                                        DetArt.Nombre = Art["nombre"].ToString();
-                                                        DetArt.Descripcion = Art["descripcion"].ToString();
+                                                System.Data.DataTable Dets = this.Connection.Select("SELECT * FROM comprob_detalle WHERE id_comprob=" + this.Id.ToString());
+                                                foreach (System.Data.DataRow Det in Dets.Rows) {
+                                                        Comprobantes.DetalleArticulo DetArt = new DetalleArticulo(this, (Lfx.Data.Row)Det);
                                                         m_Articulos.Add(DetArt);
                                                 }
                                         }
                                 }
                                 return m_Articulos;
+                        }
+                        set
+                        {
+                                m_Articulos = value;
                         }
                 }
 
@@ -459,9 +457,9 @@ namespace Lbl.Comprobantes
                                 if (m_Recibos == null || m_Recibos.Count == 0) {
                                         m_Recibos = new ColeccionRecibos();
                                         if (this.Existe) {
-                                                System.Data.DataTable Recs = this.DataBase.Select("SELECT id_recibo FROM recibos_comprob WHERE id_comprob=" + this.Id.ToString());
+                                                System.Data.DataTable Recs = this.Connection.Select("SELECT id_recibo FROM recibos_comprob WHERE id_comprob=" + this.Id.ToString());
                                                 foreach (System.Data.DataRow Rec in Recs.Rows) {
-                                                        m_Recibos.Add(new Recibo(DataBase, System.Convert.ToInt32(Rec["id_recibo"])));
+                                                        m_Recibos.Add(new Recibo(Connection, System.Convert.ToInt32(Rec["id_recibo"])));
                                                 }
                                         }
                                 }
@@ -469,114 +467,39 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                public Lfx.Types.OperationResult CancelarImporte(double importe, Lbl.Comprobantes.Recibo recibo)
+                public Lfx.Types.OperationResult CancelarImporte(decimal importe, Lbl.Comprobantes.Recibo recibo)
 		{
 			if(this.ImporteCancelado + importe > this.Total)
 				throw new InvalidOperationException("ComprobanteConArticulos.CancelarImporte: El importe a cancelar no puede ser mayor que el saldo impago");
 			this.ImporteCancelado += importe;
 			qGen.Update Actualizar = new qGen.Update("comprob", new qGen.Where("id_comprob", this.Id));
 			Actualizar.Fields.AddWithValue("cancelado", this.ImporteCancelado);
-			this.DataBase.Execute(Actualizar);
+			this.Connection.Execute(Actualizar);
 
                         if (recibo != null) {
                                 qGen.Insert AsentarComprobantesDeEsteRecibo = new qGen.Insert("recibos_comprob");
                                 AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("id_recibo", recibo.Id);
                                 AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("id_comprob", this.Id);
                                 AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("importe", importe);
-                                this.DataBase.Execute(AsentarComprobantesDeEsteRecibo);
+                                this.Connection.Execute(AsentarComprobantesDeEsteRecibo);
                         }
 			return new Lfx.Types.SuccessOperationResult();
 		}
 
-		public override Lfx.Types.OperationResult Imprimir(string impresoraPreferida)
-		{
-			if (this.Impreso && this.Numero > 0 && this.Tipo.PermiteImprimirVariasVeces == false)
-				return new Lfx.Types.FailureOperationResult("El comprobante ya fue impreso.");
-
-                        if (this.Tipo.MueveStock && this.Compra == false) {
-                                // Comprobantes de venta mueven stock al imprimir
-                                Lfx.Types.OperationResult Res = this.VerificarSeries();
-                                if (Res.Success == false)
-                                        return Res;
-                        }
-
-			// Busco el punto de venta para este tipo de comprobante en particular
-			if (this.PV == 0)
-                                this.PV = Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos." + this.Tipo + ".PV", 0);
-
-                        if (this.PV == 0) {
-                                // No hay nada definido. Busco el PV para el tipo de comprobante más general
-                                if (this.Tipo.EsNotaCredito) {
-                                        this.PV = Workspace.CurrentConfig.ReadGlobalSettingInt("", "Sistema.Documentos.NC.PV", 0);
-                                } else if (this.Tipo.EsNotaDebito) {
-                                        this.PV = Workspace.CurrentConfig.ReadGlobalSettingInt("", "Sistema.Documentos.ND.PV", 0);
-                                } else if (this.Tipo.EsFactura) {
-                                        this.PV = Workspace.CurrentConfig.ReadGlobalSettingInt("", "Sistema.Documentos.ABC.PV", 0);
-                                } else if (this.Tipo.EsRemito) {
-                                        this.PV = Workspace.CurrentConfig.ReadGlobalSettingInt("", "Sistema.Documentos.ABC.PV", 0);
-                                } else {
-                                        this.PV = Workspace.CurrentConfig.ReadGlobalSettingInt("", "Sistema.Documentos." + this.Tipo.Nomenclatura + ".PV", 0);
-                                }
-
-                                if (this.PV == 0) {
-                                        // No hay nada definido. Busco el PV predeterminado para cualquier tipo de comprobante
-                                        this.PV = Workspace.CurrentConfig.ReadGlobalSettingInt("", "Sistema.Documentos.PV", 1);
-                                }
-                        }
-
-			this.Guardar();
-
-			// Busco el modo de impresión para ese PV (normal o fiscal)
-			int ModoImpresion = this.DataBase.FieldInt("SELECT tipo FROM pvs WHERE id_pv=" + this.PV.ToString());
-
-			// Resumen: De manera predeterminada, se imprime todo en el PV 1, con impresión "normal"
-			switch (ModoImpresion)
-			{
-				case 2:
-					// Impresión mediante controlador fiscal
-					Workspace.DefaultScheduler.AddTask("IMPRIMIR " + this.Id.ToString(), "fiscal" + this.PV.ToString(), "*");
-					break;
-
-				default:
-					// Impresión "normal" o manual
-				        Impresion.ImpresorComprobanteConArticulos Impresor = new Impresion.ImpresorComprobanteConArticulos(this);
-				        return Impresor.Imprimir(impresoraPreferida);
-			}
-
-			return new Lfx.Types.SuccessOperationResult();
-		}
-
-                public override Lfx.Types.OperationResult Cargar()
-                {
-                        Lfx.Types.OperationResult Res = base.Cargar();
-                        if (Res.Success) {
-                                if (Registro["situacionorigen"] == null)
-                                        SituacionOrigen = null;
-                                else
-                                        SituacionOrigen = new Lbl.Articulos.Situacion(this.DataBase, System.Convert.ToInt32(Registro["situacionorigen"]));
-
-                                if (Registro["situaciondestino"] == null)
-                                        SituacionDestino = null;
-                                else
-                                        SituacionDestino = new Lbl.Articulos.Situacion(this.DataBase, System.Convert.ToInt32(Registro["situaciondestino"]));
-                        }
-
-                        return Res;
-                }
 
                 public override Lfx.Types.OperationResult Guardar()
                 {
 			qGen.TableCommand Comando;
 
 			if (this.Existe == false) {
-                                Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
+                                Comando = new qGen.Insert(this.Connection, this.TablaDatos);
                         } else {
-                                Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando = new qGen.Update(this.Connection, this.TablaDatos);
                                 Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
                         if (this.Existe == false && this.Numero == 0 && this.Tipo.NumerarAlGuardar) {
-                                this.Numerar();
+                                this.Numerar(false);
                         }
 
                         if (this.Fecha == null) {
@@ -590,7 +513,7 @@ namespace Lbl.Comprobantes
                         else
                                 Comando.Fields.AddWithValue("id_formapago", FormaDePago.Id);
                         if (this.Vendedor == null)
-                                Comando.Fields.AddWithValue("id_vendedor", DBNull.Value);
+                                Comando.Fields.AddWithValue("id_vendedor", null);
                         else
                                 Comando.Fields.AddWithValue("id_vendedor", this.Vendedor.Id);
                         if (this.Sucursal == null)
@@ -599,13 +522,13 @@ namespace Lbl.Comprobantes
                                 Comando.Fields.AddWithValue("id_sucursal", this.Sucursal.Id);
                         Comando.Fields.AddWithValue("pv", this.PV);
                         Comando.Fields.AddWithValue("numero", this.Numero);
-                        Comando.Fields.AddWithValue("id_cliente", Lfx.Data.DataBase.ConvertZeroToDBNull(this.Cliente.Id));
+                        Comando.Fields.AddWithValue("id_cliente", Lfx.Data.Connection.ConvertZeroToDBNull(this.Cliente.Id));
                         if (this.SituacionOrigen == null)
-                                Comando.Fields.AddWithValue("situacionorigen", DBNull.Value);
+                                Comando.Fields.AddWithValue("situacionorigen", null);
                         else
                                 Comando.Fields.AddWithValue("situacionorigen", this.SituacionOrigen.Id);
                         if (this.SituacionDestino == null)
-                                Comando.Fields.AddWithValue("situaciondestino", DBNull.Value);
+                                Comando.Fields.AddWithValue("situaciondestino", null);
                         else
                                 Comando.Fields.AddWithValue("situaciondestino", this.SituacionDestino.Id);
                         Comando.Fields.AddWithValue("tipo_fac", this.Tipo.Nomenclatura);
@@ -614,7 +537,7 @@ namespace Lbl.Comprobantes
                         Comando.Fields.AddWithValue("interes", this.Recargo);
                         Comando.Fields.AddWithValue("cuotas", this.Cuotas);
                         Comando.Fields.AddWithValue("total", this.Total);
-                        Comando.Fields.AddWithValue("totalreal", this.TotalReal);
+                        Comando.Fields.AddWithValue("totalreal", this.TotalSinRedondeo);
                         Comando.Fields.AddWithValue("gastosenvio", this.GastosDeEnvio);
                         Comando.Fields.AddWithValue("otrosgastos", this.OtrosGastos);
                         Comando.Fields.AddWithValue("obs", this.Obs);
@@ -626,10 +549,10 @@ namespace Lbl.Comprobantes
 
 			this.AgregarTags(Comando);
 
-                        this.DataBase.Execute(Comando);
+                        this.Connection.Execute(Comando);
 
                         if (this.Existe == false)
-                                this.m_ItemId = this.DataBase.FieldInt("SELECT LAST_INSERT_ID()");
+                                this.m_ItemId = this.Connection.FieldInt("SELECT LAST_INSERT_ID()");
 
                         this.GuardarDetalle();
 
@@ -641,30 +564,49 @@ namespace Lbl.Comprobantes
                                                 return Res;
                                 }
 
-                                if (this.Tipo.EsFactura && this.FormaDePago != null && this.FormaDePago.Tipo == Lbl.Pagos.TipoFormasDePago.CuentaCorriente) {
-                                        double DiferenciaMonto;
+                                if (this.Tipo.EsFactura && this.FormaDePago != null && this.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente) {
+                                        decimal DiferenciaMonto;
                                         if (this.m_RegistroOriginal == null)
                                                 DiferenciaMonto = -this.Total;
                                         else
-                                                DiferenciaMonto = System.Convert.ToDouble(this.m_RegistroOriginal["total"]) - this.Total;
-                                        this.Cliente.CuentaCorriente.Movimiento(true, 21000, this.ToString(), DiferenciaMonto);
+                                                DiferenciaMonto = System.Convert.ToDecimal(this.m_RegistroOriginal["total"]) - this.Total;
+                                        if (DiferenciaMonto != 0)
+                                                this.Cliente.CuentaCorriente.Movimiento(true, new Lbl.Cajas.Concepto(this.Connection, 21000), this.ToString(), DiferenciaMonto, null, null, null, null, false);
 
                                 }
 
                                 if (this.Tipo.EsFactura || this.Tipo.EsRemito) {
-                                        ColeccionDetalleArticulos Diferencia = this.m_Articulos.Diferencia(this.m_ArticulosOriginales);
+                                        ColeccionDetalleArticulos Diferencia;
+                                        if (m_SituacionDestinoOriginal != null && this.SituacionDestino.Id == m_SituacionDestinoOriginal.Id)
+                                                Diferencia = this.m_Articulos.Diferencia(this.m_ArticulosOriginales);
+                                        else
+                                                Diferencia = this.m_Articulos.Diferencia(null);
+
                                         foreach (DetalleArticulo Det in Diferencia) {
                                                 if (Det.Articulo != null) {
-                                                        if (Det.Cantidad > 0)
-                                                                Det.Articulo.MoverStock(Det.Cantidad, "Movimiento s/Compr. Proveed. " + this.ToString(), new Lbl.Articulos.Situacion(DataBase, 998), this.SituacionDestino, Det.Series);
-                                                        else
+                                                        Lbl.Articulos.Situacion SituacionProveedor = new Lbl.Articulos.Situacion(this.Connection, 998);
+                                                        Lbl.Articulos.Situacion Desde, Hacia;
+                                                        if (Det.Cantidad > 0) {
+                                                                Desde = SituacionProveedor;
+                                                                Hacia = this.SituacionDestino;
+                                                        } else {
                                                                 //Cantidad negativa. Hago el movimiento con cantidad positiva, pero en sentido inverso
-                                                                Det.Articulo.MoverStock(-Det.Cantidad, "Movimiento s/Compr. Proveed. " + this.ToString(), this.SituacionDestino, new Lbl.Articulos.Situacion(DataBase, 998), Det.Series);
+                                                                Desde = this.SituacionDestino;
+                                                                Hacia = SituacionProveedor;
+                                                        }
+
+                                                        decimal MoverCantidad = Math.Abs(Det.Cantidad);
+
+                                                        if (m_SituacionDestinoOriginal != null && this.SituacionDestino.Id != m_SituacionDestinoOriginal.Id)
+                                                                // Cambio de situación, primero devuelvo los artículos al proveedor
+                                                                Det.Articulo.MoverStock(MoverCantidad, "Edición de Compr. Proveed. " + this.ToString(), m_SituacionDestinoOriginal, SituacionProveedor, Det.Series);
+
+                                                        Det.Articulo.MoverStock(MoverCantidad, "Movimiento s/Compr. Proveed. " + this.ToString(), Desde, Hacia, Det.Series);
                                                 }
                                         }
                                 }
 
-                                System.Collections.Generic.List<int> ArticulosAfectados = new System.Collections.Generic.List<int>();
+                                Lbl.ListaIds ArticulosAfectados = new Lbl.ListaIds();
                                 foreach (DetalleArticulo Det in m_Articulos) {
                                         if (Det.IdArticulo != 0 && ArticulosAfectados.Contains(Det.IdArticulo) == false)
                                                 ArticulosAfectados.Add(Det.IdArticulo);
@@ -678,18 +620,16 @@ namespace Lbl.Comprobantes
                                 }
 
                                 if (ArticulosAfectados.Count > 0) {
-                                        //Convierto List<int> a (string)"1,2,3,..."
-                                        System.Collections.Generic.List<string> ArtString = ArticulosAfectados.ConvertAll<string>(delegate(int i) { return i.ToString(); });
-                                        string ArtCsv = string.Join(",", ArtString.ToArray());
+                                        string ArtCsv = ArticulosAfectados.ToString();
                                         //Actualizo cantidades pedidas y a pedir
-                                        DataBase.Execute(@"UPDATE articulos SET apedir=(
+                                        Connection.Execute(@"UPDATE articulos SET apedir=(
 							SELECT SUM(cantidad)
 							FROM comprob, comprob_detalle
 							WHERE comprob.id_comprob=comprob_detalle.id_comprob
 							AND comprob.compra=1
 							AND tipo_fac='NP' AND estado=50 AND comprob_detalle.id_articulo=articulos.id_articulo)
 						WHERE control_stock=1 AND id_articulo IN (" + ArtCsv + " )");
-                                        DataBase.Execute(@"UPDATE articulos SET pedido=(
+                                        Connection.Execute(@"UPDATE articulos SET pedido=(
 							SELECT SUM(cantidad)
 							FROM comprob, comprob_detalle
 							WHERE comprob.id_comprob=comprob_detalle.id_comprob
@@ -721,7 +661,7 @@ namespace Lbl.Comprobantes
                 {
                         qGen.Delete EliminarDetallesViejos = new qGen.Delete("comprob_detalle");
                         EliminarDetallesViejos.WhereClause = new qGen.Where("id_comprob", this.Id);
-                        this.DataBase.Execute(EliminarDetallesViejos);
+                        this.Connection.Execute(EliminarDetallesViejos);
 
                         int i = 1;
                         for (int Pasada = 1; Pasada <= 2; Pasada++) {
@@ -732,13 +672,13 @@ namespace Lbl.Comprobantes
                                         // lo cual es un requerimiento de las fiscales Hasar.
                                         if ((Pasada == 1 && Art.Cantidad >= 0 && Art.Unitario >= 0)
                                                 || (Pasada == 2 && (Art.Cantidad < 0 || Art.Unitario < 0))) {
-                                                qGen.TableCommand Comando; Comando = new qGen.Insert(this.DataBase, "comprob_detalle");
+                                                qGen.TableCommand Comando; Comando = new qGen.Insert(this.Connection, "comprob_detalle");
                                                 Comando.Fields.AddWithValue("numero_factura", this.Numero);
                                                 Comando.Fields.AddWithValue("id_comprob", this.Id);
                                                 Comando.Fields.AddWithValue("orden", i);
 
                                                 if (Art.Articulo == null) {
-                                                        Comando.Fields.AddWithValue("id_articulo", DBNull.Value);
+                                                        Comando.Fields.AddWithValue("id_articulo", null);
                                                         Comando.Fields.AddWithValue("nombre", Art.Nombre);
                                                         Comando.Fields.AddWithValue("descripcion", "");
                                                 } else {
@@ -753,17 +693,56 @@ namespace Lbl.Comprobantes
                                                         Comando.Fields.AddWithValue("costo", Art.Articulo.Costo);
                                                 else
                                                         Comando.Fields.AddWithValue("costo", Art.Costo);
-                                                Comando.Fields.AddWithValue("importe", Art.ImporteFinal);
+                                                Comando.Fields.AddWithValue("importe", Art.Importe);
                                                 Comando.Fields.AddWithValue("series", Art.Series);
                                                 Comando.Fields.AddWithValue("obs", Art.Obs);
 
                                                 this.AgregarTags(Comando, Art.Registro, "comprob_detalle");
 
-                                                this.DataBase.Execute(Comando);
+                                                this.Connection.Execute(Comando);
                                                 i++;
                                         }
                                 }
                         }
+                }
+
+                public virtual ComprobanteConArticulos Clone()
+                {
+                        Lbl.Comprobantes.ComprobanteConArticulos Nuevo = Lbl.Instanciador.Instanciar(this.GetType(), this.Connection) as Lbl.Comprobantes.ComprobanteConArticulos;
+
+                        Nuevo.Tipo = this.Tipo;
+                        Nuevo.Compra = this.Compra;
+                        Nuevo.Cliente = this.Cliente;
+                        Nuevo.Descuento = this.Descuento;
+                        Nuevo.Cuotas = this.Cuotas;
+                        Nuevo.Estado = this.Estado;
+                        Nuevo.Fecha = this.Fecha;
+                        Nuevo.FormaDePago = this.FormaDePago;
+                        Nuevo.GastosDeEnvio = this.GastosDeEnvio;
+                        //Nuevo.Imagen = this.Imagen;
+                        //Nuevo.ImporteCancelado = this.ImporteCancelado;
+                        //Nuevo.Impreso = this.Impreso;
+                        Nuevo.Numero = this.Numero;
+                        Nuevo.NumeroRemito = this.NumeroRemito;
+                        Nuevo.Obs = this.Obs;
+                        Nuevo.OtrosGastos = this.OtrosGastos;
+                        Nuevo.PV = this.PV;
+                        Nuevo.SituacionDestino = this.SituacionDestino;
+                        Nuevo.SituacionOrigen = this.SituacionOrigen;
+                        Nuevo.Sucursal = this.Sucursal;
+                        Nuevo.Articulos = this.Articulos.Clone(Nuevo);
+                        Nuevo.Vendedor = this.Vendedor;
+
+                        return Nuevo;
+                }
+
+                public virtual ComprobanteConArticulos ConvertirEn(Tipo tipo)
+                {
+                        Lbl.Comprobantes.ComprobanteConArticulos Nuevo = this.Clone();
+                        Nuevo.ComprobanteOriginal = this;
+                        Nuevo.Tipo = tipo;
+                        Nuevo.Obs = "s/" + this.ToString();
+                        return Nuevo;
                 }
 	}
 }

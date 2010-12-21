@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -58,32 +58,32 @@ namespace Lfc.Articulos
                                 m_Articulo = value;
 
                                 if (m_Articulo != null) {
-                                        EntradaFechaCreado.Text = m_Articulo.FechaAlta.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat);
-                                        EntradaFechaPrecio.Text = m_Articulo.FechaPrecio.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat);
-                                        double PrecioUltComp = this.DataBase.FieldDouble("SELECT comprob_detalle.precio FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND id_articulo=" + m_Articulo.Id.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
+                                        EntradaFechaCreado.Text = m_Articulo.FechaAlta.ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern);
+                                        EntradaFechaPrecio.Text = m_Articulo.FechaPrecio.ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern);
+                                        decimal PrecioUltComp = this.Connection.FieldDecimal("SELECT comprob_detalle.precio FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND id_articulo=" + m_Articulo.Id.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
                                         EntradaCostoUltimaCompra.Text = Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
 
                                         // Podra hacer esto con una subconsulta, pero la versión de MySql que estamos utilizando
                                         // no permite la cláusula LIMIT dentro de una subconsulta IN ()
                                         PrecioUltComp = 0;
-                                        System.Data.DataTable UltimasCompras = this.DataBase.Select("SELECT comprob_detalle.precio, comprob.id_comprob FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND comprob_detalle.id_articulo=" + m_Articulo.Id.ToString() + " ORDER BY comprob.fecha DESC LIMIT 5");
+                                        System.Data.DataTable UltimasCompras = this.Connection.Select("SELECT comprob_detalle.precio, comprob.id_comprob FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND comprob_detalle.id_articulo=" + m_Articulo.Id.ToString() + " ORDER BY comprob.fecha DESC LIMIT 5");
 
                                         if (UltimasCompras.Rows.Count > 0) {
                                                 foreach (System.Data.DataRow Compra in UltimasCompras.Rows) {
-                                                        PrecioUltComp += System.Convert.ToDouble(Compra["precio"]);
+                                                        PrecioUltComp += System.Convert.ToDecimal(Compra["precio"]);
                                                 }
 
                                                 PrecioUltComp = PrecioUltComp / UltimasCompras.Rows.Count;
                                                 EntradaCostoUltimas5Compras.Text = Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
                                         }
 
-                                        System.Data.DataTable Precios = this.DataBase.Select("SELECT fecha, costo, pvp FROM articulos_precios WHERE id_articulo=" + m_Articulo.Id.ToString() + " ORDER BY fecha DESC LIMIT 100");
+                                        System.Data.DataTable Precios = this.Connection.Select("SELECT fecha, costo, pvp FROM articulos_precios WHERE id_articulo=" + m_Articulo.Id.ToString() + " ORDER BY fecha DESC LIMIT 100");
                                         lvItems.Items.Clear();
 
                                         foreach (System.Data.DataRow Precio in Precios.Rows) {
                                                 ListViewItem Itm = lvItems.Items.Add(Lfx.Types.Formatting.FormatDate(Precio["fecha"]));
-                                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Precio["costo"]), this.Workspace.CurrentConfig.Moneda.DecimalesCosto)));
-                                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Precio["pvp"]), this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(Precio["costo"]), this.Workspace.CurrentConfig.Moneda.DecimalesCosto)));
+                                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(Precio["pvp"]), this.Workspace.CurrentConfig.Moneda.Decimales)));
                                         }
                                 }
                         }

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ namespace Lcc.Entrada.Articulos
                 /// <summary> 
                 /// Variable del diseñador requerida.
                 /// </summary>
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
 
                 /// <summary> 
                 /// Limpiar los recursos que se estén utilizando.
@@ -64,7 +64,7 @@ namespace Lcc.Entrada.Articulos
                 {
                         this.LabelSerials = new System.Windows.Forms.Label();
                         this.LabelSerialsCruz = new System.Windows.Forms.Label();
-                        this.txtDescuento = new Lui.Forms.TextBox();
+                        this.EntradaDescuento = new Lui.Forms.TextBox();
                         this.EntradaImporte = new Lui.Forms.TextBox();
                         this.EntradaUnitario = new Lui.Forms.TextBox();
                         this.EntradaCantidad = new Lui.Forms.TextBox();
@@ -97,40 +97,37 @@ namespace Lcc.Entrada.Articulos
                         // 
                         // txtDescuento
                         // 
-                        this.txtDescuento.AutoHeight = false;
-                        this.txtDescuento.AutoNav = false;
-                        this.txtDescuento.AutoTab = true;
-                        this.txtDescuento.DataType = Lui.Forms.DataTypes.Float;
-                        this.txtDescuento.DecimalPlaces = -1;
-                        this.txtDescuento.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtDescuento.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtDescuento.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtDescuento.Location = new System.Drawing.Point(376, 24);
-                        this.txtDescuento.MaxLenght = 32767;
-                        this.txtDescuento.MultiLine = false;
-                        this.txtDescuento.Name = "txtDescuento";
-                        this.txtDescuento.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtDescuento.PasswordChar = '\0';
-                        this.txtDescuento.Prefijo = "Desc.";
-                        this.txtDescuento.ReadOnly = false;
-                        this.txtDescuento.SelectOnFocus = true;
-                        this.txtDescuento.Size = new System.Drawing.Size(128, 20);
-                        this.txtDescuento.Sufijo = "%";
-                        this.txtDescuento.TabIndex = 6;
-                        this.txtDescuento.TabStop = false;
-                        this.txtDescuento.Text = "0.0000";
-                        this.txtDescuento.TextRaw = "0.0000";
-                        this.txtDescuento.TipWhenBlank = "";
-                        this.txtDescuento.ToolTipText = "Escriba el descuento para este ítem";
-                        this.txtDescuento.Visible = false;
+                        this.EntradaDescuento.AutoNav = false;
+                        this.EntradaDescuento.AutoTab = true;
+                        this.EntradaDescuento.DataType = Lui.Forms.DataTypes.Float;
+                        this.EntradaDescuento.DecimalPlaces = -1;
+                        this.EntradaDescuento.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaDescuento.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaDescuento.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaDescuento.Location = new System.Drawing.Point(376, 24);
+                        this.EntradaDescuento.MaxLenght = 32767;
+                        this.EntradaDescuento.MultiLine = false;
+                        this.EntradaDescuento.Name = "txtDescuento";
+                        this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaDescuento.PasswordChar = '\0';
+                        this.EntradaDescuento.Prefijo = "Desc.";
+                        this.EntradaDescuento.ReadOnly = false;
+                        this.EntradaDescuento.SelectOnFocus = true;
+                        this.EntradaDescuento.Size = new System.Drawing.Size(128, 20);
+                        this.EntradaDescuento.Sufijo = "%";
+                        this.EntradaDescuento.TabIndex = 6;
+                        this.EntradaDescuento.TabStop = false;
+                        this.EntradaDescuento.Text = "0.0000";
+                        this.EntradaDescuento.TipWhenBlank = "";
+                        this.EntradaDescuento.ToolTipText = "Escriba el descuento para este ítem";
+                        this.EntradaDescuento.Visible = false;
                         // 
                         // EntradaImporte
                         // 
                         this.EntradaImporte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaImporte.AutoHeight = false;
                         this.EntradaImporte.AutoNav = true;
                         this.EntradaImporte.AutoTab = true;
-                        this.EntradaImporte.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporte.DecimalPlaces = -1;
                         this.EntradaImporte.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
@@ -149,17 +146,16 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaImporte.TabIndex = 3;
                         this.EntradaImporte.TabStop = false;
                         this.EntradaImporte.Text = "0.00";
-                        this.EntradaImporte.TextRaw = "0.00";
                         this.EntradaImporte.TipWhenBlank = "";
                         this.EntradaImporte.ToolTipText = "";
                         // 
                         // EntradaUnitario
                         // 
                         this.EntradaUnitario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaUnitario.AutoHeight = false;
+                        this.EntradaUnitario.AutoSize = false;
                         this.EntradaUnitario.AutoNav = false;
                         this.EntradaUnitario.AutoTab = false;
-                        this.EntradaUnitario.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaUnitario.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaUnitario.DecimalPlaces = -1;
                         this.EntradaUnitario.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaUnitario.ForceCase = Lui.Forms.TextCasing.None;
@@ -178,7 +174,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaUnitario.TabIndex = 1;
                         this.EntradaUnitario.TabStop = false;
                         this.EntradaUnitario.Text = "0.00";
-                        this.EntradaUnitario.TextRaw = "0.00";
                         this.EntradaUnitario.TipWhenBlank = "";
                         this.EntradaUnitario.ToolTipText = "Escriba el precio unitario.";
                         this.EntradaUnitario.TextChanged += new System.EventHandler(this.EntradaPrecioCantidad_TextChanged);
@@ -187,7 +182,6 @@ namespace Lcc.Entrada.Articulos
                         // EntradaCantidad
                         // 
                         this.EntradaCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaCantidad.AutoHeight = false;
                         this.EntradaCantidad.AutoNav = false;
                         this.EntradaCantidad.AutoTab = true;
                         this.EntradaCantidad.DataType = Lui.Forms.DataTypes.Stock;
@@ -209,7 +203,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaCantidad.TabIndex = 2;
                         this.EntradaCantidad.TabStop = false;
                         this.EntradaCantidad.Text = "0.00";
-                        this.EntradaCantidad.TextRaw = "0.00";
                         this.EntradaCantidad.TipWhenBlank = "";
                         this.EntradaCantidad.ToolTipText = "Escriba la cantidad.";
                         this.EntradaCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaCantidad_KeyPress);
@@ -220,17 +213,16 @@ namespace Lcc.Entrada.Articulos
                         // 
                         this.EntradaArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaArticulo.AutoHeight = false;
                         this.EntradaArticulo.AutoNav = true;
                         this.EntradaArticulo.AutoTab = true;
                         this.EntradaArticulo.CanCreate = true;
-                        this.EntradaArticulo.DetailField = "nombre";
+                        this.EntradaArticulo.DataTextField = "nombre";
                         this.EntradaArticulo.ExtraDetailFields = "pvp,codigo1,codigo2,codigo3,codigo4";
                         this.EntradaArticulo.Filter = "";
                         this.EntradaArticulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaArticulo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaArticulo.FreeTextCode = "";
-                        this.EntradaArticulo.KeyField = "id_articulo";
+                        this.EntradaArticulo.DataValueField = "id_articulo";
                         this.EntradaArticulo.Location = new System.Drawing.Point(0, 0);
                         this.EntradaArticulo.MaxLength = 200;
                         this.EntradaArticulo.Name = "EntradaArticulo";
@@ -249,7 +241,7 @@ namespace Lcc.Entrada.Articulos
                         // 
                         // DetalleComprobante
                         // 
-                        this.Controls.Add(this.txtDescuento);
+                        this.Controls.Add(this.EntradaDescuento);
                         this.Controls.Add(this.EntradaImporte);
                         this.Controls.Add(this.EntradaUnitario);
                         this.Controls.Add(this.EntradaCantidad);
@@ -266,7 +258,7 @@ namespace Lcc.Entrada.Articulos
                         this.Controls.SetChildIndex(this.EntradaCantidad, 0);
                         this.Controls.SetChildIndex(this.EntradaUnitario, 0);
                         this.Controls.SetChildIndex(this.EntradaImporte, 0);
-                        this.Controls.SetChildIndex(this.txtDescuento, 0);
+                        this.Controls.SetChildIndex(this.EntradaDescuento, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -277,7 +269,7 @@ namespace Lcc.Entrada.Articulos
                 internal TextBox EntradaCantidad;
                 internal TextBox EntradaUnitario;
                 internal TextBox EntradaImporte;
-                internal TextBox txtDescuento;
+                internal TextBox EntradaDescuento;
                 internal System.Windows.Forms.Label LabelSerials;
                 internal System.Windows.Forms.Label LabelSerialsCruz;
         }

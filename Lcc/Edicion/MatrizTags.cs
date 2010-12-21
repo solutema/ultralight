@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -51,22 +51,23 @@ namespace Lcc.Edicion
                 /// </summary>
                 public override void ActualizarControl()
                 {
-                        base.ActualizarControl();
-
                         this.FieldContainer.Controls.Clear();
                         //Tomos los tags del registro
-                        Lfx.Data.Table Tabla = new Lfx.Data.Table(m_Elemento.DataBase, m_Elemento.TablaDatos);
-                        Tabla.DataBase = this.DataBase;
+                        Lfx.Data.Table Tabla = m_Elemento.Connection.Tables[m_Elemento.TablaDatos];
+                        Tabla.DataBase = this.Connection;
                         if (Tabla.Tags != null) {
                                 foreach (Lfx.Data.Tag Tg in Tabla.Tags) {
                                         Entrada.Campo Fld = new Entrada.Campo();
+                                        Fld.Size = new Size(this.FieldContainer.ClientSize.Width, 24);
+                                        Fld.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Top;
                                         Fld.FieldName = Tg.FieldName;
                                         Fld.Text = Tg.Label;
-                                        //Fld.FieldType = Tg.FieldType;
-                                        Fld.FieldValue = m_Elemento.Registro[Tg.FieldName];
+                                        Fld.FieldValue = m_Elemento.GetFieldValue<object>(Tg.FieldName);
                                         this.FieldContainer.Controls.Add(Fld);
                                 }
                         }
+
+                        base.ActualizarControl();
                 }
 
                 /// <summary>
@@ -74,13 +75,13 @@ namespace Lcc.Edicion
                 /// </summary>
                 public override void ActualizarElemento()
                 {
-                        base.ActualizarElemento();
-
                         foreach (System.Windows.Forms.Control Ctl in FieldContainer.Controls) {
                                 if (Ctl is Entrada.Campo) {
-                                        this.Elemento.Registro[((Entrada.Campo)Ctl).FieldName] = ((Entrada.Campo)Ctl).FieldValue;
+                                        this.Elemento.SetFieldValue(((Entrada.Campo)Ctl).FieldName, ((Entrada.Campo)Ctl).FieldValue);
                                 }
                         }
+
+                        base.ActualizarElemento();
                 }
         }
 }

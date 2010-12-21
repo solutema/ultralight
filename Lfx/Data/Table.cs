@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,12 +37,14 @@ namespace Lfx.Data
 {
         public class Table
         {
-                public string Name, PrimaryKey;
-                public bool Cacheable = true;
-                public DataBase DataBase;
+                public string Name;
+                public bool AlwaysCache = false, Cacheable = true;
+                public Connection DataBase;
+
+                private string m_PrimaryKey = null;
 		protected RowCollection m_Rows = null;
 
-                public Table(DataBase dataBase, string name)
+                public Table(Connection dataBase, string name)
                 {
 			this.DataBase = dataBase;
                         this.Name = name;
@@ -59,6 +61,18 @@ namespace Lfx.Data
 			}
 		}
 
+                public string PrimaryKey
+                {
+                        get
+                        {
+                                if (m_PrimaryKey == null && Lfx.Workspace.Master.Structure.Tables.ContainsKey(this.Name) && Lfx.Workspace.Master.Structure.Tables[this.Name].PrimaryKey != null)
+                                        m_PrimaryKey = Lfx.Workspace.Master.Structure.Tables[this.Name].PrimaryKey.Name;
+
+                                return m_PrimaryKey;
+                        }
+                }
+
+
                 public void PreLoad()
                 {
                         this.FastRows.LoadAll();
@@ -68,10 +82,10 @@ namespace Lfx.Data
                 {
 			get
 			{
-                                if (Lfx.Data.DataBaseCache.DefaultCache.TagList.ContainsKey(this.Name) == false)
-                                        Lfx.Data.DataBaseCache.DefaultCache.TagList.Add(this.Name, new Lfx.Data.TagCollection());
-                                
-                                return Lfx.Data.DataBaseCache.DefaultCache.TagList[this.Name];
+                                if (Lfx.Workspace.Master.Structure.TagList.ContainsKey(this.Name) == false)
+                                        Lfx.Workspace.Master.Structure.TagList.Add(this.Name, new Lfx.Data.TagCollection());
+
+                                return Lfx.Workspace.Master.Structure.TagList[this.Name];
 			}
                 }
         }

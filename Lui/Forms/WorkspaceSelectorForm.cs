@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -72,9 +72,18 @@ namespace Lui.Forms
 		/// </summary>
 		private void InitializeComponent()
 		{
+                        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WorkspaceSelectorForm));
                         this.label1 = new System.Windows.Forms.Label();
                         this.Espacios = new System.Windows.Forms.ListBox();
                         this.SuspendLayout();
+                        // 
+                        // OkButton
+                        // 
+                        this.OkButton.Location = new System.Drawing.Point(234, 8);
+                        // 
+                        // CancelCommandButton
+                        // 
+                        this.CancelCommandButton.Location = new System.Drawing.Point(354, 8);
                         // 
                         // label1
                         // 
@@ -107,10 +116,13 @@ namespace Lui.Forms
                         this.ClientSize = new System.Drawing.Size(474, 274);
                         this.Controls.Add(this.Espacios);
                         this.Controls.Add(this.label1);
+                        this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
                         this.Name = "WorkspaceSelectorForm";
                         this.Text = "Espacio de trabajo";
                         this.Activated += new System.EventHandler(this.WorkspaceSelectorForm_Activated);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WorkspaceSelectorForm_KeyDown);
+                        this.Controls.SetChildIndex(this.label1, 0);
+                        this.Controls.SetChildIndex(this.Espacios, 0);
                         this.ResumeLayout(false);
 
 		}
@@ -126,7 +138,7 @@ namespace Lui.Forms
 				if (Nombre == "default")
 					Nombre = "Predeterminado";
 				if (Nombre == Nombre.ToLower() || Nombre == Nombre.ToUpper())
-					Nombre = Lfx.Types.Strings.ULCase(Nombre);
+					Nombre = Nombre.ToTitleCase();
 
 				Espacios.Items.Add(Nombre);
 				if (Nombre == "Predeterminado")

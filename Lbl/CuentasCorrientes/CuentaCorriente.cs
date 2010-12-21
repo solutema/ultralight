@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,17 +37,19 @@ namespace Lbl.CuentasCorrientes
 {
         /// <summary>
         /// Representa la cuenta corriente de una persona (cliente o proveedor).
+        /// No es realmente un ElementoDeDatos.
         /// </summary>
-        public class CuentaCorriente : ElementoDeDatos
+        [Lbl.Atributos.NombreItem("Cuenta Corriente")]
+        public class CuentaCorriente : ICuenta
         {
-                //Heredar constructor
-                public CuentaCorriente(Lfx.Data.DataBase dataBase, int idPersona)
-                        : base(dataBase)
+                Lbl.Personas.Persona Persona;
+
+                public CuentaCorriente(Lbl.Personas.Persona persona)
                 {
-                        m_ItemId = idPersona;
+                        this.Persona = persona;
                 }
 
-                public override string TablaDatos
+                public string TablaDatos
                 {
                         get
                         {
@@ -55,7 +57,7 @@ namespace Lbl.CuentasCorrientes
                         }
                 }
 
-                public override string CampoId
+                public string CampoId
                 {
                         get
                         {
@@ -63,19 +65,40 @@ namespace Lbl.CuentasCorrientes
                         }
                 }
 
+                public Lfx.Data.Connection Connection
+                {
+                        get
+                        {
+                                return this.Persona.Connection;
+                        }
+                }
+
                 /// <summary>
                 /// Calcula el saldo actual de la cuenta corriente.
                 /// </summary>
                 /// <returns>El monto adeudado (puede ser positivo o negativo) en la cuenta corriente.</returns>
-                public double Saldo(bool forUpdate)
+                public decimal Saldo(bool forUpdate)
                 {
                         qGen.Select SelSaldo = new qGen.Select(this.TablaDatos, forUpdate);
                         SelSaldo.Fields = "saldo";
-                        SelSaldo.WhereClause = new qGen.Where("id_cliente", this.Id);
+                        SelSaldo.WhereClause = new qGen.Where("id_cliente", this.Persona.Id);
                         SelSaldo.Order = this.CampoId + " DESC";
                         SelSaldo.Window = new qGen.Window(1);
 
-                        return this.DataBase.FieldDouble(SelSaldo);
+                        return this.Connection.FieldDecimal(SelSaldo);
+                }
+
+
+                public decimal SaldoAFecha(DateTime date)
+                {
+                        qGen.Select SelSaldo = new qGen.Select(this.TablaDatos, false);
+                        SelSaldo.Fields = "saldo";
+                        SelSaldo.WhereClause = new qGen.Where("id_cliente", this.Persona.Id);
+                        SelSaldo.WhereClause.AddWithValue("fecha", qGen.ComparisonOperators.LessOrEqual, date);
+                        SelSaldo.Order = this.CampoId + " DESC";
+                        SelSaldo.Window = new qGen.Window(1);
+
+                        return this.Connection.FieldDecimal(SelSaldo);
                 }
 
 
@@ -85,60 +108,74 @@ namespace Lbl.CuentasCorrientes
                 /// </summary>
                 public void Recalcular()
                 {
-                        System.Data.DataTable Movims = this.DataBase.Select("SELECT id_movim, importe FROM ctacte WHERE id_cliente=" + this.Id.ToString() + " ORDER BY " + this.CampoId);
-                        double Saldo = 0;
+                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Recalculando", "Se va a recalcular el saldo de la cuenta corriente de " + this.Persona.ToString());
+                        Progreso.Begin();
+
+                        System.Data.DataTable Movims = this.Connection.Select("SELECT id_movim, importe FROM ctacte WHERE id_cliente=" + this.Persona.Id.ToString() + " ORDER BY " + this.CampoId);
+                        decimal Saldo = 0;
+                        Progreso.Max = Movims.Rows.Count;
                         foreach (System.Data.DataRow Movim in Movims.Rows) {
-                                Saldo += System.Convert.ToDouble(Movim["importe"]);
+                                Saldo += System.Convert.ToDecimal(Movim["importe"]);
                                 
                                 qGen.Update Upd = new qGen.Update(this.TablaDatos);
                                 Upd.Fields.AddWithValue("saldo", Saldo);
                                 Upd.WhereClause = new qGen.Where(this.CampoId, System.Convert.ToInt32(Movim[this.CampoId]));
-                                this.DataBase.Execute(Upd);
+                                this.Connection.Execute(Upd);
+
+                                Progreso.Advance(1);
                         }
-                }
-
-                public Lfx.Types.OperationResult Movimiento(bool auto, int idConcepto, string concepto, double importeDebito)
-                {
-                        return Movimiento(auto, idConcepto, concepto, importeDebito, "", 0, 0, false);
-                }
-
-                public Lfx.Types.OperationResult Movimiento(bool auto, Lbl.Cajas.Concepto concepto, string textConcepto, double importeDebito, string obs, Lbl.Comprobantes.ComprobanteConArticulos comprob, Lbl.Comprobantes.Recibo recibo, bool cancelaCosas)
-                {
-                        return this.Movimiento(auto, concepto == null ? 0 : concepto.Id, textConcepto, importeDebito, obs, comprob == null ? 0 : comprob.Id, recibo == null ? 0 : recibo.Id, cancelaCosas);
+                        Progreso.End();
                 }
 
                 /// <summary>
-                /// Asienta un movimiento en la cuenta corriente.
+                /// Asienta un movimiento en la cuenta corriente, y cancela comprobantes asociados.
                 /// </summary>
                 /// <param name="auto">Indica si es un movimiento automático (generado por el sistema) o manual (generado por el usuario).</param>
-                /// <param name="idConcepto">El concepto bajo el cual se realiza el movimiento.</param>
-                /// <param name="concepto">El texto que describe al concepto.</param>
+                /// <param name="concepto">El concepto bajo el cual se realiza el movimiento.</param>
+                /// <param name="textoConcepto">El texto que describe al concepto.</param>
                 /// <param name="importeDebito">El importe a debitar de la cuenta. Un importe negativo indica un crédito.</param>
                 /// <param name="obs">Observaciones.</param>
-                /// <param name="idComprob">El comprobante asociado a este movimiento.</param>
-                /// <param name="idRecibo">El recibo asociado a este movimiento.</param>
+                /// <param name="comprob">El comprobante asociado a este movimiento.</param>
+                /// <param name="recibo">El recibo asociado a este movimiento.</param>
                 /// <param name="cancelaCosas">Indica si el monto del movimiento se usa para cancelar comprobantes impagos.</param>
-                /// <returns>El resultado de la operación</returns>
-                public Lfx.Types.OperationResult Movimiento(bool auto, int idConcepto, string concepto, double importeDebito, string obs, int idComprob, int idRecibo, bool cancelaCosas)
+                /// <param name="textoComprob">Un texto sobre los comprobantes asociados al sistema.</param>
+                public void Movimiento(bool auto, 
+                        Lbl.Cajas.Concepto concepto,
+                        string textoConcepto,
+                        decimal importeDebito,
+                        string obs,
+                        Lbl.Comprobantes.ComprobanteConArticulos comprob,
+                        Lbl.Comprobantes.Recibo recibo,
+                        string textoComprob,
+                        bool cancelaCosas)
                 {
-                        double SaldoActual = this.Saldo(true);
-                        qGen.TableCommand Comando; Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
+                        decimal SaldoActual = this.Saldo(true);
+                        qGen.Insert Comando= new qGen.Insert(this.Connection, this.TablaDatos);
 				
                         Comando.Fields.AddWithValue("auto", auto ? (int)1 : (int)0);
-                        Comando.Fields.AddWithValue("id_concepto", Lfx.Data.DataBase.ConvertZeroToDBNull(idConcepto));
+                        if (concepto == null)
+                                Comando.Fields.AddWithValue("id_concepto", null);
+                        else
+                                Comando.Fields.AddWithValue("id_concepto", concepto.Id);
                         Comando.Fields.AddWithValue("concepto", concepto);
-                        Comando.Fields.AddWithValue("id_cliente", m_ItemId);
+                        Comando.Fields.AddWithValue("id_cliente", this.Persona.Id);
 			Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                         Comando.Fields.AddWithValue("importe", importeDebito);
-                        Comando.Fields.AddWithValue("id_comprob", Lfx.Data.DataBase.ConvertZeroToDBNull(idComprob));
-                        Comando.Fields.AddWithValue("id_recibo", Lfx.Data.DataBase.ConvertZeroToDBNull(idRecibo));
-                        Comando.Fields.AddWithValue("comprob", "");
+                        if (comprob == null)
+                                Comando.Fields.AddWithValue("id_comprob", null);
+                        else
+                                Comando.Fields.AddWithValue("id_comprob", comprob.Id);
+                        if (recibo == null)
+                                Comando.Fields.AddWithValue("id_recibo", null);
+                        else
+                                Comando.Fields.AddWithValue("id_recibo", recibo.Id);
+                        Comando.Fields.AddWithValue("comprob", textoComprob);
                         Comando.Fields.AddWithValue("saldo", SaldoActual + importeDebito);
                         Comando.Fields.AddWithValue("obs", obs);
-                        this.DataBase.Execute(Comando);
+                        this.Connection.Execute(Comando);
 
                         if (cancelaCosas) {
-                                string SqlWhere = "impresa>0 AND anulada=0 AND numero>0 AND id_formapago IN (1, 3, 99) AND cancelado<total AND id_cliente=" + m_ItemId.ToString();
+                                string SqlWhere = "impresa>0 AND anulada=0 AND numero>0 AND id_formapago IN (1, 3, 99) AND cancelado<total AND id_cliente=" + this.Persona.Id.ToString();
                                 if (importeDebito < 0) {
                                         // Es un crédito (débito negativo)
                                         // Cancelo saldos en facturas, notas de débito y notas de crédito de compra
@@ -155,56 +192,52 @@ namespace Lbl.CuentasCorrientes
                                                         (compra=0 AND tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM'))
                                                          )";
                                 }
-                                System.Data.DataTable FacturasConSaldo = this.DataBase.Select("SELECT id_comprob,total,cancelado FROM comprob WHERE " + SqlWhere + " ORDER BY id_comprob");
+                                System.Data.DataTable FacturasConSaldo = this.Connection.Select("SELECT id_comprob,total,cancelado FROM comprob WHERE " + SqlWhere + " ORDER BY id_comprob");
 
 
-                                double ImporteRestante = importeDebito;
+                                decimal ImporteRestante = importeDebito;
 
                                 foreach (System.Data.DataRow Factura in FacturasConSaldo.Rows) {
-                                        double SaldoFactura = System.Convert.ToDouble(Factura["total"]) - System.Convert.ToDouble(Factura["cancelado"]);
-                                        double ImporteASaldar = SaldoFactura;
+                                        decimal SaldoFactura = System.Convert.ToDecimal(Factura["total"]) - System.Convert.ToDecimal(Factura["cancelado"]);
+                                        decimal ImporteASaldar = SaldoFactura;
 
                                         if (ImporteASaldar > Math.Abs(ImporteRestante))
                                                 ImporteASaldar = Math.Abs(ImporteRestante);
 
                                         qGen.Update Act = new qGen.Update("comprob");
-                                        Act.Fields.AddWithValue("cancelado", System.Convert.ToDouble(Factura["cancelado"]) + ImporteASaldar);
+                                        Act.Fields.AddWithValue("cancelado", System.Convert.ToDecimal(Factura["cancelado"]) + ImporteASaldar);
                                         Act.WhereClause = new qGen.Where("id_comprob", System.Convert.ToInt32(Factura["id_comprob"]));
-                                        this.DataBase.Execute(Act);
+                                        this.Connection.Execute(Act);
                                         ImporteRestante += ImporteASaldar;
 
                                         if (ImporteRestante >= 0)
                                                 break;
                                 }
                         }
-
-                        return new Lfx.Types.SuccessOperationResult();
                 }
 
                 /// <summary>
                 /// Ingresa un comprobante (factura, nota de crédito o nota de débito) a la cuenta corriente, realizando el movimiento correspondiente.
                 /// </summary>
                 /// <param name="comprob">El comprobante a ingresar.</param>
-                public Lfx.Types.OperationResult IngresarComprobante(Comprobantes.ComprobanteConArticulos comprob)
+                public void IngresarComprobante(Comprobantes.ComprobanteConArticulos comprob)
                 {
-                        if (this.Id == 0)
-                                m_ItemId = comprob.Cliente.Id;
-                        else if (comprob.Cliente.Id != this.Id)
+                        if (comprob.Cliente.Id != this.Persona.Id)
                                 throw new InvalidOperationException("La factura se que ingresa no corresponde al cliente");
                         
                         if(comprob.Compra)
                                 throw new InvalidOperationException("La factura se que ingresa no corresponde al cliente");
 
-                        double SaldoCtaCteAntes = this.Saldo(true);
+                        decimal SaldoCtaCteAntes = this.Saldo(true);
 
-                        this.Movimiento(true, new Lbl.Cajas.Concepto(comprob.DataBase, 11000), comprob.ToString() + " por $ " + Lfx.Types.Formatting.FormatCurrency(comprob.Total, this.Workspace.CurrentConfig.Moneda.Decimales), comprob.Tipo.EsNotaCredito ? -comprob.Total : comprob.Total, null, comprob, null, comprob.Tipo.EsFacturaNCoND);
-                        double FacturaSaldo = comprob.Total - comprob.ImporteCancelado;
+                        this.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, comprob.ToString(), comprob.Tipo.EsNotaCredito ? -comprob.Total : comprob.Total, null, comprob, null, null, comprob.Tipo.EsFacturaNCoND);
+                        decimal FacturaSaldo = comprob.Total - comprob.ImporteCancelado;
 
                         if (FacturaSaldo > 0) {
                                 // Busca un saldo en cta cte para cancelar este comprobante
                                 if ((comprob.Tipo.EsNotaCredito && SaldoCtaCteAntes > 0)
                                         || (comprob.Tipo.EsNotaCredito == false && SaldoCtaCteAntes < 0)) {
-                                        double SaldoACancelar = comprob.Tipo.EsNotaCredito ? SaldoCtaCteAntes : -SaldoCtaCteAntes;
+                                        decimal SaldoACancelar = comprob.Tipo.EsNotaCredito ? SaldoCtaCteAntes : -SaldoCtaCteAntes;
 
                                         if (SaldoACancelar > FacturaSaldo)
                                                 SaldoACancelar = FacturaSaldo;
@@ -213,11 +246,9 @@ namespace Lbl.CuentasCorrientes
                                         qGen.Update ActualizarComprob = new qGen.Update("comprob");
                                         ActualizarComprob.Fields.AddWithValue("cancelado", new qGen.SqlExpression("cancelado+" + Lfx.Types.Formatting.FormatCurrencySql(SaldoACancelar)));
                                         ActualizarComprob.WhereClause = new qGen.Where("id_comprob", comprob.Id);
-                                        this.DataBase.Execute(ActualizarComprob);
+                                        this.Connection.Execute(ActualizarComprob);
                                 }
                         }
-
-                        return new Lfx.Types.SuccessOperationResult();
                 }
         }
 }

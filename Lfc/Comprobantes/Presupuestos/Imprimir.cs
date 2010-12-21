@@ -36,42 +36,28 @@ using System.Drawing;
 
 namespace Lfc.Comprobantes.Presupuestos
 {
-	public class Imprimir : System.Drawing.Printing.PrintDocument
+	public class Imprimir : Lui.Printing.PrintDocument
 	{
-		private int m_IdComprob;
+                private Lbl.Comprobantes.Presupuesto Comprobante;
 		private Lfx.Data.Row m_Comprob = null;
 		private DataTable m_Detalle = null;
 		private string m_Cliente = "";
 		private string m_Vendedor = "";
 		private int m_Pagina;
 		private int m_LastRow;
-                private Lfx.Workspace Workspace;
 
-		public Imprimir(Lfx.Workspace workspace, int idComprob)
+		public Imprimir(Lbl.Comprobantes.Presupuesto comprobante)
 			: base()
 		{
-                        this.Workspace = workspace;
-                        this.m_IdComprob = idComprob;
-		}
-
-		public string IdComprob
-		{
-			get
-			{
-				return m_IdComprob.ToString();
-			}
-			set
-			{
-				m_IdComprob = Lfx.Types.Parsing.ParseInt(value);
-			}
+                        this.Comprobante = comprobante;
 		}
 
 		protected override void OnBeginPrint(System.Drawing.Printing.PrintEventArgs ev)
 		{
 			base.OnBeginPrint(ev);
 			// Abro el Comprobante
-                        m_Comprob = this.Workspace.DefaultDataBase.Row("comprob", "id_comprob", m_IdComprob);
-                        m_Detalle = this.Workspace.DefaultDataBase.Select("SELECT * FROM comprob_detalle WHERE id_comprob=" + m_IdComprob.ToString());
+                        m_Comprob = this.Workspace.DefaultDataBase.Row("comprob", "id_comprob", this.Comprobante.Id);
+                        m_Detalle = this.Workspace.DefaultDataBase.Select("SELECT * FROM comprob_detalle WHERE id_comprob=" + this.Comprobante.Id.ToString());
                         m_Cliente = this.Workspace.DefaultDataBase.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + m_Comprob["id_cliente"].ToString());
                         m_Vendedor = this.Workspace.DefaultDataBase.FieldString("SELECT nombre FROM personas WHERE id_persona=" + m_Comprob["id_vendedor"].ToString());
 			m_Pagina = 0;
@@ -138,7 +124,7 @@ namespace Lfc.Comprobantes.Presupuestos
 			// Fecha
 			Fuente = new Font("Arial", 9);
 			Rect = new RectangleF(MarginLeft, iTop, PrintAreaWidth, 18);
-                        ev.Graphics.DrawString(System.DateTime.Now.ToString(Lfx.Types.Formatting.DateTime.LongDateFormat), Fuente, Brushes.Black, Rect,
+                        ev.Graphics.DrawString(System.DateTime.Now.ToString(Lfx.Types.Formatting.DateTime.LongDatePattern), Fuente, Brushes.Black, Rect,
 					       FormatoCC);
 			// ev.Graphics.DrawRectangle(Pens.Red, Rect.X, Rect.Y, Rect.Width, Rect.Height)
 			iTop += System.Convert.ToInt32(Rect.Height + 4);

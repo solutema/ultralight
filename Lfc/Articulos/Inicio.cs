@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,31 +38,44 @@ using System.Windows.Forms;
 
 namespace Lfc.Articulos
 {
-        public partial class Inicio : Lui.Forms.ListingForm
+        public partial class Inicio : Lfc.FormularioListado
         {
-                protected internal double m_PvpDesde = 0, m_PvpHasta = 0;
+                protected internal decimal m_PvpDesde = 0, m_PvpHasta = 0;
                 protected internal int m_Proveedor = 0, m_Marca = 0, m_Categoria = 0, m_Rubro = 0, m_Situacion = 0;
                 public string m_Stock = "*";
 
                 public Inicio()
                 {
-                        InitializeComponent();
+                        this.ElementoTipo = typeof(Lbl.Articulos.Articulo);
 
-                        DataTableName = "articulos";
-                        KeyField = new Lfx.Data.FormField("articulos.id_articulo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80);
-                        this.Joins = this.DefaultJoins();
-                        OrderBy = "articulos.nombre";
+                        this.NombreTabla = "articulos";
+                        this.KeyField = new Lfx.Data.FormField("articulos.id_articulo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80);
+                        this.Joins = this.FixedJoins();
+                        this.OrderBy = "articulos.nombre";
 
-                        Lfx.Data.Row CodRow = this.DataBase.Tables["articulos_codigos"].FastRows[1];
-                        string Cod1 = CodRow == null ? "Código 1" : CodRow["nombre"].ToString();
-                        CodRow = this.DataBase.Tables["articulos_codigos"].FastRows[2];
-                        string Cod2 = CodRow == null ? "Código 2" : CodRow["nombre"].ToString();
-                        CodRow = this.DataBase.Tables["articulos_codigos"].FastRows[3];
-                        string Cod3 = CodRow == null ? "Código 3" : CodRow["nombre"].ToString();
-                        CodRow = this.DataBase.Tables["articulos_codigos"].FastRows[4];
-                        string Cod4 = CodRow == null ? "Código 4" : CodRow["nombre"].ToString();
+                        string Cod1 = "Código 1", Cod2 = "Código 2", Cod3 = "Código 3", Cod4 = "Código 4";
+                        if (this.HasWorkspace) {
+                                Lfx.Data.Row CodRow = this.Connection.Tables["articulos_codigos"].FastRows[1];
+                                if (CodRow != null)
+                                        Cod1 = CodRow["nombre"].ToString();
+                                CodRow = this.Connection.Tables["articulos_codigos"].FastRows[2];
+                                if (CodRow != null)
+                                        Cod2 = CodRow["nombre"].ToString();
+                                CodRow = this.Connection.Tables["articulos_codigos"].FastRows[3];
+                                if (CodRow != null)
+                                        Cod3 = CodRow["nombre"].ToString();
+                                CodRow = this.Connection.Tables["articulos_codigos"].FastRows[4];
+                                if (CodRow != null)
+                                        Cod4 = CodRow["nombre"].ToString();
 
-                        FormFields = new List<Lfx.Data.FormField>()
+                                // Cargo la tabla en memoria
+                                this.Connection.Tables["articulos_codigos"].PreLoad();
+                        }
+
+                        this.Contadores.Add(new Contador("Costo", Lui.Forms.DataTypes.Currency, "$", null));
+                        this.Contadores.Add(new Contador("PVP", Lui.Forms.DataTypes.Currency, "$", null));
+
+                        this.FormFields = new Lfx.Data.FormFieldCollection()
                         {
 				new Lfx.Data.FormField("articulos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
                                 new Lfx.Data.FormField("articulos.costo", "Costo", Lfx.Data.InputFieldTypes.Currency, 96),
@@ -77,7 +90,12 @@ namespace Lfc.Articulos
 				new Lfx.Data.FormField("articulos.codigo3", Cod3, Lfx.Data.InputFieldTypes.Text, 120),
                                 new Lfx.Data.FormField("articulos_categorias.nombre AS categorias_nombre", "Categoría", Lfx.Data.InputFieldTypes.Text, 120)
 			};
-                        ExtraSearchFields = new List<Lfx.Data.FormField>()
+
+                        this.FormFields["pedido"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+                        this.FormFields["apedir"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+                        this.FormFields["articulos.stock_actual"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+
+                        this.ExtraSearchFields = new Lfx.Data.FormFieldCollection()
 			{
 				new Lfx.Data.FormField("articulos.codigo1", Cod1, Lfx.Data.InputFieldTypes.Text, 0),
 				new Lfx.Data.FormField("articulos.codigo2", Cod2, Lfx.Data.InputFieldTypes.Text, 0),
@@ -88,38 +106,41 @@ namespace Lfc.Articulos
 				new Lfx.Data.FormField("articulos.obs", "Observaciones", Lfx.Data.InputFieldTypes.Memo, 0)
 			};
 
-                        // Cargo la tabla en memoria
-                        this.DataBase.Tables["articulos_codigos"].PreLoad();
+                        this.DetailColumnName = "nombre";
 
-                        BotonFiltrar.Visible = true;
+                        this.HabilitarFiltrar = true;
                 }
 
-                private List<qGen.Join> DefaultJoins()
+                private qGen.JoinCollection FixedJoins()
                 {
-                        return new List<qGen.Join>() { 
+                        return new qGen.JoinCollection() { 
                                 new qGen.Join("articulos_categorias", "articulos_categorias.id_categoria=articulos.id_categoria")
                         };
                 }
 
-                public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                public override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
                 {
                         if (row.Fields["destacado"].ValueInt != 0)
                                 itm.Font = new Font(itm.Font, FontStyle.Bold);
 
-                        if (row.Fields["stock_actual"].ValueDouble < row.Fields["stock_minimo"].ValueDouble) {
-                                //Faltante
-                                itm.UseItemStyleForSubItems = false;
-                                itm.SubItems["stock_actual"].BackColor = System.Drawing.Color.Pink;
-                                itm.SubItems["stock_actual"].BackColor = System.Drawing.Color.Pink;
+                        if (itm.SubItems.ContainsKey("stock_actual")) {
+                                if (row.Fields["stock_actual"].ValueDouble < row.Fields["stock_minimo"].ValueDouble) {
+                                        //Faltante
+                                        itm.UseItemStyleForSubItems = false;
+                                        itm.SubItems["stock_actual"].BackColor = System.Drawing.Color.Pink;
+                                        itm.SubItems["stock_actual"].BackColor = System.Drawing.Color.Pink;
+                                }
                         }
 
-                        if (row.Fields["apedir"].ValueDouble > 0)
-                                itm.SubItems["apedir"].Text = "-";
-                        else
-                                itm.SubItems["apedir"].BackColor = System.Drawing.Color.LightPink;
+                        if (itm.SubItems.ContainsKey("apedir")) {
+                                if (row.Fields["apedir"].ValueDouble > 0)
+                                        itm.SubItems["apedir"].Text = "-";
+                                else
+                                        itm.SubItems["apedir"].BackColor = System.Drawing.Color.LightPink;
+                        }
                 }
 
-                public override void BeginRefreshList()
+                public override void OnBeginRefreshList()
                 {
                         this.CustomFilters.Clear();
 
@@ -143,12 +164,12 @@ namespace Lfc.Articulos
                         if (m_Situacion > 0) {
                                 this.CustomFilters.Add(new qGen.ComparisonCondition("articulos_stock.id_situacion", m_Situacion));
                                 this.CustomFilters.Add(new qGen.ComparisonCondition("articulos_stock.cantidad", qGen.ComparisonOperators.NotEquals, 0));
-                                this.Joins = this.DefaultJoins();
+                                this.Joins = this.FixedJoins();
                                 this.Joins.Add(new qGen.Join("articulos_stock", "articulos.id_articulo=articulos_stock.id_articulo"));
-                                this.FormFields[3] = new Lfx.Data.FormField("articulos_stock.cantidad", "Stock", Lfx.Data.InputFieldTypes.Numeric, 120);
+                                this.FormFields[3].ColumnName = "articulos_stock.cantidad";
                         } else {
-                                this.Joins = this.DefaultJoins();
-                                this.FormFields[3] = new Lfx.Data.FormField("articulos.stock_actual", "Stock", Lfx.Data.InputFieldTypes.Numeric, 120);
+                                this.Joins = this.FixedJoins();
+                                this.FormFields[3].ColumnName = "articulos.stock_actual";
                         }
 
                         switch (m_Stock) {
@@ -178,7 +199,7 @@ namespace Lfc.Articulos
                         }
                 }
 
-                public override void EndRefreshList()
+                public override void OnEndRefreshList()
                 {
                         string SelectValorizacion = "SELECT SUM(costo*stock_actual) FROM articulos";
                         if (this.Joins != null && this.Joins.Count > 0) {
@@ -188,8 +209,7 @@ namespace Lfc.Articulos
                         }
                         if (this.CustomFilters.Count > 0)
                                 SelectValorizacion += " WHERE " + this.CustomFilters.ToString();
-                        double Valorizacion = this.DataBase.FieldDouble(SelectValorizacion);
-                        EntradaValorizacionCosto.Text = Lfx.Types.Formatting.FormatCurrency(Valorizacion, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
+                        this.Contadores[0].Total = this.Connection.FieldDecimal(SelectValorizacion);
 
                         SelectValorizacion = "SELECT SUM(pvp*stock_actual) FROM articulos";
                         if (this.Joins != null && this.Joins.Count > 0) {
@@ -199,71 +219,39 @@ namespace Lfc.Articulos
                         }
                         if (this.CustomFilters.Count > 0)
                                 SelectValorizacion += " WHERE " + this.CustomFilters.ToString();
-                        Valorizacion = this.DataBase.FieldDouble(SelectValorizacion);
-                        EntradatValorizacionPvp.Text = Lfx.Types.Formatting.FormatCurrency(Valorizacion, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        this.Contadores[1].Total = this.Connection.FieldDecimal(SelectValorizacion);
+
+                        base.OnEndRefreshList();
                 }
 
                 public override Lfx.Types.OperationResult OnFilter()
                 {
-                        Articulos.Filtros OFormArticulosFiltros = new Articulos.Filtros();
-                        OFormArticulosFiltros.EntradaRubro.TextInt = m_Rubro;
-                        OFormArticulosFiltros.EntradaCategoria.TextInt = m_Categoria;
-                        OFormArticulosFiltros.EntradaProveedor.TextInt = m_Proveedor;
-                        OFormArticulosFiltros.EntradaMarca.TextInt = m_Marca;
-                        OFormArticulosFiltros.EntradaStock.TextKey = m_Stock;
-                        OFormArticulosFiltros.EntradaSituacion.TextInt = m_Situacion;
-                        OFormArticulosFiltros.EntradaPvpDesde.Text = Lfx.Types.Formatting.FormatCurrency(m_PvpDesde, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        OFormArticulosFiltros.EntradaPvpHasta.Text = Lfx.Types.Formatting.FormatCurrency(m_PvpHasta, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        OFormArticulosFiltros.EntradaAgrupar.TextKey = this.GroupingColumnName;
+                        using (Articulos.Filtros FormFiltros = new Articulos.Filtros()) {
+                                FormFiltros.Connection = this.Connection;
+                                FormFiltros.EntradaRubro.TextInt = m_Rubro;
+                                FormFiltros.EntradaCategoria.TextInt = m_Categoria;
+                                FormFiltros.EntradaProveedor.TextInt = m_Proveedor;
+                                FormFiltros.EntradaMarca.TextInt = m_Marca;
+                                FormFiltros.EntradaStock.TextKey = m_Stock;
+                                FormFiltros.EntradaSituacion.TextInt = m_Situacion;
+                                FormFiltros.EntradaPvpDesde.Text = Lfx.Types.Formatting.FormatCurrency(m_PvpDesde, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                FormFiltros.EntradaPvpHasta.Text = Lfx.Types.Formatting.FormatCurrency(m_PvpHasta, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                FormFiltros.EntradaAgrupar.TextKey = this.GroupingColumnName;
 
-                        if (OFormArticulosFiltros.ShowDialog() == DialogResult.OK) {
-                                m_Rubro = OFormArticulosFiltros.EntradaRubro.TextInt;
-                                m_Categoria = OFormArticulosFiltros.EntradaCategoria.TextInt;
-                                m_Marca = OFormArticulosFiltros.EntradaMarca.TextInt;
-                                m_Proveedor = OFormArticulosFiltros.EntradaProveedor.TextInt;
-                                m_Stock = OFormArticulosFiltros.EntradaStock.TextKey;
-                                m_Situacion = OFormArticulosFiltros.EntradaSituacion.TextInt;
-                                m_PvpDesde = Lfx.Types.Parsing.ParseCurrency(OFormArticulosFiltros.EntradaPvpDesde.Text);
-                                m_PvpHasta = Lfx.Types.Parsing.ParseCurrency(OFormArticulosFiltros.EntradaPvpHasta.Text);
-                                this.GroupingColumnName = OFormArticulosFiltros.EntradaAgrupar.TextKey;
-                                OFormArticulosFiltros = null;
-                                this.RefreshList();
-                                return new Lfx.Types.SuccessOperationResult();
-                        } else {
-                                return new Lfx.Types.OperationResult(false);
-                        }
-                }
-
-                public override Lfx.Types.OperationResult OnCreate()
-                {
-                        this.Workspace.RunTime.Execute("CREAR ARTICULO");
-                        return new Lfx.Types.SuccessOperationResult();
-                }
-
-                public override Lfx.Types.OperationResult OnEdit(int lCodigo)
-                {
-                        this.Workspace.RunTime.Execute("EDITAR ARTICULO " + lCodigo.ToString());
-                        return new Lfx.Types.SuccessOperationResult();
-                }
-
-                private void BotonMovim_Click(object sender, System.EventArgs e)
-                {
-                        if (Listado.SelectedItems != null) {
-                                int lCodigo = Lfx.Types.Parsing.ParseInt(Listado.SelectedItems[0].Text);
-                                this.Workspace.RunTime.Execute("MOVIM ARTICULOS " + lCodigo.ToString());
-                        } else {
-                                this.Workspace.RunTime.Execute("MOVIM ARTICULOS");
-                        }
-                }
-
-                private void FormArticulosInicio_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-                {
-                        if (e.Alt == false && e.Control == false) {
-                                switch (e.KeyCode) {
-                                        case Keys.F5:
-                                                if (BotonMovim.Visible && BotonMovim.Enabled)
-                                                        BotonMovim.PerformClick();
-                                                break;
+                                if (FormFiltros.ShowDialog() == DialogResult.OK) {
+                                        m_Rubro = FormFiltros.EntradaRubro.TextInt;
+                                        m_Categoria = FormFiltros.EntradaCategoria.TextInt;
+                                        m_Marca = FormFiltros.EntradaMarca.TextInt;
+                                        m_Proveedor = FormFiltros.EntradaProveedor.TextInt;
+                                        m_Stock = FormFiltros.EntradaStock.TextKey;
+                                        m_Situacion = FormFiltros.EntradaSituacion.TextInt;
+                                        m_PvpDesde = Lfx.Types.Parsing.ParseCurrency(FormFiltros.EntradaPvpDesde.Text);
+                                        m_PvpHasta = Lfx.Types.Parsing.ParseCurrency(FormFiltros.EntradaPvpHasta.Text);
+                                        this.GroupingColumnName = FormFiltros.EntradaAgrupar.TextKey;
+                                        this.RefreshList();
+                                        return new Lfx.Types.SuccessOperationResult();
+                                } else {
+                                        return new Lfx.Types.OperationResult(false);
                                 }
                         }
                 }

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,13 +35,19 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        public class ColeccionComprobanteConArticulos : System.Collections.Generic.List<ComprobanteConArticulos>
+        public class ColeccionComprobanteConArticulos : Lbl.ColeccionGenerica<ComprobanteConArticulos>
         {
-                public double Total
+                public ColeccionComprobanteConArticulos(Lfx.Data.Connection dataBase)
+                        : base(dataBase) { }
+
+                public ColeccionComprobanteConArticulos(Lfx.Data.Connection dataBase, System.Data.DataTable tabla)
+                        : base(dataBase, tabla) { }
+
+                public decimal Total
                 {
                         get
                         {
-                                double Res = 0;
+                                decimal Res = 0;
                                 foreach (ComprobanteConArticulos comp in this) {
                                         Res += comp.Total;
                                 }
@@ -49,11 +55,11 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                public double ImporteCancelado
+                public decimal ImporteCancelado
                 {
                         get
                         {
-                                double Res = 0;
+                                decimal Res = 0;
                                 foreach (ComprobanteConArticulos comp in this) {
                                         Res += comp.ImporteCancelado;
                                 }

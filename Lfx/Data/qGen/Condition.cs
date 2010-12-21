@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -73,7 +73,7 @@ namespace qGen
 
                 public override string ToString()
                 {
-                        this.Where.m_Mode = this.m_Mode;
+                        this.Where.SqlMode = this.m_Mode;
                         return "(" + this.Where.ToString() + ")";
                 }
         }
@@ -138,34 +138,11 @@ namespace qGen
                         m_Mode = Mode;
                 }
 
-                public string RightValue
+                public object RightValue
                 {
                         get
                         {
-                                if (m_RightValue == null || m_RightValue is DBNull) {
-                                        return "NULL";
-                                } else if (m_RightValue is double || m_RightValue is decimal) {
-                                        return Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDouble(m_RightValue));
-                                } else if (m_RightValue is Lfx.Types.LDateTime) {
-                                        return "'" + Lfx.Types.Formatting.FormatDateTimeSql(((Lfx.Types.LDateTime)(m_RightValue)).Value) + "'";
-                                } else if (m_RightValue is DateTime) {
-                                        return "'" + Lfx.Types.Formatting.FormatDateTimeSql((DateTime)m_RightValue) + "'";
-                                } else if (m_RightValue is int || m_RightValue is long) {
-                                        return m_RightValue.ToString();
-                                } else if (m_RightValue is SqlExpression) {
-                                        return m_RightValue.ToString();
-                                } else if (m_RightValue is int[]) {
-                                        string[] RightValStr = Array.ConvertAll<int, string>((int[])m_RightValue, new Converter<int, string>(Convert.ToString));
-                                        return string.Join(",", RightValStr);
-                                } else if (m_RightValue is string[]) {
-                                        string[] EscapedStrings = ((string[])(m_RightValue));
-                                        for(int i = 0; i < EscapedStrings.Length; i++) {
-                                                EscapedStrings[i] = Lfx.Data.DataBase.EscapeString(EscapedStrings[i], m_Mode);
-                                        }
-                                        return "'" + string.Join("','", EscapedStrings) + "'";
-                                } else {
-                                        return "'" + Lfx.Data.DataBase.EscapeString(m_RightValue.ToString(), m_Mode) + "'";
-                                }
+                                return m_RightValue;
                         }
                         set
                         {
@@ -173,25 +150,52 @@ namespace qGen
                         }
                 }
 
-                public string RightValue2
+                private string FormatValue(object value)
+                {
+                        if (value == null || value is DBNull) {
+                                return "NULL";
+                        } else if (value is double) {
+                                return Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDouble(value));
+                        } else if (value is decimal) {
+                                return Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDecimal(value), 8);
+                        } else if (value is Lfx.Types.LDateTime) {
+                                return "'" + Lfx.Types.Formatting.FormatDateTimeSql(((Lfx.Types.LDateTime)(value)).Value) + "'";
+                        } else if (value is DateTime) {
+                                return "'" + Lfx.Types.Formatting.FormatDateTimeSql((DateTime)value) + "'";
+                        } else if (value is int || value is long) {
+                                return value.ToString();
+                        } else if (value is SqlExpression) {
+                                return m_RightValue.ToString();
+                        } else if (value is int[]) {
+                                string[] RightValStr = Array.ConvertAll<int, string>((int[])value, new Converter<int, string>(Convert.ToString));
+                                return string.Join(",", RightValStr);
+                        } else if (value is string[]) {
+                                string[] EscapedStrings = ((string[])(value));
+                                for (int i = 0; i < EscapedStrings.Length; i++) {
+                                        EscapedStrings[i] = Lfx.Data.Connection.EscapeString(EscapedStrings[i], m_Mode);
+                                }
+                                return "'" + string.Join("','", EscapedStrings) + "'";
+                        } else if (value is System.Collections.IList) {
+                                // Si es una lista, formateo cada uno de los elementos
+                                StringBuilder Res = new StringBuilder();
+                                System.Collections.IList Lista = (System.Collections.IList)value;
+                                foreach (object a in Lista) {
+                                        if(Res.Length == 0)
+                                                Res.Append(FormatValue(a));
+                                        else
+                                                Res.Append("," + FormatValue(a));
+                                }
+                                return Res.ToString();
+                        } else {
+                                return "'" + Lfx.Data.Connection.EscapeString(value.ToString(), m_Mode) + "'";
+                        }
+                }
+
+                public object RightValue2
                 {
                         get
                         {
-                                if (m_RightValue2 == null || m_RightValue2 is DBNull) {
-                                        return "NULL";
-                                } else if (m_RightValue2 is double || m_RightValue2 is decimal) {
-                                        return Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDouble(m_RightValue2));
-                                } else if (m_RightValue2 is Lfx.Types.LDateTime) {
-                                        return "'" + Lfx.Types.Formatting.FormatDateTimeSql(((Lfx.Types.LDateTime)(m_RightValue2)).Value) + "'";
-                                } else if (m_RightValue2 is DateTime) {
-                                        return "'" + Lfx.Types.Formatting.FormatDateTimeSql((DateTime)m_RightValue2) + "'";
-                                } else if (m_RightValue2 is int || m_RightValue2 is long) {
-                                        return m_RightValue2.ToString();
-                                } else if (m_RightValue2 is SqlExpression) {
-                                        return m_RightValue2.ToString();
-                                } else {
-                                        return "'" + Lfx.Data.DataBase.EscapeString(m_RightValue2.ToString(), m_Mode) + "'";
-                                }
+                                return m_RightValue2;
                         }
                         set
                         {
@@ -205,57 +209,57 @@ namespace qGen
 
                         switch (Operator) {
                                 case qGen.ComparisonOperators.NullSafeEquals:
-                                        Result = LeftValue + "<=>" + RightValue;
+                                        Result = LeftValue + "<=>" + FormatValue(RightValue);
                                         break;
 
                                 case qGen.ComparisonOperators.Equals:
                                         if (m_RightValue == null)
-                                                Result = LeftValue + " IS NULL";
+                                                Result = LeftValue + " IS " + FormatValue(RightValue);
                                         else
-                                                Result = LeftValue + "=" + RightValue;
+                                                Result = LeftValue + "=" + FormatValue(RightValue);
                                         break;
 
                                 case qGen.ComparisonOperators.GreaterOrEqual:
-                                        Result = LeftValue + ">=" + RightValue;
+                                        Result = LeftValue + ">=" + FormatValue(RightValue);
                                         break;
 
                                 case qGen.ComparisonOperators.GreaterThan:
-                                        Result = LeftValue + ">" + RightValue;
+                                        Result = LeftValue + ">" + FormatValue(RightValue);
                                         break;
 
                                 case qGen.ComparisonOperators.InsensitiveLike:
                                         switch (m_Mode) {
                                                 case qGen.SqlModes.PostgreSql:
-                                                        Result = LeftValue + " ILIKE " + RightValue;
+                                                        Result = LeftValue + " ILIKE " + FormatValue(RightValue);
                                                         break;
                                                 default:
-                                                        Result = LeftValue + " LIKE " + RightValue;
+                                                        Result = LeftValue + " LIKE " + FormatValue(RightValue);
                                                         break;
                                         }
                                         break;
 
                                 case qGen.ComparisonOperators.LessOrEqual:
-                                        Result = LeftValue + "<=" + RightValue;
+                                        Result = LeftValue + "<=" + FormatValue(RightValue);
                                         break;
 
                                 case qGen.ComparisonOperators.LessThan:
-                                        Result = LeftValue + "<" + RightValue;
+                                        Result = LeftValue + "<" + FormatValue(RightValue);
                                         break;
 
                                 case qGen.ComparisonOperators.NotEquals:
                                         if (m_RightValue == null)
-                                                Result = LeftValue + " IS NOT NULL";
+                                                Result = LeftValue + " IS NOT " + FormatValue(RightValue);
                                         else
-                                                Result = LeftValue + "<>" + RightValue;
+                                                Result = LeftValue + "<>" + FormatValue(RightValue);
                                         break;
 
                                 case qGen.ComparisonOperators.SensitiveLike:
                                         switch (m_Mode) {
                                                 case qGen.SqlModes.MySql:
-                                                        Result = "BINARY " + LeftValue + " LIKE BINARY " + RightValue;
+                                                        Result = "BINARY " + LeftValue + " LIKE BINARY " + FormatValue(RightValue);
                                                         break;
                                                 default:
-                                                        Result = LeftValue + " LIKE " + RightValue;
+                                                        Result = LeftValue + " LIKE " + FormatValue(RightValue);
                                                         break;
                                         }
                                         break;
@@ -265,27 +269,27 @@ namespace qGen
                                                 case qGen.SqlModes.MySql:
                                                         // FIXME: Parece que el SOUNDS LIKE no funciona bien en MySql
                                                         // Result = LeftValue.Replace("%", "") & " SOUNDS LIKE " & RightValue.Replace("%", "")
-                                                        Result = LeftValue + " LIKE " + RightValue;
+                                                        Result = LeftValue + " LIKE " + FormatValue(RightValue);
                                                         break;
                                                 case qGen.SqlModes.PostgreSql:
-                                                        Result = LeftValue + " ILIKE " + RightValue;
+                                                        Result = LeftValue + " ILIKE " + FormatValue(RightValue);
                                                         break;
                                                 default:
-                                                        Result = LeftValue + " LIKE " + RightValue;
+                                                        Result = LeftValue + " LIKE " + FormatValue(RightValue);
                                                         break;
                                         }
                                         break;
 
                                 case qGen.ComparisonOperators.In:
-                                        Result = LeftValue + " IN (" + RightValue + ")";
+                                        Result = LeftValue + " IN (" + FormatValue(RightValue) + ")";
                                         break;
 
                                 case qGen.ComparisonOperators.NotIn:
-                                        Result = LeftValue + " NOT IN (" + RightValue + ")";
+                                        Result = LeftValue + " NOT IN (" + FormatValue(RightValue) + ")";
                                         break;
 
                                 case ComparisonOperators.Between:
-                                        Result = LeftValue + " BETWEEN " + this.RightValue + " AND " + this.RightValue2;
+                                        Result = LeftValue + " BETWEEN " + FormatValue(RightValue) + " AND " + FormatValue(RightValue2);
                                         break;
                         }
 

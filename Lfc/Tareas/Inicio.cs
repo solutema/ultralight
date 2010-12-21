@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,63 +37,51 @@ using System.Windows.Forms;
 
 namespace Lfc.Tareas
 {
-	public partial class Inicio : Lui.Forms.ListingForm
+	public partial class Inicio : Lfc.FormularioListado
 	{
-		private int m_Tarea, m_Cliente, m_Sucursal;
+		private int m_Tipo, m_Cliente, m_Sucursal;
                 private string m_Estado = "sin_entregar";
                 private int Activos, Terminados, Retrasados, Nuevos;
 
                 public Inicio()
                 {
-                        InitializeComponent();
+                        this.ElementoTipo = typeof(Lbl.Tareas.Tarea);
 
-                        DataTableName = "tickets";
+                        this.NombreTabla = "tickets";
                         this.Joins.Add(new qGen.Join("personas", "tickets.id_persona=personas.id_persona"));
-                        KeyField = new Lfx.Data.FormField("tickets.id_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64);
-                        FormFields = new List<Lfx.Data.FormField>()
+                        this.KeyField = new Lfx.Data.FormField("tickets.id_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64);
+
+                        Lbl.ColeccionCodigoDetalle EstadosTickets = null;
+                        if (this.HasWorkspace) {
+                                m_Sucursal = this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada;
+                                EstadosTickets = new Lbl.ColeccionCodigoDetalle(this.Connection.Select("SELECT id_ticket_estado, nombre FROM tickets_estados"));
+                        }
+
+                        this.FormFields = new Lfx.Data.FormFieldCollection()
 			{
 				new Lfx.Data.FormField("tickets.nombre", "Asunto", Lfx.Data.InputFieldTypes.Text, 320),
 				new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 240),
-				new Lfx.Data.FormField("tickets.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 96),
-				new Lfx.Data.FormField("tickets.fecha_ingreso", "Fecha", Lfx.Data.InputFieldTypes.DateTime, 120),
-                                new Lfx.Data.FormField("DATEDIFF(NOW(), tickets.fecha_ingreso) AS fechadiff", "Tiempo", Lfx.Data.InputFieldTypes.Relation, 160)
+				new Lfx.Data.FormField("tickets.estado", "Estado", 160, EstadosTickets),
+				new Lfx.Data.FormField("tickets.fecha_ingreso", "Ingreso", Lfx.Data.InputFieldTypes.DateTime, 160),
+                                new Lfx.Data.FormField("DATEDIFF(NOW(), tickets.fecha_ingreso) AS fechadiff", "Antigüedad", Lfx.Data.InputFieldTypes.Integer, 60)
 			};
-                        OrderBy = "tickets.id_ticket DESC";
-                        m_Sucursal = this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada;
-
-                        // Cargo la tabla en memoria, ya que la voy a usar mucho
-                        this.DataBase.Tables["tickets_estados"].PreLoad();
-
-                        BotonFiltrar.Visible = true;
+                        this.OrderBy = "tickets.id_ticket DESC";
+                        this.HabilitarFiltrar = true;
                 }
 
-                public int Tarea
+                public int Tipo
                 {
                         get
                         {
-                                return m_Tarea;
+                                return m_Tipo;
                         }
                         set
                         {
-                                m_Tarea = value;
+                                m_Tipo = value;
                         }
                 }
 
-		public override Lfx.Types.OperationResult OnCreate()
-		{
-			this.Workspace.RunTime.Execute("CREAR TICKET");
-			return new Lfx.Types.SuccessOperationResult();
-		}
-
-
-		public override Lfx.Types.OperationResult OnEdit(int lCodigo)
-		{
-			this.Workspace.RunTime.Execute("EDITAR TICKET " + lCodigo.ToString());
-			return new Lfx.Types.SuccessOperationResult();
-		}
-
-
-		public override void BeginRefreshList()
+		public override void OnBeginRefreshList()
 		{
                         Activos = 0;
                         Terminados = 0;
@@ -101,8 +89,8 @@ namespace Lfc.Tareas
 
                         this.CustomFilters.Clear();
 
-			if (m_Tarea > 0)
-				this.CustomFilters.AddWithValue("tickets.id_tipo_ticket", m_Tarea);
+			if (m_Tipo > 0)
+				this.CustomFilters.AddWithValue("tickets.id_tipo_ticket", m_Tipo);
 
 			if (m_Cliente > 0)
 				this.CustomFilters.AddWithValue("tickets.id_persona", m_Cliente);
@@ -135,16 +123,16 @@ namespace Lfc.Tareas
 					break;
 			}
 
-			base.BeginRefreshList();
+			base.OnBeginRefreshList();
 		}
 
-                public override void EndRefreshList()
+                public override void OnEndRefreshList()
                 {
-                        EtiquetaNuevos.Text = Nuevos.ToString() + " nuevos";
-                        EtiquetaActivos.Text = Activos.ToString() + " activos";
-                        EtiquetaRetrasados.Text = Retrasados.ToString() + " retrasados";
-                        EtiquetasTerminados.Text = Terminados.ToString() + " terminados";
-                        base.EndRefreshList();
+                        // EtiquetaNuevos.Text = Nuevos.ToString() + " nuevos";
+                        // EtiquetaActivos.Text = Activos.ToString() + " activos";
+                        // EtiquetaRetrasados.Text = Retrasados.ToString() + " retrasados";
+                        // EtiquetasTerminados.Text = Terminados.ToString() + " terminados";
+                        base.OnEndRefreshList();
                 }
 
 
@@ -152,32 +140,30 @@ namespace Lfc.Tareas
 		{
 			Lfx.Types.OperationResult filtrarReturn = new Lfx.Types.SuccessOperationResult();
 
-			Tareas.Filtros OFormFiltros = new Tareas.Filtros();
-			OFormFiltros.txtSucursal.TextInt = m_Sucursal;
-			OFormFiltros.txtTarea.TextInt = m_Tarea;
-			OFormFiltros.txtCliente.TextInt = m_Cliente;
-			OFormFiltros.txtEstado.TextKey = m_Estado;
-			OFormFiltros.txtOrden.TextKey = OrderBy;
-			if (OFormFiltros.ShowDialog() == DialogResult.OK)
-			{
-				m_Sucursal = OFormFiltros.txtSucursal.TextInt;
-				m_Tarea = OFormFiltros.txtTarea.TextInt;
-				m_Cliente = OFormFiltros.txtCliente.TextInt;
-				m_Estado = OFormFiltros.txtEstado.TextKey;
-				OrderBy = OFormFiltros.txtOrden.TextKey;
-				OFormFiltros = null;
-				this.RefreshList();
-				filtrarReturn.Success = true;
-			}
-			else
-			{
-				filtrarReturn.Success = false;
-			}
+                        using (Tareas.Filtros FormFiltros = new Tareas.Filtros()) {
+                                FormFiltros.Connection = this.Connection;
+                                FormFiltros.EntradaSucursal.TextInt = m_Sucursal;
+                                FormFiltros.EntradaTarea.TextInt = m_Tipo;
+                                FormFiltros.EntradaCliente.TextInt = m_Cliente;
+                                FormFiltros.EntradaEstado.TextKey = m_Estado;
+                                FormFiltros.EntradaOrden.TextKey = OrderBy;
+                                if (FormFiltros.ShowDialog() == DialogResult.OK) {
+                                        m_Sucursal = FormFiltros.EntradaSucursal.TextInt;
+                                        m_Tipo = FormFiltros.EntradaTarea.TextInt;
+                                        m_Cliente = FormFiltros.EntradaCliente.TextInt;
+                                        m_Estado = FormFiltros.EntradaEstado.TextKey;
+                                        OrderBy = FormFiltros.EntradaOrden.TextKey;
+                                        this.RefreshList();
+                                        filtrarReturn.Success = true;
+                                } else {
+                                        filtrarReturn.Success = false;
+                                }
+                        }
 			return filtrarReturn;
 		}
 
 
-                public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                public override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
                 {
                         int IdEstado = row.Fields["estado"].ValueInt;
                         int Dias = row.Fields["fechadiff"].ValueInt;
@@ -218,11 +204,6 @@ namespace Lfc.Tareas
                                         itm.Font = new Font(itm.Font, FontStyle.Strikeout);
                                         break;
                         }
-
-                        Lfx.Data.Row Estado = this.DataBase.Tables["tickets_estados"].FastRows[IdEstado];
-                        if (Estado != null)
-                                itm.SubItems["estado"].Text = Estado.Fields["nombre"].ValueString;
-
                 }
 	}
 }

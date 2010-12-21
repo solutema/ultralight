@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,29 +38,28 @@ using System.Windows.Forms;
 
 namespace Lfc.Cajas.Admin
 {
-	public partial class Inicio : Lui.Forms.ListingForm
+	public partial class Inicio : Lfc.FormularioListado
 	{
                 public Inicio()
                 {
-                        InitializeComponent();
+                        this.ElementoTipo = typeof(Lbl.Cajas.Caja);
 
-                        DataTableName = "cajas";
-                        KeyField = new Lfx.Data.FormField("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-
-                        Dictionary<int, string> SetTipos = new Dictionary<int, string>()
+                        this.NombreTabla = "cajas";
+                        this.KeyField = new Lfx.Data.FormField("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        Lbl.ColeccionCodigoDetalle SetTipos = new Lbl.ColeccionCodigoDetalle()
                         {
                                 {0, "Efectivo"},
                                 {1, "Caja de Ahorro"},
                                 {2, "Cuenta Corriente"}
                         };
 
-                        Dictionary<int, string> SetEstados = new Dictionary<int, string>()
+                        Lbl.ColeccionCodigoDetalle SetEstados = new Lbl.ColeccionCodigoDetalle()
                         {
                                 {0, "Inactiva"},
                                 {1, "Activa"}
                         };
 
-                        FormFields = new List<Lfx.Data.FormField>()
+                        this.FormFields = new Lfx.Data.FormFieldCollection()
 			{
 				new Lfx.Data.FormField("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Relation, 96),
 				new Lfx.Data.FormField("cajas.id_banco", "Banco", Lfx.Data.InputFieldTypes.Relation, 120),
@@ -71,54 +70,27 @@ namespace Lfc.Cajas.Admin
                                 new Lfx.Data.FormField("1", "Saldo Futuro", Lfx.Data.InputFieldTypes.Currency, 120),
                                 new Lfx.Data.FormField("estado", "Estado", 96, SetEstados),
 			};
+
+                        this.Contadores.Add(new Contador("Total", Lui.Forms.DataTypes.Currency, "$", null));
+                        this.Contadores.Add(new Contador("Activos", Lui.Forms.DataTypes.Currency, "$", null));
                 }
 
-		public override void BeginRefreshList()
+                public override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
 		{
-			EntradaTotal.Text = "0";
-			EntradaActivos.Text = "0";
-		}
-
-                public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
-		{
-			itm.SubItems["id_banco"].Text = this.DataBase.FieldString("SELECT nombre FROM bancos WHERE id_banco=" + Lfx.Types.Parsing.ParseInt(itm.SubItems[2].Text).ToString());
+                        int IdBanco = Lfx.Types.Parsing.ParseInt(itm.SubItems[2].Text);
+                        if (IdBanco != 0)
+                                itm.SubItems["id_banco"].Text = this.Connection.Tables["bancos"].FastRows[IdBanco].Fields["nombre"].ValueString;
 
                         int IdCaja = Lfx.Types.Parsing.ParseInt(itm.Text);
-                        double Saldo = this.DataBase.FieldDouble("SELECT saldo FROM cajas_movim WHERE id_caja=" + IdCaja.ToString() + " ORDER BY id_movim DESC LIMIT 1");
-                        double Pasivos = this.DataBase.FieldDouble("SELECT SUM(importe) FROM bancos_cheques WHERE estado IN (0, 5) AND emitido=1 AND id_chequera IN (SELECT chequeras.id_chequera FROM chequeras WHERE estado=1 AND id_caja=" + IdCaja.ToString() + ")");
+                        decimal Saldo = this.Connection.FieldDecimal("SELECT saldo FROM cajas_movim WHERE id_caja=" + IdCaja.ToString() + " ORDER BY id_movim DESC LIMIT 1");
+                        decimal Pasivos = this.Connection.FieldDecimal("SELECT SUM(importe) FROM bancos_cheques WHERE estado IN (0, 5) AND emitido=1 AND id_chequera IN (SELECT chequeras.id_chequera FROM chequeras WHERE estado=1 AND id_caja=" + IdCaja.ToString() + ")");
 
-			EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text) + Saldo, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        this.Contadores[0].AddValue(Saldo);
 			if (Saldo > 0)
-				EntradaActivos.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(EntradaActivos.Text) + Saldo, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                this.Contadores[1].AddValue(Saldo);
 			
                         itm.SubItems["0"].Text = Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Moneda.Decimales);
                         itm.SubItems["1"].Text = Lfx.Types.Formatting.FormatCurrency(Saldo - Pasivos, this.Workspace.CurrentConfig.Moneda.Decimales);
 		}
-
-		public override Lfx.Types.OperationResult OnCreate()
-		{
-                        if (Lui.Login.LoginData.ValidateAccess(Lfx.Workspace.Master.CurrentUser, "global.admin")) {
-                                this.Workspace.RunTime.Execute("CREAR CAJA");
-                                return new Lfx.Types.SuccessOperationResult();
-                        } else {
-                                return new Lfx.Types.NoAccessOperationResult();
-                        }
-		}
-
-
-		public override Lfx.Types.OperationResult OnEdit(int lCodigo)
-		{
-                        if (Lui.Login.LoginData.ValidateAccess(Lfx.Workspace.Master.CurrentUser, "global.admin")) {
-                                if (lCodigo < 1000) {
-                                        return new Lfx.Types.FailureOperationResult("No se puede editar la caja seleccionada");
-                                } else {
-                                        this.Workspace.RunTime.Execute("EDITAR CAJA " + lCodigo.ToString());
-                                        return new Lfx.Types.SuccessOperationResult();
-                                }
-                        } else {
-                                return new Lfx.Types.NoAccessOperationResult();
-                        }
-		}
-
 	}
 }

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,16 +38,15 @@ namespace Lfx.Config
 	/// <summary>
 	/// Maneja los parámetros de configuración
 	/// </summary>
-	public class ConfigManager
+	public class ConfigManager : IDisposable
 	{
 		private string m_ConfigFileName;
 		private System.Xml.XmlDocument ConfigDocument;
 		private Workspace m_Workspace;
-                private Lfx.Data.DataBase m_DataBase;
+                private Lfx.Data.Connection m_DataBase;
 
                 public Lfx.Config.ProductsConfig Productos;
                 public Lfx.Config.CurrencyConfig Moneda;
-                public Lfx.Config.PrintersConfig Impresion;
                 public Lfx.Config.CompanyConfig Empresa;
 
                 private Dictionary<string, string> SysConfigCache = null;
@@ -60,7 +59,6 @@ namespace Lfx.Config
 
                         Productos = new Lfx.Config.ProductsConfig(this);
                         Moneda = new Lfx.Config.CurrencyConfig(this);
-                        Impresion = new Lfx.Config.PrintersConfig(this);
                         Empresa = new Lfx.Config.CompanyConfig(this);
 		}
 
@@ -70,6 +68,12 @@ namespace Lfx.Config
                         {
                                 return m_Workspace;
                         }
+                }
+
+                public void Dispose()
+                {
+                        if (m_DataBase != null)
+                                m_DataBase.Dispose();
                 }
 
 		public string ConfigFileName
@@ -94,12 +98,14 @@ namespace Lfx.Config
 			}
 		}
 
-                public Lfx.Data.DataBase DataBase
+                public Lfx.Data.Connection DataBase
                 {
                         get
                         {
-                                if (m_DataBase == null)
-                                        m_DataBase = m_Workspace.GetDataBase("Administrador de configuración");
+                                if (m_DataBase == null) {
+                                        m_DataBase = m_Workspace.GetNewConnection("Administrador de configuración");
+                                        m_DataBase.RequiresTransaction = false;
+                                }
                                 return m_DataBase;
                         }
                 }
@@ -163,37 +169,23 @@ namespace Lfx.Config
 			if(System.IO.File.Exists(ConfigFileName)) 
 			{
 				//Intento obtener el valor del archivo de configuración Xml
-				if(ConfigDocument == null)
-				{
-					ConfigDocument = new System.Xml.XmlDocument();
-					ConfigDocument.Load(ConfigFileName);
-				}
-				System.Xml.XmlNode SettingNode = ConfigDocument.SelectSingleNode("/LocalConfig/Section[@name='" + sectionName + "']/Setting[@name='" + settingName + "']");
-				if(SettingNode != null) 
-				{
-					System.Xml.XmlAttribute SettingAttribute = SettingNode.Attributes["value"];
-					if(SettingAttribute != null) 
-						Result = SettingAttribute.Value;
-				}
-			}
-			if(Result /* still */ == null && Lfx.Environment.SystemInformation.Platform == Lfx.Environment.SystemInformation.Platforms.Windows ) 
-			{
-				//No hay archivo de configuración Xml o el archivo no contiene el valor
-				//Intento obtener el valor del registro del sistema
-				Microsoft.Win32.RegistryKey LazaroKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"Software\Lazaro", false);
-				if(LazaroKey != null)
-				{
-					if(sectionName == null)
-					{
-						Result = LazaroKey.GetValue(settingName, defaultValue).ToString();
-					}
-					else
-					{
-						Microsoft.Win32.RegistryKey SectionKey = LazaroKey.OpenSubKey(sectionName, false);
-						if(SectionKey != null) 
-							Result = SectionKey.GetValue(settingName, defaultValue).ToString();
-					}
-				}
+                                if (ConfigDocument == null) {
+                                        ConfigDocument = new System.Xml.XmlDocument();
+                                        try {
+                                                ConfigDocument.Load(ConfigFileName);
+                                        } catch {
+                                                // El archivo de configuración está vacío o dañado
+                                                return null;
+                                        }
+                                }
+
+                                System.Xml.XmlNode SettingNode = ConfigDocument.SelectSingleNode("/LocalConfig/Section[@name='" + sectionName + "']/Setting[@name='" + settingName + "']");
+                                if (SettingNode != null) {
+                                        System.Xml.XmlAttribute SettingAttribute = SettingNode.Attributes["value"];
+                                        if (SettingAttribute != null)
+                                                Result = SettingAttribute.Value;
+                                }
+
 			}
 			return Result;
 		}

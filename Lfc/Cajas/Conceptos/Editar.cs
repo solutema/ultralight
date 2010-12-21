@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,281 +38,44 @@ using System.Windows.Forms;
 
 namespace Lfc.Cajas.Conceptos
 {
-	public class Editar : Lui.Forms.EditForm
+	public partial class Editar : Lcc.Edicion.ControlEdicion
 	{
+                public Editar()
+                {
+                        this.ElementoTipo = typeof(Lbl.Cajas.Concepto);
 
-		#region 'Windows Form Designer generated code'
+                        InitializeComponent();
+                }
 
-		public Editar()
-			: base()
+                public override void ActualizarControl()
+                {
+                        Lbl.Cajas.Concepto Conc = this.Elemento as Lbl.Cajas.Concepto;
+
+                        EntradaCodigo.ValueInt = Conc.Id;
+                        EntradaNombre.Text = Conc.Nombre;
+                        EntradaDireccion.TextKey = Conc.Direccion.ToString();
+                        EntradaGrupo.TextKey = Conc.Grupo.ToString();
+
+                        base.ActualizarControl();
+                }
+
+		public override Lfx.Types.OperationResult ValidarControl()
 		{
-
-
-			// This call is required by the Windows Form Designer.
-			InitializeComponent();
-
-			// Add any initialization after the InitializeComponent() call
-
-		}
-
-		// Form overrides dispose to clean up the component list.
-		protected override void Dispose(bool disposing)
-		{
-			if(disposing) {
-				if(components != null) {
-					components.Dispose();
-				}
-			}
-			base.Dispose(disposing);
-		}
-
-
-		// Required by the Windows Form Designer
-		private System.ComponentModel.Container components = null;
-
-		// NOTE: The following procedure is required by the Windows Form Designer
-		// It can be modified using the Windows Form Designer.  
-		// Do not modify it using the code editor.
-		internal System.Windows.Forms.Label Label1;
-		internal System.Windows.Forms.Label Label2;
-		internal System.Windows.Forms.Label Label3;
-		internal Lui.Forms.TextBox txtNombre;
-                internal Lui.Forms.ComboBox txtDireccion;
-		internal System.Windows.Forms.Label label4;
-		internal Lui.Forms.TextBox txtCodigo;
-                internal Lui.Forms.ComboBox txtTipo;
-
-		private void InitializeComponent()
-		{
-			this.Label1 = new System.Windows.Forms.Label();
-			this.Label2 = new System.Windows.Forms.Label();
-			this.Label3 = new System.Windows.Forms.Label();
-			this.txtNombre = new Lui.Forms.TextBox();
-                        this.txtDireccion = new Lui.Forms.ComboBox();
-                        this.txtTipo = new Lui.Forms.ComboBox();
-			this.txtCodigo = new Lui.Forms.TextBox();
-			this.label4 = new System.Windows.Forms.Label();
-			this.SuspendLayout();
-			// 
-			// Label1
-			// 
-			this.Label1.Location = new System.Drawing.Point(16, 48);
-			this.Label1.Name = "Label1";
-			this.Label1.Size = new System.Drawing.Size(84, 24);
-			this.Label1.TabIndex = 4;
-			this.Label1.Text = "Nombre";
-			this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// Label2
-			// 
-			this.Label2.Location = new System.Drawing.Point(16, 80);
-			this.Label2.Name = "Label2";
-			this.Label2.Size = new System.Drawing.Size(84, 24);
-			this.Label2.TabIndex = 6;
-			this.Label2.Text = "Dirección";
-			this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// Label3
-			// 
-			this.Label3.Location = new System.Drawing.Point(16, 112);
-			this.Label3.Name = "Label3";
-			this.Label3.Size = new System.Drawing.Size(84, 24);
-			this.Label3.TabIndex = 8;
-			this.Label3.Text = "Tipo";
-			this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// txtNombre
-			// 
-			this.txtNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.txtNombre.AutoNav = true;
-			this.txtNombre.AutoTab = true;
-			this.txtNombre.DataType = Lui.Forms.DataTypes.FreeText;
-			this.txtNombre.DockPadding.All = 2;
-			this.txtNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txtNombre.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtNombre.Location = new System.Drawing.Point(100, 48);
-			this.txtNombre.MaxLenght = 32767;
-			this.txtNombre.Name = "txtNombre";
-			this.txtNombre.ReadOnly = false;
-			this.txtNombre.SelectOnFocus = false;
-			this.txtNombre.Size = new System.Drawing.Size(440, 24);
-			this.txtNombre.TabIndex = 5;
-			this.txtNombre.ToolTipText = "";
-			// 
-			// txtDireccion
-			// 
-			this.txtDireccion.AutoNav = true;
-			this.txtDireccion.AutoTab = true;
-			this.txtDireccion.DockPadding.All = 2;
-			this.txtDireccion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txtDireccion.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtDireccion.Location = new System.Drawing.Point(100, 80);
-			this.txtDireccion.MaxLenght = 32767;
-			this.txtDireccion.Name = "txtDireccion";
-			this.txtDireccion.ReadOnly = false;
-			this.txtDireccion.SetData = new string[] {
-														 "Ambas|0",
-														 "Entrada|1",
-														 "Salida|2"};
-			this.txtDireccion.Size = new System.Drawing.Size(180, 24);
-			this.txtDireccion.TabIndex = 7;
-			this.txtDireccion.Text = "Ambas";
-			this.txtDireccion.TextKey = "0";
-			this.txtDireccion.ToolTipText = "";
-			// 
-			// EntradaTipo
-			// 
-			this.txtTipo.AutoNav = true;
-			this.txtTipo.AutoTab = true;
-			this.txtTipo.DockPadding.All = 2;
-			this.txtTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txtTipo.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtTipo.Location = new System.Drawing.Point(100, 112);
-			this.txtTipo.MaxLenght = 32767;
-			this.txtTipo.Name = "EntradaTipo";
-			this.txtTipo.ReadOnly = false;
-			this.txtTipo.SetData = new string[] {
-													"Ninguno|0",
-													"Cobros|110",
-													"Otros ingresos|100",
-													"Gastos fijos|230",
-													"Gastos variables|240",
-													"Otros gastos|200",
-													"Pérdida|260",
-													"Reinversión|250",
-													"Costo materiales|210",
-													"Costo capital|220",
-													"Sueldos y salarios|231",
-													"Movimientos y ajustes|300"};
-			this.txtTipo.Size = new System.Drawing.Size(284, 24);
-			this.txtTipo.TabIndex = 9;
-			this.txtTipo.Text = "Otros gastos";
-			this.txtTipo.TextKey = "200";
-			this.txtTipo.ToolTipText = "";
-			// 
-			// txtCodigo
-			// 
-			this.txtCodigo.AutoNav = true;
-			this.txtCodigo.AutoTab = true;
-			this.txtCodigo.DataType = Lui.Forms.DataTypes.Integer;
-			this.txtCodigo.DockPadding.All = 2;
-			this.txtCodigo.Enabled = false;
-			this.txtCodigo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txtCodigo.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtCodigo.Location = new System.Drawing.Point(100, 16);
-			this.txtCodigo.MaxLenght = 32767;
-			this.txtCodigo.Name = "txtCodigo";
-			this.txtCodigo.ReadOnly = false;
-			this.txtCodigo.Size = new System.Drawing.Size(76, 24);
-			this.txtCodigo.TabIndex = 3;
-			this.txtCodigo.Text = "0";
-			this.txtCodigo.ToolTipText = "";
-			// 
-			// label4
-			// 
-			this.label4.Location = new System.Drawing.Point(16, 16);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(84, 24);
-			this.label4.TabIndex = 0;
-			this.label4.Text = "Código";
-			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// Editar
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
-			this.ClientSize = new System.Drawing.Size(560, 277);
-			this.Controls.Add(this.txtCodigo);
-			this.Controls.Add(this.label4);
-			this.Controls.Add(this.txtTipo);
-			this.Controls.Add(this.txtDireccion);
-			this.Controls.Add(this.txtNombre);
-			this.Controls.Add(this.Label3);
-			this.Controls.Add(this.Label2);
-			this.Controls.Add(this.Label1);
-			this.Name = "Editar";
-			this.Text = "Editar: Conceptos";
-			this.ResumeLayout(false);
-
-		}
-
-
-		#endregion
-
-		public override Lfx.Types.OperationResult Edit(int lId)
-		{
-			Lfx.Types.OperationResult ResultadoEditar = new Lfx.Types.SuccessOperationResult();
-
-			Lfx.Data.Row Registro = this.DataBase.Row("conceptos", "id_concepto", lId);
-
-			if(Registro == null) {
-				ResultadoEditar.Success = false;
-				ResultadoEditar.Message = "El registro no existe";
-			} else if(System.Convert.ToInt32(Registro["fijo"]) != 0) {
-				ResultadoEditar.Success = false;
-				ResultadoEditar.Message = "El registro no puede ser modificado";
-			} else {
-				txtCodigo.Text = System.Convert.ToString(Registro["id_concepto"]);
-				txtNombre.Text = System.Convert.ToString(Registro["nombre"]);
-				txtDireccion.TextKey = System.Convert.ToString(Registro["es"]);
-				txtTipo.TextKey = Lfx.Data.DataBase.ConvertDBNullToZero(Registro["grupo"]).ToString();
-
-				m_Id = lId;
-				m_Nuevo = false;
-
-				this.Text = "Conceptos: " + txtNombre.Text;
-				ResultadoEditar.Success = true;
-			}
-			return ResultadoEditar;
-		}
-
-		public override Lfx.Types.OperationResult ValidateData()
-		{
-			if(txtNombre.Text.Length < 2)
+			if(EntradaNombre.Text.Length < 2)
 				return new Lfx.Types.FailureOperationResult("Escriba un nombre para el concepto");
-			return new Lfx.Types.SuccessOperationResult();
+
+                        return base.ValidarControl();
 		}
 
-		public override Lfx.Types.OperationResult Save()
-		{
-			Lfx.Types.OperationResult ResultadoGuardar = ValidateData();
+                public override void ActualizarElemento()
+                {
+                        Lbl.Cajas.Concepto Conc = this.Elemento as Lbl.Cajas.Concepto;
 
-			if(ResultadoGuardar.Success == true) {
-				if(m_Nuevo && Lfx.Types.Parsing.ParseInt(txtCodigo.Text) == 0) {
-					this.txtCodigo.Text = this.DataBase.FieldInt("SELECT MAX(id_concepto)+1 FROM conceptos WHERE id_concepto<10000").ToString();
-					if(Lfx.Types.Parsing.ParseInt(this.txtCodigo.Text) == 0)
-						this.txtCodigo.Text = "1";
-				}
+                        Conc.Nombre = EntradaNombre.Text;
+                        Conc.Direccion = Lfx.Types.Parsing.ParseInt(EntradaDireccion.TextKey);
+                        Conc.Grupo = Lfx.Types.Parsing.ParseInt(EntradaGrupo.TextKey);
 
-                                DataBase.BeginTransaction(true);
-
-                                qGen.TableCommand Comando;
-                                if (m_Nuevo) {
-                                        Comando = new qGen.Insert(DataBase, "conceptos");
-                                } else {
-                                        Comando = new qGen.Update(DataBase, "conceptos");
-                                	Comando.WhereClause = new qGen.Where("id_concepto", m_Id);        
-                                }
-
-				Comando.Fields.AddWithValue("id_concepto", Lfx.Types.Parsing.ParseInt(txtCodigo.Text));
-				Comando.Fields.AddWithValue("nombre", txtNombre.Text);
-				Comando.Fields.AddWithValue("es", Lfx.Types.Parsing.ParseInt(txtDireccion.TextKey));
-				Comando.Fields.AddWithValue("grupo", Lfx.Data.DataBase.ConvertZeroToDBNull(Lfx.Types.Parsing.ParseInt(txtTipo.TextKey)));
-
-                                DataBase.Execute(Comando);
-                                DataBase.Commit();
-
-				m_Id = Lfx.Types.Parsing.ParseInt(txtCodigo.Text);
-
-				if(m_Nuevo && ControlDestino != null) {
-					ControlDestino.Text = m_Id.ToString();
-					ControlDestino.Focus();
-				}
-				m_Nuevo = false;
-
-				ResultadoGuardar = base.Save();
-			}
-			return ResultadoGuardar;
-		}
+                        base.ActualizarElemento();
+                }
 	}
 }

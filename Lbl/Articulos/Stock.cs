@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -91,12 +91,12 @@ namespace Lbl.Articulos
                         }
 		}
 
-		public static System.Drawing.Image ProductImage(Lfx.Data.DataBase dataBase, int productId)
+		public static System.Drawing.Image ProductImage(Lfx.Data.Connection dataBase, int productId)
 		{
 			return ProductImage(dataBase, productId, DownloadImage.PreferCacheOnSlowLinks);
 		}
 
-		public static System.Drawing.Image ProductImage(Lfx.Data.DataBase dataBase, int productId, DownloadImage downloadImage)
+		public static System.Drawing.Image ProductImage(Lfx.Data.Connection dataBase, int productId, DownloadImage downloadImage)
 		{
 			string CachePath = Lfx.Environment.Folders.CacheFolder;
 			string ImageFileName = "product_" + productId.ToString() + ".jpg";
@@ -109,7 +109,7 @@ namespace Lbl.Articulos
 				//Download image and save to cache
 				Lfx.Data.Row ImagenDB = dataBase.Row("articulos_imagenes", "imagen", "id_articulo", productId);
 
-                                if (ImagenDB != null && ImagenDB.Fields["imagen"].Value != DBNull.Value && ((byte[])(ImagenDB.Fields["imagen"].Value)).Length > 5)
+                                if (ImagenDB != null && ImagenDB.Fields["imagen"].Value != null && ((byte[])(ImagenDB.Fields["imagen"].Value)).Length > 5)
 				{
 					//Guardar imagen en cache
 					System.IO.BinaryWriter wr = new System.IO.BinaryWriter(System.IO.File.OpenWrite(CachePath + ImageFileName), System.Text.Encoding.Default);
@@ -141,7 +141,7 @@ namespace Lbl.Articulos
 			return null;
 		}
 
-		public static System.Drawing.Image CategoryImage(Lfx.Data.DataBase dataBase, int categoryId, DownloadImage downloadImage)
+		public static System.Drawing.Image CategoryImage(Lfx.Data.Connection dataBase, int categoryId, DownloadImage downloadImage)
 		{
 			string CachePath = Lfx.Environment.Folders.CacheFolder;
 			string ImageFileName = "product_category_" + categoryId.ToString() + ".jpg";

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -65,7 +65,10 @@ namespace Lfx.Data.Providers
                         get
                         {
                                 if (m_Assembly == null) {
-                                        m_Assembly = Assembly.LoadFrom(this.AssemblyName + ".dll");
+                                        if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + this.AssemblyName + ".dll"))
+                                                m_Assembly = Assembly.LoadFrom(Lfx.Environment.Folders.ApplicationFolder + this.AssemblyName + ".dll");
+                                        else if (System.IO.File.Exists(this.AssemblyName + ".dll"))
+                                                m_Assembly = Assembly.LoadFrom(this.AssemblyName + ".dll");
                                 }
                                 return m_Assembly;
                         }

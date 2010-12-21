@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -64,19 +64,15 @@ namespace Lcc.Entrada
                         }
                 }
 
-                public override bool AutoHeight
+
+                protected override void OnAutoSizeChanged(EventArgs e)
                 {
-                        get
-                        {
-                                return base.AutoHeight;
-                        }
-                        set
-                        {
-                                base.AutoHeight = value;
-                                EntradaRango.AutoHeight = value;
-                                EntradaTipoDeRango.AutoHeight = value;
-                        }
+                        //EntradaRango.AutoSize = this.AutoSize;
+                        //EntradaTipoDeRango.AutoSize = this.AutoSize;
+
+                        base.OnAutoSizeChanged(e);
                 }
+
 
                 [EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),
@@ -144,13 +140,13 @@ namespace Lcc.Entrada
                                         EntradaRango.SetData = new string[] {
                                                 "Este mes|mes-0",
                                                 "El mes pasado|mes-1",
-                                                Lfx.Types.Strings.ULCase(DateTime.Now.AddMonths(-2).ToString("MMMM")) + "|mes-2",
-                                                Lfx.Types.Strings.ULCase(DateTime.Now.AddMonths(-3).ToString("MMMM")) + "|mes-3",
-                                                Lfx.Types.Strings.ULCase(DateTime.Now.AddMonths(-4).ToString("MMMM")) + "|mes-4",
-                                                Lfx.Types.Strings.ULCase(DateTime.Now.AddMonths(-5).ToString("MMMM")) + "|mes-5",
-                                                Lfx.Types.Strings.ULCase(DateTime.Now.AddMonths(-6).ToString("MMMM")) + "|mes-6",
-                                                Lfx.Types.Strings.ULCase(DateTime.Now.AddMonths(-7).ToString("MMMM")) + "|mes-7",
-                                                Lfx.Types.Strings.ULCase(DateTime.Now.AddMonths(-8).ToString("MMMM")) + "|mes-8",
+                                                DateTime.Now.AddMonths(-2).ToString("MMMM").ToTitleCase() + "|mes-2",
+                                                DateTime.Now.AddMonths(-3).ToString("MMMM").ToTitleCase() + "|mes-3",
+                                                DateTime.Now.AddMonths(-4).ToString("MMMM").ToTitleCase() + "|mes-4",
+                                                DateTime.Now.AddMonths(-5).ToString("MMMM").ToTitleCase() + "|mes-5",
+                                                DateTime.Now.AddMonths(-6).ToString("MMMM").ToTitleCase() + "|mes-6",
+                                                DateTime.Now.AddMonths(-7).ToString("MMMM").ToTitleCase() + "|mes-7",
+                                                DateTime.Now.AddMonths(-8).ToString("MMMM").ToTitleCase() + "|mes-8",
                                         };
                                         EntradaRango.TextKey = "mes-0";
                                         break;
@@ -267,7 +263,7 @@ namespace Lcc.Entrada
 
                 private void Paneles_SizeChanged(object sender, EventArgs e)
                 {
-                        if (this.AutoHeight)
+                        if (this.AutoSize)
                                 this.Height = PanelCombos.Height + (PanelFechas.Visible ? PanelFechas.Height : 0) + 2;
                 }
         }

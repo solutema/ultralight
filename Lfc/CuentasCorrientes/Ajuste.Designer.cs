@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@ namespace Lfc.CuentasCorrientes
                 }
 
 
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
 
 
 
@@ -80,16 +80,16 @@ namespace Lfc.CuentasCorrientes
                         // 
                         this.EntradaConcepto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaConcepto.AutoHeight = false;
+                        this.EntradaConcepto.AutoSize = false;
                         this.EntradaConcepto.AutoTab = true;
                         this.EntradaConcepto.CanCreate = true;
-                        this.EntradaConcepto.DetailField = "nombre";
+                        this.EntradaConcepto.DataTextField = "nombre";
                         this.EntradaConcepto.ExtraDetailFields = null;
                         this.EntradaConcepto.Filter = "";
                         this.EntradaConcepto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaConcepto.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaConcepto.FreeTextCode = "*";
-                        this.EntradaConcepto.KeyField = "id_concepto";
+                        this.EntradaConcepto.DataValueField = "id_concepto";
                         this.EntradaConcepto.Location = new System.Drawing.Point(120, 24);
                         this.EntradaConcepto.MaxLength = 200;
                         this.EntradaConcepto.Name = "EntradaConcepto";
@@ -108,10 +108,10 @@ namespace Lfc.CuentasCorrientes
                         // 
                         // EntradaImporte
                         // 
-                        this.EntradaImporte.AutoHeight = false;
+                        this.EntradaImporte.AutoSize = false;
                         this.EntradaImporte.AutoNav = true;
                         this.EntradaImporte.AutoTab = true;
-                        this.EntradaImporte.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporte.DecimalPlaces = -1;
                         this.EntradaImporte.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
@@ -129,7 +129,6 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaImporte.Sufijo = "";
                         this.EntradaImporte.TabIndex = 3;
                         this.EntradaImporte.Text = "0.00";
-                        this.EntradaImporte.TextRaw = "0.00";
                         this.EntradaImporte.TipWhenBlank = "";
                         this.EntradaImporte.ToolTipText = "";
                         this.EntradaImporte.TextChanged += new System.EventHandler(this.EntradaImporte_TextChanged);
@@ -156,7 +155,7 @@ namespace Lfc.CuentasCorrientes
                         // 
                         this.EntradaObs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaObs.AutoHeight = false;
+                        this.EntradaObs.AutoSize = false;
                         this.EntradaObs.AutoNav = true;
                         this.EntradaObs.AutoTab = true;
                         this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
@@ -176,7 +175,6 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaObs.Size = new System.Drawing.Size(496, 92);
                         this.EntradaObs.Sufijo = "";
                         this.EntradaObs.TabIndex = 7;
-                        this.EntradaObs.TextRaw = "";
                         this.EntradaObs.TipWhenBlank = "";
                         this.EntradaObs.ToolTipText = "";
                         // 
@@ -191,7 +189,7 @@ namespace Lfc.CuentasCorrientes
                         // 
                         // EntradaDireccion
                         // 
-                        this.EntradaDireccion.AutoHeight = false;
+                        this.EntradaDireccion.AutoSize = false;
                         this.EntradaDireccion.AutoNav = true;
                         this.EntradaDireccion.AutoTab = true;
                         this.EntradaDireccion.DetailField = null;
@@ -212,8 +210,6 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaDireccion.Table = null;
                         this.EntradaDireccion.Text = "Débito";
                         this.EntradaDireccion.TextKey = "1";
-                        this.EntradaDireccion.TextRaw = "Débito";
-                        this.EntradaDireccion.TipWhenBlank = "";
                         this.EntradaDireccion.ToolTipText = "";
                         this.EntradaDireccion.TextChanged += new System.EventHandler(this.EntradaDireccion_TextChanged);
                         // 
@@ -228,10 +224,10 @@ namespace Lfc.CuentasCorrientes
                         // 
                         // EntradaNuevoSaldo
                         // 
-                        this.EntradaNuevoSaldo.AutoHeight = false;
+                        this.EntradaNuevoSaldo.AutoSize = false;
                         this.EntradaNuevoSaldo.AutoNav = true;
                         this.EntradaNuevoSaldo.AutoTab = true;
-                        this.EntradaNuevoSaldo.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaNuevoSaldo.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaNuevoSaldo.DecimalPlaces = -1;
                         this.EntradaNuevoSaldo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNuevoSaldo.ForceCase = Lui.Forms.TextCasing.None;
@@ -250,8 +246,6 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaNuevoSaldo.TabIndex = 52;
                         this.EntradaNuevoSaldo.TabStop = false;
                         this.EntradaNuevoSaldo.Text = "0.00";
-                        this.EntradaNuevoSaldo.TextRaw = "0.00";
-                        this.EntradaNuevoSaldo.TipWhenBlank = "";
                         this.EntradaNuevoSaldo.ToolTipText = "";
                         // 
                         // label3

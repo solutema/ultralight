@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -39,59 +39,31 @@ namespace Lfx.Types
 	{
                 public static class DateTime
                 {
-                        public static string DefaultDateFormat
-                        {
-                                get
-                                {
-                                        return "dd/MM/yyyy";
-                                }
-                        }
-
-                        public static string LongDateFormat
-                        {
-                                get
-                                {
-                                        return @"dddd, d ""de"" MMMM ""de"" yyyy";
-                                }
-                        }
-
-                        public static string DefaultDateTimeFormat
-                        {
-                                get
-                                {
-                                        return "dd/MM/yyyy HH:mm";
-                                }
-                        }
-
-                        public static string SqlDateFormat
-                        {
-                                get
-                                {
-                                        return "yyyy-MM-dd";
-                                }
-                        }
-
-                        public static string SqlDateTimeFormat
-                        {
-                                get
-                                {
-                                        return "yyyy-MM-dd HH:mm:ss";
-                                }
-                        }
+                        public static string ShortDatePattern = "dd/MM/yyyy";
+                        public static string LongDatePattern = @"dddd, d ""de"" MMMM ""de"" yyyy";
+                        public static string FullDateTimePattern = "dd/MM/yyyy HH:mm:ss";
+                        public static string SqlDateFormat = "yyyy-MM-dd";
+                        public static string SqlDateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+                        public static string YearMonthPattern = @"MMMM ""de"" yyyy";
                 }
 
-		public static string SpellNumber(double number)
+                public static class Currency
+                {
+                        public static string CurrentPattern = "0.00";
+                }
+
+                public static string SpellNumber(decimal number)
 		{
 			return SpellNumber(number, true);
 		}
 
-		public static string SpellNumber(double number, bool withDecimals)
+                public static string SpellNumber(decimal number, bool withDecimals)
 		{
 			string Numero = System.Convert.ToInt32(Math.Abs(Math.Floor(number))).ToString();
-			string NumeroInvertido = Lfx.Types.Strings.StrReverse(Numero).PadRight(32, '0');
+			string NumeroInvertido = Numero.StrReverse().PadRight(32, '0');
                         string Resultado = string.Empty;
 
-			int Billones = int.Parse(Lfx.Types.Strings.StrReverse(NumeroInvertido.Substring(9, 6)));
+			int Billones = int.Parse(NumeroInvertido.StrReverse().Substring(9, 6));
 
 			if(Billones == 1) {
 				Resultado += " un billón";
@@ -99,7 +71,7 @@ namespace Lfx.Types
 				Resultado += " " + Lfx.Types.Formatting.SpellNumber(Billones, false) + " billones";
 			}
 
-			int Millones = int.Parse(Lfx.Types.Strings.StrReverse(NumeroInvertido.Substring(6, 3)));
+			int Millones = int.Parse(NumeroInvertido.StrReverse().Substring(6, 3));
 
 			if(Millones == 1) {
 				Resultado += " un millón";
@@ -107,7 +79,7 @@ namespace Lfx.Types
 				Resultado += " " + Lfx.Types.Formatting.SpellNumber(Millones, false) + " millones";
 			}
 
-			int Miles = int.Parse(Lfx.Types.Strings.StrReverse(NumeroInvertido.Substring(3, 3)));
+			int Miles = int.Parse(NumeroInvertido.StrReverse().Substring(3, 3));
 
 			if(Miles == 1) {
 				Resultado += " un mil";
@@ -302,20 +274,22 @@ namespace Lfx.Types
 			return Resultado.Replace("  ", " ").Trim();
 		}
 
-		public static string FormatStock(double number, int decimals)
+                public static string FormatStock(decimal number, int decimals)
 		{
 			return FormatNumber(number, decimals);
 		}
-		public static string FormatStock(double number)
+
+		public static string FormatStock(decimal number)
 		{
 			return FormatStock(number, 8);
 		}
 
-		public static string FormatStockSql(double number, int decimals)
+                public static string FormatStockSql(decimal number, int decimals)
 		{
 			return FormatNumberSql(number, decimals);
 		}
-		public static string FormatStockSql(double number)
+
+                public static string FormatStockSql(decimal number)
 		{
 			return FormatStockSql(number, 8);
 		}
@@ -326,6 +300,7 @@ namespace Lfx.Types
 			return FormatNumber(number, 2);
 		}
 
+
 		public static string FormatNumber(double number, int decimals)
 		{
 			if(decimals < 0)
@@ -333,22 +308,39 @@ namespace Lfx.Types
 			return number.ToString("0.".PadRight(decimals + 2, '0'), System.Globalization.CultureInfo.InvariantCulture);
 		}
 
-		public static string FormatCurrencySql(double numero)
+
+                public static string FormatNumber(decimal number, int decimals)
+                {
+                        if (decimals < 0)
+                                decimals = 8;
+                        return number.ToString("0.".PadRight(decimals + 2, '0'), System.Globalization.CultureInfo.InvariantCulture);
+                }
+
+
+                public static string FormatCurrencySql(decimal numero)
 		{
 			return FormatCurrencySql(numero, -1, true);
 		}
 
-		public static string FormatCurrencySql(double numero, int decimales, bool redondeo)
+                public static string FormatCurrencySql(decimal numero, int decimales, bool redondeo)
 		{
 			return FormatCurrency(numero, decimales, redondeo);
 		}
 
-		public static string FormatCurrency(double numero, int decimales)
+                public static string FormatCurrency(decimal numero, int decimales)
 		{
 			return FormatCurrency(numero, decimales, true);
 		}
 
-		public static string FormatCurrency(double numero, int decimales, bool redondeo)
+                public static string FormatCurrency(decimal numero)
+                {
+                        int decimales = 2;
+                        if (Lfx.Workspace.Master != null)
+                                decimales = Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales;
+                        return FormatCurrency(numero, decimales, true);
+                }
+
+                public static string FormatCurrency(decimal numero, int decimales, bool redondeo)
 		{
 			if(decimales < 0)
 				decimales = 2;
@@ -371,7 +363,12 @@ namespace Lfx.Types
 			return numero.ToString("#,##0." + "0000000000".Substring(0, decimales), System.Globalization.CultureInfo.InvariantCulture); //.Replace(",", "'").Replace(".", ",");
 		}
 
-		public static string FormatCurrencyForPrint(double numero, int decimales)
+                public static string FormatNumberForPrint(decimal numero, int decimales)
+                {
+                        return numero.ToString("#,##0." + "0000000000".Substring(0, decimales), System.Globalization.CultureInfo.InvariantCulture); //.Replace(",", "'").Replace(".", ",");
+                }
+
+                public static string FormatCurrencyForPrint(decimal numero, int decimales)
 		{
 			return numero.ToString("#,##0." + "0000000000".Substring(0, decimales), System.Globalization.CultureInfo.InvariantCulture); //.Replace(",", "'").Replace(".", ",");
 		}
@@ -406,13 +403,13 @@ namespace Lfx.Types
 			if(fecha == null || fecha == DBNull.Value) {
                                 return string.Empty;
 			} else if(fecha is System.DateTime) {
-				return FormatDateAndTime(((System.DateTime)fecha).ToString(Formatting.DateTime.DefaultDateTimeFormat));
+				return ((System.DateTime)fecha).ToString(Formatting.DateTime.FullDateTimePattern);
 			} else {
 				string FechaString = System.Convert.ToString(fecha);
 				formatearFechaYHoraReturn = FormatDate(fecha);
 
 				if(FechaString.Length >= 8 && System.Text.RegularExpressions.Regex.IsMatch(FechaString.Substring(FechaString.Length - 8, 8), @"^[0-2]\d:[0-5]\d:[0-5]\d$"))
-					formatearFechaYHoraReturn += " " + FechaString.Substring(FechaString.Length - 8, 8).Substring(0, 5);
+					formatearFechaYHoraReturn += " " + FechaString.Substring(FechaString.Length - 8, 8).Substring(0, 8);
 				else if(FechaString.Length >= 5 && System.Text.RegularExpressions.Regex.IsMatch(FechaString.Substring(FechaString.Length - 5, 5), @"^[0-2]\d:[0-5]\d$"))
 					formatearFechaYHoraReturn += " " + FechaString.Substring(FechaString.Length - 5, 5);
 			}
@@ -431,7 +428,8 @@ namespace Lfx.Types
 			return FormatNumberSql(numero, -1);
 		}
 
-		public static string FormatNumberSql(double numero, int decimales)
+		
+                public static string FormatNumberSql(double numero, int decimales)
 		{
 			string formatearNumeroSqlReturn = null;
 
@@ -442,6 +440,19 @@ namespace Lfx.Types
 				System.Globalization.CultureInfo.InvariantCulture);
 			return formatearNumeroSqlReturn;
 		}
+
+
+                public static string FormatNumberSql(decimal numero, int decimales)
+                {
+                        string formatearNumeroSqlReturn = null;
+
+                        if (decimales < 0)
+                                decimales = 4;
+
+                        formatearNumeroSqlReturn = numero.ToString("0." + "0000000000".Substring(0, decimales),
+                                System.Globalization.CultureInfo.InvariantCulture);
+                        return formatearNumeroSqlReturn;
+                }
 
                 public static string FormatDateSql(System.DateTime Fecha)
                 {
@@ -492,7 +503,7 @@ namespace Lfx.Types
 
 				formatearFechaSqlReturn = Resultado;
 			} else {
-				formatearFechaSqlReturn = DBNull.Value;
+				formatearFechaSqlReturn = null;
 			}
 
 			return formatearFechaSqlReturn;
@@ -503,7 +514,7 @@ namespace Lfx.Types
                         if (fecha == null || fecha == DBNull.Value) {
                                 return string.Empty;
                         } else if (fecha is System.DateTime) {
-                                return FormatDate(System.Convert.ToDateTime(fecha).ToString(DateTime.DefaultDateFormat));
+                                return FormatDate(System.Convert.ToDateTime(fecha).ToString(DateTime.ShortDatePattern));
                         } else if (fecha is LDateTime) {
                                 return FormatDate(((LDateTime)(fecha)).Value);
                         } else if (fecha is Nullable<System.DateTime>) {
@@ -545,12 +556,12 @@ namespace Lfx.Types
 						intAnio = System.DateTime.Now.Year;
 				} else {
 					// Son dos o más piezas (tipo dd/mm o dd/mm/aa, etc.)
-					if(Lfx.Types.Strings.IsNumericInt(System.Convert.ToString(Partes[0])))
+					if(System.Convert.ToString(Partes[0]).IsNumericInt())
 						intDia = System.Convert.ToInt32(Partes[0]);
 					else
 						intDia = System.DateTime.Now.Day;
 
-					if(Partes.Length >= 2 && Lfx.Types.Strings.IsNumericInt(System.Convert.ToString(Partes[1])))
+                                        if (Partes.Length >= 2 && System.Convert.ToString(Partes[1]).IsNumericInt())
 						intMes = System.Convert.ToInt32(Partes[1]);
 					else
 						intMes = System.DateTime.Now.Month;
@@ -558,7 +569,7 @@ namespace Lfx.Types
 					if(Partes.Length >= 3 && Partes[2].Length > 4)
 						Partes[2] = Partes[2].Substring(0, 4);
 
-					if(Partes.Length >= 3 && Lfx.Types.Strings.IsNumericInt(System.Convert.ToString(Partes[2])))
+                                        if (Partes.Length >= 3 && System.Convert.ToString(Partes[2]).IsNumericInt())
 						intAnio = System.Convert.ToInt32(Partes[2]);
 					else
 						intAnio = System.DateTime.Now.Year;

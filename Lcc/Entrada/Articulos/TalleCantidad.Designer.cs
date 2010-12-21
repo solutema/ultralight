@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-namespace Lcc.Edicion.Articulos
+namespace Lcc.Entrada.Articulos
 {
         partial class TalleCantidad
         {
@@ -66,7 +66,6 @@ namespace Lcc.Edicion.Articulos
                         // 
                         this.EntradaCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaCantidad.AutoHeight = false;
                         this.EntradaCantidad.AutoNav = true;
                         this.EntradaCantidad.AutoTab = true;
                         this.EntradaCantidad.DataType = Lui.Forms.DataTypes.Float;
@@ -87,7 +86,6 @@ namespace Lcc.Edicion.Articulos
                         this.EntradaCantidad.Sufijo = "";
                         this.EntradaCantidad.TabIndex = 54;
                         this.EntradaCantidad.Text = "0.0000";
-                        this.EntradaCantidad.TextRaw = "0.0000";
                         this.EntradaCantidad.TipWhenBlank = "";
                         this.EntradaCantidad.ToolTipText = "";
                         // 
@@ -96,7 +94,7 @@ namespace Lcc.Edicion.Articulos
                         this.EntradaTalle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaTalle.AutoHeight = false;
+                        this.EntradaTalle.AutoSize = false;
                         this.EntradaTalle.AutoNav = true;
                         this.EntradaTalle.AutoTab = true;
                         this.EntradaTalle.DataType = Lui.Forms.DataTypes.FreeText;
@@ -116,7 +114,6 @@ namespace Lcc.Edicion.Articulos
                         this.EntradaTalle.Size = new System.Drawing.Size(364, 24);
                         this.EntradaTalle.Sufijo = "";
                         this.EntradaTalle.TabIndex = 53;
-                        this.EntradaTalle.TextRaw = "";
                         this.EntradaTalle.TipWhenBlank = "";
                         this.EntradaTalle.ToolTipText = "";
                         // 

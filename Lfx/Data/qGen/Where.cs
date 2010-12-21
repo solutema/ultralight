@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ namespace qGen
 {
         public class Where : System.Collections.Generic.List<qGen.Condition>
         {
-                internal SqlModes m_Mode = SqlModes.Ansi;
+                public SqlModes SqlMode = SqlModes.Ansi;
                 public AndOr Operator = AndOr.And;
 
                 public Where()
@@ -51,11 +51,6 @@ namespace qGen
                         this.Operator = operand;
                 }
 
-                /* public Where(string Condition)
-                        : this()
-                {
-                        this.Conditions.Add(new qGen.SqlCondition(Condition));
-                } */
 
                 public Where(qGen.Condition Condition)
                         : this()
@@ -98,9 +93,9 @@ namespace qGen
                         this.Add(new ComparisonCondition(leftValue, minValue, maxValue));
                 }
 
-                public string ToString(SqlModes Mode)
+                public string ToString(SqlModes mode)
                 {
-                        m_Mode = Mode;
+                        this.SqlMode = mode;
                         return this.ToString();
                 }
 
@@ -112,22 +107,22 @@ namespace qGen
                                 foreach (object Condition in this) {
                                         if (Condition != null) {
                                                 if (Condition is Condition) {
-                                                        ((Condition)(Condition)).Mode = m_Mode;
+                                                        ((Condition)(Condition)).Mode = this.SqlMode;
                                                         if (Operator == AndOr.And)
                                                                 Command.Append(" AND ");
                                                         else
                                                                 Command.Append(" OR ");
 
-                                                        Command.Append(((Condition)(Condition)).ToString(m_Mode));
+                                                        Command.Append(((Condition)(Condition)).ToString(this.SqlMode));
                                                 } else if (Condition is NestedCondition) {
-                                                        ((NestedCondition)(Condition)).Mode = m_Mode;
+                                                        ((NestedCondition)(Condition)).Mode = this.SqlMode;
                                                         if (((NestedCondition)(Condition)).Where.Count > 0) {
                                                                 if (Operator == AndOr.And)
                                                                         Command.Append(" AND ");
                                                                 else
                                                                         Command.Append(" OR ");
 
-                                                                Command.Append(((NestedCondition)(Condition)).ToString(m_Mode));
+                                                                Command.Append(((NestedCondition)(Condition)).ToString(this.SqlMode));
                                                         }
                                                 } else if (System.Convert.ToString(Condition).Length > 0) {
                                                         if (Operator == AndOr.And)
@@ -167,8 +162,8 @@ namespace qGen
 
                 public Where Clone()
                 {
-                        Where Res = ((Where)(this.MemberwiseClone()));
-                        Res.Clear();
+                        Where Res = new Where(this.Operator);
+                        Res.SqlMode = this.SqlMode;
                         if (this.Count > 0)
                                 Res.AddRange(this);
                         return Res;

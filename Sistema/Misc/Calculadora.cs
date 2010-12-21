@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -69,20 +69,20 @@ namespace Lazaro.Misc
 
 
 		// Requerido por el Diseñador de Windows Forms
-		private System.ComponentModel.Container components = null;
+		private System.ComponentModel.IContainer components = null;
 
 		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
 		// Puede modificarse utilizando el Diseñador de Windows Forms. 
 		// No lo modifique con el editor de código.
 		internal System.Windows.Forms.TextBox txtHistorial;
-		internal Lui.Forms.TextBox txtFormula;
+		internal Lui.Forms.TextBox EntradaFormula;
 		internal System.Windows.Forms.Panel Panel1;
 		internal System.Windows.Forms.Label lblResultado;
 
 		private void InitializeComponent()
 		{
 			this.txtHistorial = new System.Windows.Forms.TextBox();
-			this.txtFormula = new Lui.Forms.TextBox();
+			this.EntradaFormula = new Lui.Forms.TextBox();
 			this.Panel1 = new System.Windows.Forms.Panel();
 			this.lblResultado = new System.Windows.Forms.Label();
 			this.Panel1.SuspendLayout();
@@ -105,25 +105,24 @@ namespace Lazaro.Misc
 			// 
 			// txtFormula
 			// 
-			this.txtFormula.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-			this.txtFormula.AutoNav = false;
-			this.txtFormula.AutoTab = false;
-			this.txtFormula.BackColor = System.Drawing.Color.White;
-			this.txtFormula.DataType = Lui.Forms.DataTypes.FreeText;
-			this.txtFormula.DockPadding.All = 2;
-			this.txtFormula.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, System.Convert.ToByte(0));
-			this.txtFormula.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtFormula.Text = "";
+			this.EntradaFormula.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+			this.EntradaFormula.AutoNav = false;
+			this.EntradaFormula.AutoTab = false;
+			this.EntradaFormula.BackColor = System.Drawing.Color.White;
+			this.EntradaFormula.DataType = Lui.Forms.DataTypes.FreeText;
+			this.EntradaFormula.DockPadding.All = 2;
+			this.EntradaFormula.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, System.Convert.ToByte(0));
+			this.EntradaFormula.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.EntradaFormula.Text = "";
 
-			this.txtFormula.Location = new System.Drawing.Point(6, 239);
-			this.txtFormula.Name = "txtFormula";
-			this.txtFormula.PasswordChar = (char)0;
-			this.txtFormula.SelectionLength = 0;
-			this.txtFormula.SelectionStart = 0;
-			this.txtFormula.Size = new System.Drawing.Size(223, 29);
-			this.txtFormula.ReadOnly = false;
-			this.txtFormula.TabIndex = 1;
-			this.txtFormula.ToolTipText = "";
+			this.EntradaFormula.Location = new System.Drawing.Point(6, 239);
+			this.EntradaFormula.Name = "txtFormula";
+			this.EntradaFormula.PasswordChar = (char)0;
+			this.EntradaFormula.SelectionLength = 0;
+			this.EntradaFormula.SelectionStart = 0;
+			this.EntradaFormula.Size = new System.Drawing.Size(223, 29);
+			this.EntradaFormula.TabIndex = 1;
+			this.EntradaFormula.ToolTipText = "";
 			// 
 			// Panel1
 			// 
@@ -151,7 +150,7 @@ namespace Lazaro.Misc
 			this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
 			this.ClientSize = new System.Drawing.Size(232, 272);
 			this.Controls.Add(this.Panel1);
-			this.Controls.Add(this.txtFormula);
+			this.Controls.Add(this.EntradaFormula);
 			this.Controls.Add(this.txtHistorial);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
 			this.Name = "FormCalculadora";
@@ -161,7 +160,7 @@ namespace Lazaro.Misc
 			this.Panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
-			txtFormula.KeyDown += new System.Windows.Forms.KeyEventHandler(txtFormula_KeyDown);
+			EntradaFormula.KeyDown += new System.Windows.Forms.KeyEventHandler(txtFormula_KeyDown);
 			base.Load += new System.EventHandler(FormCalculadora_Load);
 			base.Resize += new System.EventHandler(FormCalculadora_Resize);
 			base.Enter += new System.EventHandler(FormCalculadora_Enter); base.Activated += new System.EventHandler(FormCalculadora_Enter);
@@ -196,15 +195,15 @@ namespace Lazaro.Misc
 					if(e.Control == true) {
 						e.Handled = true;
 						Calcular();
-						Clipboard.SetDataObject(txtFormula.Text);
+						Clipboard.SetDataObject(EntradaFormula.Text);
 						this.Hide();
 						System.Windows.Forms.SendKeys.Send("^V");
-						this.Dispose();
+						this.Close();
 					}
 					break;
 				case Keys.Escape:
 					e.Handled = true;
-					this.Dispose();
+					this.Close();
 					break;
 			}
 
@@ -213,12 +212,12 @@ namespace Lazaro.Misc
 
 		private void Calcular()
 		{
-			string Texto = txtFormula.Text.Trim();
+			string Texto = EntradaFormula.Text.Trim();
 			string sResultado = "";
 			string sResultado2 = "";
 
 			try {
-				double dResultado = double.Parse(Lfx.Types.Evaluator.Evaluate(Texto), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture);
+				decimal dResultado = decimal.Parse(Lfx.Types.Evaluator.Evaluate(Texto), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture);
 				sResultado = dResultado.ToString(System.Globalization.CultureInfo.InvariantCulture);
 				sResultado2 = sResultado;
 			}
@@ -227,14 +226,14 @@ namespace Lazaro.Misc
 				sResultado2 = Texto;
 			}
 
-			txtFormula.Text = "";
+			EntradaFormula.Text = "";
 			Imprimir(Texto + " =");
-			txtFormula.Text = sResultado;
+			EntradaFormula.Text = sResultado;
 			lblResultado.Text = sResultado2;
 			Imprimir(sResultado2);
 
-			txtFormula.SelectionStart = txtFormula.Text.Length;
-			txtFormula.SelectionLength = 0;
+			EntradaFormula.SelectionStart = EntradaFormula.Text.Length;
+			EntradaFormula.SelectionLength = 0;
 		}
 
 

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -67,31 +67,31 @@ namespace Lfc.Comprobantes.Recibos
                 }
 
                 // Requerido por el Diseñador de Windows Forms
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
 
                 // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
                 // No lo modifique con el editor de código.
-                internal Lcc.Entrada.CodigoDetalle txtCliente;
+                internal Lcc.Entrada.CodigoDetalle EntradaCliente;
                 internal System.Windows.Forms.Label Label2;
                 internal System.Windows.Forms.Label Label1;
-                internal Lcc.Entrada.CodigoDetalle txtVendedor;
+                internal Lcc.Entrada.CodigoDetalle EntradaVendedor;
                 internal System.Windows.Forms.Label Label5;
                 internal System.Windows.Forms.Label label7;
                 internal Lui.Forms.ComboBox EntradaTipo;
                 internal Label label3;
                 private TableLayoutPanel tableLayoutPanel1;
                 internal Lcc.Entrada.RangoFechas EntradaFechas;
-                internal Lcc.Entrada.CodigoDetalle txtSucursal;
+                internal Lcc.Entrada.CodigoDetalle EntradaSucursal;
 
                 private void InitializeComponent()
                 {
-                        this.txtCliente = new Lcc.Entrada.CodigoDetalle();
+                        this.EntradaCliente = new Lcc.Entrada.CodigoDetalle();
                         this.Label2 = new System.Windows.Forms.Label();
                         this.Label1 = new System.Windows.Forms.Label();
-                        this.txtVendedor = new Lcc.Entrada.CodigoDetalle();
+                        this.EntradaVendedor = new Lcc.Entrada.CodigoDetalle();
                         this.Label5 = new System.Windows.Forms.Label();
-                        this.txtSucursal = new Lcc.Entrada.CodigoDetalle();
+                        this.EntradaSucursal = new Lcc.Entrada.CodigoDetalle();
                         this.label7 = new System.Windows.Forms.Label();
                         this.EntradaTipo = new Lui.Forms.ComboBox();
                         this.label3 = new System.Windows.Forms.Label();
@@ -108,34 +108,34 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
                         // 
-                        // EntradaCliente
+                        // txtCliente
                         // 
-                        this.txtCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtCliente.AutoHeight = true;
-                        this.txtCliente.AutoTab = true;
-                        this.txtCliente.CanCreate = false;
-                        this.txtCliente.DetailField = "nombre_visible";
-                        this.txtCliente.ExtraDetailFields = null;
-                        this.txtCliente.Filter = "";
-                        this.txtCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtCliente.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtCliente.FreeTextCode = "";
-                        this.txtCliente.KeyField = "id_persona";
-                        this.txtCliente.Location = new System.Drawing.Point(133, 63);
-                        this.txtCliente.MaxLength = 200;
-                        this.txtCliente.Name = "EntradaCliente";
-                        this.txtCliente.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtCliente.ReadOnly = false;
-                        this.txtCliente.Required = false;
-                        this.txtCliente.Size = new System.Drawing.Size(448, 24);
-                        this.txtCliente.TabIndex = 5;
-                        this.txtCliente.Table = "personas";
-                        this.txtCliente.TeclaDespuesDeEnter = "{tab}";
-                        this.txtCliente.Text = "0";
-                        this.txtCliente.TextDetail = "";
-                        this.txtCliente.TipWhenBlank = "";
-                        this.txtCliente.ToolTipText = "";
+                        this.EntradaCliente.AutoSize = true;
+                        this.EntradaCliente.AutoNav = true;
+                        this.EntradaCliente.AutoTab = true;
+                        this.EntradaCliente.CanCreate = false;
+                        this.EntradaCliente.DataTextField = "nombre_visible";
+                        this.EntradaCliente.ExtraDetailFields = null;
+                        this.EntradaCliente.Filter = "";
+                        this.EntradaCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaCliente.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaCliente.FreeTextCode = "";
+                        this.EntradaCliente.DataValueField = "id_persona";
+                        this.EntradaCliente.Location = new System.Drawing.Point(133, 63);
+                        this.EntradaCliente.MaxLength = 200;
+                        this.EntradaCliente.Name = "txtCliente";
+                        this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCliente.ReadOnly = false;
+                        this.EntradaCliente.Required = false;
+                        this.EntradaCliente.Size = new System.Drawing.Size(448, 24);
+                        this.EntradaCliente.TabIndex = 5;
+                        this.EntradaCliente.Table = "personas";
+                        this.EntradaCliente.Text = "0";
+                        this.EntradaCliente.TextDetail = "";
+                        this.EntradaCliente.TipWhenBlank = "";
+                        this.EntradaCliente.ToolTipText = "";
                         // 
                         // Label2
                         // 
@@ -157,32 +157,32 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // EntradaVendedor
                         // 
-                        this.txtVendedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaVendedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtVendedor.AutoHeight = true;
-                        this.txtVendedor.AutoTab = true;
-                        this.txtVendedor.CanCreate = false;
-                        this.txtVendedor.DetailField = "nombre_visible";
-                        this.txtVendedor.ExtraDetailFields = null;
-                        this.txtVendedor.Filter = "(tipo&4)=4";
-                        this.txtVendedor.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtVendedor.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtVendedor.FreeTextCode = "";
-                        this.txtVendedor.KeyField = "id_persona";
-                        this.txtVendedor.Location = new System.Drawing.Point(133, 93);
-                        this.txtVendedor.MaxLength = 200;
-                        this.txtVendedor.Name = "EntradaVendedor";
-                        this.txtVendedor.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtVendedor.ReadOnly = false;
-                        this.txtVendedor.Required = false;
-                        this.txtVendedor.Size = new System.Drawing.Size(448, 24);
-                        this.txtVendedor.TabIndex = 7;
-                        this.txtVendedor.Table = "personas";
-                        this.txtVendedor.TeclaDespuesDeEnter = "{tab}";
-                        this.txtVendedor.Text = "0";
-                        this.txtVendedor.TextDetail = "";
-                        this.txtVendedor.TipWhenBlank = "";
-                        this.txtVendedor.ToolTipText = "";
+                        this.EntradaVendedor.AutoSize = true;
+                        this.EntradaVendedor.AutoNav = true;
+                        this.EntradaVendedor.AutoTab = true;
+                        this.EntradaVendedor.CanCreate = false;
+                        this.EntradaVendedor.DataTextField = "nombre_visible";
+                        this.EntradaVendedor.ExtraDetailFields = null;
+                        this.EntradaVendedor.Filter = "(tipo&4)=4";
+                        this.EntradaVendedor.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaVendedor.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaVendedor.FreeTextCode = "";
+                        this.EntradaVendedor.DataValueField = "id_persona";
+                        this.EntradaVendedor.Location = new System.Drawing.Point(133, 93);
+                        this.EntradaVendedor.MaxLength = 200;
+                        this.EntradaVendedor.Name = "EntradaVendedor";
+                        this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaVendedor.ReadOnly = false;
+                        this.EntradaVendedor.Required = false;
+                        this.EntradaVendedor.Size = new System.Drawing.Size(448, 24);
+                        this.EntradaVendedor.TabIndex = 7;
+                        this.EntradaVendedor.Table = "personas";
+                        this.EntradaVendedor.Text = "0";
+                        this.EntradaVendedor.TextDetail = "";
+                        this.EntradaVendedor.TipWhenBlank = "";
+                        this.EntradaVendedor.ToolTipText = "";
                         // 
                         // Label5
                         // 
@@ -193,34 +193,34 @@ namespace Lfc.Comprobantes.Recibos
                         this.Label5.Text = "Vendedor";
                         this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtSucursal
+                        // EntradaSucursal
                         // 
-                        this.txtSucursal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaSucursal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtSucursal.AutoHeight = true;
-                        this.txtSucursal.AutoTab = true;
-                        this.txtSucursal.CanCreate = false;
-                        this.txtSucursal.DetailField = "nombre";
-                        this.txtSucursal.ExtraDetailFields = null;
-                        this.txtSucursal.Filter = "";
-                        this.txtSucursal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtSucursal.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtSucursal.FreeTextCode = "";
-                        this.txtSucursal.KeyField = "id_sucursal";
-                        this.txtSucursal.Location = new System.Drawing.Point(133, 33);
-                        this.txtSucursal.MaxLength = 200;
-                        this.txtSucursal.Name = "txtSucursal";
-                        this.txtSucursal.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtSucursal.ReadOnly = false;
-                        this.txtSucursal.Required = false;
-                        this.txtSucursal.Size = new System.Drawing.Size(448, 24);
-                        this.txtSucursal.TabIndex = 3;
-                        this.txtSucursal.Table = "sucursales";
-                        this.txtSucursal.TeclaDespuesDeEnter = "{tab}";
-                        this.txtSucursal.Text = "0";
-                        this.txtSucursal.TextDetail = "";
-                        this.txtSucursal.TipWhenBlank = "";
-                        this.txtSucursal.ToolTipText = "";
+                        this.EntradaSucursal.AutoSize = true;
+                        this.EntradaSucursal.AutoNav = true;
+                        this.EntradaSucursal.AutoTab = true;
+                        this.EntradaSucursal.CanCreate = false;
+                        this.EntradaSucursal.DataTextField = "nombre";
+                        this.EntradaSucursal.ExtraDetailFields = null;
+                        this.EntradaSucursal.Filter = "";
+                        this.EntradaSucursal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaSucursal.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaSucursal.FreeTextCode = "";
+                        this.EntradaSucursal.DataValueField = "id_sucursal";
+                        this.EntradaSucursal.Location = new System.Drawing.Point(133, 33);
+                        this.EntradaSucursal.MaxLength = 200;
+                        this.EntradaSucursal.Name = "EntradaSucursal";
+                        this.EntradaSucursal.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaSucursal.ReadOnly = false;
+                        this.EntradaSucursal.Required = false;
+                        this.EntradaSucursal.Size = new System.Drawing.Size(448, 24);
+                        this.EntradaSucursal.TabIndex = 3;
+                        this.EntradaSucursal.Table = "sucursales";
+                        this.EntradaSucursal.Text = "0";
+                        this.EntradaSucursal.TextDetail = "";
+                        this.EntradaSucursal.TipWhenBlank = "";
+                        this.EntradaSucursal.ToolTipText = "";
                         // 
                         // label7
                         // 
@@ -233,7 +233,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // EntradaTipo
                         // 
-                        this.EntradaTipo.AutoHeight = true;
+                        this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoTab = true;
                         this.EntradaTipo.DetailField = null;
@@ -254,7 +254,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaTipo.Table = null;
                         this.EntradaTipo.Text = "De cobro";
                         this.EntradaTipo.TextKey = "0";
-                        this.EntradaTipo.TextRaw = "De cobro";
                         this.EntradaTipo.TipWhenBlank = "";
                         this.EntradaTipo.ToolTipText = "";
                         // 
@@ -277,13 +276,13 @@ namespace Lfc.Comprobantes.Recibos
                         this.tableLayoutPanel1.Controls.Add(this.EntradaFechas, 1, 4);
                         this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
                         this.tableLayoutPanel1.Controls.Add(this.label7, 0, 1);
-                        this.tableLayoutPanel1.Controls.Add(this.txtSucursal, 1, 1);
-                        this.tableLayoutPanel1.Controls.Add(this.txtCliente, 1, 2);
+                        this.tableLayoutPanel1.Controls.Add(this.EntradaSucursal, 1, 1);
+                        this.tableLayoutPanel1.Controls.Add(this.EntradaCliente, 1, 2);
                         this.tableLayoutPanel1.Controls.Add(this.EntradaTipo, 1, 0);
                         this.tableLayoutPanel1.Controls.Add(this.Label2, 0, 2);
                         this.tableLayoutPanel1.Controls.Add(this.Label5, 0, 3);
                         this.tableLayoutPanel1.Controls.Add(this.Label1, 0, 4);
-                        this.tableLayoutPanel1.Controls.Add(this.txtVendedor, 1, 3);
+                        this.tableLayoutPanel1.Controls.Add(this.EntradaVendedor, 1, 3);
                         this.tableLayoutPanel1.Location = new System.Drawing.Point(24, 24);
                         this.tableLayoutPanel1.Name = "tableLayoutPanel1";
                         this.tableLayoutPanel1.RowCount = 5;
@@ -299,7 +298,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         this.EntradaFechas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaFechas.AutoHeight = true;
+                        this.EntradaFechas.AutoSize = true;
                         this.EntradaFechas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaFechas.Location = new System.Drawing.Point(133, 123);
                         this.EntradaFechas.MuestraFuturos = false;

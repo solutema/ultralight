@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,21 +35,24 @@ using System.Windows.Forms;
 
 namespace Lfc.Personas
 {
-        public partial class Inicio : Lui.Forms.ListingForm
+        public partial class Inicio : Lfc.FormularioListado
         {
                 public int m_Tipo;
-                private int m_Ciudad, m_Grupo, m_SubGrupo, m_Situacion, m_EstadoCredito = -1, m_Estado = 1;
+                private int m_Localidad, m_Grupo, m_SubGrupo, m_Situacion, m_EstadoCredito = -1, m_Estado = 1;
+
+                private string m_FechaAUsar = "fechaalta";
+                private Lfx.Types.DateRange m_Fechas = new Lfx.Types.DateRange("*");
 
                 public Inicio()
                 {
-                        InitializeComponent();
+                        this.ElementoTipo = typeof(Lbl.Personas.Persona);
 
-                        DataTableName = "personas";
+                        this.NombreTabla = "personas";
                         this.Joins.Add(new qGen.Join("personas_grupos", "personas_grupos.id_grupo=personas.id_grupo"));
                         this.Joins.Add(new qGen.Join("ciudades", "personas.id_ciudad=ciudades.id_ciudad"));
-                        OrderBy = "personas.nombre_visible";
-                        KeyField = new Lfx.Data.FormField("personas.id_persona", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80);
-                        FormFields = new List<Lfx.Data.FormField>()
+                        this.OrderBy = "personas.nombre_visible";
+                        this.KeyField = new Lfx.Data.FormField("personas.id_persona", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80);
+                        this.FormFields = new Lfx.Data.FormFieldCollection()
 			{
 				new Lfx.Data.FormField("personas.nombre_visible", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
 				new Lfx.Data.FormField("personas.telefono", "Teléfono", Lfx.Data.InputFieldTypes.Text, 140),
@@ -58,40 +61,46 @@ namespace Lfc.Personas
 				new Lfx.Data.FormField("personas.cuit", "CUIT", Lfx.Data.InputFieldTypes.Text, 120),
                                 new Lfx.Data.FormField("personas_grupos.nombre", "Grupo", Lfx.Data.InputFieldTypes.Text, 120),
                                 new Lfx.Data.FormField("personas.id_subgrupo", "Sub-grupo", Lfx.Data.InputFieldTypes.Text, 120),
-                                new Lfx.Data.FormField("ciudades.nombre", "Ciudad", Lfx.Data.InputFieldTypes.Text, 120),
-                                new Lfx.Data.FormField("personas.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 0)
+                                new Lfx.Data.FormField("ciudades.nombre AS ciudad", "Localidad", Lfx.Data.InputFieldTypes.Text, 120),
+                                new Lfx.Data.FormField("personas.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 0),
+                                new Lfx.Data.FormField("personas.fechaalta", "Alta", Lfx.Data.InputFieldTypes.Date, 120),
+                                new Lfx.Data.FormField("personas.fechabaja", "Baja", Lfx.Data.InputFieldTypes.Date, 120)
 			};
-                        ExtraSearchFields = new List<Lfx.Data.FormField>()
+                        ExtraSearchFields = new Lfx.Data.FormFieldCollection()
 			{
 				new Lfx.Data.FormField("personas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 0),
 				new Lfx.Data.FormField("personas.apellido", "Apellido", Lfx.Data.InputFieldTypes.Text, 0),
 				new Lfx.Data.FormField("personas.extra1", "Extra 1", Lfx.Data.InputFieldTypes.Text, 0),
 				new Lfx.Data.FormField("personas.numerocuenta", "Núm. Cuenta", Lfx.Data.InputFieldTypes.Text, 0)
 			};
+
+                        this.DetailColumnName = "nombre_visible";
+
+                        this.HabilitarFiltrar = true;
                 }
 
-                public override void ItemAdded(ListViewItem item, Lfx.Data.Row row)
+                public override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
-                        base.ItemAdded(item, row);
+                        base.OnItemAdded(item, row);
 
                         if (row.Fields["estado"].ValueInt == 0)
                                 item.ForeColor = System.Drawing.Color.Gray;
 
                         string Cuit = row.Fields["cuit"].ValueString;
-                        if (Cuit != null && Cuit.Length > 0 && Lfx.Types.Strings.ValidCUIT(Cuit) == false) {
+                        if (Cuit != null && Cuit.Length > 0 && Lfx.Types.Strings.EsCuitValido(Cuit) == false) {
                                 item.UseItemStyleForSubItems = false;
                                 item.SubItems["cuit"].BackColor = System.Drawing.Color.Pink;
                         }
 
                         int IdSubGrupo = row.Fields["id_subgrupo"].ValueInt;
                         if (IdSubGrupo != 0) {
-                                Lfx.Data.Row SubGrupo = this.DataBase.Tables["personas_grupos"].FastRows[IdSubGrupo];
+                                Lfx.Data.Row SubGrupo = this.Connection.Tables["personas_grupos"].FastRows[IdSubGrupo];
                                 if (SubGrupo != null)
                                         item.SubItems["id_subgrupo"].Text = SubGrupo.Fields["nombre"].ValueString;
                         }
                 }
 
-                public override void BeginRefreshList()
+                public override void OnBeginRefreshList()
                 {
                         switch (m_Tipo) {
                                 case 1:
@@ -121,98 +130,86 @@ namespace Lfc.Personas
                         if (m_EstadoCredito >= 0)
                                 this.CustomFilters.AddWithValue("personas.estadocredito", m_EstadoCredito);
 
-                        if (m_Ciudad > 0)
-                                this.CustomFilters.AddWithValue("(personas.id_ciudad=" + m_Ciudad.ToString() + " OR personas.id_ciudad IS NULL)");
+                        if (m_Localidad > 0)
+                                this.CustomFilters.AddWithValue("(personas.id_ciudad=" + m_Localidad.ToString() + " OR personas.id_ciudad IS NULL)");
 
                         if (m_Estado >= 0 && this.SearchText == null)
                                 // Sólo filtro por estado si no estoy buscando
                                 this.CustomFilters.AddWithValue("personas.estado", m_Estado);
 
+                        if (m_Fechas.HasRange)
+                                this.CustomFilters.AddWithValue(m_FechaAUsar, m_Fechas.From, m_Fechas.To);
+
                         // Cargo la tabla en memoria, ya que la voy a usar mucho
-                        this.DataBase.Tables["personas_grupos"].PreLoad();
+                        this.Connection.Tables["personas_grupos"].PreLoad();
                 }
 
                 public override Lfx.Types.OperationResult OnFilter()
                 {
-                        Lfc.Personas.Filtros FormFiltros = new Lfc.Personas.Filtros();
-                        FormFiltros.EntradaTipo.TextInt = m_Tipo;
-                        FormFiltros.EntradaSituacion.TextInt = m_Situacion;
-                        FormFiltros.EntradaGrupo.TextInt = m_Grupo;
-                        FormFiltros.EntradaSubGrupo.TextInt = m_SubGrupo;
-                        FormFiltros.EntradaCiudad.TextInt = m_Ciudad;
-                        FormFiltros.EntradaEstado.TextKey = m_Estado.ToString();
-                        FormFiltros.EntradaEstadoCredito.TextKey = m_EstadoCredito.ToString();
+                        using (Lfc.Personas.Filtros FormFiltros = new Lfc.Personas.Filtros()) {
+                                FormFiltros.Connection = this.Connection;
+                                FormFiltros.EntradaTipo.TextInt = m_Tipo;
+                                FormFiltros.EntradaSituacion.TextInt = m_Situacion;
+                                FormFiltros.EntradaGrupo.TextInt = m_Grupo;
+                                FormFiltros.EntradaSubGrupo.TextInt = m_SubGrupo;
+                                FormFiltros.EntradaLocalidad.TextInt = m_Localidad;
+                                FormFiltros.EntradaEstado.TextKey = m_Estado.ToString();
+                                FormFiltros.EntradaEstadoCredito.TextKey = m_EstadoCredito.ToString();
+                                FormFiltros.EntradaFechaAUsar.TextKey = m_FechaAUsar;
+                                FormFiltros.EntradaFechas.Rango = m_Fechas;
 
-                        string[] Etiquetas = new string[1];
-                        int i = 0;
-                        Etiquetas[i++] = "Todas|0";
-                        foreach (Lfx.Data.Row Lab in this.DataBase.Tables["sys_labels"].FastRows.Values) {
-                                if (Lab["tablas"].ToString() == this.DataTableName) {
-                                        if (Etiquetas.Length < (i + 1))
-                                                Array.Resize<string>(ref Etiquetas, i + 2);
+                                string[] Etiquetas = new string[1];
+                                int i = 0;
+                                Etiquetas[i++] = "Todas|0";
+                                foreach (Lfx.Data.Row Lab in this.Connection.Tables["sys_labels"].FastRows.Values) {
+                                        if (Lab["tablas"].ToString() == this.NombreTabla) {
+                                                if (Etiquetas.Length < (i + 1))
+                                                        Array.Resize<string>(ref Etiquetas, i + 2);
 
-                                        Etiquetas[i++] = Lab["nombre"].ToString() + "|" + Lab["id_label"].ToString();
-                                        Etiquetas[i++] = "No " + Lab["nombre"].ToString() + "|" + (-((int)(Lab["id_label"]))).ToString();
+                                                Etiquetas[i++] = Lab["nombre"].ToString() + "|" + Lab["id_label"].ToString();
+                                                Etiquetas[i++] = "No " + Lab["nombre"].ToString() + "|" + (-((int)(Lab["id_label"]))).ToString();
+                                        }
+                                }
+                                FormFiltros.EntradaEtiquetas.SetData = Etiquetas;
+                                if (this.Labels != null && this.Labels.Length > 0)
+                                        FormFiltros.EntradaEtiquetas.TextKey = this.Labels[0].ToString();
+
+                                if (FormFiltros.ShowDialog() == DialogResult.OK) {
+                                        m_Tipo = FormFiltros.EntradaTipo.TextInt;
+                                        m_Situacion = FormFiltros.EntradaSituacion.TextInt;
+                                        m_Grupo = FormFiltros.EntradaGrupo.TextInt;
+                                        m_SubGrupo = FormFiltros.EntradaSubGrupo.TextInt;
+                                        m_Localidad = FormFiltros.EntradaLocalidad.TextInt;
+                                        m_Estado = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstado.TextKey);
+                                        m_EstadoCredito = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstadoCredito.TextKey);
+                                        if (FormFiltros.EntradaEtiquetas.TextKey == "0")
+                                                this.Labels = null;
+                                        else
+                                                this.Labels = new int[] { Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEtiquetas.TextKey) };
+                                        m_FechaAUsar = FormFiltros.EntradaFechaAUsar.TextKey;
+                                        m_Fechas = FormFiltros.EntradaFechas.Rango;
+
+                                        this.RefreshList();
+                                        return new Lfx.Types.SuccessOperationResult();
+                                } else {
+                                        return new Lfx.Types.OperationResult(false);
                                 }
                         }
-                        FormFiltros.EntradaEtiquetas.SetData = Etiquetas;
-                        if (this.Labels != null && this.Labels.Length > 0)
-                                FormFiltros.EntradaEtiquetas.TextKey = this.Labels[0].ToString();
-
-                        if (FormFiltros.ShowDialog() == DialogResult.OK) {
-                                m_Tipo = FormFiltros.EntradaTipo.TextInt;
-                                m_Situacion = FormFiltros.EntradaSituacion.TextInt;
-                                m_Grupo = FormFiltros.EntradaGrupo.TextInt;
-                                m_SubGrupo = FormFiltros.EntradaSubGrupo.TextInt;
-                                m_Ciudad = FormFiltros.EntradaCiudad.TextInt;
-                                m_Estado = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstado.TextKey);
-                                m_EstadoCredito = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstadoCredito.TextKey);
-                                if (FormFiltros.EntradaEtiquetas.TextKey == "0")
-                                        this.Labels = null;
-                                else
-                                        this.Labels = new int[] { Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEtiquetas.TextKey) };
-                                
-                                FormFiltros = null;
-                                this.RefreshList();
-                                return new Lfx.Types.SuccessOperationResult();
-                        } else {
-                                return new Lfx.Types.OperationResult(false);
-                        }
                 }
 
-                public override Lfx.Types.OperationResult OnCreate()
+                public override Lfx.Types.OperationResult OnDelete(Lbl.ListaIds itemIds)
                 {
-                        object OFormNuevoCliente = this.Workspace.RunTime.Execute("CREAR CLIENTE");
-                        if (m_Tipo > 0 && OFormNuevoCliente != null) {
-                                if (OFormNuevoCliente.GetType().ToString() == "Lfc.Personas.Editar")
-                                        ((Lfc.Personas.Editar)OFormNuevoCliente).EntradaTipo.TextInt = m_Tipo;
+                        foreach (int IdPersona in itemIds) {
+                                qGen.Update DarDeBaja = new qGen.Update("personas");
+                                DarDeBaja.Fields.AddWithValue("estado", 0);
+                                DarDeBaja.Fields.AddWithValue("fechabaja", qGen.SqlFunctions.Now);
+                                DarDeBaja.WhereClause = new qGen.Where();
+                                DarDeBaja.WhereClause.AddWithValue("id_persona", IdPersona);
+                                DarDeBaja.WhereClause.AddWithValue("estado", 1);
+                                this.Connection.Execute(DarDeBaja);
                         }
-                        return new Lfx.Types.SuccessOperationResult();
-                }
-
-                public override Lfx.Types.OperationResult OnEdit(int lCodigo)
-                {
-                        this.Workspace.RunTime.Execute("EDITAR CLIENTE " + lCodigo.ToString());
-                        return new Lfx.Types.SuccessOperationResult();
-                }
-
-                public override Lfx.Types.OperationResult OnDelete(int[] itemIds)
-                {
-                        if (Lui.Login.LoginData.ValidateAccess(Lfx.Workspace.Master.CurrentUser, "people.delete")) {
-                                foreach (int IdPersona in itemIds) {
-                                        qGen.Update DarDeBaja = new qGen.Update("personas");
-                                        DarDeBaja.Fields.AddWithValue("estado", 0);
-                                        DarDeBaja.Fields.AddWithValue("fechabaja", qGen.SqlFunctions.Now);
-                                        DarDeBaja.WhereClause = new qGen.Where();
-                                        DarDeBaja.WhereClause.AddWithValue("id_persona", IdPersona);
-                                        DarDeBaja.WhereClause.AddWithValue("estado", 1);
-                                        this.DataBase.Execute(DarDeBaja);
-                                }
-                                this.RefreshList();
-                                return base.OnDelete(itemIds);
-                        } else {
-                                return new Lfx.Types.CancelOperationResult();
-                        }
+                        this.RefreshList();
+                        return base.OnDelete(itemIds);
                 }
         }
 }

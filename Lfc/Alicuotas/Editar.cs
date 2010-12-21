@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -41,43 +41,31 @@ namespace Lfc.Alicuotas
 	{
 		public Editar()
 		{
-			InitializeComponent();
+                        this.ElementoTipo = typeof(Lbl.Impuestos.Alicuota);
+
+                        InitializeComponent();
 		}
 
-                public override Lfx.Types.OperationResult Create()
+                public override void ActualizarControl()
                 {
-                        Lbl.Impuestos.Alicuota Alic = new Lbl.Impuestos.Alicuota(this.DataBase);
-                        Alic.Crear();
-                        this.FromRow(Alic);
-
-                        return base.Create();
-                }
-
-                public override void FromRow(Lbl.ElementoDeDatos row)
-                {
-                        Lbl.Impuestos.Alicuota Alic = row as Lbl.Impuestos.Alicuota;
-
-                        Alic.Nombre = EntradaNombre.Text;
-                        Alic.Porcentaje = EntradaPorcentaje.ValueDouble;
-                        Alic.ImporteMinimo = EntradaImporteMinimo.ValueDouble;
-
-                        if (Alic.Existe)
-                                this.Text = "Alícuota: " + Alic.ToString();
-                        else
-                                this.Text = "Alícuota: nuevo";
-
-                        base.FromRow(row);
-                }
-
-                public override Lbl.ElementoDeDatos ToRow()
-                {
-                        Lbl.Impuestos.Alicuota Alic = base.ToRow() as Lbl.Impuestos.Alicuota;
+                        Lbl.Impuestos.Alicuota Alic = this.Elemento as Lbl.Impuestos.Alicuota;
 
                         EntradaNombre.Text = Alic.Nombre;
-                        EntradaPorcentaje.ValueDouble = Alic.Porcentaje;
-                        EntradaImporteMinimo.ValueDouble = Alic.ImporteMinimo;
+                        EntradaPorcentaje.Text = Alic.Porcentaje.ToString();
+                        EntradaImporteMinimo.Text = Alic.ImporteMinimo.ToString();
 
-                        return Alic;
+                        base.ActualizarControl();
+                }
+
+                public override void ActualizarElemento()
+                {
+                        Lbl.Impuestos.Alicuota Alic = this.Elemento as Lbl.Impuestos.Alicuota;
+
+                        Alic.Nombre = EntradaNombre.Text;
+                        Alic.Porcentaje = EntradaPorcentaje.Text.ParseDecimal();
+                        Alic.ImporteMinimo = EntradaImporteMinimo.Text.ParseCurrency();
+
+                        base.ActualizarElemento();
                 }
 	}
 }

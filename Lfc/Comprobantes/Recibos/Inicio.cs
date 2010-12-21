@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,24 +35,21 @@ using System.Windows.Forms;
 
 namespace Lfc.Comprobantes.Recibos
 {
-	public partial class Inicio : Lui.Forms.ListingForm
+	public partial class Inicio : Lfc.FormularioListado
 	{
 		protected internal Lfx.Types.DateRange m_Fecha = new Lfx.Types.DateRange("mes-0");
-		protected internal int m_Sucursal, m_Cliente, m_Tipo = 0;
-		protected internal double Total = 0;
-                protected internal Label Label2;
-                protected internal Lui.Forms.TextBox EntradaTotal;
+		protected internal int m_Sucursal, m_Cliente;
 		protected internal int m_Vendedor;
 
                 public Inicio()
                 {
-                        InitializeComponent();
+                        this.ElementoTipo = typeof(Lbl.Comprobantes.ReciboDeCobro);
 
-                        DataTableName = "recibos";
+                        this.NombreTabla = "recibos";
                         this.Joins.Add(new qGen.Join("personas", "recibos.id_cliente=personas.id_persona"));
-                        KeyField = new Lfx.Data.FormField("recibos.id_recibo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        OrderBy = "recibos.fecha DESC";
-                        FormFields = new List<Lfx.Data.FormField>()
+                        this.KeyField = new Lfx.Data.FormField("recibos.id_recibo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        this.OrderBy = "recibos.fecha DESC";
+                        this.FormFields = new Lfx.Data.FormFieldCollection()
 			{
                                 new Lfx.Data.FormField("recibos.pv", "PV", Lfx.Data.InputFieldTypes.Integer, 28),
 				new Lfx.Data.FormField("recibos.numero", "Número", Lfx.Data.InputFieldTypes.Integer, 96),
@@ -64,39 +61,39 @@ namespace Lfc.Comprobantes.Recibos
 				new Lfx.Data.FormField("recibos.obs", "Obs.", Lfx.Data.InputFieldTypes.Memo, 320),
                                 new Lfx.Data.FormField("recibos.estado", "Estado", Lfx.Data.InputFieldTypes.Integer, 0)
 			};
+
+                        this.Contadores.Add(new Contador("Total", Lui.Forms.DataTypes.Currency, "$", null));
+
+                        this.HabilitarFiltrar = true;
                 }
 
-                public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                public override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
 		{
-			Total += row.Fields["total"].ValueDouble;
+                        this.Contadores[0].AddValue(row.Fields["total"].ValueDecimal);
+
                         if (this.Workspace.SlowLink || this.Listado.Items.Count > 300)
                                 itm.SubItems["0"].Text = "";
                         else
-                                itm.SubItems["0"].Text = Lbl.Comprobantes.Comprobante.FacturasDeUnRecibo(this.DataBase, row.Fields["id_recibo"].ValueInt);
+                                itm.SubItems["0"].Text = Lbl.Comprobantes.Comprobante.FacturasDeUnRecibo(this.Connection, row.Fields["id_recibo"].ValueInt);
 
                         if (row.Fields["estado"].ValueInt == 90)
                                 itm.Font = new Font(itm.Font, FontStyle.Strikeout);
 		}
 
-		public override void EndRefreshList()
-		{
-			EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales);
-			base.EndRefreshList();
-		}
-
-
-		public override Lfx.Types.OperationResult OnCreate()
-		{
-			this.Workspace.RunTime.Execute("CREAR RC");
-			return new Lfx.Types.SuccessOperationResult();
-		}
-
-
-		public override Lfx.Types.OperationResult OnEdit(int lCodigo)
-		{
-			this.Workspace.RunTime.Execute("EDITAR RC " + lCodigo.ToString());
-			return new Lfx.Types.SuccessOperationResult();
-		}
+                public bool DePago
+                {
+                        get
+                        {
+                                return this.ElementoTipo == typeof(Lbl.Comprobantes.ReciboDePago);
+                        }
+                        set
+                        {
+                                if (value)
+                                        this.ElementoTipo = typeof(Lbl.Comprobantes.ReciboDePago);
+                                else
+                                        this.ElementoTipo = typeof(Lbl.Comprobantes.ReciboDeCobro);
+                        }
+                }
 
 
                 public override Lfx.Types.OperationResult OnFilter()
@@ -104,41 +101,41 @@ namespace Lfc.Comprobantes.Recibos
                         Lfx.Types.OperationResult filtrarReturn = base.OnFilter();
 
                         if (filtrarReturn.Success == true) {
-                                Comprobantes.Recibos.Filtros OFiltros = new Comprobantes.Recibos.Filtros();
-                                OFiltros.EntradaTipo.TextKey = m_Tipo.ToString();
-                                OFiltros.txtSucursal.TextInt = m_Sucursal;
-                                OFiltros.txtCliente.TextInt = m_Cliente;
-                                OFiltros.txtVendedor.TextInt = m_Vendedor;
-                                OFiltros.EntradaFechas.Rango = m_Fecha;
-                                OFiltros.Owner = this;
-                                OFiltros.ShowDialog();
+                                using (Comprobantes.Recibos.Filtros FormFiltros = new Comprobantes.Recibos.Filtros()) {
+                                        FormFiltros.Connection = this.Connection;
+                                        FormFiltros.EntradaTipo.TextKey = this.DePago ? "1" : "0";
+                                        FormFiltros.EntradaSucursal.TextInt = m_Sucursal;
+                                        FormFiltros.EntradaCliente.TextInt = m_Cliente;
+                                        FormFiltros.EntradaVendedor.TextInt = m_Vendedor;
+                                        FormFiltros.EntradaFechas.Rango = m_Fecha;
+                                        FormFiltros.Owner = this;
+                                        FormFiltros.ShowDialog();
 
-                                if (OFiltros.DialogResult == DialogResult.OK) {
-                                        m_Tipo = Lfx.Types.Parsing.ParseInt(OFiltros.EntradaTipo.TextKey);
-                                        m_Sucursal = OFiltros.txtSucursal.TextInt;
-                                        m_Cliente = OFiltros.txtCliente.TextInt;
-                                        m_Vendedor = OFiltros.txtVendedor.TextInt;
-                                        m_Fecha = OFiltros.EntradaFechas.Rango;
+                                        if (FormFiltros.DialogResult == DialogResult.OK) {
+                                                this.DePago = FormFiltros.EntradaTipo.TextKey == "1";
+                                                m_Sucursal = FormFiltros.EntradaSucursal.TextInt;
+                                                m_Cliente = FormFiltros.EntradaCliente.TextInt;
+                                                m_Vendedor = FormFiltros.EntradaVendedor.TextInt;
+                                                m_Fecha = FormFiltros.EntradaFechas.Rango;
 
-                                        this.RefreshList();
-                                        filtrarReturn.Success = true;
-                                } else {
-                                        filtrarReturn.Success = false;
+                                                this.RefreshList();
+                                                filtrarReturn.Success = true;
+                                        } else {
+                                                filtrarReturn.Success = false;
+                                        }
                                 }
-                                OFiltros = null;
                         }
 
                         return filtrarReturn;
                 }
 
-                public override Lfx.Types.OperationResult OnDelete(int[] itemIds)
+                public override Lfx.Types.OperationResult OnDelete(Lbl.ListaIds itemIds)
                 {
-                        if (Lui.Login.LoginData.ValidateAccess(Lfx.Workspace.Master.CurrentUser, "documents.delete")) {
+                        if (this.DePago)
+                                this.Workspace.RunTime.Execute("ANULAR RCP " + itemIds[0].ToString());
+                        else
                                 this.Workspace.RunTime.Execute("ANULAR RC " + itemIds[0].ToString());
-                                return base.OnDelete(itemIds);
-                        } else {
-                                return new Lfx.Types.NoAccessOperationResult();
-                        }
+                        return base.OnDelete(itemIds);
                 }
 
                 public override string SearchText
@@ -161,15 +158,14 @@ namespace Lfc.Comprobantes.Recibos
                         }
                 }
 
-		public override void BeginRefreshList()
+		public override void OnBeginRefreshList()
 		{
-			this.Total = 0;
                         this.CustomFilters.Clear();
 
-                        if (m_Tipo == 0)
-                                this.CustomFilters.AddWithValue("recibos.tipo_fac", "RC");
-                        else
+                        if (this.DePago)
                                 this.CustomFilters.AddWithValue("recibos.tipo_fac", "RCP");
+                        else
+                                this.CustomFilters.AddWithValue("recibos.tipo_fac", "RC");
 
                         if (SearchText == null) {
                                 if (m_Sucursal > 0)

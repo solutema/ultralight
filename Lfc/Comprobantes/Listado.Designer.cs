@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ namespace Lfc.Comprobantes
                 private void InitializeComponent()
                 {
                     this.Label1 = new System.Windows.Forms.Label();
-                    this.txtAgrupar = new Lui.Forms.ComboBox();
+                    this.EntradaAgrupar = new Lui.Forms.ComboBox();
                     this.ReportListView = new Lui.Forms.ListView();
                     this.SuspendLayout();
                     // 
@@ -52,23 +52,23 @@ namespace Lfc.Comprobantes
                     this.Label1.Text = "Agrupar Por";
                     this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                     // 
-                    // txtAgrupar
+                    // EntradaAgrupar
                     // 
-                    this.txtAgrupar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                    this.txtAgrupar.AutoHeight = false;
-                    this.txtAgrupar.AutoNav = true;
-                    this.txtAgrupar.AutoTab = true;
-                    this.txtAgrupar.DetailField = null;
-                    this.txtAgrupar.Filter = null;
-                    this.txtAgrupar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                    this.txtAgrupar.ForeColor = System.Drawing.SystemColors.ControlText;
-                    this.txtAgrupar.KeyField = null;
-                    this.txtAgrupar.Location = new System.Drawing.Point(400, 4);
-                    this.txtAgrupar.MaxLenght = 32767;
-                    this.txtAgrupar.Name = "txtAgrupar";
-                    this.txtAgrupar.Padding = new System.Windows.Forms.Padding(2);
-                    this.txtAgrupar.ReadOnly = false;
-                    this.txtAgrupar.SetData = new string[] {
+                    this.EntradaAgrupar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                    this.EntradaAgrupar.AutoSize = false;
+                    this.EntradaAgrupar.AutoNav = true;
+                    this.EntradaAgrupar.AutoTab = true;
+                    this.EntradaAgrupar.DetailField = null;
+                    this.EntradaAgrupar.Filter = null;
+                    this.EntradaAgrupar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    this.EntradaAgrupar.ForeColor = System.Drawing.SystemColors.ControlText;
+                    this.EntradaAgrupar.KeyField = null;
+                    this.EntradaAgrupar.Location = new System.Drawing.Point(400, 4);
+                    this.EntradaAgrupar.MaxLenght = 32767;
+                    this.EntradaAgrupar.Name = "EntradaAgrupar";
+                    this.EntradaAgrupar.Padding = new System.Windows.Forms.Padding(2);
+                    this.EntradaAgrupar.ReadOnly = false;
+                    this.EntradaAgrupar.SetData = new string[] {
         "Sin Agrupar|*",
         "Por Tipo de Comprobante|comprob.tipo_fac",
         "Por Vendedor|comprob.id_vendedor",
@@ -80,15 +80,13 @@ namespace Lfc.Comprobantes
         "Por Proveedor|articulos.id_proveedor",
         "Por Artículo|articulos.id_articulo",
         "Por Categoría|articulos.id_categoria"};
-                    this.txtAgrupar.Size = new System.Drawing.Size(196, 24);
-                    this.txtAgrupar.TabIndex = 1;
-                    this.txtAgrupar.Table = null;
-                    this.txtAgrupar.Text = "Sin Agrupar";
-                    this.txtAgrupar.TextKey = "*";
-                    this.txtAgrupar.TextRaw = "Sin Agrupar";
-                    this.txtAgrupar.TipWhenBlank = "";
-                    this.txtAgrupar.ToolTipText = "";
-                    this.txtAgrupar.TextChanged += new System.EventHandler(this.txtAgrupar_TextChanged);
+                    this.EntradaAgrupar.Size = new System.Drawing.Size(196, 24);
+                    this.EntradaAgrupar.TabIndex = 1;
+                    this.EntradaAgrupar.Table = null;
+                    this.EntradaAgrupar.TextKey = "*";
+                    this.EntradaAgrupar.TipWhenBlank = "";
+                    this.EntradaAgrupar.ToolTipText = "";
+                    this.EntradaAgrupar.TextChanged += new System.EventHandler(this.EntradaAgrupar_TextChanged);
                     // 
                     // ReportListView
                     // 
@@ -111,18 +109,18 @@ namespace Lfc.Comprobantes
                     // 
                     this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                     this.ClientSize = new System.Drawing.Size(604, 421);
-                    this.Controls.Add(this.txtAgrupar);
+                    this.Controls.Add(this.EntradaAgrupar);
                     this.Controls.Add(this.ReportListView);
                     this.Controls.Add(this.Label1);
                     this.Name = "FormComprobantesListado";
                     this.Controls.SetChildIndex(this.Label1, 0);
                     this.Controls.SetChildIndex(this.ReportListView, 0);
-                    this.Controls.SetChildIndex(this.txtAgrupar, 0);
+                    this.Controls.SetChildIndex(this.EntradaAgrupar, 0);
                     this.ResumeLayout(false);
 
                 }
                 internal System.Windows.Forms.Label Label1;
-                internal Lui.Forms.ComboBox txtAgrupar;
+                internal Lui.Forms.ComboBox EntradaAgrupar;
 
                 #endregion
                 private Lui.Forms.ListView ReportListView;

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -74,6 +74,7 @@ namespace Lcc.Entrada
                         }
                 }
 
+
                 public override string Text
                 {
                         get
@@ -85,6 +86,7 @@ namespace Lcc.Entrada
                                 FieldLabel.Text = value;
                         }
                 }
+
 
                 public object FieldValue
                 {
@@ -116,6 +118,7 @@ namespace Lcc.Entrada
                         }
                 }
 
+
                 public string FieldName
                 {
                         get
@@ -138,6 +141,7 @@ namespace Lcc.Entrada
                         }
                 }
 
+
                 public int LabelWidth
                 {
                         get
@@ -150,50 +154,5 @@ namespace Lcc.Entrada
                                 FieldData.Width = this.Width - FieldData.Left;
                         }
                 }
-
-                /* protected override bool IsInputKey(Keys keyData)
-                {
-                        switch (keyData) {
-                                case Keys.Up:
-                                case Keys.Down:
-                                case Keys.Left:
-                                case Keys.Right:
-                                        return true;
-                                default:
-                                        return base.IsInputKey(keyData);
-                        }
-                }
-
-                private void FieldData_KeyDown(object sender, KeyEventArgs e)
-                {
-                        switch (e.KeyCode) {
-                                case Keys.Down:
-                                        if (e.Alt == false && e.Shift == false && e.Control == false) {
-                                                System.Windows.Forms.SendKeys.Send("{tab}");
-                                                e.Handled = true;
-                                        }
-                                        break;
-                                case Keys.Up:
-                                        if (e.Alt == false && e.Shift == false && e.Control == false) {
-                                                System.Windows.Forms.SendKeys.Send("+{tab}");
-                                                e.Handled = true;
-                                        }
-                                        break;
-                        }
-                }
-
-                private void FieldData_KeyPress(object sender, KeyPressEventArgs e)
-                {
-                        if (e.KeyChar == Lfx.Types.ControlChars.Cr && FieldData.Multiline == false) {
-                                System.Windows.Forms.SendKeys.Send("{tab}");
-                                e.Handled = true;
-                        }
-                }
-
-                private void FieldData_Enter(object sender, EventArgs e)
-                {
-                        if (m_SelectOnFocus)
-                                FieldData.SelectAll();
-                } */
         }
 }

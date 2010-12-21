@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -30,25 +30,36 @@
 #endregion
 
 using System;
+using System.Net.Mail;
+using System.Windows.Forms;
 
 namespace ServidorFiscal
 {
         /// <summary>
         /// Servidor de Impresora Fiscal
         /// </summary>
-        public class ServidorFiscal : Lfx.Components.Component
+        public class ServidorFiscal : Lfx.Components.Function
         {
-                public Lbl.Comprobantes.Impresion.Fiscal.Impresora Impresora;
+                public Lazaro.Impresion.Comprobantes.Fiscal.Impresora Impresora;
                 private int m_PV;
                 private System.Timers.Timer Programador;
                 private System.Timers.Timer Watchdog;
                 private System.DateTime Watchdog_LastOp = System.DateTime.Now;
                 private FiscalStatus FormEstado = null;
-                public Lbl.Comprobantes.Impresion.Fiscal.ImpresoraEventArgs UltimoEvento;
+                public Lazaro.Impresion.Comprobantes.Fiscal.ImpresoraEventArgs UltimoEvento;
+
+                public ServidorFiscal()
+                {
+                        this.FunctionType = Lfx.Components.FunctionTypes.Loadable;
+                }
 
                 public override object Create(bool wait)
                 {
-                        this.Workspace.CurrentUser.Id = 1;
+                        Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(ThreadExceptionHandler);
+                        AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
+                        Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+
+                        Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(this.Workspace, new Lbl.Personas.Usuario(this.Workspace.MasterConnection, 1));
                         FormEstado = new FiscalStatus();
                         FormEstado.ServidorAsociado = this;
                         this.FormEstado.lblVersion.Text = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).ProductVersion;
@@ -62,10 +73,10 @@ namespace ServidorFiscal
                                 //No es crítico, así que continúo sin problema
                         }
 
-                        Impresora = new Lbl.Comprobantes.Impresion.Fiscal.Impresora(this.Workspace);
+                        Impresora = new Lazaro.Impresion.Comprobantes.Fiscal.Impresora(this.Workspace);
 
-                        this.Workspace.RunTime.IpcEvent += new Lfx.Workspace.RunTimeServices.IpcEventHandler(Workspace_IpcEvent);
-                        Impresora.Notificacion += new Lbl.Comprobantes.Impresion.Fiscal.NotificacionEventHandler(ConFiscal_EventoConexion);
+                        this.Workspace.RunTime.IpcEvent += new Lfx.RunTimeServices.IpcEventHandler(Workspace_IpcEvent);
+                        Impresora.Notificacion += new Lazaro.Impresion.Comprobantes.Fiscal.NotificacionEventHandler(ConFiscal_EventoConexion);
 
                         Programador = new System.Timers.Timer(1000);
                         Programador.Elapsed += new System.Timers.ElapsedEventHandler(EventoProgramador);
@@ -76,58 +87,58 @@ namespace ServidorFiscal
                         Watchdog.Start();
 
                         if (wait) {
-                                while (Impresora.EstadoServidor != Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Apagando
-                                        && Impresora.EstadoServidor != Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Reiniciando) {
+                                while (Impresora.EstadoServidor != Lazaro.Impresion.Comprobantes.Fiscal.EstadoServidorFiscal.Apagando
+                                        && Impresora.EstadoServidor != Lazaro.Impresion.Comprobantes.Fiscal.EstadoServidorFiscal.Reiniciando) {
                                         System.Threading.Thread.Sleep(100);
                                         System.Windows.Forms.Application.DoEvents();
                                 }
 
-                                if (Impresora.EstadoServidor == Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Reiniciando)
+                                if (Impresora.EstadoServidor == Lazaro.Impresion.Comprobantes.Fiscal.EstadoServidorFiscal.Reiniciando)
                                         this.End(true);
-                                else if (Impresora.EstadoServidor == Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Apagando)
+                                else if (Impresora.EstadoServidor == Lazaro.Impresion.Comprobantes.Fiscal.EstadoServidorFiscal.Apagando)
                                         this.End(false);
                         }
 
                         return null;
                 }
 
-                public void ConFiscal_EventoConexion(object sender, Lbl.Comprobantes.Impresion.Fiscal.ImpresoraEventArgs e)
+                public void ConFiscal_EventoConexion(object sender, Lazaro.Impresion.Comprobantes.Fiscal.ImpresoraEventArgs e)
                 {
                         UltimoEvento = e;
                         switch (e.EventType) {
-                                case Lbl.Comprobantes.Impresion.Fiscal.ImpresoraEventArgs.EventTypes.Inicializada:
+                                case Lazaro.Impresion.Comprobantes.Fiscal.ImpresoraEventArgs.EventTypes.Inicializada:
                                         FormEstado.lblPV.Text = this.PV.ToString();
                                         FormEstado.lblImpresora.Text = Impresora.NombreModelo;
                                         FormEstado.lblConexion.Text = Impresora.PortName + " a " + Impresora.BaudRate.ToString() + " bps";
                                         FormEstado.lblImpresora.Text = Impresora.NombreModelo;
                                         break;
-                                case Lbl.Comprobantes.Impresion.Fiscal.ImpresoraEventArgs.EventTypes.Estado:
+                                case Lazaro.Impresion.Comprobantes.Fiscal.ImpresoraEventArgs.EventTypes.Estado:
                                         FormEstado.lblEstado.Text = e.MensajeEstado;
                                         break;
-                                case Lbl.Comprobantes.Impresion.Fiscal.ImpresoraEventArgs.EventTypes.InicioImpresion:
+                                case Lazaro.Impresion.Comprobantes.Fiscal.ImpresoraEventArgs.EventTypes.InicioImpresion:
                                         FormEstado.NotifyIcon1.ShowBalloonTip(1000, "Servidor Fiscal", "Se inició el proceso de impresión", System.Windows.Forms.ToolTipIcon.Info);
                                         break;
-                                case Lbl.Comprobantes.Impresion.Fiscal.ImpresoraEventArgs.EventTypes.FinImpresion:
+                                case Lazaro.Impresion.Comprobantes.Fiscal.ImpresoraEventArgs.EventTypes.FinImpresion:
                                         FormEstado.NotifyIcon1.ShowBalloonTip(1000, "Servidor Fiscal", "Finalizó el proceso de impresión", System.Windows.Forms.ToolTipIcon.Info);
                                         break;
                         }
                 }
 
-                public void Workspace_IpcEvent(object sender, ref Lfx.Workspace.RunTimeServices.IpcEventArgs e)
+                public void Workspace_IpcEvent(object sender, ref Lfx.RunTimeServices.IpcEventArgs e)
                 {
-                        if (e.Destination == "servidorfiscal" && e.Verb == "END")
-                                Impresora.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Apagando;
-                        else if (e.Destination == "servidorfiscal" && e.Verb == "REBOOT")
-                                Impresora.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Reiniciando;
-                }
+                        if (e.Destination == "servidorfiscal") {
+                                switch (e.Verb) {
+                                        case "END":
+                                                Impresora.EstadoServidor = Lazaro.Impresion.Comprobantes.Fiscal.EstadoServidorFiscal.Apagando;
+                                                break;
 
-                public override Lfx.Components.ComponentTypes ComponentType
-                {
-                        get
-                        {
-                                return Lfx.Components.ComponentTypes.Loadable;
+                                        case "REBOOT":
+                                                Impresora.EstadoServidor = Lazaro.Impresion.Comprobantes.Fiscal.EstadoServidorFiscal.Reiniciando;
+                                                break;
+                                }
                         }
                 }
+
 
                 private void EventoWatchdog(object source, System.Timers.ElapsedEventArgs e)
                 {
@@ -137,7 +148,7 @@ namespace ServidorFiscal
                                 wr.Write("ServidorFiscal: REBOOT " + System.DateTime.Now.ToString() + System.Environment.NewLine);
                                 wr.Close();
 
-                                Impresora.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Reiniciando;
+                                Impresora.EstadoServidor = Lazaro.Impresion.Comprobantes.Fiscal.EstadoServidorFiscal.Reiniciando;
                         }
                 }
 
@@ -171,23 +182,25 @@ namespace ServidorFiscal
                         }
 
                         Watchdog.Stop();
+                        this.Impresora.DataBase.BeginTransaction();
                         qGen.Update Actualizar = new qGen.Update("pvs", new qGen.Where("id_pv", this.PV));
                         Actualizar.Fields.AddWithValue("lsa", qGen.SqlFunctions.Now);
                         this.Impresora.DataBase.Execute(Actualizar);
+                        this.Impresora.DataBase.Commit();
                         Lfx.Services.Task ProximaTarea = this.Workspace.DefaultScheduler.GetNextTask("fiscal" + this.PV.ToString());
                         if (ProximaTarea != null) {
                                 string Comando = ProximaTarea.Command;
                                 string SubComando = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();
 
-                                Lbl.Comprobantes.Impresion.Fiscal.Respuesta Res;
+                                Lazaro.Impresion.Comprobantes.Fiscal.Respuesta Res;
                                 switch (SubComando) {
                                         case "REBOOT":
-                                                Impresora.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Reiniciando;
+                                                Impresora.EstadoServidor = Lazaro.Impresion.Comprobantes.Fiscal.EstadoServidorFiscal.Reiniciando;
                                                 //this.End(true);
                                                 break;
 
                                         case "END":
-                                                Impresora.EstadoServidor = Lbl.Comprobantes.Impresion.Fiscal.EstadoServidorFiscal.Apagando;
+                                                Impresora.EstadoServidor = Lazaro.Impresion.Comprobantes.Fiscal.EstadoServidorFiscal.Apagando;
                                                 //this.End(false);
                                                 break;
 
@@ -196,16 +209,16 @@ namespace ServidorFiscal
                                                 if (Res.EstadoFiscal.DocumentoFiscalAbierto) {
                                                         Res = Impresora.CancelarDocumentoFiscal();
                                                         System.Threading.Thread.Sleep(500);
-                                                } else if (Res.Error == Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Ok) {
+                                                } else if (Res.Error == Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.Ok) {
                                                         string SubComandoCierre = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();
-                                                        Lbl.Comprobantes.Impresion.Fiscal.Respuesta ResultadoCierre = Impresora.Cierre(SubComandoCierre, true);
-                                                        if (SubComandoCierre == "Z" && ResultadoCierre.Error == Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Ok) {
+                                                        Lazaro.Impresion.Comprobantes.Fiscal.Respuesta ResultadoCierre = Impresora.Cierre(SubComandoCierre, true);
+                                                        if (SubComandoCierre == "Z" && ResultadoCierre.Error == Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.Ok) {
                                                                 //Si hizo un cierre Z correctamente, actualizo la variable LCZ
                                                                 Actualizar = new qGen.Update("pvs", new qGen.Where("id_pv", this.PV));
                                                                 Actualizar.Fields.AddWithValue("ultimoz", qGen.SqlFunctions.Now);
                                                                 this.Impresora.DataBase.Execute(Actualizar);
                                                         }
-                                                        if (ResultadoCierre.Error != Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Ok) {
+                                                        if (ResultadoCierre.Error != Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.Ok) {
                                                                 MostrarErrorFiscal(ResultadoCierre);
                                                         }
                                                         System.Threading.Thread.Sleep(100);
@@ -247,10 +260,10 @@ namespace ServidorFiscal
                                                         }
                                                 }
 
-                                                if (Res.Error == Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Ok)
+                                                if (Res.Error == Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.Ok)
                                                         Res = Impresora.ImprimirComprobante(IdFactura);
 
-                                                if (Res.Error != Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Ok) {
+                                                if (Res.Error != Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.Ok) {
                                                         MostrarErrorFiscal(Res);
                                                         if (Res.EstadoFiscal.DocumentoFiscalAbierto)
                                                                 Res = Impresora.CancelarDocumentoFiscal();
@@ -265,7 +278,7 @@ namespace ServidorFiscal
                         Watchdog.Start();
                 }
 
-                private void MostrarErrorFiscal(Lbl.Comprobantes.Impresion.Fiscal.Respuesta Res)
+                private void MostrarErrorFiscal(Lazaro.Impresion.Comprobantes.Fiscal.Respuesta Res)
                 {
                         FormFiscalError OFormFiscalError = new FormFiscalError();
                         OFormFiscalError.Mostrar(Res);
@@ -293,6 +306,73 @@ namespace ServidorFiscal
                                 Lfx.Environment.Shell.Execute(this.ExecutableName, Params, System.Diagnostics.ProcessWindowStyle.Minimized, false);
                         }
                         System.Windows.Forms.Application.Exit();
+                }
+
+                public static void ThreadExceptionHandler(object sender, System.Threading.ThreadExceptionEventArgs e)
+                {
+                        UnknownExceptionHandler(e.Exception);
+                }
+
+                private static void GlobalExceptionHandler(object sender, UnhandledExceptionEventArgs args)
+                {
+                        UnknownExceptionHandler(args.ExceptionObject as Exception);
+                        Application.Exit();
+                }
+
+                /// <summary>
+                /// Manejador de excepciones desconocidas. Presenta una ventana con el error y envía un informe por correo electrónico.
+                /// </summary>
+                /// <param name="ex">La excepción a reportar.</param>
+                public static void UnknownExceptionHandler(Exception ex)
+                {
+                        try {
+                                System.Text.StringBuilder Texto = new System.Text.StringBuilder();
+                                Texto.AppendLine("Lugar   : " + ex.Source);
+                                try {
+                                        System.Diagnostics.StackTrace Traza = new System.Diagnostics.StackTrace(ex, true);
+                                        Texto.AppendLine("Línea   : " + Traza.GetFrame(0).GetFileLineNumber());
+                                        Texto.AppendLine("Columna : " + Traza.GetFrame(0).GetFileColumnNumber());
+                                } catch {
+                                        //Nada
+                                }
+                                Texto.AppendLine("Equipo  : " + System.Environment.MachineName.ToUpperInvariant());
+                                Texto.AppendLine("Plataf. : " + Lfx.Environment.SystemInformation.PlatformName);
+                                Texto.AppendLine("RunTime : " + Lfx.Environment.SystemInformation.RuntimeName);
+                                Texto.AppendLine("Excepción no controlada: " + ex.ToString());
+                                Texto.AppendLine("");
+
+                                Texto.AppendLine("Lazaro versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").ProductVersion + " del " + new System.IO.FileInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern));
+                                System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ApplicationFolder);
+                                foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.dll")) {
+                                        Texto.AppendLine(DirItem.Name + " versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(DirItem.FullName).ProductVersion + " del " + new System.IO.FileInfo(DirItem.FullName).LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern));
+                                }
+
+                                Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ComponentsFolder);
+                                foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.dll")) {
+                                        Texto.AppendLine(DirItem.Name + " versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(DirItem.FullName).ProductVersion + " del " + new System.IO.FileInfo(DirItem.FullName).LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern));
+                                }
+
+                                Texto.AppendLine("Traza:");
+                                Texto.AppendLine(ex.StackTrace);
+
+                                MailMessage Mensaje = new MailMessage();
+                                Mensaje.To.Add(new MailAddress("error@sistemalazaro.com.ar"));
+                                Mensaje.From = new MailAddress(Lbl.Sys.Config.Actual.Empresa.Email, Lbl.Sys.Config.Actual.UsuarioConectado.Nombre + " en " + Lbl.Sys.Config.Actual.Empresa.Nombre);
+                                try {
+                                        //No sé por qué, pero una vez dió un error al poner el asunto
+                                        Mensaje.Subject = ex.Message;
+                                } catch {
+                                        Mensaje.Subject = "Excepción no controlada";
+                                        Texto.Insert(0, ex.Message + System.Environment.NewLine);
+                                }
+
+                                Mensaje.Body = Texto.ToString();
+
+                                SmtpClient Cliente = new SmtpClient("mail.sistemalazaro.com.ar");
+                                Cliente.Send(Mensaje);
+                        } catch () {
+                                // No pude enviar el reporte. No importa.
+                        }
                 }
         }
 }

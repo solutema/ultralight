@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -40,20 +40,19 @@ namespace Lfx.Types
                 /// <summary>
                 /// Intenta comparar dos objetos para ver si son iguales en cuanto a su valor.
                 /// </summary>
-                public static bool ObjectsEqualByValue(object val1, object val2)
+                public static int CompareByValue(object val1, object val2)
                 {
 
                         object a = val1, b = val2;
 
-                        //Convierto booleanos a enteros para poder comparar False == 0
-                        //Convierto enums a enteros, por la misma razón
-
+                        // Permito comparación con null
                         if (val1 == null)
-                                return val2 == null;
+                                return val2 == null ? 0 : -1;
 
                         if (val2 == null)
-                                return val1 == null;
+                                return val1 == null ? 0 : 1;
 
+                        //Convierto booleanos y enums a enteros para poder comparar
                         if (val1 is bool)
                                 a = (bool)val1 ? 1 : 0;
                         else if (val1.GetType().IsEnum)
@@ -70,28 +69,38 @@ namespace Lfx.Types
 
                         if (a == null && b is int && (int)b == 0) {
                                 // Por la forma en la que trabaja FieldCollection[columName], digo que NULL==0 es true
-                                return true;
+                                return 0;
                         } else if (a == null && b is double && (double)b == 0) {
                                 // Por la forma en la que trabaja FieldCollection[columName], digo que NULL==0 es true
-                                return true;
+                                return 0;
+                        } else if (a == null && b is decimal && (decimal)b == 0) {
+                                // Por la forma en la que trabaja FieldCollection[columName], digo que NULL==0 es true
+                                return 0;
                         } else if (a == null && b is string && (string)b == "") {
                                 // Por la forma en la que trabaja FieldCollection[columName], digo que NULL=="" es true
-                                return true;
+                                return 0;
                         } else if ((a is short || a is int || a is long)
                            && (b is short || b is int || b is long)) {
-                                return System.Convert.ToInt64(a) == System.Convert.ToInt64(b);
+                                // Doy a todos los enteros el mismo tratamiento (a los efectos de comparar)
+                                return  System.Convert.ToInt64(a).CompareTo(System.Convert.ToInt64(b));
                         } else if (b is double && a is double) {
-                                return Math.Abs(System.Convert.ToDouble(a) - System.Convert.ToDouble(b)) < 0.01;
+                                // Compraración de double
+                                return Math.Round(System.Convert.ToDouble(a), 4).CompareTo(Math.Round(System.Convert.ToDouble(b), 4));
                         } else if (b is decimal && a is decimal) {
-                                return Math.Abs(System.Convert.ToDecimal(a) - System.Convert.ToDecimal(b)) < 0.01m;
+                                // Compraración de decimal
+                                return Math.Round(System.Convert.ToDecimal(a), 8).CompareTo(Math.Round(System.Convert.ToDecimal(b), 8));
                         } else if ((b is decimal && a is double) || (b is double && a is decimal)) {
-                                return Math.Abs(System.Convert.ToDecimal(a) - System.Convert.ToDecimal(b)) < 0.01m;
+                                // Compraración entre decimal y double
+                                return Math.Round(System.Convert.ToDecimal(a), 4).CompareTo(Math.Round(System.Convert.ToDecimal(b), 4));
                         } else if (a is DateTime && b is DateTime) {
-                                return System.Convert.ToDateTime(a) == System.Convert.ToDateTime(b);
+                                // Compración de fechas
+                                return System.Convert.ToDateTime(a).CompareTo(System.Convert.ToDateTime(b));
                         } else if (a is string && b is string) {
-                                return string.Equals(a as string, b as string, StringComparison.CurrentCulture);
+                                // Compración de cadenas
+                                return string.Compare(a as string, b as string, StringComparison.CurrentCulture);
                         } else {
-                                return string.Equals(System.Convert.ToString(a), System.Convert.ToString(b), StringComparison.CurrentCulture);
+                                // El resto, lo comparo por su representación de cadena
+                                return string.Compare(System.Convert.ToString(a), System.Convert.ToString(b), StringComparison.CurrentCulture);
                         }
                 }
         }

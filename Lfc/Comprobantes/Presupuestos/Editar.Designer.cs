@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,12 +37,14 @@ namespace Lfc.Comprobantes.Presupuestos
 
                 private void InitializeComponent()
                 {
+                        this.SuspendLayout();
                         // 
                         // Editar
                         // 
-                        this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
-                        this.ClientSize = new System.Drawing.Size(692, 473);
                         this.Name = "Editar";
+                        this.ResumeLayout(false);
+                        this.PerformLayout();
+
                 }
                 #endregion
         }

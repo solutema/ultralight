@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -44,17 +44,20 @@ namespace Lazaro.Reportes
                 public Patrimonio()
                 {
                         InitializeComponent();
+
+                        if (this.HasWorkspace)
+                                this.MostrarDatos();
                 }
 
-                private void Patrimonio_WorkspaceChanged(object sender, EventArgs e)
+                private void MostrarDatos()
                 {
-                        double ActivosCajas = 0;
-                        double PasivosCajas = 0;
+                        decimal ActivosCajas = 0;
+                        decimal PasivosCajas = 0;
 			
-                        System.Data.DataTable Cajas = this.DataBase.Select("SELECT * FROM cajas WHERE estado>0");
+                        System.Data.DataTable Cajas = this.Connection.Select("SELECT * FROM cajas WHERE estado>0");
                         foreach(System.Data.DataRow Rw in Cajas.Rows) {
-                                Lbl.Cajas.Caja Cta = new Lbl.Cajas.Caja(this.DataBase, (Lfx.Data.Row)Rw);
-                                double Saldo = Cta.Saldo();
+                                Lbl.Cajas.Caja Cta = new Lbl.Cajas.Caja(this.Connection, (Lfx.Data.Row)Rw);
+                                decimal Saldo = Cta.Saldo(false);
                                 if (Saldo > 0)
                                         ActivosCajas += Saldo;
                                 else
@@ -64,37 +67,37 @@ namespace Lazaro.Reportes
                         EntradaActivosCajas.Text = Lfx.Types.Formatting.FormatCurrency(ActivosCajas, this.Workspace.CurrentConfig.Moneda.Decimales);
                         EntradaPasivosCajas.Text = Lfx.Types.Formatting.FormatCurrency(PasivosCajas, this.Workspace.CurrentConfig.Moneda.Decimales);
 
-                        double ActivosStock = DataBase.FieldDouble("SELECT SUM(costo*stock_actual) FROM articulos WHERE costo>0 AND stock_actual>0");
-                        txtActivosStock.Text = Lfx.Types.Formatting.FormatCurrency(ActivosStock, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        decimal ActivosStock = Connection.FieldDecimal("SELECT SUM(costo*stock_actual) FROM articulos WHERE costo>0 AND stock_actual>0");
+                        EntradaActivosStock.Text = Lfx.Types.Formatting.FormatCurrency(ActivosStock, this.Workspace.CurrentConfig.Moneda.Decimales);
 
-                        double Activos = ActivosCajas + ActivosStock;
-                        txtActivosSubtotal.Text = Lfx.Types.Formatting.FormatCurrency(Activos, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        decimal Activos = ActivosCajas + ActivosStock;
+                        EntradaActivosSubtotal.Text = Lfx.Types.Formatting.FormatCurrency(Activos, this.Workspace.CurrentConfig.Moneda.Decimales);
 
-                        double FuturosTarjetas = 0.92 * DataBase.FieldDouble("SELECT SUM(importe) FROM tarjetas_cupones WHERE estado=10 OR (estado=0 AND fecha>DATE_SUB(NOW(), INTERVAL 45 DAY))");
+                        decimal FuturosTarjetas = 0.92m * Connection.FieldDecimal("SELECT SUM(importe) FROM tarjetas_cupones WHERE estado=10 OR (estado=0 AND fecha>DATE_SUB(NOW(), INTERVAL 45 DAY))");
                                                 //Tarjetas resta el 8% (estimado) de comisiones
-                        double Facturas = DataBase.FieldDouble("SELECT SUM(total)-SUM(cancelado) FROM comprob WHERE tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha >= '" + Lfx.Types.Formatting.FormatDateSql(DateTime.Now.AddYears(-2)) + "'");
+                        decimal Facturas = Connection.FieldDecimal("SELECT SUM(total)-SUM(cancelado) FROM comprob WHERE tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM') AND impresa>0 AND numero>0 AND anulada=0 AND fecha >= '" + Lfx.Types.Formatting.FormatDateSql(DateTime.Now.AddYears(-2)) + "'");
                         EntradaCC.Text = Lfx.Types.Formatting.FormatCurrency(Facturas, this.Workspace.CurrentConfig.Moneda.Decimales);
 
-                        double FuturosPedidos = DataBase.FieldDouble("SELECT SUM(total-gastosenvio) FROM comprob WHERE tipo_fac='PD' AND anulada=0 AND compra>0 AND estado=50");
-                        txtFuturosTarjetas.Text = Lfx.Types.Formatting.FormatCurrency(FuturosTarjetas, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtFuturosPedidos.Text = Lfx.Types.Formatting.FormatCurrency(FuturosPedidos, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        decimal FuturosPedidos = Connection.FieldDecimal("SELECT SUM(total-gastosenvio) FROM comprob WHERE tipo_fac='PD' AND anulada=0 AND compra>0 AND estado=50");
+                        EntradaFuturosTarjetas.Text = Lfx.Types.Formatting.FormatCurrency(FuturosTarjetas, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaFuturosPedidos.Text = Lfx.Types.Formatting.FormatCurrency(FuturosPedidos, this.Workspace.CurrentConfig.Moneda.Decimales);
                         
-                        double Futuros = FuturosTarjetas + FuturosPedidos + Facturas;
-                        txtFuturosSubtotal.Text = Lfx.Types.Formatting.FormatCurrency(Futuros, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        decimal Futuros = FuturosTarjetas + FuturosPedidos + Facturas;
+                        EntradaFuturosSubtotal.Text = Lfx.Types.Formatting.FormatCurrency(Futuros, this.Workspace.CurrentConfig.Moneda.Decimales);
 
-                        txtActivosActualesFuturos.Text = Lfx.Types.Formatting.FormatCurrency(Activos + Futuros, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaActivosActualesFuturos.Text = Lfx.Types.Formatting.FormatCurrency(Activos + Futuros, this.Workspace.CurrentConfig.Moneda.Decimales);
 
-                        double PasivosCheques = DataBase.FieldDouble("SELECT SUM(importe) FROM bancos_cheques WHERE emitido>0 AND estado=0");
-                        txtPasivosCheques.Text = Lfx.Types.Formatting.FormatCurrency(PasivosCheques, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        decimal PasivosCheques = Connection.FieldDecimal("SELECT SUM(importe) FROM bancos_cheques WHERE emitido>0 AND estado=0");
+                        EntradaPasivosCheques.Text = Lfx.Types.Formatting.FormatCurrency(PasivosCheques, this.Workspace.CurrentConfig.Moneda.Decimales);
 
-                        double PasivosStock = Math.Abs(DataBase.FieldDouble("SELECT SUM(costo*stock_actual) FROM articulos WHERE costo>0 AND stock_actual<0"));
-                        txtPasivosStock.Text = Lfx.Types.Formatting.FormatCurrency(PasivosStock, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        decimal PasivosStock = Math.Abs(Connection.FieldDecimal("SELECT SUM(costo*stock_actual) FROM articulos WHERE costo>0 AND stock_actual<0"));
+                        EntradaPasivosStock.Text = Lfx.Types.Formatting.FormatCurrency(PasivosStock, this.Workspace.CurrentConfig.Moneda.Decimales);
 
-                        double Pasivos = PasivosCajas + PasivosCheques + PasivosStock;
-                        txtPasivosSubtotal.Text = Lfx.Types.Formatting.FormatCurrency(Pasivos, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        decimal Pasivos = PasivosCajas + PasivosCheques + PasivosStock;
+                        EntradaPasivosSubtotal.Text = Lfx.Types.Formatting.FormatCurrency(Pasivos, this.Workspace.CurrentConfig.Moneda.Decimales);
 
-                        txtPatrimonioActual.Text = Lfx.Types.Formatting.FormatCurrency(Activos - Pasivos, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtPatrimonioFuturo.Text = Lfx.Types.Formatting.FormatCurrency(Activos + Futuros - Pasivos, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaPatrimonioActual.Text = Lfx.Types.Formatting.FormatCurrency(Activos - Pasivos, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaPatrimonioFuturo.Text = Lfx.Types.Formatting.FormatCurrency(Activos + Futuros - Pasivos, this.Workspace.CurrentConfig.Moneda.Decimales);
                 }
         }
 }

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -68,7 +68,7 @@ namespace Lfc.Comprobantes
                 }
 
                 // Requerido por el Diseñador de Windows Forms
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
 
                 // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
@@ -78,18 +78,18 @@ namespace Lfc.Comprobantes
                 internal System.Windows.Forms.Label Label1;
                 internal System.Windows.Forms.Label Label3;
                 internal System.Windows.Forms.Label Label4;
-                internal Lui.Forms.ComboBox txtEstado;
-                internal Lui.Forms.ComboBox txtTipo;
+                internal Lui.Forms.ComboBox EntradaEstado;
+                internal Lui.Forms.ComboBox EntradaTipo;
                 internal Lcc.Entrada.CodigoDetalle EntradaVendedor;
                 internal System.Windows.Forms.Label Label5;
-                internal Lui.Forms.ComboBox txtAnuladas;
+                internal Lui.Forms.ComboBox EntradaAnuladas;
                 internal System.Windows.Forms.Label label7;
-                internal Lcc.Entrada.CodigoDetalle txtSucursal;
+                internal Lcc.Entrada.CodigoDetalle EntradaSucursal;
                 internal System.Windows.Forms.Label label8;
-                internal Lcc.Entrada.CodigoDetalle txtFormaPago;
-                internal Lui.Forms.ComboBox txtLetra;
+                internal Lcc.Entrada.CodigoDetalle EntradaFormaPago;
+                internal Lui.Forms.ComboBox EntradaLetra;
                 internal Label Label9;
-                internal Lui.Forms.TextBox txtPV;
+                internal Lui.Forms.TextBox EntradaPv;
                 internal Lcc.Entrada.RangoFechas EntradaFechas;
                 private TableLayoutPanel tableLayoutPanel1;
                 private TableLayoutPanel tableLayoutPanel2;
@@ -106,21 +106,21 @@ namespace Lfc.Comprobantes
                         this.EntradaCliente = new Lcc.Entrada.CodigoDetalle();
                         this.Label2 = new System.Windows.Forms.Label();
                         this.Label1 = new System.Windows.Forms.Label();
-                        this.txtEstado = new Lui.Forms.ComboBox();
+                        this.EntradaEstado = new Lui.Forms.ComboBox();
                         this.Label3 = new System.Windows.Forms.Label();
-                        this.txtTipo = new Lui.Forms.ComboBox();
+                        this.EntradaTipo = new Lui.Forms.ComboBox();
                         this.Label4 = new System.Windows.Forms.Label();
                         this.EntradaVendedor = new Lcc.Entrada.CodigoDetalle();
                         this.Label5 = new System.Windows.Forms.Label();
-                        this.txtAnuladas = new Lui.Forms.ComboBox();
+                        this.EntradaAnuladas = new Lui.Forms.ComboBox();
                         this.Label6 = new System.Windows.Forms.Label();
-                        this.txtSucursal = new Lcc.Entrada.CodigoDetalle();
+                        this.EntradaSucursal = new Lcc.Entrada.CodigoDetalle();
                         this.label7 = new System.Windows.Forms.Label();
-                        this.txtFormaPago = new Lcc.Entrada.CodigoDetalle();
+                        this.EntradaFormaPago = new Lcc.Entrada.CodigoDetalle();
                         this.label8 = new System.Windows.Forms.Label();
-                        this.txtLetra = new Lui.Forms.ComboBox();
+                        this.EntradaLetra = new Lui.Forms.ComboBox();
                         this.Label9 = new System.Windows.Forms.Label();
-                        this.txtPV = new Lui.Forms.TextBox();
+                        this.EntradaPv = new Lui.Forms.TextBox();
                         this.EntradaFechas = new Lcc.Entrada.RangoFechas();
                         this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
                         this.label10 = new System.Windows.Forms.Label();
@@ -143,30 +143,28 @@ namespace Lfc.Comprobantes
                         // 
                         this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
                         // 
-                        // txtCliente
+                        // EntradaCliente
                         // 
                         this.EntradaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaCliente.AutoHeight = false;
+                        this.EntradaCliente.AutoNav = true;
                         this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.CanCreate = false;
-                        this.EntradaCliente.DetailField = "nombre_visible";
+                        this.EntradaCliente.DataTextField = "nombre_visible";
                         this.EntradaCliente.ExtraDetailFields = null;
                         this.EntradaCliente.Filter = "";
                         this.EntradaCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCliente.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCliente.FreeTextCode = "";
-                        this.EntradaCliente.KeyField = "id_persona";
-                        this.EntradaCliente.Location = new System.Drawing.Point(137, 151);
+                        this.EntradaCliente.DataValueField = "id_persona";
+                        this.EntradaCliente.Location = new System.Drawing.Point(137, 152);
                         this.EntradaCliente.MaxLength = 200;
-                        this.EntradaCliente.Name = "txtCliente";
+                        this.EntradaCliente.Name = "EntradaCliente";
                         this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCliente.ReadOnly = false;
                         this.EntradaCliente.Required = false;
                         this.EntradaCliente.Size = new System.Drawing.Size(446, 24);
                         this.EntradaCliente.TabIndex = 11;
                         this.EntradaCliente.Table = "personas";
-                        this.EntradaCliente.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
                         this.EntradaCliente.TipWhenBlank = "";
@@ -174,7 +172,7 @@ namespace Lfc.Comprobantes
                         // 
                         // Label2
                         // 
-                        this.Label2.Location = new System.Drawing.Point(3, 148);
+                        this.Label2.Location = new System.Drawing.Point(3, 149);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(128, 24);
                         this.Label2.TabIndex = 10;
@@ -183,83 +181,77 @@ namespace Lfc.Comprobantes
                         // 
                         // Label1
                         // 
-                        this.Label1.Location = new System.Drawing.Point(3, 268);
+                        this.Label1.Location = new System.Drawing.Point(3, 271);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(128, 24);
                         this.Label1.TabIndex = 18;
                         this.Label1.Text = "Fecha";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtEstado
+                        // EntradaEstado
                         // 
-                        this.txtEstado.AutoHeight = true;
-                        this.txtEstado.AutoNav = true;
-                        this.txtEstado.AutoTab = true;
-                        this.txtEstado.DetailField = null;
-                        this.txtEstado.Filter = null;
-                        this.txtEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtEstado.KeyField = null;
-                        this.txtEstado.Location = new System.Drawing.Point(137, 211);
-                        this.txtEstado.MaxLenght = 32767;
-                        this.txtEstado.Name = "txtEstado";
-                        this.txtEstado.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtEstado.ReadOnly = false;
-                        this.txtEstado.SetData = new string[] {
+                        this.EntradaEstado.AutoNav = true;
+                        this.EntradaEstado.AutoSize = true;
+                        this.EntradaEstado.AutoTab = true;
+                        this.EntradaEstado.DetailField = null;
+                        this.EntradaEstado.Filter = null;
+                        this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaEstado.KeyField = null;
+                        this.EntradaEstado.Location = new System.Drawing.Point(137, 212);
+                        this.EntradaEstado.MaxLenght = 32767;
+                        this.EntradaEstado.Name = "EntradaEstado";
+                        this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEstado.SetData = new string[] {
         "Todas|0",
         "Sólo las Impresas|3",
         "Sólo las Pagas|1",
         "Sólo las Impresas e Impagas|2"};
-                        this.txtEstado.Size = new System.Drawing.Size(248, 24);
-                        this.txtEstado.TabIndex = 15;
-                        this.txtEstado.Table = null;
-                        this.txtEstado.Text = "Todas";
-                        this.txtEstado.TextKey = "0";
-                        this.txtEstado.TextRaw = "Todas";
-                        this.txtEstado.TipWhenBlank = "";
-                        this.txtEstado.ToolTipText = "";
+                        this.EntradaEstado.Size = new System.Drawing.Size(248, 25);
+                        this.EntradaEstado.TabIndex = 15;
+                        this.EntradaEstado.Table = null;
+                        this.EntradaEstado.TextKey = "0";
+                        this.EntradaEstado.TipWhenBlank = "";
+                        this.EntradaEstado.ToolTipText = "";
                         // 
                         // Label3
                         // 
-                        this.Label3.Location = new System.Drawing.Point(3, 208);
+                        this.Label3.Location = new System.Drawing.Point(3, 209);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(128, 24);
                         this.Label3.TabIndex = 14;
                         this.Label3.Text = "Estado";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtTipo
+                        // EntradaTipo
                         // 
-                        this.txtTipo.AutoHeight = true;
-                        this.txtTipo.AutoNav = true;
-                        this.txtTipo.AutoTab = true;
-                        this.txtTipo.DetailField = null;
-                        this.txtTipo.Filter = null;
-                        this.txtTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtTipo.KeyField = null;
-                        this.txtTipo.Location = new System.Drawing.Point(3, 3);
-                        this.txtTipo.MaxLenght = 32767;
-                        this.txtTipo.Name = "txtTipo";
-                        this.txtTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtTipo.ReadOnly = false;
-                        this.txtTipo.SetData = new string[] {
-        "Facturas|F",
-        "Tickets|T",
-        "Notas de Crédito|NC",
-        "Notas de Débito|ND",
-        "Notas de Crédito y Débito|NCD",
-        "Presupuestos|PS",
-        "Remitos|R"};
-                        this.txtTipo.Size = new System.Drawing.Size(180, 24);
-                        this.txtTipo.TabIndex = 1;
-                        this.txtTipo.Table = null;
-                        this.txtTipo.Text = "Facturas";
-                        this.txtTipo.TextKey = "F";
-                        this.txtTipo.TextRaw = "Facturas";
-                        this.txtTipo.TipWhenBlank = "";
-                        this.txtTipo.ToolTipText = "";
-                        this.txtTipo.TextChanged += new System.EventHandler(this.txtTipo_TextChanged);
+                        this.EntradaTipo.AutoNav = true;
+                        this.EntradaTipo.AutoSize = true;
+                        this.EntradaTipo.AutoTab = true;
+                        this.EntradaTipo.DetailField = null;
+                        this.EntradaTipo.Filter = null;
+                        this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaTipo.KeyField = null;
+                        this.EntradaTipo.Location = new System.Drawing.Point(3, 3);
+                        this.EntradaTipo.MaxLenght = 32767;
+                        this.EntradaTipo.Name = "EntradaTipo";
+                        this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTipo.SetData = new string[] {
+        "Facturas|Lbl.Comprobantes.Factura",
+        "Tickets|Lbl.Comprobantes.Ticket",
+        "Notas de Crédito|Lbl.Comprobantes.NotaDeCredito",
+        "Notas de Débito|Lbl.Comprobantes.NotaDeDebito",
+        "Presupuestos|Lbl.Comprobantes.Presupuesto",
+        "Remitos|Lbl.Comprobantes.Remito"};
+                        this.EntradaTipo.Size = new System.Drawing.Size(180, 25);
+                        this.EntradaTipo.TabIndex = 1;
+                        this.EntradaTipo.Table = null;
+                        this.EntradaTipo.Text = "Facturas";
+                        this.EntradaTipo.TextKey = "";
+                        this.EntradaTipo.TipWhenBlank = "";
+                        this.EntradaTipo.ToolTipText = "";
+                        this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
                         // 
                         // Label4
                         // 
@@ -270,30 +262,28 @@ namespace Lfc.Comprobantes
                         this.Label4.Text = "Tipo";
                         this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtVendedor
+                        // EntradaVendedor
                         // 
                         this.EntradaVendedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaVendedor.AutoHeight = false;
+                        this.EntradaVendedor.AutoNav = true;
                         this.EntradaVendedor.AutoTab = true;
                         this.EntradaVendedor.CanCreate = false;
-                        this.EntradaVendedor.DetailField = "nombre_visible";
+                        this.EntradaVendedor.DataTextField = "nombre_visible";
                         this.EntradaVendedor.ExtraDetailFields = null;
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
                         this.EntradaVendedor.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaVendedor.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaVendedor.FreeTextCode = "";
-                        this.EntradaVendedor.KeyField = "id_persona";
-                        this.EntradaVendedor.Location = new System.Drawing.Point(137, 181);
+                        this.EntradaVendedor.DataValueField = "id_persona";
+                        this.EntradaVendedor.Location = new System.Drawing.Point(137, 182);
                         this.EntradaVendedor.MaxLength = 200;
-                        this.EntradaVendedor.Name = "txtVendedor";
+                        this.EntradaVendedor.Name = "EntradaVendedor";
                         this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaVendedor.ReadOnly = false;
                         this.EntradaVendedor.Required = false;
                         this.EntradaVendedor.Size = new System.Drawing.Size(446, 24);
                         this.EntradaVendedor.TabIndex = 13;
                         this.EntradaVendedor.Table = "personas";
-                        this.EntradaVendedor.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaVendedor.Text = "0";
                         this.EntradaVendedor.TextDetail = "";
                         this.EntradaVendedor.TipWhenBlank = "";
@@ -301,77 +291,73 @@ namespace Lfc.Comprobantes
                         // 
                         // Label5
                         // 
-                        this.Label5.Location = new System.Drawing.Point(3, 178);
+                        this.Label5.Location = new System.Drawing.Point(3, 179);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(128, 24);
                         this.Label5.TabIndex = 12;
                         this.Label5.Text = "Vendedor";
                         this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtAnuladas
+                        // EntradaAnuladas
                         // 
-                        this.txtAnuladas.AutoHeight = true;
-                        this.txtAnuladas.AutoNav = true;
-                        this.txtAnuladas.AutoTab = true;
-                        this.txtAnuladas.DetailField = null;
-                        this.txtAnuladas.Filter = null;
-                        this.txtAnuladas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtAnuladas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtAnuladas.KeyField = null;
-                        this.txtAnuladas.Location = new System.Drawing.Point(137, 241);
-                        this.txtAnuladas.MaxLenght = 32767;
-                        this.txtAnuladas.Name = "txtAnuladas";
-                        this.txtAnuladas.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtAnuladas.ReadOnly = false;
-                        this.txtAnuladas.SetData = new string[] {
+                        this.EntradaAnuladas.AutoNav = true;
+                        this.EntradaAnuladas.AutoSize = true;
+                        this.EntradaAnuladas.AutoTab = true;
+                        this.EntradaAnuladas.DetailField = null;
+                        this.EntradaAnuladas.Filter = null;
+                        this.EntradaAnuladas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaAnuladas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaAnuladas.KeyField = null;
+                        this.EntradaAnuladas.Location = new System.Drawing.Point(137, 243);
+                        this.EntradaAnuladas.MaxLenght = 32767;
+                        this.EntradaAnuladas.Name = "EntradaAnuladas";
+                        this.EntradaAnuladas.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaAnuladas.SetData = new string[] {
         "Ocultar|0",
         "Mostrar|1"};
-                        this.txtAnuladas.Size = new System.Drawing.Size(248, 24);
-                        this.txtAnuladas.TabIndex = 17;
-                        this.txtAnuladas.Table = null;
-                        this.txtAnuladas.Text = "Ocultar";
-                        this.txtAnuladas.TextKey = "0";
-                        this.txtAnuladas.TextRaw = "Ocultar";
-                        this.txtAnuladas.TipWhenBlank = "";
-                        this.txtAnuladas.ToolTipText = "";
+                        this.EntradaAnuladas.Size = new System.Drawing.Size(248, 25);
+                        this.EntradaAnuladas.TabIndex = 17;
+                        this.EntradaAnuladas.Table = null;
+                        this.EntradaAnuladas.Text = "Ocultar";
+                        this.EntradaAnuladas.TextKey = "0";
+                        this.EntradaAnuladas.TipWhenBlank = "";
+                        this.EntradaAnuladas.ToolTipText = "";
                         // 
                         // Label6
                         // 
-                        this.Label6.Location = new System.Drawing.Point(3, 238);
+                        this.Label6.Location = new System.Drawing.Point(3, 240);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(128, 24);
                         this.Label6.TabIndex = 16;
                         this.Label6.Text = "Anuladas";
                         this.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtSucursal
+                        // EntradaSucursal
                         // 
-                        this.txtSucursal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaSucursal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtSucursal.AutoHeight = false;
-                        this.txtSucursal.AutoTab = true;
-                        this.txtSucursal.CanCreate = false;
-                        this.txtSucursal.DetailField = "nombre";
-                        this.txtSucursal.ExtraDetailFields = null;
-                        this.txtSucursal.Filter = "";
-                        this.txtSucursal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtSucursal.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtSucursal.FreeTextCode = "";
-                        this.txtSucursal.KeyField = "id_sucursal";
-                        this.txtSucursal.Location = new System.Drawing.Point(137, 3);
-                        this.txtSucursal.MaxLength = 200;
-                        this.txtSucursal.Name = "txtSucursal";
-                        this.txtSucursal.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtSucursal.ReadOnly = false;
-                        this.txtSucursal.Required = false;
-                        this.txtSucursal.Size = new System.Drawing.Size(446, 24);
-                        this.txtSucursal.TabIndex = 1;
-                        this.txtSucursal.Table = "sucursales";
-                        this.txtSucursal.TeclaDespuesDeEnter = "{tab}";
-                        this.txtSucursal.Text = "0";
-                        this.txtSucursal.TextDetail = "";
-                        this.txtSucursal.TipWhenBlank = "";
-                        this.txtSucursal.ToolTipText = "";
+                        this.EntradaSucursal.AutoNav = true;
+                        this.EntradaSucursal.AutoTab = true;
+                        this.EntradaSucursal.CanCreate = false;
+                        this.EntradaSucursal.DataTextField = "nombre";
+                        this.EntradaSucursal.ExtraDetailFields = null;
+                        this.EntradaSucursal.Filter = "";
+                        this.EntradaSucursal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaSucursal.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaSucursal.FreeTextCode = "";
+                        this.EntradaSucursal.DataValueField = "id_sucursal";
+                        this.EntradaSucursal.Location = new System.Drawing.Point(137, 3);
+                        this.EntradaSucursal.MaxLength = 200;
+                        this.EntradaSucursal.Name = "EntradaSucursal";
+                        this.EntradaSucursal.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaSucursal.Required = false;
+                        this.EntradaSucursal.Size = new System.Drawing.Size(446, 24);
+                        this.EntradaSucursal.TabIndex = 1;
+                        this.EntradaSucursal.Table = "sucursales";
+                        this.EntradaSucursal.Text = "0";
+                        this.EntradaSucursal.TextDetail = "";
+                        this.EntradaSucursal.TipWhenBlank = "";
+                        this.EntradaSucursal.ToolTipText = "";
                         // 
                         // label7
                         // 
@@ -382,34 +368,32 @@ namespace Lfc.Comprobantes
                         this.label7.Text = "Sucursal";
                         this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtFormaPago
+                        // EntradaFormaPago
                         // 
-                        this.txtFormaPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaFormaPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtFormaPago.AutoHeight = false;
-                        this.txtFormaPago.AutoTab = true;
-                        this.txtFormaPago.CanCreate = false;
-                        this.txtFormaPago.DetailField = "nombre";
-                        this.txtFormaPago.ExtraDetailFields = null;
-                        this.txtFormaPago.Filter = "";
-                        this.txtFormaPago.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtFormaPago.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtFormaPago.FreeTextCode = "";
-                        this.txtFormaPago.KeyField = "id_formapago";
-                        this.txtFormaPago.Location = new System.Drawing.Point(137, 33);
-                        this.txtFormaPago.MaxLength = 200;
-                        this.txtFormaPago.Name = "txtFormaPago";
-                        this.txtFormaPago.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtFormaPago.ReadOnly = false;
-                        this.txtFormaPago.Required = false;
-                        this.txtFormaPago.Size = new System.Drawing.Size(446, 24);
-                        this.txtFormaPago.TabIndex = 3;
-                        this.txtFormaPago.Table = "formaspago";
-                        this.txtFormaPago.TeclaDespuesDeEnter = "{tab}";
-                        this.txtFormaPago.Text = "0";
-                        this.txtFormaPago.TextDetail = "";
-                        this.txtFormaPago.TipWhenBlank = "";
-                        this.txtFormaPago.ToolTipText = "";
+                        this.EntradaFormaPago.AutoNav = true;
+                        this.EntradaFormaPago.AutoTab = true;
+                        this.EntradaFormaPago.CanCreate = false;
+                        this.EntradaFormaPago.DataTextField = "nombre";
+                        this.EntradaFormaPago.ExtraDetailFields = null;
+                        this.EntradaFormaPago.Filter = "";
+                        this.EntradaFormaPago.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaFormaPago.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaFormaPago.FreeTextCode = "";
+                        this.EntradaFormaPago.DataValueField = "id_formapago";
+                        this.EntradaFormaPago.Location = new System.Drawing.Point(137, 33);
+                        this.EntradaFormaPago.MaxLength = 200;
+                        this.EntradaFormaPago.Name = "EntradaFormaPago";
+                        this.EntradaFormaPago.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaFormaPago.Required = false;
+                        this.EntradaFormaPago.Size = new System.Drawing.Size(446, 24);
+                        this.EntradaFormaPago.TabIndex = 3;
+                        this.EntradaFormaPago.Table = "formaspago";
+                        this.EntradaFormaPago.Text = "0";
+                        this.EntradaFormaPago.TextDetail = "";
+                        this.EntradaFormaPago.TipWhenBlank = "";
+                        this.EntradaFormaPago.ToolTipText = "";
                         // 
                         // label8
                         // 
@@ -420,85 +404,79 @@ namespace Lfc.Comprobantes
                         this.label8.Text = "Monto";
                         this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtLetra
+                        // EntradaLetra
                         // 
-                        this.txtLetra.AutoHeight = true;
-                        this.txtLetra.AutoNav = true;
-                        this.txtLetra.AutoTab = true;
-                        this.txtLetra.DetailField = null;
-                        this.txtLetra.Filter = null;
-                        this.txtLetra.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtLetra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtLetra.KeyField = null;
-                        this.txtLetra.Location = new System.Drawing.Point(189, 3);
-                        this.txtLetra.MaxLenght = 32767;
-                        this.txtLetra.Name = "txtLetra";
-                        this.txtLetra.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtLetra.ReadOnly = false;
-                        this.txtLetra.SetData = new string[] {
+                        this.EntradaLetra.AutoNav = true;
+                        this.EntradaLetra.AutoSize = true;
+                        this.EntradaLetra.AutoTab = true;
+                        this.EntradaLetra.DetailField = null;
+                        this.EntradaLetra.Filter = null;
+                        this.EntradaLetra.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaLetra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaLetra.KeyField = null;
+                        this.EntradaLetra.Location = new System.Drawing.Point(189, 3);
+                        this.EntradaLetra.MaxLenght = 32767;
+                        this.EntradaLetra.Name = "EntradaLetra";
+                        this.EntradaLetra.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaLetra.SetData = new string[] {
         "Todas|*",
         "A|A",
         "B|B",
         "C|C",
         "E|E",
         "M|M"};
-                        this.txtLetra.Size = new System.Drawing.Size(84, 24);
-                        this.txtLetra.TabIndex = 0;
-                        this.txtLetra.Table = null;
-                        this.txtLetra.Text = "Todas";
-                        this.txtLetra.TextKey = "*";
-                        this.txtLetra.TextRaw = "Todas";
-                        this.txtLetra.TipWhenBlank = "";
-                        this.txtLetra.ToolTipText = "";
+                        this.EntradaLetra.Size = new System.Drawing.Size(84, 25);
+                        this.EntradaLetra.TabIndex = 0;
+                        this.EntradaLetra.Table = null;
+                        this.EntradaLetra.Text = "Todas";
+                        this.EntradaLetra.TextKey = "*";
+                        this.EntradaLetra.TipWhenBlank = "";
+                        this.EntradaLetra.ToolTipText = "";
                         // 
                         // Label9
                         // 
-                        this.Label9.Location = new System.Drawing.Point(3, 118);
+                        this.Label9.Location = new System.Drawing.Point(3, 119);
                         this.Label9.Name = "Label9";
                         this.Label9.Size = new System.Drawing.Size(128, 24);
                         this.Label9.TabIndex = 8;
                         this.Label9.Text = "PV";
                         this.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtPV
+                        // EntradaPv
                         // 
-                        this.txtPV.AutoHeight = false;
-                        this.txtPV.AutoNav = true;
-                        this.txtPV.AutoTab = true;
-                        this.txtPV.DataType = Lui.Forms.DataTypes.Integer;
-                        this.txtPV.DecimalPlaces = -1;
-                        this.txtPV.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.txtPV.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtPV.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtPV.Location = new System.Drawing.Point(137, 121);
-                        this.txtPV.MaxLenght = 32767;
-                        this.txtPV.MultiLine = false;
-                        this.txtPV.Name = "txtPV";
-                        this.txtPV.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtPV.PasswordChar = '\0';
-                        this.txtPV.Prefijo = "";
-                        this.txtPV.ReadOnly = false;
-                        this.txtPV.SelectOnFocus = true;
-                        this.txtPV.Size = new System.Drawing.Size(44, 24);
-                        this.txtPV.Sufijo = "";
-                        this.txtPV.TabIndex = 9;
-                        this.txtPV.Text = "0";
-                        this.txtPV.TextRaw = "0";
-                        this.txtPV.TipWhenBlank = "";
-                        this.txtPV.ToolTipText = "";
+                        this.EntradaPv.AutoNav = true;
+                        this.EntradaPv.AutoTab = true;
+                        this.EntradaPv.DataType = Lui.Forms.DataTypes.Integer;
+                        this.EntradaPv.DecimalPlaces = -1;
+                        this.EntradaPv.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EntradaPv.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaPv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaPv.Location = new System.Drawing.Point(137, 122);
+                        this.EntradaPv.MaxLenght = 32767;
+                        this.EntradaPv.MultiLine = false;
+                        this.EntradaPv.Name = "EntradaPv";
+                        this.EntradaPv.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaPv.PasswordChar = '\0';
+                        this.EntradaPv.Prefijo = "";
+                        this.EntradaPv.SelectOnFocus = true;
+                        this.EntradaPv.Size = new System.Drawing.Size(44, 24);
+                        this.EntradaPv.Sufijo = "";
+                        this.EntradaPv.TabIndex = 9;
+                        this.EntradaPv.Text = "0";
+                        this.EntradaPv.TipWhenBlank = "";
+                        this.EntradaPv.ToolTipText = "";
                         // 
                         // EntradaFechas
                         // 
                         this.EntradaFechas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaFechas.AutoHeight = true;
+                        this.EntradaFechas.AutoSize = true;
                         this.EntradaFechas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaFechas.Location = new System.Drawing.Point(137, 271);
+                        this.EntradaFechas.Location = new System.Drawing.Point(137, 274);
                         this.EntradaFechas.MuestraFuturos = false;
                         this.EntradaFechas.Name = "EntradaFechas";
                         this.EntradaFechas.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechas.ReadOnly = false;
-                        this.EntradaFechas.Size = new System.Drawing.Size(446, 30);
+                        this.EntradaFechas.Size = new System.Drawing.Size(446, 32);
                         this.EntradaFechas.TabIndex = 19;
                         this.EntradaFechas.ToolTipText = "";
                         // 
@@ -515,21 +493,21 @@ namespace Lfc.Comprobantes
                         this.tableLayoutPanel1.Controls.Add(this.label7, 0, 0);
                         this.tableLayoutPanel1.Controls.Add(this.EntradaFechas, 1, 9);
                         this.tableLayoutPanel1.Controls.Add(this.label8, 0, 2);
-                        this.tableLayoutPanel1.Controls.Add(this.txtPV, 1, 4);
-                        this.tableLayoutPanel1.Controls.Add(this.txtAnuladas, 1, 8);
+                        this.tableLayoutPanel1.Controls.Add(this.EntradaPv, 1, 4);
+                        this.tableLayoutPanel1.Controls.Add(this.EntradaAnuladas, 1, 8);
                         this.tableLayoutPanel1.Controls.Add(this.Label4, 0, 3);
-                        this.tableLayoutPanel1.Controls.Add(this.txtEstado, 1, 7);
+                        this.tableLayoutPanel1.Controls.Add(this.EntradaEstado, 1, 7);
                         this.tableLayoutPanel1.Controls.Add(this.EntradaVendedor, 1, 6);
                         this.tableLayoutPanel1.Controls.Add(this.Label9, 0, 4);
                         this.tableLayoutPanel1.Controls.Add(this.EntradaCliente, 1, 5);
                         this.tableLayoutPanel1.Controls.Add(this.Label2, 0, 5);
-                        this.tableLayoutPanel1.Controls.Add(this.txtSucursal, 1, 0);
+                        this.tableLayoutPanel1.Controls.Add(this.EntradaSucursal, 1, 0);
                         this.tableLayoutPanel1.Controls.Add(this.Label5, 0, 6);
                         this.tableLayoutPanel1.Controls.Add(this.Label3, 0, 7);
                         this.tableLayoutPanel1.Controls.Add(this.Label6, 0, 8);
                         this.tableLayoutPanel1.Controls.Add(this.Label1, 0, 9);
                         this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 3);
-                        this.tableLayoutPanel1.Controls.Add(this.txtFormaPago, 1, 1);
+                        this.tableLayoutPanel1.Controls.Add(this.EntradaFormaPago, 1, 1);
                         this.tableLayoutPanel1.Location = new System.Drawing.Point(24, 24);
                         this.tableLayoutPanel1.Name = "tableLayoutPanel1";
                         this.tableLayoutPanel1.RowCount = 10;
@@ -578,10 +556,9 @@ namespace Lfc.Comprobantes
                         // 
                         // EntradaMontoHasta
                         // 
-                        this.EntradaMontoHasta.AutoHeight = false;
                         this.EntradaMontoHasta.AutoNav = true;
                         this.EntradaMontoHasta.AutoTab = true;
-                        this.EntradaMontoHasta.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaMontoHasta.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaMontoHasta.DecimalPlaces = -1;
                         this.EntradaMontoHasta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaMontoHasta.ForceCase = Lui.Forms.TextCasing.None;
@@ -593,22 +570,19 @@ namespace Lfc.Comprobantes
                         this.EntradaMontoHasta.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMontoHasta.PasswordChar = '\0';
                         this.EntradaMontoHasta.Prefijo = "$";
-                        this.EntradaMontoHasta.ReadOnly = false;
                         this.EntradaMontoHasta.SelectOnFocus = true;
                         this.EntradaMontoHasta.Size = new System.Drawing.Size(109, 24);
                         this.EntradaMontoHasta.Sufijo = "";
                         this.EntradaMontoHasta.TabIndex = 3;
                         this.EntradaMontoHasta.Text = "0.00";
-                        this.EntradaMontoHasta.TextRaw = "0.00";
                         this.EntradaMontoHasta.TipWhenBlank = "";
                         this.EntradaMontoHasta.ToolTipText = "";
                         // 
                         // EntradaMontoDesde
                         // 
-                        this.EntradaMontoDesde.AutoHeight = false;
                         this.EntradaMontoDesde.AutoNav = true;
                         this.EntradaMontoDesde.AutoTab = true;
-                        this.EntradaMontoDesde.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaMontoDesde.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaMontoDesde.DecimalPlaces = -1;
                         this.EntradaMontoDesde.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaMontoDesde.ForceCase = Lui.Forms.TextCasing.None;
@@ -620,13 +594,11 @@ namespace Lfc.Comprobantes
                         this.EntradaMontoDesde.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMontoDesde.PasswordChar = '\0';
                         this.EntradaMontoDesde.Prefijo = "$";
-                        this.EntradaMontoDesde.ReadOnly = false;
                         this.EntradaMontoDesde.SelectOnFocus = true;
                         this.EntradaMontoDesde.Size = new System.Drawing.Size(114, 24);
                         this.EntradaMontoDesde.Sufijo = "";
                         this.EntradaMontoDesde.TabIndex = 1;
                         this.EntradaMontoDesde.Text = "0.00";
-                        this.EntradaMontoDesde.TextRaw = "0.00";
                         this.EntradaMontoDesde.TipWhenBlank = "";
                         this.EntradaMontoDesde.ToolTipText = "";
                         // 
@@ -656,14 +628,14 @@ namespace Lfc.Comprobantes
                         this.tableLayoutPanel2.ColumnCount = 2;
                         this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
                         this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-                        this.tableLayoutPanel2.Controls.Add(this.txtTipo, 0, 0);
-                        this.tableLayoutPanel2.Controls.Add(this.txtLetra, 1, 0);
+                        this.tableLayoutPanel2.Controls.Add(this.EntradaTipo, 0, 0);
+                        this.tableLayoutPanel2.Controls.Add(this.EntradaLetra, 1, 0);
                         this.tableLayoutPanel2.Location = new System.Drawing.Point(134, 88);
                         this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
                         this.tableLayoutPanel2.Name = "tableLayoutPanel2";
                         this.tableLayoutPanel2.RowCount = 1;
                         this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.tableLayoutPanel2.Size = new System.Drawing.Size(452, 30);
+                        this.tableLayoutPanel2.Size = new System.Drawing.Size(452, 31);
                         this.tableLayoutPanel2.TabIndex = 7;
                         // 
                         // Filtros
@@ -678,15 +650,16 @@ namespace Lfc.Comprobantes
                         this.tableLayoutPanel1.PerformLayout();
                         this.tableLayoutPanel3.ResumeLayout(false);
                         this.tableLayoutPanel2.ResumeLayout(false);
+                        this.tableLayoutPanel2.PerformLayout();
                         this.ResumeLayout(false);
 
                 }
 
                 #endregion
 
-                private void txtTipo_TextChanged(object sender, EventArgs e)
+                private void EntradaTipo_TextChanged(object sender, EventArgs e)
                 {
-                        txtLetra.Enabled = (txtTipo.TextKey == "F" || txtTipo.TextKey == "NC" || txtTipo.TextKey == "ND" || txtTipo.TextKey == "NCD");
+                        EntradaLetra.Enabled = (EntradaTipo.TextKey == "F" || EntradaTipo.TextKey == "NC" || EntradaTipo.TextKey == "ND" || EntradaTipo.TextKey == "NCD");
                 }
         }
 }

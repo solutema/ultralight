@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,9 +35,9 @@ namespace Lfx.Data
 {
         public class TableCollection : System.Collections.Generic.List<Lfx.Data.Table>
         {
-                protected DataBase DataBase;
+                protected Connection DataBase;
 
-                public TableCollection(DataBase dataBase)
+                public TableCollection(Connection dataBase)
                 {
                         this.DataBase = dataBase;
                 }
@@ -46,6 +46,15 @@ namespace Lfx.Data
                 {
                         table.DataBase = this.DataBase;
                         base.Add(table);
+                }
+
+                public bool Contains(string name)
+                {
+                        foreach (Table Tb in this) {
+                                if (Tb.Name == name)
+                                        return true;
+                        }
+                        return false;
                 }
 
 		public Table this[string name]

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -92,7 +92,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // EntradaPV
                         // 
-                        this.EntradaPV.AutoHeight = false;
                         this.EntradaPV.AutoNav = true;
                         this.EntradaPV.AutoTab = true;
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
@@ -107,20 +106,17 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPV.PasswordChar = '\0';
                         this.EntradaPV.Prefijo = "";
-                        this.EntradaPV.ReadOnly = false;
                         this.EntradaPV.SelectOnFocus = true;
                         this.EntradaPV.Size = new System.Drawing.Size(60, 24);
                         this.EntradaPV.Sufijo = "";
                         this.EntradaPV.TabIndex = 3;
                         this.EntradaPV.Text = "1";
-                        this.EntradaPV.TextRaw = "1";
                         this.EntradaPV.TipWhenBlank = "";
                         this.EntradaPV.ToolTipText = "";
                         this.EntradaPV.TextChanged += new System.EventHandler(this.EntradaNumeroTipoPV);
                         // 
                         // EntradaNumero
                         // 
-                        this.EntradaNumero.AutoHeight = false;
                         this.EntradaNumero.AutoNav = true;
                         this.EntradaNumero.AutoTab = true;
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.Integer;
@@ -135,13 +131,11 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumero.PasswordChar = '\0';
                         this.EntradaNumero.Prefijo = "";
-                        this.EntradaNumero.ReadOnly = false;
                         this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(100, 24);
                         this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 5;
                         this.EntradaNumero.Text = "0";
-                        this.EntradaNumero.TextRaw = "0";
                         this.EntradaNumero.TipWhenBlank = "";
                         this.EntradaNumero.ToolTipText = "";
                         this.EntradaNumero.TextChanged += new System.EventHandler(this.EntradaNumeroTipoPV);
@@ -157,8 +151,9 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // EntradaTipo
                         // 
-                        this.EntradaTipo.AutoHeight = true;
+                        this.EntradaTipo.AlwaysExpanded = true;
                         this.EntradaTipo.AutoNav = true;
+                        this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.AutoTab = true;
                         this.EntradaTipo.DetailField = null;
                         this.EntradaTipo.Filter = null;
@@ -169,16 +164,13 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "De Pago|RCP",
         "De Cobro|RC"};
-                        this.EntradaTipo.Size = new System.Drawing.Size(176, 24);
+                        this.EntradaTipo.Size = new System.Drawing.Size(176, 36);
                         this.EntradaTipo.TabIndex = 1;
                         this.EntradaTipo.Table = null;
-                        this.EntradaTipo.Text = "De Cobro";
                         this.EntradaTipo.TextKey = "RC";
-                        this.EntradaTipo.TextRaw = "De Cobro";
                         this.EntradaTipo.TipWhenBlank = "";
                         this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaNumeroTipoPV);
@@ -205,7 +197,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         this.EntradaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaCliente.AutoHeight = false;
                         this.EntradaCliente.AutoNav = true;
                         this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.DataType = Lui.Forms.DataTypes.FreeText;
@@ -220,13 +211,11 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCliente.PasswordChar = '\0';
                         this.EntradaCliente.Prefijo = "";
-                        this.EntradaCliente.ReadOnly = true;
                         this.EntradaCliente.SelectOnFocus = true;
                         this.EntradaCliente.Size = new System.Drawing.Size(476, 24);
                         this.EntradaCliente.Sufijo = "";
                         this.EntradaCliente.TabIndex = 11;
                         this.EntradaCliente.TabStop = false;
-                        this.EntradaCliente.TextRaw = "";
                         this.EntradaCliente.TipWhenBlank = "";
                         this.EntradaCliente.ToolTipText = "";
                         // 
@@ -241,10 +230,9 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // EntradaImporte
                         // 
-                        this.EntradaImporte.AutoHeight = false;
                         this.EntradaImporte.AutoNav = true;
                         this.EntradaImporte.AutoTab = true;
-                        this.EntradaImporte.DataType = Lui.Forms.DataTypes.Money;
+                        this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporte.DecimalPlaces = -1;
                         this.EntradaImporte.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
@@ -256,14 +244,12 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImporte.PasswordChar = '\0';
                         this.EntradaImporte.Prefijo = "$";
-                        this.EntradaImporte.ReadOnly = true;
                         this.EntradaImporte.SelectOnFocus = true;
                         this.EntradaImporte.Size = new System.Drawing.Size(128, 24);
                         this.EntradaImporte.Sufijo = "";
                         this.EntradaImporte.TabIndex = 9;
                         this.EntradaImporte.TabStop = false;
                         this.EntradaImporte.Text = "0.00";
-                        this.EntradaImporte.TextRaw = "0.00";
                         this.EntradaImporte.TipWhenBlank = "";
                         this.EntradaImporte.ToolTipText = "";
                         // 
@@ -278,7 +264,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // EntradaFecha
                         // 
-                        this.EntradaFecha.AutoHeight = false;
                         this.EntradaFecha.AutoNav = true;
                         this.EntradaFecha.AutoTab = true;
                         this.EntradaFecha.DataType = Lui.Forms.DataTypes.FreeText;
@@ -293,13 +278,11 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaFecha.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFecha.PasswordChar = '\0';
                         this.EntradaFecha.Prefijo = "";
-                        this.EntradaFecha.ReadOnly = true;
                         this.EntradaFecha.SelectOnFocus = true;
                         this.EntradaFecha.Size = new System.Drawing.Size(128, 24);
                         this.EntradaFecha.Sufijo = "";
                         this.EntradaFecha.TabIndex = 7;
                         this.EntradaFecha.TabStop = false;
-                        this.EntradaFecha.TextRaw = "";
                         this.EntradaFecha.TipWhenBlank = "";
                         this.EntradaFecha.ToolTipText = "";
                         // 
@@ -347,6 +330,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.Controls.SetChildIndex(this.EntradaCliente, 0);
                         this.Controls.SetChildIndex(this.EtiquetaAviso, 0);
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
                 }
 

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -56,7 +56,7 @@ namespace Lazaro.Misc.Backup
                         base.Dispose(disposing);
                 }
 
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
 
                 internal System.Windows.Forms.PictureBox pctExclamation;
                 internal System.Windows.Forms.Label Label1;
@@ -171,7 +171,7 @@ namespace Lazaro.Misc.Backup
                         // EntradaConfirmar
                         // 
                         this.EntradaConfirmar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaConfirmar.AutoHeight = false;
+                        this.EntradaConfirmar.AutoSize = false;
                         this.EntradaConfirmar.AutoNav = true;
                         this.EntradaConfirmar.AutoTab = false;
                         this.EntradaConfirmar.DataType = Lui.Forms.DataTypes.FreeText;
@@ -186,12 +186,10 @@ namespace Lazaro.Misc.Backup
                         this.EntradaConfirmar.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConfirmar.PasswordChar = '\0';
                         this.EntradaConfirmar.Prefijo = "";
-                        this.EntradaConfirmar.ReadOnly = false;
                         this.EntradaConfirmar.SelectOnFocus = true;
                         this.EntradaConfirmar.Size = new System.Drawing.Size(80, 24);
                         this.EntradaConfirmar.Sufijo = "";
                         this.EntradaConfirmar.TabIndex = 0;
-                        this.EntradaConfirmar.TextRaw = "";
                         this.EntradaConfirmar.TipWhenBlank = "";
                         this.EntradaConfirmar.ToolTipText = "Escriba el texto de confirmación para poder continuar";
                         this.EntradaConfirmar.TextChanged += new System.EventHandler(this.EntradaConfirmar_TextChanged);

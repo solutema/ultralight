@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -61,18 +61,18 @@ namespace Lfx.Cpx
                         Impresora.Encoding = System.Text.Encoding.ASCII;
                 }
 
-                public void SendCommands(CommandList cmds)
+                public void SendCommands(CommandList commands)
                 {
-                        cmds.Printer = this;
-                        foreach (Command cmd in cmds) {
-                                this.Send(cmd.ToString());
+                        commands.Printer = this;
+                        foreach (Command Cmd in commands) {
+                                this.Send(Cmd.ToString());
                         }
                 }
 
-                public void SendCommand(Command cmd)
+                public void SendCommand(Command command)
                 {
-                        cmd.Printer = this;
-                        this.Send(cmd.ToString());
+                        command.Printer = this;
+                        this.Send(command.ToString());
                 }
 
                 public void Open()

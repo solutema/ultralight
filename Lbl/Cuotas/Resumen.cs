@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ namespace Lbl.Cuotas
 	public class Resumen : ElementoDeDatos
 	{
 		//Heredar constructor
-		public Resumen(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+		public Resumen(Lfx.Data.Connection dataBase) : base(dataBase) { }
 
 		public override string TablaDatos
 		{

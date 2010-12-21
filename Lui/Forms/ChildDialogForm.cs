@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -54,7 +54,9 @@ namespace Lui.Forms
 
                 protected internal void OkButton_Click(object sender, System.EventArgs e)
 		{
+                        this.Enabled = false;
 			Lfx.Types.OperationResult res = Ok();
+                        this.Enabled = true;
 
 			if (res.Success == true) {
 				this.DialogResult = DialogResult.OK;
@@ -64,21 +66,6 @@ namespace Lui.Forms
                         }
 		}
 
-                private void ChildDialogForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Escape)
-			{
-				e.Handled = true;
-				if (CancelCommandButton.Enabled && CancelCommandButton.Visible)
-					CancelCommandButton.PerformClick();
-			}
-			else if (e.KeyCode == Keys.F9)
-			{
-				e.Handled = true;
-				if (OkButton.Enabled && OkButton.Visible)
-					OkButton.PerformClick();
-			}
-		}
 
                 private void ChildDialogForm_SizeChanged(object sender, System.EventArgs e)
 		{

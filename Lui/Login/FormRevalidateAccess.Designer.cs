@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -90,7 +90,6 @@ namespace Lui.Login
                         // 
                         // EntradaContrasena
                         // 
-                        this.EntradaContrasena.AutoHeight = false;
                         this.EntradaContrasena.AutoNav = true;
                         this.EntradaContrasena.AutoTab = true;
                         this.EntradaContrasena.DataType = Lui.Forms.DataTypes.FreeText;
@@ -110,7 +109,6 @@ namespace Lui.Login
                         this.EntradaContrasena.Size = new System.Drawing.Size(180, 24);
                         this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 4;
-                        this.EntradaContrasena.TextRaw = "";
                         this.EntradaContrasena.TipWhenBlank = "";
                         this.EntradaContrasena.ToolTipText = "";
                         // 
@@ -137,7 +135,6 @@ namespace Lui.Login
                         // 
                         // EntradaUsuario
                         // 
-                        this.EntradaUsuario.AutoHeight = false;
                         this.EntradaUsuario.AutoNav = true;
                         this.EntradaUsuario.AutoTab = true;
                         this.EntradaUsuario.DataType = Lui.Forms.DataTypes.FreeText;
@@ -159,7 +156,6 @@ namespace Lui.Login
                         this.EntradaUsuario.Sufijo = "";
                         this.EntradaUsuario.TabIndex = 2;
                         this.EntradaUsuario.Text = "0";
-                        this.EntradaUsuario.TextRaw = "0";
                         this.EntradaUsuario.TipWhenBlank = "";
                         this.EntradaUsuario.ToolTipText = "";
                         // 

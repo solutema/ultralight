@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -41,12 +41,8 @@ namespace Lazaro.Misc
 	{
 
                 public AcercaDe()
-                        : base()
                 {
-                        // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
-
-                        // agregar código de constructor después de llamar a InitializeComponent
                 }
 
 		private void FormAcercaDe_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -59,82 +55,25 @@ namespace Lazaro.Misc
 		}
 
 
-		private void FormAcercaDe_Load(object sender, System.EventArgs e)
-		{
-			ListaComponentes.BackColor = this.BackColor;
+                private void FormAcercaDe_Load(object sender, System.EventArgs e)
+                {
+                        ListaComponentes.BackColor = this.BackColor;
 
-                        EtiquetaUsuario.Text = Lfx.Workspace.Master.CurrentUser.Id.ToString() + " (" + Lfx.Workspace.Master.CurrentUser.CompleteName + ") / " + System.Environment.MachineName;
+                        EtiquetaUsuario.Text = Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString() + " (" + Lbl.Sys.Config.Actual.UsuarioConectado.Persona.Nombre + ") / " + System.Environment.MachineName;
 
-                        ListaComponentes.Items.Add("Lazaro versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").ProductVersion + " del " + new System.IO.FileInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
+                        ListaComponentes.Items.Add("Lazaro versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").ProductVersion + " del " + new System.IO.FileInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern));
                         System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ApplicationFolder);
                         foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.dll")) {
-                                ListaComponentes.Items.Add(DirItem.Name + " versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(DirItem.FullName).ProductVersion + " del " + new System.IO.FileInfo(DirItem.FullName).LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
+                                ListaComponentes.Items.Add(DirItem.Name + " versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(DirItem.FullName).ProductVersion + " del " + new System.IO.FileInfo(DirItem.FullName).LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern));
                         }
 
-			Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ComponentsFolder);
-			foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.dll"))
-			{
-                                ListaComponentes.Items.Add(DirItem.Name + " versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(DirItem.FullName).ProductVersion + " del " + new System.IO.FileInfo(DirItem.FullName).LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
-			}
-
-                        //Versión del Framework
-                        switch (Lfx.Environment.SystemInformation.RunTime) {
-                                case Lfx.Environment.SystemInformation.RunTimes.DotNet:
-                                        bool TieneDotNet3 = false;
-                                        try {
-                                                Microsoft.Win32.RegistryKey LocalMachine = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v3.0", false);
-                                                object Installed = LocalMachine.GetValue("Install");
-                                                if (System.Convert.ToInt32(Installed) == 1)
-                                                        TieneDotNet3 = true;
-                                        }
-                                        catch (Exception ex) {
-                                                System.Console.WriteLine(ex.Message);
-                                                TieneDotNet3 = false;
-                                        }
-
-
-                                        bool TieneDotNet35 = false;
-                                        try {
-                                                Microsoft.Win32.RegistryKey LocalMachine = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v3.5", false);
-                                                object Installed = LocalMachine.GetValue("Install");
-                                                if (System.Convert.ToInt32(Installed) == 1)
-                                                        TieneDotNet35 = true;
-                                        }
-                                        catch (Exception ex) {
-                                                System.Console.WriteLine(ex.Message);
-                                                TieneDotNet35 = false;
-                                        }
-
-                                        bool TieneDotNet4 = false;
-                                        try {
-                                                Microsoft.Win32.RegistryKey LocalMachine = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v4\\Client", false);
-                                                object Installed = LocalMachine.GetValue("Install");
-                                                if (System.Convert.ToInt32(Installed) == 1)
-                                                        TieneDotNet4 = true;
-                                        }
-                                        catch (Exception ex) {
-                                                System.Console.WriteLine(ex.Message);
-                                                TieneDotNet4 = false;
-                                        }
-
-                                        string VersionesDotNet = "Microsoft .NET 2.0";
-                                        if (TieneDotNet3)
-                                                VersionesDotNet += ", 3.0";
-                                        if (TieneDotNet35)
-                                                VersionesDotNet += ", 3.5";
-                                        if (TieneDotNet4)
-                                                VersionesDotNet += ", 4";
-
-                                        EtiquetaFramework.Text = VersionesDotNet;
-                                        break;
-                                case Lfx.Environment.SystemInformation.RunTimes.Mono:
-                                        EtiquetaFramework.Text = "Novell Mono";
-                                        break;
-                                default:
-                                        EtiquetaFramework.Text = "Desconocido";
-                                        break;
+                        Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ComponentsFolder);
+                        foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.dll")) {
+                                ListaComponentes.Items.Add(DirItem.Name + " versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(DirItem.FullName).ProductVersion + " del " + new System.IO.FileInfo(DirItem.FullName).LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern));
                         }
-		}
+
+                        EtiquetaFramework.Text = Lfx.Environment.SystemInformation.RuntimeName;
+                }
 
 
 		private void BotonActualizar_LinkClicked(System.Object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)

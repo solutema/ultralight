@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -36,429 +36,302 @@ using System.Windows.Forms;
 
 namespace Lfc.Cupones.Cupones
 {
-        public partial class Inicio : Lui.Forms.ChildForm
+        public partial class Inicio : Lfc.FormularioListado
         {
                 protected internal string m_Tabla = "tarjetas_cupones";
-                protected internal int m_Cliente, m_Tarjeta, m_Plan, m_Estado = -2;
+                protected internal int m_Cliente, m_FormaDePago, m_Plan, m_Estado = -2;
                 protected internal Lfx.Types.DateRange m_Fecha = new Lfx.Types.DateRange("*");
                 protected internal qGen.Select m_SelectCommand;
 
                 public Inicio()
                 {
+                        this.ElementoTipo = typeof(Lbl.Pagos.Cupon);
+
                         InitializeComponent();
 
-                        LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
+                        this.HabilitarBusqueda = false;
+                        this.HabilitarCrear = false;
+                        this.HabilitarFiltrar = true;
+                        this.CheckBoxes = true;
+
+                        this.NombreTabla = "tarjetas_cupones";
+                        this.Joins.Add(new qGen.Join("formaspago", "tarjetas_cupones.id_tarjeta=formaspago.id_formapago"));
+                        this.Joins.Add(new qGen.Join("personas", "tarjetas_cupones.id_cliente=personas.id_persona"));
+                        this.KeyField = new Lfx.Data.FormField("tarjetas_cupones.id_cupon", "Cód.", Lfx.Data.InputFieldTypes.Serial, 28);
+
+                        Lbl.ColeccionCodigoDetalle SetEstados = new Lbl.ColeccionCodigoDetalle()
+                        {
+                                {(int)Lbl.Pagos.EstadosCupones.Acreditado, "Acreditado"},
+                                {(int)Lbl.Pagos.EstadosCupones.Anulado, "Anulado"},
+                                {(int)Lbl.Pagos.EstadosCupones.Presentado, "Presentado"},
+                                {(int)Lbl.Pagos.EstadosCupones.Rechazaro, "Rechazado"},
+                                {(int)Lbl.Pagos.EstadosCupones.SinPresentar, "Sin Presentar"}
+
+                        };
+                        this.FormFields = new Lfx.Data.FormFieldCollection()
+			{
+                                new Lfx.Data.FormField("tarjetas_cupones.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 240),
+                                new Lfx.Data.FormField("formaspago.nombre", "Tarjeta", Lfx.Data.InputFieldTypes.Text, 240),
+				new Lfx.Data.FormField("tarjetas_cupones.numero", "Cupón", Lfx.Data.InputFieldTypes.Text, 100),
+                                new Lfx.Data.FormField("tarjetas_cupones.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 100),
+				new Lfx.Data.FormField("tarjetas_cupones.estado", "Estado", 120, SetEstados),
+				new Lfx.Data.FormField("tarjetas_cupones.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 120)
+			};
+                        this.OrderBy = "tarjetas_cupones.id_cupon DESC";
+
+                        this.Contadores.Add(new Contador("Presentados", Lui.Forms.DataTypes.Currency));
+                        this.Contadores.Add(new Contador("SinPresentar", Lui.Forms.DataTypes.Currency));
+                        this.Contadores.Add(new Contador("Acreditados", Lui.Forms.DataTypes.Currency));
                 }
 
-                public Lfx.Types.OperationResult RefreshList()
+                public override Lfx.Types.OperationResult OnFilter()
                 {
-                        if (m_Tabla.Length > 0) {
-                                m_SelectCommand = new qGen.Select(m_Tabla);
-                                m_SelectCommand.Fields = "id_cupon,fecha,concepto,id_tarjeta,numero,importe,estado,id_plan";
-                                m_SelectCommand.WhereClause = new qGen.Where();
-                                m_SelectCommand.WhereClause.Operator = qGen.AndOr.And;
-
-                                if (m_Cliente > 0)
-                                        m_SelectCommand.WhereClause.Add(new qGen.ComparisonCondition("id_cliente", m_Cliente));
-
-                                if (m_Tarjeta > 0)
-                                        m_SelectCommand.WhereClause.Add(new qGen.ComparisonCondition("id_tarjeta", m_Tarjeta));
-
-                                if (m_Estado >= 0)
-                                        m_SelectCommand.WhereClause.Add(new qGen.ComparisonCondition("estado", m_Estado));
-                                else if (m_Estado == -2)
-                                        m_SelectCommand.WhereClause.Add(new qGen.ComparisonCondition("estado", qGen.ComparisonOperators.In, new int[] { 0, 10 }));
-
-                                if (m_Fecha.HasRange)
-                                        m_SelectCommand.WhereClause.Add(new qGen.ComparisonCondition("fecha", m_Fecha.From, m_Fecha.To));
-
-                                m_SelectCommand.Order = "fecha DESC";
-
-                                System.Data.DataTable dt = this.DataBase.Select(this.SelectCommand());
-                                double Total = 0, SinPresentar = 0, Presentados = 0, Acreditados = 0, Cancelados = 0, Rechazados = 0;
-                                int CantidadSinPresentar = 0, CantidadPresentados = 0, CantidadAcreditados = 0;
-
-                                ListViewItem CurItem = null;
-                                if (ItemList.SelectedItems.Count > 0)
-                                        CurItem = ((ListViewItem)(ItemList.SelectedItems[0].Clone()));
-                                else
-                                        CurItem = null;
-
-                                ItemList.BeginUpdate();
-                                ItemList.Items.Clear();
-
-                                if (dt.Rows.Count > 0) {
-                                        foreach (System.Data.DataRow row in dt.Rows) {
-                                                ListViewItem itm = null;
-                                                itm = ItemList.Items.Add(System.Convert.ToString(row["id_cupon"]));
-                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatDate(row["fecha"])));
-                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(row["concepto"])));
-                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, this.DataBase.FieldString("SELECT nombre FROM tarjetas WHERE id_tarjeta=" + Lfx.Data.DataBase.ConvertDBNullToZero(row["id_tarjeta"]).ToString())));
-                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(row["numero"])));
-                                                Total += System.Convert.ToDouble(row["importe"]);
-                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(row["importe"]), this.Workspace.CurrentConfig.Moneda.Decimales)));
-                                                switch (((Lbl.Cupones.Estado)System.Convert.ToInt32(row["estado"]))) {
-                                                        case Lbl.Cupones.Estado.SinPresentar:
-                                                                SinPresentar += System.Convert.ToDouble(row["importe"]);
-                                                                CantidadSinPresentar++;
-                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Sin Presentar"));
-                                                                break;
-                                                        case Lbl.Cupones.Estado.Anulado:
-                                                                Cancelados += System.Convert.ToDouble(row["importe"]);
-                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Anulado"));
-                                                                itm.ForeColor = Color.Gray;
-                                                                itm.Font = new Font(itm.Font, FontStyle.Strikeout);
-                                                                break;
-                                                        case Lbl.Cupones.Estado.Rechazaro:
-                                                                Rechazados += System.Convert.ToDouble(row["importe"]);
-                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Rechazado"));
-                                                                itm.ForeColor = Color.Gray;
-                                                                itm.Font = new Font(itm.Font, FontStyle.Strikeout);
-                                                                break;
-                                                        case Lbl.Cupones.Estado.Presentado:
-                                                                Presentados += System.Convert.ToDouble(row["importe"]);
-                                                                CantidadPresentados++;
-                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Presentado"));
-                                                                itm.ForeColor = Color.DarkGreen;
-                                                                break;
-                                                        case Lbl.Cupones.Estado.Acreditado:
-                                                                CantidadAcreditados++;
-                                                                Acreditados += System.Convert.ToDouble(row["importe"]);
-                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, "Acreditado"));
-                                                                itm.ForeColor = Color.Gray;
-                                                                break;
-                                                }
-
-                                                int IdPlan = Lfx.Data.DataBase.ConvertDBNullToZero(row["id_plan"]);
-                                                if (IdPlan != 0)
-                                                        itm.SubItems.Add(this.DataBase.Tables["tarjetas_planes"].FastRows[IdPlan].Fields["nombre"].ToString());
-                                                else
-                                                        itm.SubItems.Add("");
-
-                                                if (CurItem != null) {
-                                                        if (itm.Text == CurItem.Text)
-                                                                itm.Selected = true; itm.Focused = true;
-                                                }
-                                        }
+                        using (Lfc.Cupones.Cupones.Filtros FormFiltros = new Lfc.Cupones.Cupones.Filtros()) {
+                                FormFiltros.Connection = this.Connection;
+                                FormFiltros.EntradaFormaDePago.Text = m_FormaDePago.ToString();
+                                FormFiltros.EntradaPlan.Text = m_Plan.ToString();
+                                FormFiltros.EntradaEstado.TextKey = m_Estado.ToString();
+                                FormFiltros.EntradaCliente.Text = m_Cliente.ToString();
+                                FormFiltros.EntradaFechas.Rango = m_Fecha;
+                                if (FormFiltros.ShowDialog() == DialogResult.OK) {
+                                        m_FormaDePago = FormFiltros.EntradaFormaDePago.TextInt;
+                                        m_Plan = FormFiltros.EntradaPlan.TextInt;
+                                        m_Estado = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstado.TextKey);
+                                        m_Cliente = FormFiltros.EntradaCliente.TextInt;
+                                        m_Fecha = FormFiltros.EntradaFechas.Rango;
+                                        this.RefreshList();
+                                        return new Lfx.Types.SuccessOperationResult();
+                                } else {
+                                        return new Lfx.Types.CancelOperationResult();
                                 }
-
-                                EtiquetaImporteSinPresentar.Text = Lfx.Types.Formatting.FormatCurrency(SinPresentar, this.Workspace.CurrentConfig.Moneda.Decimales);
-                                EtiquetaCantidadSinPresentar.Text = CantidadSinPresentar.ToString();
-                                EtiquetaImportePresentados.Text = Lfx.Types.Formatting.FormatCurrency(Presentados, this.Workspace.CurrentConfig.Moneda.Decimales);
-                                EtiquetaCantidadPresentados.Text = CantidadPresentados.ToString();
-                                EtiquetaImporteAcreditados.Text = Lfx.Types.Formatting.FormatCurrency(Acreditados, this.Workspace.CurrentConfig.Moneda.Decimales);
-                                EtiquetaCantidadAcreditados.Text = CantidadAcreditados.ToString();
-
-                                ItemList.EndUpdate();
-                                ItemList.Focus();
-
-                                if (ItemList.Items.Count > 0) {
-                                        ItemList.Items[0].Focused = true;
-                                        ItemList.Items[0].Selected = true;
-                                }
-
-                                cmdPresentar.Visible = true;
-                                cmdAcreditar.Visible = true;
-                        }
-
-                        return new Lfx.Types.SuccessOperationResult();
-                }
-
-
-
-                internal virtual Lfx.Types.OperationResult Imprimir()
-                {
-                        return new Lfx.Types.SuccessOperationResult();
-                }
-
-
-                internal virtual void Cancelar()
-                {
-                        this.Dispose();
-                }
-
-
-                internal virtual Lfx.Types.OperationResult Filtrar()
-                {
-                        Lfx.Types.OperationResult filtrarReturn = new Lfx.Types.SuccessOperationResult();
-                        Lfc.Cupones.Cupones.Filtros FormFiltros = new Lfc.Cupones.Cupones.Filtros();
-                        FormFiltros.txtTarjeta.Text = m_Tarjeta.ToString();
-                        FormFiltros.txtPlan.Text = m_Plan.ToString();
-                        FormFiltros.txtEstado.TextKey = m_Estado.ToString();
-                        FormFiltros.txtCliente.Text = m_Cliente.ToString();
-                        FormFiltros.EntradaFechas.Rango = m_Fecha;
-                        if (FormFiltros.ShowDialog() == DialogResult.OK) {
-                                m_Tarjeta = FormFiltros.txtTarjeta.TextInt;
-                                m_Plan = FormFiltros.txtPlan.TextInt;
-                                m_Estado = Lfx.Types.Parsing.ParseInt(FormFiltros.txtEstado.TextKey);
-                                m_Cliente = FormFiltros.txtCliente.TextInt;
-                                m_Fecha = FormFiltros.EntradaFechas.Rango;
-                                this.RefreshList();
-                                filtrarReturn.Success = true;
-                        } else {
-                                filtrarReturn.Success = false;
-                        }
-                        return filtrarReturn;
-                }
-
-
-                private void cmdImprimir_Click(object sender, System.EventArgs e)
-                {
-                        Imprimir();
-                }
-
-                private void cmdFiltros_Click(object sender, System.EventArgs e)
-                {
-                        Filtrar();
-                }
-
-                private void cmdMostrar_Click(object sender, System.EventArgs e)
-                {
-                        RefreshList();
-                }
-
-                private void cmdCancelar_Click(object sender, System.EventArgs e)
-                {
-                        Cancelar();
-                }
-
-
-                private void Inicio_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-                {
-                        if (e.Alt == false && e.Control == false) {
-                                switch (e.KeyCode) {
-                                        case Keys.Escape:
-                                                e.Handled = true;
-                                                if (CancelCommandButton.Enabled && CancelCommandButton.Visible)
-                                                        CancelCommandButton.PerformClick();
-                                                break;
-                                        case Keys.F2:
-                                                e.Handled = true;
-                                                if (FilterButton.Enabled && FilterButton.Visible)
-                                                        FilterButton.PerformClick();
-                                                break;
-                                        case Keys.F4:
-                                                e.Handled = true;
-                                                if (cmdAcreditar.Enabled && cmdAcreditar.Visible)
-                                                        cmdAcreditar.PerformClick();
-                                                break;
-                                        case Keys.F6:
-                                                e.Handled = true;
-                                                if (cmdAnular.Enabled && cmdAnular.Visible)
-                                                        cmdAnular.PerformClick();
-                                                break;
-                                        case Keys.F9:
-                                                e.Handled = true;
-                                                if (cmdMostrar.Enabled && cmdMostrar.Visible)
-                                                        cmdMostrar.PerformClick();
-                                                break;
-                                        case Keys.F8:
-                                                e.Handled = true;
-                                                if (PrintButton.Enabled && PrintButton.Visible)
-                                                        PrintButton.PerformClick();
-                                                break;
-                                }
-
-                        } else if (e.Control == true && e.Alt == false) {
-                                // Teclas con Ctrl
-                                switch (e.KeyCode) {
-                                        case Keys.R:
-                                                if (e.Control == true && e.Shift == false && e.Alt == false) {
-                                                        e.Handled = true;
-                                                        Lui.Forms.ListingFormExport OFormExportar = new Lui.Forms.ListingFormExport();
-                                                        OFormExportar.Nombre = this.Text.Replace(":", "");
-                                                        OFormExportar.SelectCommand = this.SelectCommand();
-                                                        OFormExportar.FormFields = new List<Lfx.Data.FormField>() {
-			                                        new Lfx.Data.FormField("id_cupon", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-			                                        new Lfx.Data.FormField("fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 120),
-                                                                new Lfx.Data.FormField("concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
-                                                                new Lfx.Data.FormField("id_tarjeta", "Tarjeta", Lfx.Data.InputFieldTypes.Relation, 320),
-                                                                new Lfx.Data.FormField("numero", "Cupón", Lfx.Data.InputFieldTypes.Text, 160),
-                                                                new Lfx.Data.FormField("importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 160),
-                                                                new Lfx.Data.FormField("estado", "Estado", Lfx.Data.InputFieldTypes.Text, 320),
-                                                                new Lfx.Data.FormField("id_plan", "Plan", Lfx.Data.InputFieldTypes.Relation, 120)
-		                                        };
-                                                        OFormExportar.ShowDialog();
-                                                }
-                                                break;
-                                }
-
                         }
                 }
 
-                public qGen.Select SelectCommand()
+                public override void OnBeginRefreshList()
                 {
-                        return m_SelectCommand;
+                        this.CustomFilters.Clear();
+
+                        if (m_Cliente > 0)
+                                this.CustomFilters.AddWithValue("tarjetas_cupones.id_cliente", m_Cliente);
+
+                        if (m_FormaDePago > 0)
+                                this.CustomFilters.AddWithValue("tarjetas_cupones.id_tarjeta", m_FormaDePago);
+
+                        if (m_Estado >= 0)
+                                this.CustomFilters.AddWithValue("tarjetas_cupones.estado", m_Estado);
+                        else if (m_Estado == -2)
+                                this.CustomFilters.AddWithValue("tarjetas_cupones.estado", qGen.ComparisonOperators.In, new int[] { 0, 10 });
+
+                        if (m_Fecha.HasRange)
+                                this.CustomFilters.AddWithValue("tarjetas_cupones.fecha", m_Fecha.From, m_Fecha.To);
+
+                        base.OnBeginRefreshList();
                 }
 
-
-                private void lvItems_DoubleClick(object sender, System.EventArgs e)
+                public override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
-                        Editar(CodigoSeleccionado());
-                }
-
-
-                private void lvItems_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
-                {
-                        if (System.Text.Encoding.ASCII.GetBytes(System.Convert.ToString(e.KeyChar))[0] == System.Convert.ToByte(Keys.Return)) {
-                                e.Handled = true;
-                                Editar(CodigoSeleccionado());
+                        switch (((Lbl.Pagos.EstadosCupones)System.Convert.ToInt32(row["estado"]))) {
+                                case Lbl.Pagos.EstadosCupones.SinPresentar:
+                                        this.Contadores[1].AddValue(row.Fields["importe"].ValueDecimal);
+                                        break;
+                                case Lbl.Pagos.EstadosCupones.Anulado:
+                                        item.ForeColor = Color.Gray;
+                                        item.Font = new Font(item.Font, FontStyle.Strikeout);
+                                        break;
+                                case Lbl.Pagos.EstadosCupones.Rechazaro:
+                                        item.ForeColor = Color.Gray;
+                                        item.Font = new Font(item.Font, FontStyle.Strikeout);
+                                        break;
+                                case Lbl.Pagos.EstadosCupones.Presentado:
+                                        this.Contadores[0].AddValue(row.Fields["importe"].ValueDecimal);
+                                        item.ForeColor = Color.DarkGreen;
+                                        break;
+                                case Lbl.Pagos.EstadosCupones.Acreditado:
+                                        this.Contadores[2].AddValue(row.Fields["importe"].ValueDecimal);
+                                        item.ForeColor = Color.Gray;
+                                        break;
                         }
-                }
 
-
-                internal int CodigoSeleccionado()
-                {
-                        if (ItemList.SelectedItems.Count > 0) {
-                                return Lfx.Types.Parsing.ParseInt(ItemList.SelectedItems[0].Text);
-                        }
-                        return 0;
-                }
-
-
-                internal virtual Lfx.Types.OperationResult Editar(int lCodigo)
-                {
-                        return new Lfx.Types.SuccessOperationResult();
+                        base.OnItemAdded(item, row);
                 }
 
 
                 private void BotonAcreditar_Click(object sender, System.EventArgs e)
                 {
-                        Lfc.Cupones.Cupones.Acreditar FormularioAcreditacion = new Lfc.Cupones.Cupones.Acreditar();
+                        if (Listado.CheckedItems.Count == 0) {
+                                Lui.Forms.MessageBox.Show("Debe marcar uno o más cupones para acreditar.", "Acreditar");
+                                return;
+                        }
 
-                        Lui.Forms.ProgressForm Progreso = new Lui.Forms.ProgressForm();
+                        using (Lfc.Cupones.Cupones.Acreditar FormularioAcreditacion = new Lfc.Cupones.Cupones.Acreditar()) {
+                                Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Acreditando Cupones", "Se están marcando los cupones seleccionados como 'Acreditado'.");
 
-                        double Total = 0;
-                        double dTotalAcreditar = 0;
-                        int iCantidad = 0;
+                                decimal Total = 0;
+                                decimal TotalAcreditar = 0;
+                                int iCantidad = 0;
 
-                        System.Text.StringBuilder Cupones = new System.Text.StringBuilder();
-                        double ComisionTarjeta = 0;
-                        double ComisionPlan = 0;
-                        double dGestionDeCobro = 0;
+                                System.Text.StringBuilder Cupones = new System.Text.StringBuilder();
+                                decimal ComisionTarjeta = 0;
+                                decimal ComisionPlan = 0;
+                                decimal GestionDeCobro = 0;
 
-                        Progreso.Titulo = "Analizando...";
-                        Progreso.Max = ItemList.Items.Count + 2;
-                        Progreso.Show();
+                                Progreso.Max = Listado.Items.Count + 2;
+                                Progreso.Begin();
+                                Progreso.ChangeStatus("Analizando");
 
-                        Lbl.Pagos.FormaDePago Tarjeta = null;
-                        foreach (System.Windows.Forms.ListViewItem itm in ItemList.Items) {
-                                if (itm.Checked) {
-                                        iCantidad++;
-                                        Lbl.Cupones.Cupon Cupon = new Lbl.Cupones.Cupon(DataBase, Lfx.Types.Parsing.ParseInt(itm.Text));
-                                        Total += Cupon.Importe;
-                                        if (Cupones.Length > 0)
-                                                Cupones.Append("," + Cupon.Numero);
-                                        else
-                                                Cupones.Append(Cupon.Numero);
+                                Lbl.Pagos.FormaDePago Tarjeta = null;
+                                foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
+                                        if (itm.Checked) {
+                                                iCantidad++;
+                                                Lbl.Pagos.Cupon Cupon = new Lbl.Pagos.Cupon(Connection, Lfx.Types.Parsing.ParseInt(itm.Text));
+                                                Total += Cupon.Importe;
+                                                if (Cupones.Length > 0)
+                                                        Cupones.Append("," + Cupon.Numero);
+                                                else
+                                                        Cupones.Append(Cupon.Numero);
 
-                                        if (Cupon.FormaDePago != null) {
-                                                if (Tarjeta == null) {
-                                                        Tarjeta = Cupon.FormaDePago;
-                                                } else if (Tarjeta.Id != Cupon.FormaDePago.Id) {
-                                                        //Mezcla de tarjetas
-                                                        Progreso.Close();
-                                                        Progreso = null;
-                                                        Lui.Forms.MessageBox.Show("No todos los cupones seleccionados pertenecen a la misma forma de pago.", "Error");
-                                                        return;
-                                                }
+                                                if (Cupon.FormaDePago != null) {
+                                                        if (Tarjeta == null) {
+                                                                Tarjeta = Cupon.FormaDePago;
+                                                        } else if (Tarjeta.Id != Cupon.FormaDePago.Id) {
+                                                                //Mezcla de tarjetas
+                                                                Progreso.End();
+                                                                Lui.Forms.MessageBox.Show("No todos los cupones seleccionados pertenecen a la misma forma de pago.", "Error");
+                                                                return;
+                                                        }
 
-                                                ComisionTarjeta += Cupon.Importe * (Tarjeta.Retencion / 100);
-                                                if (Cupon.Plan != null) {
-                                                        ComisionPlan += Cupon.Importe * (Cupon.Plan.Comision / 100);
+                                                        ComisionTarjeta += Cupon.Importe * (Tarjeta.Retencion / 100);
+                                                        if (Cupon.Plan != null) {
+                                                                ComisionPlan += Cupon.Importe * (Cupon.Plan.Comision / 100);
+                                                        }
                                                 }
                                         }
+                                        Progreso.ChangeStatus(itm.Index);
                                 }
-                                Progreso.Progreso = itm.Index;
-                        }
 
-                        FormularioAcreditacion.IgnorarCambios = true;
-                        FormularioAcreditacion.txtCupones.Text = iCantidad.ToString();
-                        FormularioAcreditacion.txtSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        FormularioAcreditacion.txtComisionTarjeta.Text = Lfx.Types.Formatting.FormatCurrency(ComisionTarjeta, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        FormularioAcreditacion.txtComisionPlan.Text = Lfx.Types.Formatting.FormatCurrency(ComisionPlan, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        FormularioAcreditacion.txtComisionUsuario.Text = "0";
-                        FormularioAcreditacion.txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total - ComisionTarjeta - ComisionPlan, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        FormularioAcreditacion.IgnorarCambios = false;
+                                FormularioAcreditacion.IgnorarCambios = true;
+                                FormularioAcreditacion.txtCupones.Text = iCantidad.ToString();
+                                FormularioAcreditacion.EntradaSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                FormularioAcreditacion.EntradaComisionTarjeta.Text = Lfx.Types.Formatting.FormatCurrency(ComisionTarjeta, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                FormularioAcreditacion.EntradaComisionPlan.Text = Lfx.Types.Formatting.FormatCurrency(ComisionPlan, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                FormularioAcreditacion.EntradaComisionUsuario.Text = "0";
+                                FormularioAcreditacion.EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total - ComisionTarjeta - ComisionPlan, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                FormularioAcreditacion.IgnorarCambios = false;
 
-                        Progreso.Progreso = Progreso.Max;
-                        Progreso.Visible = false;
-
-                        bool bAceptar = false;
-                        Lfc.Comprobantes.Recibos.EditarCobro FormularioPago = new Lfc.Comprobantes.Recibos.EditarCobro();
-                        do {
-                                if (FormularioAcreditacion.ShowDialog() == DialogResult.OK) {
-                                        dTotalAcreditar = Lfx.Types.Parsing.ParseCurrency(FormularioAcreditacion.txtTotal.Text);
-                                        dGestionDeCobro = Total - dTotalAcreditar;
-                                        FormularioPago.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.DataBase, ((Lbl.Pagos.TipoFormasDePago)(Lfx.Types.Parsing.ParseInt(FormularioAcreditacion.txtFormaPago.TextKey)))));
-                                        FormularioPago.Cobro.FormaDePagoEditable = false;
-                                        FormularioPago.Cobro.Importe = dTotalAcreditar;
-                                        FormularioPago.Cobro.ImporteEditable = false;
-                                        if (Tarjeta != null && Tarjeta.Caja != null)
-                                                FormularioPago.Cobro.EntradaCaja.TextInt = Tarjeta.Caja.Id;
-                                        FormularioPago.Cobro.Obs = "Cupones Nº " + Cupones.ToString();
-                                        FormularioPago.Cobro.ObsEditable = false;
-                                        if (FormularioPago.ShowDialog() == DialogResult.OK) {
-                                                bAceptar = true;
+                                bool bAceptar = false;
+                                Lfc.Comprobantes.Recibos.EditarCobro FormularioPago = new Lfc.Comprobantes.Recibos.EditarCobro();
+                                do {
+                                        if (FormularioAcreditacion.ShowDialog() == DialogResult.OK) {
+                                                TotalAcreditar = Lfx.Types.Parsing.ParseCurrency(FormularioAcreditacion.EntradaTotal.Text);
+                                                GestionDeCobro = Total - TotalAcreditar;
+                                                FormularioPago.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.Connection, ((Lbl.Pagos.TiposFormasDePago)(Lfx.Types.Parsing.ParseInt(FormularioAcreditacion.txtFormaPago.TextKey)))));
+                                                FormularioPago.Cobro.FormaDePagoEditable = false;
+                                                FormularioPago.Cobro.Importe = TotalAcreditar;
+                                                FormularioPago.Cobro.ImporteEditable = false;
+                                                if (Tarjeta != null && Tarjeta.Caja != null)
+                                                        FormularioPago.Cobro.EntradaCaja.TextInt = Tarjeta.Caja.Id;
+                                                FormularioPago.Cobro.Obs = "Cupones Nº " + Cupones.ToString();
+                                                FormularioPago.Cobro.ObsEditable = false;
+                                                if (FormularioPago.ShowDialog() == DialogResult.OK) {
+                                                        bAceptar = true;
+                                                        break;
+                                                }
+                                        } else {
+                                                bAceptar = false;
                                                 break;
                                         }
-                                } else {
-                                        bAceptar = false;
-                                        break;
+                                }
+                                while (true);
+                                if (bAceptar) {
+                                        Connection.BeginTransaction(true);
+
+                                        Progreso.ChangeStatus("Asentando el movimiento");
+                                        Progreso.Max = Listado.Items.Count + 2;
+                                        Progreso.Begin();
+
+                                        // Marcar los cupones como acreditados
+                                        foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
+                                                if (itm.Checked) {
+                                                        Lbl.Pagos.Cupon Cupon = new Lbl.Pagos.Cupon(this.Connection, Lfx.Types.Parsing.ParseInt(itm.Text));
+                                                        if (Cupon.Estado == 0 || Cupon.Estado == 10)
+                                                                Cupon.Acreditar();
+                                                }
+                                                Progreso.ChangeStatus(itm.Index);
+                                        }
+
+                                        Progreso.ChangeStatus("Acreditando el importe");
+                                        // Acreditar el dinero
+                                        Lbl.Comprobantes.Cobro MiCobro = FormularioPago.Cobro.ToCobro(Connection);
+                                        switch (FormularioPago.Cobro.FormaDePago.Tipo) {
+                                                case Lbl.Pagos.TiposFormasDePago.Efectivo:
+                                                        Lbl.Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(Connection, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
+                                                        CajaDiaria.Movimiento(true,
+                                                                Lbl.Cajas.Concepto.IngresosPorFacturacion,
+                                                                "Acreditación de Cupones",
+                                                                null,
+                                                                Total,
+                                                                "Cupones Nº " + Cupones.ToString(),
+                                                                null,
+                                                                null,
+                                                                null);
+                                                        CajaDiaria.Movimiento(true,
+                                                                new Lbl.Cajas.Concepto(this.Connection, 24010),
+                                                                "Gestión de Cobro de Cupones",
+                                                                null,
+                                                                -GestionDeCobro,
+                                                                "Cupones Nº " + Cupones.ToString(),
+                                                                null,
+                                                                null,
+                                                                null);
+                                                        break;
+                                                case Lbl.Pagos.TiposFormasDePago.ChequePropio:
+                                                        Lbl.Bancos.Cheque Cheque = MiCobro.Cheque;
+                                                        Cheque.Concepto = Lbl.Cajas.Concepto.IngresosPorFacturacion;
+                                                        Cheque.ConceptoTexto = "Acreditación Tarjetas";
+                                                        Cheque.Guardar();
+                                                        break;
+                                                case Lbl.Pagos.TiposFormasDePago.Caja:
+                                                        MiCobro.CajaDestino.Movimiento(true,
+                                                                Lbl.Cajas.Concepto.IngresosPorFacturacion,
+                                                                "Acreditación de Cupones",
+                                                                null,
+                                                                Total,
+                                                                "Cupones Nº " + Cupones.ToString(),
+                                                                null,
+                                                                null,
+                                                                null);
+                                                        MiCobro.CajaDestino.Movimiento(true,
+                                                                new Lbl.Cajas.Concepto(this.Connection, 24010),
+                                                                "Gestión de Cobro de Cupones",
+                                                                null,
+                                                                -GestionDeCobro,
+                                                                "Cupones Nº " + Cupones.ToString(),
+                                                                null,
+                                                                null,
+                                                                null);
+                                                        break;
+                                        }
+
+
+                                        Connection.Commit();
+                                        Progreso.End();
                                 }
                         }
-                        while (true);
-                        if (bAceptar) {
-                                DataBase.BeginTransaction(true);
-
-                                Progreso.Titulo = "Asentando el Movimiento...";
-                                Progreso.Progreso = 0;
-                                Progreso.Max = ItemList.Items.Count + 2;
-                                Progreso.Show();
-
-                                // Marcar los cupones como acreditados
-                                foreach (System.Windows.Forms.ListViewItem itm in ItemList.Items) {
-                                        if (itm.Checked)
-                                                DataBase.Execute("UPDATE tarjetas_cupones SET estado=20, fecha_acred=NOW() WHERE id_cupon=" + itm.Text);
-                                        Progreso.Progreso = itm.Index;
-                                }
-
-                                // Acreditar el dinero
-                                Lbl.Comprobantes.Cobro MiCobro = FormularioPago.Cobro.ToCobro(DataBase);
-                                switch (FormularioPago.Cobro.FormaDePago.Tipo) {
-                                        case Lbl.Pagos.TipoFormasDePago.Efectivo:
-                                                Lbl.Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(DataBase, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
-                                                CajaDiaria.Movimiento(true, 11000, "Acreditación de Cupones", 0, Total, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
-                                                CajaDiaria.Movimiento(true, 24010, "Gestión de Cobro de Cupones", 0, -dGestionDeCobro, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
-                                                break;
-                                        case Lbl.Pagos.TipoFormasDePago.ChequePropio:
-                                                Lbl.Bancos.Cheque Cheque = MiCobro.Cheque;
-                                                Cheque.Concepto = new Lbl.Cajas.Concepto(DataBase, 11000);
-                                                Cheque.ConceptoTexto = "Acreditación Tarjetas";
-                                                Cheque.Guardar();
-                                                break;
-                                        case Lbl.Pagos.TipoFormasDePago.Caja:
-                                                MiCobro.CajaDestino.Movimiento(true, 11000, "Acreditación de Cupones", 0, Total, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
-                                                MiCobro.CajaDestino.Movimiento(true, 24010, "Gestión de Cobro de Cupones", 0, -dGestionDeCobro, "Cupones Nº " + Cupones.ToString(), 0, 0, "");
-                                                break;
-                                }
-
-
-                                DataBase.Commit();
-                                Progreso.Cerrar();
-                        }
-                        FormularioAcreditacion = null;
                         this.RefreshList();
                 }
 
                 private void BotonAnular_Click(object sender, System.EventArgs e)
                 {
+                        if (Listado.CheckedItems.Count == 0) {
+                                Lui.Forms.MessageBox.Show("Debe marcar uno o más cupones para anular.", "Acreditar");
+                                return;
+                        }
 
                         int CantidadCupones = 0;
-                        foreach (System.Windows.Forms.ListViewItem itm in ItemList.Items) {
+                        foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
                                 if (itm.Checked) {
                                         CantidadCupones++;
-                                        if (itm.SubItems[6].Text != "Sin Presentar" && itm.SubItems[6].Text != "Presentado") {
+                                        if (itm.SubItems["estado"].Text != "Sin Presentar" && itm.SubItems["estado"].Text != "Presentado") {
                                                 Lui.Forms.MessageBox.Show("Sólo se pueden anular cupones que no han sido acreditados o rechazados.", "Anular de cupones");
                                                 return;
                                         }
@@ -471,37 +344,38 @@ namespace Lfc.Cupones.Cupones
                         }
 
 
-                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("¿Desea eliminar de manera permanente los cupones seleccionados?", "Anular cupones");
-                        Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
-                        if (Pregunta.ShowDialog() == DialogResult.OK) {
-                                Lui.Forms.ProgressForm Progreso = new Lui.Forms.ProgressForm();
-                                Progreso.Max = CantidadCupones;
-                                Progreso.Progreso = 0;
-                                Progreso.Style = ProgressBarStyle.Continuous;
-                                Progreso.Operacion = "Anulando cupones...";
-                                Progreso.Show();
-                                foreach (System.Windows.Forms.ListViewItem itm in ItemList.Items) {
-                                        if (itm.Checked) {
-                                                Progreso.Progreso++;
-                                                Lfx.Data.Row Cupon = this.DataBase.Row("tarjetas_cupones", "id_cupon", Lfx.Types.Parsing.ParseInt(itm.Text));
-                                                if (System.Convert.ToInt32(Cupon["estado"]) == 0 || System.Convert.ToInt32(Cupon["estado"]) == 10) {
-                                                        this.DataBase.Execute("UPDATE tarjetas_cupones SET estado=1 WHERE id_cupon=" + itm.Text);
-                                                        System.Threading.Thread.Sleep(50);
+                        using (Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("¿Desea eliminar de manera permanente los cupones seleccionados?", "Anular cupones")) {
+                                Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
+                                if (Pregunta.ShowDialog() == DialogResult.OK) {
+                                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Anulando Cupones", "Se van a eleiminar los cupones seleccionados");
+                                        Progreso.Max = CantidadCupones;
+                                        Progreso.Begin();
+                                        foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
+                                                if (itm.Checked) {
+                                                        Progreso.Advance(1);
+                                                        Lbl.Pagos.Cupon Cupon = new Lbl.Pagos.Cupon(this.Connection, Lfx.Types.Parsing.ParseInt(itm.Text));
+                                                        if (Cupon.Estado == 0 || Cupon.Estado == 10)
+                                                                Cupon.Anular();
                                                 }
                                         }
+                                        Progreso.End();
+                                        this.RefreshList();
                                 }
-                                Progreso.Dispose();
-                                this.RefreshList();
                         }
                 }
 
                 private void BotonPresentar_Click(object sender, EventArgs e)
                 {
+                        if (Listado.CheckedItems.Count == 0) {
+                                Lui.Forms.MessageBox.Show("Debe marcar uno o más cupones para presentar.", "Acreditar");
+                                return;
+                        }
+
                         int CantidadCupones = 0;
-                        foreach (System.Windows.Forms.ListViewItem itm in ItemList.Items) {
+                        foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
                                 if (itm.Checked) {
                                         CantidadCupones++;
-                                        if (itm.SubItems[6].Text != "Sin Presentar") {
+                                        if (itm.SubItems["estado"].Text != "Sin Presentar") {
                                                 Lui.Forms.MessageBox.Show("Sólo se pueden hacer presentaciones de cupones que no han sido presentados.", "Presentación de cupones");
                                                 return;
                                         }
@@ -514,27 +388,23 @@ namespace Lfc.Cupones.Cupones
                         }
 
 
-                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("¿Desea marcar los cupones seleccionados como presentados?", "Presentación de cupones");
-                        Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
-                        if (Pregunta.ShowDialog() == DialogResult.OK) {
-                                Lui.Forms.ProgressForm Progreso = new Lui.Forms.ProgressForm();
-                                Progreso.Max = CantidadCupones;
-                                Progreso.Progreso = 0;
-                                Progreso.Style = ProgressBarStyle.Continuous;
-                                Progreso.Operacion = "Presentación de cupones...";
-                                Progreso.Show();
-                                foreach (System.Windows.Forms.ListViewItem itm in ItemList.Items) {
-                                        if (itm.Checked) {
-                                                Progreso.Progreso++;
-                                                Lfx.Data.Row Cupon = this.DataBase.Row("tarjetas_cupones", "id_cupon", Lfx.Types.Parsing.ParseInt(itm.Text));
-                                                if (System.Convert.ToInt32(Cupon["estado"]) == 0) {
-                                                        this.DataBase.Execute("UPDATE tarjetas_cupones SET estado=10, fecha_pres=NOW() WHERE id_cupon=" + itm.Text);
-                                                        System.Threading.Thread.Sleep(50);
+                        using (Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("¿Desea marcar los cupones seleccionados como presentados?", "Presentación de cupones")) {
+                                Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
+                                if (Pregunta.ShowDialog() == DialogResult.OK) {
+                                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Presentación de Cupones", "Se están marcando los cupones seleccionados como 'Presentados'.");
+                                        Progreso.Max = CantidadCupones;
+                                        Progreso.Begin();
+                                        foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
+                                                if (itm.Checked) {
+                                                        Progreso.Advance(1);
+                                                        Lbl.Pagos.Cupon Cupon = new Lbl.Pagos.Cupon(this.Connection, Lfx.Types.Parsing.ParseInt(itm.Text));
+                                                        if (Cupon.Estado == 0)
+                                                                Cupon.Presentar();
                                                 }
                                         }
+                                        Progreso.End();
+                                        this.RefreshList();
                                 }
-                                Progreso.Dispose();
-                                this.RefreshList();
                         }
                 }
         }

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,50 +37,22 @@ using System.Windows.Forms;
 
 namespace Lfc.Personas.Grupos
 {
-	public class Inicio : Lui.Forms.ListingForm
+	public class Inicio : Lfc.FormularioListado
 	{
-		private System.ComponentModel.IContainer components = null;
-
 		public Inicio()
 		{
-			InitializeComponent();
+                        this.ElementoTipo = typeof(Lbl.Personas.Grupo);
 
-			DataTableName = "personas_grupos";
-                        KeyField = new Lfx.Data.FormField("id_grupo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-			OrderBy = "parent, nombre";
-                        FormFields = new List<Lfx.Data.FormField>()
+			this.NombreTabla = "personas_grupos";
+                        this.KeyField = new Lfx.Data.FormField("id_grupo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        this.OrderBy = "parent, nombre";
+                        this.FormFields = new Lfx.Data.FormFieldCollection()
 			{
 				new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 				new Lfx.Data.FormField("descuento", "Descuento", Lfx.Data.InputFieldTypes.Numeric, 320),
                                 new Lfx.Data.FormField("parent", "Parent", Lfx.Data.InputFieldTypes.Integer, 0),
 			};
 		}
-
-		/// <summary>
-		/// Limpiar los recursos que se estén utilizando.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if (components != null) 
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
-
-		#region Código generado por el diseñador
-		/// <summary>
-		/// Método necesario para admitir el Diseñador. No se puede modificar
-		/// el contenido del método con el editor de código.
-		/// </summary>
-		private void InitializeComponent()
-		{
-			components = new System.ComponentModel.Container();
-		}
-		#endregion
 	}
 }
 

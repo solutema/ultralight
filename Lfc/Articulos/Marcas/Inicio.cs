@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,30 +38,20 @@ using System.Windows.Forms;
 
 namespace Lfc.Articulos.Marcas
 {
-	public class Inicio : Lui.Forms.ListingForm
+	public class Inicio : Lfc.FormularioListado
 	{
 		public Inicio()
 		{
-			this.DataTableName = "marcas";
+                        this.ElementoTipo = typeof(Lbl.Articulos.Marca);
+
+			this.NombreTabla = "marcas";
                         this.OrderBy = "nombre";
                         this.KeyField = new Lfx.Data.FormField("id_marca", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        this.FormFields = new List<Lfx.Data.FormField>()
+                        this.FormFields = new Lfx.Data.FormFieldCollection()
 			{
 				new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 480),
 				new Lfx.Data.FormField("url", "Web", Lfx.Data.InputFieldTypes.Text, 120)
 			};
-		}
-
-		public override Lfx.Types.OperationResult OnCreate()
-		{
-			this.Workspace.RunTime.Execute("CREAR MARCA");
-			return new Lfx.Types.SuccessOperationResult();
-		}
-
-		public override Lfx.Types.OperationResult OnEdit(int lCodigo)
-		{
-			this.Workspace.RunTime.Execute("EDITAR MARCA " + lCodigo.ToString());
-			return new Lfx.Types.SuccessOperationResult();
 		}
 	}
 }

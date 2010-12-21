@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -52,52 +52,48 @@ namespace Lazaro.Misc
                         base.Dispose(disposing);
                 }
 
-                private System.ComponentModel.IContainer components;
+                private System.ComponentModel.IContainer components = null;
 
                 private void InitializeComponent()
                 {
                         this.components = new System.ComponentModel.Container();
-                        this.cmdCierreZ = new Lui.Forms.Button();
+                        this.BotonCierreZ = new Lui.Forms.Button();
                         this.Timer1 = new System.Windows.Forms.Timer(this.components);
                         this.lblCierreZ = new System.Windows.Forms.Label();
                         this.label1 = new System.Windows.Forms.Label();
-                        this.txtPV = new Lui.Forms.ComboBox();
-                        this.cmdReiniciar = new Lui.Forms.Button();
+                        this.EntradaPv = new Lui.Forms.ComboBox();
+                        this.BotonReiniciar = new Lui.Forms.Button();
                         this.label2 = new System.Windows.Forms.Label();
                         this.lblEstadoServidor = new System.Windows.Forms.Label();
                         this.lblUltimoCierreZ = new System.Windows.Forms.Label();
-                        this.cmdIniciarDetener = new Lui.Forms.Button();
+                        this.BotonIniciarDetener = new Lui.Forms.Button();
                         this.SuspendLayout();
                         // 
                         // OkButton
                         // 
-                        this.OkButton.DockPadding.All = 2;
-                        this.OkButton.Location = new System.Drawing.Point(318, 8);
-                        this.OkButton.Name = "OkButton";
+                        this.OkButton.Location = new System.Drawing.Point(394, 8);
                         // 
                         // CancelCommandButton
                         // 
-                        this.CancelCommandButton.DockPadding.All = 2;
-                        this.CancelCommandButton.Location = new System.Drawing.Point(426, 8);
-                        this.CancelCommandButton.Name = "CancelCommandButton";
+                        this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
                         // 
-                        // cmdCierreZ
+                        // BotonCierreZ
                         // 
-                        this.cmdCierreZ.DockPadding.All = 2;
-                        this.cmdCierreZ.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.cmdCierreZ.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdCierreZ.Image = null;
-                        this.cmdCierreZ.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdCierreZ.Location = new System.Drawing.Point(196, 88);
-                        this.cmdCierreZ.Name = "cmdCierreZ";
-                        this.cmdCierreZ.ReadOnly = false;
-                        this.cmdCierreZ.Size = new System.Drawing.Size(100, 28);
-                        this.cmdCierreZ.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.cmdCierreZ.Subtext = "Ctrl-Z";
-                        this.cmdCierreZ.TabIndex = 8;
-                        this.cmdCierreZ.Text = "Cierre Z";
-                        this.cmdCierreZ.ToolTipText = "";
-                        this.cmdCierreZ.Click += new System.EventHandler(this.cmdCierreZ_Click);
+                        this.BotonCierreZ.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonCierreZ.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonCierreZ.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonCierreZ.Image = null;
+                        this.BotonCierreZ.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonCierreZ.Location = new System.Drawing.Point(188, 172);
+                        this.BotonCierreZ.Name = "BotonCierreZ";
+                        this.BotonCierreZ.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonCierreZ.Size = new System.Drawing.Size(100, 28);
+                        this.BotonCierreZ.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonCierreZ.Subtext = "Ctrl-Z";
+                        this.BotonCierreZ.TabIndex = 8;
+                        this.BotonCierreZ.Text = "Cierre Z";
+                        this.BotonCierreZ.ToolTipText = "";
+                        this.BotonCierreZ.Click += new System.EventHandler(this.BotonCierreZ_Click);
                         // 
                         // Timer1
                         // 
@@ -108,71 +104,73 @@ namespace Lazaro.Misc
                         // lblCierreZ
                         // 
                         this.lblCierreZ.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblCierreZ.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.lblCierreZ.Location = new System.Drawing.Point(32, 60);
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.lblCierreZ.Location = new System.Drawing.Point(24, 144);
                         this.lblCierreZ.Name = "lblCierreZ";
-                        this.lblCierreZ.Size = new System.Drawing.Size(164, 20);
+                        this.lblCierreZ.Size = new System.Drawing.Size(164, 24);
                         this.lblCierreZ.TabIndex = 3;
                         this.lblCierreZ.Text = "Último Cierre Z";
                         this.lblCierreZ.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // label1
                         // 
-                        this.label1.Location = new System.Drawing.Point(16, 16);
+                        this.label1.Location = new System.Drawing.Point(24, 24);
                         this.label1.Name = "label1";
-                        this.label1.Size = new System.Drawing.Size(120, 24);
+                        this.label1.Size = new System.Drawing.Size(164, 24);
                         this.label1.TabIndex = 51;
                         this.label1.Text = "Punto de Venta";
                         this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtPV
+                        // EntradaPv
                         // 
-                        this.txtPV.AutoNav = true;
-                        this.txtPV.AutoTab = true;
-                        this.txtPV.DockPadding.All = 2;
-                        this.txtPV.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.txtPV.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtPV.Location = new System.Drawing.Point(136, 16);
-                        this.txtPV.MaxLenght = 32767;
-                        this.txtPV.Name = "txtPV";
-                        this.txtPV.ReadOnly = false;
-                        this.txtPV.SetData = new string[] {
-												  "N/A|0"};
-                        this.txtPV.Size = new System.Drawing.Size(192, 24);
-                        this.txtPV.TabIndex = 52;
-                        this.txtPV.Text = "N/A";
-                        this.txtPV.TextKey = "0";
-                        this.txtPV.ToolTipText = "";
-                        this.txtPV.TextChanged += new System.EventHandler(this.txtPV_TextChanged);
+                        this.EntradaPv.AlwaysExpanded = true;
+                        this.EntradaPv.AutoNav = true;
+                        this.EntradaPv.AutoTab = true;
+                        this.EntradaPv.DetailField = null;
+                        this.EntradaPv.Filter = null;
+                        this.EntradaPv.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaPv.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaPv.KeyField = null;
+                        this.EntradaPv.Location = new System.Drawing.Point(188, 24);
+                        this.EntradaPv.MaxLenght = 32767;
+                        this.EntradaPv.Name = "EntradaPv";
+                        this.EntradaPv.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaPv.SetData = new string[] {
+        "N/A|0"};
+                        this.EntradaPv.Size = new System.Drawing.Size(192, 100);
+                        this.EntradaPv.TabIndex = 52;
+                        this.EntradaPv.Table = null;
+                        this.EntradaPv.TextKey = "0";
+                        this.EntradaPv.TipWhenBlank = "";
+                        this.EntradaPv.ToolTipText = "";
+                        this.EntradaPv.TextChanged += new System.EventHandler(this.txtPV_TextChanged);
                         // 
-                        // cmdReiniciar
+                        // BotonReiniciar
                         // 
-                        this.cmdReiniciar.DockPadding.All = 2;
-                        this.cmdReiniciar.Enabled = false;
-                        this.cmdReiniciar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.cmdReiniciar.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdReiniciar.Image = null;
-                        this.cmdReiniciar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdReiniciar.Location = new System.Drawing.Point(304, 180);
-                        this.cmdReiniciar.Name = "cmdReiniciar";
-                        this.cmdReiniciar.ReadOnly = false;
-                        this.cmdReiniciar.Size = new System.Drawing.Size(100, 28);
-                        this.cmdReiniciar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.cmdReiniciar.Subtext = "Ctrl-Z";
-                        this.cmdReiniciar.TabIndex = 53;
-                        this.cmdReiniciar.Text = "Reiniciar";
-                        this.cmdReiniciar.ToolTipText = "";
-                        this.cmdReiniciar.Click += new System.EventHandler(this.cmdReiniciar_Click);
+                        this.BotonReiniciar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonReiniciar.Enabled = false;
+                        this.BotonReiniciar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonReiniciar.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonReiniciar.Image = null;
+                        this.BotonReiniciar.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonReiniciar.Location = new System.Drawing.Point(296, 260);
+                        this.BotonReiniciar.Name = "BotonReiniciar";
+                        this.BotonReiniciar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonReiniciar.Size = new System.Drawing.Size(100, 28);
+                        this.BotonReiniciar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonReiniciar.Subtext = "Ctrl-Z";
+                        this.BotonReiniciar.TabIndex = 53;
+                        this.BotonReiniciar.Text = "Reiniciar";
+                        this.BotonReiniciar.ToolTipText = "";
+                        this.BotonReiniciar.Click += new System.EventHandler(this.BotonReiniciar_Click);
                         // 
                         // label2
                         // 
                         this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.label2.Location = new System.Drawing.Point(32, 152);
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label2.Location = new System.Drawing.Point(24, 228);
                         this.label2.Name = "label2";
-                        this.label2.Size = new System.Drawing.Size(160, 20);
+                        this.label2.Size = new System.Drawing.Size(164, 24);
                         this.label2.TabIndex = 54;
                         this.label2.Text = "Estado del Servidor";
                         this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -180,10 +178,10 @@ namespace Lazaro.Misc
                         // lblEstadoServidor
                         // 
                         this.lblEstadoServidor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblEstadoServidor.Location = new System.Drawing.Point(192, 152);
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.lblEstadoServidor.Location = new System.Drawing.Point(184, 228);
                         this.lblEstadoServidor.Name = "lblEstadoServidor";
-                        this.lblEstadoServidor.Size = new System.Drawing.Size(232, 20);
+                        this.lblEstadoServidor.Size = new System.Drawing.Size(416, 24);
                         this.lblEstadoServidor.TabIndex = 56;
                         this.lblEstadoServidor.Text = "Desconocido";
                         this.lblEstadoServidor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -192,61 +190,69 @@ namespace Lazaro.Misc
                         // lblUltimoCierreZ
                         // 
                         this.lblUltimoCierreZ.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblUltimoCierreZ.Location = new System.Drawing.Point(196, 60);
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.lblUltimoCierreZ.Location = new System.Drawing.Point(188, 144);
                         this.lblUltimoCierreZ.Name = "lblUltimoCierreZ";
-                        this.lblUltimoCierreZ.Size = new System.Drawing.Size(228, 20);
+                        this.lblUltimoCierreZ.Size = new System.Drawing.Size(412, 24);
                         this.lblUltimoCierreZ.TabIndex = 55;
                         this.lblUltimoCierreZ.Text = "Desconocido";
                         this.lblUltimoCierreZ.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // cmdIniciarDetener
+                        // BotonIniciarDetener
                         // 
-                        this.cmdIniciarDetener.DockPadding.All = 2;
-                        this.cmdIniciarDetener.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.cmdIniciarDetener.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdIniciarDetener.Image = null;
-                        this.cmdIniciarDetener.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdIniciarDetener.Location = new System.Drawing.Point(196, 180);
-                        this.cmdIniciarDetener.Name = "cmdIniciarDetener";
-                        this.cmdIniciarDetener.ReadOnly = false;
-                        this.cmdIniciarDetener.Size = new System.Drawing.Size(100, 28);
-                        this.cmdIniciarDetener.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.cmdIniciarDetener.Subtext = "Ctrl-Z";
-                        this.cmdIniciarDetener.TabIndex = 57;
-                        this.cmdIniciarDetener.Text = "Iniciar";
-                        this.cmdIniciarDetener.ToolTipText = "";
-                        this.cmdIniciarDetener.Click += new System.EventHandler(this.cmdIniciarDetener_Click);
+                        this.BotonIniciarDetener.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonIniciarDetener.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonIniciarDetener.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonIniciarDetener.Image = null;
+                        this.BotonIniciarDetener.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonIniciarDetener.Location = new System.Drawing.Point(188, 260);
+                        this.BotonIniciarDetener.Name = "BotonIniciarDetener";
+                        this.BotonIniciarDetener.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonIniciarDetener.Size = new System.Drawing.Size(100, 28);
+                        this.BotonIniciarDetener.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonIniciarDetener.Subtext = "Ctrl-Z";
+                        this.BotonIniciarDetener.TabIndex = 57;
+                        this.BotonIniciarDetener.Text = "Iniciar";
+                        this.BotonIniciarDetener.ToolTipText = "";
+                        this.BotonIniciarDetener.Click += new System.EventHandler(this.BotonIniciarDetener_Click);
                         // 
                         // Fiscal
                         // 
-                        this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
-                        this.ClientSize = new System.Drawing.Size(534, 279);
-                        this.Controls.Add(this.cmdIniciarDetener);
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+                        this.ClientSize = new System.Drawing.Size(634, 372);
+                        this.Controls.Add(this.EntradaPv);
+                        this.Controls.Add(this.BotonIniciarDetener);
                         this.Controls.Add(this.lblEstadoServidor);
                         this.Controls.Add(this.lblUltimoCierreZ);
                         this.Controls.Add(this.label2);
-                        this.Controls.Add(this.cmdReiniciar);
-                        this.Controls.Add(this.txtPV);
+                        this.Controls.Add(this.BotonReiniciar);
                         this.Controls.Add(this.label1);
-                        this.Controls.Add(this.cmdCierreZ);
                         this.Controls.Add(this.lblCierreZ);
+                        this.Controls.Add(this.BotonCierreZ);
                         this.Name = "Fiscal";
                         this.Text = "Impresora Fiscal: Panel de Control";
                         this.Load += new System.EventHandler(this.Fiscal_Load);
-                        this.WorkspaceChanged += new System.EventHandler(this.Fiscal_WorkspaceChanged);
+                        this.Controls.SetChildIndex(this.BotonCierreZ, 0);
+                        this.Controls.SetChildIndex(this.lblCierreZ, 0);
+                        this.Controls.SetChildIndex(this.label1, 0);
+                        this.Controls.SetChildIndex(this.BotonReiniciar, 0);
+                        this.Controls.SetChildIndex(this.label2, 0);
+                        this.Controls.SetChildIndex(this.lblUltimoCierreZ, 0);
+                        this.Controls.SetChildIndex(this.lblEstadoServidor, 0);
+                        this.Controls.SetChildIndex(this.BotonIniciarDetener, 0);
+                        this.Controls.SetChildIndex(this.EntradaPv, 0);
                         this.ResumeLayout(false);
 
                 }
                 #endregion
 
-                internal Lui.Forms.Button cmdCierreZ;
+                internal Lui.Forms.Button BotonCierreZ;
                 internal System.Windows.Forms.Timer Timer1;
                 private System.Windows.Forms.Label label1;
-                internal Lui.Forms.ComboBox txtPV;
+                internal Lui.Forms.ComboBox EntradaPv;
                 internal System.Windows.Forms.Label label2;
-                internal Lui.Forms.Button cmdReiniciar;
-                internal Lui.Forms.Button cmdIniciarDetener;
+                internal Lui.Forms.Button BotonReiniciar;
+                internal Lui.Forms.Button BotonIniciarDetener;
                 internal System.Windows.Forms.Label lblEstadoServidor;
                 internal System.Windows.Forms.Label lblUltimoCierreZ;
                 internal System.Windows.Forms.Label lblCierreZ;

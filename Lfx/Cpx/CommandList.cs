@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -48,8 +48,8 @@ namespace Lfx.Cpx
                         set
                         {
                                 m_Printer = value;
-                                foreach (Command cmd in this) {
-                                        cmd.Printer = value;
+                                foreach (Command Cmd in this) {
+                                        Cmd.Printer = value;
                                 }
                         }
                 }
@@ -69,8 +69,8 @@ namespace Lfx.Cpx
                 {
                         StringBuilder Res = new StringBuilder();
 
-                        foreach (Command cmd in this) {
-                                Res.Append(cmd.ToString());
+                        foreach (Command Cmd in this) {
+                                Res.Append(Cmd.ToString());
                         }
 
                         return Res.ToString();

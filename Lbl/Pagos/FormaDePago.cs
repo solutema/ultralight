@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,32 +35,25 @@ using System.Text;
 
 namespace Lbl.Pagos
 {
-        public enum TipoFormasDePago
-        {
-                Efectivo = 1,
-                ChequePropio = 2,
-                CuentaCorriente = 3,
-                Tarjeta = 4,
-                Caja = 6,
-                OtroValor = 7,
-                ChequeTerceros = 8
-        }
-
+        /// <summary>
+        /// Representa una forma de pago. Tanto para emitir pagos como para recibir pagos.
+        /// </summary>
+        [Lbl.Atributos.NombreItem("Forma de Pago")]
         public class FormaDePago : ElementoDeDatos
         {
                 private Lbl.Cajas.Caja m_Caja;
 
                 //Heredar constructor
-		public FormaDePago(Lfx.Data.DataBase dataBase)
+		public FormaDePago(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
 
-                public FormaDePago(Lfx.Data.DataBase dataBase, int itemId)
+                public FormaDePago(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public FormaDePago(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                public FormaDePago(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
-                public FormaDePago(Lfx.Data.DataBase dataBase, TipoFormasDePago tipoFormaPago)
+                public FormaDePago(Lfx.Data.Connection dataBase, TiposFormasDePago tipoFormaPago)
                         : this(dataBase)
                 {
                         m_ItemId = (int)tipoFormaPago;
@@ -82,10 +75,10 @@ namespace Lbl.Pagos
 			}
 		}
 
-                public override Lfx.Types.OperationResult Crear()
+                public override void Crear()
                 {
+                        base.Crear();
                         m_Caja = null;
-                        return base.Crear();
                 }
 
                 public override Lfx.Types.OperationResult Cargar()
@@ -95,17 +88,17 @@ namespace Lbl.Pagos
                                 if (Registro["id_caja"] == null)
                                         m_Caja = null;
                                 else
-                                        m_Caja = new Lbl.Cajas.Caja(this.DataBase, System.Convert.ToInt32(Registro["id_caja"]));
+                                        m_Caja = new Lbl.Cajas.Caja(this.Connection, System.Convert.ToInt32(Registro["id_caja"]));
                         }
 
                         return Res;
                 }
 
-                public TipoFormasDePago Tipo
+                public TiposFormasDePago Tipo
                 {
                         get
                         {
-                                return ((TipoFormasDePago)(this.FieldInt("tipo")));
+                                return ((TiposFormasDePago)(this.GetFieldValue<int>("tipo")));
                         }
                         set
                         {
@@ -113,11 +106,11 @@ namespace Lbl.Pagos
                         }
                 }
 
-                public double Descuento
+                public decimal Descuento
                 {
                         get
                         {
-                                return this.FieldDouble("descuento");
+                                return this.GetFieldValue<decimal>("descuento");
                         }
                         set
                         {
@@ -125,11 +118,11 @@ namespace Lbl.Pagos
                         }
                 }
 
-                public double Retencion
+                public decimal Retencion
                 {
                         get
                         {
-                                return this.FieldDouble("retencion");
+                                return this.GetFieldValue<decimal>("retencion");
                         }
                         set
                         {
@@ -141,7 +134,7 @@ namespace Lbl.Pagos
                 {
                         get
                         {
-                                return this.FieldInt("dias_acred");
+                                return this.GetFieldValue<int>("dias_acred");
                         }
                         set
                         {
@@ -153,7 +146,7 @@ namespace Lbl.Pagos
                 {
                         get
                         {
-                                return this.FieldInt("autoacred") == 1;
+                                return this.GetFieldValue<int>("autoacred") == 1;
                         }
                         set
                         {
@@ -165,7 +158,7 @@ namespace Lbl.Pagos
                 {
                         get
                         {
-                                return this.FieldInt("autopres") == 1;
+                                return this.GetFieldValue<int>("autopres") == 1;
                         }
                         set
                         {
@@ -177,7 +170,7 @@ namespace Lbl.Pagos
                 {
                         get
                         {
-                                return this.FieldInt("pagos") == 1;
+                                return this.GetFieldValue<int>("pagos") == 1;
                         }
                         set
                         {
@@ -189,7 +182,7 @@ namespace Lbl.Pagos
                 {
                         get
                         {
-                                return this.FieldInt("cobros") == 1;
+                                return this.GetFieldValue<int>("cobros") == 1;
                         }
                         set
                         {
@@ -201,8 +194,8 @@ namespace Lbl.Pagos
                 {
                         get
                         {
-                                if (m_Caja == null && this.FieldInt("id_caja") > 0)
-                                        m_Caja = new Lbl.Cajas.Caja(this.DataBase, this.FieldInt("id_caja"));
+                                if (m_Caja == null && this.GetFieldValue<int>("id_caja") > 0)
+                                        m_Caja = new Lbl.Cajas.Caja(this.Connection, this.GetFieldValue<int>("id_caja"));
                                 return m_Caja;
                         }
                         set

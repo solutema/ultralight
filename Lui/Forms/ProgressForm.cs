@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -40,90 +40,31 @@ namespace Lui.Forms
 {
 	public partial class ProgressForm : Lui.Forms.Form
 	{
+                public ProgressForm()
+                {
+                        InitializeComponent();
+                }
 
-		public string Titulo
-		{
-			get
-			{
-				return lblOperacionNombre.Text;
-			}
-			set
-			{
-				lblOperacionNombre.Text = value;
-				this.Show();
-				this.Refresh();
-			}
-		}
+                public void MostrarProgreso(List<Lfx.Types.OperationProgress> operaciones, Lfx.Types.OperationProgress progreso)
+                {
+                        ProgressBar.Maximum = progreso.Max;
+                        if (ProgressBar.Value > 0)
+                                ProgressBar.Style = ProgressBarStyle.Continuous;
+                        else
+                                ProgressBar.Style = ProgressBarStyle.Marquee;
 
-		public string Operacion
-		{
-			get
-			{
-				return lblOperacion.Text;
-			}
-			set
-			{
-				lblOperacion.Text = value;
-				this.Show();
-				this.Refresh();
-			}
-		}
-
-		public string Texto
-		{
-			get
-			{
-				return lblTexto.Text;
-			}
-			set
-			{
-				lblTexto.Text = value;
-				this.Show();
-				this.Refresh();
-			}
-		}
-
-		public int Progreso
-		{
-			get
-			{
-				return ProgressBar.Value;
-			}
-			set
-			{
-				ProgressBar.Value = value;
-			}
-		}
-
-		public int Max
-		{
-			get
-			{
-				return ProgressBar.Maximum;
-			}
-			set
-			{
-				ProgressBar.Maximum = value;
-			}
-		}
-
-		public ProgressBarStyle Style
-		{
-			get
-			{
-				return ProgressBar.Style;
-			}
-			set
-			{
-				ProgressBar.Style = value;
-			}
-		}
-
-		public void Cerrar()
-		{
-			System.Threading.Thread.Sleep(500);
-			this.Close();
-		}
-
+                        if (operaciones.Count > 1) {
+                                EtiquetaNombreOperacion.Text = progreso.Name + System.Environment.NewLine + "(otras operaciones pendientes)";
+                        } else {
+                                EtiquetaNombreOperacion.Text = progreso.Name;
+                        }
+                        EtiquetaEstado.Text = progreso.Status;
+                        EtiquetaDescripcion.Text = progreso.Description;
+                        if (progreso.Value > ProgressBar.Maximum)
+                                ProgressBar.Value = ProgressBar.Maximum;
+                        else
+                                ProgressBar.Value = progreso.Value;
+                        this.Refresh();
+                }
 	}
 }

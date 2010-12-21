@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -76,27 +76,42 @@ namespace Lfx.Environment
 			}
 		}
 
+                private static string m_ApplicationFolder = null;
 		public static string ApplicationFolder
 		{
 			get
 			{
-				string Result = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-				if(Result[Result.Length - 1] != System.IO.Path.DirectorySeparatorChar)
-					Result += System.IO.Path.DirectorySeparatorChar;
-				return Result;
+                                if (m_ApplicationFolder == null) {
+                                        m_ApplicationFolder = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                                        if (m_ApplicationFolder[m_ApplicationFolder.Length - 1] != System.IO.Path.DirectorySeparatorChar)
+                                                m_ApplicationFolder += System.IO.Path.DirectorySeparatorChar;
+                                }
+                                return m_ApplicationFolder;
 			}
+                        set
+                        {
+                                m_ApplicationFolder = value;
+                        }
 		}
 
+                public static string m_ApplicationDataFolder = null;
 		public static string ApplicationDataFolder
 		{
 			get
 			{
-				string CompletePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData)
-					+ System.IO.Path.DirectorySeparatorChar + "Lazaro" + System.IO.Path.DirectorySeparatorChar;
-				if(!System.IO.Directory.Exists(CompletePath))
-					System.IO.Directory.CreateDirectory(CompletePath);
-				return CompletePath;
+                                if (m_ApplicationDataFolder == null) {
+                                        m_ApplicationDataFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData)
+                                                + System.IO.Path.DirectorySeparatorChar + "Lazaro" + System.IO.Path.DirectorySeparatorChar;
+                                        if (!System.IO.Directory.Exists(m_ApplicationDataFolder))
+                                                System.IO.Directory.CreateDirectory(m_ApplicationDataFolder);
+                                        return m_ApplicationDataFolder;
+                                }
+                                return m_ApplicationDataFolder;
 			}
+                        set
+                        {
+                                m_ApplicationDataFolder = value;
+                        }
 		}
 
                 public static string UpdatesFolder

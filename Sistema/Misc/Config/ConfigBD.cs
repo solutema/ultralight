@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -74,7 +74,7 @@ namespace Lazaro.Misc.Config
 
 
                 // Requerido por el Diseñador de Windows Forms
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
 
                 // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
@@ -160,7 +160,7 @@ namespace Lazaro.Misc.Config
                         // 
                         // txtServidor
                         // 
-                        this.EntradaServidor.AutoHeight = false;
+                        this.EntradaServidor.AutoSize = false;
                         this.EntradaServidor.AutoNav = true;
                         this.EntradaServidor.AutoTab = true;
                         this.EntradaServidor.DataType = Lui.Forms.DataTypes.FreeText;
@@ -180,7 +180,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaServidor.Size = new System.Drawing.Size(260, 25);
                         this.EntradaServidor.Sufijo = "";
                         this.EntradaServidor.TabIndex = 4;
-                        this.EntradaServidor.TextRaw = "";
                         this.EntradaServidor.TipWhenBlank = "";
                         this.EntradaServidor.ToolTipText = "";
                         this.EntradaServidor.Leave += new System.EventHandler(this.EntradaServidor_Leave);
@@ -217,16 +216,16 @@ namespace Lazaro.Misc.Config
                         this.Label3.Text = "Si ya configuró un servidor SQL en este equipo o en otro equipo de la red, escrib" +
                             "a aquí los datos del mismo. Estos datos serán guardados para futuros ingresos.";
                         // 
-                        // cmdServidorVista
+                        // BotonServidorVista
                         // 
-                        this.BotonServidorVista.AutoHeight = false;
+                        this.BotonServidorVista.AutoSize = false;
                         this.BotonServidorVista.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonServidorVista.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonServidorVista.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonServidorVista.Image = null;
                         this.BotonServidorVista.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonServidorVista.Location = new System.Drawing.Point(24, 180);
-                        this.BotonServidorVista.Name = "cmdServidorVista";
+                        this.BotonServidorVista.Name = "BotonServidorVista";
                         this.BotonServidorVista.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonServidorVista.ReadOnly = false;
                         this.BotonServidorVista.Size = new System.Drawing.Size(132, 28);
@@ -259,7 +258,7 @@ namespace Lazaro.Misc.Config
                         // 
                         // txtBranch
                         // 
-                        this.EntradaSucursal.AutoHeight = false;
+                        this.EntradaSucursal.AutoSize = false;
                         this.EntradaSucursal.AutoNav = true;
                         this.EntradaSucursal.AutoTab = true;
                         this.EntradaSucursal.DataType = Lui.Forms.DataTypes.Integer;
@@ -280,7 +279,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaSucursal.Sufijo = "";
                         this.EntradaSucursal.TabIndex = 11;
                         this.EntradaSucursal.Text = "1";
-                        this.EntradaSucursal.TextRaw = "1";
                         this.EntradaSucursal.TipWhenBlank = "";
                         this.EntradaSucursal.ToolTipText = "";
                         // 
@@ -295,7 +293,7 @@ namespace Lazaro.Misc.Config
                         // 
                         // txtSlowLink
                         // 
-                        this.EntradaSlowLink.AutoHeight = false;
+                        this.EntradaSlowLink.AutoSize = false;
                         this.EntradaSlowLink.AutoNav = true;
                         this.EntradaSlowLink.AutoTab = true;
                         this.EntradaSlowLink.DetailField = null;
@@ -316,7 +314,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaSlowLink.Table = null;
                         this.EntradaSlowLink.Text = "No";
                         this.EntradaSlowLink.TextKey = "0";
-                        this.EntradaSlowLink.TextRaw = "No";
                         this.EntradaSlowLink.TipWhenBlank = "";
                         this.EntradaSlowLink.ToolTipText = "";
                         // 
@@ -331,7 +328,7 @@ namespace Lazaro.Misc.Config
                         // 
                         // txtBD
                         // 
-                        this.EntradaBD.AutoHeight = false;
+                        this.EntradaBD.AutoSize = false;
                         this.EntradaBD.AutoNav = true;
                         this.EntradaBD.AutoTab = true;
                         this.EntradaBD.DataType = Lui.Forms.DataTypes.FreeText;
@@ -351,7 +348,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaBD.Size = new System.Drawing.Size(172, 24);
                         this.EntradaBD.Sufijo = "";
                         this.EntradaBD.TabIndex = 3;
-                        this.EntradaBD.TextRaw = "";
                         this.EntradaBD.TipWhenBlank = "";
                         this.EntradaBD.ToolTipText = "";
                         // 
@@ -366,7 +362,7 @@ namespace Lazaro.Misc.Config
                         // 
                         // txtConexion
                         // 
-                        this.EntradaConexion.AutoHeight = false;
+                        this.EntradaConexion.AutoSize = false;
                         this.EntradaConexion.AutoNav = true;
                         this.EntradaConexion.AutoTab = true;
                         this.EntradaConexion.DetailField = null;
@@ -382,14 +378,12 @@ namespace Lazaro.Misc.Config
                         this.EntradaConexion.SetData = new string[] {
         "ODBC|odbc",
         "MySQL Nativo|mysql",
-        "MySQL via ODBC|myodbc",
         "PostgreSQL|npgsql"};
                         this.EntradaConexion.Size = new System.Drawing.Size(196, 23);
                         this.EntradaConexion.TabIndex = 1;
                         this.EntradaConexion.Table = null;
                         this.EntradaConexion.Text = "MySQL Nativo";
                         this.EntradaConexion.TextKey = "mysql";
-                        this.EntradaConexion.TextRaw = "MySQL Nativo";
                         this.EntradaConexion.TipWhenBlank = "";
                         this.EntradaConexion.ToolTipText = "";
                         this.EntradaConexion.TextChanged += new System.EventHandler(this.EntradaConexion_TextChanged);
@@ -400,12 +394,12 @@ namespace Lazaro.Misc.Config
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(124, 23);
                         this.Label1.TabIndex = 0;
-                        this.Label1.Text = "Tipo de conexión";
+                        this.Label1.Text = "Tipo de Conexión";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // txtContrasena
                         // 
-                        this.EntradaContrasena.AutoHeight = false;
+                        this.EntradaContrasena.AutoSize = false;
                         this.EntradaContrasena.AutoNav = true;
                         this.EntradaContrasena.AutoTab = true;
                         this.EntradaContrasena.DataType = Lui.Forms.DataTypes.FreeText;
@@ -425,13 +419,12 @@ namespace Lazaro.Misc.Config
                         this.EntradaContrasena.Size = new System.Drawing.Size(124, 24);
                         this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 7;
-                        this.EntradaContrasena.TextRaw = "";
                         this.EntradaContrasena.TipWhenBlank = "";
                         this.EntradaContrasena.ToolTipText = "";
                         // 
                         // txtUsuario
                         // 
-                        this.EntradaUsuario.AutoHeight = false;
+                        this.EntradaUsuario.AutoSize = false;
                         this.EntradaUsuario.AutoNav = true;
                         this.EntradaUsuario.AutoTab = true;
                         this.EntradaUsuario.DataType = Lui.Forms.DataTypes.FreeText;
@@ -451,7 +444,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaUsuario.Size = new System.Drawing.Size(124, 25);
                         this.EntradaUsuario.Sufijo = "";
                         this.EntradaUsuario.TabIndex = 5;
-                        this.EntradaUsuario.TextRaw = "";
                         this.EntradaUsuario.TipWhenBlank = "";
                         this.EntradaUsuario.ToolTipText = "";
                         // 
@@ -475,7 +467,7 @@ namespace Lazaro.Misc.Config
                         // 
                         // GCommand1
                         // 
-                        this.GCommand1.AutoHeight = false;
+                        this.GCommand1.AutoSize = false;
                         this.GCommand1.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.GCommand1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.GCommand1.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -506,7 +498,7 @@ namespace Lazaro.Misc.Config
                         // OkButton
                         // 
                         this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.OkButton.AutoHeight = false;
+                        this.OkButton.AutoSize = false;
                         this.OkButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.OkButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -527,7 +519,7 @@ namespace Lazaro.Misc.Config
                         // CancelCommandButton
                         // 
                         this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.CancelCommandButton.AutoHeight = false;
+                        this.CancelCommandButton.AutoSize = false;
                         this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.CancelCommandButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -738,11 +730,9 @@ namespace Lazaro.Misc.Config
                         Lfx.Data.DataBaseCache.DefaultCache.ServerName = EntradaServidor.Text;
                         switch (EntradaConexion.TextKey) {
                                 case "odbc":
-                                        Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.ODBC;
+                                        Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.Odbc;
                                         break;
                                 case "myodbc":
-                                        Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MyOdbc;
-                                        break;
                                 case "mysql":
                                         Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MySql;
                                         break;

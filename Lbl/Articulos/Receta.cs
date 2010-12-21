@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,49 +35,13 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
-        public class ItemReceta
-        {
-                public Lbl.Articulos.Articulo Articulo = null;
-                public double Cantidad = 0;
-
-                public ItemReceta(Lbl.Articulos.Articulo articulo, double cantidad)
-                {
-                        this.Articulo = articulo;
-                        this.Cantidad = cantidad;
-                }
-
-                public override string ToString()
-                {
-                        if (this.Articulo == null)
-                                return "";
-                        else
-                                return this.Cantidad.ToString() + " " + this.Articulo.ToString();
-                }
-
-                public double Costo
-                {
-                        get
-                        {
-                                return this.Articulo.Costo * this.Cantidad;
-                        }
-                }
-
-                public double Pvp
-                {
-                        get
-                        {
-                                return this.Articulo.Pvp * this.Cantidad;
-                        }
-                }
-        }
-
         public class Receta : List<ItemReceta>
         {
-                public double Costo
+                public decimal Costo
                 {
                         get
                         {
-                                double Res = 0;
+                                decimal Res = 0;
                                 foreach (ItemReceta Itm in this) {
                                         Res += Itm.Costo;
                                 }
@@ -85,11 +49,11 @@ namespace Lbl.Articulos
                         }
                 }
 
-                public double Pvp
+                public decimal Pvp
                 {
                         get
                         {
-                                double Res = 0;
+                                decimal Res = 0;
                                 foreach (ItemReceta Itm in this) {
                                         Res += Itm.Pvp;
                                 }

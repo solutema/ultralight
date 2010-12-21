@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@ namespace Lfc.Comprobantes
 {
         public partial class EditarSeries : Lui.Forms.DialogForm
         {
-                public Lbl.Articulos.Situacion Situacion;
+                public Lbl.Articulos.Situacion SituacionOrigen;
                 public Lbl.Articulos.Articulo Articulo;
                 public int Cantidad;
                 private string m_Series = null;
@@ -110,7 +110,7 @@ namespace Lfc.Comprobantes
 
                 private void RefreshList()
                 {
-                        if (Situacion != null && Situacion.CuentaStock) {
+                        if (SituacionOrigen != null && SituacionOrigen.CuentaStock) {
                                 System.Collections.Generic.List<string> SelectedSeries = new List<string>();
                                 if (m_Series != null && m_Series.Length > 0)
                                         SelectedSeries.AddRange(m_Series.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
@@ -123,7 +123,7 @@ namespace Lfc.Comprobantes
                                 ListaSeries.BeginUpdate();
                                 ListaSeries.Items.Clear();
 
-                                System.Data.DataTable TablaListaItem = this.DataBase.Select("SELECT serie FROM articulos_series WHERE id_articulo=" + this.Articulo.Id.ToString() + " AND id_situacion=" + this.Situacion.Id.ToString());
+                                System.Data.DataTable TablaListaItem = this.Connection.Select("SELECT serie FROM articulos_series WHERE id_articulo=" + this.Articulo.Id.ToString() + " AND id_situacion=" + this.SituacionOrigen.Id.ToString());
                                 foreach (System.Data.DataRow RowItem in TablaListaItem.Rows) {
                                         string Ser = RowItem["serie"].ToString();
                                         ListViewItem Itm = ListaSeries.Items.Add(Ser);

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@ namespace Lfc.Misc
 
                 public override Lfx.Types.OperationResult Ok()
                 {
-                        if (this.Workspace.CurrentUser.AccessList.HasGlobalAcccess() == false)
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TieneAccesoGlobal() == false)
                                 return new Lfx.Types.FailureOperationResult("Necesita permiso de administrador para desduplicar elementos.");
 
                         if (EntradaElementoDuplicado.TextInt == 0)
@@ -62,7 +62,7 @@ namespace Lfc.Misc
                         if (EntradaElementoOriginal.TextDetail != EntradaElementoDuplicado.TextDetail)
                                 return new Lfx.Types.FailureOperationResult("Los elementos deben tener el mismo nombre.");
 
-                        Lbl.Servicios.Desduplicador Desdup = new Lbl.Servicios.Desduplicador(this.DataBase, EntradaElementoOriginal.Table, EntradaElementoOriginal.KeyField, EntradaElementoOriginal.TextInt, EntradaElementoDuplicado.TextInt);
+                        Lbl.Servicios.Desduplicador Desdup = new Lbl.Servicios.Desduplicador(this.Connection, EntradaElementoOriginal.Table, EntradaElementoOriginal.DataValueField, EntradaElementoOriginal.TextInt, EntradaElementoDuplicado.TextInt);
                         Desdup.Desduplicar();
 
 
@@ -93,13 +93,13 @@ namespace Lfc.Misc
 
                 private void EntradaCtaCte1CtaCte2_TextChanged(object sender, EventArgs e)
                 {
-                        double Cta1 = 0, Cta2 = 0;
+                        decimal Cta1 = 0, Cta2 = 0;
                         
                         if (PersonaOriginal != null)
-                                Cta1 = Lfx.Types.Parsing.ParseCurrency(EntradaCtaCte1.Text);
+                                Cta1 = EntradaCtaCte1.ValueDecimal;
 
                         if (PersonaDuplicada != null)
-                                Cta2 = Lfx.Types.Parsing.ParseCurrency(EntradaCtaCte2.Text);
+                                Cta2 = EntradaCtaCte2.ValueDecimal;
 
                         EntradaCtaCteFinal.Text = Lfx.Types.Formatting.FormatCurrency(Cta1 + Cta2, this.Workspace.CurrentConfig.Moneda.Decimales);
                 }

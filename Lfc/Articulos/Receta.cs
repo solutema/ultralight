@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -58,6 +58,8 @@ namespace Lfc.Articulos
                         set
                         {
                                 m_ReadOnly = value;
+                                //ProductArray.Enabled = !this.ReadOnly;
+                                ProductArray.ReadOnly = m_ReadOnly;
                         }
                 }
 
@@ -72,7 +74,6 @@ namespace Lfc.Articulos
                                 m_Articulo = value;
 
                                 if (m_Articulo != null) {
-                                        ProductArray.AutoAgregar = false;
                                         ProductArray.Count = Articulo.Receta.Count;
 
                                         for (int i = 0; i < Articulo.Receta.Count; i++) {
@@ -83,9 +84,6 @@ namespace Lfc.Articulos
 
                                                 ProductArray.ChildControls[i].Cantidad = Articulo.Receta[i].Cantidad;
                                         }
-
-                                        ProductArray.Enabled = !this.ReadOnly;
-                                        ProductArray.AutoAgregar = !this.ReadOnly;
                                 }
                         }
                 }

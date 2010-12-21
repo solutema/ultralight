@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,36 +37,49 @@ using System.Windows.Forms;
 
 namespace Lfc.Pvs
 {
-	public partial class Editar : Lui.Forms.EditForm
-	{
-		public Editar()
-		{
-			InitializeComponent();
-
-                        System.Collections.Generic.List<string> ListaTipos = new System.Collections.Generic.List<string>();
-                        ListaTipos.Add("Facutras|F");
-                        ListaTipos.Add("Notas de Débito|ND");
-                        ListaTipos.Add("Notas de Crédito|NC");
-                        ListaTipos.Add("Facutras, Notas de Débito|F,ND");
-                        ListaTipos.Add("Facutras, Notas de Crédito y Débito|F,NC,ND");
-                        System.Data.DataTable DocumentosTipos = this.DataBase.Select("SELECT letra,nombre FROM documentos_tipos ORDER BY letra");
-                        foreach (System.Data.DataRow DocumentoTipo in DocumentosTipos.Rows) {
-                                ListaTipos.Add(DocumentoTipo["nombre"].ToString() + "|" + DocumentoTipo["letra"].ToString());
-                        }
-                        EntradaTipoFac.SetData = ListaTipos.ToArray();
-		}
-
-
-                public override void FromRow(Lbl.ElementoDeDatos row)
+        public partial class Editar : Lcc.Edicion.ControlEdicion
+        {
+                public Editar()
                 {
-                        base.FromRow(row);
+                        this.ElementoTipo = typeof(Lbl.Comprobantes.PuntoDeVenta);
 
-                        Lbl.Comprobantes.PuntoDeVenta Pv = row as Lbl.Comprobantes.PuntoDeVenta;
+                        InitializeComponent();
+
+                }
+
+                public override void OnWorkspaceChanged()
+                {
+                        if (this.HasWorkspace) {
+                                System.Collections.Generic.List<string> ListaTipos = new System.Collections.Generic.List<string>();
+                                ListaTipos.Add("Facutras|F");
+                                ListaTipos.Add("Notas de Débito|ND");
+                                ListaTipos.Add("Notas de Crédito|NC");
+                                ListaTipos.Add("Facutras, Notas de Débito|F,ND");
+                                ListaTipos.Add("Facutras, Notas de Crédito y Débito|F,NC,ND");
+
+                                System.Data.DataTable DocumentosTipos = this.Connection.Select("SELECT letra,nombre FROM documentos_tipos ORDER BY letra");
+                                foreach (System.Data.DataRow DocumentoTipo in DocumentosTipos.Rows) {
+                                        ListaTipos.Add(DocumentoTipo["nombre"].ToString() + "|" + DocumentoTipo["letra"].ToString());
+                                }
+                                EntradaTipoFac.SetData = ListaTipos.ToArray();
+                        }
+
+                        base.OnWorkspaceChanged();
+                }
+
+
+                public override void ActualizarControl()
+                {
+                        Lbl.Comprobantes.PuntoDeVenta Pv = this.Elemento as Lbl.Comprobantes.PuntoDeVenta;
+
+                        EntradaNumero.Text = Pv.Numero.ToString();
+                        EntradaTipoFac.TextKey = Pv.TipoFac;
+                        EntradaSucursal.Elemento = Pv.Sucursal;
+                        EntradaImpresora.Elemento = Pv.Impresora;
 
                         EntradaTipo.TextKey = ((int)(Pv.Tipo)).ToString();
-                        EntradaTipoFac.TextKey = Pv.TipoFac;
+
                         EntradaDeTalonario.TextKey = Pv.UsaTalonario ? "1" : "0";
-                        EntradaSucursal.Elemento = Pv.Sucursal;
                         EntradaEstacion.Text = Pv.Estacion;
                         EntradaCarga.TextKey = Pv.CargaManual ? "1" : "0";
 
@@ -74,51 +87,41 @@ namespace Lfc.Pvs
                         EntradaPuerto.TextKey = Pv.Puerto.ToString();
                         EntradaBps.TextKey = Pv.Bps.ToString();
 
-                        if (Pv.Existe)
-                                this.Text = "PV: " + Pv.ToString();
-                        else
-                                this.Text = "PV: nuevo";
+                        base.ActualizarControl();
                 }
 
-                public override Lbl.ElementoDeDatos ToRow()
+                public override void ActualizarElemento()
                 {
-                        Lbl.Comprobantes.PuntoDeVenta Pv = base.ToRow() as Lbl.Comprobantes.PuntoDeVenta;
+                        Lbl.Comprobantes.PuntoDeVenta Pv = this.Elemento as Lbl.Comprobantes.PuntoDeVenta;
 
-                        EntradaTipo.TextKey = ((int)(Pv.Tipo)).ToString();
+                        Pv.Numero = Lfx.Types.Parsing.ParseInt(EntradaNumero.Text);
                         Pv.TipoFac = EntradaTipoFac.TextKey;
-                        Pv.UsaTalonario = EntradaDeTalonario.TextKey == "1";
                         Pv.Sucursal = EntradaSucursal.Elemento as Lbl.Entidades.Sucursal;
+                        Pv.Impresora = EntradaImpresora.Elemento as Lbl.Impresion.Impresora;
+
+                        Pv.Tipo = (Lbl.Comprobantes.TipoPv)Lfx.Types.Parsing.ParseInt(EntradaTipo.TextKey);
+
+                        Pv.UsaTalonario = EntradaDeTalonario.TextKey == "1";
                         Pv.Estacion = EntradaEstacion.Text;
                         Pv.CargaManual = EntradaCarga.TextKey == "1";
 
-                        Pv.ModeloImpresoraFiscal = (Lbl.Comprobantes.ModelosImpresoraFiscal)(Lfx.Types.Parsing.ParseInt(EntradaModelo.TextKey));
+                        Pv.ModeloImpresoraFiscal = (Lbl.Impresion.ModelosFiscales)(Lfx.Types.Parsing.ParseInt(EntradaModelo.TextKey));
                         Pv.Puerto = Lfx.Types.Parsing.ParseInt(EntradaPuerto.TextKey);
                         Pv.Bps = Lfx.Types.Parsing.ParseInt(EntradaBps.TextKey);
 
-                        return Pv;
+                        base.ActualizarElemento();
                 }
 
-
-                public override Lfx.Types.OperationResult Create()
+                private void BotonEstacionSeleccionar_Click(object sender, System.EventArgs e)
                 {
-                        Lbl.Comprobantes.PuntoDeVenta Pv = new Lbl.Comprobantes.PuntoDeVenta(this.DataBase);
-                        Pv.Numero = this.DataBase.FieldInt("SELECT MAX(id_pv)+1 FROM pvs");
-                        Pv.Crear();
-                        this.FromRow(Pv);
-
-                        return new Lfx.Types.SuccessOperationResult();
+                        Lui.Forms.WorkstationSelectorForm SelEst = new Lui.Forms.WorkstationSelectorForm();
+                        SelEst.Estacion = EntradaEstacion.Text;
+                        if (SelEst.ShowDialog() == DialogResult.OK)
+                                EntradaEstacion.Text = SelEst.Estacion;
                 }
 
-		private void BotonEstacionSeleccionar_Click(object sender, System.EventArgs e)
-		{
-                        Lui.Forms.WorkstationSelectorForm SelEst = new Lui.Forms.WorkstationSelectorForm();
-			SelEst.Estacion = EntradaEstacion.Text;
-			if(SelEst.ShowDialog() == DialogResult.OK)
-				EntradaEstacion.Text = SelEst.Estacion;
-		}
-
-		private void EntradaTipo_TextChanged(object sender, System.EventArgs e)
-		{
+                private void EntradaTipo_TextChanged(object sender, System.EventArgs e)
+                {
                         if (EntradaTipo.TextKey == "2") {
                                 EntradaModelo.Enabled = true;
                                 EntradaPuerto.Enabled = true;
@@ -130,7 +133,6 @@ namespace Lfc.Pvs
                                 EntradaBps.Enabled = false;
                                 EntradaCarga.Enabled = true;
                         }
-		}
-	}
+                }
+        }
 }
-

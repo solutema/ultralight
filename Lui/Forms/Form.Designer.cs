@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -33,33 +33,27 @@ namespace Lui.Forms
 {
 	partial class Form
 	{
-		/// <summary>
-		/// Variable del diseñador requerida.
-		/// </summary>
 		private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
-		/// Limpiar los recursos que se estén utilizando.
-		/// </summary>
-		/// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
                 protected override void Dispose(bool disposing)
                 {
                         if (disposing && (components != null)) {
                                 components.Dispose();
                         }
-                        if (m_DataBase != null)
-                                m_DataBase.Dispose();
+
+                        if (m_Connection != null && m_Connection.Handle > 0 && DisposeConnection) {
+                                m_Connection.Dispose();
+                                m_Connection = null;
+                        }
+
                         base.Dispose(disposing);
                 }
 
 		#region Código generado por el Diseñador de Windows Forms
 
-		/// <summary>
-		/// Método necesario para admitir el Diseñador. No se puede modificar
-		/// el contenido del método con el editor de código.
-		/// </summary>
 		private void InitializeComponent()
 		{
+                        this.components = new System.ComponentModel.Container();
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form));
                         this.SuspendLayout();
                         // 
@@ -70,14 +64,13 @@ namespace Lui.Forms
                         this.ClientSize = new System.Drawing.Size(792, 473);
                         this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+                        this.KeyPreview = true;
                         this.MaximizeBox = false;
                         this.MinimizeBox = false;
                         this.Name = "Form";
                         this.Text = "Form";
                         this.Load += new System.EventHandler(this.Form_Load);
-                        this.TextChanged += new System.EventHandler(this.Form_TextChanged);
                         this.ResumeLayout(false);
-
 		}
 
 		#endregion

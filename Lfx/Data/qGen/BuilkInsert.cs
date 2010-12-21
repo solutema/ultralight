@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -60,13 +60,13 @@ namespace qGen
                 public override string ToString()
                 {
                         System.Text.StringBuilder Res = null;
-                        foreach (Insert cmd in this.InsertCommands) {
+                        foreach (Insert Cmd in this.InsertCommands) {
                                 if (Res == null) {
                                         Res = new System.Text.StringBuilder();
-                                        Res.AppendLine(cmd.ToString());
+                                        Res.AppendLine(Cmd.ToString());
                                 } else {
                                         Res.Append(", ");
-                                        Res.AppendLine(cmd.ToString(true));
+                                        Res.AppendLine(Cmd.ToString(true));
                                 }
                         }
                         if (Res == null)

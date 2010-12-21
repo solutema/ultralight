@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -41,23 +41,18 @@ namespace Lui.Forms
         {
                 protected internal bool m_AutoTab = true;
                 protected internal bool m_AutoNav = true;
-                protected internal string m_TipWhenBlank = "";
+                private string m_TipWhenBlank = "";
 
                 new public event KeyPressEventHandler KeyPress;
-                [System.ComponentModel.EditorBrowsable(EditorBrowsableState.Always), Browsable(true)]
-                new public event System.EventHandler TextChanged;
                 new public event System.Windows.Forms.KeyEventHandler KeyDown;
                 new public event System.EventHandler GotFocus;
                 new public event System.EventHandler LostFocus;
                 protected internal int IgnorarEventos;
 
                 public TextBoxBase()
-                        : base()
                 {
-                        // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
 
-                        //this.LocationChanged += new System.EventHandler(this.TextBox_LocationChanged);
                         this.GotFocus += new System.EventHandler(this.TextBoxBase_GotFocus);
                         this.FontChanged += new System.EventHandler(this.TextBoxBase_FontChanged);
                         this.ForeColorChanged += new System.EventHandler(this.TextBoxBase_ForeColorChanged);
@@ -96,7 +91,10 @@ namespace Lui.Forms
                         }
                 }
 
-                [EditorBrowsable(EditorBrowsableState.Always), System.ComponentModel.Browsable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible), RefreshProperties(RefreshProperties.Repaint)]
+                [EditorBrowsable(EditorBrowsableState.Always),
+                        System.ComponentModel.Browsable(true),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
+                        RefreshProperties(RefreshProperties.Repaint)]
                 public override System.String Text
                 {
                         get
@@ -119,6 +117,12 @@ namespace Lui.Forms
                         set
                         {
                                 m_TipWhenBlank = value;
+
+                                if (ActiveControl != TextBox1) {
+                                        IgnorarEventos++;
+                                        this.SetTipIfBlank();
+                                        IgnorarEventos--;
+                                }
                         }
                 }
 
@@ -126,15 +130,15 @@ namespace Lui.Forms
                 {
                         if (e.KeyChar == Lfx.Types.ControlChars.Cr && TextBox1.Multiline) {
                                 //Es multilinea.
-                                if (m_AutoTab && (TextBox1.Text.Length == 0 ||
-                                        (TextBox1.Text.Length >= System.Environment.NewLine.Length
-                                        && TextBox1.Text.Substring(TextBox1.Text.Length - System.Environment.NewLine.Length) == System.Environment.NewLine))) {
-                                        //Es AutoTab y estoy intentando dar Enter a un campo vacío o estoy intentando dar dos Enter seguidos
+                                if (m_AutoTab && (this.TextRaw.Length == 0 ||
+                                        (this.TextRaw.Length >= System.Environment.NewLine.Length
+                                        && this.TextRaw.Substring(this.TextRaw.Length - System.Environment.NewLine.Length) == System.Environment.NewLine))) {
+                                        // Es AutoTab y estoy intentando dar Enter a un campo vacío o estoy intentando dar dos Enter seguidos
                                         System.Windows.Forms.SendKeys.Send("{tab}");
                                         e.Handled = true;
                                 }
                         } else if (e.KeyChar == Lfx.Types.ControlChars.Cr && m_AutoTab) {
-                                //Es autonav. Paso un tab
+                                // Es autonav. Paso un tab
                                 e.Handled = true;
                                 System.Windows.Forms.SendKeys.Send("{tab}");
                         } else {
@@ -209,11 +213,8 @@ namespace Lui.Forms
                                 this.Changed = true;
                                 m_IgnoreChanges--;
                         }
-                        EventHandler TChanged = this.TextChanged;
-                        if (TChanged != null)
-                                TChanged(this, e);
-                }
-                
+                        this.OnTextChanged(EventArgs.Empty);
+                }                
 
                 public override bool ReadOnly
                 {
@@ -228,11 +229,14 @@ namespace Lui.Forms
                         }
                 }
 
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public string TextRaw
                 {
                         get
                         {
-                                if (TextBox1.Text == m_TipWhenBlank && TextBox1.ForeColor == System.Drawing.SystemColors.GrayText)
+                                if (TextBox1.ForeColor == System.Drawing.SystemColors.GrayText)
                                         return "";
                                 else
                                         return TextBox1.Text;
@@ -240,6 +244,8 @@ namespace Lui.Forms
                         set
                         {
                                 TextBox1.Text = value;
+                                if (ActiveControl != TextBox1)
+                                        this.SetTipIfBlank();
                         }
                 }
 
@@ -270,20 +276,41 @@ namespace Lui.Forms
                 private void TextBox1_LostFocus(object sender, System.EventArgs e)
                 {
                         if (IgnorarEventos == 0) {
+                                IgnorarEventos++;
                                 TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
                                 if (this.LostFocus != null)
                                         this.LostFocus(this, e);
+
+                                this.SetTipIfBlank();
+                                IgnorarEventos--;
                         }
                 }
 
+                private void SetTipIfBlank()
+                {
+                        if (TextBox1.Text == "" && this.TipWhenBlank != null && this.TipWhenBlank.Length > 0) {
+                                TextBox1.ForeColor = System.Drawing.SystemColors.GrayText;
+                                TextBox1.Text = m_TipWhenBlank;
+                                TextBox1.SelectionStart = 0;
+                                TextBox1.SelectionLength = 0;
+                        } else {
+                                TextBox1.ForeColor = System.Drawing.SystemColors.ControlText;
+                        }
+                }
 
                 private void TextBox1_GotFocus(object sender, System.EventArgs e)
                 {
                         if (IgnorarEventos == 0) {
-                                if (m_ReadOnly == false)
+                                IgnorarEventos++;
+                                if (m_ReadOnly == false) {
                                         TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
 
-                                IgnorarEventos++;
+                                        if (TextBox1.ForeColor == System.Drawing.SystemColors.GrayText) {
+                                                this.TextBox1.Text = "";
+                                                TextBox1.ForeColor = System.Drawing.SystemColors.ControlText;
+                                        }
+                                }
+
                                 TextBox1.Focus();
                                 IgnorarEventos--;
 

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -31,113 +31,103 @@
 
 namespace Lfc.CuentasCorrientes
 {
-        public partial class Inicio : Lui.Forms.AccountForm
+        public partial class Inicio
         {
                 #region Código generado por el Diseñador de Windows Forms
 
                 private void InitializeComponent()
                 {
-                        this.cmdNotaDeb = new Lui.Forms.Button();
-                        this.cmdNotaCred = new Lui.Forms.Button();
-                        this.cmdAjuste = new Lui.Forms.Button();
+                        this.BotonNotaDeb = new Lui.Forms.Button();
+                        this.BotonNotaCred = new Lui.Forms.Button();
+                        this.BotonAjuste = new Lui.Forms.Button();
                         this.SuspendLayout();
                         // 
-                        // ItemList
+                        // BotonNotaDeb
                         // 
-                        this.ItemList.Location = new System.Drawing.Point(208, 0);
-                        this.ItemList.Size = new System.Drawing.Size(484, 476);
+                        this.BotonNotaDeb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonNotaDeb.AutoSize = false;
+                        this.BotonNotaDeb.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonNotaDeb.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonNotaDeb.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonNotaDeb.Image = null;
+                        this.BotonNotaDeb.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonNotaDeb.Location = new System.Drawing.Point(12, 272);
+                        this.BotonNotaDeb.Name = "BotonNotaDeb";
+                        this.BotonNotaDeb.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonNotaDeb.ReadOnly = false;
+                        this.BotonNotaDeb.Size = new System.Drawing.Size(96, 29);
+                        this.BotonNotaDeb.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonNotaDeb.Subtext = "F4";
+                        this.BotonNotaDeb.TabIndex = 61;
+                        this.BotonNotaDeb.Text = "Nota Déb";
+                        this.BotonNotaDeb.ToolTipText = "";
+                        this.BotonNotaDeb.Click += new System.EventHandler(this.BotonNotaDeb_Click);
                         // 
-                        // cmdNotaDeb
+                        // BotonNotaCred
                         // 
-                        this.cmdNotaDeb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.cmdNotaDeb.AutoHeight = false;
-                        this.cmdNotaDeb.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdNotaDeb.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdNotaDeb.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdNotaDeb.Image = null;
-                        this.cmdNotaDeb.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdNotaDeb.Location = new System.Drawing.Point(12, 304);
-                        this.cmdNotaDeb.Name = "cmdNotaDeb";
-                        this.cmdNotaDeb.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdNotaDeb.ReadOnly = false;
-                        this.cmdNotaDeb.Size = new System.Drawing.Size(108, 32);
-                        this.cmdNotaDeb.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
-                        this.cmdNotaDeb.Subtext = "F4";
-                        this.cmdNotaDeb.TabIndex = 61;
-                        this.cmdNotaDeb.Text = "Nota Déb";
-                        this.cmdNotaDeb.ToolTipText = "";
-                        this.cmdNotaDeb.Click += new System.EventHandler(this.BotonNotaDeb_Click);
+                        this.BotonNotaCred.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonNotaCred.AutoSize = false;
+                        this.BotonNotaCred.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonNotaCred.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonNotaCred.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonNotaCred.Image = null;
+                        this.BotonNotaCred.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonNotaCred.Location = new System.Drawing.Point(120, 236);
+                        this.BotonNotaCred.Name = "BotonNotaCred";
+                        this.BotonNotaCred.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonNotaCred.ReadOnly = false;
+                        this.BotonNotaCred.Size = new System.Drawing.Size(96, 29);
+                        this.BotonNotaCred.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonNotaCred.Subtext = "F3";
+                        this.BotonNotaCred.TabIndex = 60;
+                        this.BotonNotaCred.Text = "Nota Créd";
+                        this.BotonNotaCred.ToolTipText = "";
+                        this.BotonNotaCred.Click += new System.EventHandler(this.BotonNotaCred_Click);
                         // 
-                        // cmdNotaCred
+                        // BotonAjuste
                         // 
-                        this.cmdNotaCred.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.cmdNotaCred.AutoHeight = false;
-                        this.cmdNotaCred.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdNotaCred.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdNotaCred.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdNotaCred.Image = null;
-                        this.cmdNotaCred.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdNotaCred.Location = new System.Drawing.Point(12, 264);
-                        this.cmdNotaCred.Name = "cmdNotaCred";
-                        this.cmdNotaCred.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdNotaCred.ReadOnly = false;
-                        this.cmdNotaCred.Size = new System.Drawing.Size(108, 32);
-                        this.cmdNotaCred.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
-                        this.cmdNotaCred.Subtext = "F3";
-                        this.cmdNotaCred.TabIndex = 60;
-                        this.cmdNotaCred.Text = "Nota Créd";
-                        this.cmdNotaCred.ToolTipText = "";
-                        this.cmdNotaCred.Click += new System.EventHandler(this.BotonNotaCred_Click);
-                        // 
-                        // cmdAjuste
-                        // 
-                        this.cmdAjuste.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.cmdAjuste.AutoHeight = false;
-                        this.cmdAjuste.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdAjuste.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdAjuste.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdAjuste.Image = null;
-                        this.cmdAjuste.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdAjuste.Location = new System.Drawing.Point(12, 344);
-                        this.cmdAjuste.Name = "cmdAjuste";
-                        this.cmdAjuste.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdAjuste.ReadOnly = false;
-                        this.cmdAjuste.Size = new System.Drawing.Size(108, 32);
-                        this.cmdAjuste.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
-                        this.cmdAjuste.Subtext = "F5";
-                        this.cmdAjuste.TabIndex = 62;
-                        this.cmdAjuste.Text = "Ajuste";
-                        this.cmdAjuste.ToolTipText = "";
-                        this.cmdAjuste.Click += new System.EventHandler(this.BotonAjuste_Click);
+                        this.BotonAjuste.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonAjuste.AutoSize = false;
+                        this.BotonAjuste.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonAjuste.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonAjuste.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonAjuste.Image = null;
+                        this.BotonAjuste.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonAjuste.Location = new System.Drawing.Point(120, 272);
+                        this.BotonAjuste.Name = "BotonAjuste";
+                        this.BotonAjuste.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonAjuste.ReadOnly = false;
+                        this.BotonAjuste.Size = new System.Drawing.Size(96, 29);
+                        this.BotonAjuste.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonAjuste.Subtext = "F5";
+                        this.BotonAjuste.TabIndex = 62;
+                        this.BotonAjuste.Text = "Ajuste";
+                        this.BotonAjuste.ToolTipText = "";
+                        this.BotonAjuste.Click += new System.EventHandler(this.BotonAjuste_Click);
                         // 
                         // Inicio
                         // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(692, 473);
-                        this.Controls.Add(this.cmdNotaDeb);
-                        this.Controls.Add(this.cmdNotaCred);
-                        this.Controls.Add(this.cmdAjuste);
+                        this.Controls.Add(this.BotonNotaDeb);
+                        this.Controls.Add(this.BotonNotaCred);
+                        this.Controls.Add(this.BotonAjuste);
                         this.Name = "Inicio";
                         this.Text = "Cuenta Corriente";
-                        this.WorkspaceChanged += new System.EventHandler(this.Inicio_WorkspaceChanged);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Inicio_KeyDown);
-                        this.Controls.SetChildIndex(this.EtiquetaIngresos, 0);
-                        this.Controls.SetChildIndex(this.EtiquetaEgresos, 0);
-                        this.Controls.SetChildIndex(this.EtiquetaSaldo, 0);
-                        this.Controls.SetChildIndex(this.EtiquetaTransporte, 0);
-                        this.Controls.SetChildIndex(this.EtiquetaTitulo, 0);
-                        this.Controls.SetChildIndex(this.ItemList, 0);
-                        this.Controls.SetChildIndex(this.cmdAjuste, 0);
-                        this.Controls.SetChildIndex(this.cmdNotaCred, 0);
-                        this.Controls.SetChildIndex(this.cmdNotaDeb, 0);
+                        this.Controls.SetChildIndex(this.BotonCancelar, 0);
+                        this.Controls.SetChildIndex(this.BotonFiltrar, 0);
+                        this.Controls.SetChildIndex(this.BotonImprimir, 0);
+                        this.Controls.SetChildIndex(this.Listado, 0);
+                        this.Controls.SetChildIndex(this.BotonAjuste, 0);
+                        this.Controls.SetChildIndex(this.BotonNotaCred, 0);
+                        this.Controls.SetChildIndex(this.BotonNotaDeb, 0);
                         this.ResumeLayout(false);
 
                 }
 
                 #endregion
                 
-                internal Lui.Forms.Button cmdNotaDeb;
-                internal Lui.Forms.Button cmdNotaCred;
-                internal Lui.Forms.Button cmdAjuste;
+                internal Lui.Forms.Button BotonNotaDeb;
+                internal Lui.Forms.Button BotonNotaCred;
+                internal Lui.Forms.Button BotonAjuste;
         }
 }

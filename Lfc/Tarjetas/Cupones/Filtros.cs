@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -68,7 +68,7 @@ namespace Lfc.Cupones.Cupones
 
 
                 // Requerido por el Diseñador de Windows Forms
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
 
                 // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
@@ -79,31 +79,31 @@ namespace Lfc.Cupones.Cupones
                 internal System.Windows.Forms.Label lblFecha1;
                 internal System.Windows.Forms.Label Label15;
                 internal System.Windows.Forms.Label Label1;
-                internal Lcc.Entrada.CodigoDetalle txtTarjeta;
+                internal Lcc.Entrada.CodigoDetalle EntradaFormaDePago;
                 internal Lui.Forms.TextBox txtPlanInteres;
                 internal Lui.Forms.TextBox txtPlanCuotas;
-                internal Lcc.Entrada.CodigoDetalle txtPlan;
-                internal Lcc.Entrada.CodigoDetalle txtCliente;
+                internal Lcc.Entrada.CodigoDetalle EntradaPlan;
+                internal Lcc.Entrada.CodigoDetalle EntradaCliente;
                 internal Label label3;
                 private Panel panel1;
                 private TableLayoutPanel tableLayoutPanel1;
                 internal Lcc.Entrada.RangoFechas EntradaFechas;
-                internal Lui.Forms.ComboBox txtEstado;
+                internal Lui.Forms.ComboBox EntradaEstado;
 
                 private void InitializeComponent()
                 {
-                        this.txtTarjeta = new Lcc.Entrada.CodigoDetalle();
+                        this.EntradaFormaDePago = new Lcc.Entrada.CodigoDetalle();
                         this.Label16 = new System.Windows.Forms.Label();
                         this.Label11 = new System.Windows.Forms.Label();
                         this.txtPlanInteres = new Lui.Forms.TextBox();
                         this.Label14 = new System.Windows.Forms.Label();
                         this.txtPlanCuotas = new Lui.Forms.TextBox();
                         this.lblFecha1 = new System.Windows.Forms.Label();
-                        this.txtPlan = new Lcc.Entrada.CodigoDetalle();
+                        this.EntradaPlan = new Lcc.Entrada.CodigoDetalle();
                         this.Label15 = new System.Windows.Forms.Label();
-                        this.txtCliente = new Lcc.Entrada.CodigoDetalle();
+                        this.EntradaCliente = new Lcc.Entrada.CodigoDetalle();
                         this.Label1 = new System.Windows.Forms.Label();
-                        this.txtEstado = new Lui.Forms.ComboBox();
+                        this.EntradaEstado = new Lui.Forms.ComboBox();
                         this.label3 = new System.Windows.Forms.Label();
                         this.panel1 = new System.Windows.Forms.Panel();
                         this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -122,34 +122,34 @@ namespace Lfc.Cupones.Cupones
                         // 
                         // txtTarjeta
                         // 
-                        this.txtTarjeta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaFormaDePago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtTarjeta.AutoHeight = true;
-                        this.txtTarjeta.AutoTab = true;
-                        this.txtTarjeta.CanCreate = false;
-                        this.txtTarjeta.DetailField = "nombre";
-                        this.txtTarjeta.ExtraDetailFields = null;
-                        this.txtTarjeta.Filter = "tipo=4";
-                        this.txtTarjeta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtTarjeta.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtTarjeta.FreeTextCode = "";
-                        this.txtTarjeta.KeyField = "id_formapago";
-                        this.txtTarjeta.Location = new System.Drawing.Point(85, 3);
-                        this.txtTarjeta.MaxLength = 200;
-                        this.txtTarjeta.Name = "txtTarjeta";
-                        this.txtTarjeta.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtTarjeta.ReadOnly = false;
-                        this.txtTarjeta.Required = true;
-                        this.txtTarjeta.Size = new System.Drawing.Size(456, 24);
-                        this.txtTarjeta.TabIndex = 1;
-                        this.txtTarjeta.Table = "formaspago";
-                        this.txtTarjeta.TeclaDespuesDeEnter = "{tab}";
-                        this.txtTarjeta.Text = "0";
-                        this.txtTarjeta.TextDetail = "";
-                        this.txtTarjeta.TextInt = 0;
-                        this.txtTarjeta.TipWhenBlank = "";
-                        this.txtTarjeta.ToolTipText = "";
-                        this.txtTarjeta.TextChanged += new System.EventHandler(this.txtTarjeta_TextChanged);
+                        this.EntradaFormaDePago.AutoSize = true;
+                        this.EntradaFormaDePago.AutoTab = true;
+                        this.EntradaFormaDePago.CanCreate = false;
+                        this.EntradaFormaDePago.DataTextField = "nombre";
+                        this.EntradaFormaDePago.ExtraDetailFields = null;
+                        this.EntradaFormaDePago.Filter = "tipo=4";
+                        this.EntradaFormaDePago.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaFormaDePago.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaFormaDePago.FreeTextCode = "";
+                        this.EntradaFormaDePago.DataValueField = "id_formapago";
+                        this.EntradaFormaDePago.Location = new System.Drawing.Point(85, 3);
+                        this.EntradaFormaDePago.MaxLength = 200;
+                        this.EntradaFormaDePago.Name = "txtTarjeta";
+                        this.EntradaFormaDePago.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaFormaDePago.ReadOnly = false;
+                        this.EntradaFormaDePago.Required = true;
+                        this.EntradaFormaDePago.Size = new System.Drawing.Size(456, 24);
+                        this.EntradaFormaDePago.TabIndex = 1;
+                        this.EntradaFormaDePago.Table = "formaspago";
+                        this.EntradaFormaDePago.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaFormaDePago.Text = "0";
+                        this.EntradaFormaDePago.TextDetail = "";
+                        this.EntradaFormaDePago.TextInt = 0;
+                        this.EntradaFormaDePago.TipWhenBlank = "";
+                        this.EntradaFormaDePago.ToolTipText = "";
+                        this.EntradaFormaDePago.TextChanged += new System.EventHandler(this.txtTarjeta_TextChanged);
                         // 
                         // Label16
                         // 
@@ -173,7 +173,7 @@ namespace Lfc.Cupones.Cupones
                         // 
                         // txtPlanInteres
                         // 
-                        this.txtPlanInteres.AutoHeight = false;
+                        this.txtPlanInteres.AutoSize = false;
                         this.txtPlanInteres.AutoNav = true;
                         this.txtPlanInteres.AutoTab = true;
                         this.txtPlanInteres.DataType = Lui.Forms.DataTypes.Float;
@@ -195,7 +195,6 @@ namespace Lfc.Cupones.Cupones
                         this.txtPlanInteres.TabIndex = 3;
                         this.txtPlanInteres.TabStop = false;
                         this.txtPlanInteres.Text = "0.00";
-                        this.txtPlanInteres.TextRaw = "0.00";
                         this.txtPlanInteres.TipWhenBlank = "";
                         this.txtPlanInteres.ToolTipText = "";
                         // 
@@ -211,7 +210,7 @@ namespace Lfc.Cupones.Cupones
                         // 
                         // txtPlanCuotas
                         // 
-                        this.txtPlanCuotas.AutoHeight = false;
+                        this.txtPlanCuotas.AutoSize = false;
                         this.txtPlanCuotas.AutoNav = true;
                         this.txtPlanCuotas.AutoTab = true;
                         this.txtPlanCuotas.DataType = Lui.Forms.DataTypes.Integer;
@@ -233,7 +232,6 @@ namespace Lfc.Cupones.Cupones
                         this.txtPlanCuotas.TabIndex = 1;
                         this.txtPlanCuotas.TabStop = false;
                         this.txtPlanCuotas.Text = "1";
-                        this.txtPlanCuotas.TextRaw = "1";
                         this.txtPlanCuotas.TipWhenBlank = "";
                         this.txtPlanCuotas.ToolTipText = "";
                         // 
@@ -249,34 +247,34 @@ namespace Lfc.Cupones.Cupones
                         // 
                         // txtPlan
                         // 
-                        this.txtPlan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaPlan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtPlan.AutoHeight = true;
-                        this.txtPlan.AutoTab = true;
-                        this.txtPlan.CanCreate = false;
-                        this.txtPlan.DetailField = "nombre";
-                        this.txtPlan.ExtraDetailFields = null;
-                        this.txtPlan.Filter = "";
-                        this.txtPlan.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtPlan.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtPlan.FreeTextCode = "";
-                        this.txtPlan.KeyField = "id_plan";
-                        this.txtPlan.Location = new System.Drawing.Point(85, 33);
-                        this.txtPlan.MaxLength = 200;
-                        this.txtPlan.Name = "txtPlan";
-                        this.txtPlan.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtPlan.ReadOnly = false;
-                        this.txtPlan.Required = false;
-                        this.txtPlan.Size = new System.Drawing.Size(456, 24);
-                        this.txtPlan.TabIndex = 3;
-                        this.txtPlan.Table = "tarjetas_planes";
-                        this.txtPlan.TeclaDespuesDeEnter = "{tab}";
-                        this.txtPlan.Text = "0";
-                        this.txtPlan.TextDetail = "";
-                        this.txtPlan.TextInt = 0;
-                        this.txtPlan.TipWhenBlank = "";
-                        this.txtPlan.ToolTipText = "";
-                        this.txtPlan.TextChanged += new System.EventHandler(this.txtPlan_TextChanged);
+                        this.EntradaPlan.AutoSize = true;
+                        this.EntradaPlan.AutoTab = true;
+                        this.EntradaPlan.CanCreate = false;
+                        this.EntradaPlan.DataTextField = "nombre";
+                        this.EntradaPlan.ExtraDetailFields = null;
+                        this.EntradaPlan.Filter = "";
+                        this.EntradaPlan.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaPlan.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaPlan.FreeTextCode = "";
+                        this.EntradaPlan.DataValueField = "id_plan";
+                        this.EntradaPlan.Location = new System.Drawing.Point(85, 33);
+                        this.EntradaPlan.MaxLength = 200;
+                        this.EntradaPlan.Name = "txtPlan";
+                        this.EntradaPlan.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaPlan.ReadOnly = false;
+                        this.EntradaPlan.Required = false;
+                        this.EntradaPlan.Size = new System.Drawing.Size(456, 24);
+                        this.EntradaPlan.TabIndex = 3;
+                        this.EntradaPlan.Table = "tarjetas_planes";
+                        this.EntradaPlan.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaPlan.Text = "0";
+                        this.EntradaPlan.TextDetail = "";
+                        this.EntradaPlan.TextInt = 0;
+                        this.EntradaPlan.TipWhenBlank = "";
+                        this.EntradaPlan.ToolTipText = "";
+                        this.EntradaPlan.TextChanged += new System.EventHandler(this.txtPlan_TextChanged);
                         // 
                         // Label15
                         // 
@@ -290,33 +288,33 @@ namespace Lfc.Cupones.Cupones
                         // 
                         // txtCliente
                         // 
-                        this.txtCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EntradaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtCliente.AutoHeight = true;
-                        this.txtCliente.AutoTab = true;
-                        this.txtCliente.CanCreate = false;
-                        this.txtCliente.DetailField = "nombre_visible";
-                        this.txtCliente.ExtraDetailFields = null;
-                        this.txtCliente.Filter = "";
-                        this.txtCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtCliente.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtCliente.FreeTextCode = "";
-                        this.txtCliente.KeyField = "id_persona";
-                        this.txtCliente.Location = new System.Drawing.Point(85, 123);
-                        this.txtCliente.MaxLength = 200;
-                        this.txtCliente.Name = "txtCliente";
-                        this.txtCliente.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtCliente.ReadOnly = false;
-                        this.txtCliente.Required = false;
-                        this.txtCliente.Size = new System.Drawing.Size(456, 24);
-                        this.txtCliente.TabIndex = 8;
-                        this.txtCliente.Table = "personas";
-                        this.txtCliente.TeclaDespuesDeEnter = "{tab}";
-                        this.txtCliente.Text = "0";
-                        this.txtCliente.TextDetail = "";
-                        this.txtCliente.TextInt = 0;
-                        this.txtCliente.TipWhenBlank = "";
-                        this.txtCliente.ToolTipText = "";
+                        this.EntradaCliente.AutoSize = true;
+                        this.EntradaCliente.AutoTab = true;
+                        this.EntradaCliente.CanCreate = false;
+                        this.EntradaCliente.DataTextField = "nombre_visible";
+                        this.EntradaCliente.ExtraDetailFields = null;
+                        this.EntradaCliente.Filter = "";
+                        this.EntradaCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaCliente.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaCliente.FreeTextCode = "";
+                        this.EntradaCliente.DataValueField = "id_persona";
+                        this.EntradaCliente.Location = new System.Drawing.Point(85, 123);
+                        this.EntradaCliente.MaxLength = 200;
+                        this.EntradaCliente.Name = "txtCliente";
+                        this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCliente.ReadOnly = false;
+                        this.EntradaCliente.Required = false;
+                        this.EntradaCliente.Size = new System.Drawing.Size(456, 24);
+                        this.EntradaCliente.TabIndex = 8;
+                        this.EntradaCliente.Table = "personas";
+                        this.EntradaCliente.TeclaDespuesDeEnter = "{tab}";
+                        this.EntradaCliente.Text = "0";
+                        this.EntradaCliente.TextDetail = "";
+                        this.EntradaCliente.TextInt = 0;
+                        this.EntradaCliente.TipWhenBlank = "";
+                        this.EntradaCliente.ToolTipText = "";
                         // 
                         // Label1
                         // 
@@ -328,22 +326,22 @@ namespace Lfc.Cupones.Cupones
                         this.Label1.Text = "Cliente";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // txtEstado
+                        // EntradaEstado
                         // 
-                        this.txtEstado.AutoHeight = true;
-                        this.txtEstado.AutoNav = true;
-                        this.txtEstado.AutoTab = true;
-                        this.txtEstado.DetailField = null;
-                        this.txtEstado.Filter = null;
-                        this.txtEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtEstado.KeyField = null;
-                        this.txtEstado.Location = new System.Drawing.Point(85, 93);
-                        this.txtEstado.MaxLenght = 32767;
-                        this.txtEstado.Name = "txtEstado";
-                        this.txtEstado.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtEstado.ReadOnly = false;
-                        this.txtEstado.SetData = new string[] {
+                        this.EntradaEstado.AutoSize = true;
+                        this.EntradaEstado.AutoNav = true;
+                        this.EntradaEstado.AutoTab = true;
+                        this.EntradaEstado.DetailField = null;
+                        this.EntradaEstado.Filter = null;
+                        this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaEstado.KeyField = null;
+                        this.EntradaEstado.Location = new System.Drawing.Point(85, 93);
+                        this.EntradaEstado.MaxLenght = 32767;
+                        this.EntradaEstado.Name = "EntradaEstado";
+                        this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEstado.ReadOnly = false;
+                        this.EntradaEstado.SetData = new string[] {
         "No Cobrados|-2",
         "Sin Presentar|0",
         "Cancelados|1",
@@ -351,14 +349,13 @@ namespace Lfc.Cupones.Cupones
         "Presentados|10",
         "Acreditados|20",
         "Todos|-1"};
-                        this.txtEstado.Size = new System.Drawing.Size(180, 24);
-                        this.txtEstado.TabIndex = 6;
-                        this.txtEstado.Table = null;
-                        this.txtEstado.Text = "No Cobrados";
-                        this.txtEstado.TextKey = "-2";
-                        this.txtEstado.TextRaw = "No Cobrados";
-                        this.txtEstado.TipWhenBlank = "";
-                        this.txtEstado.ToolTipText = "";
+                        this.EntradaEstado.Size = new System.Drawing.Size(180, 24);
+                        this.EntradaEstado.TabIndex = 6;
+                        this.EntradaEstado.Table = null;
+                        this.EntradaEstado.Text = "No Cobrados";
+                        this.EntradaEstado.TextKey = "-2";
+                        this.EntradaEstado.TipWhenBlank = "";
+                        this.EntradaEstado.ToolTipText = "";
                         // 
                         // label3
                         // 
@@ -390,15 +387,15 @@ namespace Lfc.Cupones.Cupones
                         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
                         this.tableLayoutPanel1.Controls.Add(this.EntradaFechas, 1, 5);
                         this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 2);
-                        this.tableLayoutPanel1.Controls.Add(this.txtCliente, 1, 4);
-                        this.tableLayoutPanel1.Controls.Add(this.txtEstado, 1, 3);
+                        this.tableLayoutPanel1.Controls.Add(this.EntradaCliente, 1, 4);
+                        this.tableLayoutPanel1.Controls.Add(this.EntradaEstado, 1, 3);
                         this.tableLayoutPanel1.Controls.Add(this.Label16, 0, 0);
                         this.tableLayoutPanel1.Controls.Add(this.Label15, 0, 1);
                         this.tableLayoutPanel1.Controls.Add(this.Label11, 0, 3);
                         this.tableLayoutPanel1.Controls.Add(this.Label1, 0, 4);
                         this.tableLayoutPanel1.Controls.Add(this.label3, 0, 5);
-                        this.tableLayoutPanel1.Controls.Add(this.txtTarjeta, 1, 0);
-                        this.tableLayoutPanel1.Controls.Add(this.txtPlan, 1, 1);
+                        this.tableLayoutPanel1.Controls.Add(this.EntradaFormaDePago, 1, 0);
+                        this.tableLayoutPanel1.Controls.Add(this.EntradaPlan, 1, 1);
                         this.tableLayoutPanel1.Location = new System.Drawing.Point(24, 24);
                         this.tableLayoutPanel1.Name = "tableLayoutPanel1";
                         this.tableLayoutPanel1.RowCount = 6;
@@ -413,7 +410,7 @@ namespace Lfc.Cupones.Cupones
                         // 
                         // EntradaFechas
                         // 
-                        this.EntradaFechas.AutoHeight = true;
+                        this.EntradaFechas.AutoSize = true;
                         this.EntradaFechas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaFechas.Location = new System.Drawing.Point(85, 153);
                         this.EntradaFechas.MuestraFuturos = false;
@@ -443,13 +440,13 @@ namespace Lfc.Cupones.Cupones
 
                 private void txtTarjeta_TextChanged(System.Object sender, System.EventArgs e)
                 {
-                        txtPlan.Filter = "id_tarjeta=" + txtTarjeta.TextInt.ToString() + " OR id_tarjeta IS NULL";
+                        EntradaPlan.Filter = "id_tarjeta=" + EntradaFormaDePago.TextInt.ToString() + " OR id_tarjeta IS NULL";
                 }
 
 
                 private void txtPlan_TextChanged(object sender, System.EventArgs e)
                 {
-                        Lfx.Data.Row row = this.DataBase.Row("tarjetas_planes", "id_plan", txtPlan.TextInt);
+                        Lfx.Data.Row row = this.Connection.Row("tarjetas_planes", "id_plan", EntradaPlan.TextInt);
                         if (row != null) {
                                 txtPlanCuotas.Text = System.Convert.ToString(row["cuotas"]);
                                 txtPlanInteres.Text = Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(row["interes"]));

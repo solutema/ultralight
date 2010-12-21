@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -129,7 +129,7 @@ namespace Lazaro.Misc
                         // OkButton
                         // 
                         this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.OkButton.AutoHeight = false;
+                        this.OkButton.AutoSize = false;
                         this.OkButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.OkButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -150,7 +150,7 @@ namespace Lazaro.Misc
                         // CancelCommandButton
                         // 
                         this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.CancelCommandButton.AutoHeight = false;
+                        this.CancelCommandButton.AutoSize = false;
                         this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.CancelCommandButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;

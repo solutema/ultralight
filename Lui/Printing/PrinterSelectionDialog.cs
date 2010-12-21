@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -30,186 +30,82 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Diagnostics;
+using System.Drawing.Printing;
 using System.Windows.Forms;
 
 namespace Lui.Printing
 {
-	public class PrinterSelectionDialog : Lui.Forms.DialogForm
+        public partial class PrinterSelectionDialog : Lui.Forms.DialogForm
 	{
-
-		internal string m_Resultado = "";
-		internal string m_ExtraItems = "";
+		private Lbl.Impresion.Impresora m_Resultado = null;
+                protected string m_ExtraItems = "";
 		private System.Windows.Forms.ColumnHeader NombreVisible;
-		private bool m_VistaPrevia;
+                public bool MuestraImpresorasDeWindows = true, MuestraImpresorasLazaro = true;
 
-		#region Código generado por el Diseñador de Windows Forms
-
-		public PrinterSelectionDialog()
-			: base()
-		{
-			// Necesario para admitir el Diseñador de Windows Forms
-			InitializeComponent();
-		}
-
-		// Limpiar los recursos que se estén utilizando.
-		protected override void Dispose(bool disposing)
-		{
-			if(disposing) {
-				if(components != null) {
-					components.Dispose();
-				}
-			}
-			base.Dispose(disposing);
-		}
+                public PrinterSelectionDialog()
+                {
+                        InitializeComponent();
+                }
 
 
-		// Requerido por el Diseñador de Windows Forms
-		private System.ComponentModel.Container components;
+                private void AgregarImpresora(Lbl.Impresion.Impresora impresora)
+                {
+                        ListViewItem Itm = Listado.Items.Add(impresora.Id.ToString());
+                        Itm.SubItems.Add(impresora.Nombre);
+                        Itm.Tag = impresora;
 
-		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
-		// Puede modificarse utilizando el Diseñador de Windows Forms. 
-		// No lo modifique con el editor de código.
-                internal Lui.Forms.ListView lvItems;
-		private System.Windows.Forms.ColumnHeader Nombre;
+                        if (impresora == m_Resultado) {
+                                if (Listado.SelectedItems.Count > 0)
+                                        Listado.SelectedItems[0].Selected = false;
 
-		private void InitializeComponent()
-		{
-			this.components = new System.ComponentModel.Container();
-                        this.lvItems = new Lui.Forms.ListView();
-			this.Nombre = new System.Windows.Forms.ColumnHeader();
-			this.NombreVisible = new System.Windows.Forms.ColumnHeader();
-			this.SuspendLayout();
-			// 
-			// lvItems
-			// 
-			this.lvItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-				| System.Windows.Forms.AnchorStyles.Left)
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.lvItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.lvItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-																					  this.Nombre,
-																					  this.NombreVisible});
-			this.lvItems.FullRowSelect = true;
-			this.lvItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-			this.lvItems.HideSelection = false;
-			this.lvItems.Location = new System.Drawing.Point(8, 8);
-			this.lvItems.Name = "lvItems";
-			this.lvItems.Size = new System.Drawing.Size(360, 172);
-			this.lvItems.TabIndex = 0;
-			this.lvItems.View = System.Windows.Forms.View.Details;
-			this.lvItems.DoubleClick += new System.EventHandler(this.lvItems_DoubleClick);
-			this.lvItems.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvItems_KeyUp);
-			// 
-			// Nombre
-			// 
-			this.Nombre.Text = "Nombre";
-			this.Nombre.Width = 0;
-			// 
-			// NombreVisible
-			// 
-			this.NombreVisible.Text = "Nombre";
-			this.NombreVisible.Width = 300;
-			// 
-			// PrinterSelectionDialog
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
-			this.ClientSize = new System.Drawing.Size(374, 239);
-			this.Controls.Add(this.lvItems);
-			this.Name = "PrinterSelectionDialog";
-			this.Text = "Seleccionar Impresora";
-			this.Activated += new System.EventHandler(this.FormSeleccionarImpresora_Activated);
-			this.ResumeLayout(false);
-
-		}
-
-
-		#endregion
-
-		public bool VistaPrevia
-		{
-			get
-			{
-				return m_VistaPrevia;
-			}
-			set
-			{
-				m_VistaPrevia = value;
-			}
-		}
+                                Itm.Selected = true;
+                                Itm.Focused = true;
+                        }
+                }
 
 		private void FormSeleccionarImpresora_Activated(object sender, System.EventArgs e)
 		{
-			lvItems.Items.Clear();
-			if(m_VistaPrevia) {
-				ListViewItem itm = new ListViewItem("lazaro!preview");
-				itm.SubItems.Add("Mostrar Vista Previa en Pantalla");
-				lvItems.Items.Add(itm);
-			}
+			Listado.Items.Clear();
 
-			foreach(string Impresora in System.Drawing.Printing.PrinterSettings.InstalledPrinters) {
-				ListViewItem Itm = lvItems.Items.Add(Impresora);
-                                if (Impresora.Length > 1 && Impresora.Substring(0, 2) == @"\\" && Impresora.IndexOf(@"|") == -1) {
-                                        string NombreImpresora = Impresora.Substring(2, Impresora.Length - 2);
-                                        string Estacion = Lfx.Types.Strings.GetNextToken(ref NombreImpresora, @"\");
-                                        Itm.SubItems.Add(NombreImpresora + " en " + Lfx.Types.Strings.ULCase(Estacion) + " (impresora remota)");
-                                } else {
-                                        Itm.SubItems.Add(Impresora + " (impresora local)");
+                        if (MuestraImpresorasLazaro) {
+                                Lbl.ColeccionGenerica<Lbl.Impresion.Impresora> Impresoras = Lbl.Sys.Config.Actual.Impresion.Impresoras;
+                                if (Impresoras != null) {
+                                        foreach (Lbl.Impresion.Impresora Impresora in Impresoras) {
+                                                this.AgregarImpresora(Impresora);
+                                        }
                                 }
+                        }
 
-				if(Impresora == m_Resultado) {
-					if(lvItems.SelectedItems.Count > 0)
-						lvItems.SelectedItems[0].Selected = false;
+                        if (MuestraImpresorasDeWindows) {
+                                foreach (string NombreImpresora in PrinterSettings.InstalledPrinters) {
+                                        //PrinterSettings PrinterInfo = new PrinterSettings();
+                                        //PrinterInfo.PrinterName = Impresora;
 
-					Itm.Selected = true;
-					Itm.Focused = true;
-				}
-			}
-			string Extras = Lfx.Types.Strings.GetNextToken(ref m_ExtraItems, ",");
-			while(Extras.Length > 0) {
-				ListViewItem Itm = lvItems.Items.Add(Extras);
-				if(Extras.IndexOf(@"|") != -1) {
-					string NombreVisible = Extras;
-					string NombreOculto = Lfx.Types.Strings.GetNextToken(ref NombreVisible, @"|");
-					Itm.Text = NombreOculto;
-					Itm.SubItems.Add(NombreVisible);
-				} else {
-					Itm.SubItems.Add(Extras);
-				}
-				if(Extras == m_Resultado) {
-					if(lvItems.SelectedItems.Count > 0)
-						lvItems.SelectedItems[0].Selected = false;
-
-					Itm.Selected = true;
-					Itm.Focused = true;
-				}
-				Extras = Lfx.Types.Strings.GetNextToken(ref m_ExtraItems, ",");
-			}
-			lvItems.Columns[1].Width = -2;
-			if(lvItems.Items.Count > 0 && lvItems.SelectedItems.Count == 0) {
-				lvItems.Items[0].Selected = true;
-				lvItems.Items[0].Focused = true;
+                                        Lbl.Impresion.Impresora Impr = Lbl.Impresion.Impresora.InstanciarImpresoraLocal(this.Connection, NombreImpresora);
+                                        this.AgregarImpresora(Impr);
+                                }
+                        }
+			
+			Listado.Columns[1].Width = -2;
+			if(Listado.Items.Count > 0 && Listado.SelectedItems.Count == 0) {
+				Listado.Items[0].Selected = true;
+				Listado.Items[0].Focused = true;
 			}
 		}
 
 
 		public override Lfx.Types.OperationResult Ok()
 		{
-			if(lvItems.SelectedItems != null) {
-				m_Resultado = lvItems.SelectedItems[0].Text;
-				if(m_Resultado == "Mostrar Vista Previa en Pantalla")
-					m_Resultado = "lazaro!preview";
+			if(Listado.SelectedItems != null) {
+				m_Resultado = Listado.SelectedItems[0].Tag as Lbl.Impresion.Impresora;
 			}
 			this.DialogResult = DialogResult.OK;
 			this.Hide();
-			return new Lfx.Types.SuccessOperationResult();
+                        return base.Ok();
 		}
 
 
-		private void lvItems_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+		private void Listado_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
 		{
 			if(e.KeyCode == Keys.Return) {
 				e.Handled = true;
@@ -218,12 +114,12 @@ namespace Lui.Printing
 		}
 
 
-		private void lvItems_DoubleClick(object sender, System.EventArgs e)
+		private void Listado_DoubleClick(object sender, System.EventArgs e)
 		{
 			this.Ok();
 		}
 
-		public string SelectedPrinter
+		public Lbl.Impresion.Impresora SelectedPrinter
 		{
 			get
 			{
@@ -234,19 +130,5 @@ namespace Lui.Printing
 				m_Resultado = value;
 			}
 		}
-
-		public string ExtraItems
-		{
-			get
-			{
-				return m_ExtraItems;
-			}
-			set
-			{
-				m_ExtraItems = value;
-			}
-		}
-
-
 	}
 }

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,20 +29,50 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel;
 
 namespace Lcc.Edicion
 {
         public class ControlEdicion : Lcc.ControlDeDatos
         {
+                [System.ComponentModel.EditorBrowsable(EditorBrowsableState.Always), Browsable(true)]
+                public event LccEventHandler SaveRequest;
+
                 /// <summary>
                 /// Actualiza el elemento con los datos del control.
                 /// </summary>
                 public virtual void ActualizarElemento()
                 {
                 }
+
+
+                /// <summary>
+                /// Se dispara cuando el elemento fue guardado.
+                /// </summary>
+                public virtual void AfterSave()
+                {
+                }
+
+
+                public Lfx.Types.OperationResult Save()
+                {
+                        Lfx.Types.OperationResult Res = this.ValidarControl();
+                        if (Res.Success == false)
+                                return Res;
+
+                        if (this.SaveRequest != null) {
+                                Lcc.LccEventArgs Args = new Lcc.LccEventArgs();
+                                this.SaveRequest(this, ref Args);
+                                if (Args.Result != null) {
+                                        return Args.Result;
+                                } else {
+                                        return new Lfx.Types.SuccessOperationResult();
+                                }
+                        } else {
+                                return new Lfx.Types.FailureOperationResult("No se puede grabar");
+                        }
+                }
+
 
                 /// <summary>
                 /// Valida los datos del control.
@@ -52,26 +82,77 @@ namespace Lcc.Edicion
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
-                // ******************* Compatibilidad con Lui.Forms.EditForm
-                public virtual Lfx.Types.OperationResult Create()
-                {
-                        return new Lfx.Types.SuccessOperationResult();
-                }
 
-                public virtual void FromRow(Lbl.ElementoDeDatos row)
+                // Compatibilidad con Lfc.FormularioEdicion
+                public void FromRow(Lbl.IElementoDeDatos row)
                 {
                         // Si todavía no conozco el tipo de elemento de este formulario, lo tomo de row
-                        if (this.ElementType == typeof(Lbl.ElementoDeDatos))
-                                this.ElementType = row.GetType();
+                        if (this.ElementoTipo == null || this.ElementoTipo == typeof(Lbl.ElementoDeDatos))
+                                this.ElementoTipo = row.GetType();
 
                         this.Elemento = row;
                         this.ActualizarControl();
                 }
 
-                public virtual Lbl.ElementoDeDatos ToRow()
+                // Compatibilidad con Lfc.FormularioEdicion
+                public Lbl.IElementoDeDatos ToRow()
                 {
                         this.ActualizarElemento();
                         return this.Elemento;
+                }
+
+
+                public virtual Lfx.Types.OperationResult BeforePrint()
+                {
+                        return new Lfx.Types.SuccessOperationResult();
+                }
+
+
+                public virtual void AfterPrint()
+                {
+                        return;
+                }
+
+
+                public override bool ReadOnly
+                {
+                        get
+                        {
+                                return base.ReadOnly;
+                        }
+                        set
+                        {
+                                base.ReadOnly = value;
+                                this.SetControlsReadOnly(this.Controls, m_ReadOnly);
+                        }
+                }
+
+                internal void SetControlsReadOnly(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
+                {
+                        // Pongo los Changed en False
+                        foreach (System.Windows.Forms.Control ctl in controles) {
+                                if (ctl == null) {
+                                        //Nada
+                                } else if (ctl is Lui.Forms.Control) {
+                                        ((Lui.Forms.Control)ctl).ReadOnly = newValue;
+                                } else if (ctl.Controls != null) {
+                                        SetControlsReadOnly(ctl.Controls, newValue);
+                                }
+
+                        }
+                }
+
+                public virtual bool PuedeEditar()
+                {
+                        if (this.Elemento.Existe)
+                                return Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Elemento, Lbl.Sys.Permisos.Operaciones.Editar);
+                        else
+                                return Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Elemento, Lbl.Sys.Permisos.Operaciones.Crear);
+                }
+
+                public virtual bool PuedeImprimir()
+                {
+                        return Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Elemento, Lbl.Sys.Permisos.Operaciones.Imprimir);
                 }
         }
 }

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,16 +35,18 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
-	public class Categoria : ElementoDeDatos
+        [Lbl.Atributos.NombreItem("Categoría")]
+        public class Categoria : ElementoDeDatos, IElementoConImagen
 	{
                 protected Rubro m_Rubro = null;
+                protected Impuestos.Alicuota m_Alicuota = null;
 
-		public Categoria(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+		public Categoria(Lfx.Data.Connection dataBase) : base(dataBase) { }
 
-		public Categoria(Lfx.Data.DataBase dataBase, int itemId)
+		public Categoria(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Categoria(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                public Categoria(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
 		public override string TablaDatos
@@ -67,7 +69,7 @@ namespace Lbl.Articulos
 		{
 			get
 			{
-				return this.FieldString("nombresing");
+				return this.GetFieldValue<string>("nombresing");
 			}
 			set
 			{
@@ -75,11 +77,11 @@ namespace Lbl.Articulos
 			}
 		}
 
-		public double StockMinimo
+		public decimal StockMinimo
 		{
 			get
 			{
-				return this.FieldDouble("stock_minimo");
+				return this.GetFieldValue<decimal>("stock_minimo");
 			}
 			set
 			{
@@ -91,7 +93,7 @@ namespace Lbl.Articulos
                 {
                         get
                         {
-                                return this.FieldInt("garantia");
+                                return this.GetFieldValue<int>("garantia");
                         }
                         set
                         {
@@ -115,7 +117,7 @@ namespace Lbl.Articulos
                 {
                         get
                         {
-                                return ((Seguimientos)(this.FieldInt("requierens")));
+                                return ((Seguimientos)(this.GetFieldValue<int>("requierens")));
                         }
                         set
                         {
@@ -127,22 +129,42 @@ namespace Lbl.Articulos
                 {
                         get
                         {
+                                if (m_Rubro == null && this.GetFieldValue<int>("id_rubro") != 0)
+                                        m_Rubro = new Rubro(this.Connection, this.GetFieldValue<int>("id_rubro"));
+
                                 return m_Rubro;
                         }
                         set
                         {
                                 m_Rubro = value;
+                                this.SetFieldValue("id_rubro", value);
                         }
                 }
 
-                public override void OnLoad()
+                public Lbl.Impuestos.Alicuota Alicuota
                 {
-                        if (this.FieldInt("id_rubro") != 0)
-                                m_Rubro = new Rubro(this.DataBase, this.FieldInt("id_rubro"));
-                        else
-                                m_Rubro = null;
+                        get
+                        {
+                                if (m_Alicuota == null && this.GetFieldValue<int>("id_alicuota") != 0)
+                                        m_Alicuota = new Impuestos.Alicuota(this.Connection, this.GetFieldValue<int>("id_alicuota"));
 
-                        base.OnLoad();
+                                return m_Alicuota;
+                        }
+                        set
+                        {
+                                m_Alicuota = value;
+                                this.SetFieldValue("id_alicuota", value);
+                        }
+                }
+
+                public Lbl.Impuestos.Alicuota ObtenerAlicuota()
+                {
+                        if (this.Alicuota != null)
+                                return this.Alicuota;
+                        else if (this.Rubro != null && this.Rubro.Alicuota != null)
+                                return this.Rubro.Alicuota;
+                        else
+                                return Lbl.Sys.Config.Actual.Empresa.AlicuotaPredeterminada;
                 }
 
 		public override Lfx.Types.OperationResult Guardar()
@@ -150,9 +172,9 @@ namespace Lbl.Articulos
 			qGen.TableCommand Comando;
 
                         if (this.Existe == false) {
-                                Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
+                                Comando = new qGen.Insert(this.Connection, this.TablaDatos);
                         } else {
-                                Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando = new qGen.Update(this.Connection, this.TablaDatos);
                                 Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
@@ -166,11 +188,15 @@ namespace Lbl.Articulos
                                 Comando.Fields.AddWithValue("id_rubro", null);
                         else
                                 Comando.Fields.AddWithValue("id_rubro", this.Rubro.Id);
+                        if (this.Alicuota == null)
+                                Comando.Fields.AddWithValue("id_alicuota", null);
+                        else
+                                Comando.Fields.AddWithValue("id_alicuota", this.Alicuota.Id);
                         Comando.Fields.AddWithValue("garantia", this.Garantia);
 
 			this.AgregarTags(Comando);
 
-                        this.DataBase.Execute(Comando);
+                        this.Connection.Execute(Comando);
 
 			return base.Guardar();
 		}

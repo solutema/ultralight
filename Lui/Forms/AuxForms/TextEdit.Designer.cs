@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -44,15 +44,15 @@ namespace Lui.Forms.AuxForms
 			txtText.MenuItemEditor.Visible = false;
 		}
 
-		internal Lui.Forms.Button cmdAceptar;
+		internal Lui.Forms.Button BotonAceptar;
 		public Lui.Forms.TextBox txtText;
-		internal Lui.Forms.Button cmdCancelar;
+		internal Lui.Forms.Button BotonCancelar;
 
 		private void InitializeComponent()
 		{
                         this.txtText = new Lui.Forms.TextBox();
-                        this.cmdAceptar = new Lui.Forms.Button();
-                        this.cmdCancelar = new Lui.Forms.Button();
+                        this.BotonAceptar = new Lui.Forms.Button();
+                        this.BotonCancelar = new Lui.Forms.Button();
                         this.SuspendLayout();
                         // 
                         // txtText
@@ -77,53 +77,53 @@ namespace Lui.Forms.AuxForms
                         this.txtText.TipWhenBlank = "";
                         this.txtText.ToolTipText = "";
                         // 
-                        // cmdAceptar
+                        // BotonAceptar
                         // 
-                        this.cmdAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.cmdAceptar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdAceptar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.cmdAceptar.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdAceptar.Image = null;
-                        this.cmdAceptar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdAceptar.Location = new System.Drawing.Point(252, 211);
-                        this.cmdAceptar.Name = "cmdAceptar";
-                        this.cmdAceptar.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdAceptar.ReadOnly = false;
-                        this.cmdAceptar.Size = new System.Drawing.Size(96, 44);
-                        this.cmdAceptar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
-                        this.cmdAceptar.Subtext = "F9";
-                        this.cmdAceptar.TabIndex = 1;
-                        this.cmdAceptar.Text = "Aceptar";
-                        this.cmdAceptar.ToolTipText = "";
-                        this.cmdAceptar.Click += new System.EventHandler(this.cmdAceptar_Click);
+                        this.BotonAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonAceptar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonAceptar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.BotonAceptar.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonAceptar.Image = null;
+                        this.BotonAceptar.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonAceptar.Location = new System.Drawing.Point(252, 211);
+                        this.BotonAceptar.Name = "BotonAceptar";
+                        this.BotonAceptar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonAceptar.ReadOnly = false;
+                        this.BotonAceptar.Size = new System.Drawing.Size(96, 44);
+                        this.BotonAceptar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
+                        this.BotonAceptar.Subtext = "F9";
+                        this.BotonAceptar.TabIndex = 1;
+                        this.BotonAceptar.Text = "Aceptar";
+                        this.BotonAceptar.ToolTipText = "";
+                        this.BotonAceptar.Click += new System.EventHandler(this.BotonAceptar_Click);
                         // 
-                        // cmdCancelar
+                        // BotonCancelar
                         // 
-                        this.cmdCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.cmdCancelar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdCancelar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.cmdCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdCancelar.Image = null;
-                        this.cmdCancelar.ImagePos = Lui.Forms.ImagePositions.Middle;
-                        this.cmdCancelar.Location = new System.Drawing.Point(356, 211);
-                        this.cmdCancelar.Name = "cmdCancelar";
-                        this.cmdCancelar.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdCancelar.ReadOnly = false;
-                        this.cmdCancelar.Size = new System.Drawing.Size(96, 44);
-                        this.cmdCancelar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
-                        this.cmdCancelar.Subtext = "Esc";
-                        this.cmdCancelar.TabIndex = 2;
-                        this.cmdCancelar.Text = "Cancelar";
-                        this.cmdCancelar.ToolTipText = "";
-                        this.cmdCancelar.Click += new System.EventHandler(this.cmdCancelar_Click);
+                        this.BotonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonCancelar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonCancelar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.BotonCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonCancelar.Image = null;
+                        this.BotonCancelar.ImagePos = Lui.Forms.ImagePositions.Middle;
+                        this.BotonCancelar.Location = new System.Drawing.Point(356, 211);
+                        this.BotonCancelar.Name = "BotonCancelar";
+                        this.BotonCancelar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonCancelar.ReadOnly = false;
+                        this.BotonCancelar.Size = new System.Drawing.Size(96, 44);
+                        this.BotonCancelar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
+                        this.BotonCancelar.Subtext = "Esc";
+                        this.BotonCancelar.TabIndex = 2;
+                        this.BotonCancelar.Text = "Cancelar";
+                        this.BotonCancelar.ToolTipText = "";
+                        this.BotonCancelar.Click += new System.EventHandler(this.BotonCancelar_Click);
                         // 
                         // TextEdit
                         // 
                         this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
                         this.ClientSize = new System.Drawing.Size(464, 264);
                         this.ControlBox = false;
-                        this.Controls.Add(this.cmdCancelar);
-                        this.Controls.Add(this.cmdAceptar);
+                        this.Controls.Add(this.BotonCancelar);
+                        this.Controls.Add(this.BotonAceptar);
                         this.Controls.Add(this.txtText);
                         this.KeyPreview = true;
                         this.Name = "TextEdit";

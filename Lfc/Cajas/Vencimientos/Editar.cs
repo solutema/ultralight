@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -39,40 +39,18 @@ using System.Windows.Forms;
 
 namespace Lfc.Cajas.Vencimientos
 {
-        public partial class Editar : Lui.Forms.EditForm
+        public partial class Editar : Lcc.Edicion.ControlEdicion
         {
                 public Editar()
                 {
+                        this.ElementoTipo = typeof(Lbl.Cajas.Vencimiento);
+
                         InitializeComponent();
-
-                        this.ElementType = typeof(Lbl.Cajas.Vencimiento);
                 }
 
-                public override Lfx.Types.OperationResult Create()
+                public override void ActualizarControl()
                 {
-                        if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "vencimientos.create"))
-                                return new Lfx.Types.NoAccessOperationResult();
-
-                        Lbl.Cajas.Vencimiento Res = new Lbl.Cajas.Vencimiento(this.DataBase);
-                        Res.Crear();
-
-                        this.FromRow(Res);
-                        return new Lfx.Types.SuccessOperationResult();
-                }
-
-                public override Lfx.Types.OperationResult Edit(int lId)
-                {
-                        if (Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "vencimientos.read") == false)
-                                return new Lfx.Types.NoAccessOperationResult();
-
-                        return base.Edit(lId);
-                }
-
-                public override void FromRow(Lbl.ElementoDeDatos row)
-                {
-                        base.FromRow(row);
-
-                        Lbl.Cajas.Vencimiento Res = row as Lbl.Cajas.Vencimiento;
+                        Lbl.Cajas.Vencimiento Res = this.Elemento as Lbl.Cajas.Vencimiento;
 
                         EntradaConcepto.Elemento = Res.Concepto;
                         EntradaFechaFin.Text = Lfx.Types.Formatting.FormatDate(Res.FechaFin);
@@ -83,24 +61,19 @@ namespace Lfc.Cajas.Vencimientos
                         EntradaObs.Text = Res.Obs;
                         EntradaRepetir.Text = Res.Repetir.ToString();
                         EntradaEstado.TextKey = Res.Estado.ToString();
-                                
-                        this.ReadOnly = !Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "vencimientos.write");
 
-                        if (this.CachedRow.Existe)
-                                this.Text = "Vencimiento: " + Res.Nombre;
-                        else
-                                this.Text = "Vencimiento: Nuevo"; ;
+                        base.ActualizarControl();
                 }
 
-                public override Lbl.ElementoDeDatos ToRow()
+                public override void ActualizarElemento()
                 {
-                        Lbl.Cajas.Vencimiento Res = this.CachedRow as Lbl.Cajas.Vencimiento;
+                        Lbl.Cajas.Vencimiento Res = this.Elemento as Lbl.Cajas.Vencimiento;
 
                         Res.Concepto = EntradaConcepto.Elemento as Lbl.Cajas.Concepto;
                         Res.Estado = Lfx.Types.Parsing.ParseInt(EntradaEstado.TextKey);
                         Res.FechaFin = Lfx.Types.Parsing.ParseDate(EntradaFechaFin.Text);
                         Res.FechaInicio = Lfx.Types.Parsing.ParseDate(EntradaFechaInicio.Text);
-                        switch(EntradaFrecuencia.TextKey){
+                        switch (EntradaFrecuencia.TextKey) {
                                 case "unica":
                                         Res.Frecuencia = Lbl.Cajas.Frecuencias.Unica;
                                         break;
@@ -135,7 +108,7 @@ namespace Lfc.Cajas.Vencimientos
                         Res.Obs = EntradaObs.Text;
                         Res.Repetir = Lfx.Types.Parsing.ParseInt(EntradaRepetir.Text);
 
-                        return base.ToRow();
+                        base.ActualizarElemento();
                 }
         }
 }

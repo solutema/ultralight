@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -46,8 +46,10 @@ namespace Lcc.Entrada
                 protected int m_ItemId;
                 protected Lfx.Data.Row CurrentRow = null;
 
-                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public override Lbl.ElementoDeDatos Elemento
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public override Lbl.IElementoDeDatos Elemento
                 {
                         get
                         {
@@ -55,9 +57,9 @@ namespace Lcc.Entrada
                                         return null;
                                 } else if (base.Elemento == null || base.Elemento.Id != this.TextInt) {
                                         if (this.TextInt != 0 && this.CurrentRow != null) {
-                                                if (this.ElementType == null || this.ElementType == typeof(Lbl.ElementoDeDatos))
-                                                        this.ElementType = Lbl.Instanciador.InferirTipo(this.Table);
-                                                base.Elemento = Lbl.Instanciador.Instanciar(this.ElementType, this.DataBase, CurrentRow);
+                                                if (this.ElementoTipo == null || this.ElementoTipo == typeof(Lbl.ElementoDeDatos))
+                                                        this.ElementoTipo = Lbl.Instanciador.InferirTipo(this.Table);
+                                                base.Elemento = Lbl.Instanciador.Instanciar(this.ElementoTipo, this.Connection, CurrentRow);
                                         } else {
                                                 base.Elemento = null;
                                         }
@@ -106,7 +108,7 @@ namespace Lcc.Entrada
                 }
 
                 [System.ComponentModel.Category("Datos")]
-                virtual public string KeyField
+                virtual public string DataValueField
                 {
                         get
                         {
@@ -119,7 +121,7 @@ namespace Lcc.Entrada
                 }
 
                 [System.ComponentModel.Category("Datos")]
-                virtual public string DetailField
+                virtual public string DataTextField
                 {
                         get
                         {

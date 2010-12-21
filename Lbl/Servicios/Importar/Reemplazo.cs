@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@ namespace Lbl.Servicios.Importar
                 {
                         if (this.MatchSubString == false) {
                                 // Reemplazo de valores completos
-                                if (Lfx.Types.Object.ObjectsEqualByValue(value, this.Buscar))
+                                if (Lfx.Types.Object.CompareByValue(value, this.Buscar) == 0)
                                         return this.ReemplazarCon;
                                 else
                                         return value;

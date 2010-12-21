@@ -17,7 +17,7 @@ namespace RunComponent
 
                         //Console.WriteLine("RunComponent");
                         //Console.WriteLine("    Ejecuta un componente Lfx fuera del entorno del sistema Lázaro.");
-                        //Console.WriteLine("    Copyright 2004-2010 South Bridge S.R.L.");
+                        //Console.WriteLine("    Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.");
                         //Console.WriteLine("");
                         System.Windows.Forms.Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(ThreadExceptionHandler);
                         AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
@@ -37,18 +37,19 @@ namespace RunComponent
 
                         if (ComponentName != null && FunctionName != null) {
                                 //Console.WriteLine("Ejecutando " + ComponentName + "." + FunctionName);
-                                Lfx.Components.Component Componente = null;
+                                Lfx.Components.Function Funcion = null;
                                 try {
-                                        Componente = Lfx.Components.ComponentManager.LoadComponent(ComponentName, FunctionName);
+                                        Funcion = Lfx.Components.Manager.LoadComponent(ComponentName, FunctionName);
                                 } catch (Exception ex) {
                                         System.Windows.Forms.MessageBox.Show(ex.Message, "Error");
                                 }
-                                if (Componente != null) {
-                                        Lfx.Workspace.Master = new Lfx.Workspace("default", false);
-                                        Componente.Workspace = new Lfx.Workspace("default");
-                                        Componente.ExecutableName = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                                        Componente.CommandLineArgs = Environment.GetCommandLineArgs();
-                                        Componente.Create(true);
+                                if (Funcion != null) {
+                                        Lfx.Workspace.Master = new Lfx.Workspace("default");
+                                        Lbl.Sys.Config.Actual = new Lbl.Sys.Configuracion.Global(Lfx.Workspace.Master);
+                                        Funcion.Workspace = new Lfx.Workspace("default");
+                                        Funcion.ExecutableName = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                                        Funcion.CommandLineArgs = Environment.GetCommandLineArgs();
+                                        Funcion.Create(true);
                                 } else {
                                         System.Windows.Forms.MessageBox.Show("No se puede ejecutar " + ComponentName + "." + FunctionName, "Error");
                                 }
@@ -88,15 +89,15 @@ namespace RunComponent
                         Texto.AppendLine("Excepción no controlada: " + ex.ToString());
                         Texto.AppendLine("");
 
-                        Texto.AppendLine("Lazaro versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").ProductVersion + " del " + new System.IO.FileInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
+                        Texto.AppendLine("Lazaro versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").ProductVersion + " del " + new System.IO.FileInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").LastWriteTime.ToString());
                         System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ApplicationFolder);
                         foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.dll")) {
-                                Texto.AppendLine(DirItem.Name + " versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(DirItem.FullName).ProductVersion + " del " + new System.IO.FileInfo(DirItem.FullName).LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
+                                Texto.AppendLine(DirItem.Name + " versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(DirItem.FullName).ProductVersion + " del " + new System.IO.FileInfo(DirItem.FullName).LastWriteTime.ToString());
                         }
 
                         Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ComponentsFolder);
                         foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.dll")) {
-                                Texto.AppendLine(DirItem.Name + " versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(DirItem.FullName).ProductVersion + " del " + new System.IO.FileInfo(DirItem.FullName).LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.DefaultDateTimeFormat));
+                                Texto.AppendLine(DirItem.Name + " versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(DirItem.FullName).ProductVersion + " del " + new System.IO.FileInfo(DirItem.FullName).LastWriteTime.ToString());
                         }
 
                         Texto.AppendLine("Traza:");
@@ -104,7 +105,7 @@ namespace RunComponent
 
                         MailMessage Mensaje = new MailMessage();
                         Mensaje.To.Add(new MailAddress("error@sistemalazaro.com.ar"));
-                        Mensaje.From = new MailAddress(Lfx.Workspace.Master.CurrentUser.Id.ToString() + "@" + System.Environment.MachineName.ToUpperInvariant(), Lfx.Workspace.Master.CurrentUser.CompleteName + " en " + Lfx.Workspace.Master.CurrentConfig.Empresa.Nombre);
+                        Mensaje.From = new MailAddress(Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString() + "@" + System.Environment.MachineName.ToUpperInvariant(), Lbl.Sys.Config.Actual.UsuarioConectado.Nombre + " en " + Lbl.Sys.Config.Actual.Empresa.Nombre);
                         try {
                                 //No sé por qué, pero una vez dió un error al poner el asunto
                                 Mensaje.Subject = ex.Message;
@@ -123,7 +124,6 @@ namespace RunComponent
                         catch {
                                 // Nada
                         }
-
                 }
 	}
 }

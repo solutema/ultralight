@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ namespace Lbl.Comprobantes
         public class Pago : ElementoDeDatos
         {
                 public Lbl.Pagos.FormaDePago FormaDePago;
-                private double m_Importe = 0;
+                private decimal m_Importe = 0;
                 public Cajas.Caja CajaOrigen;
                 public Bancos.Cheque Cheque;
                 public Cajas.Concepto Concepto;
@@ -47,51 +47,56 @@ namespace Lbl.Comprobantes
                 public Comprobantes.Recibo Recibo;
 
                 //Heredar constructor
-                public Pago(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+                public Pago(Lfx.Data.Connection dataBase)
+                        : base(dataBase) { }
 
-                public Pago(Lfx.Data.DataBase dataBase, Lbl.Pagos.FormaDePago formaDePago)
+                public Pago(Lfx.Data.Connection dataBase, Lbl.Pagos.FormaDePago formaDePago)
                         : this(dataBase)
                 {
                         this.FormaDePago = formaDePago;
                 }
 
-                public Pago(Lfx.Data.DataBase dataBase, Lbl.Pagos.TipoFormasDePago tipoFormaDePago)
+                public Pago(Lfx.Data.Connection dataBase, Lbl.Pagos.TiposFormasDePago tipoFormaDePago)
                         : this(dataBase)
                 {
                         FormaDePago = new Lbl.Pagos.FormaDePago(dataBase, tipoFormaDePago);
                         FormaDePago.Cargar();
                 }
 
-                public Pago(Lfx.Data.DataBase dataBase, Lbl.Pagos.TipoFormasDePago formaDePago, double importe)
+                public Pago(Lfx.Data.Connection dataBase, Lbl.Pagos.TiposFormasDePago formaDePago, decimal importe)
                         : this(dataBase, formaDePago)
                 {
                         this.Importe = importe;
                 }
 
                 public Pago(Bancos.Cheque cheque)
-                        : this(cheque.DataBase, cheque.Emitido ? Lbl.Pagos.TipoFormasDePago.ChequePropio : Lbl.Pagos.TipoFormasDePago.ChequeTerceros)
+                        : this(cheque.Connection, cheque.Emitido ? Lbl.Pagos.TiposFormasDePago.ChequePropio : Lbl.Pagos.TiposFormasDePago.ChequeTerceros)
                 {
+                        if (cheque.Recibo != null)
+                                this.Recibo = cheque.Recibo;
                         this.Cheque = cheque;
                 }
 
                 public Pago(Pagos.Valor valor)
-                        : this(valor.DataBase, valor.FormaDePago.Tipo)
+                        : this(valor.Connection, valor.FormaDePago.Tipo)
                 {
+                        if (valor.Recibo != null)
+                                this.Recibo = valor.Recibo;
                         this.Valor = valor;
                 }
 
-                public double Importe
+                public decimal Importe
                 {
                         get
                         {
                                 switch (FormaDePago.Tipo) {
-                                        case Lbl.Pagos.TipoFormasDePago.ChequePropio:
-                                        case Lbl.Pagos.TipoFormasDePago.ChequeTerceros:
+                                        case Lbl.Pagos.TiposFormasDePago.ChequePropio:
+                                        case Lbl.Pagos.TiposFormasDePago.ChequeTerceros:
                                                 if (Cheque == null)
                                                         return 0;
                                                 else
                                                         return Cheque.Importe;
-                                        case Lbl.Pagos.TipoFormasDePago.OtroValor:
+                                        case Lbl.Pagos.TiposFormasDePago.OtroValor:
                                                 if (Valor == null)
                                                         return 0;
                                                 else
@@ -103,11 +108,11 @@ namespace Lbl.Comprobantes
                         set
                         {
                                 switch (FormaDePago.Tipo) {
-                                        case Lbl.Pagos.TipoFormasDePago.ChequePropio:
-                                        case Lbl.Pagos.TipoFormasDePago.ChequeTerceros:
+                                        case Lbl.Pagos.TiposFormasDePago.ChequePropio:
+                                        case Lbl.Pagos.TiposFormasDePago.ChequeTerceros:
                                                 Cheque.Importe = value;
                                                 break;
-                                        case Lbl.Pagos.TipoFormasDePago.OtroValor:
+                                        case Lbl.Pagos.TiposFormasDePago.OtroValor:
                                                 Valor.Importe = value;
                                                 break;
                                         default:
@@ -133,43 +138,80 @@ namespace Lbl.Comprobantes
                         }
 
                         switch (this.FormaDePago.Tipo) {
-                                case Lbl.Pagos.TipoFormasDePago.Efectivo:
-                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(DataBase, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
+                                case Lbl.Pagos.TiposFormasDePago.Efectivo:
+                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(Connection, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
                                         Caja.Movimiento(true, this.Concepto, DescripConcepto, Cliente, this.Importe, null, Factura, this.Recibo, null);
                                         break;
-                                case Lbl.Pagos.TipoFormasDePago.ChequePropio:
+                                case Pagos.TiposFormasDePago.ChequeTerceros:
+                                case Lbl.Pagos.TiposFormasDePago.ChequePropio:
                                         if (this.Cheque != null)
                                                 this.Cheque.Anular();
                                         break;
-                                case Lbl.Pagos.TipoFormasDePago.OtroValor:
+                                case Lbl.Pagos.TiposFormasDePago.OtroValor:
                                         if (this.Valor != null)
                                                 this.Valor.Anular();
                                         break;
-                                case Lbl.Pagos.TipoFormasDePago.Caja:
+                                case Lbl.Pagos.TiposFormasDePago.Caja:
                                         this.CajaOrigen.Movimiento(true, this.Concepto, DescripConcepto, Cliente, this.Importe, null, Factura, this.Recibo, null);
                                         break;
                         }
                 }
 
+
+                public override string Obs
+                {
+                        get
+                        {
+                                switch (FormaDePago.Tipo) {
+                                        case Lbl.Pagos.TiposFormasDePago.ChequePropio:
+                                        case Lbl.Pagos.TiposFormasDePago.ChequeTerceros:
+                                                if (Cheque != null)
+                                                        return Cheque.Obs;
+                                                break;
+                                        case Lbl.Pagos.TiposFormasDePago.OtroValor:
+                                                if (Valor != null)
+                                                        return Valor.Obs;
+                                                break;
+                                }
+                                return base.Obs;
+                        }
+                        set
+                        {
+                                base.Obs = value;
+                                switch (FormaDePago.Tipo) {
+                                        case Lbl.Pagos.TiposFormasDePago.ChequePropio:
+                                        case Lbl.Pagos.TiposFormasDePago.ChequeTerceros:
+                                                if (Cheque != null)
+                                                        Cheque.Obs = value;
+                                                break;
+                                        case Lbl.Pagos.TiposFormasDePago.OtroValor:
+                                                if (Valor != null)
+                                                        Valor.Obs = value;
+                                                break;
+                                }
+                        }
+                }
+
+
                 public override string ToString()
                 {
                         switch (FormaDePago.Tipo) {
-                                case Lbl.Pagos.TipoFormasDePago.Efectivo:
+                                case Lbl.Pagos.TiposFormasDePago.Efectivo:
                                         return "Efectivo";
-                                case Lbl.Pagos.TipoFormasDePago.CuentaCorriente:
+                                case Lbl.Pagos.TiposFormasDePago.CuentaCorriente:
                                         return "Cuenta Corriente";
-                                case Lbl.Pagos.TipoFormasDePago.ChequePropio:
-                                case Lbl.Pagos.TipoFormasDePago.ChequeTerceros:
+                                case Lbl.Pagos.TiposFormasDePago.ChequePropio:
+                                case Lbl.Pagos.TiposFormasDePago.ChequeTerceros:
                                         if (Cheque == null)
                                                 return "Cheque";
                                         else
                                                 return Cheque.ToString();
-                                case Lbl.Pagos.TipoFormasDePago.Caja:
+                                case Lbl.Pagos.TiposFormasDePago.Caja:
                                         if (CajaOrigen == null)
                                                 return "Débito de cuenta";
                                         else
                                                 return "Débito de " + CajaOrigen.ToString();
-                                case Lbl.Pagos.TipoFormasDePago.OtroValor:
+                                case Lbl.Pagos.TiposFormasDePago.OtroValor:
                                         if (Valor == null)
                                                 return FormaDePago.ToString();
                                         else
@@ -182,11 +224,11 @@ namespace Lbl.Comprobantes
 
         public class ColeccionDePagos : List<Pago>
         {
-                public double ImporteTotal
+                public decimal ImporteTotal
                 {
                         get
                         {
-                                double Res = 0;
+                                decimal Res = 0;
                                 foreach (Lbl.Comprobantes.Pago Pg in this) {
                                         Res += Pg.Importe;
                                 }

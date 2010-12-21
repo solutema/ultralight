@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -40,30 +40,9 @@ namespace Lcc
         public partial class LccControl : Lui.Forms.Control, ILccControl, Lui.Forms.IDataControl
         {
                 private bool m_AutoNav = true;
-                // private bool m_AutoHeight = true;
-                // protected bool m_ReadOnly = false;
-                // private bool m_Changed = false;
-                // private Lfx.Data.DataBase m_DataBase = null;
 
                 public LccControl()
                 {
-                        InitializeComponent();
-                }
-
-                [EditorBrowsable(EditorBrowsableState.Always),
-                        Browsable(true),
-                        DefaultValue(""),
-                        DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-                public override string Text
-                {
-                        get
-                        {
-                                return base.Text;
-                        }
-                        set
-                        {
-                                base.Text = value;
-                        }
                 }
 
                 /// <summary>
@@ -79,6 +58,18 @@ namespace Lcc
                         {
                                 m_AutoNav = value;
                         }
+                }
+
+
+                protected override void OnParentChanged(EventArgs e)
+                {
+                        this.OnWorkspaceChanged();
+                        base.OnParentChanged(e);
+                }
+
+                public virtual void OnWorkspaceChanged()
+                {
+                        return;
                 }
         }
 }

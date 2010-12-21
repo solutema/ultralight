@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -40,73 +40,18 @@ namespace Lfc.Comprobantes.Presupuestos
 {
         public partial class Editar : Lfc.Comprobantes.Editar
 	{
-		//private bool Ticker_IgnorarEventos;
-
-                public Editar(string tipo) : this()
+                public Editar()
                 {
-                        TipoPredet = tipo;
-                }
+                        this.ElementoTipo = typeof(Lbl.Comprobantes.Presupuesto);
 
-                public Editar() : base()
-                {
                         InitializeComponent();
                 }
 
-		public override Lfx.Types.OperationResult Edit(int iId)
-		{
-			Lfx.Types.OperationResult ResultadoEditar = new Lfx.Types.SuccessOperationResult();
-			ResultadoEditar = base.Edit(iId);
-			ProductArray.ShowStock = true;
-                        return ResultadoEditar;
-		}
 
-
-                public override Lfx.Types.OperationResult Print(bool DejaSeleccionarImpresora)
+                public Editar(string tipo)
+                        : this()
                 {
-                        if (ValidateData().Success == true) {
-                                if (Save().Success == true) {
-                                        Comprobantes.Presupuestos.Imprimir ImprimirPresupuesto = new Comprobantes.Presupuestos.Imprimir(this.Workspace, this.CachedRow.Id);
-
-                                        // Determino la impresora que le corresponde
-                                        string sImpresora = "";
-                                        if (DejaSeleccionarImpresora) {
-                                                Lui.Printing.PrinterSelectionDialog OSeleccionarImpresora = new Lui.Printing.PrinterSelectionDialog();
-                                                OSeleccionarImpresora.VistaPrevia = true;
-                                                if (OSeleccionarImpresora.ShowDialog() == DialogResult.OK)
-                                                        sImpresora = OSeleccionarImpresora.SelectedPrinter;
-                                        } else {
-                                                sImpresora = this.Workspace.CurrentConfig.Impresion.PreferredPrinter(this.Tipo.Nomenclatura);
-                                                // Si es de carga manual, presento el formulario correspondiente
-                                                if (this.Workspace.CurrentConfig.Impresion.PrinterFeed(this.Tipo.Nomenclatura, "auto") == "manual") {
-                                                        Lbl.Impresion.ManualFeedDialog OFormFacturaCargaManual = new Lbl.Impresion.ManualFeedDialog();
-                                                        OFormFacturaCargaManual.DocumentName = Lbl.Comprobantes.Comprobante.NumeroCompleto(this.DataBase, m_Id);
-                                                        // Muestro el nombre de la impresora
-                                                        if (sImpresora.Length > 0) {
-                                                                OFormFacturaCargaManual.PrinterName = sImpresora;
-                                                        } else {
-                                                                System.Drawing.Printing.PrinterSettings objPrint = new System.Drawing.Printing.PrinterSettings();
-                                                                OFormFacturaCargaManual.PrinterName = objPrint.PrinterName;
-                                                        }
-                                                        if (OFormFacturaCargaManual.ShowDialog() == DialogResult.Cancel)
-                                                                return new Lfx.Types.FailureOperationResult("Operación cancelada");
-                                                }
-                                        }
-
-                                        if (sImpresora == "lazaro!preview") {
-                                                ImprimirPresupuesto.PrintController = new System.Drawing.Printing.PreviewPrintController();
-                                                Lui.Printing.PrintPreviewForm VistaPrevia = new Lui.Printing.PrintPreviewForm();
-                                                VistaPrevia.PrintPreview.Document = ImprimirPresupuesto;
-                                                VistaPrevia.MdiParent = this.MdiParent;
-                                                VistaPrevia.Show();
-                                        } else {
-                                                if (sImpresora.Length > 0)
-                                                        ImprimirPresupuesto.PrinterSettings.PrinterName = sImpresora;
-
-                                                ImprimirPresupuesto.Print();
-                                        }
-                                }
-                        }
-                        return new Lfx.Types.SuccessOperationResult();
+                        TipoPredet = tipo;
                 }
 	}
 }

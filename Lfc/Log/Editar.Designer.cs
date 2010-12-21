@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,9 +29,9 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-namespace Lui.Forms
+namespace Lfc.Log
 {
-        partial class EditHistory
+        partial class Editar
         {
                 /// <summary>
                 /// Variable del diseñador requerida.
@@ -59,10 +59,10 @@ namespace Lui.Forms
                 private void InitializeComponent()
                 {
                         this.ListaHistoral = new Lui.Forms.ListView();
-                        this.ColFecha = new System.Windows.Forms.ColumnHeader();
-                        this.ColPersona = new System.Windows.Forms.ColumnHeader();
-                        this.ColAccion = new System.Windows.Forms.ColumnHeader();
-                        this.ColDatos = new System.Windows.Forms.ColumnHeader();
+                        this.ColFecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColPersona = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColAccion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColDatos = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -97,7 +97,7 @@ namespace Lui.Forms
                         // ColFecha
                         // 
                         this.ColFecha.Text = "Fecha";
-                        this.ColFecha.Width = 120;
+                        this.ColFecha.Width = 139;
                         // 
                         // ColPersona
                         // 

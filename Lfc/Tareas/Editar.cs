@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,38 +38,27 @@ using System.Windows.Forms;
 
 namespace Lfc.Tareas
 {
-        public partial class Editar : Lui.Forms.EditForm
+        public partial class Editar : Lcc.Edicion.ControlEdicion
         {
                 internal int iEstadoOriginal = 0;
-                internal double Descuento = 0;
+                internal decimal Descuento = 0;
                 
                 public Editar()
                 {
+                        this.ElementoTipo = typeof(Lbl.Tareas.Tarea);
+
                         InitializeComponent();
-
-                        this.ElementType = typeof(Lbl.Tareas.Tarea);
                 }
 
-                public override Lfx.Types.OperationResult Create()
+                public override void ActualizarElemento()
                 {
-                        Lbl.Tareas.Tarea Tarea = new Lbl.Tareas.Tarea(this.DataBase);
-                        Tarea.Crear();
-                        Tarea.Encargado = new Lbl.Personas.Persona(Tarea.DataBase, this.Workspace.CurrentUser.Id);
-                        Tarea.Estado = 1;
-                        Tarea.Tipo = new Lbl.Tareas.Tipo(Tarea.DataBase, 1);
-                        this.FromRow(Tarea);
-                        return base.Create();
-                }
-
-                public override Lbl.ElementoDeDatos ToRow()
-                {
-                        Lbl.Tareas.Tarea Res = this.CachedRow as Lbl.Tareas.Tarea;
+                        Lbl.Tareas.Tarea Res = this.Elemento as Lbl.Tareas.Tarea;
 
                         Res.Cliente = EntradaCliente.Elemento as Lbl.Personas.Persona;
                         Res.Encargado = EntradaTecnico.Elemento as Lbl.Personas.Persona;
-                        Res.Tipo = new Lbl.Tareas.Tipo(Res.DataBase, EntradaTarea.TextInt);
+                        Res.Tipo = EntradaTarea.Elemento as Lbl.Tareas.Tipo;
                         Res.Prioridad = Lfx.Types.Parsing.ParseInt(EntradaPrioridad.TextKey);
-                        Res.Nombre = txtAsunto.Text;
+                        Res.Nombre = EntradaAsunto.Text;
                         Res.Descripcion = EntradaDescripcion.Text;
                         Res.Estado = EntradaEstado.TextInt;
                         Res.FechaEstimada = Lfx.Types.Parsing.ParseDate(EntradaEntregaEstimada.Text);
@@ -77,17 +66,15 @@ namespace Lfc.Tareas
                         Res.Presupuesto = Lfx.Types.Parsing.ParseCurrency(EntradaPresupuesto.Text);
                         Res.Obs = EntradaObs.Text;
 
-                        return base.ToRow();
+                        base.ActualizarElemento();
                 }
 
-                public override void FromRow(Lbl.ElementoDeDatos row)
+                public override void ActualizarControl()
                 {
-                        base.FromRow(row);
+                        Lbl.Tareas.Tarea Res = this.Elemento as Lbl.Tareas.Tarea;
 
-                        Lbl.Tareas.Tarea Res = row as Lbl.Tareas.Tarea;
-
-                        txtNumero.Text = Res.Id.ToString();
-                        txtAsunto.Text = Res.Nombre;
+                        EntradaNumero.Text = Res.Id.ToString();
+                        EntradaAsunto.Text = Res.Nombre;
                         EntradaCliente.Elemento = Res.Cliente;
                         EntradaTecnico.Elemento = Res.Encargado;
                         EntradaTarea.Elemento = Res.Tipo;
@@ -101,17 +88,16 @@ namespace Lfc.Tareas
                         EntradaObs.Text = Res.Obs;
 
                         if (Res.Existe) {
-                                this.Text = "Tareas: " + Res.ToString();
                                 MostrarPresupuesto2();
                                 CargarHistorial();
-                        } else {
-                                this.Text = "Tareas: nueva";
                         }
+
+                        base.ActualizarControl();
                 }
 
-                public override Lui.Printing.ItemPrint FormatForPrinting(Lui.Printing.ItemPrint ImprimirItem)
+                /* public override Lui.Printing.ItemPrint FormatForPrinting(Lui.Printing.ItemPrint ImprimirItem)
                 {
-                        ImprimirItem.Titulo = "Tarea Nº " + txtNumero.Text;
+                        ImprimirItem.Titulo = "Tarea Nº " + EntradaNumero.Text;
                         ImprimirItem.AgregarPar("Tipo de Tarea", EntradaTarea.TextDetail, 1);
                         ImprimirItem.AgregarPar("Asunto", txtAsunto.Text, 1);
                         ImprimirItem.AgregarPar("Cliente", EntradaCliente.TextDetail, 1);
@@ -123,18 +109,18 @@ namespace Lfc.Tareas
                         ImprimirItem.AgregarPar("Estado", EntradaEstado.TextDetail, 1);
                         ImprimirItem.AgregarPar("Fecha de Ingreso", EntradaFechaIngreso.Text, 1);
                         if (Lfx.Types.Parsing.ParseCurrency(EntradaPresupuesto.Text) != 0)
-                                ImprimirItem.AgregarPar("Presupuesto", Lfx.Types.Currency.CurrencySymbol + " " + EntradaPresupuesto.Text, 1);
+                                ImprimirItem.AgregarPar("Presupuesto", Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + EntradaPresupuesto.Text, 1);
 
-                        if (Lfx.Types.Parsing.ParseCurrency(txtPresupuesto2.Text) != 0) {
-                                ImprimirItem.AgregarPar("Artículos", Lfx.Types.Currency.CurrencySymbol + " " + txtPresupuesto2.Text, 1);
+                        if (Lfx.Types.Parsing.ParseCurrency(EntradaPresupuesto2.Text) != 0) {
+                                ImprimirItem.AgregarPar("Artículos", Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + EntradaPresupuesto2.Text, 1);
                                 //Detalle artículos
-                                System.Data.DataTable Articulos = this.DataBase.Select("SELECT * FROM tickets_articulos WHERE id_ticket=" + m_Id.ToString() + " ORDER BY orden");
+                                System.Data.DataTable Articulos = this.PrintDataBase.Select("SELECT * FROM tickets_articulos WHERE id_ticket=" + this.Elemento.Id.ToString() + " ORDER BY orden");
                                 foreach (System.Data.DataRow Articulo in Articulos.Rows) {
-                                        ImprimirItem.AgregarPar(Lfx.Types.Currency.CurrencySymbol + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Articulo["precio"]), this.Workspace.CurrentConfig.Moneda.Decimales), "[" + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Articulo["cantidad"]), this.Workspace.CurrentConfig.Productos.DecimalesStock) + "] " + System.Convert.ToString(Articulo["nombre"]), 2);
+                                        ImprimirItem.AgregarPar(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Articulo["precio"]), this.Workspace.CurrentConfig.Moneda.Decimales), "[" + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Articulo["cantidad"]), this.Workspace.CurrentConfig.Productos.DecimalesStock) + "] " + System.Convert.ToString(Articulo["nombre"]), 2);
                                 }
                         }
 
-                        System.Data.DataTable Eventos = this.DataBase.Select("SELECT tickets_eventos.fecha, tickets_eventos.descripcion, personas.nombre FROM tickets_eventos, personas WHERE tickets_eventos.privado=0 AND tickets_eventos.id_tecnico=personas.id_persona AND id_ticket=" + m_Id.ToString() + " ORDER BY id_evento DESC");
+                        System.Data.DataTable Eventos = this.PrintDataBase.Select("SELECT tickets_eventos.fecha, tickets_eventos.descripcion, personas.nombre FROM tickets_eventos, personas WHERE tickets_eventos.privado=0 AND tickets_eventos.id_tecnico=personas.id_persona AND id_ticket=" + this.Elemento.Id.ToString() + " ORDER BY id_evento DESC");
                         if (Eventos.Rows.Count > 0) {
                                 ImprimirItem.AgregarPar("Historial", "", 1);
                                 foreach (System.Data.DataRow Evento in Eventos.Rows) {
@@ -142,11 +128,9 @@ namespace Lfc.Tareas
                                 }
                         }
                         return ImprimirItem;
-                }
+                } */
 
-
-
-                public override Lfx.Types.OperationResult ValidateData()
+                public override Lfx.Types.OperationResult ValidarControl()
                 {
                         Lfx.Types.OperationResult validarReturn = new Lfx.Types.SuccessOperationResult();
 
@@ -162,169 +146,131 @@ namespace Lfc.Tareas
                                 validarReturn.Success = false;
                                 validarReturn.Message += "Debe seleccionar el tipo de Tarea." + Environment.NewLine;
                         }
-                        return validarReturn;
-                }
-
-
-                public override Lfx.Types.OperationResult Save()
-                {
-                        bool Existia = this.CachedRow.Existe;
-                        int EstadoOriginal = this.CachedRow.Estado;
-
-                        Lfx.Types.OperationResult ResultadoGuardar = base.Save();
-
-                        if (ResultadoGuardar.Success) {
-                                if (Existia == false) {
-                                        Lui.Forms.MessageBox.Show("Acaba de crear y guardar la Tarea Nº " + m_Id.ToString(), "Tarea Nº " + m_Id.ToString());
-                                } else if (this.CachedRow.Estado != EstadoOriginal) {
-                                        Lbl.Tareas.Tarea Tar = this.CachedRow as Lbl.Tareas.Tarea;
-                                        qGen.Insert InsertarNovedad = new qGen.Insert(DataBase, "tickets_eventos");
-                                        InsertarNovedad.Fields.AddWithValue("id_ticket", Tar.Id);
-                                        InsertarNovedad.Fields.AddWithValue("id_tecnico", this.Workspace.CurrentUser.Id);
-                                        InsertarNovedad.Fields.AddWithValue("minutos_tecnico", 0);
-                                        InsertarNovedad.Fields.AddWithValue("privado", 1);
-                                        InsertarNovedad.Fields.AddWithValue("descripcion", "Est:" + Tar.Estado.ToString());
-                                        InsertarNovedad.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
-                                        DataBase.Execute(InsertarNovedad);
-                                }
-                        }
-                        return ResultadoGuardar;
+                        
+                        return base.ValidarControl();;
                 }
 
 
                 private void CargarHistorial()
                 {
-                        lvHistorial.BeginUpdate();
-                        lvHistorial.Items.Clear();
+                        ListaHistorial.BeginUpdate();
+                        ListaHistorial.Items.Clear();
 
                         string TextoSql = "SELECT tickets_eventos.id_ticket, tickets_eventos.fecha, tickets_eventos.descripcion, personas.nombre FROM tickets_eventos, personas WHERE tickets_eventos.id_tecnico=personas.id_persona AND tickets_eventos.id_ticket IN (SELECT id_ticket FROM tickets WHERE id_persona=" + EntradaCliente.TextInt.ToString() + ") ORDER BY tickets_eventos.id_evento DESC";
-                        System.Data.DataTable Eventos = this.DataBase.Select(TextoSql);
+                        System.Data.DataTable Eventos = this.Connection.Select(TextoSql);
                         if (Eventos.Rows.Count > 0) {
-
                                 foreach (System.Data.DataRow Evento in Eventos.Rows) {
-                                        ListViewItem itm = lvHistorial.Items.Add(System.Convert.ToString(Evento["id_ticket"]));
+                                        ListViewItem itm = ListaHistorial.Items.Add(System.Convert.ToString(Evento["id_ticket"]));
                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Evento["nombre"].ToString()));
                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatDate(Evento["fecha"])));
                                         itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Evento["descripcion"]).Replace(System.Convert.ToString(Lfx.Types.ControlChars.Cr), " ").Replace(System.Convert.ToString(Lfx.Types.ControlChars.Lf), "")));
-                                        if (System.Convert.ToInt32(Evento["id_ticket"]) != this.m_Id)
+                                        if (System.Convert.ToInt32(Evento["id_ticket"]) != this.Elemento.Id)
                                                 itm.ForeColor = System.Drawing.Color.Gray;
                                 }
 
-                                if (lvHistorial.Items.Count > 0) {
-                                        lvHistorial.Items[0].Focused = true;
-                                        lvHistorial.Items[0].Selected = true;
+                                if (ListaHistorial.Items.Count > 0) {
+                                        ListaHistorial.Items[0].Focused = true;
+                                        ListaHistorial.Items[0].Selected = true;
                                 }
                         }
 
-                        lvHistorial.EndUpdate();
+                        ListaHistorial.EndUpdate();
 
                         // Ancho automático para las columnas
-                        foreach (System.Windows.Forms.ColumnHeader lvHeader in lvHistorial.Columns) {
+                        foreach (System.Windows.Forms.ColumnHeader lvHeader in ListaHistorial.Columns) {
                                 lvHeader.Width = -2;
                         }
 
                 }
 
 
-                private void FormTicketsEditar_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-                {
-                        switch (e.KeyCode) {
-                                case Keys.F4:
-                                        e.Handled = true;
-                                        if (BotonFacturar.Enabled && BotonFacturar.Visible)
-                                                BotonFacturar.PerformClick();
-                                        break;
-                                case Keys.F5:
-                                        e.Handled = true;
-                                        if (BotonArticulos.Enabled && BotonArticulos.Visible)
-                                                BotonArticulos.PerformClick();
-                                        break;
-                                case Keys.F6:
-                                        e.Handled = true;
-                                        if (BotonNovedad.Enabled && BotonNovedad.Visible)
-                                                BotonNovedad.PerformClick();
-                                        break;
-                        }
-
-
-                }
-
-
                 private void BotonNovedad_Click(object sender, System.EventArgs e)
                 {
-                        if (m_Nuevo) {
+                        if (this.Elemento.Existe == false) {
                                 Lui.Forms.MessageBox.Show("No se puede cargar novedades en una Tarea que aun no ha sido creada.", "Error");
                         } else {
-                                Tareas.Novedad OFormNovedadCargar = new Tareas.Novedad();
-                                OFormNovedadCargar.Create();
-                                OFormNovedadCargar.EntradaTicket.TextInt = m_Id;
-                                OFormNovedadCargar.EntradaTicket.Enabled = false;
-                                if (OFormNovedadCargar.ShowDialog() == DialogResult.OK)
+                                Tareas.Novedad FormularioNovedad = new Tareas.Novedad();
+                                FormularioNovedad.EntradaTicket.Elemento = this.Elemento;
+                                FormularioNovedad.EntradaTicket.Enabled = false;
+                                if (FormularioNovedad.ShowDialog() == DialogResult.OK)
                                         this.CargarHistorial();
                         }
                 }
 
                 private void BotonFacturar_Click(object sender, System.EventArgs e)
                 {
-                        Comprobantes.Facturas.Editar FacturaNueva = (Comprobantes.Facturas.Editar)this.Workspace.RunTime.Execute("CREAR FB");
+                        Lfx.Types.OperationResult Res = this.Save();
+                        if (Res.Success == false) {
+                                if (Res.Message != null)
+                                        Lui.Forms.MessageBox.Show(Res.Message, "Error");
+                                return;
+                        }
 
-                        FacturaNueva.ControlDestino = txtComprobanteId;
+                        Lbl.Comprobantes.Factura Factura;
 
-                        int intComprobanteId = Lfx.Types.Parsing.ParseInt(txtComprobanteId.Text);
-                        bool bAnulada = System.Convert.ToBoolean(this.DataBase.FieldInt("SELECT anulada FROM comprob WHERE id_comprob=" + intComprobanteId.ToString()));
+                        int ComprobanteId = Lfx.Types.Parsing.ParseInt(EntradaComprobanteId.Text);
+                        bool ComprobanteAnulado = System.Convert.ToBoolean(this.Connection.FieldInt("SELECT anulada FROM comprob WHERE id_comprob=" + ComprobanteId.ToString()));
 
-                        if (intComprobanteId > 0 && bAnulada == false) {
-                                FacturaNueva.Edit(intComprobanteId);
-                                FacturaNueva.Show();
+                        if (ComprobanteId > 0 && ComprobanteAnulado == false) {
+                                // Ya tiene un comprobante, pero fue anulado
+                                Factura = new Lbl.Comprobantes.Factura(this.Connection, ComprobanteId);
                         } else {
-                                if (this.Save().Success == true) {
-                                        EntradaEstado.Text = "50";
-                                        FacturaNueva.Create("FB");
+                                // No tiene comprobante, lo creo
+                                EntradaEstado.Text = "50";
 
-                                        FacturaNueva.EntradaCliente.Text = EntradaCliente.Text;
-                                        FacturaNueva.EntradaVendedor.Text = EntradaTecnico.Text;
-                                        ((Lbl.Comprobantes.Comprobante)FacturaNueva.CachedRow).Obs = EntradaTarea.TextDetail + " s/tarea #" + m_Id.ToString();
+                                Factura = new Lbl.Comprobantes.Factura(this.Connection);
 
-                                        System.Data.DataTable Articulos = this.DataBase.Select("SELECT * FROM tickets_articulos WHERE id_ticket=" + m_Id.ToString() + " ORDER BY orden");
-                                        FacturaNueva.ProductArray.Count = Articulos.Rows.Count;
-                                        for (int i = 0; i <= Articulos.Rows.Count - 1; i++) {
-                                                FacturaNueva.ProductArray.ChildControls[i].TextInt = System.Convert.ToInt32(Articulos.Rows[i]["id_articulo"]);
-                                                FacturaNueva.ProductArray.ChildControls[i].TextDetail = System.Convert.ToString(Articulos.Rows[i]["nombre"]);
-                                                FacturaNueva.ProductArray.ChildControls[i].Cantidad = System.Convert.ToDouble(Articulos.Rows[i]["cantidad"]);
-                                                //TODO: Descuento por item
-                                                FacturaNueva.ProductArray.ChildControls[i].Unitario = System.Convert.ToDouble(Articulos.Rows[i]["precio"]) * (1 - Descuento / 100);
-                                        }
-                                        if (Lfx.Types.Parsing.ParseCurrency(EntradaPresupuesto.Text) > 0) {
-                                                FacturaNueva.ProductArray.Count++;
-                                                int i = FacturaNueva.ProductArray.Count - 1;
-                                                FacturaNueva.ProductArray.ChildControls[i].TextInt = 282;
-                                                FacturaNueva.ProductArray.ChildControls[i].Cantidad = 1;
-                                                FacturaNueva.ProductArray.ChildControls[i].Unitario = Lfx.Types.Parsing.ParseCurrency(EntradaPresupuesto.Text);
-                                        }
-                                        FacturaNueva.ProductArray.AutoAgregar = true;
+                                Factura.Crear();
+                                Factura.Cliente = EntradaCliente.Elemento as Lbl.Personas.Persona;
+                                Factura.Tipo = Factura.Cliente.ObtenerTipoComprobante();
+                                Factura.Vendedor = EntradaTecnico.Elemento as Lbl.Personas.Persona;
+                                Factura.Obs = EntradaTarea.TextDetail + " s/" + this.Elemento.ToString();
 
-                                        if (Descuento > 0) {
-                                                // Si hay descuento sobre los artículos, lo agrego en las observaciones
-                                                ((Lbl.Comprobantes.Comprobante)FacturaNueva.CachedRow).Obs += " - Descuento Sobre Artículos: " + Lfx.Types.Formatting.FormatNumber(Descuento) + "%";
-                                        }
-                                        FacturaNueva.Show();
+                                System.Data.DataTable Articulos = this.Connection.Select("SELECT * FROM tickets_articulos WHERE id_ticket=" + this.Elemento.Id.ToString() + " ORDER BY orden");
+                                for (int i = 0; i <= Articulos.Rows.Count - 1; i++) {
+                                        Lbl.Comprobantes.DetalleArticulo Art = new Lbl.Comprobantes.DetalleArticulo(Factura);
+                                        Art.Articulo = new Lbl.Articulos.Articulo(Factura.Connection, System.Convert.ToInt32(Articulos.Rows[i]["id_articulo"]));
+                                        Art.Cantidad = System.Convert.ToDecimal(Articulos.Rows[i]["cantidad"]);
+                                        //TODO: Descuento por item
+                                        Art.Unitario = System.Convert.ToDecimal(Articulos.Rows[i]["precio"]) * (1 - Descuento / 100);
+
+                                        Factura.Articulos.Add(Art);
+                                }
+                                if (Lfx.Types.Parsing.ParseCurrency(EntradaPresupuesto.Text) > 0) {
+                                        Lbl.Comprobantes.DetalleArticulo Art = new Lbl.Comprobantes.DetalleArticulo(Factura);
+
+                                        Art.Articulo = new Lbl.Articulos.Articulo(this.Connection, 282);
+                                        Art.Unitario = EntradaPresupuesto.ValueDecimal;
+                                        Art.Cantidad = 1;
+
+                                        Factura.Articulos.Add(Art);
+                                }
+
+                                if (Descuento > 0) {
+                                        // Si hay descuento sobre los artículos, lo agrego en las observaciones
+                                        Factura.Obs += " - Descuento Sobre Artículos: " + Descuento.ToString() + "%";
                                 }
                         }
+
+                        Lfc.FormularioEdicion FormularioFactura = Lfc.Instanciador.InstanciarFormularioEdicion(Factura);
+                        FormularioFactura.MdiParent = this.ParentForm.MdiParent;        
+                        FormularioFactura.ControlDestino = EntradaComprobanteId;
+
+                        FormularioFactura.Show();
                 }
 
-                private void txtComprobanteId_TextChanged(object sender, System.EventArgs e)
+                private void EntradaComprobanteId_TextChanged(object sender, System.EventArgs e)
                 {
-                        int intComprobanteId = Lfx.Types.Parsing.ParseInt(txtComprobanteId.Text);
+                        int intComprobanteId = Lfx.Types.Parsing.ParseInt(EntradaComprobanteId.Text);
                         if (intComprobanteId > 0) {
-                                txtComprobante.Text = Lbl.Comprobantes.Comprobante.NumeroCompleto(this.DataBase, intComprobanteId);
+                                txtComprobante.Text = Lbl.Comprobantes.Comprobante.NumeroCompleto(this.Connection, intComprobanteId);
                                 // Guardo el comprobante en la tarea (sólo si no tenía uno asociado)
-                                //this.DataBase.Execute("UPDATE tickets SET id_comprob=" + intComprobanteId.ToString() + " WHERE id_comprob=0 AND id_ticket=" + m_Id.ToString());
                                 qGen.Update Actual = new qGen.Update("tickets");
                                 Actual.Fields.Add(new Lfx.Data.Field("id_comprob", intComprobanteId));
                                 Actual.WhereClause = new qGen.Where();
                                 Actual.WhereClause.AddWithValue("id_comprob", 0);
-                                Actual.WhereClause.AddWithValue("id_ticket", m_Id);
-                                this.DataBase.Execute(Actual);
+                                Actual.WhereClause.AddWithValue("id_ticket", this.Elemento.Id);
+                                this.Connection.Execute(Actual);
                         } else {
                                 txtComprobante.Text = "";
                         }
@@ -335,9 +281,9 @@ namespace Lfc.Tareas
                 {
                         switch (e.KeyCode) {
                                 case Keys.Enter:
-                                        if (lvHistorial.SelectedItems.Count > 0) {
+                                        if (ListaHistorial.SelectedItems.Count > 0) {
                                                 e.Handled = true;
-                                                Lui.Forms.MessageBox.Show(lvHistorial.SelectedItems[0].SubItems[3].Text, lvHistorial.SelectedItems[0].SubItems[1].Text);
+                                                Lui.Forms.MessageBox.Show(ListaHistorial.SelectedItems[0].SubItems[3].Text, ListaHistorial.SelectedItems[0].SubItems[1].Text);
                                         }
                                         break;
                         }
@@ -347,34 +293,27 @@ namespace Lfc.Tareas
 
                 private void BotonArticulos_Click(object sender, System.EventArgs e)
                 {
-                        if (m_Nuevo) {
+                        if (this.Elemento.Existe == false) {
                                 Lui.Forms.MessageBox.Show("No se puede cargar artículos en una Tarea que aun no ha sido creada.", "Error");
                         } else {
-                                Tareas.Articulos OFormTicketsArticulos = new Tareas.Articulos();
-                                OFormTicketsArticulos.MdiParent = this.MdiParent;
-                                OFormTicketsArticulos.Edit(m_Id);
-                                OFormTicketsArticulos.Show();
+                                Tareas.Articulos FormularioArticulos = new Tareas.Articulos();
+                                FormularioArticulos.MdiParent = this.ParentForm.MdiParent;
+                                FormularioArticulos.Tarea = this.Elemento as Lbl.Tareas.Tarea;
+                                FormularioArticulos.Show();
                         }
                 }
 
 
                 public void MostrarPresupuesto2()
                 {
-                        double ValorArticulos = this.DataBase.FieldDouble("SELECT SUM(cantidad*precio) FROM tickets_articulos WHERE id_ticket=" + m_Id.ToString());
-                        txtPresupuesto2.Text = Lfx.Types.Formatting.FormatCurrency(ValorArticulos * (1 - Descuento / 100), this.Workspace.CurrentConfig.Moneda.Decimales);
+                        decimal ValorArticulos = this.Connection.FieldDecimal("SELECT SUM(cantidad*precio) FROM tickets_articulos WHERE id_ticket=" + this.Elemento.Id.ToString());
+                        EntradaPresupuesto2.ValueDecimal = ValorArticulos * (1 - Descuento / 100);
                 }
-
-
-                private void FormTicketsEditar_Activated(object sender, System.EventArgs e)
-                {
-                        MostrarPresupuesto2();
-                }
-
 
                 private void lvHistorial_SelectedIndexChanged(object sender, System.EventArgs e)
                 {
-                        if (lvHistorial.SelectedItems.Count > 0)
-                                lvHistorial.SelectedItems[0].EnsureVisible();
+                        if (ListaHistorial.SelectedItems.Count > 0)
+                                ListaHistorial.SelectedItems[0].EnsureVisible();
                 }
         }
 }

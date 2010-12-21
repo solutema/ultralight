@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -40,14 +40,14 @@ namespace Lbl.Servicios.Importar
         /// </summary>
         public class Filtro
         {
-                public Lfx.Data.DataBase DataBase;
+                public Lfx.Data.Connection DataBase;
                 public MapaDeTablas MapaDeTablas;
                 public string FilterName = "Filtro de importación genérico";
 
                 // Tomar los siguientes valores como vacíos
                 public System.Collections.Generic.List<Reemplazo> Reemplazos = new List<Reemplazo>();
 
-                public Filtro(Lfx.Data.DataBase dataBase)
+                public Filtro(Lfx.Data.Connection dataBase)
                 {
                         this.DataBase = dataBase;
                 }
@@ -85,14 +85,17 @@ namespace Lbl.Servicios.Importar
                 /// </summary>
                 public virtual void FusionarTabla(MapaDeTabla mapa)
                 {
-                        System.Console.WriteLine("Lbl.Servicios.Importar.Filtro: Fusionando tabla " + mapa.TablaLazaro);
+                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Fusionando Datos", "Se van a incorporar los datos del mapa " + mapa.ToString());
+                        Progreso.Begin();
+
+                        Progreso.Max = mapa.ImportedRows.Count;
                         foreach (Lfx.Data.Row ImportedRow in mapa.ImportedRows) {
                                 object ImportIdValue = ImportedRow.Fields[mapa.ColumnaIdLazaro].Value;
                                 string ImportIdSqlValue;
                                 if(ImportIdValue is string) {
                                         ImportIdSqlValue = "'" + ImportIdValue.ToString() + "'";
-                                } else if (ImportIdValue is double || ImportIdValue is decimal) {
-                                        ImportIdSqlValue = Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDouble(ImportIdValue));
+                                } else if (ImportIdValue is decimal) {
+                                        ImportIdSqlValue = Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDecimal(ImportIdValue), 8);
                                 } else if (ImportIdValue is double) {
                                         ImportIdSqlValue = Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDouble(ImportIdValue));
                                 } else if (ImportIdValue is DateTime) {
@@ -101,7 +104,7 @@ namespace Lbl.Servicios.Importar
                                         ImportIdSqlValue = ImportIdValue.ToString();
                                 }
 
-                                Lbl.ElementoDeDatos Elem;
+                                Lbl.IElementoDeDatos Elem;
                                 Lfx.Data.Row CurrentRow = this.DataBase.FirstRowFromSelect("SELECT * FROM " + mapa.TablaLazaro + " WHERE " + mapa.ColumnaIdLazaro + "=" + ImportIdSqlValue);
                                 if (CurrentRow == null) {
                                         Elem = this.CrearElemento(mapa, ImportedRow);
@@ -118,15 +121,17 @@ namespace Lbl.Servicios.Importar
                                 if (Elem is Lbl.Articulos.Articulo && ImportedRow.Fields.Contains("stock_actual")) {
                                         // Actualizo el stock
                                         Lbl.Articulos.Articulo Art = Elem as Lbl.Articulos.Articulo;
-                                        
-                                        double StockActual = Art.ObtenerStockActual();
-                                        double NuevoStock = System.Convert.ToDouble(ImportedRow["stock_actual"]);
-                                        double Diferencia = NuevoStock - StockActual;
+
+                                        decimal StockActual = Art.ObtenerStockActual();
+                                        decimal NuevoStock = System.Convert.ToDecimal(ImportedRow["stock_actual"]);
+                                        decimal Diferencia = NuevoStock - StockActual;
 
                                         if (Diferencia != 0)
                                                 Art.MoverStock(Diferencia, "Stock importado desde " + this.FilterName, null, new Articulos.Situacion(this.DataBase, this.DataBase.Workspace.CurrentConfig.Productos.DepositoPredeterminado), null);
                                 }
+                                Progreso.Advance(1);
                         }
+                        Progreso.End();
                 }
 
                 /// <summary>
@@ -145,10 +150,10 @@ namespace Lbl.Servicios.Importar
                                                 FieldValue = row[Col.ColumnaExterna].ToString().ToLowerInvariant();
                                                 break;
                                         case ConversionDeColumna.ConvertirAMayusculasYMinusculas:
-                                                FieldValue = Lfx.Types.Strings.ULCase(row[Col.ColumnaExterna].ToString());
+                                                FieldValue = row[Col.ColumnaExterna].ToString().ToTitleCase();
                                                 break;
                                         case ConversionDeColumna.InterpretarNombreYApellido:
-                                                FieldValue = Lfx.Types.Strings.ULCase(row[Col.ColumnaExterna].ToString());
+                                                FieldValue = row[Col.ColumnaExterna].ToString().ToTitleCase();
                                                 string Nombre = FieldValue.ToString();
                                                 string Apellido = Lfx.Types.Strings.GetNextToken(ref Nombre, " ");
                                                 Lrw["nombre"] = Nombre.Trim();
@@ -196,7 +201,7 @@ namespace Lbl.Servicios.Importar
                         System.Console.WriteLine("Lbl.Servicios.Importar.Filtro: Preparando tablas internas...");
                         foreach (MapaDeTabla Map in this.MapaDeTablas) {
                                 if (Map.ColumnaIdExterna != null) {
-                                        Lfx.Data.TableStructure Tabla = Lfx.Data.DataBaseCache.DefaultCache.TableStructures[Map.TablaLazaro];
+                                        Lfx.Data.TableStructure Tabla = Lfx.Workspace.Master.Structure.Tables[Map.TablaLazaro];
                                         if (Tabla.Columns.ContainsKey(Map.ColumnaIdLazaro) == false) {
                                                 // Si la columna Id no existe, agrego un tag
                                                 Lfx.Data.Tag ImportTag = new Lfx.Data.Tag(Map.TablaLazaro, Map.ColumnaIdLazaro, "ImportId");
@@ -206,7 +211,7 @@ namespace Lbl.Servicios.Importar
                                                 this.DataBase.Tables[Map.TablaLazaro].Tags.Add(ImportTag);
                                                 ImportTag.Save();
                                                 TablasModificadas.Add(Map.TablaLazaro);
-                                                Lfx.Data.DataBaseCache.DefaultCache.CargarEstructuraDesdeXml(null);
+                                                Lfx.Workspace.Master.Structure.LoadBuiltIn();
                                         }
                                 }
                         }
@@ -214,7 +219,7 @@ namespace Lbl.Servicios.Importar
                         // Me aseguro de que los tags se incorporen a las estructuras de la base de datos
                         if (TablasModificadas.Count > 0) {
                                 foreach (string NombreTabla in TablasModificadas) {
-                                        Lfx.Data.TableStructure Tabla = Lfx.Data.DataBaseCache.DefaultCache.TableStructures[NombreTabla];
+                                        Lfx.Data.TableStructure Tabla = Lfx.Workspace.Master.Structure.Tables[NombreTabla];
                                         this.DataBase.SetTableStructure(Tabla);
                                 }
                         }
@@ -241,12 +246,9 @@ namespace Lbl.Servicios.Importar
                 /// <param name="mapa">El mapa de la tabla a la cual corresponde el registro.</param>
                 /// <param name="row">El registro a partir del cual crear un ElementoDeDatos.</param>
                 /// <returns>Un objeto de alguna clase derivada de ElementoDeDatos.</returns>
-                public Lbl.ElementoDeDatos CrearElemento(MapaDeTabla mapa, Lfx.Data.Row row)
+                public Lbl.IElementoDeDatos CrearElemento(MapaDeTabla mapa, Lfx.Data.Row row)
                 {
                         return Lbl.Instanciador.Instanciar(mapa.TipoElemento, this.DataBase, row);
-                        //System.Reflection.ConstructorInfo TConstr = mapa.TipoElemento.GetConstructor(new Type[] { typeof(Lfx.Data.DataBase), typeof(Lfx.Data.Row) });
-                        //object Elem = TConstr.Invoke(new object[] { this.DataBase, row });
-                        //return (Lbl.ElementoDeDatos)Elem;
                 }
 
                 /// <summary>
@@ -255,12 +257,9 @@ namespace Lbl.Servicios.Importar
                 /// <param name="mapa"></param>
                 /// <param name="row"></param>
                 /// <returns></returns>
-                public Lbl.ElementoDeDatos CargarElemento(MapaDeTabla mapa, Lfx.Data.Row row)
+                public Lbl.IElementoDeDatos CargarElemento(MapaDeTabla mapa, Lfx.Data.Row row)
                 {
                         return Lbl.Instanciador.Instanciar(mapa.TipoElemento, this.DataBase, row.Fields[this.DataBase.Tables[mapa.TablaLazaro].PrimaryKey].ValueInt);
-                        //System.Reflection.ConstructorInfo TConstr = mapa.TipoElemento.GetConstructor(new Type[] { typeof(Lfx.Data.DataBase), typeof(int) });
-                        //object Elem = TConstr.Invoke(new object[] { this.DataBase, row.Fields[this.DataBase.Tables[mapa.TablaLazaro].PrimaryKey].ValueInt });
-                        //return (Lbl.ElementoDeDatos)Elem;
                 }
         }
 }

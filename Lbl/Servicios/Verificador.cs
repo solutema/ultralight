@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,9 +37,9 @@ namespace Lbl.Servicios
 {
         public class Verificador
         {
-                public Lfx.Data.DataBase DataBase;
+                public Lfx.Data.Connection DataBase;
 
-                public Verificador(Lfx.Data.DataBase dataBase)
+                public Verificador(Lfx.Data.Connection dataBase)
                 {
                         this.DataBase = dataBase;
                 }
@@ -48,7 +48,7 @@ namespace Lbl.Servicios
                 {
                         this.DataBase.Execute("ALTER DATABASE " + this.DataBase.DataBaseName + " charset=utf8");
 
-                        foreach (string Tabla in Lfx.Data.DataBaseCache.DefaultCache.TableList) {
+                        foreach (string Tabla in Lfx.Workspace.Master.Structure.Tables.Keys) {
                                 this.DataBase.Execute("ALTER TABLE " + Tabla + " CONVERT TO CHARACTER SET utf8");
                                 CheckTable(Tabla);
                         }

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -58,43 +58,44 @@ namespace Lcc.Edicion
                 /// </summary>
                 private void InitializeComponent()
                 {
-                        this.FieldContainer = new System.Windows.Forms.FlowLayoutPanel();
                         this.GroupLabel = new System.Windows.Forms.Label();
+                        this.FieldContainer = new System.Windows.Forms.Panel();
                         this.SuspendLayout();
+                        // 
+                        // GroupLabel
+                        // 
+                        this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.GroupLabel.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.GroupLabel.Location = new System.Drawing.Point(0, 0);
+                        this.GroupLabel.Name = "GroupLabel";
+                        this.GroupLabel.Size = new System.Drawing.Size(460, 24);
+                        this.GroupLabel.TabIndex = 1;
+                        this.GroupLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.GroupLabel.UseMnemonic = false;
                         // 
                         // FieldContainer
                         // 
                         this.FieldContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.FieldContainer.AutoScroll = true;
-                        this.FieldContainer.Location = new System.Drawing.Point(0, 20);
-                        this.FieldContainer.Margin = new System.Windows.Forms.Padding(4);
+                        this.FieldContainer.Location = new System.Drawing.Point(0, 28);
+                        this.FieldContainer.Margin = new System.Windows.Forms.Padding(0);
                         this.FieldContainer.Name = "FieldContainer";
-                        this.FieldContainer.Size = new System.Drawing.Size(460, 64);
-                        this.FieldContainer.TabIndex = 0;
-                        this.FieldContainer.ClientSizeChanged += new System.EventHandler(this.FieldContainer_ClientSizeChanged);
+                        this.FieldContainer.Size = new System.Drawing.Size(460, 184);
+                        this.FieldContainer.TabIndex = 2;
                         this.FieldContainer.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.FieldContainer_ControlAdded);
-                        // 
-                        // GroupLabel
-                        // 
-                        this.GroupLabel.AutoSize = true;
-                        this.GroupLabel.Location = new System.Drawing.Point(0, 0);
-                        this.GroupLabel.Name = "GroupLabel";
-                        this.GroupLabel.Size = new System.Drawing.Size(70, 15);
-                        this.GroupLabel.TabIndex = 1;
-                        this.GroupLabel.Text = "fieldgroup";
-                        this.GroupLabel.UseMnemonic = false;
                         // 
                         // MatrizCampos
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.Controls.Add(this.GroupLabel);
                         this.Controls.Add(this.FieldContainer);
+                        this.Controls.Add(this.GroupLabel);
                         this.Name = "MatrizCampos";
-                        this.Controls.SetChildIndex(this.FieldContainer, 0);
+                        this.Size = new System.Drawing.Size(460, 212);
                         this.Controls.SetChildIndex(this.GroupLabel, 0);
+                        this.Controls.SetChildIndex(this.FieldContainer, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -102,7 +103,7 @@ namespace Lcc.Edicion
 
                 #endregion
 
-                public System.Windows.Forms.FlowLayoutPanel FieldContainer;
                 private System.Windows.Forms.Label GroupLabel;
+                protected System.Windows.Forms.Panel FieldContainer;
         }
 }

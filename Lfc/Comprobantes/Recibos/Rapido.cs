@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -54,33 +54,52 @@ namespace Lfc.Comprobantes.Recibos
 			if(Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text) <= 0)
 				return new Lfx.Types.FailureOperationResult("Debe especificar el importe");
 
-			this.DataBase.BeginTransaction(true);
+			this.Connection.BeginTransaction(true);
 
-			Lbl.Personas.Persona Cliente = new Lbl.Personas.Persona(DataBase, EntradaCliente.TextInt);
-			Lbl.Comprobantes.ReciboDeCobro Rec = new Lbl.Comprobantes.ReciboDeCobro(DataBase, Cliente);
+			Lbl.Personas.Persona Cliente = new Lbl.Personas.Persona(Connection, EntradaCliente.TextInt);
+			Lbl.Comprobantes.ReciboDeCobro Rec = new Lbl.Comprobantes.ReciboDeCobro(this.Connection, Cliente);
 			Rec.Crear();
-			Rec.Cobros.Add(new Lbl.Comprobantes.Cobro(DataBase, Lbl.Pagos.TipoFormasDePago.Caja, Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text)));
-			Rec.Cobros[0].CajaDestino = new Lbl.Cajas.Caja(DataBase, EntradaCaja.TextInt);
-			Rec.Vendedor = new Lbl.Personas.Persona(DataBase, this.Workspace.CurrentUser.Id);
+			Rec.Cobros.Add(new Lbl.Comprobantes.Cobro(Connection, Lbl.Pagos.TiposFormasDePago.Caja, Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text)));
+			Rec.Cobros[0].CajaDestino = new Lbl.Cajas.Caja(Connection, EntradaCaja.TextInt);
+                        Rec.Vendedor = Lbl.Sys.Config.Actual.UsuarioConectado.Persona;
 			Lfx.Types.OperationResult Res = Rec.Guardar();
+
                         if (Res.Success) {
-                                this.DataBase.Commit();
+                                this.Connection.Commit();
+
+                                if (Rec.Tipo.ImprimirAlGuardar) {
+                                        Lazaro.Impresion.Comprobantes.ImpresorRecibo Impresor = new Lazaro.Impresion.Comprobantes.ImpresorRecibo(Rec);
+                                        Rec.Connection.BeginTransaction();
+                                        Lfx.Types.OperationResult ResImprimir = Impresor.Imprimir();
+                                        if (ResImprimir.Success) {
+                                                Rec.Connection.Commit();
+                                        } else {
+                                                Rec.Connection.RollBack();
+                                                if (ResImprimir.Message != null)
+                                                        Lui.Forms.MessageBox.Show(ResImprimir.Message, "Error");
+                                                else
+                                                        Lui.Forms.MessageBox.Show("Se creó el recibo, pero no se imprimió correctamente.", "Error");
+                                        }
+                                }
+
                                 string Nombrecliente = EntradaCliente.TextDetail;
                                 EntradaCliente.TextInt = 0;
                                 EntradaCliente.Focus();
                                 return new Lfx.Types.FailureOperationResult("Se creo el recibo para el cliente " + Nombrecliente);
                         } else {
-                                this.DataBase.RollBack();
+                                this.Connection.RollBack();
                                 return Res;
                         }
         	}
 
 		private void EntradaCliente_TextChanged(object sender, EventArgs e)
 		{
-			if(EntradaCliente.TextInt > 0)
-                                EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(new Lbl.CuentasCorrientes.CuentaCorriente(this.DataBase, EntradaCliente.TextInt).Saldo(false), this.Workspace.CurrentConfig.Moneda.Decimales);
-			else
-				EntradaImporte.Text = "0";
+                        if (EntradaCliente.TextInt > 0) {
+                                Lbl.Personas.Persona Pers = EntradaCliente.Elemento as Lbl.Personas.Persona;
+                                EntradaImporte.ValueDecimal = Pers.CuentaCorriente.Saldo(false);
+                        } else {
+                                EntradaImporte.ValueDecimal = 0;
+                        }
 		}
 	}
 }

@@ -1,5 +1,5 @@
  #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -34,67 +34,68 @@ using System.Collections.Generic;
 
 namespace Lfx
 {
-	/// <summary>
-	/// Proporciona un espacio de trabajo que incluye acceso a los datos y a la configuración.
-	/// </summary>
-        public class Workspace : System.MarshalByRefObject
-	{
+        /// <summary>
+        /// Proporciona un espacio de trabajo que incluye acceso a los datos y a la configuración.
+        /// </summary>
+        public class Workspace : System.MarshalByRefObject, IDisposable
+        {
                 public static Lfx.Workspace Master = null;
-                public static Lfx.Data.TableCollection m_MasterTableCollection = null;
+                private Lfx.Data.Connection m_MasterConnection = null;
+                public Data.Structure Structure = new Data.Structure();
 
-		private string m_Name;
-                private Lfx.Data.DataBase m_DataBase = null;
+                public const int VersionUltima = 24;
+                public System.Globalization.CultureInfo CultureInfo = new System.Globalization.CultureInfo("es-ar");
 
-		public Lfx.Config.ConfigManager CurrentConfig;
-		public Services.Scheduler DefaultScheduler;
-		public RunTimeServices RunTime;
-		public Access.LoginData CurrentUser;
-		public int DataBaseCount = 0;
-		public bool DebugMode = false;
-                public List<Data.DataBase> DataBases = new List<Data.DataBase>();
+                private string m_Name;
 
-		public Workspace()
-			: this("default")
-		{
-		}
+                public Lfx.Config.ConfigManager CurrentConfig;
+                public Services.Scheduler DefaultScheduler;
+                public RunTimeServices RunTime;
+                public int DataBaseCount = 0;
+                public bool DebugMode = false, WebAppMode = false;
+                public List<Data.Connection> ActiveConnections = new List<Data.Connection>();
 
-                public Workspace(string workspaceName)
-                        : this(workspaceName, true)
+                public Workspace()
+                        : this("default")
                 {
                 }
 
-		public Workspace(string workspaceName, bool openDataBase)
-		{
-			m_Name = workspaceName;
+                public Workspace(string workspaceName)
+                        : this(workspaceName, true, false)
+                {
+                }
 
-			this.CurrentConfig = new Lfx.Config.ConfigManager(this);
-                        this.CurrentConfig.ConfigFileName = m_Name + ".lwf";
-                        this.CurrentUser = new Lfx.Access.LoginData(this);
-                        this.DefaultScheduler = new Lfx.Services.Scheduler(this);
-                        this.RunTime = new Workspace.RunTimeServices();
 
-                        m_DataBase = new Lfx.Data.DataBase(this, "Conexion maestra");
+                public Workspace(string workspaceName, bool openConnection, bool webAppMode)
+                {
+                        this.WebAppMode = webAppMode;
+                        m_Name = workspaceName;
+
+                        this.CurrentConfig = new Lfx.Config.ConfigManager(this);
+
+                        if (this.WebAppMode == false) {
+                                this.DefaultScheduler = new Lfx.Services.Scheduler(this);
+                                this.RunTime = new Lfx.RunTimeServices();
+                        }
+
+                        m_MasterConnection = new Lfx.Data.Connection(this, this.Name);
+                        m_MasterConnection.RequiresTransaction = false;
 
                         if (Lfx.Data.DataBaseCache.DefaultCache == null)
-                                Lfx.Data.DataBaseCache.DefaultCache = new Lfx.Data.DataBaseCache(m_DataBase);
+                                Lfx.Data.DataBaseCache.DefaultCache = new Lfx.Data.DataBaseCache(m_MasterConnection);
 
-                        if (Lfx.Services.Updater.Master == null)
+                        if (Lfx.Services.Updater.Master == null && this.WebAppMode == false)
                                 Lfx.Services.Updater.Master = new Services.Updater();
 
-                        if (this.DefaultDataBase.AccessMode == Lfx.Data.AccessModes.Undefined) {
+                        if (this.MasterConnection.AccessMode == Lfx.Data.AccessModes.Undefined) {
                                 switch (this.CurrentConfig.ReadLocalSettingString("Data", "ConnectionType", "mysql")) {
                                         case "odbc":
-                                                Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.ODBC;
-                                                break;
-
-                                        case "mysql":
-                                                Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MySql;
+                                                Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.Odbc;
                                                 break;
 
                                         case "myodbc":
-                                                // FIXME: eliminar esto que se usa momentáneamente para migrar a todos de MyODBC a MySQL Connector/NET.
-                                                this.CurrentConfig.WriteLocalSetting("Data", "ConnectionType", "mysql");
-                                                Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MyOdbc;
+                                        case "mysql":
+                                                Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MySql;
                                                 break;
 
                                         case "npgsql":
@@ -115,203 +116,302 @@ namespace Lfx
                                 Lfx.Data.DataBaseCache.DefaultCache.Password = this.CurrentConfig.ReadLocalSettingString("Data", "Password", string.Empty);
                         }
 
-                        if (openDataBase)
-                                m_DataBase.Open();
-		}
+                        if (openConnection)
+                                m_MasterConnection.Open();
 
-		public string Name
-		{
-			get
-			{
-				return m_Name;
-			}
-		}
+                        // Personalizo los valores de CultureInfo
+                        this.CultureInfo.NumberFormat.CurrencyDecimalSeparator = ".";
+                        this.CultureInfo.NumberFormat.CurrencyDecimalDigits = 2;
+                        this.CultureInfo.NumberFormat.CurrencyGroupSeparator = "";
+                        this.CultureInfo.NumberFormat.CurrencySymbol = "$";
 
-		public override string ToString()
-		{
-			if(this.Name == "default")
-				return this.DefaultDataBase.DataBaseName;
-			else
-				return this.Name;
-		}
+                        this.CultureInfo.NumberFormat.NumberDecimalSeparator = ".";
+                        this.CultureInfo.NumberFormat.NumberGroupSeparator = "";
 
-                public Lfx.Data.DataBase DefaultDataBase
-		{
-			get
-			{
-				return m_DataBase;
-			}
-		}
+                        this.CultureInfo.DateTimeFormat.FullDateTimePattern = Lfx.Types.Formatting.DateTime.FullDateTimePattern;
+                        this.CultureInfo.DateTimeFormat.LongDatePattern = Lfx.Types.Formatting.DateTime.LongDatePattern;
+                        this.CultureInfo.DateTimeFormat.ShortDatePattern = Lfx.Types.Formatting.DateTime.ShortDatePattern;
+                        this.CultureInfo.DateTimeFormat.ShortTimePattern = "HH:mm";
+                        this.CultureInfo.DateTimeFormat.LongTimePattern = "HH:mm:ss";
 
-                public Lfx.Data.DataBase GetDataBase(string ownerName)
-		{
-                        Lfx.Data.DataBase Res = new Lfx.Data.DataBase(this, ownerName);
-                        //Res.Open();
-                        return Res;
-		}
+                        System.Threading.Thread.CurrentThread.CurrentCulture = this.CultureInfo;
+                        System.Threading.Thread.CurrentThread.CurrentUICulture = this.CultureInfo;
+                }
 
-		/// <summary>
-		/// Log de comandos SQL (normalmente a la consola). Sólo para depuración.
-		/// </summary>
-		public void DebugLog(int handle, string command)
-		{
-			if(this.DebugMode && command.IndexOf("FROM sys_programador") < 0 && command != "SELECT 1")
-				System.Console.WriteLine(handle.ToString() + ": " + command);
-		}
-
-		/// <summary>
-		/// Escribe un evento en la tabla sys_log. Se utiliza para registrar operaciones de datos (altas, bajas, ingresos, egresos, etc.)
-		/// </summary>
-		public void ActionLog(string command, string extra1)
-		{
-			this.ActionLog(command, null, 0, extra1);
-		}
-
-		public void ActionLog(string command, string table, int item_id, string extra1)
-		{
-			try
-			{
-				qGen.Insert Comando = new qGen.Insert(this.DefaultDataBase, "sys_log");
-				Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
-				Comando.Fields.AddWithValue("estacion", System.Environment.MachineName.ToUpperInvariant());
-				Comando.Fields.AddWithValue("usuario", this.CurrentUser.Id);
-				Comando.Fields.AddWithValue("comando", command);
-				Comando.Fields.AddWithValue("tabla", table);
-				Comando.Fields.AddWithValue("item_id", Lfx.Data.DataBase.ConvertZeroToDBNull(item_id));
-				Comando.Fields.AddWithValue("extra1", extra1);
-				this.DefaultDataBase.Execute(Comando);
-			}
-			catch (System.Exception ex)
-			{
-                                System.Console.WriteLine(ex.ToString());
-			}
-		}
-
-                public Lfx.Data.TableCollection Tables
+                public string Name
                 {
                         get
                         {
-                                if (m_MasterTableCollection == null) {
-                                        m_MasterTableCollection = new Lfx.Data.TableCollection(Lfx.Workspace.Master.DefaultDataBase);
-                                        foreach (string TblName in Lfx.Data.DataBaseCache.DefaultCache.TableList) {
-                                                Lfx.Data.Table NewTable = new Lfx.Data.Table(Lfx.Workspace.Master.DefaultDataBase, TblName);
-                                                switch (TblName) {
-                                                        case "sys_asl":
-                                                        case "sys_log":
-                                                        case "sys_programador":
-                                                        case "sys_quickpaste":
-                                                                NewTable.Cacheable = false;
-                                                                break;
-                                                }
-                                                if (Lfx.Data.DataBaseCache.DefaultCache.TableStructures.ContainsKey(TblName) && Lfx.Data.DataBaseCache.DefaultCache.TableStructures[TblName].PrimaryKey != null)
-                                                        NewTable.PrimaryKey = Lfx.Data.DataBaseCache.DefaultCache.TableStructures[TblName].PrimaryKey.Name;
-                                                Lfx.Workspace.m_MasterTableCollection.Add(NewTable);
-                                        }
-                                }
-                                return m_MasterTableCollection;
+                                return m_Name;
                         }
                 }
 
-		public bool SlowLink
-		{
-			get
-			{
-				return this.DefaultDataBase.SlowLink;
-			}
-		}
+                public override string ToString()
+                {
+                        if (this.Name == "default")
+                                return this.MasterConnection.DataBaseName;
+                        else
+                                return this.Name;
+                }
+
+                public Lfx.Data.Connection MasterConnection
+                {
+                        get
+                        {
+                                return m_MasterConnection;
+                        }
+                }
+
+                public bool Disposing = false;
+                public void Dispose()
+                {
+                        this.CurrentConfig.Dispose();
+                        if (this.DefaultScheduler != null)
+                                this.DefaultScheduler.Dispose();
+
+                        // Tengo que clonar this.DataBases porque .Dispose() va a modificar la lista mientras la estoy recorriendo
+                        List<Data.Connection> Dbs = new List<Data.Connection>();
+                        Dbs.AddRange(this.ActiveConnections);
+
+                        foreach (Lfx.Data.Connection Db in Dbs) {
+                                Db.Dispose();
+                        }
+                        this.ActiveConnections.Clear();
+                }
+
+                public Lfx.Data.Connection GetNewConnection(string ownerName)
+                {
+                        Lfx.Data.Connection Res = new Lfx.Data.Connection(this, ownerName);
+                        return Res;
+                }
+
+                /// <summary>
+                /// Log de comandos SQL (normalmente a la consola). Sólo para depuración.
+                /// </summary>
+                public void DebugLog(int handle, string command, System.Diagnostics.Stopwatch perfCounter)
+                {
+                        /* if (this.DebugMode && perfCounter != null && perfCounter.ElapsedMilliseconds > 500)
+                                System.Console.WriteLine(handle.ToString() + ": " 
+                                        + (perfCounter == null ? "" : perfCounter.ElapsedMilliseconds.ToString() + " ms. ")
+                                        + command); */
+                }
+
+                public bool SlowLink
+                {
+                        get
+                        {
+                                return this.MasterConnection.SlowLink;
+                        }
+                }
 
 
-		/// <summary>
-		/// Notifica sobre un cambio de una tabla de datos
-		/// </summary>
+                /// <summary>
+                /// Notifica sobre un cambio de una tabla de datos
+                /// </summary>
                 public void NotifyTableChange(string table, int id)
                 {
                         //TODO: podría directamente modificar el caché en memoria, si quien notifica el cambio me pasara una copia del nuevo registro
                         //(p. ej. Lbl.ElementoDeDatos puede hacerlo). Por el momento voy a lo seguro y elimino del caché.
-                        this.DefaultDataBase.Tables[table].FastRows.RemoveFromCache(id);
+                        Lfx.Data.DataBaseCache.DefaultCache.Tables[table].FastRows.RemoveFromCache(id);
                 }
 
 
-		/// <summary>
-		/// Proporciona servicios de comunicación inter-proceso (entre el Lfx, la aplicación principal y los componentes)
-		/// </summary>
-		public class RunTimeServices
-		{
-			public class IpcEventArgs : System.EventArgs
-			{
-				public enum EventTypes
-				{
-					Undefined,
-					Information,
-					ActionRequest
-				}
+                /// <summary>
+                /// Verifica la versión de la base de datos y si es necesario actualiza.
+                /// </summary>
+                /// <param name="dataBase">Acceso a la base de datos.</param>
+                /// <param name="ignorarFecha">Ignorar la fecha y actualizar siempre.</param>
+                /// <param name="noTocarDatos">Actualizar sólo la estructura. No incorpora ni modifica datos.</param>
+                public void CheckAndUpdateDataBaseVersion(Lfx.Data.Connection dataBase, bool ignorarFecha, bool noTocarDatos)
+                {
+                        Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Verificando Versión de los Datos", "Se están analizando los datos del almacén de datos y se van a realizar cambios si fuera necesario.");
+                        Progreso.Blocking = true;
+                        Progreso.Begin();
 
-				public EventTypes EventType = EventTypes.Undefined;
-				public string Source;
-				public string Destination;
-				public string Verb;
-				public object[] Arguments;
-				public object ReturnValue;
+                        dataBase.RequiresTransaction = false;
+                        int VersionActual = this.CurrentConfig.ReadGlobalSettingInt("Sistema", "DB.Version", 0);
 
-				public IpcEventArgs() { }
-				public IpcEventArgs(EventTypes eventType)
-				{
-					this.EventType = eventType;
-				}
-			}
-			public delegate void IpcEventHandler(object sender, ref IpcEventArgs e);
-			public event IpcEventHandler IpcEvent;
-
-                        public object Execute(string verb)
-                        {
-                                return this.Execute("lazaro", verb, null);
+                        if (VersionUltima < VersionActual) {
+                                this.RunTime.Message("Es necesario actualizar el sistema Lázaro en esta estación de trabajo. Se esperaba la versión " + VersionUltima.ToString() + " de la base de datos, pero se encontró la versión " + VersionActual.ToString() + " que es demasiado nueva.");
+                        } else if (noTocarDatos == false && VersionActual < VersionUltima && VersionActual > 0) {
+                                //Actualizo desde la versión actual a la última
+                                for (int i = VersionActual + 1; i <= VersionUltima; i++) {
+                                        Progreso.ChangeStatus("Pre-actualización " + i.ToString());
+                                        InyectarSqlDesdeRecurso(dataBase, @"Data.Struct.db_upd" + i.ToString() + "_pre.sql");
+                                }
                         }
 
-			public object Execute(string verb, object[] arguments)
-			{
-				return this.Execute("lazaro", verb, arguments);
-			}
+                        DateTime VersionEstructura = Lfx.Types.Parsing.ParseSqlDateTime(this.CurrentConfig.ReadGlobalSettingString("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"));
+                        DateTime FechaLazaroExe = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).LastWriteTime;
+                        TimeSpan Diferencia = FechaLazaroExe - VersionEstructura;
+                        System.Console.WriteLine("Versión estructura: " + VersionEstructura.ToString());
+                        System.Console.WriteLine("Versión Lázaro    : " + FechaLazaroExe.ToString() + " (" + Diferencia.ToString() + " más nuevo)");
+                        if (Diferencia.Days < -7 && ignorarFecha == false) {
+                                //Lázaro es más viejo que la bd por al menos 7 días
+                                this.RunTime.Message("La versión de Lázaro que está utilizando es antigua. Por favor actualice su sistema urgentemente.");
+                        } else if (ignorarFecha || Diferencia.Hours > 1) {
+                                //Lázaro es más nuevo que la bd por al menos 1 hora
+                                Progreso.ChangeStatus("Verificando estructuras");
+                                this.CheckAndUpdateDataBaseStructure(dataBase, false);
+                                if (noTocarDatos == false)
+                                        this.CurrentConfig.WriteGlobalSetting("Sistema", "DB.VersionEstructura", Lfx.Types.Formatting.FormatDateTimeSql(FechaLazaroExe));
+                        }
 
-			public object Execute(string destination, string verb, object[] arguments)
-			{
-				if (IpcEvent != null)
-				{
-					IpcEventArgs e = new IpcEventArgs();
-					e.EventType = IpcEventArgs.EventTypes.ActionRequest;
-					e.Destination = destination;
-					e.Verb = verb;
-					e.Arguments = arguments;
-					this.IpcEvent(this, ref e);
-					return e.ReturnValue;
-				}
-				return null;
-			}
+                        if (noTocarDatos == false && VersionActual < VersionUltima && VersionActual > 0) {
+                                for (int i = VersionActual + 1; i <= VersionUltima; i++) {
+                                        Progreso.ChangeStatus("Post-actualización " + i.ToString());
+                                        InyectarSqlDesdeRecurso(dataBase, @"Data.Struct.db_upd" + i.ToString() + "_post.sql");
+                                        this.CurrentConfig.WriteGlobalSetting("Sistema", "DB.Version", i.ToString(), "*");
+                                }
+                        }
 
-			public void Info(string verb, string infoText)
-			{
-				this.Info("lazaro", verb, new object[] { infoText });
-			}
-			public void Info(string verb, object[] arguments)
-			{
-				this.Info("lazaro", verb, arguments);
-			}
+                        Progreso.End();
+                }
 
-			public void Info(string destination, string verb, string infoText)
-			{
-				this.Info(destination, verb, new object[] { infoText });
-			}
-			public void Info(string destination, string verb, object[] arguments)
-			{
-				if (IpcEvent != null)
-				{
-					IpcEventArgs e = new IpcEventArgs();
-					e.EventType = IpcEventArgs.EventTypes.Information;
-					e.Destination = destination;
-					e.Verb = verb;
-					e.Arguments = arguments;
-					this.IpcEvent(this, ref e);
-				}
-			}
-		}
-	}
+                /// <summary>
+                /// Devuelve Verdadero si la base de datos está lista para ser utilizaza.
+                /// Si devuelve Falso, significa que el servidor debe prepararse antes (con Prepare)
+                /// </summary>
+                /// <returns></returns>
+                public bool IsPrepared()
+                {
+                        try {
+                                Lfx.Workspace.Master.MasterConnection.FieldString("SELECT nombre FROM sys_config");
+                                return true;
+                        } catch (Exception ex) {
+                                return false;
+                        }
+                }
+
+                /// <summary>
+                /// Prepara un servidor para ser utilizado por Lázaro. Crea estructuras y realiza una carga inicial de datos.
+                /// </summary>
+                public Lfx.Types.OperationResult Prepare()
+                {
+                        Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Preparando Almacén de Datos", "Se están a creando las estructuras de datos y se va realizar una carga inicial de datos.");
+                        Progreso.Blocking = true;
+                        Progreso.Begin();
+
+                        // Creación de tablas
+                        Progreso.ChangeStatus("Creando estructuras");
+                        this.CheckAndUpdateDataBaseStructure(this.MasterConnection, true);
+
+                        this.MasterConnection.EnableConstraints(false);
+
+                        string Sql = "";
+                        using (System.IO.Stream RecursoSql = ObtenerRecurso(@"Data.Struct.dbdata.sql")) {
+                                using (System.IO.StreamReader Lector = new System.IO.StreamReader(RecursoSql, System.Text.Encoding.UTF8)) {
+                                        // Carga inicial de datos
+                                        Sql = this.MasterConnection.CustomizeSql(Lector.ReadToEnd());
+                                        Lector.Close();
+                                        RecursoSql.Close();
+                                }
+                        }
+
+                        // Si hay archivos adicionales de datos para la carga inicial, los incluyo
+                        // Estos suelen tener datos personalizados de esta instalación en partícular
+                        if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + "default.alf")) {
+                                using (System.IO.StreamReader Lector = new System.IO.StreamReader(Lfx.Environment.Folders.ApplicationFolder + "default.alf", System.Text.Encoding.UTF8)) {
+                                        Sql += Lfx.Types.ControlChars.CrLf;
+                                        Sql += this.MasterConnection.CustomizeSql(Lector.ReadToEnd());
+                                        Lector.Close();
+                                }
+                        }
+
+                        Progreso.ChangeStatus("Carga inicial de datos");
+                        Progreso.Max = Sql.Length;
+                        do {
+                                string Comando = Lfx.Data.Connection.GetNextCommand(ref Sql);
+                                this.MasterConnection.Execute(Comando);
+                                Progreso.ChangeStatus(Progreso.Max - Sql.Length);
+                        }
+                        while (Sql.Length > 0);
+
+                        Progreso.ChangeStatus("Carga de TagList");
+                        // Cargar TagList y volver a verificar la estructura
+                        Lfx.Workspace.Master.Structure.TagList.Clear();
+                        Lfx.Workspace.Master.Structure.LoadBuiltIn();
+                        this.CheckAndUpdateDataBaseStructure(this.MasterConnection, false);
+
+                        this.MasterConnection.EnableConstraints(true);
+                        this.CurrentConfig.WriteGlobalSetting("Sistema", "DB.Version", Lfx.Workspace.VersionUltima.ToString(), "*");
+                        
+                        Progreso.End();
+                        return new Lfx.Types.SuccessOperationResult();
+                }
+
+                /// <summary>
+                /// Obtiene un stream a un recurso.
+                /// </summary>
+                /// <param name="nombre">Nombre del recurso, incluyendo la ruta.</param>
+                private static System.IO.Stream ObtenerRecurso(string nombre)
+                {
+                        return System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Lfx." + nombre);
+                }
+
+                private static void InyectarSqlDesdeRecurso(Lfx.Data.Connection dataBase, string archivo)
+                {
+                        dataBase.RequiresTransaction = false;
+                        System.IO.Stream RecursoActualizacion = Lfx.Workspace.ObtenerRecurso(archivo);
+                        if (RecursoActualizacion != null) {
+                                System.IO.StreamReader Lector = new System.IO.StreamReader(RecursoActualizacion);
+                                string SqlActualizacion = dataBase.CustomizeSql(Lector.ReadToEnd());
+                                //dataBase.Execute(SqlActualizacion);
+                                do {
+                                        string Comando = Data.Connection.GetNextCommand(ref SqlActualizacion);
+                                        try {
+                                                dataBase.Execute(Comando);
+                                        } catch (Exception ex) {
+                                                if (Lfx.Environment.SystemInformation.DesignMode)
+                                                        throw;
+                                        }
+                                }
+                                while (SqlActualizacion.Length > 0);
+                                RecursoActualizacion.Close();
+                        }
+                }
+
+                /// <summary>
+                /// Verifica la estructura de la base de datos actual y si es necesario modifica para que esté conforme
+                /// al diseño de referencia.
+                /// </summary>
+                /// <param name="dataBase">PrintDataBase mediante el cual se accede a la base de datos.</param>
+                /// <param name="omitPreAndPostSql">Omitir la ejecución de comandos Pre- y Post-actualización de estructura. Esto es útil cuando se actualiza una estructura vacía, por ejemplo al crear una base de datos nueva.</param>
+                public void CheckAndUpdateDataBaseStructure(Lfx.Data.Connection dataBase, bool omitPreAndPostSql)
+                {
+                        Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Verificando Estructuras de Datos", "Se está analizando la estructura del almacén de datos y se van a realizar cambios si fuera necesario.");
+                        Progreso.Blocking = true;
+                        Progreso.Begin();
+
+                        bool MustEnableConstraints = false;
+                        if (dataBase.ConstraintsEnabled) {
+                                dataBase.EnableConstraints(false);
+                                MustEnableConstraints = true;
+                        }
+
+                        if (omitPreAndPostSql == false)
+                                InyectarSqlDesdeRecurso(dataBase, @"Data.Struct.db_upd_pre.sql");
+
+                        //Primero borro claves foráneas (deleteOnly = true)
+                        dataBase.SetConstraints(Lfx.Workspace.Master.Structure.Constraints, true);
+
+                        Progreso.Max = Lfx.Workspace.Master.Structure.Tables.Count;
+                        foreach (Lfx.Data.TableStructure Tab in Lfx.Workspace.Master.Structure.Tables.Values) {
+                                Progreso.ChangeStatus(Progreso.Value + 1, "Verificando " + Tab.Name);
+                                dataBase.SetTableStructure(Tab);
+                        }
+
+                        //Ahora creo claves nuevas (deleteOnly = false)
+                        Progreso.ChangeStatus("Creando claves foráneas");
+                        dataBase.SetConstraints(Lfx.Workspace.Master.Structure.Constraints, false);
+
+                        if (omitPreAndPostSql == false)
+                                InyectarSqlDesdeRecurso(dataBase, @"Data.Struct.db_upd_post.sql");
+
+                        if (MustEnableConstraints)
+                                dataBase.EnableConstraints(true);
+
+                        Progreso.End();
+                }
+        }
 }

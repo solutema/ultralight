@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -52,21 +52,21 @@ namespace Lazaro.Misc.Backup
                         base.Dispose(disposing);
                 }
 
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
 
                 private void InitializeComponent()
                 {
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
-                        this.cmdBackup = new Lui.Forms.Button();
+                        this.BotonBackup = new Lui.Forms.Button();
                         this.lvItems = new Lui.Forms.ListView();
                         this.Carpeta = new System.Windows.Forms.ColumnHeader();
                         this.Numero = new System.Windows.Forms.ColumnHeader();
                         this.FechaYHora = new System.Windows.Forms.ColumnHeader();
                         this.Usuario = new System.Windows.Forms.ColumnHeader();
                         this.Label2 = new System.Windows.Forms.Label();
-                        this.cmdEliminar = new Lui.Forms.Button();
-                        this.cmdRestaurar = new Lui.Forms.Button();
-                        this.cmdCopiar = new Lui.Forms.Button();
+                        this.BotonEliminar = new Lui.Forms.Button();
+                        this.BotonRestaurar = new Lui.Forms.Button();
+                        this.BotonCopiar = new Lui.Forms.Button();
                         this.note1 = new Lui.Forms.Note();
                         this.SuspendLayout();
                         // 
@@ -78,26 +78,25 @@ namespace Lazaro.Misc.Backup
                         // 
                         this.CancelCommandButton.Location = new System.Drawing.Point(674, 8);
                         // 
-                        // cmdBackup
+                        // BotonBackup
                         // 
-                        this.cmdBackup.AutoHeight = false;
-                        this.cmdBackup.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdBackup.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdBackup.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdBackup.Image = ((System.Drawing.Image)(resources.GetObject("cmdBackup.Image")));
-                        this.cmdBackup.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdBackup.Location = new System.Drawing.Point(20, 16);
-                        this.cmdBackup.Name = "cmdBackup";
-                        this.cmdBackup.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdBackup.ReadOnly = false;
-                        this.cmdBackup.Size = new System.Drawing.Size(632, 68);
-                        this.cmdBackup.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
-                        this.cmdBackup.Subtext = "Haga clic aquí para dejar en este equipo una copia completa de los datos del sist" +
+                        this.BotonBackup.AutoSize = false;
+                        this.BotonBackup.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonBackup.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonBackup.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonBackup.Image = ((System.Drawing.Image)(resources.GetObject("BotonBackup.Image")));
+                        this.BotonBackup.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonBackup.Location = new System.Drawing.Point(20, 16);
+                        this.BotonBackup.Name = "BotonBackup";
+                        this.BotonBackup.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonBackup.Size = new System.Drawing.Size(632, 68);
+                        this.BotonBackup.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
+                        this.BotonBackup.Subtext = "Haga clic aquí para dejar en este equipo una copia completa de los datos del sist" +
                             "ema.";
-                        this.cmdBackup.TabIndex = 0;
-                        this.cmdBackup.Text = "Crear una Copia de Respaldo ahora";
-                        this.cmdBackup.ToolTipText = "";
-                        this.cmdBackup.Click += new System.EventHandler(this.cmdBackup_Click);
+                        this.BotonBackup.TabIndex = 0;
+                        this.BotonBackup.Text = "Crear una Copia de Respaldo ahora";
+                        this.BotonBackup.ToolTipText = "";
+                        this.BotonBackup.Click += new System.EventHandler(this.BotonBackup_Click);
                         // 
                         // lvItems
                         // 
@@ -153,81 +152,77 @@ namespace Lazaro.Misc.Backup
                         this.Label2.Text = "Copias de respaldo presentes en el sistema:";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // cmdEliminar
+                        // BotonEliminar
                         // 
-                        this.cmdEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.cmdEliminar.AutoHeight = false;
-                        this.cmdEliminar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdEliminar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdEliminar.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdEliminar.Image = null;
-                        this.cmdEliminar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdEliminar.Location = new System.Drawing.Point(660, 196);
-                        this.cmdEliminar.Name = "cmdEliminar";
-                        this.cmdEliminar.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdEliminar.ReadOnly = false;
-                        this.cmdEliminar.Size = new System.Drawing.Size(108, 28);
-                        this.cmdEliminar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.cmdEliminar.Subtext = "F3";
-                        this.cmdEliminar.TabIndex = 4;
-                        this.cmdEliminar.Text = "Eliminar";
-                        this.cmdEliminar.ToolTipText = "";
-                        this.cmdEliminar.Click += new System.EventHandler(this.cmdEliminar_Click);
+                        this.BotonEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonEliminar.AutoSize = false;
+                        this.BotonEliminar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonEliminar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonEliminar.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonEliminar.Image = null;
+                        this.BotonEliminar.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonEliminar.Location = new System.Drawing.Point(660, 196);
+                        this.BotonEliminar.Name = "BotonEliminar";
+                        this.BotonEliminar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonEliminar.Size = new System.Drawing.Size(108, 28);
+                        this.BotonEliminar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonEliminar.Subtext = "F3";
+                        this.BotonEliminar.TabIndex = 4;
+                        this.BotonEliminar.Text = "Eliminar";
+                        this.BotonEliminar.ToolTipText = "";
+                        this.BotonEliminar.Click += new System.EventHandler(this.BotonEliminar_Click);
                         // 
-                        // cmdRestaurar
+                        // BotonRestaurar
                         // 
-                        this.cmdRestaurar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.cmdRestaurar.AutoHeight = false;
-                        this.cmdRestaurar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdRestaurar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdRestaurar.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdRestaurar.Image = null;
-                        this.cmdRestaurar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdRestaurar.Location = new System.Drawing.Point(660, 232);
-                        this.cmdRestaurar.Name = "cmdRestaurar";
-                        this.cmdRestaurar.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdRestaurar.ReadOnly = false;
-                        this.cmdRestaurar.Size = new System.Drawing.Size(108, 28);
-                        this.cmdRestaurar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.cmdRestaurar.Subtext = "F6";
-                        this.cmdRestaurar.TabIndex = 5;
-                        this.cmdRestaurar.Text = "Restaurar";
-                        this.cmdRestaurar.ToolTipText = "";
-                        this.cmdRestaurar.Click += new System.EventHandler(this.BotonRestaurar_Click);
+                        this.BotonRestaurar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonRestaurar.AutoSize = false;
+                        this.BotonRestaurar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonRestaurar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonRestaurar.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonRestaurar.Image = null;
+                        this.BotonRestaurar.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonRestaurar.Location = new System.Drawing.Point(660, 232);
+                        this.BotonRestaurar.Name = "BotonRestaurar";
+                        this.BotonRestaurar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonRestaurar.Size = new System.Drawing.Size(108, 28);
+                        this.BotonRestaurar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonRestaurar.Subtext = "F6";
+                        this.BotonRestaurar.TabIndex = 5;
+                        this.BotonRestaurar.Text = "Restaurar";
+                        this.BotonRestaurar.ToolTipText = "";
+                        this.BotonRestaurar.Click += new System.EventHandler(this.BotonRestaurar_Click);
                         // 
-                        // cmdCopiar
+                        // BotonCopiar
                         // 
-                        this.cmdCopiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.cmdCopiar.AutoHeight = false;
-                        this.cmdCopiar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdCopiar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdCopiar.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdCopiar.Image = null;
-                        this.cmdCopiar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdCopiar.Location = new System.Drawing.Point(660, 268);
-                        this.cmdCopiar.Name = "cmdCopiar";
-                        this.cmdCopiar.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdCopiar.ReadOnly = false;
-                        this.cmdCopiar.Size = new System.Drawing.Size(108, 28);
-                        this.cmdCopiar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.cmdCopiar.Subtext = "F6";
-                        this.cmdCopiar.TabIndex = 6;
-                        this.cmdCopiar.Text = "Examinar";
-                        this.cmdCopiar.ToolTipText = "";
-                        this.cmdCopiar.Click += new System.EventHandler(this.BotonCopiar_Click);
+                        this.BotonCopiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonCopiar.AutoSize = false;
+                        this.BotonCopiar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonCopiar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonCopiar.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonCopiar.Image = null;
+                        this.BotonCopiar.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonCopiar.Location = new System.Drawing.Point(660, 268);
+                        this.BotonCopiar.Name = "BotonCopiar";
+                        this.BotonCopiar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonCopiar.Size = new System.Drawing.Size(108, 28);
+                        this.BotonCopiar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonCopiar.Subtext = "F6";
+                        this.BotonCopiar.TabIndex = 6;
+                        this.BotonCopiar.Text = "Examinar";
+                        this.BotonCopiar.ToolTipText = "";
+                        this.BotonCopiar.Click += new System.EventHandler(this.BotonCopiar_Click);
                         // 
                         // note1
                         // 
                         this.note1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.note1.AutoHeight = false;
+                        this.note1.AutoSize = false;
                         this.note1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.note1.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.note1.Location = new System.Drawing.Point(24, 308);
                         this.note1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.note1.Name = "note1";
                         this.note1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.note1.ReadOnly = false;
                         this.note1.Size = new System.Drawing.Size(748, 56);
                         this.note1.TabIndex = 52;
                         this.note1.TabStop = false;
@@ -241,20 +236,20 @@ namespace Lazaro.Misc.Backup
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(794, 452);
                         this.Controls.Add(this.note1);
-                        this.Controls.Add(this.cmdCopiar);
+                        this.Controls.Add(this.BotonCopiar);
                         this.Controls.Add(this.Label2);
-                        this.Controls.Add(this.cmdRestaurar);
-                        this.Controls.Add(this.cmdEliminar);
+                        this.Controls.Add(this.BotonRestaurar);
+                        this.Controls.Add(this.BotonEliminar);
                         this.Controls.Add(this.lvItems);
-                        this.Controls.Add(this.cmdBackup);
+                        this.Controls.Add(this.BotonBackup);
                         this.Name = "Manager";
                         this.Text = "Administrador de Copias de Respaldo";
-                        this.Controls.SetChildIndex(this.cmdBackup, 0);
+                        this.Controls.SetChildIndex(this.BotonBackup, 0);
                         this.Controls.SetChildIndex(this.lvItems, 0);
-                        this.Controls.SetChildIndex(this.cmdEliminar, 0);
-                        this.Controls.SetChildIndex(this.cmdRestaurar, 0);
+                        this.Controls.SetChildIndex(this.BotonEliminar, 0);
+                        this.Controls.SetChildIndex(this.BotonRestaurar, 0);
                         this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.cmdCopiar, 0);
+                        this.Controls.SetChildIndex(this.BotonCopiar, 0);
                         this.Controls.SetChildIndex(this.note1, 0);
                         this.ResumeLayout(false);
 
@@ -262,16 +257,16 @@ namespace Lazaro.Misc.Backup
 
                 #endregion
 
-                internal Lui.Forms.Button cmdBackup;
+                internal Lui.Forms.Button BotonBackup;
                 internal System.Windows.Forms.Label Label2;
                 internal Lui.Forms.ListView lvItems;
                 internal System.Windows.Forms.ColumnHeader FechaYHora;
                 internal System.Windows.Forms.ColumnHeader Usuario;
                 internal System.Windows.Forms.ColumnHeader Carpeta;
-                internal Lui.Forms.Button cmdEliminar;
-                internal Lui.Forms.Button cmdRestaurar;
+                internal Lui.Forms.Button BotonEliminar;
+                internal Lui.Forms.Button BotonRestaurar;
                 internal System.Windows.Forms.ColumnHeader Numero;
-                internal Lui.Forms.Button cmdCopiar;
+                internal Lui.Forms.Button BotonCopiar;
                 private Lui.Forms.Note note1;
         }
 }

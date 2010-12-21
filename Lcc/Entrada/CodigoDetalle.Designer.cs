@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -52,7 +52,7 @@ namespace Lcc.Entrada
 
 
                 // Requerido por el Diseñador de Windows Forms
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
 
                 private void InitializeComponent()
                 {
@@ -182,8 +182,8 @@ namespace Lcc.Entrada
                         this.EntradaFreeText.TabIndex = 1;
                         this.EntradaFreeText.Visible = false;
                         this.EntradaFreeText.WordWrap = false;
-                        this.EntradaFreeText.LostFocus += new System.EventHandler(this.txtFreeText_LostFocus);
-                        this.EntradaFreeText.GotFocus += new System.EventHandler(this.txtFreeText_GotFocus);
+                        this.EntradaFreeText.LostFocus += new System.EventHandler(this.EntradaFreeText_LostFocus);
+                        this.EntradaFreeText.GotFocus += new System.EventHandler(this.EntradaFreeText_GotFocus);
                         this.EntradaFreeText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaFreeText_KeyDown);
                         // 
                         // DetailBox

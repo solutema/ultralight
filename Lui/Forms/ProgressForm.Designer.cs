@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,11 +35,6 @@ namespace Lui.Forms
 	{
 		#region Código generado por el Diseñador de Windows Forms
 
-		public ProgressForm()
-		{
-			InitializeComponent();
-		}
-
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing)
@@ -54,46 +49,46 @@ namespace Lui.Forms
 
 		private System.ComponentModel.IContainer components = null;
 
-		internal System.Windows.Forms.Label lblOperacionNombre;
-                public System.Windows.Forms.ProgressBar ProgressBar;
-		internal System.Windows.Forms.PictureBox PictureBox1;
-		internal System.Windows.Forms.Label lblTexto;
-		private System.Windows.Forms.Label lblOperacion;
+                private System.Windows.Forms.Label EtiquetaNombreOperacion;
+                private System.Windows.Forms.ProgressBar ProgressBar;
+                private System.Windows.Forms.PictureBox PictureBox1;
+                private System.Windows.Forms.Label EtiquetaDescripcion;
+		private System.Windows.Forms.Label EtiquetaEstado;
 
 		private void InitializeComponent()
 		{
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressForm));
-                        this.lblOperacionNombre = new System.Windows.Forms.Label();
-                        this.lblTexto = new System.Windows.Forms.Label();
+                        this.EtiquetaNombreOperacion = new System.Windows.Forms.Label();
+                        this.EtiquetaDescripcion = new System.Windows.Forms.Label();
                         this.ProgressBar = new System.Windows.Forms.ProgressBar();
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
-                        this.lblOperacion = new System.Windows.Forms.Label();
+                        this.EtiquetaEstado = new System.Windows.Forms.Label();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
                         this.SuspendLayout();
                         // 
-                        // lblOperacionNombre
+                        // EtiquetaNombreOperacion
                         // 
-                        this.lblOperacionNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EtiquetaNombreOperacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblOperacionNombre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                        this.lblOperacionNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.lblOperacionNombre.Location = new System.Drawing.Point(88, 20);
-                        this.lblOperacionNombre.Name = "lblOperacionNombre";
-                        this.lblOperacionNombre.Size = new System.Drawing.Size(372, 60);
-                        this.lblOperacionNombre.TabIndex = 0;
-                        this.lblOperacionNombre.Text = "Procesando...";
-                        this.lblOperacionNombre.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaNombreOperacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                        this.EtiquetaNombreOperacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaNombreOperacion.Location = new System.Drawing.Point(88, 24);
+                        this.EtiquetaNombreOperacion.Name = "EtiquetaNombreOperacion";
+                        this.EtiquetaNombreOperacion.Size = new System.Drawing.Size(364, 60);
+                        this.EtiquetaNombreOperacion.TabIndex = 0;
+                        this.EtiquetaNombreOperacion.Text = "Procesando...";
+                        this.EtiquetaNombreOperacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // lblTexto
+                        // EtiquetaDescripcion
                         // 
-                        this.lblTexto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        this.EtiquetaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblTexto.Location = new System.Drawing.Point(88, 88);
-                        this.lblTexto.Name = "lblTexto";
-                        this.lblTexto.Size = new System.Drawing.Size(372, 116);
-                        this.lblTexto.TabIndex = 2;
-                        this.lblTexto.Text = "Por favor aguarde mientras se completan las operaciones.";
+                        this.EtiquetaDescripcion.Location = new System.Drawing.Point(88, 88);
+                        this.EtiquetaDescripcion.Name = "EtiquetaDescripcion";
+                        this.EtiquetaDescripcion.Size = new System.Drawing.Size(364, 100);
+                        this.EtiquetaDescripcion.TabIndex = 2;
+                        this.EtiquetaDescripcion.Text = "Por favor aguarde mientras se completan las operaciones.";
                         // 
                         // ProgressBar
                         // 
@@ -101,30 +96,30 @@ namespace Lui.Forms
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.ProgressBar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.ProgressBar.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.ProgressBar.Location = new System.Drawing.Point(84, 260);
+                        this.ProgressBar.Location = new System.Drawing.Point(84, 248);
                         this.ProgressBar.Name = "ProgressBar";
-                        this.ProgressBar.Size = new System.Drawing.Size(376, 20);
+                        this.ProgressBar.Size = new System.Drawing.Size(368, 20);
                         this.ProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
                         this.ProgressBar.TabIndex = 3;
                         // 
                         // PictureBox1
                         // 
                         this.PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox1.Image")));
-                        this.PictureBox1.Location = new System.Drawing.Point(20, 20);
+                        this.PictureBox1.Location = new System.Drawing.Point(20, 24);
                         this.PictureBox1.Name = "PictureBox1";
                         this.PictureBox1.Size = new System.Drawing.Size(56, 60);
                         this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
                         this.PictureBox1.TabIndex = 5;
                         this.PictureBox1.TabStop = false;
                         // 
-                        // lblOperacion
+                        // EtiquetaEstado
                         // 
-                        this.lblOperacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EtiquetaEstado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblOperacion.Location = new System.Drawing.Point(88, 208);
-                        this.lblOperacion.Name = "lblOperacion";
-                        this.lblOperacion.Size = new System.Drawing.Size(372, 44);
-                        this.lblOperacion.TabIndex = 0;
+                        this.EtiquetaEstado.Location = new System.Drawing.Point(88, 196);
+                        this.EtiquetaEstado.Name = "EtiquetaEstado";
+                        this.EtiquetaEstado.Size = new System.Drawing.Size(364, 44);
+                        this.EtiquetaEstado.TabIndex = 0;
                         // 
                         // ProgressForm
                         // 
@@ -132,10 +127,10 @@ namespace Lui.Forms
                         this.ClientSize = new System.Drawing.Size(474, 294);
                         this.ControlBox = false;
                         this.Controls.Add(this.ProgressBar);
-                        this.Controls.Add(this.lblOperacion);
+                        this.Controls.Add(this.EtiquetaEstado);
                         this.Controls.Add(this.PictureBox1);
-                        this.Controls.Add(this.lblTexto);
-                        this.Controls.Add(this.lblOperacionNombre);
+                        this.Controls.Add(this.EtiquetaDescripcion);
+                        this.Controls.Add(this.EtiquetaNombreOperacion);
                         this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
                         this.Name = "ProgressForm";

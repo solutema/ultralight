@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,11 +38,14 @@ namespace Lazaro.Misc.Config
 	public partial class Preferencias : Lui.Forms.Form
 	{
 		int CurrentTab = 1;
-		const int TabCount = 4;
+		const int TabCount = 3;
 
                 public Preferencias()
                 {
                         InitializeComponent();
+
+                        if(this.HasWorkspace)
+                                CargarConfig();
                 }
 
 		private void BotonCancelar_Click(object sender, System.EventArgs e)
@@ -51,165 +54,6 @@ namespace Lazaro.Misc.Config
 			this.Close();
 		}
 
-		private void lvImpresionComprob_SelectedIndexChanged(System.Object sender, System.EventArgs e)
-		{
-			if (lvImpresionComprob.SelectedItems != null && lvImpresionComprob.SelectedItems.Count >= 1)
-			{
-				ListViewItem SelItem = lvImpresionComprob.SelectedItems[0];
-				txtImpresionPredetComprobante.Text = Lbl.Comprobantes.Comprobante.NombreTipo(SelItem.Text);
-				txtImpresionPredetImpresora.Text = SelItem.SubItems[2].Text;
-				txtImpresionPredetCarga.Text = SelItem.SubItems[3].Text;
-			}
-		}
-
-
-		private void BotonImpresionPredetImpresoraBrowse_Click(object sender, System.EventArgs e)
-		{
-			Lui.Printing.PrinterSelectionDialog OFormSeleccionarImpresora = new Lui.Printing.PrinterSelectionDialog();
-
-			string ListaPuntosDeVenta = "";
-			System.Data.DataTable PuntosDeVenta = this.DataBase.Select("SELECT estacion, id_pv FROM pvs WHERE estacion IS NOT NULL AND tipo=2");
-			foreach (System.Data.DataRow Servidor in PuntosDeVenta.Rows)
-			{
-				if (ListaPuntosDeVenta.Length > 0)
-					ListaPuntosDeVenta += ",";
-				ListaPuntosDeVenta += "fiscal:" + Servidor["id_pv"] + @"|Punto de Venta " + Servidor["id_pv"].ToString() + " en " + Lfx.Types.Strings.ULCase(Servidor["estacion"].ToString()) + " (controlador fiscal)";
-
-			}
-
-			PuntosDeVenta = this.DataBase.Select("SELECT estacion, id_pv FROM pvs WHERE estacion IS NOT NULL AND tipo=1");
-			foreach (System.Data.DataRow Servidor in PuntosDeVenta.Rows)
-			{
-				if (ListaPuntosDeVenta.Length > 0)
-					ListaPuntosDeVenta += ",";
-				ListaPuntosDeVenta += Servidor["estacion"] + @"|Punto de Venta " + Servidor["id_pv"].ToString() + " en " + Lfx.Types.Strings.ULCase(Servidor["estacion"].ToString()) + " (impresora)";
-			}
-
-			if (ListaPuntosDeVenta.Length > 0)
-				ListaPuntosDeVenta += ",";
-                        ListaPuntosDeVenta += "(Predeterminada)";
-
-			OFormSeleccionarImpresora.ExtraItems = ListaPuntosDeVenta;
-			OFormSeleccionarImpresora.SelectedPrinter = txtImpresionPredetImpresora.Text;
-			if (OFormSeleccionarImpresora.ShowDialog() == DialogResult.OK)
-			{
-				txtImpresionPredetImpresora.Text = OFormSeleccionarImpresora.SelectedPrinter;
-				if (txtImpresionPredetImpresora.Text.IndexOf(System.IO.Path.DirectorySeparatorChar.ToString() + System.IO.Path.DirectorySeparatorChar.ToString()) == -1
-							&& (txtImpresionPredetImpresora.Text.Length < 7 || txtImpresionPredetImpresora.Text.Substring(0, 7) != "fiscal:")
-                                                        && txtImpresionPredetImpresora.Text != "(Predeterminada)")
-                                        txtImpresionPredetImpresora.Text = System.IO.Path.DirectorySeparatorChar.ToString() + System.IO.Path.DirectorySeparatorChar.ToString() + System.Environment.MachineName.ToUpperInvariant() + System.IO.Path.DirectorySeparatorChar.ToString() + txtImpresionPredetImpresora.Text;
-			}
-		}
-
-
-		private void txtImpresionPredetImpresora_TextChanged(object sender, System.EventArgs e)
-		{
-			if (lvImpresionComprob.SelectedItems != null && lvImpresionComprob.SelectedItems.Count >= 1)
-			{
-				ListViewItem SelItem = lvImpresionComprob.SelectedItems[0];
-				SelItem.SubItems[2].Text = txtImpresionPredetImpresora.Text;
-			}
-		}
-
-
-		private void txtImpresionPredetCarga_TextChanged(object sender, System.EventArgs e)
-		{
-			if (lvImpresionComprob.SelectedItems != null && lvImpresionComprob.SelectedItems.Count >= 1)
-			{
-				ListViewItem SelItem = lvImpresionComprob.SelectedItems[0];
-				SelItem.SubItems[3].Text = txtImpresionPredetCarga.Text;
-			}
-		}
-
-
-		private void lvImpresionComprob_DoubleClick(object sender, System.EventArgs e)
-		{
-			txtImpresionPredetImpresoraBrowse.PerformClick();
-		}
-
-
-		private void CargarImpresorasPredet()
-		{
-                        List<string> Comprobs = new List<string>();
-			Comprobs.Add("F");
-			Comprobs.Add("FA");
-			Comprobs.Add("FB");
-			Comprobs.Add("NC");
-			Comprobs.Add("NCA");
-			Comprobs.Add("NCB");
-			Comprobs.Add("ND");
-			Comprobs.Add("NDA");
-			Comprobs.Add("NDB");
-			Comprobs.Add("R");
-			Comprobs.Add("RC");
-			Comprobs.Add("PS");
-			Comprobs.Add("Listados");
-
-			lvImpresionComprob.Items.Clear();
-			foreach (string Comprob in Comprobs)
-			{
-				ListViewItem Itm = lvImpresionComprob.Items.Add(Comprob);
-				Itm.SubItems.Add(Lbl.Comprobantes.Comprobante.NombreTipo(Comprob));
-				string ImpresoraPreferida = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos." + Comprob + ".Impresora", "");
-
-				if (ImpresoraPreferida == "*")
-					ImpresoraPreferida = "Predeterminada de Windows";
-				else if (ImpresoraPreferida != null && ImpresoraPreferida.Length == 0)
-					ImpresoraPreferida = "(Predeterminada)";
-
-				Itm.SubItems.Add(ImpresoraPreferida);
-
-				string ImpresoraCarga = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos." + Comprob + ".Carga", "");
-
-				switch (ImpresoraCarga)
-				{
-					case "auto":
-						Itm.SubItems.Add("Automática");
-						break;
-					case "manual":
-						Itm.SubItems.Add("Manual");
-						break;
-					default:
-						Itm.SubItems.Add("(Predeterminada)");
-						break;
-				}
-			}
-		}
-
-
-		private void GuardarImpresorasPredet()
-		{
-			foreach (System.Windows.Forms.ListViewItem Itm in lvImpresionComprob.Items)
-			{
-				string Comprob = Itm.Text;
-				string ImpresoraPreferida = Itm.SubItems[2].Text;
-                                if (ImpresoraPreferida == "(Predeterminada)")
-					ImpresoraPreferida = "";
-
-				string ImpresoraCarga = Itm.SubItems[3].Text;
-				switch (ImpresoraCarga)
-				{
-					case "Automática":
-						ImpresoraCarga = "auto";
-						break;
-					case "Manual":
-						ImpresoraCarga = "manual";
-						break;
-					default:
-						ImpresoraCarga = "";
-						break;
-				}
-
-				if (ImpresoraPreferida.Length == 0)
-					this.Workspace.CurrentConfig.DeleteGlobalSetting("Sistema", "Documentos." + Comprob + ".Impresora", 0);
-				else
-					this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos." + Comprob + ".Impresora", ImpresoraPreferida, 0);
-				if (ImpresoraCarga.Length == 0)
-					this.Workspace.CurrentConfig.DeleteGlobalSetting("Sistema", "Documentos." + Comprob + ".Carga", 0);
-				else
-					this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos." + Comprob + ".Carga", ImpresoraCarga, 0);
-			}
-		}
 
                 private void BotonAceptar_Click(object sender, System.EventArgs e)
                 {
@@ -229,7 +73,7 @@ namespace Lazaro.Misc.Config
 		{
 			string[] ListaCodigos = new string[5];
 			ListaCodigos[0] = "Código Autonumérico Incorporado|0";
-			DataTable Codigos = this.DataBase.Select("SELECT * FROM articulos_codigos");
+			DataTable Codigos = this.Connection.Select("SELECT * FROM articulos_codigos");
 			foreach (System.Data.DataRow Codigo in Codigos.Rows)
 			{
 				ListaCodigos[System.Convert.ToInt32(Codigo["id_codigo"])] += System.Convert.ToString(Codigo["nombre"]) + "|" + System.Convert.ToString(Codigo["id_codigo"]);
@@ -242,17 +86,15 @@ namespace Lazaro.Misc.Config
 			EntradaStockDepositoPredetSuc.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.DepositoPredet", "0");
 			EntradaStockDecimales.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.Decimales", "0");
 
-			EntradaEmpresaNombre.Text = this.Workspace.CurrentConfig.Empresa.Nombre;
-			EntradaEmpresaCuit.Text = this.Workspace.CurrentConfig.Empresa.Cuit;
+                        EntradaEmpresaNombre.Text = Lbl.Sys.Config.Actual.Empresa.Nombre;
+                        EntradaEmpresaCuit.Text = Lbl.Sys.Config.Actual.Empresa.Cuit;
 			EntradaEmpresaSituacion.TextInt = this.Workspace.CurrentConfig.Empresa.SituacionTributaria;
-                        EntradaEmpresaEmail.Text = this.Workspace.CurrentConfig.Empresa.Email;
+                        EntradaEmpresaEmail.Text = Lbl.Sys.Config.Actual.Empresa.Email;
 
                         EntradaBackup.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Backup.Tipo", "0");
                         EntradaModoPantalla.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Apariencia.ModoPantalla", "maximizado");
                         EntradaAislacion.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Datos.Aislacion", "Serializable");
                         EntradaActualizaciones.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Actualizaciones.Nivel", "stable");
-
-			CargarImpresorasPredet();
 
 			EntradaPV.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.PV", "1");
 			EntradaPVABC.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.ABC.PV", "0");
@@ -275,7 +117,7 @@ namespace Lazaro.Misc.Config
 			if (EntradaEmpresaCuit.Text.Length == 11)
 				EntradaEmpresaCuit.Text = EntradaEmpresaCuit.Text.Substring(0, 2) + "-" + EntradaEmpresaCuit.Text.Substring(2, 8) + "-" + EntradaEmpresaCuit.Text.Substring(10, 1);
 
-                        if (EntradaEmpresaCuit.Text != "00-00000000-0" && Lfx.Types.Strings.ValidCUIT(EntradaEmpresaCuit.Text) == false) {
+                        if (EntradaEmpresaCuit.Text != "00-00000000-0" && Lfx.Types.Strings.EsCuitValido(EntradaEmpresaCuit.Text) == false) {
                                 Lui.Forms.MessageBox.Show("Por favor ingrese una CUIT válida.\nSi todavía no disponde de una CUIT, puede utilizar provisoriamente la clave 00-00000000-0.", "La CUIT no es válida");
                                 return true;
                         }
@@ -296,10 +138,10 @@ namespace Lazaro.Misc.Config
 			else
 				this.Workspace.CurrentConfig.DeleteGlobalSetting("Sistema", "Stock.DepositoPredet", Sucursal);
 
-			this.Workspace.CurrentConfig.Empresa.Nombre = EntradaEmpresaNombre.Text;
-			this.Workspace.CurrentConfig.Empresa.Cuit = EntradaEmpresaCuit.Text;
+                        Lbl.Sys.Config.Actual.Empresa.Nombre = EntradaEmpresaNombre.Text;
+                        Lbl.Sys.Config.Actual.Empresa.Cuit = EntradaEmpresaCuit.Text;
 			this.Workspace.CurrentConfig.Empresa.SituacionTributaria = EntradaEmpresaSituacion.TextInt;
-                        this.Workspace.CurrentConfig.Empresa.Email = EntradaEmpresaEmail.Text;
+                        Lbl.Sys.Config.Actual.Empresa.Email = EntradaEmpresaEmail.Text;
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Backup.Tipo", EntradaBackup.TextKey, System.Environment.MachineName.ToUpperInvariant());
                         if (EntradaModoPantalla.TextKey == "*")
                                 this.Workspace.CurrentConfig.DeleteGlobalSetting("Sistema", "Apariencia.ModoPantalla", System.Environment.MachineName.ToUpperInvariant());
@@ -307,8 +149,6 @@ namespace Lazaro.Misc.Config
                                 this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Apariencia.ModoPantalla", EntradaModoPantalla.TextKey, System.Environment.MachineName.ToUpperInvariant());
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Datos.Aislacion", EntradaAislacion.TextKey);
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Actualizaciones.Nivel", EntradaActualizaciones.TextKey);
-
-			GuardarImpresorasPredet();
 
 			//Guardo información sobre los PV
 			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.PV", EntradaPV.Text, Sucursal);
@@ -329,11 +169,6 @@ namespace Lazaro.Misc.Config
 		}
 
 
-		private void FormConfig_WorkspaceChanged(object sender, System.EventArgs e)
-		{
-			CargarConfig();
-		}
-
 		private void BotonSiguiente_Click(object sender, System.EventArgs e)
 		{
 			CurrentTab += 1;
@@ -342,7 +177,6 @@ namespace Lazaro.Misc.Config
 			FrmGeneral.Visible = CurrentTab == 1;
 			FrmArticulos.Visible = CurrentTab == 2;
 			FrmComprobantes.Visible = CurrentTab == 3;
-			FrmImpresion.Visible = CurrentTab == 4;
 		}
 	}
 }

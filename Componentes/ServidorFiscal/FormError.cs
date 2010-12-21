@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -70,7 +70,7 @@ namespace ServidorFiscal
 
 
 		// Requerido por el Diseñador de Windows Forms
-		private System.ComponentModel.Container components = null;
+		private System.ComponentModel.IContainer components = null;
 
 		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
 		// Puede modificarse utilizando el Diseñador de Windows Forms. 
@@ -338,6 +338,7 @@ namespace ServidorFiscal
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.Label1);
                         this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
                         this.Name = "FormFiscalError";
                         this.Text = "Error de Impresora Fiscal";
                         this.Controls.SetChildIndex(this.Label1, 0);
@@ -365,29 +366,29 @@ namespace ServidorFiscal
 
 		#endregion
 
-		internal void Mostrar(Lbl.Comprobantes.Impresion.Fiscal.Respuesta Res)
+		internal void Mostrar(Lazaro.Impresion.Comprobantes.Fiscal.Respuesta Res)
 		{
 			switch (Res.Error)
 			{
-				case Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Ok:
+				case Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.Ok:
 					lblError.Text = "OK???";
 					break;
-				case Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.ErrorBCC:
+				case Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.ErrorBCC:
 					lblError.Text = "BCC";
 					break;
-				case Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.Error:
+				case Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.Error:
 					lblError.Text = "Error Genérico";
 					break;
-				case Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.ErrorFiscal:
+				case Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.ErrorFiscal:
 					lblError.Text = "Error Fiscal";
 					break;
-				case Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.ErrorImpresora:
+				case Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.ErrorImpresora:
 					lblError.Text = "Error Impresora";
 					break;
-				case Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.NAK:
+				case Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.NAK:
 					lblError.Text = "NAK";
 					break;
-				case Lbl.Comprobantes.Impresion.Fiscal.ErroresFiscales.TimeOut:
+				case Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.TimeOut:
 					lblError.Text = "Timeout";
 					break;
 			}
@@ -395,7 +396,8 @@ namespace ServidorFiscal
 			lblLugar.Text = Res.Lugar;
 			lblMensaje.Text = Res.Mensaje;
 			lblComando.Text = Res.CodigoComando.ToString();
-                        lblCampos.Text = string.Join(Environment.NewLine, Res.Campos.ToArray());
+                        if (Res.Campos != null)
+                                lblCampos.Text = string.Join(Environment.NewLine, Res.Campos.ToArray());
 			lblEstadoImpresora.Text = Res.ExplicarEstadoImpresora();
 			lblEstadoFiscal.Text = Res.ExplicarEstadoFiscal();
 			CancelCommandButton.Visible = false;

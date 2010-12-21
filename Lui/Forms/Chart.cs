@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ namespace Lui.Forms
                 /// <summary> 
                 /// Variable del diseñador requerida.
                 /// </summary>
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
 
                 public Chart()
                 {
@@ -133,7 +133,7 @@ namespace Lui.Forms
                 public System.Collections.Generic.List<Lbl.Charts.Serie> Series = null;
 
                 private System.Windows.Forms.Label TitleLabel;
-                private double CacheMax;
+                private decimal CacheMax;
 
                 public string Title
                 {
@@ -159,9 +159,9 @@ namespace Lui.Forms
                         }
                 }
 
-                public double GetMax()
+                public decimal GetMax()
                 {
-                        double Max = double.MinValue;
+                        decimal Max = decimal.MinValue;
                         for (int i = 0; i < Series.Count; i++) {
                                 if (Series[i] != null && Series[i].Elements != null) {
                                         foreach (Lbl.Charts.Element El in Series[i].Elements) {
@@ -173,23 +173,6 @@ namespace Lui.Forms
                         return Max;
                 }
 
-                /*public double GetMin()
-                {
-                        double Min = double.MaxValue;
-                        for(int i = 0; i < Series.Length; i++)
-                        {
-                                if(Series[i] != null)
-                                {
-
-                                        foreach(ChartElement Element in Series[i].Elements)
-                                        {
-                                                if(Element != null && Element.Value < Min)
-                                                        Min = Element.Value;
-                                        }
-                                }
-                        }
-                        return Min;
-                }*/
 
                 public int BiggestSerie()
                 {
@@ -279,7 +262,7 @@ namespace Lui.Forms
 
                 private static void DrawPie(Lbl.Charts.Serie Serie, System.Drawing.Graphics Canvas, System.Drawing.Size Size)
                 {
-                        double Sum = Serie.GetSum();
+                        decimal Sum = Serie.GetSum();
 
                         Rectangle PieRect = new Rectangle(0, 0, Size.Width, Size.Height);
                         if (PieRect.Width > PieRect.Height) {

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -32,33 +32,48 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace Lfx.Types
+namespace System
 {
         /// <summary>
         /// Métodos de extension para el tipo Int.
         /// </summary>
-        public static class Extensions
+        public static class StringExtensions
         {
-                public static int SafeParseInt(this string s)
+                public static int ParseInt(this string s)
                 {
                         if (s == null || s.Length == 0)
                                 return 0;
                         double Resultado = 0;
-                        double.TryParse(s, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out Resultado);
+                        double.TryParse(s, System.Globalization.NumberStyles.Integer, Lfx.Workspace.Master.CultureInfo, out Resultado);
                         if (Resultado > int.MaxValue)
                                 return 0;
                         else
                                 return System.Convert.ToInt32(Resultado);
                 }
 
-                public static double SafeParseDouble(this string s)
+                public static double ParseDouble(this string s)
                 {
                         double Resultado = 0;
                         double.TryParse(s, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out Resultado);
                         return Resultado;
                 }
 
-                public static bool SafeParseBool(this string s)
+
+                public static decimal ParseDecimal(this string s)
+                {
+                        decimal Resultado = 0;
+                        decimal.TryParse(s, System.Globalization.NumberStyles.Float, Lfx.Workspace.Master.CultureInfo, out Resultado);
+                        return Resultado;
+                }
+
+                public static decimal ParseCurrency(this string s)
+                {
+                        decimal Resultado = 0;
+                        decimal.TryParse(s, System.Globalization.NumberStyles.Currency, Lfx.Workspace.Master.CultureInfo, out Resultado);
+                        return Resultado;
+                }
+        
+                public static bool ParseBool(this string s)
                 {
                         if (s == null)
                                 return false;
@@ -75,11 +90,11 @@ namespace Lfx.Types
                                 case "FALSE":
                                         return false;
                                 default:
-                                        return Lfx.Types.Parsing.ParseInt(s) != 0;
+                                        return s.ParseInt() != 0;
                         }
                 }
 
-                public static LDateTime SafeParseDateTime(this string s)
+                public static Lfx.Types.LDateTime ParseDateTime(this string s)
                 {
                         // Toma una fecha DD-MM-YYYY y devuelve un Date
                         string FechaTemp = s.Replace("  ", " ").Replace("/", "-").Trim();
@@ -95,7 +110,7 @@ namespace Lfx.Types
 				};
 
                         try {
-                                return new LDateTime(DateTime.ParseExact(FechaTemp, FormatosAceptados, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AllowWhiteSpaces));
+                                return new Lfx.Types.LDateTime(DateTime.ParseExact(FechaTemp, FormatosAceptados, Lfx.Workspace.Master.CultureInfo, System.Globalization.DateTimeStyles.AllowWhiteSpaces));
                         } catch {
                                 return null;
                         }
@@ -104,7 +119,7 @@ namespace Lfx.Types
                 /// <summary>
                 /// Toma una fecha YYYY-MM-DD HH:MM:SS y devuelve un DateTime
                 /// </summary>
-                public static DateTime SafeParseSqlDateTime(this string s)
+                public static DateTime ParseSqlDateTime(this string s)
                 {
                         string FechaTemp = s.Replace("  ", " ").Replace("/", "-").Trim();
                         string[] FormatosAceptados =
@@ -121,6 +136,133 @@ namespace Lfx.Types
                             FormatosAceptados,
                             System.Globalization.DateTimeFormatInfo.InvariantInfo,
                             System.Globalization.DateTimeStyles.AllowWhiteSpaces);
+                }
+
+                /// <summary>
+                /// Cambia una cadena a mayúsculas tipo título (mayúscula en la primera letra de cada palabra).
+                /// </summary>
+                public static string ToTitleCase(this string cadena)
+                {
+                        string Res = " " + cadena.ToLower() + " ";
+
+                        char[] CaracteresSeparadores =
+				{
+					' ',
+					'.',
+                                        '(',
+                                        '"',
+					'-'
+				};
+
+                        int r = 0;
+
+                        do {
+                                r = Res.IndexOfAny(CaracteresSeparadores, r) + 1;
+
+                                if (r > 0 && r < Res.Length) {
+                                        Res = Res.Substring(0,
+                                                r) + Res.Substring(r,
+                                                1).ToUpper() + Res.Substring(r + 1,
+                                                Res.Length - r - 1);
+                                }
+                        } while (r > 0);
+
+                        Res = Res.Replace(" De ", " de ");
+                        Res = Res.Replace(" Del ", " del ");
+                        Res = Res.Replace(" El ", " el ");
+                        Res = Res.Replace(" La ", " la ");
+                        Res = Res.Replace(" Pc ", " PC ");
+                        Res = Res.Replace(" En ", " en ");
+                        Res = Res.Replace(" Y ", " y ");
+                        Res = Res.Replace(" Srl ", " SRL ");
+                        Res = Res.Replace(" Sa ", " SA ");
+
+                        Res = Res.Substring(1, Res.Length - 2);
+                        if (Res.Length > 0)
+                                Res = Res.Substring(0, 1).ToUpper() + Res.Remove(0, 1);
+
+                        return Res;
+                }
+
+                public static bool IsNumericInt(this string cadena)
+                {
+                        double transTemp1 = 0;
+                        if (double.TryParse(cadena,
+                                System.Globalization.NumberStyles.Integer,
+                                System.Globalization.CultureInfo.InvariantCulture,
+                                out transTemp1)) {
+                                if (transTemp1 <= int.MaxValue && transTemp1 >= int.MinValue)
+                                        return true;
+                                else
+                                        return false;
+                        } else {
+                                return false;
+                        }
+                }
+
+                public static bool IsNumericFloat(this string cadena)
+                {
+                        double transTemp0 = 0;
+                        return double.TryParse(cadena,
+                                System.Globalization.NumberStyles.Float,
+                                System.Globalization.CultureInfo.InvariantCulture,
+                                out transTemp0);
+                }
+
+                public static bool IsDate(this string str)
+                {
+                        try {
+                                return Lfx.Types.Parsing.ParseDate(str) != null;
+                        } catch {
+                                return false;
+                        }
+                }
+
+
+                /// <summary>
+                /// Invierte una cadena, caracter por caracter
+                /// </summary>
+                public static string StrReverse(this string cadena)
+                {
+                        System.Text.StringBuilder Resultado = new System.Text.StringBuilder();
+
+                        for (int i = cadena.Length - 1; i >= 0; i--) {
+                                Resultado.Append(cadena[i]);
+                        }
+                        return Resultado.ToString();
+                }
+
+                /// <summary>
+                /// Convierte o unifica fines de línea en formato Windows (CR+LF).
+                /// </summary>
+                public static string UnixToWindows(this string str)
+                {
+                        return str.Replace(Lfx.Types.ControlChars.CrLf, Lfx.Types.ControlChars.Lf.ToString()).Replace(Lfx.Types.ControlChars.Lf.ToString(), Lfx.Types.ControlChars.CrLf);
+                }
+
+                /// <summary>
+                /// Quita acentos y otros caracteres no estándar. Convierte espacios a subguiones.
+                /// </summary>
+                public static string QuitarAcentos(this string sTexto)
+                {
+                        string res = sTexto;
+                        res = res.Replace("&", "");
+                        res = res.Replace("á", "a");
+                        res = res.Replace("é", "e");
+                        res = res.Replace("í", "i");
+                        res = res.Replace("ó", "o");
+                        res = res.Replace("ú", "u");
+                        res = res.Replace("ü", "u");
+                        res = res.Replace("ñ", "n");
+                        res = res.Replace("Á", "A");
+                        res = res.Replace("É", "E");
+                        res = res.Replace("Í", "I");
+                        res = res.Replace("Ó", "O");
+                        res = res.Replace("Ú", "U");
+                        res = res.Replace("Ü", "U");
+                        res = res.Replace("Ñ", "n");
+                        res = res.Replace(" ", "_");
+                        return res;
                 }
         }
 }

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -49,129 +49,124 @@ namespace Lfc.Cajas
                         base.Dispose(disposing);
                 }
 
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
 
                 private void InitializeComponent()
                 {
-                        this.cmdIngreso = new Lui.Forms.Button();
-                        this.cmdEgreso = new Lui.Forms.Button();
-                        this.cmdMovim = new Lui.Forms.Button();
-                        this.cmdArqueo = new Lui.Forms.Button();
+                        this.BotonIngreso = new Lui.Forms.Button();
+                        this.BotonEgreso = new Lui.Forms.Button();
+                        this.BotonMovim = new Lui.Forms.Button();
+                        this.BotonArqueo = new Lui.Forms.Button();
                         this.SuspendLayout();
                         // 
-                        // cmdIngreso
+                        // BotonIngreso
                         // 
-                        this.cmdIngreso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.cmdIngreso.AutoHeight = false;
-                        this.cmdIngreso.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdIngreso.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdIngreso.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdIngreso.Image = null;
-                        this.cmdIngreso.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdIngreso.Location = new System.Drawing.Point(12, 256);
-                        this.cmdIngreso.Name = "cmdIngreso";
-                        this.cmdIngreso.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdIngreso.ReadOnly = false;
-                        this.cmdIngreso.Size = new System.Drawing.Size(108, 29);
-                        this.cmdIngreso.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
-                        this.cmdIngreso.Subtext = "F3";
-                        this.cmdIngreso.TabIndex = 40;
-                        this.cmdIngreso.Text = "Ingreso";
-                        this.cmdIngreso.ToolTipText = "";
-                        this.cmdIngreso.Click += new System.EventHandler(this.BotonIngreso_Click);
+                        this.BotonIngreso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonIngreso.AutoSize = false;
+                        this.BotonIngreso.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonIngreso.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonIngreso.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonIngreso.Image = null;
+                        this.BotonIngreso.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonIngreso.Location = new System.Drawing.Point(12, 352);
+                        this.BotonIngreso.Name = "BotonIngreso";
+                        this.BotonIngreso.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonIngreso.ReadOnly = false;
+                        this.BotonIngreso.Size = new System.Drawing.Size(96, 29);
+                        this.BotonIngreso.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonIngreso.Subtext = "F3";
+                        this.BotonIngreso.TabIndex = 40;
+                        this.BotonIngreso.Text = "Ingreso";
+                        this.BotonIngreso.ToolTipText = "";
+                        this.BotonIngreso.Click += new System.EventHandler(this.BotonIngreso_Click);
                         // 
-                        // cmdEgreso
+                        // BotonEgreso
                         // 
-                        this.cmdEgreso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.cmdEgreso.AutoHeight = false;
-                        this.cmdEgreso.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdEgreso.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdEgreso.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdEgreso.Image = null;
-                        this.cmdEgreso.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdEgreso.Location = new System.Drawing.Point(12, 288);
-                        this.cmdEgreso.Name = "cmdEgreso";
-                        this.cmdEgreso.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdEgreso.ReadOnly = false;
-                        this.cmdEgreso.Size = new System.Drawing.Size(108, 29);
-                        this.cmdEgreso.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
-                        this.cmdEgreso.Subtext = "F4";
-                        this.cmdEgreso.TabIndex = 41;
-                        this.cmdEgreso.Text = "Egreso";
-                        this.cmdEgreso.ToolTipText = "";
-                        this.cmdEgreso.Click += new System.EventHandler(this.BotonEgreso_Click);
+                        this.BotonEgreso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonEgreso.AutoSize = false;
+                        this.BotonEgreso.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonEgreso.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonEgreso.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonEgreso.Image = null;
+                        this.BotonEgreso.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonEgreso.Location = new System.Drawing.Point(120, 352);
+                        this.BotonEgreso.Name = "BotonEgreso";
+                        this.BotonEgreso.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonEgreso.ReadOnly = false;
+                        this.BotonEgreso.Size = new System.Drawing.Size(96, 29);
+                        this.BotonEgreso.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonEgreso.Subtext = "F4";
+                        this.BotonEgreso.TabIndex = 41;
+                        this.BotonEgreso.Text = "Egreso";
+                        this.BotonEgreso.ToolTipText = "";
+                        this.BotonEgreso.Click += new System.EventHandler(this.BotonEgreso_Click);
                         // 
-                        // cmdMovim
+                        // BotonMovim
                         // 
-                        this.cmdMovim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.cmdMovim.AutoHeight = false;
-                        this.cmdMovim.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdMovim.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdMovim.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdMovim.Image = null;
-                        this.cmdMovim.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdMovim.Location = new System.Drawing.Point(12, 320);
-                        this.cmdMovim.Name = "cmdMovim";
-                        this.cmdMovim.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdMovim.ReadOnly = false;
-                        this.cmdMovim.Size = new System.Drawing.Size(108, 29);
-                        this.cmdMovim.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
-                        this.cmdMovim.Subtext = "F5";
-                        this.cmdMovim.TabIndex = 42;
-                        this.cmdMovim.Text = "Movim.";
-                        this.cmdMovim.ToolTipText = "";
-                        this.cmdMovim.Click += new System.EventHandler(this.BotonMovimiento_Click);
+                        this.BotonMovim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonMovim.AutoSize = false;
+                        this.BotonMovim.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonMovim.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonMovim.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonMovim.Image = null;
+                        this.BotonMovim.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonMovim.Location = new System.Drawing.Point(12, 388);
+                        this.BotonMovim.Name = "BotonMovim";
+                        this.BotonMovim.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonMovim.ReadOnly = false;
+                        this.BotonMovim.Size = new System.Drawing.Size(96, 29);
+                        this.BotonMovim.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonMovim.Subtext = "F5";
+                        this.BotonMovim.TabIndex = 42;
+                        this.BotonMovim.Text = "Movim.";
+                        this.BotonMovim.ToolTipText = "";
+                        this.BotonMovim.Click += new System.EventHandler(this.BotonMovimiento_Click);
                         // 
-                        // cmdArqueo
+                        // BotonArqueo
                         // 
-                        this.cmdArqueo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.cmdArqueo.AutoHeight = false;
-                        this.cmdArqueo.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdArqueo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdArqueo.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.cmdArqueo.Image = null;
-                        this.cmdArqueo.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdArqueo.Location = new System.Drawing.Point(12, 352);
-                        this.cmdArqueo.Name = "cmdArqueo";
-                        this.cmdArqueo.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdArqueo.ReadOnly = false;
-                        this.cmdArqueo.Size = new System.Drawing.Size(108, 29);
-                        this.cmdArqueo.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
-                        this.cmdArqueo.Subtext = "F7";
-                        this.cmdArqueo.TabIndex = 43;
-                        this.cmdArqueo.Text = "Arqueo";
-                        this.cmdArqueo.ToolTipText = "";
-                        this.cmdArqueo.Click += new System.EventHandler(this.BotonArqueo_Click);
+                        this.BotonArqueo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonArqueo.AutoSize = false;
+                        this.BotonArqueo.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonArqueo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonArqueo.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonArqueo.Image = null;
+                        this.BotonArqueo.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonArqueo.Location = new System.Drawing.Point(120, 388);
+                        this.BotonArqueo.Name = "BotonArqueo";
+                        this.BotonArqueo.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonArqueo.ReadOnly = false;
+                        this.BotonArqueo.Size = new System.Drawing.Size(96, 29);
+                        this.BotonArqueo.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonArqueo.Subtext = "F7";
+                        this.BotonArqueo.TabIndex = 43;
+                        this.BotonArqueo.Text = "Arqueo";
+                        this.BotonArqueo.ToolTipText = "";
+                        this.BotonArqueo.Click += new System.EventHandler(this.BotonArqueo_Click);
                         // 
                         // Inicio
                         // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(768, 480);
-                        this.Controls.Add(this.cmdMovim);
-                        this.Controls.Add(this.cmdIngreso);
-                        this.Controls.Add(this.cmdEgreso);
-                        this.Controls.Add(this.cmdArqueo);
+                        this.Controls.Add(this.BotonMovim);
+                        this.Controls.Add(this.BotonIngreso);
+                        this.Controls.Add(this.BotonEgreso);
+                        this.Controls.Add(this.BotonArqueo);
                         this.Name = "Inicio";
-                        this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Inicio_KeyDown);
-                        this.Controls.SetChildIndex(this.EtiquetaIngresos, 0);
-                        this.Controls.SetChildIndex(this.EtiquetaEgresos, 0);
-                        this.Controls.SetChildIndex(this.EtiquetaSaldo, 0);
-                        this.Controls.SetChildIndex(this.EtiquetaTransporte, 0);
-                        this.Controls.SetChildIndex(this.EtiquetaTitulo, 0);
-                        this.Controls.SetChildIndex(this.ItemList, 0);
-                        this.Controls.SetChildIndex(this.cmdArqueo, 0);
-                        this.Controls.SetChildIndex(this.cmdEgreso, 0);
-                        this.Controls.SetChildIndex(this.cmdIngreso, 0);
-                        this.Controls.SetChildIndex(this.cmdMovim, 0);
+                        this.Controls.SetChildIndex(this.BotonCancelar, 0);
+                        this.Controls.SetChildIndex(this.BotonFiltrar, 0);
+                        this.Controls.SetChildIndex(this.BotonImprimir, 0);
+                        this.Controls.SetChildIndex(this.Listado, 0);
+                        this.Controls.SetChildIndex(this.BotonArqueo, 0);
+                        this.Controls.SetChildIndex(this.BotonEgreso, 0);
+                        this.Controls.SetChildIndex(this.BotonIngreso, 0);
+                        this.Controls.SetChildIndex(this.BotonMovim, 0);
                         this.ResumeLayout(false);
 
                 }
 
                 #endregion
 
-                internal Lui.Forms.Button cmdIngreso;
-                internal Lui.Forms.Button cmdEgreso;
-                internal Lui.Forms.Button cmdMovim;
-                internal Lui.Forms.Button cmdArqueo;
+                internal Lui.Forms.Button BotonIngreso;
+                internal Lui.Forms.Button BotonEgreso;
+                internal Lui.Forms.Button BotonMovim;
+                internal Lui.Forms.Button BotonArqueo;
         }
 }

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,68 +37,75 @@ namespace Lcc.Entrada.Articulos
 {
         public partial class MatrizDetalleComprobante
         {
-                #region Código generado por el Diseñador de Windows Forms
+                /// <summary> 
+                /// Variable del diseñador requerida.
+                /// </summary>
+                private System.ComponentModel.IContainer components = null;
 
+                /// <summary> 
+                /// Limpiar los recursos que se estén utilizando.
+                /// </summary>
+                /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
                 protected override void Dispose(bool disposing)
                 {
-                        if (disposing) {
-                                if (components != null) {
-                                        components.Dispose();
-                                }
+                        if (disposing && (components != null)) {
+                                components.Dispose();
                         }
                         base.Dispose(disposing);
                 }
 
-                private System.ComponentModel.Container components = null;
-
                 private void InitializeComponent()
                 {
-                        this.lblHeaderDetalle = new System.Windows.Forms.Label();
-                        this.lblHeaderUnitario = new System.Windows.Forms.Label();
-                        this.lblHeaderCantidad = new System.Windows.Forms.Label();
-                        this.lblHeaderImporte = new System.Windows.Forms.Label();
-                        this.PanelGrilla = new System.Windows.Forms.Panel();
+                        this.EtiquetaHeaderDetalle = new System.Windows.Forms.Label();
+                        this.EtiquetaHeaderUnitario = new System.Windows.Forms.Label();
+                        this.EtiquetaHeaderCantidad = new System.Windows.Forms.Label();
+                        this.EtiquetaHeaderImporte = new System.Windows.Forms.Label();
+
                         this.SuspendLayout();
                         // 
                         // lblHeaderDetalle
                         // 
-                        this.lblHeaderDetalle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-                        this.lblHeaderDetalle.Location = new System.Drawing.Point(0, 0);
-                        this.lblHeaderDetalle.Name = "lblHeaderDetalle";
-                        this.lblHeaderDetalle.Size = new System.Drawing.Size(176, 18);
-                        this.lblHeaderDetalle.TabIndex = 999;
-                        this.lblHeaderDetalle.Text = " Detalle";
-                        this.lblHeaderDetalle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaHeaderDetalle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
+                        this.EtiquetaHeaderDetalle.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaHeaderDetalle.Location = new System.Drawing.Point(0, 0);
+                        this.EtiquetaHeaderDetalle.Name = "lblHeaderDetalle";
+                        this.EtiquetaHeaderDetalle.Size = new System.Drawing.Size(176, 18);
+                        this.EtiquetaHeaderDetalle.TabIndex = 999;
+                        this.EtiquetaHeaderDetalle.Text = " Detalle";
+                        this.EtiquetaHeaderDetalle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // lblHeaderUnitario
                         // 
-                        this.lblHeaderUnitario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-                        this.lblHeaderUnitario.Location = new System.Drawing.Point(180, 0);
-                        this.lblHeaderUnitario.Name = "lblHeaderUnitario";
-                        this.lblHeaderUnitario.Size = new System.Drawing.Size(64, 18);
-                        this.lblHeaderUnitario.TabIndex = 999;
-                        this.lblHeaderUnitario.Text = " Precio";
-                        this.lblHeaderUnitario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaHeaderUnitario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
+                        this.EtiquetaHeaderUnitario.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaHeaderUnitario.Location = new System.Drawing.Point(180, 0);
+                        this.EtiquetaHeaderUnitario.Name = "lblHeaderUnitario";
+                        this.EtiquetaHeaderUnitario.Size = new System.Drawing.Size(64, 18);
+                        this.EtiquetaHeaderUnitario.TabIndex = 999;
+                        this.EtiquetaHeaderUnitario.Text = " Precio";
+                        this.EtiquetaHeaderUnitario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // lblHeaderCantidad
                         // 
-                        this.lblHeaderCantidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-                        this.lblHeaderCantidad.Location = new System.Drawing.Point(248, 0);
-                        this.lblHeaderCantidad.Name = "lblHeaderCantidad";
-                        this.lblHeaderCantidad.Size = new System.Drawing.Size(72, 18);
-                        this.lblHeaderCantidad.TabIndex = 999;
-                        this.lblHeaderCantidad.Text = " Cant";
-                        this.lblHeaderCantidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaHeaderCantidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
+                        this.EtiquetaHeaderCantidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaHeaderCantidad.Location = new System.Drawing.Point(248, 0);
+                        this.EtiquetaHeaderCantidad.Name = "lblHeaderCantidad";
+                        this.EtiquetaHeaderCantidad.Size = new System.Drawing.Size(72, 18);
+                        this.EtiquetaHeaderCantidad.TabIndex = 999;
+                        this.EtiquetaHeaderCantidad.Text = " Cant";
+                        this.EtiquetaHeaderCantidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // lblHeaderImporte
                         // 
-                        this.lblHeaderImporte.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-                        this.lblHeaderImporte.Location = new System.Drawing.Point(324, 0);
-                        this.lblHeaderImporte.Name = "lblHeaderImporte";
-                        this.lblHeaderImporte.Size = new System.Drawing.Size(80, 18);
-                        this.lblHeaderImporte.TabIndex = 999;
-                        this.lblHeaderImporte.Text = " Importe";
-                        this.lblHeaderImporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaHeaderImporte.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
+                        this.EtiquetaHeaderImporte.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaHeaderImporte.Location = new System.Drawing.Point(324, 0);
+                        this.EtiquetaHeaderImporte.Name = "lblHeaderImporte";
+                        this.EtiquetaHeaderImporte.Size = new System.Drawing.Size(80, 18);
+                        this.EtiquetaHeaderImporte.TabIndex = 999;
+                        this.EtiquetaHeaderImporte.Text = " Importe";
+                        this.EtiquetaHeaderImporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // PanelGrilla
                         // 
@@ -112,33 +119,27 @@ namespace Lcc.Entrada.Articulos
                         this.PanelGrilla.Size = new System.Drawing.Size(536, 160);
                         this.PanelGrilla.TabIndex = 999;
                         // 
-                        // ProductArray
+                        // MatrizDetalleComprobante
                         // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.AutoScrollMargin = new System.Drawing.Size(4, 4);
-                        this.BackColor = System.Drawing.SystemColors.Control;
-                        this.Controls.Add(this.PanelGrilla);
-                        this.Controls.Add(this.lblHeaderImporte);
-                        this.Controls.Add(this.lblHeaderCantidad);
-                        this.Controls.Add(this.lblHeaderUnitario);
-                        this.Controls.Add(this.lblHeaderDetalle);
-                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.Name = "ProductArray";
+                        this.Controls.Add(this.EtiquetaHeaderDetalle);
+                        this.Controls.Add(this.EtiquetaHeaderUnitario);
+                        this.Controls.Add(this.EtiquetaHeaderCantidad);
+                        this.Controls.Add(this.EtiquetaHeaderImporte);
                         this.Size = new System.Drawing.Size(536, 180);
-                        this.Resize += new System.EventHandler(this.ProductArray_Resize);
                         this.Enter += new System.EventHandler(this.ProductArray_Enter);
+                        this.Resize += new System.EventHandler(this.ProductArray_Resize);
+                        this.Controls.SetChildIndex(this.EtiquetaHeaderDetalle, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaHeaderUnitario, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaHeaderCantidad, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaHeaderImporte, 0);
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
                 }
 
-
-                #endregion
-
-                internal System.Windows.Forms.Label lblHeaderDetalle;
-                internal System.Windows.Forms.Label lblHeaderUnitario;
-                internal System.Windows.Forms.Label lblHeaderCantidad;
-                internal System.Windows.Forms.Label lblHeaderImporte;
-                internal System.Windows.Forms.Panel PanelGrilla;
+                private System.Windows.Forms.Label EtiquetaHeaderDetalle;
+                private System.Windows.Forms.Label EtiquetaHeaderUnitario;
+                private System.Windows.Forms.Label EtiquetaHeaderCantidad;
+                private System.Windows.Forms.Label EtiquetaHeaderImporte;
         }
 }

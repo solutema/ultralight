@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -61,30 +61,29 @@ namespace Lcc.Entrada
                         // 
                         // EntradaTipoDeRango
                         // 
-                        this.EntradaTipoDeRango.AutoHeight = false;
+                        this.EntradaTipoDeRango.AlwaysExpanded = false;
                         this.EntradaTipoDeRango.AutoNav = true;
+                        this.EntradaTipoDeRango.AutoSize = true;
                         this.EntradaTipoDeRango.AutoTab = true;
                         this.EntradaTipoDeRango.DetailField = null;
                         this.EntradaTipoDeRango.Filter = null;
+                        this.EntradaTipoDeRango.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaTipoDeRango.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaTipoDeRango.KeyField = null;
                         this.EntradaTipoDeRango.Location = new System.Drawing.Point(0, 0);
                         this.EntradaTipoDeRango.MaxLenght = 32767;
                         this.EntradaTipoDeRango.Name = "EntradaTipoDeRango";
                         this.EntradaTipoDeRango.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipoDeRango.ReadOnly = false;
                         this.EntradaTipoDeRango.SetData = new string[] {
         "Por día|dia",
         "Por semana|semana",
         "Por mes|mes",
         "Por rango|rango",
         "Todas|todas"};
-                        this.EntradaTipoDeRango.Size = new System.Drawing.Size(124, 24);
+                        this.EntradaTipoDeRango.Size = new System.Drawing.Size(124, 25);
                         this.EntradaTipoDeRango.TabIndex = 0;
                         this.EntradaTipoDeRango.Table = null;
-                        this.EntradaTipoDeRango.Text = "Por semana";
                         this.EntradaTipoDeRango.TextKey = "semana";
-                        this.EntradaTipoDeRango.TextRaw = "Por semana";
                         this.EntradaTipoDeRango.TipWhenBlank = "";
                         this.EntradaTipoDeRango.ToolTipText = "";
                         this.EntradaTipoDeRango.TextChanged += new System.EventHandler(this.EntradaTipoDeRango_TextChanged);
@@ -92,11 +91,11 @@ namespace Lcc.Entrada
                         // 
                         // EntradaDesde
                         // 
-                        this.EntradaDesde.AutoHeight = false;
                         this.EntradaDesde.AutoNav = true;
                         this.EntradaDesde.AutoTab = true;
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaDesde.DecimalPlaces = -1;
+                        this.EntradaDesde.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDesde.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaDesde.Location = new System.Drawing.Point(120, 8);
@@ -106,23 +105,21 @@ namespace Lcc.Entrada
                         this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDesde.PasswordChar = '\0';
                         this.EntradaDesde.Prefijo = "";
-                        this.EntradaDesde.ReadOnly = false;
                         this.EntradaDesde.SelectOnFocus = true;
                         this.EntradaDesde.Size = new System.Drawing.Size(108, 24);
                         this.EntradaDesde.Sufijo = "";
                         this.EntradaDesde.TabIndex = 1;
-                        this.EntradaDesde.TextRaw = "";
                         this.EntradaDesde.TipWhenBlank = "";
                         this.EntradaDesde.ToolTipText = "";
                         this.EntradaDesde.TextChanged += new System.EventHandler(this.EntradaDesde_TextChanged);
                         // 
                         // EntradaHasta
                         // 
-                        this.EntradaHasta.AutoHeight = false;
                         this.EntradaHasta.AutoNav = true;
                         this.EntradaHasta.AutoTab = true;
                         this.EntradaHasta.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaHasta.DecimalPlaces = -1;
+                        this.EntradaHasta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaHasta.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaHasta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaHasta.Location = new System.Drawing.Point(292, 8);
@@ -132,40 +129,37 @@ namespace Lcc.Entrada
                         this.EntradaHasta.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaHasta.PasswordChar = '\0';
                         this.EntradaHasta.Prefijo = "";
-                        this.EntradaHasta.ReadOnly = false;
                         this.EntradaHasta.SelectOnFocus = true;
                         this.EntradaHasta.Size = new System.Drawing.Size(108, 24);
                         this.EntradaHasta.Sufijo = "";
                         this.EntradaHasta.TabIndex = 3;
-                        this.EntradaHasta.TextRaw = "";
                         this.EntradaHasta.TipWhenBlank = "";
                         this.EntradaHasta.ToolTipText = "";
                         this.EntradaHasta.TextChanged += new System.EventHandler(this.EntradaHasta_TextChanged);
                         // 
                         // EntradaRango
                         // 
+                        this.EntradaRango.AlwaysExpanded = false;
                         this.EntradaRango.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaRango.AutoHeight = false;
                         this.EntradaRango.AutoNav = true;
+                        this.EntradaRango.AutoSize = true;
                         this.EntradaRango.AutoTab = true;
                         this.EntradaRango.DetailField = null;
                         this.EntradaRango.Filter = null;
+                        this.EntradaRango.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaRango.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaRango.KeyField = null;
                         this.EntradaRango.Location = new System.Drawing.Point(128, 0);
                         this.EntradaRango.MaxLenght = 32767;
                         this.EntradaRango.Name = "EntradaRango";
                         this.EntradaRango.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaRango.ReadOnly = false;
                         this.EntradaRango.SetData = new string[] {
         "a|1"};
-                        this.EntradaRango.Size = new System.Drawing.Size(311, 24);
+                        this.EntradaRango.Size = new System.Drawing.Size(311, 25);
                         this.EntradaRango.TabIndex = 1;
                         this.EntradaRango.Table = null;
-                        this.EntradaRango.Text = "a|1";
-                        this.EntradaRango.TextKey = "";
-                        this.EntradaRango.TextRaw = "a|1";
+                        this.EntradaRango.TextKey = "1";
                         this.EntradaRango.TipWhenBlank = "";
                         this.EntradaRango.ToolTipText = "";
                         this.EntradaRango.TextChanged += new System.EventHandler(this.EntradaRango_TextChanged);
@@ -211,8 +205,8 @@ namespace Lcc.Entrada
                         this.PanelFechas.Name = "PanelFechas";
                         this.PanelFechas.Size = new System.Drawing.Size(441, 32);
                         this.PanelFechas.TabIndex = 1;
-                        this.PanelFechas.VisibleChanged += new System.EventHandler(this.Paneles_SizeChanged);
                         this.PanelFechas.SizeChanged += new System.EventHandler(this.Paneles_SizeChanged);
+                        this.PanelFechas.VisibleChanged += new System.EventHandler(this.Paneles_SizeChanged);
                         // 
                         // RangoFechas
                         // 
@@ -222,7 +216,10 @@ namespace Lcc.Entrada
                         this.Controls.Add(this.PanelCombos);
                         this.Name = "RangoFechas";
                         this.Size = new System.Drawing.Size(445, 62);
+                        this.Controls.SetChildIndex(this.PanelCombos, 0);
+                        this.Controls.SetChildIndex(this.PanelFechas, 0);
                         this.PanelCombos.ResumeLayout(false);
+                        this.PanelCombos.PerformLayout();
                         this.PanelFechas.ResumeLayout(false);
                         this.ResumeLayout(false);
                         this.PerformLayout();

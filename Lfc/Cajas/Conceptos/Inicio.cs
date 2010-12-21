@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,23 +38,15 @@ using System.Windows.Forms;
 
 namespace Lfc.Cajas.Conceptos
 {
-	public class Inicio : Lui.Forms.ListingForm
+	public class Inicio : Lfc.FormularioListado
 	{
-
-		#region 'Windows Form Designer generated code'
-
 		public Inicio()
-			: base()
 		{
+                        this.ElementoTipo = typeof(Lbl.Cajas.Concepto);
 
-
-			// This call is required by the Windows Form Designer.
-			InitializeComponent();
-
-			// agregar código de constructor después de llamar a InitializeComponent
-			DataTableName = "conceptos";
-                        KeyField = new Lfx.Data.FormField("conceptos.id_concepto", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-			FormFields = new List<Lfx.Data.FormField>()
+                        this.NombreTabla = "conceptos";
+                        this.KeyField = new Lfx.Data.FormField("conceptos.id_concepto", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+			this.FormFields = new Lfx.Data.FormFieldCollection()
 			{
 				new Lfx.Data.FormField("conceptos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 				new Lfx.Data.FormField("conceptos.es", "Tipo", Lfx.Data.InputFieldTypes.Text, 120),
@@ -62,62 +54,7 @@ namespace Lfc.Cajas.Conceptos
 			};
 		}
 
-		// Form overrides dispose to clean up the component list.
-		protected override void Dispose(bool disposing)
-		{
-			if(disposing) {
-				if(components != null) {
-					components.Dispose();
-				}
-			}
-			base.Dispose(disposing);
-		}
-
-
-		// Required by the Windows Form Designer
-		private System.ComponentModel.Container components = null;
-
-		// NOTE: The following procedure is required by the Windows Form Designer
-		// It can be modified using the Windows Form Designer.  
-		// Do not modify it using the code editor.
-
-		private void InitializeComponent()
-		{
-			this.SuspendLayout();
-			// 
-			// lvItems
-			// 
-			this.Listado.Name = "lvItems";
-			// 
-			// CreateButton
-			// 
-			this.BotonCrear.DockPadding.All = 2;
-			this.BotonCrear.Name = "CreateButton";
-			// 
-			// FiltersButton
-			// 
-			this.BotonFiltrar.DockPadding.All = 2;
-			this.BotonFiltrar.Name = "FiltersButton";
-			// 
-			// PrintButton
-			// 
-			this.BotonImprimir.DockPadding.All = 2;
-			this.BotonImprimir.Name = "PrintButton";
-			// 
-			// Inicio
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
-			this.ClientSize = new System.Drawing.Size(692, 473);
-			this.Name = "Inicio";
-			this.Text = "Listado: Conceptos";
-			this.ResumeLayout(false);
-
-		}
-
-
-		#endregion
-
-                public override void ItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                public override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
 		{
 			string Codigo = itm.Text;
 			if(Codigo.Substring(2, 1) != "0")
@@ -182,19 +119,6 @@ namespace Lfc.Cajas.Conceptos
 					break;
 			}
 
-		}
-
-		public override Lfx.Types.OperationResult OnCreate()
-		{
-			this.Workspace.RunTime.Execute("CREAR CONCEPTO");
-			return new Lfx.Types.SuccessOperationResult();
-		}
-
-
-		public override Lfx.Types.OperationResult OnEdit(int lCodigo)
-		{
-			this.Workspace.RunTime.Execute("EDITAR CONCEPTO " + lCodigo.ToString());
-			return new Lfx.Types.SuccessOperationResult();
 		}
 	}
 }

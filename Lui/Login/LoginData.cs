@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,30 +37,31 @@ namespace Lui.Login
 {
 	public static class LoginData
 	{
-		public static bool ValidateAccess(Lfx.Access.LoginData loginData, string accessName)
+		public static bool ValidateAccess(string accessName, Lbl.Sys.Permisos.Operaciones operacion)
 		{
-			return ValidateAccess(loginData,accessName, 0);
-		}
-
-		public static bool ValidateAccess(Lfx.Access.LoginData loginData, string accessName, int itemId)
-		{
-			bool Tiene = Access(loginData,accessName, itemId);
+                        bool Tiene = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(accessName, operacion);
 			if(Tiene == false)
 				System.Windows.Forms.MessageBox.Show("No tiene permiso para realizar la operación solicitada.", "Error");
 			return Tiene;
 		}
 
-		public static bool Access(Lfx.Access.LoginData loginData, string accessName)
-		{
-			return Access(loginData,accessName, 0);
-		}
+                public static bool ValidateAccess(Lbl.IElementoDeDatos elemento, Lbl.Sys.Permisos.Operaciones operacion)
+                {
+                        bool Tiene = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(elemento, operacion);
+                        if (Tiene == false)
+                                System.Windows.Forms.MessageBox.Show("No tiene permiso para realizar la operación solicitada.", "Error");
+                        return Tiene;
+                }
 
-		public static bool Access(Lfx.Access.LoginData loginData, string accessName, int itemId)
-		{
-                        return loginData.AccessList.HasAccess(accessName, itemId);
-		}
+                public static bool ValidateAccess(Type tipo, Lbl.Sys.Permisos.Operaciones operacion)
+                {
+                        bool Tiene = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(tipo, operacion);
+                        if (Tiene == false)
+                                System.Windows.Forms.MessageBox.Show("No tiene permiso para realizar la operación solicitada.", "Error");
+                        return Tiene;
+                }
 
-		public static bool RevalidateAccess(Lfx.Access.LoginData loginData)
+		public static bool RevalidateAccess()
 		{
 			Lui.Login.FormRevalidateAccess Reval = new Lui.Login.FormRevalidateAccess();
 			bool Res = Reval.Revalidate();
@@ -71,12 +72,12 @@ namespace Lui.Login
 		}
 
 
-		public static bool ValidateAsAdmin(Lfx.Access.LoginData loginData)
+		public static bool ValidateAsAdmin()
 		{
-			return ValidateAsAdmin(loginData, null);
+			return ValidateAsAdmin(null);
 		}
 
-		public static bool ValidateAsAdmin(Lfx.Access.LoginData loginData, string Explain)
+		public static bool ValidateAsAdmin(string Explain)
 		{
 			Lui.Login.FormRevalidateAccess Reval = new Lui.Login.FormRevalidateAccess();
 			if(Explain != null)

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,32 +37,18 @@ namespace Lui.Printing
 {
 	public class Services
 	{
-		public static string ShowPrinterSelecionDialog(bool showPreviewPrinter)
-		{
-			//Muestra una ventana para seleccionar impresora
-			Lui.Printing.PrinterSelectionDialog OSeleccionarImpresora = new Lui.Printing.PrinterSelectionDialog();
-			OSeleccionarImpresora.VistaPrevia = showPreviewPrinter;
-			if (OSeleccionarImpresora.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-				return OSeleccionarImpresora.SelectedPrinter;
-			else
-				return null;
-		}
-
 		public static Lfx.Types.OperationResult ShowManualFeedDialog(string printerName, string documentName)
 		{
-                        Lbl.Impresion.ManualFeedDialog OFormFacturaCargaManual = new Lbl.Impresion.ManualFeedDialog();
+                        Lui.Printing.ManualFeedDialog OFormFacturaCargaManual = new Lui.Printing.ManualFeedDialog();
 			OFormFacturaCargaManual.DocumentName = documentName;
 
 			// Muestro el nombre de la impresora
-			if (printerName != null && printerName.Length > 0)
-			{
-				OFormFacturaCargaManual.PrinterName = printerName;
-			}
-			else
-			{
-				System.Drawing.Printing.PrinterSettings objPrint = new System.Drawing.Printing.PrinterSettings();
-				OFormFacturaCargaManual.PrinterName = objPrint.PrinterName;
-			}
+                        if (printerName != null && printerName.Length > 0) {
+                                OFormFacturaCargaManual.PrinterName = printerName;
+                        } else {
+                                System.Drawing.Printing.PrinterSettings CurrentSettings = new System.Drawing.Printing.PrinterSettings();
+                                OFormFacturaCargaManual.PrinterName = CurrentSettings.PrinterName;
+                        }
 
 			if (OFormFacturaCargaManual.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
 				return new Lfx.Types.FailureOperationResult("Operación cancelada");

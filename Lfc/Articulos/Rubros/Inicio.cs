@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,79 +37,21 @@ using System.Windows.Forms;
 
 namespace Lfc.Articulos.Rubros
 {
-	public class Inicio : Lui.Forms.ListingForm
+	public class Inicio : Lfc.FormularioListado
 	{
-		private System.ComponentModel.IContainer components = null;
-
 		public Inicio()
 		{
-			// Llamada necesaria para el Diseñador de Windows Forms.
-			InitializeComponent();
+                        this.ElementoTipo = typeof(Lbl.Articulos.Rubro);
 
-			DataTableName = "articulos_rubros";
-                        KeyField = new Lfx.Data.FormField("articulos_rubros.id_rubro", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-			OrderBy = "articulos_rubros.nombre";
-			FormFields = new List<Lfx.Data.FormField>()
+                        this.NombreTabla = "articulos_rubros";
+                        this.KeyField = new Lfx.Data.FormField("articulos_rubros.id_rubro", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        this.OrderBy = "articulos_rubros.nombre";
+                        this.FormFields = new Lfx.Data.FormFieldCollection()
 			{
 				new Lfx.Data.FormField("articulos_rubros.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 				new Lfx.Data.FormField("articulos_rubros.id_alicuota", "Alícuota", Lfx.Data.InputFieldTypes.Integer, 160)
 			};
 		}
-
-		/// <summary>
-		/// Limpiar los recursos que se estén utilizando.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if (components != null) 
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
-
-		#region Código generado por el diseñador
-		/// <summary>
-		/// Método necesario para admitir el Diseñador. No se puede modificar
-		/// el contenido del método con el editor de código.
-		/// </summary>
-		private void InitializeComponent()
-		{
-			this.SuspendLayout();
-			// 
-			// lvItems
-			// 
-			this.Listado.Name = "lvItems";
-			this.Listado.Size = new System.Drawing.Size(646, 566);
-			// 
-			// CreateButton
-			// 
-			this.BotonCrear.DockPadding.All = 2;
-			this.BotonCrear.Name = "CreateButton";
-			// 
-			// FiltersButton
-			// 
-			this.BotonFiltrar.DockPadding.All = 2;
-			this.BotonFiltrar.Name = "FiltersButton";
-			// 
-			// PrintButton
-			// 
-			this.BotonImprimir.DockPadding.All = 2;
-			this.BotonImprimir.Name = "PrintButton";
-			// 
-			// Inicio
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
-			this.ClientSize = new System.Drawing.Size(692, 473);
-			this.Name = "Inicio";
-			this.Text = "Artículos: Rubros: Listado";
-			this.ResumeLayout(false);
-
-		}
-		#endregion
 	}
 }
 

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,50 +37,33 @@ using System.Windows.Forms;
 
 namespace Lfc.Articulos.Rubros
 {
-	public partial class Editar : Lui.Forms.EditForm
-	{
-		private System.ComponentModel.IContainer components = null;
-
-		public Editar()
-		{
-			InitializeComponent();
-		}
-
-                public override Lfx.Types.OperationResult Create()
+        public partial class Editar : Lcc.Edicion.ControlEdicion
+        {
+                public Editar()
                 {
-                        if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "products.create"))
-                                return new Lfx.Types.NoAccessOperationResult();
+                        this.ElementoTipo = typeof(Lbl.Articulos.Rubro);
 
-                        Lbl.Articulos.Rubro Rubro = new Lbl.Articulos.Rubro(this.DataBase);
-                        Rubro.Crear();
-                        this.FromRow(Rubro);
-
-                        return new Lfx.Types.SuccessOperationResult();
+                        InitializeComponent();
                 }
 
-                public override void FromRow(Lbl.ElementoDeDatos row)
+                public override void ActualizarControl()
                 {
-                        base.FromRow(row);
+                        Lbl.Articulos.Rubro Rubro = this.Elemento as Lbl.Articulos.Rubro;
 
-                        Lbl.Articulos.Rubro Rubro = row as Lbl.Articulos.Rubro;
-                        
                         EntradaNombre.Text = Rubro.Nombre;
                         EntradaAlicuota.Elemento = Rubro.Alicuota;
 
-                        if (Rubro.Existe)
-                                this.Text = "Rubro: " + Rubro.ToString();
-                        else
-                                this.Text = "Rubro: nuevo";
+                        base.ActualizarControl();
                 }
 
-                public override Lbl.ElementoDeDatos ToRow()
+                public override void ActualizarElemento()
                 {
-                        Lbl.Articulos.Rubro Rubro = base.ToRow() as Lbl.Articulos.Rubro;
+                        Lbl.Articulos.Rubro Rubro = this.Elemento as Lbl.Articulos.Rubro;
 
                         Rubro.Nombre = EntradaNombre.Text;
                         Rubro.Alicuota = EntradaAlicuota.Elemento as Lbl.Impuestos.Alicuota;
-                                
-                        return Rubro;
+
+                        base.ActualizarElemento();
                 }
-	}
+        }
 }

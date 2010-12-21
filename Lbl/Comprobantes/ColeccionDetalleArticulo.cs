@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -34,32 +34,41 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        public class ColeccionDetalleArticulos : List<DetalleArticulo>
+        public class ColeccionDetalleArticulos : Lbl.ColeccionGenerica<DetalleArticulo>
         {
                 public Lbl.Comprobantes.ComprobanteConArticulos Comprobante = null;
 
+                public ColeccionDetalleArticulos(Lfx.Data.Connection dataBase)
+                        : base(dataBase) { }
+
                 public ColeccionDetalleArticulos(Lbl.Comprobantes.ComprobanteConArticulos comprobante)
+                        : base(comprobante.Connection)
                 {
                         this.Comprobante = comprobante;
                 }
 
-                public void AddWithValue(Lbl.Articulos.Articulo articulo, double cantidad, double unitario, string obs)
+                public void AddWithValue(Lbl.Articulos.Articulo articulo, decimal cantidad, decimal unitario, string obs)
                 {
-                        DetalleArticulo Det = new DetalleArticulo(this.Comprobante.DataBase);
+                        DetalleArticulo Det = new DetalleArticulo(this.Comprobante);
                         Det.Articulo = articulo;
                         Det.Cantidad = cantidad;
                         Det.Unitario = unitario;
                         Det.Obs = obs;
                 }
 
-                public ColeccionDetalleArticulos Clone()
+                public ColeccionDetalleArticulos Clone(ComprobanteConArticulos comprobante)
                 {
-                        ColeccionDetalleArticulos Res = new ColeccionDetalleArticulos(this.Comprobante);
+                        ColeccionDetalleArticulos Res = new ColeccionDetalleArticulos(comprobante);
                         foreach (DetalleArticulo Det in this) {
                                 // FIXME: debería clonar también Det
                                 Res.Add(Det);
                         }
                         return Res;
+                }
+
+                new public ColeccionDetalleArticulos Clone()
+                {
+                        return this.Clone(this.Comprobante);
                 }
 
 

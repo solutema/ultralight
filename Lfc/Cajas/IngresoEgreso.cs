@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,15 +38,15 @@ namespace Lfc.Cajas
         {
                 protected internal int m_Id;
                 protected internal bool m_Ingreso = true;
-                protected internal double SaldoActual = 0;
+                protected internal decimal SaldoActual = 0;
                 protected internal Lbl.Cajas.Caja m_Caja = null;
 
                 public IngresoEgreso()
                 {
                         this.InitializeComponent();
 
-                        if (this.DataBase != null)
-                                this.Caja = new Lbl.Cajas.Caja(this.DataBase, 999);
+                        if (this.Connection != null)
+                                this.Caja = new Lbl.Cajas.Caja(this.Connection, 999);
                 }
 
                 [EditorBrowsable(EditorBrowsableState.Never),
@@ -105,12 +105,13 @@ namespace Lfc.Cajas
                         }
 
                         if (aceptarReturn.Success == true) {
+                                this.Caja.Connection.BeginTransaction();
                                 if (m_Ingreso)
                                         this.Caja.Movimiento(false, 
                                                 EntradaConcepto.Elemento as Lbl.Cajas.Concepto,
                                                 EntradaConcepto.TextDetail,
                                                 EntradaPersona.Elemento as Lbl.Personas.Persona,
-                                                EntradaImporte.ValueDouble,
+                                                EntradaImporte.ValueDecimal,
                                                 EntradaObs.Text,
                                                 null,
                                                 null,
@@ -120,26 +121,27 @@ namespace Lfc.Cajas
                                                 EntradaConcepto.Elemento as Lbl.Cajas.Concepto, 
                                                 EntradaConcepto.TextDetail, 
                                                 EntradaPersona.Elemento as Lbl.Personas.Persona,
-                                                -EntradaImporte.ValueDouble, 
+                                                -EntradaImporte.ValueDecimal, 
                                                 EntradaObs.Text, 
                                                 null,
                                                 null, 
                                                 EntradaComprobante.Text);
+                                this.Caja.Connection.Commit();
                         }
                         return aceptarReturn;
                 }
 
                 private void IngresoEgreso_WorkspaceChanged(object sender, EventArgs e)
                 {
-                        EntradaPersona.TextInt = this.Workspace.CurrentUser.Id;
+                        EntradaPersona.Elemento = Lbl.Sys.Config.Actual.UsuarioConectado.Persona;
                 }
 
                 private void EntradaImporte_TextChanged(object sender, EventArgs e)
                 {
                         if (Ingreso)
-                                EntradaNuevoSaldo.ValueDouble = SaldoActual + EntradaImporte.ValueDouble;
+                                EntradaNuevoSaldo.ValueDecimal = SaldoActual + EntradaImporte.ValueDecimal;
                         else
-                                EntradaNuevoSaldo.ValueDouble = SaldoActual - EntradaImporte.ValueDouble;
+                                EntradaNuevoSaldo.ValueDecimal = SaldoActual - EntradaImporte.ValueDecimal;
                 }
         }
 }

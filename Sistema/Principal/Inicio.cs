@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -31,10 +31,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -42,33 +40,18 @@ namespace Lazaro.Principal
 {
         public partial class Inicio : Form
         {
-                private class MenuItemInfo
-                {
-                        public MenuItem Item;
-                        public string Text;
-                        public string Funcion;
-                        public string ParentText;
-
-                        public string FullPath
-                        {
-                                get
-                                {
-                                        return this.ParentText + @"\" + this.Text;
-                                }
-                        }
-
-                        public override string ToString()
-                        {
-                                return this.FullPath;
-                        }
-                }
-
                 private static System.Collections.Generic.Dictionary<string, MenuItemInfo> MenuItemInfoTable = null;
 
                 public Inicio()
                 {
                         InitializeComponent();
+
+                        if (Lfx.Environment.SystemInformation.DesignMode) {
+                                ListaBd.Visible = true;
+                                TimerProgramador.Interval = 1000;
+                        }
                 }
+
 
                 private void FormPrincipal_Load(object sender, EventArgs e)
                 {
@@ -83,14 +66,13 @@ namespace Lazaro.Principal
                         }
 
                         BarraInferior.Visible = this.Workspace.CurrentConfig.ReadLocalSettingInt("Sistema", "Apariencia.BarraInformacion", 1) != 0;
-                        switch (this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Apariencia.ModoPantalla", ModoPredeterminado))
-                        {
+                        switch (this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Apariencia.ModoPantalla", ModoPredeterminado)) {
                                 case "normal":
-                                        this.Text = "Lázaro - " + Lfx.Types.Strings.ULCase(this.Workspace.CurrentUser.UserName) + " en " + Lfx.Workspace.Master.ToString();
+                                        this.Text = "Lázaro - " + Lbl.Sys.Config.Actual.UsuarioConectado.Persona.NombreSolo + " en " + Lfx.Workspace.Master.ToString();
                                         break;
                                 case "maximizado":
                                         this.WindowState = FormWindowState.Maximized;
-                                        this.Text = "Lázaro - " + Lfx.Types.Strings.ULCase(this.Workspace.CurrentUser.UserName) + " en " + this.Workspace.ToString();
+                                        this.Text = "Lázaro - " + Lbl.Sys.Config.Actual.UsuarioConectado.Persona.NombreSolo + " en " + this.Workspace.ToString();
                                         break;
                                 case "completo":
                                         this.Text = "";
@@ -98,16 +80,16 @@ namespace Lazaro.Principal
                                         this.WindowState = FormWindowState.Maximized;
                                         break;
                                 case "flotante":
-					Aplicacion.Flotante = true;
+                                        Aplicacion.Flotante = true;
                                         this.BarraTareas.Visible = false;
                                         this.Height = 108;
                                         this.MinimumSize = new Size(128, 108);
                                         this.MaximumSize = new Size(8192, 108);
-					if (Lfx.Environment.SystemInformation.Platform == Lfx.Environment.SystemInformation.Platforms.Windows)
-                                        	//Sólo Windows permite la combinación de MaximumSize y Maximized
-						this.WindowState = FormWindowState.Maximized;
-					else
-						this.Top = 20;
+                                        if (Lfx.Environment.SystemInformation.Platform == Lfx.Environment.SystemInformation.Platforms.Windows)
+                                                //Sólo Windows permite la combinación de MaximumSize y Maximized
+                                                this.WindowState = FormWindowState.Maximized;
+                                        else
+                                                this.Top = 20;
                                         break;
                         }
                         MostrarAyuda("Bienvenido a Lázaro", "Pulse la tecla <F12> para activar el menú.");
@@ -116,33 +98,41 @@ namespace Lazaro.Principal
                                 Lfx.Services.Updater.Master.Start();
                 }
 
-                private static bool YaPregunteReiniciar = false;
-                private void TimerReloj_Tick(object sender, EventArgs e)
-                {
-                        TimerReloj.Enabled = false;
 
-                        if (this.Visible)
-                        {
+                private static bool YaPregunteReiniciar = false;
+                private static bool YaSubiEstadisticas = false;
+                private void TimerProgramador_Tick(object sender, EventArgs e)
+                {
+                        if (this.Visible) {
                                 if (ListaBd.Visible) {
                                         ListaBd.Items.Clear();
-                                        foreach (Lfx.Data.DataBase Bd in this.Workspace.DataBases) {
-                                                ListaBd.Items.Add(Bd.Name);
+                                        foreach (Lfx.Data.Connection Bd in this.Workspace.ActiveConnections) {
+                                                ListaBd.Items.Add(Bd.Handle.ToString() + " " + Bd.Name);
                                         }
                                 }
 
                                 //Ejecuto tareas del programador
                                 Lfx.Services.Task ProximaTarea = null;
-                                //En conexiones lentas, 1 vez por minuto
-                                //De lo contrario, cada vez que se activa el timer
-                                if (this.Workspace.SlowLink == false || (this.Workspace.DefaultScheduler.LastGetTask == System.DateTime.MinValue && (DateTime.Now - this.Workspace.DefaultScheduler.LastGetTask).Minutes >= 1))
-                                        ProximaTarea = this.Workspace.DefaultScheduler.GetNextTask("lazaro");
+                                // En conexiones lentas, 1 vez por minuto
+                                // En conexiones rápidas, cada 5 segundos
+                                if (this.Workspace.SlowLink) {
+                                        if (this.Workspace.DefaultScheduler.LastGetTask == System.DateTime.MinValue || (DateTime.Now - this.Workspace.DefaultScheduler.LastGetTask).Minutes >= 1)
+                                                ProximaTarea = this.Workspace.DefaultScheduler.GetNextTask("lazaro");
+                                } else {
+                                        if (this.Workspace.DefaultScheduler.LastGetTask == System.DateTime.MinValue || (DateTime.Now - this.Workspace.DefaultScheduler.LastGetTask).Seconds >= 5)
+                                                ProximaTarea = this.Workspace.DefaultScheduler.GetNextTask("lazaro");
+                                }
 
                                 if (ProximaTarea != null) {
-                                        object Resultado = Aplicacion.Exec(ProximaTarea.Command, ProximaTarea.CreatorComputerName);
-                                        if ((Resultado) is Lfx.Types.OperationResult) {
-                                                if (((Lfx.Types.OperationResult)(Resultado)).Success != true)
-                                                        Lui.Forms.MessageBox.Show("Hubo un error al ejecutar la tarea " + ProximaTarea.Command, "Programador");
-                                        }
+                                        // Lanzo la tarea en un nuevo thread
+                                        System.Threading.Thread TareaNueva = new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(Aplicacion.ExecDelegate));
+                                        TareaNueva.Start(ProximaTarea);
+                                }
+
+                                if (YaSubiEstadisticas == false && Lfx.Environment.SystemInformation.DesignMode == false) {
+                                        YaSubiEstadisticas = true;
+                                        System.Threading.Thread EnviarEstadisticas = new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(Aplicacion.EnviarEstadisticas));
+                                        EnviarEstadisticas.Start();
                                 }
 
                                 if (Lfx.Services.Updater.Master.RebootNeeded && YaPregunteReiniciar == false) {
@@ -154,42 +144,37 @@ namespace Lazaro.Principal
                                                 Aplicacion.Exec("REBOOT");
                                 }
                         }
-
-                        TimerReloj.Enabled = true;
                 }
+
 
                 private void FormPrincipal_KeyDown(object sender, KeyEventArgs e)
                 {
-                        switch (e.KeyCode)
-                        {
+                        switch (e.KeyCode) {
                                 case Keys.F10:
                                 case Keys.F12:
-                                        if (e.Shift == false && e.Alt == false && e.Shift == false)
-                                        {
+                                        if (e.Shift == false && e.Alt == false && e.Shift == false) {
                                                 e.Handled = true;
                                                 MostrarAyuda("Menú principal", "Utilice las teclas de cursor (flechas) para navegar el menú. Pulse <Intro> (o <Enter>) para ejecutar una opción.");
-						System.Windows.Forms.SendKeys.Send("%S");
+                                                System.Windows.Forms.SendKeys.Send("%S");
                                         }
                                         break;
                                 case Keys.I:
-                                        if (e.Control == true && e.Alt == true && this.Workspace.CurrentUser.Id == 1)
-                                        {
+                                        if (e.Control == true && e.Alt == true && Lbl.Sys.Config.Actual.UsuarioConectado.TieneAccesoGlobal()) {
                                                 e.Handled = true;
                                                 System.Windows.Forms.OpenFileDialog DialogoArchivo = new System.Windows.Forms.OpenFileDialog();
                                                 DialogoArchivo.DefaultExt = "sql";
                                                 DialogoArchivo.Filter = "Archivo SQL|*.sql";
                                                 DialogoArchivo.Multiselect = false;
                                                 DialogoArchivo.Title = "Inyectar SQL";
-                                                if (DialogoArchivo.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                                                {
+                                                if (DialogoArchivo.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                                                         System.IO.Stream Archivo = System.IO.File.OpenRead(DialogoArchivo.FileName);
                                                         System.IO.StreamReader Lector = new System.IO.StreamReader(Archivo, System.Text.Encoding.Default);
 
-                                                        using (Lfx.Data.DataBase ConexionActualizar = this.Workspace.GetDataBase("Inyectar SQL")) {
+                                                        using (Lfx.Data.Connection ConexionActualizar = this.Workspace.GetNewConnection("Inyectar SQL")) {
                                                                 ConexionActualizar.BeginTransaction(false);
                                                                 string SqlActualizacion = ConexionActualizar.CustomizeSql(Lector.ReadToEnd());
                                                                 do {
-                                                                        string Comando = Datos.GetNextCommand(ref SqlActualizacion);
+                                                                        string Comando = Lfx.Data.Connection.GetNextCommand(ref SqlActualizacion);
                                                                         System.Windows.Forms.Clipboard.SetDataObject(Comando, true);
                                                                         try {
                                                                                 ConexionActualizar.Execute(Comando);
@@ -206,8 +191,11 @@ namespace Lazaro.Principal
                                         }
                                         break;
                                 case Keys.D:
-                                        if (e.Control && e.Alt == false && e.Shift == false)
+                                        if (e.Control && e.Alt == false && e.Shift == false) {
                                                 ListaBd.Visible = !ListaBd.Visible;
+                                                if (ListaBd.Visible)
+                                                        this.TimerProgramador_Tick(this, null);
+                                        }
                                         break;
                                 case Keys.B:
                                         if (e.Control && e.Alt == false && e.Shift == false)
@@ -223,29 +211,25 @@ namespace Lazaro.Principal
                                         }
                                         break;
                                 case Keys.F:
-                                        if (e.Control == true && e.Alt == false && e.Shift == false)
-                                        {
+                                        if (e.Control == true && e.Alt == false && e.Shift == false) {
                                                 e.Handled = true;
-                                                Aplicacion.Exec("CREAR FB");
+                                                Aplicacion.Exec("CREAR Lbl.Comprobantes.Factura");
                                         }
                                         break;
                                 case Keys.T:
-                                        if (e.Control == true && e.Alt == false && e.Shift == false)
-                                        {
+                                        if (e.Control == true && e.Alt == false && e.Shift == false) {
                                                 e.Handled = true;
-                                                Aplicacion.Exec("CREAR T");
+                                                Aplicacion.Exec("CREAR Lbl.Comprobantes.Ticket");
                                         }
                                         break;
                                 case Keys.P:
-                                        if (e.Control == true && e.Alt == false && e.Shift == false)
-                                        {
+                                        if (e.Control == true && e.Alt == false && e.Shift == false) {
                                                 e.Handled = true;
-                                                Aplicacion.Exec("CREAR PS");
+                                                Aplicacion.Exec("CREAR Lbl.Comprobantes.Presupuesto");
                                         }
                                         break;
                                 case Keys.L:
-                                        if (e.Control == true && e.Alt == false && e.Shift == false)
-                                        {
+                                        if (e.Control == true && e.Alt == false && e.Shift == false) {
                                                 e.Handled = true;
                                                 Aplicacion.Exec("CALC");
                                         }
@@ -253,23 +237,19 @@ namespace Lazaro.Principal
                         }
                 }
 
+
                 private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
                 {
-                        /* if (this.Visible) {
-                                Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Está a punto de cerrar completamente la aplicación.", "¿Desea cerrar el sistema Lázaro?");
-                                Pregunta.DialogButton = Lui.Forms.DialogButtons.YesNo;
-                                if (Pregunta.ShowDialog() != DialogResult.OK) {
-                                        e.Cancel = true;
-                                } else { */
                         if (this.Workspace != null) {
                                 this.Workspace.CurrentConfig.WriteGlobalSetting("", "Sistema.Ingreso.UltimoEgreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "");
                                 Lfx.Services.Updater.Master.Stop();
                                 Lfx.Services.Updater.Master.Dispose();
+                                Lfx.Workspace.Master.Disposing = true;
+                                Lfx.Workspace.Master.Dispose();
                         }
-                                System.Environment.Exit(0);
-                                /*}
-                        }*/
+                        System.Environment.Exit(0);
                 }
+
 
                 private void BarraTareas_ButtonClick(object sender, ToolBarButtonClickEventArgs e)
                 {
@@ -304,6 +284,7 @@ namespace Lazaro.Principal
                                 BarraInferior.MostrarItem(tabla, item);
                 }
 
+
                 public void MostrarAyuda(string titulo, string texto)
                 {
                         if (BarraInferior.Visible)
@@ -321,72 +302,52 @@ namespace Lazaro.Principal
 
                 private void CargarMenuComponentes()
                 {
-                        System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ComponentsFolder);
-                        foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.cif")) {
-                                string ComponentName = System.IO.Path.GetFileNameWithoutExtension(DirItem.FullName);
-                                string ComponentConfigFileName = Lfx.Environment.Folders.ComponentsFolder + ComponentName + ".cif";
-                                System.IO.TextReader ComponentConfigFile = new System.IO.StreamReader(ComponentConfigFileName, true);
-                                if (System.IO.File.Exists(ComponentConfigFileName) && (DirItem.Attributes & System.IO.FileAttributes.Hidden) != System.IO.FileAttributes.Hidden) {
-                                        System.Xml.XmlDocument ConfigDocument = new System.Xml.XmlDocument();
-                                        ConfigDocument.Load(ComponentConfigFile);
-                                        System.Xml.XmlNodeList ListaComponentes = ConfigDocument.GetElementsByTagName("Component");
-                                        //Abro el/los nodo(s) de componentes
-                                        foreach (System.Xml.XmlNode Componente in ListaComponentes) {
-                                                if (Componente.Attributes["Disabled"] == null || Componente.Attributes["Disabled"].Value != "1") {
-                                                        System.Xml.XmlNodeList ListaFunciones = ConfigDocument.GetElementsByTagName("Function");
-                                                        //Abro los nodos de funciones
-                                                        foreach (System.Xml.XmlNode Funcion in ListaFunciones) {
-                                                                if (Funcion.Attributes["autorun"] != null && Funcion.Attributes["autorun"].Value == "1")
-                                                                        Aplicacion.Exec("RUNCOMPONENT " + ComponentName + " " + Funcion.Attributes["name"].Value);
+                        foreach (Lfx.Components.Component CompInfo in Lfx.Components.Manager.ComponentesCargados.Values) {
+                                // Registro el componente
+                                Lfx.Types.OperationResult Res = Lfx.Components.Manager.RegisterComponent(CompInfo);
 
-                                                                System.Xml.XmlNode MenuItem = Funcion.SelectSingleNode("MenuItem");
-                                                                if (MenuItem != null) {
-                                                                        string MenuItemPosition;
-                                                                        if (MenuItem.Attributes["position"] == null)
-                                                                                MenuItemPosition = "Componentes";
-                                                                        else
-                                                                                MenuItemPosition = MenuItem.Attributes["position"].Value;
+                                if (Res.Success == false && Res.Message != null)
+                                        Lui.Forms.MessageBox.Show(Res.Message, "Error");
 
-                                                                        //Busco el Parent
-                                                                        MenuItem ColgarDe = null;
-                                                                        MenuItemInfo ItmInfo;
-                                                                        foreach (MenuItemInfo ItemInfo in MenuItemInfoTable.Values) {
-                                                                                if (ItemInfo.ParentText + "." + ItemInfo.Text == Lfx.Types.Strings.SimplifyText("Menu." + MenuItemPosition)) {
-                                                                                        ColgarDe = ItemInfo.Item;
-                                                                                        break;
-                                                                                }
-                                                                        }
-                                                                        if (ColgarDe == null) {
-                                                                                //Si no hay de donde colgarlo, lo creo
-                                                                                ColgarDe = new MenuItem(MenuItemPosition, new System.EventHandler(MnuClick));
-                                                                                ItmInfo = new MenuItemInfo();
-                                                                                ItmInfo.Item = ColgarDe;
-                                                                                ItmInfo.Funcion = "";
-                                                                                ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu");
-                                                                                ItmInfo.Text = Lfx.Types.Strings.SimplifyText(MenuItemPosition);
-
-                                                                                AgregarAlMenu(this.MainMenu, ColgarDe, ItmInfo);
-                                                                        }
-
-                                                                        MenuItem Itm = new MenuItem(MenuItem.Attributes["name"].Value, new System.EventHandler(MnuClick));
-                                                                        ItmInfo = new MenuItemInfo();
-                                                                        ItmInfo.Item = Itm;
-                                                                        ItmInfo.Funcion = "RUNCOMPONENT " + ComponentName + " " + Funcion.Attributes["name"].Value;
-                                                                        ItmInfo.ParentText = "Menu." + Lfx.Types.Strings.SimplifyText(MenuItemPosition);
-                                                                        ItmInfo.Text = Lfx.Types.Strings.SimplifyText(MenuItem.Attributes["name"].Value);
-                                                                        AgregarAlMenu(ColgarDe, Itm, ItmInfo);
-                                                                }
+                                if (CompInfo != null && CompInfo.MenuEntries != null) {
+                                        foreach (Lfx.Components.MenuEntry MenuItem in CompInfo.MenuEntries) {
+                                                //Busco el Parent
+                                                MenuItem ColgarDe = null;
+                                                MenuItemInfo ItmInfo;
+                                                foreach (MenuItemInfo ItemInfo in MenuItemInfoTable.Values) {
+                                                        if (ItemInfo.ParentText + "." + ItemInfo.Text == ("Menu." + MenuItem.Parent).QuitarAcentos()) {
+                                                                ColgarDe = ItemInfo.Item;
+                                                                break;
                                                         }
                                                 }
+                                                if (ColgarDe == null) {
+                                                        //Si no hay de donde colgarlo, lo creo
+                                                        ColgarDe = new MenuItem(MenuItem.Parent, new System.EventHandler(MnuClick));
+                                                        ItmInfo = new MenuItemInfo();
+                                                        ItmInfo.Item = ColgarDe;
+                                                        ItmInfo.Funcion = "";
+                                                        ItmInfo.ParentText = "Menu".QuitarAcentos();
+                                                        ItmInfo.Text = MenuItem.Parent.QuitarAcentos();
+
+                                                        AgregarAlMenu(this.MainMenu, ColgarDe, ItmInfo);
+                                                }
+
+                                                MenuItem Itm = new MenuItem(MenuItem.Name, new System.EventHandler(MnuClick));
+                                                ItmInfo = new MenuItemInfo();
+                                                ItmInfo.Item = Itm;
+                                                ItmInfo.Funcion = "RUNCOMPONENT " + CompInfo.Nombre + " " + MenuItem.Function;
+                                                ItmInfo.ParentText = "Menu." + MenuItem.Parent.QuitarAcentos();
+                                                ItmInfo.Text = MenuItem.Name.QuitarAcentos();
+                                                AgregarAlMenu(ColgarDe, Itm, ItmInfo);
                                         }
                                 }
                         }
                 }
 
-                // Sub: CargarMenuPrincipal
-                // Descripción:
-                //    Crea el men principal y algunas opciones fijas (Sistema, Acerca de..., Salir, etc)
-                //    Y carga el resto del men desde la BD mediante la función CargarMenu()
+                /// <summary>
+                /// Crea el menú Sistema y algunas opciones fijas (Acerca de..., Salir, etc.),
+                /// y carga el resto del menú desde un archivo XML.
+                /// </summary>
                 private void CargarMenuPrincipal()
                 {
                         // Vacío el menú
@@ -398,8 +359,8 @@ namespace Lazaro.Principal
                         MenuItemInfo ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmSistema;
                         ItmInfo.Funcion = "";
-                        ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu");
-                        ItmInfo.Text = Lfx.Types.Strings.SimplifyText(ItmSistema.Text);
+                        ItmInfo.ParentText = "Menu".QuitarAcentos();
+                        ItmInfo.Text = ItmSistema.Text.QuitarAcentos();
                         AgregarAlMenu(Aplicacion.FormularioPrincipal.MainMenu, ItmSistema, ItmInfo);
 
                         MenuItem ItmTmp = null;
@@ -409,8 +370,8 @@ namespace Lazaro.Principal
                         ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmTmp;
                         ItmInfo.Funcion = "VER";
-                        ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu.&Sistema");
-                        ItmInfo.Text = Lfx.Types.Strings.SimplifyText(ItmTmp.Text);
+                        ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
+                        ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
                         AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
 
                         // Creo la opción de Calculadora ...
@@ -418,8 +379,8 @@ namespace Lazaro.Principal
                         ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmTmp;
                         ItmInfo.Funcion = "CALC";
-                        ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu.&Sistema");
-                        ItmInfo.Text = Lfx.Types.Strings.SimplifyText(ItmTmp.Text);
+                        ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
+                        ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
                         AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
 
                         // Creo la opción de Fiscal
@@ -427,8 +388,8 @@ namespace Lazaro.Principal
                         ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmTmp;
                         ItmInfo.Funcion = "FISCAL PANEL";
-                        ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu.&Sistema");
-                        ItmInfo.Text = Lfx.Types.Strings.SimplifyText(ItmTmp.Text);
+                        ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
+                        ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
                         AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
 
                         // Creo la opción de Copia de Respaldo
@@ -436,8 +397,8 @@ namespace Lazaro.Principal
                         ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmTmp;
                         ItmInfo.Funcion = "BACKUP MANAGER";
-                        ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu.&Sistema");
-                        ItmInfo.Text = Lfx.Types.Strings.SimplifyText(ItmTmp.Text);
+                        ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
+                        ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
                         AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
 
                         // Creo la opción de Preferencias
@@ -445,8 +406,8 @@ namespace Lazaro.Principal
                         ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmTmp;
                         ItmInfo.Funcion = "CONFIG";
-                        ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu.&Sistema");
-                        ItmInfo.Text = Lfx.Types.Strings.SimplifyText(ItmTmp.Text);
+                        ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
+                        ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
                         AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
 
                         // Creo la opción de Preferencias
@@ -454,8 +415,8 @@ namespace Lazaro.Principal
                         ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmTmp;
                         ItmInfo.Funcion = "ACCESSMGR";
-                        ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu.&Sistema");
-                        ItmInfo.Text = Lfx.Types.Strings.SimplifyText(ItmTmp.Text);
+                        ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
+                        ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
                         AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
 
                         // Separador
@@ -463,8 +424,8 @@ namespace Lazaro.Principal
                         ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmTmp;
                         ItmInfo.Funcion = "";
-                        ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu.&Sistema");
-                        ItmInfo.Text = Lfx.Types.Strings.SimplifyText(ItmTmp.Text);
+                        ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
+                        ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
                         AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
 
                         // Salir
@@ -472,12 +433,13 @@ namespace Lazaro.Principal
                         ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmTmp;
                         ItmInfo.Funcion = "QUIT";
-                        ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText("Menu.&Sistema");
-                        ItmInfo.Text = Lfx.Types.Strings.SimplifyText(ItmTmp.Text);
+                        ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
+                        ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
                         AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
 
                         System.Xml.XmlDocument MenuXml = new XmlDocument();
-                        MenuXml.Load(Aplicacion.ObtenerRecurso(@"Data.menu.xml"));
+                        MenuXml.Load(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Lazaro.Principal.menu.xml"));
+
                         CargarMenuXml(MenuXml.GetElementsByTagName("Menu").Item(0), Aplicacion.FormularioPrincipal.MainMenu, "Menu");
 
                         CargarMenuComponentes();
@@ -492,19 +454,20 @@ namespace Lazaro.Principal
                                 foreach (XmlNode opcion in node.ChildNodes) {
                                         MenuItem Itm = new MenuItem(opcion.Attributes["Nombre"].Value, new System.EventHandler(MnuClick));
 
-                                        if (opcion.Attributes["Funcion"].Value == "MDILIST")
-                                                Itm.MdiList = true;
-
                                         MenuItemInfo ItmInfo = new MenuItemInfo();
                                         ItmInfo.Item = Itm;
-                                        ItmInfo.Funcion = opcion.Attributes["Funcion"].Value;
-                                        ItmInfo.ParentText = Lfx.Types.Strings.SimplifyText(parentText);
-                                        ItmInfo.Text = Lfx.Types.Strings.SimplifyText(opcion.Attributes["Nombre"].Value);
+                                        if (opcion.Attributes["Funcion"] != null) {
+                                                ItmInfo.Funcion = opcion.Attributes["Funcion"].Value;
+                                                if (opcion.Attributes["Funcion"].Value == "MDILIST")
+                                                        Itm.MdiList = true;
+                                        }
+                                        ItmInfo.ParentText = parentText.QuitarAcentos();
+                                        ItmInfo.Text = opcion.Attributes["Nombre"].Value.QuitarAcentos();
 
                                         AgregarAlMenu(colgarDe, Itm, ItmInfo);
 
-                                        if (opcion.Attributes["Funcion"].Value == "CAJAS" && Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "accounts.read")) {
-                                                DataTable Cajas = this.Workspace.DefaultDataBase.Select("SELECT id_caja, nombre FROM cajas WHERE estado>0 ORDER BY nombre");
+                                        if (ItmInfo.Funcion == "MENU Lbl.Cajas.Caja" && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Cajas.Caja), Lbl.Sys.Permisos.Operaciones.Listar)) {
+                                                DataTable Cajas = this.Workspace.MasterConnection.Select("SELECT id_caja, nombre FROM cajas WHERE estado>0 ORDER BY nombre");
 
                                                 foreach (System.Data.DataRow Caja in Cajas.Rows) {
                                                         MenuItem ItmH = new MenuItem(Caja["nombre"].ToString(), new System.EventHandler(MnuClick));
@@ -512,13 +475,13 @@ namespace Lazaro.Principal
                                                         ItmInfoH.Item = ItmH;
                                                         ItmInfoH.Funcion = "CAJA " + Caja["id_caja"].ToString();
                                                         ItmInfoH.ParentText = ItmInfo.Text;
-                                                        ItmInfoH.Text = Lfx.Types.Strings.SimplifyText(System.Convert.ToString(Caja["nombre"]));
+                                                        ItmInfoH.Text = System.Convert.ToString(Caja["nombre"]).QuitarAcentos();
                                                         AgregarAlMenu(Itm, ItmH, ItmInfoH);
                                                 }
-                                        } else if (opcion.Attributes["Funcion"].Value == "LISTADO TICKETS") {
+                                        } else if (ItmInfo.Funcion == "LISTADO TICKETS") {
                                                 MenuItem ItmH = null;
                                                 MenuItemInfo ItmInfoH = new MenuItemInfo();
-                                                DataTable Tipos = this.Workspace.DefaultDataBase.Select("SELECT id_tipo_ticket, nombre FROM tickets_tipos ORDER BY nombre");
+                                                DataTable Tipos = this.Workspace.MasterConnection.Select("SELECT id_tipo_ticket, nombre FROM tickets_tipos ORDER BY nombre");
 
                                                 if (Tipos.Rows.Count > 10) {
                                                         ItmH = new MenuItem("Todos", new System.EventHandler(MnuClick));
@@ -526,7 +489,7 @@ namespace Lazaro.Principal
                                                         ItmInfoH.Item = ItmH;
                                                         ItmInfoH.Funcion = "LISTADO TICKETS";
                                                         ItmInfoH.ParentText = ItmInfo.Text;
-                                                        ItmInfoH.Text = Lfx.Types.Strings.SimplifyText("Todos");
+                                                        ItmInfoH.Text = "Todos".QuitarAcentos();
                                                         AgregarAlMenu(Itm, ItmH, ItmInfoH);
                                                 }
 
@@ -536,7 +499,7 @@ namespace Lazaro.Principal
                                                         ItmInfoH.Item = ItmH;
                                                         ItmInfoH.Funcion = "LISTADO TICKETS " + Tipo["id_tipo_ticket"].ToString();
                                                         ItmInfoH.ParentText = ItmInfo.Text;
-                                                        ItmInfoH.Text = Lfx.Types.Strings.SimplifyText(Tipo["nombre"].ToString());
+                                                        ItmInfoH.Text = Tipo["nombre"].ToString().QuitarAcentos();
 
                                                         if (Tipos.Rows.Count > 10)
                                                                 AgregarAlMenu(Itm, ItmH, ItmInfoH);
@@ -584,7 +547,7 @@ namespace Lazaro.Principal
 
                 private void Menu_Select(object sender, System.EventArgs e)
                 {
-                        //MenuItem MiItem = ((MenuItem)(sender));
+                        //NodoMenu MiItem = ((NodoMenu)(sender));
                 }
 
                 private void Menu_MeasureItem(System.Object sender, System.Windows.Forms.MeasureItemEventArgs e)

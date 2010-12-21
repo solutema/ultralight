@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,40 +37,18 @@ using System.Windows.Forms;
 
 namespace Lfc.Bancos.Chequeras
 {
-	public partial class Editar : Lui.Forms.EditForm
-	{
-		public Editar()
-		{
-			InitializeComponent();
-
-                        this.ElementType = typeof(Lbl.Bancos.Chequera);
-		}
-
-                public override Lfx.Types.OperationResult Create()
+        public partial class Editar : Lcc.Edicion.ControlEdicion
+        {
+                public Editar()
                 {
-                        if (!Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "chequeras.create"))
-                                return new Lfx.Types.NoAccessOperationResult();
+                        this.ElementoTipo = typeof(Lbl.Bancos.Chequera);
 
-                        Lbl.Bancos.Chequera Chequera = new Lbl.Bancos.Chequera(this.DataBase);
-                        Chequera.Crear();
-
-                        this.FromRow(Chequera);
-                        return new Lfx.Types.SuccessOperationResult();
+                        InitializeComponent();
                 }
 
-		public override Lfx.Types.OperationResult Edit(int lId)
-		{
-                        if (Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "chequeras.read") == false)
-                                return new Lfx.Types.NoAccessOperationResult();
-
-                        return base.Edit(lId);
-		}
-
-                public override void FromRow(Lbl.ElementoDeDatos row)
+                public override void ActualizarControl()
                 {
-                        base.FromRow(row);
-
-                        Lbl.Bancos.Chequera Res = this.CachedRow as Lbl.Bancos.Chequera;
+                        Lbl.Bancos.Chequera Res = this.Elemento as Lbl.Bancos.Chequera;
 
                         EntradaBanco.Elemento = Res.Banco;
                         EntradaDesde.Text = Res.Desde.ToString();
@@ -85,17 +63,12 @@ namespace Lfc.Bancos.Chequeras
                         else
                                 EntradaCaja.Filter = "estado=1";
 
-                        this.ReadOnly = !Lui.Login.LoginData.Access(this.Workspace.CurrentUser, "chequeras.write");
-
-                        if (this.CachedRow.Existe)
-                                this.Text = Res.ToString();
-                        else
-                                this.Text = "Chequeras: Nueva";
+                        base.ActualizarControl();
                 }
 
-                public override Lbl.ElementoDeDatos ToRow()
+                public override void ActualizarElemento()
                 {
-                        Lbl.Bancos.Chequera Res = this.CachedRow as Lbl.Bancos.Chequera;
+                        Lbl.Bancos.Chequera Res = this.Elemento as Lbl.Bancos.Chequera;
 
                         Res.Banco = EntradaBanco.Elemento as Lbl.Bancos.Banco;
                         Res.Caja = EntradaCaja.Elemento as Lbl.Cajas.Caja;
@@ -106,8 +79,7 @@ namespace Lfc.Bancos.Chequeras
                         Res.Titular = EntradaTitular.Text;
                         Res.Estado = Lfx.Types.Parsing.ParseInt(EntradaEstado.TextKey);
 
-                        return base.ToRow();
+                        base.ActualizarElemento();
                 }
-	}
+        }
 }
-

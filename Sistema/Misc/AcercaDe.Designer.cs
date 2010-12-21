@@ -61,7 +61,7 @@ namespace Lazaro.Misc
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(534, 16);
                         this.Label1.TabIndex = 2;
-                        this.Label1.Text = "Copyright © 2004-2010 South Bridge S.R.L. Todos los derechos reservados.";
+                        this.Label1.Text = "Copyright © 2004-2010 Ernesto N. Carrea. Todos los derechos reservados.";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label2
@@ -83,7 +83,7 @@ namespace Lazaro.Misc
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(92, 24);
                         this.Label3.TabIndex = 6;
-                        this.Label3.Text = "Lázaro";
+                        this.Label3.Text = "lázaro";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // lblActualizar
@@ -153,13 +153,12 @@ namespace Lazaro.Misc
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(60, 16);
                         this.label9.TabIndex = 17;
-                        this.label9.Text = "NLWC";
+                        this.label9.Text = "2011";
                         this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // OkButton
                         // 
                         this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.OkButton.AutoHeight = false;
                         this.OkButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.OkButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -168,7 +167,6 @@ namespace Lazaro.Misc
                         this.OkButton.Location = new System.Drawing.Point(508, 336);
                         this.OkButton.Name = "OkButton";
                         this.OkButton.Padding = new System.Windows.Forms.Padding(2);
-                        this.OkButton.ReadOnly = false;
                         this.OkButton.Size = new System.Drawing.Size(110, 44);
                         this.OkButton.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.OkButton.Subtext = "Esc";
@@ -262,7 +260,6 @@ namespace Lazaro.Misc
                         this.Controls.Add(this.OkButton);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-                        this.KeyPreview = true;
                         this.Name = "AcercaDe";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
                         this.Text = "";
@@ -278,7 +275,7 @@ namespace Lazaro.Misc
 
 
                 // Requerido por el Diseñador de Windows Forms
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
                 private System.Windows.Forms.PictureBox PictureBox1;
                 private System.Windows.Forms.Label Label1;
                 private System.Windows.Forms.Label Label2;

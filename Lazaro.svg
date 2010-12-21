@@ -1,232 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xml:space="preserve"
-   width="48"
-   height="48"
-   style="fill-rule:evenodd"
-   viewBox="0 0 279.4 215.9"
-   id="svg2483"
-   sodipodi:version="0.32"
-   inkscape:version="0.46"
-   sodipodi:docname="Lazaro.svg"
-   inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   inkscape:export-filename="c:\Lazaro\Lazaro.png"
-   inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90"
-   version="1.0"><metadata
-   id="metadata2539"><rdf:RDF><cc:Work
-       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><sodipodi:namedview
-   inkscape:window-height="994"
-   inkscape:window-width="1680"
-   inkscape:pageshadow="2"
-   inkscape:pageopacity="0.0"
-   guidetolerance="10.0"
-   gridtolerance="10.0"
-   objecttolerance="10.0"
-   borderopacity="1.0"
-   bordercolor="#666666"
-   pagecolor="#ffffff"
-   id="base"
-   showgrid="false"
-   inkscape:zoom="16.4375"
-   inkscape:cx="24"
-   inkscape:cy="24"
-   inkscape:window-x="-4"
-   inkscape:window-y="-4"
-   inkscape:current-layer="g2493"
-   showborder="true"
-   inkscape:showpageshadow="true" />
- <defs
-   id="defs2485"><inkscape:perspective
-   sodipodi:type="inkscape:persp3d"
-   inkscape:vp_x="0 : 382.5 : 1"
-   inkscape:vp_y="0 : 1000 : 0"
-   inkscape:vp_z="990 : 382.5 : 1"
-   inkscape:persp3d-origin="495 : 255 : 1"
-   id="perspective2541" />
-  <style
-   type="text/css"
-   id="style2487">
-   
-    .str0 {stroke:#4B648C;stroke-width:2.8222;stroke-linecap:round;stroke-linejoin:round}
-    .fil0 {fill:none}
-    .fil1 {fill:#007CC3}
-    .fil2 {fill:#1F1A17}
-    .fil3 {fill:white}
-   
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X5 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="82.2859mm" height="82.2859mm" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 155.705 155.705"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil1 {fill:#606062}
+    .fil2 {fill:#DD353B}
+    .fil0 {fill:#FEFEFE}
+   ]]>
   </style>
-   <mask
-   id="id0">
-  <linearGradient
-   id="id1"
-   gradientUnits="userSpaceOnUse"
-   x1="139.7"
-   y1="122.123"
-   x2="139.7"
-   y2="93.776901">
-   <stop
-   offset="0"
-   style="stop-opacity:1; stop-color:white"
-   id="stop2491" />
-   <stop
-   offset="1"
-   style="stop-opacity:0; stop-color:white"
-   id="stop2493" />
-  </linearGradient>
-    <rect
-   style="fill:url(#id1)"
-   x="110.135"
-   y="78.384598"
-   width="59.130798"
-   height="59.130798"
-   id="rect2495" />
-   </mask>
-   <mask
-   id="id2">
-  <linearGradient
-   id="id3"
-   gradientUnits="userSpaceOnUse"
-   x1="138.10699"
-   y1="79.248596"
-   x2="141.293"
-   y2="99.236198">
-   <stop
-   offset="0"
-   style="stop-opacity:1; stop-color:white"
-   id="stop2499" />
-   <stop
-   offset="1"
-   style="stop-opacity:0; stop-color:white"
-   id="stop2501" />
-  </linearGradient>
-    <rect
-   style="fill:url(#id3)"
-   x="110.135"
-   y="78.384598"
-   width="59.130798"
-   height="21.715599"
-   id="rect2503" />
-   </mask>
-   <mask
-   id="id4">
-  <linearGradient
-   id="id5"
-   gradientUnits="userSpaceOnUse"
-   x1="140.817"
-   y1="83.930496"
-   x2="140.817"
-   y2="133.52699">
-   <stop
-   offset="0"
-   style="stop-opacity:1; stop-color:white"
-   id="stop2507" />
-   <stop
-   offset="1"
-   style="stop-opacity:0; stop-color:white"
-   id="stop2509" />
-  </linearGradient>
-    <rect
-   style="fill:url(#id5)"
-   x="120.91"
-   y="83.892403"
-   width="39.814301"
-   height="49.6731"
-   id="rect2511" />
-   </mask>
-   <mask
-   id="id6">
-  <linearGradient
-   id="id7"
-   gradientUnits="userSpaceOnUse"
-   x1="139.035"
-   y1="132.229"
-   x2="139.702"
-   y2="82.112602">
-   <stop
-   offset="0"
-   style="stop-opacity:1; stop-color:white"
-   id="stop2515" />
-   <stop
-   offset="0.760784"
-   style="stop-opacity:0.501961; stop-color:white"
-   id="stop2517" />
-   <stop
-   offset="1"
-   style="stop-opacity:0; stop-color:white"
-   id="stop2519" />
-  </linearGradient>
-    <rect
-   style="fill:url(#id7)"
-   x="119.4"
-   y="82.272598"
-   width="39.938099"
-   height="49.796799"
-   id="rect2521" />
-   </mask>
- 
-  <metadata
-   id="CorelCorpID_0Corel-Layer" />
-  
-  
-  
-  
-  
- 
-   
-   
-  </defs>
- <g
-   id="g2493"><g
-     id="g2501"
-     transform="matrix(4.3985805,0,0,4.3985805,-474.78038,-367.18798)"><path
-       class="fil0 str0"
-       d="M 111.64006,77.763065 L 167.75934,77.763065 C 169.00831,77.763065 170.03006,78.78492 170.03006,80.033787 L 170.03006,136.00771 C 170.03006,137.25658 169.0082,138.27844 167.75934,138.27844 L 111.64006,138.27844 C 110.3912,138.27844 109.36934,137.25668 109.36934,136.00771 L 109.36934,80.033787 C 109.36934,78.784818 110.39109,77.763065 111.64006,77.763065 L 111.64006,77.763065 z"
-       id="path2527"
-       style="fill:#ffffff;stroke:#ffffff;stroke-width:2.89895606;stroke-linecap:round;stroke-linejoin:round"
-       inkscape:export-filename="c:\Lazaro\Lazaro.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" /><path
-       id="1"
-       class="fil1"
-       d="M 111.60456,77.724779 L 167.79484,77.724779 C 169.04539,77.724779 170.06844,78.747927 170.06844,79.998374 L 170.06844,136.04313 C 170.06844,137.29357 169.04529,138.31672 167.79484,138.31672 L 111.60456,138.31672 C 110.35411,138.31672 109.33096,137.29368 109.33096,136.04313 L 109.33096,79.998374 C 109.33096,78.747825 110.35401,77.724779 111.60456,77.724779 L 111.60456,77.724779 z"
-       style="fill:#5f8dd3"
-       inkscape:export-filename="c:\Lazaro\Lazaro.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" /><path
-       id="path2530"
-       d="M 112.919,78.4227 L 166.4808,78.4227 C 167.9914,78.4227 169.2272,79.6585 169.2272,81.1691 L 169.2272,134.7309 C 169.2272,136.2415 167.9914,137.4773 166.4808,137.4773 L 112.919,137.4773 C 111.4084,137.4773 110.1726,136.2415 110.1726,134.7309 L 110.1726,81.1691 C 110.1726,79.6585 111.4084,78.4227 112.919,78.4227 L 112.919,78.4227 z"
-       style="fill:#afc6e9"
-       class="fil2"
-       inkscape:export-filename="c:\Lazaro\Lazaro.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" /><path
-       id="path2532"
-       d="M 169.227,91.5973 C 141.6747,86.7044 134.3072,99.5715 110.1724,100.0621 L 110.1724,81.1691 C 110.1724,79.6585 111.4082,78.4227 112.9188,78.4227 L 166.4806,78.4227 C 167.9912,78.4227 169.227,79.6585 169.227,81.1691 L 169.227,91.5973 z"
-       style="fill:#ffffff"
-       class="fil3"
-       inkscape:export-filename="c:\Lazaro\Lazaro.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" /><path
-       id="path2534"
-       d="M 160.686,133.527 L 144.8388,133.527 L 144.8388,83.9302 L 149.2413,83.9302 L 149.2413,129.6329 L 160.686,129.6329 L 160.686,133.527 z M 140.462,130.0113 C 140.462,131.0499 140.1485,131.8936 139.4994,132.5426 C 138.8503,133.2024 138.0175,133.527 136.979,133.527 L 124.496,133.527 C 123.4574,133.527 122.6029,133.2024 121.9431,132.5426 C 121.2724,131.8936 120.9479,131.0499 120.9479,130.0113 L 120.9479,117.431 L 125.3505,117.431 L 125.3505,129.6329 L 136.0595,129.6329 L 136.0595,117.8095 L 122.365,101.27 C 121.4238,100.1235 120.9479,98.8686 120.9479,97.495 L 120.9479,87.4455 C 120.9479,86.4181 121.2724,85.5633 121.9431,84.9144 C 122.6029,84.2546 123.4574,83.9302 124.496,83.9302 L 136.979,83.9302 C 138.0175,83.9302 138.8503,84.2546 139.4994,84.9144 C 140.1485,85.5633 140.462,86.4181 140.462,87.4455 L 140.462,98.9877 L 136.0595,98.9877 L 136.0595,87.8243 L 125.3505,87.8243 L 125.3505,98.2845 L 139.0991,114.824 C 140.0078,115.9275 140.462,117.1605 140.462,118.5343 L 140.462,130.0113 L 140.462,130.0113 z"
-       style="fill:#162d50"
-       class="fil2"
-       inkscape:export-filename="c:\Lazaro\Lazaro.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" /><path
-       id="path2536"
-       d="M 159.238,131.969 L 143.3908,131.969 L 143.3908,82.3722 L 147.7932,82.3722 L 147.7932,128.0749 L 159.238,128.0749 L 159.238,131.969 z M 139.014,128.4534 C 139.014,129.4919 138.7005,130.3357 138.0513,130.9846 C 137.4023,131.6444 136.5695,131.969 135.531,131.969 L 123.048,131.969 C 122.0094,131.969 121.1549,131.6444 120.495,130.9846 C 119.8243,130.3357 119.4999,129.4919 119.4999,128.4534 L 119.4999,115.873 L 123.9025,115.873 L 123.9025,128.0749 L 134.6115,128.0749 L 134.6115,116.2515 L 120.9169,99.712 C 119.9757,98.5656 119.4999,97.3106 119.4999,95.937 L 119.4999,85.8876 C 119.4999,84.8602 119.8243,84.0054 120.495,83.3564 C 121.1549,82.6966 122.0094,82.3722 123.048,82.3722 L 135.531,82.3722 C 136.5695,82.3722 137.4023,82.6966 138.0513,83.3564 C 138.7005,84.0054 139.014,84.8602 139.014,85.8876 L 139.014,97.4297 L 134.6115,97.4297 L 134.6115,86.2663 L 123.9025,86.2663 L 123.9025,96.7265 L 137.6511,113.266 C 138.5597,114.3695 139.014,115.6026 139.014,116.9764 L 139.014,128.4534 z"
-       style="fill:#5f8dd3"
-       class="fil3"
-       inkscape:export-filename="c:\Lazaro\Lazaro.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" /></g></g>
+ </defs>
+ <g id="Capa_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <circle class="fil0" cx="77.8523" cy="77.8523" r="77.8523"/>
+  <g id="_269289752">
+   <path id="_269290136" class="fil1" d="M36.4438 142.59c-21.1681,-13.6319 -35.1877,-37.4056 -35.1877,-64.455 0,-34.737 23.1213,-64.0687 54.8119,-73.4584 17.8775,3.97011 33.8389,15.7637 42.4707,33.5123 4.26776,8.77526 6.28167,18.061 6.27258,27.2036 -1.64227,-0.125645 -3.30177,-0.19017 -4.97602,-0.19017 -35.7045,0 -64.6487,28.9443 -64.6487,64.6485 0,4.36104 0.433323,8.62047 1.2572,12.7391z"/>
+   <path id="_269289968" class="fil2" d="M152.909 93.6225c-7.16212,34.8861 -38.0382,61.1225 -75.043,61.1225 -14.6792,0 -28.3921,-4.13151 -40.0451,-11.2908 7.20073,-34.8724 38.0741,-61.0911 75.0793,-61.0911 14.6628,0 28.3609,4.11997 40.0087,11.2594z"/>
+   <path id="_269289800" class="fil2" d="M89.0372 2.33862c37.0147,5.40859 65.4385,37.2811 65.4385,75.7967 0,5.1168 -0.506363,10.115 -1.46308,14.951 -10.2669,-14.8221 -26.5674,-25.1454 -45.3513,-27.4127 5.57794,-13.3938 5.60254,-29.0249 -1.24225,-43.0988 -4.10218,-8.43522 -10.1698,-15.273 -17.3819,-20.2362z"/>
+  </g>
+ </g>
 </svg>

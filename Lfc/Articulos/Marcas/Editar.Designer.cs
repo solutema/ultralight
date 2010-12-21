@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@ namespace Lfc.Articulos.Marcas
                         base.Dispose(disposing);
                 }
 
-                private System.ComponentModel.Container components = null;
+                private System.ComponentModel.IContainer components = null;
 
                 private void InitializeComponent()
                 {
@@ -70,16 +70,16 @@ namespace Lfc.Articulos.Marcas
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProveedor.AutoTab = true;
                         this.EntradaProveedor.CanCreate = true;
-                        this.EntradaProveedor.DetailField = "nombre_visible";
+                        this.EntradaProveedor.DataTextField = "nombre_visible";
                         this.EntradaProveedor.ExtraDetailFields = null;
                         this.EntradaProveedor.Filter = "(tipo&2)=2";
                         this.EntradaProveedor.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaProveedor.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaProveedor.FreeTextCode = "";
-                        this.EntradaProveedor.KeyField = "id_persona";
+                        this.EntradaProveedor.DataValueField = "id_persona";
                         this.EntradaProveedor.Location = new System.Drawing.Point(96, 76);
                         this.EntradaProveedor.MaxLength = 200;
-                        this.EntradaProveedor.Name = "txtProveedor";
+                        this.EntradaProveedor.Name = "EntradaProveedor";
                         this.EntradaProveedor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaProveedor.ReadOnly = false;
                         this.EntradaProveedor.Required = false;
@@ -112,7 +112,7 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaUrl.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaUrl.Location = new System.Drawing.Point(96, 44);
                         this.EntradaUrl.MaxLenght = 32767;
-                        this.EntradaUrl.Name = "txtURL";
+                        this.EntradaUrl.Name = "EntradaURL";
                         this.EntradaUrl.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaUrl.ReadOnly = false;
                         this.EntradaUrl.SelectOnFocus = false;
@@ -142,7 +142,7 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaNombre.Location = new System.Drawing.Point(96, 12);
                         this.EntradaNombre.MaxLenght = 32767;
                         this.EntradaNombre.MultiLine = false;
-                        this.EntradaNombre.Name = "txtNombre";
+                        this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
@@ -172,7 +172,7 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaObs.Location = new System.Drawing.Point(96, 108);
                         this.EntradaObs.MaxLenght = 32767;
                         this.EntradaObs.MultiLine = true;
-                        this.EntradaObs.Name = "txtObs";
+                        this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.ReadOnly = false;
                         this.EntradaObs.SelectOnFocus = false;
@@ -192,7 +192,6 @@ namespace Lfc.Articulos.Marcas
                         // 
                         // Editar
                         // 
-                        this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
                         this.ClientSize = new System.Drawing.Size(556, 297);
                         this.Controls.Add(this.EntradaObs);
                         this.Controls.Add(this.Label13);

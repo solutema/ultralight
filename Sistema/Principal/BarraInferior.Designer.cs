@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -78,8 +78,10 @@ namespace Lazaro.Principal
                         this.pictureBox1 = new System.Windows.Forms.PictureBox();
                         this.AyudaTitulo = new System.Windows.Forms.Label();
                         this.AyudaTexto = new System.Windows.Forms.Label();
+                        this.ProgressBar = new System.Windows.Forms.ProgressBar();
                         this.TimerReloj = new System.Windows.Forms.Timer(this.components);
                         this.PanelPersona = new System.Windows.Forms.Panel();
+                        this.PersonaImagen = new System.Windows.Forms.PictureBox();
                         this.EnlaceComentarios = new System.Windows.Forms.LinkLabel();
                         this.PersonaNombre = new System.Windows.Forms.LinkLabel();
                         this.label3 = new System.Windows.Forms.Label();
@@ -92,13 +94,18 @@ namespace Lazaro.Principal
                         this.PersonaTelefono = new System.Windows.Forms.Label();
                         this.label2 = new System.Windows.Forms.Label();
                         this.TimerSlowLink = new System.Windows.Forms.Timer(this.components);
-                        this.PersonaImagen = new System.Windows.Forms.PictureBox();
+                        this.PanelProgreso = new System.Windows.Forms.Panel();
+                        this.pictureBox2 = new System.Windows.Forms.PictureBox();
+                        this.EtiquetaOperacion = new System.Windows.Forms.Label();
+                        this.EtiquetaDescripcion = new System.Windows.Forms.Label();
                         this.PanelReloj.SuspendLayout();
                         this.PanelArticulo.SuspendLayout();
                         this.PanelAyuda.SuspendLayout();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
                         this.PanelPersona.SuspendLayout();
                         ((System.ComponentModel.ISupportInitialize)(this.PersonaImagen)).BeginInit();
+                        this.PanelProgreso.SuspendLayout();
+                        ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
                         this.SuspendLayout();
                         // 
                         // PanelReloj
@@ -289,6 +296,13 @@ namespace Lazaro.Principal
                         this.AyudaTexto.Text = "...";
                         this.AyudaTexto.UseMnemonic = false;
                         // 
+                        // ProgressBar
+                        // 
+                        this.ProgressBar.Location = new System.Drawing.Point(60, 12);
+                        this.ProgressBar.Name = "ProgressBar";
+                        this.ProgressBar.Size = new System.Drawing.Size(212, 24);
+                        this.ProgressBar.TabIndex = 3;
+                        // 
                         // TimerReloj
                         // 
                         this.TimerReloj.Enabled = true;
@@ -316,6 +330,15 @@ namespace Lazaro.Principal
                         this.PanelPersona.Name = "PanelPersona";
                         this.PanelPersona.Size = new System.Drawing.Size(718, 48);
                         this.PanelPersona.TabIndex = 2;
+                        // 
+                        // PersonaImagen
+                        // 
+                        this.PersonaImagen.Location = new System.Drawing.Point(0, 0);
+                        this.PersonaImagen.Name = "PersonaImagen";
+                        this.PersonaImagen.Size = new System.Drawing.Size(52, 48);
+                        this.PersonaImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+                        this.PersonaImagen.TabIndex = 15;
+                        this.PersonaImagen.TabStop = false;
                         // 
                         // EnlaceComentarios
                         // 
@@ -453,22 +476,62 @@ namespace Lazaro.Principal
                         this.TimerSlowLink.Interval = 1000;
                         this.TimerSlowLink.Tick += new System.EventHandler(this.TimerSlowLink_Tick);
                         // 
-                        // PersonaImagen
+                        // PanelProgreso
                         // 
-                        this.PersonaImagen.Location = new System.Drawing.Point(0, 0);
-                        this.PersonaImagen.Name = "PersonaImagen";
-                        this.PersonaImagen.Size = new System.Drawing.Size(52, 48);
-                        this.PersonaImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-                        this.PersonaImagen.TabIndex = 15;
-                        this.PersonaImagen.TabStop = false;
+                        this.PanelProgreso.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                                    | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.PanelProgreso.Controls.Add(this.pictureBox2);
+                        this.PanelProgreso.Controls.Add(this.EtiquetaOperacion);
+                        this.PanelProgreso.Controls.Add(this.EtiquetaDescripcion);
+                        this.PanelProgreso.Controls.Add(this.ProgressBar);
+                        this.PanelProgreso.Location = new System.Drawing.Point(2, 2);
+                        this.PanelProgreso.Name = "PanelProgreso";
+                        this.PanelProgreso.Size = new System.Drawing.Size(720, 48);
+                        this.PanelProgreso.TabIndex = 3;
+                        this.PanelProgreso.Visible = false;
+                        // 
+                        // pictureBox2
+                        // 
+                        this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+                        this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+                        this.pictureBox2.Name = "pictureBox2";
+                        this.pictureBox2.Size = new System.Drawing.Size(48, 48);
+                        this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+                        this.pictureBox2.TabIndex = 6;
+                        this.pictureBox2.TabStop = false;
+                        // 
+                        // EtiquetaOperacion
+                        // 
+                        this.EtiquetaOperacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaOperacion.Location = new System.Drawing.Point(284, 0);
+                        this.EtiquetaOperacion.Name = "EtiquetaOperacion";
+                        this.EtiquetaOperacion.Size = new System.Drawing.Size(437, 20);
+                        this.EtiquetaOperacion.TabIndex = 4;
+                        this.EtiquetaOperacion.Text = "Progreso...";
+                        this.EtiquetaOperacion.UseMnemonic = false;
+                        // 
+                        // EtiquetaDescripcion
+                        // 
+                        this.EtiquetaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                                    | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaDescripcion.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaDescripcion.Location = new System.Drawing.Point(284, 18);
+                        this.EtiquetaDescripcion.Name = "EtiquetaDescripcion";
+                        this.EtiquetaDescripcion.Size = new System.Drawing.Size(437, 30);
+                        this.EtiquetaDescripcion.TabIndex = 5;
+                        this.EtiquetaDescripcion.Text = "...";
+                        this.EtiquetaDescripcion.UseMnemonic = false;
                         // 
                         // BarraInferior
                         // 
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+                        this.Controls.Add(this.PanelProgreso);
                         this.Controls.Add(this.PanelReloj);
-                        this.Controls.Add(this.PanelPersona);
                         this.Controls.Add(this.PanelAyuda);
                         this.Controls.Add(this.PanelArticulo);
+                        this.Controls.Add(this.PanelPersona);
                         this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "BarraInferior";
@@ -479,6 +542,8 @@ namespace Lazaro.Principal
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
                         this.PanelPersona.ResumeLayout(false);
                         ((System.ComponentModel.ISupportInitialize)(this.PersonaImagen)).EndInit();
+                        this.PanelProgreso.ResumeLayout(false);
+                        ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
                         this.ResumeLayout(false);
 
 		}
@@ -515,5 +580,10 @@ namespace Lazaro.Principal
                 private System.Windows.Forms.Timer TimerSlowLink;
         private System.Windows.Forms.LinkLabel EnlaceComentarios;
         private System.Windows.Forms.PictureBox PersonaImagen;
+        internal System.Windows.Forms.ProgressBar ProgressBar;
+        private System.Windows.Forms.Panel PanelProgreso;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label EtiquetaOperacion;
+        private System.Windows.Forms.Label EtiquetaDescripcion;
 	}
 }

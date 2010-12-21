@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,239 +38,237 @@ using System.Windows.Forms;
 
 namespace Lfc.Comprobantes
 {
-	public class PagoVuelto: Lui.Forms.DialogForm
-	{
-
-        #region Código generado por el Diseñador de Windows Forms
-
-        public PagoVuelto()
-            :
-            base()
+        public class PagoVuelto : Lui.Forms.DialogForm
         {
 
-            // Necesario para admitir el Diseñador de Windows Forms
-            InitializeComponent();
+                #region Código generado por el Diseñador de Windows Forms
 
-            // agregar código de constructor después de llamar a InitializeComponent
-            OkButton.Visible = false;
-        }
-
-        // Limpiar los recursos que se estén utilizando.
-        protected override void Dispose(bool disposing)
-        {
-            if(disposing)
-            {
-                if(components != null)
+                public PagoVuelto()
+                        :
+                        base()
                 {
-                    components.Dispose();
+
+                        // Necesario para admitir el Diseñador de Windows Forms
+                        InitializeComponent();
+
+                        // agregar código de constructor después de llamar a InitializeComponent
+                        OkButton.Visible = false;
                 }
-            }
 
-            base.Dispose(disposing);
+                // Limpiar los recursos que se estén utilizando.
+                protected override void Dispose(bool disposing)
+                {
+                        if (disposing) {
+                                if (components != null) {
+                                        components.Dispose();
+                                }
+                        }
+
+                        base.Dispose(disposing);
+                }
+
+                // Requerido por el Diseñador de Windows Forms
+                private System.ComponentModel.IContainer components = null;
+
+                // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
+                // Puede modificarse utilizando el Diseñador de Windows Forms. 
+                // No lo modifique con el editor de código.
+                internal System.Windows.Forms.Label Label1;
+                internal Lui.Forms.TextBox EntradaTotal;
+                internal Lui.Forms.TextBox EntradaPago;
+                internal System.Windows.Forms.Label Label2;
+                internal Lui.Forms.TextBox EntradaCambio;
+                internal System.Windows.Forms.Label Label3;
+                internal System.Windows.Forms.PictureBox PictureBox1;
+                internal System.Windows.Forms.Label Label4;
+                internal System.Windows.Forms.Label Label5;
+
+                private void InitializeComponent()
+                {
+                        this.Label1 = new System.Windows.Forms.Label();
+                        this.EntradaTotal = new Lui.Forms.TextBox();
+                        this.EntradaPago = new Lui.Forms.TextBox();
+                        this.Label2 = new System.Windows.Forms.Label();
+                        this.EntradaCambio = new Lui.Forms.TextBox();
+                        this.Label3 = new System.Windows.Forms.Label();
+                        this.PictureBox1 = new System.Windows.Forms.PictureBox();
+                        this.Label4 = new System.Windows.Forms.Label();
+                        this.Label5 = new System.Windows.Forms.Label();
+                        this.SuspendLayout();
+                        // 
+                        // OkButton
+                        // 
+                        this.OkButton.DockPadding.All = 2;
+                        this.OkButton.Location = new System.Drawing.Point(316, 8);
+                        this.OkButton.Name = "OkButton";
+                        // 
+                        // CancelCommandButton
+                        // 
+                        this.CancelCommandButton.DockPadding.All = 2;
+                        this.CancelCommandButton.Location = new System.Drawing.Point(318, 8);
+                        this.CancelCommandButton.Name = "CancelCommandButton";
+                        // 
+                        // Label1
+                        // 
+                        this.Label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+                        this.Label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+                        this.Label1.Location = new System.Drawing.Point(48, 92);
+                        this.Label1.Name = "Label1";
+                        this.Label1.Size = new System.Drawing.Size(164, 32);
+                        this.Label1.TabIndex = 0;
+                        this.Label1.Text = "Importe a Cobrar";
+                        this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EntradaTotal
+                        // 
+                        this.EntradaTotal.Anchor = System.Windows.Forms.AnchorStyles.Top;
+                        this.EntradaTotal.AutoNav = true;
+                        this.EntradaTotal.AutoTab = true;
+                        this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
+                        this.EntradaTotal.DockPadding.All = 2;
+                        this.EntradaTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+                        this.EntradaTotal.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaTotal.Location = new System.Drawing.Point(212, 92);
+                        this.EntradaTotal.MaxLenght = 32767;
+                        this.EntradaTotal.Name = "EntradaTotal";
+                        this.EntradaTotal.Prefijo = "$";
+                        this.EntradaTotal.ReadOnly = true;
+                        this.EntradaTotal.Size = new System.Drawing.Size(152, 32);
+                        this.EntradaTotal.TabIndex = 1;
+                        this.EntradaTotal.TabStop = false;
+                        this.EntradaTotal.Text = "0.00";
+                        this.EntradaTotal.ToolTipText = "";
+                        // 
+                        // EntradaPago
+                        // 
+                        this.EntradaPago.Anchor = System.Windows.Forms.AnchorStyles.Top;
+                        this.EntradaPago.AutoNav = true;
+                        this.EntradaPago.AutoTab = true;
+                        this.EntradaPago.DataType = Lui.Forms.DataTypes.Currency;
+                        this.EntradaPago.DockPadding.All = 2;
+                        this.EntradaPago.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+                        this.EntradaPago.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaPago.Location = new System.Drawing.Point(212, 140);
+                        this.EntradaPago.MaxLenght = 32767;
+                        this.EntradaPago.Name = "EntradaPago";
+                        this.EntradaPago.Prefijo = "$";
+                        this.EntradaPago.ReadOnly = false;
+                        this.EntradaPago.Size = new System.Drawing.Size(152, 32);
+                        this.EntradaPago.TabIndex = 3;
+                        this.EntradaPago.Text = "0.00";
+                        this.EntradaPago.ToolTipText = "";
+                        this.EntradaPago.TextChanged += new System.EventHandler(this.EntradaPago_TextChanged);
+                        // 
+                        // Label2
+                        // 
+                        this.Label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+                        this.Label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+                        this.Label2.Location = new System.Drawing.Point(48, 140);
+                        this.Label2.Name = "Label2";
+                        this.Label2.Size = new System.Drawing.Size(164, 32);
+                        this.Label2.TabIndex = 2;
+                        this.Label2.Text = "Pago del Cliente";
+                        this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EntradaCambio
+                        // 
+                        this.EntradaCambio.Anchor = System.Windows.Forms.AnchorStyles.Top;
+                        this.EntradaCambio.AutoNav = true;
+                        this.EntradaCambio.AutoTab = true;
+                        this.EntradaCambio.DataType = Lui.Forms.DataTypes.Currency;
+                        this.EntradaCambio.DockPadding.All = 2;
+                        this.EntradaCambio.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+                        this.EntradaCambio.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaCambio.Location = new System.Drawing.Point(212, 216);
+                        this.EntradaCambio.MaxLenght = 32767;
+                        this.EntradaCambio.Name = "EntradaCambio";
+                        this.EntradaCambio.Prefijo = "$";
+                        this.EntradaCambio.ReadOnly = true;
+                        this.EntradaCambio.Size = new System.Drawing.Size(152, 32);
+                        this.EntradaCambio.TabIndex = 6;
+                        this.EntradaCambio.TabStop = false;
+                        this.EntradaCambio.Text = "0.00";
+                        this.EntradaCambio.ToolTipText = "";
+                        this.EntradaCambio.Visible = false;
+                        // 
+                        // Label3
+                        // 
+                        this.Label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+                        this.Label3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+                        this.Label3.Location = new System.Drawing.Point(48, 216);
+                        this.Label3.Name = "Label3";
+                        this.Label3.Size = new System.Drawing.Size(164, 32);
+                        this.Label3.TabIndex = 5;
+                        this.Label3.Text = "Cambio";
+                        this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // PictureBox1
+                        // 
+                        this.PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+                        this.PictureBox1.Location = new System.Drawing.Point(36, 192);
+                        this.PictureBox1.Name = "PictureBox1";
+                        this.PictureBox1.Size = new System.Drawing.Size(344, 4);
+                        this.PictureBox1.TabIndex = 51;
+                        this.PictureBox1.TabStop = false;
+                        // 
+                        // Label4
+                        // 
+                        this.Label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
+                        this.Label4.Location = new System.Drawing.Point(24, 28);
+                        this.Label4.Name = "Label4";
+                        this.Label4.Size = new System.Drawing.Size(372, 20);
+                        this.Label4.TabIndex = 52;
+                        this.Label4.Text = "Escriba el importe recibido para calcular el cambio.";
+                        this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        // 
+                        // Label5
+                        // 
+                        this.Label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+                        this.Label5.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+                        this.Label5.Location = new System.Drawing.Point(24, 48);
+                        this.Label5.Name = "Label5";
+                        this.Label5.Size = new System.Drawing.Size(372, 20);
+                        this.Label5.TabIndex = 53;
+                        this.Label5.Text = "O pulse la tecla <Esc> para cancelar.";
+                        this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        // 
+                        // PagoVuelto
+                        // 
+                        this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
+                        this.ClientSize = new System.Drawing.Size(418, 355);
+                        this.Controls.Add(this.Label5);
+                        this.Controls.Add(this.Label4);
+                        this.Controls.Add(this.PictureBox1);
+                        this.Controls.Add(this.EntradaCambio);
+                        this.Controls.Add(this.Label3);
+                        this.Controls.Add(this.EntradaPago);
+                        this.Controls.Add(this.Label2);
+                        this.Controls.Add(this.EntradaTotal);
+                        this.Controls.Add(this.Label1);
+                        this.Name = "PagoVuelto";
+                        this.Text = "Pago: Cambio";
+                        this.ResumeLayout(false);
+
+                }
+
+                #endregion
+
+                public decimal Total
+                {
+                        get
+                        {
+                                return EntradaTotal.ValueDecimal;
+                        }
+                        set
+                        {
+                                EntradaTotal.ValueDecimal = value;
+                        }
+                }
+
+                private void EntradaPago_TextChanged(object sender, System.EventArgs e)
+                {
+                        EntradaCambio.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(EntradaPago.Text) - Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text), this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaCambio.Visible = Lfx.Types.Parsing.ParseCurrency(EntradaCambio.Text) >= 0;
+                }
         }
-
-        // Requerido por el Diseñador de Windows Forms
-        private System.ComponentModel.Container components = null;
-
-        // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
-        // Puede modificarse utilizando el Diseñador de Windows Forms. 
-        // No lo modifique con el editor de código.
-        internal System.Windows.Forms.Label Label1;
-        internal Lui.Forms.TextBox txtTotal;
-        internal Lui.Forms.TextBox txtPago;
-        internal System.Windows.Forms.Label Label2;
-        internal Lui.Forms.TextBox txtCambio;
-        internal System.Windows.Forms.Label Label3;
-        internal System.Windows.Forms.PictureBox PictureBox1;
-        internal System.Windows.Forms.Label Label4;
-        internal System.Windows.Forms.Label Label5;
-
-        private void InitializeComponent()
-        {
-			this.Label1 = new System.Windows.Forms.Label();
-			this.txtTotal = new Lui.Forms.TextBox();
-			this.txtPago = new Lui.Forms.TextBox();
-			this.Label2 = new System.Windows.Forms.Label();
-			this.txtCambio = new Lui.Forms.TextBox();
-			this.Label3 = new System.Windows.Forms.Label();
-			this.PictureBox1 = new System.Windows.Forms.PictureBox();
-			this.Label4 = new System.Windows.Forms.Label();
-			this.Label5 = new System.Windows.Forms.Label();
-			this.SuspendLayout();
-			// 
-			// OkButton
-			// 
-			this.OkButton.DockPadding.All = 2;
-			this.OkButton.Location = new System.Drawing.Point(316, 8);
-			this.OkButton.Name = "OkButton";
-			// 
-			// CancelCommandButton
-			// 
-			this.CancelCommandButton.DockPadding.All = 2;
-			this.CancelCommandButton.Location = new System.Drawing.Point(318, 8);
-			this.CancelCommandButton.Name = "CancelCommandButton";
-			// 
-			// Label1
-			// 
-			this.Label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.Label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.Label1.Location = new System.Drawing.Point(48, 92);
-			this.Label1.Name = "Label1";
-			this.Label1.Size = new System.Drawing.Size(164, 32);
-			this.Label1.TabIndex = 0;
-			this.Label1.Text = "Importe a Cobrar";
-			this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// EntradaTotal
-			// 
-			this.txtTotal.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.txtTotal.AutoNav = true;
-			this.txtTotal.AutoTab = true;
-			this.txtTotal.DataType = Lui.Forms.DataTypes.Money;
-			this.txtTotal.DockPadding.All = 2;
-			this.txtTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txtTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtTotal.Location = new System.Drawing.Point(212, 92);
-			this.txtTotal.MaxLenght = 32767;
-			this.txtTotal.Name = "EntradaTotal";
-			this.txtTotal.Prefijo = "$";
-			this.txtTotal.ReadOnly = true;
-			this.txtTotal.Size = new System.Drawing.Size(152, 32);
-			this.txtTotal.TabIndex = 1;
-			this.txtTotal.TabStop = false;
-			this.txtTotal.Text = "0.00";
-			this.txtTotal.ToolTipText = "";
-			// 
-			// txtPago
-			// 
-			this.txtPago.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.txtPago.AutoNav = true;
-			this.txtPago.AutoTab = true;
-			this.txtPago.DataType = Lui.Forms.DataTypes.Money;
-			this.txtPago.DockPadding.All = 2;
-			this.txtPago.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txtPago.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtPago.Location = new System.Drawing.Point(212, 140);
-			this.txtPago.MaxLenght = 32767;
-			this.txtPago.Name = "txtPago";
-			this.txtPago.Prefijo = "$";
-			this.txtPago.ReadOnly = false;
-			this.txtPago.Size = new System.Drawing.Size(152, 32);
-			this.txtPago.TabIndex = 3;
-			this.txtPago.Text = "0.00";
-			this.txtPago.ToolTipText = "";
-			this.txtPago.TextChanged += new System.EventHandler(this.txtPago_TextChanged);
-			// 
-			// Label2
-			// 
-			this.Label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.Label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.Label2.Location = new System.Drawing.Point(48, 140);
-			this.Label2.Name = "Label2";
-			this.Label2.Size = new System.Drawing.Size(164, 32);
-			this.Label2.TabIndex = 2;
-			this.Label2.Text = "Pago del Cliente";
-			this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// txtCambio
-			// 
-			this.txtCambio.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.txtCambio.AutoNav = true;
-			this.txtCambio.AutoTab = true;
-			this.txtCambio.DataType = Lui.Forms.DataTypes.Money;
-			this.txtCambio.DockPadding.All = 2;
-			this.txtCambio.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txtCambio.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.txtCambio.Location = new System.Drawing.Point(212, 216);
-			this.txtCambio.MaxLenght = 32767;
-			this.txtCambio.Name = "txtCambio";
-			this.txtCambio.Prefijo = "$";
-			this.txtCambio.ReadOnly = true;
-			this.txtCambio.Size = new System.Drawing.Size(152, 32);
-			this.txtCambio.TabIndex = 6;
-			this.txtCambio.TabStop = false;
-			this.txtCambio.Text = "0.00";
-			this.txtCambio.ToolTipText = "";
-			this.txtCambio.Visible = false;
-			// 
-			// Label3
-			// 
-			this.Label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.Label3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.Label3.Location = new System.Drawing.Point(48, 216);
-			this.Label3.Name = "Label3";
-			this.Label3.Size = new System.Drawing.Size(164, 32);
-			this.Label3.TabIndex = 5;
-			this.Label3.Text = "Cambio";
-			this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// PictureBox1
-			// 
-			this.PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.PictureBox1.Location = new System.Drawing.Point(36, 192);
-			this.PictureBox1.Name = "PictureBox1";
-			this.PictureBox1.Size = new System.Drawing.Size(344, 4);
-			this.PictureBox1.TabIndex = 51;
-			this.PictureBox1.TabStop = false;
-			// 
-			// Label4
-			// 
-			this.Label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.Label4.Location = new System.Drawing.Point(24, 28);
-			this.Label4.Name = "Label4";
-			this.Label4.Size = new System.Drawing.Size(372, 20);
-			this.Label4.TabIndex = 52;
-			this.Label4.Text = "Escriba el importe recibido para calcular el cambio.";
-			this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// Label5
-			// 
-			this.Label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.Label5.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.Label5.Location = new System.Drawing.Point(24, 48);
-			this.Label5.Name = "Label5";
-			this.Label5.Size = new System.Drawing.Size(372, 20);
-			this.Label5.TabIndex = 53;
-			this.Label5.Text = "O pulse la tecla <Esc> para cancelar.";
-			this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// PagoVuelto
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
-			this.ClientSize = new System.Drawing.Size(418, 355);
-			this.Controls.Add(this.Label5);
-			this.Controls.Add(this.Label4);
-			this.Controls.Add(this.PictureBox1);
-			this.Controls.Add(this.txtCambio);
-			this.Controls.Add(this.Label3);
-			this.Controls.Add(this.txtPago);
-			this.Controls.Add(this.Label2);
-			this.Controls.Add(this.txtTotal);
-			this.Controls.Add(this.Label1);
-			this.Name = "PagoVuelto";
-			this.Text = "Pago: Cambio";
-			this.ResumeLayout(false);
-
-		}
-
-        #endregion
-
-        public double Total
-        {
-            get
-            {
-                return Lfx.Types.Parsing.ParseCurrency(txtTotal.Text);
-            }
-            set
-            {
-                txtTotal.Text = Lfx.Types.Formatting.FormatCurrency(value, this.Workspace.CurrentConfig.Moneda.Decimales);
-            }
-        }
-
-        private void txtPago_TextChanged(object sender, System.EventArgs e)
-        {
-            txtCambio.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(txtPago.Text) - Lfx.Types.Parsing.ParseCurrency(txtTotal.Text), this.Workspace.CurrentConfig.Moneda.Decimales);
-            txtCambio.Visible = Lfx.Types.Parsing.ParseCurrency(txtCambio.Text) >= 0;
-        }
-    }
 }

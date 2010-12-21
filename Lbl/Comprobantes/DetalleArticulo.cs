@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,14 +37,29 @@ namespace Lbl.Comprobantes
 {
 	public class DetalleArticulo : ElementoDeDatos
 	{
-		//Heredar constructor
-		public DetalleArticulo(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+                public Lbl.Comprobantes.ComprobanteConArticulos Comprobante = null;
 
-		public DetalleArticulo(Lfx.Data.DataBase dataBase, int IdArticulo)
-			: base(dataBase)
-		{
-			m_ItemId = IdArticulo;
-		}
+		//Heredar constructor
+                public DetalleArticulo(Lfx.Data.Connection dataBase)
+                        : base(dataBase) { }
+
+                public DetalleArticulo(Lbl.Comprobantes.ComprobanteConArticulos comprobante)
+                        : base(comprobante.Connection)
+                {
+                        this.Comprobante = comprobante;
+                }
+
+                public DetalleArticulo(Lbl.Comprobantes.ComprobanteConArticulos comprobante, int itemId)
+                        : base(comprobante.Connection, itemId)
+                {
+                        this.Comprobante = comprobante;
+                }
+
+                public DetalleArticulo(Lbl.Comprobantes.ComprobanteConArticulos comprobante, Lfx.Data.Row fromRow)
+                        : base(comprobante.Connection, fromRow)
+                {
+                        this.Comprobante = comprobante;
+                }
 
 		public override string TablaDatos
 		{
@@ -63,39 +78,166 @@ namespace Lbl.Comprobantes
 		}
 
 		private Articulos.Articulo m_Articulo = null;
-                private int m_IdArticulo;
-                public double Cantidad, Unitario, Costo;
-		public string Descripcion;
-		public int Orden;
 
-                public double ImporteFinal
+                public decimal Unitario
                 {
                         get
                         {
-                                return Cantidad * Unitario * (1 + Recargo / 100);
-                        }
-                }
-
-                public int IdArticulo
-                {
-                        get
-                        {
-                                return m_IdArticulo;
+                                return this.GetFieldValue<decimal>("precio");
                         }
                         set
                         {
-                                m_IdArticulo = value;
+                                this.Registro["precio"] = value;
                         }
+                }
+
+                public decimal Cantidad
+                {
+                        get
+                        {
+                                return this.GetFieldValue<decimal>("cantidad");
+                        }
+                        set
+                        {
+                                this.Registro["cantidad"] = value;
+                        }
+                }
+
+                public decimal Costo
+                {
+                        get
+                        {
+                                return this.GetFieldValue<decimal>("costo");
+                        }
+                        set
+                        {
+                                this.Registro["costo"] = value;
+                        }
+                }
+
+
+                public string Descripcion
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("descripcion");
+                        }
+                        set
+                        {
+                                this.Registro["descripcion"] = value;
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve el importe final a facturar (precio unitario multiplicado por la cantidad, más descuentos y recargos).
+                /// </summary>
+                public decimal Importe
+                {
+                        get
+                        {
+                                return this.Cantidad * this.Unitario * (1 + Recargo / 100);
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve el precio unitario a facturar, según la discriminación de IVA del comprobante.
+                /// </summary>
+                public decimal UnitarioAFacturar
+                {
+                        get
+                        {
+                                if (this.Comprobante == null) {
+                                        return this.Unitario;
+                                } else {
+                                        if(this.Comprobante.Cliente.PagaIva == Impuestos.SituacionIva.Exento)
+                                                return this.Unitario;
+                                        else if (this.Comprobante.DiscriminaIva) {
+                                                return this.Unitario;
+                                        } else {
+                                                decimal IvaPct = this.ObtenerAlicuota().Porcentaje;
+                                                return Math.Round(this.Unitario * (1 + IvaPct / 100), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                        }
+                                }
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve el importe de IVA que corresponde a este artículo.
+                /// </summary>
+                public decimal ImporteIva
+                {
+                        get
+                        {
+                                if (this.Comprobante == null) {
+                                        return 0;
+                                } else {
+                                        if (this.Comprobante.Cliente.PagaIva != Impuestos.SituacionIva.Exento) {
+                                                decimal IvaPct = this.ObtenerAlicuota().Porcentaje;
+                                                return Math.Round(this.Importe * (IvaPct / 100), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                        } else {
+                                                return 0;
+                                        }
+                                }
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve la cantidad de IVA que fue discriminado para este artículo, o 0 si no se discriminó IVA.
+                /// </summary>
+                public decimal IvaDiscriminado
+                {
+                        get
+                        {
+                                if (this.Comprobante == null) {
+                                        return 0;
+                                } else {
+                                        if (this.Comprobante.DiscriminaIva) {
+                                                return this.ImporteIva;
+                                        } else {
+                                                return 0;
+                                        }
+                                }
+                        }
+                }
+
+                protected internal int IdArticulo
+                {
+                        get
+                        {
+                                return this.GetFieldValue<int>("id_articulo");
+                        }
+                        set
+                        {
+                                this.Registro["id_articulo"] = value;
+                        }
+                }
+
+                public int Orden
+                {
+                        get
+                        {
+                                return this.GetFieldValue<int>("orden");
+                        }
+                        set
+                        {
+                                this.Registro["orden"] = value;
+                        }
+                }
+
+                public Lbl.Impuestos.Alicuota ObtenerAlicuota()
+                {
+                        if (this.Articulo == null)
+                                return Lbl.Sys.Config.Actual.Empresa.AlicuotaPredeterminada;
+                        else
+                                return this.Articulo.ObtenerAlicuota();
                 }
 
                 public Articulos.Articulo Articulo
                 {
                         get
                         {
-                                if (m_Articulo == null && this.IdArticulo != 0) {
-                                        m_Articulo = new Lbl.Articulos.Articulo(this.DataBase, this.IdArticulo);
-                                        m_Articulo.Cargar();
-                                }
+                                if (m_Articulo == null && this.IdArticulo != 0)
+                                        m_Articulo = new Lbl.Articulos.Articulo(this.Connection, this.IdArticulo);
                                 
                                 return m_Articulo;
                         }
@@ -105,6 +247,8 @@ namespace Lbl.Comprobantes
                                         this.IdArticulo = value.Id;
                                         this.Nombre = value.Nombre;
                                         this.Descripcion = value.Descripcion;
+                                } else {
+                                        this.IdArticulo = 0;
                                 }
                         }
                 }
@@ -113,7 +257,7 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                return this.FieldString("series");
+                                return this.GetFieldValue<string>("series");
                         }
                         set
                         {
@@ -121,11 +265,11 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                public double Recargo
+                public decimal Recargo
                 {
                         get
                         {
-                                return this.FieldDouble("recargo");
+                                return this.GetFieldValue<decimal>("recargo");
                         }
                         set
                         {
@@ -135,7 +279,11 @@ namespace Lbl.Comprobantes
 
                 public virtual DetalleArticulo Clone()
                 {
-                        DetalleArticulo Res = new DetalleArticulo(this.DataBase, this.Id);
+                        DetalleArticulo Res;
+                        if (this.Comprobante == null)
+                                Res = new DetalleArticulo(this.Connection);
+                        else
+                                Res = new DetalleArticulo(this.Comprobante, this.Id);
                         Res.m_Registro = this.m_Registro.Clone();
                         Res.Articulo = this.Articulo;
                         Res.Cantidad = this.Cantidad;

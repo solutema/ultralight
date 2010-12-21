@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,26 +38,28 @@ namespace Lcc
 {
         public class ControlDeDatos : Lcc.LccControl
         {
-                public Type m_ElementType = null;
-                protected Lbl.ElementoDeDatos m_Elemento = null;
+                public Type m_ElementoTipo = null;
+                protected Lbl.IElementoDeDatos m_Elemento = null;
 
-                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public Type ElementType
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public Type ElementoTipo
                 {
                         get
                         {
-                                return m_ElementType;
+                                return m_ElementoTipo;
                         }
                         set
                         {
-                                m_ElementType = value;
+                                m_ElementoTipo = value;
                         }
                 }
 
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public virtual Lbl.ElementoDeDatos Elemento
+                public virtual Lbl.IElementoDeDatos Elemento
                 {
                         get
                         {
@@ -66,25 +68,25 @@ namespace Lcc
                         set
                         {
                                 m_Elemento = value;
-                                if(m_Elemento != null && (m_ElementType == null || m_ElementType == typeof(Lbl.ElementoDeDatos)))
-                                        this.ElementType = value.GetType();
-
-                                foreach (System.Windows.Forms.Control Ctl in this.Controls) {
-                                        if (Ctl is ControlDeDatos) {
-                                                ((ControlDeDatos)Ctl).Elemento = value;
-                                                ((ControlDeDatos)Ctl).ElementType = this.ElementType;
-                                        }
-                                }
-                                this.ActualizarControl();
+                                if(m_Elemento != null && (m_ElementoTipo == null || m_ElementoTipo == typeof(Lbl.ElementoDeDatos)))
+                                        this.ElementoTipo = value.GetType();
                         }
                 }
-
 
                 /// <summary>
                 /// Actualiza el control con los datos del elemento.
                 /// </summary>
-                public virtual void ActualizarControl() 
+                public virtual void ActualizarControl()
                 {
+                        
+                }
+
+                protected override void OnParentChanged(EventArgs e)
+                {
+                        if (this.HasWorkspace == false) {
+                                this.OnWorkspaceChanged();
+                        }
+                        base.OnParentChanged(e);
                 }
         }
 }

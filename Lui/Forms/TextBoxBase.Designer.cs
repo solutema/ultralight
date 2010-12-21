@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -69,21 +69,21 @@ namespace Lui.Forms
                         this.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.TextBox1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.TextBox1.Location = new System.Drawing.Point(4, 4);
-                        this.TextBox1.Multiline = false;
                         this.TextBox1.Name = "TextBox1";
-                        this.TextBox1.Size = new System.Drawing.Size(452, 76);
+                        this.TextBox1.Size = new System.Drawing.Size(452, 16);
                         this.TextBox1.TabIndex = 0;
                         // 
                         // TextBoxBase
                         // 
                         this.Controls.Add(this.TextBox1);
                         this.Name = "TextBoxBase";
+                        this.Size = new System.Drawing.Size(460, 24);
+                        this.Controls.SetChildIndex(this.TextBox1, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
                 }
 
                 protected System.Windows.Forms.TextBox TextBox1;
-
         }
 }

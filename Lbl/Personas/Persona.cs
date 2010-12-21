@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,41 +35,46 @@ using System.Text;
 
 namespace Lbl.Personas
 {
-	public class Persona : ElementoDeDatos
+        /// <summary>
+        /// Representa una persona física o jurídica.
+        /// </summary>
+        [Lbl.Atributos.NombreItem("Persona")]
+        public class Persona : ElementoDeDatos, IElementoConImagen, ICamposBaseEstandar
 	{
-		public Entidades.Localidad Localidad;
-		public Grupo Grupo, SubGrupo;
-		public Lbl.Impuestos.SituacionTributaria SituacionTributaria;
+                private Entidades.Localidad m_Localidad = null;
+                private Grupo m_Grupo = null, m_SubGrupo = null;
+                private Lbl.Impuestos.SituacionTributaria m_SituacionTributaria = null;
+
+                //private Accesos.ListaDeAccesos m_Accesos = null;
                 private Lbl.CuentasCorrientes.CuentaCorriente m_CuentaCorriente = null;
                 private Lbl.Personas.Persona m_Vendedor = null;
 
                 // Heredar constructores
-                public Persona(Lfx.Data.DataBase dataBase)
+                public Persona(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
 
-		public Persona(Lfx.Data.DataBase dataBase, int itemId)
+		public Persona(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Persona(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                public Persona(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
-                public override Lfx.Types.OperationResult Crear()
+                public override void Crear()
                 {
+                        base.Crear();
                         m_CuentaCorriente = null;
-                        Lfx.Types.OperationResult Res = base.Crear();
-                        if (Res.Success) {
-                                m_CuentaCorriente = null;
-                                m_Vendedor = null;
-                                this.Tipo = 1;
-                                this.Grupo = null;
-                                this.SubGrupo = null;
-                                this.TipoDocumento = 1;
-                                this.SituacionTributaria = new Lbl.Impuestos.SituacionTributaria(this.DataBase, 1);
-                                this.Localidad = new Lbl.Entidades.Localidad(this.DataBase, this.Workspace.CurrentConfig.Empresa.Ciudad);
-                                this.Estado = 1;
-                                m_Vendedor = new Persona(this.DataBase, this.Workspace.CurrentUser.Id);
-                        }
-                        return Res;
+
+                        m_CuentaCorriente = null;
+                        this.Vendedor = null;
+                        this.Tipo = 1;
+                        int IdGrupoPredet = this.Connection.FieldInt("SELECT id_grupo FROM personas_grupos WHERE predet=1");
+                        if (IdGrupoPredet != 0)
+                                this.Grupo = new Lbl.Personas.Grupo(this.Connection, IdGrupoPredet);
+                        this.SubGrupo = null;
+                        this.TipoDocumento = 1;
+                        this.SituacionTributaria = new Lbl.Impuestos.SituacionTributaria(this.Connection, 1);
+                        this.Localidad = new Lbl.Entidades.Localidad(this.Connection, this.Workspace.CurrentConfig.Empresa.IdLocalidad);
+                        this.Estado = 1;
                 }
 
 
@@ -78,10 +83,10 @@ namespace Lbl.Personas
                         qGen.TableCommand Comando;
 
                         if (this.Existe == false) {
-                                Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
+                                Comando = new qGen.Insert(this.Connection, this.TablaDatos);
                                 Comando.Fields.AddWithValue("fechaalta", qGen.SqlFunctions.Now);
                         } else {
-                                Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+                                Comando = new qGen.Update(this.Connection, this.TablaDatos);
                                 Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
@@ -145,7 +150,7 @@ namespace Lbl.Personas
 
                         this.AgregarTags(Comando);
 
-                        this.DataBase.Execute(Comando);
+                        this.Connection.Execute(Comando);
 
                         return base.Guardar();
                 }
@@ -186,7 +191,7 @@ namespace Lbl.Personas
 		{
 			get
 			{
-				return this.FieldString("num_doc");
+				return this.GetFieldValue<string>("num_doc");
 			}
                         set
                         {
@@ -198,7 +203,7 @@ namespace Lbl.Personas
 		{
 			get
 			{
-				return this.FieldString("numerocuenta");
+				return this.GetFieldValue<string>("numerocuenta");
 			}
                         set
                         {
@@ -210,7 +215,7 @@ namespace Lbl.Personas
                 {
                         get
                         {
-                                return this.FieldString("cbu");
+                                return this.GetFieldValue<string>("cbu");
                         }
                         set
                         {
@@ -222,13 +227,25 @@ namespace Lbl.Personas
 		{
 			get
 			{
-				return this.FieldString("cuit");
+				return this.GetFieldValue<string>("cuit");
 			}
                         set
                         {
                                 this.Registro["cuit"] = value;
                         }
 		}
+
+                public Impuestos.SituacionIva PagaIva
+                {
+                        get
+                        {
+                                if (this.Localidad == null)
+                                        return Impuestos.SituacionIva.Predeterminado;
+                                else
+                                        return this.Localidad.Iva;
+                        }
+                }
+                       
 
 		public EstadoCredito EstadoCredito
 		{
@@ -257,6 +274,16 @@ namespace Lbl.Personas
                         }
 		}
 
+                public Comprobantes.Tipo ObtenerTipoComprobante()
+                {
+                        if (this.FacturaPreferida != null)
+                                return Lbl.Comprobantes.Tipo.TodosPorLetra["F" + this.FacturaPreferida];
+                        else if (this.SituacionTributaria != null)
+                                return Lbl.Comprobantes.Tipo.TodosPorLetra["F" + this.SituacionTributaria.ObtenerLetraPredeterminada()];
+                        else
+                                return Lbl.Comprobantes.Tipo.TodosPorLetra["FB"];
+                }
+
 		public int TipoDocumento
 		{
 			get
@@ -264,7 +291,7 @@ namespace Lbl.Personas
 				if(Registro["id_tipo_doc"] == null)
 					return 0;
 				else
-					return this.FieldInt("id_tipo_doc");
+					return this.GetFieldValue<int>("id_tipo_doc");
 			}
                         set
                         {
@@ -276,7 +303,7 @@ namespace Lbl.Personas
                 {
                         get
                         {
-                                return this.FieldInt("tipo");
+                                return this.GetFieldValue<int>("tipo");
                         }
                         set
                         {
@@ -288,7 +315,7 @@ namespace Lbl.Personas
                 {
                         get
                         {
-                                return this.FieldString("apellido");
+                                return this.GetFieldValue<string>("apellido");
                         }
                         set
                         {
@@ -300,7 +327,7 @@ namespace Lbl.Personas
                 {
                         get
                         {
-                                return this.FieldString("nombre");
+                                return this.GetFieldValue<string>("nombre");
                         }
                         set
                         {
@@ -312,7 +339,7 @@ namespace Lbl.Personas
                 {
                         get
                         {
-                                return this.FieldString("razon_social");
+                                return this.GetFieldValue<string>("razon_social");
                         }
                         set
                         {
@@ -324,7 +351,7 @@ namespace Lbl.Personas
 		{
 			get
 			{
-				return this.FieldString("domicilio");
+				return this.GetFieldValue<string>("domicilio");
 			}
                         set
                         {
@@ -336,7 +363,7 @@ namespace Lbl.Personas
 		{
 			get
 			{
-                                return this.FieldString("domiciliotrabajo");
+                                return this.GetFieldValue<string>("domiciliotrabajo");
 			}
                         set
                         {
@@ -348,7 +375,7 @@ namespace Lbl.Personas
 		{
 			get
 			{
-				return this.FieldString("telefono");
+				return this.GetFieldValue<string>("telefono");
 			}
                         set
                         {
@@ -360,7 +387,7 @@ namespace Lbl.Personas
 		{
 			get
 			{
-				return this.FieldString("email");
+				return this.GetFieldValue<string>("email");
 			}
                         set
                         {
@@ -372,7 +399,7 @@ namespace Lbl.Personas
                 {
                         get
                         {
-                                return this.FieldString("url");
+                                return this.GetFieldValue<string>("url");
                         }
                         set
                         {
@@ -384,7 +411,7 @@ namespace Lbl.Personas
                 {
                         get
                         {
-                                return this.FieldString("contrasena");
+                                return this.GetFieldValue<string>("contrasena");
                         }
                         set
                         {
@@ -432,7 +459,7 @@ namespace Lbl.Personas
 		{
 			get
 			{
-				return this.FieldString("extra1");
+				return this.GetFieldValue<string>("extra1");
 			}
                         set
                         {
@@ -440,11 +467,11 @@ namespace Lbl.Personas
                         }
 		}
 
-		public double LimiteCredito
+		public decimal LimiteCredito
 		{
 			get
 			{
-				return this.FieldDouble("limitecredito");
+                                return this.GetFieldValue<decimal>("limitecredito");
 			}
                         set
                         {
@@ -452,31 +479,65 @@ namespace Lbl.Personas
                         }
 		}
 
-                public override void OnLoad()
+                public Lbl.Personas.Grupo Grupo
                 {
-                        if (this.Registro != null) {
-                                if (Lfx.Data.DataBase.ConvertDBNullToZero(m_Registro["id_grupo"]) > 0)
-                                        this.Grupo = new Grupo(this.DataBase, System.Convert.ToInt32(m_Registro["id_grupo"]));
-                                else
-                                        this.Grupo = null;
+                        get
+                        {
+                                if (m_Grupo == null && this.GetFieldValue<int>("id_grupo") > 0)
+                                        m_Grupo = new Grupo(this.Connection, this.GetFieldValue<int>("id_grupo"));
 
-                                if (Lfx.Data.DataBase.ConvertDBNullToZero(m_Registro["id_subgrupo"]) > 0)
-                                        this.SubGrupo = new Grupo(this.DataBase, System.Convert.ToInt32(m_Registro["id_subgrupo"]));
-                                else
-                                        this.SubGrupo = null;
-
-                                if (Lfx.Data.DataBase.ConvertDBNullToZero(m_Registro["id_ciudad"]) > 0)
-                                        this.Localidad = new Entidades.Localidad(this.DataBase, System.Convert.ToInt32(m_Registro["id_ciudad"]));
-                                else
-                                        this.Localidad = null;
-
-                                if (Lfx.Data.DataBase.ConvertDBNullToZero(m_Registro["id_situacion"]) > 0)
-                                        this.SituacionTributaria = new Lbl.Impuestos.SituacionTributaria(this.DataBase, System.Convert.ToInt32(m_Registro["id_situacion"]));
-                                else
-                                        this.SituacionTributaria = null;
-
+                                return m_Grupo;
                         }
-                        base.OnLoad();
+                        set
+                        {
+                                m_Grupo = value;
+                        }
+                }
+
+                public Lbl.Personas.Grupo SubGrupo
+                {
+                        get
+                        {
+                                if (m_SubGrupo == null && this.GetFieldValue<int>("id_subgrupo") > 0)
+                                        m_SubGrupo = new Grupo(this.Connection, this.GetFieldValue<int>("id_subgrupo"));
+
+                                return m_SubGrupo;
+                        }
+                        set
+                        {
+                                m_SubGrupo = value;
+                        }
+                }
+
+                public Lbl.Entidades.Localidad Localidad
+                {
+                        get
+                        {
+                                if (m_Localidad == null && this.GetFieldValue<int>("id_ciudad") > 0)
+                                        m_Localidad = new Lbl.Entidades.Localidad(this.Connection, this.GetFieldValue<int>("id_ciudad"));
+
+                                return m_Localidad;
+                        }
+                        set
+                        {
+                                m_Localidad = value;
+                                this.SetFieldValue("id_ciudad", m_Localidad);
+                        }
+                }
+
+                public Lbl.Impuestos.SituacionTributaria SituacionTributaria
+                {
+                        get
+                        {
+                                if (m_SituacionTributaria == null && this.GetFieldValue<int>("id_situacion") > 0)
+                                        m_SituacionTributaria = new Lbl.Impuestos.SituacionTributaria(this.Connection, this.GetFieldValue<int>("id_situacion"));
+
+                                return m_SituacionTributaria;
+                        }
+                        set
+                        {
+                                m_SituacionTributaria = value;
+                        }
                 }
 
                 public string LetraPredeterminada()
@@ -485,7 +546,7 @@ namespace Lbl.Personas
                                 if (this.SituacionTributaria == null)
                                         return "B";
                                 else
-                                        return this.SituacionTributaria.LetraPredeterminada();
+                                        return this.SituacionTributaria.ObtenerLetraPredeterminada();
                         } else {
                                 return this.FacturaPreferida;
                         }
@@ -496,7 +557,7 @@ namespace Lbl.Personas
                         get
                         {
                                 if (m_CuentaCorriente == null)
-                                        m_CuentaCorriente = new Lbl.CuentasCorrientes.CuentaCorriente(this.DataBase, this.Id);
+                                        m_CuentaCorriente = new Lbl.CuentasCorrientes.CuentaCorriente(this);
                                 return m_CuentaCorriente;
                         }
                 }
@@ -505,8 +566,8 @@ namespace Lbl.Personas
                 {
                         get
                         {
-                                if (m_Vendedor == null && this.FieldInt("id_vendedor") != 0)
-                                        m_Vendedor = new Lbl.Personas.Persona(this.DataBase, this.FieldInt("id_vendedor"));
+                                if (m_Vendedor == null && this.GetFieldValue<int>("id_vendedor") != 0)
+                                        m_Vendedor = new Lbl.Personas.Persona(this.Connection, this.GetFieldValue<int>("id_vendedor"));
                                 return m_Vendedor;
                         }
                         set

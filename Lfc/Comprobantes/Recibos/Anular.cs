@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -44,7 +44,8 @@ namespace Lfc.Comprobantes.Recibos
                 public Anular()
                 {
                         InitializeComponent();
-                        if (Lui.Login.LoginData.ValidateAccess(Lfx.Workspace.Master.CurrentUser, "documents.delete") == false)
+
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.ColeccionComprobanteConArticulos), Lbl.Sys.Permisos.Operaciones.Eliminar) == false)
                                 this.Close();
                 }
 
@@ -53,12 +54,12 @@ namespace Lfc.Comprobantes.Recibos
                         Lbl.Comprobantes.Recibo Rec = null;
 
                         if (idRecibo != 0)
-                                Rec = new Lbl.Comprobantes.Recibo(this.DataBase, idRecibo);
+                                Rec = new Lbl.Comprobantes.Recibo(this.Connection, idRecibo);
 
                         if (Rec != null && Rec.Existe) {
                                 EntradaFecha.Text = Lfx.Types.Formatting.FormatDate(Rec.Fecha);
 
-                                EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Importe, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Total, this.Workspace.CurrentConfig.Moneda.Decimales);
                                 EntradaCliente.Text = Rec.Cliente.ToString();
 
                                 EntradaPV.Text = Rec.PV.ToString();
@@ -83,20 +84,20 @@ namespace Lfc.Comprobantes.Recibos
 
                 private void EntradaNumeroTipoPV(object sender, EventArgs e)
                 {
-                        
-                        int Numero = Lfx.Types.Parsing.ParseInt(EntradaNumero.Text);
-                        int PV = Lfx.Types.Parsing.ParseInt(EntradaPV.Text);
+
+                        int Numero = EntradaNumero.ValueInt; ;
+                        int PV = EntradaPV.ValueInt;
 
                         int IdRecibo = 0;
                         if (Numero > 0)
-                                IdRecibo = this.DataBase.FieldInt("SELECT id_recibo FROM recibos WHERE tipo_fac='" + EntradaTipo.TextKey + "' AND pv=" + PV.ToString() + " AND numero=" + Numero.ToString());
+                                IdRecibo = this.Connection.FieldInt("SELECT id_recibo FROM recibos WHERE tipo_fac='" + EntradaTipo.TextKey + "' AND pv=" + PV.ToString() + " AND numero=" + Numero.ToString());
 
                         this.Cargar(IdRecibo);
                 }
 
                 public override Lfx.Types.OperationResult Ok()
                 {
-                        if (Lui.Login.LoginData.Access(Lfx.Workspace.Master.CurrentUser, "documents.delete") == false)
+                        if (Lui.Login.LoginData.ValidateAccess(typeof(Lbl.Comprobantes.Recibo), Lbl.Sys.Permisos.Operaciones.Eliminar) == false)
                                 return new Lfx.Types.NoAccessOperationResult();
 
                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Una vez anulado, el comprobante deberá ser archivado en todas sus copias y no podrá ser rehabilitado ni reutilizado.", "¿Está seguro de que desea anular el comprobante?");
@@ -109,14 +110,14 @@ namespace Lfc.Comprobantes.Recibos
 
                                 int IdRecibo = 0;
                                 if (Numero > 0)
-                                        IdRecibo = this.DataBase.FieldInt("SELECT id_recibo FROM recibos WHERE tipo_fac='" + EntradaTipo.TextKey + "' AND pv=" + PV.ToString() + " AND numero=" + Numero.ToString());
+                                        IdRecibo = this.Connection.FieldInt("SELECT id_recibo FROM recibos WHERE tipo_fac='" + EntradaTipo.TextKey + "' AND pv=" + PV.ToString() + " AND numero=" + Numero.ToString());
                                 if (IdRecibo != 0)
-                                        Rec = new Lbl.Comprobantes.Recibo(this.DataBase, IdRecibo);
+                                        Rec = new Lbl.Comprobantes.Recibo(this.Connection, IdRecibo);
 
                                 if (Rec != null && Rec.Existe) {
-                                        Rec.DataBase.BeginTransaction(true);
+                                        Rec.Connection.BeginTransaction(true);
                                         Rec.Anular();
-                                        Rec.DataBase.Commit();
+                                        Rec.Connection.Commit();
                                 }
 
                                 EntradaNumero.Text = "";

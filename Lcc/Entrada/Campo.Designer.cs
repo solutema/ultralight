@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@ namespace Lcc.Entrada
                         // FieldLabel
                         // 
                         this.FieldLabel.AutoSize = true;
-                        this.FieldLabel.Location = new System.Drawing.Point(0, 0);
+                        this.FieldLabel.Location = new System.Drawing.Point(-2, 3);
                         this.FieldLabel.Name = "FieldLabel";
                         this.FieldLabel.Size = new System.Drawing.Size(37, 15);
                         this.FieldLabel.TabIndex = 0;
@@ -76,14 +76,13 @@ namespace Lcc.Entrada
                         this.FieldData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.FieldData.AutoHeight = false;
                         this.FieldData.AutoNav = true;
                         this.FieldData.AutoTab = true;
                         this.FieldData.DataType = Lui.Forms.DataTypes.FreeText;
                         this.FieldData.DecimalPlaces = -1;
                         this.FieldData.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.FieldData.ForceCase = Lui.Forms.TextCasing.None;
-                        this.FieldData.Location = new System.Drawing.Point(40, 0);
+                        this.FieldData.Location = new System.Drawing.Point(60, 0);
                         this.FieldData.MaxLenght = 32767;
                         this.FieldData.MultiLine = false;
                         this.FieldData.Name = "FieldData";
@@ -92,10 +91,10 @@ namespace Lcc.Entrada
                         this.FieldData.Prefijo = "";
                         this.FieldData.ReadOnly = false;
                         this.FieldData.SelectOnFocus = true;
-                        this.FieldData.Size = new System.Drawing.Size(278, 24);
+                        this.FieldData.Size = new System.Drawing.Size(366, 24);
                         this.FieldData.Sufijo = "";
                         this.FieldData.TabIndex = 0;
-                        this.FieldData.TextRaw = "";
+                        this.FieldData.Text = "0";
                         this.FieldData.TipWhenBlank = "";
                         this.FieldData.ToolTipText = "";
                         // 
@@ -105,8 +104,10 @@ namespace Lcc.Entrada
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.Controls.Add(this.FieldData);
                         this.Controls.Add(this.FieldLabel);
+                        this.Margin = new System.Windows.Forms.Padding(0);
                         this.Name = "Campo";
-                        this.Size = new System.Drawing.Size(318, 24);
+                        this.Padding = new System.Windows.Forms.Padding(0);
+                        this.Size = new System.Drawing.Size(426, 24);
                         this.Controls.SetChildIndex(this.FieldLabel, 0);
                         this.Controls.SetChildIndex(this.FieldData, 0);
                         this.ResumeLayout(false);

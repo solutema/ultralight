@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -33,56 +33,52 @@ using System;
 
 namespace Lfc.Ciudades
 {
-	public partial class Editar : Lui.Forms.EditForm
+	public partial class Editar : Lcc.Edicion.ControlEdicion
 	{
                 public Editar()
-                        : base()
                 {
-                        InitializeComponent();
+                        this.ElementoTipo = typeof(Lbl.Entidades.Localidad);
 
-                        this.ElementType = typeof(Lbl.Entidades.Localidad);
+                        InitializeComponent();
                 }
 
-                public override Lfx.Types.OperationResult ValidateData()
+                public override Lfx.Types.OperationResult ValidarControl()
                 {
                         if (EntradaNivel.TextKey != "0" && EntradaParent.TextInt == 0)
                                 return new Lfx.Types.FailureOperationResult("Debe ingresar la Provincia o el Departamento");
 
-                        return base.ValidateData();
+                        return base.ValidarControl();
                 }
 
-                public override void FromRow(Lbl.ElementoDeDatos row)
+                public override void ActualizarControl()
                 {
-                        base.FromRow(row);
+                        Lbl.Entidades.Localidad Localidad = this.Elemento as Lbl.Entidades.Localidad;
 
-                        Lbl.Entidades.Localidad Ciudad = row as Lbl.Entidades.Localidad;
-
-                        EntradaNombre.Text = Ciudad.Nombre;
-                        EntradaCp.Text = Ciudad.CodigoPostal;
-                        EntradaNivel.TextKey = Ciudad.Nivel.ToString();
+                        EntradaNombre.Text = Localidad.Nombre;
+                        EntradaCp.Text = Localidad.CodigoPostal;
+                        EntradaNivel.TextKey = Localidad.Nivel.ToString();
                         EntradaNivel.ReadOnly = true;
                         EntradaNivel.TabStop = false;
-                        if (Ciudad.Nivel == 0) {
+                        if (Localidad.Nivel == 0) {
                                 EntradaParent.Enabled = false;
                                 EntradaParent.TabStop = false;
                         }
-                        EntradaParent.Elemento = Ciudad.Parent;
+                        EntradaIva.TextKey = ((int)(Localidad.Iva)).ToString();
+                        EntradaParent.Elemento = Localidad.Parent;
 
-                        this.Text = "Ciudades: " + Ciudad.Nombre;
-
-                        EntradaTags.Elemento = Ciudad;
+                        base.ActualizarControl();
                 }
 
-                public override Lbl.ElementoDeDatos ToRow()
+                public override void ActualizarElemento()
                 {
-                        Lbl.Entidades.Localidad Res = this.CachedRow as Lbl.Entidades.Localidad;
+                        Lbl.Entidades.Localidad Res = this.Elemento as Lbl.Entidades.Localidad;
 
                         Res.Nombre = EntradaNombre.Text;
                         Res.CodigoPostal = EntradaCp.Text;
                         Res.Parent = EntradaParent.Elemento as Lbl.Entidades.Localidad;
-                        EntradaTags.ActualizarElemento();
+                        Res.Iva = (Lbl.Impuestos.SituacionIva)(Lfx.Types.Parsing.ParseInt(EntradaIva.TextKey));
 
-                        return base.ToRow();
+                        base.ActualizarElemento();
                 }
 
                 private void EntradaNivel_TextChanged(object sender, EventArgs e)

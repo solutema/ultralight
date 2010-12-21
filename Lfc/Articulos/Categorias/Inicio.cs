@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,19 +38,21 @@ using System.Windows.Forms;
 
 namespace Lfc.Articulos.Categorias
 {
-        public partial class Inicio : Lui.Forms.ListingForm
+        public partial class Inicio : Lfc.FormularioListado
         {
                 internal string m_Stock = "*";
                 internal double m_ValorizacionCostoTotal = 0;
 
                 public Inicio()
                 {
-                        this.DataTableName = "articulos_categorias";
+                        this.ElementoTipo = typeof(Lbl.Articulos.Categoria);
+
+                        this.NombreTabla = "articulos_categorias";
                         this.KeyField = new Lfx.Data.FormField("articulos_categorias.id_categoria", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
                         this.Joins.Add(new qGen.Join("articulos", "articulos_categorias.id_categoria"));
                         this.GroupBy = KeyField;
                         this.OrderBy = "articulos_categorias.nombre";
-                        this.FormFields = new List<Lfx.Data.FormField>()
+                        this.FormFields = new Lfx.Data.FormFieldCollection()
 			{
 				new Lfx.Data.FormField("articulos_categorias.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 				new Lfx.Data.FormField("articulos_categorias.stock_minimo", "Stock Mín", Lfx.Data.InputFieldTypes.Numeric, 96),
@@ -58,19 +60,8 @@ namespace Lfc.Articulos.Categorias
                                 new Lfx.Data.FormField("articulos_categorias.cache_costo", "Valorización", Lfx.Data.InputFieldTypes.Numeric, 96),
                                 new Lfx.Data.FormField("0", "Valorización %", Lfx.Data.InputFieldTypes.Numeric, 96)
 			};
-                        BotonFiltrar.Visible = true;
-                }
-
-                public override Lfx.Types.OperationResult OnCreate()
-                {
-                        this.Workspace.RunTime.Execute("CREAR ARTICULO_CATEG");
-                        return new Lfx.Types.SuccessOperationResult();
-                }
-
-                public override Lfx.Types.OperationResult OnEdit(int Codigo)
-                {
-                        this.Workspace.RunTime.Execute("EDITAR ARTICULO_CATEG " + Codigo.ToString(System.Globalization.CultureInfo.InvariantCulture));
-                        return new Lfx.Types.SuccessOperationResult();
+                        
+                        this.HabilitarFiltrar = true;
                 }
 
                 public override Lfx.Types.OperationResult OnFilter()
@@ -102,13 +93,15 @@ namespace Lfc.Articulos.Categorias
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
-                public override void BeginRefreshList()
+                public override void OnBeginRefreshList()
                 {
-                        this.DataBase.Execute("UPDATE articulos_categorias SET cache_stock_actual=(SELECT SUM(stock_actual) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria), cache_costo=(SELECT SUM(stock_actual*costo) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria)");
-                        m_ValorizacionCostoTotal = this.DataBase.FieldDouble("SELECT SUM(cache_costo) FROM articulos_categorias");
+                        this.Connection.BeginTransaction();
+                        this.Connection.Execute("UPDATE articulos_categorias SET cache_stock_actual=(SELECT SUM(stock_actual) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria), cache_costo=(SELECT SUM(stock_actual*costo) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria)");
+                        this.Connection.Commit();
+                        m_ValorizacionCostoTotal = this.Connection.FieldDouble("SELECT SUM(cache_costo) FROM articulos_categorias");
                 }
 
-                public override void ItemAdded(ListViewItem item, Lfx.Data.Row row)
+                public override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
                         double ValPct;
                         if (m_ValorizacionCostoTotal <= 0)

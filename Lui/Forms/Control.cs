@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -53,8 +53,11 @@ namespace Lui.Forms
 		protected System.Windows.Forms.ToolTip ToolTipBalloon;
 		protected string m_Error = "";
 
+                [System.ComponentModel.EditorBrowsable(EditorBrowsableState.Always), Browsable(true)]
+                new public event System.EventHandler TextChanged;
+
                 // IDataControl
-                private Lfx.Data.DataBase m_DataBase = null;
+                private Lfx.Data.Connection m_DataBase = null;
 
 		public enum BorderStyles
 		{
@@ -107,7 +110,9 @@ namespace Lui.Forms
 			}
 		}
 
-		[EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		[EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public override System.Drawing.Color BackColor
 		{
 			get
@@ -116,6 +121,9 @@ namespace Lui.Forms
 			}
 		}
 
+                [EditorBrowsable(EditorBrowsableState.Never), 
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public virtual bool ReadOnly
 		{
 			get
@@ -125,9 +133,31 @@ namespace Lui.Forms
 			set
 			{
 				m_ReadOnly = value;
+                                this.SetControlsReadOnly(this.Controls, value);
 				Invalidate();
 			}
 		}
+
+
+                /// <summary>
+                /// Pongo la propiedad ReadOnly de los controles hijos en cascada.
+                /// </summary>
+                internal void SetControlsReadOnly(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
+                {
+                        if (controles == null)
+                                return;
+
+                        foreach (System.Windows.Forms.Control ctl in controles) {
+                                if (ctl == null) {
+                                        //Nada
+                                } else if (ctl is Lui.Forms.Control) {
+                                        ((Lui.Forms.Control)ctl).ReadOnly = newValue;
+                                } else if (ctl.Controls != null && ctl.Controls.Count > 0) {
+                                        SetControlsReadOnly(ctl.Controls, newValue);
+                                }
+                        }
+                }
+
 
 		protected override bool IsInputKey(Keys keyData)
 		{
@@ -144,6 +174,7 @@ namespace Lui.Forms
 
 		}
 
+
 		[EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		protected new Lui.Forms.Control.BorderStyles BorderStyle
 		{
@@ -157,6 +188,7 @@ namespace Lui.Forms
 				Invalidate();
 			}
 		}
+
 
 		[EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public bool Highlighted
@@ -172,17 +204,6 @@ namespace Lui.Forms
 			}
 		}
 
-                public virtual bool AutoHeight
-                {
-                        get
-                        {
-                                return m_AutoHeight;
-                        }
-                        set
-                        {
-                                m_AutoHeight = value;
-                        }
-                }
 
 		public string ToolTipText
 		{
@@ -196,6 +217,7 @@ namespace Lui.Forms
 			}
 		}
 
+
 		private void Control_Enter(object sender, System.EventArgs e)
 		{
 			this.Highlighted = true;
@@ -205,11 +227,10 @@ namespace Lui.Forms
 		private void Control_Leave(object sender, System.EventArgs e)
 		{
 			this.Highlighted = false;
-			if (ToolTipBalloon != null)
-			{
-				ToolTipBalloon.Dispose();
-				ToolTipBalloon = null;
-			}
+                        if (ToolTipBalloon != null) {
+                                ToolTipBalloon.Dispose();
+                                ToolTipBalloon = null;
+                        }
 		}
 
 
@@ -217,6 +238,7 @@ namespace Lui.Forms
 		{
 			ShowBalloon(Texto, "Información", 8);
 		}
+
 
 		public void ShowBalloon(string Texto, string Titulo, int Duracion)
 		{
@@ -238,6 +260,7 @@ namespace Lui.Forms
 		{
 			Invalidate();
 		}
+
 
 		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		virtual public bool ShowChanged
@@ -296,6 +319,8 @@ namespace Lui.Forms
 						e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.SelectionError), new System.Drawing.Rectangle(3, this.Height - 2, this.Width - 6, 1));
 					break;
 			}
+
+                        base.OnPaint(e);
 		}
 
 
@@ -303,6 +328,7 @@ namespace Lui.Forms
 		{
 			this.Invalidate();
 		}
+
 
                 /// <summary>
                 /// IDataControl
@@ -312,18 +338,31 @@ namespace Lui.Forms
                 {
                         get
                         {
-                                if (this.DataBase == null)
+                                if (m_DataBase == null)
                                         return Lfx.Workspace.Master;
                                 else
-                                        return this.DataBase.Workspace;
+                                        return this.Connection.Workspace;
                         }
                 }
 
                 /// <summary>
                 /// IDataControl
                 /// </summary>
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public bool HasWorkspace
+                {
+                        get
+                        {
+                                return this.Parent != null && this.Workspace != null;
+                        }
+                }
+
+
+                /// <summary>
+                /// IDataControl
+                /// </summary>
                 [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public Lfx.Data.DataBase DataBase
+                public Lfx.Data.Connection Connection
                 {
                         get
                         {
@@ -331,15 +370,12 @@ namespace Lui.Forms
                                         System.Windows.Forms.Control MiParent = this.Parent;
                                         while (MiParent != null) {
                                                 if (MiParent is Lui.Forms.IDataControl) {
-                                                        m_DataBase = ((Lui.Forms.IDataControl)(MiParent)).DataBase;
+                                                        m_DataBase = ((Lui.Forms.IDataControl)(MiParent)).Connection;
                                                         break;
                                                 } else {
                                                         MiParent = MiParent.Parent;
                                                 }
                                         }
-
-                                        if (m_DataBase == null && Lfx.Workspace.Master != null)
-                                                m_DataBase = Lfx.Workspace.Master.DefaultDataBase;
                                 }
                                 return m_DataBase;
                         }
@@ -353,13 +389,68 @@ namespace Lui.Forms
                 {
                         get
                         {
-                                return m_Changed;
+                                if (this.GetControlsChanged(this.Controls, false))
+                                        return true;
+                                else
+                                        return m_Changed;
                         }
                         set
                         {
                                 m_Changed = value;
+                                this.SetControlsChanged(this.Controls, value);
                                 Invalidate();
                         }
+                }
+
+                protected void SetControlsChanged(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
+                {
+                        // Pongo los Changed en newValue
+                        foreach (System.Windows.Forms.Control ctl in controles) {
+                                if (ctl == null) {
+                                        //Nada
+                                } else if (ctl is Lui.Forms.Control) {
+                                        ((Lui.Forms.Control)ctl).Changed = newValue;
+                                } else if (ctl is IDataControl) {
+                                        ((IDataControl)ctl).Changed = newValue;
+                                } else if (ctl.Controls.Count > 0) {
+                                        SetControlsChanged(ctl.Controls, newValue);
+                                }
+                        }
+                }
+
+                protected bool GetControlsChanged(System.Windows.Forms.Control.ControlCollection controls, bool showChanges)
+                {
+                        bool Result = false;
+                        // Ver si algo cambió
+                        foreach (System.Windows.Forms.Control ctl in controls) {
+                                if (ctl == null) {
+                                        //Nada
+                                } else if (ctl is Lui.Forms.Control) {
+                                        if (((Lui.Forms.Control)ctl).Changed) {
+                                                Result = true;
+                                                ((Lui.Forms.Control)ctl).ShowChanged = showChanges;
+                                        }
+                                } else if (ctl is IDataControl) {
+                                        if (((IDataControl)ctl).Changed)
+                                                Result = true;
+                                } else if (ctl.Controls.Count > 0) {
+                                        if (GetControlsChanged(ctl.Controls, showChanges)) {
+                                                this.Changed = true;
+                                                Result = true;
+                                        }
+                                }
+                        }
+                        return Result;
+                }
+
+
+                protected override void OnTextChanged(EventArgs e)
+                {
+                        EventHandler Tceh = this.TextChanged;
+                        if (Tceh != null)
+                                Tceh(this, e);
+
+                        base.OnTextChanged(e);
                 }
 	}
 }

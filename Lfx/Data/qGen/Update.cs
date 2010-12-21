@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ namespace qGen
                 public Update(string tables)
                         : base(tables) { }
 
-                public Update(Lfx.Data.DataBase dataBase, string tables)
+                public Update(Lfx.Data.Connection dataBase, string tables)
                         : base(dataBase, tables) { }
 
                 public Update(string tables, Where whereClause)
@@ -125,9 +125,11 @@ namespace qGen
                                                         ParamValue = ThisField.Value.ToString();
                                                         break;
                                                 case "System.Single":
-                                                case "System.Decimal":
                                                 case "System.Double":
                                                         ParamValue = Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDouble(ThisField.Value));
+                                                        break;
+                                                case "System.Decimal":
+                                                        ParamValue = Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDecimal(ThisField.Value), 8);
                                                         break;
                                                 case "System.Integer":
                                                 case "System.Int16":
@@ -136,7 +138,7 @@ namespace qGen
                                                         ParamValue = System.Convert.ToInt32(ThisField.Value).ToString();
                                                         break;
                                                 default:
-                                                        ParamValue = "'" + Lfx.Data.DataBase.EscapeString(ThisField.Value.ToString(), sqlMode) + "'";
+                                                        ParamValue = "'" + Lfx.Data.Connection.EscapeString(ThisField.Value.ToString(), sqlMode) + "'";
                                                         break;
                                         }
                                 }

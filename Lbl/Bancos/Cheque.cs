@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,33 +38,30 @@ namespace Lbl.Bancos
 	public class Cheque : ElementoDeDatos
 	{
                 public Bancos.Banco Banco;
-                public Lbl.Comprobantes.Recibo Recibo;
+                public Lbl.Comprobantes.Recibo m_Recibo;
                 public Lbl.Cajas.Concepto Concepto;
                 public Lbl.Personas.Persona Cliente;
                 public Lbl.Bancos.Chequera Chequera;
                 public Lbl.Comprobantes.ComprobanteConArticulos Factura;
                 
                 //Heredar constructor
-		public Cheque(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+		public Cheque(Lfx.Data.Connection dataBase)
+                        : base(dataBase) { }
 
-		public Cheque(Lfx.Data.DataBase dataBase, int idCheque)
-			: this(dataBase)
-		{
-			m_ItemId = idCheque;
-                        this.Cargar();
-		}
+		public Cheque(Lfx.Data.Connection dataBase, int itemId)
+			: base(dataBase, itemId) { }
 
-                public Cheque(Lfx.Data.DataBase dataBase, Lfx.Data.Row fromRow)
+                public Cheque(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
-                public Cheque(Lfx.Data.DataBase dataBase, Lbl.Comprobantes.ComprobanteConArticulos factura)
+                public Cheque(Lfx.Data.Connection dataBase, Lbl.Comprobantes.ComprobanteConArticulos factura)
                         : this(dataBase)
                 {
-                        m_ItemId = this.DataBase.FieldInt("SELECT MAX(id_cheque) FROM bancos_cheques WHERE id_comprob=" + factura.Id.ToString());
+                        m_ItemId = this.Connection.FieldInt("SELECT MAX(id_cheque) FROM bancos_cheques WHERE id_comprob=" + factura.Id.ToString());
                         this.Cargar();
                 }
 
-                public Cheque(Lfx.Data.DataBase dataBase, double importe, int numero, string emisor, Lfx.Types.LDateTime fechaEmision, Lfx.Types.LDateTime fechaCobro, Bancos.Banco banco)
+                public Cheque(Lfx.Data.Connection dataBase, decimal importe, int numero, string emisor, Lfx.Types.LDateTime fechaEmision, Lfx.Types.LDateTime fechaCobro, Bancos.Banco banco)
 			: this(dataBase)
 		{
 			this.Importe = importe;
@@ -94,48 +91,58 @@ namespace Lbl.Bancos
                 public override void OnLoad()
                 {
                         if (this.Registro != null) {
-                                if (this.FieldInt("id_banco") > 0)
-                                        this.Banco = new Bancos.Banco(this.DataBase, this.FieldInt("id_banco"));
+                                if (this.GetFieldValue<int>("id_banco") > 0)
+                                        this.Banco = new Bancos.Banco(this.Connection, this.GetFieldValue<int>("id_banco"));
                                 else
                                         this.Banco = null;
 
-                                if (this.FieldInt("id_concepto") > 0)
-                                        this.Concepto = new Cajas.Concepto(this.DataBase, this.FieldInt("id_concepto"));
+                                if (this.GetFieldValue<int>("id_concepto") > 0)
+                                        this.Concepto = new Cajas.Concepto(this.Connection, this.GetFieldValue<int>("id_concepto"));
                                 else
                                         this.Concepto = null;
 
-                                if (this.FieldInt("id_recibo") > 0)
-                                        this.Recibo = new Comprobantes.ReciboDeCobro(this.DataBase, this.FieldInt("id_recibos"));
-                                else
-                                        this.Recibo = null;
-
-                                if (this.FieldInt("id_chequera") > 0)
-                                        this.Chequera = new Bancos.Chequera(this.DataBase, this.FieldInt("id_chequera"));
+                                if (this.GetFieldValue<int>("id_chequera") > 0)
+                                        this.Chequera = new Bancos.Chequera(this.Connection, this.GetFieldValue<int>("id_chequera"));
                                 else
                                         this.Chequera = null;
 
-                                if (this.FieldInt("id_cliente") > 0)
-                                        this.Cliente = new Personas.Persona(this.DataBase, this.FieldInt("id_cliente"));
+                                if (this.GetFieldValue<int>("id_cliente") > 0)
+                                        this.Cliente = new Personas.Persona(this.Connection, this.GetFieldValue<int>("id_cliente"));
                                 else
                                         this.Cliente = null;
 
-                                if (this.FieldInt("id_comprob") > 0)
-                                        this.Factura = new Comprobantes.Factura(this.DataBase, this.FieldInt("id_comprob"));
+                                if (this.GetFieldValue<int>("id_comprob") > 0)
+                                        this.Factura = new Comprobantes.ComprobanteConArticulos(this.Connection, this.GetFieldValue<int>("id_comprob"));
                                 else
                                         this.Factura = null;
                         }
                         base.OnLoad();
                 }
 
+                public Lbl.Comprobantes.Recibo Recibo
+                {
+                        get
+                        {
+                                if (m_Recibo == null && this.GetFieldValue<int>("id_recibo") > 0)
+                                        this.m_Recibo = new Comprobantes.ReciboDeCobro(this.Connection, this.GetFieldValue<int>("id_recibo"));
+                                return m_Recibo;
+                        }
+                        set
+                        {
+                                m_Recibo = value;
+                        }
+                }
+
 		public override string ToString()
 		{
 			String Res = "Cheque Nº " + Numero;
+                        string Emitido = this.Emitido ? " a nombre de " : " emitido por "; 
 			if(Banco != null)
 				Res += " del " + Banco.ToString();
 			if(Emisor != null)
-				Res += ", emitido por " + Emisor;
+				Res += ", " + Emitido + " " + Emisor;
                         else if (Cliente != null)
-                                Res += ", emitido por " + Cliente.Nombre;
+                                Res += ", " + Emitido + " " + Cliente.Nombre;
 
 			return Res;
 		}
@@ -144,7 +151,7 @@ namespace Lbl.Bancos
                 {
                         get
                         {
-                                return this.FieldInt("emitido") != 0;
+                                return this.GetFieldValue<int>("emitido") != 0;
                         }
                         set
                         {
@@ -156,7 +163,7 @@ namespace Lbl.Bancos
                 {
                         get
                         {
-                                return this.FieldString("emitidopor");
+                                return this.GetFieldValue<string>("emitidopor");
                         }
                         set
                         {
@@ -164,11 +171,27 @@ namespace Lbl.Bancos
                         }
                 }
 
+                public void Pagar(Lbl.Cajas.Caja cajaOrigen)
+                {
+                        cajaOrigen.Movimiento(true, this.Concepto,
+                                                this.Concepto.Nombre,
+                                                this.Cliente, -this.Importe,
+                                                "Pago de " + this.ToString(),
+                                                null,
+                                                this.Recibo,
+                                                null);
+
+                        qGen.Update ActualizarEstado = new qGen.Update(this.TablaDatos);
+                        ActualizarEstado.Fields.AddWithValue("estado", 10);
+                        ActualizarEstado.WhereClause =new qGen.Where(this.CampoId, this.Id);
+                        this.Connection.Execute(ActualizarEstado);
+                }
+
                 public int Numero
                 {
                         get
                         {
-                                return this.FieldInt("numero");
+                                return this.GetFieldValue<int>("numero");
                         }
                         set
                         {
@@ -180,7 +203,7 @@ namespace Lbl.Bancos
                 {
                         get
                         {
-                                return this.FieldString("concepto");
+                                return this.GetFieldValue<string>("concepto");
                         }
                         set
                         {
@@ -188,11 +211,11 @@ namespace Lbl.Bancos
                         }
                 }
 
-                public double Importe
+                public decimal Importe
                 {
                         get
                         {
-                                return this.FieldDouble("importe");
+                                return this.GetFieldValue<decimal>("importe");
                         }
                         set
                         {
@@ -236,10 +259,10 @@ namespace Lbl.Bancos
 		{
 			qGen.TableCommand Comando;
                         if (this.Existe) {
-				Comando = new qGen.Update(this.DataBase, this.TablaDatos);
+				Comando = new qGen.Update(this.Connection, this.TablaDatos);
 				Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
 			} else {
-				Comando = new qGen.Insert(this.DataBase, this.TablaDatos);
+				Comando = new qGen.Insert(this.Connection, this.TablaDatos);
 			}
 
 			Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
@@ -302,24 +325,24 @@ namespace Lbl.Bancos
 
 			this.AgregarTags(Comando);
 
-			this.DataBase.Execute(Comando);
+			this.Connection.Execute(Comando);
 
                         if (this.Chequera != null) {
                                 qGen.Update ActualizarChequeras = new qGen.Update("chequeras");
                                 ActualizarChequeras.Fields.AddWithValue("cheques_emitidos", new qGen.SqlExpression("cheques_emitidos+1"));
                                 ActualizarChequeras.WhereClause = new qGen.Where("id_chequera", this.Chequera.Id);
-                                this.DataBase.Execute(ActualizarChequeras);
+                                this.Connection.Execute(ActualizarChequeras);
                         }
 
                         if (this.Emitido == false) {
                                 //Asiento en la cuenta cheques, sólo para cheques de cobro
-                                Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(this.DataBase, this.Workspace.CurrentConfig.Empresa.CajaCheques);
+                                Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(this.Connection, this.Workspace.CurrentConfig.Empresa.CajaCheques);
                                 Lbl.Personas.Persona UsarCliente = this.Cliente;
                                 if (UsarCliente == null && this.Factura != null)
                                         UsarCliente = this.Factura.Cliente;
                                 if (UsarCliente == null && this.Recibo != null)
                                         UsarCliente = this.Recibo.Cliente;
-                                Lfx.Types.OperationResult Res = CajaCheques.Movimiento(true, this.Concepto, this.ConceptoTexto, UsarCliente, this.Importe, this.ToString(), this.Factura, this.Recibo, "");
+                                CajaCheques.Movimiento(true, this.Concepto, this.ConceptoTexto, UsarCliente, this.Importe, this.ToString(), this.Factura, this.Recibo, "");
                         }
 
                         return base.Guardar();
@@ -327,22 +350,47 @@ namespace Lbl.Bancos
 
                 public void Anular()
                 {
-                        if (this.Anulado == false) {
+                        if (this.Existe && this.Anulado == false) {
                                 // Marco el cheque como anulado
                                 this.Estado = 90;
                                 this.Guardar();
 
                                 if (this.Emitido == false) {
                                         //Asiento en la cuenta cheques, sólo para cheques de cobro
-                                        Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(this.DataBase, this.Workspace.CurrentConfig.Empresa.CajaCheques);
+                                        Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(this.Connection, this.Workspace.CurrentConfig.Empresa.CajaCheques);
                                         Lbl.Personas.Persona UsarCliente = this.Cliente;
                                         if (UsarCliente == null && this.Factura != null)
                                                 UsarCliente = this.Factura.Cliente;
                                         if (UsarCliente == null && this.Recibo != null)
                                                 UsarCliente = this.Recibo.Cliente;
-                                        Lfx.Types.OperationResult Res = CajaCheques.Movimiento(true, this.Concepto, "Anulación " + this.ToString(), UsarCliente, this.Importe, null, this.Factura, this.Recibo, "");
+                                        CajaCheques.Movimiento(true, this.Concepto, "Anulación " + this.ToString(), UsarCliente, this.Importe, null, this.Factura, this.Recibo, "");
                                 }
+
+                                Lbl.Sys.Config.ActionLog(this.Connection, Sys.Log.Acciones.Delete, this, null);
                         }
+                }
+
+                public void Efectivizar(Lbl.Cajas.Caja destino, decimal GestionDeCobro, decimal Impuestos)
+                {
+                        Lbl.Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(Connection, this.Workspace.CurrentConfig.Empresa.CajaCheques);
+
+                        CajaCheques.Movimiento(true, Lbl.Cajas.Concepto.AjustesYMovimientos, "Efectivización de Cheques",
+                                                null, -this.Importe, this.ToString(), null, null, null);
+
+                        destino.Movimiento(true, Lbl.Cajas.Concepto.AjustesYMovimientos,
+                                "Efectivización de Cheques", null, this.Importe - GestionDeCobro - Impuestos,
+                                this.ToString(), null, null, null);
+
+                        if (GestionDeCobro != 0)
+                                destino.Movimiento(true, new Lbl.Cajas.Concepto(this.Connection, 24010), "Gestion de Cobro Cheques", null, -GestionDeCobro, this.ToString(), null, null, null);
+                        if (Impuestos != 0)
+                                destino.Movimiento(true, new Lbl.Cajas.Concepto(this.Connection, 23030), "Impuestos Cheques", null, -Impuestos, this.ToString(), null, null, null);
+
+                        this.Estado = 10;
+                        qGen.Update ActualizarEstado = new qGen.Update(this.TablaDatos);
+                        ActualizarEstado.Fields.AddWithValue("estado", this.Estado);
+                        ActualizarEstado.WhereClause = new qGen.Where(this.CampoId, this.Id);
+                        this.Connection.Execute(ActualizarEstado);
                 }
 	}
 }

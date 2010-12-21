@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -30,18 +30,17 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Diagnostics;
-using System.Windows.Forms;
 using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Lui.Forms
 {
         public partial class Form : System.Windows.Forms.Form, IDataForm
 	{
-                private Lfx.Data.DataBase m_DataBase = null;
+                [DefaultValue(true)]
+                public bool DisposeConnection { get; set; }
+                private Lfx.Data.Connection m_Connection = null;
 		public event System.EventHandler WorkspaceChanged;
 
 		public Form()
@@ -74,12 +73,14 @@ namespace Lui.Forms
                         EventHandler WorkspaceChangedHandler = this.WorkspaceChanged;
                         if (WorkspaceChangedHandler != null)
                                 WorkspaceChangedHandler(this, null);
-		}	
+		}
 
-                private void Form_TextChanged(object sender, EventArgs e)
+                protected override void OnTextChanged(EventArgs e)
                 {
-                        if (m_DataBase != null)
-                                m_DataBase.Name = this.Text;
+                        if (m_Connection != null && this.Text != "Form")
+                                m_Connection.Name = this.Text;
+
+                        base.OnTextChanged(e);
                 }
 
                 /// <summary>
@@ -94,21 +95,53 @@ namespace Lui.Forms
                         }
                 }
 
+
                 /// <summary>
                 /// IDataControl
                 /// </summary>
-                public Lfx.Data.DataBase DataBase
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public bool HasWorkspace
                 {
                         get
                         {
-                                if (m_DataBase == null && this.Workspace != null)
-                                        m_DataBase = this.Workspace.GetDataBase(this.Text);
-
-                                return m_DataBase;
+                                return this.Workspace != null;
                         }
                 }
 
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                /// <summary>
+                /// IDataControl
+                /// </summary>
+                public Lfx.Data.Connection Connection
+                {
+                        get
+                        {
+                                if (m_Connection == null && this.HasWorkspace) {
+                                        m_Connection = this.Workspace.GetNewConnection(this.Text);
+
+                                        // Marco para deshechar la conexión que estoy creando
+                                        DisposeConnection = true;
+                                }
+
+                                return m_Connection;
+                        }
+                        set
+                        {
+                                if (m_Connection != value) {
+                                        if (m_Connection != null && DisposeConnection)
+                                                // Deshecho la conexión vieja
+                                                m_Connection.Dispose();
+
+                                        m_Connection = value;
+
+                                        // Marco para no deshechar conexiones que fueron creadas por este formulario
+                                        DisposeConnection = false;
+                                }
+                        }
+                }
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public bool Changed
                 {
                         get
@@ -121,45 +154,126 @@ namespace Lui.Forms
                         }
                 }
 
-                internal void SetControlsChanged(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
+                protected void SetControlsChanged(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
                 {
                         // Pongo los Changed en newValue
                         foreach (System.Windows.Forms.Control ctl in controles) {
                                 if (ctl == null) {
                                         //Nada
-                                } else if (ctl is Lui.Forms.Frame || ctl is System.Windows.Forms.Panel) {
-                                        SetControlsChanged(ctl.Controls, newValue);
                                 } else if (ctl is Lui.Forms.Control) {
                                         ((Lui.Forms.Control)ctl).Changed = newValue;
                                 } else if (ctl is IDataControl) {
                                         ((IDataControl)ctl).Changed = newValue;
+                                } else if (ctl.Controls.Count > 0) {
+                                        SetControlsChanged(ctl.Controls, newValue);
                                 }
                         }
                 }
 
-                internal bool GetControlsChanged(System.Windows.Forms.Control.ControlCollection controls, bool showChanges)
+                protected bool GetControlsChanged(System.Windows.Forms.Control.ControlCollection controls, bool showChanges)
                 {
                         bool Result = false;
                         // Ver si algo cambió
                         foreach (System.Windows.Forms.Control ctl in controls) {
                                 if (ctl == null) {
                                         //Nada
-                                } else if (ctl is Lui.Forms.Frame || ctl is System.Windows.Forms.Panel) {
-                                        // Es un conteneder. Uso recursión
-                                        if (this.GetControlsChanged(ctl.Controls, showChanges))
-                                                Result = true;
                                 } else if (ctl is Lui.Forms.Control) {
                                         if (((Lui.Forms.Control)ctl).Changed) {
                                                 Result = true;
                                                 ((Lui.Forms.Control)ctl).ShowChanged = showChanges;
                                         }
                                 } else if (ctl is IDataControl) {
-                                        if (((IDataControl)ctl).Changed) {
+                                        if (((IDataControl)ctl).Changed)
                                                 Result = true;
-                                        }
+                                } else if (ctl.Controls.Count > 0) {
+                                        if (GetControlsChanged(ctl.Controls, showChanges))
+                                                Result = true;
                                 }
                         }
                         return Result;
+                }
+
+
+                protected override void OnKeyDown(KeyEventArgs e)
+                {
+                        if (e.Alt == false && e.Control == false) {
+                                switch (e.KeyCode) {
+                                        case Keys.F1:
+                                                if (ClicarBoton(this.Controls, "F1"))
+                                                        e.Handled = true;
+                                                break;
+                                        case Keys.F2:
+                                                if (ClicarBoton(this.Controls, "F2"))
+                                                        e.Handled = true;
+                                                break;
+                                        case Keys.F3:
+                                                if (ClicarBoton(this.Controls, "F3"))
+                                                        e.Handled = true;
+                                                break;
+                                        case Keys.F4:
+                                                if (ClicarBoton(this.Controls, "F4"))
+                                                        e.Handled = true;
+                                                break;
+                                        case Keys.F5:
+                                                if (ClicarBoton(this.Controls, "F5"))
+                                                        e.Handled = true;
+                                                break;
+                                        case Keys.F6:
+                                                if (ClicarBoton(this.Controls, "F6"))
+                                                        e.Handled = true;
+                                                break;
+                                        case Keys.F7:
+                                                if (ClicarBoton(this.Controls, "F7"))
+                                                        e.Handled = true;
+                                                break;
+                                        case Keys.F8:
+                                                if (ClicarBoton(this.Controls, "F8"))
+                                                        e.Handled = true;
+                                                break;
+                                        case Keys.F9:
+                                                if (ClicarBoton(this.Controls, "F9"))
+                                                        e.Handled = true;
+                                                break;
+                                        case Keys.F10:
+                                                if (ClicarBoton(this.Controls, "F10"))
+                                                        e.Handled = true;
+                                                break;
+                                        case Keys.F11:
+                                                if (ClicarBoton(this.Controls, "F11"))
+                                                        e.Handled = true;
+                                                break;
+                                        case Keys.F12:
+                                                if (ClicarBoton(this.Controls, "F12"))
+                                                        e.Handled = true;
+                                                break;
+                                        case Keys.Escape:
+                                                if (ClicarBoton(this.Controls, "Esc"))
+                                                        e.Handled = true;
+                                                break;
+                                }
+                        }
+
+                        if (e.Handled == false)
+                                base.OnKeyDown(e);
+                }
+
+                private bool ClicarBoton(Control.ControlCollection controls, string keyName)
+                {
+                        foreach (System.Windows.Forms.Control ctl in controls) {
+                                if (ctl == null) {
+                                        //Nada
+                                } else if (ctl is Lui.Forms.Button) {
+                                        Lui.Forms.Button Btn = ctl as Lui.Forms.Button;
+                                        if (Btn.Subtext == keyName && Btn.Visible && Btn.Enabled) {
+                                                Btn.PerformClick();
+                                                return true;
+                                        }
+                                } else if (ctl.Controls != null) {
+                                        if (ClicarBoton(ctl.Controls, keyName))
+                                                return true;
+                                }
+                        }
+                        return false;
                 }
 	}
 }

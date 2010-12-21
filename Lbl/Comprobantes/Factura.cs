@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,16 +35,23 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-	public class Factura : ComprobanteConArticulos
-	{
-		//Heredar constructor
-		public Factura(Lfx.Data.DataBase dataBase) : base(dataBase) { }
+        [Lbl.Atributos.NombreItem("Factura")]
+        public class Factura : ComprobanteConArticulos
+        {
+                //Heredar constructor
+                public Factura(Lfx.Data.Connection dataBase)
+                        : base(dataBase) { }
 
-                public Factura(Lfx.Data.DataBase dataBase, int idComprobante)
-                        : this(dataBase)
+                public Factura(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+			: base(dataBase, row) { }
+
+                public Factura(Lfx.Data.Connection dataBase, int itemId)
+			: base(dataBase, itemId) { }
+
+                public override void Crear()
                 {
-                        m_ItemId = idComprobante;
-                        this.Cargar();
+                        base.Crear();
+                        this.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra["FB"];
                 }
-	}
+        }
 }

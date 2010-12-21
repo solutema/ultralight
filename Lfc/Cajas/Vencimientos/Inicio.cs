@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 South Bridge S.R.L.
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,16 +35,16 @@ using System.Windows.Forms;
 
 namespace Lfc.Cajas.Vencimientos
 {
-        public partial class Inicio : Lui.Forms.ListingForm
+        public partial class Inicio : Lfc.FormularioListado
         {
                 public Inicio()
                 {
-                        InitializeComponent();
+                        this.ElementoTipo = typeof(Lbl.Cajas.Vencimiento);
 
-                        DataTableName = "vencimientos";
-                        KeyField = new Lfx.Data.FormField("vencimientos.id_vencimiento", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20);
-                        OrderBy = "vencimientos.fecha_proxima DESC";
-                        FormFields = new List<Lfx.Data.FormField>()
+                        this.NombreTabla = "vencimientos";
+                        this.KeyField = new Lfx.Data.FormField("vencimientos.id_vencimiento", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20);
+                        this.OrderBy = "vencimientos.fecha_proxima DESC";
+                        this.FormFields = new Lfx.Data.FormFieldCollection()
 			{
 				new Lfx.Data.FormField("vencimientos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 120),
 				new Lfx.Data.FormField("vencimientos.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
@@ -55,10 +55,10 @@ namespace Lfc.Cajas.Vencimientos
                                 new Lfx.Data.FormField("vencimientos.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 320)
 			};
                         Listado.CheckBoxes = true;
-                        BotonFiltrar.Visible = true;
+                        this.HabilitarFiltrar = true;
                 }
 
-                public override void ItemAdded(ListViewItem item, Lfx.Data.Row row)
+                public override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
                         switch (row.Fields["estado"].ValueInt) {
                                 case 1:
@@ -77,7 +77,7 @@ namespace Lfc.Cajas.Vencimientos
                                         break;
                         }
 
-                        Lfx.Data.Row Concepto = this.DataBase.Tables["conceptos"].FastRows[row.Fields["id_concepto"].ValueInt];
+                        Lfx.Data.Row Concepto = this.Connection.Tables["conceptos"].FastRows[row.Fields["id_concepto"].ValueInt];
                         if (Concepto != null)
                                 item.SubItems["id_concepto"].Text = Concepto.Fields["nombre"].ToString();
 
