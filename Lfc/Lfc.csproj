@@ -68,21 +68,13 @@
     <Compile Include="Alicuotas\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Alicuotas\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Articulos\Categorias\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Alicuotas\Inicio.cs" />
+    <Compile Include="Articulos\Categorias\Editar.cs" />
     <Compile Include="Articulos\Categorias\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Articulos\Categorias\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Articulos\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Articulos\Categorias\Inicio.cs" />
+    <Compile Include="Articulos\Editar.cs" />
     <Compile Include="Articulos\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
@@ -113,15 +105,9 @@
     <Compile Include="Articulos\TablaDetalles.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Articulos\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Articulos\Marcas\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Articulos\Marcas\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Articulos\Inicio.cs" />
+    <Compile Include="Articulos\Marcas\Editar.cs" />
+    <Compile Include="Articulos\Marcas\Inicio.cs" />
     <Compile Include="Articulos\MasInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,12 +120,8 @@
     <Compile Include="Articulos\Rendimiento.Designer.cs">
       <DependentUpon>Rendimiento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Articulos\Rubros\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Articulos\Rubros\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Articulos\Rubros\Editar.cs" />
+    <Compile Include="Articulos\Rubros\Inicio.cs" />
     <Compile Include="Articulos\VerConformacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,9 +140,7 @@
     <Compile Include="Bancos\Chequeras\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bancos\Cheques\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Bancos\Cheques\Editar.cs" />
     <Compile Include="Bancos\Cheques\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
@@ -176,15 +156,11 @@
     <Compile Include="Bancos\Cheques\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ciudades\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Ciudades\Editar.cs" />
     <Compile Include="Ciudades\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ciudades\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Ciudades\Inicio.cs" />
     <Compile Include="Comprobantes\Compra\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
@@ -239,15 +215,11 @@
     <Compile Include="Cajas\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Cajas\Vencimientos\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Cajas\Vencimientos\Editar.cs" />
     <Compile Include="Cajas\Vencimientos\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Cajas\Vencimientos\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Cajas\Vencimientos\Inicio.cs" />
     <Compile Include="Cajas\Vencimientos\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
@@ -275,9 +247,7 @@
     <Compile Include="Personas\AltaDuplicada.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Personas\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Personas\Editar.cs" />
     <Compile Include="Personas\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
@@ -293,39 +263,25 @@
     <Compile Include="Personas\Filtros.Designer.cs">
       <DependentUpon>Filtros.cs</DependentUpon>
     </Compile>
-    <Compile Include="Personas\Grupos\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Personas\Grupos\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Personas\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Personas\Grupos\Editar.cs" />
+    <Compile Include="Personas\Grupos\Inicio.cs" />
+    <Compile Include="Personas\Inicio.cs" />
     <Compile Include="Comprobantes\Compra\Crear.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprobantes\Compra\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Comprobantes\Compra\Editar.cs" />
     <Compile Include="Comprobantes\Compra\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
     <Compile Include="Comprobantes\Compra\Filtros.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprobantes\Compra\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Comprobantes\Compra\Listado.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Comprobantes\Compra\Inicio.cs" />
+    <Compile Include="Comprobantes\Compra\Listado.cs" />
     <Compile Include="Comprobantes\Convertir.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprobantes\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Comprobantes\Editar.cs" />
     <Compile Include="Comprobantes\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
@@ -335,9 +291,7 @@
     <Compile Include="Comprobantes\Facturas\Anular.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprobantes\Facturas\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Comprobantes\Facturas\Editar.cs" />
     <Compile Include="Comprobantes\Facturas\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
@@ -347,45 +301,33 @@
     <Compile Include="Comprobantes\Filtros.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprobantes\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Comprobantes\Inicio.cs" />
     <Compile Include="Comprobantes\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprobantes\Listado.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Comprobantes\Listado.cs" />
     <Compile Include="Comprobantes\Listado.Designer.cs">
       <DependentUpon>Listado.cs</DependentUpon>
     </Compile>
     <Compile Include="Comprobantes\PagoVuelto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprobantes\Plantillas\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Comprobantes\Plantillas\Editar.cs" />
     <Compile Include="Comprobantes\Plantillas\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
     <Compile Include="Comprobantes\Plantillas\EditarCampo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprobantes\Plantillas\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Comprobantes\Presupuestos\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Comprobantes\Plantillas\Inicio.cs" />
+    <Compile Include="Comprobantes\Presupuestos\Editar.cs" />
     <Compile Include="Comprobantes\Presupuestos\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
     <Compile Include="Comprobantes\Presupuestos\Imprimir.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Comprobantes\Recibos\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Comprobantes\Recibos\Editar.cs" />
     <Compile Include="Comprobantes\Recibos\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
@@ -398,57 +340,39 @@
     <Compile Include="Comprobantes\Recibos\Filtros.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprobantes\Recibos\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Comprobantes\Recibos\Inicio.cs" />
     <Compile Include="Comprobantes\Recibos\Rapido.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Comprobantes\Recibos\Rapido.Designer.cs">
       <DependentUpon>Rapido.cs</DependentUpon>
     </Compile>
-    <Compile Include="Cajas\Admin\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Cajas\Admin\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Bancos\Chequeras\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Cajas\Admin\Editar.cs" />
+    <Compile Include="Cajas\Admin\Inicio.cs" />
+    <Compile Include="Bancos\Chequeras\Editar.cs" />
     <Compile Include="Bancos\Chequeras\Filtros.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bancos\Chequeras\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Bancos\Chequeras\Inicio.cs" />
     <Compile Include="Bancos\Cheques\Efectivizar.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Bancos\Cheques\Entregar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bancos\Cheques\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Bancos\Cheques\Inicio.cs" />
     <Compile Include="Bancos\Cheques\Pagar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Cajas\Conceptos\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Cajas\Conceptos\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Cajas\Conceptos\Editar.cs" />
+    <Compile Include="Cajas\Conceptos\Inicio.cs" />
     <Compile Include="CuentasCorrientes\Ajuste.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CuentasCorrientes\Filtros.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CuentasCorrientes\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="CuentasCorrientes\Inicio.cs" />
     <Compile Include="CuentasCorrientes\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
@@ -458,9 +382,7 @@
     <Compile Include="Cajas\IngresoEgreso.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Cajas\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Cajas\Inicio.cs" />
     <Compile Include="Cajas\Listado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -475,27 +397,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Pvs\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Pvs\Editar.cs" />
     <Compile Include="Pvs\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pvs\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Pvs\Inicio.cs" />
     <Compile Include="Reportes\Reporte.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reportes\Reporte.Designer.cs">
       <DependentUpon>Reporte.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sucursales\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sucursales\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Sucursales\Editar.cs" />
+    <Compile Include="Sucursales\Inicio.cs" />
     <Compile Include="Tarjetas\Cupones\Acreditar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -509,9 +423,7 @@
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tareas\Editar.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Tareas\Editar.cs" />
     <Compile Include="Tareas\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
@@ -521,15 +433,11 @@
     <Compile Include="Tareas\Filtros.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tareas\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Tareas\Inicio.cs" />
     <Compile Include="Tareas\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tareas\Novedad.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Tareas\Novedad.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lbl\Lbl.csproj">
