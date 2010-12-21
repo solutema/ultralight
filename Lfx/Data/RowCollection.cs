@@ -80,6 +80,7 @@ namespace Lfx.Data
                                 if (System.DateTime.Now > LastCacheRefresh.AddMinutes(60)) {
                                         System.Console.WriteLine(DateTime.Now.ToShortTimeString() + " vaciando la caché de " + this.Table.Name);
                                         this.ClearCache();
+                                        LastCacheRefresh = DateTime.Now;
                                 }
 
                                 if (Table.Cacheable == false || (Table.DataBase.InTransaction && Table.AlwaysCache == false)) {
