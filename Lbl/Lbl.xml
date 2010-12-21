@@ -4,64 +4,6 @@
         <name>Lbl</name>
     </assembly>
     <members>
-        <member name="T:Lbl.ElementoDeDatos">
-            <summary>
-            Proporciona acceso a los datos con alto nivel de abstracción.
-            Normalmente refleja un registro de la base de datos como un objeto con propiedades y métodos.
-            </summary>
-        </member>
-        <member name="M:Lbl.ElementoDeDatos.Crear">
-            <summary>
-            Crea un nuevo elemento, con sus valores predeterminados.
-            </summary>
-        </member>
-        <member name="M:Lbl.ElementoDeDatos.AgregarComentario(System.String)">
-            <summary>
-            Agrega un comentario al historial de este elemento.
-            </summary>
-            <param name="texto">El texto del comentario.</param>
-        </member>
-        <member name="M:Lbl.ElementoDeDatos.Guardar">
-            <summary>
-            Guarda los cambios en la base de datos.
-            </summary>
-        </member>
-        <member name="M:Lbl.ElementoDeDatos.AgregarTags(qGen.Command)">
-            <summary>
-            Agrega los campos personalizados (tags) al comando, antes de guardar.
-            </summary>
-            <param name="comando">El parámetro al cual agregar los campos.</param>
-        </member>
-        <member name="M:Lbl.ElementoDeDatos.Cargar">
-            <summary>
-            Carga el elemento desde la base de datos.
-            </summary>
-        </member>
-        <member name="M:Lbl.ElementoDeDatos.Cargar(System.Int32)">
-            <summary>
-            Carga un elemento por su Id desde la base de datos.
-            </summary>
-        </member>
-        <member name="M:Lbl.ElementoDeDatos.Cargar(Lfx.Data.Row)">
-            <summary>
-            Carga un elemento por su Id desde un registro
-            </summary>
-        </member>
-        <member name="P:Lbl.ElementoDeDatos.ImagenCambio">
-            <summary>
-            True si la imagen fue cambiada.
-            </summary>
-        </member>
-        <member name="P:Lbl.ElementoDeDatos.Existe">
-            <summary>
-            Devuelve Verdadero si el elemento existe en la base de datos.
-            </summary>
-        </member>
-        <member name="P:Lbl.ElementoDeDatos.Etiquetas">
-            <summary>
-            Devuelve o establece una colección de etiquetas del elemento.
-            </summary>
-        </member>
         <member name="T:Lbl.ColeccionGenerica`1">
             <summary>
             Una colección Generica para ElementosDeDatos.
@@ -70,6 +12,11 @@
         <member name="M:Lbl.ColeccionGenerica`1.Contains(System.Int32)">
             <summary>
             Busca un elemento por su Id.
+            </summary>
+        </member>
+        <member name="M:Lbl.ColeccionGenerica`1.GetById(System.Int32)">
+            <summary>
+            Obtiene un Elemento por su Id.
             </summary>
         </member>
         <member name="M:Lbl.ColeccionGenerica`1.Add(`0)">
@@ -81,6 +28,12 @@
             <summary>
             Elimina un elemento por su Id.
             </summary>
+        </member>
+        <member name="M:Lbl.ColeccionGenerica`1.Remove(`0)">
+            <summary>
+            Elimina un elemento de la lista.
+            </summary>
+            <param name="elemento">El elemento a eliminar.</param>
         </member>
         <member name="M:Lbl.ColeccionGenerica`1.Clone">
             <summary>
@@ -101,29 +54,303 @@
             <param name="original">La colección original.</param>
             <returns>La colección de los elementos no presentes en esta colección, pero si en la original.</returns>
         </member>
+        <member name="T:Lbl.Impresion.Campo">
+            <summary>
+            Define un campo para una Plantilla.
+            </summary>
+        </member>
+        <member name="T:Lbl.Impresion.Impresora">
+            <summary>
+            Representa una impresora configurada en Lázaro. Puede ser una impresora de Windows,
+            un controlador fiscal o una impresora nula.
+            </summary>
+        </member>
+        <member name="T:Lbl.ElementoDeDatos">
+            <summary>
+            Proporciona acceso a los datos con alto nivel de abstracción.
+            Normalmente refleja un registro de la base de datos como un objeto con propiedades y métodos.
+            </summary>
+        </member>
+        <member name="M:Lbl.ElementoDeDatos.FromRow(Lfx.Data.Row)">
+            <summary>
+            Instancia un ElementoDeDatos desde un registro de la base de datos.
+            </summary>
+            <param name="fromRow"></param>
+        </member>
+        <member name="M:Lbl.ElementoDeDatos.OnLoad">
+            <summary>
+            Se dispara cuando el elemento es cargado desde la base de datos.
+            </summary>
+        </member>
+        <member name="M:Lbl.ElementoDeDatos.Crear">
+            <summary>
+            Crea un nuevo elemento nuevo, con sus valores predeterminados.
+            </summary>
+        </member>
+        <member name="M:Lbl.ElementoDeDatos.AgregarComentario(System.String)">
+            <summary>
+            Agrega un comentario al historial de este elemento. El comentario se guarda inmediatamente en el historial.
+            Sólo se pueden agregar comentarios al elemento una vez que este fue guardado.
+            </summary>
+            <param name="texto">El texto del comentario.</param>
+        </member>
+        <member name="M:Lbl.ElementoDeDatos.Guardar">
+            <summary>
+            Guarda todos los cambios en la base de datos. Si se trata de un elemento nuevo, se agrega un registro a la base de datos.
+            Si se trata de un elemento existente, se modifica el registro original.
+            </summary>
+        </member>
+        <member name="M:Lbl.ElementoDeDatos.GuardarEtiquetas">
+            <summary>
+            Guarda los cambios que se hayan efectuado en las etiquetas.
+            </summary>
+        </member>
+        <member name="M:Lbl.ElementoDeDatos.GuardarLog">
+            <summary>
+            Guarda una entrada en el registro del sistema, indicando los cambios que se realizaron en este elemento.
+            </summary>
+        </member>
+        <member name="M:Lbl.ElementoDeDatos.AgregarTags(qGen.Command)">
+            <summary>
+            Agrega los campos personalizados (tags) al comando, antes de guardar.
+            </summary>
+            <param name="comando">El parámetro al cual agregar los campos.</param>
+        </member>
+        <member name="M:Lbl.ElementoDeDatos.GetFieldValue``1(System.String)">
+            <summary>
+            Obtiene el valor de un campo del registro asociado.
+            </summary>
+            <typeparam name="T">El tipo de datos a utilizar para el valor devuelto.</typeparam>
+            <param name="fieldName">El nombre del campo.</param>
+            <returns>El valor del campo.</returns>
+        </member>
+        <member name="M:Lbl.ElementoDeDatos.SetFieldValue(System.String,System.Object)">
+            <summary>
+            Establece el valor de un campo del registro asociado.
+            </summary>
+            <param name="fieldName">El nombre del campo.</param>
+            <param name="newVal">El valor a asignar.</param>
+        </member>
+        <member name="M:Lbl.ElementoDeDatos.FieldDateTime(System.String)">
+            <summary>
+            Devuelve el valor de un campo, convertido a Lfx.Types.LDateTime.
+            </summary>
+            <param name="fieldName">El nombre del campo.</param>
+            <returns>El valor</returns>
+        </member>
+        <member name="M:Lbl.ElementoDeDatos.ToString">
+            <summary>
+            Devuelve una representación de este elemento en formato de texto legible. Por ejemplo "Factura B 0001-000123".
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lbl.ElementoDeDatos.Cargar">
+            <summary>
+            Carga (o vuelve a cargar) el elemento desde su registro asociado en la base de datos.
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.Id">
+            <summary>
+            El valor de la clave primaria.
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.RegistroOriginal">
+            <summary>
+            Obtiene una copia de this.Registro como fue cargado desde la base de datos (sin las modificaciones que se puedan haber hecho y que aun no hayan sido guardadas).
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.Registro">
+            <summary>
+            Devuelve este elemento como un registro (Lfx.DataRow). Puede ser un registro existente en la base de datos
+            o uno nuevo.
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.TablaDatos">
+            <summary>
+            Devuelve el nombre de la tabla en la base de datos correspondiente a este elemento.
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.TablaImagenes">
+            <summary>
+            Devuelve el nombre de la tabla en la base de datos correspondiente a las imágenes de este elemento.
+            Puede ser la misma que la tabla de datos.
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.CampoId">
+            <summary>
+            Obtiene el nombre del campo que es clave primaria en la tabla de datos.
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.CampoNombre">
+            <summary>
+            Obtiene el nombre del campo detalle en la tabla de datos.
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.Workspace">
+            <summary>
+            Obtiene el espacio de trabajo actual.
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.Nombre">
+            <summary>
+            Obtiene o establece el nombre del elemento. Normalmente es el valor guadado en el el campo CampoNombre.
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.Obs">
+            <summary>
+            Obtiene o establece un texto que representa las observaciones del elemento.
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.Estado">
+            <summary>
+            Obtiene o establece el estado del elemento. El valor de esta propiedad tiene diferentes significados para cada
+            clase derivada.
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.ImagenCambio">
+            <summary>
+            Devuelve True si se agregó, quitó o cambió la imagen del elemento.
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.Imagen">
+            <summary>
+            Devuelve o establece la imagen asociada con este elemento.
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.Existe">
+            <summary>
+            Devuelve Verdadero si el elemento representa un registro existente en la base de datos o False en caso contrario.
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.Etiquetas">
+            <summary>
+            Obtiene o establece las etiquetas del elemento.
+            </summary>
+        </member>
+        <member name="T:Lbl.Impresion.TipoImpresora">
+            <summary>
+            Representa la relación entre un tipo de comprobante y una impresora.
+            </summary>
+        </member>
+        <member name="M:Lbl.ListaIds.ToString">
+            <summary>
+            Convierte la lista a una cadena, en la forma de una lista de valores separados por comas.
+            </summary>
+            <returns>Una lista de valores separados por comas.</returns>
+        </member>
+        <member name="T:Lbl.Personas.Usuario">
+            <summary>
+            Describe un usuario del sistema. En realidad es una vista diferente de un registro de la tabla de personas.
+            </summary>
+        </member>
+        <member name="T:Lbl.Sys.Permisos.Objeto">
+            <summary>
+            Describe un tipo de acceso que puede tener una persona.
+            </summary>
+        </member>
+        <member name="T:Lbl.Sys.Permisos.Permiso">
+            <summary>
+            Describe una instancia de un permiso en particular.
+            </summary>
+        </member>
+        <member name="M:Lbl.Comprobantes.Comprobante.Numerar(System.Int32,System.Boolean)">
+            <summary>
+            Numera el comprobante (usando el número especificado), guardando automáticamente los cambios.
+            </summary>
+            <param name="numero">El número que se asignó a este comprobante.</param>
+            <param name="yMarcarComoImpreso">Si es Verdadero, el comprobante se marca como impreso y se actualiza la fecha.</param>
+        </member>
+        <member name="M:Lbl.Comprobantes.Comprobante.Numerar(System.Boolean)">
+            <summary>
+            Numera el comprobante (usando el próximo número en el talonario), guardando automáticamente los cambios.
+            </summary>
+            <param name="yMarcarComoImpreso">Si es Verdadero, el comprobante se marca como impreso y se actualiza la fecha.</param>
+        </member>
+        <member name="M:Lbl.Comprobantes.ComprobanteConArticulos.RedondearImporte(System.Decimal)">
+            <summary>
+            Redondea y trunca un importe según la configuración de decimales y redondeo del sistema.
+            </summary>
+            <param name="importe">El importe a redondear.</param>
+            <returns>El importe redondeado y truncado.</returns>
+        </member>
+        <member name="P:Lbl.Comprobantes.ComprobanteConArticulos.SubTotal">
+            <summary>
+            Devuelve el subtotal, que es el importe de los artículos del comprobante, antes de descuentos y recargos.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.ComprobanteConArticulos.Total">
+            <summary>
+            Devuelve el importe total de la factura, redondeado a la cantidad de decimales configurada para el sistema.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.ComprobanteConArticulos.TotalSinRedondeo">
+            <summary>
+            Devuelve el importe de la factura, sin redondeos adicionales.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.ComprobanteConArticulos.ImporteImpago">
+            <summary>
+            Devuelve el importe que aun está impago.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.ComprobanteConArticulos.SubTotalSinIva">
+            <summary>
+            Devuelve el subtotal sin IVA, pero con descuentos, recargos y redondeos.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.ComprobanteConArticulos.ImporteIva">
+            <summary>
+            Devuelve el importe de IVA para esta factura.
+            </summary>
+        </member>
+        <member name="T:Lbl.Entidades.Moneda">
+            <summary>
+            Representa una moneda (divisa).
+            </summary>
+        </member>
+        <member name="T:Lbl.Impuestos.Alicuota">
+            <summary>
+            Representa una alícuota de IVA.
+            </summary>
+        </member>
         <member name="T:Lbl.Instanciador">
             <summary>
             Permite crear instancias de un objeto Lbl.ElementoDeDatos, o de una clase derivada, a partir de un registro o un id de registro.
             </summary>
         </member>
-        <member name="M:Lbl.Instanciador.Instanciar(System.Type,Lfx.Data.DataBase,Lfx.Data.Row)">
+        <member name="M:Lbl.Instanciador.Instanciar(System.Type,Lfx.Data.Connection)">
+            <summary>
+            Crea una instancia de un Lbl.ElementoDeDatos nuevo.
+            </summary>
+        </member>
+        <member name="M:Lbl.Instanciador.Instanciar(System.Type,Lfx.Data.Connection,Lfx.Data.Row)">
             <summary>
             Crea una instancia de un Lbl.ElementoDeDatos a partir de un registro de base de datos.
             </summary>
         </member>
-        <member name="M:Lbl.Instanciador.Instanciar(System.Type,Lfx.Data.DataBase,System.Int32)">
+        <member name="M:Lbl.Instanciador.Instanciar(System.Type,Lfx.Data.Connection,System.Int32)">
             <summary>
             Crea una instancia de un Lbl.ElementoDeDatos a partir de un id de registro.
             </summary>
         </member>
-        <member name="M:Lbl.Instanciador.Instanciar``1(Lfx.Data.DataBase,Lfx.Data.Row)">
+        <member name="M:Lbl.Instanciador.Instanciar``1(Lfx.Data.Connection,Lfx.Data.Row)">
             <summary>
             Crea una instancia de un Lbl.ElementoDeDatos a partir de un registro de base de datos.
             </summary>
         </member>
         <member name="M:Lbl.Instanciador.InferirTipo(System.String)">
             <summary>
-            Infiere el tipo (derivado de Lbl.ElementoDeDatos) a partir del nombre de la tabla.
+            Infiere el tipo (derivado de Lbl.ElementoDeDatos) a partir del nombre de la tabla o el nombre del tipo.
+            </summary>
+        </member>
+        <member name="T:Lbl.Personas.Proveedor">
+            <summary>
+            Representa un proveedor.
+            </summary>
+        </member>
+        <member name="T:Lbl.Personas.Persona">
+            <summary>
+            Representa una persona física o jurídica.
             </summary>
         </member>
         <member name="T:Lbl.Servicios.Desduplicador">
@@ -234,11 +461,30 @@
             Hace una lista de movimientos necesarios para convertir "original" en "this".
             </summary>
         </member>
-        <member name="T:Lbl.Comprobantes.Impresion.Fiscal.Modelos">
+        <member name="P:Lbl.Comprobantes.DetalleArticulo.Importe">
             <summary>
-            Impresión mediante controlador fiscal.
+            Devuelve el importe final a facturar (precio unitario multiplicado por la cantidad, más descuentos y recargos).
             </summary>
-            
+        </member>
+        <member name="P:Lbl.Comprobantes.DetalleArticulo.UnitarioAFacturar">
+            <summary>
+            Devuelve el precio unitario a facturar, según la discriminación de IVA del comprobante.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.DetalleArticulo.ImporteIva">
+            <summary>
+            Devuelve el importe de IVA que corresponde a este artículo.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.DetalleArticulo.IvaDiscriminado">
+            <summary>
+            Devuelve la cantidad de IVA que fue discriminado para este artículo, o 0 si no se discriminó IVA.
+            </summary>
+        </member>
+        <member name="T:Lbl.Pagos.FormaDePago">
+            <summary>
+            Representa una forma de pago. Tanto para emitir pagos como para recibir pagos.
+            </summary>
         </member>
         <member name="P:Lbl.Comprobantes.Tipo.LetraSola">
             <summary>
@@ -258,6 +504,7 @@
         <member name="T:Lbl.CuentasCorrientes.CuentaCorriente">
             <summary>
             Representa la cuenta corriente de una persona (cliente o proveedor).
+            No es realmente un ElementoDeDatos.
             </summary>
         </member>
         <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.Saldo(System.Boolean)">
@@ -272,19 +519,19 @@
             durante verificaciones de consistencia o al desduplicar cuentas.
             </summary>
         </member>
-        <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.Movimiento(System.Boolean,System.Int32,System.String,System.Double,System.String,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.Movimiento(System.Boolean,Lbl.Cajas.Concepto,System.String,System.Decimal,System.String,Lbl.Comprobantes.ComprobanteConArticulos,Lbl.Comprobantes.Recibo,System.String,System.Boolean)">
             <summary>
-            Asienta un movimiento en la cuenta corriente.
+            Asienta un movimiento en la cuenta corriente, y cancela comprobantes asociados.
             </summary>
             <param name="auto">Indica si es un movimiento automático (generado por el sistema) o manual (generado por el usuario).</param>
-            <param name="idConcepto">El concepto bajo el cual se realiza el movimiento.</param>
-            <param name="concepto">El texto que describe al concepto.</param>
+            <param name="concepto">El concepto bajo el cual se realiza el movimiento.</param>
+            <param name="textoConcepto">El texto que describe al concepto.</param>
             <param name="importeDebito">El importe a debitar de la cuenta. Un importe negativo indica un crédito.</param>
             <param name="obs">Observaciones.</param>
-            <param name="idComprob">El comprobante asociado a este movimiento.</param>
-            <param name="idRecibo">El recibo asociado a este movimiento.</param>
+            <param name="comprob">El comprobante asociado a este movimiento.</param>
+            <param name="recibo">El recibo asociado a este movimiento.</param>
             <param name="cancelaCosas">Indica si el monto del movimiento se usa para cancelar comprobantes impagos.</param>
-            <returns>El resultado de la operación</returns>
+            <param name="textoComprob">Un texto sobre los comprobantes asociados al sistema.</param>
         </member>
         <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.IngresarComprobante(Lbl.Comprobantes.ComprobanteConArticulos)">
             <summary>
@@ -322,12 +569,12 @@
             Devuelve o establece el importe bruto de la operación, sin incluir intereses.
             </summary>
         </member>
-        <member name="P:Lbl.Cuotas.Cuota.ImporteIntereses">
+        <member name="P:Lbl.Cuotas.Cuota.InteresTotal">
             <summary>
             Devuelve el monto total de intereses aplicado a esta operación.
             </summary>
         </member>
-        <member name="P:Lbl.Cuotas.Cuota.Intereses">
+        <member name="P:Lbl.Cuotas.Cuota.TasaInteresTotal">
             <summary>
             Devuelve el porcentaje de interés total aplicado a esta operación.
             </summary>
@@ -352,14 +599,50 @@
             Devuelve la "diferencia" (en meses) desde hoy (y no desde la fecha de la operación) hasta la fecha del primer pago (especialmente para las precancelaciones).
             </summary>
         </member>
-        <member name="P:Lbl.Cuotas.Cuota.MontoCuota">
+        <member name="P:Lbl.Cuotas.Cuota.ImporteCuota">
             <summary>
             Devuelve el monto de la cuota (es el importe total dividido por la cantidad de cuotas).
             </summary>
         </member>
-        <member name="T:Lbl.Cupones.Cupon">
+        <member name="T:Lbl.Entidades.Localidad">
+            <summary>
+            Representa una Provincia, Departamento o Localidad.
+            </summary>
+        </member>
+        <member name="T:Lbl.Entidades.Sucursal">
+            <summary>
+            Representa una sucursal de la empresa.
+            </summary>
+        </member>
+        <member name="T:Lbl.Etiqueta">
+            <summary>
+            Describe una etiqueta que se puede asociar a un ElementoDeDatos, por ejemplo "Destacado", "Nuevo", etc.
+            Se pueden asociar cero o más etiquetas a un elemento mediante la propiedad Etiquetas y el método GuardarEtiquetas().
+            </summary>
+        </member>
+        <member name="T:Lbl.Impuestos.SituacionTributaria">
+            <summary>
+            Representa la situación de una persona frente al fisco.
+            </summary>
+        </member>
+        <member name="M:Lbl.Sys.Config.ActionLog(Lfx.Data.Connection,Lbl.Sys.Log.Acciones,Lbl.IElementoDeDatos,System.String)">
+            <summary>
+            Escribe un evento en la tabla sys_log. Se utiliza para registrar operaciones de datos (altas, bajas, ingresos, egresos, etc.)
+            </summary>
+        </member>
+        <member name="T:Lbl.Tareas.Tarea">
+            <summary>
+            Representa una tarea.
+            </summary>
+        </member>
+        <member name="T:Lbl.Pagos.Cupon">
             <summary>
             Describe un pago con un cupón (por ejemplo pagos con tarjeta de crédito, vales, mutuales, etc.)
+            </summary>
+        </member>
+        <member name="T:Lbl.Pagos.Plan">
+            <summary>
+            Representa un plan de una tarjeta de crédito (p. ej.: "Plan 12 cuotas sin interés").
             </summary>
         </member>
         <member name="M:Lbl.Articulos.Articulo.SuperArticulos">
@@ -371,6 +654,11 @@
             <summary>
             Propaga los cambios de costo hacia arriba.
             Es decir, si este artículo es ingrediente en la receta de otros artículos, actualizar los artículos padre para que reflejen el cambio de costo de este ingrediente.
+            </summary>
+        </member>
+        <member name="T:Lbl.Impresion.Plantilla">
+            <summary>
+            Define una plantilla que se utiliza para imprimir un ElementoDeDatos.
             </summary>
         </member>
     </members>

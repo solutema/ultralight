@@ -1,0 +1,181 @@
+#region License
+// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// Este programa es software libre; puede distribuirlo y/o moficiarlo de
+// acuerdo a los términos de la Licencia Pública General de GNU (GNU
+// General Public License), como la publica la Fundación para el Software
+// Libre (Free Software Foundation), tanto la versión 3 de la Licencia
+// como (a su elección) cualquier versión posterior.
+//
+// Este programa se distribuye con la esperanza de que sea útil, pero SIN
+// GARANTÍA ALGUNA; ni siquiera la garantía MERCANTIL implícita y sin
+// garantizar su CONVENIENCIA PARA UN PROPÓSITO PARTICULAR. Véase la
+// Licencia Pública General de GNU para más detalles. 
+//
+// Debería haber recibido una copia de la Licencia Pública General junto
+// con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+
+namespace Lfc.Personas
+{
+        public partial class EditarPermiso : Lui.Forms.DialogForm
+        {
+                private Lbl.Sys.Permisos.Permiso m_Permiso = null;
+                public Lbl.Personas.Usuario Usuario;
+
+                public EditarPermiso()
+                {
+                        InitializeComponent();
+                }
+
+                private void CheckNivelEditar_CheckedChanged(object sender, EventArgs e)
+                {
+                        if (CheckNivelEditar.Checked)
+                                CheckNivelVer.Checked = true;
+                }
+
+                public Lbl.Sys.Permisos.Permiso Permiso
+                {
+                        get
+                        {
+                                Lbl.Sys.Permisos.Objeto Obj = EntradaObjeto.Elemento as Lbl.Sys.Permisos.Objeto;
+
+                                Lbl.ListaIds Item = null;
+                                if (EntradaItems.Text.Length > 0)
+                                        Item = new Lbl.ListaIds(EntradaItems.Text);
+
+                                if (m_Permiso == null) {
+                                        m_Permiso = new Lbl.Sys.Permisos.Permiso(this.Usuario, Obj, this.Operaciones, Item);
+                                } else {
+                                        m_Permiso.Objeto = EntradaObjeto.Elemento as Lbl.Sys.Permisos.Objeto;
+                                        m_Permiso.Operaciones = this.Operaciones;
+                                        m_Permiso.Item = Item;
+                                }
+
+                                return m_Permiso;
+                        }
+                        set
+                        {
+                                m_Permiso = value;
+                                EntradaObjeto.Elemento = m_Permiso.Objeto;
+                                this.Operaciones = m_Permiso.Operaciones;
+                                if (m_Permiso.Item == null)
+                                        EntradaItems.Text = "";
+                                else
+                                        EntradaItems.Text = m_Permiso.Item.ToString();
+                        }
+                }
+
+                public Lbl.Sys.Permisos.Operaciones Operaciones
+                {
+                        get
+                        {
+                                Lbl.Sys.Permisos.Operaciones Nivel = Lbl.Sys.Permisos.Operaciones.Ninguno;
+
+                                if (CheckNivelListar.Checked)
+                                        Nivel |= Lbl.Sys.Permisos.Operaciones.Listar;
+                                if (CheckNivelVer.Checked)
+                                        Nivel |= Lbl.Sys.Permisos.Operaciones.Ver;
+                                if (CheckNivelImprimir.Checked)
+                                        Nivel |= Lbl.Sys.Permisos.Operaciones.Imprimir;
+                                if (CheckNivelCrear.Checked)
+                                        Nivel |= Lbl.Sys.Permisos.Operaciones.Crear;
+                                if (CheckNivelEditar.Checked)
+                                        Nivel |= Lbl.Sys.Permisos.Operaciones.Editar;
+                                if (CheckNivelEditarAvanzado.Checked)
+                                        Nivel |= Lbl.Sys.Permisos.Operaciones.EditarAvanzado;
+                                if (CheckNivelMover.Checked)
+                                        Nivel |= Lbl.Sys.Permisos.Operaciones.Mover;
+                                if (CheckNivelEliminar.Checked)
+                                        Nivel |= Lbl.Sys.Permisos.Operaciones.Eliminar;
+                                if (CheckNivelAdministrar.Checked)
+                                        Nivel |= Lbl.Sys.Permisos.Operaciones.Administrar;
+                                if (CheckNivelExtra1.Checked)
+                                        Nivel |= Lbl.Sys.Permisos.Operaciones.Extra1;
+                                if (CheckNivelExtra2.Checked)
+                                        Nivel |= Lbl.Sys.Permisos.Operaciones.Extra2;
+                                if (CheckNivelExtra3.Checked)
+                                        Nivel |= Lbl.Sys.Permisos.Operaciones.Extra3;
+                                if (CheckNivelExtraA.Checked)
+                                        Nivel |= Lbl.Sys.Permisos.Operaciones.ExtraA;
+                                if (CheckNivelExtraB.Checked)
+                                        Nivel |= Lbl.Sys.Permisos.Operaciones.ExtraB;
+                                if (CheckNivelExtraC.Checked)
+                                        Nivel |= Lbl.Sys.Permisos.Operaciones.ExtraC;
+                                if (CheckNivelTotal.Checked)
+                                        Nivel |= Lbl.Sys.Permisos.Operaciones.Total;
+
+                                return Nivel;
+                        }
+                        set
+                        {
+                                CheckNivelListar.Checked = (value & Lbl.Sys.Permisos.Operaciones.Listar) == Lbl.Sys.Permisos.Operaciones.Listar;
+                                CheckNivelVer.Checked = (value & Lbl.Sys.Permisos.Operaciones.Ver) == Lbl.Sys.Permisos.Operaciones.Ver;
+                                CheckNivelImprimir.Checked = (value & Lbl.Sys.Permisos.Operaciones.Imprimir) == Lbl.Sys.Permisos.Operaciones.Imprimir;
+                                CheckNivelCrear.Checked = (value & Lbl.Sys.Permisos.Operaciones.Crear) == Lbl.Sys.Permisos.Operaciones.Crear;
+                                CheckNivelEditar.Checked = (value & Lbl.Sys.Permisos.Operaciones.Editar) == Lbl.Sys.Permisos.Operaciones.Editar;
+                                CheckNivelEditarAvanzado.Checked = (value & Lbl.Sys.Permisos.Operaciones.EditarAvanzado) == Lbl.Sys.Permisos.Operaciones.EditarAvanzado;
+                                CheckNivelMover.Checked = (value & Lbl.Sys.Permisos.Operaciones.Mover) == Lbl.Sys.Permisos.Operaciones.Mover;
+                                CheckNivelEliminar.Checked = (value & Lbl.Sys.Permisos.Operaciones.Eliminar) == Lbl.Sys.Permisos.Operaciones.Eliminar;
+                                CheckNivelAdministrar.Checked = (value & Lbl.Sys.Permisos.Operaciones.Administrar) == Lbl.Sys.Permisos.Operaciones.Administrar;
+                                CheckNivelExtra1.Checked = (value & Lbl.Sys.Permisos.Operaciones.Extra1) == Lbl.Sys.Permisos.Operaciones.Extra1;
+                                CheckNivelExtra2.Checked = (value & Lbl.Sys.Permisos.Operaciones.Extra2) == Lbl.Sys.Permisos.Operaciones.Extra2;
+                                CheckNivelExtra3.Checked = (value & Lbl.Sys.Permisos.Operaciones.Extra3) == Lbl.Sys.Permisos.Operaciones.Extra3;
+                                CheckNivelExtraA.Checked = (value & Lbl.Sys.Permisos.Operaciones.ExtraA) == Lbl.Sys.Permisos.Operaciones.ExtraA;
+                                CheckNivelExtraB.Checked = (value & Lbl.Sys.Permisos.Operaciones.ExtraB) == Lbl.Sys.Permisos.Operaciones.ExtraB;
+                                CheckNivelExtraC.Checked = (value & Lbl.Sys.Permisos.Operaciones.ExtraC) == Lbl.Sys.Permisos.Operaciones.ExtraC;
+                                CheckNivelTotal.Checked = (value & Lbl.Sys.Permisos.Operaciones.Total) == Lbl.Sys.Permisos.Operaciones.Total;
+                        }
+                }
+
+                public override Lfx.Types.OperationResult Ok()
+                {
+                        if (EntradaObjeto.TextInt == 0)
+                                return new Lfx.Types.FailureOperationResult("Seleccione un objeto");
+
+                        if (this.Operaciones == Lbl.Sys.Permisos.Operaciones.Ninguno)
+                                return new Lfx.Types.FailureOperationResult("Seleccione al menos un permiso");
+
+                        return base.Ok();
+                }
+
+                private void EntradaObjeto_TextChanged(object sender, EventArgs e)
+                {
+                        string NombreElemento = "Ítem";
+
+                        if (EntradaObjeto.TextInt != 0)
+                                NombreElemento = EntradaObjeto.TextDetail;
+
+                        CheckNivelListar.Text = CheckNivelListar.Tag.ToString().Replace("%s", NombreElemento);
+                        CheckNivelVer.Text = CheckNivelVer.Tag.ToString().Replace("%s", NombreElemento);
+                        CheckNivelImprimir.Text = CheckNivelImprimir.Tag.ToString().Replace("%s", NombreElemento);
+                        CheckNivelCrear.Text = CheckNivelCrear.Tag.ToString().Replace("%s", NombreElemento);
+                        CheckNivelEditar.Text = CheckNivelEditar.Tag.ToString().Replace("%s", NombreElemento);
+                        CheckNivelEditarAvanzado.Text = CheckNivelEditarAvanzado.Tag.ToString().Replace("%s", NombreElemento);
+                        CheckNivelMover.Text = CheckNivelMover.Tag.ToString().Replace("%s", NombreElemento);
+                        CheckNivelEliminar.Text = CheckNivelEliminar.Tag.ToString().Replace("%s", NombreElemento);
+                        CheckNivelAdministrar.Text = CheckNivelAdministrar.Tag.ToString().Replace("%s", NombreElemento);
+                }
+        }
+}
