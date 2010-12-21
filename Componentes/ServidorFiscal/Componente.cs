@@ -370,7 +370,7 @@ namespace ServidorFiscal
 
                                 SmtpClient Cliente = new SmtpClient("mail.sistemalazaro.com.ar");
                                 Cliente.Send(Mensaje);
-                        } catch () {
+                        } catch {
                                 // No pude enviar el reporte. No importa.
                         }
                 }
