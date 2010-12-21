@@ -128,30 +128,7 @@ namespace Lazaro
                                 Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
                         }
 
-
-                        // Me fijo si necesito descargar algún archivo adicional
-                        bool NeedsMySqlConnector = System.IO.File.Exists("MySql.Data.dll") == false;
-                        bool NeedsSharpZipLib = System.IO.File.Exists("ICSharpCode.SharpZipLib.dll") == false;
-
-                        if (NeedsSharpZipLib || NeedsMySqlConnector) {
-                                using (Actualizador.Estado Estado = new Lazaro.Actualizador.Estado()) {
-                                        Estado.EtiquetaEstado.Text = "Se están descargando algunos archivos necesarios para el funcionamiento del sistema.";
-                                        Estado.Show();
-                                        Estado.Refresh();
-
-                                        if (NeedsSharpZipLib)
-                                                Lfx.Services.Updater.NetGet(@"http://www.sistemalazaro.com.ar/aslnlwc/ICSharpCode.SharpZipLib.dll", Lfx.Environment.Folders.UpdatesFolder + "ICSharpCode.SharpZipLib.dll.new");
-
-                                        if (NeedsMySqlConnector)
-                                                Lfx.Services.Updater.NetGet(@"http://www.sistemalazaro.com.ar/aslnlwc/MySql.Data.dll", Lfx.Environment.Folders.UpdatesFolder + "MySql.Data.dll.new");
-
-                                        Estado.Dispose();
-                                }
-
-                                if (NeedsMySqlConnector || NeedsSharpZipLib)
-                                        Lfx.Environment.Shell.Reboot();
-                        }
-
+                        DescargarArchivosNecesarios();
 
                         //Si no hay espacio de trabajo predeterminado (default.lwf), presento una ventana de selección
                         System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ApplicationDataFolder);
@@ -241,6 +218,47 @@ namespace Lazaro
                                 Lui.Forms.MessageBox.Show(ResultadoInicio.Message, "Error al Iniciar");
 
                         return 0;
+                }
+
+
+                private static void DescargarArchivosNecesarios()
+                {
+                        List<string> ArchivosNecesarios = new List<string>()
+                        {
+                                "Interop.WIA.dll",
+                                "MySql.Data.dll",
+                                "ICSharpCode.SharpZipLib.dll"
+                        };
+                        List<string> ArchivosFaltantes = new List<string>();
+
+                        foreach (string Arch in ArchivosNecesarios) {
+                                if (System.IO.File.Exists(Arch) == false)
+                                        ArchivosFaltantes.Add(Arch);
+                        }
+
+                        if (ArchivosFaltantes.Count > 0) {
+                                Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Descargando archivos adicionales", "Se van a descargar algunos archivos necesarios para el funcionamiento de Lázaro");
+                                Progreso.Max = ArchivosFaltantes.Count;
+                                Progreso.Begin();
+                                
+                                bool CanWriteToAppFolder = Lfx.Environment.SystemInformation.CanWriteToAppFolder;
+                                foreach (string Arch in ArchivosFaltantes) {
+                                        Progreso.ChangeStatus("Descargando " + Arch);
+                                        string ArchDestino;
+                                        if (CanWriteToAppFolder)
+                                                // Lo descargo directamente a la carpeta de la aplicación
+                                                ArchDestino = Lfx.Environment.Folders.ApplicationFolder + Arch;
+                                        else
+                                                // Tengo UAC, lo descargo a la carpeta de actualizaciones y luego tengo que iniciar el Cargador.exe
+                                                ArchDestino = Lfx.Environment.Folders.UpdatesFolder + Arch + ".new";
+                                        Lfx.Services.Updater.NetGet(@"http://www.sistemalazaro.com.ar/aslnlwc/" + Arch, ArchDestino);
+                                        Progreso.Advance(1);
+                                }
+                                Progreso.End();
+
+                                if (CanWriteToAppFolder == false)
+                                        Lfx.Environment.Shell.Reboot();
+                        }
                 }
 
 

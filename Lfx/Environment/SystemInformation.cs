@@ -200,5 +200,21 @@ namespace Lfx.Environment
                                 }
                         }
                 }
+
+                public static bool CanWriteToAppFolder
+                {
+                        get
+                        {
+                                try {
+                                        System.IO.FileStream Wr = System.IO.File.Create(Lfx.Environment.Folders.ApplicationFolder + "test.dat");
+                                        Wr.Close();
+                                        Wr.Dispose();
+                                        System.IO.File.Delete(Lfx.Environment.Folders.ApplicationFolder + "test.dat");
+                                } catch {
+                                        return false;
+                                }
+                                return true;
+                        }
+                }
 	}
 }
