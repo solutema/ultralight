@@ -280,7 +280,7 @@ namespace Lbl.Comprobantes
                 public virtual DetalleArticulo Clone()
                 {
                         DetalleArticulo Res;
-                        if (this.Comprobante == null)
+                        if (this.Comprobante == null || this.Id == 0)
                                 Res = new DetalleArticulo(this.Connection);
                         else
                                 Res = new DetalleArticulo(this.Comprobante, this.Id);
