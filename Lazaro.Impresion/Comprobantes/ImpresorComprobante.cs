@@ -225,13 +225,17 @@ namespace Lazaro.Impresion.Comprobantes
                                         else
                                                 return this.Comprobante.Cliente.DomicilioLaboral;
                                 case "CLIENTE.DOCUMENTO":
-                                        if (this.Comprobante.Cliente.Cuit != null && this.Comprobante.Cliente.Cuit.Length > 0)
-                                                return this.Comprobante.Cliente.Cuit;
+                                        if (this.Comprobante.Cliente.Cuit != null)
+                                                return this.Comprobante.Cliente.Cuit.ToString();
                                         else
                                                 return this.Comprobante.Cliente.NumeroDocumento;
                                 case "CUIT":
                                 case "CLIENTE.CUIT":
-                                        return this.Comprobante.Cliente.Cuit;
+                                        if (this.Comprobante.Cliente.Cuit != null)
+                                                return this.Comprobante.Cliente.Cuit.ToString();
+                                        else
+                                                return "";
+
                                 case "IVA":
                                 case "CLIENTE.IVA":
                                         return this.Comprobante.Cliente.SituacionTributaria.ToString();

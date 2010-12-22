@@ -200,7 +200,10 @@ namespace Lfc.Personas
 
                         EntradaRazonSocial.Text = Cliente.RazonSocial;
                         EntradaRazonSocial.Enabled = PermitirEdicionAvanzada;
-                        EntradaCuit.Text = Cliente.Cuit;
+                        if (Cliente.Cuit != null)
+                                EntradaCuit.Text = Cliente.Cuit.ToString();
+                        else
+                                EntradaCuit.Text = "";
                         EntradaCuit.Enabled = PermitirEdicionAvanzada;
                         EntradaSituacion.Elemento = Cliente.SituacionTributaria;
                         EntradaSituacion.Enabled = PermitirEdicionAvanzada;
@@ -339,7 +342,10 @@ namespace Lfc.Personas
                         Res.Nombre = EntradaNombreVisible.Text;
                         Res.TipoDocumento = EntradaTipoDoc.TextInt;
                         Res.NumeroDocumento = EntradaNumDoc.Text;
-                        Res.Cuit = EntradaCuit.Text;
+                        if (EntradaCuit.Text.Length > 0)
+                                Res.Cuit = new Lbl.Personas.Cuit(EntradaCuit.Text);
+                        else
+                                Res.Cuit = null;
                         Res.Estado = Lfx.Types.Parsing.ParseInt(EntradaEstado.TextKey);
                         Res.SituacionTributaria = EntradaSituacion.Elemento as Lbl.Impuestos.SituacionTributaria;
 

@@ -62,15 +62,22 @@ namespace Lbl.Sys.Configuracion
                         }
                 }
 
-                public string Cuit
+                public Personas.IIdentificadorUnico Cuit
                 {
                         get
                         {
-                                return this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Empresa.CUIT", "00-00000000-0");
+                                string Res = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Empresa.CUIT", "00-00000000-0");
+                                if (Res == "00-00000000-0")
+                                        return null;
+                                else
+                                        return new Personas.Cuit(Res);
                         }
                         set
                         {
-                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Empresa.CUIT", value, 0);
+                                if (value == null)
+                                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Empresa.CUIT", "00-00000000-0", 0);
+                                else
+                                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Empresa.CUIT", value.ToString(), 0);
                         }
                 }
 

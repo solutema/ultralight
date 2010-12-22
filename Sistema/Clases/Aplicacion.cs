@@ -341,8 +341,8 @@ namespace Lazaro
                 /// </summary>
                 private static Lfx.Types.OperationResult IniciarNormal()
                 {
-                        string Cuit = Lbl.Sys.Config.Actual.Empresa.Cuit;
-                        if (Cuit == null || Cuit.Length == 0 || Cuit == "00-00000000-0") {
+                        Lbl.Personas.IIdentificadorUnico Cuit = Lbl.Sys.Config.Actual.Empresa.Cuit;
+                        if (Cuit == null || Cuit.EsValido() == false) {
                                 Misc.Config.Preferencias FormConfig = new Misc.Config.Preferencias();
                                 FormConfig.BotonSiguiente.Visible = false;
                                 if (FormConfig.ShowDialog() == DialogResult.OK)

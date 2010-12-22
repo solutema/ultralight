@@ -366,19 +366,19 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                         break;
                                 case 2:
                                         ClienteTipoDoc = "CUIT";
-                                        ClienteNumDoc = Comprob.Cliente.Cuit.Replace("-", "").Replace(" ", "").Replace(".", "");
+                                        ClienteNumDoc = Comprob.Cliente.Cuit.ToString().Replace("-", "");
                                         break;
                                 case 3:
                                         ClienteTipoDoc = "CUIT";
-                                        ClienteNumDoc = Comprob.Cliente.Cuit.Replace("-", "").Replace(" ", "").Replace(".", "");
+                                        ClienteNumDoc = Comprob.Cliente.Cuit.ToString().Replace("-", "");
                                         break;
                                 case 4:
                                         ClienteTipoDoc = "CUIT";
-                                        ClienteNumDoc = Comprob.Cliente.Cuit.Replace("-", "").Replace(" ", "").Replace(".", "");
+                                        ClienteNumDoc = Comprob.Cliente.Cuit.ToString().Replace("-", "");
                                         break;
                                 case 5:
                                         ClienteTipoDoc = "CUIT";
-                                        ClienteNumDoc = Comprob.Cliente.Cuit.Replace("-", "").Replace(" ", "").Replace(".", "");
+                                        ClienteNumDoc = Comprob.Cliente.Cuit.ToString().Replace("-", "");
                                         break;
                         }
 

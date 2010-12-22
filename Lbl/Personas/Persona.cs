@@ -118,7 +118,7 @@ namespace Lbl.Personas
                         if (this.Cuit == null)
                                 Comando.Fields.AddWithValue("cuit", null);
                         else
-                                Comando.Fields.AddWithValue("cuit", this.Cuit.Replace(".", "").Replace(",", "").Replace(" ", ""));
+                                Comando.Fields.AddWithValue("cuit", this.Cuit.Valor);
                         if (this.SituacionTributaria == null)
                                 Comando.Fields.AddWithValue("id_situacion", null);
                         else
@@ -223,15 +223,15 @@ namespace Lbl.Personas
                         }
                 }
 
-		public string Cuit
+                public IIdentificadorUnico Cuit
 		{
 			get
 			{
-				return this.GetFieldValue<string>("cuit");
+				return new Cuit(this.GetFieldValue<string>("cuit"));
 			}
                         set
                         {
-                                this.Registro["cuit"] = value;
+                                this.Registro["cuit"] = value.Valor;
                         }
 		}
 

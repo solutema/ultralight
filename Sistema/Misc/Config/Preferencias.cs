@@ -57,11 +57,6 @@ namespace Lazaro.Misc.Config
 
                 private void BotonAceptar_Click(object sender, System.EventArgs e)
                 {
-                        if (BotonSiguiente.Visible == false) {
-                                this.DialogResult = DialogResult.OK;
-                                this.Close();
-                        }
-
                         if (GuardarConfig() == false) {
                                 this.DialogResult = DialogResult.OK;
                                 this.Close();
@@ -87,7 +82,10 @@ namespace Lazaro.Misc.Config
 			EntradaStockDecimales.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.Decimales", "0");
 
                         EntradaEmpresaNombre.Text = Lbl.Sys.Config.Actual.Empresa.Nombre;
-                        EntradaEmpresaCuit.Text = Lbl.Sys.Config.Actual.Empresa.Cuit;
+                        if (Lbl.Sys.Config.Actual.Empresa.Cuit == null)
+                                EntradaEmpresaCuit.Text = "";
+                        else
+                                EntradaEmpresaCuit.Text = Lbl.Sys.Config.Actual.Empresa.Cuit.ToString();
 			EntradaEmpresaSituacion.TextInt = this.Workspace.CurrentConfig.Empresa.SituacionTributaria;
                         EntradaEmpresaEmail.Text = Lbl.Sys.Config.Actual.Empresa.Email;
 
@@ -139,7 +137,10 @@ namespace Lazaro.Misc.Config
 				this.Workspace.CurrentConfig.DeleteGlobalSetting("Sistema", "Stock.DepositoPredet", Sucursal);
 
                         Lbl.Sys.Config.Actual.Empresa.Nombre = EntradaEmpresaNombre.Text;
-                        Lbl.Sys.Config.Actual.Empresa.Cuit = EntradaEmpresaCuit.Text;
+                        if (EntradaEmpresaCuit.Text.Length > 0)
+                                Lbl.Sys.Config.Actual.Empresa.Cuit = new Lbl.Personas.Cuit(EntradaEmpresaCuit.Text);
+                        else
+                                Lbl.Sys.Config.Actual.Empresa.Cuit = null;
 			this.Workspace.CurrentConfig.Empresa.SituacionTributaria = EntradaEmpresaSituacion.TextInt;
                         Lbl.Sys.Config.Actual.Empresa.Email = EntradaEmpresaEmail.Text;
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Backup.Tipo", EntradaBackup.TextKey, System.Environment.MachineName.ToUpperInvariant());

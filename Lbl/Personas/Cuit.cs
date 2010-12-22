@@ -1,4 +1,4 @@
-﻿namespace Lfc.Personas
+﻿namespace Lbl.Personas
 {
         public class Cuit : IIdentificadorUnico
         {
@@ -9,7 +9,7 @@
                         string Res = valor;
 
                         if (Res != null)
-                                Res = Res.Replace(".", "").Replace("-", "").Replace("/", "");
+                                Res = Res.Replace(".", "").Replace("-", "").Replace("/", "").Replace(" ", "").Replace("_", "");
 
                         if (Res.Length == 11)
                                 this.Valor = Res.Substring(0, 2) + "-" + Res.Substring(2, 8) + "-" + Res.Substring(10, 1);

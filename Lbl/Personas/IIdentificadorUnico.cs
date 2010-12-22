@@ -1,4 +1,4 @@
-﻿namespace Lfc.Personas
+﻿namespace Lbl.Personas
 {
         public interface IIdentificadorUnico
         {
