@@ -151,12 +151,12 @@ namespace Lfc.Comprobantes
                         this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.CanCreate = false;
                         this.EntradaCliente.DataTextField = "nombre_visible";
+                        this.EntradaCliente.DataValueField = "id_persona";
                         this.EntradaCliente.ExtraDetailFields = null;
                         this.EntradaCliente.Filter = "";
                         this.EntradaCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCliente.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCliente.FreeTextCode = "";
-                        this.EntradaCliente.DataValueField = "id_persona";
                         this.EntradaCliente.Location = new System.Drawing.Point(137, 152);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
@@ -190,6 +190,7 @@ namespace Lfc.Comprobantes
                         // 
                         // EntradaEstado
                         // 
+                        this.EntradaEstado.AlwaysExpanded = false;
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.AutoTab = true;
@@ -225,6 +226,7 @@ namespace Lfc.Comprobantes
                         // 
                         // EntradaTipo
                         // 
+                        this.EntradaTipo.AlwaysExpanded = false;
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.AutoTab = true;
@@ -238,6 +240,7 @@ namespace Lfc.Comprobantes
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.SetData = new string[] {
+        "Comprob. Facturables|Lbl.Comprobantes.ComprobanteFacturable",
         "Facturas|Lbl.Comprobantes.Factura",
         "Tickets|Lbl.Comprobantes.Ticket",
         "Notas de Crédito|Lbl.Comprobantes.NotaDeCredito",
@@ -245,10 +248,9 @@ namespace Lfc.Comprobantes
         "Presupuestos|Lbl.Comprobantes.Presupuesto",
         "Remitos|Lbl.Comprobantes.Remito"};
                         this.EntradaTipo.Size = new System.Drawing.Size(180, 25);
-                        this.EntradaTipo.TabIndex = 1;
+                        this.EntradaTipo.TabIndex = 0;
                         this.EntradaTipo.Table = null;
-                        this.EntradaTipo.Text = "Facturas";
-                        this.EntradaTipo.TextKey = "";
+                        this.EntradaTipo.TextKey = "Lbl.Comprobantes.Factura";
                         this.EntradaTipo.TipWhenBlank = "";
                         this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
@@ -270,12 +272,12 @@ namespace Lfc.Comprobantes
                         this.EntradaVendedor.AutoTab = true;
                         this.EntradaVendedor.CanCreate = false;
                         this.EntradaVendedor.DataTextField = "nombre_visible";
+                        this.EntradaVendedor.DataValueField = "id_persona";
                         this.EntradaVendedor.ExtraDetailFields = null;
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
                         this.EntradaVendedor.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaVendedor.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaVendedor.FreeTextCode = "";
-                        this.EntradaVendedor.DataValueField = "id_persona";
                         this.EntradaVendedor.Location = new System.Drawing.Point(137, 182);
                         this.EntradaVendedor.MaxLength = 200;
                         this.EntradaVendedor.Name = "EntradaVendedor";
@@ -300,6 +302,7 @@ namespace Lfc.Comprobantes
                         // 
                         // EntradaAnuladas
                         // 
+                        this.EntradaAnuladas.AlwaysExpanded = false;
                         this.EntradaAnuladas.AutoNav = true;
                         this.EntradaAnuladas.AutoSize = true;
                         this.EntradaAnuladas.AutoTab = true;
@@ -318,7 +321,6 @@ namespace Lfc.Comprobantes
                         this.EntradaAnuladas.Size = new System.Drawing.Size(248, 25);
                         this.EntradaAnuladas.TabIndex = 17;
                         this.EntradaAnuladas.Table = null;
-                        this.EntradaAnuladas.Text = "Ocultar";
                         this.EntradaAnuladas.TextKey = "0";
                         this.EntradaAnuladas.TipWhenBlank = "";
                         this.EntradaAnuladas.ToolTipText = "";
@@ -340,12 +342,12 @@ namespace Lfc.Comprobantes
                         this.EntradaSucursal.AutoTab = true;
                         this.EntradaSucursal.CanCreate = false;
                         this.EntradaSucursal.DataTextField = "nombre";
+                        this.EntradaSucursal.DataValueField = "id_sucursal";
                         this.EntradaSucursal.ExtraDetailFields = null;
                         this.EntradaSucursal.Filter = "";
                         this.EntradaSucursal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaSucursal.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaSucursal.FreeTextCode = "";
-                        this.EntradaSucursal.DataValueField = "id_sucursal";
                         this.EntradaSucursal.Location = new System.Drawing.Point(137, 3);
                         this.EntradaSucursal.MaxLength = 200;
                         this.EntradaSucursal.Name = "EntradaSucursal";
@@ -376,12 +378,12 @@ namespace Lfc.Comprobantes
                         this.EntradaFormaPago.AutoTab = true;
                         this.EntradaFormaPago.CanCreate = false;
                         this.EntradaFormaPago.DataTextField = "nombre";
+                        this.EntradaFormaPago.DataValueField = "id_formapago";
                         this.EntradaFormaPago.ExtraDetailFields = null;
                         this.EntradaFormaPago.Filter = "";
                         this.EntradaFormaPago.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFormaPago.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFormaPago.FreeTextCode = "";
-                        this.EntradaFormaPago.DataValueField = "id_formapago";
                         this.EntradaFormaPago.Location = new System.Drawing.Point(137, 33);
                         this.EntradaFormaPago.MaxLength = 200;
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
@@ -406,6 +408,7 @@ namespace Lfc.Comprobantes
                         // 
                         // EntradaLetra
                         // 
+                        this.EntradaLetra.AlwaysExpanded = false;
                         this.EntradaLetra.AutoNav = true;
                         this.EntradaLetra.AutoSize = true;
                         this.EntradaLetra.AutoTab = true;
@@ -426,9 +429,8 @@ namespace Lfc.Comprobantes
         "E|E",
         "M|M"};
                         this.EntradaLetra.Size = new System.Drawing.Size(84, 25);
-                        this.EntradaLetra.TabIndex = 0;
+                        this.EntradaLetra.TabIndex = 1;
                         this.EntradaLetra.Table = null;
-                        this.EntradaLetra.Text = "Todas";
                         this.EntradaLetra.TextKey = "*";
                         this.EntradaLetra.TipWhenBlank = "";
                         this.EntradaLetra.ToolTipText = "";
@@ -476,7 +478,7 @@ namespace Lfc.Comprobantes
                         this.EntradaFechas.MuestraFuturos = false;
                         this.EntradaFechas.Name = "EntradaFechas";
                         this.EntradaFechas.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechas.Size = new System.Drawing.Size(446, 32);
+                        this.EntradaFechas.Size = new System.Drawing.Size(446, 33);
                         this.EntradaFechas.TabIndex = 19;
                         this.EntradaFechas.ToolTipText = "";
                         // 
@@ -659,7 +661,10 @@ namespace Lfc.Comprobantes
 
                 private void EntradaTipo_TextChanged(object sender, EventArgs e)
                 {
-                        EntradaLetra.Enabled = (EntradaTipo.TextKey == "F" || EntradaTipo.TextKey == "NC" || EntradaTipo.TextKey == "ND" || EntradaTipo.TextKey == "NCD");
+                        EntradaLetra.Enabled = (EntradaTipo.TextKey == "Lbl.Comprobantes.Factura"
+                                || EntradaTipo.TextKey == "Lbl.Comprobantes.ComprobanteFacturable"
+                                || EntradaTipo.TextKey == "Lbl.Comprobantes.NotaDeCredito"
+                                || EntradaTipo.TextKey == "Lbl.Comprobantes.NotaDeDebito");
                 }
         }
 }

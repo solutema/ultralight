@@ -126,6 +126,8 @@ namespace Lbl
                                 case "comprobante":
                                 case "Lbl.Comprobantes.ComprobanteConArticulos":
                                         return typeof(Lbl.Comprobantes.ComprobanteConArticulos);
+                                case "Lbl.Comprobantes.ComprobanteFacturable":
+                                        return typeof(Lbl.Comprobantes.ComprobanteFacturable);
                                 case "Lbl.Comprobantes.Factura":
                                 case "FA":
                                 case "FB":

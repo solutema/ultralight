@@ -69,6 +69,7 @@ namespace Lazaro.Impresion
                                 case "Lbl.Comprobantes.ReciboDePago":
                                         return typeof(Impresion.Comprobantes.ImpresorRecibo);
                                 case "Lbl.Comprobantes.ComprobanteConArticulo":
+                                case "Lbl.Comprobantes.ComprobanteFacturable":
                                 case "Lbl.Comprobantes.Factura":
                                 case "Lbl.Comprobantes.NotaDeDebito":
                                 case "Lbl.Comprobantes.NotaDeCredito":

@@ -29,14 +29,10 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Lbl.Comprobantes
 {
         [Lbl.Atributos.NombreItem("Ticket")]
-        public class Ticket : ComprobanteConArticulos
+        public class Ticket : ComprobanteFacturable
         {
                 //Heredar constructor
                 public Ticket(Lfx.Data.Connection dataBase)

@@ -36,7 +36,7 @@ using System.Text;
 namespace Lbl.Comprobantes
 {
         [Lbl.Atributos.NombreItem("Nota de Crédito")]
-        public class NotaDeCredito : Factura
+        public class NotaDeCredito : ComprobanteFacturable
         {
                 //Heredar constructor
                 public NotaDeCredito(Lfx.Data.Connection dataBase)

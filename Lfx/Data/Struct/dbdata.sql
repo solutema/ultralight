@@ -4212,7 +4212,7 @@ INSERT INTO tickets_tipos VALUES (99, 'Otra', '', 1);
 
 
 INSERT INTO personas (id_persona, tipo, id_grupo, vendedor, nombre, apellido, razon_social, nombre_visible, contrasena, id_tipo_doc, num_doc, cuit, id_situacion, domicilio, id_ciudad, telefono, email, tipo_fac, obs, estado) VALUES (1, 4, NULL, 1, 'Administrador', '', '', 'Administrador', 'admin', NULL, '', '', NULL, '', NULL, '', '', '', '', 1);
-INSERT INTO personas (id_persona, tipo, id_grupo, vendedor, nombre, apellido, razon_social, nombre_visible, contrasena, id_tipo_doc, num_doc, cuit, id_situacion, domicilio, id_ciudad, telefono, email, tipo_fac, obs, estado) VALUES (999, 1, NULL, 0, '', '', '', 'Consumidor Final', '', NULL, '', '', NULL, '', NULL, '', '', '', '', 1);
+INSERT INTO personas (id_persona, tipo, id_grupo, vendedor, nombre, apellido, razon_social, nombre_visible, contrasena, id_tipo_doc, num_doc, cuit, id_situacion, domicilio, id_ciudad, telefono, email, tipo_fac, obs, estado) VALUES (999, 1, NULL, 0, '', '', 'Consumidor Final', 'Consumidor Final', '', NULL, '', '', 1, '', NULL, '', '', '', '', 1);
 
 INSERT INTO articulos_codigos (id_codigo, nombre, id_proveedor) VALUES (1, 'Código 1', NULL);
 INSERT INTO articulos_codigos (id_codigo, nombre, id_proveedor) VALUES (2, 'Código 2', NULL);
@@ -4245,11 +4245,19 @@ INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('2','
 INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('3','Artículos','Lbl.Articulos.Articulo');
 INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('4','Cajas','Lbl.Cajas.Caja');
 INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('5','Cuentas Corrientes','Lbl.CuentasCorrientes.CuentaCorriente');
-INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('6','Comprobantes con Artículos','Lbl.Comprobantes.ComprobanteConArticulos');
+INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('6','Comprobantes: Comprobantes con Artículos','Lbl.Comprobantes.ComprobanteConArticulos');
 INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('7','Recibos de Cobro','Lbl.Comprobantes.ReciboDeCobro');
 INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('8','Recibos de Pago','Lbl.Comprobantes.ReciboDePago');
-INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('9','Facturas','Lbl.Comprobantes.Factura');
+INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('9','Comprobantes: Facturas','Lbl.Comprobantes.Factura');
 INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('10','Bancos: Chequeras','Lbl.Bancos.Chequera');
+INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('11','Bancos: Cheques','Lbl.Bancos.Cheque');
+INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('12','Tareas','Lbl.Tareas.Tarea');
+INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('13','Comprobantes: Recibos de Pago','Lbl.Comprobantes.ReciboDePago');
+INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('14','Comprobantes: Recibos de Cobro','Lbl.Comprobantes.ReciboDeCobro');
+INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('15','Comprobantes: Presupuestos','Lbl.Comprobantes.Presupuesto');
+INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('16','Comprobantes: Remitos','Lbl.Comprobantes.Remito');
+INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('17','Comprobantes: Comprobantes Facturables','Lbl.Comprobantes.ComprobanteFacturable');
+
 
 INSERT INTO "sys_permisos" ("id_permiso", "id_objeto", "id_persona", "items", "ops") VALUES (1, 1, 1, null, 65536);
 

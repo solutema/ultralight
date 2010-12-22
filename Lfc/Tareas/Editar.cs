@@ -206,19 +206,19 @@ namespace Lfc.Tareas
                                 return;
                         }
 
-                        Lbl.Comprobantes.Factura Factura;
+                        Lbl.Comprobantes.ComprobanteFacturable Factura;
 
                         int ComprobanteId = Lfx.Types.Parsing.ParseInt(EntradaComprobanteId.Text);
                         bool ComprobanteAnulado = System.Convert.ToBoolean(this.Connection.FieldInt("SELECT anulada FROM comprob WHERE id_comprob=" + ComprobanteId.ToString()));
 
                         if (ComprobanteId > 0 && ComprobanteAnulado == false) {
                                 // Ya tiene un comprobante, pero fue anulado
-                                Factura = new Lbl.Comprobantes.Factura(this.Connection, ComprobanteId);
+                                Factura = new Lbl.Comprobantes.ComprobanteFacturable(this.Connection, ComprobanteId);
                         } else {
                                 // No tiene comprobante, lo creo
                                 EntradaEstado.Text = "50";
 
-                                Factura = new Lbl.Comprobantes.Factura(this.Connection);
+                                Factura = new Lbl.Comprobantes.ComprobanteFacturable(this.Connection);
 
                                 Factura.Crear();
                                 Factura.Cliente = EntradaCliente.Elemento as Lbl.Personas.Persona;

@@ -82,6 +82,7 @@
     <Compile Include="Atributos\MuestraPanelExtendido.cs" />
     <Compile Include="Atributos\NombreItem.cs" />
     <Compile Include="ColeccionCodigoDetalle.cs" />
+    <Compile Include="Comprobantes\Factura.cs" />
     <Compile Include="Comprobantes\Lote.cs" />
     <Compile Include="ICuenta.cs" />
     <Compile Include="IElementoDeDatos.cs" />
@@ -121,7 +122,7 @@
     <Compile Include="Cajas\TiposDeCaja.cs" />
     <Compile Include="ColeccionGenerica.cs" />
     <Compile Include="Comprobantes\ComprobanteDeCompra.cs" />
-    <Compile Include="Comprobantes\Factura.cs" />
+    <Compile Include="Comprobantes\ComprobanteFacturable.cs" />
     <Compile Include="Comprobantes\NotaDeCredito.cs" />
     <Compile Include="Comprobantes\NotaDeDebito.cs" />
     <Compile Include="Comprobantes\Presupuesto.cs" />

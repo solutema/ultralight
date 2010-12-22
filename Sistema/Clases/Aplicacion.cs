@@ -1110,6 +1110,7 @@ namespace Lazaro
                                 case "COMPROBANTE":
                                 case "COMPROBANTES":
                                 case "Lbl.Comprobantes.ComprobanteConArticulos":
+                                case "Lbl.Comprobantes.ComprobanteFacturable":
                                 case "Lbl.Comprobantes.Factura":
                                 case "Lbl.Comprobantes.Presupuesto":
                                 case "Lbl.Comprobantes.NotaDeCredito":

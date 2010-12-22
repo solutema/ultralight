@@ -16,6 +16,7 @@ REPLACE INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('13'
 REPLACE INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('14','Comprobantes: Recibos de Cobro','Lbl.Comprobantes.ReciboDeCobro');
 REPLACE INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('15','Comprobantes: Presupuestos','Lbl.Comprobantes.Presupuesto');
 REPLACE INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('16','Comprobantes: Remitos','Lbl.Comprobantes.Remito');
+REPLACE INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('17','Comprobantes: Comprobantes Facturables','Lbl.Comprobantes.ComprobanteFacturable');
 
 REPLACE INTO "sys_permisos" ("id_permiso", "id_objeto", "id_persona", "items", "ops") VALUES (1, 1, 1, null, 65536);
 

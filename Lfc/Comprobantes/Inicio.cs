@@ -179,7 +179,7 @@ namespace Lfc.Comprobantes
                                 case "Lbl.Comprobantes.NotaDeCredito":
                                         this.FormFields["pendiente"].Visible = true;
                                         if (m_Letra == "*")
-                                                this.CustomFilters.AddWithValue("comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM')");
+                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "NCA", "NCB", "NCC", "NCE", "NCM" });
                                         else
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac", "NC" + m_Letra);
                                         break;
@@ -187,7 +187,7 @@ namespace Lfc.Comprobantes
                                 case "Lbl.Comprobantes.NotaDeDebito":
                                         this.FormFields["pendiente"].Visible = true;
                                         if (m_Letra == "*")
-                                                this.CustomFilters.AddWithValue("comprob.tipo_fac IN ('NDA', 'NDB', 'NDC', 'NDE', 'NDM')");
+                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "NDA", "NDB", "NDC", "NDE", "NDM" });
                                         else
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac", "ND" + m_Letra);
                                         break;
@@ -195,9 +195,17 @@ namespace Lfc.Comprobantes
                                 case "Lbl.Comprobantes.Factura":
                                         this.FormFields["pendiente"].Visible = true;
                                         if (m_Letra == "*")
-                                                this.CustomFilters.AddWithValue("comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM')");
+                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "FA", "FB", "FC", "FE", "FM" });
                                         else
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac", "F" + m_Letra);
+                                        break;
+
+                                case "Lbl.Comprobantes.ComprobanteFacturable":
+                                        this.FormFields["pendiente"].Visible = true;
+                                        if (m_Letra == "*")
+                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "FA", "FB", "FC", "FE", "FM", "NCA", "NCB", "NCC", "NCE", "NCM", "NDA", "NDB", "NDC", "NDE", "NDM" });
+                                        else
+                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "F" + m_Letra, "NC" + m_Letra, "ND" + m_Letra});
                                         break;
 
                                 case "Lbl.Comprobantes.Presupuesto":
@@ -215,13 +223,8 @@ namespace Lfc.Comprobantes
                                         this.CustomFilters.AddWithValue("comprob.tipo_fac", "T");
                                         break;
 
-                                case "Lbl.Comprobantes.ComprobanteConArticulos":
-                                        this.FormFields["pendiente"].Visible = false;
-                                        if (m_Letra == "*")
-                                                this.CustomFilters.AddWithValue("comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NCA', 'NCB', 'NCC', 'NCE', 'NCM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM')");
-                                        else
-                                                this.CustomFilters.AddWithValue("(comprob.tipo_fac='F" + m_Letra + "' OR comprob.tipo_fac='NC" + m_Letra + "' OR comprob.tipo_fac='ND" + m_Letra + "')");
-                                        break;
+                                default:
+                                        throw new NotImplementedException("No se reconoce el tipo de comprobante " + this.ElementoTipo.ToString());
                         }
 
                         if (m_Vendedor > 0)

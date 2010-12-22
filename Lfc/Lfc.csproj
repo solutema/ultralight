@@ -73,6 +73,9 @@
     <Compile Include="Cajas\Diaria.Designer.cs">
       <DependentUpon>Diaria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comprobantes\Facturas\IvaVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Comprobantes\Facturas\Reimprimir.cs">
       <SubType>Form</SubType>
     </Compile>

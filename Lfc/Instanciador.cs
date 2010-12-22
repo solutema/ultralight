@@ -146,6 +146,7 @@ namespace Lfc
                                 case "COMPROBANTE":
                                 case "COMPROBANTES":
                                 case "Lbl.Comprobantes.ComprobanteConArticulos":
+                                case "Lbl.Comprobantes.ComprobanteFacturable":
                                 case "Lbl.Comprobantes.Factura":
                                 case "Lbl.Comprobantes.Presupuesto":
                                 case "Lbl.Comprobantes.NotaDeCredito":
@@ -271,6 +272,7 @@ namespace Lfc
                                 case "Lbl.Comprobantes.NotaDeCredito":
                                 case "Lbl.Comprobantes.NotaDeDebito":
                                 case "Lbl.Comprobantes.Ticket":
+                                case "Lbl.Comprobantes.ComprobanteFacturable":
                                         return typeof(Lfc.Comprobantes.Facturas.Editar);
                                 case "Lbl.Comprobantes.ComprobanteDeCompra":
                                         return typeof(Lfc.Comprobantes.Compra.Editar);

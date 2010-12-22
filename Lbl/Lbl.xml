@@ -4,67 +4,6 @@
         <name>Lbl</name>
     </assembly>
     <members>
-        <member name="T:Lbl.ColeccionGenerica`1">
-            <summary>
-            Una colección Generica para ElementosDeDatos.
-            </summary>
-        </member>
-        <member name="M:Lbl.ColeccionGenerica`1.Contains(System.Int32)">
-            <summary>
-            Busca un elemento por su Id.
-            </summary>
-        </member>
-        <member name="M:Lbl.ColeccionGenerica`1.GetById(System.Int32)">
-            <summary>
-            Obtiene un Elemento por su Id.
-            </summary>
-        </member>
-        <member name="M:Lbl.ColeccionGenerica`1.Add(`0)">
-            <summary>
-            Agrega un elemento a la colección.
-            </summary>
-        </member>
-        <member name="M:Lbl.ColeccionGenerica`1.RemoveById(System.Int32)">
-            <summary>
-            Elimina un elemento por su Id.
-            </summary>
-        </member>
-        <member name="M:Lbl.ColeccionGenerica`1.Remove(`0)">
-            <summary>
-            Elimina un elemento de la lista.
-            </summary>
-            <param name="elemento">El elemento a eliminar.</param>
-        </member>
-        <member name="M:Lbl.ColeccionGenerica`1.Clone">
-            <summary>
-            Devuelve una nueva colección, conteniendo los mismos elementos.
-            </summary>
-        </member>
-        <member name="M:Lbl.ColeccionGenerica`1.Agregados(Lbl.ColeccionGenerica{`0})">
-            <summary>
-            Devuelve una colección de elementos nuevos, en comparación con una colección original.
-            </summary>
-            <param name="original">La colección original.</param>
-            <returns>La colección de los elementos presentes en esta colección, pero no en la original.</returns>
-        </member>
-        <member name="M:Lbl.ColeccionGenerica`1.Quitados(Lbl.ColeccionGenerica{`0})">
-            <summary>
-            Devuelve una colección de elementos faltantes, en comparación con una colección original.
-            </summary>
-            <param name="original">La colección original.</param>
-            <returns>La colección de los elementos no presentes en esta colección, pero si en la original.</returns>
-        </member>
-        <member name="T:Lbl.Impresion.Campo">
-            <summary>
-            Define un campo para una Plantilla.
-            </summary>
-        </member>
-        <member name="T:Lbl.Impresion.Impresora">
-            <summary>
-            Representa una impresora configurada en Lázaro. Puede ser una impresora de Windows,
-            un controlador fiscal o una impresora nula.
-            </summary>
-        </member>
         <member name="T:Lbl.ElementoDeDatos">
             <summary>
             Proporciona acceso a los datos con alto nivel de abstracción.
@@ -227,32 +166,6 @@
             Obtiene o establece las etiquetas del elemento.
             </summary>
         </member>
-        <member name="T:Lbl.Impresion.TipoImpresora">
-            <summary>
-            Representa la relación entre un tipo de comprobante y una impresora.
-            </summary>
-        </member>
-        <member name="M:Lbl.ListaIds.ToString">
-            <summary>
-            Convierte la lista a una cadena, en la forma de una lista de valores separados por comas.
-            </summary>
-            <returns>Una lista de valores separados por comas.</returns>
-        </member>
-        <member name="T:Lbl.Personas.Usuario">
-            <summary>
-            Describe un usuario del sistema. En realidad es una vista diferente de un registro de la tabla de personas.
-            </summary>
-        </member>
-        <member name="T:Lbl.Sys.Permisos.Objeto">
-            <summary>
-            Describe un tipo de acceso que puede tener una persona.
-            </summary>
-        </member>
-        <member name="T:Lbl.Sys.Permisos.Permiso">
-            <summary>
-            Describe una instancia de un permiso en particular.
-            </summary>
-        </member>
         <member name="M:Lbl.Comprobantes.Comprobante.Numerar(System.Int32,System.Boolean)">
             <summary>
             Numera el comprobante (usando el número especificado), guardando automáticamente los cambios.
@@ -301,6 +214,93 @@
         <member name="P:Lbl.Comprobantes.ComprobanteConArticulos.ImporteIva">
             <summary>
             Devuelve el importe de IVA para esta factura.
+            </summary>
+        </member>
+        <member name="T:Lbl.ColeccionGenerica`1">
+            <summary>
+            Una colección Generica para ElementosDeDatos.
+            </summary>
+        </member>
+        <member name="M:Lbl.ColeccionGenerica`1.Contains(System.Int32)">
+            <summary>
+            Busca un elemento por su Id.
+            </summary>
+        </member>
+        <member name="M:Lbl.ColeccionGenerica`1.GetById(System.Int32)">
+            <summary>
+            Obtiene un Elemento por su Id.
+            </summary>
+        </member>
+        <member name="M:Lbl.ColeccionGenerica`1.Add(`0)">
+            <summary>
+            Agrega un elemento a la colección.
+            </summary>
+        </member>
+        <member name="M:Lbl.ColeccionGenerica`1.RemoveById(System.Int32)">
+            <summary>
+            Elimina un elemento por su Id.
+            </summary>
+        </member>
+        <member name="M:Lbl.ColeccionGenerica`1.Remove(`0)">
+            <summary>
+            Elimina un elemento de la lista.
+            </summary>
+            <param name="elemento">El elemento a eliminar.</param>
+        </member>
+        <member name="M:Lbl.ColeccionGenerica`1.Clone">
+            <summary>
+            Devuelve una nueva colección, conteniendo los mismos elementos.
+            </summary>
+        </member>
+        <member name="M:Lbl.ColeccionGenerica`1.Agregados(Lbl.ColeccionGenerica{`0})">
+            <summary>
+            Devuelve una colección de elementos nuevos, en comparación con una colección original.
+            </summary>
+            <param name="original">La colección original.</param>
+            <returns>La colección de los elementos presentes en esta colección, pero no en la original.</returns>
+        </member>
+        <member name="M:Lbl.ColeccionGenerica`1.Quitados(Lbl.ColeccionGenerica{`0})">
+            <summary>
+            Devuelve una colección de elementos faltantes, en comparación con una colección original.
+            </summary>
+            <param name="original">La colección original.</param>
+            <returns>La colección de los elementos no presentes en esta colección, pero si en la original.</returns>
+        </member>
+        <member name="T:Lbl.Impresion.Campo">
+            <summary>
+            Define un campo para una Plantilla.
+            </summary>
+        </member>
+        <member name="T:Lbl.Impresion.Impresora">
+            <summary>
+            Representa una impresora configurada en Lázaro. Puede ser una impresora de Windows,
+            un controlador fiscal o una impresora nula.
+            </summary>
+        </member>
+        <member name="T:Lbl.Impresion.TipoImpresora">
+            <summary>
+            Representa la relación entre un tipo de comprobante y una impresora.
+            </summary>
+        </member>
+        <member name="M:Lbl.ListaIds.ToString">
+            <summary>
+            Convierte la lista a una cadena, en la forma de una lista de valores separados por comas.
+            </summary>
+            <returns>Una lista de valores separados por comas.</returns>
+        </member>
+        <member name="T:Lbl.Personas.Usuario">
+            <summary>
+            Describe un usuario del sistema. En realidad es una vista diferente de un registro de la tabla de personas.
+            </summary>
+        </member>
+        <member name="T:Lbl.Sys.Permisos.Objeto">
+            <summary>
+            Describe un tipo de acceso que puede tener una persona.
+            </summary>
+        </member>
+        <member name="T:Lbl.Sys.Permisos.Permiso">
+            <summary>
+            Describe una instancia de un permiso en particular.
             </summary>
         </member>
         <member name="T:Lbl.Entidades.Moneda">
