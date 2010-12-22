@@ -294,6 +294,7 @@ namespace Lfc.Cajas
                                         Lfx.Data.Connection NuevaDb = this.Workspace.GetNewConnection("Editar " + TipoRecibo.ToString() + " " + IdRecibo);
                                         Lbl.IElementoDeDatos Elem = Lbl.Instanciador.Instanciar(TipoRecibo, NuevaDb, IdRecibo);
                                         Lfc.FormularioEdicion FormNuevo = Lfc.Instanciador.InstanciarFormularioEdicion(Elem);
+                                        FormNuevo.DisposeConnection = true;
                                         FormNuevo.MdiParent = this.MdiParent;
                                         FormNuevo.Show();
 
@@ -304,6 +305,7 @@ namespace Lfc.Cajas
                                         Lfx.Data.Connection NuevaDb = this.Workspace.GetNewConnection("Editar " + TipoRecibo.ToString() + " " + IdComprob);
                                         Lbl.IElementoDeDatos Elem = Lbl.Instanciador.Instanciar(TipoRecibo, NuevaDb, IdComprob);
                                         Lfc.FormularioEdicion FormNuevo = Lfc.Instanciador.InstanciarFormularioEdicion(Elem);
+                                        FormNuevo.DisposeConnection = true;
                                         FormNuevo.MdiParent = this.MdiParent;
                                         FormNuevo.Show();
 
