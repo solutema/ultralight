@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -75,6 +75,9 @@
     </Compile>
     <Compile Include="Forms\Bracket.Designer.cs">
       <DependentUpon>Bracket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Button.Designer.cs">
+      <DependentUpon>Button.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Calendar.Designer.cs">
       <DependentUpon>Calendar.cs</DependentUpon>
@@ -159,6 +162,9 @@
     <Compile Include="Forms\TextBoxBase.Designer.cs">
       <DependentUpon>TextBoxBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\WorkspaceSelectorForm.Designer.cs">
+      <DependentUpon>WorkspaceSelectorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\WorkstationSelectorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,6 +247,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\ChildDialogForm.Designer.cs">
       <DependentUpon>ChildDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -354,6 +365,10 @@
     <EmbeddedResource Include="Printing\PrintPreviewForm.resx">
       <DependentUpon>PrintPreviewForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

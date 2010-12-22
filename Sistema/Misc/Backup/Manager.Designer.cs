@@ -59,10 +59,10 @@ namespace Lazaro.Misc.Backup
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
                         this.BotonBackup = new Lui.Forms.Button();
                         this.lvItems = new Lui.Forms.ListView();
-                        this.Carpeta = new System.Windows.Forms.ColumnHeader();
-                        this.Numero = new System.Windows.Forms.ColumnHeader();
-                        this.FechaYHora = new System.Windows.Forms.ColumnHeader();
-                        this.Usuario = new System.Windows.Forms.ColumnHeader();
+                        this.Carpeta = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.Numero = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.FechaYHora = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.Usuario = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.Label2 = new System.Windows.Forms.Label();
                         this.BotonEliminar = new Lui.Forms.Button();
                         this.BotonRestaurar = new Lui.Forms.Button();
@@ -80,7 +80,6 @@ namespace Lazaro.Misc.Backup
                         // 
                         // BotonBackup
                         // 
-                        this.BotonBackup.AutoSize = false;
                         this.BotonBackup.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonBackup.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonBackup.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -155,7 +154,6 @@ namespace Lazaro.Misc.Backup
                         // BotonEliminar
                         // 
                         this.BotonEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonEliminar.AutoSize = false;
                         this.BotonEliminar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonEliminar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonEliminar.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -175,7 +173,6 @@ namespace Lazaro.Misc.Backup
                         // BotonRestaurar
                         // 
                         this.BotonRestaurar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonRestaurar.AutoSize = false;
                         this.BotonRestaurar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonRestaurar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonRestaurar.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -195,7 +192,6 @@ namespace Lazaro.Misc.Backup
                         // BotonCopiar
                         // 
                         this.BotonCopiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonCopiar.AutoSize = false;
                         this.BotonCopiar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonCopiar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonCopiar.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -216,7 +212,6 @@ namespace Lazaro.Misc.Backup
                         // 
                         this.note1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.note1.AutoSize = false;
                         this.note1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.note1.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.note1.Location = new System.Drawing.Point(24, 308);

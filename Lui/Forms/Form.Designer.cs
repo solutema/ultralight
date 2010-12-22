@@ -53,7 +53,6 @@ namespace Lui.Forms
 
 		private void InitializeComponent()
 		{
-                        this.components = new System.ComponentModel.Container();
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form));
                         this.SuspendLayout();
                         // 
@@ -71,6 +70,7 @@ namespace Lui.Forms
                         this.Text = "Form";
                         this.Load += new System.EventHandler(this.Form_Load);
                         this.ResumeLayout(false);
+
 		}
 
 		#endregion

@@ -40,7 +40,6 @@ namespace Lazaro.Misc.Backup
 	public partial class Manager : Lui.Forms.DialogForm
 	{
                 public Manager()
-                        : base()
                 {
                         InitializeComponent();
 

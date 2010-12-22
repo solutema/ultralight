@@ -42,7 +42,7 @@ namespace Lui.Forms
         /// <summary>
         /// Control botón estándar.
         /// </summary>
-        public class Button : Control, IButtonControl
+        public partial class Button : Control, IButtonControl
         {
                 private SubLabelPositions m_SubLabelPos = SubLabelPositions.None;
                 private ImagePositions m_ImagePos = ImagePositions.Top;
@@ -51,12 +51,9 @@ namespace Lui.Forms
                 new public event System.EventHandler Click;
                 new public event System.Windows.Forms.KeyEventHandler KeyDown;
 
-                #region Código generado por el Diseñador de Windows Forms
 
                 public Button()
-                        : base()
                 {
-                        // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
 
                         MainText.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonFace;
@@ -67,94 +64,6 @@ namespace Lui.Forms
                         this.BorderStyle = BorderStyles.Button;
                 }
 
-                // Limpiar los recursos que se estén utilizando.
-                protected override void Dispose(bool disposing)
-                {
-                        if (disposing) {
-                                if (components != null) {
-                                        components.Dispose();
-                                }
-                        }
-                        base.Dispose(disposing);
-                }
-
-
-                // Requerido por el Diseñador de Windows Forms
-                private System.ComponentModel.IContainer components = null;
-                internal System.Windows.Forms.Label MainText;
-                internal System.Windows.Forms.Label SubText;
-                private System.Windows.Forms.PictureBox IconPicture;
-
-                private void InitializeComponent()
-                {
-                        this.MainText = new System.Windows.Forms.Label();
-                        this.SubText = new System.Windows.Forms.Label();
-                        this.IconPicture = new System.Windows.Forms.PictureBox();
-                        this.SuspendLayout();
-                        // 
-                        // MainText
-                        // 
-                        this.MainText.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(231)), ((System.Byte)(226)), ((System.Byte)(222)));
-                        this.MainText.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.MainText.ForeColor = System.Drawing.Color.Black;
-                        this.MainText.Location = new System.Drawing.Point(4, 4);
-                        this.MainText.Name = "MainText";
-                        this.MainText.Size = new System.Drawing.Size(312, 60);
-                        this.MainText.TabIndex = 1;
-                        this.MainText.Text = "Command asdasd";
-                        this.MainText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        this.MainText.Click += new System.EventHandler(this.MainText_Click);
-                        this.MainText.DoubleClick += new System.EventHandler(this.MainText_DoubleClick);
-                        this.MainText.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainText_MouseDown);
-                        // 
-                        // SubText
-                        // 
-                        this.SubText.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(198)), ((System.Byte)(190)), ((System.Byte)(176)));
-                        this.SubText.Font = new System.Drawing.Font("Bitstream Vera Sans", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.SubText.Location = new System.Drawing.Point(4, 68);
-                        this.SubText.Name = "SubText";
-                        this.SubText.Size = new System.Drawing.Size(312, 8);
-                        this.SubText.TabIndex = 2;
-                        this.SubText.Text = "Tecla";
-                        this.SubText.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-                        this.SubText.Visible = false;
-                        this.SubText.Click += new System.EventHandler(this.SubText_Click);
-                        this.SubText.DoubleClick += new System.EventHandler(this.SubText_DoubleClick);
-                        // 
-                        // IconPicture
-                        // 
-                        this.IconPicture.BackColor = System.Drawing.Color.Transparent;
-                        this.IconPicture.Location = new System.Drawing.Point(4, 4);
-                        this.IconPicture.Name = "IconPicture";
-                        this.IconPicture.Size = new System.Drawing.Size(44, 40);
-                        this.IconPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-                        this.IconPicture.TabIndex = 3;
-                        this.IconPicture.TabStop = false;
-                        this.IconPicture.Visible = false;
-                        // 
-                        // Button
-                        // 
-                        this.Controls.Add(this.IconPicture);
-                        this.Controls.Add(this.SubText);
-                        this.Controls.Add(this.MainText);
-                        this.DockPadding.All = 2;
-                        this.Name = "Button";
-                        this.Size = new System.Drawing.Size(320, 80);
-                        this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Button_KeyPress);
-                        //base, no this!
-                        base.Click += new System.EventHandler(this.Button_Click);
-                        this.LostFocus += new System.EventHandler(this.Button_LostFocus);
-                        this.GotFocus += new System.EventHandler(this.Button_GotFocus);
-                        this.SizeChanged += new System.EventHandler(this.Button_SizeChanged);
-                        //base, no this!
-                        base.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button_KeyDown);
-                        this.DoubleClick += new System.EventHandler(this.Button_DoubleClick);
-                        this.ResumeLayout(false);
-
-                }
-
-
-                #endregion
 
                 [EditorBrowsable(EditorBrowsableState.Always), System.ComponentModel.Browsable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
                 public override string Text

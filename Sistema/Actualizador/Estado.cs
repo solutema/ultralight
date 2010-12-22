@@ -80,21 +80,21 @@ namespace Lazaro.Actualizador
                         this.PictureBox1.TabIndex = 1;
                         this.PictureBox1.TabStop = false;
                         // 
-                        // lblOperacion
+                        // EtiquetaOperacion
                         // 
                         this.EtiquetaOperacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EtiquetaOperacion.Location = new System.Drawing.Point(88, 64);
-                        this.EtiquetaOperacion.Name = "lblOperacion";
+                        this.EtiquetaOperacion.Name = "EtiquetaOperacion";
                         this.EtiquetaOperacion.Size = new System.Drawing.Size(364, 20);
                         this.EtiquetaOperacion.TabIndex = 2;
                         this.EtiquetaOperacion.Text = "Puede demorar varios minutos.";
                         this.EtiquetaOperacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // LabelEstado
+                        // EtiquetaEstado
                         // 
                         this.EtiquetaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EtiquetaEstado.Location = new System.Drawing.Point(88, 20);
-                        this.EtiquetaEstado.Name = "LabelEstado";
+                        this.EtiquetaEstado.Name = "EtiquetaEstado";
                         this.EtiquetaEstado.Size = new System.Drawing.Size(364, 32);
                         this.EtiquetaEstado.TabIndex = 3;
                         this.EtiquetaEstado.Text = "Por favor aguarde mientras se verifica si existe una nueva versión del sistema.";

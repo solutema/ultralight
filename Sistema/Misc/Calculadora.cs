@@ -81,90 +81,103 @@ namespace Lazaro.Misc
 
 		private void InitializeComponent()
 		{
-			this.txtHistorial = new System.Windows.Forms.TextBox();
-			this.EntradaFormula = new Lui.Forms.TextBox();
-			this.Panel1 = new System.Windows.Forms.Panel();
-			this.lblResultado = new System.Windows.Forms.Label();
-			this.Panel1.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// txtHistorial
-			// 
-			this.txtHistorial.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-			this.txtHistorial.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.txtHistorial.Font = new System.Drawing.Font("Bitstream Vera Sans Mono", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, System.Convert.ToByte(0));
-			this.txtHistorial.Location = new System.Drawing.Point(11, 54);
-			this.txtHistorial.Multiline = true;
-			this.txtHistorial.Name = "txtHistorial";
-			this.txtHistorial.Size = new System.Drawing.Size(199, 182);
-			this.txtHistorial.TabIndex = 0;
-			this.txtHistorial.TabStop = false;
-			this.txtHistorial.Text = "";
-			this.txtHistorial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtHistorial.WordWrap = false;
-			// 
-			// txtFormula
-			// 
-			this.EntradaFormula.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-			this.EntradaFormula.AutoNav = false;
-			this.EntradaFormula.AutoTab = false;
-			this.EntradaFormula.BackColor = System.Drawing.Color.White;
-			this.EntradaFormula.DataType = Lui.Forms.DataTypes.FreeText;
-			this.EntradaFormula.DockPadding.All = 2;
-			this.EntradaFormula.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, System.Convert.ToByte(0));
-			this.EntradaFormula.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.EntradaFormula.Text = "";
+                        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Calculadora));
+                        this.txtHistorial = new System.Windows.Forms.TextBox();
+                        this.EntradaFormula = new Lui.Forms.TextBox();
+                        this.Panel1 = new System.Windows.Forms.Panel();
+                        this.lblResultado = new System.Windows.Forms.Label();
+                        this.Panel1.SuspendLayout();
+                        this.SuspendLayout();
+                        // 
+                        // txtHistorial
+                        // 
+                        this.txtHistorial.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                                    | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.txtHistorial.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                        this.txtHistorial.Font = new System.Drawing.Font("Bitstream Vera Sans Mono", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.txtHistorial.Location = new System.Drawing.Point(11, 54);
+                        this.txtHistorial.Multiline = true;
+                        this.txtHistorial.Name = "txtHistorial";
+                        this.txtHistorial.Size = new System.Drawing.Size(199, 182);
+                        this.txtHistorial.TabIndex = 0;
+                        this.txtHistorial.TabStop = false;
+                        this.txtHistorial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+                        this.txtHistorial.WordWrap = false;
+                        // 
+                        // EntradaFormula
+                        // 
+                        this.EntradaFormula.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaFormula.AutoNav = false;
+                        this.EntradaFormula.AutoTab = false;
+                        this.EntradaFormula.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaFormula.DecimalPlaces = -1;
+                        this.EntradaFormula.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaFormula.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaFormula.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaFormula.Location = new System.Drawing.Point(6, 239);
+                        this.EntradaFormula.MaxLenght = 32767;
+                        this.EntradaFormula.MultiLine = false;
+                        this.EntradaFormula.Name = "EntradaFormula";
+                        this.EntradaFormula.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaFormula.PasswordChar = '\0';
+                        this.EntradaFormula.Prefijo = "";
+                        this.EntradaFormula.SelectOnFocus = true;
+                        this.EntradaFormula.Size = new System.Drawing.Size(223, 29);
+                        this.EntradaFormula.Sufijo = "";
+                        this.EntradaFormula.TabIndex = 1;
+                        this.EntradaFormula.TipWhenBlank = "";
+                        this.EntradaFormula.ToolTipText = "";
+                        this.EntradaFormula.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFormula_KeyDown);
+                        // 
+                        // Panel1
+                        // 
+                        this.Panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+                        this.Panel1.Controls.Add(this.lblResultado);
+                        this.Panel1.Location = new System.Drawing.Point(11, 10);
+                        this.Panel1.Name = "Panel1";
+                        this.Panel1.Size = new System.Drawing.Size(210, 39);
+                        this.Panel1.TabIndex = 3;
+                        // 
+                        // lblResultado
+                        // 
+                        this.lblResultado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                                    | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.lblResultado.Font = new System.Drawing.Font("Bitstream Vera Sans Mono", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.lblResultado.Location = new System.Drawing.Point(-59, 2);
+                        this.lblResultado.Name = "lblResultado";
+                        this.lblResultado.Size = new System.Drawing.Size(258, 32);
+                        this.lblResultado.TabIndex = 3;
+                        this.lblResultado.Text = "0.00 ";
+                        this.lblResultado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+                        // 
+                        // Calculadora
+                        // 
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+                        this.ClientSize = new System.Drawing.Size(232, 272);
+                        this.Controls.Add(this.Panel1);
+                        this.Controls.Add(this.EntradaFormula);
+                        this.Controls.Add(this.txtHistorial);
+                        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+                        this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+                        this.Name = "Calculadora";
+                        this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+                        this.Text = "Calculadora";
+                        this.TopMost = true;
+                        this.Activated += new System.EventHandler(this.FormCalculadora_Enter);
+                        this.Deactivate += new System.EventHandler(this.FormCalculadora_Leave);
+                        this.Load += new System.EventHandler(this.FormCalculadora_Load);
+                        this.Enter += new System.EventHandler(this.FormCalculadora_Enter);
+                        this.Leave += new System.EventHandler(this.FormCalculadora_Leave);
+                        this.Resize += new System.EventHandler(this.FormCalculadora_Resize);
+                        this.Panel1.ResumeLayout(false);
+                        this.ResumeLayout(false);
+                        this.PerformLayout();
 
-			this.EntradaFormula.Location = new System.Drawing.Point(6, 239);
-			this.EntradaFormula.Name = "txtFormula";
-			this.EntradaFormula.PasswordChar = (char)0;
-			this.EntradaFormula.SelectionLength = 0;
-			this.EntradaFormula.SelectionStart = 0;
-			this.EntradaFormula.Size = new System.Drawing.Size(223, 29);
-			this.EntradaFormula.TabIndex = 1;
-			this.EntradaFormula.ToolTipText = "";
-			// 
-			// Panel1
-			// 
-			this.Panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-			this.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.Panel1.Controls.Add(this.lblResultado);
-			this.Panel1.Location = new System.Drawing.Point(11, 10);
-			this.Panel1.Name = "Panel1";
-			this.Panel1.Size = new System.Drawing.Size(210, 39);
-			this.Panel1.TabIndex = 3;
-			// 
-			// lblResultado
-			// 
-			this.lblResultado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblResultado.Font = new System.Drawing.Font("Bitstream Vera Sans Mono", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, System.Convert.ToByte(0));
-			this.lblResultado.Location = new System.Drawing.Point(-59, 2);
-			this.lblResultado.Name = "lblResultado";
-			this.lblResultado.Size = new System.Drawing.Size(258, 32);
-			this.lblResultado.TabIndex = 3;
-			this.lblResultado.Text = "0.00 ";
-			this.lblResultado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// FormCalculadora
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
-			this.ClientSize = new System.Drawing.Size(232, 272);
-			this.Controls.Add(this.Panel1);
-			this.Controls.Add(this.EntradaFormula);
-			this.Controls.Add(this.txtHistorial);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-			this.Name = "FormCalculadora";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Calculadora";
-			this.TopMost = true;
-			this.Panel1.ResumeLayout(false);
-			this.ResumeLayout(false);
-
-			EntradaFormula.KeyDown += new System.Windows.Forms.KeyEventHandler(txtFormula_KeyDown);
-			base.Load += new System.EventHandler(FormCalculadora_Load);
-			base.Resize += new System.EventHandler(FormCalculadora_Resize);
-			base.Enter += new System.EventHandler(FormCalculadora_Enter); base.Activated += new System.EventHandler(FormCalculadora_Enter);
-			base.Leave += new System.EventHandler(FormCalculadora_Leave); base.Deactivate += new System.EventHandler(FormCalculadora_Leave);
 		}
 
 

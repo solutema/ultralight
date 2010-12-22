@@ -1043,7 +1043,7 @@ namespace Lfc.Personas
                         this.EntradaObs.PasswordChar = '\0';
                         this.EntradaObs.Prefijo = "";
                         this.EntradaObs.SelectOnFocus = true;
-                        this.EntradaObs.Size = new System.Drawing.Size(282, 232);
+                        this.EntradaObs.Size = new System.Drawing.Size(282, 240);
                         this.EntradaObs.Sufijo = "";
                         this.EntradaObs.TabIndex = 5;
                         this.EntradaObs.TipWhenBlank = "";
@@ -1105,7 +1105,7 @@ namespace Lfc.Personas
                         this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
                         this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
                         this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.TableLayoutPanel.Size = new System.Drawing.Size(640, 685);
+                        this.TableLayoutPanel.Size = new System.Drawing.Size(640, 693);
                         this.TableLayoutPanel.TabIndex = 0;
                         // 
                         // frame5
@@ -1123,7 +1123,7 @@ namespace Lfc.Personas
                         this.frame5.Location = new System.Drawing.Point(3, 450);
                         this.frame5.Name = "frame5";
                         this.frame5.Padding = new System.Windows.Forms.Padding(2);
-                        this.frame5.Size = new System.Drawing.Size(346, 110);
+                        this.frame5.Size = new System.Drawing.Size(346, 118);
                         this.frame5.TabIndex = 4;
                         this.frame5.Text = "Estado";
                         this.frame5.ToolTipText = "";
@@ -1250,9 +1250,9 @@ namespace Lfc.Personas
                         this.Controls.Add(this.TableLayoutPanel);
                         this.Controls.Add(this.EntradaNombreVisible);
                         this.Controls.Add(this.Label4);
-                        this.MinimumSize = new System.Drawing.Size(640, 480);
+                        this.MinimumSize = new System.Drawing.Size(640, 615);
                         this.Name = "Editar";
-                        this.Size = new System.Drawing.Size(640, 607);
+                        this.Size = new System.Drawing.Size(640, 615);
                         this.Controls.SetChildIndex(this.Label4, 0);
                         this.Controls.SetChildIndex(this.EntradaNombreVisible, 0);
                         this.Controls.SetChildIndex(this.TableLayoutPanel, 0);

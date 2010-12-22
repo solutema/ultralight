@@ -33,6 +33,20 @@ namespace Lui.Forms
 {
 	partial class DialogForm
 	{
+                /// <summary>
+                /// Limpiar los recursos que se estén utilizando.
+                /// </summary>
+                protected override void Dispose(bool disposing)
+                {
+                        if (disposing) {
+                                if (components != null)
+                                        components.Dispose();
+                        }
+                        base.Dispose(disposing);
+                }
+
+                private System.ComponentModel.IContainer components = null;
+
                 #region Código generado por el Diseñador de Windows Forms
                 
                 private void InitializeComponent()
