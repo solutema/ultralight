@@ -39,12 +39,12 @@ using System.Text.RegularExpressions;
 
 namespace Lazaro.Misc.Config
 {
-        public class ConfigBD : Lui.Forms.Form
+        public class ConfigurarBd : Lui.Forms.Form
         {
 
                 #region Código generado por el Diseñador de Windows Forms
 
-                public ConfigBD()
+                public ConfigurarBd()
                         : base()
                 {
 
@@ -111,7 +111,7 @@ namespace Lazaro.Misc.Config
 
                 private void InitializeComponent()
                 {
-                        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigBD));
+                        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigurarBd));
                         this.Label27 = new System.Windows.Forms.Label();
                         this.EntradaServidor = new Lui.Forms.TextBox();
                         this.EtiquetaServidor = new System.Windows.Forms.Label();

@@ -144,7 +144,7 @@ namespace Lazaro.Misc
                         this.CancelCommandButton.Location = new System.Drawing.Point(424, 16);
                         this.CancelCommandButton.Name = "CancelCommandButton";
                         this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(2);
-                        this.CancelCommandButton.Size = new System.Drawing.Size(108, 36);
+                        this.CancelCommandButton.Size = new System.Drawing.Size(108, 32);
                         this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.CancelCommandButton.Subtext = "";
                         this.CancelCommandButton.TabIndex = 8;
@@ -164,7 +164,7 @@ namespace Lazaro.Misc
                         this.OkButton.Location = new System.Drawing.Point(304, 16);
                         this.OkButton.Name = "OkButton";
                         this.OkButton.Padding = new System.Windows.Forms.Padding(2);
-                        this.OkButton.Size = new System.Drawing.Size(108, 36);
+                        this.OkButton.Size = new System.Drawing.Size(108, 32);
                         this.OkButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.OkButton.Subtext = "";
                         this.OkButton.TabIndex = 7;
@@ -205,9 +205,9 @@ namespace Lazaro.Misc
                         this.LowerPanel.Controls.Add(this.OkButton);
                         this.LowerPanel.Controls.Add(this.CancelCommandButton);
                         this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-                        this.LowerPanel.Location = new System.Drawing.Point(0, 244);
+                        this.LowerPanel.Location = new System.Drawing.Point(0, 248);
                         this.LowerPanel.Name = "LowerPanel";
-                        this.LowerPanel.Size = new System.Drawing.Size(546, 68);
+                        this.LowerPanel.Size = new System.Drawing.Size(546, 64);
                         this.LowerPanel.TabIndex = 12;
                         // 
                         // panel1
@@ -217,13 +217,14 @@ namespace Lazaro.Misc
                         this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
                         this.panel1.Location = new System.Drawing.Point(0, 0);
                         this.panel1.Name = "panel1";
-                        this.panel1.Size = new System.Drawing.Size(100, 244);
+                        this.panel1.Size = new System.Drawing.Size(100, 248);
                         this.panel1.TabIndex = 53;
                         // 
                         // PictureBox1
                         // 
+                        this.PictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox1.Image")));
-                        this.PictureBox1.Location = new System.Drawing.Point(16, 108);
+                        this.PictureBox1.Location = new System.Drawing.Point(20, 108);
                         this.PictureBox1.Name = "PictureBox1";
                         this.PictureBox1.Size = new System.Drawing.Size(37, 120);
                         this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;

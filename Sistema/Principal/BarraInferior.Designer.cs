@@ -527,8 +527,8 @@ namespace Lazaro.Principal
                         // BarraInferior
                         // 
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-                        this.Controls.Add(this.PanelProgreso);
                         this.Controls.Add(this.PanelReloj);
+                        this.Controls.Add(this.PanelProgreso);
                         this.Controls.Add(this.PanelAyuda);
                         this.Controls.Add(this.PanelArticulo);
                         this.Controls.Add(this.PanelPersona);

@@ -149,7 +149,7 @@ namespace Lazaro
                         Lfx.Workspace.Master.RunTime.IpcEvent += new Lfx.RunTimeServices.IpcEventHandler(Workspace_IpcEvent);
 
                         if (ReconfigDB) {
-                                using (Misc.Config.ConfigBD ConfigBD = new Misc.Config.ConfigBD()) {
+                                using (Misc.Config.ConfigurarBd ConfigBD = new Misc.Config.ConfigurarBd()) {
                                         if (ConfigBD.ShowDialog() == DialogResult.Cancel)
                                                 System.Environment.Exit(0);
                                 }
@@ -166,10 +166,39 @@ namespace Lazaro
                                         bool MostrarConfig = true;
 
                                         if (Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "DataSource", null) != null) {
-                                                using (Misc.Config.ConfigDBError ConfigDBError = new Misc.Config.ConfigDBError()) {
-                                                        ConfigDBError.ErrorText = Res.Message;
+                                                using (Misc.Config.ErrorConexion FormError = new Misc.Config.ErrorConexion()) {
+                                                        if (Res.Message.IndexOf("Unable to connect to any of the specified MySQL hosts") >= 0) {
+                                                                if (Lfx.Data.DataBaseCache.DefaultCache.ServerName.ToLowerInvariant() == "localhost") {
+                                                                        string TipoServidor = "";
+                                                                        switch(Lfx.Data.DataBaseCache.DefaultCache.AccessMode)
+                                                                        {
+                                                                                case Lfx.Data.AccessModes.MySql:
+                                                                                        TipoServidor = "MySQL";
+                                                                                        break;
+                                                                                case Lfx.Data.AccessModes.MSSql:
+                                                                                        TipoServidor = "SQL Server";
+                                                                                        break;
+                                                                                case Lfx.Data.AccessModes.Npgsql:
+                                                                                        TipoServidor = "PostgreSQL";
+                                                                                        break;
+                                                                                case Lfx.Data.AccessModes.Oracle:
+                                                                                        TipoServidor = "Oracle";
+                                                                                        break;
+                                                                        }
+                                                                        FormError.Ayuda = @"No se puede conectar con el servidor local. Verifique que el servidor " + TipoServidor + @" se encuentra instalado y funcionando en este equipo.
+Si necesita información sobre cómo instalar o configurar un servidor SQL para Lázaro, consulte la ayuda en línea en www.sistemalazaro.com.ar";
+                                                                } else {
+                                                                        FormError.Ayuda = "No se puede conectar con el servidor remoto. Verifique que el servidor en el equipo remoto '" + Lfx.Data.DataBaseCache.DefaultCache.ServerName + @"' se encuentre funcionando y que su conexión de red esté activa.";
+                                                                }
+                                                        } else if(Res.Message.IndexOf("Access denied for user") >= 0) {
+                                                                FormError.Ayuda = "El servidor impidió el acceso debido a que el nombre de usuario o la contraseña son incorrectos. Haga clic en 'Configurarción' y luego en 'Vista Avanzada' y verifique la configuración proporcionada.";
+                                                        } else {
+                                                                FormError.Ayuda = "No se dispone de información extendida sobre el error. Por favor lea el mensaje de error original a continuación:";
+                                                        }
 
-                                                        switch (ConfigDBError.ShowDialog()) {
+                                                        FormError.ErrorOriginal = Res.Message;
+
+                                                        switch (FormError.ShowDialog()) {
                                                                 case DialogResult.Cancel:
                                                                         MostrarConfig = false;
                                                                         System.Environment.Exit(0);
@@ -187,7 +216,7 @@ namespace Lazaro
                                         }
 
                                         if (MostrarConfig) {
-                                                using (Misc.Config.ConfigBD ConfigBD = new Misc.Config.ConfigBD()) {
+                                                using (Misc.Config.ConfigurarBd ConfigBD = new Misc.Config.ConfigurarBd()) {
                                                         if (ConfigBD.ShowDialog() == DialogResult.Cancel) {
                                                                 MostrarConfig = false;
                                                                 System.Environment.Exit(0);
