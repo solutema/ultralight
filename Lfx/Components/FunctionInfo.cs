@@ -73,7 +73,10 @@ namespace Lfx.Components
                         if (this.Instancia == null)
                                 this.Load();
 
-                        return null;
+                        if (this.Instancia == null)
+                                return null;
+                        else
+                                return this.Instancia.Create();
                 }
 
                 public override string ToString()

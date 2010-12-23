@@ -1312,11 +1312,13 @@ namespace Lfc
                                 Sheet.Rows.Add(Reng);
                         }
 
-                        if (m_GroupingColumnName != null) {
-                                Sheet.SortByGroupAndColumn(OrderColumn, true);
-                        } else {
-                                if (OrderColumn >= 0)
-                                        Sheet.Sort(OrderColumn, true);
+                        if (OrderColumn >= 0) {
+                                if (m_GroupingColumnName != null) {
+                                        Sheet.SortByGroupAndColumn(OrderColumn, true);
+                                } else {
+                                        if (OrderColumn >= 0)
+                                                Sheet.Sort(OrderColumn, true);
+                                }
                         }
 
                         return Res;

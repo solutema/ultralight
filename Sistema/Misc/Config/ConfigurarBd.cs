@@ -168,7 +168,7 @@ namespace Lazaro.Misc.Config
                         Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "SlowLink", Lfx.Data.DataBaseCache.DefaultCache.SlowLink ? "1" : "0");
                         Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Company", "Branch", EntradaSucursal.Text);
 
-                        Datos.Iniciar();
+                        Aplicacion.AbrirConexion();
                         this.DialogResult = DialogResult.Retry;
                 }
 

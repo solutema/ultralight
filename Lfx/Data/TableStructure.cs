@@ -38,9 +38,9 @@ namespace Lfx.Data
         public class TableStructure
         {
                 public string Name;
-                public System.Collections.Generic.Dictionary<string, ColumnDefinition> Columns;
-                public System.Collections.Generic.Dictionary<string, IndexDefinition> Indexes;
-                public System.Collections.Generic.Dictionary<string, ConstraintDefinition> Constraints;
+                public System.Collections.Generic.Dictionary<string, ColumnDefinition> Columns = null;
+                public System.Collections.Generic.Dictionary<string, IndexDefinition> Indexes = null;
+                public System.Collections.Generic.Dictionary<string, ConstraintDefinition> Constraints = null;
                 protected string CodePage;
 
                 public TableStructure()

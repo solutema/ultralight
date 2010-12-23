@@ -36,6 +36,17 @@ using System.Windows.Forms;
 namespace ServidorFiscal
 {
         /// <summary>
+        /// La función Try se usa para decidir si cargar el componente o no.
+        /// </summary>
+        public class Try : Lfx.Components.TryFunction
+        {
+                public override object Create()
+                {
+                        return new Lfx.Types.SuccessOperationResult();
+                }
+        }
+
+        /// <summary>
         /// Servidor de Impresora Fiscal
         /// </summary>
         public class ServidorFiscal : Lfx.Components.Function

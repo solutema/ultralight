@@ -42,6 +42,25 @@ namespace Lfx.Components
                 public static Dictionary<string, Lfx.Components.Component> ComponentesCargados = new Dictionary<string, Component>();
                 public static Dictionary<Type, FunctionInfo> TiposRegistrados = new Dictionary<Type, FunctionInfo>();
 
+
+                public static void LoadAll()
+                {
+                        System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ComponentsFolder);
+                        foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.cif")) {
+                                Lfx.Components.Component CompInfo = new Lfx.Components.Component(DirItem.FullName);
+                                if (Lfx.Environment.SystemInformation.DesignMode) {
+                                        RegisterComponent(CompInfo);
+                                } else {
+                                        try {
+                                                RegisterComponent(CompInfo);
+                                        } catch {
+                                                if (Lfx.Workspace.Master != null)
+                                                        Lfx.Workspace.Master.RunTime.Message("No se puede registrar el componenete " + CompInfo.Nombre);
+                                        }
+                                }
+                        }
+                }
+
                 public static Lfx.Types.OperationResult RegisterComponent(Component componentInfo)
                 {
                         // Simplemente lo cargo... eso ya registra los tipos
@@ -50,15 +69,36 @@ namespace Lfx.Components
                                 if (Res.Success == false)
                                         return Res;
 
-                                ComponentesCargados.Add(componentInfo.Nombre, componentInfo);
-                                if (componentInfo.Funciones != null) {
-                                        foreach (FunctionInfo Func in componentInfo.Funciones.Values) {
-                                                Func.Load();
-                                                if (Func.TipoRegistrado != null)
-                                                        TiposRegistrados.Add(Func.TipoRegistrado, Func);
+                                // Primero ejecuto la función Try, para decidir si cargo el componenten o no
+                                Lfx.Types.OperationResult TryResult = componentInfo.Funciones["Try"].Run() as Lfx.Types.OperationResult;
+
+                                if (TryResult != null && TryResult.Success) {
+                                        ComponentesCargados.Add(componentInfo.Nombre, componentInfo);
+                                        if (componentInfo.Funciones != null) {
+                                                foreach (FunctionInfo Func in componentInfo.Funciones.Values) {
+                                                        Func.Load();
+                                                        if (Func.TipoRegistrado != null)
+                                                                TiposRegistrados.Add(Func.TipoRegistrado, Func);
+                                                }
                                         }
+
+                                        // Cargo las estructuras de datos adicionales que el componente necesita
+                                        using (System.IO.Stream DbStructXml = componentInfo.Assembly.GetManifestResourceStream(componentInfo.Nombre + ".Data.Struct.dbstruct.xml")) {
+                                                if (DbStructXml != null) {
+                                                        using (System.IO.StreamReader Lector = new System.IO.StreamReader(DbStructXml)) {
+                                                                System.Xml.XmlDocument Doc = new System.Xml.XmlDocument();
+                                                                Doc.Load(Lector);
+                                                                Lector.Close();
+                                                                DbStructXml.Close();
+                                                                Lfx.Workspace.Master.Structure.AddToBuiltIn(Doc);
+                                                        }
+                                                }
+                                        }
+                                } else {
+                                        return TryResult;
                                 }
                         }
+
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
@@ -71,7 +111,7 @@ namespace Lfx.Components
                                 if (Componente.Funciones.ContainsKey(functionName)) {
                                         Lfx.Components.FunctionInfo Func = Componente.Funciones[functionName];
 
-                                        object Result = Func.Instancia.Create();
+                                        object Result = Func.Run();
 
                                         if (Result != null && Result is System.Windows.Forms.Form) {
                                                 System.Windows.Forms.Form ResultForm = Result as System.Windows.Forms.Form;

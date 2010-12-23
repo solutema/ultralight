@@ -167,7 +167,7 @@ namespace Lfx.Data
                         }
                 }
 
-		public static DbTypes FromSQLType(string sqlType)
+		public static DbTypes FromSqlType(string sqlType)
 		{
 			switch (sqlType.ToUpperInvariant()) {
                                 case "VARCHAR":

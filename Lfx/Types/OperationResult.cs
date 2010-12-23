@@ -35,6 +35,9 @@ using System.Text;
 
 namespace Lfx.Types
 {
+        /// <summary>
+        /// Representa el resultado de una operación.
+        /// </summary>
 	public class OperationResult
 	{
 		public bool Success = false;
@@ -65,7 +68,10 @@ namespace Lfx.Types
                         return Res;
                 }
 	}
-
+        
+        /// <summary>
+        /// Representa el resultado exitoso de una operación.
+        /// </summary>
 	public class SuccessOperationResult : OperationResult
 	{
 		public SuccessOperationResult()
@@ -74,6 +80,9 @@ namespace Lfx.Types
 		}
 	}
 
+        /// <summary>
+        /// Representa la cancelación de una operación, pero sin un error.
+        /// </summary>
         public class CancelOperationResult : OperationResult
         {
                 public CancelOperationResult()
@@ -83,6 +92,9 @@ namespace Lfx.Types
                 }
         }
 
+        /// <summary>
+        /// Representa un error en una operación.
+        /// </summary>
 	public class FailureOperationResult : OperationResult
 	{
 		public FailureOperationResult(string message)

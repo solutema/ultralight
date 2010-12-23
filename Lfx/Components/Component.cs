@@ -77,8 +77,14 @@ namespace Lfx.Components
                                                         System.Xml.XmlNodeList NodosFunciones = DocumentoCif.GetElementsByTagName("Function");
                                                         //Abro los nodos de funciones
                                                         foreach (System.Xml.XmlNode NodoFuncion in NodosFunciones) {
-                                                                if (this.Funciones == null)
+                                                                if (this.Funciones == null) {
                                                                         this.Funciones = new Dictionary<string, FunctionInfo>();
+
+                                                                        // Creo la función Try, que la tienen que definir todos los componentes
+                                                                        FunctionInfo TryFunc = new FunctionInfo(this);
+                                                                        TryFunc.Nombre = "Try";
+                                                                        this.Funciones.Add(TryFunc.Nombre, TryFunc);
+                                                                }
 
                                                                 FunctionInfo Func = new FunctionInfo(this);
                                                                 Func.Nombre = NodoFuncion.Attributes["name"].Value;
@@ -132,6 +138,11 @@ namespace Lfx.Components
                                 return new Types.FailureOperationResult("No se puede cargar el componente " + this.Nombre);
                         else
                                 return new Types.SuccessOperationResult();
+                }
+
+                public override string ToString()
+                {
+                        return this.Nombre + " (" + this.CifFileName + ")";
                 }
         }
 }

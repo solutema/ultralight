@@ -31,6 +31,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Mail;
 using System.Security.Permissions;
 using System.Windows.Forms;
@@ -152,112 +153,47 @@ namespace Lazaro
                                 }
                         }
 
+                        // Inicio el espacio de trabajo
                         Lfx.Workspace.Master = new Lfx.Workspace(NombreConfig, false, false);
                         Lfx.Workspace.Master.DebugMode = DebugMode;
                         Lfx.Workspace.Master.RunTime.IpcEvent += new Lfx.RunTimeServices.IpcEventHandler(Workspace_IpcEvent);
                         
+                        // Asigno a la aplicación WinForms la misma cultura que se está usando en el espacio de trabajo
                         System.Windows.Forms.Application.CurrentCulture = Lfx.Workspace.Master.CultureInfo;
 
+                        // Si no hay datos de configuración, voy a presentar el asistente
                         if (Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "DataSource", null) == null)
                                 PrimeraVez = true;
 
                         if (PrimeraVez) {
+                                // Presento el asistente de configurar almacén de datos
                                 using (Misc.Config.Inicial AsistenteInicial = new Misc.Config.Inicial()) {
                                         if (AsistenteInicial.ShowDialog() == DialogResult.Cancel)
                                                 System.Environment.Exit(0);
                                 }
                         } else if (ReconfigDB) {
+                                // Presento la ventana de configuración del almacén de datos
                                 using (Misc.Config.ConfigurarBd ConfigBD = new Misc.Config.ConfigurarBd()) {
                                         if (ConfigBD.ShowDialog() == DialogResult.Cancel)
                                                 System.Environment.Exit(0);
                                 }
                         }
 
-                        do {
-                                Lfx.Types.OperationResult Res = Datos.Iniciar();
-
-                                // Si no pudo conectar, muestro la configuración de la base de datos
-                                // Si hay DSN, muestro el error
-                                if (Res.Success == false) {
-                                        bool MostrarConfig = true;
-
-                                        if (Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "DataSource", null) != null) {
-                                                using (Misc.Config.ErrorConexion FormError = new Misc.Config.ErrorConexion()) {
-                                                        if (Res.Message.IndexOf("Unable to connect to any of the specified MySQL hosts") >= 0) {
-                                                                if (Lfx.Data.DataBaseCache.DefaultCache.ServerName.ToLowerInvariant() == "localhost") {
-                                                                        string TipoServidor = "";
-                                                                        switch(Lfx.Data.DataBaseCache.DefaultCache.AccessMode)
-                                                                        {
-                                                                                case Lfx.Data.AccessModes.MySql:
-                                                                                        TipoServidor = "MySQL";
-                                                                                        break;
-                                                                                case Lfx.Data.AccessModes.MSSql:
-                                                                                        TipoServidor = "SQL Server";
-                                                                                        break;
-                                                                                case Lfx.Data.AccessModes.Npgsql:
-                                                                                        TipoServidor = "PostgreSQL";
-                                                                                        break;
-                                                                                case Lfx.Data.AccessModes.Oracle:
-                                                                                        TipoServidor = "Oracle";
-                                                                                        break;
-                                                                        }
-                                                                        FormError.Ayuda = @"No se puede conectar con el servidor local. Verifique que el servidor " + TipoServidor + @" se encuentra instalado y funcionando en este equipo.
-Si necesita información sobre cómo instalar o configurar un servidor SQL para Lázaro, consulte la ayuda en línea en www.sistemalazaro.com.ar";
-                                                                } else {
-                                                                        FormError.Ayuda = "No se puede conectar con el servidor remoto. Verifique que el servidor en el equipo remoto '" + Lfx.Data.DataBaseCache.DefaultCache.ServerName + @"' se encuentre funcionando y que su conexión de red esté activa.";
-                                                                }
-                                                        } else if(Res.Message.IndexOf("Access denied for user") >= 0) {
-                                                                FormError.Ayuda = "El servidor impidió el acceso debido a que el nombre de usuario o la contraseña son incorrectos. Haga clic en 'Configurarción' y luego en 'Vista Avanzada' y verifique la configuración proporcionada.";
-                                                        } else {
-                                                                FormError.Ayuda = "No se dispone de información extendida sobre el error. Por favor lea el mensaje de error original a continuación:";
-                                                        }
-
-                                                        FormError.ErrorOriginal = Res.Message;
-
-                                                        switch (FormError.ShowDialog()) {
-                                                                case DialogResult.Cancel:
-                                                                        MostrarConfig = false;
-                                                                        System.Environment.Exit(0);
-                                                                        break;
-
-                                                                case DialogResult.Retry:
-                                                                        MostrarConfig = false;
-                                                                        break;
-
-                                                                case DialogResult.Yes:
-                                                                        MostrarConfig = true;
-                                                                        break;
-                                                        }
-                                                }
-                                        }
-
-                                        if (MostrarConfig) {
-                                                using (Misc.Config.ConfigurarBd ConfigBD = new Misc.Config.ConfigurarBd()) {
-                                                        if (ConfigBD.ShowDialog() == DialogResult.Cancel) {
-                                                                MostrarConfig = false;
-                                                                System.Environment.Exit(0);
-                                                        }
-                                                }
-                                        }
-                                } else {
-                                        break;
-                                }
-                        } while (true);
-
-                        Lbl.Sys.Config.Actual = new Lbl.Sys.Configuracion.Global(Lfx.Workspace.Master);
-
-                        Lfx.Workspace.Master.MasterConnection.EnableRecover = true;
-
+                        IniciarDatos();
+                        
+                        // Busco actualización en la caché
                         if (Lfx.Workspace.Master.SlowLink == false && Lfx.Environment.SystemInformation.DesignMode == false) {
                                 Lfx.Services.Updater.Master.UpdateFromDbCache();
-
                                 if (Lfx.Services.Updater.Master.UpdatedFiles > 0) {
                                         Aplicacion.Exec("REBOOT");
                                         System.Environment.Exit(0);
                                 }
                         }
 
-                        Lfx.Types.OperationResult ResultadoInicio = IniciarNormal();
+                        // Cargar todos los componentes en memoria
+                        Lfx.Components.Manager.LoadAll();
+
+                        Lfx.Types.OperationResult ResultadoInicio = IniciarGui();
 
                         if (ResultadoInicio.Success == false)
                                 Lui.Forms.MessageBox.Show(ResultadoInicio.Message, "Error al Iniciar");
@@ -265,7 +201,9 @@ Si necesita información sobre cómo instalar o configurar un servidor SQL para 
                         return 0;
                 }
 
-
+                /// <summary>
+                /// Descarga en caso de que haga falta algunos ensamblados necesarios para el funcionamiento del programa.
+                /// </summary>
                 private static void DescargarArchivosNecesarios()
                 {
                         List<string> ArchivosNecesarios = new List<string>()
@@ -306,21 +244,9 @@ Si necesita información sobre cómo instalar o configurar un servidor SQL para 
                         }
                 }
 
-
-                public static void CargarComponentes()
-                {
-                        System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ComponentsFolder);
-                        foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.cif")) {
-                                Lfx.Components.Component CompInfo = new Lfx.Components.Component(DirItem.FullName);
-                                try {
-                                        Lfx.Components.Manager.RegisterComponent(CompInfo);
-                                } catch {
-                                        Lui.Forms.MessageBox.Show("No se puede registrar el componenete " + CompInfo.Nombre, "Error");
-                                }
-                        }
-                }
-
-
+                /// <summary>
+                /// Maneja eventos disparados por el (mal llamado) IPC (comunicación inter-proceso) del espacio de trabajo.
+                /// </summary>
                 public static void Workspace_IpcEvent(object sender, ref Lfx.RunTimeServices.IpcEventArgs e)
                 {
                         if (e.Destination == "lazaro") {
@@ -382,9 +308,150 @@ Si necesita información sobre cómo instalar o configurar un servidor SQL para 
                 }
 
                 /// <summary>
-                /// Inicia el programa
+                /// Inicia el acceso al almacén de datos.
                 /// </summary>
-                private static Lfx.Types.OperationResult IniciarNormal()
+                private static void IniciarDatos()
+                {
+                        do {
+                                Lfx.Types.OperationResult Res = AbrirConexion();
+
+                                // Si no pudo conectar, muestro la configuración de la base de datos
+                                // Si hay DSN, muestro el error
+                                if (Res.Success == false) {
+                                        bool MostrarConfig = true;
+
+                                        if (Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "DataSource", null) != null) {
+                                                using (Misc.Config.ErrorConexion FormError = new Misc.Config.ErrorConexion()) {
+                                                        if (Res.Message.IndexOf("Unable to connect to any of the specified MySQL hosts") >= 0) {
+                                                                if (Lfx.Data.DataBaseCache.DefaultCache.ServerName.ToLowerInvariant() == "localhost") {
+                                                                        string TipoServidor = "";
+                                                                        switch (Lfx.Data.DataBaseCache.DefaultCache.AccessMode) {
+                                                                                case Lfx.Data.AccessModes.MySql:
+                                                                                        TipoServidor = "MySQL";
+                                                                                        break;
+                                                                                case Lfx.Data.AccessModes.MSSql:
+                                                                                        TipoServidor = "SQL Server";
+                                                                                        break;
+                                                                                case Lfx.Data.AccessModes.Npgsql:
+                                                                                        TipoServidor = "PostgreSQL";
+                                                                                        break;
+                                                                                case Lfx.Data.AccessModes.Oracle:
+                                                                                        TipoServidor = "Oracle";
+                                                                                        break;
+                                                                        }
+                                                                        FormError.Ayuda = @"No se puede conectar con el servidor local. Verifique que el servidor " + TipoServidor + @" se encuentra instalado y funcionando en este equipo.
+Si necesita información sobre cómo instalar o configurar un servidor SQL para Lázaro, consulte la ayuda en línea en www.sistemalazaro.com.ar";
+                                                                } else {
+                                                                        FormError.Ayuda = "No se puede conectar con el servidor remoto. Verifique que el servidor en el equipo remoto '" + Lfx.Data.DataBaseCache.DefaultCache.ServerName + @"' se encuentre funcionando y que su conexión de red esté activa.";
+                                                                }
+                                                        } else if (Res.Message.IndexOf("Access denied for user") >= 0) {
+                                                                FormError.Ayuda = "El servidor impidió el acceso debido a que el nombre de usuario o la contraseña son incorrectos. Haga clic en 'Configurarción' y luego en 'Vista Avanzada' y verifique la configuración proporcionada.";
+                                                        } else {
+                                                                FormError.Ayuda = "No se dispone de información extendida sobre el error. Por favor lea el mensaje de error original a continuación:";
+                                                        }
+
+                                                        FormError.ErrorOriginal = Res.Message;
+
+                                                        switch (FormError.ShowDialog()) {
+                                                                case DialogResult.Cancel:
+                                                                        MostrarConfig = false;
+                                                                        System.Environment.Exit(0);
+                                                                        break;
+
+                                                                case DialogResult.Retry:
+                                                                        MostrarConfig = false;
+                                                                        break;
+
+                                                                case DialogResult.Yes:
+                                                                        MostrarConfig = true;
+                                                                        break;
+                                                        }
+                                                }
+                                        }
+
+                                        if (MostrarConfig) {
+                                                using (Misc.Config.ConfigurarBd ConfigBD = new Misc.Config.ConfigurarBd()) {
+                                                        if (ConfigBD.ShowDialog() == DialogResult.Cancel) {
+                                                                MostrarConfig = false;
+                                                                System.Environment.Exit(0);
+                                                        }
+                                                }
+                                        }
+                                } else {
+                                        break;
+                                }
+                        } while (true);
+
+                        // Habilito el gestor de configuración
+                        Lbl.Sys.Config.Actual = new Lbl.Sys.Configuracion.Global(Lfx.Workspace.Master);
+
+                        // Habilito la recuperación de conexiones
+                        Lfx.Workspace.Master.MasterConnection.EnableRecover = true;
+                }
+
+                /// <summary>
+                /// Inicia una conexión con la base de datos y verifica si la versión de la la misma es la última disponible. En caso contrario la actualiza.
+                /// </summary>
+                internal static Lfx.Types.OperationResult AbrirConexion()
+                {
+                        Lfx.Types.OperationResult iniciarReturn = new Lfx.Types.SuccessOperationResult();
+
+                        //Si el servidor SQL es esta misma PC, intento iniciar el servidor
+                        if (Lfx.Environment.SystemInformation.Platform == Lfx.Environment.SystemInformation.Platforms.Windows && Lfx.Data.DataBaseCache.DefaultCache.ServerName.ToUpperInvariant() == "LOCALHOST") {
+                                switch (Lfx.Data.DataBaseCache.DefaultCache.AccessMode) {
+                                        case Lfx.Data.AccessModes.MySql:
+                                                Lfx.Environment.Shell.Execute("net", "start mysql", ProcessWindowStyle.Hidden, true);
+                                                break;
+                                        case Lfx.Data.AccessModes.Npgsql:
+                                                // FIXME: detectar el nombre del servicio.
+                                                Lfx.Environment.Shell.Execute("net", "start postgresql-8.4", ProcessWindowStyle.Hidden, true);
+                                                break;
+                                }
+                        }
+
+                        try {
+                                Lfx.Workspace.Master.MasterConnection.Open();
+                        } catch (Exception ex) {
+                                return new Lfx.Types.FailureOperationResult(ex.Message);
+                        }
+
+                        if (Lfx.Workspace.Master.IsPrepared() == false) {
+                                using (Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog(@"Aparentemente es la primera vez que conecta a este servidor. Antes de poder utilizarlo debe preparar el servidor con una carga inicial de datos.
+Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o está restaurando desde una copia de seguridad.", @"¿Desea preparar el servidor """ + Lfx.Workspace.Master.MasterConnection.ToString() + @"""?")) {
+                                        Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
+                                        if (Pregunta.ShowDialog() == DialogResult.OK) {
+                                                Lfx.Types.OperationResult Res;
+                                                using (Lfx.Data.Connection DataBase = Lfx.Workspace.Master.GetNewConnection("Preparar servidor")) {
+                                                        DataBase.RequiresTransaction = false;
+                                                        Res = Lfx.Workspace.Master.Prepare();
+                                                }
+                                                if (Res.Success == false)
+                                                        return Res;
+                                                else
+                                                        Lui.Forms.MessageBox.Show("El servidor fue preparado con éxito. Puede comenzar a utilizar el sistema. La primera vez que ingrese al sistema, utilice el usuario Nº 1 (Administrador) y la contraseña 'admin' (sin las comillas).", "Preparar Servidor");
+                                        } else {
+                                                return new Lfx.Types.FailureOperationResult("Debe preparar el servidor.");
+                                        }
+                                }
+                        }
+
+                        // Configuro el nivel de aislación predeterminado
+                        Lfx.Data.DataBaseCache.DefaultCache.DefaultIsolationLevel = (Lfx.Data.IsolationLevels)(Enum.Parse(typeof(Lfx.Data.IsolationLevels), Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Datos.Aislacion", "Serializable")));
+
+                        if (Lfx.Environment.SystemInformation.DesignMode == false) {
+                                // Si es necesario, actualizo la estructura de la base de datos
+                                using (Lfx.Data.Connection DataBaseVerif = Lfx.Workspace.Master.GetNewConnection("Verificar versión de la base de datos")) {
+                                        Lfx.Workspace.Master.CheckAndUpdateDataBaseVersion(DataBaseVerif, false, false);
+                                        DataBaseVerif.Dispose();
+                                }
+                        }
+                        return iniciarReturn;
+                }
+
+                /// <summary>
+                /// Inicia la interfaz gráfica del programa.
+                /// </summary>
+                private static Lfx.Types.OperationResult IniciarGui()
                 {
                         Lbl.Personas.IIdentificadorUnico Cuit = Lbl.Sys.Config.Actual.Empresa.Cuit;
                         if (Cuit == null || Cuit.EsValido() == false) {
@@ -475,8 +542,6 @@ Si necesita información sobre cómo instalar o configurar un servidor SQL para 
                                         }
                                 }
 
-                                CargarComponentes();
-
                                 // Mostrar el formulario
                                 Aplicacion.FormularioPrincipal = new Principal.Inicio();
                                 Aplicacion.FormularioPrincipal.Show();
@@ -487,7 +552,7 @@ Si necesita información sobre cómo instalar o configurar un servidor SQL para 
                 }
 
                 /// <summary>
-                /// Envía datos sobre el equipo en el que se está ejecutando el sistema.
+                /// Envía datos anónimos sobre el equipo en el que se está ejecutando Lázaro.
                 /// </summary>
                 /// <param name="param"></param>
                 public static void EnviarEstadisticas(object param)

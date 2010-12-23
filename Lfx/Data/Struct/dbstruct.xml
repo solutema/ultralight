@@ -1,4 +1,5 @@
-﻿<Database>
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Database>
   <Table name="alicuotas" lsdet="1">
     <Column name="id_alicuota" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="porcentaje" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
@@ -919,14 +920,15 @@
   <Table name="ventas_cuotas">
     <Column name="id_cuota" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="fecha" datatype="DateTime" nullable="0" />
-    <Column name="prefijo" datatype="Integer" nullable="0" />
+    <Column name="prefijo" datatype="SmallInt" nullable="0" />
     <Column name="operacion" datatype="Integer" nullable="0" />
-    <Column name="autorizacion" datatype="Integer" nullable="0" />
+    <Column name="autorizacion" datatype="SmallInt" nullable="0" />
     <Column name="id_cliente" datatype="Integer" nullable="0" />
     <Column name="id_comercio" datatype="Integer" nullable="0" />
-    <Column name="cuota" datatype="Integer" nullable="0" default="0" />
-    <Column name="cuotas" datatype="Integer" nullable="0" default="0" />
+    <Column name="cuota" datatype="SmallInt" nullable="0" default="0" />
+    <Column name="cuotas" datatype="SmallInt" nullable="0" default="0" />
     <Column name="importe" inputtype="Currency" default="0" />
+    <Column name="importe_liq" inputtype="Currency" default="0" />
     <Column name="vencimiento" datatype="DateTime" nullable="1" />
     <Column name="estado" datatype="SmallInt" nullable="0" default="0" />
     <Column name="estado_com" datatype="SmallInt" nullable="0" default="0" />

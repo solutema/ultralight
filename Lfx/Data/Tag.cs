@@ -70,7 +70,7 @@ namespace Lfx.Data
                                         this.Relation = new Relation(this.FieldName, ReferenceTable, ReferenceColumn, DetailColumn);
                                         break;
                                 default:
-                                        this.FieldType = Lfx.Data.Types.FromSQLType(FldType);
+                                        this.FieldType = Lfx.Data.Types.FromSqlType(FldType);
                                         break;
                         }
                         

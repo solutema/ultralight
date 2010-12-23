@@ -40,10 +40,11 @@ namespace Lfx.Data
         /// </summary>
         public class Structure
         {
-                private System.Collections.Generic.Dictionary<string, Lfx.Data.TagCollection> m_TagList = null; // Si... una colección de colecciones
+                private Dictionary<string, Lfx.Data.TagCollection> m_TagList = null; // Si... una colección de colecciones
 
-                private System.Collections.Generic.Dictionary<string, Lfx.Data.ConstraintDefinition> m_Constraints = null;
-                private System.Collections.Generic.Dictionary<string, Lfx.Data.TableStructure> m_Tables = null;
+                private Dictionary<string, Lfx.Data.ConstraintDefinition> m_Constraints = null;
+                private Dictionary<string, Lfx.Data.TableStructure> m_Tables = null;
+                private List<System.Xml.XmlDocument> BuiltIns = new List<System.Xml.XmlDocument>();
 
                 /// <summary>
                 /// Obtiene las claves foráneas desde dbstruct.xml (puede no coincidir con el contenido actual de la base de datos)
@@ -101,11 +102,12 @@ namespace Lfx.Data
                 /// <param name="nombreArchivo">La ruta completa del archivo.</param>
                 public void LoadFromFile(string nombreArchivo)
                 {
+                        this.Clear();
                         using (System.IO.StreamReader Lector = new System.IO.StreamReader(nombreArchivo, System.Text.Encoding.Default)) {
                                 System.Xml.XmlDocument Doc = new System.Xml.XmlDocument();
                                 Doc.Load(Lector);
                                 Lector.Close();
-                                this.FromXml(Doc);
+                                this.AddFromXml(Doc);
                         }
                 }
 
@@ -114,24 +116,40 @@ namespace Lfx.Data
                 /// </summary>
                 public void LoadBuiltIn()
                 {
+                        this.Clear();
                         using (System.IO.Stream RecursoXml = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Lfx.Data.Struct.dbstruct.xml")) {
                                 using (System.IO.StreamReader Lector = new System.IO.StreamReader(RecursoXml)) {
                                         System.Xml.XmlDocument Doc = new System.Xml.XmlDocument();
                                         Doc.Load(Lector);
                                         Lector.Close();
                                         RecursoXml.Close();
-                                        this.FromXml(Doc);
+                                        this.AddFromXml(Doc);
                                 }
                         }
+
+                        foreach (System.Xml.XmlDocument Doc in BuiltIns) {
+                                this.AddFromXml(Doc);
+                        }
+                }
+
+                public void AddToBuiltIn(System.Xml.XmlDocument doc)
+                {
+                        this.BuiltIns.Add(doc);
+                        this.AddFromXml(doc);
+                }
+
+                public void Clear()
+                {
+                        m_Constraints = new System.Collections.Generic.Dictionary<string, Lfx.Data.ConstraintDefinition>();
+                        m_Tables = new System.Collections.Generic.Dictionary<string, Lfx.Data.TableStructure>();
                 }
 
                 /// <summary>
                 /// Carga lee la información de la estructura de las tablas de datos desde un documento XML.
                 /// </summary>
                 /// <param name="xmlDoc">El documento desde el cual cargar la información de la estructura.</param>
-                public void FromXml(System.Xml.XmlDocument xmlDoc)
+                private void AddFromXml(System.Xml.XmlDocument xmlDoc)
                 {
-                        m_Constraints = new System.Collections.Generic.Dictionary<string, Lfx.Data.ConstraintDefinition>();
                         System.Xml.XmlNodeList ClavesXml = xmlDoc.SelectNodes("/Database/Constraint");
                         foreach (System.Xml.XmlNode ClaveXml in ClavesXml) {
                                 Lfx.Data.ConstraintDefinition Con = new Lfx.Data.ConstraintDefinition(ClaveXml.Attributes["table"].Value);
@@ -142,12 +160,21 @@ namespace Lfx.Data
                                 Constraints.Add(Con.Name, Con);
                         }
 
-                        m_Tables = new System.Collections.Generic.Dictionary<string, Lfx.Data.TableStructure>();
                         System.Xml.XmlNodeList TablasXml = xmlDoc.SelectNodes("/Database/Table");
                         foreach (System.Xml.XmlNode TablaXml in TablasXml) {
-                                Lfx.Data.TableStructure Tabla = new Lfx.Data.TableStructure();
-                                Tabla.Name = TablaXml.Attributes["name"].Value;
-                                Tabla.Columns = new System.Collections.Generic.Dictionary<string, Lfx.Data.ColumnDefinition>();
+
+                                string TableName = TablaXml.Attributes["name"].Value;
+                                Lfx.Data.TableStructure Tabla;
+                                
+                                if (m_Tables.ContainsKey(TableName)) {
+                                        // Ya existe la tabla, sólo agrego la definición de las columnas nuevas
+                                        Tabla = m_Tables[TableName];
+                                } else {
+                                        // Es una definición de una tabla nueva
+                                        Tabla = new Lfx.Data.TableStructure();
+                                        Tabla.Name = TableName;
+                                        Tabla.Columns = new System.Collections.Generic.Dictionary<string, Lfx.Data.ColumnDefinition>();
+                                }
 
                                 System.Xml.XmlNodeList ColumnasXml = TablaXml.SelectNodes("Column");
                                 foreach (System.Xml.XmlNode ColumnaXml in ColumnasXml) {
@@ -190,6 +217,10 @@ namespace Lfx.Data
                                                                 Columna.InputFieldType = InputFieldTypes.Integer;
                                                                 Columna.FieldType = DbTypes.Integer;
                                                                 break;
+                                                        case "SmallInt":
+                                                                Columna.InputFieldType = InputFieldTypes.Integer;
+                                                                Columna.FieldType = DbTypes.SmallInt;
+                                                                break;
                                                         case "Memo":
                                                                 Columna.InputFieldType = InputFieldTypes.Memo;
                                                                 Columna.FieldType = DbTypes.Text;
@@ -221,7 +252,7 @@ namespace Lfx.Data
                                                                 throw new NotImplementedException("Lfx.Data.DataBaseCache.CargarEstructuraDesdeXml: Falta implementar " + ColumnaXml.Attributes["inputtype"].Value);
                                                 }
                                         } else {
-                                                Columna.FieldType = Lfx.Data.Types.FromSQLType(ColumnaXml.Attributes["datatype"].Value);
+                                                Columna.FieldType = Lfx.Data.Types.FromSqlType(ColumnaXml.Attributes["datatype"].Value);
                                         }
 
                                         if (ColumnaXml.Attributes["lenght"] != null)
@@ -283,7 +314,11 @@ namespace Lfx.Data
                                                                 break;
                                                 }
                                         }
-                                        Tabla.Columns.Add(Columna.Name, Columna);
+
+                                        if (Tabla.Columns.ContainsKey(Columna.Name))
+                                                Tabla.Columns[Columna.Name] = Columna;
+                                        else
+                                                Tabla.Columns.Add(Columna.Name, Columna);
                                 }
 
                                 //Agrego los campos de sys_tags
@@ -312,7 +347,9 @@ namespace Lfx.Data
                                         }
                                 }
 
-                                Tabla.Indexes = new System.Collections.Generic.Dictionary<string, Lfx.Data.IndexDefinition>();
+                                if (Tabla.Indexes == null)
+                                        Tabla.Indexes = new System.Collections.Generic.Dictionary<string, Lfx.Data.IndexDefinition>();
+
                                 System.Xml.XmlNodeList IndicesXml = TablaXml.SelectNodes("Index");
                                 foreach (System.Xml.XmlNode IndiceXml in IndicesXml) {
                                         Lfx.Data.IndexDefinition Indice = new Lfx.Data.IndexDefinition(Tabla.Name);
@@ -332,7 +369,8 @@ namespace Lfx.Data
                                         }
                                 }
 
-                                this.m_Tables.Add(Tabla.Name, Tabla);
+                                if (m_Tables.ContainsKey(Tabla.Name) == false)
+                                        this.m_Tables.Add(Tabla.Name, Tabla);
                         }
                 }
 

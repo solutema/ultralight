@@ -187,12 +187,16 @@ namespace Lfx.Data
                                         case DbTypes.Integer:
                                         case DbTypes.Numeric:
                                         case DbTypes.SmallInt:
-                                                if (this.DefaultValue == null)
-                                                        Def += " DEFAULT 0";	//Default to zero
-                                                else if (this.DefaultValue == "NULL")
+                                                if (this.DefaultValue == null) {
+                                                        if(this.Nullable)
+                                                                Def += " DEFAULT NULL";	// Nullable columns default to null
+                                                        else
+                                                                Def += " DEFAULT 0";	// Otherwise, default to zero
+                                                } else if (this.DefaultValue == "NULL") {
                                                         Def += " DEFAULT NULL";
-                                                else
+                                                } else {
                                                         Def += " DEFAULT '" + this.DefaultValue + "'";
+                                                }
                                                 break;  
                                         default:
                                                 if (this.DefaultValue != null && this.DefaultValue.Length > 0)

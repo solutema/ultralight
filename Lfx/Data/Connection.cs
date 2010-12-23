@@ -396,9 +396,11 @@ namespace Lfx.Data
                                 foreach (Data.IndexDefinition CurrentIndex in CurrentTableDef.Indexes.Values) {
                                         if (CurrentIndex.Primary && CurrentIndex.Name != "PRIMARY")
                                                 CurrentIndex.Name = "PRIMARY";
-                                        // FIXME: eliminar indices innecesarios
-                                        //if (newTableDef.Indexes.ContainsKey(CurrentIndex.Name) == false)
+
+                                        if (newTableDef.Indexes.ContainsKey(CurrentIndex.Name) == false)
+                                                // FIXME: debería dropear índices que desconozco???
                                                 //this.DropIndex(CurrentIndex);
+                                                System.Console.WriteLine("DROP INDEX " + CurrentIndex.Name);
                                 }
                         }
                 }
@@ -463,7 +465,7 @@ namespace Lfx.Data
                         foreach (System.Data.DataRow Columna in Columnas.Rows) {
                                 Data.ColumnDefinition FieldDef = new Data.ColumnDefinition();
                                 FieldDef.Name = Columna["COLUMN_NAME"].ToString();
-                                FieldDef.FieldType = Lfx.Data.Types.FromSQLType(Columna["DATA_TYPE"].ToString());
+                                FieldDef.FieldType = Lfx.Data.Types.FromSqlType(Columna["DATA_TYPE"].ToString());
                                 switch (FieldDef.FieldType) {
                                         case Lfx.Data.DbTypes.VarChar:
                                                 FieldDef.Lenght = System.Convert.ToInt32(Columna["CHARACTER_MAXIMUM_LENGTH"]);

@@ -152,8 +152,7 @@
     <Compile Include="Reportes\Facturacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Clases\Aplicacion.cs" />
-    <Compile Include="Clases\Datos.cs" />
+    <Compile Include="Aplicacion.cs" />
     <Compile Include="Principal\BarraInferior.cs">
       <SubType>UserControl</SubType>
     </Compile>
