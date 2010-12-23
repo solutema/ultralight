@@ -1,4 +1,35 @@
-﻿namespace Lazaro.Misc.Config
+#region License
+// Copyright 2004-2010 Ernesto N. Carrea
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// Este programa es software libre; puede distribuirlo y/o moficiarlo de
+// acuerdo a los términos de la Licencia Pública General de GNU (GNU
+// General Public License), como la publica la Fundación para el Software
+// Libre (Free Software Foundation), tanto la versión 3 de la Licencia
+// como (a su elección) cualquier versión posterior.
+//
+// Este programa se distribuye con la esperanza de que sea útil, pero SIN
+// GARANTÍA ALGUNA; ni siquiera la garantía MERCANTIL implícita y sin
+// garantizar su CONVENIENCIA PARA UN PROPÓSITO PARTICULAR. Véase la
+// Licencia Pública General de GNU para más detalles. 
+//
+// Debería haber recibido una copia de la Licencia Pública General junto
+// con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
+
+namespace Lazaro.Misc.Config
 {
         partial class Inicial
         {
@@ -60,7 +91,7 @@
                         this.pictureBox7 = new System.Windows.Forms.PictureBox();
                         this.EtiquetaPruebaError = new System.Windows.Forms.Label();
                         this.EtiquetaPruebaResultado = new System.Windows.Forms.Label();
-                        this.EtiquetaTitulo = new System.Windows.Forms.Label();
+                        this.EtiquetaEncab = new Lui.Forms.LabelH1();
                         this.PanelBienvenido.SuspendLayout();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -491,18 +522,19 @@
                         this.EtiquetaPruebaResultado.TabIndex = 58;
                         this.EtiquetaPruebaResultado.Text = "Probando la conexión...";
                         // 
-                        // EtiquetaTitulo
+                        // EtiquetaEncab
                         // 
-                        this.EtiquetaTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EtiquetaEncab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaTitulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EtiquetaTitulo.Location = new System.Drawing.Point(120, 12);
-                        this.EtiquetaTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-                        this.EtiquetaTitulo.Name = "EtiquetaTitulo";
-                        this.EtiquetaTitulo.Size = new System.Drawing.Size(496, 28);
-                        this.EtiquetaTitulo.TabIndex = 56;
-                        this.EtiquetaTitulo.Text = "Bienvenido a Lázaro";
-                        this.EtiquetaTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaEncab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(202)))), ((int)(((byte)(174)))));
+                        this.EtiquetaEncab.Font = new System.Drawing.Font("Bitstream Vera Sans", 10F, System.Drawing.FontStyle.Bold);
+                        this.EtiquetaEncab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EtiquetaEncab.Location = new System.Drawing.Point(120, 12);
+                        this.EtiquetaEncab.Name = "EtiquetaEncab";
+                        this.EtiquetaEncab.Size = new System.Drawing.Size(496, 28);
+                        this.EtiquetaEncab.TabIndex = 56;
+                        this.EtiquetaEncab.Text = "Bienvenido a Lázaro";
+                        this.EtiquetaEncab.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Inicial
                         // 
@@ -513,7 +545,7 @@
                         this.ControlBox = false;
                         this.Controls.Add(this.panel1);
                         this.Controls.Add(this.LowerPanel);
-                        this.Controls.Add(this.EtiquetaTitulo);
+                        this.Controls.Add(this.EtiquetaEncab);
                         this.Controls.Add(this.PanelBienvenido);
                         this.Controls.Add(this.PanelAlmacenDeDatos);
                         this.Controls.Add(this.PanelPruebaServidor);
@@ -573,7 +605,6 @@
                 private System.Windows.Forms.Panel PanelFinal;
                 private System.Windows.Forms.Label label11;
                 private System.Windows.Forms.Panel PanelPruebaServidor;
-                private System.Windows.Forms.Label EtiquetaTitulo;
                 private System.Windows.Forms.Label EtiquetaPruebaResultado;
                 private Lui.Forms.Button BotonAnterior;
                 private System.Windows.Forms.Label EtiquetaPruebaError;
@@ -585,5 +616,6 @@
                 private System.Windows.Forms.PictureBox pictureBox8;
                 private System.Windows.Forms.PictureBox pictureBox7;
                 private System.Windows.Forms.Label label5;
+                private Lui.Forms.LabelH1 EtiquetaEncab;
         }
 }

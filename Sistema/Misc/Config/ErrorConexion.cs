@@ -40,7 +40,6 @@ namespace Lazaro.Misc.Config
                         InitializeComponent();
 
                         LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
-                        lblHeader1.BackColor = Lfx.Config.Templates.Template.CambiarBrillo(Lfx.Config.Display.CurrentTemplate.WindowBackground, -10);
                 }
 
 

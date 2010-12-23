@@ -29,33 +29,21 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-namespace Lbl.Personas
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Lui.Forms
 {
-        public class Cuit : IIdentificadorUnico
+        public class LabelH2 : Label
         {
-                public string Valor { get; set; }
-
-                public Cuit(string valor)
+                public LabelH2()
                 {
-                        string Res = valor;
-
-                        if (Res != null)
-                                Res = Res.Replace(".", "").Replace("-", "").Replace("/", "").Replace(" ", "").Replace("_", "");
-
-                        if (Res.Length == 11)
-                                this.Valor = Res.Substring(0, 2) + "-" + Res.Substring(2, 8) + "-" + Res.Substring(10, 1);
-                        else
-                                this.Valor = Res;
-                }
-
-                public bool EsValido()
-                {
-                        return Lfx.Types.Strings.EsCuitValido(this.Valor);
-                }
-
-                public override string ToString()
-                {
-                        return this.Valor;
+                        this.BackColor = Lfx.Config.Display.CurrentTemplate.Header2Background;
+                        this.ForeColor = Lfx.Config.Display.CurrentTemplate.Header2Text;
+                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 10, System.Drawing.FontStyle.Bold);
+                        this.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
                 }
         }
 }

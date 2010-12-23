@@ -46,9 +46,6 @@ namespace Lazaro.Misc
                         InitializeComponent();
 
                         LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
-                        Titulo.Font = Lfx.Config.Display.CurrentTemplate.TitleFont;
-                        Titulo.BackColor = Lfx.Config.Display.CurrentTemplate.TitleBackground;
-                        Titulo.ForeColor = Lfx.Config.Display.CurrentTemplate.TitleText;
                 }
 
 		private void FormIngreso_Load(object sender, System.EventArgs e)

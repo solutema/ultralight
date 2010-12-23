@@ -42,11 +42,6 @@ namespace Lazaro.Misc.Config
                         InitializeComponent();
 
                         LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
-                        EtiquetaEncab1.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
-                        EtiquetaEncab1.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
-                        EtiquetaEncab4.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
-                        EtiquetaEncab4.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
-
                 }
 
                 private void ConfigBD_Load(object sender, System.EventArgs e)
@@ -115,11 +110,11 @@ namespace Lazaro.Misc.Config
                 {
                         if (PanelServidorAvanzado.Visible) {
                                 PanelServidorAvanzado.Visible = false;
-                                PanelServidorNoInstalado.Top = BotonServidorVista.Top + BotonServidorVista.Height + 4;
+                                PanelServidorNoInstalado.Visible = true;
                                 BotonServidorVista.Text = "Vista Avanzada >";
                         } else {
                                 PanelServidorAvanzado.Visible = true;
-                                PanelServidorNoInstalado.Top = PanelServidorAvanzado.Top + PanelServidorAvanzado.Height + 4;
+                                PanelServidorNoInstalado.Visible = false;
                                 BotonServidorVista.Text = "Vista Normal <";
                         }
                 }
@@ -189,6 +184,11 @@ namespace Lazaro.Misc.Config
                         else {
                                 EntradaSlowLink.TextKey = "1";
                         }
+                }
+
+                private void BotonWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                {
+                        Help.ShowHelp(this, "http://www.sistemalazaro.com.ar/?q=node/17");
                 }
 
         }

@@ -1,4 +1,35 @@
-﻿using System.Windows.Forms;
+#region License
+// Copyright 2004-2010 Ernesto N. Carrea
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// Este programa es software libre; puede distribuirlo y/o moficiarlo de
+// acuerdo a los términos de la Licencia Pública General de GNU (GNU
+// General Public License), como la publica la Fundación para el Software
+// Libre (Free Software Foundation), tanto la versión 3 de la Licencia
+// como (a su elección) cualquier versión posterior.
+//
+// Este programa se distribuye con la esperanza de que sea útil, pero SIN
+// GARANTÍA ALGUNA; ni siquiera la garantía MERCANTIL implícita y sin
+// garantizar su CONVENIENCIA PARA UN PROPÓSITO PARTICULAR. Véase la
+// Licencia Pública General de GNU para más detalles. 
+//
+// Debería haber recibido una copia de la Licencia Pública General junto
+// con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
+
+using System.Windows.Forms;
 
 namespace Lazaro.Misc.Config
 {
@@ -21,7 +52,7 @@ namespace Lazaro.Misc.Config
                 private void InitializeComponent()
                 {
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ErrorConexion));
-                        this.lblHeader1 = new System.Windows.Forms.Label();
+                        this.EtiquetaEncab = new Lui.Forms.LabelH1();
                         this.BotonConfigurar = new Lui.Forms.Button();
                         this.BotonReintentar = new Lui.Forms.Button();
                         this.BotonSalir = new Lui.Forms.Button();
@@ -39,15 +70,14 @@ namespace Lazaro.Misc.Config
                         // 
                         // lblHeader1
                         // 
-                        this.lblHeader1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EtiquetaEncab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblHeader1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.lblHeader1.Location = new System.Drawing.Point(172, 28);
-                        this.lblHeader1.Name = "lblHeader1";
-                        this.lblHeader1.Size = new System.Drawing.Size(440, 24);
-                        this.lblHeader1.TabIndex = 0;
-                        this.lblHeader1.Text = "No se puede establecer conexión con el servidor SQL";
-                        this.lblHeader1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaEncab.Location = new System.Drawing.Point(172, 28);
+                        this.EtiquetaEncab.Name = "lblHeader1";
+                        this.EtiquetaEncab.Size = new System.Drawing.Size(440, 24);
+                        this.EtiquetaEncab.TabIndex = 0;
+                        this.EtiquetaEncab.Text = "No se puede establecer conexión con el servidor SQL";
+                        this.EtiquetaEncab.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // BotonConfigurar
                         // 
@@ -179,7 +209,7 @@ namespace Lazaro.Misc.Config
                         this.Controls.Add(this.panel1);
                         this.Controls.Add(this.EtiquetaErrorOriginal);
                         this.Controls.Add(this.LowerPanel);
-                        this.Controls.Add(this.lblHeader1);
+                        this.Controls.Add(this.EtiquetaEncab);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "ErrorConexion";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -198,7 +228,7 @@ namespace Lazaro.Misc.Config
                 private Lui.Forms.Button BotonConfigurar;
                 private Lui.Forms.Button BotonReintentar;
                 private Lui.Forms.Button BotonSalir;
-                private System.Windows.Forms.Label lblHeader1;
+                private Lui.Forms.LabelH1 EtiquetaEncab;
                 private Lui.Forms.Note EtiquetaErrorOriginal;
                 private Panel panel1;
                 private PictureBox pictureBox2;

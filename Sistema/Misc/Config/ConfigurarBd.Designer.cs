@@ -1,4 +1,35 @@
-﻿
+#region License
+// Copyright 2004-2010 Ernesto N. Carrea
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// Este programa es software libre; puede distribuirlo y/o moficiarlo de
+// acuerdo a los términos de la Licencia Pública General de GNU (GNU
+// General Public License), como la publica la Fundación para el Software
+// Libre (Free Software Foundation), tanto la versión 3 de la Licencia
+// como (a su elección) cualquier versión posterior.
+//
+// Este programa se distribuye con la esperanza de que sea útil, pero SIN
+// GARANTÍA ALGUNA; ni siquiera la garantía MERCANTIL implícita y sin
+// garantizar su CONVENIENCIA PARA UN PROPÓSITO PARTICULAR. Véase la
+// Licencia Pública General de GNU para más detalles. 
+//
+// Debería haber recibido una copia de la Licencia Pública General junto
+// con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
+
+
 namespace Lazaro.Misc.Config
 {
         public partial class ConfigurarBd
@@ -24,11 +55,10 @@ namespace Lazaro.Misc.Config
 
                 private void InitializeComponent()
                 {
-                        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigurarBd));
-                        this.Label27 = new System.Windows.Forms.Label();
+                        this.EtiquetaEncab = new Lui.Forms.LabelH1();
                         this.EntradaServidor = new Lui.Forms.TextBox();
                         this.EtiquetaServidor = new System.Windows.Forms.Label();
-                        this.EtiquetaEncab1 = new System.Windows.Forms.Label();
+                        this.EtiquetaSubEncab1 = new Lui.Forms.LabelH2();
                         this.Label3 = new System.Windows.Forms.Label();
                         this.BotonServidorVista = new Lui.Forms.Button();
                         this.PanelServidorAvanzado = new System.Windows.Forms.Panel();
@@ -50,8 +80,9 @@ namespace Lazaro.Misc.Config
                         this.CancelCommandButton = new Lui.Forms.Button();
                         this.Label6 = new System.Windows.Forms.Label();
                         this.EtiquetaServidorCumple = new System.Windows.Forms.Label();
-                        this.EtiquetaEncab4 = new System.Windows.Forms.Label();
+                        this.EtiquetaSubEncab2 = new Lui.Forms.LabelH2();
                         this.PanelServidorNoInstalado = new System.Windows.Forms.Panel();
+                        this.BotonGuiaInstalacion = new System.Windows.Forms.LinkLabel();
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
                         this.label7 = new System.Windows.Forms.Label();
                         this.PanelServidorAvanzado.SuspendLayout();
@@ -60,16 +91,19 @@ namespace Lazaro.Misc.Config
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
                         this.SuspendLayout();
                         // 
-                        // Label27
+                        // EtiquetaEncab
                         // 
-                        this.Label27.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EtiquetaEncab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label27.Location = new System.Drawing.Point(76, 9);
-                        this.Label27.Name = "Label27";
-                        this.Label27.Size = new System.Drawing.Size(447, 32);
-                        this.Label27.TabIndex = 0;
-                        this.Label27.Text = "El sistema Lázaro necesita un servidor SQL para operar";
-                        this.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaEncab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(202)))), ((int)(((byte)(174)))));
+                        this.EtiquetaEncab.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaEncab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EtiquetaEncab.Location = new System.Drawing.Point(20, 21);
+                        this.EtiquetaEncab.Name = "EtiquetaEncab";
+                        this.EtiquetaEncab.Size = new System.Drawing.Size(555, 27);
+                        this.EtiquetaEncab.TabIndex = 0;
+                        this.EtiquetaEncab.Text = "Configuración del almacén de datos";
+                        this.EtiquetaEncab.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaServidor
                         // 
@@ -80,7 +114,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaServidor.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaServidor.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaServidor.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaServidor.Location = new System.Drawing.Point(172, 151);
+                        this.EntradaServidor.Location = new System.Drawing.Point(192, 172);
                         this.EntradaServidor.MaxLenght = 32767;
                         this.EntradaServidor.MultiLine = false;
                         this.EntradaServidor.Name = "EntradaServidor";
@@ -88,7 +122,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaServidor.PasswordChar = '\0';
                         this.EntradaServidor.Prefijo = "";
                         this.EntradaServidor.SelectOnFocus = false;
-                        this.EntradaServidor.Size = new System.Drawing.Size(260, 25);
+                        this.EntradaServidor.Size = new System.Drawing.Size(196, 25);
                         this.EntradaServidor.Sufijo = "";
                         this.EntradaServidor.TabIndex = 4;
                         this.EntradaServidor.TipWhenBlank = "";
@@ -97,35 +131,37 @@ namespace Lazaro.Misc.Config
                         // 
                         // EtiquetaServidor
                         // 
-                        this.EtiquetaServidor.Location = new System.Drawing.Point(24, 151);
+                        this.EtiquetaServidor.Location = new System.Drawing.Point(44, 172);
                         this.EtiquetaServidor.Name = "EtiquetaServidor";
                         this.EtiquetaServidor.Size = new System.Drawing.Size(147, 25);
                         this.EtiquetaServidor.TabIndex = 3;
                         this.EtiquetaServidor.Text = "Nombre del servidor";
                         this.EtiquetaServidor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // lblHeader1
+                        // EtiquetaSubEncab1
                         // 
-                        this.EtiquetaEncab1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EtiquetaSubEncab1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaEncab1.BackColor = System.Drawing.SystemColors.ControlDark;
-                        this.EtiquetaEncab1.Location = new System.Drawing.Point(12, 84);
-                        this.EtiquetaEncab1.Name = "lblHeader1";
-                        this.EtiquetaEncab1.Size = new System.Drawing.Size(511, 24);
-                        this.EtiquetaEncab1.TabIndex = 1;
-                        this.EtiquetaEncab1.Text = " Si ya dispone de un servidor";
-                        this.EtiquetaEncab1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaSubEncab1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(206)))), ((int)(((byte)(220)))));
+                        this.EtiquetaSubEncab1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaSubEncab1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(68)))), ((int)(((byte)(115)))));
+                        this.EtiquetaSubEncab1.Location = new System.Drawing.Point(20, 96);
+                        this.EtiquetaSubEncab1.Name = "EtiquetaSubEncab1";
+                        this.EtiquetaSubEncab1.Size = new System.Drawing.Size(555, 24);
+                        this.EtiquetaSubEncab1.TabIndex = 1;
+                        this.EtiquetaSubEncab1.Text = "Si ya dispone de un servidor";
+                        this.EtiquetaSubEncab1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label3
                         // 
                         this.Label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label3.Location = new System.Drawing.Point(20, 116);
+                        this.Label3.Location = new System.Drawing.Point(20, 128);
                         this.Label3.Name = "Label3";
-                        this.Label3.Size = new System.Drawing.Size(503, 28);
+                        this.Label3.Size = new System.Drawing.Size(555, 36);
                         this.Label3.TabIndex = 2;
-                        this.Label3.Text = "Si ya configuró un servidor SQL en este equipo o en otro equipo de la red, escrib" +
-                            "a aquí los datos del mismo. Estos datos serán guardados para futuros ingresos.";
+                        this.Label3.Text = "Si ya instaló un servidor SQL en este equipo o en otro equipo de la red, escriba " +
+                            "aquí los datos del mismo. Estos datos serán guardados para futuros ingresos.";
                         // 
                         // BotonServidorVista
                         // 
@@ -134,7 +170,7 @@ namespace Lazaro.Misc.Config
                         this.BotonServidorVista.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonServidorVista.Image = null;
                         this.BotonServidorVista.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonServidorVista.Location = new System.Drawing.Point(24, 180);
+                        this.BotonServidorVista.Location = new System.Drawing.Point(44, 201);
                         this.BotonServidorVista.Name = "BotonServidorVista";
                         this.BotonServidorVista.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonServidorVista.Size = new System.Drawing.Size(132, 28);
@@ -159,9 +195,9 @@ namespace Lazaro.Misc.Config
                         this.PanelServidorAvanzado.Controls.Add(this.EntradaUsuario);
                         this.PanelServidorAvanzado.Controls.Add(this.Label28);
                         this.PanelServidorAvanzado.Controls.Add(this.Label29);
-                        this.PanelServidorAvanzado.Location = new System.Drawing.Point(168, 183);
+                        this.PanelServidorAvanzado.Location = new System.Drawing.Point(188, 204);
                         this.PanelServidorAvanzado.Name = "PanelServidorAvanzado";
-                        this.PanelServidorAvanzado.Size = new System.Drawing.Size(320, 165);
+                        this.PanelServidorAvanzado.Size = new System.Drawing.Size(320, 169);
                         this.PanelServidorAvanzado.TabIndex = 7;
                         this.PanelServidorAvanzado.Visible = false;
                         // 
@@ -174,7 +210,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaSucursal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaSucursal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaSucursal.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaSucursal.Location = new System.Drawing.Point(232, 140);
+                        this.EntradaSucursal.Location = new System.Drawing.Point(232, 144);
                         this.EntradaSucursal.MaxLenght = 32767;
                         this.EntradaSucursal.MultiLine = false;
                         this.EntradaSucursal.Name = "EntradaSucursal";
@@ -191,7 +227,7 @@ namespace Lazaro.Misc.Config
                         // 
                         // label5
                         // 
-                        this.label5.Location = new System.Drawing.Point(0, 140);
+                        this.label5.Location = new System.Drawing.Point(0, 144);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(232, 24);
                         this.label5.TabIndex = 10;
@@ -369,7 +405,7 @@ namespace Lazaro.Misc.Config
                         this.GCommand1.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.GCommand1.Image = null;
                         this.GCommand1.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.GCommand1.Location = new System.Drawing.Point(440, 151);
+                        this.GCommand1.Location = new System.Drawing.Point(392, 173);
                         this.GCommand1.Name = "GCommand1";
                         this.GCommand1.Padding = new System.Windows.Forms.Padding(2);
                         this.GCommand1.Size = new System.Drawing.Size(80, 25);
@@ -385,9 +421,9 @@ namespace Lazaro.Misc.Config
                         this.LowerPanel.Controls.Add(this.OkButton);
                         this.LowerPanel.Controls.Add(this.CancelCommandButton);
                         this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-                        this.LowerPanel.Location = new System.Drawing.Point(0, 428);
+                        this.LowerPanel.Location = new System.Drawing.Point(0, 388);
                         this.LowerPanel.Name = "LowerPanel";
-                        this.LowerPanel.Size = new System.Drawing.Size(534, 64);
+                        this.LowerPanel.Size = new System.Drawing.Size(594, 64);
                         this.LowerPanel.TabIndex = 50;
                         // 
                         // OkButton
@@ -398,7 +434,7 @@ namespace Lazaro.Misc.Config
                         this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.OkButton.Image = null;
                         this.OkButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.OkButton.Location = new System.Drawing.Point(300, 16);
+                        this.OkButton.Location = new System.Drawing.Point(360, 16);
                         this.OkButton.Name = "OkButton";
                         this.OkButton.Padding = new System.Windows.Forms.Padding(2);
                         this.OkButton.Size = new System.Drawing.Size(104, 32);
@@ -417,7 +453,7 @@ namespace Lazaro.Misc.Config
                         this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.CancelCommandButton.Image = null;
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.CancelCommandButton.Location = new System.Drawing.Point(412, 16);
+                        this.CancelCommandButton.Location = new System.Drawing.Point(472, 16);
                         this.CancelCommandButton.Name = "CancelCommandButton";
                         this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(2);
                         this.CancelCommandButton.Size = new System.Drawing.Size(104, 32);
@@ -432,54 +468,70 @@ namespace Lazaro.Misc.Config
                         // 
                         this.Label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label6.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.Label6.Location = new System.Drawing.Point(12, 56);
+                        this.Label6.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.Label6.Location = new System.Drawing.Point(4, 60);
                         this.Label6.Name = "Label6";
-                        this.Label6.Size = new System.Drawing.Size(500, 29);
+                        this.Label6.Size = new System.Drawing.Size(555, 36);
                         this.Label6.TabIndex = 3;
-                        this.Label6.Text = "Si necesita más información sobre el servidor SQL consulte el Manual del Administ" +
-                            "rador del sistema Lázaro.";
+                        this.Label6.Text = "Si necesita más información sobre la instalación y configuración de un servidor S" +
+                            "QL como almacén de datos, consulte la siguiente documentación en la web:";
                         // 
                         // EtiquetaServidorCumple
                         // 
                         this.EtiquetaServidorCumple.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaServidorCumple.Location = new System.Drawing.Point(12, 36);
+                        this.EtiquetaServidorCumple.Location = new System.Drawing.Point(4, 36);
                         this.EtiquetaServidorCumple.Name = "EtiquetaServidorCumple";
-                        this.EtiquetaServidorCumple.Size = new System.Drawing.Size(500, 20);
+                        this.EtiquetaServidorCumple.Size = new System.Drawing.Size(555, 20);
                         this.EtiquetaServidorCumple.TabIndex = 2;
                         this.EtiquetaServidorCumple.Text = "Esta PC no cumple con los requisitos.";
                         // 
-                        // lblHeader4
+                        // EtiquetaSubEncab2
                         // 
-                        this.EtiquetaEncab4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EtiquetaSubEncab2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaEncab4.BackColor = System.Drawing.SystemColors.ControlDark;
-                        this.EtiquetaEncab4.Location = new System.Drawing.Point(3, 6);
-                        this.EtiquetaEncab4.Name = "lblHeader4";
-                        this.EtiquetaEncab4.Size = new System.Drawing.Size(512, 24);
-                        this.EtiquetaEncab4.TabIndex = 0;
-                        this.EtiquetaEncab4.Text = " Información sobre el servidor SQL";
-                        this.EtiquetaEncab4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaSubEncab2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(206)))), ((int)(((byte)(220)))));
+                        this.EtiquetaSubEncab2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaSubEncab2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(68)))), ((int)(((byte)(115)))));
+                        this.EtiquetaSubEncab2.Location = new System.Drawing.Point(3, 6);
+                        this.EtiquetaSubEncab2.Name = "EtiquetaSubEncab2";
+                        this.EtiquetaSubEncab2.Size = new System.Drawing.Size(555, 24);
+                        this.EtiquetaSubEncab2.TabIndex = 0;
+                        this.EtiquetaSubEncab2.Text = "Información sobre el servidor SQL";
+                        this.EtiquetaSubEncab2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // PanelServidorNoInstalado
                         // 
                         this.PanelServidorNoInstalado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.PanelServidorNoInstalado.Controls.Add(this.BotonGuiaInstalacion);
                         this.PanelServidorNoInstalado.Controls.Add(this.Label6);
                         this.PanelServidorNoInstalado.Controls.Add(this.EtiquetaServidorCumple);
-                        this.PanelServidorNoInstalado.Controls.Add(this.EtiquetaEncab4);
-                        this.PanelServidorNoInstalado.Location = new System.Drawing.Point(8, 215);
+                        this.PanelServidorNoInstalado.Controls.Add(this.EtiquetaSubEncab2);
+                        this.PanelServidorNoInstalado.Location = new System.Drawing.Point(16, 244);
                         this.PanelServidorNoInstalado.Name = "PanelServidorNoInstalado";
-                        this.PanelServidorNoInstalado.Size = new System.Drawing.Size(520, 85);
+                        this.PanelServidorNoInstalado.Size = new System.Drawing.Size(563, 128);
                         this.PanelServidorNoInstalado.TabIndex = 11;
+                        // 
+                        // BotonGuiaInstalacion
+                        // 
+                        this.BotonGuiaInstalacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonGuiaInstalacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.BotonGuiaInstalacion.Location = new System.Drawing.Point(4, 100);
+                        this.BotonGuiaInstalacion.Name = "BotonGuiaInstalacion";
+                        this.BotonGuiaInstalacion.Size = new System.Drawing.Size(368, 20);
+                        this.BotonGuiaInstalacion.TabIndex = 56;
+                        this.BotonGuiaInstalacion.TabStop = true;
+                        this.BotonGuiaInstalacion.Text = "Instalación y Mantenimiento: Instalación Inicial";
+                        this.BotonGuiaInstalacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.BotonGuiaInstalacion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BotonWeb_LinkClicked);
                         // 
                         // PictureBox1
                         // 
-                        this.PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox1.Image")));
-                        this.PictureBox1.Location = new System.Drawing.Point(16, 12);
+                        this.PictureBox1.Image = global::Lazaro.Properties.Resources.drive_harddisk;
+                        this.PictureBox1.Location = new System.Drawing.Point(24, 56);
                         this.PictureBox1.Name = "PictureBox1";
-                        this.PictureBox1.Size = new System.Drawing.Size(47, 64);
+                        this.PictureBox1.Size = new System.Drawing.Size(32, 32);
                         this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
                         this.PictureBox1.TabIndex = 101;
                         this.PictureBox1.TabStop = false;
@@ -488,29 +540,29 @@ namespace Lazaro.Misc.Config
                         // 
                         this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label7.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.label7.Location = new System.Drawing.Point(76, 41);
+                        this.label7.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.label7.Location = new System.Drawing.Point(64, 56);
                         this.label7.Name = "label7";
-                        this.label7.Size = new System.Drawing.Size(447, 32);
+                        this.label7.Size = new System.Drawing.Size(511, 32);
                         this.label7.TabIndex = 102;
                         this.label7.Text = "Es necesario un servidor SQL donde guardar los datos. El servidor SQL puede estar" +
-                            " en este equipo o en otro equipo si dispone de una red.";
+                            " en este equipo o en otro equipo si dispone de una conexión de red.";
                         // 
                         // ConfigurarBd
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(534, 492);
+                        this.ClientSize = new System.Drawing.Size(594, 452);
                         this.Controls.Add(this.PanelServidorNoInstalado);
+                        this.Controls.Add(this.PanelServidorAvanzado);
                         this.Controls.Add(this.label7);
                         this.Controls.Add(this.PictureBox1);
                         this.Controls.Add(this.LowerPanel);
-                        this.Controls.Add(this.PanelServidorAvanzado);
                         this.Controls.Add(this.GCommand1);
                         this.Controls.Add(this.BotonServidorVista);
                         this.Controls.Add(this.EntradaServidor);
                         this.Controls.Add(this.Label3);
-                        this.Controls.Add(this.EtiquetaEncab1);
-                        this.Controls.Add(this.Label27);
+                        this.Controls.Add(this.EtiquetaSubEncab1);
+                        this.Controls.Add(this.EtiquetaEncab);
                         this.Controls.Add(this.EtiquetaServidor);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "ConfigurarBd";
@@ -528,9 +580,9 @@ namespace Lazaro.Misc.Config
 
                 #endregion
 
-                private System.Windows.Forms.Label Label27;
+                private Lui.Forms.LabelH1 EtiquetaEncab;
                 private System.Windows.Forms.Label Label3;
-                private System.Windows.Forms.Label EtiquetaEncab1;
+                private Lui.Forms.LabelH2 EtiquetaSubEncab1;
                 private Lui.Forms.TextBox EntradaServidor;
                 private System.Windows.Forms.Label EtiquetaServidor;
                 private System.Windows.Forms.Panel PanelServidorAvanzado;
@@ -549,7 +601,7 @@ namespace Lazaro.Misc.Config
                 private Lui.Forms.Button OkButton;
                 private System.Windows.Forms.Label Label6;
                 private System.Windows.Forms.Label EtiquetaServidorCumple;
-                private System.Windows.Forms.Label EtiquetaEncab4;
+                private Lui.Forms.LabelH2 EtiquetaSubEncab2;
                 private System.Windows.Forms.Label label4;
                 private Lui.Forms.ComboBox EntradaSlowLink;
                 private Lui.Forms.TextBox EntradaSucursal;
@@ -557,5 +609,6 @@ namespace Lazaro.Misc.Config
                 private System.Windows.Forms.PictureBox PictureBox1;
                 private System.Windows.Forms.Label label7;
                 private System.Windows.Forms.Panel PanelServidorNoInstalado;
+                private System.Windows.Forms.LinkLabel BotonGuiaInstalacion;
         }
 }

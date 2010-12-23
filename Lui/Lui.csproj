@@ -99,6 +99,15 @@
     </Compile>
     <Compile Include="Forms\IDataControl.cs" />
     <Compile Include="Forms\IDataForm.cs" />
+    <Compile Include="Forms\Label.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\LabelH1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\LabelH2.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\ListView.cs">
       <SubType>Component</SubType>
     </Compile>

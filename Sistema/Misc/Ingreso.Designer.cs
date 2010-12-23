@@ -57,7 +57,7 @@ namespace Lazaro.Misc
                         this.EntradaContrasena = new Lui.Forms.TextBox();
                         this.Label1 = new System.Windows.Forms.Label();
                         this.Label2 = new System.Windows.Forms.Label();
-                        this.Titulo = new System.Windows.Forms.Label();
+                        this.Titulo = new Lui.Forms.LabelH1();
                         this.CancelCommandButton = new Lui.Forms.Button();
                         this.OkButton = new Lui.Forms.Button();
                         this.EntradaUsuario = new Lcc.Entrada.CodigoDetalle();
@@ -124,8 +124,6 @@ namespace Lazaro.Misc
                         // 
                         this.Titulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Titulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.Titulo.ForeColor = System.Drawing.Color.White;
                         this.Titulo.Location = new System.Drawing.Point(136, 32);
                         this.Titulo.Name = "Titulo";
                         this.Titulo.Size = new System.Drawing.Size(380, 24);
@@ -273,16 +271,16 @@ namespace Lazaro.Misc
 
                 #endregion
 
-                internal System.Windows.Forms.Label Label1;
-                internal System.Windows.Forms.Label Label2;
-                internal Lui.Forms.Button OkButton;
-                internal Lui.Forms.TextBox EntradaContrasena;
-                internal Lcc.Entrada.CodigoDetalle EntradaUsuario;
-                internal Lui.Forms.Button CancelCommandButton;
-                internal System.Windows.Forms.Label Titulo;
+                private System.Windows.Forms.Label Label1;
+                private System.Windows.Forms.Label Label2;
+                private Lui.Forms.Button OkButton;
+                private Lui.Forms.TextBox EntradaContrasena;
+                private Lcc.Entrada.CodigoDetalle EntradaUsuario;
+                private Lui.Forms.Button CancelCommandButton;
+                private Lui.Forms.LabelH1 Titulo;
                 private System.Windows.Forms.Panel LowerPanel;
                 private System.Windows.Forms.Panel panel1;
-                internal System.Windows.Forms.PictureBox PictureBox1;
-                internal System.Windows.Forms.Label label3;
+                private System.Windows.Forms.PictureBox PictureBox1;
+                private System.Windows.Forms.Label label3;
         }
 }

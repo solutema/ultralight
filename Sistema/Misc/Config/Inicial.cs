@@ -1,4 +1,35 @@
-﻿using System;
+#region License
+// Copyright 2004-2010 Ernesto N. Carrea
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// Este programa es software libre; puede distribuirlo y/o moficiarlo de
+// acuerdo a los términos de la Licencia Pública General de GNU (GNU
+// General Public License), como la publica la Fundación para el Software
+// Libre (Free Software Foundation), tanto la versión 3 de la Licencia
+// como (a su elección) cualquier versión posterior.
+//
+// Este programa se distribuye con la esperanza de que sea útil, pero SIN
+// GARANTÍA ALGUNA; ni siquiera la garantía MERCANTIL implícita y sin
+// garantizar su CONVENIENCIA PARA UN PROPÓSITO PARTICULAR. Véase la
+// Licencia Pública General de GNU para más detalles. 
+//
+// Debería haber recibido una copia de la Licencia Pública General junto
+// con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
+
+using System;
 using System.Windows.Forms;
 
 namespace Lazaro.Misc.Config
@@ -13,8 +44,6 @@ namespace Lazaro.Misc.Config
                         InitializeComponent();
 
                         LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
-                        EtiquetaTitulo.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
-                        EtiquetaTitulo.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
 
                         if (Lfx.Environment.SystemInformation.Platform == Lfx.Environment.SystemInformation.Platforms.Windows
                                 && System.IO.File.Exists(@"C:\mysql\bin\mysqld.exe")) {
@@ -40,13 +69,13 @@ namespace Lazaro.Misc.Config
                         PanelFinal.Visible = Paso == Pasos;
 
                         if (PanelBienvenido.Visible)
-                                EtiquetaTitulo.Text = PanelBienvenido.Tag.ToString();
+                                EtiquetaEncab.Text = PanelBienvenido.Tag.ToString();
                         if (PanelAlmacenDeDatos.Visible)
-                                EtiquetaTitulo.Text = PanelAlmacenDeDatos.Tag.ToString();
+                                EtiquetaEncab.Text = PanelAlmacenDeDatos.Tag.ToString();
                         if (PanelPruebaServidor.Visible)
-                                EtiquetaTitulo.Text = PanelPruebaServidor.Tag.ToString();
+                                EtiquetaEncab.Text = PanelPruebaServidor.Tag.ToString();
                         if (PanelFinal.Visible)
-                                EtiquetaTitulo.Text = PanelFinal.Tag.ToString();
+                                EtiquetaEncab.Text = PanelFinal.Tag.ToString();
 
                         if (Paso == Pasos)
                                 BotonSiguiente.Text = "Finalizar";
