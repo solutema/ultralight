@@ -322,7 +322,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lazaro.ico" />
-    <None Include="Resources\Header.jpg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

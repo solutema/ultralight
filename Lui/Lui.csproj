@@ -256,7 +256,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Resources\applications-system.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\Bracket.resx">
