@@ -80,7 +80,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                                                 if (Res.Success == false)
                                                         return Res;
                                                 else
-                                                        Lui.Forms.MessageBox.Show("El servidor fue preparado con éxito. Puede comenzar a utilizar el sistema.", "Preparar Servidor");
+                                                        Lui.Forms.MessageBox.Show("El servidor fue preparado con éxito. Puede comenzar a utilizar el sistema. La primera vez que ingrese al sistema, utilice el usuario Nº 1 (Administrador) y la contraseña 'admin' (sin las comillas).", "Preparar Servidor");
                                         } else {
                                                 return new Lfx.Types.FailureOperationResult("Debe preparar el servidor.");
                                         }

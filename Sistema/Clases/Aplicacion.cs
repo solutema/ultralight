@@ -70,6 +70,7 @@ namespace Lazaro
                         System.Threading.Thread.CurrentThread.Name = "Lazaro";
 
                         bool ReconfigDB = false, IgnoreUpdates = false, DebugMode = Lfx.Environment.SystemInformation.DesignMode;
+                        bool PrimeraVez = false;
 
                         string NombreConfig = "default";
 
@@ -77,7 +78,13 @@ namespace Lazaro
                                 foreach (string Argumento in args) {
                                         switch (Argumento) {
                                                 case "/config":
+                                                case "--config":
                                                         ReconfigDB = true;
+                                                        break;
+
+                                                case "/wizard":
+                                                case "--wizard":
+                                                        PrimeraVez = true;
                                                         break;
 
                                                 case "/ignoreupdates":
@@ -91,7 +98,8 @@ namespace Lazaro
                                                         System.Environment.Exit(0);
                                                         break;
 
-                                                case "debug":
+                                                case "/debug":
+                                                case "--debug":
                                                         DebugMode = true;
                                                         break;
 
@@ -147,15 +155,23 @@ namespace Lazaro
                         Lfx.Workspace.Master = new Lfx.Workspace(NombreConfig, false, false);
                         Lfx.Workspace.Master.DebugMode = DebugMode;
                         Lfx.Workspace.Master.RunTime.IpcEvent += new Lfx.RunTimeServices.IpcEventHandler(Workspace_IpcEvent);
+                        
+                        System.Windows.Forms.Application.CurrentCulture = Lfx.Workspace.Master.CultureInfo;
 
-                        if (ReconfigDB) {
+                        if (Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "DataSource", null) == null)
+                                PrimeraVez = true;
+
+                        if (PrimeraVez) {
+                                using (Misc.Config.Inicial AsistenteInicial = new Misc.Config.Inicial()) {
+                                        if (AsistenteInicial.ShowDialog() == DialogResult.Cancel)
+                                                System.Environment.Exit(0);
+                                }
+                        } else if (ReconfigDB) {
                                 using (Misc.Config.ConfigurarBd ConfigBD = new Misc.Config.ConfigurarBd()) {
                                         if (ConfigBD.ShowDialog() == DialogResult.Cancel)
                                                 System.Environment.Exit(0);
                                 }
                         }
-
-                        System.Windows.Forms.Application.CurrentCulture = Lfx.Workspace.Master.CultureInfo;
 
                         do {
                                 Lfx.Types.OperationResult Res = Datos.Iniciar();

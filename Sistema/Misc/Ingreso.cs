@@ -53,7 +53,12 @@ namespace Lazaro.Misc
 
 		private void FormIngreso_Load(object sender, System.EventArgs e)
 		{
-			EntradaUsuario.Text = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingString(null, "Sistema.Ingreso.UltimoUsuario", "0");
+                        int UltimoUsuario = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingInt(null, "Sistema.Ingreso.UltimoUsuario", 0);
+                        if (UltimoUsuario == 0 && Lfx.Data.DataBaseCache.DefaultCache.ServerName.ToUpperInvariant() == "LOCALHOST")
+                                // Si estoy en localhost, el usuario predeterminado es Administrador
+                                UltimoUsuario = 1;
+
+                        EntradaUsuario.TextInt = UltimoUsuario;
 		}
 
 
