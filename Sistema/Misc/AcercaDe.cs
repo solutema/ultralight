@@ -102,5 +102,10 @@ namespace Lazaro.Misc
 		{
 			this.Close();
 		}
+
+                private void BotonWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                {
+                        Help.ShowHelp(this, "http://www.sistemalazaro.com.ar");
+                }
 	}
 }

@@ -167,6 +167,62 @@
         GWZV1jmFuvCTrzCpqsVzPBUvML2Fz/5Q6Lpcn/svrulvvk1JYkQAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="Label5.Text" xml:space="preserve">
+    <value>Incluye o utiliza fuentes "Bitstream Vera", Copyright  2003 by Bitstream, Inc. All Rights Reserved. Bitstream Vera is a trademark of Bitstream, Inc.
+Incluye o utiliza SharpZipLib, Copyright ©2000-2009 IC#Code.
+Incluye o utiliza MySQL Connector/NET, Copyright © 2004, 2010, Oracle y/o sus afiliados. 
+Incluye gráficos del Tango Desktop Project. Más información en tango.freedesktop.org.</value>
+  </data>
+  <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        SUVORK5CYII=
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAkAEBAQAAEABAAoAQAAlgAAAAAAAAABAAgAIl0AAL4BAAAwMAAAAQAIAKgOAADgXgAAICAAAAEA
