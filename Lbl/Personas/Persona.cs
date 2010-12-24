@@ -227,11 +227,17 @@ namespace Lbl.Personas
 		{
 			get
 			{
-				return new Cuit(this.GetFieldValue<string>("cuit"));
+                                if (this.GetFieldValue<string>("cuit") == null)
+                                        return null;
+                                else
+				        return new Cuit(this.GetFieldValue<string>("cuit"));
 			}
                         set
                         {
-                                this.Registro["cuit"] = value.Valor;
+                                if (value == null)
+                                        this.Registro["cuit"] = null;
+                                else
+                                        this.Registro["cuit"] = value.Valor;
                         }
 		}
 

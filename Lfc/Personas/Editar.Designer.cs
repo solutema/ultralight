@@ -1042,7 +1042,7 @@ namespace Lfc.Personas
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.PasswordChar = '\0';
                         this.EntradaObs.Prefijo = "";
-                        this.EntradaObs.SelectOnFocus = true;
+                        this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(282, 240);
                         this.EntradaObs.Sufijo = "";
                         this.EntradaObs.TabIndex = 5;
