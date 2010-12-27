@@ -100,7 +100,7 @@ namespace Lazaro.Misc
                                                 System.Globalization.DateTimeFormatInfo.InvariantInfo,
                                                 System.Globalization.DateTimeStyles.AllowWhiteSpaces);
 
-                                        lblUltimoCierreZ.Text = Lfx.Types.Formatting.FormatShortestDateAndTime(FechaUltimoCierreZ);
+                                        lblUltimoCierreZ.Text = Lfx.Types.Formatting.FormatSmartDateAndTime(FechaUltimoCierreZ);
                                 } else {
                                         lblUltimoCierreZ.Text = "Desconocido";
                                 }

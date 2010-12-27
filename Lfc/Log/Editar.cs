@@ -66,7 +66,7 @@ namespace Lfc.Log
                         for (int i = 0; i < Logs.Count; i++) {
                                 Lbl.Sys.Log.Entrada Log = Logs[i];
                                 Lfx.Data.Row Usuario = this.Connection.Tables["personas"].FastRows[Log.IdUsuario];
-                                ListViewItem Itm = ListaHistoral.Items.Add(Lfx.Types.Formatting.FormatShortestDateAndTime(Log.Fecha));
+                                ListViewItem Itm = ListaHistoral.Items.Add(Lfx.Types.Formatting.FormatSmartDateAndTime(Log.Fecha));
                                 if (Usuario == null)
                                         Itm.SubItems.Add("");
                                 else

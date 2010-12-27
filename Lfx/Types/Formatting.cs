@@ -373,7 +373,10 @@ namespace Lfx.Types
 			return numero.ToString("#,##0." + "0000000000".Substring(0, decimales), System.Globalization.CultureInfo.InvariantCulture); //.Replace(",", "'").Replace(".", ",");
 		}
 
-                public static string FormatShortestDateAndTime(System.DateTime fecha)
+                /// <summary>
+                /// Devuelve una fecha en un formato inteligente, como "hoy", "jueves 14", "12 de mayo" o "3 de febrero de 2009".
+                /// </summary>
+                public static string FormatSmartDateAndTime(System.DateTime fecha)
                 {
                         string Res = "";
                         if (fecha.Year == System.DateTime.Now.Year) {
@@ -392,6 +395,32 @@ namespace Lfx.Types
                                 }
                         } else {
                                 Res += fecha.ToString(@"dd ""de"" MMMM ""de"" yyyy");
+                        }
+                        return Res;
+                }
+
+                /// <summary>
+                /// Devuelve una fecha en un formato inteligente, como "hoy", "12/abr" o "3/feb/09".
+                /// </summary>
+                public static string FormatShortSmartDateAndTime(System.DateTime fecha)
+                {
+                        string Res = "";
+                        if (fecha.Year == System.DateTime.Now.Year) {
+                                if (fecha.Month == System.DateTime.Now.Month) {
+                                        if (fecha.Day == System.DateTime.Now.Day) {
+                                                Res += "hoy, " + fecha.ToString("HH:mm");
+                                        } else if (fecha.Day == System.DateTime.Now.AddDays(-1).Day) {
+                                                Res += "ayer, " + fecha.ToString("HH:mm");
+                                        } else if (System.DateTime.Now.Day - fecha.Day < 7) {
+                                                Res += fecha.ToString(@"ddd d");
+                                        } else {
+                                                Res += fecha.ToString(@"dd/MMM");
+                                        }
+                                } else {
+                                        Res += fecha.ToString(@"dd/MMM");
+                                }
+                        } else {
+                                Res += fecha.ToString(@"dd/MMM/yy");
                         }
                         return Res;
                 }

@@ -224,16 +224,30 @@ namespace Lfx
                 /// <param name="noTocarDatos">Actualizar sólo la estructura. No incorpora ni modifica datos.</param>
                 public void CheckAndUpdateDataBaseVersion(Lfx.Data.Connection dataBase, bool ignorarFecha, bool noTocarDatos)
                 {
-                        Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Verificando Versión de los Datos", "Se están analizando los datos del almacén de datos y se van a realizar cambios si fuera necesario.");
-                        Progreso.Blocking = true;
-                        Progreso.Begin();
-
                         dataBase.RequiresTransaction = false;
                         int VersionActual = this.CurrentConfig.ReadGlobalSettingInt("Sistema", "DB.Version", 0);
 
                         if (VersionUltima < VersionActual) {
                                 this.RunTime.Message("Es necesario actualizar el sistema Lázaro en esta estación de trabajo. Se esperaba la versión " + VersionUltima.ToString() + " de la base de datos, pero se encontró la versión " + VersionActual.ToString() + " que es demasiado nueva.");
-                        } else if (noTocarDatos == false && VersionActual < VersionUltima && VersionActual > 0) {
+                                return;
+                        }
+
+                        // Me fijo si ya hay alguien descargando las actualizaciones
+                        string FechaInicioActualizacion = dataBase.Workspace.CurrentConfig.ReadGlobalSettingString(null, "Sistema.VerificarVersionBd.Inicio", string.Empty);
+                        string FechaInicioActualizacionMax = Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.AddHours(2));
+                        
+                        if (string.Compare(FechaInicioActualizacion, FechaInicioActualizacionMax) > 0)
+                                // Ya hay alguien actualizando.
+                                return;
+
+                        dataBase.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Inicio", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "*");
+                        dataBase.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Estacion", System.Environment.MachineName.ToUpperInvariant(), "*");
+
+                        Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Verificando Versión de los Datos", "Se están analizando los datos del almacén de datos y se van a realizar cambios si fuera necesario.");
+                        Progreso.Blocking = true;
+                        Progreso.Begin();
+
+                        if (noTocarDatos == false && VersionActual < VersionUltima && VersionActual > 0) {
                                 //Actualizo desde la versión actual a la última
                                 for (int i = VersionActual + 1; i <= VersionUltima; i++) {
                                         Progreso.ChangeStatus("Pre-actualización " + i.ToString());
@@ -265,6 +279,7 @@ namespace Lfx
                                 }
                         }
 
+                        dataBase.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Inicio", "0", "*");
                         Progreso.End();
                 }
 

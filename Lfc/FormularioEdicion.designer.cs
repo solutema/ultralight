@@ -55,15 +55,15 @@ namespace Lfc
                         this.BotonImprimir = new Lui.Forms.Button();
                         this.BotonComentarios = new System.Windows.Forms.LinkLabel();
                         this.BotonHistorial = new System.Windows.Forms.LinkLabel();
-                        this.EntradaTags = new Lcc.Edicion.MatrizTags();
-                        this.EntradaEtiquetas = new Lcc.Edicion.Etiquetas();
+                        this.SplitContainer = new System.Windows.Forms.SplitContainer();
                         this.TablaElementosEstandar = new System.Windows.Forms.TableLayoutPanel();
                         this.EntradaImagen = new Lcc.Entrada.Imagen();
-                        this.SplitContainer = new System.Windows.Forms.SplitContainer();
+                        this.EntradaTags = new Lcc.Edicion.MatrizTags();
+                        this.EntradaComentarios = new Lcc.Edicion.Comentarios();
                         this.LowerPanel.SuspendLayout();
-                        this.TablaElementosEstandar.SuspendLayout();
                         this.SplitContainer.Panel2.SuspendLayout();
                         this.SplitContainer.SuspendLayout();
+                        this.TablaElementosEstandar.SuspendLayout();
                         this.SuspendLayout();
                         // 
                         // BotonGuardar
@@ -164,67 +164,6 @@ namespace Lfc
                         this.BotonHistorial.Visible = false;
                         this.BotonHistorial.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BotonHistorial_LinkClicked);
                         // 
-                        // EntradaTags
-                        // 
-                        this.EntradaTags.AutoNav = true;
-                        this.EntradaTags.AutoSize = true;
-                        this.EntradaTags.Dock = System.Windows.Forms.DockStyle.Fill;
-                        this.EntradaTags.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaTags.Location = new System.Drawing.Point(4, 263);
-                        this.EntradaTags.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-                        this.EntradaTags.Name = "EntradaTags";
-                        this.EntradaTags.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTags.Size = new System.Drawing.Size(314, 118);
-                        this.EntradaTags.TabIndex = 32;
-                        this.EntradaTags.Text = "Otros atributos";
-                        this.EntradaTags.ToolTipText = "";
-                        // 
-                        // EntradaEtiquetas
-                        // 
-                        this.EntradaEtiquetas.AutoNav = true;
-                        this.EntradaEtiquetas.Dock = System.Windows.Forms.DockStyle.Fill;
-                        this.EntradaEtiquetas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaEtiquetas.Location = new System.Drawing.Point(3, 204);
-                        this.EntradaEtiquetas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-                        this.EntradaEtiquetas.Name = "EntradaEtiquetas";
-                        this.EntradaEtiquetas.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEtiquetas.Size = new System.Drawing.Size(316, 52);
-                        this.EntradaEtiquetas.TabIndex = 1;
-                        this.EntradaEtiquetas.Text = "Etiquetas";
-                        this.EntradaEtiquetas.ToolTipText = "";
-                        // 
-                        // TablaElementosEstandar
-                        // 
-                        this.TablaElementosEstandar.ColumnCount = 1;
-                        this.TablaElementosEstandar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-                        this.TablaElementosEstandar.Controls.Add(this.EntradaImagen, 0, 0);
-                        this.TablaElementosEstandar.Controls.Add(this.EntradaEtiquetas, 0, 1);
-                        this.TablaElementosEstandar.Controls.Add(this.EntradaTags, 0, 2);
-                        this.TablaElementosEstandar.Dock = System.Windows.Forms.DockStyle.Fill;
-                        this.TablaElementosEstandar.Location = new System.Drawing.Point(12, 12);
-                        this.TablaElementosEstandar.Margin = new System.Windows.Forms.Padding(0);
-                        this.TablaElementosEstandar.Name = "TablaElementosEstandar";
-                        this.TablaElementosEstandar.RowCount = 3;
-                        this.TablaElementosEstandar.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.TablaElementosEstandar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33F));
-                        this.TablaElementosEstandar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 67F));
-                        this.TablaElementosEstandar.Size = new System.Drawing.Size(220, 384);
-                        this.TablaElementosEstandar.TabIndex = 1;
-                        // 
-                        // EntradaImagen
-                        // 
-                        this.EntradaImagen.AutoNav = true;
-                        this.EntradaImagen.AutoSize = true;
-                        this.EntradaImagen.Dock = System.Windows.Forms.DockStyle.Fill;
-                        this.EntradaImagen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaImagen.Location = new System.Drawing.Point(3, 3);
-                        this.EntradaImagen.Name = "EntradaImagen";
-                        this.EntradaImagen.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaImagen.Size = new System.Drawing.Size(316, 194);
-                        this.EntradaImagen.TabIndex = 1;
-                        this.EntradaImagen.Text = "Imagen";
-                        this.EntradaImagen.ToolTipText = "";
-                        // 
                         // SplitContainer
                         // 
                         this.SplitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -250,6 +189,72 @@ namespace Lfc
                         this.SplitContainer.TabStop = false;
                         this.SplitContainer.Visible = false;
                         // 
+                        // TablaElementosEstandar
+                        // 
+                        this.TablaElementosEstandar.ColumnCount = 1;
+                        this.TablaElementosEstandar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+                        this.TablaElementosEstandar.Controls.Add(this.EntradaImagen, 0, 0);
+                        this.TablaElementosEstandar.Controls.Add(this.EntradaTags, 0, 2);
+                        this.TablaElementosEstandar.Controls.Add(this.EntradaComentarios, 0, 1);
+                        this.TablaElementosEstandar.Dock = System.Windows.Forms.DockStyle.Fill;
+                        this.TablaElementosEstandar.Location = new System.Drawing.Point(12, 12);
+                        this.TablaElementosEstandar.Margin = new System.Windows.Forms.Padding(0);
+                        this.TablaElementosEstandar.Name = "TablaElementosEstandar";
+                        this.TablaElementosEstandar.RowCount = 3;
+                        this.TablaElementosEstandar.RowStyles.Add(new System.Windows.Forms.RowStyle());
+                        this.TablaElementosEstandar.RowStyles.Add(new System.Windows.Forms.RowStyle());
+                        this.TablaElementosEstandar.RowStyles.Add(new System.Windows.Forms.RowStyle());
+                        this.TablaElementosEstandar.Size = new System.Drawing.Size(220, 384);
+                        this.TablaElementosEstandar.TabIndex = 1;
+                        // 
+                        // EntradaImagen
+                        // 
+                        this.EntradaImagen.AutoNav = true;
+                        this.EntradaImagen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaImagen.Location = new System.Drawing.Point(0, 0);
+                        this.EntradaImagen.Margin = new System.Windows.Forms.Padding(0);
+                        this.EntradaImagen.MaximumSize = new System.Drawing.Size(320, 240);
+                        this.EntradaImagen.MinimumSize = new System.Drawing.Size(240, 160);
+                        this.EntradaImagen.Name = "EntradaImagen";
+                        this.EntradaImagen.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaImagen.Size = new System.Drawing.Size(308, 160);
+                        this.EntradaImagen.TabIndex = 1;
+                        this.EntradaImagen.Text = "Imagen";
+                        this.EntradaImagen.ToolTipText = "";
+                        // 
+                        // EntradaTags
+                        // 
+                        this.EntradaTags.AutoNav = true;
+                        this.EntradaTags.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EntradaTags.Location = new System.Drawing.Point(0, 312);
+                        this.EntradaTags.Margin = new System.Windows.Forms.Padding(0);
+                        this.EntradaTags.MaximumSize = new System.Drawing.Size(320, 480);
+                        this.EntradaTags.MinimumSize = new System.Drawing.Size(240, 160);
+                        this.EntradaTags.Name = "EntradaTags";
+                        this.EntradaTags.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTags.Size = new System.Drawing.Size(308, 480);
+                        this.EntradaTags.TabIndex = 3;
+                        this.EntradaTags.Text = "Otros atributos";
+                        this.EntradaTags.ToolTipText = "";
+                        // 
+                        // EntradaComentarios
+                        // 
+                        this.EntradaComentarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                                    | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaComentarios.AutoNav = true;
+                        this.EntradaComentarios.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EntradaComentarios.Location = new System.Drawing.Point(0, 160);
+                        this.EntradaComentarios.Margin = new System.Windows.Forms.Padding(0);
+                        this.EntradaComentarios.MaximumSize = new System.Drawing.Size(320, 480);
+                        this.EntradaComentarios.MinimumSize = new System.Drawing.Size(240, 152);
+                        this.EntradaComentarios.Name = "EntradaComentarios";
+                        this.EntradaComentarios.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaComentarios.Size = new System.Drawing.Size(308, 152);
+                        this.EntradaComentarios.TabIndex = 2;
+                        this.EntradaComentarios.Text = "Comentarios";
+                        this.EntradaComentarios.ToolTipText = "";
+                        // 
                         // FormularioEdicion
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -263,10 +268,9 @@ namespace Lfc
                         this.Load += new System.EventHandler(this.EditForm_Load);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditForm_KeyDown);
                         this.LowerPanel.ResumeLayout(false);
-                        this.TablaElementosEstandar.ResumeLayout(false);
-                        this.TablaElementosEstandar.PerformLayout();
                         this.SplitContainer.Panel2.ResumeLayout(false);
                         this.SplitContainer.ResumeLayout(false);
+                        this.TablaElementosEstandar.ResumeLayout(false);
                         this.ResumeLayout(false);
 
                 }
@@ -277,12 +281,12 @@ namespace Lfc
                 private Lui.Forms.Button BotonCancelar;
                 private System.Windows.Forms.Panel LowerPanel;
                 private System.Windows.Forms.LinkLabel BotonHistorial;
-                private Lcc.Edicion.MatrizTags EntradaTags;
-                private Lcc.Edicion.Etiquetas EntradaEtiquetas;
-                private System.Windows.Forms.TableLayoutPanel TablaElementosEstandar;
                 private System.Windows.Forms.SplitContainer SplitContainer;
-                private Lcc.Entrada.Imagen EntradaImagen;
                 private System.Windows.Forms.LinkLabel BotonComentarios;
                 private Lui.Forms.Button BotonImprimir;
+                private System.Windows.Forms.TableLayoutPanel TablaElementosEstandar;
+                private Lcc.Entrada.Imagen EntradaImagen;
+                private Lcc.Edicion.MatrizTags EntradaTags;
+                private Lcc.Edicion.Comentarios EntradaComentarios;
         }
 }

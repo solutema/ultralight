@@ -79,6 +79,7 @@ namespace Lcc.Edicion
             this.ColFecha,
             this.ColPersona,
             this.ColComentario});
+                        this.ListaComentarios.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.ListaComentarios.FullRowSelect = true;
                         this.ListaComentarios.GridLines = true;
                         this.ListaComentarios.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -102,12 +103,12 @@ namespace Lcc.Edicion
                         // ColFecha
                         // 
                         this.ColFecha.Text = "Fecha";
-                        this.ColFecha.Width = 120;
+                        this.ColFecha.Width = 74;
                         // 
                         // ColPersona
                         // 
                         this.ColPersona.Text = "Usuario";
-                        this.ColPersona.Width = 120;
+                        this.ColPersona.Width = 74;
                         // 
                         // ColComentario
                         // 
@@ -122,6 +123,7 @@ namespace Lcc.Edicion
                         this.EntradaComentario.AutoTab = true;
                         this.EntradaComentario.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaComentario.DecimalPlaces = -1;
+                        this.EntradaComentario.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaComentario.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaComentario.Location = new System.Drawing.Point(0, 236);
                         this.EntradaComentario.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -137,13 +139,15 @@ namespace Lcc.Edicion
                         this.EntradaComentario.TabIndex = 0;
                         this.EntradaComentario.TipWhenBlank = null;
                         this.EntradaComentario.ToolTipText = null;
-                        this.EntradaComentario.TextChanged += new System.EventHandler(this.EntradaComentario_TextChanged);
                         this.EntradaComentario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaComentario_KeyDown);
+                        this.EntradaComentario.TextChanged += new System.EventHandler(this.EntradaComentario_TextChanged);
                         // 
                         // BotonAgregar
                         // 
                         this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonAgregar.Enabled = false;
+                        this.BotonAgregar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregar.Location = new System.Drawing.Point(468, 236);

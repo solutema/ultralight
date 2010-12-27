@@ -338,6 +338,16 @@
             Quita acentos y otros caracteres no estándar. Convierte espacios a subguiones.
             </summary>
         </member>
+        <member name="M:Lfx.Types.Formatting.FormatSmartDateAndTime(System.DateTime)">
+            <summary>
+            Devuelve una fecha en un formato inteligente, como "hoy", "jueves 14", "12 de mayo" o "3 de febrero de 2009".
+            </summary>
+        </member>
+        <member name="M:Lfx.Types.Formatting.FormatShortSmartDateAndTime(System.DateTime)">
+            <summary>
+            Devuelve una fecha en un formato inteligente, como "hoy", "12/abr" o "3/feb/09".
+            </summary>
+        </member>
         <member name="M:Lfx.Types.Object.CompareByValue(System.Object,System.Object)">
             <summary>
             Intenta comparar dos objetos para ver si son iguales en cuanto a su valor.

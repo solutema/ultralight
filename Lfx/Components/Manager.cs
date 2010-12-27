@@ -48,14 +48,16 @@ namespace Lfx.Components
                         System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ComponentsFolder);
                         foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.cif")) {
                                 Lfx.Components.Component CompInfo = new Lfx.Components.Component(DirItem.FullName);
-                                if (Lfx.Environment.SystemInformation.DesignMode) {
-                                        RegisterComponent(CompInfo);
-                                } else {
-                                        try {
+                                if (CompInfo.Disabled == false) {
+                                        if (Lfx.Environment.SystemInformation.DesignMode) {
                                                 RegisterComponent(CompInfo);
-                                        } catch {
-                                                if (Lfx.Workspace.Master != null)
-                                                        Lfx.Workspace.Master.RunTime.Message("No se puede registrar el componenete " + CompInfo.Nombre);
+                                        } else {
+                                                try {
+                                                        RegisterComponent(CompInfo);
+                                                } catch {
+                                                        if (Lfx.Workspace.Master != null)
+                                                                Lfx.Workspace.Master.RunTime.Message("No se puede registrar el componente " + CompInfo.Nombre);
+                                                }
                                         }
                                 }
                         }

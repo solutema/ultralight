@@ -41,6 +41,7 @@ namespace Lfx.Components
                 public Dictionary<string, FunctionInfo> Funciones = null;
                 public List<MenuEntry> MenuEntries = null;
                 public System.Reflection.Assembly Assembly = null;
+                public bool Disabled = false;
 
                 public Component(string cifFileName)
                 {
@@ -55,7 +56,6 @@ namespace Lfx.Components
                                         //Abro el/los nodo(s) de componentes
                                         foreach (System.Xml.XmlNode Componente in ListaComponentes) {
                                                 if (Componente.Attributes["Disabled"] == null || Componente.Attributes["Disabled"].Value != "1") {
-                                                        
                                                         System.Xml.XmlNodeList NodosMenu = DocumentoCif.GetElementsByTagName("MenuItem");
                                                         foreach (System.Xml.XmlNode NodoMenu in NodosMenu) {
                                                                 if (this.MenuEntries == null)
@@ -70,7 +70,7 @@ namespace Lfx.Components
 
                                                                 if (NodoMenu.Attributes["function"] != null)
                                                                         Menu.Function = NodoMenu.Attributes["function"].Value;
-                                                                
+
                                                                 this.MenuEntries.Add(Menu);
                                                         }
 
@@ -95,7 +95,10 @@ namespace Lfx.Components
                                                                         this.Funciones.Add(Func.Nombre, Func);
                                                                 }
                                                         }
-                                                }
+                                                } else {
+                                                        this.Disabled = true;
+                                                }                                                      
+
                                         }
                                         ArchivoCif.Close();
                                 }

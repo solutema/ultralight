@@ -63,12 +63,15 @@ namespace Lcc.Edicion
                         System.Data.DataTable Comentarios = Elemento.Connection.Select(SelectComentarios);
                         foreach (System.Data.DataRow Com in Comentarios.Rows) {
                                 ListViewItem Itm = ListaComentarios.Items.Add(Com["id_comment"].ToString());
-                                Itm.SubItems.Add(Lfx.Types.Formatting.FormatShortestDateAndTime(System.Convert.ToDateTime(Com["fecha"])));
+                                Itm.SubItems.Add(Lfx.Types.Formatting.FormatShortSmartDateAndTime(System.Convert.ToDateTime(Com["fecha"])));
                                 Itm.SubItems.Add(this.Elemento.Connection.Tables["personas"].FastRows[System.Convert.ToInt32(Com["id_persona"])].Fields["nombre_visible"].Value.ToString());
                                 Itm.SubItems.Add(Com["obs"].ToString());
                         }
 
                         ListaComentarios.EndUpdate();
+
+                        EntradaComentario.Enabled = this.Elemento.Existe;
+
                         base.ActualizarControl();
                 }
 
@@ -85,7 +88,7 @@ namespace Lcc.Edicion
 
                         ListaComentarios.BeginUpdate();
                         ListViewItem Itm = ListaComentarios.Items.Insert(0, new ListViewItem(new System.Random().Next().ToString()));
-                        Itm.SubItems.Add(Lfx.Types.Formatting.FormatShortestDateAndTime(System.DateTime.Now));
+                        Itm.SubItems.Add(Lfx.Types.Formatting.FormatSmartDateAndTime(System.DateTime.Now));
                         Itm.SubItems.Add(Lbl.Sys.Config.Actual.UsuarioConectado.Persona.Nombre);
                         Itm.SubItems.Add(EntradaComentario.Text);
                         ListaComentarios.EndUpdate();

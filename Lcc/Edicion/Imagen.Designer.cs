@@ -37,6 +37,26 @@ namespace Lcc.Entrada
 {
         public partial class Imagen
         {
+                /// <summary>
+                /// Variable del diseñador requerida.
+                /// </summary>
+                private System.ComponentModel.IContainer components = null;
+
+                /// <summary>
+                /// Limpiar los recursos que se estén utilizando.
+                /// </summary>
+                /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+                protected override void Dispose(bool disposing)
+                {
+                        if (this.Arch != null)
+                                this.Arch.Dispose();
+
+                        if (disposing && (components != null)) {
+                                components.Dispose();
+                        }
+                        base.Dispose(disposing);
+                }
+
                 private void InitializeComponent()
                 {
                         this.components = new System.ComponentModel.Container();
@@ -185,7 +205,6 @@ namespace Lcc.Entrada
 
                 internal Lui.Forms.Button BotonCapturarImagen;
                 private System.Windows.Forms.ContextMenuStrip MenuImagen;
-                private System.ComponentModel.IContainer components = null;
                 private System.Windows.Forms.ToolStripMenuItem guardarEnarchivoToolStripMenuItem;
                 private System.Windows.Forms.ToolStripMenuItem copiarAlPortapapelesToolStripMenuItem;
                 private System.Windows.Forms.Label GroupLabel;

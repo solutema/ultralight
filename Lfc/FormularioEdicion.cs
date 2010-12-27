@@ -295,10 +295,10 @@ namespace Lfc
                                                 EntradaImagen.Visible = false;
                                         }
 
-                                        EntradaEtiquetas.Elemento = row;
+                                        EntradaComentarios.Elemento = row;
                                         EntradaTags.Elemento = row;
 
-                                        EntradaEtiquetas.ActualizarControl();
+                                        EntradaComentarios.ActualizarControl();
                                         EntradaTags.ActualizarControl();
                                 } else {
                                         SplitContainer.Panel2Collapsed = true;
@@ -328,7 +328,7 @@ namespace Lfc
                                 if (this.MuestraPanel) {
                                         if (Res is Lbl.IElementoConImagen)
                                                 EntradaImagen.ActualizarElemento();
-                                        EntradaEtiquetas.ActualizarElemento();
+                                        //EntradaComentarios.ActualizarElemento();
                                         EntradaTags.ActualizarElemento();
                                 }
                                 return Res;

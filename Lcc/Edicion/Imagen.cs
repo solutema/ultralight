@@ -68,13 +68,6 @@ namespace Lcc.Entrada
                         }
                 }
 
-                protected override void Dispose(bool disposing)
-                {
-                        if (Arch != null)
-                                Arch.Dispose();
-
-                        base.Dispose(disposing);
-                }
 
                 public override void ActualizarControl()
                 {

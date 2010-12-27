@@ -199,6 +199,7 @@ namespace Lfc.Personas
 
                 public override Lfx.Types.OperationResult OnDelete(Lbl.ListaIds itemIds)
                 {
+                        this.Connection.BeginTransaction();
                         foreach (int IdPersona in itemIds) {
                                 qGen.Update DarDeBaja = new qGen.Update("personas");
                                 DarDeBaja.Fields.AddWithValue("estado", 0);
@@ -208,6 +209,7 @@ namespace Lfc.Personas
                                 DarDeBaja.WhereClause.AddWithValue("estado", 1);
                                 this.Connection.Execute(DarDeBaja);
                         }
+                        this.Connection.Commit();
                         this.RefreshList();
                         return base.OnDelete(itemIds);
                 }

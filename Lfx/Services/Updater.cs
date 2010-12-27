@@ -273,7 +273,7 @@ namespace Lfx.Services
                                 }
 
                         }
-                        this.DataBase.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.Actualizaciones.InicioDescarga", "0");
+                        this.DataBase.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.Actualizaciones.InicioDescarga", "0", "*");
 
                         Updating = false;
                 }
