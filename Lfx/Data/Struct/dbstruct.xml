@@ -2,9 +2,9 @@
 <Database>
   <Table name="alicuotas" lsdet="1">
     <Column name="id_alicuota" datatype="Serial" nullable="0" primary_key="1" />
-    <Column name="porcentaje" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+    <Column name="porcentaje" inputtype="Currency" nullable="0"  />
     <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" />
-    <Column name="importe_minimo" inputtype="Currency" default="0" />
+    <Column name="importe_minimo" inputtype="Currency" />
     <Index table="alicuotas" name="PRIMARY" columns="id_alicuota" unique="1" primary="1" />
   </Table>
   <Table name="articulos" lsdet="1">
@@ -65,7 +65,7 @@
     <Column name="requierens" datatype="SmallInt" nullable="0" default="0" />
     <Column name="id_rubro" datatype="Integer" nullable="1" />
     <Column name="cache_stock_actual" datatype="Numeric" nullable="1" lenght="14" precision="4" default="0" />
-    <Column name="cache_costo" datatype="Numeric" nullable="1" lenght="14" precision="4" default="0" />
+    <Column name="cache_costo" inputtype="Currency" nullable="1" />
     <Column name="garantia" datatype="SmallInt" nullable="0" default="0" />
     <Column name="id_alicuota" datatype="Integer" nullable="1" />
     <Index table="articulos_categorias" name="articulos_categorias_id_rubro" columns="id_rubro" unique="0" primary="0" />

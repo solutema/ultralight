@@ -61,7 +61,7 @@ namespace Lfc.Personas
                                 validarReturn.Message += "Escriba el Nombre y el Apellido o la Razón Social" + Environment.NewLine;
                         } else {
                                 //Busco un cliente con datos similares
-                                Lfx.Data.Row rowVeriNombre = null;
+                                Lfx.Data.Row ClienteDup = null;
                                 string Sql = @"SELECT id_persona, nombre_visible, domicilio, telefono, cuit, email FROM personas WHERE (";
                                 if (EntradaNombreVisible.Text.Length > 0)
                                         Sql += @"nombre_visible LIKE '%" + this.Connection.EscapeString(EntradaNombreVisible.Text.Replace("%", "").Replace("_", "")) + @"%'";
@@ -87,35 +87,38 @@ namespace Lfc.Personas
                                         Sql += @" OR cuit='" + Workspace.MasterConnection.EscapeString(EntradaCuit.Text.Replace("%", "").Replace("_", "")) + @"'";
                                 Sql += @") AND id_persona<>" + this.Elemento.Id.ToString();
 
-                                rowVeriNombre = this.Connection.FirstRowFromSelect(Sql);
-                                if (rowVeriNombre != null) {
+                                ClienteDup = this.Connection.FirstRowFromSelect(Sql);
+                                if (ClienteDup != null) {
                                         if (Cliente != null && Cliente.Existe == false) {
-                                                AltaDuplicada CliDup = new AltaDuplicada();
+                                                AltaDuplicada FormAltaDuplicada = new AltaDuplicada();
                                                 ListViewItem itm;
-                                                itm = CliDup.ListaComparacion.Items.Add("Nombre");
-                                                itm.SubItems.Add(rowVeriNombre["nombre_visible"].ToString());
+                                                itm = FormAltaDuplicada.ListaComparacion.Items.Add("Nombre");
+                                                itm.SubItems.Add(ClienteDup["nombre_visible"].ToString());
                                                 itm.SubItems.Add(EntradaNombreVisible.Text);
-                                                itm = CliDup.ListaComparacion.Items.Add("Domicilio");
-                                                itm.SubItems.Add(rowVeriNombre["domicilio"].ToString());
+                                                itm = FormAltaDuplicada.ListaComparacion.Items.Add("Domicilio");
+                                                itm.SubItems.Add(ClienteDup["domicilio"].ToString());
                                                 itm.SubItems.Add(EntradaDomicilio.Text);
-                                                itm = CliDup.ListaComparacion.Items.Add("Teléfono");
-                                                itm.SubItems.Add(rowVeriNombre["telefono"].ToString());
+                                                itm = FormAltaDuplicada.ListaComparacion.Items.Add("Teléfono");
+                                                itm.SubItems.Add(ClienteDup["telefono"].ToString());
                                                 itm.SubItems.Add(EntradaTelefono.Text);
-                                                itm = CliDup.ListaComparacion.Items.Add("CUIT");
-                                                itm.SubItems.Add(rowVeriNombre["cuit"].ToString());
+                                                itm = FormAltaDuplicada.ListaComparacion.Items.Add("CUIT");
+                                                if (ClienteDup["cuit"] != null)
+                                                        itm.SubItems.Add(ClienteDup["cuit"].ToString());
+                                                else
+                                                        itm.SubItems.Add("");
                                                 itm.SubItems.Add(EntradaCuit.Text);
-                                                itm = CliDup.ListaComparacion.Items.Add("E-mail");
-                                                itm.SubItems.Add(rowVeriNombre["email"].ToString());
+                                                itm = FormAltaDuplicada.ListaComparacion.Items.Add("E-mail");
+                                                itm.SubItems.Add(ClienteDup["email"].ToString());
                                                 itm.SubItems.Add(EntradaEmail.Text);
 
-                                                switch (CliDup.ShowDialog()) {
+                                                switch (FormAltaDuplicada.ShowDialog()) {
                                                         case DialogResult.Yes:
                                                                 //Crear uno nuevo
                                                                 return new Lfx.Types.SuccessOperationResult();
                                                         case DialogResult.No:
                                                                 //Actualizar
                                                                 //this.m_Id = System.Convert.ToInt32(rowVeriNombre["id_persona"]);
-                                                                this.Elemento = new Lbl.Personas.Persona(this.Elemento.Connection, System.Convert.ToInt32(rowVeriNombre["id_persona"]));
+                                                                this.Elemento = new Lbl.Personas.Persona(this.Elemento.Connection, System.Convert.ToInt32(ClienteDup["id_persona"]));
                                                                 return new Lfx.Types.SuccessOperationResult();
                                                         case DialogResult.Cancel:
                                                                 //Volver a la edición

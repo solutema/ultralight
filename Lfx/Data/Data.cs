@@ -119,6 +119,7 @@ namespace Lfx.Data
                 Serial,
                 Integer,
                 SmallInt,
+                TinyInt,
                 Numeric,
                 Currency,
                 VarChar,

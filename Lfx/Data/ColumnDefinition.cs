@@ -82,6 +82,9 @@ namespace Lfx.Data
                                 case DbTypes.SmallInt:
                                         Def = "SMALLINT";
                                         break;
+                                case DbTypes.TinyInt:
+                                        Def = "TINYINT";
+                                        break;
 				case DbTypes.Currency:
                                 case DbTypes.Numeric:
                                         Def = "NUMERIC";

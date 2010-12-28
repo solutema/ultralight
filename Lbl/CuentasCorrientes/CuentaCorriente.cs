@@ -157,7 +157,7 @@ namespace Lbl.CuentasCorrientes
                                 Comando.Fields.AddWithValue("id_concepto", null);
                         else
                                 Comando.Fields.AddWithValue("id_concepto", concepto.Id);
-                        Comando.Fields.AddWithValue("concepto", concepto);
+                        Comando.Fields.AddWithValue("concepto", textoConcepto);
                         Comando.Fields.AddWithValue("id_cliente", this.Persona.Id);
 			Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                         Comando.Fields.AddWithValue("importe", importeDebito);

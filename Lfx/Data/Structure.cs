@@ -221,6 +221,10 @@ namespace Lfx.Data
                                                                 Columna.InputFieldType = InputFieldTypes.Integer;
                                                                 Columna.FieldType = DbTypes.SmallInt;
                                                                 break;
+                                                        case "TinyInt":
+                                                                Columna.InputFieldType = InputFieldTypes.Integer;
+                                                                Columna.FieldType = DbTypes.TinyInt;
+                                                                break;
                                                         case "Memo":
                                                                 Columna.InputFieldType = InputFieldTypes.Memo;
                                                                 Columna.FieldType = DbTypes.Text;
