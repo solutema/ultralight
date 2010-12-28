@@ -519,7 +519,7 @@
             durante verificaciones de consistencia o al desduplicar cuentas.
             </summary>
         </member>
-        <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.Movimiento(System.Boolean,Lbl.Cajas.Concepto,System.String,System.Decimal,System.String,Lbl.Comprobantes.ComprobanteConArticulos,Lbl.Comprobantes.Recibo,System.String,System.Boolean)">
+        <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.Movimiento(System.Boolean,Lbl.Cajas.Concepto,System.String,System.Decimal,System.String,Lbl.Comprobantes.ComprobanteConArticulos,Lbl.Comprobantes.Recibo,System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Asienta un movimiento en la cuenta corriente, y cancela comprobantes asociados.
             </summary>
@@ -532,6 +532,7 @@
             <param name="recibo">El recibo asociado a este movimiento.</param>
             <param name="cancelaCosas">Indica si el monto del movimiento se usa para cancelar comprobantes impagos.</param>
             <param name="textoComprob">Un texto sobre los comprobantes asociados al sistema.</param>
+            <param name="extras">Colección de campos adicionales para el registro.</param>
         </member>
         <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.IngresarComprobante(Lbl.Comprobantes.ComprobanteConArticulos)">
             <summary>

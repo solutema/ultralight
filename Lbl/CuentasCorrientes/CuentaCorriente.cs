@@ -127,6 +127,29 @@ namespace Lbl.CuentasCorrientes
                         Progreso.End();
                 }
 
+                public void Movimiento(bool auto,
+                        Lbl.Cajas.Concepto concepto,
+                        string textoConcepto,
+                        decimal importeDebito,
+                        string obs,
+                        Dictionary<string, object> extras)
+                {
+                        this.Movimiento(auto, concepto, textoConcepto, importeDebito, obs, null, null, null, false, extras);
+                }
+
+                public void Movimiento(bool auto,
+                        Lbl.Cajas.Concepto concepto,
+                        string textoConcepto,
+                        decimal importeDebito,
+                        string obs,
+                        Lbl.Comprobantes.ComprobanteConArticulos comprob,
+                        Lbl.Comprobantes.Recibo recibo,
+                        string textoComprob,
+                        bool cancelaCosas)
+                {
+                        this.Movimiento(auto, concepto, textoConcepto, importeDebito, obs, comprob, recibo, textoComprob, cancelaCosas, null);
+                }
+
                 /// <summary>
                 /// Asienta un movimiento en la cuenta corriente, y cancela comprobantes asociados.
                 /// </summary>
@@ -139,6 +162,7 @@ namespace Lbl.CuentasCorrientes
                 /// <param name="recibo">El recibo asociado a este movimiento.</param>
                 /// <param name="cancelaCosas">Indica si el monto del movimiento se usa para cancelar comprobantes impagos.</param>
                 /// <param name="textoComprob">Un texto sobre los comprobantes asociados al sistema.</param>
+                /// <param name="extras">Colección de campos adicionales para el registro.</param>
                 public void Movimiento(bool auto, 
                         Lbl.Cajas.Concepto concepto,
                         string textoConcepto,
@@ -147,7 +171,8 @@ namespace Lbl.CuentasCorrientes
                         Lbl.Comprobantes.ComprobanteConArticulos comprob,
                         Lbl.Comprobantes.Recibo recibo,
                         string textoComprob,
-                        bool cancelaCosas)
+                        bool cancelaCosas,
+                        Dictionary<string, object> extras)
                 {
                         decimal SaldoActual = this.Saldo(true);
                         qGen.Insert Comando= new qGen.Insert(this.Connection, this.TablaDatos);
@@ -172,6 +197,12 @@ namespace Lbl.CuentasCorrientes
                         Comando.Fields.AddWithValue("comprob", textoComprob);
                         Comando.Fields.AddWithValue("saldo", SaldoActual + importeDebito);
                         Comando.Fields.AddWithValue("obs", obs);
+
+                        if (extras != null && extras.Count > 0) {
+                                foreach (KeyValuePair<string, object> extra in extras) {
+                                        Comando.Fields.AddWithValue(extra.Key, extra.Value);
+                                }
+                        }
                         this.Connection.Execute(Comando);
 
                         if (cancelaCosas) {
@@ -230,7 +261,15 @@ namespace Lbl.CuentasCorrientes
 
                         decimal SaldoCtaCteAntes = this.Saldo(true);
 
-                        this.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, comprob.ToString(), comprob.Tipo.EsNotaCredito ? -comprob.Total : comprob.Total, null, comprob, null, null, comprob.Tipo.EsFacturaNCoND);
+                        this.Movimiento(true,
+                                Lbl.Cajas.Concepto.IngresosPorFacturacion,
+                                comprob.ToString(),
+                                comprob.Tipo.EsNotaCredito ? -comprob.Total : comprob.Total,
+                                null,
+                                comprob,
+                                null,
+                                null,
+                                comprob.Tipo.EsFacturaNCoND);
                         decimal FacturaSaldo = comprob.Total - comprob.ImporteCancelado;
 
                         if (FacturaSaldo > 0) {

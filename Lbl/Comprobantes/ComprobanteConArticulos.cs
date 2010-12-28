@@ -571,7 +571,7 @@ namespace Lbl.Comprobantes
                                         else
                                                 DiferenciaMonto = System.Convert.ToDecimal(this.m_RegistroOriginal["total"]) - this.Total;
                                         if (DiferenciaMonto != 0)
-                                                this.Cliente.CuentaCorriente.Movimiento(true, new Lbl.Cajas.Concepto(this.Connection, 21000), this.ToString(), DiferenciaMonto, null, null, null, null, false);
+                                                this.Cliente.CuentaCorriente.Movimiento(true, new Lbl.Cajas.Concepto(this.Connection, 21000), this.ToString(), DiferenciaMonto, null, null);
 
                                 }
 
