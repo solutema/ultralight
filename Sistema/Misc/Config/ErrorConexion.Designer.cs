@@ -68,15 +68,19 @@ namespace Lazaro.Misc.Config
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
                         this.SuspendLayout();
                         // 
-                        // lblHeader1
+                        // EtiquetaEncab
                         // 
                         this.EtiquetaEncab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaEncab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(202)))), ((int)(((byte)(174)))));
+                        this.EtiquetaEncab.Font = new System.Drawing.Font("Bitstream Vera Sans", 11F, System.Drawing.FontStyle.Bold);
+                        this.EtiquetaEncab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EtiquetaEncab.Location = new System.Drawing.Point(172, 28);
-                        this.EtiquetaEncab.Name = "lblHeader1";
+                        this.EtiquetaEncab.Name = "EtiquetaEncab";
+                        this.EtiquetaEncab.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
                         this.EtiquetaEncab.Size = new System.Drawing.Size(440, 24);
                         this.EtiquetaEncab.TabIndex = 0;
-                        this.EtiquetaEncab.Text = "No se puede establecer conexión con el servidor SQL";
+                        this.EtiquetaEncab.Text = "No se puede establecer conexión con el servidor";
                         this.EtiquetaEncab.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // BotonConfigurar
