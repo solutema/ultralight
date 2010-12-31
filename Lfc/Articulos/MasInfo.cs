@@ -58,8 +58,14 @@ namespace Lfc.Articulos
                                 m_Articulo = value;
 
                                 if (m_Articulo != null) {
-                                        EntradaFechaCreado.Text = m_Articulo.FechaAlta.ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern);
-                                        EntradaFechaPrecio.Text = m_Articulo.FechaPrecio.ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern);
+                                        if (m_Articulo.FechaAlta != null)
+                                                EntradaFechaCreado.Text = m_Articulo.FechaAlta.ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern);
+                                        else
+                                                EntradaFechaCreado.Text = "";
+                                        if (m_Articulo.FechaPrecio != null)
+                                                EntradaFechaPrecio.Text = m_Articulo.FechaPrecio.ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern);
+                                        else
+                                                EntradaFechaPrecio.Text = "";
                                         decimal PrecioUltComp = this.Connection.FieldDecimal("SELECT comprob_detalle.precio FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND id_articulo=" + m_Articulo.Id.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
                                         EntradaCostoUltimaCompra.Text = Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
 
