@@ -282,12 +282,18 @@ namespace Lbl.Personas
 
                 public Comprobantes.Tipo ObtenerTipoComprobante()
                 {
+                        string TipoComprob;
                         if (this.FacturaPreferida != null)
-                                return Lbl.Comprobantes.Tipo.TodosPorLetra["F" + this.FacturaPreferida];
+                                TipoComprob = "F" + this.FacturaPreferida;
                         else if (this.SituacionTributaria != null)
-                                return Lbl.Comprobantes.Tipo.TodosPorLetra["F" + this.SituacionTributaria.ObtenerLetraPredeterminada()];
+                                TipoComprob = "F" + this.SituacionTributaria.ObtenerLetraPredeterminada();
                         else
-                                return Lbl.Comprobantes.Tipo.TodosPorLetra["FB"];
+                                TipoComprob = "FB";
+
+                        if (Lbl.Comprobantes.Tipo.TodosPorLetra.ContainsKey(TipoComprob))
+                                return Lbl.Comprobantes.Tipo.TodosPorLetra[TipoComprob];
+                        else
+                                throw new InvalidOperationException("No se reconoce el tipo de comprobante " + TipoComprob + " para " + this.ToString());
                 }
 
 		public int TipoDocumento

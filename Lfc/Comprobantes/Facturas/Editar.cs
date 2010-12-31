@@ -185,11 +185,12 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                         return new Lfx.Types.OperationResult(false, @"Debe proporcionar el número de CUIT del cliente.");
                         } else if (Comprob.Tipo.LetraSola == "B") {
                                 //Si es factura B de más de $ 1000, debe llevar el Nº de DNI
-                                if (Comprob.Total >= 1000 && Comprob.Cliente.NumeroDocumento.Length < 5 && Comprob.Cliente.Cuit.EsValido() == false)
-                                        return new Lfx.Types.OperationResult(false, @"Para comprob tipo ""B"" de $ 1.000 o más, debe proporcionar el número de DNI/CUIT del cliente.");
+                                if (Comprob.Total >= 1000 && Comprob.Cliente.NumeroDocumento.Length < 5 &&
+                                        (Comprob.Cliente.Cuit == null || Comprob.Cliente.Cuit.EsValido() == false))
+                                        return new Lfx.Types.OperationResult(false, @"Para Facturas B de $ 1.000 o más, debe proporcionar el número de DNI/CUIT del cliente.");
                                 //Si es factura B de más de $ 1000, debe llevar domicilio
                                 if (Comprob.Total >= 1000 && Comprob.Cliente.Domicilio.Length < 1)
-                                        return new Lfx.Types.OperationResult(false, @"Para comprob tipo ""B"" de $ 1.000 o más, debe proporcionar el domicilio del cliente.");
+                                        return new Lfx.Types.OperationResult(false, @"Para Facturas B de $ 1.000 o más, debe proporcionar el domicilio del cliente.");
                         }
 
                         if (ProductArray.ShowStock && this.Tipo.MueveStock && Comprob.HayStock() == false) {
