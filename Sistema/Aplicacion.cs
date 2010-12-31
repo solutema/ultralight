@@ -1426,6 +1426,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                                 bool Found = false;
                                 while (ex2 != null) {
                                         if (string.Compare(ex2.Message,"Reading from the stream has failed.", true) == 0
+                                                || string.Compare(ex2.Message, "Unable to connect to any of the specified MySQL hosts.", true) == 0
                                                 || string.Compare(ex2.Message, "Connection unexpectedly terminated.", true) == 0
                                                 || string.Compare(ex2.Message, "error connecting: Timeout expired.", true) == 0
                                                 || string.Compare(ex2.Message, "No se pueden leer los datos de la conexión de transporte: Se ha forzado la interrupción de una conexión existente por el host remoto.", true) == 0) {
