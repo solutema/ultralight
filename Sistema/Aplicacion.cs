@@ -1029,10 +1029,16 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                         Lfc.FormularioListado FormularioListado = null;
 
                         switch (SubComando) {
+                                case "IvaVentas":
+                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.Factura), Lbl.Sys.Permisos.Operaciones.Listar)) {
+                                                if (FormularioListado == null)
+                                                        FormularioListado = new Lfc.Comprobantes.Facturas.IvaVentas();
+                                        }
+                                        break;
+
                                 case "ALICUOTAS":
                                 case "Lbl.Impuestos.ObtenerAlicuota":
                                         if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Impuestos.Alicuota), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lazaro.Misc.Alicuotas.Inicio");
                                                 if (FormularioListado == null)
                                                         FormularioListado = new Lfc.Alicuotas.Inicio();
                                         }

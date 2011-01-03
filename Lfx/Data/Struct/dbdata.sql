@@ -4025,13 +4025,13 @@ INSERT INTO personas_tipos (id_tipo_persona, nombre) VALUES (5, 'Cliente y Usuar
 INSERT INTO personas_tipos (id_tipo_persona, nombre) VALUES (6, 'Proveedor y Usuario del Sistema');
 INSERT INTO personas_tipos (id_tipo_persona, nombre) VALUES (7, 'Cliente, Proveedor y Usuario del Sistema');
 
-INSERT INTO situaciones (id_situacion, nombre, abrev, comprob, comprob2) VALUES (1, 'Consumidor Final', 'CF', 'B', 'C');
-INSERT INTO situaciones (id_situacion, nombre, abrev, comprob, comprob2) VALUES (2, 'Responsable Inscripto', 'RI', 'A', 'C');
-INSERT INTO situaciones (id_situacion, nombre, abrev, comprob, comprob2) VALUES (3, 'Responsable No Inscripto', 'NI', 'A', 'C');
-INSERT INTO situaciones (id_situacion, nombre, abrev, comprob, comprob2) VALUES (4, 'Responsable Monotributista', 'M', 'B', 'C');
-INSERT INTO situaciones (id_situacion, nombre, abrev, comprob, comprob2) VALUES (5, 'Exento', 'EX', 'B', 'C');
-INSERT INTO situaciones (id_situacion, nombre, abrev, comprob, comprob2) VALUES (6, 'No Resposable', 'NR', 'B', 'C');
-INSERT INTO situaciones (id_situacion, nombre, abrev, comprob, comprob2) VALUES (7, 'No Categorizado', 'NC', 'B', 'C');
+INSERT INTO situaciones (id_situacion, nombre, abrev, nombrecorto, comprob, comprob2) VALUES (1, 'Consumidor Final', 'Cons. Final', 'CF', 'B', 'C');
+INSERT INTO situaciones (id_situacion, nombre, abrev, nombrecorto, comprob, comprob2) VALUES (2, 'Responsable Inscripto', 'Resp. Inscr.', 'RI', 'A', 'C');
+INSERT INTO situaciones (id_situacion, nombre, abrev, nombrecorto, comprob, comprob2) VALUES (3, 'Responsable No Inscripto', 'Resp. No Inscr.', 'NI', 'A', 'C');
+INSERT INTO situaciones (id_situacion, nombre, abrev, nombrecorto, comprob, comprob2) VALUES (4, 'Responsable Monotributista', 'Monotrib.', 'M', 'B', 'C');
+INSERT INTO situaciones (id_situacion, nombre, abrev, nombrecorto, comprob, comprob2) VALUES (5, 'Exento', 'Exento', 'EX', 'B', 'C');
+INSERT INTO situaciones (id_situacion, nombre, abrev, nombrecorto, comprob, comprob2) VALUES (6, 'No Resposable', 'No Resp.', 'NR', 'B', 'C');
+INSERT INTO situaciones (id_situacion, nombre, abrev, nombrecorto, comprob, comprob2) VALUES (7, 'No Categorizado', 'No Categ.', 'NC', 'B', 'C');
 
 INSERT INTO articulos_situaciones (id_situacion, nombre, cuenta_stock, deposito, facturable) VALUES (1, 'Depósito 1', 1, 1, 1);
 INSERT INTO articulos_situaciones (id_situacion, nombre, cuenta_stock, deposito, facturable) VALUES (2, 'Depósito 2', 1, 2, 1);

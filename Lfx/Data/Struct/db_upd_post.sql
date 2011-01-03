@@ -38,4 +38,12 @@ REPLACE INTO impresoras (id_impresora, nombre, id_sucursal, tipo, estacion, carg
 
 UPDATE cajas SET nombre=REPLACE(nombre, 'Caja Diaria', 'Caja Efectivo');
 
+UPDATE situaciones SET nombrecorto='Cons. Final' WHERE id_situacion=1;
+UPDATE situaciones SET nombrecorto='Resp. Inscr.' WHERE id_situacion=2;
+UPDATE situaciones SET nombrecorto='Resp. No Inscr.' WHERE id_situacion=3;
+UPDATE situaciones SET nombrecorto='Monotrib.' WHERE id_situacion=4;
+UPDATE situaciones SET nombrecorto='Exento' WHERE id_situacion=5;
+UPDATE situaciones SET nombrecorto='No Resp.' WHERE id_situacion=6;
+UPDATE situaciones SET nombrecorto='No Categ.' WHERE id_situacion=6;
+
 SET FOREIGN_KEY_CHECKS=1;

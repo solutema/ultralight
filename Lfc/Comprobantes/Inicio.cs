@@ -114,8 +114,8 @@ namespace Lfc.Comprobantes
                                         FormFiltros.EntradaFechas.Rango = m_Fechas;
                                         FormFiltros.EntradaEstado.TextKey = m_Estado;
                                         FormFiltros.EntradaAnuladas.TextKey = m_Anuladas.ToString();
-                                        FormFiltros.EntradaMontoDesde.Text = Lfx.Types.Formatting.FormatCurrency(m_MontoDesde, this.Workspace.CurrentConfig.Moneda.Decimales);
-                                        FormFiltros.EntradaMontoHasta.Text = Lfx.Types.Formatting.FormatCurrency(m_MontoHasta, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                        FormFiltros.EntradaMontoDesde.ValueDecimal= m_MontoDesde;
+                                        FormFiltros.EntradaMontoHasta.ValueDecimal = m_MontoHasta;
                                         FormFiltros.Owner = this;
                                         FormFiltros.ShowDialog();
 

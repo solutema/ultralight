@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2010 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -30,25 +30,20 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Lfc.Comprobantes
+namespace Lbl.Impuestos
 {
-        public partial class Filtros : Lui.Forms.DialogForm
+        public enum CondicionesFrenteAlIva
         {
-
-                public Filtros()
-                {
-                        InitializeComponent();
-                }
-
-         
-
-                private void EntradaTipo_TextChanged(object sender, EventArgs e)
-                {
-                        EntradaLetra.Enabled = (EntradaTipo.TextKey == "Lbl.Comprobantes.Factura"
-                                || EntradaTipo.TextKey == "Lbl.Comprobantes.ComprobanteFacturable"
-                                || EntradaTipo.TextKey == "Lbl.Comprobantes.NotaDeCredito"
-                                || EntradaTipo.TextKey == "Lbl.Comprobantes.NotaDeDebito");
-                }
+                ConsumidorFinal = 1,
+                ResponsableInscripto = 2,
+                ResponsableNoInscripto = 3,
+                ResponsableMonotributista = 4,
+                Exento = 5,
+                NoResponsable = 6,
+                NoCategorizado = 7
         }
 }

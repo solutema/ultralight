@@ -141,5 +141,17 @@ namespace Lbl.Impuestos
 
                         return base.Guardar();
                 }
+
+                private static Lbl.ColeccionGenerica<SituacionTributaria> m_Todas = null;
+                public static Lbl.ColeccionGenerica<SituacionTributaria> Todas
+                {
+                        get
+                        {
+                                if (m_Todas == null)
+                                        m_Todas = new Lbl.ColeccionGenerica<SituacionTributaria>(Lfx.Workspace.Master.MasterConnection, Lfx.Workspace.Master.MasterConnection.Select("SELECT * FROM situaciones"));
+
+                                return m_Todas;
+                        }
+                }
 	}
 }
