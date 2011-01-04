@@ -137,7 +137,7 @@ namespace Lazaro.Principal
 
                                 if (Lfx.Services.Updater.Master.RebootNeeded && YaPregunteReiniciar == false) {
                                         YaPregunteReiniciar = true;
-                                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Existe una nueva versión del sistema Lázaro. Debe reiniciar la aplicación para instalar la actualización.", "¿Desea reiniciar ahora?");
+                                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Existe una nueva versión de Lázaro. Debe reiniciar la aplicación para instalar la actualización.", "¿Desea reiniciar ahora?");
                                         Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                         DialogResult Respuesta = Pregunta.ShowDialog();
                                         if (Respuesta == DialogResult.OK)
@@ -366,7 +366,7 @@ namespace Lazaro.Principal
                         MenuItem ItmTmp = null;
 
                         // Creo la opción de Acerca de ...
-                        ItmTmp = new MenuItem("&Acerca del sistema Lázaro", new System.EventHandler(MnuClick));
+                        ItmTmp = new MenuItem("&Acerca de Lázaro", new System.EventHandler(MnuClick));
                         ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmTmp;
                         ItmInfo.Funcion = "VER";

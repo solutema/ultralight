@@ -292,7 +292,7 @@ namespace Lazaro.Misc.Backup
 
                         System.IO.FileStream Archivo = new System.IO.FileStream(Lfx.Environment.Folders.TemporaryFolder + workFolder + "info.txt", System.IO.FileMode.Append, System.IO.FileAccess.Write);
                         using (System.IO.StreamWriter Escribidor = new System.IO.StreamWriter(Archivo, System.Text.Encoding.Default)) {
-                                Escribidor.WriteLine("Copia de seguridad del sistema Lázaro");
+                                Escribidor.WriteLine("Copia de seguridad de Lázaro");
                                 Escribidor.WriteLine("");
                                 Escribidor.WriteLine("Empresa=" + Lbl.Sys.Config.Actual.Empresa.Nombre);
                                 Escribidor.WriteLine("EspacioTrabajo=" + Lfx.Workspace.Master.Name);

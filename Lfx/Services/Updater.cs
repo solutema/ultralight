@@ -35,7 +35,7 @@ using System.Data;
 namespace Lfx.Services
 {
         /// <summary>
-        /// Actualizador de sistema Lázaro (actualiza desde web o base de datos).
+        /// Actualizador de Lázaro (actualiza desde web o base de datos).
         /// Desde web:
         /// Descarga el archivo version.xml que contiene información sobre
         /// los archivos que hay que actualizar y sus versiones actuales

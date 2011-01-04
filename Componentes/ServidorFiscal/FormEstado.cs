@@ -119,7 +119,7 @@ namespace ServidorFiscal
                         // 
                         this.NotifyIcon1.ContextMenu = this.MenuContextual;
                         this.NotifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("NotifyIcon1.Icon")));
-                        this.NotifyIcon1.Text = "Servidor Fiscal del sistema Lázaro";
+                        this.NotifyIcon1.Text = "Servidor Fiscal Lázaro";
                         this.NotifyIcon1.Visible = true;
                         this.NotifyIcon1.DoubleClick += new System.EventHandler(this.NotifyIcon1_DoubleClick);
                         // 

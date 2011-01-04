@@ -417,7 +417,7 @@ Si necesita información sobre cómo instalar o configurar un servidor SQL para 
 
                         if (Lfx.Workspace.Master.IsPrepared() == false) {
                                 using (Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog(@"Aparentemente es la primera vez que conecta a este servidor. Antes de poder utilizarlo debe preparar el servidor con una carga inicial de datos.
-Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o está restaurando desde una copia de seguridad.", @"¿Desea preparar el servidor """ + Lfx.Workspace.Master.MasterConnection.ToString() + @"""?")) {
+Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restaurando desde una copia de seguridad.", @"¿Desea preparar el servidor """ + Lfx.Workspace.Master.MasterConnection.ToString() + @"""?")) {
                                         Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                         if (Pregunta.ShowDialog() == DialogResult.OK) {
                                                 Lfx.Types.OperationResult Res;
@@ -528,7 +528,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                                                 if (Mostrando) {
                                                         if (Mostrar == null) {
                                                                 Mostrar = new System.Text.StringBuilder();
-                                                                Mostrar.AppendLine("Por favor tómese un momento para leer sobre las novedades incorporadas recientemente en el sistema Lázaro:");
+                                                                Mostrar.AppendLine("Por favor tómese un momento para leer sobre las novedades incorporadas recientemente en Lázaro:");
                                                                 Mostrar.AppendLine("");
                                                         }
                                                         Mostrar.AppendLine(Linea.Replace("* ", "• "));
@@ -742,7 +742,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
 
                                                         case "NOW":
                                                                 //string Carpeta = "lbkp_" + System.DateTime.Now.ToString("yyyyMMddHHmmss") + System.IO.Path.DirectorySeparatorChar;
-                                                                string Carpeta = "Copia de seguridad del sistema Lázaro del " + System.DateTime.Now.ToString("dd-MM-yyyy (HH.mm).lbk") + System.IO.Path.DirectorySeparatorChar;
+                                                                string Carpeta = "Copia de seguridad de Lázaro del " + System.DateTime.Now.ToString("dd-MM-yyyy (HH.mm).lbk") + System.IO.Path.DirectorySeparatorChar;
                                                                 Misc.Backup.Services.CreateBackup(Carpeta);
                                                                 break;
                                                 }

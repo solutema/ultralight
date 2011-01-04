@@ -11,7 +11,7 @@ using System.Security.Permissions;
 
 [assembly: AssemblyTitle("RunComponent")]
 [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyDescription("Ejecuta un componente Lfx fuera del entorno del sistema Lázaro")]
+[assembly: AssemblyDescription("Ejecuta un componente Lfx fuera del entorno de Lázaro")]
 [assembly: AssemblyCompany("Ernesto N. Carrea")]
 [assembly: AssemblyProduct("Lázaro")]
 [assembly: AssemblyCopyright("Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.")]
