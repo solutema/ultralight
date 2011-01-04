@@ -50,7 +50,7 @@ namespace Lfx.Types
                 [DefaultValue(100)]
                 public int Max { get; set; }
 
-                [DefaultValue(false)]
+                [DefaultValue(true)]
                 public bool Blocking { get; set; }
 
                 [DefaultValue(false)]

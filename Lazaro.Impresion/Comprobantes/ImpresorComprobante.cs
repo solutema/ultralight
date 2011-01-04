@@ -218,12 +218,21 @@ namespace Lazaro.Impresion.Comprobantes
                                 case "CLIENTE.NOMBRE":
                                         return this.Comprobante.Cliente.ToString();
 
+                                case "LOCALIDAD":
+                                case "LOCALIDAD.NOMBRE":
+                                case "CLIENTE.LOCALIDAD.NOMBRE":
+                                        if (this.Comprobante.Cliente.Localidad == null)
+                                                return "";
+                                        else
+                                                return this.Comprobante.Cliente.Localidad.ToString();
+
                                 case "DOMICILIO":
                                 case "CLIENTE.DOMICILIO":
                                         if (this.Comprobante.Cliente.Domicilio != null && this.Comprobante.Cliente.Domicilio.Length > 0)
                                                 return this.Comprobante.Cliente.Domicilio;
                                         else
                                                 return this.Comprobante.Cliente.DomicilioLaboral;
+
                                 case "CLIENTE.DOCUMENTO":
                                         if (this.Comprobante.Cliente.Cuit != null)
                                                 return this.Comprobante.Cliente.Cuit.ToString();
@@ -239,6 +248,7 @@ namespace Lazaro.Impresion.Comprobantes
                                 case "IVA":
                                 case "CLIENTE.IVA":
                                         return this.Comprobante.Cliente.SituacionTributaria.ToString();
+
                                 case "CLIENTE.ID":
                                         return this.Comprobante.Cliente.Id.ToString();
 

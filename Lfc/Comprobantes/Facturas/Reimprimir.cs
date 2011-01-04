@@ -38,7 +38,7 @@ using System.Windows.Forms;
 
 namespace Lfc.Comprobantes.Facturas
 {
-	public partial class Reimprimir: Lui.Forms.ChildDialogForm
+	public partial class Reimprimir : Lui.Forms.ChildDialogForm
 	{
 		Dictionary<int, int> ProximosNumeros = new Dictionary<int,int>();
 
@@ -177,6 +177,10 @@ namespace Lfc.Comprobantes.Facturas
                         Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
 
                         if (Pregunta.ShowDialog() == DialogResult.OK) {
+                                Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Reimprimiendo...", "Se están reimprimiendo " + Cantidad.ToString() + " comprobantes.");
+                                Progreso.Max = Cantidad;
+                                Progreso.Begin();
+
                                 bool AnularPagos = Lfx.Types.Parsing.ParseInt(EntradaOrden.TextKey) != 0;
 
                                 string IncluyeTipos = "";
@@ -214,8 +218,10 @@ namespace Lfc.Comprobantes.Facturas
                                                 Impr.Reimpresion = true;
                                                 Impr.Imprimir();
                                         }
+                                        Progreso.Advance(Progreso.Value + 1);
                                 }
 
+                                Progreso.End();
                                 ProximosNumeros.Clear();
 
                                 EntradaDesde.Text = "0";
