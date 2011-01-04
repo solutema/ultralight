@@ -408,7 +408,7 @@ namespace Lfc
 
                                 if (Impresora != null && Impresora.CargaPapel == Lbl.Impresion.CargasPapel.Manual) {
                                         Lui.Printing.ManualFeedDialog FormularioCargaManual = new Lui.Printing.ManualFeedDialog();
-                                        FormularioCargaManual.DocumentName = Lbl.Comprobantes.Comprobante.NumeroCompleto(this.Connection, this.Elemento.Id);
+                                        FormularioCargaManual.DocumentName = Elemento.ToString();
                                         // Muestro el nombre de la impresora
                                         if (Impresora != null) {
                                                 FormularioCargaManual.PrinterName = Impresora.Nombre;

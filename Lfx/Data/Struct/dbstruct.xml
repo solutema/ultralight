@@ -563,14 +563,14 @@
   <Table name="pvs" lsdet="1">
     <Column name="id_pv" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="id_sucursal" datatype="Integer" nullable="0" default="0" />
-    <Column name="tipo" datatype="SmallInf" nullable="0" default="0" />
-    <Column name="cuenta_iva" datatype="SmallInf" nullable="0" default="1" />
-    <Column name="cuenta_iibb" datatype="SmallInf" nullable="0" default="1" />
+    <Column name="tipo" datatype="SmallInt" nullable="0" default="0" />
+    <Column name="cuenta_iva" datatype="SmallInt" nullable="0" default="1" />
+    <Column name="cuenta_iibb" datatype="SmallInt" nullable="0" default="1" />
     <Column name="numero" datatype="Integer" nullable="0" default="0" />
     <Column name="estacion" datatype="VarChar" nullable="1" lenght="200" />
     <Column name="tipo_fac" datatype="VarChar" nullable="0" lenght="50" />
-    <Column name="carga" datatype="SmallInf" nullable="0" default="0" />
-    <Column name="modelo" datatype="SmallInf" nullable="0" default="0" />
+    <Column name="carga" datatype="SmallInt" nullable="0" default="0" />
+    <Column name="modelo" datatype="SmallInt" nullable="0" default="0" />
     <Column name="puerto" datatype="SmallInt" nullable="0" default="0" />
     <Column name="bps" datatype="Integer" nullable="0" default="0" />
     <Column name="ultimoz" datatype="VarChar" nullable="1" lenght="50" />

@@ -276,5 +276,21 @@ namespace Lbl.Comprobantes
                 {
                         return "Punto de Venta Nº " + base.ToString();
                 }
+
+                private static Dictionary<int, PuntoDeVenta> m_TodosPorNumero = null;
+                public static Dictionary<int, PuntoDeVenta> TodosPorNumero
+                {
+                        get
+                        {
+                                if (m_TodosPorNumero == null) {
+                                        m_TodosPorNumero = new Dictionary<int, PuntoDeVenta>();
+                                        System.Data.DataTable TablaPvs = Lfx.Workspace.Master.MasterConnection.Select("SELECT * FROM pvs WHERE numero>0");
+                                        foreach (System.Data.DataRow RegPv in TablaPvs.Rows) {
+                                                m_TodosPorNumero.Add(System.Convert.ToInt32(RegPv["numero"]), new Lbl.Comprobantes.PuntoDeVenta(Lfx.Workspace.Master.MasterConnection, (Lfx.Data.Row)RegPv));
+                                        }
+                                }
+                                return m_TodosPorNumero;
+                        }
+                }
         }
 }

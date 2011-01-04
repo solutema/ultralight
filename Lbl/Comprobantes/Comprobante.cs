@@ -450,10 +450,13 @@ namespace Lbl.Comprobantes
                         return Impresor.Imprimir();
                 } */
 
-		public static string NumeroCompleto(Lfx.Data.Connection dataBase, int iId)
+
+                /// <summary>
+                /// Devuelve el tipo y número de un comprobante (por ejemplo: B 0001-00000135).
+                /// </summary>
+		public static string NumeroCompleto(Lfx.Data.Connection connection, int itemId)
 		{
-			// Toma el Id de factura y devuelve el tipo y número (por ejemplo: B 0001-00000135)
-                        Lfx.Data.Row TmpFactura = dataBase.Tables["comprob"].FastRows[iId]; //dataBase.Row("comprob", "tipo_fac, pv, numero", "id_comprob", iId);
+                        Lfx.Data.Row TmpFactura = connection.Tables["comprob"].FastRows[itemId]; //dataBase.Row("comprob", "tipo_fac, pv, numero", "id_comprob", iId);
 
 			if (TmpFactura == null)
 				return "";

@@ -166,10 +166,12 @@ namespace Lfc.Comprobantes.Facturas
                                 return new Lfx.Types.OperationResult(false, "El primer ítem de la factura no puede ser negativo. Utilice los ítem negativos en último lugar.");
 
                         Comprob.Cliente.Cargar();
+
                         if (Comprob.Cliente == null)
-                                return new Lfx.Types.OperationResult(false, "Debe proporcionar un Cliente válido.");
+                                return new Lfx.Types.FailureOperationResult("Debe proporcionar un Cliente válido.");
+
                         else if (Comprob.Cliente.SituacionTributaria == null)
-                                return new Lfx.Types.OperationResult(false, "El Cliente no tiene una Situación Tributaria definida.");
+                                return new Lfx.Types.FailureOperationResult("El Cliente no tiene una Situación Tributaria definida.");
 
                         if (Comprob.Tipo.EsFacturaNCoND && Comprob.Tipo.LetraSola != Comprob.Cliente.LetraPredeterminada()) {
                                 Lui.Forms.YesNoDialog OPregunta = new Lui.Forms.YesNoDialog(@"La situación tributaria del cliente y el tipo de comprobante no se corresponden.
@@ -177,27 +179,27 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
 ¿Desea continuar de todos modos?", "Tipo de comprobante incorrecto");
                                 OPregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                 if (OPregunta.ShowDialog() == DialogResult.Cancel)
-                                        return new Lfx.Types.OperationResult(false, "Corrija la Situación Tributaria del Cliente o el Tipo de Comprobante.");
+                                        return new Lfx.Types.FailureOperationResult("Corrija la Situación Tributaria del Cliente o el Tipo de Comprobante.");
                         }
 
                         if (Comprob.Tipo.LetraSola.ToUpperInvariant() == "A") {
                                 if (Comprob.Cliente.Cuit.EsValido() == false)
-                                        return new Lfx.Types.OperationResult(false, @"Debe proporcionar el número de CUIT del cliente.");
+                                        return new Lfx.Types.FailureOperationResult("Debe proporcionar el número de CUIT del cliente.");
                         } else if (Comprob.Tipo.LetraSola == "B") {
                                 //Si es factura B de más de $ 1000, debe llevar el Nº de DNI
                                 if (Comprob.Total >= 1000 && Comprob.Cliente.NumeroDocumento.Length < 5 &&
                                         (Comprob.Cliente.Cuit == null || Comprob.Cliente.Cuit.EsValido() == false))
-                                        return new Lfx.Types.OperationResult(false, @"Para Facturas B de $ 1.000 o más, debe proporcionar el número de DNI/CUIT del cliente.");
+                                        return new Lfx.Types.FailureOperationResult("Para Facturas B de $ 1.000 o más, debe proporcionar el número de DNI/CUIT del cliente.");
                                 //Si es factura B de más de $ 1000, debe llevar domicilio
                                 if (Comprob.Total >= 1000 && Comprob.Cliente.Domicilio.Length < 1)
-                                        return new Lfx.Types.OperationResult(false, @"Para Facturas B de $ 1.000 o más, debe proporcionar el domicilio del cliente.");
+                                        return new Lfx.Types.FailureOperationResult("Para Facturas B de $ 1.000 o más, debe proporcionar el domicilio del cliente.");
                         }
 
                         if (ProductArray.ShowStock && this.Tipo.MueveStock && Comprob.HayStock() == false) {
                                 Lui.Forms.YesNoDialog OPregunta = new Lui.Forms.YesNoDialog("Las existencias actuales no son suficientes para cubrir la operación que intenta realizar.\n¿Desea continuar de todos modos?", "No hay existencias suficientes");
                                 OPregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                 if (OPregunta.ShowDialog() == DialogResult.Cancel)
-                                        return new Lfx.Types.OperationResult(false, "No se imprimir el comprobante por falta de existencias.");
+                                        return new Lfx.Types.FailureOperationResult("No se imprimir el comprobante por falta de existencias.");
                         }
 
                         if (Comprob.Cliente.Id != 999 && (Comprob.Tipo.EsFactura || Comprob.Tipo.EsNotaDebito)) {
@@ -210,7 +212,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                                 LimiteCredito = Lfx.Types.Parsing.ParseCurrency(this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Cuentas.LimiteCreditoPredet", "0"));
 
                                         if ((Comprob.Total + SaldoCtaCte) > LimiteCredito)
-                                                return new Lfx.Types.OperationResult(false, "El valor de la factura y/o el saldo en cuenta corriente supera el Límite de Crédito de este cliente.");
+                                                return new Lfx.Types.FailureOperationResult("El valor de la factura y/o el saldo en cuenta corriente supera el Límite de Crédito de este cliente.");
                                 } else {
                                         if (SaldoCtaCte < 0) {
                                                 SaldoEnCuentaCorriente FormularioError = new SaldoEnCuentaCorriente();
@@ -230,6 +232,26 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                                 }
                                         }
                                 }
+                        }
+
+                        if (Comprob.PV < 1)
+                                return new Lfx.Types.FailureOperationResult("Debe especificar el Punto de Venta.");
+
+                        Lbl.Comprobantes.PuntoDeVenta Pv = Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero[Comprob.PV];
+                        Lbl.Impresion.Impresora Impresora = Comprob.ObtenerImpresora();
+
+                        if (Pv.CargaManual && (Impresora == null || Impresora.CargaPapel == Lbl.Impresion.CargasPapel.Automatica)) {
+                                Lui.Printing.ManualFeedDialog FormularioCargaManual = new Lui.Printing.ManualFeedDialog();
+                                FormularioCargaManual.DocumentName = Comprob.Tipo.ToString() + " " + Comprob.PV.ToString("0000") + "-" + Lbl.Comprobantes.Numerador.ProximoNumero(Comprob).ToString("00000000");
+                                // Muestro el nombre de la impresora
+                                if (Impresora != null) {
+                                        FormularioCargaManual.PrinterName = Impresora.Nombre;
+                                } else {
+                                        System.Drawing.Printing.PrinterSettings objPrint = new System.Drawing.Printing.PrinterSettings();
+                                        FormularioCargaManual.PrinterName = objPrint.PrinterName;
+                                }
+                                if (FormularioCargaManual.ShowDialog() == DialogResult.Cancel)
+                                        return new Lfx.Types.CancelOperationResult();
                         }
 
                         return base.BeforePrint();
