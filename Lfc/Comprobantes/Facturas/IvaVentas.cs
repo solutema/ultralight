@@ -74,8 +74,6 @@ namespace Lfc.Comprobantes.Facturas
 
                         if (this.HasWorkspace)
                                 m_Sucursal = this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada;
-
-                        this.Text = "Libro IVA Ventas";
                 }
 
 
@@ -124,6 +122,22 @@ namespace Lfc.Comprobantes.Facturas
 
                         return ResultadoFiltrar;
                 }
+
+
+                public override void RefreshList()
+                {
+                        string Titulo;
+                        if (m_Fecha.HasRange)
+                                Titulo = "Libro IVA Ventas " + m_Fecha.From.ToString(Lfx.Types.Formatting.DateTime.MonthAndYearPattern);
+                        else
+                                Titulo = "Libro IVA Ventas";
+
+                        Titulo += " - " + Lbl.Sys.Config.Actual.Empresa.RazonSocial + " " + Lbl.Sys.Config.Actual.Empresa.Cuit.ToString();
+                        this.Text = Titulo;
+
+                        base.RefreshList();
+                }
+
 
                 protected override void OnBeginRefreshList()
                 {
@@ -192,16 +206,30 @@ namespace Lfc.Comprobantes.Facturas
                         base.OnBeginRefreshList();
                 }
 
-                protected override Lfx.Types.OperationResult OnEdit(int lCodigo)
+                protected override Lfx.Types.OperationResult OnEdit(int itemId)
                 {
-                        string Tipo = this.Connection.FieldString("SELECT tipo_fac FROM comprob WHERE id_comprob=" + lCodigo.ToString());
-                        this.Workspace.RunTime.Execute("EDITAR " + Tipo + " " + lCodigo.ToString());
+                        string Tipo = this.Connection.FieldString("SELECT tipo_fac FROM comprob WHERE id_comprob=" + itemId.ToString());
+                        this.Workspace.RunTime.Execute("EDITAR " + Tipo + " " + itemId.ToString());
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
                 protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
                 {
-                        if (row.Fields["anulada"].ValueInt != 0) {
+                        if (row.Fields["anulada"].ValueInt == 0) {
+                                switch(row.Fields["tipo_fac"].ValueString)
+                                {
+                                        case "NCA":
+                                        case "NCB":
+                                        case "NCC":
+                                        case "NCE":
+                                        case "NCM":
+                                                this.Contadores[0].AddValue(-row.Fields["total"].ValueDecimal);
+                                                break;
+                                        default:
+                                                this.Contadores[0].AddValue(row.Fields["total"].ValueDecimal);
+                                                break;
+                                }
+                        } else {
                                 // Si está anulada, la tacho
                                 itm.SubItems["nombre_visible"].Text = "Anulada";
                                 itm.Font = new System.Drawing.Font("Bitstream Vera Sans", 10, System.Drawing.FontStyle.Strikeout);
@@ -213,6 +241,17 @@ namespace Lfc.Comprobantes.Facturas
                 protected override Lfx.FileFormats.Office.Spreadsheet.Row FormatRow(int itemId, Lfx.Data.Row row, Lfx.FileFormats.Office.Spreadsheet.Sheet sheet, Lfx.Data.FormFieldCollection useFields)
                 {
                         Lfx.FileFormats.Office.Spreadsheet.Row Res = base.FormatRow(itemId, row, sheet, useFields);
+
+                        switch (row.Fields["tipo_fac"].ValueString) {
+                                case "NCA":
+                                case "NCB":
+                                case "NCC":
+                                case "NCE":
+                                case "NCM":
+                                        row.Fields["gravado"].Value = -row.Fields["gravado"].ValueDecimal;
+                                        row.Fields["total"].Value = -row.Fields["total"].ValueDecimal;
+                                        break;
+                        }
 
                         if (row.Fields["anulada"].ValueInt != 0)
                                 Res.Cells[4].Content = "ANULADA";

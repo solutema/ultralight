@@ -82,6 +82,7 @@ namespace Lazaro.Misc.Config
 			EntradaStockDecimales.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.Decimales", "0");
 
                         EntradaEmpresaNombre.Text = Lbl.Sys.Config.Actual.Empresa.Nombre;
+                        EntradaEmpresaRazonSocial.Text = Lbl.Sys.Config.Actual.Empresa.RazonSocial;
                         if (Lbl.Sys.Config.Actual.Empresa.Cuit == null)
                                 EntradaEmpresaCuit.Text = "";
                         else
@@ -137,6 +138,7 @@ namespace Lazaro.Misc.Config
 				this.Workspace.CurrentConfig.DeleteGlobalSetting("Sistema", "Stock.DepositoPredet", Sucursal);
 
                         Lbl.Sys.Config.Actual.Empresa.Nombre = EntradaEmpresaNombre.Text;
+                        Lbl.Sys.Config.Actual.Empresa.RazonSocial = EntradaEmpresaRazonSocial.Text;
                         if (EntradaEmpresaCuit.Text.Length > 0)
                                 Lbl.Sys.Config.Actual.Empresa.Cuit = new Lbl.Personas.Cuit(EntradaEmpresaCuit.Text);
                         else

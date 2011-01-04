@@ -44,7 +44,7 @@ namespace Lfx.Types
                         public static string FullDateTimePattern = "dd/MM/yyyy HH:mm:ss";
                         public static string SqlDateFormat = "yyyy-MM-dd";
                         public static string SqlDateTimeFormat = "yyyy-MM-dd HH:mm:ss";
-                        public static string YearMonthPattern = @"MMMM ""de"" yyyy";
+                        public static string MonthAndYearPattern = @"MMMM ""de"" yyyy";
                 }
 
                 public static class Currency

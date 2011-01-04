@@ -62,6 +62,18 @@ namespace Lbl.Sys.Configuracion
                         }
                 }
 
+                public string RazonSocial
+                {
+                        get
+                        {
+                                return this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Empresa.RazonSocial", Nombre);
+                        }
+                        set
+                        {
+                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Empresa.RazonSocial", value, "*");
+                        }
+                }
+
                 public Personas.IIdentificadorUnico Cuit
                 {
                         get
