@@ -58,7 +58,7 @@ namespace Lfc.Cajas.Vencimientos
                         this.HabilitarFiltrar = true;
                 }
 
-                public override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
                         switch (row.Fields["estado"].ValueInt) {
                                 case 1:

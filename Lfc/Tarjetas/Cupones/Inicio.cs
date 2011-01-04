@@ -107,7 +107,7 @@ namespace Lfc.Cupones.Cupones
                         }
                 }
 
-                public override void OnBeginRefreshList()
+                protected override void OnBeginRefreshList()
                 {
                         this.CustomFilters.Clear();
 
@@ -128,7 +128,7 @@ namespace Lfc.Cupones.Cupones
                         base.OnBeginRefreshList();
                 }
 
-                public override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
                         switch (((Lbl.Pagos.EstadosCupones)System.Convert.ToInt32(row["estado"]))) {
                                 case Lbl.Pagos.EstadosCupones.SinPresentar:

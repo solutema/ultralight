@@ -55,8 +55,8 @@ namespace Lfc.Comprobantes.Facturas
 				new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 300),
 				new Lfx.Data.FormField("personas.cuit", "CUIT", Lfx.Data.InputFieldTypes.Text, 140),
 				new Lfx.Data.FormField("situaciones.nombrecorto AS situacion", "Cond. IVA", Lfx.Data.InputFieldTypes.Text, 100),
-				new Lfx.Data.FormField("comprob.total AS gravado", "Gravado", Lfx.Data.InputFieldTypes.Currency, 96),
-				new Lfx.Data.FormField("comprob.total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
+				new Lfx.Data.FormField("comprob.total*(1-anulada) AS gravado", "Gravado", Lfx.Data.InputFieldTypes.Currency, 96),
+				new Lfx.Data.FormField("comprob.total*(1-anulada) AS total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
 				new Lfx.Data.FormField("comprob.anulada", "Anulada", Lfx.Data.InputFieldTypes.Bool, 0),                                
 			};
 
@@ -125,7 +125,7 @@ namespace Lfc.Comprobantes.Facturas
                         return ResultadoFiltrar;
                 }
 
-                public override void OnBeginRefreshList()
+                protected override void OnBeginRefreshList()
                 {
                         this.CustomFilters.Clear();
                         this.CustomFilters.AddWithValue("compra", 0);
@@ -179,7 +179,6 @@ namespace Lfc.Comprobantes.Facturas
                         if (m_Sucursal > 0)
                                 this.CustomFilters.AddWithValue("comprob.id_sucursal", m_Sucursal);
 
-
                         if (m_PV > 0)
                                 this.CustomFilters.AddWithValue("comprob.pv", m_PV);
 
@@ -187,26 +186,38 @@ namespace Lfc.Comprobantes.Facturas
                                 this.CustomFilters.AddWithValue("(fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')");
 
                         this.CustomFilters.AddWithValue("impresa", 1);
-                        this.CustomFilters.AddWithValue("anulada", 0);
 
                         this.UpdateFormFields();
 
                         base.OnBeginRefreshList();
                 }
 
-                public override Lfx.Types.OperationResult OnEdit(int lCodigo)
+                protected override Lfx.Types.OperationResult OnEdit(int lCodigo)
                 {
                         string Tipo = this.Connection.FieldString("SELECT tipo_fac FROM comprob WHERE id_comprob=" + lCodigo.ToString());
                         this.Workspace.RunTime.Execute("EDITAR " + Tipo + " " + lCodigo.ToString());
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
-                public override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
                 {
                         if (row.Fields["anulada"].ValueInt != 0) {
                                 // Si está anulada, la tacho
+                                itm.SubItems["nombre_visible"].Text = "Anulada";
                                 itm.Font = new System.Drawing.Font("Bitstream Vera Sans", 10, System.Drawing.FontStyle.Strikeout);
                         }
+
+                        base.OnItemAdded(itm, row);
+                }
+
+                protected override Lfx.FileFormats.Office.Spreadsheet.Row FormatRow(int itemId, Lfx.Data.Row row, Lfx.FileFormats.Office.Spreadsheet.Sheet sheet, Lfx.Data.FormFieldCollection useFields)
+                {
+                        Lfx.FileFormats.Office.Spreadsheet.Row Res = base.FormatRow(itemId, row, sheet, useFields);
+
+                        if (row.Fields["anulada"].ValueInt != 0)
+                                Res.Cells[4].Content = "ANULADA";
+
+                        return Res;
                 }
         }
 }

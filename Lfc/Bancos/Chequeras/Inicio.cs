@@ -93,7 +93,7 @@ namespace Lfc.Bancos.Chequeras
                         return filtrarReturn;
                 }
 
-                public override void OnBeginRefreshList()
+                protected override void OnBeginRefreshList()
                 {
                         this.CustomFilters = new qGen.Where();
 
@@ -107,7 +107,7 @@ namespace Lfc.Bancos.Chequeras
                                 this.CustomFilters.AddWithValue("id_caja", m_Caja);
                 }
 
-                public override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
 		{
 			switch(row.Fields["estado"].ValueInt)
 			{

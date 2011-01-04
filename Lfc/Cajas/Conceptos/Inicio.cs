@@ -54,7 +54,7 @@ namespace Lfc.Cajas.Conceptos
 			};
 		}
 
-                public override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
 		{
 			string Codigo = itm.Text;
 			if(Codigo.Substring(2, 1) != "0")

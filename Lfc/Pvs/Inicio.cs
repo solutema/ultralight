@@ -59,7 +59,7 @@ namespace Lfc.Pvs
                         this.HabilitarFiltrar = false;
 		}
 
-                public override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
                         switch (row.Fields["tipo_fac"].ValueString) {
                                 case "F":

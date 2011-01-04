@@ -84,7 +84,7 @@ namespace Lfc.Cajas
                         this.HabilitarFiltrar = true;
                 }
 
-                public override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
                         decimal Importe = row.Fields["importe"].ValueDecimal;
                         if (Importe < 0) {
@@ -112,7 +112,7 @@ namespace Lfc.Cajas
                         }
                 }
 
-                public override void OnBeginRefreshList()
+                protected override void OnBeginRefreshList()
                 {
                         this.CustomFilters.Clear();
 
@@ -167,7 +167,7 @@ namespace Lfc.Cajas
                 }
 
 
-                public override void OnEndRefreshList()
+                protected override void OnEndRefreshList()
                 {
                         this.Contadores[0].AddValue(Transporte);
                         this.Contadores[3].AddValue(Transporte + this.Contadores[1].Total - this.Contadores[2].Total);
@@ -284,7 +284,7 @@ namespace Lfc.Cajas
                         }
                 }
 
-                public override Lfx.Types.OperationResult OnEdit(int itemId)
+                protected override Lfx.Types.OperationResult OnEdit(int itemId)
                 {
                         Lfx.Data.Row Movim = this.Connection.Tables["cajas_movim"].FastRows[itemId];
                         if (Movim != null) {

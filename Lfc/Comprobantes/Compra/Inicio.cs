@@ -93,7 +93,7 @@ namespace Lfc.Comprobantes.Compra
                 }
 
 
-                public override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
                 {
                         itm.SubItems["pv"].Text = row.Fields["pv"].ValueInt.ToString("0000");
                         itm.SubItems["numero"].Text = row.Fields["numero"].ValueInt.ToString("00000000");
@@ -171,7 +171,7 @@ namespace Lfc.Comprobantes.Compra
 			return filtrarReturn;
 		}
 
-                public override void OnBeginRefreshList()
+                protected override void OnBeginRefreshList()
                 {
                         this.CustomFilters.Clear();
                         this.CustomFilters.AddWithValue("compra", 1);

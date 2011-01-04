@@ -170,7 +170,7 @@ namespace Lfc.Comprobantes
                         }
                 }
 
-                public override void OnBeginRefreshList()
+                protected override void OnBeginRefreshList()
                 {
                         this.CustomFilters.Clear();
                         this.CustomFilters.AddWithValue("compra", 0);
@@ -277,14 +277,14 @@ namespace Lfc.Comprobantes
                         base.OnBeginRefreshList();
                 }
 
-                public override Lfx.Types.OperationResult OnEdit(int lCodigo)
+                protected override Lfx.Types.OperationResult OnEdit(int lCodigo)
                 {
                         string sTipo = this.Connection.FieldString("SELECT tipo_fac FROM comprob WHERE id_comprob=" + lCodigo.ToString());
                         this.Workspace.RunTime.Execute("EDITAR " + sTipo + " " + lCodigo.ToString());
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
-                public override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
                 {
                         if (row.Fields["anulada"].ValueInt == 0 && row.Fields["impresa"].ValueInt != 0) {
                                 string TipoComprob = row.Fields["tipo_fac"].ValueString;

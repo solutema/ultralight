@@ -67,7 +67,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.HabilitarFiltrar = true;
                 }
 
-                public override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
 		{
                         this.Contadores[0].AddValue(row.Fields["total"].ValueDecimal);
 
@@ -158,7 +158,7 @@ namespace Lfc.Comprobantes.Recibos
                         }
                 }
 
-		public override void OnBeginRefreshList()
+		protected override void OnBeginRefreshList()
 		{
                         this.CustomFilters.Clear();
 

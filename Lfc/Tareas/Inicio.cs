@@ -81,7 +81,7 @@ namespace Lfc.Tareas
                         }
                 }
 
-		public override void OnBeginRefreshList()
+		protected override void OnBeginRefreshList()
 		{
                         Activos = 0;
                         Terminados = 0;
@@ -126,7 +126,7 @@ namespace Lfc.Tareas
 			base.OnBeginRefreshList();
 		}
 
-                public override void OnEndRefreshList()
+                protected override void OnEndRefreshList()
                 {
                         // EtiquetaNuevos.Text = Nuevos.ToString() + " nuevos";
                         // EtiquetaActivos.Text = Activos.ToString() + " activos";
@@ -163,7 +163,7 @@ namespace Lfc.Tareas
 		}
 
 
-                public override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
                 {
                         int IdEstado = row.Fields["estado"].ValueInt;
                         int Dias = row.Fields["fechadiff"].ValueInt;

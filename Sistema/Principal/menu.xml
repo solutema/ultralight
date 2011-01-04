@@ -80,6 +80,7 @@
       <Opcion Nombre="-" Funcion="" />
       <Opcion Nombre="&amp;Tipos de Comprobante" Funcion="LISTADO Lbl.Comprobantes.Tipo" />
       <Opcion Nombre="&amp;Plantillas" Funcion="LISTADO Lbl.Impresion.Plantilla" />
+      <Opcion Nombre="-" Funcion="" />
       <Opcion Nombre="&amp;Iniciar Talonario" Funcion="INICIAR_TALONARIO" />
     </Opcion>
   </Opcion>
@@ -122,8 +123,8 @@
   <Opcion Nombre="&amp;Varios" Funcion="">
     <Opcion Nombre="Reporte de Ingresos y Gastos" Funcion="REPORTE RENTABILIDAD" />
     <Opcion Nombre="Reporte de Estado Patrimonial" Funcion="REPORTE PATRIMONIO" />
-    <Opcion Nombre="Impuestos" Funcion="">
-      <Opcion Nombre="&amp;IVA Ventas" Funcion="LISTADO IvaVentas" />
+    <Opcion Nombre="Contabilidad" Funcion="">
+      <Opcion Nombre="&amp;Libro IVA Ventas" Funcion="LISTADO IvaVentas" />
     </Opcion>
       <Opcion Nombre="Tablas" Funcion="">
       <Opcion Nombre="&amp;Localidades" Funcion="LISTADO Lbl.Entidades.Localidad" />

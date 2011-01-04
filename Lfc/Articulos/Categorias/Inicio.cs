@@ -93,7 +93,7 @@ namespace Lfc.Articulos.Categorias
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
-                public override void OnBeginRefreshList()
+                protected override void OnBeginRefreshList()
                 {
                         this.Connection.BeginTransaction();
                         this.Connection.Execute("UPDATE articulos_categorias SET cache_stock_actual=(SELECT SUM(stock_actual) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria), cache_costo=(SELECT SUM(stock_actual*costo) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria)");
@@ -101,7 +101,7 @@ namespace Lfc.Articulos.Categorias
                         m_ValorizacionCostoTotal = this.Connection.FieldDouble("SELECT SUM(cache_costo) FROM articulos_categorias");
                 }
 
-                public override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
                         double ValPct;
                         if (m_ValorizacionCostoTotal <= 0)

@@ -69,7 +69,7 @@ namespace Lfc.Cajas
                         this.HabilitarImprimir = true;
                 }
 
-                public override void OnBeginRefreshList()
+                protected override void OnBeginRefreshList()
                 {
                         this.CustomFilters.Clear();
 

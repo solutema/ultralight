@@ -109,7 +109,7 @@ namespace Lfc.Comprobantes
                         InsertarComprob.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
                         InsertarComprob.Fields.AddWithValue("pv", EntradaPv.ValueInt);
                         InsertarComprob.Fields.AddWithValue("numero", EntradaDesde.ValueInt - 1);
-                        InsertarComprob.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
+                        InsertarComprob.Fields.AddWithValue("fecha", new DateTime(1900, 1, 1, 0, 0, 0));
                         InsertarComprob.Fields.AddWithValue("id_vendedor", Lbl.Sys.Config.Actual.UsuarioConectado.Id);
                         InsertarComprob.Fields.AddWithValue("id_cliente", Lbl.Sys.Config.Actual.UsuarioConectado.Id);
                         InsertarComprob.Fields.AddWithValue("obs", "Marcador de inicio de numeración.");

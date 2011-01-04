@@ -79,7 +79,7 @@ namespace Lfc.Personas
                         this.HabilitarFiltrar = true;
                 }
 
-                public override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
                         base.OnItemAdded(item, row);
 
@@ -100,7 +100,7 @@ namespace Lfc.Personas
                         }
                 }
 
-                public override void OnBeginRefreshList()
+                protected override void OnBeginRefreshList()
                 {
                         switch (m_Tipo) {
                                 case 1:

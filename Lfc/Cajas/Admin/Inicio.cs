@@ -75,7 +75,7 @@ namespace Lfc.Cajas.Admin
                         this.Contadores.Add(new Contador("Activos", Lui.Forms.DataTypes.Currency, "$", null));
                 }
 
-                public override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
 		{
                         int IdBanco = Lfx.Types.Parsing.ParseInt(itm.SubItems[2].Text);
                         if (IdBanco != 0)

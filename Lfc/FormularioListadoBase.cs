@@ -435,12 +435,12 @@ namespace Lfc
                 }
 
 
-                public virtual void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
+                protected virtual void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
                 }
 
 
-                public virtual void OnBeginRefreshList()
+                protected virtual void OnBeginRefreshList()
                 {
                         this.LastGroupingValue = null;
                         this.LastGroup = null;
@@ -486,7 +486,7 @@ namespace Lfc
                 }
 
 
-                public virtual void OnEndRefreshList()
+                protected virtual void OnEndRefreshList()
                 {
                         if (Contadores.Count == 0) {
                                 PanelContadores.Visible = false;
@@ -569,7 +569,7 @@ namespace Lfc
                         }
                 }
 
-                public virtual Lfx.Types.OperationResult OnEdit(int itemId)
+                protected virtual Lfx.Types.OperationResult OnEdit(int itemId)
                 {
                         if (this.ElementoTipo != null && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Ver)) {
                                 Lfx.Data.Connection NuevaDb = this.Workspace.GetNewConnection("Editar " + this.ElementoTipo.ToString() + " " + itemId);
@@ -586,7 +586,7 @@ namespace Lfc
                 }
 
 
-                public virtual Lfx.Types.OperationResult OnItemClick(ListViewItem itm)
+                protected virtual Lfx.Types.OperationResult OnItemClick(ListViewItem itm)
                 {
                         int SelectedId = Lfx.Types.Parsing.ParseInt(Listado.SelectedItems[0].Text);
                         return this.OnEdit(SelectedId);
@@ -687,7 +687,7 @@ namespace Lfc
                 }
 
 
-                virtual public void RefreshList()
+                public virtual void RefreshList()
                 {
                         if (this.HasWorkspace == false || this.Connection == null)
                                 return;
@@ -790,7 +790,7 @@ namespace Lfc
 
 
                 private bool CancelFill = false;
-                public void Fill(qGen.Select command)
+                protected void Fill(qGen.Select command)
                 {
                         CancelFill = false;
 
@@ -942,7 +942,7 @@ namespace Lfc
                 }
 
 
-                private Lfx.FileFormats.Office.Spreadsheet.Row FormatRow(int itemId, Lfx.Data.Row row, Lfx.FileFormats.Office.Spreadsheet.Sheet sheet, Lfx.Data.FormFieldCollection useFields)
+                protected virtual Lfx.FileFormats.Office.Spreadsheet.Row FormatRow(int itemId, Lfx.Data.Row row, Lfx.FileFormats.Office.Spreadsheet.Sheet sheet, Lfx.Data.FormFieldCollection useFields)
                 {
                         Lfx.FileFormats.Office.Spreadsheet.Row Reng = new Lfx.FileFormats.Office.Spreadsheet.Row(sheet);
 
@@ -1214,7 +1214,7 @@ namespace Lfc
                 }
 
 
-                public virtual void ShowExportDialog()
+                protected virtual void ShowExportDialog()
                 {
                         using (Lfc.FormularioListadoExportar FormExportar = new Lfc.FormularioListadoExportar()) {
                                 if (FormExportar.ShowDialog() == System.Windows.Forms.DialogResult.OK) {

@@ -117,7 +117,7 @@ namespace Lfc.Bancos.Cheques
                         }
                 }
 
-                public override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
                 {
                         itm.SubItems["numero"].Text = row.Fields["numero"].ValueInt.ToString("00000000");
 
@@ -229,7 +229,7 @@ namespace Lfc.Bancos.Cheques
                         return filtrarReturn;
                 }
 
-                public override void OnBeginRefreshList()
+                protected override void OnBeginRefreshList()
                 {
                         this.CustomFilters.Clear();
 

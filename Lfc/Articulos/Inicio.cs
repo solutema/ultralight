@@ -118,7 +118,7 @@ namespace Lfc.Articulos
                         };
                 }
 
-                public override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
                 {
                         if (row.Fields["destacado"].ValueInt != 0)
                                 itm.Font = new Font(itm.Font, FontStyle.Bold);
@@ -140,7 +140,7 @@ namespace Lfc.Articulos
                         }
                 }
 
-                public override void OnBeginRefreshList()
+                protected override void OnBeginRefreshList()
                 {
                         this.CustomFilters.Clear();
 
@@ -199,7 +199,7 @@ namespace Lfc.Articulos
                         }
                 }
 
-                public override void OnEndRefreshList()
+                protected override void OnEndRefreshList()
                 {
                         string SelectValorizacion = "SELECT SUM(costo*stock_actual) FROM articulos";
                         if (this.Joins != null && this.Joins.Count > 0) {
