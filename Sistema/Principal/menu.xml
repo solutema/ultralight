@@ -80,6 +80,7 @@
       <Opcion Nombre="-" Funcion="" />
       <Opcion Nombre="&amp;Tipos de Comprobante" Funcion="LISTADO Lbl.Comprobantes.Tipo" />
       <Opcion Nombre="&amp;Plantillas" Funcion="LISTADO Lbl.Impresion.Plantilla" />
+      <Opcion Nombre="&amp;Iniciar Talonario" Funcion="INICIAR_TALONARIO" />
     </Opcion>
   </Opcion>
   <Opcion Nombre="Ca&amp;jas" Funcion="">

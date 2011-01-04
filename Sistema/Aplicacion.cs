@@ -263,7 +263,7 @@ namespace Lazaro
                                                         // Agrego a la lista de operaciones en progreso
                                                         Operaciones.Add(Prog);
 
-                                                if (Aplicacion.FormularioPrincipal == null) {
+                                                if (Aplicacion.FormularioPrincipal == null || Prog.Blocking) {
                                                         if (Aplicacion.FormularioProgreso == null) {
                                                                 Aplicacion.FormularioProgreso = new Lui.Forms.ProgressForm();
                                                                 Aplicacion.FormularioProgreso.Show();
@@ -874,6 +874,21 @@ Responda 'Si' sólamente si es la primera vez que utiliza el sistema Lázaro o e
                                                                 FormularioFacturaReimprimir.Show();
                                                                 break;
                                                 }
+                                        }
+                                        break;
+
+                                case "INICIAR_TALONARIO":
+                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.ColeccionComprobanteConArticulos), Lbl.Sys.Permisos.Operaciones.Administrar)) {
+                                                string TipoIniciar = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
+
+                                                Lfc.Comprobantes.IniciarNumeracion FormularioIniciarNumeracion = new Lfc.Comprobantes.IniciarNumeracion();
+                                                if (!Aplicacion.Flotante)
+                                                        FormularioIniciarNumeracion.MdiParent = Aplicacion.FormularioPrincipal;
+                                                if (TipoIniciar.Length > 0)
+                                                        FormularioIniciarNumeracion.EntradaTipo.TextKey = TipoIniciar;
+
+                                                FormularioIniciarNumeracion.Show();
+                                                break;
                                         }
                                         break;
 

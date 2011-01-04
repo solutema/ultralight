@@ -94,6 +94,12 @@
     <Compile Include="Comprobantes\Impresoras\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Comprobantes\IniciarNumeracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprobantes\IniciarNumeracion.Designer.cs">
+      <DependentUpon>IniciarNumeracion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Comprobantes\Tipo\AgregarTipoImpresora.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -635,6 +641,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Comprobantes\Impresoras\Editar.resx">
       <DependentUpon>Editar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprobantes\IniciarNumeracion.resx">
+      <DependentUpon>IniciarNumeracion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprobantes\Tipo\AgregarTipoImpresora.resx">
       <DependentUpon>AgregarTipoImpresora.cs</DependentUpon>
