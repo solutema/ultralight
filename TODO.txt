@@ -8,5 +8,8 @@ Tareas pendientes (sin orden particular)
 
 * Que los módulos puedan agregar tablas a la estructura y datos a la carga inicial
 
+* Renombrar los campos "impresa" y "anulada" en comprob a "impreso" y "anulado" para que coincida
+  con el nombre de la tabla y con los mismos campos en "recibos"
+
 * Unit-tests
 * Documentación

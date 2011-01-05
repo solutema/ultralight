@@ -609,6 +609,7 @@
     <Index table="recibos" name="recibos_id_cliente" columns="id_cliente" unique="0" primary="0" />
     <Index table="recibos" name="recibos_id_vendedor" columns="id_vendedor" unique="0" primary="0" />
     <Index table="recibos" name="recibos_numero" columns="numero" unique="0" primary="0" />
+    <Index table="recibos" name="recibos_pv_numero_tipo_fac" columns="pv,numero,tipo_fac" unique="0" primary="0" />
     <Index table="recibos" name="recibos_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
     <Index table="recibos" name="recibos_id_concepto" columns="id_concepto" unique="0" primary="0" />
   </Table>

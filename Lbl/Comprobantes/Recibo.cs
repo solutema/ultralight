@@ -274,8 +274,10 @@ namespace Lbl.Comprobantes
                                 else
                                         //Ingresos por facturación
                                         this.Concepto = Lbl.Cajas.Concepto.IngresosPorFacturacion;
+                        } else {
+                                this.Concepto.Connection = this.Connection;
                         }
-                        if (this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos." + this.Tipo.Nomenclatura + ".NumerarAlGuardar", 1) == 1)
+                        if (this.Tipo.NumerarAlGuardar)
                                 this.Numerar(false);
 
                         // Asiento el recibo

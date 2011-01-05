@@ -130,13 +130,18 @@ namespace Lbl.Comprobantes
                         ActualizarComprob.Fields.AddWithValue("numero", numero);
 
                         if (yMarcarComoImpreso) {
-                                Registro["impresa"] = 1;
                                 Registro["estado"] = 1;
 
                                 Registro["fecha"] = this.Connection.ServerDateTime;
                                 //Registro["fecha"] = new DateTime(2010, 11, 30, 22, 01, 00);
 
-                                ActualizarComprob.Fields.AddWithValue("impresa", 1);
+                                if (this.TablaDatos == "recibos") {
+                                        ActualizarComprob.Fields.AddWithValue("impreso", 1);
+                                        Registro["impreso"] = 1;
+                                } else {
+                                        ActualizarComprob.Fields.AddWithValue("impresa", 1);
+                                        Registro["impresa"] = 1;
+                                }
                                 ActualizarComprob.Fields.AddWithValue("estado", 1);
                                 ActualizarComprob.Fields.AddWithValue("fecha", Registro["fecha"]);
                         }
