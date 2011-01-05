@@ -211,7 +211,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                         if (LimiteCredito == 0)
                                                 LimiteCredito = Lfx.Types.Parsing.ParseCurrency(this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Cuentas.LimiteCreditoPredet", "0"));
 
-                                        if ((Comprob.Total + SaldoCtaCte) > LimiteCredito)
+                                        if (LimiteCredito != 0 && (Comprob.Total + SaldoCtaCte) > LimiteCredito)
                                                 return new Lfx.Types.FailureOperationResult("El valor de la factura y/o el saldo en cuenta corriente supera el Límite de Crédito de este cliente.");
                                 } else {
                                         if (SaldoCtaCte < 0) {
