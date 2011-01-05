@@ -73,7 +73,6 @@ namespace Lfc.Bancos.Chequeras
                         Res.Banco = EntradaBanco.Elemento as Lbl.Bancos.Banco;
                         Res.Caja = EntradaCaja.Elemento as Lbl.Cajas.Caja;
                         Res.Sucursal = EntradaSucursal.Elemento as Lbl.Entidades.Sucursal;
-                        Res.Prefijo = Lfx.Types.Parsing.ParseInt(EntradaPrefijo.Text);
                         Res.Desde = Lfx.Types.Parsing.ParseInt(EntradaDesde.Text);
                         Res.Hasta = Lfx.Types.Parsing.ParseInt(EntradaHasta.Text);
                         Res.Titular = EntradaTitular.Text;
