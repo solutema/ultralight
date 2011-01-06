@@ -353,15 +353,13 @@ namespace Lfx.Data
                                                 this.Execute(this.CustomizeSql(Sql));
                                 }
 
-                                /*
-                                 * NO DROPEAR COLUMNAS DESCONOCIDAS
                                 foreach (Data.ColumnDefinition FieldDef in CurrentTableDef.Columns.Values) {
                                         if (newTableDef.Columns.ContainsKey(FieldDef.Name) == false) {
                                                 string Sql = "ALTER TABLE \"" + newTableDef.Name + "\" DROP \"" + FieldDef.Name + "\"";
+                                                // Dropear columnas desconocidas???
                                                 this.Execute(this.CustomizeSql(Sql));
                                         }
                                 }
-                                */
                         }
 
                         //Índices
