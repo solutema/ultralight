@@ -252,7 +252,7 @@ namespace Lfx
                                 return;
                         }
 
-                        if((noTocarDatos || VersionActual == VersionUltima) && (ignorarFecha == false || Diferencia.TotalHours <= 1)) {
+                        if((noTocarDatos || VersionActual == VersionUltima) && (ignorarFecha == false && Diferencia.TotalHours <= 1)) {
                                 // No es necesario actualizar nada
                                 return;
                         }
