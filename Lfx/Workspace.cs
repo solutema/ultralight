@@ -240,12 +240,29 @@ namespace Lfx
                                 // Ya hay alguien actualizando.
                                 return;
 
-                        dataBase.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Inicio", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "*");
-                        dataBase.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Estacion", System.Environment.MachineName.ToUpperInvariant(), "*");
+                        DateTime VersionEstructura = Lfx.Types.Parsing.ParseSqlDateTime(this.CurrentConfig.ReadGlobalSettingString("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"));
+                        DateTime FechaLazaroExe = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).LastWriteTime;
+                        TimeSpan Diferencia = FechaLazaroExe - VersionEstructura;
+                        System.Console.WriteLine("Versión estructura: " + VersionEstructura.ToString());
+                        System.Console.WriteLine("Versión Lázaro    : " + FechaLazaroExe.ToString() + " (" + Diferencia.ToString() + " más nuevo)");
+
+                        if (Diferencia.TotalDays < -7 && ignorarFecha == false) {
+                                //Lázaro es más viejo que la bd por al menos 7 días
+                                this.RunTime.Message("La versión de Lázaro que está utilizando es antigua. Por favor actualice su sistema urgentemente.");
+                                return;
+                        }
+
+                        if((noTocarDatos || VersionActual == VersionUltima) && (ignorarFecha == false || Diferencia.TotalHours <= 1)) {
+                                // No es necesario actualizar nada
+                                return;
+                        }
 
                         Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Verificando Versión de los Datos", "Se están analizando los datos del almacén de datos y se van a realizar cambios si fuera necesario.");
                         Progreso.Blocking = true;
                         Progreso.Begin();
+
+                        dataBase.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Inicio", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "*");
+                        dataBase.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Estacion", System.Environment.MachineName.ToUpperInvariant(), "*");
 
                         if (noTocarDatos == false && VersionActual < VersionUltima && VersionActual > 0) {
                                 //Actualizo desde la versión actual a la última
@@ -255,16 +272,8 @@ namespace Lfx
                                 }
                         }
 
-                        DateTime VersionEstructura = Lfx.Types.Parsing.ParseSqlDateTime(this.CurrentConfig.ReadGlobalSettingString("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"));
-                        DateTime FechaLazaroExe = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).LastWriteTime;
-                        TimeSpan Diferencia = FechaLazaroExe - VersionEstructura;
-                        System.Console.WriteLine("Versión estructura: " + VersionEstructura.ToString());
-                        System.Console.WriteLine("Versión Lázaro    : " + FechaLazaroExe.ToString() + " (" + Diferencia.ToString() + " más nuevo)");
-                        if (Diferencia.Days < -7 && ignorarFecha == false) {
-                                //Lázaro es más viejo que la bd por al menos 7 días
-                                this.RunTime.Message("La versión de Lázaro que está utilizando es antigua. Por favor actualice su sistema urgentemente.");
-                        } else if (ignorarFecha || Diferencia.Hours > 1) {
-                                //Lázaro es más nuevo que la bd por al menos 1 hora
+                        if (ignorarFecha || Diferencia.TotalHours > 1) {
+                                // Lázaro es más nuevo que la BD por más de 1 hora
                                 Progreso.ChangeStatus("Verificando estructuras");
                                 this.CheckAndUpdateDataBaseStructure(dataBase, false);
                                 if (noTocarDatos == false)

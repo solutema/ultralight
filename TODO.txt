@@ -6,7 +6,7 @@ Tareas pendientes (sin orden particular)
 * Al quitar imagen de un elemento de datos, la imagen queda en caché
 * Al exportar a HTML, también exportar grupos y subtotales
 
-* Que los módulos puedan agregar tablas a la estructura y datos a la carga inicial
+* Que los módulos puedan agregar tablas a la estructura y datos a la carga inicial -- Parcialmente hecho
 
 * Renombrar los campos "impresa" y "anulada" en comprob a "impreso" y "anulado" para que coincida
   con el nombre de la tabla y con los mismos campos en "recibos"

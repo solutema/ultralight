@@ -673,7 +673,6 @@ namespace Lbl.Comprobantes
                                         if ((Pasada == 1 && Art.Cantidad >= 0 && Art.Unitario >= 0)
                                                 || (Pasada == 2 && (Art.Cantidad < 0 || Art.Unitario < 0))) {
                                                 qGen.TableCommand Comando; Comando = new qGen.Insert(this.Connection, "comprob_detalle");
-                                                Comando.Fields.AddWithValue("numero_factura", this.Numero);
                                                 Comando.Fields.AddWithValue("id_comprob", this.Id);
                                                 Comando.Fields.AddWithValue("orden", i);
 

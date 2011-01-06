@@ -652,8 +652,9 @@ namespace Lbl
 		{
                         if (m_ItemId == 0) {
                                 throw new InvalidOperationException("No se puede cargar el registro desde la tabla " + this.TablaDatos + " porque no tiene Id.");
-                                //this.Crear();
-                                //return new Lfx.Types.SuccessOperationResult();
+                        } else {
+                                // Quito el registro de la caché
+                                Lfx.Data.DataBaseCache.DefaultCache.Tables[this.TablaDatos].FastRows.RemoveFromCache(this.Id);
                         }
 
                         // En realidad, lo único que hago es vaciar los valores en memoria y dejo que this.Registro.Get() lo cargue.

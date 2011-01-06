@@ -702,7 +702,7 @@ LEFT JOIN pg_attribute
 
                         //Eliminar constraints obsoletas
                         foreach (Data.ConstraintDefinition CurCon in CurrentConstraints.Values) {
-                                if (newConstraints.ContainsKey(CurCon.Name) == false) {
+                                if (CurCon != null && newConstraints.ContainsKey(CurCon.Name) == false) {
                                         Sql = "ALTER TABLE \"" + CurCon.TableName + "\" DROP FOREIGN KEY \"" + CurCon.Name + "\"";
                                         this.Execute(this.CustomizeSql(Sql));
                                 }
