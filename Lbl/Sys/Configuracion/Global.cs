@@ -42,6 +42,7 @@ namespace Lbl.Sys.Configuracion
                 public UsuarioConectado UsuarioConectado;
                 public Moneda Moneda;
                 public Impresion Impresion;
+                public Comprobantes Comprobantes;
 
                 public Global(Lfx.Workspace workspace)
                         : base(workspace)
@@ -50,6 +51,7 @@ namespace Lbl.Sys.Configuracion
                         this.Moneda = new Moneda(workspace);
                         this.Impresion = new Impresion(workspace);
                         this.UsuarioConectado = new UsuarioConectado(workspace, null);
+                        this.Comprobantes = new Comprobantes(workspace);
                 }
         }
 }

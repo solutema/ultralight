@@ -47,7 +47,7 @@ namespace Lfx.Data
                         this.Connection = connection;
                 }
                 
-                public Lfx.Data.Providers.Provider Provider = null;
+                public qGen.Providers.Provider Provider = null;
                 public string OdbcDriver = null;
                 public string ServerName = null, DataBaseName, UserName, Password;
                 public bool SlowLink = false, Mars = true;

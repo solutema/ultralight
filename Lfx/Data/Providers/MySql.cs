@@ -29,12 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Text;
-using System.Data;
-//using MySql.Data.MySqlClient;
-
-namespace Lfx.Data.Providers
+namespace qGen.Providers
 {
         /// <summary>
         /// Proveedor compatible con MySql Connector/NET versión 6. Requiere la presencia de MySql.Data.dll en el directorio del programa.

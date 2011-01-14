@@ -48,6 +48,8 @@ namespace Lbl.Comprobantes
                 {
                         base.Crear();
                         this.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra["FB"];
+                        if (Lbl.Sys.Config.Actual.Comprobantes.IdClientePredeterminado > 0)
+                                this.Cliente = new Personas.Persona(this.Connection, Lbl.Sys.Config.Actual.Comprobantes.IdClientePredeterminado);
                 }
         }
 }

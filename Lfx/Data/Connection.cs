@@ -77,16 +77,16 @@ namespace Lfx.Data
                         switch (Lfx.Data.DataBaseCache.DefaultCache.AccessMode) {
                                 case AccessModes.Odbc:
                                         if (Lfx.Data.DataBaseCache.DefaultCache.Provider == null)
-                                                Lfx.Data.DataBaseCache.DefaultCache.Provider = new Lfx.Data.Providers.Odbc();
+                                                Lfx.Data.DataBaseCache.DefaultCache.Provider = new qGen.Providers.Odbc();
                                         ConnectionString.Append("DSN=" + Lfx.Data.DataBaseCache.DefaultCache.ServerName + ";");
                                         Lfx.Data.DataBaseCache.DefaultCache.ServerName = "(ODBC)";
                                         break;
                                 case AccessModes.MySql:
                                         if (Lfx.Data.DataBaseCache.DefaultCache.Provider == null)
-                                                Lfx.Data.DataBaseCache.DefaultCache.Provider = new Lfx.Data.Providers.MySqlProvider();
+                                                Lfx.Data.DataBaseCache.DefaultCache.Provider = new qGen.Providers.MySqlProvider();
                                         ConnectionString.Append("Convert Zero Datetime=true;");
                                         ConnectionString.Append("Connection Timeout=30;");
-                                        ConnectionString.Append("Default Command Timeout=600;");
+                                        ConnectionString.Append("Default Command Timeout=9000;");
                                         ConnectionString.Append("Allow User Variables=True;");
                                         // ConnectionString.Append("KeepAlive=20;");     // No sirve, uso KeepAlive propio
                                         ConnectionString.Append("Pooling=false;");      // Si habilitamos el Pooling, en conector mantiene muchas conexiones abiertas
@@ -109,13 +109,13 @@ namespace Lfx.Data
                                         break;
                                 case AccessModes.Npgsql:
                                         if (Lfx.Data.DataBaseCache.DefaultCache.Provider == null)
-                                                Lfx.Data.DataBaseCache.DefaultCache.Provider = new Lfx.Data.Providers.Npgsql();
+                                                Lfx.Data.DataBaseCache.DefaultCache.Provider = new qGen.Providers.Npgsql();
                                         ConnectionString.Append("CommandTimeout=900;");
                                         Lfx.Data.DataBaseCache.DefaultCache.SqlMode = qGen.SqlModes.PostgreSql;
                                         break;
                                 case AccessModes.MSSql:
                                         if (Lfx.Data.DataBaseCache.DefaultCache.Provider == null)
-                                                Lfx.Data.DataBaseCache.DefaultCache.Provider = new Lfx.Data.Providers.Odbc();
+                                                Lfx.Data.DataBaseCache.DefaultCache.Provider = new qGen.Providers.Odbc();
                                         Lfx.Data.DataBaseCache.DefaultCache.OdbcDriver = "SQL Server";
                                         Lfx.Data.DataBaseCache.DefaultCache.SqlMode = qGen.SqlModes.TransactSql;
                                         break;
@@ -357,7 +357,7 @@ namespace Lfx.Data
                                         if (newTableDef.Columns.ContainsKey(FieldDef.Name) == false) {
                                                 string Sql = "ALTER TABLE \"" + newTableDef.Name + "\" DROP \"" + FieldDef.Name + "\"";
                                                 // Dropear columnas desconocidas???
-                                                this.Execute(this.CustomizeSql(Sql));
+                                                // this.Execute(this.CustomizeSql(Sql));
                                         }
                                 }
                         }

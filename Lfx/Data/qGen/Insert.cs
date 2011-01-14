@@ -93,7 +93,7 @@ namespace qGen
                                                 Param.Value = ThisField.Value;
                                         if (ThisField.DataType == Lfx.Data.DbTypes.Blob)
                                                 Param.DbType = System.Data.DbType.Binary;
-                                        if (Lfx.Data.DataBaseCache.DefaultCache.Provider is Lfx.Data.Providers.Odbc && ThisField.DataType == Lfx.Data.DbTypes.Blob)
+                                        if (Lfx.Data.DataBaseCache.DefaultCache.Provider is qGen.Providers.Odbc && ThisField.DataType == Lfx.Data.DbTypes.Blob)
                                                 ((System.Data.Odbc.OdbcParameter)Param).OdbcType = System.Data.Odbc.OdbcType.VarBinary;
 
                                         baseCommand.Parameters.Add(Param);

@@ -135,7 +135,7 @@ namespace Lfc.CuentasCorrientes
                                 // Es un cliente en particular
                                 this.CustomFilters.AddWithValue("ctacte.id_cliente", this.Cliente.Id);
                                 this.GroupBy = null;
-                                this.OrderBy = "ctacte.id_movim";
+                                this.OrderBy = "ctacte.id_movim DESC";
                                 this.Text = "Cuenta Corriente de " + this.Cliente.ToString();
 
                                 this.FormFields["nombre_visible"].Visible = false;

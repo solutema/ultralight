@@ -29,11 +29,10 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
 using System.Data;
 using System.Reflection;
 
-namespace Lfx.Data.Providers
+namespace qGen.Providers
 {
         /// <summary>
         /// Representa un proveedor ADO.NET, el cual se carga en tiempo de ejecución a través de System.Reflection para no
