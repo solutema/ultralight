@@ -142,7 +142,12 @@ namespace Lfc
                                 bool WasInTransaction = this.Elemento.Connection.InTransaction;
                                 if (WasInTransaction == false)
                                         this.Elemento.Connection.BeginTransaction(true);
-                                Resultado = this.Elemento.Guardar();
+                                try {
+                                        Resultado = this.Elemento.Guardar();
+                                } catch {
+                                        this.Elemento.Connection.RollBack();
+                                        throw;
+                                }
                                 if (Resultado.Success) {
                                         this.ControlUnico.AfterSave();
                                         if (WasInTransaction == false)
