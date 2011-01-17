@@ -31,7 +31,9 @@
 
 namespace Lbl.Comprobantes
 {
-         [Lbl.Atributos.NombreItem("Factura")]
+        [Lbl.Atributos.NombreItem("Factura"),
+                Lbl.Atributos.MuestraMensajeAlCrear(false),
+                Lbl.Atributos.MuestraPanelExtendido(false)]
         public class Factura : ComprobanteFacturable
         {
                  //Heredar constructor

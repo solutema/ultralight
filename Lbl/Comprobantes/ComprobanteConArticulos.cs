@@ -35,6 +35,9 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
+        [Lbl.Atributos.NombreItem("Comprobante con Artículos"),
+                Lbl.Atributos.MuestraMensajeAlCrear(false),
+                Lbl.Atributos.MuestraPanelExtendido(false)]
 	public class ComprobanteConArticulos : Comprobante
 	{
                 private ColeccionDetalleArticulos m_Articulos = null, m_ArticulosOriginales = null;
