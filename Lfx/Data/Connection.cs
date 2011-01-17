@@ -1309,6 +1309,29 @@ LEFT JOIN pg_attribute
                         m_ConstraintsEnabled = enable;
                 }
 
+                public void SetGlobalLock(bool enable)
+                {
+                        SetLock(enable, "Global");
+                }
+
+                public void SetLock(bool enable, string lockName)
+                {
+                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Lock." + lockName, enable ? "1" : "0", "*");
+                        if (enable)
+                                System.Threading.Thread.Sleep(5000);
+                }
+
+                public bool HasLock(string lockName)
+                {
+                        this.Workspace.CurrentConfig.ClearCache();
+                        return this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Lock." + lockName, 0) != 0;
+                }
+
+                public bool HasGlobalLock()
+                {
+                        return this.HasLock("Global");
+                }
+
                 public bool InTransaction
                 {
                         get

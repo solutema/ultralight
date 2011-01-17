@@ -49,6 +49,14 @@ namespace Lcc.Edicion
                 /// <summary>
                 /// Se dispara cuando el elemento fue guardado.
                 /// </summary>
+                public virtual Lfx.Types.OperationResult BeforeSave()
+                {
+                        return new Lfx.Types.SuccessOperationResult();
+                }
+
+                /// <summary>
+                /// Se dispara cuando el elemento fue guardado.
+                /// </summary>
                 public virtual void AfterSave()
                 {
                 }
@@ -57,6 +65,10 @@ namespace Lcc.Edicion
                 public Lfx.Types.OperationResult Save()
                 {
                         Lfx.Types.OperationResult Res = this.ValidarControl();
+                        if (Res.Success == false)
+                                return Res;
+
+                        Res = this.BeforeSave();
                         if (Res.Success == false)
                                 return Res;
 

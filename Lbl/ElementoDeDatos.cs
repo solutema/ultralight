@@ -598,7 +598,11 @@ namespace Lbl
                                 if (this.Registro[fieldName] == null) {
                                         return default(T);
                                 } else {
-                                        return (T)(System.Convert.ChangeType(this.Registro[fieldName], typeof(T)));
+                                        try {
+                                                return (T)(System.Convert.ChangeType(this.Registro[fieldName], typeof(T)));
+                                        } catch {
+                                                return default(T); 
+                                        }
                                 }
                         }
                 }

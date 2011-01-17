@@ -110,10 +110,17 @@ namespace Lfx.Config
                         }
                 }
 
+                public void ClearCache()
+                {
+                        SysConfigCache = null;
+                }
+
+
 		public void WriteLocalSetting(string sectionName, string settingName, int settingValue)
 		{
 			WriteLocalSetting(sectionName, settingName, settingValue.ToString());
 		}
+
 
 		public void WriteLocalSetting(string sectionName, string settingName, string settingValue)
 		{
@@ -158,10 +165,12 @@ namespace Lfx.Config
 			ConfigDocument.Save(ConfigFileName);
 		}
 
+
 		public int ReadLocalSettingInt(string sectionName, string settingName, int defaultValue)
 		{
 			return Lfx.Types.Parsing.ParseInt(ReadLocalSettingString(sectionName, settingName, defaultValue.ToString()));
 		}
+
 
 		public string ReadLocalSettingString(string sectionName, string settingName, string defaultValue)
 		{
@@ -190,10 +199,12 @@ namespace Lfx.Config
 			return Result;
 		}
 
+
 		public int ReadGlobalSettingInt(string sectionName, string settingName, int defaultValue)
 		{
 			return ReadGlobalSettingInt(sectionName, settingName, defaultValue, 0);
 		}
+
 
 		public int ReadGlobalSettingInt(string sectionName, string settingName, int defaultValue, int sucursal)
 		{
@@ -220,8 +231,7 @@ namespace Lfx.Config
 			
 			//Si el caché es muy viejo, lo vacío
 			if(SysConfigCache != null && System.DateTime.Now > SysConfigCacheLastRefresh.AddMinutes(10)) {
-                                System.Console.WriteLine(DateTime.Now.ToShortTimeString() + " vaciando la caché de sys_config");
-				SysConfigCache = null;
+                                this.ClearCache();
 			}
 
                         if (SysConfigCache == null) {
