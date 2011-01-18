@@ -131,7 +131,10 @@ namespace Lfc
                                 return new Lfx.Types.FailureOperationResult("No se puede guardar porque es un formulario sólo-lectura");
 
                         Lfx.Types.OperationResult Resultado = this.ControlUnico.ValidarControl();
+                        if (Resultado.Success == false)
+                                return Resultado;
 
+                        Resultado = this.ControlUnico.BeforeSave();
                         if (Resultado.Success == false)
                                 return Resultado;
 

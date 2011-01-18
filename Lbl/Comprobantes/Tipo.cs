@@ -51,13 +51,12 @@ namespace Lbl.Comprobantes
                 public Tipo(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
-                /* public Tipo(Lfx.Data.Connection dataBase, string letraTipo)
-                        : this(dataBase)
+                public override void Crear()
                 {
-                        m_ItemId = dataBase.FieldInt("SELECT id_tipo FROM documentos_tipos WHERE letra='" + letraTipo + "'");
-                        if (m_ItemId == 0)
-                                throw new InvalidOperationException("No existe el tipo de documento " + letraTipo);
-                } */
+                        m_Impresoras = new ColeccionGenerica<Lbl.Impresion.TipoImpresora>(this.Connection);
+
+                        base.Crear();
+                }
 
 		public override string TablaDatos
 		{

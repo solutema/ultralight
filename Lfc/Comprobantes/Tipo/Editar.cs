@@ -94,8 +94,10 @@ namespace Lfc.Comprobantes.Tipo
                         Listado.SuspendLayout();
                         Listado.Items.Clear();
 
-                        foreach (Lbl.Impresion.TipoImpresora Impr in impresoras) {
-                                this.MostrarImpresora(Impr);
+                        if (impresoras != null) {
+                                foreach (Lbl.Impresion.TipoImpresora Impr in impresoras) {
+                                        this.MostrarImpresora(Impr);
+                                }
                         }
 
                         Listado.ResumeLayout();
