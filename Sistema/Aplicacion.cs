@@ -1386,7 +1386,8 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
 
                         bool MdiChild = true;
 
-                        Lfc.FormularioEdicion FormularioDeEdicion = Lfc.Instanciador.InstanciarFormularioEdicion(Elemento);                         
+                        Lfc.FormularioEdicion FormularioDeEdicion = Lfc.Instanciador.InstanciarFormularioEdicion(Elemento);
+                        FormularioDeEdicion.DisposeConnection = true;
 
                         if (FormularioDeEdicion == null)
                                 return null;

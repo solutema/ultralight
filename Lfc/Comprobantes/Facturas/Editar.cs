@@ -96,7 +96,7 @@ namespace Lfc.Comprobantes.Facturas
 
 
                                 if (Registro.Cliente.SituacionTributaria != null && (Registro.Cliente.SituacionTributaria.Id == 2 || Registro.Cliente.SituacionTributaria.Id == 3)) {
-                                        if (Registro.Cliente.Cuit.EsValido() == false) {
+                                        if (Registro.Cliente.Cuit == null || Registro.Cliente.Cuit.EsValido() == false) {
                                                 validarReturn.Success = false;
                                                 validarReturn.Message += "El cliente debe tener una CUIT válida." + Environment.NewLine;
                                         }
