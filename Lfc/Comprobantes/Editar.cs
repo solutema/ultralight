@@ -112,7 +112,7 @@ namespace Lfc.Comprobantes
                                 }
                         }
 
-                        Lbl.Comprobantes.ComprobanteConArticulos Registro = this.ToRow() as Lbl.Comprobantes.ComprobanteConArticulos;
+                        Lbl.Comprobantes.ComprobanteConArticulos Registro = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
                         if (Registro.Tipo.MueveStock) {
                                 if (Registro.SituacionOrigen == null || Registro.SituacionDestino == null || Registro.SituacionOrigen.Id == Registro.SituacionDestino.Id) {
                                         validarReturn.Success = false;
