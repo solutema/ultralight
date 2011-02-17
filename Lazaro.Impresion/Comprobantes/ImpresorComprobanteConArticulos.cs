@@ -90,7 +90,7 @@ namespace Lazaro.Impresion.Comprobantes
                                                         Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(this.Elemento.Connection, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
                                                         Caja.Movimiento(true,
                                                                 Lbl.Cajas.Concepto.IngresosPorFacturacion,
-                                                                "Cobro Factura " + this.Comprobante.ToString(),
+                                                                "Cobro " + this.Comprobante.ToString(),
                                                                 this.Comprobante.Cliente,
                                                                 this.Comprobante.ImporteImpago,
                                                                 null,

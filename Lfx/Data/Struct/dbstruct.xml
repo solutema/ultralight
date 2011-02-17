@@ -966,6 +966,7 @@
   </Table>
   <Table name="ventas_resumenes_detalles">
     <Column name="id_resumen" datatype="Integer" nullable="0" />
+    <Column name="id_cuota" datatype="Integer" nullable="0" />
     <Column name="id_persona" datatype="Integer" nullable="0" />
     <Column name="prefijo" datatype="Integer" nullable="0" default="0" />
     <Column name="operacion" datatype="Integer" nullable="0" default="0" />
@@ -981,6 +982,7 @@
     <Column name="cupon" datatype="Integer" nullable="0" />
     <Index table="ventas_resumenes_detalles" name="ventas_resumenes_detalles_id_resumen" columns="id_resumen" unique="0" primary="0" />
     <Index table="ventas_resumenes_detalles" name="ventas_resumenes_detalles_id_persona" columns="id_persona" unique="0" primary="0" />
+    <Index table="ventas_resumenes_detalles" name="ventas_resumenes_detalles_id_cuota" columns="id_cuota" unique="0" primary="0" />
     <Index table="ventas_resumenes_detalles" name="ventas_resumenes_detalles_prefijo_operacion" columns="prefijo,operacion" unique="0" primary="0" />
   </Table>
 
@@ -1098,4 +1100,5 @@
   <Constraint name="ventas_resumenes_id_persona" table="ventas_resumenes" column="id_persona" reference_table="personas" reference_column="id_persona" />
   <Constraint name="ventas_resumenes_detalles_id_resumen" table="ventas_resumenes_detalles" column="id_resumen" reference_table="ventas_resumenes" reference_column="id_resumen" />
   <Constraint name="ventas_resumenes_detalles_id_persona" table="ventas_resumenes_detalles" column="id_persona" reference_table="personas" reference_column="id_persona" />
+  <Constraint name="ventas_resumenes_detalles_id_cuota" table="ventas_resumenes_detalles" column="id_cuota" reference_table="ventas_cuotas" reference_column="id_cuota" />
 </Database>
