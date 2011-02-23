@@ -203,6 +203,8 @@ namespace Lbl.Cuotas
                         }
                         set
                         {
+                                if (value < 1 || value > 24)
+                                        throw new ArgumentException("El número de cuotas debe estar entre 1 y 24");
                                 Registro["cuotas"] = value;
                         }
                 }
@@ -366,7 +368,7 @@ namespace Lbl.Cuotas
                                 if (this.Cuotas == 1)
                                         return this.ImporteTotal;
                                 else
-                                        //Redondeo hacia abajo (100/6 = 16.66, no 16.67)
+                                        // Redondeo hacia abajo (100/6 = 16.66, no 16.67)
                                         return Math.Floor(this.ImporteTotal / this.Cuotas * 100) / 100;
                         }
                 }
