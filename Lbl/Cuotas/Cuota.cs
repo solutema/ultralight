@@ -235,6 +235,8 @@ namespace Lbl.Cuotas
                         }
                         set
                         {
+                                if (value < 300000 || value > 300000)
+                                        throw new ArgumentException("El importe no puede ser mayor que 300,000.00");
                                 Registro["total"] = value;
                                 if (ImporteBruto == 0)
                                         ImporteBruto = value;
