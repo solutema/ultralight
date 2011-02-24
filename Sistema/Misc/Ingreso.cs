@@ -84,7 +84,7 @@ namespace Lazaro.Misc
                         }
 			Lfx.Data.Row RowUsuario = Lfx.Workspace.Master.MasterConnection.FirstRowFromSelect(@"SELECT id_persona, nombre, nombre_visible
                                 FROM personas
-                                WHERE id_persona=" + EntradaUsuario.TextInt.ToString()
+                                WHERE estado=1 AND id_persona=" + EntradaUsuario.TextInt.ToString()
                                                    + " AND contrasena='" + Lfx.Workspace.Master.MasterConnection.EscapeString(EntradaContrasena.Text) + "'");
 			if(RowUsuario == null) {
 				System.Threading.Thread.Sleep(800);

@@ -124,8 +124,12 @@ namespace Lazaro.Misc
                         // 
                         this.Titulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Titulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(202)))), ((int)(((byte)(174)))));
+                        this.Titulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 11F, System.Drawing.FontStyle.Bold);
+                        this.Titulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.Titulo.Location = new System.Drawing.Point(136, 32);
                         this.Titulo.Name = "Titulo";
+                        this.Titulo.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
                         this.Titulo.Size = new System.Drawing.Size(380, 24);
                         this.Titulo.TabIndex = 0;
                         this.Titulo.Text = "Bienvenido a Lázaro";
@@ -180,7 +184,7 @@ namespace Lazaro.Misc
                         this.EntradaUsuario.DataTextField = "nombre_visible";
                         this.EntradaUsuario.DataValueField = "id_persona";
                         this.EntradaUsuario.ExtraDetailFields = null;
-                        this.EntradaUsuario.Filter = "(tipo&4)=4 AND contrasena<>\'\'";
+                        this.EntradaUsuario.Filter = "(tipo&4)=4 AND contrasena<>\'\' AND estado=1";
                         this.EntradaUsuario.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaUsuario.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaUsuario.FreeTextCode = "";
