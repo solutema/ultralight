@@ -254,7 +254,7 @@ namespace Lfc.CuentasCorrientes
                 {
                         if (e.Shift) {
                                 switch (e.KeyCode) {
-                                        case Keys.F6:
+                                        case Keys.F7:
                                                 if (this.Cliente != null) {
                                                         // Recalculo la cuenta del cliente
                                                         Lui.Forms.MessageBox.Show("Se va a recalcular la Cuenta Corriente", "Aviso");

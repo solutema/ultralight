@@ -48,11 +48,6 @@ namespace Lbl.Servicios
                 {
                         this.DataBase.Execute("ALTER DATABASE " + this.DataBase.DataBaseName + " charset=utf8");
 
-                        foreach (string Tabla in Lfx.Workspace.Master.Structure.Tables.Keys) {
-                                this.DataBase.Execute("ALTER TABLE " + Tabla + " CONVERT TO CHARACTER SET utf8");
-                                CheckTable(Tabla);
-                        }
-
                         // Actualizo los saldos de stock, se acuerdo a stock_movim
                         this.DataBase.Execute(@"UPDATE articulos SET stock_actual=(SELECT saldo FROM articulos_movim WHERE 
 	                        articulos_movim.id_articulo=articulos.id_articulo
@@ -78,28 +73,6 @@ HAVING SUM(ctacte.importe)<>(SELECT saldo FROM ctacte WHERE ctacte.id_cliente=pe
                 public void CheckTable(string tableName)
                 {
                         Lfx.Data.TableStructure CurrentTableDef = this.DataBase.GetTableStructure(tableName, true);
-                        foreach (Lfx.Data.ColumnDefinition Col in CurrentTableDef.Columns.Values) {
-                                if (Col.FieldType == Lfx.Data.DbTypes.VarChar || Col.FieldType == Lfx.Data.DbTypes.Text) {
-                                        this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã¡', 'á')");
-                                        this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã©', 'é')");
-                                        this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã­', 'í')");
-                                        this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã³', 'ó')");
-                                        this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ãº', 'ú')");
-                                        this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã¼', 'ü')");
-                                        this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã±', 'ñ')");
-                                        this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã‰', 'É')");
-                                        this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã“', 'Ó')");
-                                        this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ãš', 'Ú')");
-                                        this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã\\‘', 'Ñ')");
-                                        this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Âº', 'º')");
-                                        this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Â¿', '¿')");
-                                        this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'ÃƒÂ©', 'é')");
-
-                                        this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'Ã‚º', 'º')");
-                                        this.DataBase.Execute("UPDATE " + CurrentTableDef.Name + " SET " + Col.Name + "=REPLACE(" + Col.Name + ", 'ÃƒÂ±', 'ñ')");
-                                        //a=Ã¡, e=Ã©, i=Ã­, o=Ã³, u=Ãº, N=Ã‘, ?=Â¿, u=Ã¼, A=Ã, E=Ã‰, I=Ã, O=Ã“, U=Ãš, Ã‚º=º
-                                }
-                        }
 
                         foreach (Lfx.Data.ConstraintDefinition Cons in CurrentTableDef.Constraints.Values) {
                                 // Elimino valores 0 (los pongo en NULL)

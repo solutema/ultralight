@@ -99,12 +99,12 @@ namespace Lfc.Personas
                         this.EntradaTipo.AutoTab = true;
                         this.EntradaTipo.CanCreate = true;
                         this.EntradaTipo.DataTextField = "nombre";
+                        this.EntradaTipo.DataValueField = "id_tipo_persona";
                         this.EntradaTipo.ExtraDetailFields = null;
                         this.EntradaTipo.Filter = "";
                         this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTipo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaTipo.FreeTextCode = "";
-                        this.EntradaTipo.DataValueField = "id_tipo_persona";
                         this.EntradaTipo.Location = new System.Drawing.Point(137, 3);
                         this.EntradaTipo.MaxLength = 200;
                         this.EntradaTipo.Name = "EntradaTipo";
@@ -135,12 +135,12 @@ namespace Lfc.Personas
                         this.EntradaSituacion.AutoTab = true;
                         this.EntradaSituacion.CanCreate = false;
                         this.EntradaSituacion.DataTextField = "nombre";
+                        this.EntradaSituacion.DataValueField = "id_situacion";
                         this.EntradaSituacion.ExtraDetailFields = null;
                         this.EntradaSituacion.Filter = "";
                         this.EntradaSituacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaSituacion.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaSituacion.FreeTextCode = "";
-                        this.EntradaSituacion.DataValueField = "id_situacion";
                         this.EntradaSituacion.Location = new System.Drawing.Point(137, 93);
                         this.EntradaSituacion.MaxLength = 200;
                         this.EntradaSituacion.Name = "EntradaSituacion";
@@ -171,12 +171,12 @@ namespace Lfc.Personas
                         this.EntradaGrupo.AutoTab = true;
                         this.EntradaGrupo.CanCreate = true;
                         this.EntradaGrupo.DataTextField = "nombre";
+                        this.EntradaGrupo.DataValueField = "id_grupo";
                         this.EntradaGrupo.ExtraDetailFields = null;
                         this.EntradaGrupo.Filter = "";
                         this.EntradaGrupo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaGrupo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaGrupo.FreeTextCode = "";
-                        this.EntradaGrupo.DataValueField = "id_grupo";
                         this.EntradaGrupo.Location = new System.Drawing.Point(137, 33);
                         this.EntradaGrupo.MaxLength = 200;
                         this.EntradaGrupo.Name = "EntradaGrupo";
@@ -208,12 +208,12 @@ namespace Lfc.Personas
                         this.EntradaLocalidad.AutoTab = true;
                         this.EntradaLocalidad.CanCreate = false;
                         this.EntradaLocalidad.DataTextField = "nombre";
+                        this.EntradaLocalidad.DataValueField = "id_ciudad";
                         this.EntradaLocalidad.ExtraDetailFields = null;
-                        this.EntradaLocalidad.Filter = "";
+                        this.EntradaLocalidad.Filter = "nivel=2";
                         this.EntradaLocalidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaLocalidad.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaLocalidad.FreeTextCode = "";
-                        this.EntradaLocalidad.DataValueField = "id_ciudad";
                         this.EntradaLocalidad.Location = new System.Drawing.Point(137, 123);
                         this.EntradaLocalidad.MaxLength = 200;
                         this.EntradaLocalidad.Name = "EntradaLocalidad";
@@ -229,6 +229,7 @@ namespace Lfc.Personas
                         // 
                         // EntradaEstadoCredito
                         // 
+                        this.EntradaEstadoCredito.AlwaysExpanded = false;
                         this.EntradaEstadoCredito.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEstadoCredito.AutoNav = true;
@@ -251,7 +252,6 @@ namespace Lfc.Personas
                         this.EntradaEstadoCredito.Size = new System.Drawing.Size(308, 25);
                         this.EntradaEstadoCredito.TabIndex = 13;
                         this.EntradaEstadoCredito.Table = null;
-                        this.EntradaEstadoCredito.Text = "Normal";
                         this.EntradaEstadoCredito.TextKey = "0";
                         this.EntradaEstadoCredito.TipWhenBlank = "";
                         this.EntradaEstadoCredito.ToolTipText = "";
@@ -313,12 +313,13 @@ namespace Lfc.Personas
                         this.EntradaFechas.MuestraFuturos = false;
                         this.EntradaFechas.Name = "EntradaFechas";
                         this.EntradaFechas.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechas.Size = new System.Drawing.Size(308, 32);
+                        this.EntradaFechas.Size = new System.Drawing.Size(308, 30);
                         this.EntradaFechas.TabIndex = 17;
                         this.EntradaFechas.ToolTipText = "";
                         // 
                         // EntradaFechaAUsar
                         // 
+                        this.EntradaFechaAUsar.AlwaysExpanded = false;
                         this.EntradaFechaAUsar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFechaAUsar.AutoNav = true;
@@ -339,7 +340,6 @@ namespace Lfc.Personas
                         this.EntradaFechaAUsar.Size = new System.Drawing.Size(128, 25);
                         this.EntradaFechaAUsar.TabIndex = 16;
                         this.EntradaFechaAUsar.Table = null;
-                        this.EntradaFechaAUsar.Text = "Fecha de Alta";
                         this.EntradaFechaAUsar.TextKey = "fechaalta";
                         this.EntradaFechaAUsar.TipWhenBlank = "";
                         this.EntradaFechaAUsar.ToolTipText = "";
@@ -361,12 +361,12 @@ namespace Lfc.Personas
                         this.EntradaSubGrupo.AutoTab = true;
                         this.EntradaSubGrupo.CanCreate = true;
                         this.EntradaSubGrupo.DataTextField = "nombre";
+                        this.EntradaSubGrupo.DataValueField = "id_grupo";
                         this.EntradaSubGrupo.ExtraDetailFields = null;
                         this.EntradaSubGrupo.Filter = "";
                         this.EntradaSubGrupo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaSubGrupo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaSubGrupo.FreeTextCode = "";
-                        this.EntradaSubGrupo.DataValueField = "id_grupo";
                         this.EntradaSubGrupo.Location = new System.Drawing.Point(137, 63);
                         this.EntradaSubGrupo.MaxLength = 200;
                         this.EntradaSubGrupo.Name = "EntradaSubGrupo";
@@ -391,6 +391,7 @@ namespace Lfc.Personas
                         // 
                         // EntradaEtiquetas
                         // 
+                        this.EntradaEtiquetas.AlwaysExpanded = false;
                         this.EntradaEtiquetas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEtiquetas.AutoNav = true;
@@ -411,7 +412,6 @@ namespace Lfc.Personas
                         this.EntradaEtiquetas.Size = new System.Drawing.Size(308, 25);
                         this.EntradaEtiquetas.TabIndex = 15;
                         this.EntradaEtiquetas.Table = null;
-                        this.EntradaEtiquetas.Text = "Todas";
                         this.EntradaEtiquetas.TextKey = "*";
                         this.EntradaEtiquetas.TipWhenBlank = "";
                         this.EntradaEtiquetas.ToolTipText = "";
@@ -427,6 +427,7 @@ namespace Lfc.Personas
                         // 
                         // EntradaEstado
                         // 
+                        this.EntradaEstado.AlwaysExpanded = false;
                         this.EntradaEstado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEstado.AutoNav = true;
@@ -448,7 +449,6 @@ namespace Lfc.Personas
                         this.EntradaEstado.Size = new System.Drawing.Size(308, 25);
                         this.EntradaEstado.TabIndex = 11;
                         this.EntradaEstado.Table = null;
-                        this.EntradaEstado.Text = "Activos";
                         this.EntradaEstado.TextKey = "1";
                         this.EntradaEstado.TipWhenBlank = "";
                         this.EntradaEstado.ToolTipText = "";
