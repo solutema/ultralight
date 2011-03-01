@@ -62,7 +62,7 @@ namespace Lazaro.Misc
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(436, 16);
                         this.Label1.TabIndex = 2;
-                        this.Label1.Text = "Copyright © 2004-2010 Ernesto N. Carrea. Todos los derechos reservados.";
+                        this.Label1.Text = "Copyright 2004-2011 Ernesto N. Carrea. Todos los derechos reservados.";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label3

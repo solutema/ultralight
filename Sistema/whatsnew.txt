@@ -48,6 +48,10 @@
 
 Lázaro tiene un nuevo ícono. Algunas ubicaciones aun pueden mostrar el ícono antiguo.
 
-*** 2010-01-14
+*** 2011-01-14
 
 * Las cuentas corrientes de los clientes ahora aparecen en orden inverso (los movimientos más nuevos arriba).
+
+*** 2011-03-01
+
+* Los artículos ahora incorporan seguimiento por "Variaciones" (por ejemplo, Talles y Colores).

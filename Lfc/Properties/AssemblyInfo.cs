@@ -14,7 +14,7 @@ using System.Security.Permissions;
 [assembly: AssemblyDescription("Lázaro Form Collection versión 1.0")]
 [assembly: AssemblyCompany("Ernesto N. Carrea")]
 [assembly: AssemblyProduct("Lázaro")]
-[assembly: AssemblyCopyright("Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.")]
+[assembly: AssemblyCopyright("Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: System.Runtime.InteropServices.ComVisible (false)]

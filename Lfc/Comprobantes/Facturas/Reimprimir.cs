@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright 2004-2010 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
