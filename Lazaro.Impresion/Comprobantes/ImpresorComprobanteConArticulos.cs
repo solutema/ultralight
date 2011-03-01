@@ -55,10 +55,14 @@ namespace Lazaro.Impresion.Comprobantes
 
                 public override Lfx.Types.OperationResult Imprimir()
                 {
+                        Lfx.Types.OperationResult ResultadoImprimir = this.Comprobante.VerificarSeries();
+
+                        if (ResultadoImprimir.Success == false)
+                                return ResultadoImprimir;
+
                         if (this.Impresora == null)
                                 this.Impresora = this.ObtenerImpresora();
 
-                        Lfx.Types.OperationResult ResultadoImprimir = new Lfx.Types.SuccessOperationResult();
 
                         if (this.Reimpresion == false && this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.ActualizaCostoAlFacturar", 1) != 0) {
                                 // Asiento los precios de costo de los artículos de la factura (con fines estadsticos)

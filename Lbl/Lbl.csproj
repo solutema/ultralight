@@ -77,6 +77,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Articulos\ColeccionDatosSeguimiento.cs" />
+    <Compile Include="Articulos\DatosSeguimiento.cs" />
     <Compile Include="Articulos\ItemReceta.cs" />
     <Compile Include="Atributos\MuestraMensajeAlCrear.cs" />
     <Compile Include="Atributos\MuestraPanelExtendido.cs" />

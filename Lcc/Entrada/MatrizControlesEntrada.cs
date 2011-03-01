@@ -102,7 +102,7 @@ namespace Lcc.Entrada
                 /// <summary>
                 /// Agregar un control a la matriz.
                 /// </summary>
-                /// <returns></returns>
+                /// <returns>El nuevo control.</returns>
                 protected virtual T Agregar()
                 {
                         T Ctrl = Activator.CreateInstance<T>();
@@ -122,7 +122,14 @@ namespace Lcc.Entrada
                         Ctrl.SizeChanged += new System.EventHandler(SubControl_SizeChanged);
                         Ctrl.Leave += new System.EventHandler(SubControl_Leave);
 
+                        OnControlAdded(Ctrl);
+
                         return Ctrl;
+                }
+
+                protected virtual void OnControlAdded(T ctrl)
+                {
+
                 }
 
                 private void SubControl_SizeChanged(object sender, System.EventArgs e)

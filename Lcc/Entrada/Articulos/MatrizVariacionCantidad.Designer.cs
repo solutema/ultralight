@@ -31,7 +31,7 @@
 
 namespace Lcc.Entrada.Articulos
 {
-        partial class MatrizTalleCantidad
+        partial class MatrizVariacionCantidad
         {
                 /// <summary> 
                 /// Variable del diseñador requerida.

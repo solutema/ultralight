@@ -157,19 +157,16 @@ namespace Lbl.Comprobantes
                         return Res;
                 }
 
-                public string Series
+                public Lbl.Articulos.ColeccionDatosSeguimiento DatosSeguimiento
                 {
                         get
                         {
-                                StringBuilder Res = new StringBuilder();
+                                Lbl.Articulos.ColeccionDatosSeguimiento Res = new Lbl.Articulos.ColeccionDatosSeguimiento();
                                 foreach (Lbl.Comprobantes.DetalleArticulo Art in this) {
-                                        if (Art.Series != null)
-                                                Res.AppendLine(Art.Series);
+                                        if (Art.DatosSeguimiento != null)
+                                                Res.AddRange(Art.DatosSeguimiento);
                                 }
-                                if (Res.Length > 0)
-                                        return Res.ToString();
-                                else
-                                        return null;
+                                return Res;
                         }
                 }
 

@@ -271,7 +271,7 @@ namespace Lfc.Comprobantes.Compra
 				EntradaNumero.Text = Lfx.Types.Parsing.ParseInt(EntradaNumero.Text).ToString("00000000");
 		}
 
-                private void EntradaProductos_AskForSerials(object sender, EventArgs e)
+                private void EntradaProductos_ObtenerDatosSeguimiento(object sender, EventArgs e)
                 {
                         Lcc.Entrada.Articulos.DetalleComprobante Prod = ((Lcc.Entrada.Articulos.DetalleComprobante)(sender));
                         Lbl.Articulos.Articulo Articulo = Prod.Elemento as Lbl.Articulos.Articulo;
@@ -279,13 +279,13 @@ namespace Lfc.Comprobantes.Compra
 
                         Lbl.Comprobantes.ComprobanteDeCompra Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteDeCompra;
 
-                        EditarSeries Editar = new EditarSeries();
+                        EditarSeguimiento Editar = new EditarSeguimiento();
                         Editar.Articulo = Articulo;
-                        Editar.Cantidad = Math.Abs(System.Convert.ToInt32(Cant));
+                        Editar.CantidadTotal = Math.Abs(System.Convert.ToInt32(Cant));
                         Editar.SituacionOrigen = Comprob.SituacionOrigen;
-                        Editar.Series = Prod.Series;
+                        Editar.DatosSeguimiento = Prod.DatosSeguimiento;
                         if (Editar.ShowDialog() == DialogResult.OK) {
-                                Prod.Series = Editar.Series;
+                                Prod.DatosSeguimiento = Editar.DatosSeguimiento;
                         }
                 }
 

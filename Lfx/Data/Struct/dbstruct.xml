@@ -144,6 +144,7 @@
     <Column name="id_articulo" datatype="Integer" nullable="0" primary_key="0" default="0" />
     <Column name="id_situacion" datatype="Integer" nullable="0" primary_key="0" default="0" />
     <Column name="serie" datatype="VarChar" nullable="0" lenght="200" />
+    <Column name="cantidad" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
     <Index table="articulos_series" name="articulos_series_id_articulo" columns="id_articulo" unique="0" primary="0" />
     <Index table="articulos_series" name="articulos_series_id_situacion" columns="id_situacion" unique="0" primary="0" />
     <Index table="articulos_series" name="PRIMARY" columns="id_serie" unique="1" primary="1" />

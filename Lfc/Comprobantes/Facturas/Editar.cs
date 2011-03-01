@@ -254,6 +254,12 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                         return new Lfx.Types.CancelOperationResult();
                         }
 
+                        if (Comprob.Tipo.MueveStock) {
+                                Lfx.Types.OperationResult Res = Comprob.VerificarSeries();
+                                if (Res.Success == false)
+                                        return Res;
+                        }
+
                         return base.BeforePrint();
                 }
 

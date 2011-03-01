@@ -31,7 +31,7 @@
 
 namespace Lcc.Entrada.Articulos
 {
-        partial class TalleCantidad
+        partial class VariacionCantidad
         {
                 /// <summary> 
                 /// Variable del diseñador requerida.
@@ -59,10 +59,10 @@ namespace Lcc.Entrada.Articulos
                 private void InitializeComponent()
                 {
                         this.EntradaCantidad = new Lui.Forms.TextBox();
-                        this.EntradaTalle = new Lui.Forms.TextBox();
+                        this.EntradaVariacion = new Lui.Forms.TextBox();
                         this.SuspendLayout();
                         // 
-                        // EntradaColor
+                        // EntradaCantidad
                         // 
                         this.EntradaCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Right)));
@@ -76,63 +76,65 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaCantidad.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaCantidad.MaxLenght = 32767;
                         this.EntradaCantidad.MultiLine = false;
-                        this.EntradaCantidad.Name = "EntradaColor";
+                        this.EntradaCantidad.Name = "EntradaCantidad";
                         this.EntradaCantidad.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                         this.EntradaCantidad.PasswordChar = '\0';
                         this.EntradaCantidad.Prefijo = "";
-                        this.EntradaCantidad.ReadOnly = false;
                         this.EntradaCantidad.SelectOnFocus = true;
                         this.EntradaCantidad.Size = new System.Drawing.Size(112, 24);
                         this.EntradaCantidad.Sufijo = "";
                         this.EntradaCantidad.TabIndex = 54;
-                        this.EntradaCantidad.Text = "0.0000";
+                        this.EntradaCantidad.Text = "1.0000";
                         this.EntradaCantidad.TipWhenBlank = "";
                         this.EntradaCantidad.ToolTipText = "";
+                        this.EntradaCantidad.TextChanged += new System.EventHandler(this.EntradaVariacionCantidad_TextChanged);
                         // 
-                        // EntradaTalle
+                        // EntradaVariacion
                         // 
-                        this.EntradaTalle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        this.EntradaVariacion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaTalle.AutoSize = false;
-                        this.EntradaTalle.AutoNav = true;
-                        this.EntradaTalle.AutoTab = true;
-                        this.EntradaTalle.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaTalle.DecimalPlaces = -1;
-                        this.EntradaTalle.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaTalle.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaTalle.Location = new System.Drawing.Point(0, 0);
-                        this.EntradaTalle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-                        this.EntradaTalle.MaxLenght = 32767;
-                        this.EntradaTalle.MultiLine = false;
-                        this.EntradaTalle.Name = "EntradaTalle";
-                        this.EntradaTalle.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.EntradaTalle.PasswordChar = '\0';
-                        this.EntradaTalle.Prefijo = "";
-                        this.EntradaTalle.ReadOnly = false;
-                        this.EntradaTalle.SelectOnFocus = true;
-                        this.EntradaTalle.Size = new System.Drawing.Size(364, 24);
-                        this.EntradaTalle.Sufijo = "";
-                        this.EntradaTalle.TabIndex = 53;
-                        this.EntradaTalle.TipWhenBlank = "";
-                        this.EntradaTalle.ToolTipText = "";
+                        this.EntradaVariacion.AutoNav = true;
+                        this.EntradaVariacion.AutoTab = true;
+                        this.EntradaVariacion.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaVariacion.DecimalPlaces = -1;
+                        this.EntradaVariacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.EntradaVariacion.ForceCase = Lui.Forms.TextCasing.Caption;
+                        this.EntradaVariacion.Location = new System.Drawing.Point(0, 0);
+                        this.EntradaVariacion.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+                        this.EntradaVariacion.MaxLenght = 32767;
+                        this.EntradaVariacion.MultiLine = false;
+                        this.EntradaVariacion.Name = "EntradaVariacion";
+                        this.EntradaVariacion.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+                        this.EntradaVariacion.PasswordChar = '\0';
+                        this.EntradaVariacion.Prefijo = "";
+                        this.EntradaVariacion.SelectOnFocus = true;
+                        this.EntradaVariacion.Size = new System.Drawing.Size(364, 24);
+                        this.EntradaVariacion.Sufijo = "";
+                        this.EntradaVariacion.TabIndex = 53;
+                        this.EntradaVariacion.TipWhenBlank = "";
+                        this.EntradaVariacion.ToolTipText = "";
+                        this.EntradaVariacion.TextChanged += new System.EventHandler(this.EntradaVariacionCantidad_TextChanged);
                         // 
-                        // TalleColor
+                        // VariacionCantidad
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.Controls.Add(this.EntradaCantidad);
-                        this.Controls.Add(this.EntradaTalle);
+                        this.Controls.Add(this.EntradaVariacion);
                         this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-                        this.Name = "TalleColor";
+                        this.Name = "VariacionCantidad";
                         this.Size = new System.Drawing.Size(480, 24);
+                        this.Controls.SetChildIndex(this.EntradaVariacion, 0);
+                        this.Controls.SetChildIndex(this.EntradaCantidad, 0);
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
                 }
 
                 #endregion
 
                 private Lui.Forms.TextBox EntradaCantidad;
-                private Lui.Forms.TextBox EntradaTalle;
+                private Lui.Forms.TextBox EntradaVariacion;
         }
 }

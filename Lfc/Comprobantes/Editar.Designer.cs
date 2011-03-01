@@ -90,7 +90,7 @@ namespace Lfc.Comprobantes
                         this.ProductArray.TabIndex = 20;
                         this.ProductArray.ToolTipText = "";
                         this.ProductArray.TotalChanged += new System.EventHandler(this.ProductArray_TotalChanged);
-                        this.ProductArray.AskForSerials += new System.EventHandler(this.ProductArray_AskForSerials);
+                        this.ProductArray.ObtenerDatosSeguimiento += new System.EventHandler(this.ProductArray_ObtenerDatosSeguimiento);
                         // 
                         // Label3
                         // 

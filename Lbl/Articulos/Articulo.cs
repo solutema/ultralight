@@ -430,20 +430,12 @@ namespace Lbl.Articulos
 		}
 
 
-                public void MoverStock(decimal cantidad, string obs, Situacion situacionOrigen, Situacion situacionDestino, string series)
+                public void MoverStock(decimal cantidad, string obs, Situacion situacionOrigen, Situacion situacionDestino, Lbl.Articulos.ColeccionDatosSeguimiento seguimiento)
 		{
                         decimal Saldo;
 
                         if (this.ControlStock != Articulos.ControlStock.No) {
                                 decimal CantidadEntranteOSalienteDeStock = 0;
-
-                                string[] ListaSeries;
-                                if (series != null) {
-                                        series = series.Replace('\r', '\n');
-                                        ListaSeries = series.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
-                                } else {
-                                        ListaSeries = new string[0];
-                                }
 
                                 // stock saliente (situación de origen)
                                 if (situacionOrigen != null && situacionOrigen.CuentaStock) {
@@ -465,14 +457,20 @@ namespace Lbl.Articulos
                                                 this.Connection.Execute(ActualizarCantidadSituacion);
                                         }
 
-                                        if (series != null && series.Length > 0) {
-                                                // Quito los series de la situación
-                                                qGen.Delete QuitarSeries = new qGen.Delete("articulos_series");
-                                                QuitarSeries.WhereClause = new qGen.Where(qGen.AndOr.And);
-                                                QuitarSeries.WhereClause.Add(new qGen.ComparisonCondition("id_articulo", this.Id));
-                                                QuitarSeries.WhereClause.Add(new qGen.ComparisonCondition("id_situacion", situacionOrigen.Id));
-                                                QuitarSeries.WhereClause.Add(new qGen.ComparisonCondition("serie", qGen.ComparisonOperators.In, ListaSeries));
-                                                this.Connection.Execute(QuitarSeries);
+                                        if (seguimiento != null) {
+                                                // Resto las cantidades de la situación de origen
+                                                foreach (Lbl.Articulos.DatosSeguimiento Dat in seguimiento) {
+                                                        qGen.Update ActualizarSeries = new qGen.Update("articulos_series");
+                                                        if (Dat.Cantidad > 0)
+                                                                ActualizarSeries.Fields.AddWithValue("cantidad", new qGen.SqlExpression(@"""cantidad""-" + Lfx.Types.Formatting.FormatStockSql(Dat.Cantidad)));
+                                                        else
+                                                                ActualizarSeries.Fields.AddWithValue("cantidad", new qGen.SqlExpression(@"""cantidad""+" + Lfx.Types.Formatting.FormatStockSql(Dat.Cantidad)));
+                                                        ActualizarSeries.WhereClause = new qGen.Where(qGen.AndOr.And);
+                                                        ActualizarSeries.WhereClause.Add(new qGen.ComparisonCondition("id_articulo", this.Id));
+                                                        ActualizarSeries.WhereClause.Add(new qGen.ComparisonCondition("id_situacion", situacionOrigen.Id));
+                                                        ActualizarSeries.WhereClause.Add(new qGen.ComparisonCondition("serie", Dat.Variacion));
+                                                        this.Connection.Execute(ActualizarSeries);
+                                                }
                                         }
 
                                         CantidadEntranteOSalienteDeStock -= cantidad;
@@ -480,8 +478,8 @@ namespace Lbl.Articulos
 
                                 // stock entrante (situación de destino)
                                 if (situacionDestino != null && situacionDestino.CuentaStock) {
-                                        int Existe = this.Connection.FieldInt("SELECT COUNT(id_articulo) FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion=" + situacionDestino.Id.ToString());
-                                        if (Existe == 0) {
+                                        int ExisteSituacion = this.Connection.FieldInt("SELECT COUNT(id_articulo) FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion=" + situacionDestino.Id.ToString());
+                                        if (ExisteSituacion == 0) {
                                                 // No existen datos de stock para esta situación... la creo
                                                 qGen.Insert InsertarCantidadSituacion = new qGen.Insert("articulos_stock");
                                                 InsertarCantidadSituacion.Fields.AddWithValue("id_articulo", this.Id);
@@ -498,13 +496,30 @@ namespace Lbl.Articulos
                                                 this.Connection.Execute(ActualizarCantidadSituacion);
                                         }
 
-                                        // Inserto los series en la situación
-                                        foreach (string Ser in ListaSeries) {
-                                                qGen.Insert InsertarSerie = new qGen.Insert("articulos_series");
-                                                InsertarSerie.Fields.AddWithValue("id_articulo", this.Id);
-                                                InsertarSerie.Fields.AddWithValue("id_situacion", situacionDestino.Id);
-                                                InsertarSerie.Fields.AddWithValue("serie", Ser);
-                                                this.Connection.Execute(InsertarSerie);
+                                        if (seguimiento != null) {
+                                                // Agrego las cantidades en la situación de destino
+                                                foreach (Lbl.Articulos.DatosSeguimiento Dat in seguimiento) {
+                                                        int ExisteVariacion = this.Connection.FieldInt("SELECT COUNT(id_articulo) FROM articulos_series WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion=" + situacionDestino.Id.ToString() + " AND serie='" + Dat.Variacion + "'");
+                                                        if (ExisteVariacion > 0) {
+                                                                qGen.Update ActualizarSeries = new qGen.Update("articulos_series");
+                                                                if (Dat.Cantidad > 0)
+                                                                        ActualizarSeries.Fields.AddWithValue("cantidad", new qGen.SqlExpression(@"""cantidad""+" + Lfx.Types.Formatting.FormatStockSql(Dat.Cantidad)));
+                                                                else
+                                                                        ActualizarSeries.Fields.AddWithValue("cantidad", new qGen.SqlExpression(@"""cantidad""+" + Lfx.Types.Formatting.FormatStockSql(Dat.Cantidad)));
+                                                                ActualizarSeries.WhereClause = new qGen.Where(qGen.AndOr.And);
+                                                                ActualizarSeries.WhereClause.Add(new qGen.ComparisonCondition("id_articulo", this.Id));
+                                                                ActualizarSeries.WhereClause.Add(new qGen.ComparisonCondition("id_situacion", situacionDestino.Id));
+                                                                ActualizarSeries.WhereClause.Add(new qGen.ComparisonCondition("serie", Dat.Variacion));
+                                                                this.Connection.Execute(ActualizarSeries);
+                                                        } else {
+                                                                qGen.Insert InsertarSerie = new qGen.Insert("articulos_series");
+                                                                InsertarSerie.Fields.AddWithValue("id_articulo", this.Id);
+                                                                InsertarSerie.Fields.AddWithValue("id_situacion", situacionDestino.Id);
+                                                                InsertarSerie.Fields.AddWithValue("serie", Dat.Variacion);
+                                                                InsertarSerie.Fields.AddWithValue("cantidad", Dat.Cantidad);
+                                                                this.Connection.Execute(InsertarSerie);
+                                                        }
+                                                }
                                         }
 
                                         CantidadEntranteOSalienteDeStock += cantidad;
@@ -523,7 +538,7 @@ namespace Lbl.Articulos
                                         if (this.ControlStock == Articulos.ControlStock.Compuesto) {
                                                 string ObsSubItems = "Movim. s/salida de " + this.ToString();
                                                 foreach (ItemReceta Itm in this.Receta) {
-                                                        Itm.Articulo.MoverStock(Itm.Cantidad * cantidad, ObsSubItems, situacionOrigen, situacionDestino, series);
+                                                        Itm.Articulo.MoverStock(Itm.Cantidad * cantidad, ObsSubItems, situacionOrigen, situacionDestino, seguimiento);
                                                 }
                                         }
 
@@ -566,7 +581,7 @@ namespace Lbl.Articulos
 				Comando.Fields.AddWithValue("haciasituacion", situacionDestino.Id);
 			Comando.Fields.AddWithValue("saldo", Saldo);
 			Comando.Fields.AddWithValue("obs", obs);
-                        Comando.Fields.AddWithValue("series", series);
+                        Comando.Fields.AddWithValue("series", seguimiento);
 			
 			this.Connection.Execute(Comando);
 		}

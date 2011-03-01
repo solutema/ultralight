@@ -41,14 +41,14 @@ namespace Lcc.Entrada.Articulos
 {
         public partial class DetalleComprobante : ControlSeleccionElemento
         {
-                protected bool m_ShowStock;
+                protected bool m_MostrarStock;
                 protected Precios m_Precio = Precios.Pvp;
                 protected ControlesSock m_ControlStock = ControlesSock.Ambos;
-                protected string m_Serials = "";
+                protected Lbl.Articulos.ColeccionDatosSeguimiento m_DatosSeguimiento = new Lbl.Articulos.ColeccionDatosSeguimiento();
 
                 new public event System.Windows.Forms.KeyEventHandler KeyDown;
                 public event System.EventHandler PrecioCantidadChanged;
-                public event System.EventHandler AskForSerials;
+                public event System.EventHandler ObtenerDatosSeguimiento;
 
                 public DetalleComprobante()
                 {
@@ -132,22 +132,23 @@ namespace Lcc.Entrada.Articulos
 
                 [EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),
-                        DefaultValue(""),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public string Series
+                public Lbl.Articulos.ColeccionDatosSeguimiento DatosSeguimiento
                 {
                         get
                         {
-                                return m_Serials;
+                                return m_DatosSeguimiento;
                         }
                         set
                         {
-                                m_Serials = value;
-                                if (m_Serials == null) {
+                                if(m_DatosSeguimiento != value)
+                                        this.Changed = true;
+                                m_DatosSeguimiento = value;
+                                if (m_DatosSeguimiento == null || m_DatosSeguimiento.Count == 0) {
                                         LabelSerials.Visible = false;
                                 } else {
-                                        LabelSerials.Text = "Seguimiento: " + m_Serials.Replace(System.Environment.NewLine, ", ");
-                                        LabelSerials.Visible = m_Serials.Length > 1;
+                                        LabelSerials.Text = "Seguimiento: " + m_DatosSeguimiento.ToString();
+                                        LabelSerials.Visible = true;
                                 }
                         }
                 }
@@ -255,11 +256,11 @@ namespace Lcc.Entrada.Articulos
                 {
                         get
                         {
-                                return m_ShowStock;
+                                return m_MostrarStock;
                         }
                         set
                         {
-                                m_ShowStock = value;
+                                m_MostrarStock = value;
                                 VerificarStock();
                         }
                 }
@@ -431,7 +432,7 @@ namespace Lcc.Entrada.Articulos
                                 else
                                         EntradaUnitario.ValueDecimal = Articulo.Pvp;
 
-                                if (m_ShowStock)
+                                if (m_MostrarStock)
                                         VerificarStock();
 
                                 if (this.Cantidad == 0)
@@ -468,7 +469,7 @@ namespace Lcc.Entrada.Articulos
 
                 private void VerificarStock()
                 {
-                        if (m_ShowStock && Articulo != null) {
+                        if (m_MostrarStock && Articulo != null) {
                                 if (this.ReadOnly == false && this.Articulo.ControlStock != Lbl.Articulos.ControlStock.No && this.Articulo.StockActual < this.Cantidad) {
                                         if (this.Articulo.StockActual + this.Articulo.Pedido >= this.Cantidad) {
                                                 EntradaArticulo.Font = null;
@@ -523,8 +524,8 @@ namespace Lcc.Entrada.Articulos
                         }
                         if (e.Alt == false && e.Control == true && e.Shift == false) {
                                 if (e.KeyCode == Keys.S) {
-                                        if (this.AskForSerials != null)
-                                                this.AskForSerials(this, null);
+                                        if (this.ObtenerDatosSeguimiento != null)
+                                                this.ObtenerDatosSeguimiento(this, null);
                                 }
                         }
                 }

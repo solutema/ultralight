@@ -548,7 +548,7 @@ namespace Lbl.Comprobantes
                         Comando.Fields.AddWithValue("impresa", this.Compra ? 1 : (this.Impreso ? 1 : 0));
                         Comando.Fields.AddWithValue("compra", this.Compra ? 1 : 0);
                         Comando.Fields.AddWithValue("estado", this.Estado);
-                        Comando.Fields.AddWithValue("series", this.Articulos.Series);
+                        Comando.Fields.AddWithValue("series", this.Articulos.DatosSeguimiento);
 
 			this.AgregarTags(Comando);
 
@@ -602,9 +602,9 @@ namespace Lbl.Comprobantes
 
                                                         if (m_SituacionDestinoOriginal != null && this.SituacionDestino.Id != m_SituacionDestinoOriginal.Id)
                                                                 // Cambio de situación, primero devuelvo los artículos al proveedor
-                                                                Det.Articulo.MoverStock(MoverCantidad, "Edición de Compr. Proveed. " + this.ToString(), m_SituacionDestinoOriginal, SituacionProveedor, Det.Series);
+                                                                Det.Articulo.MoverStock(MoverCantidad, "Edición de Compr. Proveed. " + this.ToString(), m_SituacionDestinoOriginal, SituacionProveedor, Det.DatosSeguimiento);
 
-                                                        Det.Articulo.MoverStock(MoverCantidad, "Movimiento s/Compr. Proveed. " + this.ToString(), Desde, Hacia, Det.Series);
+                                                        Det.Articulo.MoverStock(MoverCantidad, "Movimiento s/Compr. Proveed. " + this.ToString(), Desde, Hacia, Det.DatosSeguimiento);
                                                 }
                                         }
                                 }
@@ -649,12 +649,11 @@ namespace Lbl.Comprobantes
                 {
                         foreach (Lbl.Comprobantes.DetalleArticulo Art in this.Articulos) {
                                 if (Art.Articulo != null && Art.Articulo.Seguimiento != Lbl.Articulos.Seguimientos.Ninguno)
-                                        if (Art.Series == null) {
-                                                return new Lfx.Types.FailureOperationResult("Debe ingresar el número de serie del artículo '" + Art.Nombre + "' para poder realizar movimientos de stock.");
+                                        if (Art.DatosSeguimiento == null  || Art.DatosSeguimiento.Count == 0) {
+                                                return new Lfx.Types.FailureOperationResult("Debe ingresar los datos de seguimiento (Ctrl-S) del artículo '" + Art.Nombre + "' para poder realizar movimientos de stock.");
                                         } else {
-                                                string[] Series = Art.Series.Split(new string[] { Lfx.Types.ControlChars.CrLf }, StringSplitOptions.RemoveEmptyEntries);
-                                                if (Series.Length < Art.Cantidad)
-                                                        return new Lfx.Types.FailureOperationResult("Debe ingresar el número de serie de todos los artículos '" + Art.Nombre + "' para poder realizar movimientos de stock.");
+                                                if (Art.DatosSeguimiento.CantidadTotal < Art.Cantidad)
+                                                        return new Lfx.Types.FailureOperationResult("Debe ingresar los datos de seguimiento (Ctrl-S) de todos los artículos '" + Art.Nombre + "' para poder realizar movimientos de stock.");
                                         }
                         }
                         return new Lfx.Types.SuccessOperationResult();
@@ -696,7 +695,7 @@ namespace Lbl.Comprobantes
                                                 else
                                                         Comando.Fields.AddWithValue("costo", Art.Costo);
                                                 Comando.Fields.AddWithValue("importe", Art.Importe);
-                                                Comando.Fields.AddWithValue("series", Art.Series);
+                                                Comando.Fields.AddWithValue("series", Art.DatosSeguimiento);
                                                 Comando.Fields.AddWithValue("obs", Art.Obs);
 
                                                 this.AgregarTags(Comando, Art.Registro, "comprob_detalle");

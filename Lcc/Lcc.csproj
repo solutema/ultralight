@@ -132,11 +132,11 @@
     <Compile Include="Entrada\Articulos\MatrizDetalleComprobante.Designer.cs">
       <DependentUpon>MatrizDetalleComprobante.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entrada\Articulos\MatrizTalleCantidad.cs">
+    <Compile Include="Entrada\Articulos\MatrizVariacionCantidad.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Entrada\Articulos\MatrizTalleCantidad.Designer.cs">
-      <DependentUpon>MatrizTalleCantidad.cs</DependentUpon>
+    <Compile Include="Entrada\Articulos\MatrizVariacionCantidad.Designer.cs">
+      <DependentUpon>MatrizVariacionCantidad.cs</DependentUpon>
     </Compile>
     <Compile Include="Entrada\Articulos\DetalleComprobante.cs">
       <SubType>UserControl</SubType>
@@ -147,11 +147,11 @@
     <Compile Include="Entrada\Articulos\MatrizDetalleComprobante.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Entrada\Articulos\TalleCantidad.cs">
+    <Compile Include="Entrada\Articulos\VariacionCantidad.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Entrada\Articulos\TalleCantidad.Designer.cs">
-      <DependentUpon>TalleCantidad.cs</DependentUpon>
+    <Compile Include="Entrada\Articulos\VariacionCantidad.Designer.cs">
+      <DependentUpon>VariacionCantidad.cs</DependentUpon>
     </Compile>
     <Compile Include="Edicion\ControlEdicion.cs">
       <SubType>UserControl</SubType>
@@ -255,8 +255,8 @@
       <DependentUpon>MatrizDetalleComprobante.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Entrada\Articulos\TalleCantidad.resx">
-      <DependentUpon>TalleCantidad.cs</DependentUpon>
+    <EmbeddedResource Include="Entrada\Articulos\VariacionCantidad.resx">
+      <DependentUpon>VariacionCantidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Edicion\Comprobantes\Cobro.resx">
       <DependentUpon>Cobro.cs</DependentUpon>

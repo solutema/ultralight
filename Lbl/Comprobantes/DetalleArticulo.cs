@@ -253,15 +253,15 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                public string Series
+                public Lbl.Articulos.ColeccionDatosSeguimiento DatosSeguimiento
                 {
                         get
                         {
-                                return this.GetFieldValue<string>("series");
+                                return new Articulos.ColeccionDatosSeguimiento(this.GetFieldValue<string>("series"));
                         }
                         set
                         {
-                                Registro["series"] = value;
+                                Registro["series"] = value.ToString();
                         }
                 }
 
@@ -294,7 +294,7 @@ namespace Lbl.Comprobantes
                         Res.Obs = this.Obs;
                         Res.Orden = this.Orden;
                         Res.Recargo = this.Recargo;
-                        Res.Series = this.Series;
+                        Res.DatosSeguimiento = this.DatosSeguimiento;
                         Res.Unitario = this.Unitario;
                         return Res;
                 }

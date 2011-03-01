@@ -50,7 +50,7 @@ namespace Lcc.Entrada.Articulos
                 private Precios m_Precio = Precios.Pvp;
 
                 public event System.EventHandler TotalChanged;
-                public event System.EventHandler AskForSerials;
+                public event System.EventHandler ObtenerDatosSeguimiento;
 
                 public MatrizDetalleComprobante()
                 {
@@ -95,7 +95,7 @@ namespace Lcc.Entrada.Articulos
                                         this.ChildControls[i].TextDetail = articulos[i].Nombre;
                                         this.ChildControls[i].Cantidad = articulos[i].Cantidad;
                                         this.ChildControls[i].Unitario = articulos[i].Unitario;
-                                        this.ChildControls[i].Series = articulos[i].Series;
+                                        this.ChildControls[i].DatosSeguimiento = articulos[i].DatosSeguimiento;
                                 }
                         }
                 }
@@ -112,7 +112,7 @@ namespace Lcc.Entrada.Articulos
                                         DetArt.Orden = i++;
                                         DetArt.Cantidad = Pro.Cantidad;
                                         DetArt.Unitario = Pro.Unitario;
-                                        DetArt.Series = Pro.Series;
+                                        DetArt.DatosSeguimiento = Pro.DatosSeguimiento;
                                         m_Articulos.Add(DetArt);
                                 }
                         }
@@ -122,22 +122,25 @@ namespace Lcc.Entrada.Articulos
 
                 public Lbl.Comprobantes.ColeccionDetalleArticulos ObtenerArticulos(Lbl.Comprobantes.ComprobanteConArticulos comprobante)
                 {
-                        if (m_Articulos == null) {
+                        if (m_Articulos == null)
                                 m_Articulos = new Lbl.Comprobantes.ColeccionDetalleArticulos(comprobante);
-                                int i = 1;
-                                foreach (DetalleComprobante Pro in this.ChildControls) {
-                                        if (Pro.IsEmpty == false) {
-                                                Lbl.Comprobantes.DetalleArticulo DetArt = new Lbl.Comprobantes.DetalleArticulo(comprobante);
-                                                DetArt.Articulo = Pro.Elemento as Lbl.Articulos.Articulo;
-                                                DetArt.Nombre = Pro.TextDetail;
-                                                DetArt.Orden = i++;
-                                                DetArt.Cantidad = Pro.Cantidad;
-                                                DetArt.Unitario = Pro.Unitario;
-                                                DetArt.Series = Pro.Series;
-                                                m_Articulos.Add(DetArt);
-                                        }
+                        else
+                                m_Articulos.Clear();
+
+                        int i = 1;
+                        foreach (DetalleComprobante Pro in this.ChildControls) {
+                                if (Pro.IsEmpty == false) {
+                                        Lbl.Comprobantes.DetalleArticulo DetArt = new Lbl.Comprobantes.DetalleArticulo(comprobante);
+                                        DetArt.Articulo = Pro.Elemento as Lbl.Articulos.Articulo;
+                                        DetArt.Nombre = Pro.TextDetail;
+                                        DetArt.Orden = i++;
+                                        DetArt.Cantidad = Pro.Cantidad;
+                                        DetArt.Unitario = Pro.Unitario;
+                                        DetArt.DatosSeguimiento = Pro.DatosSeguimiento;
+                                        m_Articulos.Add(DetArt);
                                 }
                         }
+                        
                         return m_Articulos;
                 }
 
@@ -313,16 +316,16 @@ namespace Lcc.Entrada.Articulos
 
                         Ctrl.TextChanged += new System.EventHandler(Product_TextChanged);
                         Ctrl.PrecioCantidadChanged += new System.EventHandler(Product_PrecioCantidadChanged);
-                        Ctrl.AskForSerials += new System.EventHandler(Product_AskForSerials);
+                        Ctrl.ObtenerDatosSeguimiento += new System.EventHandler(Product_ObtenerDatosSeguimiento);
 
                         return Ctrl;
                 }
 
 
-                private void Product_AskForSerials(object sender, System.EventArgs e)
+                private void Product_ObtenerDatosSeguimiento(object sender, System.EventArgs e)
                 {
-                        if (this.AskForSerials != null)
-                                this.AskForSerials(sender, null);
+                        if (this.ObtenerDatosSeguimiento != null)
+                                this.ObtenerDatosSeguimiento(sender, null);
                 }
 
                 private void ProductArray_Enter(object sender, System.EventArgs e)

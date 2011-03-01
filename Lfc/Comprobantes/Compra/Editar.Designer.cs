@@ -121,7 +121,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProductos.TabIndex = 13;
                         this.EntradaProductos.ToolTipText = "";
                         this.EntradaProductos.TotalChanged += new System.EventHandler(this.RecalcularTotal);
-                        this.EntradaProductos.AskForSerials += new System.EventHandler(this.EntradaProductos_AskForSerials);
+                        this.EntradaProductos.ObtenerDatosSeguimiento += new System.EventHandler(this.EntradaProductos_ObtenerDatosSeguimiento);
                         // 
                         // Label2
                         // 

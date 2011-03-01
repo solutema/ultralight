@@ -39,13 +39,13 @@ using System.Windows.Forms;
 
 namespace Lcc.Entrada.Articulos
 {
-        public partial class TalleCantidad : ControlEntrada
+        public partial class VariacionCantidad : ControlEntrada
         {
-                public TalleCantidad()
+                public VariacionCantidad()
                 {
                         InitializeComponent();
 
-                        if (this.HasWorkspace) {
+                        if (this.Workspace != null) {
                                 EntradaCantidad.DecimalPlaces = this.Workspace.CurrentConfig.Productos.DecimalesStock;
                         }
                 }
@@ -53,17 +53,38 @@ namespace Lcc.Entrada.Articulos
                 [EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public string Talle
+                public string Variacion
                 {
                         get
                         {
-                                return EntradaTalle.Text;
+                                return EntradaVariacion.Text;
                         }
                         set
                         {
-                                EntradaTalle.Text = value;
+                                EntradaVariacion.Text = value;
                         }
                 }
+
+
+                public bool EsNumeroDeSerie
+                {
+                        get
+                        {
+                                return EntradaCantidad.ReadOnly;
+                        }
+                        set
+                        {
+                                EntradaCantidad.ReadOnly = value;
+                                EntradaCantidad.Enabled = !value;
+                                if (value) {
+                                        EntradaCantidad.Text = "1";
+                                        EntradaVariacion.ForceCase = Lui.Forms.TextCasing.UpperCase;
+                                } else {
+                                        EntradaVariacion.ForceCase = Lui.Forms.TextCasing.Caption;
+                                }
+                        }
+                }
+
 
                 [EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),
@@ -84,8 +105,15 @@ namespace Lcc.Entrada.Articulos
                 {
                         get
                         {
-                                return this.Talle.Length > 0 || this.Cantidad != 0;
+                                return this.Variacion.Length == 0;
                         }
+                }
+
+                private void EntradaVariacionCantidad_TextChanged(object sender, EventArgs e)
+                {
+                        this.Text = EntradaVariacion.Text + ": " + EntradaCantidad.Text;
+                        EntradaCantidad.TabStop = EntradaVariacion.Text.Length > 0;
+                        this.OnTextChanged(e);
                 }
         }
 

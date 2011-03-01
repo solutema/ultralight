@@ -432,21 +432,30 @@ namespace Lfc.Comprobantes
                         }
                 }
 
-                private void ProductArray_AskForSerials(object sender, EventArgs e)
+                private void ProductArray_ObtenerDatosSeguimiento(object sender, EventArgs e)
                 {
-                        Lcc.Entrada.Articulos.DetalleComprobante Prod = ((Lcc.Entrada.Articulos.DetalleComprobante)(sender));
+                        Lcc.Entrada.Articulos.DetalleComprobante Prod = sender as Lcc.Entrada.Articulos.DetalleComprobante;
+
+                        if (Prod == null)
+                                return;
+
                         int IdArticulo = Prod.TextInt;
+
+                        if (IdArticulo == 0)
+                                return;
+
                         decimal Cant = Prod.Cantidad;
 
                         Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
 
-                        EditarSeries Editar = new EditarSeries();
+                        EditarSeguimiento Editar = new EditarSeguimiento();
+                        Editar.Connection = this.Connection;
                         Editar.Articulo = new Lbl.Articulos.Articulo(this.Connection, IdArticulo);
-                        Editar.Cantidad = Math.Abs(System.Convert.ToInt32(Cant));
+                        Editar.CantidadTotal = Math.Abs(System.Convert.ToInt32(Cant));
                         Editar.SituacionOrigen = Comprob.SituacionOrigen;
-                        Editar.Series = Prod.Series;
+                        Editar.DatosSeguimiento = Prod.DatosSeguimiento;
                         if (Editar.ShowDialog() == DialogResult.OK) {
-                                Prod.Series = Editar.Series;
+                                Prod.DatosSeguimiento = Editar.DatosSeguimiento;
                         }
                 }
         }

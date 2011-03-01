@@ -39,13 +39,13 @@ namespace Lfc.Articulos
                 {
                         this.Frame2 = new Lui.Forms.Frame();
                         this.EntradaMargen = new Lui.Forms.ComboBox();
-                        this.Label6 = new System.Windows.Forms.Label();
                         this.EntradaCosto = new Lui.Forms.TextBox();
+                        this.BotonInfoCosto = new Lui.Forms.Button();
+                        this.EntradaPvp = new Lui.Forms.TextBox();
+                        this.Label6 = new System.Windows.Forms.Label();
                         this.EtiquetaAlicuota = new System.Windows.Forms.Label();
                         this.Label8 = new System.Windows.Forms.Label();
-                        this.BotonInfoCosto = new Lui.Forms.Button();
                         this.Label10 = new System.Windows.Forms.Label();
-                        this.EntradaPvp = new Lui.Forms.TextBox();
                         this.EntradaUnidad = new Lui.Forms.ComboBox();
                         this.EntradaUsaStock = new Lui.Forms.ComboBox();
                         this.BotonReceta = new Lui.Forms.Button();
@@ -61,36 +61,36 @@ namespace Lfc.Articulos
                         this.Frame1 = new Lui.Forms.Frame();
                         this.EntradaDestacado = new Lui.Forms.ComboBox();
                         this.EntradaWeb = new Lui.Forms.ComboBox();
-                        this.EtiquetaCodigo1 = new System.Windows.Forms.Label();
-                        this.EtiquetaCodigo4 = new System.Windows.Forms.Label();
                         this.EntradaModelo = new Lui.Forms.TextBox();
-                        this.EtiquetaCodigo3 = new System.Windows.Forms.Label();
                         this.EntradaGarantia = new Lui.Forms.TextBox();
-                        this.EtiquetaCodigo2 = new System.Windows.Forms.Label();
                         this.EntradaCodigo4 = new Lui.Forms.TextBox();
-                        this.label20 = new System.Windows.Forms.Label();
                         this.EntradaProveedor = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaCategoria = new Lcc.Entrada.CodigoDetalle();
-                        this.Label14 = new System.Windows.Forms.Label();
                         this.EntradaMarca = new Lcc.Entrada.CodigoDetalle();
+                        this.EntradaCodigo3 = new Lui.Forms.TextBox();
+                        this.EntradaDescripcion2 = new Lui.Forms.TextBox();
+                        this.EntradaCodigo2 = new Lui.Forms.TextBox();
+                        this.EntradaCodigo1 = new Lui.Forms.TextBox();
+                        this.EntradaUrl = new Lui.Forms.TextBox();
+                        this.EntradaDescripcion = new Lui.Forms.TextBox();
+                        this.EntradaNombre = new Lui.Forms.TextBox();
+                        this.EntradaSerie = new Lui.Forms.TextBox();
+                        this.EtiquetaCodigo1 = new System.Windows.Forms.Label();
+                        this.EtiquetaCodigo4 = new System.Windows.Forms.Label();
+                        this.EtiquetaCodigo3 = new System.Windows.Forms.Label();
+                        this.EtiquetaCodigo2 = new System.Windows.Forms.Label();
+                        this.label20 = new System.Windows.Forms.Label();
+                        this.Label14 = new System.Windows.Forms.Label();
                         this.Label2 = new System.Windows.Forms.Label();
                         this.Label13 = new System.Windows.Forms.Label();
                         this.Label15 = new System.Windows.Forms.Label();
                         this.Label3 = new System.Windows.Forms.Label();
                         this.Label4 = new System.Windows.Forms.Label();
-                        this.EntradaCodigo3 = new Lui.Forms.TextBox();
-                        this.EntradaDescripcion2 = new Lui.Forms.TextBox();
-                        this.EntradaCodigo2 = new Lui.Forms.TextBox();
-                        this.EntradaCodigo1 = new Lui.Forms.TextBox();
                         this.Label1 = new System.Windows.Forms.Label();
-                        this.EntradaUrl = new Lui.Forms.TextBox();
                         this.Label18 = new System.Windows.Forms.Label();
-                        this.EntradaDescripcion = new Lui.Forms.TextBox();
                         this.Label16 = new System.Windows.Forms.Label();
                         this.Label12 = new System.Windows.Forms.Label();
-                        this.EntradaNombre = new Lui.Forms.TextBox();
                         this.Label5 = new System.Windows.Forms.Label();
-                        this.EntradaSerie = new Lui.Forms.TextBox();
                         this.frame3 = new Lui.Forms.Frame();
                         this.BotonConformacion = new System.Windows.Forms.LinkLabel();
                         this.BotonHistorial = new System.Windows.Forms.LinkLabel();
@@ -144,15 +144,6 @@ namespace Lfc.Articulos
                         this.EntradaMargen.ToolTipText = "Márgenes predefinidos";
                         this.EntradaMargen.TextChanged += new System.EventHandler(this.EntradaCostoMargen_TextChanged);
                         // 
-                        // Label6
-                        // 
-                        this.Label6.Location = new System.Drawing.Point(0, 32);
-                        this.Label6.Name = "Label6";
-                        this.Label6.Size = new System.Drawing.Size(76, 24);
-                        this.Label6.TabIndex = 0;
-                        this.Label6.Text = "Costo";
-                        this.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
                         // EntradaCosto
                         // 
                         this.EntradaCosto.AutoNav = true;
@@ -176,26 +167,8 @@ namespace Lfc.Articulos
                         this.EntradaCosto.Text = "0.00";
                         this.EntradaCosto.TipWhenBlank = "";
                         this.EntradaCosto.ToolTipText = "Precio de costo o de compra.";
-                        this.EntradaCosto.TextChanged += new System.EventHandler(this.EntradaCostoMargen_TextChanged);
                         this.EntradaCosto.GotFocus += new System.EventHandler(this.EntradaCosto_GotFocus);
-                        // 
-                        // EtiquetaAlicuota
-                        // 
-                        this.EtiquetaAlicuota.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EtiquetaAlicuota.Location = new System.Drawing.Point(188, 168);
-                        this.EtiquetaAlicuota.Name = "EtiquetaAlicuota";
-                        this.EtiquetaAlicuota.Size = new System.Drawing.Size(164, 24);
-                        this.EtiquetaAlicuota.TabIndex = 7;
-                        this.EtiquetaAlicuota.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // Label8
-                        // 
-                        this.Label8.Location = new System.Drawing.Point(0, 64);
-                        this.Label8.Name = "Label8";
-                        this.Label8.Size = new System.Drawing.Size(76, 24);
-                        this.Label8.TabIndex = 3;
-                        this.Label8.Text = "Margen";
-                        this.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EntradaCosto.TextChanged += new System.EventHandler(this.EntradaCostoMargen_TextChanged);
                         // 
                         // BotonInfoCosto
                         // 
@@ -214,15 +187,6 @@ namespace Lfc.Articulos
                         this.BotonInfoCosto.Text = "...";
                         this.BotonInfoCosto.ToolTipText = "Ver más datos sobre el precio";
                         this.BotonInfoCosto.Click += new System.EventHandler(this.BotonMasInfo_Click);
-                        // 
-                        // Label10
-                        // 
-                        this.Label10.Location = new System.Drawing.Point(0, 168);
-                        this.Label10.Name = "Label10";
-                        this.Label10.Size = new System.Drawing.Size(76, 24);
-                        this.Label10.TabIndex = 5;
-                        this.Label10.Text = "PVP";
-                        this.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaPvp
                         // 
@@ -249,6 +213,42 @@ namespace Lfc.Articulos
                         this.EntradaPvp.ToolTipText = "Precio de venta al público. Puede dejar el PVP en blanco y utilizar un márgen pre" +
                             "definido a continuación";
                         this.EntradaPvp.TextChanged += new System.EventHandler(this.EntradaPvp_TextChanged);
+                        // 
+                        // Label6
+                        // 
+                        this.Label6.Location = new System.Drawing.Point(0, 32);
+                        this.Label6.Name = "Label6";
+                        this.Label6.Size = new System.Drawing.Size(76, 24);
+                        this.Label6.TabIndex = 0;
+                        this.Label6.Text = "Costo";
+                        this.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EtiquetaAlicuota
+                        // 
+                        this.EtiquetaAlicuota.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaAlicuota.Location = new System.Drawing.Point(188, 168);
+                        this.EtiquetaAlicuota.Name = "EtiquetaAlicuota";
+                        this.EtiquetaAlicuota.Size = new System.Drawing.Size(164, 24);
+                        this.EtiquetaAlicuota.TabIndex = 7;
+                        this.EtiquetaAlicuota.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // Label8
+                        // 
+                        this.Label8.Location = new System.Drawing.Point(0, 64);
+                        this.Label8.Name = "Label8";
+                        this.Label8.Size = new System.Drawing.Size(76, 24);
+                        this.Label8.TabIndex = 3;
+                        this.Label8.Text = "Margen";
+                        this.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // Label10
+                        // 
+                        this.Label10.Location = new System.Drawing.Point(0, 168);
+                        this.Label10.Name = "Label10";
+                        this.Label10.Size = new System.Drawing.Size(76, 24);
+                        this.Label10.TabIndex = 5;
+                        this.Label10.Text = "PVP";
+                        this.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaUnidad
                         // 
@@ -570,26 +570,6 @@ namespace Lfc.Articulos
                         this.EntradaWeb.TipWhenBlank = "";
                         this.EntradaWeb.ToolTipText = "";
                         // 
-                        // EtiquetaCodigo1
-                        // 
-                        this.EtiquetaCodigo1.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EtiquetaCodigo1.Location = new System.Drawing.Point(0, 32);
-                        this.EtiquetaCodigo1.Name = "EtiquetaCodigo1";
-                        this.EtiquetaCodigo1.Size = new System.Drawing.Size(84, 24);
-                        this.EtiquetaCodigo1.TabIndex = 0;
-                        this.EtiquetaCodigo1.Text = "Código 1";
-                        this.EtiquetaCodigo1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // EtiquetaCodigo4
-                        // 
-                        this.EtiquetaCodigo4.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EtiquetaCodigo4.Location = new System.Drawing.Point(688, 32);
-                        this.EtiquetaCodigo4.Name = "EtiquetaCodigo4";
-                        this.EtiquetaCodigo4.Size = new System.Drawing.Size(84, 24);
-                        this.EtiquetaCodigo4.TabIndex = 6;
-                        this.EtiquetaCodigo4.Text = "Código 4";
-                        this.EtiquetaCodigo4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
                         // EntradaModelo
                         // 
                         this.EntradaModelo.AutoNav = true;
@@ -613,16 +593,6 @@ namespace Lfc.Articulos
                         this.EntradaModelo.TipWhenBlank = "";
                         this.EntradaModelo.ToolTipText = "";
                         this.EntradaModelo.TextChanged += new System.EventHandler(this.EntradaCategoriaMarcaModeloSerie_TextChanged);
-                        // 
-                        // EtiquetaCodigo3
-                        // 
-                        this.EtiquetaCodigo3.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EtiquetaCodigo3.Location = new System.Drawing.Point(456, 32);
-                        this.EtiquetaCodigo3.Name = "EtiquetaCodigo3";
-                        this.EtiquetaCodigo3.Size = new System.Drawing.Size(84, 24);
-                        this.EtiquetaCodigo3.TabIndex = 4;
-                        this.EtiquetaCodigo3.Text = "Código 3";
-                        this.EtiquetaCodigo3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaGarantia
                         // 
@@ -648,16 +618,6 @@ namespace Lfc.Articulos
                         this.EntradaGarantia.TipWhenBlank = "";
                         this.EntradaGarantia.ToolTipText = "Precio de costo o de compra.";
                         // 
-                        // EtiquetaCodigo2
-                        // 
-                        this.EtiquetaCodigo2.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EtiquetaCodigo2.Location = new System.Drawing.Point(228, 32);
-                        this.EtiquetaCodigo2.Name = "EtiquetaCodigo2";
-                        this.EtiquetaCodigo2.Size = new System.Drawing.Size(84, 24);
-                        this.EtiquetaCodigo2.TabIndex = 2;
-                        this.EtiquetaCodigo2.Text = "Código 2";
-                        this.EtiquetaCodigo2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
                         // EntradaCodigo4
                         // 
                         this.EntradaCodigo4.AutoNav = true;
@@ -680,15 +640,6 @@ namespace Lfc.Articulos
                         this.EntradaCodigo4.TabIndex = 7;
                         this.EntradaCodigo4.TipWhenBlank = "";
                         this.EntradaCodigo4.ToolTipText = "Puede escribir hasta 4 códigos diferentes para el mismo artículo";
-                        // 
-                        // label20
-                        // 
-                        this.label20.Location = new System.Drawing.Point(460, 292);
-                        this.label20.Name = "label20";
-                        this.label20.Size = new System.Drawing.Size(76, 24);
-                        this.label20.TabIndex = 31;
-                        this.label20.Text = "Garantía";
-                        this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaProveedor
                         // 
@@ -742,16 +693,6 @@ namespace Lfc.Articulos
                         this.EntradaCategoria.ToolTipText = "Rubro o categoría";
                         this.EntradaCategoria.TextChanged += new System.EventHandler(this.EntradaCategoriaMarcaModeloSerie_TextChanged);
                         // 
-                        // Label14
-                        // 
-                        this.Label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label14.Location = new System.Drawing.Point(533, 148);
-                        this.Label14.Name = "Label14";
-                        this.Label14.Size = new System.Drawing.Size(80, 24);
-                        this.Label14.TabIndex = 20;
-                        this.Label14.Text = "Proveedor";
-                        this.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
                         // EntradaMarca
                         // 
                         this.EntradaMarca.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -779,51 +720,6 @@ namespace Lfc.Articulos
                         this.EntradaMarca.TipWhenBlank = "Sin especificar";
                         this.EntradaMarca.ToolTipText = "";
                         this.EntradaMarca.TextChanged += new System.EventHandler(this.EntradaCategoriaMarcaModeloSerie_TextChanged);
-                        // 
-                        // Label2
-                        // 
-                        this.Label2.Location = new System.Drawing.Point(0, 64);
-                        this.Label2.Name = "Label2";
-                        this.Label2.Size = new System.Drawing.Size(76, 24);
-                        this.Label2.TabIndex = 8;
-                        this.Label2.Text = "Categoría";
-                        this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // Label13
-                        // 
-                        this.Label13.Location = new System.Drawing.Point(0, 180);
-                        this.Label13.Name = "Label13";
-                        this.Label13.Size = new System.Drawing.Size(76, 24);
-                        this.Label13.TabIndex = 22;
-                        this.Label13.Text = "Descrip.";
-                        this.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // Label15
-                        // 
-                        this.Label15.Location = new System.Drawing.Point(0, 292);
-                        this.Label15.Name = "Label15";
-                        this.Label15.Size = new System.Drawing.Size(76, 24);
-                        this.Label15.TabIndex = 25;
-                        this.Label15.Text = "Destacado";
-                        this.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // Label3
-                        // 
-                        this.Label3.Location = new System.Drawing.Point(0, 92);
-                        this.Label3.Name = "Label3";
-                        this.Label3.Size = new System.Drawing.Size(76, 24);
-                        this.Label3.TabIndex = 12;
-                        this.Label3.Text = "Modelo";
-                        this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // Label4
-                        // 
-                        this.Label4.Location = new System.Drawing.Point(384, 92);
-                        this.Label4.Name = "Label4";
-                        this.Label4.Size = new System.Drawing.Size(52, 24);
-                        this.Label4.TabIndex = 14;
-                        this.Label4.Text = "Serie";
-                        this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaCodigo3
                         // 
@@ -919,15 +815,6 @@ namespace Lfc.Articulos
                         this.EntradaCodigo1.TipWhenBlank = "";
                         this.EntradaCodigo1.ToolTipText = "Puede escribir hasta 4 códigos diferentes para el mismo artículo";
                         // 
-                        // Label1
-                        // 
-                        this.Label1.Location = new System.Drawing.Point(384, 64);
-                        this.Label1.Name = "Label1";
-                        this.Label1.Size = new System.Drawing.Size(52, 24);
-                        this.Label1.TabIndex = 10;
-                        this.Label1.Text = "Marca";
-                        this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
                         // EntradaUrl
                         // 
                         this.EntradaUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -953,15 +840,6 @@ namespace Lfc.Articulos
                         this.EntradaUrl.TipWhenBlank = "";
                         this.EntradaUrl.ToolTipText = "Dirección de la página web del producto.";
                         // 
-                        // Label18
-                        // 
-                        this.Label18.Location = new System.Drawing.Point(404, 180);
-                        this.Label18.Name = "Label18";
-                        this.Label18.Size = new System.Drawing.Size(76, 32);
-                        this.Label18.TabIndex = 24;
-                        this.Label18.Text = "Descrip. Extendida";
-                        this.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
                         // EntradaDescripcion
                         // 
                         this.EntradaDescripcion.AutoNav = true;
@@ -984,24 +862,6 @@ namespace Lfc.Articulos
                         this.EntradaDescripcion.TabIndex = 23;
                         this.EntradaDescripcion.TipWhenBlank = "";
                         this.EntradaDescripcion.ToolTipText = "Descripción larga";
-                        // 
-                        // Label16
-                        // 
-                        this.Label16.Location = new System.Drawing.Point(156, 292);
-                        this.Label16.Name = "Label16";
-                        this.Label16.Size = new System.Drawing.Size(72, 24);
-                        this.Label16.TabIndex = 27;
-                        this.Label16.Text = "Publicar";
-                        this.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // Label12
-                        // 
-                        this.Label12.Location = new System.Drawing.Point(0, 148);
-                        this.Label12.Name = "Label12";
-                        this.Label12.Size = new System.Drawing.Size(76, 24);
-                        this.Label12.TabIndex = 18;
-                        this.Label12.Text = "URL";
-                        this.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaNombre
                         // 
@@ -1030,15 +890,6 @@ namespace Lfc.Articulos
                         this.EntradaNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaNombre_KeyPress);
                         this.EntradaNombre.TextChanged += new System.EventHandler(this.EntradaNombre_TextChanged);
                         // 
-                        // Label5
-                        // 
-                        this.Label5.Location = new System.Drawing.Point(0, 120);
-                        this.Label5.Name = "Label5";
-                        this.Label5.Size = new System.Drawing.Size(76, 24);
-                        this.Label5.TabIndex = 16;
-                        this.Label5.Text = "Nombre";
-                        this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
                         // EntradaSerie
                         // 
                         this.EntradaSerie.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -1064,6 +915,155 @@ namespace Lfc.Articulos
                         this.EntradaSerie.TipWhenBlank = "";
                         this.EntradaSerie.ToolTipText = "";
                         this.EntradaSerie.TextChanged += new System.EventHandler(this.EntradaCategoriaMarcaModeloSerie_TextChanged);
+                        // 
+                        // EtiquetaCodigo1
+                        // 
+                        this.EtiquetaCodigo1.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaCodigo1.Location = new System.Drawing.Point(0, 32);
+                        this.EtiquetaCodigo1.Name = "EtiquetaCodigo1";
+                        this.EtiquetaCodigo1.Size = new System.Drawing.Size(84, 24);
+                        this.EtiquetaCodigo1.TabIndex = 0;
+                        this.EtiquetaCodigo1.Text = "Código 1";
+                        this.EtiquetaCodigo1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EtiquetaCodigo4
+                        // 
+                        this.EtiquetaCodigo4.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaCodigo4.Location = new System.Drawing.Point(688, 32);
+                        this.EtiquetaCodigo4.Name = "EtiquetaCodigo4";
+                        this.EtiquetaCodigo4.Size = new System.Drawing.Size(84, 24);
+                        this.EtiquetaCodigo4.TabIndex = 6;
+                        this.EtiquetaCodigo4.Text = "Código 4";
+                        this.EtiquetaCodigo4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EtiquetaCodigo3
+                        // 
+                        this.EtiquetaCodigo3.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaCodigo3.Location = new System.Drawing.Point(456, 32);
+                        this.EtiquetaCodigo3.Name = "EtiquetaCodigo3";
+                        this.EtiquetaCodigo3.Size = new System.Drawing.Size(84, 24);
+                        this.EtiquetaCodigo3.TabIndex = 4;
+                        this.EtiquetaCodigo3.Text = "Código 3";
+                        this.EtiquetaCodigo3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EtiquetaCodigo2
+                        // 
+                        this.EtiquetaCodigo2.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaCodigo2.Location = new System.Drawing.Point(228, 32);
+                        this.EtiquetaCodigo2.Name = "EtiquetaCodigo2";
+                        this.EtiquetaCodigo2.Size = new System.Drawing.Size(84, 24);
+                        this.EtiquetaCodigo2.TabIndex = 2;
+                        this.EtiquetaCodigo2.Text = "Código 2";
+                        this.EtiquetaCodigo2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // label20
+                        // 
+                        this.label20.Location = new System.Drawing.Point(460, 292);
+                        this.label20.Name = "label20";
+                        this.label20.Size = new System.Drawing.Size(76, 24);
+                        this.label20.TabIndex = 31;
+                        this.label20.Text = "Garantía";
+                        this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // Label14
+                        // 
+                        this.Label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label14.Location = new System.Drawing.Point(533, 148);
+                        this.Label14.Name = "Label14";
+                        this.Label14.Size = new System.Drawing.Size(80, 24);
+                        this.Label14.TabIndex = 20;
+                        this.Label14.Text = "Proveedor";
+                        this.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // Label2
+                        // 
+                        this.Label2.Location = new System.Drawing.Point(0, 64);
+                        this.Label2.Name = "Label2";
+                        this.Label2.Size = new System.Drawing.Size(76, 24);
+                        this.Label2.TabIndex = 8;
+                        this.Label2.Text = "Categoría";
+                        this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // Label13
+                        // 
+                        this.Label13.Location = new System.Drawing.Point(0, 180);
+                        this.Label13.Name = "Label13";
+                        this.Label13.Size = new System.Drawing.Size(76, 24);
+                        this.Label13.TabIndex = 22;
+                        this.Label13.Text = "Descrip.";
+                        this.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // Label15
+                        // 
+                        this.Label15.Location = new System.Drawing.Point(0, 292);
+                        this.Label15.Name = "Label15";
+                        this.Label15.Size = new System.Drawing.Size(76, 24);
+                        this.Label15.TabIndex = 25;
+                        this.Label15.Text = "Destacado";
+                        this.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // Label3
+                        // 
+                        this.Label3.Location = new System.Drawing.Point(0, 92);
+                        this.Label3.Name = "Label3";
+                        this.Label3.Size = new System.Drawing.Size(76, 24);
+                        this.Label3.TabIndex = 12;
+                        this.Label3.Text = "Modelo";
+                        this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // Label4
+                        // 
+                        this.Label4.Location = new System.Drawing.Point(384, 92);
+                        this.Label4.Name = "Label4";
+                        this.Label4.Size = new System.Drawing.Size(52, 24);
+                        this.Label4.TabIndex = 14;
+                        this.Label4.Text = "Serie";
+                        this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // Label1
+                        // 
+                        this.Label1.Location = new System.Drawing.Point(384, 64);
+                        this.Label1.Name = "Label1";
+                        this.Label1.Size = new System.Drawing.Size(52, 24);
+                        this.Label1.TabIndex = 10;
+                        this.Label1.Text = "Marca";
+                        this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // Label18
+                        // 
+                        this.Label18.Location = new System.Drawing.Point(404, 180);
+                        this.Label18.Name = "Label18";
+                        this.Label18.Size = new System.Drawing.Size(76, 32);
+                        this.Label18.TabIndex = 24;
+                        this.Label18.Text = "Descrip. Extendida";
+                        this.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // Label16
+                        // 
+                        this.Label16.Location = new System.Drawing.Point(156, 292);
+                        this.Label16.Name = "Label16";
+                        this.Label16.Size = new System.Drawing.Size(72, 24);
+                        this.Label16.TabIndex = 27;
+                        this.Label16.Text = "Publicar";
+                        this.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // Label12
+                        // 
+                        this.Label12.Location = new System.Drawing.Point(0, 148);
+                        this.Label12.Name = "Label12";
+                        this.Label12.Size = new System.Drawing.Size(76, 24);
+                        this.Label12.TabIndex = 18;
+                        this.Label12.Text = "URL";
+                        this.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // Label5
+                        // 
+                        this.Label5.Location = new System.Drawing.Point(0, 120);
+                        this.Label5.Name = "Label5";
+                        this.Label5.Size = new System.Drawing.Size(76, 24);
+                        this.Label5.TabIndex = 16;
+                        this.Label5.Text = "Nombre";
+                        this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // frame3
                         // 

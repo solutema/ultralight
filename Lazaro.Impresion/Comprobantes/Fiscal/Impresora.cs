@@ -615,9 +615,9 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                 Res = Enviar(ComandoAEnviar);
                                                 break;
                                         case Lbl.Impresion.ModelosFiscales.HasarGenerico:
-                                                if (Detalle.Series != null && Detalle.Series.Length > 0) {
+                                                if (Detalle.DatosSeguimiento != null && Detalle.DatosSeguimiento.Count > 0) {
                                                         ComandoAEnviar = new Comando(CodigosComandosFiscales.HasarDocumentoFiscalTexto,
-                                                                FiscalizarTexto(Detalle.Series, 50),
+                                                                FiscalizarTexto(Detalle.DatosSeguimiento.ToString(), 50),
                                                                 "0"
                                                                 );
                                                         Res = Enviar(ComandoAEnviar);

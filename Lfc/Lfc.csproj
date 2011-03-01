@@ -250,11 +250,11 @@
     <Compile Include="Comprobantes\EditarTallesYColores.Designer.cs">
       <DependentUpon>EditarTallesYColores.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprobantes\EditarSeries.cs">
+    <Compile Include="Comprobantes\EditarSeguimiento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprobantes\EditarSeries.Designer.cs">
-      <DependentUpon>EditarSeries.cs</DependentUpon>
+    <Compile Include="Comprobantes\EditarSeguimiento.Designer.cs">
+      <DependentUpon>EditarSeguimiento.cs</DependentUpon>
     </Compile>
     <Compile Include="Comprobantes\Facturas\Anular.Designer.cs">
       <DependentUpon>Anular.cs</DependentUpon>
@@ -727,8 +727,8 @@
     <EmbeddedResource Include="Comprobantes\EditarTallesYColores.resx">
       <DependentUpon>EditarTallesYColores.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Comprobantes\EditarSeries.resx">
-      <DependentUpon>EditarSeries.cs</DependentUpon>
+    <EmbeddedResource Include="Comprobantes\EditarSeguimiento.resx">
+      <DependentUpon>EditarSeguimiento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprobantes\Facturas\SaldoEnCuentaCorriente.resx">
       <DependentUpon>SaldoEnCuentaCorriente.cs</DependentUpon>

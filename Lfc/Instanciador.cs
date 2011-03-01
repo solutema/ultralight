@@ -276,6 +276,8 @@ namespace Lfc
                                         return typeof(Lfc.Comprobantes.Facturas.Editar);
                                 case "Lbl.Comprobantes.ComprobanteDeCompra":
                                         return typeof(Lfc.Comprobantes.Compra.Editar);
+                                case "Lbl.Comprobantes.Remito":
+                                        return typeof(Lfc.Comprobantes.Editar);
                                 case "Lbl.Comprobantes.Tipo":
                                         return typeof(Lfc.Comprobantes.Tipo.Editar);
                                 case "impresoras":
