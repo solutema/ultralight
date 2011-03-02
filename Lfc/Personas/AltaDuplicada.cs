@@ -49,6 +49,7 @@ namespace Lfc.Personas
 		private Lui.Forms.Button BotonContinuar;
 		private Lui.Forms.Button BotonCorregir;
 		private Lui.Forms.Button BotonCancelar;
+                private Timer TimerHabilitarBotones;
 		private System.ComponentModel.IContainer components = null;
 
 		public AltaDuplicada()
@@ -78,6 +79,7 @@ namespace Lfc.Personas
 		/// </summary>
 		private void InitializeComponent()
 		{
+                        this.components = new System.ComponentModel.Container();
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AltaDuplicada));
                         this.label1 = new System.Windows.Forms.Label();
                         this.label2 = new System.Windows.Forms.Label();
@@ -89,6 +91,7 @@ namespace Lfc.Personas
                         this.BotonCancelar = new Lui.Forms.Button();
                         this.BotonContinuar = new Lui.Forms.Button();
                         this.BotonCorregir = new Lui.Forms.Button();
+                        this.TimerHabilitarBotones = new System.Windows.Forms.Timer(this.components);
                         this.SuspendLayout();
                         // 
                         // label1
@@ -160,21 +163,20 @@ namespace Lfc.Personas
                         // BotonCancelar
                         // 
                         this.BotonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.BotonCancelar.AutoSize = false;
                         this.BotonCancelar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonCancelar.Enabled = false;
                         this.BotonCancelar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCancelar.Image = ((System.Drawing.Image)(resources.GetObject("BotonCancelar.Image")));
                         this.BotonCancelar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonCancelar.Location = new System.Drawing.Point(20, 401);
+                        this.BotonCancelar.Location = new System.Drawing.Point(20, 332);
                         this.BotonCancelar.Name = "BotonCancelar";
                         this.BotonCancelar.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCancelar.ReadOnly = false;
                         this.BotonCancelar.Size = new System.Drawing.Size(552, 68);
                         this.BotonCancelar.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonCancelar.Subtext = "No agrega ni actualiza ningún dato. Sólo vuelve al formulario de alta para contin" +
                             "uar con lo que estaba haciendo.";
-                        this.BotonCancelar.TabIndex = 2;
+                        this.BotonCancelar.TabIndex = 1;
                         this.BotonCancelar.Text = "Volver al formulario de alta";
                         this.BotonCancelar.ToolTipText = "";
                         this.BotonCancelar.Click += new System.EventHandler(this.CmdCancelar_Click);
@@ -182,21 +184,20 @@ namespace Lfc.Personas
                         // BotonContinuar
                         // 
                         this.BotonContinuar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.BotonContinuar.AutoSize = false;
                         this.BotonContinuar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonContinuar.Enabled = false;
                         this.BotonContinuar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonContinuar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonContinuar.Image = ((System.Drawing.Image)(resources.GetObject("BotonContinuar.Image")));
                         this.BotonContinuar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonContinuar.Location = new System.Drawing.Point(20, 325);
+                        this.BotonContinuar.Location = new System.Drawing.Point(20, 256);
                         this.BotonContinuar.Name = "BotonContinuar";
                         this.BotonContinuar.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonContinuar.ReadOnly = false;
                         this.BotonContinuar.Size = new System.Drawing.Size(552, 68);
                         this.BotonContinuar.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonContinuar.Subtext = "Seleccione esta opción si se trata de clientes diferentes o si intenta deliberada" +
                             "mente cargar un dato duplicado.";
-                        this.BotonContinuar.TabIndex = 1;
+                        this.BotonContinuar.TabIndex = 0;
                         this.BotonContinuar.Text = "Crear un cliente nuevo";
                         this.BotonContinuar.ToolTipText = "";
                         this.BotonContinuar.Click += new System.EventHandler(this.CmdCrearNuevo_Click);
@@ -204,24 +205,29 @@ namespace Lfc.Personas
                         // BotonCorregir
                         // 
                         this.BotonCorregir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.BotonCorregir.AutoSize = false;
                         this.BotonCorregir.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonCorregir.Enabled = false;
                         this.BotonCorregir.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonCorregir.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCorregir.Image = ((System.Drawing.Image)(resources.GetObject("BotonCorregir.Image")));
                         this.BotonCorregir.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonCorregir.Location = new System.Drawing.Point(20, 249);
+                        this.BotonCorregir.Location = new System.Drawing.Point(20, 408);
                         this.BotonCorregir.Name = "BotonCorregir";
                         this.BotonCorregir.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCorregir.ReadOnly = false;
                         this.BotonCorregir.Size = new System.Drawing.Size(552, 68);
                         this.BotonCorregir.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonCorregir.Subtext = "Seleccione esta opción si verificó que se trata del mismo cliente y no desea crea" +
                             "r datos duplicados.";
-                        this.BotonCorregir.TabIndex = 0;
+                        this.BotonCorregir.TabIndex = 2;
                         this.BotonCorregir.Text = "Actualizar los datos del cliente actual";
                         this.BotonCorregir.ToolTipText = "";
                         this.BotonCorregir.Click += new System.EventHandler(this.CmdActualizar_Click);
+                        // 
+                        // TimerHabilitarBotones
+                        // 
+                        this.TimerHabilitarBotones.Enabled = true;
+                        this.TimerHabilitarBotones.Interval = 4000;
+                        this.TimerHabilitarBotones.Tick += new System.EventHandler(this.TimerHabilitarBotones_Tick);
                         // 
                         // AltaDuplicada
                         // 
@@ -260,6 +266,14 @@ namespace Lfc.Personas
 			this.DialogResult = DialogResult.No;
 			this.Hide();
 		}
+
+                private void TimerHabilitarBotones_Tick(object sender, EventArgs e)
+                {
+                        TimerHabilitarBotones.Stop();
+                        BotonCancelar.Enabled = true;
+                        BotonContinuar.Enabled = true;
+                        BotonCorregir.Enabled = true;
+                }
 	}
 }
 
