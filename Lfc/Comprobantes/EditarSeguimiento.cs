@@ -43,7 +43,7 @@ namespace Lfc.Comprobantes
         {
                 public Lbl.Articulos.Situacion SituacionOrigen;
                 private Lbl.Articulos.Articulo m_Articulo;
-                public int CantidadTotal;
+                private int m_Cantidad = 1;
                 private Lbl.Articulos.ColeccionDatosSeguimiento m_DatosSeguimiento = null;
                 private bool TextoLibre = false;
 
@@ -62,6 +62,34 @@ namespace Lfc.Comprobantes
                         set
                         {
                                 m_Articulo = value;
+                                this.Actualizar();
+                        }
+                }
+
+
+                public int Cantidad
+                {
+                        get
+                        {
+                                return m_Cantidad;
+                        }
+                        set
+                        {
+                                m_Cantidad = value;
+                                this.Actualizar();
+                        }
+                }
+
+
+                private void Actualizar()
+                {
+                        string Ayuda;
+                        if (m_Articulo != null) {
+                                if (TextoLibre)
+                                        Ayuda = "Proporcione los datos de ";
+                                else
+                                        Ayuda = "Seleccione ";
+                                Ayuda += m_Cantidad.ToString() + " " + Articulo.ToString();
                                 switch (m_Articulo.Seguimiento) {
                                         case Lbl.Articulos.Seguimientos.NumerosDeSerie:
                                                 VariacionesCantidades.EsNumeroDeSerie = true;
@@ -70,8 +98,12 @@ namespace Lfc.Comprobantes
                                                 VariacionesCantidades.EsNumeroDeSerie = false;
                                                 break;
                                 }
+                        } else {
+                                Ayuda = "";
                         }
+                        EtiquetaArticulo.Text = Ayuda;
                 }
+
 
                 public Lbl.Articulos.ColeccionDatosSeguimiento DatosSeguimiento
                 {
@@ -81,7 +113,7 @@ namespace Lfc.Comprobantes
                                         return VariacionesCantidades.DatosSeguimiento;
                                 } else {
                                         Lbl.Articulos.ColeccionDatosSeguimiento Res = new Lbl.Articulos.ColeccionDatosSeguimiento();
-                                        if (CantidadTotal == 1) {
+                                        if (m_Cantidad == 1) {
                                                 if (ListaDatosSeguimiento.SelectedItems.Count == 1)
                                                         Res.AddWithValue(ListaDatosSeguimiento.SelectedItems[0].Text, 1);
                                         } else {
@@ -111,17 +143,17 @@ namespace Lfc.Comprobantes
                         if (TextoLibre) {
                                 CantidadSelect = VariacionesCantidades.DatosSeguimiento.CantidadTotal;
                         } else {
-                                if (CantidadTotal == 1)
+                                if (m_Cantidad == 1)
                                         CantidadSelect = ListaDatosSeguimiento.SelectedItems.Count;
                                 else
                                         CantidadSelect = ListaDatosSeguimiento.CheckedItems.Count;
                         }
 
-                        if (CantidadSelect != CantidadTotal) {
-                                if (CantidadTotal == 1)
+                        if (CantidadSelect != m_Cantidad) {
+                                if (m_Cantidad == 1)
                                         return new Lfx.Types.FailureOperationResult("Debe seleccionar un elemento.");
                                 else
-                                        return new Lfx.Types.FailureOperationResult("Debe seleccionar " + CantidadTotal.ToString() + " elementos.");
+                                        return new Lfx.Types.FailureOperationResult("Debe seleccionar " + m_Cantidad.ToString() + " elementos.");
                         }
                         return base.Ok();
                 }
@@ -139,9 +171,9 @@ namespace Lfc.Comprobantes
                                 System.Data.DataTable TablaListaItem = this.Connection.Select("SELECT serie, cantidad FROM articulos_series WHERE id_articulo=" + this.Articulo.Id.ToString() + " AND cantidad>0 AND id_situacion=" + this.SituacionOrigen.Id.ToString());
                                 foreach (System.Data.DataRow RowItem in TablaListaItem.Rows) {
                                         string Variacion = RowItem["serie"].ToString();
-                                        decimal Cantidad = System.Convert.ToDecimal(RowItem["cantidad"]);
+                                        decimal StockVariacion = System.Convert.ToDecimal(RowItem["cantidad"]);
 
-                                        for (int i = 0; i < Cantidad && i < CantidadTotal; i++) {
+                                        for (int i = 0; i < StockVariacion && i < StockVariacion; i++) {
                                                 ListViewItem Itm = ListaDatosSeguimiento.Items.Add(Variacion);
                                                 Itm.SubItems[0].Text = Variacion;
                                                 Itm.SubItems.Add("1");
@@ -152,7 +184,7 @@ namespace Lfc.Comprobantes
                                         }
                                 }
 
-                                if(CantidadTotal == 1)
+                                if(m_Cantidad == 1)
                                         ListaDatosSeguimiento.CheckBoxes = false;
                                 else
                                         ListaDatosSeguimiento.CheckBoxes = true;

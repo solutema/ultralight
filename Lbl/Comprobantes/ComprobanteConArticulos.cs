@@ -707,9 +707,26 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                public virtual ComprobanteConArticulos Clone()
+                public virtual ComprobanteConArticulos Clone(Tipo tipo)
                 {
-                        Lbl.Comprobantes.ComprobanteConArticulos Nuevo = Lbl.Instanciador.Instanciar(this.GetType(), this.Connection) as Lbl.Comprobantes.ComprobanteConArticulos;
+                        Type TipoComprob;
+                        if (tipo.EsFactura) {
+                                TipoComprob = typeof(Lbl.Comprobantes.Factura);
+                        } else if (tipo.EsNotaCredito) {
+                                TipoComprob = typeof(Lbl.Comprobantes.NotaDeCredito);
+                        } else if (tipo.EsNotaDebito) {
+                                TipoComprob = typeof(Lbl.Comprobantes.NotaDeDebito);
+                        } else if (tipo.EsRemito) {
+                                TipoComprob = typeof(Lbl.Comprobantes.Remito);
+                        } else if (tipo.EsPresupuesto) {
+                                TipoComprob = typeof(Lbl.Comprobantes.Presupuesto);
+                        } else if (tipo.EsTicket) {
+                                TipoComprob = typeof(Lbl.Comprobantes.Ticket);
+                        } else {
+                                TipoComprob = this.GetType();   // o typeof(Lbl.Comprobantes.ComprobanteConArticulos);
+                        }
+
+                        Lbl.Comprobantes.ComprobanteConArticulos Nuevo = Lbl.Instanciador.Instanciar(TipoComprob, this.Connection) as Lbl.Comprobantes.ComprobanteConArticulos;
 
                         Nuevo.Tipo = this.Tipo;
                         Nuevo.Compra = this.Compra;
@@ -739,7 +756,7 @@ namespace Lbl.Comprobantes
 
                 public virtual ComprobanteConArticulos ConvertirEn(Tipo tipo)
                 {
-                        Lbl.Comprobantes.ComprobanteConArticulos Nuevo = this.Clone();
+                        Lbl.Comprobantes.ComprobanteConArticulos Nuevo = this.Clone(tipo);
                         Nuevo.ComprobanteOriginal = this;
                         Nuevo.Tipo = tipo;
                         Nuevo.Obs = "s/" + this.ToString();

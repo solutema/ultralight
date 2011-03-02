@@ -281,7 +281,7 @@ namespace Lfc.Comprobantes.Compra
 
                         EditarSeguimiento Editar = new EditarSeguimiento();
                         Editar.Articulo = Articulo;
-                        Editar.CantidadTotal = Math.Abs(System.Convert.ToInt32(Cant));
+                        Editar.Cantidad = Math.Abs(System.Convert.ToInt32(Cant));
                         Editar.SituacionOrigen = Comprob.SituacionOrigen;
                         Editar.DatosSeguimiento = Prod.DatosSeguimiento;
                         if (Editar.ShowDialog() == DialogResult.OK) {

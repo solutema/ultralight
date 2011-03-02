@@ -285,7 +285,7 @@ namespace Lfc.Comprobantes
                         Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
                         if (Comprob.Existe) {
                                 Lbl.Comprobantes.Tipo NuevoTipo = Lbl.Comprobantes.Tipo.TodosPorLetra[tipoComprob];
-                                Lbl.Comprobantes.ComprobanteConArticulos Nuevo = Comprob.ConvertirEn(NuevoTipo);
+                                Lbl.Comprobantes.ComprobanteConArticulos Nuevo = Comprob.ConvertirEn(NuevoTipo) as Lbl.Comprobantes.ComprobanteConArticulos;
 
                                 FormularioEdicion NuevoComprob = Instanciador.InstanciarFormularioEdicion(Nuevo);
                                 NuevoComprob.ControlDestino = EntradaComprobanteId;
@@ -451,7 +451,7 @@ namespace Lfc.Comprobantes
                         EditarSeguimiento Editar = new EditarSeguimiento();
                         Editar.Connection = this.Connection;
                         Editar.Articulo = new Lbl.Articulos.Articulo(this.Connection, IdArticulo);
-                        Editar.CantidadTotal = Math.Abs(System.Convert.ToInt32(Cant));
+                        Editar.Cantidad = Math.Abs(System.Convert.ToInt32(Cant));
                         Editar.SituacionOrigen = Comprob.SituacionOrigen;
                         Editar.DatosSeguimiento = Prod.DatosSeguimiento;
                         if (Editar.ShowDialog() == DialogResult.OK) {
