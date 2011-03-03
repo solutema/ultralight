@@ -65,11 +65,15 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
-                protected override void OnControlAdded(VariacionCantidad ctrl)
+                protected override VariacionCantidad Agregar()
                 {
-                        ctrl.EsNumeroDeSerie = m_EsNumeroDeSerie;
-                        base.OnControlAdded(ctrl);
+                        VariacionCantidad Ctrl = base.Agregar();
+
+                        Ctrl.EsNumeroDeSerie = m_EsNumeroDeSerie;
+
+                        return Ctrl;
                 }
+
 
                 public Lbl.Articulos.ColeccionDatosSeguimiento DatosSeguimiento
                 {

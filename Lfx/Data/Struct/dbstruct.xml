@@ -967,7 +967,7 @@
   </Table>
   <Table name="ventas_resumenes_detalles">
     <Column name="id_resumen" datatype="Integer" nullable="0" />
-    <Column name="id_cuota" datatype="Integer" nullable="0" />
+    <Column name="id_cuota" datatype="Integer" nullable="1" />
     <Column name="id_persona" datatype="Integer" nullable="0" />
     <Column name="prefijo" datatype="Integer" nullable="0" default="0" />
     <Column name="operacion" datatype="Integer" nullable="0" default="0" />
