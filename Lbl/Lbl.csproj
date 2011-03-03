@@ -86,6 +86,7 @@
     <Compile Include="ColeccionCodigoDetalle.cs" />
     <Compile Include="Comprobantes\Factura.cs" />
     <Compile Include="Comprobantes\Lote.cs" />
+    <Compile Include="Cuotas\EstadoCuota.cs" />
     <Compile Include="ICuenta.cs" />
     <Compile Include="IElementoDeDatos.cs" />
     <Compile Include="Impresion\Campo.cs">

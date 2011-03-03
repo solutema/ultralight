@@ -32,16 +32,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Reflection;
 
 namespace Lbl.Cuotas
 {
         [Lbl.Atributos.NombreItem("Cuota"), Lbl.Atributos.MuestraMensajeAlCrear(true), Lbl.Atributos.MuestraPanelExtendido(false)]
 	public class Cuota : ElementoDeDatos
 	{
-                public Estados[] EstadosCuotas = new Estados[120];
-                public int[] IdsCuotas = new int[120];
-                public Estados[] EstadosCuotasComercio = new Estados[120];
+                public EstadoCuota[] EstadosCuotas = new EstadoCuota[120];
                 private Lbl.Comprobantes.Recibo m_Recibo;
                 public Lbl.Personas.Persona Cliente, Comercio;
 
@@ -50,8 +47,9 @@ namespace Lbl.Cuotas
                         : base(dataBase)
                 {
                         for (int i = 1; i < 120; i++) {
-                                EstadosCuotas[i] = Estados.Nueva;
-                                EstadosCuotasComercio[i] = Estados.Nueva;
+                                EstadosCuotas[i] = new EstadoCuota();
+                                EstadosCuotas[i].EstadoCliente = Estados.Nueva;
+                                EstadosCuotas[i].EstadoComercio = Estados.Nueva;
                         }
                 }
 
@@ -85,8 +83,9 @@ namespace Lbl.Cuotas
                         this.Fecha = this.Connection.ServerDateTime;
 
                         for (int i = 1; i < 120; i++) {
-                                EstadosCuotas[i] = Estados.Nueva;
-                                EstadosCuotasComercio[i] = Estados.Nueva;
+                                EstadosCuotas[i] = new EstadoCuota();
+                                EstadosCuotas[i].EstadoCliente = Estados.Nueva;
+                                EstadosCuotas[i].EstadoComercio = Estados.Nueva;
                         }
                 }
 
@@ -107,16 +106,14 @@ namespace Lbl.Cuotas
                                 }
                         }
 
-                        //Pongo todos los estados en "histórico" (para los registros que no se encuentran en la consulta siguiente)
-                        for (int i = 1; i < 120; i++)
-                                EstadosCuotas[i] = Estados.Nueva;
                         //Cargo los estados de las cuotas
                         using (System.Data.DataTable Cuotas = this.Connection.Select("SELECT id_cuota, cuota, estado, estado_com FROM ventas_cuotas WHERE prefijo=" + this.GetFieldValue<int>("prefijo").ToString() + " AND operacion=" + this.GetFieldValue<int>("operacion").ToString())) {
                                 foreach(System.Data.DataRow Cuota in Cuotas.Rows) {
                                         int CuotaNum = System.Convert.ToInt32(Cuota["cuota"]);
-                                        IdsCuotas[CuotaNum] = System.Convert.ToInt32(Cuota["id_cuota"]);
-                                        EstadosCuotas[CuotaNum] = (Estados)(System.Convert.ToInt32(Cuota["estado"]));
-                                        EstadosCuotasComercio[CuotaNum] = (Estados)(System.Convert.ToInt32(Cuota["estado_com"]));
+                                        EstadosCuotas[CuotaNum] = new EstadoCuota();
+                                        EstadosCuotas[CuotaNum].Id = System.Convert.ToInt32(Cuota["id_cuota"]);
+                                        EstadosCuotas[CuotaNum].EstadoCliente = (Estados)(System.Convert.ToInt32(Cuota["estado"]));
+                                        EstadosCuotas[CuotaNum].EstadoComercio = (Estados)(System.Convert.ToInt32(Cuota["estado_com"]));
                                 }
                         }
 
@@ -206,6 +203,12 @@ namespace Lbl.Cuotas
                                 if (value < 1 || value > 24)
                                         throw new ArgumentException("El número de cuotas debe estar entre 1 y 24");
                                 Registro["cuotas"] = value;
+
+                                // Agrego los estados que faltan
+                                for (int Cuota = 1; Cuota <= value; Cuota++) {
+                                        if (EstadosCuotas[Cuota] == null)
+                                                EstadosCuotas[Cuota] = new Lbl.Cuotas.EstadoCuota();
+                                }
                         }
                 }
 
