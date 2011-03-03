@@ -63,7 +63,7 @@ namespace Lfx.Types
 			string NumeroInvertido = Numero.StrReverse().PadRight(32, '0');
                         string Resultado = string.Empty;
 
-			int Billones = int.Parse(NumeroInvertido.StrReverse().Substring(9, 6));
+                        int Billones = int.Parse(NumeroInvertido.Substring(9, 6).StrReverse());
 
 			if(Billones == 1) {
 				Resultado += " un billón";
@@ -71,7 +71,7 @@ namespace Lfx.Types
 				Resultado += " " + Lfx.Types.Formatting.SpellNumber(Billones, false) + " billones";
 			}
 
-			int Millones = int.Parse(NumeroInvertido.StrReverse().Substring(6, 3));
+                        int Millones = int.Parse(NumeroInvertido.Substring(6, 3).StrReverse());
 
 			if(Millones == 1) {
 				Resultado += " un millón";
@@ -79,7 +79,7 @@ namespace Lfx.Types
 				Resultado += " " + Lfx.Types.Formatting.SpellNumber(Millones, false) + " millones";
 			}
 
-			int Miles = int.Parse(NumeroInvertido.StrReverse().Substring(3, 3));
+			int Miles = int.Parse(NumeroInvertido.Substring(3, 3).StrReverse());
 
 			if(Miles == 1) {
 				Resultado += " un mil";

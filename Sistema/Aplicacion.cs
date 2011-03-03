@@ -404,7 +404,7 @@ Si necesita información sobre cómo instalar o configurar un servidor SQL para 
                                                 break;
                                         case Lfx.Data.AccessModes.Npgsql:
                                                 // FIXME: detectar el nombre del servicio.
-                                                Lfx.Environment.Shell.Execute("net", "start postgresql-8.4", ProcessWindowStyle.Hidden, true);
+                                                Lfx.Environment.Shell.Execute("net", "start postgresql-9.0", ProcessWindowStyle.Hidden, true);
                                                 break;
                                 }
                         }

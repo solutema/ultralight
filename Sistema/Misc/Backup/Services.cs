@@ -396,7 +396,7 @@ namespace Lazaro.Misc.Backup
                         foreach (System.IO.DirectoryInfo DirItem in Dir.GetDirectories("*.lbk")) {
                                 Lista.Add(DirItem.Name);
                         }
-                        // FIXME: eliminar las carpetas lbkp_*
+
                         foreach (System.IO.DirectoryInfo DirItem in Dir.GetDirectories("lbkp_*")) {
                                 Lista.Add(DirItem.Name);
                         }
