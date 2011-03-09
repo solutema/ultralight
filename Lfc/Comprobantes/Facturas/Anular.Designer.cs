@@ -268,6 +268,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaHasta.TipWhenBlank = "";
                         this.EntradaHasta.ToolTipText = "";
                         this.EntradaHasta.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
+                        this.EntradaHasta.Enter += new System.EventHandler(this.EntradaHasta_Enter);
                         // 
                         // label2
                         // 

@@ -893,28 +893,34 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         break;
 
                                 case "ANULAR":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.ColeccionComprobanteConArticulos), Lbl.Sys.Permisos.Operaciones.Eliminar)) {
-                                                string SubComandoAnular = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
+                                        string SubComandoAnularComprob = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
 
-                                                int IdComprobanteAnular = Lfx.Types.Parsing.ParseInt(Lfx.Types.Strings.GetNextToken(ref comando, " "));
+                                        int IdComprobanteAnularComprob = Lfx.Types.Parsing.ParseInt(Lfx.Types.Strings.GetNextToken(ref comando, " "));
 
-                                                switch (SubComandoAnular) {
-                                                        case "FACTURA":
-                                                        case "FACT":
+                                        switch (SubComandoAnularComprob) {
+                                                case "FACTURA":
+                                                case "FACT":
+                                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.ComprobanteFacturable), Lbl.Sys.Permisos.Operaciones.Eliminar)) {
                                                                 Lfc.Comprobantes.Facturas.Anular FormularioFacturaAnular = new Lfc.Comprobantes.Facturas.Anular();
                                                                 if (!Aplicacion.Flotante)
                                                                         FormularioFacturaAnular.MdiParent = Aplicacion.FormularioPrincipal;
                                                                 FormularioFacturaAnular.Show();
-                                                                break;
+                                                        } else {
+                                                                return new Lfx.Types.NoAccessOperationResult();
+                                                        }
+                                                        break;
 
-                                                        case "RECIBO":
-                                                        case "RCP":
-                                                        case "RC":
+                                                case "RECIBO":
+                                                case "RCP":
+                                                case "RC":
+                                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.Recibo), Lbl.Sys.Permisos.Operaciones.Eliminar)) {
                                                                 Lfc.Comprobantes.Recibos.Anular FormularioReciboAnular = new Lfc.Comprobantes.Recibos.Anular();
-                                                                FormularioReciboAnular.Cargar(IdComprobanteAnular);
+                                                                FormularioReciboAnular.Cargar(IdComprobanteAnularComprob);
                                                                 FormularioReciboAnular.ShowDialog(Aplicacion.FormularioPrincipal);
-                                                                break;
-                                                }
+                                                        } else {
+                                                                return new Lfx.Types.NoAccessOperationResult();
+                                                        }
+                                                        break;
                                         }
                                         break;
 

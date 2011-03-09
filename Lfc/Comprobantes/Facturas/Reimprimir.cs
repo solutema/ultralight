@@ -151,6 +151,7 @@ namespace Lfc.Comprobantes.Facturas
                                 this.OkButton.Visible = true;
                         } else {
                                 EtiquetaAviso.Text = "Debe seleccionar un rango que inlcuya al menos 1 comprobante.";
+                                ListadoFacturas.Items.Clear();
                                 this.OkButton.Visible = false;
                         }
                 }
@@ -232,6 +233,12 @@ namespace Lfc.Comprobantes.Facturas
                         } else {
                                 return new Lfx.Types.FailureOperationResult("La operación fue cancelada.");
                         }
+                }
+
+                private void EntradaHasta_Enter(object sender, EventArgs e)
+                {
+                        if (EntradaHasta.ValueInt == 0 && EntradaDesde.ValueInt > 0)
+                                EntradaHasta.ValueInt = EntradaDesde.ValueInt;
                 }
 	}
 }
