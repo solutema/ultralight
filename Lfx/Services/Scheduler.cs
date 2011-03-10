@@ -85,7 +85,7 @@ namespace Lfx.Services
 
                 public bool AddTask(string commandString, string component, string terminalName)
                 {
-                        if (terminalName.Length == 0)
+                        if (terminalName == null || terminalName.Length == 0)
                                 terminalName = System.Environment.MachineName.ToUpperInvariant();
 
                         qGen.Insert Comando = new qGen.Insert(this.DataBase, "sys_programador");

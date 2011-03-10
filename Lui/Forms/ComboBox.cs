@@ -200,7 +200,7 @@ namespace Lui.Forms
 
                 public void SetNextValueInSet()
                 {
-                        if (m_SetData != null) {
+                        if (m_SetData != null && m_SetData.Length > 0) {
                                 if (m_SetIndex == -1)
                                         m_SetIndex = 0;
 
@@ -233,7 +233,7 @@ namespace Lui.Forms
 
                 public void SetPrevValueInSet()
                 {
-                        if (m_SetData != null) {
+                        if (m_SetData != null && m_SetData.Length > 0) {
                                 if (m_SetIndex == -1)
                                         m_SetIndex = m_SetDataKey.GetUpperBound(0);
 
