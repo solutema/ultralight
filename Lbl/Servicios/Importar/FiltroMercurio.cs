@@ -31,18 +31,30 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Linq;
+using System.Text;
 
-namespace Lbl.Cuotas
+namespace Lbl.Servicios.Importar
 {
-        public class EstadoCuota
+        public class FiltroMercurio : FiltroBd
         {
-                [DefaultValue(Estados.Nueva)]
-                public Estados EstadoComercio { get; set; }
+                public FiltroMercurio(Lfx.Data.Connection dataBase)
+                        : base(dataBase)
+                {
+                        this.FilterName = "Filtro de importación de Sistema Mercurio";
 
-                [DefaultValue(Estados.Nueva)]
-                public Estados EstadoCliente { get; set; }
+                        this.MapaDeTablas = new MapaDeTablas();
+                        this.MapaDeTablas.AddWithValue("articulos", "articulos", "codigo");
+                        this.MapaDeTablas["articulos"].TipoElemento = typeof(Lbl.Articulos.Articulo);
+                        
+                        this.MapaDeTablas.AddWithValue("rubros", "articulos_categorias", "codigo");
+                        this.MapaDeTablas["rubros"].TipoElemento = typeof(Lbl.Articulos.Categoria);
 
-                public int Id { get; set; }
+                        this.MapaDeTablas.AddWithValue("clientes", "personas", "codigo");
+                        this.MapaDeTablas["clientes"].TipoElemento = typeof(Lbl.Personas.Persona);
+                        
+                        this.MapaDeTablas.AddWithValue("proveedores", "personas", "codigo");
+                        this.MapaDeTablas["proveedores"].TipoElemento = typeof(Lbl.Personas.Persona);
+                }
         }
 }

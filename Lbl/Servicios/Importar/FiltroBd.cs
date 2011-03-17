@@ -37,11 +37,57 @@ namespace Lbl.Servicios.Importar
 {
         public class FiltroBd : Filtro
         {
-                //private System.Data.IDbConnection DataConnection;
+                public System.Data.IDbConnection ConexionExterna { get; set; }
 
                 public FiltroBd(Lfx.Data.Connection dataBase)
                         : base(dataBase)
                 {
+                }
+
+                public override void CargarDatos()
+                {
+                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Importando Datos", "Se van a importar datos utilizando el filtro " + this.ToString());
+                        Progreso.Begin();
+
+                        ConexionExterna.Open();
+
+                        Progreso.Max = MapaDeTablas.Count;
+                        foreach (MapaDeTabla Map in MapaDeTablas) {
+                                Map.ImportedRows = CargarTablaDesdeArchivo(Map);
+                                Progreso.Advance(1);
+                        }
+
+                        ConexionExterna.Close();
+                        Progreso.End();
+                }
+
+                public virtual System.Collections.Generic.List<Lfx.Data.Row> CargarTablaDesdeArchivo(MapaDeTabla mapa)
+                {
+                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Importando Tabla", "Se van a importar datos del mapa " + mapa.ToString() + " utilizando el filtro " + this.ToString());
+                        Progreso.Begin();
+
+                        System.Collections.Generic.List<Lfx.Data.Row> Res = new List<Lfx.Data.Row>();
+
+                        string SqlSelect = @"SELECT * FROM " + mapa.Archivo;
+                        if (mapa.Where != null)
+                                SqlSelect += " WHERE " + mapa.Where;
+
+                        // Hago un SELECT de la tabla
+                        System.Data.IDbCommand TableCommand = ConexionExterna.CreateCommand();
+                        TableCommand.CommandText = SqlSelect;
+                        System.Data.DataTable ReadTable = new System.Data.DataTable();
+                        ReadTable.Load(TableCommand.ExecuteReader());
+
+                        Progreso.Max = ReadTable.Rows.Count;
+                        // Navegar todos los registros
+                        foreach (System.Data.DataRow Rw in ReadTable.Rows) {
+                                Lfx.Data.Row Lrw = this.ProcesarRegistro(mapa, Rw);
+                                Res.Add(Lrw);
+                                Progreso.Advance(1);
+                        }
+
+                        Progreso.End();
+                        return Res;
                 }
         }
 }

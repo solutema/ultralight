@@ -105,6 +105,7 @@
     <Compile Include="Personas\Cuit.cs" />
     <Compile Include="Personas\IIdentificadorUnico.cs" />
     <Compile Include="Personas\Usuario.cs" />
+    <Compile Include="Servicios\Importar\FiltroMercurio.cs" />
     <Compile Include="Sys\Configuracion\Comprobantes.cs" />
     <Compile Include="Sys\Configuracion\Impresion.cs" />
     <Compile Include="Sys\Configuracion\UsuarioConectado.cs" />

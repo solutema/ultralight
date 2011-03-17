@@ -318,6 +318,7 @@ namespace Lcc.Entrada.Articulos
                         Ctrl.PrecioCantidadChanged += new System.EventHandler(Product_PrecioCantidadChanged);
                         Ctrl.ObtenerDatosSeguimiento += new System.EventHandler(Product_ObtenerDatosSeguimiento);
                         Ctrl.Precio = this.Precio;
+                        Ctrl.FreeTextCode = this.FreeTextCode;
 
                         return Ctrl;
                 }

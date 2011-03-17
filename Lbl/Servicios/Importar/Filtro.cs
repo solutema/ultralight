@@ -40,7 +40,7 @@ namespace Lbl.Servicios.Importar
         /// </summary>
         public class Filtro
         {
-                public Lfx.Data.Connection DataBase;
+                public Lfx.Data.Connection Connection;
                 public MapaDeTablas MapaDeTablas;
                 public string FilterName = "Filtro de importación genérico";
 
@@ -49,7 +49,7 @@ namespace Lbl.Servicios.Importar
 
                 public Filtro(Lfx.Data.Connection dataBase)
                 {
-                        this.DataBase = dataBase;
+                        this.Connection = dataBase;
                 }
 
                 /// <summary>
@@ -105,7 +105,7 @@ namespace Lbl.Servicios.Importar
                                 }
 
                                 Lbl.IElementoDeDatos Elem;
-                                Lfx.Data.Row CurrentRow = this.DataBase.FirstRowFromSelect("SELECT * FROM " + mapa.TablaLazaro + " WHERE " + mapa.ColumnaIdLazaro + "=" + ImportIdSqlValue);
+                                Lfx.Data.Row CurrentRow = this.Connection.FirstRowFromSelect("SELECT * FROM " + mapa.TablaLazaro + " WHERE " + mapa.ColumnaIdLazaro + "=" + ImportIdSqlValue);
                                 if (CurrentRow == null) {
                                         Elem = this.CrearElemento(mapa, ImportedRow);
                                         Elem.Registro[mapa.ColumnaIdLazaro] = ImportIdValue;
@@ -127,7 +127,7 @@ namespace Lbl.Servicios.Importar
                                         decimal Diferencia = NuevoStock - StockActual;
 
                                         if (Diferencia != 0)
-                                                Art.MoverStock(Diferencia, "Stock importado desde " + this.FilterName, null, new Articulos.Situacion(this.DataBase, this.DataBase.Workspace.CurrentConfig.Productos.DepositoPredeterminado), null);
+                                                Art.MoverStock(Diferencia, "Stock importado desde " + this.FilterName, null, new Articulos.Situacion(this.Connection, this.Connection.Workspace.CurrentConfig.Productos.DepositoPredeterminado), null);
                                 }
                                 Progreso.Advance(1);
                         }
@@ -141,7 +141,7 @@ namespace Lbl.Servicios.Importar
                 {
                         Lfx.Data.Row Lrw = new Lfx.Data.Row();
                         Lrw.IsNew = true;
-                        Lrw.Table = this.DataBase.Tables[mapa.TablaLazaro];
+                        Lrw.Table = this.Connection.Tables[mapa.TablaLazaro];
 
                         foreach (MapaDeColumna Col in mapa.MapaDeColumnas) {
                                 object FieldValue = null;
@@ -164,7 +164,7 @@ namespace Lbl.Servicios.Importar
                                         case ConversionDeColumna.InterpretarSql:
                                                 string Sql = Col.ParametroConversion.ToString();
                                                 Sql = Sql.Replace("$VALOR$", row[Col.ColumnaExterna].ToString());
-                                                Lfx.Data.Row Result = this.DataBase.FirstRowFromSelect(Sql);
+                                                Lfx.Data.Row Result = this.Connection.FirstRowFromSelect(Sql);
                                                 if (Result == null || Result[0] == null)
                                                         FieldValue = null;
                                                 else
@@ -205,10 +205,10 @@ namespace Lbl.Servicios.Importar
                                         if (Tabla.Columns.ContainsKey(Map.ColumnaIdLazaro) == false) {
                                                 // Si la columna Id no existe, agrego un tag
                                                 Lfx.Data.Tag ImportTag = new Lfx.Data.Tag(Map.TablaLazaro, Map.ColumnaIdLazaro, "ImportId");
-                                                ImportTag.DataBase = this.DataBase;
+                                                ImportTag.DataBase = this.Connection;
                                                 ImportTag.FieldType = Lfx.Data.DbTypes.VarChar;
                                                 ImportTag.Nullable = true;
-                                                this.DataBase.Tables[Map.TablaLazaro].Tags.Add(ImportTag);
+                                                this.Connection.Tables[Map.TablaLazaro].Tags.Add(ImportTag);
                                                 ImportTag.Save();
                                                 TablasModificadas.Add(Map.TablaLazaro);
                                                 Lfx.Workspace.Master.Structure.LoadBuiltIn();
@@ -220,7 +220,7 @@ namespace Lbl.Servicios.Importar
                         if (TablasModificadas.Count > 0) {
                                 foreach (string NombreTabla in TablasModificadas) {
                                         Lfx.Data.TableStructure Tabla = Lfx.Workspace.Master.Structure.Tables[NombreTabla];
-                                        this.DataBase.SetTableStructure(Tabla);
+                                        this.Connection.SetTableStructure(Tabla);
                                 }
                         }
                 }
@@ -248,7 +248,7 @@ namespace Lbl.Servicios.Importar
                 /// <returns>Un objeto de alguna clase derivada de ElementoDeDatos.</returns>
                 public Lbl.IElementoDeDatos CrearElemento(MapaDeTabla mapa, Lfx.Data.Row row)
                 {
-                        return Lbl.Instanciador.Instanciar(mapa.TipoElemento, this.DataBase, row);
+                        return Lbl.Instanciador.Instanciar(mapa.TipoElemento, this.Connection, row);
                 }
 
                 /// <summary>
@@ -259,7 +259,7 @@ namespace Lbl.Servicios.Importar
                 /// <returns></returns>
                 public Lbl.IElementoDeDatos CargarElemento(MapaDeTabla mapa, Lfx.Data.Row row)
                 {
-                        return Lbl.Instanciador.Instanciar(mapa.TipoElemento, this.DataBase, row.Fields[this.DataBase.Tables[mapa.TablaLazaro].PrimaryKey].ValueInt);
+                        return Lbl.Instanciador.Instanciar(mapa.TipoElemento, this.Connection, row.Fields[this.Connection.Tables[mapa.TablaLazaro].PrimaryKey].ValueInt);
                 }
         }
 }

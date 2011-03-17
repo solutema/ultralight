@@ -40,7 +40,7 @@ namespace Lbl.Servicios.Importar
         /// </summary>
         public class FiltroDbf : FiltroArchivos
         {
-                private System.Data.Odbc.OdbcConnection DbfConnection;
+                private System.Data.Odbc.OdbcConnection ConexionExterna;
 
                 public FiltroDbf(Lfx.Data.Connection dataBase)
                         : base(dataBase)
@@ -52,9 +52,9 @@ namespace Lbl.Servicios.Importar
                         Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Importando Datos", "Se van a importar datos utilizando el filtro " + this.ToString());
                         Progreso.Begin();
 
-                        DbfConnection = new System.Data.Odbc.OdbcConnection();
-                        DbfConnection.ConnectionString = @"Driver={Microsoft dBase Driver (*.dbf)};SourceType=DBF;SourceDB=" + this.Carpeta + ";Exclusive=No;Collate=Machine;NULL=NO;DELETED=NO;BACKGROUNDFETCH=NO;";
-                        DbfConnection.Open();
+                        ConexionExterna = new System.Data.Odbc.OdbcConnection();
+                        ConexionExterna.ConnectionString = @"Driver={Microsoft dBase Driver (*.dbf)};SourceType=DBF;SourceDB=" + this.Carpeta + ";Exclusive=No;Collate=Machine;NULL=NO;DELETED=NO;BACKGROUNDFETCH=NO;";
+                        ConexionExterna.Open();
 
                         Progreso.Max = MapaDeTablas.Count;
                         foreach (MapaDeTabla Map in MapaDeTablas) {
@@ -62,7 +62,7 @@ namespace Lbl.Servicios.Importar
                                 Progreso.Advance(1);
                         }
 
-                        DbfConnection.Close();
+                        ConexionExterna.Close();
                         Progreso.End();
                 }
 
@@ -78,7 +78,7 @@ namespace Lbl.Servicios.Importar
                                 SqlSelect += " WHERE " + mapa.Where;
 
                         // Hago un SELECT de la tabla
-                        System.Data.Odbc.OdbcCommand TableCommand = DbfConnection.CreateCommand();
+                        System.Data.Odbc.OdbcCommand TableCommand = ConexionExterna.CreateCommand();
                         TableCommand.CommandText = SqlSelect;
                         System.Data.DataTable ReadTable = new System.Data.DataTable();
                         ReadTable.Load(TableCommand.ExecuteReader());
