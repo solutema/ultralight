@@ -444,9 +444,8 @@ namespace Lui.Forms
                                 else
                                         base.Text = FormatearDatos(value);
 
-                                if (m_SelectOnFocus) {
-                                        TextBox1.SelectionStart = 0;
-                                        TextBox1.SelectionLength = this.TextRaw.Length;
+                                if (m_SelectOnFocus && m_ReadOnly == false) {
+                                        TextBox1.SelectAll();
                                 } else {
                                         TextBox1.SelectionStart = this.TextRaw.Length;
                                 }
@@ -605,7 +604,7 @@ namespace Lui.Forms
                 private void TextBox1_GotFocus(object sender, System.EventArgs e)
                 {
                         if (IgnorarEventos == 0 && this.ReadOnly == false) {
-                                if (m_SelectOnFocus)
+                                if (m_SelectOnFocus && m_ReadOnly == false)
                                         TextBox1.SelectAll();
                                 else
                                         TextBox1.SelectionStart = this.TextRaw.Length;

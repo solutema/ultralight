@@ -4184,7 +4184,7 @@ INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorig
 INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (41,'Remito','R',1,1,999,0,1,1,0);
 INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (51,'Presupuesto','PS',0,NULL,NULL,1,1,0,1);
 INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (53,'Recibo de Cobro','RC',0,NULL,NULL,1,0,1,0);
-INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (54,'Recibo de Pago','RCP',0,NULL,NULL,0,0,1,0);
+INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (54,'Recibo de Pago','RCP',0,NULL,NULL,1,0,1,0);
 INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (55,'Nota de Pedido','NP',0,NULL,NULL,0,0,0,0);
 INSERT INTO documentos_tipos (id_tipo, nombre, letra, mueve_stock, situacionorigen, situaciondestino, numerar_guardar, numerar_imprimir, imprimir_repetir, imprimir_modificar) VALUES (56,'Pedido','PD',0,NULL,NULL,0,0,0,0);
 

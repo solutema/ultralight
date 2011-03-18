@@ -160,14 +160,14 @@ namespace Lbl.Cajas
                 {
                         qGen.TableCommand Comando;
                         if (this.Existe == false) {
-                                Comando = new qGen.Insert(Connection, "cajas");
+                                Comando = new qGen.Insert(Connection, this.TablaDatos);
                                 Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                         } else {
-                                Comando = new qGen.Update(Connection, "cajas");
-                                Comando.WhereClause = new qGen.Where("id_caja", this.Id);
+                                Comando = new qGen.Update(Connection, this.TablaDatos);
+                                Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
-                        Comando.Fields.AddWithValue("nombre", this.Nombre);
+                        Comando.Fields.AddWithValue(this.CampoNombre, this.Nombre);
                         Comando.Fields.AddWithValue("titular", this.Titular);
                         if (Banco == null)
                                 Comando.Fields.AddWithValue("id_banco", null);

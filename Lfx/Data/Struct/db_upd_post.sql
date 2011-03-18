@@ -46,4 +46,17 @@ UPDATE situaciones SET nombrecorto='Exento' WHERE id_situacion=5;
 UPDATE situaciones SET nombrecorto='No Resp.' WHERE id_situacion=6;
 UPDATE situaciones SET nombrecorto='No Categ.' WHERE id_situacion=6;
 
+UPDATE documentos_tipos SET tabla='comprob' WHERE tabla IS NULL;
+UPDATE documentos_tipos SET tabla='recibos' WHERE tabla IS NULL AND letra IN ('RC', 'RCP');
+
+UPDATE documentos_tipos SET tipo='Lbl.Comprobantes.Presupuesto' WHERE tabla IS NULL AND letra='PS';
+UPDATE documentos_tipos SET tipo='Lbl.Comprobantes.Factura' WHERE tabla IS NULL AND letra IN ('FA', 'FB', 'FC', 'FE', 'FM');
+UPDATE documentos_tipos SET tipo='Lbl.Comprobantes.NotaDeCredito' WHERE tabla IS NULL AND letra IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM');
+UPDATE documentos_tipos SET tipo='Lbl.Comprobantes.NotaDeDebito' WHERE tabla IS NULL AND letra IN ('NDA', 'NDB', 'NDC', 'NDE', 'NDM');
+UPDATE documentos_tipos SET tipo='Lbl.Comprobantes.ReciboDeCobro' WHERE tabla IS NULL AND letra='RC';
+UPDATE documentos_tipos SET tipo='Lbl.Comprobantes.ReciboDePago' WHERE tabla IS NULL AND letra='RCP';
+UPDATE documentos_tipos SET tipo='Lbl.Comprobantes.Ticket' WHERE tabla IS NULL AND letra='T';
+UPDATE documentos_tipos SET tipo='Lbl.Comprobantes.Remito' WHERE tabla IS NULL AND letra='R';
+UPDATE documentos_tipos SET tipo='Lbl.Comprobantes.Pedido' WHERE tabla IS NULL AND letra='PD';
+
 SET FOREIGN_KEY_CHECKS=1;

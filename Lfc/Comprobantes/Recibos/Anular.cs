@@ -90,7 +90,7 @@ namespace Lfc.Comprobantes.Recibos
 
                         int IdRecibo = 0;
                         if (Numero > 0)
-                                IdRecibo = this.Connection.FieldInt("SELECT id_recibo FROM recibos WHERE tipo_fac='" + EntradaTipo.TextKey + "' AND pv=" + PV.ToString() + " AND numero=" + Numero.ToString());
+                                IdRecibo = this.Connection.FieldInt("SELECT id_recibo FROM recibos WHERE tipo_fac='" + EntradaTipo.TextKey + "' AND pv=" + PV.ToString() + " AND numero=" + Numero.ToString() + " ORDER BY id_recibo DESC");
 
                         this.Cargar(IdRecibo);
                 }

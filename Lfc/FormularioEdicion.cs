@@ -257,7 +257,7 @@ namespace Lfc
                                 return;
 
                         foreach (System.Windows.Forms.Control ctl in controles) {
-                                if (ctl == null) {
+                                if (ctl == null || ctl is Lcc.Edicion.Comentarios) {
                                         //Nada
                                 } else if (ctl is Lui.Forms.Control) {
                                         ((Lui.Forms.Control)ctl).ReadOnly = newValue;

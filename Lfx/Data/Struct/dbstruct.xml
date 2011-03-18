@@ -296,6 +296,8 @@
     <Column name="id_tipo" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="letra" datatype="VarChar" nullable="0" lenght="50" />
     <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" />
+    <Column name="tabla" datatype="VarChar" nullable="1" lenght="200" />
+    <Column name="tipo" datatype="VarChar" nullable="1" lenght="200" />
     <Column name="mueve_stock" inputtype="Bool" nullable="0" default="0" />
     <Column name="situacionorigen" datatype="Integer" nullable="1" />
     <Column name="situaciondestino" datatype="Integer" nullable="1" />

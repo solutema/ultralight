@@ -121,5 +121,17 @@ namespace Lcc.Edicion
                                 base.Text = value;
                         }
                 }
+
+                public override bool ReadOnly
+                {
+                        get
+                        {
+                                return base.ReadOnly;
+                        }
+                        set
+                        {
+                                base.ReadOnly = false;
+                        }
+                }
         }
 }
