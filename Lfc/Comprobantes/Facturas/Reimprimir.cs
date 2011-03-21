@@ -110,9 +110,9 @@ namespace Lfc.Comprobantes.Facturas
                         if (Cantidad == 1) {
                                 int IdFactura = this.Connection.FieldInt("SELECT id_comprob FROM comprob WHERE impresa=1 AND tipo_fac IN (" + IncluyeTipos + ") AND pv=" + PV.ToString() + " AND numero=" + Desde.ToString());
 
-                                Lbl.Comprobantes.ComprobanteConArticulos FacturaInicial = null;
+                                Lbl.Comprobantes.ComprobanteFacturable FacturaInicial = null;
                                 if (IdFactura > 0)
-                                        FacturaInicial = new Lbl.Comprobantes.ComprobanteConArticulos(this.Connection, IdFactura);
+                                        FacturaInicial = new Lbl.Comprobantes.ComprobanteFacturable(this.Connection, IdFactura);
 
                                 if (FacturaInicial != null && FacturaInicial.Existe) {
                                         ComprobanteVistaPrevia.Elemento = FacturaInicial;

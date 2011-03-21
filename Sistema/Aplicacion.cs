@@ -860,7 +860,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         break;
 
                                 case "REIMPRIMIR":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.ColeccionComprobanteConArticulos), Lbl.Sys.Permisos.Operaciones.Imprimir)) {
+                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.ComprobanteFacturable), Lbl.Sys.Permisos.Operaciones.Imprimir)) {
                                                 string SubComandoAnular = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
 
                                                 int IdComprobanteAnular = Lfx.Types.Parsing.ParseInt(Lfx.Types.Strings.GetNextToken(ref comando, " "));
@@ -878,7 +878,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         break;
 
                                 case "INICIAR_TALONARIO":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.ColeccionComprobanteConArticulos), Lbl.Sys.Permisos.Operaciones.Administrar)) {
+                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.Comprobante), Lbl.Sys.Permisos.Operaciones.Administrar)) {
                                                 string TipoIniciar = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
 
                                                 Lfc.Comprobantes.IniciarNumeracion FormularioIniciarNumeracion = new Lfc.Comprobantes.IniciarNumeracion();

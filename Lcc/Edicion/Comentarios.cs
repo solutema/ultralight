@@ -130,6 +130,7 @@ namespace Lcc.Edicion
                         }
                         set
                         {
+                                // Los comentarios nunca son ReadOnly
                                 base.ReadOnly = false;
                         }
                 }
