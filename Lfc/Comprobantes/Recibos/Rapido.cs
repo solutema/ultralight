@@ -57,8 +57,9 @@ namespace Lfc.Comprobantes.Recibos
 			this.Connection.BeginTransaction(true);
 
 			Lbl.Personas.Persona Cliente = new Lbl.Personas.Persona(Connection, EntradaCliente.TextInt);
-			Lbl.Comprobantes.ReciboDeCobro Rec = new Lbl.Comprobantes.ReciboDeCobro(this.Connection, Cliente);
+			Lbl.Comprobantes.ReciboDeCobro Rec = new Lbl.Comprobantes.ReciboDeCobro(this.Connection);
 			Rec.Crear();
+                        Rec.Cliente = Cliente;
 			Rec.Cobros.Add(new Lbl.Comprobantes.Cobro(Connection, Lbl.Pagos.TiposFormasDePago.Caja, Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text)));
 			Rec.Cobros[0].CajaDestino = new Lbl.Cajas.Caja(Connection, EntradaCaja.TextInt);
                         Rec.Vendedor = Lbl.Sys.Config.Actual.UsuarioConectado.Persona;

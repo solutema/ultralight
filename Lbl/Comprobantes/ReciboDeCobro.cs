@@ -42,13 +42,6 @@ namespace Lbl.Comprobantes
                 public ReciboDeCobro(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
 
-                public ReciboDeCobro(Lfx.Data.Connection dataBase, Personas.Persona cliente)
-                        : this(dataBase)
-                {
-                        this.Crear();
-                        this.Cliente = cliente;
-                }
-
                 public ReciboDeCobro(Lfx.Data.Connection dataBase, int itemId)
                         : base(dataBase, itemId) { }
 

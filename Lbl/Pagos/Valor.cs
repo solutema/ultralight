@@ -77,11 +77,6 @@ namespace Lbl.Pagos
                                         this.FormaDePago = new Lbl.Pagos.FormaDePago(this.Connection, this.GetFieldValue<int>("id_formapago"));
                                 else
                                         this.FormaDePago = null;
-
-                                /* if (this.GetFieldValue<int>("id_recibo") > 0)
-                                        this.Recibo = new Lbl.Comprobantes.Recibo(this.DataBase, this.GetFieldValue<int>("id_recibo"));
-                                else
-                                        this.Recibo = null; */
                         }
                         base.OnLoad();
                 }
