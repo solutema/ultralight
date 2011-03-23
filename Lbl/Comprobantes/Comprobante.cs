@@ -176,21 +176,15 @@ namespace Lbl.Comprobantes
                 }
 
 
-                public Lfx.Types.LDateTime Fecha
+                public DateTime Fecha
                 {
                         get
                         {
-                                if (Registro["fecha"] == null || Registro["fecha"] is DBNull)
-                                        return null;
-                                else
-                                        return new Lfx.Types.LDateTime(System.Convert.ToDateTime(Registro["fecha"]));
+                                return this.GetFieldValue<DateTime>("fecha");
                         }
                         set
                         {
-                                if (value != null)
-                                        Registro["fecha"] = value.Value;
-                                else
-                                        Registro["fecha"] = null;
+                                Registro["fecha"] = value;
                         }
                 }
 

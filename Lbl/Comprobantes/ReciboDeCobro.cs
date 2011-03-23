@@ -40,11 +40,7 @@ namespace Lbl.Comprobantes
         {
                 //Heredar constructor
                 public ReciboDeCobro(Lfx.Data.Connection dataBase)
-                        : base(dataBase)
-                {
-                        this.Crear();
-                        this.Vendedor = new Personas.Persona(dataBase, Lbl.Sys.Config.Actual.UsuarioConectado.Id);
-                }
+                        : base(dataBase) { }
 
                 public ReciboDeCobro(Lfx.Data.Connection dataBase, Personas.Persona cliente)
                         : this(dataBase)
@@ -53,18 +49,18 @@ namespace Lbl.Comprobantes
                         this.Cliente = cliente;
                 }
 
-                public ReciboDeCobro(Lfx.Data.Connection dataBase, int idRecibo)
-                        : this(dataBase)
-                {
-                        this.m_ItemId = idRecibo;
-                        this.Cargar();
-                }
+                public ReciboDeCobro(Lfx.Data.Connection dataBase, int itemId)
+                        : base(dataBase, itemId) { }
+
+                public ReciboDeCobro(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
+                        : base(dataBase, fromRow) { }
 
                 public override void Crear()
                 {
                         base.Crear();
                         this.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra["RC"];
                         this.Concepto = Lbl.Cajas.Concepto.IngresosPorFacturacion;
+                        this.Vendedor = new Personas.Persona(this.Connection, Lbl.Sys.Config.Actual.UsuarioConectado.Id);
                 }
         }
 }
