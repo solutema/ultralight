@@ -106,23 +106,23 @@ namespace Lbl.Cuotas
                                 }
                         }
 
-                        //Cargo los estados de las cuotas
-                        using (System.Data.DataTable Cuotas = this.Connection.Select("SELECT id_cuota, cuota, estado, estado_com FROM ventas_cuotas WHERE prefijo=" + this.GetFieldValue<int>("prefijo").ToString() + " AND operacion=" + this.GetFieldValue<int>("operacion").ToString())) {
-                                foreach(System.Data.DataRow Cuota in Cuotas.Rows) {
-                                        int CuotaNum = System.Convert.ToInt32(Cuota["cuota"]);
-                                        EstadosCuotas[CuotaNum] = new EstadoCuota();
-                                        EstadosCuotas[CuotaNum].Id = System.Convert.ToInt32(Cuota["id_cuota"]);
-                                        EstadosCuotas[CuotaNum].EstadoCliente = (Estados)(System.Convert.ToInt32(Cuota["estado"]));
-                                        EstadosCuotas[CuotaNum].EstadoComercio = (Estados)(System.Convert.ToInt32(Cuota["estado_com"]));
-                                }
-                        }
-
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
                 public override void OnLoad()
                 {
                         if (this.Registro != null) {
+                                //Cargo los estados de las cuotas
+                                using (System.Data.DataTable Cuotas = this.Connection.Select("SELECT id_cuota, cuota, estado, estado_com FROM ventas_cuotas WHERE prefijo=" + this.GetFieldValue<int>("prefijo").ToString() + " AND operacion=" + this.GetFieldValue<int>("operacion").ToString())) {
+                                        foreach (System.Data.DataRow Cuota in Cuotas.Rows) {
+                                                int CuotaNum = System.Convert.ToInt32(Cuota["cuota"]);
+                                                EstadosCuotas[CuotaNum] = new EstadoCuota();
+                                                EstadosCuotas[CuotaNum].Id = System.Convert.ToInt32(Cuota["id_cuota"]);
+                                                EstadosCuotas[CuotaNum].EstadoCliente = (Estados)(System.Convert.ToInt32(Cuota["estado"]));
+                                                EstadosCuotas[CuotaNum].EstadoComercio = (Estados)(System.Convert.ToInt32(Cuota["estado_com"]));
+                                        }
+                                }
+
                                 if (this.GetFieldValue<int>("id_cliente") != 0)
                                         this.Cliente = new Lbl.Personas.Persona(Connection, this.GetFieldValue<int>("id_cliente"));
 
