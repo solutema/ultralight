@@ -230,5 +230,24 @@ namespace Lbl
                         }
                         return Res;
                 }
+
+                public override string ToString()
+                {
+                        return this.ToString(", ");
+                }
+
+                public string ToString(string separator)
+                {
+                        System.Text.StringBuilder Res = new StringBuilder();
+
+                        foreach (ElementoDeDatos Elem in this) {
+                                if (Res.Length == 0)
+                                        Res.Append(Elem.ToString());
+                                else
+                                        Res.Append(separator + Elem.ToString());
+                        }
+
+                        return Res.ToString();
+                }
         }
 }

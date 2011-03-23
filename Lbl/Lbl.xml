@@ -560,6 +560,11 @@
             Devuelve o establece la cantidad de cuotas en las que se paga esta operación.
             </summary>
         </member>
+        <member name="P:Lbl.Cuotas.Cuota.CuotasPendientesCliente">
+            <summary>
+            Devuelve o establece la cantidad de cuotas que aun no fueron liquidadas al cliente.
+            </summary>
+        </member>
         <member name="P:Lbl.Cuotas.Cuota.Autorizacion">
             <summary>
             Devuelve o establece el número de autorizacón para esta operación.

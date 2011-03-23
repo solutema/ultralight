@@ -433,7 +433,7 @@
             Proporciona un espacio de trabajo que incluye acceso a los datos y a la configuración.
             </summary>
         </member>
-        <member name="M:Lfx.Workspace.DebugLog(System.Int32,System.String,System.Diagnostics.Stopwatch)">
+        <member name="M:Lfx.Workspace.DebugLog(System.Int32,System.String)">
             <summary>
             Log de comandos SQL (normalmente a la consola). Sólo para depuración.
             </summary>

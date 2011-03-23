@@ -40,7 +40,8 @@ namespace Lfx.Data
         /// </summary>
         public class Connection : IDisposable
         {
-                public bool EnableRecover = false, RequiresTransaction = false;
+                public bool EnableRecover = false, RequiresTransaction = false, ReadOnly = false;
+
                 public Lfx.Workspace Workspace;
                 public int KeepAlive = 600;             // 10 minutos
                 private string m_Name = null;
@@ -48,7 +49,6 @@ namespace Lfx.Data
                 public readonly int Handle = 0;
                 private static int LastHandle = 0;
                 private System.Timers.Timer KeepAliveTimer = null;
-                private System.Diagnostics.Stopwatch PerfCounter = new System.Diagnostics.Stopwatch();
                 private System.Data.IDbConnection DbConnection;
                 private bool m_InTransaction = false, m_Closing = false;
 
@@ -70,7 +70,7 @@ namespace Lfx.Data
                         if (DbConnection != null && DbConnection.State != System.Data.ConnectionState.Closed && DbConnection.State != System.Data.ConnectionState.Broken)
                                 return false;
 
-                        this.Workspace.DebugLog(this.Handle, "Abriendo " + this.Name, null);
+                        this.Workspace.DebugLog(this.Handle, "Abriendo " + this.Name);
 
                         System.Text.StringBuilder ConnectionString = new System.Text.StringBuilder();
 
@@ -88,6 +88,7 @@ namespace Lfx.Data
                                         ConnectionString.Append("Connection Timeout=30;");
                                         ConnectionString.Append("Default Command Timeout=9000;");
                                         ConnectionString.Append("Allow User Variables=True;");
+                                        ConnectionString.Append("Allow Batch=True;");
                                         // ConnectionString.Append("KeepAlive=20;");     // No sirve, uso KeepAlive propio
                                         ConnectionString.Append("Pooling=false;");      // Si habilitamos el Pooling, en conector mantiene muchas conexiones abiertas
                                                                                         // El pool crece, pero nunca se achica
@@ -823,7 +824,7 @@ LEFT JOIN pg_attribute
                                 return;
                         } else {
                                 this.Workspace.ActiveConnections.Remove(this);
-                                this.Workspace.DebugLog(this.Handle, "Deshechando " + this.Name, null);
+                                this.Workspace.DebugLog(this.Handle, "Deshechando " + this.Name);
                                 this.Close();
 
                                 if (KeepAliveTimer != null) {
@@ -878,6 +879,9 @@ LEFT JOIN pg_attribute
 
                 public int Update(qGen.Update updateCommand)
                 {
+                        if (this.ReadOnly)
+                                throw new InvalidOperationException("No se pueden realizar cambios en la conexión de lectura");
+
                         updateCommand.SqlMode = this.SqlMode;
 
                         if (this.IsOpen() == false)
@@ -901,6 +905,9 @@ LEFT JOIN pg_attribute
 
                 public int Delete(qGen.Delete deleteCommand)
                 {
+                        if (this.ReadOnly)
+                                throw new InvalidOperationException("No se pueden realizar cambios en la conexión de lectura");
+
                         deleteCommand.SqlMode = this.SqlMode;
 
                         if (this.IsOpen() == false)
@@ -911,6 +918,9 @@ LEFT JOIN pg_attribute
 
                 public int Insert(qGen.Insert insertCommand)
                 {
+                        if (this.ReadOnly)
+                                throw new InvalidOperationException("No se pueden realizar cambios en la conexión de lectura");
+
                         insertCommand.SqlMode = this.SqlMode;
 
                         if (this.IsOpen() == false)
@@ -932,6 +942,9 @@ LEFT JOIN pg_attribute
                 // FIXME: Debería ser private o no existir
                 public int Execute(string sqlCommand)
                 {
+                        if (this.ReadOnly)
+                                throw new InvalidOperationException("No se pueden realizar cambios en la conexión de lectura");
+
                         // TODO: esto debería hacerlo no sólo en DesignMode
                         if (this.RequiresTransaction && this.InTransaction == false && Lfx.Environment.SystemInformation.DesignMode)
                                 throw new InvalidOperationException("No se permite la ejecución de comandos fuera de una transacción en la conexión " + this.Name);
@@ -945,6 +958,9 @@ LEFT JOIN pg_attribute
 
                 public int Execute(qGen.Command sqlCommand)
                 {
+                        if (this.ReadOnly)
+                                throw new InvalidOperationException("No se pueden realizar cambios en la conexión de lectura");
+
                         if (sqlCommand is qGen.Update || sqlCommand is qGen.Insert || sqlCommand is qGen.Delete) {
                                 // TODO: esto debería hacerlo no sólo en DesignMode
                                 if (this.RequiresTransaction && this.InTransaction == false && Lfx.Environment.SystemInformation.DesignMode)
@@ -958,6 +974,9 @@ LEFT JOIN pg_attribute
 
                 private int ExecuteNonQuery(System.Data.IDbCommand command)
                 {
+                        if (this.ReadOnly)
+                                throw new InvalidOperationException("No se pueden realizar cambios en la conexión de lectura");
+
                         if (this.IsOpen() == false)
                                 this.Open();
 
@@ -968,11 +987,7 @@ LEFT JOIN pg_attribute
                                                 command.Connection = this.DbConnection;
 
                                         this.ResetKeepAliveTimer();
-                                        PerfCounter.Reset();
-                                        PerfCounter.Start();
                                         int Res = command.ExecuteNonQuery();
-                                        PerfCounter.Stop();
-                                        this.Workspace.DebugLog(this.Handle, command.CommandText, PerfCounter);
                                         return Res;
                                 } catch (Exception ex)  {
                                         if (this.TryToRecover(ex) || Intentos-- <= 0) {
@@ -1024,6 +1039,9 @@ LEFT JOIN pg_attribute
 
                 private object ConnExecuteScalar(string selectCommand)
                 {
+                        if (this.ReadOnly)
+                                throw new InvalidOperationException("No se pueden realizar cambios en la conexión de lectura");
+
                         if (this.IsOpen() == false)
                                 this.Open();
 
@@ -1031,11 +1049,7 @@ LEFT JOIN pg_attribute
                         int Intentos = 3;
                         while (true) {
                                 try {
-                                        PerfCounter.Reset();
-                                        PerfCounter.Start();
                                         object Res = Cmd.ExecuteScalar();
-                                        PerfCounter.Stop();
-                                        this.Workspace.DebugLog(this.Handle, selectCommand, PerfCounter);
                                         return Res;
                                 }
                                 catch (Exception ex) {
@@ -1186,11 +1200,7 @@ LEFT JOIN pg_attribute
                                 try {
                                         Cmd.Connection = this.DbConnection;
                                         this.ResetKeepAliveTimer();
-                                        PerfCounter.Reset();
-                                        PerfCounter.Start();
                                         System.Data.IDataReader Rdr = Cmd.ExecuteReader(System.Data.CommandBehavior.SingleResult);
-                                        PerfCounter.Stop();
-                                        this.Workspace.DebugLog(this.Handle, selectCommand, PerfCounter);
                                         return Rdr;
                                 }
                                 catch (Exception ex) {
@@ -1249,16 +1259,12 @@ LEFT JOIN pg_attribute
                                 }
                         } */
 
-                        PerfCounter.Reset();
-                        PerfCounter.Start();
                         System.Data.IDbDataAdapter Adaptador = Lfx.Data.DataBaseCache.DefaultCache.Provider.GetAdapter(selectCommand, this.DbConnection);
                         using (System.Data.DataSet Lector = new System.Data.DataSet()) {
                                 while (true) {
                                         try {
                                                 this.ResetKeepAliveTimer();
                                                 Adaptador.Fill(Lector);
-                                                PerfCounter.Stop();
-                                                this.Workspace.DebugLog(this.Handle, selectCommand, PerfCounter);
                                                 break;
                                         } catch (Exception ex) {
                                                 if (this.TryToRecover(ex)) {
@@ -1343,13 +1349,18 @@ LEFT JOIN pg_attribute
 
                 public void BeginTransaction()
                 {
-                        if (this.Handle == 0 && Lfx.Environment.SystemInformation.DesignMode)
-                                throw new InvalidOperationException("No se pueden realizar transacciones en el espacio de trabajo maestro");
                         this.BeginTransaction(true);
                 }
 
                 public void BeginTransaction(bool serializable)
                 {
+                        if (this.Handle == 0 && Lfx.Environment.SystemInformation.DesignMode)
+                                throw new InvalidOperationException("No se pueden realizar transacciones en el espacio de trabajo maestro");
+
+                        if (this.ReadOnly)
+                                throw new InvalidOperationException("No se pueden realizar transacciones en la conexión de lectura");
+
+
                         if (this.IsOpen() == false)
                                 this.Open();
 

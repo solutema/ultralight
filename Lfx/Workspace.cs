@@ -188,7 +188,7 @@ namespace Lfx
                 /// <summary>
                 /// Log de comandos SQL (normalmente a la consola). Sólo para depuración.
                 /// </summary>
-                public void DebugLog(int handle, string command, System.Diagnostics.Stopwatch perfCounter)
+                public void DebugLog(int handle, string command)
                 {
                         /* if (this.DebugMode && perfCounter != null && perfCounter.ElapsedMilliseconds > 500)
                                 System.Console.WriteLine(handle.ToString() + ": " 
