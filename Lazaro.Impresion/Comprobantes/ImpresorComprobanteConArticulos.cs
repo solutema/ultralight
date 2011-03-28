@@ -84,29 +84,31 @@ namespace Lazaro.Impresion.Comprobantes
                                 if (this.Comprobante.Tipo.MueveStock)
                                         Lbl.Articulos.Stock.MoverStockComprobante(this.Comprobante);
 
-                                Lbl.CuentasCorrientes.CuentaCorriente CtaCte = this.Comprobante.Cliente.CuentaCorriente;
+                                if (this.Comprobante.FormaDePago != null) {
+                                        Lbl.CuentasCorrientes.CuentaCorriente CtaCte = this.Comprobante.Cliente.CuentaCorriente;
 
-                                //Asiento el pago (sólo efectivo y cta. cte.)
-                                //El resto de los pagos los maneja el formulario desde donde se mandó a imprimir
-                                switch (this.Comprobante.FormaDePago.Tipo) {
-                                        case Lbl.Pagos.TiposFormasDePago.Efectivo:
-                                                if (this.Comprobante.ImporteImpago > 0) {
-                                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(this.Elemento.Connection, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
-                                                        Caja.Movimiento(true,
-                                                                Lbl.Cajas.Concepto.IngresosPorFacturacion,
-                                                                "Cobro " + this.Comprobante.ToString(),
-                                                                this.Comprobante.Cliente,
-                                                                this.Comprobante.ImporteImpago,
-                                                                null,
-                                                                this.Comprobante,
-                                                                null,
-                                                                null);
-                                                        this.Comprobante.CancelarImporte(this.Comprobante.ImporteImpago, null);
-                                                }
-                                                break;
-                                        case Lbl.Pagos.TiposFormasDePago.CuentaCorriente:
-                                                CtaCte.IngresarComprobante(this.Comprobante);
-                                                break;
+                                        //Asiento el pago (sólo efectivo y cta. cte.)
+                                        //El resto de los pagos los maneja el formulario desde donde se mandó a imprimir
+                                        switch (this.Comprobante.FormaDePago.Tipo) {
+                                                case Lbl.Pagos.TiposFormasDePago.Efectivo:
+                                                        if (this.Comprobante.ImporteImpago > 0) {
+                                                                Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(this.Elemento.Connection, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
+                                                                Caja.Movimiento(true,
+                                                                        Lbl.Cajas.Concepto.IngresosPorFacturacion,
+                                                                        "Cobro " + this.Comprobante.ToString(),
+                                                                        this.Comprobante.Cliente,
+                                                                        this.Comprobante.ImporteImpago,
+                                                                        null,
+                                                                        this.Comprobante,
+                                                                        null,
+                                                                        null);
+                                                                this.Comprobante.CancelarImporte(this.Comprobante.ImporteImpago, null);
+                                                        }
+                                                        break;
+                                                case Lbl.Pagos.TiposFormasDePago.CuentaCorriente:
+                                                        CtaCte.IngresarComprobante(this.Comprobante);
+                                                        break;
+                                        }
                                 }
                         }
 
@@ -208,7 +210,10 @@ namespace Lazaro.Impresion.Comprobantes
 
                                 case "FORMAPAGO":
                                 case "COMPROBANTE.FORMAPAGO":
-                                        return this.Comprobante.FormaDePago.ToString();
+                                        if (this.Comprobante.FormaDePago == null)
+                                                return "";
+                                        else
+                                                return this.Comprobante.FormaDePago.ToString();
 
                                 case "SONPESOS":
                                 case "COMPROBANTE.SONPESOS":

@@ -364,7 +364,7 @@ namespace Lbl.Cuotas
                 {
                         get
                         {
-                                return this.Vencimiento - System.DateTime.Now;
+                                return this.Vencimiento - this.Connection.ServerDateTime;
                         }
                 }
 

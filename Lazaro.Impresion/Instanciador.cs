@@ -54,7 +54,13 @@ namespace Lazaro.Impresion
                                         return Func.Instancia.Impresor;
                         }
 
-                        return InferirImpresor(tipo.ToString());
+                        Type Res = InferirImpresor(tipo.ToString());
+
+                        if (Res == typeof(Lazaro.Impresion.ImpresorGenerico))
+                                // Intento buscar un impresora para la clase base
+                                Res = InferirImpresor(tipo.BaseType);
+
+                        return Res;
                 }
 
                 private static Type InferirImpresor(string tipoOTabla)
@@ -73,6 +79,7 @@ namespace Lazaro.Impresion
                                 case "Lbl.Comprobantes.Factura":
                                 case "Lbl.Comprobantes.NotaDeDebito":
                                 case "Lbl.Comprobantes.NotaDeCredito":
+                                case "Lbl.Comprobantes.Remito":
                                         return typeof(Impresion.Comprobantes.ImpresorComprobanteConArticulos);
                                 default:
                                         return typeof(ImpresorGenerico);

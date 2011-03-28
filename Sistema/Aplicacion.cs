@@ -1259,6 +1259,11 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                                 ((Lfc.Comprobantes.Inicio)(FormularioListado)).Letra = ListadoComprobLetra;
                                         break;
 
+                                case "Lbl.Comprobantes.Remito":
+                                        FormularioListado = new Lfc.Comprobantes.Inicio();
+                                        FormularioListado.ElementoTipo = Lbl.Instanciador.InferirTipo(SubComando);
+                                        break;
+
                                 case "Lbl.Comprobantes.ComprobanteDeCompra":
                                         FormularioListado = new Lfc.Comprobantes.Compra.Inicio();
                                         FormularioListado.ElementoTipo = Lbl.Instanciador.InferirTipo(SubComando);
