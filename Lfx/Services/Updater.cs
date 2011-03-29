@@ -223,27 +223,31 @@ namespace Lfx.Services
                                         //Ignoro archivos ocultos
                                         if ((DirItem.Attributes & System.IO.FileAttributes.Hidden) != System.IO.FileAttributes.Hidden) {
                                                 System.Xml.XmlDocument VersionComponente = new System.Xml.XmlDocument();
-                                                string VerFileName = Lfx.Environment.Folders.UpdatesFolder + "Components" + System.IO.Path.DirectorySeparatorChar + DirItem.Name; ;
-                                                if (System.IO.File.Exists(VerFileName))
-                                                        VersionComponente.Load(VerFileName);
-                                                else if (System.IO.File.Exists(Lfx.Environment.Folders.ComponentsFolder + DirItem.Name))
-                                                        VersionComponente.Load(Lfx.Environment.Folders.ComponentsFolder + DirItem.Name);
+                                                string VerFileName = Lfx.Environment.Folders.UpdatesFolder + "Components" + System.IO.Path.DirectorySeparatorChar + DirItem.Name;
+                                                try {
+                                                        if (System.IO.File.Exists(VerFileName))
+                                                                VersionComponente.Load(VerFileName);
+                                                        else if (System.IO.File.Exists(Lfx.Environment.Folders.ComponentsFolder + DirItem.Name))
+                                                                VersionComponente.Load(Lfx.Environment.Folders.ComponentsFolder + DirItem.Name);
 
-                                                System.Xml.XmlNode NodoComponente = VersionComponente.SelectSingleNode("/VersionInfo/Component[@name='" + System.IO.Path.GetFileNameWithoutExtension(DirItem.Name) + "']");
-                                                string URLComponente;
-                                                if (NodoComponente.Attributes["url"] == null)
-                                                        URLComponente = UrlActualizaciones;
-                                                else
-                                                        URLComponente = NodoComponente.Attributes["url"].Value;
+                                                        System.Xml.XmlNode NodoComponente = VersionComponente.SelectSingleNode("/VersionInfo/Component[@name='" + System.IO.Path.GetFileNameWithoutExtension(DirItem.Name) + "']");
+                                                        string URLComponente;
+                                                        if (NodoComponente.Attributes["url"] == null)
+                                                                URLComponente = UrlActualizaciones;
+                                                        else
+                                                                URLComponente = NodoComponente.Attributes["url"].Value;
 
-                                                ArchivoVersion.Attributes["name"].Value = DirItem.Name;
-                                                if (UpdateFileFromWeb(URLComponente, ArchivoVersion, true, "Components/")) {
-                                                        VersionComponente.Load(VerFileName);
-                                                        NodoComponente = VersionComponente.SelectSingleNode("/VersionInfo/Component[@name='" + System.IO.Path.GetFileNameWithoutExtension(DirItem.Name) + "']");
-                                                        VersionInfo.AppendChild(VersionXml.ImportNode(NodoComponente, true));
-                                                } else {
-                                                        //No pude descargar. No importa, despejo el error
-                                                        ErrorMessage = null;
+                                                        ArchivoVersion.Attributes["name"].Value = DirItem.Name;
+                                                        if (UpdateFileFromWeb(URLComponente, ArchivoVersion, true, "Components/")) {
+                                                                VersionComponente.Load(VerFileName);
+                                                                NodoComponente = VersionComponente.SelectSingleNode("/VersionInfo/Component[@name='" + System.IO.Path.GetFileNameWithoutExtension(DirItem.Name) + "']");
+                                                                VersionInfo.AppendChild(VersionXml.ImportNode(NodoComponente, true));
+                                                        } else {
+                                                                //No pude descargar. No importa, despejo el error
+                                                                ErrorMessage = null;
+                                                        }
+                                                } catch {
+                                                        // Error al cargar archivo de info de versión. No importa.
                                                 }
                                         }
                                 }

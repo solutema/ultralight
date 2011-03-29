@@ -42,6 +42,7 @@ namespace Lbl.Tareas
         public class Tarea : ElementoDeDatos
         {
                 private Lbl.ColeccionGenerica<Comprobantes.DetalleArticulo> m_Articulos = null;
+                //private Lbl.ColeccionGenerica<Novedad> m_Novedades = null;
 
                 public Lbl.Personas.Persona Cliente, Encargado;
                 public Lbl.Tareas.Tipo Tipo;
