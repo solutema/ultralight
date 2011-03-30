@@ -238,6 +238,17 @@ namespace qGen
                                         }
                                         break;
 
+                                case qGen.ComparisonOperators.InsensitiveNotLike:
+                                        switch (m_Mode) {
+                                                case qGen.SqlModes.PostgreSql:
+                                                        Result = LeftValue + " NOT ILIKE " + FormatValue(RightValue);
+                                                        break;
+                                                default:
+                                                        Result = LeftValue + " NOT LIKE " + FormatValue(RightValue);
+                                                        break;
+                                        }
+                                        break;
+
                                 case qGen.ComparisonOperators.LessOrEqual:
                                         Result = LeftValue + "<=" + FormatValue(RightValue);
                                         break;
@@ -260,6 +271,17 @@ namespace qGen
                                                         break;
                                                 default:
                                                         Result = LeftValue + " LIKE " + FormatValue(RightValue);
+                                                        break;
+                                        }
+                                        break;
+
+                                case qGen.ComparisonOperators.SensitiveNotLike:
+                                        switch (m_Mode) {
+                                                case qGen.SqlModes.MySql:
+                                                        Result = "BINARY " + LeftValue + " NOT LIKE BINARY " + FormatValue(RightValue);
+                                                        break;
+                                                default:
+                                                        Result = LeftValue + " NOT LIKE " + FormatValue(RightValue);
                                                         break;
                                         }
                                         break;

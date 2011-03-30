@@ -119,6 +119,7 @@ namespace Lazaro.Impresion.Comprobantes
                 {
                         string Res = null;
                         switch (nombreCampo.ToUpperInvariant()) {
+                                case "ARTICULOS.CODIGOS":
                                 case "ARTÍCULOS.CÓDIGOS":
                                 case "CODIGOS":
                                 case "CÓDIGOS":
@@ -136,6 +137,8 @@ namespace Lazaro.Impresion.Comprobantes
                                                         Res += System.Environment.NewLine + CodigoImprimir;
                                         }
                                         return Res;
+
+                                case "ARTICULOS.CANTIDADES":
                                 case "ARTÍCULOS.CANTIDADES":
                                 case "CANTIDADES":
                                         Res = null;
@@ -147,6 +150,29 @@ namespace Lazaro.Impresion.Comprobantes
                                         }
                                         return Res;
 
+                                case "ARTICULOS.IVA":
+                                case "ARTÍCULOS.IVA":
+                                        Res = null;
+                                        for (int i = 0; i < this.Comprobante.Articulos.Count; i++) {
+                                                if (Res == null)
+                                                        Res = this.Comprobante.Articulos[i].ObtenerAlicuota().ToString();
+                                                else
+                                                        Res += System.Environment.NewLine + this.Comprobante.Articulos[i].ObtenerAlicuota().ToString();
+                                        }
+                                        return Res;
+
+                                case "ARTICULOS.IVADISCRIMINADO":
+                                case "ARTÍCULOS.IVADISCRIMINADO":
+                                        Res = null;
+                                        for (int i = 0; i < this.Comprobante.Articulos.Count; i++) {
+                                                if (Res == null)
+                                                        Res = Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Articulos[i].IvaDiscriminado, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
+                                                else
+                                                        Res += Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Articulos[i].IvaDiscriminado, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
+                                        }
+                                        return Res;
+
+                                case "ARTICULOS.DETALLES":
                                 case "ARTÍCULOS.DETALLES":
                                 case "DETALLES":
                                         Res = null;
@@ -167,6 +193,7 @@ namespace Lazaro.Impresion.Comprobantes
                                                 Res += System.Environment.NewLine + "Recargo: " + Lfx.Types.Formatting.FormatNumberForPrint(this.Comprobante.Descuento, 2) + "%";
                                         return Res;
 
+                                case "ARTICULOS.UNITARIOS":
                                 case "ARTÍCULOS.UNITARIOS":
                                 case "PRECIOS":
                                         Res = null;
@@ -180,6 +207,7 @@ namespace Lazaro.Impresion.Comprobantes
                                         }
                                         return Res;
 
+                                case "ARTICULOS.IMPORTES":
                                 case "ARTÍCULOS.IMPORTES":
                                 case "IMPORTES":
                                         Res = null;
