@@ -213,7 +213,7 @@ namespace Lbl.Cuotas
                 }
 
                 /// <summary>
-                /// Devuelve o establece la cantidad de cuotas que aun no fueron liquidadas al cliente.
+                /// Devuelve la cantidad de cuotas que aun no fueron liquidadas al cliente.
                 /// </summary>
                 public int CuotasPendientesCliente
                 {
@@ -222,6 +222,22 @@ namespace Lbl.Cuotas
                                 int Res = 0;
                                 for (int Cuota = 1; Cuota <= this.Cuotas; Cuota++) {
                                         if (this.EstadosCuotas[Cuota].EstadoCliente == Estados.Autorizada || this.EstadosCuotas[Cuota].EstadoCliente == Estados.Nueva)
+                                                Res++;
+                                }
+                                return Res;
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve la cantidad de cuotas que aun no fueron liquidadas al comercio.
+                /// </summary>
+                public int CuotasPendientesComercio
+                {
+                        get
+                        {
+                                int Res = 0;
+                                for (int Cuota = 1; Cuota <= this.Cuotas; Cuota++) {
+                                        if (this.EstadosCuotas[Cuota].EstadoComercio == Estados.Autorizada || this.EstadosCuotas[Cuota].EstadoComercio == Estados.Nueva)
                                                 Res++;
                                 }
                                 return Res;

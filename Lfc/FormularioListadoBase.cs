@@ -571,7 +571,7 @@ namespace Lfc
 
                 protected virtual Lfx.Types.OperationResult OnEdit(int itemId)
                 {
-                        if (this.ElementoTipo != null && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Ver)) {
+                        if (itemId > 0 && this.ElementoTipo != null && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Ver)) {
                                 Lfx.Data.Connection NuevaDb = this.Workspace.GetNewConnection("Editar " + this.ElementoTipo.ToString() + " " + itemId);
                                 Lbl.IElementoDeDatos Elem = Lbl.Instanciador.Instanciar(this.ElementoTipo, NuevaDb, itemId);
                                 Lfc.FormularioEdicion FormNuevo = Lfc.Instanciador.InstanciarFormularioEdicion(Elem);

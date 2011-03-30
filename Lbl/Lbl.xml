@@ -562,7 +562,12 @@
         </member>
         <member name="P:Lbl.Cuotas.Cuota.CuotasPendientesCliente">
             <summary>
-            Devuelve o establece la cantidad de cuotas que aun no fueron liquidadas al cliente.
+            Devuelve la cantidad de cuotas que aun no fueron liquidadas al cliente.
+            </summary>
+        </member>
+        <member name="P:Lbl.Cuotas.Cuota.CuotasPendientesComercio">
+            <summary>
+            Devuelve la cantidad de cuotas que aun no fueron liquidadas al comercio.
             </summary>
         </member>
         <member name="P:Lbl.Cuotas.Cuota.Autorizacion">
