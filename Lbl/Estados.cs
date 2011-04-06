@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,15 +29,12 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System.Windows.Forms;
-
-namespace Lfc.Tareas
+namespace Lbl
 {
-        public partial class Filtros : Lui.Forms.DialogForm
+        public enum Estados
         {
-                public Filtros()
-                {
-                        InitializeComponent();
-                }
+                Inactivo = 0,
+                Activo = 1,
+                Eliminado = 99
         }
 }

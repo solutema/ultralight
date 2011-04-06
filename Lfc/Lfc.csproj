@@ -569,8 +569,14 @@
     <Compile Include="Tareas\Articulos.Designer.cs">
       <DependentUpon>Articulos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tareas\Filtros.Designer.cs">
+      <DependentUpon>Filtros.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tareas\Novedad.Designer.cs">
       <DependentUpon>Novedad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tareas\Tipos\Inicio.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Tarjetas\Cupones\Acreditar.cs">
       <SubType>Form</SubType>

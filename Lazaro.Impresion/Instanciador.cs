@@ -56,7 +56,7 @@ namespace Lazaro.Impresion
 
                         Type Res = InferirImpresor(tipo.ToString());
 
-                        if (Res == typeof(Lazaro.Impresion.ImpresorGenerico))
+                        if (Res == typeof(Lazaro.Impresion.ImpresorGenerico) && tipo.BaseType != null)
                                 // Intento buscar un impresora para la clase base
                                 Res = InferirImpresor(tipo.BaseType);
 

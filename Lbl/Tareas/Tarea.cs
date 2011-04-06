@@ -182,7 +182,8 @@ namespace Lbl.Tareas
                         base.Crear();
                         this.Encargado = new Lbl.Personas.Persona(this.Connection, Lbl.Sys.Config.Actual.UsuarioConectado.Id);
                         this.Estado = 1;
-                        this.Tipo = new Lbl.Tareas.Tipo(this.Connection, 1);
+                        this.Fecha = this.Connection.ServerDateTime;
+                        this.Tipo = new Lbl.Tareas.Tipo(this.Connection, 99);
                 }
 
                 public override Lfx.Types.OperationResult Guardar()
@@ -200,7 +201,10 @@ namespace Lbl.Tareas
 
                         Comando.Fields.AddWithValue("id_persona", this.Cliente.Id);
                         Comando.Fields.AddWithValue("id_tipo_ticket", this.Tipo.Id);
-                        Comando.Fields.AddWithValue("id_tecnico_recibe", this.Encargado.Id);
+                        if (this.Encargado == null)
+                                Comando.Fields.AddWithValue("id_tecnico_recibe", null);
+                        else
+                                Comando.Fields.AddWithValue("id_tecnico_recibe", this.Encargado.Id);
                         Comando.Fields.AddWithValue("prioridad", this.Prioridad);
                         Comando.Fields.AddWithValue("nombre", this.Nombre);
                         Comando.Fields.AddWithValue("descripcion", this.Descripcion);
@@ -215,16 +219,8 @@ namespace Lbl.Tareas
 
                         this.Connection.Execute(Comando);
 
-                        if (this.RegistroOriginal != null && this.RegistroOriginal["estado"] != this.Registro["estado"]) {
-                                qGen.Insert InsertarNovedad = new qGen.Insert(Connection, "tickets_eventos");
-                                InsertarNovedad.Fields.AddWithValue("id_ticket", this.Id);
-                                InsertarNovedad.Fields.AddWithValue("id_tecnico", Lbl.Sys.Config.Actual.UsuarioConectado.Id);
-                                InsertarNovedad.Fields.AddWithValue("minutos_tecnico", 0);
-                                InsertarNovedad.Fields.AddWithValue("privado", 1);
-                                InsertarNovedad.Fields.AddWithValue("descripcion", "Est:" + this.Estado.ToString());
-                                InsertarNovedad.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
-                                Connection.Execute(InsertarNovedad);
-                        }
+                        if (this.RegistroOriginal != null && this.RegistroOriginal["estado"] != this.Registro["estado"])
+                                this.AgregarComentario("Actualización de Estado: " + Lbl.Tareas.Estado.TodosPorNumero[this.Estado].ToString());
 
                         if (this.Articulos != null && this.Articulos.HayCambios) {
                                 qGen.Delete EliminarArticulos = new qGen.Delete("tickets_articulos");

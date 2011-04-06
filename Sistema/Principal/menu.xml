@@ -113,8 +113,6 @@
     <Opcion Nombre="&amp;Listado" Funcion="LISTADO Lbl.Tareas.Tarea" />
     <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="&amp;Nueva" Funcion="CREAR Lbl.Tareas.Tarea" />
-    <Opcion Nombre="No&amp;vedad" Funcion="CREAR Lbl.Tareas.Novedad" />
-    <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="Tablas" Funcion="">
       <Opcion Nombre="&amp;Tipos de Tarea" Funcion="LISTADO Lbl.Tareas.Tipo" />
       <Opcion Nombre="&amp;Estados" Funcion="LISTADO Lbl.Tareas.Estado" />

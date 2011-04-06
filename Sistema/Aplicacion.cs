@@ -1349,6 +1349,12 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         ((Lfc.Tareas.Inicio)(FormularioListado)).Tipo = Lfx.Types.Parsing.ParseInt(SubComandoTickets);
                                         break;
 
+                                case "Lbl.Tareas.Tipo":
+                                        FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lfc.Tareas.Tipos.Iniciio");
+                                        if (FormularioListado == null)
+                                                FormularioListado = new Lfc.Tareas.Tipos.Inicio();
+                                        break;
+
                                 case "VENCIMIENTO":
                                 case "VENCIMIENTOS":
                                 case "Lbl.Cajas.Vencimiento":

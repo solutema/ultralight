@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,15 +29,32 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System.Windows.Forms;
+using System.Collections.Generic;
 
-namespace Lfc.Tareas
+namespace Lfc.Tareas.Tipos
 {
-        public partial class Filtros : Lui.Forms.DialogForm
-        {
-                public Filtros()
+	public partial class Inicio : Lfc.FormularioListado
+	{
+                public Inicio()
                 {
-                        InitializeComponent();
+                        this.ElementoTipo = typeof(Lbl.Tareas.Tipo);
+
+                        this.NombreTabla = "tickets_tipos";
+                        this.KeyField = new Lfx.Data.FormField("tickets_tipos.id_tipo_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64);
+
+                        Dictionary<int, string> EstadosTickets = new Dictionary<int, string>()
+                        {
+                                {0, "Inactivo"},
+                                {1, "Activo"}
+                        };
+
+                        this.FormFields = new Lfx.Data.FormFieldCollection()
+			{
+				new Lfx.Data.FormField("tickets_tipos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+				new Lfx.Data.FormField("tickets_tipos.estado", "Estado", 160, EstadosTickets),
+			};
+                        this.OrderBy = "tickets_tipos.nombre";
+                        this.HabilitarFiltrar = true;
                 }
-        }
+	}
 }

@@ -29,19 +29,27 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace Lfc.Tareas
 {
 	public partial class Inicio : Lfc.FormularioListado
 	{
-		private int m_Tipo, m_Cliente, m_Sucursal;
-                private string m_Estado = "sin_entregar";
-                private int Activos, Terminados, Retrasados, Nuevos;
+                public int Tipo { get; set; }
+                public int Grupo { get; set; }
+                public int Cliente { get; set; }
+                public int Localidad { get; set; }
+                [DefaultValue("<50")]
+                public string Estado { get; set; }
+
+                protected int Activos;
+                protected int Terminados;
+                protected int Retrasados;
+                protected int Nuevos;
+                protected Lbl.ColeccionCodigoDetalle EstadosTickets = null;
 
                 public Inicio()
                 {
@@ -51,9 +59,8 @@ namespace Lfc.Tareas
                         this.Joins.Add(new qGen.Join("personas", "tickets.id_persona=personas.id_persona"));
                         this.KeyField = new Lfx.Data.FormField("tickets.id_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64);
 
-                        Lbl.ColeccionCodigoDetalle EstadosTickets = null;
                         if (this.HasWorkspace) {
-                                m_Sucursal = this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada;
+                                // Localidad = Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.Localidad.Id;
                                 EstadosTickets = new Lbl.ColeccionCodigoDetalle(this.Connection.Select("SELECT id_ticket_estado, nombre FROM tickets_estados"));
                         }
 
@@ -69,17 +76,6 @@ namespace Lfc.Tareas
                         this.HabilitarFiltrar = true;
                 }
 
-                public int Tipo
-                {
-                        get
-                        {
-                                return m_Tipo;
-                        }
-                        set
-                        {
-                                m_Tipo = value;
-                        }
-                }
 
 		protected override void OnBeginRefreshList()
 		{
@@ -89,51 +85,40 @@ namespace Lfc.Tareas
 
                         this.CustomFilters.Clear();
 
-			if (m_Tipo > 0)
-				this.CustomFilters.AddWithValue("tickets.id_tipo_ticket", m_Tipo);
+			if (Tipo > 0)
+				this.CustomFilters.AddWithValue("tickets.id_tipo_ticket", Tipo);
 
-			if (m_Cliente > 0)
-				this.CustomFilters.AddWithValue("tickets.id_persona", m_Cliente);
+			if (Cliente > 0)
+				this.CustomFilters.AddWithValue("tickets.id_persona", Cliente);
 
-			if (m_Sucursal > 0)
-				this.CustomFilters.AddWithValue("tickets.id_sucursal", m_Sucursal);
+                        if (Grupo > 0)
+                                this.CustomFilters.AddWithValue("personas.id_grupo", Grupo);
 
-			switch (m_Estado)
+			if (Localidad > 0)
+				this.CustomFilters.AddWithValue("personas.id_ciudad", Localidad);
+
+			switch (this.Estado)
 			{
 				case "todos":
 					// Nada
 					break;
-				case "presupuestados":
-					this.CustomFilters.AddWithValue("tickets.estado IN (10, 35)");
-					break;
-                                case "terminados":
-                                        this.CustomFilters.AddWithValue("tickets.estado IN (30, 35, 40)");
-                                        break;
-				case "sin_terminar":
+				case "<30":
 					this.CustomFilters.AddWithValue("tickets.estado<30");
 					break;
-				case "sin_verificar":
+				case "<35":
 					this.CustomFilters.AddWithValue("tickets.estado IN (30, 35)");
 					break;
-				case "sin_entregar":
+                                case null:
+				case "<50":
 					this.CustomFilters.AddWithValue("tickets.estado<50");
 					break;
 				default:
-					this.CustomFilters.AddWithValue("tickets.estado", m_Estado);
+					this.CustomFilters.AddWithValue("tickets.estado", Lfx.Types.Parsing.ParseInt(Estado));
 					break;
 			}
 
 			base.OnBeginRefreshList();
 		}
-
-                protected override void OnEndRefreshList()
-                {
-                        // EtiquetaNuevos.Text = Nuevos.ToString() + " nuevos";
-                        // EtiquetaActivos.Text = Activos.ToString() + " activos";
-                        // EtiquetaRetrasados.Text = Retrasados.ToString() + " retrasados";
-                        // EtiquetasTerminados.Text = Terminados.ToString() + " terminados";
-                        base.OnEndRefreshList();
-                }
 
 
 		public override Lfx.Types.OperationResult OnFilter()
@@ -142,16 +127,30 @@ namespace Lfc.Tareas
 
                         using (Tareas.Filtros FormFiltros = new Tareas.Filtros()) {
                                 FormFiltros.Connection = this.Connection;
-                                FormFiltros.EntradaSucursal.TextInt = m_Sucursal;
-                                FormFiltros.EntradaTarea.TextInt = m_Tipo;
-                                FormFiltros.EntradaCliente.TextInt = m_Cliente;
-                                FormFiltros.EntradaEstado.TextKey = m_Estado;
+                                FormFiltros.EntradaCliente.TextInt = Cliente;
+                                FormFiltros.EntradaGrupo.TextInt = Grupo;
+                                FormFiltros.EntradaLocalidad.TextInt = Localidad;
+                                FormFiltros.EntradaTarea.TextInt = Tipo;
+                                FormFiltros.EntradaEstado.TextKey = Estado;
                                 FormFiltros.EntradaOrden.TextKey = OrderBy;
+
+                                // Agrego los estados de los tickets que figuran en la base de datos
+                                string[] SetData1 = FormFiltros.EntradaEstado.SetData;
+                                List<string> SetData2 = new List<string>();
+                                foreach (string Dat in SetData1) {
+                                        SetData2.Add(Dat);
+                                }
+                                foreach (int IdEstado in EstadosTickets.Keys) {
+                                        SetData2.Add(EstadosTickets[IdEstado] + "|" + IdEstado.ToString());
+                                }
+                                FormFiltros.EntradaEstado.SetData = SetData2.ToArray();
+
                                 if (FormFiltros.ShowDialog() == DialogResult.OK) {
-                                        m_Sucursal = FormFiltros.EntradaSucursal.TextInt;
-                                        m_Tipo = FormFiltros.EntradaTarea.TextInt;
-                                        m_Cliente = FormFiltros.EntradaCliente.TextInt;
-                                        m_Estado = FormFiltros.EntradaEstado.TextKey;
+                                        Cliente = FormFiltros.EntradaCliente.TextInt;
+                                        Grupo = FormFiltros.EntradaGrupo.TextInt;
+                                        Localidad = FormFiltros.EntradaLocalidad.TextInt;
+                                        Tipo = FormFiltros.EntradaTarea.TextInt;
+                                        Estado = FormFiltros.EntradaEstado.TextKey;
                                         OrderBy = FormFiltros.EntradaOrden.TextKey;
                                         this.RefreshList();
                                         filtrarReturn.Success = true;
