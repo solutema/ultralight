@@ -52,5 +52,11 @@ namespace Lbl.Comprobantes
                         base.Crear();
                         this.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra["R"];
                 }
+
+                public override Lfx.Types.OperationResult Guardar()
+                {
+                        this.FormaDePago = null;
+                        return base.Guardar();
+                }
 	}
 }

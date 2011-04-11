@@ -220,6 +220,7 @@ namespace Lazaro.Impresion.Comprobantes
 
                                 case "LOCALIDAD":
                                 case "LOCALIDAD.NOMBRE":
+                                case "CLIENTE.LOCALIDAD":
                                 case "CLIENTE.LOCALIDAD.NOMBRE":
                                         if (this.Comprobante.Cliente.Localidad == null)
                                                 return "";
