@@ -50,6 +50,49 @@ namespace Lazaro.Impresion.Comprobantes
                 public override string ObtenerValorCampo(string nombreCampo)
                 {
                         switch (nombreCampo.ToUpperInvariant()) {
+                                case "CLIENTE":
+                                case "CLIENTE.NOMBRE":
+                                        return this.Comprobante.Cliente.ToString();
+
+                                case "LOCALIDAD":
+                                case "LOCALIDAD.NOMBRE":
+                                case "CLIENTE.LOCALIDAD":
+                                case "CLIENTE.LOCALIDAD.NOMBRE":
+                                        if (this.Comprobante.Cliente.Localidad == null)
+                                                return "";
+                                        else
+                                                return this.Comprobante.Cliente.Localidad.ToString();
+
+                                case "DOMICILIO":
+                                case "CLIENTE.DOMICILIO":
+                                        if (this.Comprobante.Cliente.Domicilio != null && this.Comprobante.Cliente.Domicilio.Length > 0)
+                                                return this.Comprobante.Cliente.Domicilio;
+                                        else
+                                                return this.Comprobante.Cliente.DomicilioLaboral;
+
+                                case "CLIENTE.DOCUMENTO":
+                                        if (this.Comprobante.Cliente.Cuit != null)
+                                                return this.Comprobante.Cliente.Cuit.ToString();
+                                        else
+                                                return this.Comprobante.Cliente.NumeroDocumento;
+                                case "CUIT":
+                                case "CLIENTE.CUIT":
+                                        if (this.Comprobante.Cliente.Cuit != null)
+                                                return this.Comprobante.Cliente.Cuit.ToString();
+                                        else
+                                                return "";
+
+                                case "IVA":
+                                case "CLIENTE.IVA":
+                                        return this.Comprobante.Cliente.SituacionTributaria.ToString();
+
+                                case "CLIENTE.ID":
+                                        return this.Comprobante.Cliente.Id.ToString();
+
+                                case "VENDEDOR":
+                                case "VENDEDOR.NOMBRE":
+                                        return this.Comprobante.Vendedor.ToString();
+
                                 case "TOTAL":
                                 case "COMPROBANTE.TOTAL":
                                         return Lfx.Types.Formatting.FormatCurrencyForPrint(this.Recibo.Total, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);

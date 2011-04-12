@@ -64,9 +64,11 @@ namespace Lbl
                 public void DesdeDataTable(System.Data.DataTable tabla)
                 {
                         this.Clear();
-                        foreach (System.Data.DataRow Rw in tabla.Rows) {
-                                Lfx.Data.Row Lrw = (Lfx.Data.Row)Rw;
-                                this.AddFromRow(Lrw);
+                        if (tabla != null) {
+                                foreach (System.Data.DataRow Rw in tabla.Rows) {
+                                        Lfx.Data.Row Lrw = (Lfx.Data.Row)Rw;
+                                        this.AddFromRow(Lrw);
+                                }
                         }
                         this.HayCambios = false;
                 }

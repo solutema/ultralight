@@ -43,6 +43,8 @@ namespace Lbl.Cuotas
                 [DefaultValue(Estados.Nueva)]
                 public Estados EstadoCliente { get; set; }
 
+                public DateTime Vencimiento { get; set; }
+
                 public int Id { get; set; }
         }
 }

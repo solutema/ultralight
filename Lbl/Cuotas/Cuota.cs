@@ -113,13 +113,14 @@ namespace Lbl.Cuotas
                 {
                         if (this.Registro != null) {
                                 //Cargo los estados de las cuotas
-                                using (System.Data.DataTable Cuotas = this.Connection.Select("SELECT id_cuota, cuota, estado, estado_com FROM ventas_cuotas WHERE prefijo=" + this.GetFieldValue<int>("prefijo").ToString() + " AND operacion=" + this.GetFieldValue<int>("operacion").ToString())) {
+                                using (System.Data.DataTable Cuotas = this.Connection.Select("SELECT id_cuota, cuota, estado, estado_com, vencimiento FROM ventas_cuotas WHERE prefijo=" + this.GetFieldValue<int>("prefijo").ToString() + " AND operacion=" + this.GetFieldValue<int>("operacion").ToString())) {
                                         foreach (System.Data.DataRow Cuota in Cuotas.Rows) {
                                                 int CuotaNum = System.Convert.ToInt32(Cuota["cuota"]);
                                                 EstadosCuotas[CuotaNum] = new EstadoCuota();
                                                 EstadosCuotas[CuotaNum].Id = System.Convert.ToInt32(Cuota["id_cuota"]);
                                                 EstadosCuotas[CuotaNum].EstadoCliente = (Estados)(System.Convert.ToInt32(Cuota["estado"]));
                                                 EstadosCuotas[CuotaNum].EstadoComercio = (Estados)(System.Convert.ToInt32(Cuota["estado_com"]));
+                                                EstadosCuotas[CuotaNum].Vencimiento = System.Convert.ToDateTime(Cuota["vencimiento"]);
                                         }
                                 }
 
