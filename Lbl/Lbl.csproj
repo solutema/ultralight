@@ -111,7 +111,6 @@
     <Compile Include="Sys\Configuracion\Impresion.cs" />
     <Compile Include="Sys\Configuracion\UsuarioConectado.cs" />
     <Compile Include="Sys\Log\Acciones.cs" />
-    <Compile Include="Sys\Log\TiposDeComando.cs" />
     <Compile Include="Sys\Permisos\Operaciones.cs" />
     <Compile Include="Sys\Permisos\Objeto.cs" />
     <Compile Include="Sys\Permisos\Permiso.cs" />

@@ -43,8 +43,11 @@ namespace Lbl.Sys.Log
                 Logoff,
                 Save,
                 Delete,
+                DeleteAndRevert,
                 Print,
                 PrintFail,
-                OtherError
+                Quit,
+                OtherError,
+                Other
         }
 }

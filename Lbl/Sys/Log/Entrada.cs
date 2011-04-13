@@ -84,16 +84,15 @@ namespace Lbl.Sys.Log
                         }
                 }
 
-                public TiposDeComando Comando
+                public Acciones Comando
                 {
                         get
                         {
                                 string CmdTxt = this.GetFieldValue<string>("comando");
-                                switch (CmdTxt) {
-                                        case "SAVE":
-                                                return TiposDeComando.Guardar;
-                                        default:
-                                                return TiposDeComando.Otro;
+                                try {
+                                        return (Acciones)(System.Enum.Parse(typeof(Acciones), CmdTxt));
+                                } catch {
+                                        return Acciones.Other;
                                 }
                         }
                 }

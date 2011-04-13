@@ -64,4 +64,11 @@ UPDATE documentos_tipos SET tipo='Lbl.Comprobantes.NotaDeVenta' WHERE tabla IS N
 UPDATE documentos_tipos SET tabla='comprob' WHERE tabla IS NULL;
 UPDATE documentos_tipos SET tabla='recibos' WHERE tabla IS NULL AND letra IN ('RC', 'RCP');
 
+UPDATE sys_log SET comando="Save" WHERE comando="SAVE";
+UPDATE sys_log SET comando="LogonFail" WHERE comando="LOGON.FAIL";
+UPDATE sys_log SET comando="Logon" WHERE comando="LOGON";
+UPDATE sys_log SET comando="Save" WHERE comando="CREATE";
+UPDATE sys_log SET comando="Quit" WHERE comando="QUIT";
+UPDATE sys_log SET comando="Save" WHERE comando="EDIT";
+
 SET FOREIGN_KEY_CHECKS=1;
