@@ -157,7 +157,7 @@ namespace Lazaro.Impresion.Comprobantes
                                                 if (Res == null)
                                                         Res = this.Comprobante.Articulos[i].ObtenerAlicuota().ToString();
                                                 else
-                                                        Res += System.Environment.NewLine + this.Comprobante.Articulos[i].ObtenerAlicuota().ToString();
+                                                        Res += System.Environment.NewLine + this.Comprobante.Articulos[i].ObtenerAlicuota().Porcentaje.ToString("0.0") + "%";
                                         }
                                         return Res;
 

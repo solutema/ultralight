@@ -113,6 +113,7 @@ namespace Lazaro.Impresion.Comprobantes
                                         } else {
                                                 return "";
                                         }
+
                                 case "VALORES":
                                         System.Text.StringBuilder Valores = new System.Text.StringBuilder();
                                         foreach (Lbl.Comprobantes.Cobro Pg in Recibo.Cobros) {
