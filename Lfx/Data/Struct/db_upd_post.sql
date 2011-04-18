@@ -6,8 +6,8 @@ REPLACE INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('3',
 REPLACE INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('4','Cajas','Lbl.Cajas.Caja');
 REPLACE INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('5','Cuentas Corrientes','Lbl.CuentasCorrientes.CuentaCorriente');
 REPLACE INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('6','Comprobantes: Comprobantes con Artículos','Lbl.Comprobantes.ComprobanteConArticulos');
-REPLACE INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('7','Recibos de Cobro','Lbl.Comprobantes.ReciboDeCobro');
-REPLACE INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('8','Recibos de Pago','Lbl.Comprobantes.ReciboDePago');
+REPLACE INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('7','Comprobantes: Recibos','Lbl.Comprobantes.Recibo');
+REPLACE INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('8','Comprobantes: Tickets','Lbl.Comprobantes.Ticket');
 REPLACE INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('9','Comprobantes: Facturas','Lbl.Comprobantes.Factura');
 REPLACE INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('10','Bancos: Chequeras','Lbl.Bancos.Chequera');
 REPLACE INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES ('11','Bancos: Cheques','Lbl.Bancos.Cheque');
@@ -64,11 +64,11 @@ UPDATE documentos_tipos SET tipo='Lbl.Comprobantes.NotaDeVenta' WHERE tabla IS N
 UPDATE documentos_tipos SET tabla='comprob' WHERE tabla IS NULL;
 UPDATE documentos_tipos SET tabla='recibos' WHERE tabla IS NULL AND letra IN ('RC', 'RCP');
 
-UPDATE sys_log SET comando="Save" WHERE comando="SAVE";
-UPDATE sys_log SET comando="LogonFail" WHERE comando="LOGON.FAIL";
-UPDATE sys_log SET comando="Logon" WHERE comando="LOGON";
-UPDATE sys_log SET comando="Save" WHERE comando="CREATE";
-UPDATE sys_log SET comando="Quit" WHERE comando="QUIT";
-UPDATE sys_log SET comando="Save" WHERE comando="EDIT";
+UPDATE sys_log SET comando='Save' WHERE comando='SAVE';
+UPDATE sys_log SET comando='LogonFail' WHERE comando='LOGON.FAIL';
+UPDATE sys_log SET comando='Logon' WHERE comando='LOGON';
+UPDATE sys_log SET comando='Save' WHERE comando='CREATE';
+UPDATE sys_log SET comando='Quit' WHERE comando='QUIT';
+UPDATE sys_log SET comando='Save' WHERE comando='EDIT';
 
 SET FOREIGN_KEY_CHECKS=1;

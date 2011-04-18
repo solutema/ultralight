@@ -70,6 +70,7 @@ namespace Lfc.Tareas
 				new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 240),
 				new Lfx.Data.FormField("tickets.estado", "Estado", 160, EstadosTickets),
 				new Lfx.Data.FormField("tickets.fecha_ingreso", "Ingreso", Lfx.Data.InputFieldTypes.DateTime, 160),
+                                new Lfx.Data.FormField("tickets.id_tecnico_recibe", "Encargado", Lfx.Data.InputFieldTypes.Text, 240),
                                 new Lfx.Data.FormField("DATEDIFF(NOW(), tickets.fecha_ingreso) AS fechadiff", "Antigüedad", Lfx.Data.InputFieldTypes.Integer, 60)
 			};
                         this.OrderBy = "tickets.id_ticket DESC";
@@ -164,6 +165,10 @@ namespace Lfc.Tareas
 
                 protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
                 {
+                        int IdEncargado = row.Fields["id_tecnico_recibe"].ValueInt;
+                        if (IdEncargado > 0)
+                                itm.SubItems["id_tecnico_recibe"].Text = this.Connection.Tables["personas"].FastRows[IdEncargado].Fields["nombre"].ValueString;
+
                         int IdEstado = row.Fields["estado"].ValueInt;
                         int Dias = row.Fields["fechadiff"].ValueInt;
                         switch (IdEstado) {

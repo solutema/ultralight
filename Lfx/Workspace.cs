@@ -344,12 +344,14 @@ namespace Lfx
 
                         Progreso.ChangeStatus("Carga inicial de datos");
                         Progreso.Max = Sql.Length;
+                        this.MasterConnection.Execute(Sql);
+                        /*
                         do {
                                 string Comando = Lfx.Data.Connection.GetNextCommand(ref Sql);
                                 this.MasterConnection.Execute(Comando);
                                 Progreso.ChangeStatus(Progreso.Max - Sql.Length);
                         }
-                        while (Sql.Length > 0);
+                        while (Sql.Length > 0); */
 
                         Progreso.ChangeStatus("Carga de TagList");
                         // Cargar TagList y volver a verificar la estructura
@@ -380,7 +382,9 @@ namespace Lfx
                         if (RecursoActualizacion != null) {
                                 System.IO.StreamReader Lector = new System.IO.StreamReader(RecursoActualizacion);
                                 string SqlActualizacion = dataBase.CustomizeSql(Lector.ReadToEnd());
-                                //dataBase.Execute(SqlActualizacion);
+                                RecursoActualizacion.Close();
+                                dataBase.Execute(SqlActualizacion);
+                                /* Esto es si no soporta lotes (MyODBC) 
                                 do {
                                         string Comando = Data.Connection.GetNextCommand(ref SqlActualizacion);
                                         try {
@@ -390,8 +394,7 @@ namespace Lfx
                                                         throw;
                                         }
                                 }
-                                while (SqlActualizacion.Length > 0);
-                                RecursoActualizacion.Close();
+                                while (SqlActualizacion.Length > 0); */
                         }
                 }
 
