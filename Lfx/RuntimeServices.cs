@@ -64,6 +64,7 @@ namespace Lfx
                                 this.EventType = eventType;
                         }
                 }
+
                 public delegate void IpcEventHandler(object sender, ref IpcEventArgs e);
                 public event IpcEventHandler IpcEvent;
 

@@ -545,6 +545,11 @@
             </summary>
             <param name="comprob">El comprobante a ingresar.</param>
         </member>
+        <member name="M:Lbl.Cajas.Caja.Recalcular">
+            <summary>
+            Recalcula completamente el saldo de la caja, para corregir errores de transporte. Principalmente de uso interno.
+            </summary>
+        </member>
         <member name="P:Lbl.Cuotas.Cuota.Fecha">
             <summary>
             Devuelve o establece la fecha en la que se realiza la operación.

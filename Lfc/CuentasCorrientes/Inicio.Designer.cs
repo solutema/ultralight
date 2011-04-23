@@ -112,7 +112,6 @@ namespace Lfc.CuentasCorrientes
                         this.Controls.Add(this.BotonAjuste);
                         this.Name = "Inicio";
                         this.Text = "Cuenta Corriente";
-                        this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Inicio_KeyDown);
                         this.Controls.SetChildIndex(this.BotonCancelar, 0);
                         this.Controls.SetChildIndex(this.BotonFiltrar, 0);
                         this.Controls.SetChildIndex(this.BotonImprimir, 0);

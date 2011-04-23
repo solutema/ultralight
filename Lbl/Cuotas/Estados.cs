@@ -40,6 +40,7 @@ namespace Lbl.Cuotas
                 EnResumen = 10,
                 Pagada = 50,
                 Anulada = 90,
+                Refinanciada = 91,
                 Historico = 100
         }
 }

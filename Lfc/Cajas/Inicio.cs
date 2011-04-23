@@ -317,5 +317,29 @@ namespace Lfc.Cajas
                                 return new Lfx.Types.CancelOperationResult();
                         }
                 }
+
+
+                protected override void OnKeyDown(KeyEventArgs e)
+                {
+                        if (e.Shift && e.Control) {
+                                switch (e.KeyCode) {
+                                        case Keys.F7:
+                                                if (this.Caja != null) {
+                                                        // Recalculo la cuenta del cliente
+                                                        Lui.Forms.MessageBox.Show("Se va a recalcular el transporte de la Caja", "Aviso");
+                                                        this.Caja.Connection.BeginTransaction();
+                                                        this.Caja.Recalcular();
+                                                        this.Caja.Connection.Commit();
+                                                        this.RefreshList();
+                                                }
+                                                e.Handled = true;
+
+                                                break;
+                                }
+                        }
+
+                        if (e.Handled == false)
+                                base.OnKeyDown(e);
+                }
         }
 }

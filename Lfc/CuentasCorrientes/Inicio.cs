@@ -250,9 +250,9 @@ namespace Lfc.CuentasCorrientes
                 }
 
 
-                private void Inicio_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+                protected override void OnKeyDown(KeyEventArgs e)
                 {
-                        if (e.Shift) {
+                        if (e.Shift && e.Control) {
                                 switch (e.KeyCode) {
                                         case Keys.F7:
                                                 if (this.Cliente != null) {
@@ -268,6 +268,9 @@ namespace Lfc.CuentasCorrientes
                                                 break;
                                 }
                         }
+
+                        if (e.Handled == false)
+                                base.OnKeyDown(e);
                 }
 
 

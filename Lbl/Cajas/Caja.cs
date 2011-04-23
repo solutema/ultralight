@@ -224,5 +224,30 @@ namespace Lbl.Cajas
 			Comando.Fields.AddWithValue("obs", obs);
 			this.Connection.Execute(Comando);
 		}
+
+
+                /// <summary>
+                /// Recalcula completamente el saldo de la caja, para corregir errores de transporte. Principalmente de uso interno.
+                /// </summary>
+                public void Recalcular()
+                {
+                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Recalculando", "Se va a recalcular el saldo de la caja " + this.ToString());
+                        Progreso.Begin();
+
+                        System.Data.DataTable Movims = this.Connection.Select("SELECT id_movim, importe FROM cajas_movim WHERE id_caja=" + this.Id.ToString() + " ORDER BY id_movim");
+                        decimal Saldo = 0;
+                        Progreso.Max = Movims.Rows.Count;
+                        foreach (System.Data.DataRow Movim in Movims.Rows) {
+                                Saldo += System.Convert.ToDecimal(Movim["importe"]);
+
+                                qGen.Update Upd = new qGen.Update("cajas_movim");
+                                Upd.Fields.AddWithValue("saldo", Saldo);
+                                Upd.WhereClause = new qGen.Where("id_movim", System.Convert.ToInt32(Movim["id_movim"]));
+                                this.Connection.Execute(Upd);
+
+                                Progreso.Advance(1);
+                        }
+                        Progreso.End();
+                }
 	}
 }
