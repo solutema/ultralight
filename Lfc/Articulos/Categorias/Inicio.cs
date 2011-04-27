@@ -41,7 +41,7 @@ namespace Lfc.Articulos.Categorias
         public partial class Inicio : Lfc.FormularioListado
         {
                 internal string m_Stock = "*";
-                internal double m_ValorizacionCostoTotal = 0;
+                internal decimal m_ValorizacionCostoTotal = 0;
 
                 public Inicio()
                 {
@@ -98,16 +98,16 @@ namespace Lfc.Articulos.Categorias
                         this.Connection.BeginTransaction();
                         this.Connection.Execute("UPDATE articulos_categorias SET cache_stock_actual=(SELECT SUM(stock_actual) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria), cache_costo=(SELECT SUM(stock_actual*costo) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria)");
                         this.Connection.Commit();
-                        m_ValorizacionCostoTotal = this.Connection.FieldDouble("SELECT SUM(cache_costo) FROM articulos_categorias");
+                        m_ValorizacionCostoTotal = this.Connection.FieldDecimal("SELECT SUM(cache_costo) FROM articulos_categorias");
                 }
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
-                        double ValPct;
+                        decimal ValPct;
                         if (m_ValorizacionCostoTotal <= 0)
                                 ValPct = 0;
                         else
-                                ValPct = System.Convert.ToDouble(row["cache_costo"]) / m_ValorizacionCostoTotal * 100;
+                                ValPct = System.Convert.ToDecimal(row["cache_costo"]) / m_ValorizacionCostoTotal * 100;
                         item.SubItems["0"].Text = Lfx.Types.Formatting.FormatNumber(ValPct, 2) + "%";
 
                         if (row.Fields["cache_stock_actual"].ValueDouble < row.Fields["stock_minimo"].ValueDouble)

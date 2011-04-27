@@ -364,12 +364,12 @@ namespace Lfc.Personas
                         Res.Email = EntradaEmail.Text;
                         Res.Vendedor = EntradaVendedor.Elemento as Lbl.Personas.Persona;
                         Res.Obs = EntradaObs.Text;
-                        Res.Estado = 1;
                         Res.LimiteCredito = Lfx.Types.Parsing.ParseCurrency(EntradaLimiteCredito.Text);
                         Res.FechaNacimiento = Lfx.Types.Parsing.ParseDate(EntradaFechaNac.Text);
                         Res.NumeroCuenta = EntradaNumeroCuenta.Text;
                         Res.Cbu = EntradaCbu.Text.Replace("-", "").Replace(" ", "").Replace("/", "").Replace(".", "");
                         Res.EstadoCredito = ((Lbl.Personas.EstadoCredito)(Lfx.Types.Parsing.ParseInt(EntradaEstadoCredito.TextKey)));
+                        Res.Estado = Lfx.Types.Parsing.ParseInt(EntradaEstado.TextKey);
 
                         EntradaTags.ActualizarElemento();
                         EntradaImagen.ActualizarElemento();

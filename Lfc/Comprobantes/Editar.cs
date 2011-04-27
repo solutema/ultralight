@@ -311,9 +311,9 @@ namespace Lfc.Comprobantes
                         if (Ignorar_EntradaCliente_TextChanged)
                                 return;
 
-                        double Descuento = this.Connection.FieldDouble("SELECT descuento FROM personas_grupos WHERE id_grupo=(SELECT id_grupo FROM personas WHERE id_persona=" + EntradaCliente.TextInt.ToString() + ")");
+                        decimal Descuento = this.Connection.FieldDecimal("SELECT descuento FROM personas_grupos WHERE id_grupo=(SELECT id_grupo FROM personas WHERE id_persona=" + EntradaCliente.TextInt.ToString() + ")");
 
-                        if (Descuento > 0 && Lfx.Types.Parsing.ParseDouble(EntradaDescuento.Text) == 0) {
+                        if (Descuento > 0 && EntradaDescuento.ValueDecimal == 0) {
                                 EntradaDescuento.Text = Lfx.Types.Formatting.FormatNumber(Descuento, 2);
                                 EntradaDescuento.ShowBalloon("Se aplicó el descuento que corresponde al tipo de cliente.");
                         }

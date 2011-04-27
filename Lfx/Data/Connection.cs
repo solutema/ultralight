@@ -1091,25 +1091,6 @@ LEFT JOIN pg_attribute
                                 return System.Convert.ToDateTime(Res);
                 }
 
-                public double FieldDouble(qGen.Select selectCommand)
-                {
-                        selectCommand.SqlMode = this.SqlMode;
-                        object Res = this.ConnExecuteScalar(selectCommand.ToString());
-                        if (Res == null || Res is DBNull)
-                                return 0;
-                        else
-                                return System.Convert.ToDouble(Res);
-                }
-
-                public double FieldDouble(string selectCommand)
-                {
-                        object Res = this.ConnExecuteScalar(selectCommand);
-                        if (Res == null || Res is DBNull)
-                                return 0;
-                        else
-                                return System.Convert.ToDouble(Res);
-                }
-
                 public decimal FieldDecimal(string selectCommand)
                 {
                         object Res = this.ConnExecuteScalar(selectCommand);
