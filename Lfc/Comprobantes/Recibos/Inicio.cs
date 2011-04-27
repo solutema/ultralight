@@ -180,6 +180,8 @@ namespace Lfc.Comprobantes.Recibos
                                 if (m_Fecha.HasRange)
                                         this.CustomFilters.AddWithValue("(fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')");
                         }
+
+                        base.OnBeginRefreshList();
 		}
 	}
 }
