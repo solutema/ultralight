@@ -75,6 +75,7 @@ namespace Lbl.Personas
                         this.SituacionTributaria = new Lbl.Impuestos.SituacionTributaria(this.Connection, 1);
                         this.Localidad = new Lbl.Entidades.Localidad(this.Connection, this.Workspace.CurrentConfig.Empresa.IdLocalidad);
                         this.Estado = 1;
+                        this.Contrasena = new System.Random().Next(1000, 9999).ToString();
                 }
 
 
