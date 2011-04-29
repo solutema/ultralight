@@ -240,13 +240,6 @@ namespace Lbl
                                         return typeof(Lbl.Tareas.Tipo);
                                 //case "tipo_doc":
                                 //        return typeof(Lbl);
-                                case "ventas_cuotas":
-                                case "Lbl.Cuotas.Cuota":
-                                        return typeof(Lbl.Cuotas.Cuota);
-                                case "ventas_resumens":
-                                case "Lbl.Cuotas.Resumen":
-                                        return typeof(Lbl.Cuotas.Resumen);
-                                
                                 default:
                                         throw new NotImplementedException("Lbl.Instanciador.InferirTipo(): No se reconoce la tabla o tipo " + tablaOTipo);
                         }

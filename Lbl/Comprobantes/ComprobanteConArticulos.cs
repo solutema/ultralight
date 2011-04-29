@@ -122,10 +122,8 @@ namespace Lbl.Comprobantes
                                                         break;
 
                                                 case Lbl.Pagos.TiposFormasDePago.CuentaCorriente:
-                                                        if (this.ImporteCancelado < this.Total) {
-                                                                // Quito el saldo paga de la cuenta corriente
-                                                                this.Cliente.CuentaCorriente.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Anulación Comprob. " + this.ToString(), -this.ImporteCancelado, "", this, null, null, false);
-                                                        }
+                                                        // Quito el saldo pagado de la cuenta corriente
+                                                        this.Cliente.CuentaCorriente.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Anulación Comprob. " + this.ToString(), -this.ImporteCancelado, "", this, null, null, false);
                                                         break;
 
                                                 case Lbl.Pagos.TiposFormasDePago.Tarjeta:
