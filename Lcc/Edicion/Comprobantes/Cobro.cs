@@ -61,12 +61,16 @@ namespace Lcc.Edicion.Comprobantes
                         }
                         set
                         {
-                                if (this.ElementoCobro == null)
-                                        this.ElementoCobro = new Lbl.Comprobantes.Cobro(this.Connection, value);
-                                else
-                                        this.ElementoCobro.FormaDePago = value;
-                                if (EntradaFormaDePago.TextInt != value.Id)
-                                        EntradaFormaDePago.TextInt = value.Id;
+                                if (value == null) {
+                                        this.ElementoCobro = null;
+                                } else {
+                                        if (this.ElementoCobro == null)
+                                                this.ElementoCobro = new Lbl.Comprobantes.Cobro(this.Connection, value);
+                                        else
+                                                this.ElementoCobro.FormaDePago = value;
+                                        if (EntradaFormaDePago.TextInt != value.Id)
+                                                EntradaFormaDePago.TextInt = value.Id;
+                                }
                                 this.MostrarPaneles();
                         }
                 }
@@ -259,23 +263,33 @@ namespace Lcc.Edicion.Comprobantes
 
                 private void MostrarPaneles()
                 {
-                        PanelEfectivo.Visible = this.ElementoCobro.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.Efectivo;
-                        PanelChequeTerceros.Visible = this.ElementoCobro.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.ChequeTerceros;
-                        PanelCaja.Visible = this.ElementoCobro.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.Caja;
-                        PanelTarjeta.Visible = this.ElementoCobro.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.Tarjeta;
-                        PanelCuentaCorriente.Visible = this.ElementoCobro.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente;
-                        PanelValor.Visible = this.ElementoCobro.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.OtroValor;
+                        if (this.ElementoCobro == null || this.ElementoCobro.FormaDePago == null) {
+                                PanelEfectivo.Visible = false;
+                                PanelChequeTerceros.Visible = false;
+                                PanelCaja.Visible = false;
+                                PanelTarjeta.Visible = false;
+                                PanelCuentaCorriente.Visible = false;
+                                PanelValor.Visible = false;
+                        } else {
+                                PanelEfectivo.Visible = this.ElementoCobro.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.Efectivo;
+                                PanelChequeTerceros.Visible = this.ElementoCobro.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.ChequeTerceros;
+                                PanelCaja.Visible = this.ElementoCobro.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.Caja;
+                                PanelTarjeta.Visible = this.ElementoCobro.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.Tarjeta;
+                                PanelCuentaCorriente.Visible = this.ElementoCobro.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente;
+                                PanelValor.Visible = this.ElementoCobro.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.OtroValor;
 
-                        this.Height = PanelSeparadorInferior.Bottom + 1;
 
-                        if (this.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.Caja) {
-                                if (this.FormaDePago.Caja == null) {
-                                        EntradaCaja.Enabled = true;
-                                } else {
-                                        EntradaCaja.Enabled = false;
-                                        EntradaCaja.TextInt = this.FormaDePago.Caja.Id;
+                                if (this.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.Caja) {
+                                        if (this.FormaDePago.Caja == null) {
+                                                EntradaCaja.Enabled = true;
+                                        } else {
+                                                EntradaCaja.Enabled = false;
+                                                EntradaCaja.TextInt = this.FormaDePago.Caja.Id;
+                                        }
                                 }
                         }
+
+                        this.Height = PanelSeparadorInferior.Bottom + 1;
                 }
 
                 public bool ImporteVisible
@@ -407,7 +421,7 @@ namespace Lcc.Edicion.Comprobantes
 
                 private void EntradaFormaDePago_TextChanged(object sender, EventArgs e)
                 {
-                        this.FormaDePago = new Lbl.Pagos.FormaDePago(this.Connection, EntradaFormaDePago.TextInt);
+                        this.FormaDePago =  EntradaFormaDePago.Elemento as Lbl.Pagos.FormaDePago;
                 }
         }
 }

@@ -93,6 +93,8 @@
     <Opcion Nombre="C&amp;heques" Funcion="">
       <Opcion Nombre="&amp;Recibidos" Funcion="LISTADO Lbl.Bancos.Cheque RECIBIDOS" />
       <Opcion Nombre="&amp;Emitidos" Funcion="LISTADO Lbl.Bancos.Cheque EMITIDOS" />
+      <Opcion Nombre="-" Funcion="" />
+      <Opcion Nombre="Chequeras" Funcion="LISTADO Lbl.Bancos.Chequera" />
     </Opcion>
     <Opcion Nombre="-" Funcion="">
       <Opcion Nombre="Cajas" Funcion="LISTADO Lbl.Cajas.Caja" />
@@ -104,7 +106,6 @@
       <Opcion Nombre="Cajas" Funcion="LISTADO Lbl.Cajas.Caja" />
       <Opcion Nombre="Conceptos" Funcion="LISTADO Lbl.Cajas.Concepto" />
       <Opcion Nombre="Bancos" Funcion="LISTADO Lbl.Bancos.Banco" />
-      <Opcion Nombre="Chequeras" Funcion="LISTADO Lbl.Bancos.Chequera" />
       <Opcion Nombre="Formas de Pago" Funcion="LISTADO Lbl.Pagos.FormaDePago" />
       <Opcion Nombre="Planes" Funcion="LISTADO Lbl.Tarjetas.Plan" />
     </Opcion>

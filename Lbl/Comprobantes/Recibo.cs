@@ -233,7 +233,7 @@ namespace Lbl.Comprobantes
                                 }
 
                                 // Acreditaciones en cuenta regular (excepto caja diaria)
-                                using (System.Data.DataTable TablaPagos = this.Connection.Select("SELECT * FROM cajas_movim WHERE auto=1 AND id_caja<>" + this.Workspace.CurrentConfig.Empresa.CajaDiaria.ToString() + " AND id_caja<>" + this.Workspace.CurrentConfig.Empresa.CajaCheques.ToString() + " AND id_recibo=" + Id.ToString())) {
+                                using (System.Data.DataTable TablaPagos = this.Connection.Select("SELECT * FROM cajas_movim WHERE auto=1 AND id_caja<>" + this.Workspace.CurrentConfig.Empresa.CajaDiaria.ToString() + " AND id_caja<>" + this.Workspace.CurrentConfig.Empresa.CajaCheques.ToString() + " AND id_recibo=" + this.Id.ToString())) {
                                         foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
                                                 if (this.DePago) {
                                                         Pago Pg = new Pago(this.Connection, Lbl.Pagos.TiposFormasDePago.Caja, Math.Abs(System.Convert.ToDecimal(Pago["importe"])));

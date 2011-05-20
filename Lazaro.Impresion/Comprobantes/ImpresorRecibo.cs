@@ -121,6 +121,7 @@ namespace Lazaro.Impresion.Comprobantes
                                                         case Lbl.Pagos.TiposFormasDePago.Efectivo:
                                                                 Valores.AppendLine("Efectivo                 : " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Moneda.Decimales));
                                                                 break;
+                                                        case Lbl.Pagos.TiposFormasDePago.ChequeTerceros:
                                                         case Lbl.Pagos.TiposFormasDePago.ChequePropio:
                                                                 Valores.AppendLine("Cheque                   : " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Moneda.Decimales));
                                                                 Valores.AppendLine("                           Nº " + Pg.Cheque.Numero + " del banco " + Pg.Cheque.Banco.ToString());
@@ -134,6 +135,11 @@ namespace Lazaro.Impresion.Comprobantes
                                                                 break;
                                                         case Lbl.Pagos.TiposFormasDePago.Caja:
                                                                 Valores.AppendLine("Depósito en Cuenta       : " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Moneda.Decimales));
+                                                                Valores.AppendLine("                           cuenta " + Pg.CajaDestino.ToString());
+                                                                break;
+                                                        default:
+                                                                Valores.AppendLine("Otro Pago                : " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Moneda.Decimales));
+                                                                Valores.AppendLine("                           " + Pg.ToString());
                                                                 break;
                                                 }
                                         }

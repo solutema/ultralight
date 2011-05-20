@@ -774,9 +774,9 @@ namespace Lfc.Personas
                         this.EntradaEstadoCredito.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstadoCredito.SetData = new string[] {
         "Normal|0",
-        "En plan de pagos|5",
-        "Suspendido termporal|10",
-        "Suspend. permanente|100"};
+        "En Plan de Pagos|5",
+        "Susp. con React. Automática|10",
+        "Susp. con Reactivación Manual|100"};
                         this.EntradaEstadoCredito.Size = new System.Drawing.Size(134, 24);
                         this.EntradaEstadoCredito.TabIndex = 9;
                         this.EntradaEstadoCredito.Table = null;

@@ -182,8 +182,6 @@ namespace Lfc.Comprobantes.Facturas
                                 Progreso.Max = Cantidad;
                                 Progreso.Begin();
 
-                                bool AnularPagos = Lfx.Types.Parsing.ParseInt(EntradaOrden.TextKey) != 0;
-
                                 string IncluyeTipos = "";
 
                                 switch (EntradaTipo.TextKey) {

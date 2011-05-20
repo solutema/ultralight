@@ -4216,12 +4216,14 @@ INSERT INTO tickets_tipos VALUES (99, 'Otra', '', 1);
 INSERT INTO personas (id_persona, tipo, id_grupo, vendedor, nombre, apellido, razon_social, nombre_visible, contrasena, id_tipo_doc, num_doc, cuit, id_situacion, domicilio, id_ciudad, telefono, email, tipo_fac, obs, estado) VALUES (1, 4, NULL, 1, 'Administrador', '', '', 'Administrador', 'admin', NULL, '', '', NULL, '', NULL, '', '', '', '', 1);
 INSERT INTO personas (id_persona, tipo, id_grupo, vendedor, nombre, apellido, razon_social, nombre_visible, contrasena, id_tipo_doc, num_doc, cuit, id_situacion, domicilio, id_ciudad, telefono, email, tipo_fac, obs, estado) VALUES (999, 1, NULL, 0, '', '', 'Consumidor Final', 'Consumidor Final', '', NULL, '', '', 1, '', NULL, '', '', '', '', 1);
 
+
 INSERT INTO articulos_codigos (id_codigo, nombre, id_proveedor) VALUES (1, 'Código 1', NULL);
 INSERT INTO articulos_codigos (id_codigo, nombre, id_proveedor) VALUES (2, 'Código 2', NULL);
 INSERT INTO articulos_codigos (id_codigo, nombre, id_proveedor) VALUES (3, 'Código 3', NULL);
 INSERT INTO articulos_codigos (id_codigo, nombre, id_proveedor) VALUES (4, 'Código 4', NULL);
 
-INSERT INTO sucursales (id_sucursal, nombre, id_ciudad, id_caja_diaria, id_caja_cheques) VALUES (1, 'Sucursal 1', 999, 999, 1001);
+
+INSERT INTO sucursales (id_sucursal, nombre, id_ciudad, id_caja_diaria, id_caja_cheques) VALUES (1, 'Sucursal 1', 999, 999, 1000);
 
 
 INSERT INTO "formaspago" ("id_formapago", "nombre", "tipo", "id_caja", "id_concepto", "descuento", "retencion", "autopres", "autoacred", "adelantacuotas", "dias_acred", "pagos", "cobros", "estado") VALUES ('1','Efectivo','1','999',NULL,'0.0000','0.0000','0','1','0','0','1','1','1');
