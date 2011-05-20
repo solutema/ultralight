@@ -51,6 +51,7 @@ namespace Lbl.Comprobantes
                 public override void Crear()
                 {
                         base.Crear();
+                        this.Fecha = System.DateTime.Now;
                         this.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra["PS"];
                 }
         }
