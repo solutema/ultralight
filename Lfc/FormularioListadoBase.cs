@@ -1065,6 +1065,9 @@ namespace Lfc
                 {
                         string FieldValueAsText;
 
+                        if (formField == null)
+                                return cellValue.ToString();
+
                         switch (formField.DataType) {
                                 case Lfx.Data.InputFieldTypes.Integer:
                                 case Lfx.Data.InputFieldTypes.Serial:
