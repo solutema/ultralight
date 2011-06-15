@@ -538,6 +538,7 @@ namespace Lbl.Comprobantes
                         Comando.Fields.AddWithValue("interes", this.Recargo);
                         Comando.Fields.AddWithValue("cuotas", this.Cuotas);
                         Comando.Fields.AddWithValue("total", this.Total);
+                        Comando.Fields.AddWithValue("iva", this.ImporteIva);
                         Comando.Fields.AddWithValue("totalreal", this.TotalSinRedondeo);
                         Comando.Fields.AddWithValue("gastosenvio", this.GastosDeEnvio);
                         Comando.Fields.AddWithValue("otrosgastos", this.OtrosGastos);

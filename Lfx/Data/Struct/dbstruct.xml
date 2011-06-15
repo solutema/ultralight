@@ -329,6 +329,7 @@
     <Column name="cuotas" datatype="SmallInt" nullable="0" default="0" />
     <Column name="total" inputtype="Currency" default="0" />
     <Column name="totalreal" inputtype="Currency" default="0" />
+    <Column name="iva" inputtype="Currency" default="0" />
     <Column name="obs" datatype="Text" nullable="1" />
     <Column name="impresa" datatype="SmallInt" nullable="0" default="0" />
     <Column name="anulada" datatype="SmallInt" nullable="0" default="0" />

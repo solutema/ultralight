@@ -55,7 +55,8 @@ namespace Lfc.Comprobantes.Facturas
 				new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 300),
 				new Lfx.Data.FormField("personas.cuit", "CUIT", Lfx.Data.InputFieldTypes.Text, 140),
 				new Lfx.Data.FormField("situaciones.nombrecorto AS situacion", "Cond. IVA", Lfx.Data.InputFieldTypes.Text, 100),
-				new Lfx.Data.FormField("comprob.total*(1-anulada) AS gravado", "Gravado", Lfx.Data.InputFieldTypes.Currency, 96),
+				new Lfx.Data.FormField("(comprob.total-comprob.iva)*(1-anulada) AS gravado", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
+                                new Lfx.Data.FormField("comprob.iva*(1-anulada) AS iva", "IVA", Lfx.Data.InputFieldTypes.Currency, 96),
 				new Lfx.Data.FormField("comprob.total*(1-anulada) AS total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
 				new Lfx.Data.FormField("comprob.anulada", "Anulada", Lfx.Data.InputFieldTypes.Bool, 0),                                
 			};
