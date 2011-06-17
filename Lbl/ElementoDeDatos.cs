@@ -593,6 +593,13 @@ namespace Lbl
                                         object Res = Lbl.Instanciador.Instanciar(typeof(T), this.Connection, this.GetFieldValue<int>(fieldName));
                                         return (T)Res;
                                 }
+                        } else if (typeof(T) == typeof(Lfx.Types.LDateTime)) {
+                                if (this.Registro[fieldName] == null) {
+                                        return default(T);
+                                } else {
+                                        object Res = new Lfx.Types.LDateTime(this.GetFieldValue<DateTime>(fieldName));
+                                        return (T)Res;
+                                }
                         } else {
                                 // De lo contrario, asumo que es un tipo intrínseco y lo convierto con System.Convert.
                                 if (this.Registro[fieldName] == null) {

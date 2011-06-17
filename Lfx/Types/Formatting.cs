@@ -546,7 +546,10 @@ namespace Lfx.Types
                         } else if (fecha is System.DateTime) {
                                 return FormatDate(System.Convert.ToDateTime(fecha).ToString(DateTime.ShortDatePattern));
                         } else if (fecha is LDateTime) {
-                                return FormatDate(((LDateTime)(fecha)).Value);
+                                if (fecha == null)
+                                        return string.Empty;
+                                else
+                                        return FormatDate(((LDateTime)(fecha)).Value);
                         } else if (fecha is Nullable<System.DateTime>) {
                                 System.DateTime? fechaNullable = fecha as System.DateTime?;
                                 if (fechaNullable.HasValue)
