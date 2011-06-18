@@ -109,7 +109,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaReporte.MaxLenght = 32767;
                         this.EntradaReporte.MultiLine = true;
                         this.EntradaReporte.Name = "EntradaReporte";
-                        this.EntradaReporte.ReadOnly = true;
+                        this.EntradaReporte.TemporaryReadOnly = true;
                         this.EntradaReporte.SelectOnFocus = false;
                         this.EntradaReporte.Size = new System.Drawing.Size(568, 284);
                         this.EntradaReporte.TabIndex = 51;
@@ -125,7 +125,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaMostrar.Location = new System.Drawing.Point(360, 4);
                         this.EntradaMostrar.MaxLenght = 32767;
                         this.EntradaMostrar.Name = "EntradaMostrar";
-                        this.EntradaMostrar.ReadOnly = false;
+                        this.EntradaMostrar.TemporaryReadOnly = false;
                         this.EntradaMostrar.SetData = new string[] {
 													   "Todo|1",
 													   "Sólo los Subtotales|0"};
@@ -155,7 +155,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaAgrupar.Location = new System.Drawing.Point(96, 4);
                         this.EntradaAgrupar.MaxLenght = 32767;
                         this.EntradaAgrupar.Name = "EntradaAgrupar";
-                        this.EntradaAgrupar.ReadOnly = false;
+                        this.EntradaAgrupar.TemporaryReadOnly = false;
                         this.EntradaAgrupar.SetData = new string[] {
 													   "Sin Agrupar|*",
 													   "Por Tipo de Comprobante|tipo_fac",

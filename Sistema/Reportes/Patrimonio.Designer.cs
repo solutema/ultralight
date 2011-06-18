@@ -111,7 +111,7 @@ namespace Lazaro.Reportes
                     this.note1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                     this.note1.Name = "note1";
                     this.note1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                    this.note1.ReadOnly = false;
+                    this.note1.TemporaryReadOnly = false;
                     this.note1.Size = new System.Drawing.Size(356, 36);
                     this.note1.TabIndex = 1;
                     this.note1.Text = "note1";
@@ -135,7 +135,7 @@ namespace Lazaro.Reportes
                     this.EntradaActivosCajas.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaActivosCajas.PasswordChar = '\0';
                     this.EntradaActivosCajas.Prefijo = "$";
-                    this.EntradaActivosCajas.ReadOnly = true;
+                    this.EntradaActivosCajas.TemporaryReadOnly = true;
                     this.EntradaActivosCajas.SelectOnFocus = true;
                     this.EntradaActivosCajas.Size = new System.Drawing.Size(100, 24);
                     this.EntradaActivosCajas.Sufijo = "";
@@ -161,7 +161,7 @@ namespace Lazaro.Reportes
                     this.EntradaFuturosTarjetas.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaFuturosTarjetas.PasswordChar = '\0';
                     this.EntradaFuturosTarjetas.Prefijo = "$";
-                    this.EntradaFuturosTarjetas.ReadOnly = true;
+                    this.EntradaFuturosTarjetas.TemporaryReadOnly = true;
                     this.EntradaFuturosTarjetas.SelectOnFocus = true;
                     this.EntradaFuturosTarjetas.Size = new System.Drawing.Size(100, 24);
                     this.EntradaFuturosTarjetas.Sufijo = "";
@@ -197,7 +197,7 @@ namespace Lazaro.Reportes
                     this.EntradaActivosStock.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaActivosStock.PasswordChar = '\0';
                     this.EntradaActivosStock.Prefijo = "$";
-                    this.EntradaActivosStock.ReadOnly = true;
+                    this.EntradaActivosStock.TemporaryReadOnly = true;
                     this.EntradaActivosStock.SelectOnFocus = true;
                     this.EntradaActivosStock.Size = new System.Drawing.Size(100, 24);
                     this.EntradaActivosStock.Sufijo = "";
@@ -233,7 +233,7 @@ namespace Lazaro.Reportes
                     this.EntradaFuturosPedidos.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaFuturosPedidos.PasswordChar = '\0';
                     this.EntradaFuturosPedidos.Prefijo = "$";
-                    this.EntradaFuturosPedidos.ReadOnly = true;
+                    this.EntradaFuturosPedidos.TemporaryReadOnly = true;
                     this.EntradaFuturosPedidos.SelectOnFocus = true;
                     this.EntradaFuturosPedidos.Size = new System.Drawing.Size(100, 24);
                     this.EntradaFuturosPedidos.Sufijo = "";
@@ -269,7 +269,7 @@ namespace Lazaro.Reportes
                     this.EntradaPasivosCheques.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaPasivosCheques.PasswordChar = '\0';
                     this.EntradaPasivosCheques.Prefijo = "$";
-                    this.EntradaPasivosCheques.ReadOnly = true;
+                    this.EntradaPasivosCheques.TemporaryReadOnly = true;
                     this.EntradaPasivosCheques.SelectOnFocus = true;
                     this.EntradaPasivosCheques.Size = new System.Drawing.Size(100, 24);
                     this.EntradaPasivosCheques.Sufijo = "";
@@ -305,7 +305,7 @@ namespace Lazaro.Reportes
                     this.EntradaPasivosCajas.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaPasivosCajas.PasswordChar = '\0';
                     this.EntradaPasivosCajas.Prefijo = "$";
-                    this.EntradaPasivosCajas.ReadOnly = true;
+                    this.EntradaPasivosCajas.TemporaryReadOnly = true;
                     this.EntradaPasivosCajas.SelectOnFocus = true;
                     this.EntradaPasivosCajas.Size = new System.Drawing.Size(100, 24);
                     this.EntradaPasivosCajas.Sufijo = "";
@@ -323,7 +323,7 @@ namespace Lazaro.Reportes
                     this.note2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                     this.note2.Name = "note2";
                     this.note2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                    this.note2.ReadOnly = false;
+                    this.note2.TemporaryReadOnly = false;
                     this.note2.Size = new System.Drawing.Size(356, 36);
                     this.note2.TabIndex = 10;
                     this.note2.Text = "note2";
@@ -349,7 +349,7 @@ namespace Lazaro.Reportes
                     this.note3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                     this.note3.Name = "note3";
                     this.note3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                    this.note3.ReadOnly = false;
+                    this.note3.TemporaryReadOnly = false;
                     this.note3.Size = new System.Drawing.Size(356, 36);
                     this.note3.TabIndex = 18;
                     this.note3.Text = "note3";
@@ -373,7 +373,7 @@ namespace Lazaro.Reportes
                     this.EntradaActivosSubtotal.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaActivosSubtotal.PasswordChar = '\0';
                     this.EntradaActivosSubtotal.Prefijo = "$";
-                    this.EntradaActivosSubtotal.ReadOnly = true;
+                    this.EntradaActivosSubtotal.TemporaryReadOnly = true;
                     this.EntradaActivosSubtotal.SelectOnFocus = true;
                     this.EntradaActivosSubtotal.Size = new System.Drawing.Size(100, 24);
                     this.EntradaActivosSubtotal.Sufijo = "";
@@ -410,7 +410,7 @@ namespace Lazaro.Reportes
                     this.EntradaPasivosSubtotal.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaPasivosSubtotal.PasswordChar = '\0';
                     this.EntradaPasivosSubtotal.Prefijo = "$";
-                    this.EntradaPasivosSubtotal.ReadOnly = true;
+                    this.EntradaPasivosSubtotal.TemporaryReadOnly = true;
                     this.EntradaPasivosSubtotal.SelectOnFocus = true;
                     this.EntradaPasivosSubtotal.Size = new System.Drawing.Size(100, 24);
                     this.EntradaPasivosSubtotal.Sufijo = "";
@@ -447,7 +447,7 @@ namespace Lazaro.Reportes
                     this.EntradaFuturosSubtotal.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaFuturosSubtotal.PasswordChar = '\0';
                     this.EntradaFuturosSubtotal.Prefijo = "$";
-                    this.EntradaFuturosSubtotal.ReadOnly = true;
+                    this.EntradaFuturosSubtotal.TemporaryReadOnly = true;
                     this.EntradaFuturosSubtotal.SelectOnFocus = true;
                     this.EntradaFuturosSubtotal.Size = new System.Drawing.Size(100, 24);
                     this.EntradaFuturosSubtotal.Sufijo = "";
@@ -484,7 +484,7 @@ namespace Lazaro.Reportes
                     this.EntradaPatrimonioActual.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaPatrimonioActual.PasswordChar = '\0';
                     this.EntradaPatrimonioActual.Prefijo = "$";
-                    this.EntradaPatrimonioActual.ReadOnly = true;
+                    this.EntradaPatrimonioActual.TemporaryReadOnly = true;
                     this.EntradaPatrimonioActual.SelectOnFocus = true;
                     this.EntradaPatrimonioActual.Size = new System.Drawing.Size(100, 24);
                     this.EntradaPatrimonioActual.Sufijo = "";
@@ -513,7 +513,7 @@ namespace Lazaro.Reportes
                     this.note4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                     this.note4.Name = "note4";
                     this.note4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                    this.note4.ReadOnly = false;
+                    this.note4.TemporaryReadOnly = false;
                     this.note4.Size = new System.Drawing.Size(356, 36);
                     this.note4.TabIndex = 27;
                     this.note4.Text = "note4";
@@ -537,7 +537,7 @@ namespace Lazaro.Reportes
                     this.EntradaPatrimonioFuturo.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaPatrimonioFuturo.PasswordChar = '\0';
                     this.EntradaPatrimonioFuturo.Prefijo = "$";
-                    this.EntradaPatrimonioFuturo.ReadOnly = true;
+                    this.EntradaPatrimonioFuturo.TemporaryReadOnly = true;
                     this.EntradaPatrimonioFuturo.SelectOnFocus = true;
                     this.EntradaPatrimonioFuturo.Size = new System.Drawing.Size(100, 24);
                     this.EntradaPatrimonioFuturo.Sufijo = "";
@@ -574,7 +574,7 @@ namespace Lazaro.Reportes
                     this.EntradaActivosActualesFuturos.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaActivosActualesFuturos.PasswordChar = '\0';
                     this.EntradaActivosActualesFuturos.Prefijo = "$";
-                    this.EntradaActivosActualesFuturos.ReadOnly = true;
+                    this.EntradaActivosActualesFuturos.TemporaryReadOnly = true;
                     this.EntradaActivosActualesFuturos.SelectOnFocus = true;
                     this.EntradaActivosActualesFuturos.Size = new System.Drawing.Size(100, 24);
                     this.EntradaActivosActualesFuturos.Sufijo = "";
@@ -611,7 +611,7 @@ namespace Lazaro.Reportes
                     this.EntradaPasivosStock.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaPasivosStock.PasswordChar = '\0';
                     this.EntradaPasivosStock.Prefijo = "$";
-                    this.EntradaPasivosStock.ReadOnly = true;
+                    this.EntradaPasivosStock.TemporaryReadOnly = true;
                     this.EntradaPasivosStock.SelectOnFocus = true;
                     this.EntradaPasivosStock.Size = new System.Drawing.Size(100, 24);
                     this.EntradaPasivosStock.Sufijo = "";
@@ -647,7 +647,7 @@ namespace Lazaro.Reportes
                     this.EntradaCC.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaCC.PasswordChar = '\0';
                     this.EntradaCC.Prefijo = "$";
-                    this.EntradaCC.ReadOnly = true;
+                    this.EntradaCC.TemporaryReadOnly = true;
                     this.EntradaCC.SelectOnFocus = true;
                     this.EntradaCC.Size = new System.Drawing.Size(100, 24);
                     this.EntradaCC.Sufijo = "";

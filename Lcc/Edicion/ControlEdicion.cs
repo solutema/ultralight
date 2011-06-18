@@ -126,16 +126,16 @@ namespace Lcc.Edicion
                 }
 
 
-                public override bool ReadOnly
+                public override bool TemporaryReadOnly
                 {
                         get
                         {
-                                return base.ReadOnly;
+                                return base.TemporaryReadOnly;
                         }
                         set
                         {
-                                base.ReadOnly = value;
-                                this.SetControlsReadOnly(this.Controls, m_ReadOnly);
+                                base.TemporaryReadOnly = value;
+                                this.SetControlsReadOnly(this.Controls, m_TemporaryReadOnly);
                         }
                 }
 
@@ -146,7 +146,7 @@ namespace Lcc.Edicion
                                 if (ctl == null) {
                                         //Nada
                                 } else if (ctl is Lui.Forms.Control) {
-                                        ((Lui.Forms.Control)ctl).ReadOnly = newValue;
+                                        ((Lui.Forms.Control)ctl).TemporaryReadOnly = newValue;
                                 } else if (ctl.Controls != null) {
                                         SetControlsReadOnly(ctl.Controls, newValue);
                                 }

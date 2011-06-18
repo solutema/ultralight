@@ -97,7 +97,7 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaFrecuencia.MaxLenght = 32767;
                         this.EntradaFrecuencia.Name = "EntradaFrecuencia";
                         this.EntradaFrecuencia.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFrecuencia.ReadOnly = false;
+                        this.EntradaFrecuencia.TemporaryReadOnly = false;
                         this.EntradaFrecuencia.SetData = new string[] {
         "Única|unica",
         "Diaria|diaria",
@@ -144,7 +144,7 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.PasswordChar = '\0';
                         this.EntradaNombre.Prefijo = "";
-                        this.EntradaNombre.ReadOnly = false;
+                        this.EntradaNombre.TemporaryReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(740, 24);
                         this.EntradaNombre.Sufijo = "";
@@ -180,7 +180,7 @@ namespace Lfc.Cajas.Vencimientos
                         this.frame1.Location = new System.Drawing.Point(0, 244);
                         this.frame1.Name = "frame1";
                         this.frame1.Padding = new System.Windows.Forms.Padding(2);
-                        this.frame1.ReadOnly = false;
+                        this.frame1.TemporaryReadOnly = false;
                         this.frame1.Size = new System.Drawing.Size(820, 136);
                         this.frame1.TabIndex = 7;
                         this.frame1.Text = "Periodicidad";
@@ -233,7 +233,7 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaFechaFin.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaFin.PasswordChar = '\0';
                         this.EntradaFechaFin.Prefijo = "";
-                        this.EntradaFechaFin.ReadOnly = false;
+                        this.EntradaFechaFin.TemporaryReadOnly = false;
                         this.EntradaFechaFin.SelectOnFocus = true;
                         this.EntradaFechaFin.Size = new System.Drawing.Size(100, 24);
                         this.EntradaFechaFin.Sufijo = "";
@@ -258,7 +258,7 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaRepetir.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaRepetir.PasswordChar = '\0';
                         this.EntradaRepetir.Prefijo = "";
-                        this.EntradaRepetir.ReadOnly = false;
+                        this.EntradaRepetir.TemporaryReadOnly = false;
                         this.EntradaRepetir.SelectOnFocus = true;
                         this.EntradaRepetir.Size = new System.Drawing.Size(64, 24);
                         this.EntradaRepetir.Sufijo = "";
@@ -294,7 +294,7 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaFechaInicio.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaInicio.PasswordChar = '\0';
                         this.EntradaFechaInicio.Prefijo = "";
-                        this.EntradaFechaInicio.ReadOnly = false;
+                        this.EntradaFechaInicio.TemporaryReadOnly = false;
                         this.EntradaFechaInicio.SelectOnFocus = true;
                         this.EntradaFechaInicio.Size = new System.Drawing.Size(100, 24);
                         this.EntradaFechaInicio.Sufijo = "";
@@ -330,7 +330,7 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaConcepto.MaxLength = 200;
                         this.EntradaConcepto.Name = "EntradaConcepto";
                         this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaConcepto.ReadOnly = false;
+                        this.EntradaConcepto.TemporaryReadOnly = false;
                         this.EntradaConcepto.Required = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(716, 24);
                         this.EntradaConcepto.TabIndex = 1;
@@ -353,7 +353,7 @@ namespace Lfc.Cajas.Vencimientos
                         this.frame2.Location = new System.Drawing.Point(0, 132);
                         this.frame2.Name = "frame2";
                         this.frame2.Padding = new System.Windows.Forms.Padding(2);
-                        this.frame2.ReadOnly = false;
+                        this.frame2.TemporaryReadOnly = false;
                         this.frame2.Size = new System.Drawing.Size(820, 96);
                         this.frame2.TabIndex = 6;
                         this.frame2.Text = "Pago";
@@ -386,7 +386,7 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImporte.PasswordChar = '\0';
                         this.EntradaImporte.Prefijo = "";
-                        this.EntradaImporte.ReadOnly = false;
+                        this.EntradaImporte.TemporaryReadOnly = false;
                         this.EntradaImporte.SelectOnFocus = true;
                         this.EntradaImporte.Size = new System.Drawing.Size(100, 24);
                         this.EntradaImporte.Sufijo = "";
@@ -419,7 +419,7 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEstado.ReadOnly = false;
+                        this.EntradaEstado.TemporaryReadOnly = false;
                         this.EntradaEstado.SetData = new string[] {
         "Inactivo|0",
         "Activo|1",
@@ -451,7 +451,7 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.PasswordChar = '\0';
                         this.EntradaObs.Prefijo = "";
-                        this.EntradaObs.ReadOnly = false;
+                        this.EntradaObs.TemporaryReadOnly = false;
                         this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(740, 56);
                         this.EntradaObs.Sufijo = "";

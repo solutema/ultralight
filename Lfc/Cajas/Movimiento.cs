@@ -135,7 +135,7 @@ namespace Lfc.Cajas
                         this.EntradaDestino.Location = new System.Drawing.Point(112, 100);
                         this.EntradaDestino.MaxLength = 200;
                         this.EntradaDestino.Name = "EntradaDestino";
-                        this.EntradaDestino.ReadOnly = false;
+                        this.EntradaDestino.TemporaryReadOnly = false;
                         this.EntradaDestino.Required = false;
                         this.EntradaDestino.Size = new System.Drawing.Size(356, 24);
                         this.EntradaDestino.TabIndex = 3;
@@ -167,7 +167,7 @@ namespace Lfc.Cajas
                         this.EntradaImporte.MaxLenght = 32767;
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Prefijo = "$";
-                        this.EntradaImporte.ReadOnly = false;
+                        this.EntradaImporte.TemporaryReadOnly = false;
                         this.EntradaImporte.Size = new System.Drawing.Size(108, 24);
                         this.EntradaImporte.TabIndex = 5;
                         this.EntradaImporte.Text = "0.00";
@@ -197,7 +197,7 @@ namespace Lfc.Cajas
                         this.EntradaConcepto.Location = new System.Drawing.Point(112, 164);
                         this.EntradaConcepto.MaxLength = 200;
                         this.EntradaConcepto.Name = "EntradaConcepto";
-                        this.EntradaConcepto.ReadOnly = false;
+                        this.EntradaConcepto.TemporaryReadOnly = false;
                         this.EntradaConcepto.Required = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(356, 24);
                         this.EntradaConcepto.TabIndex = 9;
@@ -228,7 +228,7 @@ namespace Lfc.Cajas
                         this.EntradaObs.MaxLenght = 32767;
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
-                        this.EntradaObs.ReadOnly = false;
+                        this.EntradaObs.TemporaryReadOnly = false;
                         this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(464, 92);
                         this.EntradaObs.TabIndex = 13;
@@ -255,7 +255,7 @@ namespace Lfc.Cajas
                         this.EntradaComprob.Location = new System.Drawing.Point(112, 196);
                         this.EntradaComprob.MaxLenght = 32767;
                         this.EntradaComprob.Name = "EntradaComprob";
-                        this.EntradaComprob.ReadOnly = false;
+                        this.EntradaComprob.TemporaryReadOnly = false;
                         this.EntradaComprob.Size = new System.Drawing.Size(240, 24);
                         this.EntradaComprob.TabIndex = 11;
                         this.EntradaComprob.ToolTipText = "";
@@ -283,7 +283,7 @@ namespace Lfc.Cajas
                         this.EntradaOrigen.Location = new System.Drawing.Point(112, 68);
                         this.EntradaOrigen.MaxLength = 200;
                         this.EntradaOrigen.Name = "EntradaOrigen";
-                        this.EntradaOrigen.ReadOnly = true;
+                        this.EntradaOrigen.TemporaryReadOnly = true;
                         this.EntradaOrigen.Required = false;
                         this.EntradaOrigen.Size = new System.Drawing.Size(356, 24);
                         this.EntradaOrigen.TabIndex = 1;
@@ -316,7 +316,7 @@ namespace Lfc.Cajas
                         this.EntradaImporteDestino.MaxLenght = 32767;
                         this.EntradaImporteDestino.Name = "EntradaImporteDestino";
                         this.EntradaImporteDestino.Prefijo = "$";
-                        this.EntradaImporteDestino.ReadOnly = false;
+                        this.EntradaImporteDestino.TemporaryReadOnly = false;
                         this.EntradaImporteDestino.Size = new System.Drawing.Size(108, 24);
                         this.EntradaImporteDestino.TabIndex = 7;
                         this.EntradaImporteDestino.Text = "0.00";

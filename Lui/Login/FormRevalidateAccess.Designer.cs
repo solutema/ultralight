@@ -104,7 +104,7 @@ namespace Lui.Login
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasena.PasswordChar = '*';
                         this.EntradaContrasena.Prefijo = "";
-                        this.EntradaContrasena.ReadOnly = false;
+                        this.EntradaContrasena.TemporaryReadOnly = false;
                         this.EntradaContrasena.SelectOnFocus = true;
                         this.EntradaContrasena.Size = new System.Drawing.Size(180, 24);
                         this.EntradaContrasena.Sufijo = "";
@@ -150,7 +150,7 @@ namespace Lui.Login
                         this.EntradaUsuario.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaUsuario.PasswordChar = '\0';
                         this.EntradaUsuario.Prefijo = "";
-                        this.EntradaUsuario.ReadOnly = true;
+                        this.EntradaUsuario.TemporaryReadOnly = true;
                         this.EntradaUsuario.SelectOnFocus = true;
                         this.EntradaUsuario.Size = new System.Drawing.Size(288, 24);
                         this.EntradaUsuario.Sufijo = "";

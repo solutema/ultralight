@@ -102,7 +102,7 @@ namespace Lfc.Comprobantes.Compra
 			this.BotonRemito.Location = new System.Drawing.Point(16, 132);
 			this.BotonRemito.Name = "BotonRemito";
 			this.BotonRemito.Padding = new System.Windows.Forms.Padding(2);
-			this.BotonRemito.ReadOnly = false;
+			this.BotonRemito.TemporaryReadOnly = false;
 			this.BotonRemito.Size = new System.Drawing.Size(396, 48);
 			this.BotonRemito.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
 			this.BotonRemito.Subtext = "Para asentar un remito de proveedor.";
@@ -120,7 +120,7 @@ namespace Lfc.Comprobantes.Compra
 			this.BotonPedido.Location = new System.Drawing.Point(16, 76);
 			this.BotonPedido.Name = "BotonPedido";
 			this.BotonPedido.Padding = new System.Windows.Forms.Padding(2);
-			this.BotonPedido.ReadOnly = false;
+			this.BotonPedido.TemporaryReadOnly = false;
 			this.BotonPedido.Size = new System.Drawing.Size(396, 48);
 			this.BotonPedido.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
 			this.BotonPedido.Subtext = "Para asentar un pedido realizado.";
@@ -138,7 +138,7 @@ namespace Lfc.Comprobantes.Compra
 			this.BotonRequerimiento.Location = new System.Drawing.Point(16, 20);
 			this.BotonRequerimiento.Name = "BotonRequerimiento";
 			this.BotonRequerimiento.Padding = new System.Windows.Forms.Padding(2);
-			this.BotonRequerimiento.ReadOnly = false;
+			this.BotonRequerimiento.TemporaryReadOnly = false;
 			this.BotonRequerimiento.Size = new System.Drawing.Size(396, 48);
 			this.BotonRequerimiento.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
 			this.BotonRequerimiento.Subtext = "Para solicitar un pedido.";
@@ -156,7 +156,7 @@ namespace Lfc.Comprobantes.Compra
 			this.BotonFactura.Location = new System.Drawing.Point(16, 188);
 			this.BotonFactura.Name = "BotonFactura";
 			this.BotonFactura.Padding = new System.Windows.Forms.Padding(2);
-			this.BotonFactura.ReadOnly = false;
+			this.BotonFactura.TemporaryReadOnly = false;
 			this.BotonFactura.Size = new System.Drawing.Size(396, 48);
 			this.BotonFactura.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
 			this.BotonFactura.Subtext = "Para asentar una factura de compra.";

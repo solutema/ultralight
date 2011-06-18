@@ -133,7 +133,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImporte.PasswordChar = '\0';
                         this.EntradaImporte.Prefijo = "$";
-                        this.EntradaImporte.ReadOnly = false;
+                        this.EntradaImporte.TemporaryReadOnly = false;
                         this.EntradaImporte.SelectOnFocus = true;
                         this.EntradaImporte.Size = new System.Drawing.Size(116, 24);
                         this.EntradaImporte.Sufijo = "";
@@ -203,7 +203,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFechaCobro.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaCobro.PasswordChar = '\0';
                         this.EntradaFechaCobro.Prefijo = "";
-                        this.EntradaFechaCobro.ReadOnly = false;
+                        this.EntradaFechaCobro.TemporaryReadOnly = false;
                         this.EntradaFechaCobro.SelectOnFocus = true;
                         this.EntradaFechaCobro.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaCobro.Sufijo = "";
@@ -246,7 +246,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFechaEmision.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaEmision.PasswordChar = '\0';
                         this.EntradaFechaEmision.Prefijo = "";
-                        this.EntradaFechaEmision.ReadOnly = false;
+                        this.EntradaFechaEmision.TemporaryReadOnly = false;
                         this.EntradaFechaEmision.SelectOnFocus = true;
                         this.EntradaFechaEmision.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaEmision.Sufijo = "";
@@ -272,7 +272,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaNumeroCheque.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumeroCheque.PasswordChar = '\0';
                         this.EntradaNumeroCheque.Prefijo = "";
-                        this.EntradaNumeroCheque.ReadOnly = false;
+                        this.EntradaNumeroCheque.TemporaryReadOnly = false;
                         this.EntradaNumeroCheque.SelectOnFocus = true;
                         this.EntradaNumeroCheque.Size = new System.Drawing.Size(176, 24);
                         this.EntradaNumeroCheque.Sufijo = "";
@@ -307,7 +307,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
                         this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaBanco.ReadOnly = false;
+                        this.EntradaBanco.TemporaryReadOnly = false;
                         this.EntradaBanco.Required = true;
                         this.EntradaBanco.Size = new System.Drawing.Size(320, 24);
                         this.EntradaBanco.TabIndex = 1;
@@ -335,7 +335,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.FrameTitulo.Location = new System.Drawing.Point(0, 0);
                         this.FrameTitulo.Name = "FrameTitulo";
                         this.FrameTitulo.Padding = new System.Windows.Forms.Padding(2);
-                        this.FrameTitulo.ReadOnly = false;
+                        this.FrameTitulo.TemporaryReadOnly = false;
                         this.FrameTitulo.Size = new System.Drawing.Size(460, 32);
                         this.FrameTitulo.TabIndex = 0;
                         this.FrameTitulo.TabStop = false;
@@ -378,7 +378,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
                         this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCaja.ReadOnly = false;
+                        this.EntradaCaja.TemporaryReadOnly = false;
                         this.EntradaCaja.Required = true;
                         this.EntradaCaja.Size = new System.Drawing.Size(320, 24);
                         this.EntradaCaja.TabIndex = 1;
@@ -444,7 +444,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaAutorizacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAutorizacion.PasswordChar = '\0';
                         this.EntradaAutorizacion.Prefijo = "";
-                        this.EntradaAutorizacion.ReadOnly = false;
+                        this.EntradaAutorizacion.TemporaryReadOnly = false;
                         this.EntradaAutorizacion.SelectOnFocus = true;
                         this.EntradaAutorizacion.Size = new System.Drawing.Size(164, 24);
                         this.EntradaAutorizacion.Sufijo = "";
@@ -468,7 +468,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCupon.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCupon.PasswordChar = '\0';
                         this.EntradaCupon.Prefijo = "";
-                        this.EntradaCupon.ReadOnly = false;
+                        this.EntradaCupon.TemporaryReadOnly = false;
                         this.EntradaCupon.SelectOnFocus = true;
                         this.EntradaCupon.Size = new System.Drawing.Size(164, 24);
                         this.EntradaCupon.Sufijo = "";
@@ -492,7 +492,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaInteres.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaInteres.PasswordChar = '\0';
                         this.EntradaInteres.Prefijo = "";
-                        this.EntradaInteres.ReadOnly = true;
+                        this.EntradaInteres.TemporaryReadOnly = true;
                         this.EntradaInteres.SelectOnFocus = true;
                         this.EntradaInteres.Size = new System.Drawing.Size(80, 24);
                         this.EntradaInteres.Sufijo = "%";
@@ -527,7 +527,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCuotas.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCuotas.PasswordChar = '\0';
                         this.EntradaCuotas.Prefijo = "";
-                        this.EntradaCuotas.ReadOnly = true;
+                        this.EntradaCuotas.TemporaryReadOnly = true;
                         this.EntradaCuotas.SelectOnFocus = true;
                         this.EntradaCuotas.Size = new System.Drawing.Size(60, 24);
                         this.EntradaCuotas.Sufijo = "";
@@ -563,7 +563,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaPlan.MaxLength = 200;
                         this.EntradaPlan.Name = "EntradaPlan";
                         this.EntradaPlan.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPlan.ReadOnly = false;
+                        this.EntradaPlan.TemporaryReadOnly = false;
                         this.EntradaPlan.Required = false;
                         this.EntradaPlan.Size = new System.Drawing.Size(320, 24);
                         this.EntradaPlan.TabIndex = 3;
@@ -632,7 +632,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.PasswordChar = '\0';
                         this.EntradaObs.Prefijo = "";
-                        this.EntradaObs.ReadOnly = false;
+                        this.EntradaObs.TemporaryReadOnly = false;
                         this.EntradaObs.SelectOnFocus = true;
                         this.EntradaObs.Size = new System.Drawing.Size(320, 52);
                         this.EntradaObs.Sufijo = "";
@@ -697,7 +697,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFormaDePago.MaxLength = 200;
                         this.EntradaFormaDePago.Name = "EntradaFormaDePago";
                         this.EntradaFormaDePago.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFormaDePago.ReadOnly = false;
+                        this.EntradaFormaDePago.TemporaryReadOnly = false;
                         this.EntradaFormaDePago.Required = true;
                         this.EntradaFormaDePago.Size = new System.Drawing.Size(324, 24);
                         this.EntradaFormaDePago.TabIndex = 1;
@@ -773,7 +773,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaChequeTerceros.MaxLength = 200;
                         this.EntradaChequeTerceros.Name = "EntradaChequeTerceros";
                         this.EntradaChequeTerceros.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaChequeTerceros.ReadOnly = false;
+                        this.EntradaChequeTerceros.TemporaryReadOnly = false;
                         this.EntradaChequeTerceros.Required = true;
                         this.EntradaChequeTerceros.Size = new System.Drawing.Size(320, 24);
                         this.EntradaChequeTerceros.TabIndex = 1;
@@ -822,7 +822,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaValor.MaxLength = 200;
                         this.EntradaValor.Name = "EntradaValor";
                         this.EntradaValor.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaValor.ReadOnly = false;
+                        this.EntradaValor.TemporaryReadOnly = false;
                         this.EntradaValor.Required = true;
                         this.EntradaValor.Size = new System.Drawing.Size(320, 24);
                         this.EntradaValor.TabIndex = 1;

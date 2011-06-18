@@ -278,8 +278,8 @@ namespace Lcc.Edicion.Comprobantes
                                 EntradaValor.Filter = "id_formapago=" + this.ElementoPago.FormaDePago.Id.ToString() + " AND estado=0";
                                 
                         }
-                        EntradaImporte.ReadOnly = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.ChequeTerceros || this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.OtroValor;
-                        EntradaImporte.TabStop = !EntradaImporte.ReadOnly;
+                        EntradaImporte.TemporaryReadOnly = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.ChequeTerceros || this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.OtroValor;
+                        EntradaImporte.TabStop = !EntradaImporte.TemporaryReadOnly;
 
                         this.Height = PanelSeparadorInferior.Bottom + 1;
                 }
@@ -324,11 +324,11 @@ namespace Lcc.Edicion.Comprobantes
                 {
                         get
                         {
-                                return !EntradaImporte.ReadOnly;
+                                return !EntradaImporte.TemporaryReadOnly;
                         }
                         set
                         {
-                                EntradaImporte.ReadOnly = !value;
+                                EntradaImporte.TemporaryReadOnly = !value;
                                 EntradaImporte.TabStop = value;
                         }
                 }
@@ -337,11 +337,11 @@ namespace Lcc.Edicion.Comprobantes
                 {
                         get
                         {
-                                return !EntradaFormaDePago.ReadOnly;
+                                return !EntradaFormaDePago.TemporaryReadOnly;
                         }
                         set
                         {
-                                EntradaFormaDePago.ReadOnly = !value;
+                                EntradaFormaDePago.TemporaryReadOnly = !value;
                                 EntradaFormaDePago.TabStop = value;
                         }
                 }

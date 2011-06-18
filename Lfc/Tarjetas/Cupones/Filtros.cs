@@ -138,7 +138,7 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaFormaDePago.MaxLength = 200;
                         this.EntradaFormaDePago.Name = "txtTarjeta";
                         this.EntradaFormaDePago.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFormaDePago.ReadOnly = false;
+                        this.EntradaFormaDePago.TemporaryReadOnly = false;
                         this.EntradaFormaDePago.Required = true;
                         this.EntradaFormaDePago.Size = new System.Drawing.Size(456, 24);
                         this.EntradaFormaDePago.TabIndex = 1;
@@ -188,7 +188,7 @@ namespace Lfc.Cupones.Cupones
                         this.txtPlanInteres.Padding = new System.Windows.Forms.Padding(2);
                         this.txtPlanInteres.PasswordChar = '\0';
                         this.txtPlanInteres.Prefijo = "";
-                        this.txtPlanInteres.ReadOnly = true;
+                        this.txtPlanInteres.TemporaryReadOnly = true;
                         this.txtPlanInteres.SelectOnFocus = true;
                         this.txtPlanInteres.Size = new System.Drawing.Size(56, 24);
                         this.txtPlanInteres.Sufijo = "";
@@ -225,7 +225,7 @@ namespace Lfc.Cupones.Cupones
                         this.txtPlanCuotas.Padding = new System.Windows.Forms.Padding(2);
                         this.txtPlanCuotas.PasswordChar = '\0';
                         this.txtPlanCuotas.Prefijo = "";
-                        this.txtPlanCuotas.ReadOnly = true;
+                        this.txtPlanCuotas.TemporaryReadOnly = true;
                         this.txtPlanCuotas.SelectOnFocus = true;
                         this.txtPlanCuotas.Size = new System.Drawing.Size(56, 24);
                         this.txtPlanCuotas.Sufijo = "";
@@ -263,7 +263,7 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaPlan.MaxLength = 200;
                         this.EntradaPlan.Name = "txtPlan";
                         this.EntradaPlan.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPlan.ReadOnly = false;
+                        this.EntradaPlan.TemporaryReadOnly = false;
                         this.EntradaPlan.Required = false;
                         this.EntradaPlan.Size = new System.Drawing.Size(456, 24);
                         this.EntradaPlan.TabIndex = 3;
@@ -304,7 +304,7 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "txtCliente";
                         this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCliente.ReadOnly = false;
+                        this.EntradaCliente.TemporaryReadOnly = false;
                         this.EntradaCliente.Required = false;
                         this.EntradaCliente.Size = new System.Drawing.Size(456, 24);
                         this.EntradaCliente.TabIndex = 8;
@@ -340,7 +340,7 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEstado.ReadOnly = false;
+                        this.EntradaEstado.TemporaryReadOnly = false;
                         this.EntradaEstado.SetData = new string[] {
         "No Cobrados|-2",
         "Sin Presentar|0",
@@ -416,7 +416,7 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaFechas.MuestraFuturos = false;
                         this.EntradaFechas.Name = "EntradaFechas";
                         this.EntradaFechas.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechas.ReadOnly = false;
+                        this.EntradaFechas.TemporaryReadOnly = false;
                         this.EntradaFechas.Size = new System.Drawing.Size(455, 30);
                         this.EntradaFechas.TabIndex = 10;
                         this.EntradaFechas.ToolTipText = "";

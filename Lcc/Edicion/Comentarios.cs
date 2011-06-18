@@ -122,16 +122,16 @@ namespace Lcc.Edicion
                         }
                 }
 
-                public override bool ReadOnly
+                public override bool TemporaryReadOnly
                 {
                         get
                         {
-                                return base.ReadOnly;
+                                return base.TemporaryReadOnly;
                         }
                         set
                         {
                                 // Los comentarios nunca son ReadOnly
-                                base.ReadOnly = false;
+                                base.TemporaryReadOnly = false;
                         }
                 }
         }

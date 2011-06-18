@@ -67,7 +67,7 @@ namespace Lfc.Comprobantes.Plantillas
 
                         EntradaMembrete.TextKey = Plantilla.Membrete.ToString();
                         EntradaCodigo.Text = Plantilla.Codigo;
-                        EntradaCodigo.ReadOnly = !Plantilla.Existe;
+                        EntradaCodigo.TemporaryReadOnly = !Plantilla.Existe;
                         EntradaNombre.Text = Plantilla.Nombre;
                         EntradaPapelTamano.TextKey = Plantilla.TamanoPapel;
                         if (Plantilla.Font != null) {

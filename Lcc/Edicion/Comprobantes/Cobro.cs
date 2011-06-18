@@ -332,11 +332,11 @@ namespace Lcc.Edicion.Comprobantes
                 {
                         get
                         {
-                                return !EntradaImporte.ReadOnly;
+                                return !EntradaImporte.TemporaryReadOnly;
                         }
                         set
                         {
-                                EntradaImporte.ReadOnly = !value;
+                                EntradaImporte.TemporaryReadOnly = !value;
                                 EntradaImporte.TabStop = value;
                         }
                 }
@@ -345,11 +345,11 @@ namespace Lcc.Edicion.Comprobantes
                 {
                         get
                         {
-                                return !EntradaObs.ReadOnly;
+                                return !EntradaObs.TemporaryReadOnly;
                         }
                         set
                         {
-                                EntradaObs.ReadOnly = !value;
+                                EntradaObs.TemporaryReadOnly = !value;
                                 EntradaObs.TabStop = value;
                         }
                 }
@@ -358,11 +358,11 @@ namespace Lcc.Edicion.Comprobantes
                 {
                         get
                         {
-                                return !EntradaFormaDePago.ReadOnly;
+                                return !EntradaFormaDePago.TemporaryReadOnly;
                         }
                         set
                         {
-                                EntradaFormaDePago.ReadOnly = !value;
+                                EntradaFormaDePago.TemporaryReadOnly = !value;
                                 EntradaFormaDePago.TabStop = value;
                         }
                 }

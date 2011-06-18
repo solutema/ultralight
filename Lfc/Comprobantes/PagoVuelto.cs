@@ -132,7 +132,7 @@ namespace Lfc.Comprobantes
                         this.EntradaTotal.MaxLenght = 32767;
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Prefijo = "$";
-                        this.EntradaTotal.ReadOnly = true;
+                        this.EntradaTotal.TemporaryReadOnly = true;
                         this.EntradaTotal.Size = new System.Drawing.Size(152, 32);
                         this.EntradaTotal.TabIndex = 1;
                         this.EntradaTotal.TabStop = false;
@@ -152,7 +152,7 @@ namespace Lfc.Comprobantes
                         this.EntradaPago.MaxLenght = 32767;
                         this.EntradaPago.Name = "EntradaPago";
                         this.EntradaPago.Prefijo = "$";
-                        this.EntradaPago.ReadOnly = false;
+                        this.EntradaPago.TemporaryReadOnly = false;
                         this.EntradaPago.Size = new System.Drawing.Size(152, 32);
                         this.EntradaPago.TabIndex = 3;
                         this.EntradaPago.Text = "0.00";
@@ -183,7 +183,7 @@ namespace Lfc.Comprobantes
                         this.EntradaCambio.MaxLenght = 32767;
                         this.EntradaCambio.Name = "EntradaCambio";
                         this.EntradaCambio.Prefijo = "$";
-                        this.EntradaCambio.ReadOnly = true;
+                        this.EntradaCambio.TemporaryReadOnly = true;
                         this.EntradaCambio.Size = new System.Drawing.Size(152, 32);
                         this.EntradaCambio.TabIndex = 6;
                         this.EntradaCambio.TabStop = false;

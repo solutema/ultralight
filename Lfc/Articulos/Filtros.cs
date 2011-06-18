@@ -159,7 +159,7 @@ namespace Lfc.Articulos
                 this.EntradaCategoria.MaxLength = 200;
                 this.EntradaCategoria.Name = "EntradaCategoria";
                 this.EntradaCategoria.Padding = new System.Windows.Forms.Padding(2);
-                this.EntradaCategoria.ReadOnly = false;
+                this.EntradaCategoria.TemporaryReadOnly = false;
                 this.EntradaCategoria.Required = false;
                 this.EntradaCategoria.Size = new System.Drawing.Size(444, 24);
                 this.EntradaCategoria.TabIndex = 3;
@@ -193,7 +193,7 @@ namespace Lfc.Articulos
                 this.EntradaStock.MaxLenght = 32767;
                 this.EntradaStock.Name = "EntradaStock";
                 this.EntradaStock.Padding = new System.Windows.Forms.Padding(2);
-                this.EntradaStock.ReadOnly = false;
+                this.EntradaStock.TemporaryReadOnly = false;
                 this.EntradaStock.SetData = new string[] {
         "Cualquiera|*",
         "En Existencia|cs",
@@ -227,7 +227,7 @@ namespace Lfc.Articulos
                 this.EntradaProveedor.MaxLength = 200;
                 this.EntradaProveedor.Name = "EntradaProveedor";
                 this.EntradaProveedor.Padding = new System.Windows.Forms.Padding(2);
-                this.EntradaProveedor.ReadOnly = false;
+                this.EntradaProveedor.TemporaryReadOnly = false;
                 this.EntradaProveedor.Required = false;
                 this.EntradaProveedor.Size = new System.Drawing.Size(444, 24);
                 this.EntradaProveedor.TabIndex = 7;
@@ -265,7 +265,7 @@ namespace Lfc.Articulos
                 this.EntradaMarca.MaxLength = 200;
                 this.EntradaMarca.Name = "EntradaMarca";
                 this.EntradaMarca.Padding = new System.Windows.Forms.Padding(2);
-                this.EntradaMarca.ReadOnly = false;
+                this.EntradaMarca.TemporaryReadOnly = false;
                 this.EntradaMarca.Required = false;
                 this.EntradaMarca.Size = new System.Drawing.Size(444, 24);
                 this.EntradaMarca.TabIndex = 5;
@@ -303,7 +303,7 @@ namespace Lfc.Articulos
                 this.EntradaSituacion.MaxLength = 200;
                 this.EntradaSituacion.Name = "EntradaSituacion";
                 this.EntradaSituacion.Padding = new System.Windows.Forms.Padding(2);
-                this.EntradaSituacion.ReadOnly = false;
+                this.EntradaSituacion.TemporaryReadOnly = false;
                 this.EntradaSituacion.Required = false;
                 this.EntradaSituacion.Size = new System.Drawing.Size(444, 24);
                 this.EntradaSituacion.TabIndex = 11;
@@ -340,7 +340,7 @@ namespace Lfc.Articulos
                 this.EntradaPvpDesde.Padding = new System.Windows.Forms.Padding(2);
                 this.EntradaPvpDesde.PasswordChar = '\0';
                 this.EntradaPvpDesde.Prefijo = "";
-                this.EntradaPvpDesde.ReadOnly = false;
+                this.EntradaPvpDesde.TemporaryReadOnly = false;
                 this.EntradaPvpDesde.SelectOnFocus = true;
                 this.EntradaPvpDesde.Size = new System.Drawing.Size(108, 24);
                 this.EntradaPvpDesde.Sufijo = "";
@@ -375,7 +375,7 @@ namespace Lfc.Articulos
                 this.EntradaPvpHasta.Padding = new System.Windows.Forms.Padding(2);
                 this.EntradaPvpHasta.PasswordChar = '\0';
                 this.EntradaPvpHasta.Prefijo = "";
-                this.EntradaPvpHasta.ReadOnly = false;
+                this.EntradaPvpHasta.TemporaryReadOnly = false;
                 this.EntradaPvpHasta.SelectOnFocus = true;
                 this.EntradaPvpHasta.Size = new System.Drawing.Size(108, 24);
                 this.EntradaPvpHasta.Sufijo = "";
@@ -448,7 +448,7 @@ namespace Lfc.Articulos
                 this.EntradaRubro.MaxLength = 200;
                 this.EntradaRubro.Name = "EntradaRubro";
                 this.EntradaRubro.Padding = new System.Windows.Forms.Padding(2);
-                this.EntradaRubro.ReadOnly = false;
+                this.EntradaRubro.TemporaryReadOnly = false;
                 this.EntradaRubro.Required = false;
                 this.EntradaRubro.Size = new System.Drawing.Size(444, 24);
                 this.EntradaRubro.TabIndex = 1;
@@ -473,7 +473,7 @@ namespace Lfc.Articulos
                 this.EntradaAgrupar.MaxLenght = 32767;
                 this.EntradaAgrupar.Name = "EntradaAgrupar";
                 this.EntradaAgrupar.Padding = new System.Windows.Forms.Padding(2);
-                this.EntradaAgrupar.ReadOnly = false;
+                this.EntradaAgrupar.TemporaryReadOnly = false;
                 this.EntradaAgrupar.SetData = new string[] {
         "Sin agrupar|*",
         "Por Categoría|categorias_nombre"};

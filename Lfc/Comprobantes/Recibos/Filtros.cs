@@ -127,7 +127,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "txtCliente";
                         this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCliente.ReadOnly = false;
+                        this.EntradaCliente.TemporaryReadOnly = false;
                         this.EntradaCliente.Required = false;
                         this.EntradaCliente.Size = new System.Drawing.Size(448, 24);
                         this.EntradaCliente.TabIndex = 5;
@@ -174,7 +174,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaVendedor.MaxLength = 200;
                         this.EntradaVendedor.Name = "EntradaVendedor";
                         this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaVendedor.ReadOnly = false;
+                        this.EntradaVendedor.TemporaryReadOnly = false;
                         this.EntradaVendedor.Required = false;
                         this.EntradaVendedor.Size = new System.Drawing.Size(448, 24);
                         this.EntradaVendedor.TabIndex = 7;
@@ -212,7 +212,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaSucursal.MaxLength = 200;
                         this.EntradaSucursal.Name = "EntradaSucursal";
                         this.EntradaSucursal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaSucursal.ReadOnly = false;
+                        this.EntradaSucursal.TemporaryReadOnly = false;
                         this.EntradaSucursal.Required = false;
                         this.EntradaSucursal.Size = new System.Drawing.Size(448, 24);
                         this.EntradaSucursal.TabIndex = 3;
@@ -245,7 +245,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipo.ReadOnly = false;
+                        this.EntradaTipo.TemporaryReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "De cobro|0",
         "De pago|1"};
@@ -304,7 +304,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaFechas.MuestraFuturos = false;
                         this.EntradaFechas.Name = "EntradaFechas";
                         this.EntradaFechas.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechas.ReadOnly = false;
+                        this.EntradaFechas.TemporaryReadOnly = false;
                         this.EntradaFechas.Size = new System.Drawing.Size(448, 30);
                         this.EntradaFechas.TabIndex = 9;
                         this.EntradaFechas.ToolTipText = "";

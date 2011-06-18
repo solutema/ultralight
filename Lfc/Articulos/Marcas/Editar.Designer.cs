@@ -81,7 +81,7 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaProveedor.MaxLength = 200;
                         this.EntradaProveedor.Name = "EntradaProveedor";
                         this.EntradaProveedor.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaProveedor.ReadOnly = false;
+                        this.EntradaProveedor.TemporaryReadOnly = false;
                         this.EntradaProveedor.Required = false;
                         this.EntradaProveedor.Size = new System.Drawing.Size(364, 24);
                         this.EntradaProveedor.TabIndex = 5;
@@ -114,7 +114,7 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaUrl.MaxLenght = 32767;
                         this.EntradaUrl.Name = "EntradaURL";
                         this.EntradaUrl.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaUrl.ReadOnly = false;
+                        this.EntradaUrl.TemporaryReadOnly = false;
                         this.EntradaUrl.SelectOnFocus = false;
                         this.EntradaUrl.Size = new System.Drawing.Size(444, 24);
                         this.EntradaUrl.TabIndex = 3;
@@ -144,7 +144,7 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.ReadOnly = false;
+                        this.EntradaNombre.TemporaryReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(444, 24);
                         this.EntradaNombre.TabIndex = 1;
@@ -174,7 +174,7 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaObs.ReadOnly = false;
+                        this.EntradaObs.TemporaryReadOnly = false;
                         this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(444, 72);
                         this.EntradaObs.TabIndex = 7;

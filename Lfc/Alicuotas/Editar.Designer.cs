@@ -86,7 +86,7 @@ namespace Lfc.Alicuotas
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.PasswordChar = '\0';
                         this.EntradaNombre.Prefijo = "";
-                        this.EntradaNombre.ReadOnly = false;
+                        this.EntradaNombre.TemporaryReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(384, 24);
                         this.EntradaNombre.Sufijo = "";
@@ -120,7 +120,7 @@ namespace Lfc.Alicuotas
                         this.EntradaPorcentaje.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPorcentaje.PasswordChar = '\0';
                         this.EntradaPorcentaje.Prefijo = "";
-                        this.EntradaPorcentaje.ReadOnly = false;
+                        this.EntradaPorcentaje.TemporaryReadOnly = false;
                         this.EntradaPorcentaje.SelectOnFocus = true;
                         this.EntradaPorcentaje.Size = new System.Drawing.Size(100, 24);
                         this.EntradaPorcentaje.Sufijo = "%";
@@ -164,7 +164,7 @@ namespace Lfc.Alicuotas
                         this.EntradaImporteMinimo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImporteMinimo.PasswordChar = '\0';
                         this.EntradaImporteMinimo.Prefijo = "";
-                        this.EntradaImporteMinimo.ReadOnly = false;
+                        this.EntradaImporteMinimo.TemporaryReadOnly = false;
                         this.EntradaImporteMinimo.SelectOnFocus = true;
                         this.EntradaImporteMinimo.Size = new System.Drawing.Size(100, 24);
                         this.EntradaImporteMinimo.Sufijo = "";

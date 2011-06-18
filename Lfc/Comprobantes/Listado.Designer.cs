@@ -67,7 +67,7 @@ namespace Lfc.Comprobantes
                     this.EntradaAgrupar.MaxLenght = 32767;
                     this.EntradaAgrupar.Name = "EntradaAgrupar";
                     this.EntradaAgrupar.Padding = new System.Windows.Forms.Padding(2);
-                    this.EntradaAgrupar.ReadOnly = false;
+                    this.EntradaAgrupar.TemporaryReadOnly = false;
                     this.EntradaAgrupar.SetData = new string[] {
         "Sin Agrupar|*",
         "Por Tipo de Comprobante|comprob.tipo_fac",

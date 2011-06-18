@@ -106,7 +106,7 @@ namespace Lfc.Cajas
                         this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImporte.PasswordChar = '\0';
                         this.EntradaImporte.Prefijo = "$";
-                        this.EntradaImporte.ReadOnly = false;
+                        this.EntradaImporte.TemporaryReadOnly = false;
                         this.EntradaImporte.SelectOnFocus = true;
                         this.EntradaImporte.Size = new System.Drawing.Size(108, 24);
                         this.EntradaImporte.Sufijo = "";
@@ -143,7 +143,7 @@ namespace Lfc.Cajas
                         this.EntradaConcepto.MaxLength = 200;
                         this.EntradaConcepto.Name = "EntradaConcepto";
                         this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaConcepto.ReadOnly = false;
+                        this.EntradaConcepto.TemporaryReadOnly = false;
                         this.EntradaConcepto.Required = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(500, 24);
                         this.EntradaConcepto.TabIndex = 3;
@@ -173,7 +173,7 @@ namespace Lfc.Cajas
                         this.EntradaComprobante.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaComprobante.PasswordChar = '\0';
                         this.EntradaComprobante.Prefijo = "";
-                        this.EntradaComprobante.ReadOnly = false;
+                        this.EntradaComprobante.TemporaryReadOnly = false;
                         this.EntradaComprobante.SelectOnFocus = true;
                         this.EntradaComprobante.Size = new System.Drawing.Size(500, 24);
                         this.EntradaComprobante.Sufijo = "";
@@ -210,7 +210,7 @@ namespace Lfc.Cajas
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.PasswordChar = '\0';
                         this.EntradaObs.Prefijo = "";
-                        this.EntradaObs.ReadOnly = false;
+                        this.EntradaObs.TemporaryReadOnly = false;
                         this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(500, 116);
                         this.EntradaObs.Sufijo = "";
@@ -245,7 +245,7 @@ namespace Lfc.Cajas
                         this.EntradaPersona.MaxLength = 200;
                         this.EntradaPersona.Name = "EntradaPersona";
                         this.EntradaPersona.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPersona.ReadOnly = false;
+                        this.EntradaPersona.TemporaryReadOnly = false;
                         this.EntradaPersona.Required = true;
                         this.EntradaPersona.Size = new System.Drawing.Size(500, 24);
                         this.EntradaPersona.TabIndex = 7;
@@ -283,7 +283,7 @@ namespace Lfc.Cajas
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
                         this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCaja.ReadOnly = false;
+                        this.EntradaCaja.TemporaryReadOnly = false;
                         this.EntradaCaja.Required = true;
                         this.EntradaCaja.Size = new System.Drawing.Size(500, 24);
                         this.EntradaCaja.TabIndex = 1;
@@ -320,7 +320,7 @@ namespace Lfc.Cajas
                         this.EntradaNuevoSaldo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNuevoSaldo.PasswordChar = '\0';
                         this.EntradaNuevoSaldo.Prefijo = "$";
-                        this.EntradaNuevoSaldo.ReadOnly = true;
+                        this.EntradaNuevoSaldo.TemporaryReadOnly = true;
                         this.EntradaNuevoSaldo.SelectOnFocus = true;
                         this.EntradaNuevoSaldo.Size = new System.Drawing.Size(120, 24);
                         this.EntradaNuevoSaldo.Sufijo = "";

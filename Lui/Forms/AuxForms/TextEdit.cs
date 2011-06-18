@@ -73,11 +73,11 @@ namespace Lui.Forms.AuxForms
 		{
 			get
 			{
-				return txtText.Text;
+				return EntradaTexto.Text;
 			}
 			set
 			{
-				txtText.Text = value;
+				EntradaTexto.Text = value;
 			}
 		}
 
@@ -85,11 +85,11 @@ namespace Lui.Forms.AuxForms
                 {
                         get
                         {
-                                return txtText.ReadOnly;
+                                return EntradaTexto.TemporaryReadOnly;
                         }
                         set
                         {
-                                txtText.ReadOnly = value;
+                                EntradaTexto.TemporaryReadOnly = value;
                                 BotonAceptar.Visible = !value;
                         }
                 }

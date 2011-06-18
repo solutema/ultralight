@@ -109,7 +109,7 @@ namespace Lfc.Misc
                         this.EntradaElementoDuplicado.MaxLength = 200;
                         this.EntradaElementoDuplicado.Name = "EntradaElementoDuplicado";
                         this.EntradaElementoDuplicado.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaElementoDuplicado.ReadOnly = false;
+                        this.EntradaElementoDuplicado.TemporaryReadOnly = false;
                         this.EntradaElementoDuplicado.Required = true;
                         this.EntradaElementoDuplicado.Size = new System.Drawing.Size(456, 24);
                         this.EntradaElementoDuplicado.TabIndex = 5;
@@ -147,7 +147,7 @@ namespace Lfc.Misc
                         this.EntradaElementoOriginal.MaxLength = 200;
                         this.EntradaElementoOriginal.Name = "EntradaElementoOriginal";
                         this.EntradaElementoOriginal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaElementoOriginal.ReadOnly = false;
+                        this.EntradaElementoOriginal.TemporaryReadOnly = false;
                         this.EntradaElementoOriginal.Required = true;
                         this.EntradaElementoOriginal.Size = new System.Drawing.Size(456, 24);
                         this.EntradaElementoOriginal.TabIndex = 3;
@@ -173,7 +173,7 @@ namespace Lfc.Misc
                         this.txtTipo.MaxLenght = 32767;
                         this.txtTipo.Name = "EntradaTipo";
                         this.txtTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtTipo.ReadOnly = false;
+                        this.txtTipo.TemporaryReadOnly = false;
                         this.txtTipo.SetData = new string[] {
         "Persona|personas"};
                         this.txtTipo.Size = new System.Drawing.Size(140, 24);
@@ -200,7 +200,7 @@ namespace Lfc.Misc
                         this.note1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.note1.Name = "note1";
                         this.note1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.note1.ReadOnly = false;
+                        this.note1.TemporaryReadOnly = false;
                         this.note1.Size = new System.Drawing.Size(604, 68);
                         this.note1.TabIndex = 7;
                         this.note1.TabStop = false;
@@ -239,7 +239,7 @@ namespace Lfc.Misc
                         this.EntradaCtaCteFinal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCtaCteFinal.PasswordChar = '\0';
                         this.EntradaCtaCteFinal.Prefijo = "$";
-                        this.EntradaCtaCteFinal.ReadOnly = true;
+                        this.EntradaCtaCteFinal.TemporaryReadOnly = true;
                         this.EntradaCtaCteFinal.SelectOnFocus = true;
                         this.EntradaCtaCteFinal.Size = new System.Drawing.Size(120, 24);
                         this.EntradaCtaCteFinal.Sufijo = "";
@@ -275,7 +275,7 @@ namespace Lfc.Misc
                         this.EntradaCtaCte2.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCtaCte2.PasswordChar = '\0';
                         this.EntradaCtaCte2.Prefijo = "$";
-                        this.EntradaCtaCte2.ReadOnly = true;
+                        this.EntradaCtaCte2.TemporaryReadOnly = true;
                         this.EntradaCtaCte2.SelectOnFocus = true;
                         this.EntradaCtaCte2.Size = new System.Drawing.Size(120, 24);
                         this.EntradaCtaCte2.Sufijo = "";
@@ -312,7 +312,7 @@ namespace Lfc.Misc
                         this.EntradaCtaCte1.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCtaCte1.PasswordChar = '\0';
                         this.EntradaCtaCte1.Prefijo = "$";
-                        this.EntradaCtaCte1.ReadOnly = true;
+                        this.EntradaCtaCte1.TemporaryReadOnly = true;
                         this.EntradaCtaCte1.SelectOnFocus = true;
                         this.EntradaCtaCte1.Size = new System.Drawing.Size(120, 24);
                         this.EntradaCtaCte1.Sufijo = "";

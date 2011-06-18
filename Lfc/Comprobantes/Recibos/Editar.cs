@@ -69,22 +69,22 @@ namespace Lfc.Comprobantes.Recibos
                         }
                 }
 
-                public override bool ReadOnly
+                public override bool TemporaryReadOnly
                 {
                         get
                         {
-                                return base.ReadOnly;
+                                return base.TemporaryReadOnly;
                         }
                         set
                         {
-                                base.ReadOnly = value;
+                                base.TemporaryReadOnly = value;
                                 BotonAgregarFactura.Enabled = !value;
                                 BotonQuitarFactura.Enabled = !value;
                                 BotonAgregarValor.Enabled = !value;
                                 BotonQuitarValor.Enabled = !value;
-                                EntradaCliente.ReadOnly = value;
-                                EntradaVendedor.ReadOnly = value;
-                                EntradaNumero.ReadOnly = value;
+                                EntradaCliente.TemporaryReadOnly = value;
+                                EntradaVendedor.TemporaryReadOnly = value;
+                                EntradaNumero.TemporaryReadOnly = value;
                         }
                 }
 
@@ -112,7 +112,7 @@ namespace Lfc.Comprobantes.Recibos
 
                         if (Rec.Existe) {
                                 EtiquetaTitulo.Text = Rec.ToString();
-                                this.ReadOnly = true;
+                                this.TemporaryReadOnly = true;
                         } else {
                                 EtiquetaTitulo.Text = Rec.Tipo.Nombre;
                         }

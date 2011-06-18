@@ -152,7 +152,7 @@ namespace Lcc.Entrada
                         }
                 }
 
-                public override bool ReadOnly
+                public override bool TemporaryReadOnly
                 {
                         get
                         {
@@ -160,7 +160,7 @@ namespace Lcc.Entrada
                         }
                         set
                         {
-                                base.ReadOnly = value;
+                                base.TemporaryReadOnly = value;
                                 TextBox1.ReadOnly = value;
                                 if (Label1.Text == "???")
                                         this.ActualizarDetalle();
@@ -359,7 +359,7 @@ namespace Lcc.Entrada
                 {
                         RowMisses = 0;
 
-                        if (m_ReadOnly == false)
+                        if (m_TemporaryReadOnly == false)
                                 TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
                         if (m_SelectOnFocus)
                                 TextBox1.SelectAll();
@@ -367,7 +367,7 @@ namespace Lcc.Entrada
 
                 private void EntradaFreeText_GotFocus(object sender, System.EventArgs e)
                 {
-                        if (m_ReadOnly == false)
+                        if (m_TemporaryReadOnly == false)
                                 EntradaFreeText.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
                         EntradaFreeText.SelectionStart = 1024;
                 }
@@ -436,13 +436,13 @@ namespace Lcc.Entrada
                                                 string TextoSql = "", Campos = "*";
 
                                                 TextoSql = "SELECT " + Campos + " FROM " + this.Relation.ReferenceTable + " WHERE " + KeyFieldAlt + "='" + this.Connection.EscapeString(TextBox1.Text) + "'";
-                                                if (m_Filter != null && m_Filter.Length > 0 && this.ReadOnly == false)
+                                                if (m_Filter != null && m_Filter.Length > 0 && this.TemporaryReadOnly == false)
                                                         TextoSql += " AND (" + m_Filter + ")";
 
                                                 CurrentRow = this.Connection.FirstRowFromSelect(TextoSql);
                                                 if (CurrentRow == null && this.Relation.ReferenceColumn != KeyFieldAlt) {
                                                         TextoSql = "SELECT " + Campos + " FROM " + this.Relation.ReferenceTable + " WHERE " + this.Relation.ReferenceColumn + "='" + this.Connection.EscapeString(TextBox1.Text) + "'";
-                                                        if (m_Filter != null && m_Filter.Length > 0 && this.ReadOnly == false)
+                                                        if (m_Filter != null && m_Filter.Length > 0 && this.TemporaryReadOnly == false)
                                                                 TextoSql += " AND (" + m_Filter + ")";
                                                         CurrentRow = this.Connection.FirstRowFromSelect(TextoSql);
                                                 }

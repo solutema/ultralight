@@ -102,7 +102,7 @@ namespace Lfc.Comprobantes.Compra
                         EntradaPV.Text = Fac.PV.ToString("0000");
                         EntradaNumero.Text = Fac.Numero.ToString("00000000");
                         EntradaHaciaSituacion.Elemento = Fac.SituacionDestino;
-                        EntradaHaciaSituacion.ReadOnly = Fac.Existe;
+                        EntradaHaciaSituacion.TemporaryReadOnly = Fac.Existe;
                         EntradaTipo.TextKey = Fac.Tipo.Nomenclatura;
                         EntradaEstado.TextKey = Fac.Estado.ToString();
                         EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Fac.Total, this.Workspace.CurrentConfig.Moneda.Decimales);
@@ -252,7 +252,7 @@ namespace Lfc.Comprobantes.Compra
 		{
                         Lui.Forms.AuxForms.TextEdit FormularioObs = new Lui.Forms.AuxForms.TextEdit();
 			FormularioObs.EditText = EntradaObs.Text;
-                        FormularioObs.ReadOnly = this.ReadOnly;
+                        FormularioObs.ReadOnly = this.TemporaryReadOnly;
 			if (FormularioObs.ShowDialog() == DialogResult.OK)
 				EntradaObs.Text = FormularioObs.EditText;
 		}

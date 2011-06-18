@@ -98,7 +98,7 @@ namespace Lfc.Reportes
                         this.BotonActualizar.Location = new System.Drawing.Point(668, 12);
                         this.BotonActualizar.Name = "BotonActualizar";
                         this.BotonActualizar.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonActualizar.ReadOnly = false;
+                        this.BotonActualizar.TemporaryReadOnly = false;
                         this.BotonActualizar.Size = new System.Drawing.Size(84, 24);
                         this.BotonActualizar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonActualizar.Subtext = "Tecla";
@@ -121,7 +121,7 @@ namespace Lfc.Reportes
                         this.EntradaExpandirGrupos.MaxLenght = 32767;
                         this.EntradaExpandirGrupos.Name = "EntradaExpandirGrupos";
                         this.EntradaExpandirGrupos.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaExpandirGrupos.ReadOnly = false;
+                        this.EntradaExpandirGrupos.TemporaryReadOnly = false;
                         this.EntradaExpandirGrupos.SetData = new string[] {
         "Mostrar detalles|1",
         "Sólo subtotales|0"};

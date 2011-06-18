@@ -118,7 +118,7 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.PasswordChar = '\0';
                         this.EntradaNombre.Prefijo = "";
-                        this.EntradaNombre.ReadOnly = false;
+                        this.EntradaNombre.TemporaryReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(536, 24);
                         this.EntradaNombre.Sufijo = "";
@@ -140,7 +140,7 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaDireccion.MaxLenght = 32767;
                         this.EntradaDireccion.Name = "EntradaDireccion";
                         this.EntradaDireccion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDireccion.ReadOnly = false;
+                        this.EntradaDireccion.TemporaryReadOnly = false;
                         this.EntradaDireccion.SetData = new string[] {
         "Ambas|0",
         "Entrada|1",
@@ -166,7 +166,7 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaGrupo.MaxLenght = 32767;
                         this.EntradaGrupo.Name = "EntradaGrupo";
                         this.EntradaGrupo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaGrupo.ReadOnly = false;
+                        this.EntradaGrupo.TemporaryReadOnly = false;
                         this.EntradaGrupo.SetData = new string[] {
         "Ninguno|0",
         "Cobros|110",
@@ -205,7 +205,7 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaCodigo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCodigo.PasswordChar = '\0';
                         this.EntradaCodigo.Prefijo = "";
-                        this.EntradaCodigo.ReadOnly = false;
+                        this.EntradaCodigo.TemporaryReadOnly = false;
                         this.EntradaCodigo.SelectOnFocus = true;
                         this.EntradaCodigo.Size = new System.Drawing.Size(76, 24);
                         this.EntradaCodigo.Sufijo = "";

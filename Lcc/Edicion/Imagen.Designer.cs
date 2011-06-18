@@ -120,7 +120,7 @@ namespace Lcc.Entrada
                         this.BotonQuitarImagen.Location = new System.Drawing.Point(143, 133);
                         this.BotonQuitarImagen.Name = "BotonQuitarImagen";
                         this.BotonQuitarImagen.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonQuitarImagen.ReadOnly = false;
+                        this.BotonQuitarImagen.TemporaryReadOnly = false;
                         this.BotonQuitarImagen.Size = new System.Drawing.Size(96, 26);
                         this.BotonQuitarImagen.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonQuitarImagen.Subtext = "";
@@ -140,7 +140,7 @@ namespace Lcc.Entrada
                         this.BotonSeleccionarImagen.Location = new System.Drawing.Point(143, 82);
                         this.BotonSeleccionarImagen.Name = "BotonSeleccionarImagen";
                         this.BotonSeleccionarImagen.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonSeleccionarImagen.ReadOnly = false;
+                        this.BotonSeleccionarImagen.TemporaryReadOnly = false;
                         this.BotonSeleccionarImagen.Size = new System.Drawing.Size(96, 40);
                         this.BotonSeleccionarImagen.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSeleccionarImagen.Subtext = "";
@@ -161,7 +161,7 @@ namespace Lcc.Entrada
                         this.BotonCapturarImagen.Location = new System.Drawing.Point(143, 38);
                         this.BotonCapturarImagen.Name = "BotonCapturarImagen";
                         this.BotonCapturarImagen.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCapturarImagen.ReadOnly = false;
+                        this.BotonCapturarImagen.TemporaryReadOnly = false;
                         this.BotonCapturarImagen.Size = new System.Drawing.Size(96, 40);
                         this.BotonCapturarImagen.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonCapturarImagen.Subtext = "";

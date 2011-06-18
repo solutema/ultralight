@@ -216,16 +216,16 @@ namespace Lui.Forms
                         this.OnTextChanged(EventArgs.Empty);
                 }                
 
-                public override bool ReadOnly
+                public override bool TemporaryReadOnly
                 {
                         get
                         {
-                                return base.ReadOnly;
+                                return base.TemporaryReadOnly;
                         }
                         set
                         {
-                                base.ReadOnly = value;
-                                TextBox1.ReadOnly = value;
+                                base.TemporaryReadOnly = value;
+                                TextBox1.ReadOnly = value || this.ReadOnly;
                         }
                 }
 
@@ -302,7 +302,7 @@ namespace Lui.Forms
                 {
                         if (IgnorarEventos == 0) {
                                 IgnorarEventos++;
-                                if (m_ReadOnly == false) {
+                                if (m_TemporaryReadOnly == false && m_ReadOnly == false) {
                                         TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
 
                                         if (TextBox1.ForeColor == System.Drawing.SystemColors.GrayText) {

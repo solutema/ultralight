@@ -104,7 +104,7 @@ namespace Lfc.Cajas
                         this.EntradaPersona.MaxLength = 200;
                         this.EntradaPersona.Name = "EntradaPersona";
                         this.EntradaPersona.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPersona.ReadOnly = false;
+                        this.EntradaPersona.TemporaryReadOnly = false;
                         this.EntradaPersona.Required = false;
                         this.EntradaPersona.Size = new System.Drawing.Size(495, 24);
                         this.EntradaPersona.TabIndex = 3;
@@ -142,7 +142,7 @@ namespace Lfc.Cajas
                         this.EntradaConcepto.MaxLength = 200;
                         this.EntradaConcepto.Name = "EntradaConcepto";
                         this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaConcepto.ReadOnly = false;
+                        this.EntradaConcepto.TemporaryReadOnly = false;
                         this.EntradaConcepto.Required = false;
                         this.EntradaConcepto.Size = new System.Drawing.Size(495, 24);
                         this.EntradaConcepto.TabIndex = 5;
@@ -180,7 +180,7 @@ namespace Lfc.Cajas
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
                         this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCaja.ReadOnly = false;
+                        this.EntradaCaja.TemporaryReadOnly = false;
                         this.EntradaCaja.Required = false;
                         this.EntradaCaja.Size = new System.Drawing.Size(495, 24);
                         this.EntradaCaja.TabIndex = 1;
@@ -214,7 +214,7 @@ namespace Lfc.Cajas
                         this.EntradaDireccion.MaxLenght = 32767;
                         this.EntradaDireccion.Name = "EntradaDireccion";
                         this.EntradaDireccion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDireccion.ReadOnly = false;
+                        this.EntradaDireccion.TemporaryReadOnly = false;
                         this.EntradaDireccion.SetData = new string[] {
         "Ingresos|1",
         "Egresos|2",
@@ -252,7 +252,7 @@ namespace Lfc.Cajas
                         this.EntradaTipoConcepto.MaxLenght = 32767;
                         this.EntradaTipoConcepto.Name = "EntradaTipoConcepto";
                         this.EntradaTipoConcepto.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipoConcepto.ReadOnly = false;
+                        this.EntradaTipoConcepto.TemporaryReadOnly = false;
                         this.EntradaTipoConcepto.SetData = new string[] {
         "Todos|0",
         "Gastos fijos|1",
@@ -292,7 +292,7 @@ namespace Lfc.Cajas
                         this.Fechas.MuestraFuturos = false;
                         this.Fechas.Name = "Fechas";
                         this.Fechas.Padding = new System.Windows.Forms.Padding(2);
-                        this.Fechas.ReadOnly = false;
+                        this.Fechas.TemporaryReadOnly = false;
                         this.Fechas.Size = new System.Drawing.Size(495, 30);
                         this.Fechas.TabIndex = 11;
                         this.Fechas.ToolTipText = "";

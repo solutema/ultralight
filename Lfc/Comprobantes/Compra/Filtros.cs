@@ -120,7 +120,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipo.ReadOnly = false;
+                        this.EntradaTipo.TemporaryReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Notas de Pedido|NP",
         "Pedidos|PD",
@@ -167,7 +167,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProveedor.MaxLength = 200;
                         this.EntradaProveedor.Name = "EntradaProveedor";
                         this.EntradaProveedor.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaProveedor.ReadOnly = false;
+                        this.EntradaProveedor.TemporaryReadOnly = false;
                         this.EntradaProveedor.Required = false;
                         this.EntradaProveedor.Size = new System.Drawing.Size(440, 25);
                         this.EntradaProveedor.TabIndex = 5;
@@ -212,7 +212,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEstado.ReadOnly = false;
+                        this.EntradaEstado.TemporaryReadOnly = false;
                         this.EntradaEstado.SetData = new string[] {
         "N/A|0"};
                         this.EntradaEstado.Size = new System.Drawing.Size(440, 24);
@@ -267,7 +267,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaFechas.MuestraFuturos = false;
                         this.EntradaFechas.Name = "EntradaFechas";
                         this.EntradaFechas.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechas.ReadOnly = false;
+                        this.EntradaFechas.TemporaryReadOnly = false;
                         this.EntradaFechas.Size = new System.Drawing.Size(440, 30);
                         this.EntradaFechas.TabIndex = 7;
                         this.EntradaFechas.ToolTipText = "";

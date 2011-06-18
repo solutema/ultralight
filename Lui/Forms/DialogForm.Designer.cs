@@ -78,7 +78,6 @@ namespace Lui.Forms
                         this.OkButton.Location = new System.Drawing.Point(220, 8);
                         this.OkButton.Name = "OkButton";
                         this.OkButton.Padding = new System.Windows.Forms.Padding(2);
-                        this.OkButton.ReadOnly = false;
                         this.OkButton.Size = new System.Drawing.Size(116, 44);
                         this.OkButton.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.OkButton.Subtext = "F9";
@@ -98,7 +97,6 @@ namespace Lui.Forms
                         this.CancelCommandButton.Location = new System.Drawing.Point(348, 8);
                         this.CancelCommandButton.Name = "CancelCommandButton";
                         this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(2);
-                        this.CancelCommandButton.ReadOnly = false;
                         this.CancelCommandButton.Size = new System.Drawing.Size(116, 44);
                         this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.CancelCommandButton.Subtext = "Esc";

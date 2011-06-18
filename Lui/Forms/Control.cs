@@ -47,7 +47,7 @@ namespace Lui.Forms
 	{
 		protected bool m_Highlighted;
                 protected Lui.Forms.Control.BorderStyles m_BorderStyle = Lui.Forms.Control.BorderStyles.Control;
-		protected bool m_Changed, m_ReadOnly, m_ShowChanged, m_AutoHeight = false;
+                protected bool m_Changed, m_ReadOnly = false, m_TemporaryReadOnly = false, m_ShowChanged, m_AutoHeight = false;
 		protected int m_IgnoreChanges;
 		protected string m_ToolTipText = "";
 		protected System.Windows.Forms.ToolTip ToolTipBalloon;
@@ -121,28 +121,51 @@ namespace Lui.Forms
 			}
 		}
 
+                /// <summary>
+                /// Devuelve o establece si el control está temporalmente (o permanentemente) inhabilitado para realizar cambios.
+                /// </summary>
                 [EditorBrowsable(EditorBrowsableState.Never), 
                         System.ComponentModel.Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public virtual bool ReadOnly
+		public virtual bool TemporaryReadOnly
 		{
 			get
 			{
-				return m_ReadOnly;
+				return m_TemporaryReadOnly || m_ReadOnly;
 			}
 			set
 			{
-				m_ReadOnly = value;
-                                this.SetControlsReadOnly(this.Controls, value);
+				m_TemporaryReadOnly = value;
+                                this.SetControlsTemporaryReadOnly(this.Controls, value);
 				Invalidate();
 			}
 		}
 
 
                 /// <summary>
-                /// Pongo la propiedad ReadOnly de los controles hijos en cascada.
+                /// Devuelve o establece si se trata de un control sólo de lectura.
                 /// </summary>
-                internal void SetControlsReadOnly(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
+                [EditorBrowsable(EditorBrowsableState.Always),
+                        System.ComponentModel.Browsable(true),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+                public virtual bool ReadOnly
+                {
+                        get
+                        {
+                                return m_ReadOnly;
+                        }
+                        set
+                        {
+                                m_ReadOnly = value;
+                                Invalidate();
+                        }
+                }
+
+
+                /// <summary>
+                /// Pongo la propiedad TemporaryReadOnly de los controles hijos en cascada.
+                /// </summary>
+                internal void SetControlsTemporaryReadOnly(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
                 {
                         if (controles == null)
                                 return;
@@ -151,9 +174,9 @@ namespace Lui.Forms
                                 if (ctl == null) {
                                         //Nada
                                 } else if (ctl is Lui.Forms.Control) {
-                                        ((Lui.Forms.Control)ctl).ReadOnly = newValue;
+                                        ((Lui.Forms.Control)ctl).TemporaryReadOnly = newValue;
                                 } else if (ctl.Controls != null && ctl.Controls.Count > 0) {
-                                        SetControlsReadOnly(ctl.Controls, newValue);
+                                        SetControlsTemporaryReadOnly(ctl.Controls, newValue);
                                 }
                         }
                 }
@@ -288,37 +311,30 @@ namespace Lui.Forms
 					break;
 			}
 
-			switch (m_BorderStyle)
-			{
-				case BorderStyles.None:
-					if (m_Highlighted)
-						e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
-					break;
-				case BorderStyles.TextBox:
-					e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.ControlBorder), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
-					if (m_ShowChanged && m_Changed)
-					{
-						e.Graphics.DrawRectangle(new System.Drawing.Pen(Color.Red), new System.Drawing.Rectangle(3, this.Height - 2, this.Width - 6, 1));
-					}
-					else if (m_Highlighted)
-					{
-						if (m_ReadOnly)
-						{
-							e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.SelectionDisabled), new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
-							e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.SelectionDisabled), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
-						}
-						else
-						{
-							e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(1, 0, this.Width - 3, this.Height - 1));
-							e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(0, 1, this.Width - 1, this.Height - 3));
-							//e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
-							//e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
-						}
-					}
-					if (m_Error != null && m_Error.Length > 0 && m_ShowChanged == false)
-						e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.SelectionError), new System.Drawing.Rectangle(3, this.Height - 2, this.Width - 6, 1));
-					break;
-			}
+                        switch (m_BorderStyle) {
+                                case BorderStyles.None:
+                                        if (m_Highlighted)
+                                                e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
+                                        break;
+                                case BorderStyles.TextBox:
+                                        e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.ControlBorder), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
+                                        if (m_ShowChanged && m_Changed) {
+                                                e.Graphics.DrawRectangle(new System.Drawing.Pen(Color.Red), new System.Drawing.Rectangle(3, this.Height - 2, this.Width - 6, 1));
+                                        } else if (m_Highlighted) {
+                                                if (m_ReadOnly || m_TemporaryReadOnly) {
+                                                        e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.SelectionDisabled), new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
+                                                        e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.SelectionDisabled), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
+                                                } else {
+                                                        e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(1, 0, this.Width - 3, this.Height - 1));
+                                                        e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(0, 1, this.Width - 1, this.Height - 3));
+                                                        //e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
+                                                        //e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
+                                                }
+                                        }
+                                        if (m_Error != null && m_Error.Length > 0 && m_ShowChanged == false)
+                                                e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.SelectionError), new System.Drawing.Rectangle(3, this.Height - 2, this.Width - 6, 1));
+                                        break;
+                        }
 
                         base.OnPaint(e);
 		}

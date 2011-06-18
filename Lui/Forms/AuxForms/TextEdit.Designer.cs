@@ -41,41 +41,40 @@ namespace Lui.Forms.AuxForms
 			// Necesario para admitir el Diseñador de Windows Forms
 			InitializeComponent();
 
-			txtText.MenuItemEditor.Visible = false;
+			EntradaTexto.MenuItemEditor.Visible = false;
 		}
 
 		internal Lui.Forms.Button BotonAceptar;
-		public Lui.Forms.TextBox txtText;
+		public Lui.Forms.TextBox EntradaTexto;
 		internal Lui.Forms.Button BotonCancelar;
 
 		private void InitializeComponent()
 		{
-                        this.txtText = new Lui.Forms.TextBox();
+                        this.EntradaTexto = new Lui.Forms.TextBox();
                         this.BotonAceptar = new Lui.Forms.Button();
                         this.BotonCancelar = new Lui.Forms.Button();
                         this.SuspendLayout();
                         // 
                         // txtText
                         // 
-                        this.txtText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        this.EntradaTexto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtText.AutoNav = false;
-                        this.txtText.AutoTab = true;
-                        this.txtText.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.txtText.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtText.Location = new System.Drawing.Point(4, 4);
-                        this.txtText.MaxLenght = 32767;
-                        this.txtText.MultiLine = true;
-                        this.txtText.Name = "txtText";
-                        this.txtText.Padding = new System.Windows.Forms.Padding(1);
-                        this.txtText.ReadOnly = false;
-                        this.txtText.SelectOnFocus = false;
-                        this.txtText.Size = new System.Drawing.Size(456, 199);
-                        this.txtText.TabIndex = 0;
-                        this.txtText.TipWhenBlank = "";
-                        this.txtText.ToolTipText = "";
+                        this.EntradaTexto.AutoNav = false;
+                        this.EntradaTexto.AutoTab = true;
+                        this.EntradaTexto.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaTexto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaTexto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaTexto.Location = new System.Drawing.Point(4, 4);
+                        this.EntradaTexto.MaxLenght = 32767;
+                        this.EntradaTexto.MultiLine = true;
+                        this.EntradaTexto.Name = "txtText";
+                        this.EntradaTexto.Padding = new System.Windows.Forms.Padding(1);
+                        this.EntradaTexto.SelectOnFocus = false;
+                        this.EntradaTexto.Size = new System.Drawing.Size(456, 199);
+                        this.EntradaTexto.TabIndex = 0;
+                        this.EntradaTexto.TipWhenBlank = "";
+                        this.EntradaTexto.ToolTipText = "";
                         // 
                         // BotonAceptar
                         // 
@@ -88,7 +87,6 @@ namespace Lui.Forms.AuxForms
                         this.BotonAceptar.Location = new System.Drawing.Point(252, 211);
                         this.BotonAceptar.Name = "BotonAceptar";
                         this.BotonAceptar.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonAceptar.ReadOnly = false;
                         this.BotonAceptar.Size = new System.Drawing.Size(96, 44);
                         this.BotonAceptar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonAceptar.Subtext = "F9";
@@ -108,7 +106,6 @@ namespace Lui.Forms.AuxForms
                         this.BotonCancelar.Location = new System.Drawing.Point(356, 211);
                         this.BotonCancelar.Name = "BotonCancelar";
                         this.BotonCancelar.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCancelar.ReadOnly = false;
                         this.BotonCancelar.Size = new System.Drawing.Size(96, 44);
                         this.BotonCancelar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonCancelar.Subtext = "Esc";
@@ -124,7 +121,7 @@ namespace Lui.Forms.AuxForms
                         this.ControlBox = false;
                         this.Controls.Add(this.BotonCancelar);
                         this.Controls.Add(this.BotonAceptar);
-                        this.Controls.Add(this.txtText);
+                        this.Controls.Add(this.EntradaTexto);
                         this.KeyPreview = true;
                         this.Name = "TextEdit";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

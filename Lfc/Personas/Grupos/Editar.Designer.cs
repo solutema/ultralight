@@ -87,7 +87,7 @@ namespace Lfc.Personas.Grupos
                         this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDescuento.PasswordChar = '\0';
                         this.EntradaDescuento.Prefijo = "";
-                        this.EntradaDescuento.ReadOnly = false;
+                        this.EntradaDescuento.TemporaryReadOnly = false;
                         this.EntradaDescuento.SelectOnFocus = true;
                         this.EntradaDescuento.Size = new System.Drawing.Size(84, 24);
                         this.EntradaDescuento.Sufijo = "%";
@@ -124,7 +124,7 @@ namespace Lfc.Personas.Grupos
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.PasswordChar = '\0';
                         this.EntradaNombre.Prefijo = "";
-                        this.EntradaNombre.ReadOnly = false;
+                        this.EntradaNombre.TemporaryReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(432, 24);
                         this.EntradaNombre.Sufijo = "";
@@ -155,7 +155,7 @@ namespace Lfc.Personas.Grupos
                         this.EntradaPredet.MaxLenght = 32767;
                         this.EntradaPredet.Name = "EntradaPredet";
                         this.EntradaPredet.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPredet.ReadOnly = false;
+                        this.EntradaPredet.TemporaryReadOnly = false;
                         this.EntradaPredet.SetData = new string[] {
         "Si|1",
         "No|0"};
@@ -193,7 +193,7 @@ namespace Lfc.Personas.Grupos
                         this.EntradaGrupo.MaxLength = 200;
                         this.EntradaGrupo.Name = "EntradaGrupo";
                         this.EntradaGrupo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaGrupo.ReadOnly = false;
+                        this.EntradaGrupo.TemporaryReadOnly = false;
                         this.EntradaGrupo.Required = false;
                         this.EntradaGrupo.Size = new System.Drawing.Size(432, 24);
                         this.EntradaGrupo.TabIndex = 1;

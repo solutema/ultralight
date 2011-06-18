@@ -94,15 +94,15 @@ namespace Lui.Forms
                         }
                 }
 
-                public override bool ReadOnly
+                public override bool TemporaryReadOnly
                 {
                         get
                         {
-                                return base.ReadOnly;
+                                return base.TemporaryReadOnly;
                         }
                         set
                         {
-                                base.ReadOnly = value;
+                                base.TemporaryReadOnly = value;
                                 TextBox1.ReadOnly = true;
                                 ItemList.Enabled = !value;
                         }
@@ -183,7 +183,7 @@ namespace Lui.Forms
 
                 private void ImagenMasMenos_Click(object sender, System.EventArgs e)
                 {
-                        if (this.ReadOnly == false)
+                        if (this.TemporaryReadOnly == false && this.ReadOnly == false)
                                 SetNextValueInSet();
                         if (this.Focused == false)
                                 TextBox1.Focus();
@@ -192,7 +192,7 @@ namespace Lui.Forms
 
                 private void ImagenMasMenos_DoubleClick(object sender, System.EventArgs e)
                 {
-                        if (this.ReadOnly == false)
+                        if (this.TemporaryReadOnly == false && this.ReadOnly == false)
                                 SetNextValueInSet();
                         if (this.Focused == false)
                                 TextBox1.Focus();
@@ -288,7 +288,7 @@ namespace Lui.Forms
 
                 private void TextBox1_DoubleClick(object sender, System.EventArgs e)
                 {
-                        if (this.ReadOnly == false)
+                        if (this.TemporaryReadOnly == false && this.ReadOnly == false)
                                 SetNextValueInSet();
                 }
 
@@ -302,12 +302,12 @@ namespace Lui.Forms
 
                 private void TextBox1_GotFocus(object sender, System.EventArgs e)
                 {
-                        if (IgnorarEventos == 0 && this.ReadOnly == false) {
+                        if (IgnorarEventos == 0 && this.TemporaryReadOnly == false && this.ReadOnly == false) {
                                 IgnorarEventos++;
                                 if (this.AutoSize == false && this.AlwaysExpanded == false) {
                                         if (PopUps.ODataSetHelp == null && Lfx.Environment.SystemInformation.RunTime == Lfx.Environment.SystemInformation.RunTimes.DotNet)
                                                 PopUps.ODataSetHelp = new DataSetHelp();
-                                        if (PopUps.ODataSetHelp != null && this.ReadOnly == false) {
+                                        if (PopUps.ODataSetHelp != null && this.TemporaryReadOnly == false && this.ReadOnly == false) {
                                                 PopUps.ODataSetHelp.SetData = this.SetData;
                                                 PopUps.ODataSetHelp.TextKey = this.TextKey;
                                                 PopUps.ODataSetHelp.Mostrar(this);
@@ -506,14 +506,14 @@ namespace Lui.Forms
                 {
                         switch (e.KeyCode) {
                                 case Keys.Subtract:
-                                        if (this.ReadOnly == false) {
+                                        if (this.TemporaryReadOnly == false && this.ReadOnly == false) {
                                                 e.Handled = true;
                                                 this.SetPrevValueInSet();
                                         }
                                         break;
                                 case Keys.Add:
                                 case Keys.Space:
-                                        if (this.ReadOnly == false) {
+                                        if (this.TemporaryReadOnly == false && this.ReadOnly == false) {
                                                 e.Handled = true;
                                                 this.SetNextValueInSet();
                                         }

@@ -97,7 +97,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.BotonCancelar.Location = new System.Drawing.Point(20, 288);
                         this.BotonCancelar.Name = "BotonCancelar";
                         this.BotonCancelar.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCancelar.ReadOnly = false;
+                        this.BotonCancelar.TemporaryReadOnly = false;
                         this.BotonCancelar.Size = new System.Drawing.Size(592, 68);
                         this.BotonCancelar.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonCancelar.Subtext = "No imprime la factura. Sólo vuelve al formulario anterior para continuar con lo q" +
@@ -118,7 +118,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.BotonContinuar.Location = new System.Drawing.Point(20, 212);
                         this.BotonContinuar.Name = "BotonContinuar";
                         this.BotonContinuar.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonContinuar.ReadOnly = false;
+                        this.BotonContinuar.TemporaryReadOnly = false;
                         this.BotonContinuar.Size = new System.Drawing.Size(592, 68);
                         this.BotonContinuar.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonContinuar.Subtext = "Los pagos ingresados con anterioridad no corresponden a esta factura. El saldo en" +
@@ -140,7 +140,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.BotonCorregir.Location = new System.Drawing.Point(20, 136);
                         this.BotonCorregir.Name = "BotonCorregir";
                         this.BotonCorregir.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCorregir.ReadOnly = false;
+                        this.BotonCorregir.TemporaryReadOnly = false;
                         this.BotonCorregir.Size = new System.Drawing.Size(592, 68);
                         this.BotonCorregir.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonCorregir.Subtext = "Seleccione esta opción si los pagos ingresados con anterioridad corresponden a es" +

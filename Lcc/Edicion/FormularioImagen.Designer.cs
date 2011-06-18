@@ -80,7 +80,7 @@ namespace Lcc.Edicion
                         this.EntradaImagen.Location = new System.Drawing.Point(8, 8);
                         this.EntradaImagen.Name = "EntradaImagen";
                         this.EntradaImagen.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaImagen.ReadOnly = false;
+                        this.EntradaImagen.TemporaryReadOnly = false;
                         this.EntradaImagen.Size = new System.Drawing.Size(620, 298);
                         this.EntradaImagen.TabIndex = 51;
                         this.EntradaImagen.ToolTipText = "";

@@ -138,7 +138,7 @@ namespace Lazaro.Misc
                         this.OkButton.Location = new System.Drawing.Point(248, 8);
                         this.OkButton.Name = "OkButton";
                         this.OkButton.Padding = new System.Windows.Forms.Padding(2);
-                        this.OkButton.ReadOnly = false;
+                        this.OkButton.TemporaryReadOnly = false;
                         this.OkButton.Size = new System.Drawing.Size(104, 36);
                         this.OkButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.OkButton.Subtext = "F8";
@@ -159,7 +159,7 @@ namespace Lazaro.Misc
                         this.CancelCommandButton.Location = new System.Drawing.Point(360, 8);
                         this.CancelCommandButton.Name = "CancelCommandButton";
                         this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(2);
-                        this.CancelCommandButton.ReadOnly = false;
+                        this.CancelCommandButton.TemporaryReadOnly = false;
                         this.CancelCommandButton.Size = new System.Drawing.Size(104, 36);
                         this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.CancelCommandButton.Subtext = "";

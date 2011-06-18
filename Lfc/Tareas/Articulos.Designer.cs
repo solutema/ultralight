@@ -133,7 +133,7 @@ namespace Lfc.Tareas
                         this.EntradaTotal.MaxLenght = 32767;
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Prefijo = "$";
-                        this.EntradaTotal.ReadOnly = true;
+                        this.EntradaTotal.TemporaryReadOnly = true;
                         this.EntradaTotal.Size = new System.Drawing.Size(144, 32);
                         this.EntradaTotal.TabIndex = 54;
                         this.EntradaTotal.TabStop = false;
@@ -152,7 +152,7 @@ namespace Lfc.Tareas
                         this.EntradaDescuento.Location = new System.Drawing.Point(244, 280);
                         this.EntradaDescuento.MaxLenght = 32767;
                         this.EntradaDescuento.Name = "txtDescuento";
-                        this.EntradaDescuento.ReadOnly = false;
+                        this.EntradaDescuento.TemporaryReadOnly = false;
                         this.EntradaDescuento.Size = new System.Drawing.Size(76, 24);
                         this.EntradaDescuento.Sufijo = "%";
                         this.EntradaDescuento.TabIndex = 58;
@@ -183,7 +183,7 @@ namespace Lfc.Tareas
                         this.EntradaSubTotal.MaxLenght = 32767;
                         this.EntradaSubTotal.Name = "EntradaSubTotal";
                         this.EntradaSubTotal.Prefijo = "$";
-                        this.EntradaSubTotal.ReadOnly = true;
+                        this.EntradaSubTotal.TemporaryReadOnly = true;
                         this.EntradaSubTotal.Size = new System.Drawing.Size(84, 24);
                         this.EntradaSubTotal.TabIndex = 56;
                         this.EntradaSubTotal.TabStop = false;

@@ -296,15 +296,15 @@ namespace Lcc.Entrada.Articulos
                 }
 
 
-                public override bool ReadOnly
+                public override bool TemporaryReadOnly
                 {
                         get
                         {
-                                return base.ReadOnly;
+                                return base.TemporaryReadOnly;
                         }
                         set
                         {
-                                base.ReadOnly = value;
+                                base.TemporaryReadOnly = value;
                                 this.AutoAgregarOQuitar(false);
                         }
                 }

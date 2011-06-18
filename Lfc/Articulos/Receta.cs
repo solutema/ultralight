@@ -59,7 +59,7 @@ namespace Lfc.Articulos
                         {
                                 m_ReadOnly = value;
                                 //ProductArray.Enabled = !this.ReadOnly;
-                                ProductArray.ReadOnly = m_ReadOnly;
+                                ProductArray.TemporaryReadOnly = m_ReadOnly;
                         }
                 }
 

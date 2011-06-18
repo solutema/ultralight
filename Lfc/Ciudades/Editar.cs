@@ -57,7 +57,7 @@ namespace Lfc.Ciudades
                         EntradaNombre.Text = Localidad.Nombre;
                         EntradaCp.Text = Localidad.CodigoPostal;
                         EntradaNivel.TextKey = Localidad.Nivel.ToString();
-                        EntradaNivel.ReadOnly = true;
+                        EntradaNivel.TemporaryReadOnly = true;
                         EntradaNivel.TabStop = false;
                         if (Localidad.Nivel == 0) {
                                 EntradaParent.Enabled = false;

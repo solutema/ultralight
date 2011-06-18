@@ -220,11 +220,11 @@ namespace Lcc.Entrada.Articulos
                 {
                         get
                         {
-                                return EntradaArticulo.ReadOnly;
+                                return EntradaArticulo.TemporaryReadOnly;
                         }
                         set
                         {
-                                EntradaArticulo.ReadOnly = value;
+                                EntradaArticulo.TemporaryReadOnly = value;
                         }
                 }
 
@@ -232,11 +232,11 @@ namespace Lcc.Entrada.Articulos
                 {
                         get
                         {
-                                return EntradaCantidad.ReadOnly;
+                                return EntradaCantidad.TemporaryReadOnly;
                         }
                         set
                         {
-                                EntradaCantidad.ReadOnly = value;
+                                EntradaCantidad.TemporaryReadOnly = value;
                         }
                 }
 
@@ -244,11 +244,11 @@ namespace Lcc.Entrada.Articulos
                 {
                         get
                         {
-                                return EntradaUnitario.ReadOnly;
+                                return EntradaUnitario.TemporaryReadOnly;
                         }
                         set
                         {
-                                EntradaUnitario.ReadOnly = value;
+                                EntradaUnitario.TemporaryReadOnly = value;
                         }
                 }
 
@@ -470,7 +470,7 @@ namespace Lcc.Entrada.Articulos
                 private void VerificarStock()
                 {
                         if (m_MostrarStock && Articulo != null) {
-                                if (this.ReadOnly == false && this.Articulo.ControlStock != Lbl.Articulos.ControlStock.No && this.Articulo.StockActual < this.Cantidad) {
+                                if (this.TemporaryReadOnly == false && this.Articulo.ControlStock != Lbl.Articulos.ControlStock.No && this.Articulo.StockActual < this.Cantidad) {
                                         if (this.Articulo.StockActual + this.Articulo.Pedido >= this.Cantidad) {
                                                 EntradaArticulo.Font = null;
                                                 EntradaArticulo.ForeColor = Color.OrangeRed;
@@ -488,15 +488,15 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
-                public override bool ReadOnly
+                public override bool TemporaryReadOnly
                 {
                         get
                         {
-                                return base.ReadOnly;
+                                return base.TemporaryReadOnly;
                         }
                         set
                         {
-                                base.ReadOnly = value;
+                                base.TemporaryReadOnly = value;
                                 this.VerificarStock();
                         }
                 }

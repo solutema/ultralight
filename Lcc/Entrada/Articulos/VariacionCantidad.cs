@@ -70,11 +70,11 @@ namespace Lcc.Entrada.Articulos
                 {
                         get
                         {
-                                return EntradaCantidad.ReadOnly;
+                                return EntradaCantidad.TemporaryReadOnly;
                         }
                         set
                         {
-                                EntradaCantidad.ReadOnly = value;
+                                EntradaCantidad.TemporaryReadOnly = value;
                                 EntradaCantidad.Enabled = !value;
                                 if (value) {
                                         EntradaCantidad.Text = "1";

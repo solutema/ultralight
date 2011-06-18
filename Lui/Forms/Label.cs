@@ -29,11 +29,6 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace Lui.Forms
 {
         public class Label : System.Windows.Forms.Label

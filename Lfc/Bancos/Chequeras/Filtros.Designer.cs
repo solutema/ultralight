@@ -84,7 +84,7 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEstado.ReadOnly = false;
+                        this.EntradaEstado.TemporaryReadOnly = false;
                         this.EntradaEstado.SetData = new string[] {
         "Todos|-1",
         "Activas|1",
@@ -130,7 +130,7 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
                         this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCaja.ReadOnly = false;
+                        this.EntradaCaja.TemporaryReadOnly = false;
                         this.EntradaCaja.Required = false;
                         this.EntradaCaja.Size = new System.Drawing.Size(280, 24);
                         this.EntradaCaja.TabIndex = 5;
@@ -166,7 +166,7 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
                         this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaBanco.ReadOnly = false;
+                        this.EntradaBanco.TemporaryReadOnly = false;
                         this.EntradaBanco.Required = true;
                         this.EntradaBanco.Size = new System.Drawing.Size(280, 24);
                         this.EntradaBanco.TabIndex = 3;

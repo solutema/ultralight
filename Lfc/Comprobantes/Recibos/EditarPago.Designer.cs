@@ -80,7 +80,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.Pago.Name = "Pago";
                         this.Pago.ObsVisible = true;
                         this.Pago.Padding = new System.Windows.Forms.Padding(2);
-                        this.Pago.ReadOnly = false;
+                        this.Pago.TemporaryReadOnly = false;
                         this.Pago.Size = new System.Drawing.Size(484, 348);
                         this.Pago.TabIndex = 0;
                         this.Pago.Text = "Detalles";

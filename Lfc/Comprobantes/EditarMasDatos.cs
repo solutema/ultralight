@@ -124,7 +124,7 @@ namespace Lfc.Comprobantes
                         this.EntradaHaciaSituacion.MaxLength = 200;
                         this.EntradaHaciaSituacion.Name = "EntradaHaciaSituacion";
                         this.EntradaHaciaSituacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaHaciaSituacion.ReadOnly = false;
+                        this.EntradaHaciaSituacion.TemporaryReadOnly = false;
                         this.EntradaHaciaSituacion.Required = true;
                         this.EntradaHaciaSituacion.Size = new System.Drawing.Size(476, 24);
                         this.EntradaHaciaSituacion.TabIndex = 3;
@@ -162,7 +162,7 @@ namespace Lfc.Comprobantes
                         this.EntradaDesdeSituacion.MaxLength = 200;
                         this.EntradaDesdeSituacion.Name = "EntradaDesdeSituacion";
                         this.EntradaDesdeSituacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDesdeSituacion.ReadOnly = false;
+                        this.EntradaDesdeSituacion.TemporaryReadOnly = false;
                         this.EntradaDesdeSituacion.Required = true;
                         this.EntradaDesdeSituacion.Size = new System.Drawing.Size(476, 24);
                         this.EntradaDesdeSituacion.TabIndex = 1;
@@ -193,7 +193,7 @@ namespace Lfc.Comprobantes
                         this.EntradaBloqueada.MaxLenght = 32767;
                         this.EntradaBloqueada.Name = "EntradaBloqueada";
                         this.EntradaBloqueada.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaBloqueada.ReadOnly = false;
+                        this.EntradaBloqueada.TemporaryReadOnly = false;
                         this.EntradaBloqueada.SetData = new string[] {
         "Editable|0",
         "Bloqueado|1"};
@@ -224,8 +224,8 @@ namespace Lfc.Comprobantes
 
                 private void EntradaBloqueada_TextChanged(object sender, System.EventArgs e)
                 {
-                        EntradaDesdeSituacion.ReadOnly = (EntradaBloqueada.TextKey == "1");
-                        EntradaHaciaSituacion.ReadOnly = (EntradaBloqueada.TextKey == "1");
+                        EntradaDesdeSituacion.TemporaryReadOnly = (EntradaBloqueada.TextKey == "1");
+                        EntradaHaciaSituacion.TemporaryReadOnly = (EntradaBloqueada.TextKey == "1");
                 }
         }
 }

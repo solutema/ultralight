@@ -260,7 +260,7 @@ namespace Lfc
                                 if (ctl == null || ctl is Lcc.Edicion.Comentarios) {
                                         //Nada
                                 } else if (ctl is Lui.Forms.Control) {
-                                        ((Lui.Forms.Control)ctl).ReadOnly = newValue;
+                                        ((Lui.Forms.Control)ctl).TemporaryReadOnly = newValue;
                                 } else if (ctl.Controls != null && ctl.Controls.Count > 0) {
                                         SetControlsReadOnly(ctl.Controls, newValue);
                                 }

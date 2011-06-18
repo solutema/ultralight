@@ -258,8 +258,8 @@ namespace Lfc.Personas
                         else
                                 EntradaFechaAlta.Text = Cliente.FechaAlta.Value.ToString(Lfx.Types.Formatting.DateTime.ShortDatePattern);
 
-                        EntradaFechaAlta.ReadOnly = true;
-                        EntradaFechaBaja.ReadOnly = true;
+                        EntradaFechaAlta.TemporaryReadOnly = true;
+                        EntradaFechaBaja.TemporaryReadOnly = true;
 
                         if (Cliente.FechaBaja == null)
                                 EntradaFechaBaja.Text = "";

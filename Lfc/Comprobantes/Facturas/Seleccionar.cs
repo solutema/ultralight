@@ -153,7 +153,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumero.PasswordChar = '\0';
                         this.EntradaNumero.Prefijo = "";
-                        this.EntradaNumero.ReadOnly = false;
+                        this.EntradaNumero.TemporaryReadOnly = false;
                         this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(96, 24);
                         this.EntradaNumero.Sufijo = "";
@@ -185,7 +185,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipo.ReadOnly = false;
+                        this.EntradaTipo.TemporaryReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Factura A|A",
         "Factura B|B",
@@ -227,7 +227,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaPv.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPv.PasswordChar = '\0';
                         this.EntradaPv.Prefijo = "";
-                        this.EntradaPv.ReadOnly = false;
+                        this.EntradaPv.TemporaryReadOnly = false;
                         this.EntradaPv.SelectOnFocus = true;
                         this.EntradaPv.Size = new System.Drawing.Size(48, 24);
                         this.EntradaPv.Sufijo = "";
@@ -279,7 +279,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaVendedor.MaxLength = 200;
                         this.EntradaVendedor.Name = "EntradaVendedor";
                         this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaVendedor.ReadOnly = false;
+                        this.EntradaVendedor.TemporaryReadOnly = false;
                         this.EntradaVendedor.Required = false;
                         this.EntradaVendedor.Size = new System.Drawing.Size(360, 24);
                         this.EntradaVendedor.TabIndex = 3;
@@ -374,7 +374,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
                         this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCliente.ReadOnly = false;
+                        this.EntradaCliente.TemporaryReadOnly = false;
                         this.EntradaCliente.Required = false;
                         this.EntradaCliente.Size = new System.Drawing.Size(360, 24);
                         this.EntradaCliente.TabIndex = 1;

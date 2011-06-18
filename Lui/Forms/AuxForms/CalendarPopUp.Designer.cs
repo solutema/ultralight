@@ -77,7 +77,6 @@ namespace Lui.Forms
 			this.Calendar1.Location = new System.Drawing.Point(8, 4);
 			this.Calendar1.MultiSelect = false;
 			this.Calendar1.Name = "Calendar1";
-			this.Calendar1.ReadOnly = false;
 			this.Calendar1.ShowFocusRect = true;
 			this.Calendar1.Size = new System.Drawing.Size(304, 212);
 			this.Calendar1.TabIndex = 0;

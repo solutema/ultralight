@@ -216,7 +216,7 @@ namespace Lui.Forms
 			set
 			{
 				m_DataType = value;
-				TextBox1.ReadOnly = (m_ReadOnly || m_DataType == DataTypes.Set);
+				TextBox1.ReadOnly = (m_ReadOnly || m_TemporaryReadOnly || m_DataType == DataTypes.Set);
 				switch (m_DataType)
 				{
 					case DataTypes.Float:
@@ -321,12 +321,12 @@ namespace Lui.Forms
 		private void MiContextMenu_Popup(object sender, System.EventArgs e)
 		{
 			string DatosPortapapeles = System.Convert.ToString(Clipboard.GetDataObject().GetData(DataFormats.Text, true));
-			MenuItemCalendario.Visible = (this.ReadOnly == false && (m_DataType == DataTypes.Date || m_DataType == DataTypes.DateTime));
+			MenuItemCalendario.Visible = (this.TemporaryReadOnly == false && this.ReadOnly == false && (m_DataType == DataTypes.Date || m_DataType == DataTypes.DateTime));
 			MenuItemHoy.Visible = MenuItemCalendario.Visible;
 			MenuItemAyer.Visible = MenuItemCalendario.Visible;
 			MenuItemCalculadora.Visible = (m_DataType == DataTypes.Float || m_DataType == DataTypes.Currency  || m_DataType == DataTypes.Stock || m_DataType == DataTypes.Integer);
-			MenuItemCalculadora.Enabled = !this.ReadOnly;
-			MenuItemEditor.Enabled = (this.ReadOnly == false && m_DataType == DataTypes.FreeText && m_PasswordChar == Lfx.Types.ControlChars.Null);
+			MenuItemCalculadora.Enabled = !(this.TemporaryReadOnly || this.ReadOnly);
+			MenuItemEditor.Enabled = (this.TemporaryReadOnly == false && this.ReadOnly == false && m_DataType == DataTypes.FreeText && m_PasswordChar == Lfx.Types.ControlChars.Null);
 			MenuItemCopiar.Enabled = m_PasswordChar == Lfx.Types.ControlChars.Null && this.Text.Length > 0;
 			if (m_PasswordChar == Lfx.Types.ControlChars.Null)
 			{
@@ -341,11 +341,11 @@ namespace Lui.Forms
 
 					MenuItemPegar.Text = @"Pegar """ + DatosPortapapeles + @"""";
 					if (m_DataType == DataTypes.Date)
-						MenuItemPegar.Enabled = this.ReadOnly == false && System.Text.RegularExpressions.Regex.IsMatch(DatosPortapapeles, @"^[0-3]\d(-|/)[0-1]\d(-|/)(\d{2}|\d{4})$");
+						MenuItemPegar.Enabled = this.TemporaryReadOnly == false && this.ReadOnly == false && System.Text.RegularExpressions.Regex.IsMatch(DatosPortapapeles, @"^[0-3]\d(-|/)[0-1]\d(-|/)(\d{2}|\d{4})$");
 					else if (m_DataType == DataTypes.Set)
 						MenuItemPegar.Enabled = false;
 					else
-						MenuItemPegar.Enabled = this.ReadOnly == false;
+						MenuItemPegar.Enabled = this.TemporaryReadOnly == false && this.ReadOnly == false;
 				}
 				MenuItemPegadoRapido.Enabled = this.MultiLine;
 			}
@@ -444,7 +444,7 @@ namespace Lui.Forms
                                 else
                                         base.Text = FormatearDatos(value);
 
-                                if (m_SelectOnFocus && m_ReadOnly == false) {
+                                if (m_SelectOnFocus && m_TemporaryReadOnly == false && this.ReadOnly == false) {
                                         TextBox1.SelectAll();
                                 } else {
                                         TextBox1.SelectionStart = this.TextRaw.Length;
@@ -585,7 +585,7 @@ namespace Lui.Forms
 
                 private void TextBox1_DoubleClick(object sender, System.EventArgs e)
                 {
-                        if (this.ReadOnly == false) {
+                        if (this.TemporaryReadOnly == false && this.ReadOnly == false) {
                                 if (m_DataType == DataTypes.Date) {
                                         MostrarCalendario();
                                 }
@@ -603,8 +603,8 @@ namespace Lui.Forms
 
                 private void TextBox1_GotFocus(object sender, System.EventArgs e)
                 {
-                        if (IgnorarEventos == 0 && this.ReadOnly == false) {
-                                if (m_SelectOnFocus && m_ReadOnly == false)
+                        if (IgnorarEventos == 0 && this.TemporaryReadOnly == false && this.ReadOnly == false) {
+                                if (m_SelectOnFocus && m_TemporaryReadOnly == false && this.ReadOnly == false)
                                         TextBox1.SelectAll();
                                 else
                                         TextBox1.SelectionStart = this.TextRaw.Length;

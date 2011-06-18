@@ -102,7 +102,7 @@ namespace Lfc
 			this.BotonCopiar.ImagePos = Lui.Forms.ImagePositions.Top;
 			this.BotonCopiar.Location = new System.Drawing.Point(8, 8);
 			this.BotonCopiar.Name = "BotonCopiar";
-			this.BotonCopiar.ReadOnly = false;
+			this.BotonCopiar.TemporaryReadOnly = false;
 			this.BotonCopiar.Size = new System.Drawing.Size(104, 44);
 			this.BotonCopiar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
 			this.BotonCopiar.Subtext = "F7";
@@ -120,7 +120,7 @@ namespace Lfc
 			this.PrintButton.ImagePos = Lui.Forms.ImagePositions.Top;
 			this.PrintButton.Location = new System.Drawing.Point(116, 8);
 			this.PrintButton.Name = "PrintButton";
-			this.PrintButton.ReadOnly = false;
+			this.PrintButton.TemporaryReadOnly = false;
 			this.PrintButton.Size = new System.Drawing.Size(104, 44);
 			this.PrintButton.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
 			this.PrintButton.Subtext = "F8";
@@ -138,7 +138,7 @@ namespace Lfc
 			this.BotonMostrar.ImagePos = Lui.Forms.ImagePositions.Top;
 			this.BotonMostrar.Location = new System.Drawing.Point(472, 8);
 			this.BotonMostrar.Name = "BotonMostrar";
-			this.BotonMostrar.ReadOnly = false;
+			this.BotonMostrar.TemporaryReadOnly = false;
 			this.BotonMostrar.Size = new System.Drawing.Size(104, 44);
 			this.BotonMostrar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
 			this.BotonMostrar.Subtext = "F9";
@@ -157,7 +157,7 @@ namespace Lfc
 			this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
 			this.CancelCommandButton.Location = new System.Drawing.Point(580, 8);
 			this.CancelCommandButton.Name = "CancelCommandButton";
-			this.CancelCommandButton.ReadOnly = false;
+			this.CancelCommandButton.TemporaryReadOnly = false;
 			this.CancelCommandButton.Size = new System.Drawing.Size(104, 44);
 			this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
 			this.CancelCommandButton.Subtext = "Esc";

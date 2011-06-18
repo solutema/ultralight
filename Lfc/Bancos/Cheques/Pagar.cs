@@ -125,7 +125,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaImpuestos.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImpuestos.PasswordChar = '\0';
                         this.EntradaImpuestos.Prefijo = "$";
-                        this.EntradaImpuestos.ReadOnly = false;
+                        this.EntradaImpuestos.TemporaryReadOnly = false;
                         this.EntradaImpuestos.SelectOnFocus = true;
                         this.EntradaImpuestos.Size = new System.Drawing.Size(108, 24);
                         this.EntradaImpuestos.Sufijo = "";
@@ -162,7 +162,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaSubTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSubTotal.PasswordChar = '\0';
                         this.EntradaSubTotal.Prefijo = "$";
-                        this.EntradaSubTotal.ReadOnly = true;
+                        this.EntradaSubTotal.TemporaryReadOnly = true;
                         this.EntradaSubTotal.SelectOnFocus = true;
                         this.EntradaSubTotal.Size = new System.Drawing.Size(108, 24);
                         this.EntradaSubTotal.Sufijo = "";
@@ -200,7 +200,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaCantidad.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCantidad.PasswordChar = '\0';
                         this.EntradaCantidad.Prefijo = "";
-                        this.EntradaCantidad.ReadOnly = true;
+                        this.EntradaCantidad.TemporaryReadOnly = true;
                         this.EntradaCantidad.SelectOnFocus = true;
                         this.EntradaCantidad.Size = new System.Drawing.Size(56, 24);
                         this.EntradaCantidad.Sufijo = "";
@@ -237,7 +237,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaCajaOrigen.MaxLength = 200;
                         this.EntradaCajaOrigen.Name = "EntradaCajaOrigen";
                         this.EntradaCajaOrigen.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCajaOrigen.ReadOnly = false;
+                        this.EntradaCajaOrigen.TemporaryReadOnly = false;
                         this.EntradaCajaOrigen.Required = true;
                         this.EntradaCajaOrigen.Size = new System.Drawing.Size(308, 24);
                         this.EntradaCajaOrigen.TabIndex = 12;
@@ -274,7 +274,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTotal.PasswordChar = '\0';
                         this.EntradaTotal.Prefijo = "$";
-                        this.EntradaTotal.ReadOnly = false;
+                        this.EntradaTotal.TemporaryReadOnly = false;
                         this.EntradaTotal.SelectOnFocus = true;
                         this.EntradaTotal.Size = new System.Drawing.Size(136, 28);
                         this.EntradaTotal.Sufijo = "";

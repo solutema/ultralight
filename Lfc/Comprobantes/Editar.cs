@@ -201,16 +201,16 @@ namespace Lfc.Comprobantes
                         base.ActualizarElemento();
                 }
 
-                public override bool ReadOnly
+                public override bool TemporaryReadOnly
                 {
                         get
                         {
-                                return base.ReadOnly;
+                                return base.TemporaryReadOnly;
                         }
                         set
                         {
-                                ProductArray.ReadOnly = value;
-                                base.ReadOnly = value;
+                                ProductArray.TemporaryReadOnly = value;
+                                base.TemporaryReadOnly = value;
                         }
                 }
 
@@ -243,7 +243,7 @@ namespace Lfc.Comprobantes
                                 EditarObs.EditText = ((Lbl.ICamposBaseEstandar)(this.Elemento)).Obs;
                         else
                                 EditarObs.EditText = "";
-                        EditarObs.ReadOnly = EntradaCliente.ReadOnly;
+                        EditarObs.ReadOnly = EntradaCliente.TemporaryReadOnly;
 
                         if (EditarObs.ShowDialog() == DialogResult.OK) {
                                 if (EditarObs.EditText.Length > 0)
@@ -300,7 +300,7 @@ namespace Lfc.Comprobantes
 
                 private void ProductArray_TotalChanged(System.Object sender, System.EventArgs e)
                 {
-                        if (this.ReadOnly == false)
+                        if (this.TemporaryReadOnly == false)
                                 EntradaSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(ProductArray.Total, this.Workspace.CurrentConfig.Moneda.Decimales);
                 }
 
@@ -347,8 +347,8 @@ namespace Lfc.Comprobantes
                         OFormMasDatos.Owner = this.ParentForm;
                         OFormMasDatos.EntradaDesdeSituacion.Elemento = Registro.SituacionOrigen;
                         OFormMasDatos.EntradaHaciaSituacion.Elemento = Registro.SituacionDestino;
-                        OFormMasDatos.EntradaDesdeSituacion.ReadOnly = EntradaCliente.ReadOnly;
-                        OFormMasDatos.EntradaHaciaSituacion.ReadOnly = EntradaCliente.ReadOnly;
+                        OFormMasDatos.EntradaDesdeSituacion.TemporaryReadOnly = EntradaCliente.TemporaryReadOnly;
+                        OFormMasDatos.EntradaHaciaSituacion.TemporaryReadOnly = EntradaCliente.TemporaryReadOnly;
                         OFormMasDatos.EntradaBloqueada.TextKey = ((Lbl.ICamposBaseEstandar)(this.Elemento)).Estado.ToString();
 
                         if (Registro.Tipo.EsFactura)
@@ -360,7 +360,7 @@ namespace Lfc.Comprobantes
                                 Registro.SituacionOrigen = new Lbl.Articulos.Situacion(Registro.Connection, OFormMasDatos.EntradaDesdeSituacion.TextInt);
                                 Registro.SituacionDestino = new Lbl.Articulos.Situacion(Registro.Connection, OFormMasDatos.EntradaHaciaSituacion.TextInt);
                                 ((Lbl.ICamposBaseEstandar)(this.Elemento)).Estado = Lfx.Types.Parsing.ParseInt(OFormMasDatos.EntradaBloqueada.TextKey);
-                                this.ReadOnly = Lfx.Types.Parsing.ParseInt(OFormMasDatos.EntradaBloqueada.TextKey) != 0;
+                                this.TemporaryReadOnly = Lfx.Types.Parsing.ParseInt(OFormMasDatos.EntradaBloqueada.TextKey) != 0;
                         }
                 }
 

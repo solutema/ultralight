@@ -262,7 +262,7 @@ namespace Lazaro.Reportes
                         this.EntradaFacturacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFacturacion.PasswordChar = '\0';
                         this.EntradaFacturacion.Prefijo = "";
-                        this.EntradaFacturacion.ReadOnly = true;
+                        this.EntradaFacturacion.TemporaryReadOnly = true;
                         this.EntradaFacturacion.SelectOnFocus = true;
                         this.EntradaFacturacion.Size = new System.Drawing.Size(104, 24);
                         this.EntradaFacturacion.Sufijo = "";
@@ -290,7 +290,7 @@ namespace Lazaro.Reportes
                         this.txtCosto.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCosto.PasswordChar = '\0';
                         this.txtCosto.Prefijo = "";
-                        this.txtCosto.ReadOnly = true;
+                        this.txtCosto.TemporaryReadOnly = true;
                         this.txtCosto.SelectOnFocus = true;
                         this.txtCosto.Size = new System.Drawing.Size(104, 24);
                         this.txtCosto.Sufijo = "";
@@ -317,7 +317,7 @@ namespace Lazaro.Reportes
                         this.txtGastosFijos.Padding = new System.Windows.Forms.Padding(2);
                         this.txtGastosFijos.PasswordChar = '\0';
                         this.txtGastosFijos.Prefijo = "";
-                        this.txtGastosFijos.ReadOnly = true;
+                        this.txtGastosFijos.TemporaryReadOnly = true;
                         this.txtGastosFijos.SelectOnFocus = true;
                         this.txtGastosFijos.Size = new System.Drawing.Size(104, 24);
                         this.txtGastosFijos.Sufijo = "";
@@ -344,7 +344,7 @@ namespace Lazaro.Reportes
                         this.txtGastosVariables.Padding = new System.Windows.Forms.Padding(2);
                         this.txtGastosVariables.PasswordChar = '\0';
                         this.txtGastosVariables.Prefijo = "";
-                        this.txtGastosVariables.ReadOnly = true;
+                        this.txtGastosVariables.TemporaryReadOnly = true;
                         this.txtGastosVariables.SelectOnFocus = true;
                         this.txtGastosVariables.Size = new System.Drawing.Size(104, 24);
                         this.txtGastosVariables.Sufijo = "";
@@ -371,7 +371,7 @@ namespace Lazaro.Reportes
                         this.txtOtrosEgresos.Padding = new System.Windows.Forms.Padding(2);
                         this.txtOtrosEgresos.PasswordChar = '\0';
                         this.txtOtrosEgresos.Prefijo = "";
-                        this.txtOtrosEgresos.ReadOnly = true;
+                        this.txtOtrosEgresos.TemporaryReadOnly = true;
                         this.txtOtrosEgresos.SelectOnFocus = true;
                         this.txtOtrosEgresos.Size = new System.Drawing.Size(104, 24);
                         this.txtOtrosEgresos.Sufijo = "";
@@ -392,7 +392,7 @@ namespace Lazaro.Reportes
                         this.BotonGastosFijos.Location = new System.Drawing.Point(296, 220);
                         this.BotonGastosFijos.Name = "BotonGastosFijos";
                         this.BotonGastosFijos.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonGastosFijos.ReadOnly = false;
+                        this.BotonGastosFijos.TemporaryReadOnly = false;
                         this.BotonGastosFijos.Size = new System.Drawing.Size(28, 24);
                         this.BotonGastosFijos.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonGastosFijos.Subtext = "";
@@ -412,7 +412,7 @@ namespace Lazaro.Reportes
                         this.BotonGastosVariables.Location = new System.Drawing.Point(296, 248);
                         this.BotonGastosVariables.Name = "BotonGastosVariables";
                         this.BotonGastosVariables.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonGastosVariables.ReadOnly = false;
+                        this.BotonGastosVariables.TemporaryReadOnly = false;
                         this.BotonGastosVariables.Size = new System.Drawing.Size(28, 24);
                         this.BotonGastosVariables.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonGastosVariables.Subtext = "";
@@ -432,7 +432,7 @@ namespace Lazaro.Reportes
                         this.BotonOtrosEgresos.Location = new System.Drawing.Point(296, 276);
                         this.BotonOtrosEgresos.Name = "BotonOtrosEgresos";
                         this.BotonOtrosEgresos.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonOtrosEgresos.ReadOnly = false;
+                        this.BotonOtrosEgresos.TemporaryReadOnly = false;
                         this.BotonOtrosEgresos.Size = new System.Drawing.Size(28, 24);
                         this.BotonOtrosEgresos.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonOtrosEgresos.Subtext = "";
@@ -523,7 +523,7 @@ namespace Lazaro.Reportes
                         this.txtCobros.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCobros.PasswordChar = '\0';
                         this.txtCobros.Prefijo = "";
-                        this.txtCobros.ReadOnly = true;
+                        this.txtCobros.TemporaryReadOnly = true;
                         this.txtCobros.SelectOnFocus = true;
                         this.txtCobros.Size = new System.Drawing.Size(104, 24);
                         this.txtCobros.Sufijo = "";
@@ -554,7 +554,7 @@ namespace Lazaro.Reportes
                         this.BotonCobros.Location = new System.Drawing.Point(296, 372);
                         this.BotonCobros.Name = "BotonCobros";
                         this.BotonCobros.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCobros.ReadOnly = false;
+                        this.BotonCobros.TemporaryReadOnly = false;
                         this.BotonCobros.Size = new System.Drawing.Size(28, 24);
                         this.BotonCobros.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonCobros.Subtext = "";
@@ -580,7 +580,7 @@ namespace Lazaro.Reportes
                         this.txtDiferenciaNeta.Padding = new System.Windows.Forms.Padding(2);
                         this.txtDiferenciaNeta.PasswordChar = '\0';
                         this.txtDiferenciaNeta.Prefijo = "";
-                        this.txtDiferenciaNeta.ReadOnly = true;
+                        this.txtDiferenciaNeta.TemporaryReadOnly = true;
                         this.txtDiferenciaNeta.SelectOnFocus = true;
                         this.txtDiferenciaNeta.Size = new System.Drawing.Size(104, 24);
                         this.txtDiferenciaNeta.Sufijo = "";
@@ -616,7 +616,7 @@ namespace Lazaro.Reportes
                         this.txtDiferenciaBruta.Padding = new System.Windows.Forms.Padding(2);
                         this.txtDiferenciaBruta.PasswordChar = '\0';
                         this.txtDiferenciaBruta.Prefijo = "";
-                        this.txtDiferenciaBruta.ReadOnly = true;
+                        this.txtDiferenciaBruta.TemporaryReadOnly = true;
                         this.txtDiferenciaBruta.SelectOnFocus = true;
                         this.txtDiferenciaBruta.Size = new System.Drawing.Size(104, 24);
                         this.txtDiferenciaBruta.Sufijo = "";
@@ -705,7 +705,7 @@ namespace Lazaro.Reportes
                         this.txtFecha1.Padding = new System.Windows.Forms.Padding(2);
                         this.txtFecha1.PasswordChar = '\0';
                         this.txtFecha1.Prefijo = "";
-                        this.txtFecha1.ReadOnly = false;
+                        this.txtFecha1.TemporaryReadOnly = false;
                         this.txtFecha1.SelectOnFocus = true;
                         this.txtFecha1.Size = new System.Drawing.Size(92, 24);
                         this.txtFecha1.Sufijo = "";
@@ -731,7 +731,7 @@ namespace Lazaro.Reportes
                         this.txtFecha2.Padding = new System.Windows.Forms.Padding(2);
                         this.txtFecha2.PasswordChar = '\0';
                         this.txtFecha2.Prefijo = "";
-                        this.txtFecha2.ReadOnly = false;
+                        this.txtFecha2.TemporaryReadOnly = false;
                         this.txtFecha2.SelectOnFocus = true;
                         this.txtFecha2.Size = new System.Drawing.Size(92, 24);
                         this.txtFecha2.Sufijo = "";
@@ -782,7 +782,7 @@ namespace Lazaro.Reportes
                         this.ChartButton.Location = new System.Drawing.Point(112, 498);
                         this.ChartButton.Name = "ChartButton";
                         this.ChartButton.Padding = new System.Windows.Forms.Padding(2);
-                        this.ChartButton.ReadOnly = false;
+                        this.ChartButton.TemporaryReadOnly = false;
                         this.ChartButton.Size = new System.Drawing.Size(96, 28);
                         this.ChartButton.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.ChartButton.Subtext = "";
@@ -803,7 +803,7 @@ namespace Lazaro.Reportes
                         this.PorTipo.Location = new System.Drawing.Point(216, 498);
                         this.PorTipo.Name = "PorTipo";
                         this.PorTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.PorTipo.ReadOnly = false;
+                        this.PorTipo.TemporaryReadOnly = false;
                         this.PorTipo.Size = new System.Drawing.Size(96, 28);
                         this.PorTipo.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.PorTipo.Subtext = "F8";
@@ -829,7 +829,7 @@ namespace Lazaro.Reportes
                         this.txtCompraMateriales.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCompraMateriales.PasswordChar = '\0';
                         this.txtCompraMateriales.Prefijo = "";
-                        this.txtCompraMateriales.ReadOnly = true;
+                        this.txtCompraMateriales.TemporaryReadOnly = true;
                         this.txtCompraMateriales.SelectOnFocus = true;
                         this.txtCompraMateriales.Size = new System.Drawing.Size(104, 24);
                         this.txtCompraMateriales.Sufijo = "";
@@ -859,7 +859,7 @@ namespace Lazaro.Reportes
                         this.BotonCostoCapital.Location = new System.Drawing.Point(296, 192);
                         this.BotonCostoCapital.Name = "BotonCostoCapital";
                         this.BotonCostoCapital.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCostoCapital.ReadOnly = false;
+                        this.BotonCostoCapital.TemporaryReadOnly = false;
                         this.BotonCostoCapital.Size = new System.Drawing.Size(28, 24);
                         this.BotonCostoCapital.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonCostoCapital.Subtext = "";
@@ -885,7 +885,7 @@ namespace Lazaro.Reportes
                         this.txtCostoCapital.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCostoCapital.PasswordChar = '\0';
                         this.txtCostoCapital.Prefijo = "";
-                        this.txtCostoCapital.ReadOnly = true;
+                        this.txtCostoCapital.TemporaryReadOnly = true;
                         this.txtCostoCapital.SelectOnFocus = true;
                         this.txtCostoCapital.Size = new System.Drawing.Size(104, 24);
                         this.txtCostoCapital.Sufijo = "";
@@ -924,7 +924,7 @@ namespace Lazaro.Reportes
                         this.BotonCostoMateriales.Location = new System.Drawing.Point(296, 428);
                         this.BotonCostoMateriales.Name = "BotonCostoMateriales";
                         this.BotonCostoMateriales.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCostoMateriales.ReadOnly = false;
+                        this.BotonCostoMateriales.TemporaryReadOnly = false;
                         this.BotonCostoMateriales.Size = new System.Drawing.Size(28, 24);
                         this.BotonCostoMateriales.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonCostoMateriales.Subtext = "";
@@ -944,7 +944,7 @@ namespace Lazaro.Reportes
                         this.BotonIngresosOtros.Location = new System.Drawing.Point(296, 400);
                         this.BotonIngresosOtros.Name = "BotonIngresosOtros";
                         this.BotonIngresosOtros.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonIngresosOtros.ReadOnly = false;
+                        this.BotonIngresosOtros.TemporaryReadOnly = false;
                         this.BotonIngresosOtros.Size = new System.Drawing.Size(28, 24);
                         this.BotonIngresosOtros.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonIngresosOtros.Subtext = "";
@@ -970,7 +970,7 @@ namespace Lazaro.Reportes
                         this.EntradaIngresosOtros.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaIngresosOtros.PasswordChar = '\0';
                         this.EntradaIngresosOtros.Prefijo = "";
-                        this.EntradaIngresosOtros.ReadOnly = true;
+                        this.EntradaIngresosOtros.TemporaryReadOnly = true;
                         this.EntradaIngresosOtros.SelectOnFocus = true;
                         this.EntradaIngresosOtros.Size = new System.Drawing.Size(104, 24);
                         this.EntradaIngresosOtros.Sufijo = "";
@@ -1042,7 +1042,7 @@ namespace Lazaro.Reportes
                         this.EntradaGestionCobro.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaGestionCobro.PasswordChar = '\0';
                         this.EntradaGestionCobro.Prefijo = "";
-                        this.EntradaGestionCobro.ReadOnly = true;
+                        this.EntradaGestionCobro.TemporaryReadOnly = true;
                         this.EntradaGestionCobro.SelectOnFocus = true;
                         this.EntradaGestionCobro.Size = new System.Drawing.Size(104, 24);
                         this.EntradaGestionCobro.Sufijo = "";
@@ -1063,7 +1063,7 @@ namespace Lazaro.Reportes
                         this.BotonGestionCobro.Location = new System.Drawing.Point(296, 124);
                         this.BotonGestionCobro.Name = "BotonGestionCobro";
                         this.BotonGestionCobro.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonGestionCobro.ReadOnly = false;
+                        this.BotonGestionCobro.TemporaryReadOnly = false;
                         this.BotonGestionCobro.Size = new System.Drawing.Size(28, 24);
                         this.BotonGestionCobro.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonGestionCobro.Subtext = "";

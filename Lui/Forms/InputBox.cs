@@ -95,7 +95,6 @@ namespace Lui.Forms
                         this.CancelBtn.Location = new System.Drawing.Point(364, 56);
                         this.CancelBtn.Name = "CancelBtn";
                         this.CancelBtn.Padding = new System.Windows.Forms.Padding(2);
-                        this.CancelBtn.ReadOnly = false;
                         this.CancelBtn.Size = new System.Drawing.Size(96, 32);
                         this.CancelBtn.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.CancelBtn.Subtext = "Tecla";
@@ -115,7 +114,6 @@ namespace Lui.Forms
                         this.Texto.MaxLenght = 32767;
                         this.Texto.Name = "Texto";
                         this.Texto.Padding = new System.Windows.Forms.Padding(2);
-                        this.Texto.ReadOnly = false;
                         this.Texto.Size = new System.Drawing.Size(452, 24);
                         this.Texto.TabIndex = 0;
                         this.Texto.TipWhenBlank = "";
@@ -132,7 +130,6 @@ namespace Lui.Forms
                         this.OkButton.Location = new System.Drawing.Point(364, 16);
                         this.OkButton.Name = "OkButton";
                         this.OkButton.Padding = new System.Windows.Forms.Padding(2);
-                        this.OkButton.ReadOnly = false;
                         this.OkButton.Size = new System.Drawing.Size(96, 32);
                         this.OkButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.OkButton.Subtext = "Tecla";

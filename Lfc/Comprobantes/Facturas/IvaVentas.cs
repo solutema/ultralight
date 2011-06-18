@@ -85,23 +85,23 @@ namespace Lfc.Comprobantes.Facturas
                         if (ResultadoFiltrar.Success == true) {
                                 using (Lfc.Comprobantes.Filtros FormFiltros = new Lfc.Comprobantes.Filtros()) {
                                         FormFiltros.Connection = this.Connection;
-                                        FormFiltros.EntradaTipo.ReadOnly = true;
+                                        FormFiltros.EntradaTipo.TemporaryReadOnly = true;
                                         FormFiltros.EntradaTipo.TextKey = this.ElementoTipo.ToString();
                                         FormFiltros.EntradaPv.Text = m_PV.ToString();
                                         FormFiltros.EntradaLetra.TextKey = m_Letra;
                                         FormFiltros.EntradaSucursal.TextInt = m_Sucursal;
-                                        FormFiltros.EntradaFormaPago.ReadOnly = true;
+                                        FormFiltros.EntradaFormaPago.TemporaryReadOnly = true;
                                         FormFiltros.EntradaFormaPago.TextInt = 0;
-                                        FormFiltros.EntradaCliente.ReadOnly = true;
+                                        FormFiltros.EntradaCliente.TemporaryReadOnly = true;
                                         FormFiltros.EntradaCliente.TextInt = 0;
-                                        FormFiltros.EntradaVendedor.ReadOnly = true;
+                                        FormFiltros.EntradaVendedor.TemporaryReadOnly = true;
                                         FormFiltros.EntradaVendedor.TextInt = 0;
                                         FormFiltros.EntradaFechas.Rango = m_Fecha;
-                                        FormFiltros.EntradaEstado.ReadOnly = true;
+                                        FormFiltros.EntradaEstado.TemporaryReadOnly = true;
                                         FormFiltros.EntradaEstado.TextKey = "3";
                                         FormFiltros.EntradaAnuladas.TextKey = m_Anuladas.ToString();
-                                        FormFiltros.EntradaMontoDesde.ReadOnly = true;
-                                        FormFiltros.EntradaMontoHasta.ReadOnly = true;
+                                        FormFiltros.EntradaMontoDesde.TemporaryReadOnly = true;
+                                        FormFiltros.EntradaMontoHasta.TemporaryReadOnly = true;
                                         FormFiltros.Owner = this;
                                         FormFiltros.ShowDialog();
 

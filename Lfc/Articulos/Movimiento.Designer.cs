@@ -157,7 +157,7 @@ namespace Lfc.Articulos
                         this.EntradaMovimiento.MaxLenght = 32767;
                         this.EntradaMovimiento.Name = "EntradaMovimiento";
                         this.EntradaMovimiento.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMovimiento.ReadOnly = false;
+                        this.EntradaMovimiento.TemporaryReadOnly = false;
                         this.EntradaMovimiento.SetData = new string[] {
         " |*",
         "Entrada|e",
@@ -188,7 +188,7 @@ namespace Lfc.Articulos
                         this.EntradaCantidad.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCantidad.PasswordChar = '\0';
                         this.EntradaCantidad.Prefijo = "";
-                        this.EntradaCantidad.ReadOnly = false;
+                        this.EntradaCantidad.TemporaryReadOnly = false;
                         this.EntradaCantidad.SelectOnFocus = true;
                         this.EntradaCantidad.Size = new System.Drawing.Size(96, 24);
                         this.EntradaCantidad.Sufijo = "";
@@ -217,7 +217,7 @@ namespace Lfc.Articulos
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.PasswordChar = '\0';
                         this.EntradaObs.Prefijo = "";
-                        this.EntradaObs.ReadOnly = false;
+                        this.EntradaObs.TemporaryReadOnly = false;
                         this.EntradaObs.SelectOnFocus = true;
                         this.EntradaObs.Size = new System.Drawing.Size(496, 24);
                         this.EntradaObs.Sufijo = "";
@@ -260,7 +260,7 @@ namespace Lfc.Articulos
                         this.EntradaStockActual.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaStockActual.PasswordChar = '\0';
                         this.EntradaStockActual.Prefijo = "";
-                        this.EntradaStockActual.ReadOnly = true;
+                        this.EntradaStockActual.TemporaryReadOnly = true;
                         this.EntradaStockActual.SelectOnFocus = true;
                         this.EntradaStockActual.Size = new System.Drawing.Size(96, 24);
                         this.EntradaStockActual.Sufijo = "";
@@ -286,7 +286,7 @@ namespace Lfc.Articulos
                         this.EntradaStockResult.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaStockResult.PasswordChar = '\0';
                         this.EntradaStockResult.Prefijo = "";
-                        this.EntradaStockResult.ReadOnly = true;
+                        this.EntradaStockResult.TemporaryReadOnly = true;
                         this.EntradaStockResult.SelectOnFocus = true;
                         this.EntradaStockResult.Size = new System.Drawing.Size(96, 24);
                         this.EntradaStockResult.Sufijo = "";
@@ -313,7 +313,7 @@ namespace Lfc.Articulos
                         this.EntradaDesdeSituacion.MaxLength = 200;
                         this.EntradaDesdeSituacion.Name = "EntradaDesdeSituacion";
                         this.EntradaDesdeSituacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDesdeSituacion.ReadOnly = false;
+                        this.EntradaDesdeSituacion.TemporaryReadOnly = false;
                         this.EntradaDesdeSituacion.Required = true;
                         this.EntradaDesdeSituacion.Size = new System.Drawing.Size(496, 24);
                         this.EntradaDesdeSituacion.TabIndex = 7;
@@ -352,7 +352,7 @@ namespace Lfc.Articulos
                         this.EntradaHaciaSituacion.MaxLength = 200;
                         this.EntradaHaciaSituacion.Name = "EntradaHaciaSituacion";
                         this.EntradaHaciaSituacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaHaciaSituacion.ReadOnly = false;
+                        this.EntradaHaciaSituacion.TemporaryReadOnly = false;
                         this.EntradaHaciaSituacion.Required = true;
                         this.EntradaHaciaSituacion.Size = new System.Drawing.Size(496, 24);
                         this.EntradaHaciaSituacion.TabIndex = 9;
@@ -389,7 +389,7 @@ namespace Lfc.Articulos
                         this.EntradaStockResult2.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaStockResult2.PasswordChar = '\0';
                         this.EntradaStockResult2.Prefijo = "";
-                        this.EntradaStockResult2.ReadOnly = true;
+                        this.EntradaStockResult2.TemporaryReadOnly = true;
                         this.EntradaStockResult2.SelectOnFocus = true;
                         this.EntradaStockResult2.Size = new System.Drawing.Size(96, 24);
                         this.EntradaStockResult2.Sufijo = "";
@@ -415,7 +415,7 @@ namespace Lfc.Articulos
                         this.EntradaStockActual2.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaStockActual2.PasswordChar = '\0';
                         this.EntradaStockActual2.Prefijo = "";
-                        this.EntradaStockActual2.ReadOnly = true;
+                        this.EntradaStockActual2.TemporaryReadOnly = true;
                         this.EntradaStockActual2.SelectOnFocus = true;
                         this.EntradaStockActual2.Size = new System.Drawing.Size(96, 24);
                         this.EntradaStockActual2.Sufijo = "";
@@ -484,7 +484,7 @@ namespace Lfc.Articulos
                         this.EntradaArticulo.Precio = Lcc.Entrada.Articulos.Precios.Pvp;
                         this.EntradaArticulo.PrecioSoloLectura = false;
                         this.EntradaArticulo.ProductoSoloLectura = false;
-                        this.EntradaArticulo.ReadOnly = false;
+                        this.EntradaArticulo.TemporaryReadOnly = false;
                         this.EntradaArticulo.Required = true;
                         this.EntradaArticulo.Size = new System.Drawing.Size(496, 24);
                         this.EntradaArticulo.TabIndex = 1;

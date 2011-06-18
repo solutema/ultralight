@@ -82,7 +82,7 @@ namespace Lfc.Comprobantes
                         this.textBox1.Padding = new System.Windows.Forms.Padding(2);
                         this.textBox1.PasswordChar = '\0';
                         this.textBox1.Prefijo = "";
-                        this.textBox1.ReadOnly = false;
+                        this.textBox1.TemporaryReadOnly = false;
                         this.textBox1.SelectOnFocus = true;
                         this.textBox1.Size = new System.Drawing.Size(316, 24);
                         this.textBox1.Sufijo = "";
@@ -106,7 +106,7 @@ namespace Lfc.Comprobantes
                         this.textBox2.Padding = new System.Windows.Forms.Padding(2);
                         this.textBox2.PasswordChar = '\0';
                         this.textBox2.Prefijo = "";
-                        this.textBox2.ReadOnly = false;
+                        this.textBox2.TemporaryReadOnly = false;
                         this.textBox2.SelectOnFocus = true;
                         this.textBox2.Size = new System.Drawing.Size(108, 24);
                         this.textBox2.Sufijo = "";
@@ -130,7 +130,7 @@ namespace Lfc.Comprobantes
                         this.textBox3.Padding = new System.Windows.Forms.Padding(2);
                         this.textBox3.PasswordChar = '\0';
                         this.textBox3.Prefijo = "";
-                        this.textBox3.ReadOnly = false;
+                        this.textBox3.TemporaryReadOnly = false;
                         this.textBox3.SelectOnFocus = true;
                         this.textBox3.Size = new System.Drawing.Size(108, 24);
                         this.textBox3.Sufijo = "";
@@ -154,7 +154,7 @@ namespace Lfc.Comprobantes
                         this.textBox4.Padding = new System.Windows.Forms.Padding(2);
                         this.textBox4.PasswordChar = '\0';
                         this.textBox4.Prefijo = "";
-                        this.textBox4.ReadOnly = false;
+                        this.textBox4.TemporaryReadOnly = false;
                         this.textBox4.SelectOnFocus = true;
                         this.textBox4.Size = new System.Drawing.Size(316, 24);
                         this.textBox4.Sufijo = "";
@@ -178,7 +178,7 @@ namespace Lfc.Comprobantes
                         this.textBox5.Padding = new System.Windows.Forms.Padding(2);
                         this.textBox5.PasswordChar = '\0';
                         this.textBox5.Prefijo = "";
-                        this.textBox5.ReadOnly = false;
+                        this.textBox5.TemporaryReadOnly = false;
                         this.textBox5.SelectOnFocus = true;
                         this.textBox5.Size = new System.Drawing.Size(108, 24);
                         this.textBox5.Sufijo = "";
@@ -202,7 +202,7 @@ namespace Lfc.Comprobantes
                         this.textBox6.Padding = new System.Windows.Forms.Padding(2);
                         this.textBox6.PasswordChar = '\0';
                         this.textBox6.Prefijo = "";
-                        this.textBox6.ReadOnly = false;
+                        this.textBox6.TemporaryReadOnly = false;
                         this.textBox6.SelectOnFocus = true;
                         this.textBox6.Size = new System.Drawing.Size(316, 24);
                         this.textBox6.Sufijo = "";

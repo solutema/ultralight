@@ -129,7 +129,7 @@ namespace Lfc.Bancos.Cheques
 			this.EntradaConcepto.Location = new System.Drawing.Point(128, 136);
 			this.EntradaConcepto.MaxLength = 200;
 			this.EntradaConcepto.Name = "EntradaConcepto";
-			this.EntradaConcepto.ReadOnly = false;
+			this.EntradaConcepto.TemporaryReadOnly = false;
 			this.EntradaConcepto.Required = false;
 			this.EntradaConcepto.Size = new System.Drawing.Size(404, 24);
 			this.EntradaConcepto.TabIndex = 8;
@@ -151,7 +151,7 @@ namespace Lfc.Bancos.Cheques
 			this.EntradaObs.MaxLenght = 32767;
 			this.EntradaObs.MultiLine = true;
 			this.EntradaObs.Name = "EntradaObs";
-			this.EntradaObs.ReadOnly = false;
+			this.EntradaObs.TemporaryReadOnly = false;
 			this.EntradaObs.SelectOnFocus = false;
 			this.EntradaObs.Size = new System.Drawing.Size(404, 92);
 			this.EntradaObs.TabIndex = 10;
@@ -188,7 +188,7 @@ namespace Lfc.Bancos.Cheques
 			this.EntradaSubTotal.MaxLenght = 32767;
 			this.EntradaSubTotal.Name = "EntradaSubTotal";
 			this.EntradaSubTotal.Prefijo = "$";
-			this.EntradaSubTotal.ReadOnly = true;
+			this.EntradaSubTotal.TemporaryReadOnly = true;
 			this.EntradaSubTotal.Size = new System.Drawing.Size(108, 24);
 			this.EntradaSubTotal.TabIndex = 4;
 			this.EntradaSubTotal.TabStop = false;
@@ -216,7 +216,7 @@ namespace Lfc.Bancos.Cheques
 			this.EntradaCantidad.Location = new System.Drawing.Point(128, 68);
 			this.EntradaCantidad.MaxLenght = 32767;
 			this.EntradaCantidad.Name = "EntradaCantidad";
-			this.EntradaCantidad.ReadOnly = true;
+			this.EntradaCantidad.TemporaryReadOnly = true;
 			this.EntradaCantidad.Size = new System.Drawing.Size(56, 24);
 			this.EntradaCantidad.TabIndex = 2;
 			this.EntradaCantidad.TabStop = false;
@@ -258,7 +258,7 @@ namespace Lfc.Bancos.Cheques
 			this.gDetailBox1.Location = new System.Drawing.Point(128, 104);
 			this.gDetailBox1.MaxLength = 200;
 			this.gDetailBox1.Name = "gDetailBox1";
-			this.gDetailBox1.ReadOnly = false;
+			this.gDetailBox1.TemporaryReadOnly = false;
 			this.gDetailBox1.Required = false;
 			this.gDetailBox1.Size = new System.Drawing.Size(404, 24);
 			this.gDetailBox1.TabIndex = 6;

@@ -103,7 +103,7 @@ namespace Lfc.Articulos
                         this.EntradaFechaCreado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaCreado.PasswordChar = '\0';
                         this.EntradaFechaCreado.Prefijo = "";
-                        this.EntradaFechaCreado.ReadOnly = true;
+                        this.EntradaFechaCreado.TemporaryReadOnly = true;
                         this.EntradaFechaCreado.SelectOnFocus = true;
                         this.EntradaFechaCreado.Size = new System.Drawing.Size(140, 24);
                         this.EntradaFechaCreado.Sufijo = "";
@@ -128,7 +128,7 @@ namespace Lfc.Articulos
                         this.EntradaFechaPrecio.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaPrecio.PasswordChar = '\0';
                         this.EntradaFechaPrecio.Prefijo = "";
-                        this.EntradaFechaPrecio.ReadOnly = true;
+                        this.EntradaFechaPrecio.TemporaryReadOnly = true;
                         this.EntradaFechaPrecio.SelectOnFocus = true;
                         this.EntradaFechaPrecio.Size = new System.Drawing.Size(140, 24);
                         this.EntradaFechaPrecio.Sufijo = "";
@@ -163,7 +163,7 @@ namespace Lfc.Articulos
                         this.EntradaCostoUltimaCompra.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCostoUltimaCompra.PasswordChar = '\0';
                         this.EntradaCostoUltimaCompra.Prefijo = "";
-                        this.EntradaCostoUltimaCompra.ReadOnly = false;
+                        this.EntradaCostoUltimaCompra.TemporaryReadOnly = false;
                         this.EntradaCostoUltimaCompra.SelectOnFocus = true;
                         this.EntradaCostoUltimaCompra.Size = new System.Drawing.Size(92, 24);
                         this.EntradaCostoUltimaCompra.Sufijo = "";
@@ -200,7 +200,7 @@ namespace Lfc.Articulos
                         this.EntradaCostoUltimas5Compras.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCostoUltimas5Compras.PasswordChar = '\0';
                         this.EntradaCostoUltimas5Compras.Prefijo = "";
-                        this.EntradaCostoUltimas5Compras.ReadOnly = false;
+                        this.EntradaCostoUltimas5Compras.TemporaryReadOnly = false;
                         this.EntradaCostoUltimas5Compras.SelectOnFocus = true;
                         this.EntradaCostoUltimas5Compras.Size = new System.Drawing.Size(92, 24);
                         this.EntradaCostoUltimas5Compras.Sufijo = "";

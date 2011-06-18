@@ -89,7 +89,7 @@ namespace Lcc.Entrada
                         this.FieldData.Padding = new System.Windows.Forms.Padding(2);
                         this.FieldData.PasswordChar = '\0';
                         this.FieldData.Prefijo = "";
-                        this.FieldData.ReadOnly = false;
+                        this.FieldData.TemporaryReadOnly = false;
                         this.FieldData.SelectOnFocus = true;
                         this.FieldData.Size = new System.Drawing.Size(366, 24);
                         this.FieldData.Sufijo = "";

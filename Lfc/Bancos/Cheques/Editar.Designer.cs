@@ -82,7 +82,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaEmisor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEmisor.PasswordChar = '\0';
                         this.EntradaEmisor.Prefijo = "";
-                        this.EntradaEmisor.ReadOnly = false;
+                        this.EntradaEmisor.TemporaryReadOnly = false;
                         this.EntradaEmisor.SelectOnFocus = true;
                         this.EntradaEmisor.Size = new System.Drawing.Size(372, 24);
                         this.EntradaEmisor.Sufijo = "";
@@ -107,7 +107,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumero.PasswordChar = '\0';
                         this.EntradaNumero.Prefijo = "";
-                        this.EntradaNumero.ReadOnly = false;
+                        this.EntradaNumero.TemporaryReadOnly = false;
                         this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(172, 24);
                         this.EntradaNumero.Sufijo = "";
@@ -134,7 +134,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
                         this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaBanco.ReadOnly = false;
+                        this.EntradaBanco.TemporaryReadOnly = false;
                         this.EntradaBanco.Required = true;
                         this.EntradaBanco.Size = new System.Drawing.Size(372, 24);
                         this.EntradaBanco.TabIndex = 3;
@@ -188,7 +188,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaFechaCobro.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaCobro.PasswordChar = '\0';
                         this.EntradaFechaCobro.Prefijo = "";
-                        this.EntradaFechaCobro.ReadOnly = false;
+                        this.EntradaFechaCobro.TemporaryReadOnly = false;
                         this.EntradaFechaCobro.SelectOnFocus = true;
                         this.EntradaFechaCobro.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaCobro.Sufijo = "";
@@ -222,7 +222,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaFechaEmision.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaEmision.PasswordChar = '\0';
                         this.EntradaFechaEmision.Prefijo = "";
-                        this.EntradaFechaEmision.ReadOnly = false;
+                        this.EntradaFechaEmision.TemporaryReadOnly = false;
                         this.EntradaFechaEmision.SelectOnFocus = true;
                         this.EntradaFechaEmision.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaEmision.Sufijo = "";

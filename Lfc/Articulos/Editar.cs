@@ -347,7 +347,7 @@ namespace Lfc.Articulos
                         if (EntradaUsaStock.TextKey == "2") {
                                 Lbl.Articulos.Articulo Art = this.Elemento as Lbl.Articulos.Articulo;
                                 Receta FormReceta = new Receta();
-                                FormReceta.ReadOnly = this.ReadOnly;
+                                FormReceta.ReadOnly = this.TemporaryReadOnly;
                                 FormReceta.Articulo = Art;
                                 if (FormReceta.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                                         this.Changed = true;

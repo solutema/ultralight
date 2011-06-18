@@ -117,7 +117,7 @@ namespace Lfc.Comprobantes.Facturas
                                 if (FacturaInicial != null && FacturaInicial.Existe) {
                                         ComprobanteVistaPrevia.Elemento = FacturaInicial;
                                         ComprobanteVistaPrevia.ActualizarControl();
-                                        ComprobanteVistaPrevia.ReadOnly = true;
+                                        ComprobanteVistaPrevia.TemporaryReadOnly = true;
                                         ComprobanteVistaPrevia.Visible = true;
 
                                         if (FacturaInicial.Anulado) {

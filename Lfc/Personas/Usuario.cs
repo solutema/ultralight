@@ -58,7 +58,7 @@ namespace Lfc.Personas
                                 EntradaAcceso.TextKey = "0";
 
                         // No se pueden agregar o quitar permisos del usuario Administrador, sólo cambiar la contraseña
-                        EntradaAcceso.ReadOnly = Usu.Id == 1;
+                        EntradaAcceso.TemporaryReadOnly = Usu.Id == 1;
                         BotonAgregar.Enabled = Usu.Id != 1;
                         BotonQuitar.Enabled = Usu.Id != 1;
 

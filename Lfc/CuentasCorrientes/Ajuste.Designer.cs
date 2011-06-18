@@ -94,7 +94,7 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaConcepto.MaxLength = 200;
                         this.EntradaConcepto.Name = "EntradaConcepto";
                         this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaConcepto.ReadOnly = false;
+                        this.EntradaConcepto.TemporaryReadOnly = false;
                         this.EntradaConcepto.Required = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(496, 24);
                         this.EntradaConcepto.TabIndex = 1;
@@ -123,7 +123,7 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImporte.PasswordChar = '\0';
                         this.EntradaImporte.Prefijo = "$";
-                        this.EntradaImporte.ReadOnly = false;
+                        this.EntradaImporte.TemporaryReadOnly = false;
                         this.EntradaImporte.SelectOnFocus = true;
                         this.EntradaImporte.Size = new System.Drawing.Size(128, 24);
                         this.EntradaImporte.Sufijo = "";
@@ -170,7 +170,7 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.PasswordChar = '\0';
                         this.EntradaObs.Prefijo = "";
-                        this.EntradaObs.ReadOnly = false;
+                        this.EntradaObs.TemporaryReadOnly = false;
                         this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(496, 92);
                         this.EntradaObs.Sufijo = "";
@@ -201,7 +201,7 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaDireccion.MaxLenght = 32767;
                         this.EntradaDireccion.Name = "EntradaDireccion";
                         this.EntradaDireccion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDireccion.ReadOnly = false;
+                        this.EntradaDireccion.TemporaryReadOnly = false;
                         this.EntradaDireccion.SetData = new string[] {
         "Débito|1",
         "Crédito|0"};
@@ -239,7 +239,7 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaNuevoSaldo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNuevoSaldo.PasswordChar = '\0';
                         this.EntradaNuevoSaldo.Prefijo = "$";
-                        this.EntradaNuevoSaldo.ReadOnly = true;
+                        this.EntradaNuevoSaldo.TemporaryReadOnly = true;
                         this.EntradaNuevoSaldo.SelectOnFocus = true;
                         this.EntradaNuevoSaldo.Size = new System.Drawing.Size(128, 24);
                         this.EntradaNuevoSaldo.Sufijo = "";

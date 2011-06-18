@@ -106,7 +106,7 @@ namespace Lfc.Cajas.Admin
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumero.PasswordChar = '\0';
                         this.EntradaNumero.Prefijo = "";
-                        this.EntradaNumero.ReadOnly = false;
+                        this.EntradaNumero.TemporaryReadOnly = false;
                         this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(228, 24);
                         this.EntradaNumero.Sufijo = "";
@@ -152,7 +152,7 @@ namespace Lfc.Cajas.Admin
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
                         this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaBanco.ReadOnly = false;
+                        this.EntradaBanco.TemporaryReadOnly = false;
                         this.EntradaBanco.Required = false;
                         this.EntradaBanco.Size = new System.Drawing.Size(443, 24);
                         this.EntradaBanco.TabIndex = 7;
@@ -177,7 +177,7 @@ namespace Lfc.Cajas.Admin
                         this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipo.ReadOnly = false;
+                        this.EntradaTipo.TemporaryReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Efectivo|0",
         "Caja de Ahorro|1",
@@ -219,7 +219,7 @@ namespace Lfc.Cajas.Admin
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.PasswordChar = '\0';
                         this.EntradaNombre.Prefijo = "";
-                        this.EntradaNombre.ReadOnly = false;
+                        this.EntradaNombre.TemporaryReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(443, 24);
                         this.EntradaNombre.Sufijo = "";
@@ -263,7 +263,7 @@ namespace Lfc.Cajas.Admin
                         this.EntradaMoneda.MaxLength = 200;
                         this.EntradaMoneda.Name = "EntradaMoneda";
                         this.EntradaMoneda.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMoneda.ReadOnly = false;
+                        this.EntradaMoneda.TemporaryReadOnly = false;
                         this.EntradaMoneda.Required = false;
                         this.EntradaMoneda.Size = new System.Drawing.Size(228, 24);
                         this.EntradaMoneda.TabIndex = 11;
@@ -290,7 +290,7 @@ namespace Lfc.Cajas.Admin
                         this.EntradaCbu.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCbu.PasswordChar = '\0';
                         this.EntradaCbu.Prefijo = "";
-                        this.EntradaCbu.ReadOnly = false;
+                        this.EntradaCbu.TemporaryReadOnly = false;
                         this.EntradaCbu.SelectOnFocus = false;
                         this.EntradaCbu.Size = new System.Drawing.Size(228, 24);
                         this.EntradaCbu.Sufijo = "";
@@ -323,7 +323,7 @@ namespace Lfc.Cajas.Admin
                         this.EntradaTitular.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTitular.PasswordChar = '\0';
                         this.EntradaTitular.Prefijo = "";
-                        this.EntradaTitular.ReadOnly = false;
+                        this.EntradaTitular.TemporaryReadOnly = false;
                         this.EntradaTitular.SelectOnFocus = true;
                         this.EntradaTitular.Size = new System.Drawing.Size(436, 24);
                         this.EntradaTitular.Sufijo = "";
@@ -354,7 +354,7 @@ namespace Lfc.Cajas.Admin
                         this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEstado.ReadOnly = false;
+                        this.EntradaEstado.TemporaryReadOnly = false;
                         this.EntradaEstado.SetData = new string[] {
         "Activa|1",
         "Inactiva|0"};

@@ -56,15 +56,15 @@ namespace Lcc.Entrada
                         InitializeComponent();
                 }
 
-                public override bool ReadOnly
+                public override bool TemporaryReadOnly
                 {
                         get
                         {
-                                return base.ReadOnly;
+                                return base.TemporaryReadOnly;
                         }
                         set
                         {
-                                base.ReadOnly = value;
+                                base.TemporaryReadOnly = value;
                                 this.AutoAgregarOQuitar(false);
                         }
                 }
@@ -189,11 +189,11 @@ namespace Lcc.Entrada
                                 T Ultimo = null;
                                 switch (this.Controles.Count) {
                                         case 0:
-                                                if (this.ReadOnly == false)
+                                                if (this.TemporaryReadOnly == false)
                                                         this.Agregar();
                                                 break;
                                         case 1:
-                                                if (this.ReadOnly == false) {
+                                                if (this.TemporaryReadOnly == false) {
                                                         Ultimo = this.Controles[0];
                                                         if (Ultimo.IsEmpty == false)
                                                                 this.Agregar();
@@ -224,7 +224,7 @@ namespace Lcc.Entrada
                                                         Ultimo = this.Controles[this.Controles.Count - 1];
                                                         if (this.Controles.Count > 1)
                                                                 Penultimo = this.Controles[this.Controles.Count - 2];
-                                                        if (Ultimo.IsEmpty == false && Penultimo != null && Penultimo.IsEmpty == false && this.ReadOnly == false)
+                                                        if (Ultimo.IsEmpty == false && Penultimo != null && Penultimo.IsEmpty == false && this.TemporaryReadOnly == false)
                                                                 this.Agregar();
                                                 }
                                                 break;
