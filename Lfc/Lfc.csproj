@@ -584,6 +584,12 @@
     <Compile Include="Tarjetas\Cupones\Acreditar.Designer.cs">
       <DependentUpon>Acreditar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tarjetas\Cupones\Editar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tarjetas\Cupones\Editar.Designer.cs">
+      <DependentUpon>Editar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tarjetas\Cupones\Filtros.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -945,6 +951,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tarjetas\Cupones\Acreditar.resx">
       <DependentUpon>Acreditar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tarjetas\Cupones\Editar.resx">
+      <DependentUpon>Editar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Tarjetas\Cupones\Filtros.resx">

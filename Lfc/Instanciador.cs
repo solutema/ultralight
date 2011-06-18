@@ -202,6 +202,8 @@ namespace Lfc
                                 case "Lbl.Cajas.Vencimiento":
                                         return typeof(Lfc.Cajas.Vencimientos.Inicio);
 
+                                case "Lbl.Pagos.Cupon":
+                                        return typeof(Lfc.Tarjetas.Cupones.Editar);
                                 default:
                                         throw new NotImplementedException();
                         }
@@ -304,6 +306,9 @@ namespace Lfc
                                         return typeof(Lfc.Personas.Editar);
                                 case "Lbl.Personas.Usuario":
                                         return typeof(Lfc.Personas.Usuario);
+                                case "tarjetas_cupon":
+                                case "Lbl.Pagos.Cupon":
+                                        return typeof(Lfc.Tarjetas.Cupones.Editar);
                                 case "personas_grupos":
                                 case "Lbl.Personas.Grupo":
                                         return typeof(Lfc.Personas.Grupos.Editar);
