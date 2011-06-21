@@ -109,15 +109,17 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaNombre = new Lui.Forms.TextBox();
                         this.Label17 = new System.Windows.Forms.Label();
                         this.FrmGeneral = new Lui.Forms.Frame();
+                        this.EntradaEmpresaRazonSocial = new Lui.Forms.TextBox();
+                        this.label1 = new System.Windows.Forms.Label();
                         this.EntradaActualizaciones = new Lui.Forms.ComboBox();
                         this.label30 = new System.Windows.Forms.Label();
                         this.EntradaAislacion = new Lui.Forms.ComboBox();
                         this.EntradaModoPantalla = new Lui.Forms.ComboBox();
                         this.EntradaBackup = new Lui.Forms.ComboBox();
                         this.label29 = new System.Windows.Forms.Label();
+                        this.label27 = new System.Windows.Forms.Label();
                         this.EntradaEmpresaEmail = new Lui.Forms.TextBox();
                         this.label28 = new System.Windows.Forms.Label();
-                        this.label27 = new System.Windows.Forms.Label();
                         this.label14 = new System.Windows.Forms.Label();
                         this.EntradaStockDecimales = new Lui.Forms.ComboBox();
                         this.Label25 = new System.Windows.Forms.Label();
@@ -156,8 +158,8 @@ namespace Lazaro.Misc.Config
                         this.label11 = new System.Windows.Forms.Label();
                         this.EntradaPVR = new Lui.Forms.TextBox();
                         this.label12 = new System.Windows.Forms.Label();
-                        this.EntradaEmpresaRazonSocial = new Lui.Forms.TextBox();
-                        this.label1 = new System.Windows.Forms.Label();
+                        this.EntradaPVRC = new Lui.Forms.TextBox();
+                        this.label3 = new System.Windows.Forms.Label();
                         this.FrmGeneral.SuspendLayout();
                         this.FrmArticulos.SuspendLayout();
                         this.FrmComprobantes.SuspendLayout();
@@ -174,6 +176,7 @@ namespace Lazaro.Misc.Config
                         this.BotonAceptar.Location = new System.Drawing.Point(444, 405);
                         this.BotonAceptar.Name = "BotonAceptar";
                         this.BotonAceptar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonAceptar.ReadOnly = false;
                         this.BotonAceptar.Size = new System.Drawing.Size(88, 32);
                         this.BotonAceptar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonAceptar.Subtext = "F9";
@@ -193,6 +196,7 @@ namespace Lazaro.Misc.Config
                         this.CancelCommandButton.Location = new System.Drawing.Point(536, 405);
                         this.CancelCommandButton.Name = "CancelCommandButton";
                         this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(2);
+                        this.CancelCommandButton.ReadOnly = false;
                         this.CancelCommandButton.Size = new System.Drawing.Size(88, 32);
                         this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.CancelCommandButton.Subtext = "Esc";
@@ -219,6 +223,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaSituacion.MaxLength = 200;
                         this.EntradaEmpresaSituacion.Name = "EntradaEmpresaSituacion";
                         this.EntradaEmpresaSituacion.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEmpresaSituacion.ReadOnly = false;
                         this.EntradaEmpresaSituacion.Required = true;
                         this.EntradaEmpresaSituacion.Size = new System.Drawing.Size(388, 24);
                         this.EntradaEmpresaSituacion.TabIndex = 6;
@@ -253,6 +258,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaCuit.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEmpresaCuit.PasswordChar = '\0';
                         this.EntradaEmpresaCuit.Prefijo = "";
+                        this.EntradaEmpresaCuit.ReadOnly = false;
                         this.EntradaEmpresaCuit.SelectOnFocus = true;
                         this.EntradaEmpresaCuit.Size = new System.Drawing.Size(112, 24);
                         this.EntradaEmpresaCuit.Sufijo = "";
@@ -285,6 +291,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEmpresaNombre.PasswordChar = '\0';
                         this.EntradaEmpresaNombre.Prefijo = "";
+                        this.EntradaEmpresaNombre.ReadOnly = false;
                         this.EntradaEmpresaNombre.SelectOnFocus = true;
                         this.EntradaEmpresaNombre.Size = new System.Drawing.Size(388, 24);
                         this.EntradaEmpresaNombre.Sufijo = "";
@@ -329,10 +336,44 @@ namespace Lazaro.Misc.Config
                         this.FrmGeneral.Location = new System.Drawing.Point(8, 8);
                         this.FrmGeneral.Name = "FrmGeneral";
                         this.FrmGeneral.Padding = new System.Windows.Forms.Padding(2);
+                        this.FrmGeneral.ReadOnly = false;
                         this.FrmGeneral.Size = new System.Drawing.Size(620, 385);
                         this.FrmGeneral.TabIndex = 0;
                         this.FrmGeneral.Text = "Generalidades";
                         this.FrmGeneral.ToolTipText = "";
+                        // 
+                        // EntradaEmpresaRazonSocial
+                        // 
+                        this.EntradaEmpresaRazonSocial.AutoNav = true;
+                        this.EntradaEmpresaRazonSocial.AutoTab = true;
+                        this.EntradaEmpresaRazonSocial.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaEmpresaRazonSocial.DecimalPlaces = -1;
+                        this.EntradaEmpresaRazonSocial.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaEmpresaRazonSocial.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaEmpresaRazonSocial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaEmpresaRazonSocial.Location = new System.Drawing.Point(180, 64);
+                        this.EntradaEmpresaRazonSocial.MaxLenght = 32767;
+                        this.EntradaEmpresaRazonSocial.MultiLine = false;
+                        this.EntradaEmpresaRazonSocial.Name = "EntradaEmpresaRazonSocial";
+                        this.EntradaEmpresaRazonSocial.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEmpresaRazonSocial.PasswordChar = '\0';
+                        this.EntradaEmpresaRazonSocial.Prefijo = "";
+                        this.EntradaEmpresaRazonSocial.ReadOnly = false;
+                        this.EntradaEmpresaRazonSocial.SelectOnFocus = true;
+                        this.EntradaEmpresaRazonSocial.Size = new System.Drawing.Size(388, 24);
+                        this.EntradaEmpresaRazonSocial.Sufijo = "";
+                        this.EntradaEmpresaRazonSocial.TabIndex = 2;
+                        this.EntradaEmpresaRazonSocial.TipWhenBlank = "";
+                        this.EntradaEmpresaRazonSocial.ToolTipText = "";
+                        // 
+                        // label1
+                        // 
+                        this.label1.Location = new System.Drawing.Point(16, 64);
+                        this.label1.Name = "label1";
+                        this.label1.Size = new System.Drawing.Size(160, 24);
+                        this.label1.TabIndex = 1;
+                        this.label1.Text = "Razón Social";
+                        this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaActualizaciones
                         // 
@@ -348,6 +389,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaActualizaciones.MaxLenght = 32767;
                         this.EntradaActualizaciones.Name = "EntradaActualizaciones";
                         this.EntradaActualizaciones.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaActualizaciones.ReadOnly = false;
                         this.EntradaActualizaciones.SetData = new string[] {
         "Estables|stable",
         "Preliminares|gama",
@@ -382,6 +424,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaAislacion.MaxLenght = 32767;
                         this.EntradaAislacion.Name = "EntradaAislacion";
                         this.EntradaAislacion.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaAislacion.ReadOnly = false;
                         this.EntradaAislacion.SetData = new string[] {
         "Mejor concurrencia|RepeatableRead",
         "Mejor consitencia|Serializable"};
@@ -406,6 +449,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaModoPantalla.MaxLenght = 32767;
                         this.EntradaModoPantalla.Name = "EntradaModoPantalla";
                         this.EntradaModoPantalla.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaModoPantalla.ReadOnly = false;
                         this.EntradaModoPantalla.SetData = new string[] {
         "Predeterminado|*",
         "Ventana Normal|normal",
@@ -433,6 +477,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaBackup.MaxLenght = 32767;
                         this.EntradaBackup.Name = "EntradaBackup";
                         this.EntradaBackup.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaBackup.ReadOnly = false;
                         this.EntradaBackup.SetData = new string[] {
         "Nunca|0",
         "Cuando se solicita|1",
@@ -453,6 +498,15 @@ namespace Lazaro.Misc.Config
                         this.label29.Text = "Nivel de aislamiento de clientes";
                         this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
+                        // label27
+                        // 
+                        this.label27.Location = new System.Drawing.Point(16, 268);
+                        this.label27.Name = "label27";
+                        this.label27.Size = new System.Drawing.Size(232, 24);
+                        this.label27.TabIndex = 11;
+                        this.label27.Text = "Modo de uso de la pantalla";
+                        this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
                         // EntradaEmpresaEmail
                         // 
                         this.EntradaEmpresaEmail.AutoNav = true;
@@ -469,6 +523,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaEmail.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEmpresaEmail.PasswordChar = '\0';
                         this.EntradaEmpresaEmail.Prefijo = "";
+                        this.EntradaEmpresaEmail.ReadOnly = false;
                         this.EntradaEmpresaEmail.SelectOnFocus = true;
                         this.EntradaEmpresaEmail.Size = new System.Drawing.Size(388, 24);
                         this.EntradaEmpresaEmail.Sufijo = "";
@@ -484,15 +539,6 @@ namespace Lazaro.Misc.Config
                         this.label28.TabIndex = 7;
                         this.label28.Text = "Correo Electrónico";
                         this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // label27
-                        // 
-                        this.label27.Location = new System.Drawing.Point(16, 268);
-                        this.label27.Name = "label27";
-                        this.label27.Size = new System.Drawing.Size(232, 24);
-                        this.label27.TabIndex = 11;
-                        this.label27.Text = "Modo de uso de la pantalla";
-                        this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // label14
                         // 
@@ -517,6 +563,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockDecimales.MaxLenght = 32767;
                         this.EntradaStockDecimales.Name = "EntradaStockDecimales";
                         this.EntradaStockDecimales.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaStockDecimales.ReadOnly = false;
                         this.EntradaStockDecimales.SetData = new string[] {
         "Sin decimales|0",
         "Un decimal|1",
@@ -566,6 +613,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockDepositoPredet.MaxLength = 200;
                         this.EntradaStockDepositoPredet.Name = "EntradaStockDepositoPredet";
                         this.EntradaStockDepositoPredet.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaStockDepositoPredet.ReadOnly = false;
                         this.EntradaStockDepositoPredet.Required = false;
                         this.EntradaStockDepositoPredet.Size = new System.Drawing.Size(416, 24);
                         this.EntradaStockDepositoPredet.TabIndex = 7;
@@ -589,6 +637,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockMultideposito.MaxLenght = 32767;
                         this.EntradaStockMultideposito.Name = "EntradaStockMultideposito";
                         this.EntradaStockMultideposito.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaStockMultideposito.ReadOnly = false;
                         this.EntradaStockMultideposito.SetData = new string[] {
         "Estándar|0",
         "Multidepósito|1"};
@@ -622,6 +671,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaArticulosCodigoPredet.MaxLenght = 32767;
                         this.EntradaArticulosCodigoPredet.Name = "EntradaArticulosCodigoPredet";
                         this.EntradaArticulosCodigoPredet.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaArticulosCodigoPredet.ReadOnly = false;
                         this.EntradaArticulosCodigoPredet.SetData = new string[] {
         "Autonumérico incorporado|0",
         "Cód. 1|1",
@@ -660,6 +710,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPV.PasswordChar = '\0';
                         this.EntradaPV.Prefijo = "";
+                        this.EntradaPV.ReadOnly = false;
                         this.EntradaPV.SelectOnFocus = true;
                         this.EntradaPV.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPV.Sufijo = "";
@@ -675,7 +726,7 @@ namespace Lazaro.Misc.Config
                         this.Label9.Name = "Label9";
                         this.Label9.Size = new System.Drawing.Size(264, 24);
                         this.Label9.TabIndex = 14;
-                        this.Label9.Text = "(0 para utilizar el mismo que para comprob)";
+                        this.Label9.Text = "(0 para utilizar el mismo que para facturas)";
                         this.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaPVND
@@ -694,6 +745,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaPVND.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPVND.PasswordChar = '\0';
                         this.EntradaPVND.Prefijo = "";
+                        this.EntradaPVND.ReadOnly = false;
                         this.EntradaPVND.SelectOnFocus = true;
                         this.EntradaPVND.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPVND.Sufijo = "";
@@ -718,7 +770,7 @@ namespace Lazaro.Misc.Config
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(264, 24);
                         this.Label8.TabIndex = 11;
-                        this.Label8.Text = "(0 para utilizar el mismo que para comprob)";
+                        this.Label8.Text = "(0 para utilizar el mismo que para facturas)";
                         this.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label7
@@ -747,6 +799,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaPVNC.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPVNC.PasswordChar = '\0';
                         this.EntradaPVNC.Prefijo = "";
+                        this.EntradaPVNC.ReadOnly = false;
                         this.EntradaPVNC.SelectOnFocus = true;
                         this.EntradaPVNC.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPVNC.Sufijo = "";
@@ -771,6 +824,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaPVABC.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPVABC.PasswordChar = '\0';
                         this.EntradaPVABC.Prefijo = "";
+                        this.EntradaPVABC.ReadOnly = false;
                         this.EntradaPVABC.SelectOnFocus = true;
                         this.EntradaPVABC.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPVABC.Sufijo = "";
@@ -833,9 +887,10 @@ namespace Lazaro.Misc.Config
                         this.EntradaClientePredet.MaxLength = 200;
                         this.EntradaClientePredet.Name = "EntradaClientePredet";
                         this.EntradaClientePredet.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaClientePredet.ReadOnly = false;
                         this.EntradaClientePredet.Required = false;
                         this.EntradaClientePredet.Size = new System.Drawing.Size(428, 24);
-                        this.EntradaClientePredet.TabIndex = 0;
+                        this.EntradaClientePredet.TabIndex = 1;
                         this.EntradaClientePredet.Table = "personas";
                         this.EntradaClientePredet.Text = "0";
                         this.EntradaClientePredet.TextDetail = "";
@@ -869,6 +924,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaFormaPagoPredet.MaxLength = 200;
                         this.EntradaFormaPagoPredet.Name = "EntradaFormaPagoPredet";
                         this.EntradaFormaPagoPredet.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaFormaPagoPredet.ReadOnly = false;
                         this.EntradaFormaPagoPredet.Required = false;
                         this.EntradaFormaPagoPredet.Size = new System.Drawing.Size(280, 24);
                         this.EntradaFormaPagoPredet.TabIndex = 3;
@@ -889,6 +945,7 @@ namespace Lazaro.Misc.Config
                         this.BotonSiguiente.Location = new System.Drawing.Point(8, 405);
                         this.BotonSiguiente.Name = "BotonSiguiente";
                         this.BotonSiguiente.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonSiguiente.ReadOnly = false;
                         this.BotonSiguiente.Size = new System.Drawing.Size(96, 32);
                         this.BotonSiguiente.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSiguiente.Subtext = "F9";
@@ -917,6 +974,7 @@ namespace Lazaro.Misc.Config
                         this.FrmArticulos.Location = new System.Drawing.Point(8, 8);
                         this.FrmArticulos.Name = "FrmArticulos";
                         this.FrmArticulos.Padding = new System.Windows.Forms.Padding(2);
+                        this.FrmArticulos.ReadOnly = false;
                         this.FrmArticulos.Size = new System.Drawing.Size(620, 385);
                         this.FrmArticulos.TabIndex = 0;
                         this.FrmArticulos.TabStop = false;
@@ -951,6 +1009,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockDepositoPredetSuc.MaxLength = 200;
                         this.EntradaStockDepositoPredetSuc.Name = "EntradaStockDepositoPredetSuc";
                         this.EntradaStockDepositoPredetSuc.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaStockDepositoPredetSuc.ReadOnly = false;
                         this.EntradaStockDepositoPredetSuc.Required = false;
                         this.EntradaStockDepositoPredetSuc.Size = new System.Drawing.Size(416, 24);
                         this.EntradaStockDepositoPredetSuc.TabIndex = 9;
@@ -965,13 +1024,15 @@ namespace Lazaro.Misc.Config
                         this.FrmComprobantes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.FrmComprobantes.Controls.Add(this.EntradaPVRC);
+                        this.FrmComprobantes.Controls.Add(this.label3);
+                        this.FrmComprobantes.Controls.Add(this.label11);
                         this.FrmComprobantes.Controls.Add(this.EntradaRedondeo);
                         this.FrmComprobantes.Controls.Add(this.label22);
                         this.FrmComprobantes.Controls.Add(this.EntradaLimiteCredito);
                         this.FrmComprobantes.Controls.Add(this.label21);
                         this.FrmComprobantes.Controls.Add(this.EntradaCambiaPrecioComprob);
                         this.FrmComprobantes.Controls.Add(this.label13);
-                        this.FrmComprobantes.Controls.Add(this.label11);
                         this.FrmComprobantes.Controls.Add(this.EntradaPVR);
                         this.FrmComprobantes.Controls.Add(this.label12);
                         this.FrmComprobantes.Controls.Add(this.EntradaPV);
@@ -994,6 +1055,7 @@ namespace Lazaro.Misc.Config
                         this.FrmComprobantes.Location = new System.Drawing.Point(8, 8);
                         this.FrmComprobantes.Name = "FrmComprobantes";
                         this.FrmComprobantes.Padding = new System.Windows.Forms.Padding(2);
+                        this.FrmComprobantes.ReadOnly = false;
                         this.FrmComprobantes.Size = new System.Drawing.Size(620, 385);
                         this.FrmComprobantes.TabIndex = 0;
                         this.FrmComprobantes.TabStop = false;
@@ -1010,27 +1072,28 @@ namespace Lazaro.Misc.Config
                         this.EntradaRedondeo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaRedondeo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaRedondeo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaRedondeo.Location = new System.Drawing.Point(248, 316);
+                        this.EntradaRedondeo.Location = new System.Drawing.Point(248, 348);
                         this.EntradaRedondeo.MaxLenght = 32767;
                         this.EntradaRedondeo.MultiLine = false;
                         this.EntradaRedondeo.Name = "EntradaRedondeo";
                         this.EntradaRedondeo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaRedondeo.PasswordChar = '\0';
                         this.EntradaRedondeo.Prefijo = "$";
+                        this.EntradaRedondeo.ReadOnly = false;
                         this.EntradaRedondeo.SelectOnFocus = true;
                         this.EntradaRedondeo.Size = new System.Drawing.Size(92, 24);
                         this.EntradaRedondeo.Sufijo = "";
-                        this.EntradaRedondeo.TabIndex = 23;
+                        this.EntradaRedondeo.TabIndex = 25;
                         this.EntradaRedondeo.Text = "0.00";
                         this.EntradaRedondeo.TipWhenBlank = "";
                         this.EntradaRedondeo.ToolTipText = "";
                         // 
                         // label22
                         // 
-                        this.label22.Location = new System.Drawing.Point(12, 316);
+                        this.label22.Location = new System.Drawing.Point(12, 348);
                         this.label22.Name = "label22";
                         this.label22.Size = new System.Drawing.Size(236, 24);
-                        this.label22.TabIndex = 22;
+                        this.label22.TabIndex = 24;
                         this.label22.Text = "Redondeo en comprobantes";
                         this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -1043,27 +1106,28 @@ namespace Lazaro.Misc.Config
                         this.EntradaLimiteCredito.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaLimiteCredito.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaLimiteCredito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaLimiteCredito.Location = new System.Drawing.Point(248, 284);
+                        this.EntradaLimiteCredito.Location = new System.Drawing.Point(248, 316);
                         this.EntradaLimiteCredito.MaxLenght = 32767;
                         this.EntradaLimiteCredito.MultiLine = false;
                         this.EntradaLimiteCredito.Name = "EntradaLimiteCredito";
                         this.EntradaLimiteCredito.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaLimiteCredito.PasswordChar = '\0';
                         this.EntradaLimiteCredito.Prefijo = "$";
+                        this.EntradaLimiteCredito.ReadOnly = false;
                         this.EntradaLimiteCredito.SelectOnFocus = true;
                         this.EntradaLimiteCredito.Size = new System.Drawing.Size(124, 24);
                         this.EntradaLimiteCredito.Sufijo = "";
-                        this.EntradaLimiteCredito.TabIndex = 21;
+                        this.EntradaLimiteCredito.TabIndex = 23;
                         this.EntradaLimiteCredito.Text = "0.00";
                         this.EntradaLimiteCredito.TipWhenBlank = "";
                         this.EntradaLimiteCredito.ToolTipText = "";
                         // 
                         // label21
                         // 
-                        this.label21.Location = new System.Drawing.Point(12, 284);
+                        this.label21.Location = new System.Drawing.Point(12, 316);
                         this.label21.Name = "label21";
                         this.label21.Size = new System.Drawing.Size(236, 24);
-                        this.label21.TabIndex = 20;
+                        this.label21.TabIndex = 22;
                         this.label21.Text = "Límite de crédito predeterminado";
                         this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -1077,15 +1141,16 @@ namespace Lazaro.Misc.Config
                         this.EntradaCambiaPrecioComprob.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCambiaPrecioComprob.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaCambiaPrecioComprob.KeyField = null;
-                        this.EntradaCambiaPrecioComprob.Location = new System.Drawing.Point(420, 248);
+                        this.EntradaCambiaPrecioComprob.Location = new System.Drawing.Point(420, 280);
                         this.EntradaCambiaPrecioComprob.MaxLenght = 32767;
                         this.EntradaCambiaPrecioComprob.Name = "EntradaCambiaPrecioComprob";
                         this.EntradaCambiaPrecioComprob.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCambiaPrecioComprob.ReadOnly = false;
                         this.EntradaCambiaPrecioComprob.SetData = new string[] {
         "Si|1",
         "No|0"};
                         this.EntradaCambiaPrecioComprob.Size = new System.Drawing.Size(64, 24);
-                        this.EntradaCambiaPrecioComprob.TabIndex = 19;
+                        this.EntradaCambiaPrecioComprob.TabIndex = 21;
                         this.EntradaCambiaPrecioComprob.Table = null;
                         this.EntradaCambiaPrecioComprob.TextKey = "1";
                         this.EntradaCambiaPrecioComprob.TipWhenBlank = "";
@@ -1093,10 +1158,10 @@ namespace Lazaro.Misc.Config
                         // 
                         // label13
                         // 
-                        this.label13.Location = new System.Drawing.Point(12, 248);
+                        this.label13.Location = new System.Drawing.Point(12, 280);
                         this.label13.Name = "label13";
                         this.label13.Size = new System.Drawing.Size(408, 24);
-                        this.label13.TabIndex = 18;
+                        this.label13.TabIndex = 20;
                         this.label13.Text = "Permite cambiar precio del artículo durante la facturación";
                         this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -1107,7 +1172,7 @@ namespace Lazaro.Misc.Config
                         this.label11.Name = "label11";
                         this.label11.Size = new System.Drawing.Size(264, 24);
                         this.label11.TabIndex = 17;
-                        this.label11.Text = "(0 para utilizar el mismo que para comprob)";
+                        this.label11.Text = "(0 para utilizar el mismo que para facturas)";
                         this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaPVR
@@ -1126,6 +1191,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaPVR.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPVR.PasswordChar = '\0';
                         this.EntradaPVR.Prefijo = "";
+                        this.EntradaPVR.ReadOnly = false;
                         this.EntradaPVR.SelectOnFocus = true;
                         this.EntradaPVR.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPVR.Sufijo = "";
@@ -1143,37 +1209,39 @@ namespace Lazaro.Misc.Config
                         this.label12.Text = "PV para Remitos";
                         this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaEmpresaRazonSocial
+                        // EntradaPVRC
                         // 
-                        this.EntradaEmpresaRazonSocial.AutoNav = true;
-                        this.EntradaEmpresaRazonSocial.AutoTab = true;
-                        this.EntradaEmpresaRazonSocial.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaEmpresaRazonSocial.DecimalPlaces = -1;
-                        this.EntradaEmpresaRazonSocial.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaEmpresaRazonSocial.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaEmpresaRazonSocial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaEmpresaRazonSocial.Location = new System.Drawing.Point(180, 64);
-                        this.EntradaEmpresaRazonSocial.MaxLenght = 32767;
-                        this.EntradaEmpresaRazonSocial.MultiLine = false;
-                        this.EntradaEmpresaRazonSocial.Name = "EntradaEmpresaRazonSocial";
-                        this.EntradaEmpresaRazonSocial.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEmpresaRazonSocial.PasswordChar = '\0';
-                        this.EntradaEmpresaRazonSocial.Prefijo = "";
-                        this.EntradaEmpresaRazonSocial.SelectOnFocus = true;
-                        this.EntradaEmpresaRazonSocial.Size = new System.Drawing.Size(388, 24);
-                        this.EntradaEmpresaRazonSocial.Sufijo = "";
-                        this.EntradaEmpresaRazonSocial.TabIndex = 2;
-                        this.EntradaEmpresaRazonSocial.TipWhenBlank = "";
-                        this.EntradaEmpresaRazonSocial.ToolTipText = "";
+                        this.EntradaPVRC.AutoNav = true;
+                        this.EntradaPVRC.AutoTab = true;
+                        this.EntradaPVRC.DataType = Lui.Forms.DataTypes.Integer;
+                        this.EntradaPVRC.DecimalPlaces = -1;
+                        this.EntradaPVRC.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaPVRC.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaPVRC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EntradaPVRC.Location = new System.Drawing.Point(248, 240);
+                        this.EntradaPVRC.MaxLenght = 32767;
+                        this.EntradaPVRC.MultiLine = false;
+                        this.EntradaPVRC.Name = "EntradaPVRC";
+                        this.EntradaPVRC.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaPVRC.PasswordChar = '\0';
+                        this.EntradaPVRC.Prefijo = "";
+                        this.EntradaPVRC.ReadOnly = false;
+                        this.EntradaPVRC.SelectOnFocus = true;
+                        this.EntradaPVRC.Size = new System.Drawing.Size(56, 24);
+                        this.EntradaPVRC.Sufijo = "";
+                        this.EntradaPVRC.TabIndex = 19;
+                        this.EntradaPVRC.Text = "0";
+                        this.EntradaPVRC.TipWhenBlank = "";
+                        this.EntradaPVRC.ToolTipText = "";
                         // 
-                        // label1
+                        // label3
                         // 
-                        this.label1.Location = new System.Drawing.Point(16, 64);
-                        this.label1.Name = "label1";
-                        this.label1.Size = new System.Drawing.Size(160, 24);
-                        this.label1.TabIndex = 1;
-                        this.label1.Text = "Razón Social";
-                        this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.label3.Location = new System.Drawing.Point(12, 240);
+                        this.label3.Name = "label3";
+                        this.label3.Size = new System.Drawing.Size(236, 24);
+                        this.label3.TabIndex = 18;
+                        this.label3.Text = "PV para Recibos";
+                        this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Preferencias
                         // 
@@ -1182,9 +1250,9 @@ namespace Lazaro.Misc.Config
                         this.Controls.Add(this.BotonSiguiente);
                         this.Controls.Add(this.CancelCommandButton);
                         this.Controls.Add(this.BotonAceptar);
-                        this.Controls.Add(this.FrmGeneral);
                         this.Controls.Add(this.FrmComprobantes);
                         this.Controls.Add(this.FrmArticulos);
+                        this.Controls.Add(this.FrmGeneral);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "Preferencias";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1216,5 +1284,7 @@ namespace Lazaro.Misc.Config
                 internal System.Windows.Forms.Label label30;
                 internal Lui.Forms.TextBox EntradaEmpresaRazonSocial;
                 internal System.Windows.Forms.Label label1;
+                internal Lui.Forms.TextBox EntradaPVRC;
+                internal System.Windows.Forms.Label label3;
 	}
 }

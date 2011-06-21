@@ -100,6 +100,7 @@ namespace Lazaro.Misc.Config
 			EntradaPVNC.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.NC.PV", "0");
 			EntradaPVND.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.ND.PV", "0");
 			EntradaPVR.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.R.PV", "0");
+                        EntradaPVRC.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.RC.PV", "0");
 
 			EntradaClientePredet.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.ClientePredet", "");
 			EntradaFormaPagoPredet.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.FormaPagoPredet", "");
@@ -159,6 +160,7 @@ namespace Lazaro.Misc.Config
 			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.NC.PV", EntradaPVNC.Text, Sucursal);
 			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.ND.PV", EntradaPVND.Text, Sucursal);
 			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.R.PV", EntradaPVR.Text, Sucursal);
+                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.RC.PV", EntradaPVRC.Text, System.Environment.MachineName);
 
 			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.ClientePredet", EntradaClientePredet.Text, "*");
 			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.FormaPagoPredet", EntradaFormaPagoPredet.Text, "*");
