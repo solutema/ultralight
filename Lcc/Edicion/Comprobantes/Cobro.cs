@@ -421,7 +421,8 @@ namespace Lcc.Edicion.Comprobantes
 
                 private void EntradaFormaDePago_TextChanged(object sender, EventArgs e)
                 {
-                        this.FormaDePago =  EntradaFormaDePago.Elemento as Lbl.Pagos.FormaDePago;
+                        if (this.FormaDePago == null || this.FormaDePago.Id != EntradaFormaDePago.TextInt)
+                                this.FormaDePago = EntradaFormaDePago.Elemento as Lbl.Pagos.FormaDePago;
                 }
         }
 }

@@ -66,9 +66,15 @@ namespace ServidorFiscal
 
                 public override object Create(bool wait)
                 {
-                        Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(ThreadExceptionHandler);
-                        AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
-                        Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+                        try {
+                                Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(ThreadExceptionHandler);
+                                AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
+                                Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+                        } catch {
+                                // Esto puede dar una excepción
+                                // "El modo de excepción del subproceso no se puede cambiar una vez que se creen Controles en el subproceso."
+                                // Simplemente la ignoramos.
+                        }
 
                         Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(this.Workspace, new Lbl.Personas.Usuario(this.Workspace.MasterConnection, 1));
                         FormEstado = new FiscalStatus();
