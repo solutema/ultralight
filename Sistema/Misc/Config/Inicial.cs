@@ -126,7 +126,7 @@ namespace Lazaro.Misc.Config
                                 } catch (Exception ex) {
                                         EtiquetaPruebaResultado.Text = "No se pudo conectar al almacén de datos proporcionado. Haga clic en el botón 'Anterior' para ir a la pantalla anterior y volver a intentarlo.";
                                         EtiquetaPruebaError.Text = "El mensaje de error es: " + ex.Message;
-                                        BotonSiguiente.Visible = true;
+                                        BotonSiguiente.Visible = false;
                                 }
                         }
                 }
@@ -171,6 +171,7 @@ namespace Lazaro.Misc.Config
 
                 private void BotonAnterior_Click(object sender, EventArgs e)
                 {
+                        BotonSiguiente.Visible = true;
                         switch (Paso) {
                                 case 2:
                                         Paso = 1;
