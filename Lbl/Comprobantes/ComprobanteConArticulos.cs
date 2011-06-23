@@ -257,7 +257,10 @@ namespace Lbl.Comprobantes
                                 return Res;
                         } else if (this.PV != 0) {
                                 // Si base.ObtenerImpresora() no pudo encontrar nada, busco en el punto de venta
-                                PuntoDeVenta Pun = new PuntoDeVenta(this.Connection, this.Connection.FieldInt("SELECT id_pv FROM pvs WHERE numero=" + this.PV.ToString()));
+                                int IdPv = this.Connection.FieldInt("SELECT id_pv FROM pvs WHERE numero=" + this.PV.ToString());
+                                if (IdPv == 0)
+                                        throw new InvalidOperationException("No existe el Punto de Venta " + this.PV.ToString());
+                                PuntoDeVenta Pun = new PuntoDeVenta(this.Connection, IdPv);
                                 return Pun.Impresora;
                         } else {
                                 return null;
