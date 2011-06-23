@@ -142,11 +142,11 @@ namespace Lazaro.Misc.Config
                                         } else if (CheckInstalarAhora.Checked) {
                                                 using (Misc.Config.ConfigurarBd ConfigBD = new Misc.Config.ConfigurarBd()) {
                                                         this.Hide();
-                                                        if (ConfigBD.ShowDialog() == DialogResult.OK) {
+                                                        if (ConfigBD.ShowDialog() == DialogResult.Cancel) {
+                                                                this.Show();
+                                                        } else {
                                                                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                                                                 this.Close();
-                                                        } else {
-                                                                this.Show();
                                                         }
                                                 }
                                         }
