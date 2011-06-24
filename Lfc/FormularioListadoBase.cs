@@ -73,6 +73,8 @@ namespace Lfc
                 public FormularioListadoBase()
                 {
                         InitializeComponent();
+
+                        RefreshTimer.Start();
                 }
 
 
@@ -874,6 +876,7 @@ namespace Lfc
                                                 Listado.EndUpdate();
                                                 System.Windows.Forms.Application.DoEvents();
                                                 Listado.BeginUpdate();
+                                                Listado.SuspendLayout();
                                         }
                                 }
                         }
@@ -1210,8 +1213,8 @@ namespace Lfc
                         }
 
                         // Sólo refresco si no hay filtros y cuando son pocos elementos
-                        if (this.Visible && this.Listado.Items.Count < 500 && (this.Connection.SlowLink == false || this.Listado.Items.Count == 0))
-                                RefreshTimer.Start();
+                        // if (this.Visible && this.Listado.Items.Count < 500 && (this.Connection.SlowLink == false || this.Listado.Items.Count == 0))
+                        //        RefreshTimer.Start();
 
                         base.OnActivated(e);
                 }
@@ -1330,6 +1333,7 @@ namespace Lfc
                 private void RefreshTimer_Tick(object sender, EventArgs e)
                 {
                         RefreshTimer.Stop();
+                        System.Windows.Forms.Application.DoEvents();
                         this.RefreshList();
                 }
 

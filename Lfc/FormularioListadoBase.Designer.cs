@@ -426,7 +426,7 @@ namespace Lfc
                         // 
                         // RefreshTimer
                         // 
-                        this.RefreshTimer.Interval = 25;
+                        this.RefreshTimer.Interval = 50;
                         this.RefreshTimer.Tick += new System.EventHandler(this.RefreshTimer_Tick);
                         // 
                         // FormularioListadoBase
