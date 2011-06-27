@@ -315,7 +315,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaConexion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConexion.SetData = new string[] {
         "ODBC|odbc",
-        "MySQL Nativo|mysql",
+        "MySQL|mysql",
         "PostgreSQL|npgsql"};
                         this.EntradaConexion.Size = new System.Drawing.Size(196, 23);
                         this.EntradaConexion.TabIndex = 1;

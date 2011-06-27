@@ -45,7 +45,7 @@ namespace Lcc.Entrada.Articulos
                 private string m_FreeTextCode = "";
                 private bool m_LockText;
                 private bool m_LockPrice;
-                private bool m_AutoUpdate;
+                private bool m_AutoUpdate = true;
                 private bool m_LockQuantity;
                 private int m_MaxLength = 200;
                 private Precios m_Precio = Precios.Pvp;
