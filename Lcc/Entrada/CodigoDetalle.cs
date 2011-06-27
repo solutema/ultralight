@@ -170,7 +170,6 @@ namespace Lcc.Entrada
                                 TextBox1.ReadOnly = value;
                                 if (Label1.Text == "???")
                                         ProgramarActualizacionDetalle();
-                                        //this.ActualizarDetalle();
                         }
                 }
 
@@ -190,7 +189,6 @@ namespace Lcc.Entrada
                                         TextBox1.Width = 50;
                                 ReubicarDetalle();
                                 ProgramarActualizacionDetalle();
-                                //ActualizarDetalle();
                         }
                 }
 
@@ -218,7 +216,6 @@ namespace Lcc.Entrada
                         {
                                 base.DataTextField = value;
                                 ProgramarActualizacionDetalle();
-                                //ActualizarDetalle();
                         }
                 }
 
@@ -233,7 +230,6 @@ namespace Lcc.Entrada
                         {
                                 m_ExtraDetailFields = value;
                                 ProgramarActualizacionDetalle();
-                                //ActualizarDetalle();
                         }
                 }
 
@@ -248,7 +244,6 @@ namespace Lcc.Entrada
                         {
                                 m_Filter = value;
                                 ProgramarActualizacionDetalle();
-                                //ActualizarDetalle();
                         }
                 }
 
@@ -297,9 +292,7 @@ namespace Lcc.Entrada
                                 else
                                         this.TextBox1.Text = value;
 
-                                if (m_AutoUpdate)
-                                        //ProgramarActualizacionDetalle();
-                                        this.ActualizarDetalle();
+                                ProgramarActualizacionDetalle();
 
                                 this.Changed = false;
                         }
@@ -430,7 +423,8 @@ namespace Lcc.Entrada
                 private void ProgramarActualizacionDetalle()
                 {
                         TimerActualizar.Stop();
-                        TimerActualizar.Start();
+                        if (this.AutoUpdate)
+                                TimerActualizar.Start();
                 }
 
 
@@ -550,9 +544,7 @@ namespace Lcc.Entrada
                 private void DetailBox_Enter(object sender, System.EventArgs e)
                 {
                         TextBox1.ScrollToCaret();
-                        if (m_AutoUpdate)
-                                ProgramarActualizacionDetalle();
-                                //ActualizarDetalle();
+                        ProgramarActualizacionDetalle();
                         this.Refresh();
                 }
 
