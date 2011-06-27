@@ -56,6 +56,7 @@ namespace Lcc.Entrada
 
                 private void InitializeComponent()
                 {
+                        this.components = new System.ComponentModel.Container();
                         this.TextBox1 = new System.Windows.Forms.TextBox();
                         this.MiContextMenu = new System.Windows.Forms.ContextMenu();
                         this.MenuItemBuscadorRapido = new System.Windows.Forms.MenuItem();
@@ -68,6 +69,7 @@ namespace Lcc.Entrada
                         this.MenuItemEditar = new System.Windows.Forms.MenuItem();
                         this.Label1 = new System.Windows.Forms.Label();
                         this.EntradaFreeText = new System.Windows.Forms.TextBox();
+                        this.TimerActualizar = new System.Windows.Forms.Timer(this.components);
                         this.SuspendLayout();
                         // 
                         // TextBox1
@@ -81,16 +83,15 @@ namespace Lcc.Entrada
                         this.TextBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
                         this.TextBox1.Location = new System.Drawing.Point(4, 4);
                         this.TextBox1.MaxLength = 32;
-                        this.TextBox1.Multiline = false;
                         this.TextBox1.Name = "TextBox1";
-                        this.TextBox1.Size = new System.Drawing.Size(51, 21);
+                        this.TextBox1.Size = new System.Drawing.Size(51, 16);
                         this.TextBox1.TabIndex = 0;
-                        this.TextBox1.LostFocus += new System.EventHandler(this.TextBox1_LostFocus);
+                        this.TextBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
                         this.TextBox1.DoubleClick += new System.EventHandler(this.TextBox1_DoubleClick);
                         this.TextBox1.GotFocus += new System.EventHandler(this.TextBox1_GotFocus);
-                        this.TextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox1_KeyPress);
-                        this.TextBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
                         this.TextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1_KeyDown);
+                        this.TextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox1_KeyPress);
+                        this.TextBox1.LostFocus += new System.EventHandler(this.TextBox1_LostFocus);
                         // 
                         // MiContextMenu
                         // 
@@ -163,10 +164,10 @@ namespace Lcc.Entrada
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(280, 21);
                         this.Label1.TabIndex = 50;
-                        this.Label1.DoubleClick += new System.EventHandler(this.Label1_DoubleClick);
                         this.Label1.Click += new System.EventHandler(this.Label1_Click);
+                        this.Label1.DoubleClick += new System.EventHandler(this.Label1_DoubleClick);
                         // 
-                        // txtFreeText
+                        // EntradaFreeText
                         // 
                         this.EntradaFreeText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
@@ -177,26 +178,34 @@ namespace Lcc.Entrada
                         this.EntradaFreeText.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaFreeText.Location = new System.Drawing.Point(58, 4);
                         this.EntradaFreeText.MaxLength = 200;
-                        this.EntradaFreeText.Name = "txtFreeText";
+                        this.EntradaFreeText.Name = "EntradaFreeText";
                         this.EntradaFreeText.Size = new System.Drawing.Size(280, 16);
                         this.EntradaFreeText.TabIndex = 1;
                         this.EntradaFreeText.Visible = false;
                         this.EntradaFreeText.WordWrap = false;
-                        this.EntradaFreeText.LostFocus += new System.EventHandler(this.EntradaFreeText_LostFocus);
                         this.EntradaFreeText.GotFocus += new System.EventHandler(this.EntradaFreeText_GotFocus);
                         this.EntradaFreeText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaFreeText_KeyDown);
+                        this.EntradaFreeText.LostFocus += new System.EventHandler(this.EntradaFreeText_LostFocus);
                         // 
-                        // DetailBox
+                        // TimerActualizar
+                        // 
+                        this.TimerActualizar.Interval = 80;
+                        this.TimerActualizar.Tick += new System.EventHandler(this.TimerActualizar_Tick);
+                        // 
+                        // CodigoDetalle
                         // 
                         this.Controls.Add(this.TextBox1);
                         this.Controls.Add(this.EntradaFreeText);
                         this.Controls.Add(this.Label1);
-                        this.Name = "DetailBox";
+                        this.Name = "CodigoDetalle";
                         this.Size = new System.Drawing.Size(343, 29);
-                        this.Enter += new System.EventHandler(this.DetailBox_Enter);
                         this.FontChanged += new System.EventHandler(this.DetailBox_FontChanged);
-                        this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DetailBox_KeyPress);
                         this.ForeColorChanged += new System.EventHandler(this.DetailBox_ForeColorChanged);
+                        this.Enter += new System.EventHandler(this.DetailBox_Enter);
+                        this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DetailBox_KeyPress);
+                        this.Controls.SetChildIndex(this.Label1, 0);
+                        this.Controls.SetChildIndex(this.EntradaFreeText, 0);
+                        this.Controls.SetChildIndex(this.TextBox1, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -216,5 +225,6 @@ namespace Lcc.Entrada
                 internal System.Windows.Forms.MenuItem MenuItemBuscadorRapido;
                 internal System.Windows.Forms.MenuItem MenuItem2;
                 internal System.Windows.Forms.ContextMenu MiContextMenu;
+                private System.Windows.Forms.Timer TimerActualizar;
         }
 }

@@ -49,7 +49,6 @@ namespace Lcc.Entrada
                 private string m_ExtraDetailFields = "";
                 private string m_Filter = "";
                 private bool m_CanCreate = true;
-                private int RowMisses = 0;
 
                 new public event System.Windows.Forms.KeyEventHandler KeyDown;
 
@@ -65,10 +64,17 @@ namespace Lcc.Entrada
                         EntradaFreeText.ForeColor = Label1.ForeColor;
                         this.BorderStyle = Lui.Forms.Control.BorderStyles.TextBox;
 
+                        if (this.Workspace.SlowLink)
+                                TimerActualizar.Interval = 750;
+                        else
+                                TimerActualizar.Interval = 300;
+
                         // ActualizarDetalle();
                 }
 
-                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                [EditorBrowsable(EditorBrowsableState.Never), 
+                        System.ComponentModel.Browsable(false), 
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public bool AutoUpdate
                 {
                         get
@@ -163,7 +169,8 @@ namespace Lcc.Entrada
                                 base.TemporaryReadOnly = value;
                                 TextBox1.ReadOnly = value;
                                 if (Label1.Text == "???")
-                                        this.ActualizarDetalle();
+                                        ProgramarActualizacionDetalle();
+                                        //this.ActualizarDetalle();
                         }
                 }
 
@@ -182,7 +189,8 @@ namespace Lcc.Entrada
                                 else
                                         TextBox1.Width = 50;
                                 ReubicarDetalle();
-                                ActualizarDetalle();
+                                ProgramarActualizacionDetalle();
+                                //ActualizarDetalle();
                         }
                 }
 
@@ -209,7 +217,8 @@ namespace Lcc.Entrada
                         set
                         {
                                 base.DataTextField = value;
-                                ActualizarDetalle();
+                                ProgramarActualizacionDetalle();
+                                //ActualizarDetalle();
                         }
                 }
 
@@ -223,7 +232,8 @@ namespace Lcc.Entrada
                         set
                         {
                                 m_ExtraDetailFields = value;
-                                ActualizarDetalle();
+                                ProgramarActualizacionDetalle();
+                                //ActualizarDetalle();
                         }
                 }
 
@@ -237,7 +247,8 @@ namespace Lcc.Entrada
                         set
                         {
                                 m_Filter = value;
-                                ActualizarDetalle();
+                                ProgramarActualizacionDetalle();
+                                //ActualizarDetalle();
                         }
                 }
 
@@ -287,6 +298,7 @@ namespace Lcc.Entrada
                                         this.TextBox1.Text = value;
 
                                 if (m_AutoUpdate)
+                                        //ProgramarActualizacionDetalle();
                                         this.ActualizarDetalle();
 
                                 this.Changed = false;
@@ -332,7 +344,6 @@ namespace Lcc.Entrada
 
                 private void MostrarBuscador(string valorIncial)
                 {
-                        RowMisses = 0;
                         if (Statics.DetailBoxQuickSelect == null)
                                 Statics.DetailBoxQuickSelect = new AuxForms.DetailBoxQuickSelect();
 
@@ -357,8 +368,6 @@ namespace Lcc.Entrada
 
                 private void TextBox1_GotFocus(System.Object sender, System.EventArgs e)
                 {
-                        RowMisses = 0;
-
                         if (m_TemporaryReadOnly == false)
                                 TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
                         if (m_SelectOnFocus)
@@ -389,7 +398,8 @@ namespace Lcc.Entrada
                                 if (TextBox1.Font.Size > 7) {
                                         TextBox1.Font = new Font(TextBox1.Font.Name, 7);
                                         if (TextBox1.Width < 128)
-                                                TextBox1.Width = 128; ReubicarDetalle();
+                                                TextBox1.Width = 128;
+                                        ReubicarDetalle();
                                 }
                         } else {
                                 if (TextBox1.Width > 96) {
@@ -407,13 +417,20 @@ namespace Lcc.Entrada
 
                                 }
                         }
-                        ActualizarDetalle();
 
-                        if (RowMisses > 5)
+                        ProgramarActualizacionDetalle();
+
+                        if (Label1.Text == "???" && TextBox1.Text.Length > 6)
                                 MostrarBuscador(TextBox1.Text);
 
                         this.Changed = true;
-                        this.OnTextChanged(EventArgs.Empty);
+                }
+
+
+                private void ProgramarActualizacionDetalle()
+                {
+                        TimerActualizar.Stop();
+                        TimerActualizar.Start();
                 }
 
 
@@ -451,9 +468,7 @@ namespace Lcc.Entrada
                                                         m_LastText1 = "";
                                                         Label1.Text = "???";
                                                         Label1.ForeColor = System.Drawing.SystemColors.GrayText;
-                                                        RowMisses++;
                                                 } else {
-                                                        RowMisses = 0;
                                                         m_ItemId = System.Convert.ToInt32(CurrentRow[this.Relation.ReferenceColumn]);
                                                         m_LastText1 = TextBox1.Text;
                                                         Label1.Text = System.Convert.ToString(CurrentRow[this.Relation.DetailColumn]);
@@ -471,6 +486,9 @@ namespace Lcc.Entrada
                                 m_LastText1 = "";
                                 Label1.Text = "";
                         }
+
+                        this.OnTextChanged(EventArgs.Empty);
+
                         if (this.TextInt > 0 && this.Visible)
                                 this.Workspace.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", this.Relation.ReferenceTable, this.Text });
                 }
@@ -533,7 +551,8 @@ namespace Lcc.Entrada
                 {
                         TextBox1.ScrollToCaret();
                         if (m_AutoUpdate)
-                                ActualizarDetalle();
+                                ProgramarActualizacionDetalle();
+                                //ActualizarDetalle();
                         this.Refresh();
                 }
 
@@ -691,6 +710,12 @@ namespace Lcc.Entrada
                 {
                         Label1.ForeColor = this.ForeColor;
                         EntradaFreeText.ForeColor = this.ForeColor;
+                }
+
+                private void TimerActualizar_Tick(object sender, EventArgs e)
+                {
+                        TimerActualizar.Stop();
+                        ActualizarDetalle();
                 }
         }
 }

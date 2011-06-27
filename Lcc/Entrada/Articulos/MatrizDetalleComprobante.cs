@@ -45,6 +45,7 @@ namespace Lcc.Entrada.Articulos
                 private string m_FreeTextCode = "";
                 private bool m_LockText;
                 private bool m_LockPrice;
+                private bool m_AutoUpdate;
                 private bool m_LockQuantity;
                 private int m_MaxLength = 200;
                 private Precios m_Precio = Precios.Pvp;
@@ -162,6 +163,24 @@ namespace Lcc.Entrada.Articulos
                         {
                                 foreach (DetalleComprobante Control in this.ChildControls)
                                         Control.Changed = value;
+                        }
+                }
+
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public bool AutoUpdate
+                {
+                        get
+                        {
+                                return m_AutoUpdate;
+                        }
+                        set
+                        {
+                                m_AutoUpdate = value;
+                                foreach (DetalleComprobante Control in this.ChildControls)
+                                        Control.AutoUpdate = m_AutoUpdate;
                         }
                 }
 
@@ -318,6 +337,7 @@ namespace Lcc.Entrada.Articulos
                         Ctrl.PrecioCantidadChanged += new System.EventHandler(Product_PrecioCantidadChanged);
                         Ctrl.ObtenerDatosSeguimiento += new System.EventHandler(Product_ObtenerDatosSeguimiento);
                         Ctrl.Precio = this.Precio;
+                        Ctrl.AutoUpdate = m_AutoUpdate;
                         Ctrl.FreeTextCode = this.FreeTextCode;
 
                         return Ctrl;

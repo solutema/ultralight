@@ -148,6 +148,9 @@ namespace Lfc.Comprobantes
                                 EntradaIva.ValueDecimal = Comprob.ImporteIva;
                                 EntradaIva.Visible = true;
                                 EtiquetaIva.Visible = true;
+
+                                // No actualizar automáticamente detalles del artículo
+                                ProductArray.AutoUpdate = false;
                         }
                         EntradaTotal.ValueDecimal = Comprob.Total;
 

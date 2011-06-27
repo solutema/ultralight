@@ -94,6 +94,23 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public bool AutoUpdate
+                {
+                        get
+                        {
+                                return EntradaArticulo.AutoUpdate;
+                        }
+                        set
+                        {
+                                EntradaArticulo.AutoUpdate = value;
+                        }
+                }
+                
+
                 public bool PermiteCrear
                 {
                         get
@@ -105,6 +122,7 @@ namespace Lcc.Entrada.Articulos
                                 EntradaArticulo.CanCreate = value;
                         }
                 }
+
 
                 public override bool IsEmpty
                 {
@@ -418,38 +436,41 @@ namespace Lcc.Entrada.Articulos
                         if (this.Elemento != EntradaArticulo.Elemento)
                                 this.Elemento = EntradaArticulo.Elemento;
 
-                        if (this.Articulo != null) {
-                                EntradaUnitario.Enabled = true;
-                                EntradaCantidad.Enabled = true;
-                                EntradaImporte.Enabled = true;
-                                if (this.Articulo.Unidad != "u")
-                                        EntradaCantidad.Sufijo = Articulo.Unidad;
-                                else
+                        if (this.AutoUpdate) {
+                                if (this.Articulo != null) {
+                                        EntradaUnitario.Enabled = true;
+                                        EntradaCantidad.Enabled = true;
+                                        EntradaImporte.Enabled = true;
+                                        if (this.Articulo.Unidad != "u")
+                                                EntradaCantidad.Sufijo = Articulo.Unidad;
+                                        else
+                                                EntradaCantidad.Sufijo = "";
+
+                                        if (m_Precio == Precios.Costo)
+                                                EntradaUnitario.ValueDecimal = Articulo.Costo;
+                                        else
+                                                EntradaUnitario.ValueDecimal = Articulo.Pvp;
+
+                                        if (m_MostrarStock)
+                                                VerificarStock();
+
+                                        if (this.Cantidad == 0)
+                                                this.Cantidad = 1;
+                                } else if (EntradaArticulo.Text == EntradaArticulo.FreeTextCode && EntradaArticulo.FreeTextCode.Length > 0) {
+                                        EntradaUnitario.Enabled = true;
+                                        EntradaCantidad.Enabled = true;
+                                        EntradaImporte.Enabled = true;
+                                        if (this.Cantidad == 0)
+                                                this.Cantidad = 1;
+                                } else if (EntradaArticulo.Text.Length == 0 || (EntradaArticulo.Text.IsNumericInt() && EntradaArticulo.TextInt == 0)) {
+                                        EntradaUnitario.Text = "0";
                                         EntradaCantidad.Sufijo = "";
-
-                                if (m_Precio == Precios.Costo)
-                                        EntradaUnitario.ValueDecimal = Articulo.Costo;
-                                else
-                                        EntradaUnitario.ValueDecimal = Articulo.Pvp;
-
-                                if (m_MostrarStock)
-                                        VerificarStock();
-
-                                if (this.Cantidad == 0)
-                                        this.Cantidad = 1;
-                        } else if (EntradaArticulo.Text == EntradaArticulo.FreeTextCode && EntradaArticulo.FreeTextCode.Length > 0) {
-                                EntradaUnitario.Enabled = true;
-                                EntradaCantidad.Enabled = true;
-                                EntradaImporte.Enabled = true;
-                                if (this.Cantidad == 0)
-                                        this.Cantidad = 1;
-                        } else if (EntradaArticulo.Text.Length == 0 || (EntradaArticulo.Text.IsNumericInt() && EntradaArticulo.TextInt == 0)) {
-                                EntradaUnitario.Text = "0";
-                                EntradaCantidad.Sufijo = "";
-                                EntradaCantidad.Text = "0";
-                                EntradaImporte.Text = "0";
-                                EntradaUnitario.Text = "0";
+                                        EntradaCantidad.Text = "0";
+                                        EntradaImporte.Text = "0";
+                                        EntradaUnitario.Text = "0";
+                                }
                         }
+
                         this.Changed = true;
                         this.OnTextChanged(EventArgs.Empty);
                 }

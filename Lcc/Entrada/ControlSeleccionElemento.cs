@@ -94,6 +94,7 @@ namespace Lcc.Entrada
                         }
                 }
 
+
                 [System.ComponentModel.Category("Datos")]
                 virtual public string Table
                 {
@@ -107,6 +108,7 @@ namespace Lcc.Entrada
                         }
                 }
 
+
                 [System.ComponentModel.Category("Datos")]
                 virtual public string DataValueField
                 {
@@ -119,6 +121,7 @@ namespace Lcc.Entrada
                                 this.Relation.ReferenceColumn = value;
                         }
                 }
+
 
                 [System.ComponentModel.Category("Datos")]
                 virtual public string DataTextField

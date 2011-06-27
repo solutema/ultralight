@@ -200,7 +200,10 @@ namespace Lbl.Tareas
                         }
 
                         Comando.Fields.AddWithValue("id_persona", this.Cliente.Id);
-                        Comando.Fields.AddWithValue("id_tipo_ticket", this.Tipo.Id);
+                        if (this.Tipo == null)
+                                Comando.Fields.AddWithValue("id_tipo_ticket", null);
+                        else
+                                Comando.Fields.AddWithValue("id_tipo_ticket", this.Tipo.Id);
                         if (this.Encargado == null)
                                 Comando.Fields.AddWithValue("id_tecnico_recibe", null);
                         else
