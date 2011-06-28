@@ -55,7 +55,7 @@ namespace Lfc.Comprobantes.Facturas
                         int PV = EntradaPV.ValueInt;
                         int Desde = EntradaDesde.ValueInt;
 
-                        if (EntradaHasta.ValueInt == 0 && this.ActiveControl != EntradaHasta)
+                        if ((EntradaHasta.ValueInt == 0 || EntradaHasta.ValueInt < Desde) && this.ActiveControl != EntradaHasta)
                                 EntradaHasta.ValueInt = Desde;
 
                         int Hasta = EntradaHasta.ValueInt;
@@ -124,7 +124,7 @@ namespace Lfc.Comprobantes.Facturas
                                                 EtiquetaAviso.Text = "El comprobante fue anulado y no puede reimprimirse.";
                                                 OkButton.Visible = false;
                                         } else {
-                                                EtiquetaAviso.Text = ".";
+                                                EtiquetaAviso.Text = "";
                                                 OkButton.Visible = true;
                                         }
                                 } else {

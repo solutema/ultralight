@@ -64,12 +64,12 @@ namespace Lcc.Entrada
                         EntradaFreeText.ForeColor = Label1.ForeColor;
                         this.BorderStyle = Lui.Forms.Control.BorderStyles.TextBox;
 
-                        if (this.Workspace.SlowLink)
-                                TimerActualizar.Interval = 750;
-                        else
-                                TimerActualizar.Interval = 300;
-
-                        // ActualizarDetalle();
+                        if (this.HasWorkspace) {
+                                if (this.Workspace.SlowLink)
+                                        TimerActualizar.Interval = 750;
+                                else
+                                        TimerActualizar.Interval = 300;
+                        }
                 }
 
                 [EditorBrowsable(EditorBrowsableState.Never), 
