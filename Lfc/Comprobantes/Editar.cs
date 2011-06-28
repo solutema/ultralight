@@ -321,7 +321,7 @@ namespace Lfc.Comprobantes
                                 EntradaDescuento.ShowBalloon("Se aplicó el descuento que corresponde al tipo de cliente.");
                         }
 
-                        if (this.Tipo.EsFacturaNCoND && this.Elemento.Existe == false && EntradaCliente.TextInt > 0) {
+                        if (this.Tipo != null && this.Tipo.EsFacturaNCoND && this.Elemento.Existe == false && EntradaCliente.TextInt > 0) {
                                 Lbl.Personas.Persona Persona = EntradaCliente.Elemento as Lbl.Personas.Persona;
 
                                 string LetraComprob = Persona.LetraPredeterminada();
@@ -422,6 +422,8 @@ namespace Lfc.Comprobantes
                         get
                         {
                                 Lbl.Comprobantes.ComprobanteConArticulos Registro = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
+                                if (Registro == null)
+                                        return null;
                                 return Registro.Tipo;
                         }
                         set
