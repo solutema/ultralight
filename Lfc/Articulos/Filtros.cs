@@ -167,7 +167,7 @@ namespace Lfc.Articulos
                 this.EntradaCategoria.TeclaDespuesDeEnter = "{tab}";
                 this.EntradaCategoria.Text = "0";
                 this.EntradaCategoria.TextDetail = "";
-                this.EntradaCategoria.TipWhenBlank = "Todas";
+                this.EntradaCategoria.PlaceholderText = "Todas";
                 this.EntradaCategoria.ToolTipText = "";
                 // 
                 // Label1
@@ -206,7 +206,7 @@ namespace Lfc.Articulos
                 this.EntradaStock.TabIndex = 9;
                 this.EntradaStock.Table = null;
                 this.EntradaStock.TextKey = "*";
-                this.EntradaStock.TipWhenBlank = "";
+                this.EntradaStock.PlaceholderText = "";
                 this.EntradaStock.ToolTipText = "";
                 // 
                 // EntradaProveedor
@@ -235,7 +235,7 @@ namespace Lfc.Articulos
                 this.EntradaProveedor.TeclaDespuesDeEnter = "{tab}";
                 this.EntradaProveedor.Text = "0";
                 this.EntradaProveedor.TextDetail = "";
-                this.EntradaProveedor.TipWhenBlank = "Todos";
+                this.EntradaProveedor.PlaceholderText = "Todos";
                 this.EntradaProveedor.ToolTipText = "";
                 // 
                 // Label2
@@ -273,7 +273,7 @@ namespace Lfc.Articulos
                 this.EntradaMarca.TeclaDespuesDeEnter = "{tab}";
                 this.EntradaMarca.Text = "0";
                 this.EntradaMarca.TextDetail = "";
-                this.EntradaMarca.TipWhenBlank = "Todas";
+                this.EntradaMarca.PlaceholderText = "Todas";
                 this.EntradaMarca.ToolTipText = "";
                 // 
                 // Label3
@@ -311,7 +311,7 @@ namespace Lfc.Articulos
                 this.EntradaSituacion.TeclaDespuesDeEnter = "{tab}";
                 this.EntradaSituacion.Text = "0";
                 this.EntradaSituacion.TextDetail = "";
-                this.EntradaSituacion.TipWhenBlank = "Todas";
+                this.EntradaSituacion.PlaceholderText = "Todas";
                 this.EntradaSituacion.ToolTipText = "";
                 // 
                 // label5
@@ -346,7 +346,7 @@ namespace Lfc.Articulos
                 this.EntradaPvpDesde.Sufijo = "";
                 this.EntradaPvpDesde.TabIndex = 1;
                 this.EntradaPvpDesde.Text = "0.00";
-                this.EntradaPvpDesde.TipWhenBlank = "";
+                this.EntradaPvpDesde.PlaceholderText = "";
                 this.EntradaPvpDesde.ToolTipText = "";
                 // 
                 // label6
@@ -381,7 +381,7 @@ namespace Lfc.Articulos
                 this.EntradaPvpHasta.Sufijo = "";
                 this.EntradaPvpHasta.TabIndex = 3;
                 this.EntradaPvpHasta.Text = "0.00";
-                this.EntradaPvpHasta.TipWhenBlank = "";
+                this.EntradaPvpHasta.PlaceholderText = "";
                 this.EntradaPvpHasta.ToolTipText = "";
                 // 
                 // label7
@@ -456,7 +456,7 @@ namespace Lfc.Articulos
                 this.EntradaRubro.TeclaDespuesDeEnter = "{tab}";
                 this.EntradaRubro.Text = "0";
                 this.EntradaRubro.TextDetail = "";
-                this.EntradaRubro.TipWhenBlank = "Todas";
+                this.EntradaRubro.PlaceholderText = "Todas";
                 this.EntradaRubro.ToolTipText = "";
                 // 
                 // EntradaAgrupar
@@ -482,7 +482,7 @@ namespace Lfc.Articulos
                 this.EntradaAgrupar.Table = null;
                 this.EntradaAgrupar.Text = "Sin agrupar";
                 this.EntradaAgrupar.TextKey = "*";
-                this.EntradaAgrupar.TipWhenBlank = "";
+                this.EntradaAgrupar.PlaceholderText = "";
                 this.EntradaAgrupar.ToolTipText = "";
                 // 
                 // label9

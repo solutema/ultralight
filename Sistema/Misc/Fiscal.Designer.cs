@@ -141,7 +141,7 @@ namespace Lazaro.Misc
                         this.EntradaPv.TabIndex = 52;
                         this.EntradaPv.Table = null;
                         this.EntradaPv.TextKey = "0";
-                        this.EntradaPv.TipWhenBlank = "";
+                        this.EntradaPv.PlaceholderText = "";
                         this.EntradaPv.ToolTipText = "";
                         this.EntradaPv.TextChanged += new System.EventHandler(this.txtPV_TextChanged);
                         // 

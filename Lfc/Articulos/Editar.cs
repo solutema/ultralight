@@ -286,9 +286,7 @@ namespace Lfc.Articulos
                         UnidadRendimiento = Art.UnidadRendimiento;
                         EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatNumber(Art.StockMinimo, this.Workspace.CurrentConfig.Productos.DecimalesStock);
                         EntradaGarantia.Text = Art.Garantia.ToString();
-                        //EntradaImagen.Elemento = Art;
-                        //EntradaTags.Elemento = Art;
-                        //EntradaEtiquetas.Elemento = Art;
+                        CustomName = Art.Existe;
 
                         base.ActualizarControl();
                 }

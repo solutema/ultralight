@@ -91,7 +91,7 @@ namespace Lfc.Alicuotas
                         this.EntradaNombre.Size = new System.Drawing.Size(384, 24);
                         this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.TipWhenBlank = "";
+                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ToolTipText = "";
                         // 
                         // Label5
@@ -126,7 +126,7 @@ namespace Lfc.Alicuotas
                         this.EntradaPorcentaje.Sufijo = "%";
                         this.EntradaPorcentaje.TabIndex = 3;
                         this.EntradaPorcentaje.Text = "0.0000";
-                        this.EntradaPorcentaje.TipWhenBlank = "";
+                        this.EntradaPorcentaje.PlaceholderText = "";
                         this.EntradaPorcentaje.ToolTipText = "";
                         // 
                         // label1
@@ -170,7 +170,7 @@ namespace Lfc.Alicuotas
                         this.EntradaImporteMinimo.Sufijo = "";
                         this.EntradaImporteMinimo.TabIndex = 5;
                         this.EntradaImporteMinimo.Text = "0.00";
-                        this.EntradaImporteMinimo.TipWhenBlank = "";
+                        this.EntradaImporteMinimo.PlaceholderText = "";
                         this.EntradaImporteMinimo.ToolTipText = "";
                         // 
                         // Editar

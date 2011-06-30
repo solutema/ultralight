@@ -114,7 +114,7 @@ namespace Lfc.Articulos
                         this.EntradaRendimiento.Sufijo = "";
                         this.EntradaRendimiento.TabIndex = 3;
                         this.EntradaRendimiento.Text = "0.00";
-                        this.EntradaRendimiento.TipWhenBlank = "";
+                        this.EntradaRendimiento.PlaceholderText = "";
                         this.EntradaRendimiento.ToolTipText = "Precio de costo o de compra.";
                         // 
                         // label2
@@ -160,7 +160,7 @@ namespace Lfc.Articulos
                         this.EntradaUnidad.TabIndex = 1;
                         this.EntradaUnidad.Table = null;
                         this.EntradaUnidad.TextKey = "u";
-                        this.EntradaUnidad.TipWhenBlank = "";
+                        this.EntradaUnidad.PlaceholderText = "";
                         this.EntradaUnidad.ToolTipText = "¿El artículo usa control de stock?";
                         // 
                         // EntradaUnidadRend
@@ -197,7 +197,7 @@ namespace Lfc.Articulos
                         this.EntradaUnidadRend.TabIndex = 4;
                         this.EntradaUnidadRend.Table = null;
                         this.EntradaUnidadRend.TextKey = "";
-                        this.EntradaUnidadRend.TipWhenBlank = "";
+                        this.EntradaUnidadRend.PlaceholderText = "";
                         this.EntradaUnidadRend.ToolTipText = "¿El artículo usa control de stock?";
                         // 
                         // Rendimiento

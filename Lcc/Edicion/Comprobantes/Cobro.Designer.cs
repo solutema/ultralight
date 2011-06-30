@@ -135,7 +135,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaImporte.Sufijo = "";
                         this.EntradaImporte.TabIndex = 1;
                         this.EntradaImporte.Text = "0.00";
-                        this.EntradaImporte.TipWhenBlank = "";
+                        this.EntradaImporte.PlaceholderText = "";
                         this.EntradaImporte.ToolTipText = "";
                         // 
                         // label1
@@ -222,7 +222,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFechaCobro.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaCobro.Sufijo = "";
                         this.EntradaFechaCobro.TabIndex = 9;
-                        this.EntradaFechaCobro.TipWhenBlank = "";
+                        this.EntradaFechaCobro.PlaceholderText = "";
                         this.EntradaFechaCobro.ToolTipText = "";
                         this.EntradaFechaCobro.Enter += new System.EventHandler(this.EntradaFechaCobro_Enter);
                         // 
@@ -247,7 +247,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFechaEmision.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaEmision.Sufijo = "";
                         this.EntradaFechaEmision.TabIndex = 7;
-                        this.EntradaFechaEmision.TipWhenBlank = "";
+                        this.EntradaFechaEmision.PlaceholderText = "";
                         this.EntradaFechaEmision.ToolTipText = "";
                         // 
                         // EntradaNumeroCheque
@@ -273,7 +273,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaNumeroCheque.Sufijo = "";
                         this.EntradaNumeroCheque.TabIndex = 5;
                         this.EntradaNumeroCheque.Text = "0";
-                        this.EntradaNumeroCheque.TipWhenBlank = "";
+                        this.EntradaNumeroCheque.PlaceholderText = "";
                         this.EntradaNumeroCheque.ToolTipText = "Estado para esta chequera.";
                         // 
                         // EntradaBanco
@@ -302,7 +302,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
                         this.EntradaBanco.TextInt = 0;
-                        this.EntradaBanco.TipWhenBlank = "";
+                        this.EntradaBanco.PlaceholderText = "";
                         this.EntradaBanco.ToolTipText = "";
                         // 
                         // label2
@@ -410,7 +410,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCaja.Text = "0";
                         this.EntradaCaja.TextDetail = "";
                         this.EntradaCaja.TextInt = 0;
-                        this.EntradaCaja.TipWhenBlank = "";
+                        this.EntradaCaja.PlaceholderText = "";
                         this.EntradaCaja.ToolTipText = "";
                         // 
                         // label9
@@ -478,7 +478,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCupon.Size = new System.Drawing.Size(164, 24);
                         this.EntradaCupon.Sufijo = "";
                         this.EntradaCupon.TabIndex = 9;
-                        this.EntradaCupon.TipWhenBlank = "";
+                        this.EntradaCupon.PlaceholderText = "";
                         this.EntradaCupon.ToolTipText = "";
                         // 
                         // EntradaInteres
@@ -504,7 +504,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaInteres.TabIndex = 7;
                         this.EntradaInteres.TabStop = false;
                         this.EntradaInteres.Text = "0.00";
-                        this.EntradaInteres.TipWhenBlank = "";
+                        this.EntradaInteres.PlaceholderText = "";
                         this.EntradaInteres.ToolTipText = "";
                         // 
                         // Label14
@@ -539,7 +539,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCuotas.TabIndex = 5;
                         this.EntradaCuotas.TabStop = false;
                         this.EntradaCuotas.Text = "0";
-                        this.EntradaCuotas.TipWhenBlank = "";
+                        this.EntradaCuotas.PlaceholderText = "";
                         this.EntradaCuotas.ToolTipText = "";
                         // 
                         // label4
@@ -577,7 +577,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaPlan.Text = "0";
                         this.EntradaPlan.TextDetail = "";
                         this.EntradaPlan.TextInt = 0;
-                        this.EntradaPlan.TipWhenBlank = "";
+                        this.EntradaPlan.PlaceholderText = "";
                         this.EntradaPlan.ToolTipText = "";
                         this.EntradaPlan.TextChanged += new System.EventHandler(this.EntradaPlan_TextChanged);
                         // 
@@ -633,7 +633,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaObs.Size = new System.Drawing.Size(320, 52);
                         this.EntradaObs.Sufijo = "";
                         this.EntradaObs.TabIndex = 1;
-                        this.EntradaObs.TipWhenBlank = "";
+                        this.EntradaObs.PlaceholderText = "";
                         this.EntradaObs.ToolTipText = "";
                         // 
                         // Label20
@@ -702,7 +702,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFormaDePago.Text = "0";
                         this.EntradaFormaDePago.TextDetail = "";
                         this.EntradaFormaDePago.TextInt = 0;
-                        this.EntradaFormaDePago.TipWhenBlank = "";
+                        this.EntradaFormaDePago.PlaceholderText = "";
                         this.EntradaFormaDePago.ToolTipText = "";
                         this.EntradaFormaDePago.TextChanged += new System.EventHandler(this.EntradaFormaDePago_TextChanged);
                         // 
@@ -766,7 +766,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaValorNumero.Size = new System.Drawing.Size(284, 24);
                         this.EntradaValorNumero.Sufijo = "";
                         this.EntradaValorNumero.TabIndex = 11;
-                        this.EntradaValorNumero.TipWhenBlank = "";
+                        this.EntradaValorNumero.PlaceholderText = "";
                         this.EntradaValorNumero.ToolTipText = "";
                         // 
                         // label16

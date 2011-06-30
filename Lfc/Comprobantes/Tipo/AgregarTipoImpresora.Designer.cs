@@ -104,7 +104,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImpresora.Table = "impresoras";
                         this.EntradaImpresora.Text = "0";
                         this.EntradaImpresora.TextDetail = "";
-                        this.EntradaImpresora.TipWhenBlank = "Ninguno";
+                        this.EntradaImpresora.PlaceholderText = "Ninguno";
                         this.EntradaImpresora.ToolTipText = "";
                         // 
                         // Label16
@@ -140,7 +140,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSucursal.Table = "sucursales";
                         this.EntradaSucursal.Text = "0";
                         this.EntradaSucursal.TextDetail = "";
-                        this.EntradaSucursal.TipWhenBlank = "Todas";
+                        this.EntradaSucursal.PlaceholderText = "Todas";
                         this.EntradaSucursal.ToolTipText = "";
                         // 
                         // label1
@@ -209,7 +209,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaEstacion.Size = new System.Drawing.Size(196, 24);
                         this.EntradaEstacion.Sufijo = "";
                         this.EntradaEstacion.TabIndex = 7;
-                        this.EntradaEstacion.TipWhenBlank = "";
+                        this.EntradaEstacion.PlaceholderText = "";
                         this.EntradaEstacion.ToolTipText = "";
                         // 
                         // EntradaPuntoDeVenta
@@ -233,7 +233,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaPuntoDeVenta.Sufijo = "";
                         this.EntradaPuntoDeVenta.TabIndex = 5;
                         this.EntradaPuntoDeVenta.Text = "0";
-                        this.EntradaPuntoDeVenta.TipWhenBlank = "";
+                        this.EntradaPuntoDeVenta.PlaceholderText = "";
                         this.EntradaPuntoDeVenta.ToolTipText = "";
                         // 
                         // label4

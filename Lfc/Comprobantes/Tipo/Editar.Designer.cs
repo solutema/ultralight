@@ -107,7 +107,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaNombre.Size = new System.Drawing.Size(320, 24);
                         this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.TipWhenBlank = "";
+                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ToolTipText = "";
                         // 
                         // Label5
@@ -139,7 +139,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaLetra.Size = new System.Drawing.Size(320, 24);
                         this.EntradaLetra.Sufijo = "";
                         this.EntradaLetra.TabIndex = 3;
-                        this.EntradaLetra.TipWhenBlank = "";
+                        this.EntradaLetra.PlaceholderText = "";
                         this.EntradaLetra.ToolTipText = "";
                         // 
                         // label1
@@ -179,7 +179,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaMueveStock.TabIndex = 5;
                         this.EntradaMueveStock.Table = null;
                         this.EntradaMueveStock.TextKey = "1";
-                        this.EntradaMueveStock.TipWhenBlank = "";
+                        this.EntradaMueveStock.PlaceholderText = "";
                         this.EntradaMueveStock.ToolTipText = "";
                         this.EntradaMueveStock.TextChanged += new System.EventHandler(this.EntradaMueveStock_TextChanged);
                         // 
@@ -214,7 +214,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSituacionOrigen.Table = "articulos_situaciones";
                         this.EntradaSituacionOrigen.Text = "0";
                         this.EntradaSituacionOrigen.TextDetail = "";
-                        this.EntradaSituacionOrigen.TipWhenBlank = "Sin especificar";
+                        this.EntradaSituacionOrigen.PlaceholderText = "Sin especificar";
                         this.EntradaSituacionOrigen.ToolTipText = "";
                         // 
                         // label3
@@ -248,7 +248,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSituacionDestino.Table = "articulos_situaciones";
                         this.EntradaSituacionDestino.Text = "0";
                         this.EntradaSituacionDestino.TextDetail = "";
-                        this.EntradaSituacionDestino.TipWhenBlank = "Sin especificar";
+                        this.EntradaSituacionDestino.PlaceholderText = "Sin especificar";
                         this.EntradaSituacionDestino.ToolTipText = "";
                         // 
                         // EntradaNumerarAl
@@ -272,7 +272,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaNumerarAl.Table = null;
                         this.EntradaNumerarAl.Text = "Cuando se crea el comprobante";
                         this.EntradaNumerarAl.TextKey = "1";
-                        this.EntradaNumerarAl.TipWhenBlank = "";
+                        this.EntradaNumerarAl.PlaceholderText = "";
                         this.EntradaNumerarAl.ToolTipText = "";
                         // 
                         // label4
@@ -304,7 +304,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirRepetir.Table = null;
                         this.EntradaImprimirRepetir.Text = "Si";
                         this.EntradaImprimirRepetir.TextKey = "1";
-                        this.EntradaImprimirRepetir.TipWhenBlank = "";
+                        this.EntradaImprimirRepetir.PlaceholderText = "";
                         this.EntradaImprimirRepetir.ToolTipText = "";
                         // 
                         // label6
@@ -336,7 +336,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirModificar.Table = null;
                         this.EntradaImprimirModificar.Text = "Si";
                         this.EntradaImprimirModificar.TextKey = "1";
-                        this.EntradaImprimirModificar.TipWhenBlank = "";
+                        this.EntradaImprimirModificar.PlaceholderText = "";
                         this.EntradaImprimirModificar.ToolTipText = "";
                         // 
                         // label8
@@ -368,7 +368,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirGuardar.Table = null;
                         this.EntradaImprimirGuardar.Text = "Si";
                         this.EntradaImprimirGuardar.TextKey = "1";
-                        this.EntradaImprimirGuardar.TipWhenBlank = "";
+                        this.EntradaImprimirGuardar.PlaceholderText = "";
                         this.EntradaImprimirGuardar.ToolTipText = "";
                         // 
                         // label9

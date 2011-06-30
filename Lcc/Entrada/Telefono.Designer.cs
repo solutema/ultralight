@@ -91,7 +91,7 @@ namespace Lcc.Entrada
                         this.EntradaNombre.Size = new System.Drawing.Size(108, 24);
                         this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 4;
-                        this.EntradaNombre.TipWhenBlank = "Lugar";
+                        this.EntradaNombre.PlaceholderText = "Lugar";
                         this.EntradaNombre.ToolTipText = "";
                         this.EntradaNombre.TextChanged += new System.EventHandler(this.Entradas_TextChanged);
                         // 
@@ -116,7 +116,7 @@ namespace Lcc.Entrada
                         this.EntradaCaracteristica.Size = new System.Drawing.Size(60, 24);
                         this.EntradaCaracteristica.Sufijo = "";
                         this.EntradaCaracteristica.TabIndex = 1;
-                        this.EntradaCaracteristica.TipWhenBlank = "Característica";
+                        this.EntradaCaracteristica.PlaceholderText = "Característica";
                         this.EntradaCaracteristica.ToolTipText = "";
                         this.EntradaCaracteristica.TextChanged += new System.EventHandler(this.Entradas_TextChanged);
                         // 
@@ -142,7 +142,7 @@ namespace Lcc.Entrada
                         this.EntradaNumero.Size = new System.Drawing.Size(268, 24);
                         this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 3;
-                        this.EntradaNumero.TipWhenBlank = "Número Telefónico";
+                        this.EntradaNumero.PlaceholderText = "Número Telefónico";
                         this.EntradaNumero.ToolTipText = "";
                         this.EntradaNumero.TextChanged += new System.EventHandler(this.Entradas_TextChanged);
                         // 

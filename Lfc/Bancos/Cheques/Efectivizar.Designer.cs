@@ -111,7 +111,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaSubTotal.TabIndex = 4;
                         this.EntradaSubTotal.TabStop = false;
                         this.EntradaSubTotal.Text = "0.00";
-                        this.EntradaSubTotal.TipWhenBlank = "";
+                        this.EntradaSubTotal.PlaceholderText = "";
                         this.EntradaSubTotal.ToolTipText = "";
                         this.EntradaSubTotal.TextChanged += new System.EventHandler(this.EntradaImportes_TextChanged);
                         // 
@@ -147,7 +147,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaGestionDeCobro.Sufijo = "";
                         this.EntradaGestionDeCobro.TabIndex = 6;
                         this.EntradaGestionDeCobro.Text = "0.00";
-                        this.EntradaGestionDeCobro.TipWhenBlank = "";
+                        this.EntradaGestionDeCobro.PlaceholderText = "";
                         this.EntradaGestionDeCobro.ToolTipText = "";
                         this.EntradaGestionDeCobro.TextChanged += new System.EventHandler(this.EntradaImportes_TextChanged);
                         // 
@@ -183,7 +183,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaTotal.Sufijo = "";
                         this.EntradaTotal.TabIndex = 10;
                         this.EntradaTotal.Text = "0.00";
-                        this.EntradaTotal.TipWhenBlank = "";
+                        this.EntradaTotal.PlaceholderText = "";
                         this.EntradaTotal.ToolTipText = "";
                         // 
                         // Label8
@@ -231,7 +231,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaCajaDestino.Table = "cajas";
                         this.EntradaCajaDestino.Text = "0";
                         this.EntradaCajaDestino.TextDetail = "";
-                        this.EntradaCajaDestino.TipWhenBlank = "";
+                        this.EntradaCajaDestino.PlaceholderText = "";
                         this.EntradaCajaDestino.ToolTipText = "";
                         // 
                         // EntradaImpuestos
@@ -256,7 +256,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaImpuestos.Sufijo = "";
                         this.EntradaImpuestos.TabIndex = 8;
                         this.EntradaImpuestos.Text = "0.00";
-                        this.EntradaImpuestos.TipWhenBlank = "";
+                        this.EntradaImpuestos.PlaceholderText = "";
                         this.EntradaImpuestos.ToolTipText = "";
                         this.EntradaImpuestos.TextChanged += new System.EventHandler(this.EntradaImportes_TextChanged);
                         // 

@@ -126,7 +126,7 @@ namespace Lfc.Comprobantes
                         this.EntradaCliente.Table = "personas";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
-                        this.EntradaCliente.TipWhenBlank = "";
+                        this.EntradaCliente.PlaceholderText = "";
                         this.EntradaCliente.ToolTipText = "";
                         this.EntradaCliente.TextChanged += new System.EventHandler(this.EntradaCliente_TextChanged);
                         // 
@@ -162,7 +162,7 @@ namespace Lfc.Comprobantes
                         this.EntradaVendedor.Table = "personas";
                         this.EntradaVendedor.Text = "0";
                         this.EntradaVendedor.TextDetail = "";
-                        this.EntradaVendedor.TipWhenBlank = "";
+                        this.EntradaVendedor.PlaceholderText = "";
                         this.EntradaVendedor.ToolTipText = "";
                         // 
                         // EntradaTotal
@@ -187,7 +187,7 @@ namespace Lfc.Comprobantes
                         this.EntradaTotal.Sufijo = "";
                         this.EntradaTotal.TabIndex = 41;
                         this.EntradaTotal.Text = "0.00";
-                        this.EntradaTotal.TipWhenBlank = "";
+                        this.EntradaTotal.PlaceholderText = "";
                         this.EntradaTotal.ToolTipText = "";
                         this.EntradaTotal.TextChanged += new System.EventHandler(this.EntradaTotal_TextChanged);
                         // 
@@ -235,7 +235,7 @@ namespace Lfc.Comprobantes
                         this.EntradaSubTotal.TabIndex = 22;
                         this.EntradaSubTotal.TabStop = false;
                         this.EntradaSubTotal.Text = "0.00";
-                        this.EntradaSubTotal.TipWhenBlank = "";
+                        this.EntradaSubTotal.PlaceholderText = "";
                         this.EntradaSubTotal.ToolTipText = "";
                         this.EntradaSubTotal.TextChanged += new System.EventHandler(this.CambioValores);
                         // 
@@ -261,7 +261,7 @@ namespace Lfc.Comprobantes
                         this.EntradaDescuento.Sufijo = "%";
                         this.EntradaDescuento.TabIndex = 24;
                         this.EntradaDescuento.Text = "0.0000";
-                        this.EntradaDescuento.TipWhenBlank = "";
+                        this.EntradaDescuento.PlaceholderText = "";
                         this.EntradaDescuento.ToolTipText = "";
                         this.EntradaDescuento.TextChanged += new System.EventHandler(this.CambioValores);
                         // 
@@ -297,7 +297,7 @@ namespace Lfc.Comprobantes
                         this.EntradaInteres.Sufijo = "%";
                         this.EntradaInteres.TabIndex = 26;
                         this.EntradaInteres.Text = "0.0000";
-                        this.EntradaInteres.TipWhenBlank = "";
+                        this.EntradaInteres.PlaceholderText = "";
                         this.EntradaInteres.ToolTipText = "";
                         this.EntradaInteres.TextChanged += new System.EventHandler(this.CambioValores);
                         // 
@@ -333,7 +333,7 @@ namespace Lfc.Comprobantes
                         this.EntradaCuotas.Sufijo = "";
                         this.EntradaCuotas.TabIndex = 28;
                         this.EntradaCuotas.Text = "0";
-                        this.EntradaCuotas.TipWhenBlank = "";
+                        this.EntradaCuotas.PlaceholderText = "";
                         this.EntradaCuotas.ToolTipText = "";
                         this.EntradaCuotas.TextChanged += new System.EventHandler(this.CambioValores);
                         // 
@@ -370,7 +370,7 @@ namespace Lfc.Comprobantes
                         this.EntradaValorCuota.TabIndex = 30;
                         this.EntradaValorCuota.TabStop = false;
                         this.EntradaValorCuota.Text = "0.00";
-                        this.EntradaValorCuota.TipWhenBlank = "";
+                        this.EntradaValorCuota.PlaceholderText = "";
                         this.EntradaValorCuota.ToolTipText = "";
                         // 
                         // Label9
@@ -494,7 +494,7 @@ namespace Lfc.Comprobantes
                         this.EntradaPV.Sufijo = "";
                         this.EntradaPV.TabIndex = 6;
                         this.EntradaPV.Text = "0";
-                        this.EntradaPV.TipWhenBlank = "";
+                        this.EntradaPV.PlaceholderText = "";
                         this.EntradaPV.ToolTipText = "";
                         // 
                         // PnlCuotas
@@ -532,7 +532,7 @@ namespace Lfc.Comprobantes
                         this.EntradaIva.TabIndex = 54;
                         this.EntradaIva.TabStop = false;
                         this.EntradaIva.Text = "0.00";
-                        this.EntradaIva.TipWhenBlank = "";
+                        this.EntradaIva.PlaceholderText = "";
                         this.EntradaIva.ToolTipText = "";
                         this.EntradaIva.Visible = false;
                         // 

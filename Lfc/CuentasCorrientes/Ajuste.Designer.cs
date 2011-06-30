@@ -102,7 +102,7 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaConcepto.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaConcepto.Text = "0";
                         this.EntradaConcepto.TextDetail = "";
-                        this.EntradaConcepto.TipWhenBlank = "";
+                        this.EntradaConcepto.PlaceholderText = "";
                         this.EntradaConcepto.ToolTipText = "";
                         this.EntradaConcepto.Leave += new System.EventHandler(this.EntradaConcepto_Leave);
                         // 
@@ -129,7 +129,7 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaImporte.Sufijo = "";
                         this.EntradaImporte.TabIndex = 3;
                         this.EntradaImporte.Text = "0.00";
-                        this.EntradaImporte.TipWhenBlank = "";
+                        this.EntradaImporte.PlaceholderText = "";
                         this.EntradaImporte.ToolTipText = "";
                         this.EntradaImporte.TextChanged += new System.EventHandler(this.EntradaImporte_TextChanged);
                         // 
@@ -175,7 +175,7 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaObs.Size = new System.Drawing.Size(496, 92);
                         this.EntradaObs.Sufijo = "";
                         this.EntradaObs.TabIndex = 7;
-                        this.EntradaObs.TipWhenBlank = "";
+                        this.EntradaObs.PlaceholderText = "";
                         this.EntradaObs.ToolTipText = "";
                         // 
                         // Label4

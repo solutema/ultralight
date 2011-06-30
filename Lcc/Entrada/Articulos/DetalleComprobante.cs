@@ -463,11 +463,10 @@ namespace Lcc.Entrada.Articulos
                                         if (this.Cantidad == 0)
                                                 this.Cantidad = 1;
                                 } else if (EntradaArticulo.Text.Length == 0 || (EntradaArticulo.Text.IsNumericInt() && EntradaArticulo.TextInt == 0)) {
-                                        EntradaUnitario.Text = "0";
                                         EntradaCantidad.Sufijo = "";
-                                        EntradaCantidad.Text = "0";
-                                        EntradaImporte.Text = "0";
-                                        EntradaUnitario.Text = "0";
+                                        EntradaCantidad.ValueDecimal = 0;
+                                        EntradaImporte.ValueDecimal = 0;
+                                        EntradaUnitario.ValueDecimal = 0;
                                 }
                         }
 
@@ -539,7 +538,9 @@ namespace Lcc.Entrada.Articulos
                                                 }
                                                 break;
                                         default:
-                                                if (KeyDown != null) KeyDown(sender, e);
+                                                if (KeyDown != null)
+                                                        KeyDown(sender, e);
+                                                this.AutoUpdate = true;
                                                 break;
                                 }
                         }

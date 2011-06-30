@@ -158,7 +158,7 @@ namespace Lcc.Entrada.AuxForms
                         this.EntradaBuscar.Size = new System.Drawing.Size(524, 24);
                         this.EntradaBuscar.Sufijo = "";
                         this.EntradaBuscar.TabIndex = 0;
-                        this.EntradaBuscar.TipWhenBlank = "";
+                        this.EntradaBuscar.PlaceholderText = "";
                         this.EntradaBuscar.ToolTipText = "";
                         this.EntradaBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaBuscar_KeyPress);
                         this.EntradaBuscar.TextChanged += new System.EventHandler(this.EntradaBuscar_TextChanged);

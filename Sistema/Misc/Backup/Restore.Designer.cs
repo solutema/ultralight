@@ -190,7 +190,7 @@ namespace Lazaro.Misc.Backup
                         this.EntradaConfirmar.Size = new System.Drawing.Size(80, 24);
                         this.EntradaConfirmar.Sufijo = "";
                         this.EntradaConfirmar.TabIndex = 0;
-                        this.EntradaConfirmar.TipWhenBlank = "";
+                        this.EntradaConfirmar.PlaceholderText = "";
                         this.EntradaConfirmar.ToolTipText = "Escriba el texto de confirmación para poder continuar";
                         this.EntradaConfirmar.TextChanged += new System.EventHandler(this.EntradaConfirmar_TextChanged);
                         // 

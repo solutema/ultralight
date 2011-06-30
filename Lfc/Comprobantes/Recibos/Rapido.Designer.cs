@@ -99,7 +99,7 @@ namespace Lfc.Comprobantes.Recibos
             this.EntradaCaja.TeclaDespuesDeEnter = "{tab}";
             this.EntradaCaja.Text = "0";
             this.EntradaCaja.TextDetail = "";
-            this.EntradaCaja.TipWhenBlank = "";
+            this.EntradaCaja.PlaceholderText = "";
             this.EntradaCaja.ToolTipText = "";
             // 
             // Label3
@@ -135,7 +135,7 @@ namespace Lfc.Comprobantes.Recibos
             this.EntradaCliente.TeclaDespuesDeEnter = "{tab}";
             this.EntradaCliente.Text = "0";
             this.EntradaCliente.TextDetail = "";
-            this.EntradaCliente.TipWhenBlank = "";
+            this.EntradaCliente.PlaceholderText = "";
             this.EntradaCliente.ToolTipText = "";
             this.EntradaCliente.TextChanged += new System.EventHandler(this.EntradaCliente_TextChanged);
             // 
@@ -164,7 +164,7 @@ namespace Lfc.Comprobantes.Recibos
             this.EntradaImporte.Size = new System.Drawing.Size(104, 24);
             this.EntradaImporte.TabIndex = 3;
             this.EntradaImporte.Text = "0.00";
-            this.EntradaImporte.TipWhenBlank = "";
+            this.EntradaImporte.PlaceholderText = "";
             this.EntradaImporte.ToolTipText = "";
             // 
             // lblFecha1

@@ -167,7 +167,7 @@ namespace Lcc.Entrada.AuxForms
                         this.EntradaRatio.Table = null;
                         this.EntradaRatio.Text = "Libre";
                         this.EntradaRatio.TextKey = "0";
-                        this.EntradaRatio.TipWhenBlank = "";
+                        this.EntradaRatio.PlaceholderText = "";
                         this.EntradaRatio.ToolTipText = "";
                         this.EntradaRatio.TextChanged += new System.EventHandler(this.EntradaRatio_TextChanged);
                         // 

@@ -99,7 +99,7 @@ namespace Lfc.Personas
                         this.EntradaAcceso.TabIndex = 1;
                         this.EntradaAcceso.Table = null;
                         this.EntradaAcceso.TextKey = "1";
-                        this.EntradaAcceso.TipWhenBlank = "";
+                        this.EntradaAcceso.PlaceholderText = "";
                         this.EntradaAcceso.ToolTipText = "";
                         // 
                         // Label6
@@ -131,7 +131,7 @@ namespace Lfc.Personas
                         this.EntradaContrasena.Size = new System.Drawing.Size(132, 24);
                         this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 3;
-                        this.EntradaContrasena.TipWhenBlank = "";
+                        this.EntradaContrasena.PlaceholderText = "";
                         this.EntradaContrasena.ToolTipText = "";
                         // 
                         // label1

@@ -85,7 +85,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaFormaPago.Table = "formaspago";
                         this.EntradaFormaPago.Text = "0";
                         this.EntradaFormaPago.TextDetail = "";
-                        this.EntradaFormaPago.TipWhenBlank = "";
+                        this.EntradaFormaPago.PlaceholderText = "";
                         this.EntradaFormaPago.ToolTipText = "";
                         this.EntradaFormaPago.Leave += new System.EventHandler(this.EntradaFormaPago_Leave);
                         // 
@@ -124,7 +124,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.TabIndex = 11;
                         this.EntradaTipo.Table = null;
                         this.EntradaTipo.TextKey = "FA";
-                        this.EntradaTipo.TipWhenBlank = "";
+                        this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
                         // 
@@ -180,7 +180,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaRemito.Sufijo = "";
                         this.EntradaRemito.TabIndex = 15;
                         this.EntradaRemito.Text = "0";
-                        this.EntradaRemito.TipWhenBlank = "ninguno";
+                        this.EntradaRemito.PlaceholderText = "ninguno";
                         this.EntradaRemito.ToolTipText = "";
                         this.EntradaRemito.TextChanged += new System.EventHandler(this.EntradaRemito_TextChanged);
                         // 

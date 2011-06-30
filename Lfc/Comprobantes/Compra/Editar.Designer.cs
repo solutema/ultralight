@@ -95,7 +95,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProveedor.Table = "personas";
                         this.EntradaProveedor.Text = "0";
                         this.EntradaProveedor.TextDetail = "";
-                        this.EntradaProveedor.TipWhenBlank = "";
+                        this.EntradaProveedor.PlaceholderText = "";
                         this.EntradaProveedor.ToolTipText = "";
                         // 
                         // EntradaProductos
@@ -154,7 +154,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaNumero.Size = new System.Drawing.Size(86, 24);
                         this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 6;
-                        this.EntradaNumero.TipWhenBlank = "";
+                        this.EntradaNumero.PlaceholderText = "";
                         this.EntradaNumero.ToolTipText = "";
                         this.EntradaNumero.Leave += new System.EventHandler(this.EntradaNumero_Leave);
                         // 
@@ -238,7 +238,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTotal.TabIndex = 21;
                         this.EntradaTotal.TabStop = false;
                         this.EntradaTotal.Text = "0.00";
-                        this.EntradaTotal.TipWhenBlank = "";
+                        this.EntradaTotal.PlaceholderText = "";
                         this.EntradaTotal.ToolTipText = "";
                         // 
                         // EntradaTipo
@@ -269,7 +269,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTipo.TabIndex = 4;
                         this.EntradaTipo.Table = null;
                         this.EntradaTipo.TextKey = "FA";
-                        this.EntradaTipo.TipWhenBlank = "";
+                        this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
                         // 
@@ -306,7 +306,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaHaciaSituacion.Table = "articulos_situaciones";
                         this.EntradaHaciaSituacion.Text = "0";
                         this.EntradaHaciaSituacion.TextDetail = "";
-                        this.EntradaHaciaSituacion.TipWhenBlank = "";
+                        this.EntradaHaciaSituacion.PlaceholderText = "";
                         this.EntradaHaciaSituacion.ToolTipText = "";
                         // 
                         // EtiquetaTitulo
@@ -343,7 +343,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaPV.Sufijo = "";
                         this.EntradaPV.TabIndex = 5;
                         this.EntradaPV.Text = "0";
-                        this.EntradaPV.TipWhenBlank = "";
+                        this.EntradaPV.PlaceholderText = "";
                         this.EntradaPV.ToolTipText = "";
                         // 
                         // EntradaGastosEnvio
@@ -368,7 +368,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaGastosEnvio.Sufijo = "";
                         this.EntradaGastosEnvio.TabIndex = 15;
                         this.EntradaGastosEnvio.Text = "0.00";
-                        this.EntradaGastosEnvio.TipWhenBlank = "";
+                        this.EntradaGastosEnvio.PlaceholderText = "";
                         this.EntradaGastosEnvio.ToolTipText = "";
                         this.EntradaGastosEnvio.TextChanged += new System.EventHandler(this.RecalcularTotal);
                         // 
@@ -404,7 +404,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaEstado.TabIndex = 19;
                         this.EntradaEstado.Table = null;
                         this.EntradaEstado.TextKey = "0";
-                        this.EntradaEstado.TipWhenBlank = "";
+                        this.EntradaEstado.PlaceholderText = "";
                         this.EntradaEstado.ToolTipText = "";
                         // 
                         // label5
@@ -451,7 +451,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaCancelado.TabIndex = 23;
                         this.EntradaCancelado.TabStop = false;
                         this.EntradaCancelado.Text = "0.00";
-                        this.EntradaCancelado.TipWhenBlank = "";
+                        this.EntradaCancelado.PlaceholderText = "";
                         this.EntradaCancelado.ToolTipText = "";
                         // 
                         // EntradaFecha
@@ -474,7 +474,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaFecha.Size = new System.Drawing.Size(100, 24);
                         this.EntradaFecha.Sufijo = "";
                         this.EntradaFecha.TabIndex = 8;
-                        this.EntradaFecha.TipWhenBlank = "";
+                        this.EntradaFecha.PlaceholderText = "";
                         this.EntradaFecha.ToolTipText = "";
                         // 
                         // label7
@@ -517,7 +517,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaFormaPago.TabIndex = 10;
                         this.EntradaFormaPago.Table = null;
                         this.EntradaFormaPago.TextKey = "0";
-                        this.EntradaFormaPago.TipWhenBlank = "";
+                        this.EntradaFormaPago.PlaceholderText = "";
                         this.EntradaFormaPago.ToolTipText = "";
                         // 
                         // EntradaOtrosGastos
@@ -542,7 +542,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaOtrosGastos.Sufijo = "";
                         this.EntradaOtrosGastos.TabIndex = 17;
                         this.EntradaOtrosGastos.Text = "0.00";
-                        this.EntradaOtrosGastos.TipWhenBlank = "";
+                        this.EntradaOtrosGastos.PlaceholderText = "";
                         this.EntradaOtrosGastos.ToolTipText = "";
                         this.EntradaOtrosGastos.TextChanged += new System.EventHandler(this.RecalcularTotal);
                         // 

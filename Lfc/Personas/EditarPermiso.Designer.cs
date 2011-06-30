@@ -113,7 +113,7 @@ namespace Lfc.Personas
                         this.EntradaObjeto.Table = "sys_permisos_objetos";
                         this.EntradaObjeto.Text = "0";
                         this.EntradaObjeto.TextDetail = "";
-                        this.EntradaObjeto.TipWhenBlank = "Ninguno";
+                        this.EntradaObjeto.PlaceholderText = "Ninguno";
                         this.EntradaObjeto.ToolTipText = "";
                         this.EntradaObjeto.TextChanged += new System.EventHandler(this.EntradaObjeto_TextChanged);
                         // 
@@ -310,7 +310,7 @@ namespace Lfc.Personas
                         this.EntradaItems.Size = new System.Drawing.Size(488, 24);
                         this.EntradaItems.Sufijo = "";
                         this.EntradaItems.TabIndex = 20;
-                        this.EntradaItems.TipWhenBlank = "";
+                        this.EntradaItems.PlaceholderText = "";
                         this.EntradaItems.ToolTipText = "";
                         // 
                         // Label1

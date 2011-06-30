@@ -109,7 +109,7 @@ namespace Lfc.Comprobantes
                         this.EntradaTipo.TabIndex = 52;
                         this.EntradaTipo.Table = null;
                         this.EntradaTipo.TextKey = "B";
-                        this.EntradaTipo.TipWhenBlank = "";
+                        this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipoPvDesde_TextChanged);
                         // 
@@ -143,7 +143,7 @@ namespace Lfc.Comprobantes
                         this.EntradaPv.Sufijo = "";
                         this.EntradaPv.TabIndex = 54;
                         this.EntradaPv.Text = "1";
-                        this.EntradaPv.TipWhenBlank = "";
+                        this.EntradaPv.PlaceholderText = "";
                         this.EntradaPv.ToolTipText = "";
                         this.EntradaPv.TextChanged += new System.EventHandler(this.EntradaTipoPvDesde_TextChanged);
                         // 
@@ -168,7 +168,7 @@ namespace Lfc.Comprobantes
                         this.EntradaDesde.Sufijo = "";
                         this.EntradaDesde.TabIndex = 56;
                         this.EntradaDesde.Text = "0";
-                        this.EntradaDesde.TipWhenBlank = "";
+                        this.EntradaDesde.PlaceholderText = "";
                         this.EntradaDesde.ToolTipText = "";
                         this.EntradaDesde.TextChanged += new System.EventHandler(this.EntradaTipoPvDesde_TextChanged);
                         // 

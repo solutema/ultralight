@@ -129,7 +129,7 @@ namespace Lfc.Reportes
                         this.EntradaExpandirGrupos.TabIndex = 0;
                         this.EntradaExpandirGrupos.Table = null;
                         this.EntradaExpandirGrupos.TextKey = "0";
-                        this.EntradaExpandirGrupos.TipWhenBlank = "";
+                        this.EntradaExpandirGrupos.PlaceholderText = "";
                         this.EntradaExpandirGrupos.ToolTipText = "";
                         // 
                         // Reporte

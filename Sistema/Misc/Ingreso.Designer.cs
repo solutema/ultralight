@@ -92,7 +92,7 @@ namespace Lazaro.Misc
                         this.EntradaContrasena.Size = new System.Drawing.Size(176, 24);
                         this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 6;
-                        this.EntradaContrasena.TipWhenBlank = "";
+                        this.EntradaContrasena.PlaceholderText = "";
                         this.EntradaContrasena.ToolTipText = "";
                         this.EntradaContrasena.TextChanged += new System.EventHandler(this.CambioDatos);
                         // 
@@ -198,7 +198,7 @@ namespace Lazaro.Misc
                         this.EntradaUsuario.Table = "personas";
                         this.EntradaUsuario.Text = "0";
                         this.EntradaUsuario.TextDetail = "";
-                        this.EntradaUsuario.TipWhenBlank = "";
+                        this.EntradaUsuario.PlaceholderText = "";
                         this.EntradaUsuario.ToolTipText = "";
                         this.EntradaUsuario.TextChanged += new System.EventHandler(this.CambioDatos);
                         // 

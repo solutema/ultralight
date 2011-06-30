@@ -129,7 +129,7 @@ namespace Lfc.Cupones.Cupones
                         this.txtFormaPago.TabIndex = 17;
                         this.txtFormaPago.Table = null;
                         this.txtFormaPago.TextKey = "6";
-                        this.txtFormaPago.TipWhenBlank = "";
+                        this.txtFormaPago.PlaceholderText = "";
                         this.txtFormaPago.ToolTipText = "";
                         // 
                         // Label11
@@ -164,7 +164,7 @@ namespace Lfc.Cupones.Cupones
                         this.txtCupones.TabIndex = 1;
                         this.txtCupones.TabStop = false;
                         this.txtCupones.Text = "0";
-                        this.txtCupones.TipWhenBlank = "";
+                        this.txtCupones.PlaceholderText = "";
                         this.txtCupones.ToolTipText = "";
                         // 
                         // lblLabel1
@@ -209,7 +209,7 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaSubTotal.TabIndex = 3;
                         this.EntradaSubTotal.TabStop = false;
                         this.EntradaSubTotal.Text = "0.00";
-                        this.EntradaSubTotal.TipWhenBlank = "";
+                        this.EntradaSubTotal.PlaceholderText = "";
                         this.EntradaSubTotal.ToolTipText = "";
                         // 
                         // EntradaComisionTarjeta
@@ -234,7 +234,7 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaComisionTarjeta.TabIndex = 6;
                         this.EntradaComisionTarjeta.TabStop = false;
                         this.EntradaComisionTarjeta.Text = "0.00";
-                        this.EntradaComisionTarjeta.TipWhenBlank = "";
+                        this.EntradaComisionTarjeta.PlaceholderText = "";
                         this.EntradaComisionTarjeta.ToolTipText = "";
                         this.EntradaComisionTarjeta.TextChanged += new System.EventHandler(this.EntradaComisionTarjeta_TextChanged);
                         // 
@@ -295,7 +295,7 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaComisionPlan.TabIndex = 9;
                         this.EntradaComisionPlan.TabStop = false;
                         this.EntradaComisionPlan.Text = "0.00";
-                        this.EntradaComisionPlan.TipWhenBlank = "";
+                        this.EntradaComisionPlan.PlaceholderText = "";
                         this.EntradaComisionPlan.ToolTipText = "";
                         this.EntradaComisionPlan.TextChanged += new System.EventHandler(this.EntradaComisionPlan_TextChanged);
                         // 
@@ -320,7 +320,7 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaComisionUsuario.Sufijo = "";
                         this.EntradaComisionUsuario.TabIndex = 12;
                         this.EntradaComisionUsuario.Text = "0.00";
-                        this.EntradaComisionUsuario.TipWhenBlank = "";
+                        this.EntradaComisionUsuario.PlaceholderText = "";
                         this.EntradaComisionUsuario.ToolTipText = "";
                         this.EntradaComisionUsuario.TextChanged += new System.EventHandler(this.EntradaComisionUsuario_TextChanged);
                         // 
@@ -425,7 +425,7 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaTotal.Sufijo = "";
                         this.EntradaTotal.TabIndex = 15;
                         this.EntradaTotal.Text = "0.00";
-                        this.EntradaTotal.TipWhenBlank = "";
+                        this.EntradaTotal.PlaceholderText = "";
                         this.EntradaTotal.ToolTipText = "";
                         this.EntradaTotal.TextChanged += new System.EventHandler(this.EntradaTotal_TextChanged);
                         // 

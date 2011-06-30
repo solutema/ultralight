@@ -117,7 +117,7 @@ namespace Lfc.Misc
                         this.EntradaElementoDuplicado.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaElementoDuplicado.Text = "0";
                         this.EntradaElementoDuplicado.TextDetail = "";
-                        this.EntradaElementoDuplicado.TipWhenBlank = "";
+                        this.EntradaElementoDuplicado.PlaceholderText = "";
                         this.EntradaElementoDuplicado.ToolTipText = "";
                         this.EntradaElementoDuplicado.TextChanged += new System.EventHandler(this.EntradaElementoDuplicado_TextChanged);
                         // 
@@ -155,7 +155,7 @@ namespace Lfc.Misc
                         this.EntradaElementoOriginal.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaElementoOriginal.Text = "0";
                         this.EntradaElementoOriginal.TextDetail = "";
-                        this.EntradaElementoOriginal.TipWhenBlank = "";
+                        this.EntradaElementoOriginal.PlaceholderText = "";
                         this.EntradaElementoOriginal.ToolTipText = "";
                         this.EntradaElementoOriginal.TextChanged += new System.EventHandler(this.EntradaElementoOriginal_TextChanged);
                         // 
@@ -180,7 +180,7 @@ namespace Lfc.Misc
                         this.txtTipo.TabIndex = 1;
                         this.txtTipo.Table = null;
                         this.txtTipo.TextKey = "personas";
-                        this.txtTipo.TipWhenBlank = "";
+                        this.txtTipo.PlaceholderText = "";
                         this.txtTipo.ToolTipText = "";
                         // 
                         // label3
@@ -246,7 +246,7 @@ namespace Lfc.Misc
                         this.EntradaCtaCteFinal.TabIndex = 5;
                         this.EntradaCtaCteFinal.TabStop = false;
                         this.EntradaCtaCteFinal.Text = "0.00";
-                        this.EntradaCtaCteFinal.TipWhenBlank = "";
+                        this.EntradaCtaCteFinal.PlaceholderText = "";
                         this.EntradaCtaCteFinal.ToolTipText = "";
                         // 
                         // label4
@@ -282,7 +282,7 @@ namespace Lfc.Misc
                         this.EntradaCtaCte2.TabIndex = 3;
                         this.EntradaCtaCte2.TabStop = false;
                         this.EntradaCtaCte2.Text = "0.00";
-                        this.EntradaCtaCte2.TipWhenBlank = "";
+                        this.EntradaCtaCte2.PlaceholderText = "";
                         this.EntradaCtaCte2.ToolTipText = "";
                         this.EntradaCtaCte2.TextChanged += new System.EventHandler(this.EntradaCtaCte1CtaCte2_TextChanged);
                         // 
@@ -319,7 +319,7 @@ namespace Lfc.Misc
                         this.EntradaCtaCte1.TabIndex = 1;
                         this.EntradaCtaCte1.TabStop = false;
                         this.EntradaCtaCte1.Text = "0.00";
-                        this.EntradaCtaCte1.TipWhenBlank = "";
+                        this.EntradaCtaCte1.PlaceholderText = "";
                         this.EntradaCtaCte1.ToolTipText = "";
                         this.EntradaCtaCte1.TextChanged += new System.EventHandler(this.EntradaCtaCte1CtaCte2_TextChanged);
                         // 

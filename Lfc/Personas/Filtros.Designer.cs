@@ -115,7 +115,7 @@ namespace Lfc.Personas
                         this.EntradaTipo.Table = "personas_tipos";
                         this.EntradaTipo.Text = "0";
                         this.EntradaTipo.TextDetail = "";
-                        this.EntradaTipo.TipWhenBlank = "Todas";
+                        this.EntradaTipo.PlaceholderText = "Todas";
                         this.EntradaTipo.ToolTipText = "";
                         // 
                         // Label1
@@ -151,7 +151,7 @@ namespace Lfc.Personas
                         this.EntradaSituacion.Table = "situaciones";
                         this.EntradaSituacion.Text = "0";
                         this.EntradaSituacion.TextDetail = "";
-                        this.EntradaSituacion.TipWhenBlank = "Todas";
+                        this.EntradaSituacion.PlaceholderText = "Todas";
                         this.EntradaSituacion.ToolTipText = "";
                         // 
                         // Label2
@@ -187,7 +187,7 @@ namespace Lfc.Personas
                         this.EntradaGrupo.Table = "personas_grupos";
                         this.EntradaGrupo.Text = "0";
                         this.EntradaGrupo.TextDetail = "";
-                        this.EntradaGrupo.TipWhenBlank = "Todos";
+                        this.EntradaGrupo.PlaceholderText = "Todos";
                         this.EntradaGrupo.ToolTipText = "";
                         this.EntradaGrupo.TextChanged += new System.EventHandler(this.EntradaGrupo_TextChanged);
                         // 
@@ -224,7 +224,7 @@ namespace Lfc.Personas
                         this.EntradaLocalidad.Table = "ciudades";
                         this.EntradaLocalidad.Text = "0";
                         this.EntradaLocalidad.TextDetail = "";
-                        this.EntradaLocalidad.TipWhenBlank = "Todas";
+                        this.EntradaLocalidad.PlaceholderText = "Todas";
                         this.EntradaLocalidad.ToolTipText = "";
                         // 
                         // EntradaEstadoCredito
@@ -253,7 +253,7 @@ namespace Lfc.Personas
                         this.EntradaEstadoCredito.TabIndex = 13;
                         this.EntradaEstadoCredito.Table = null;
                         this.EntradaEstadoCredito.TextKey = "0";
-                        this.EntradaEstadoCredito.TipWhenBlank = "";
+                        this.EntradaEstadoCredito.PlaceholderText = "";
                         this.EntradaEstadoCredito.ToolTipText = "";
                         // 
                         // label21
@@ -341,7 +341,7 @@ namespace Lfc.Personas
                         this.EntradaFechaAUsar.TabIndex = 16;
                         this.EntradaFechaAUsar.Table = null;
                         this.EntradaFechaAUsar.TextKey = "fechaalta";
-                        this.EntradaFechaAUsar.TipWhenBlank = "";
+                        this.EntradaFechaAUsar.PlaceholderText = "";
                         this.EntradaFechaAUsar.ToolTipText = "";
                         // 
                         // label7
@@ -377,7 +377,7 @@ namespace Lfc.Personas
                         this.EntradaSubGrupo.Table = "personas_grupos";
                         this.EntradaSubGrupo.Text = "0";
                         this.EntradaSubGrupo.TextDetail = "";
-                        this.EntradaSubGrupo.TipWhenBlank = "Todos";
+                        this.EntradaSubGrupo.PlaceholderText = "Todos";
                         this.EntradaSubGrupo.ToolTipText = "";
                         // 
                         // label6
@@ -413,7 +413,7 @@ namespace Lfc.Personas
                         this.EntradaEtiquetas.TabIndex = 15;
                         this.EntradaEtiquetas.Table = null;
                         this.EntradaEtiquetas.TextKey = "*";
-                        this.EntradaEtiquetas.TipWhenBlank = "";
+                        this.EntradaEtiquetas.PlaceholderText = "";
                         this.EntradaEtiquetas.ToolTipText = "";
                         // 
                         // label5
@@ -450,7 +450,7 @@ namespace Lfc.Personas
                         this.EntradaEstado.TabIndex = 11;
                         this.EntradaEstado.Table = null;
                         this.EntradaEstado.TextKey = "1";
-                        this.EntradaEstado.TipWhenBlank = "";
+                        this.EntradaEstado.PlaceholderText = "";
                         this.EntradaEstado.ToolTipText = "";
                         // 
                         // Filtros

@@ -114,7 +114,7 @@ namespace Lfc.Sucursales
                         this.EntradaNombre.Size = new System.Drawing.Size(544, 24);
                         this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.TipWhenBlank = "";
+                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ToolTipText = "";
                         // 
                         // EntradaDireccion
@@ -139,7 +139,7 @@ namespace Lfc.Sucursales
                         this.EntradaDireccion.Size = new System.Drawing.Size(544, 24);
                         this.EntradaDireccion.Sufijo = "";
                         this.EntradaDireccion.TabIndex = 3;
-                        this.EntradaDireccion.TipWhenBlank = "";
+                        this.EntradaDireccion.PlaceholderText = "";
                         this.EntradaDireccion.ToolTipText = "";
                         // 
                         // label2
@@ -182,7 +182,7 @@ namespace Lfc.Sucursales
                         this.EntradaLocalidad.Table = "ciudades";
                         this.EntradaLocalidad.Text = "0";
                         this.EntradaLocalidad.TextDetail = "";
-                        this.EntradaLocalidad.TipWhenBlank = "";
+                        this.EntradaLocalidad.PlaceholderText = "";
                         this.EntradaLocalidad.ToolTipText = "";
                         // 
                         // Label9
@@ -217,7 +217,7 @@ namespace Lfc.Sucursales
                         this.EntradaSituacionOrigen.Table = "articulos_situaciones";
                         this.EntradaSituacionOrigen.Text = "0";
                         this.EntradaSituacionOrigen.TextDetail = "";
-                        this.EntradaSituacionOrigen.TipWhenBlank = "";
+                        this.EntradaSituacionOrigen.PlaceholderText = "";
                         this.EntradaSituacionOrigen.ToolTipText = "";
                         // 
                         // label4
@@ -253,7 +253,7 @@ namespace Lfc.Sucursales
                         this.EntradaCajaDiaria.Table = "cajas";
                         this.EntradaCajaDiaria.Text = "0";
                         this.EntradaCajaDiaria.TextDetail = "";
-                        this.EntradaCajaDiaria.TipWhenBlank = "";
+                        this.EntradaCajaDiaria.PlaceholderText = "";
                         this.EntradaCajaDiaria.ToolTipText = "";
                         // 
                         // label5
@@ -289,7 +289,7 @@ namespace Lfc.Sucursales
                         this.EntradaCajaCheques.Table = "cajas";
                         this.EntradaCajaCheques.Text = "0";
                         this.EntradaCajaCheques.TextDetail = "";
-                        this.EntradaCajaCheques.TipWhenBlank = "";
+                        this.EntradaCajaCheques.PlaceholderText = "";
                         this.EntradaCajaCheques.ToolTipText = "";
                         // 
                         // label6

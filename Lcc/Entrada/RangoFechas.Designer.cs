@@ -84,7 +84,7 @@ namespace Lcc.Entrada
                         this.EntradaTipoDeRango.TabIndex = 0;
                         this.EntradaTipoDeRango.Table = null;
                         this.EntradaTipoDeRango.TextKey = "semana";
-                        this.EntradaTipoDeRango.TipWhenBlank = "";
+                        this.EntradaTipoDeRango.PlaceholderText = "";
                         this.EntradaTipoDeRango.ToolTipText = "";
                         this.EntradaTipoDeRango.TextChanged += new System.EventHandler(this.EntradaTipoDeRango_TextChanged);
                         this.EntradaTipoDeRango.SizeChanged += new System.EventHandler(this.Combos_SizeChanged);
@@ -109,7 +109,7 @@ namespace Lcc.Entrada
                         this.EntradaDesde.Size = new System.Drawing.Size(108, 24);
                         this.EntradaDesde.Sufijo = "";
                         this.EntradaDesde.TabIndex = 1;
-                        this.EntradaDesde.TipWhenBlank = "";
+                        this.EntradaDesde.PlaceholderText = "";
                         this.EntradaDesde.ToolTipText = "";
                         this.EntradaDesde.TextChanged += new System.EventHandler(this.EntradaDesde_TextChanged);
                         // 
@@ -133,7 +133,7 @@ namespace Lcc.Entrada
                         this.EntradaHasta.Size = new System.Drawing.Size(108, 24);
                         this.EntradaHasta.Sufijo = "";
                         this.EntradaHasta.TabIndex = 3;
-                        this.EntradaHasta.TipWhenBlank = "";
+                        this.EntradaHasta.PlaceholderText = "";
                         this.EntradaHasta.ToolTipText = "";
                         this.EntradaHasta.TextChanged += new System.EventHandler(this.EntradaHasta_TextChanged);
                         // 
@@ -160,7 +160,7 @@ namespace Lcc.Entrada
                         this.EntradaRango.TabIndex = 1;
                         this.EntradaRango.Table = null;
                         this.EntradaRango.TextKey = "1";
-                        this.EntradaRango.TipWhenBlank = "";
+                        this.EntradaRango.PlaceholderText = "";
                         this.EntradaRango.ToolTipText = "";
                         this.EntradaRango.TextChanged += new System.EventHandler(this.EntradaRango_TextChanged);
                         this.EntradaRango.SizeChanged += new System.EventHandler(this.Combos_SizeChanged);

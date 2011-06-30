@@ -217,7 +217,7 @@ namespace Lfc
                         this.EntradaContador2.Sufijo = "";
                         this.EntradaContador2.TabIndex = 62;
                         this.EntradaContador2.TabStop = false;
-                        this.EntradaContador2.TipWhenBlank = "";
+                        this.EntradaContador2.PlaceholderText = "";
                         this.EntradaContador2.ToolTipText = "";
                         this.EntradaContador2.Visible = false;
                         // 
@@ -257,7 +257,7 @@ namespace Lfc
                         this.EntradaContador1.Sufijo = "";
                         this.EntradaContador1.TabIndex = 60;
                         this.EntradaContador1.TabStop = false;
-                        this.EntradaContador1.TipWhenBlank = "";
+                        this.EntradaContador1.PlaceholderText = "";
                         this.EntradaContador1.ToolTipText = "";
                         this.EntradaContador1.Visible = false;
                         // 
@@ -366,7 +366,7 @@ namespace Lfc
                         this.EntradaContador4.Sufijo = "";
                         this.EntradaContador4.TabIndex = 66;
                         this.EntradaContador4.TabStop = false;
-                        this.EntradaContador4.TipWhenBlank = "";
+                        this.EntradaContador4.PlaceholderText = "";
                         this.EntradaContador4.ToolTipText = "";
                         this.EntradaContador4.Visible = false;
                         // 
@@ -406,7 +406,7 @@ namespace Lfc
                         this.EntradaContador3.Sufijo = "";
                         this.EntradaContador3.TabIndex = 64;
                         this.EntradaContador3.TabStop = false;
-                        this.EntradaContador3.TipWhenBlank = "";
+                        this.EntradaContador3.PlaceholderText = "";
                         this.EntradaContador3.ToolTipText = "";
                         this.EntradaContador3.Visible = false;
                         // 

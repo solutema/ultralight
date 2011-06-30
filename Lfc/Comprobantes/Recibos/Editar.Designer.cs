@@ -133,7 +133,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaVendedor.Table = "personas";
                         this.EntradaVendedor.Text = "0";
                         this.EntradaVendedor.TextDetail = "";
-                        this.EntradaVendedor.TipWhenBlank = "";
+                        this.EntradaVendedor.PlaceholderText = "";
                         this.EntradaVendedor.ToolTipText = "";
                         // 
                         // Label2
@@ -165,7 +165,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaNumero.Size = new System.Drawing.Size(100, 24);
                         this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 3;
-                        this.EntradaNumero.TipWhenBlank = "";
+                        this.EntradaNumero.PlaceholderText = "";
                         this.EntradaNumero.ToolTipText = "";
                         // 
                         // frmFacturas
@@ -456,7 +456,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.Table = "personas";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
-                        this.EntradaCliente.TipWhenBlank = "";
+                        this.EntradaCliente.PlaceholderText = "";
                         this.EntradaCliente.ToolTipText = "";
                         // 
                         // EtiquetaTitulo
@@ -494,7 +494,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaConceptoTexto.Size = new System.Drawing.Size(344, 24);
                         this.EntradaConceptoTexto.Sufijo = "";
                         this.EntradaConceptoTexto.TabIndex = 9;
-                        this.EntradaConceptoTexto.TipWhenBlank = "";
+                        this.EntradaConceptoTexto.PlaceholderText = "";
                         this.EntradaConceptoTexto.ToolTipText = "";
                         // 
                         // label6
@@ -546,7 +546,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaPV.Size = new System.Drawing.Size(32, 24);
                         this.EntradaPV.Sufijo = "";
                         this.EntradaPV.TabIndex = 2;
-                        this.EntradaPV.TipWhenBlank = "";
+                        this.EntradaPV.PlaceholderText = "";
                         this.EntradaPV.ToolTipText = "";
                         // 
                         // label7
@@ -582,7 +582,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaConcepto.Table = "conceptos";
                         this.EntradaConcepto.Text = "0";
                         this.EntradaConcepto.TextDetail = "";
-                        this.EntradaConcepto.TipWhenBlank = "Sin especificar";
+                        this.EntradaConcepto.PlaceholderText = "Sin especificar";
                         this.EntradaConcepto.ToolTipText = "";
                         // 
                         // Editar

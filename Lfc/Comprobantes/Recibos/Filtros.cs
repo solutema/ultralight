@@ -134,7 +134,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.Table = "personas";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
-                        this.EntradaCliente.TipWhenBlank = "";
+                        this.EntradaCliente.PlaceholderText = "";
                         this.EntradaCliente.ToolTipText = "";
                         // 
                         // Label2
@@ -181,7 +181,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaVendedor.Table = "personas";
                         this.EntradaVendedor.Text = "0";
                         this.EntradaVendedor.TextDetail = "";
-                        this.EntradaVendedor.TipWhenBlank = "";
+                        this.EntradaVendedor.PlaceholderText = "";
                         this.EntradaVendedor.ToolTipText = "";
                         // 
                         // Label5
@@ -219,7 +219,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaSucursal.Table = "sucursales";
                         this.EntradaSucursal.Text = "0";
                         this.EntradaSucursal.TextDetail = "";
-                        this.EntradaSucursal.TipWhenBlank = "";
+                        this.EntradaSucursal.PlaceholderText = "";
                         this.EntradaSucursal.ToolTipText = "";
                         // 
                         // label7
@@ -254,7 +254,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaTipo.Table = null;
                         this.EntradaTipo.Text = "De cobro";
                         this.EntradaTipo.TextKey = "0";
-                        this.EntradaTipo.TipWhenBlank = "";
+                        this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ToolTipText = "";
                         // 
                         // label3

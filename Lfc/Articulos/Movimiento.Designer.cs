@@ -167,7 +167,7 @@ namespace Lfc.Articulos
                         this.EntradaMovimiento.Table = null;
                         this.EntradaMovimiento.Text = " ";
                         this.EntradaMovimiento.TextKey = "*";
-                        this.EntradaMovimiento.TipWhenBlank = "";
+                        this.EntradaMovimiento.PlaceholderText = "";
                         this.EntradaMovimiento.ToolTipText = "";
                         this.EntradaMovimiento.TextChanged += new System.EventHandler(this.EntradaMovimiento_TextChanged);
                         // 
@@ -194,7 +194,7 @@ namespace Lfc.Articulos
                         this.EntradaCantidad.Sufijo = "";
                         this.EntradaCantidad.TabIndex = 3;
                         this.EntradaCantidad.Text = "0.0000";
-                        this.EntradaCantidad.TipWhenBlank = "";
+                        this.EntradaCantidad.PlaceholderText = "";
                         this.EntradaCantidad.ToolTipText = "";
                         this.EntradaCantidad.TextChanged += new System.EventHandler(this.EntradaArticulo_TextChanged);
                         // 
@@ -222,7 +222,7 @@ namespace Lfc.Articulos
                         this.EntradaObs.Size = new System.Drawing.Size(496, 24);
                         this.EntradaObs.Sufijo = "";
                         this.EntradaObs.TabIndex = 21;
-                        this.EntradaObs.TipWhenBlank = "";
+                        this.EntradaObs.PlaceholderText = "";
                         this.EntradaObs.ToolTipText = "";
                         // 
                         // lblDesdeSituacion
@@ -266,7 +266,7 @@ namespace Lfc.Articulos
                         this.EntradaStockActual.Sufijo = "";
                         this.EntradaStockActual.TabIndex = 13;
                         this.EntradaStockActual.TabStop = false;
-                        this.EntradaStockActual.TipWhenBlank = "";
+                        this.EntradaStockActual.PlaceholderText = "";
                         this.EntradaStockActual.ToolTipText = "";
                         // 
                         // EntradaStockResult
@@ -320,7 +320,7 @@ namespace Lfc.Articulos
                         this.EntradaDesdeSituacion.Table = "articulos_situaciones";
                         this.EntradaDesdeSituacion.Text = "0";
                         this.EntradaDesdeSituacion.TextDetail = "";
-                        this.EntradaDesdeSituacion.TipWhenBlank = "";
+                        this.EntradaDesdeSituacion.PlaceholderText = "";
                         this.EntradaDesdeSituacion.ToolTipText = "";
                         this.EntradaDesdeSituacion.TextChanged += new System.EventHandler(this.EntradaDesdeHaciaSituacion_TextChanged);
                         // 
@@ -359,7 +359,7 @@ namespace Lfc.Articulos
                         this.EntradaHaciaSituacion.Table = "articulos_situaciones";
                         this.EntradaHaciaSituacion.Text = "0";
                         this.EntradaHaciaSituacion.TextDetail = "";
-                        this.EntradaHaciaSituacion.TipWhenBlank = "";
+                        this.EntradaHaciaSituacion.PlaceholderText = "";
                         this.EntradaHaciaSituacion.ToolTipText = "";
                         this.EntradaHaciaSituacion.TextChanged += new System.EventHandler(this.EntradaDesdeHaciaSituacion_TextChanged);
                         // 
@@ -395,7 +395,7 @@ namespace Lfc.Articulos
                         this.EntradaStockResult2.Sufijo = "";
                         this.EntradaStockResult2.TabIndex = 19;
                         this.EntradaStockResult2.TabStop = false;
-                        this.EntradaStockResult2.TipWhenBlank = "";
+                        this.EntradaStockResult2.PlaceholderText = "";
                         this.EntradaStockResult2.ToolTipText = "";
                         // 
                         // EntradaStockActual2
@@ -421,7 +421,7 @@ namespace Lfc.Articulos
                         this.EntradaStockActual2.Sufijo = "";
                         this.EntradaStockActual2.TabIndex = 17;
                         this.EntradaStockActual2.TabStop = false;
-                        this.EntradaStockActual2.TipWhenBlank = "";
+                        this.EntradaStockActual2.PlaceholderText = "";
                         this.EntradaStockActual2.ToolTipText = "";
                         // 
                         // lblStockFlecha

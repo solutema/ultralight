@@ -103,7 +103,7 @@ namespace Lfc.Ciudades
                         this.EntradaNombre.Size = new System.Drawing.Size(670, 24);
                         this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.TipWhenBlank = "";
+                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ToolTipText = "";
                         // 
                         // EntradaCp
@@ -126,7 +126,7 @@ namespace Lfc.Ciudades
                         this.EntradaCp.Size = new System.Drawing.Size(172, 24);
                         this.EntradaCp.Sufijo = "";
                         this.EntradaCp.TabIndex = 5;
-                        this.EntradaCp.TipWhenBlank = "";
+                        this.EntradaCp.PlaceholderText = "";
                         this.EntradaCp.ToolTipText = "";
                         // 
                         // EntradaParent
@@ -153,7 +153,7 @@ namespace Lfc.Ciudades
                         this.EntradaParent.Table = "ciudades";
                         this.EntradaParent.Text = "0";
                         this.EntradaParent.TextDetail = "";
-                        this.EntradaParent.TipWhenBlank = "Ninguna";
+                        this.EntradaParent.PlaceholderText = "Ninguna";
                         this.EntradaParent.ToolTipText = "";
                         // 
                         // EtiquetaParent
@@ -195,7 +195,7 @@ namespace Lfc.Ciudades
                         this.EntradaNivel.Table = null;
                         this.EntradaNivel.Text = "Provincia";
                         this.EntradaNivel.TextKey = "0";
-                        this.EntradaNivel.TipWhenBlank = "";
+                        this.EntradaNivel.PlaceholderText = "";
                         this.EntradaNivel.ToolTipText = "";
                         this.EntradaNivel.TextChanged += new System.EventHandler(this.EntradaNivel_TextChanged);
                         // 

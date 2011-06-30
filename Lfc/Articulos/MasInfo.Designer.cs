@@ -108,7 +108,7 @@ namespace Lfc.Articulos
                         this.EntradaFechaCreado.Size = new System.Drawing.Size(140, 24);
                         this.EntradaFechaCreado.Sufijo = "";
                         this.EntradaFechaCreado.TabIndex = 51;
-                        this.EntradaFechaCreado.TipWhenBlank = "";
+                        this.EntradaFechaCreado.PlaceholderText = "";
                         this.EntradaFechaCreado.ToolTipText = "";
                         // 
                         // EntradaFechaPrecio
@@ -133,7 +133,7 @@ namespace Lfc.Articulos
                         this.EntradaFechaPrecio.Size = new System.Drawing.Size(140, 24);
                         this.EntradaFechaPrecio.Sufijo = "";
                         this.EntradaFechaPrecio.TabIndex = 53;
-                        this.EntradaFechaPrecio.TipWhenBlank = "";
+                        this.EntradaFechaPrecio.PlaceholderText = "";
                         this.EntradaFechaPrecio.ToolTipText = "";
                         // 
                         // Label2
@@ -169,7 +169,7 @@ namespace Lfc.Articulos
                         this.EntradaCostoUltimaCompra.Sufijo = "";
                         this.EntradaCostoUltimaCompra.TabIndex = 55;
                         this.EntradaCostoUltimaCompra.Text = "0.00";
-                        this.EntradaCostoUltimaCompra.TipWhenBlank = "";
+                        this.EntradaCostoUltimaCompra.PlaceholderText = "";
                         this.EntradaCostoUltimaCompra.ToolTipText = "";
                         // 
                         // Label3
@@ -206,7 +206,7 @@ namespace Lfc.Articulos
                         this.EntradaCostoUltimas5Compras.Sufijo = "";
                         this.EntradaCostoUltimas5Compras.TabIndex = 57;
                         this.EntradaCostoUltimas5Compras.Text = "0.00";
-                        this.EntradaCostoUltimas5Compras.TipWhenBlank = "";
+                        this.EntradaCostoUltimas5Compras.PlaceholderText = "";
                         this.EntradaCostoUltimas5Compras.ToolTipText = "";
                         // 
                         // Label4

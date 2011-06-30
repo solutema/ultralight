@@ -93,7 +93,7 @@ namespace Lfc.Personas.Grupos
                         this.EntradaDescuento.Sufijo = "%";
                         this.EntradaDescuento.TabIndex = 5;
                         this.EntradaDescuento.Text = "0.0000";
-                        this.EntradaDescuento.TipWhenBlank = "";
+                        this.EntradaDescuento.PlaceholderText = "";
                         this.EntradaDescuento.ToolTipText = "";
                         // 
                         // label4
@@ -129,7 +129,7 @@ namespace Lfc.Personas.Grupos
                         this.EntradaNombre.Size = new System.Drawing.Size(432, 24);
                         this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 3;
-                        this.EntradaNombre.TipWhenBlank = "";
+                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ToolTipText = "";
                         // 
                         // Label1
@@ -200,7 +200,7 @@ namespace Lfc.Personas.Grupos
                         this.EntradaGrupo.Table = "personas_grupos";
                         this.EntradaGrupo.Text = "0";
                         this.EntradaGrupo.TextDetail = "";
-                        this.EntradaGrupo.TipWhenBlank = "Ninguno";
+                        this.EntradaGrupo.PlaceholderText = "Ninguno";
                         this.EntradaGrupo.ToolTipText = "";
                         // 
                         // Label16

@@ -41,7 +41,7 @@ namespace Lui.Forms
         {
                 protected internal bool m_AutoTab = true;
                 protected internal bool m_AutoNav = true;
-                private string m_TipWhenBlank = "";
+                private string m_PlaceholderText = "";
 
                 new public event KeyPressEventHandler KeyPress;
                 new public event System.Windows.Forms.KeyEventHandler KeyDown;
@@ -108,15 +108,15 @@ namespace Lui.Forms
                         }
                 }
 
-                public string TipWhenBlank
+                public string PlaceholderText
                 {
                         get
                         {
-                                return m_TipWhenBlank;
+                                return m_PlaceholderText;
                         }
                         set
                         {
-                                m_TipWhenBlank = value;
+                                m_PlaceholderText = value;
 
                                 if (ActiveControl != TextBox1) {
                                         IgnorarEventos++;
@@ -288,9 +288,9 @@ namespace Lui.Forms
 
                 private void SetTipIfBlank()
                 {
-                        if (TextBox1.Text == "" && this.TipWhenBlank != null && this.TipWhenBlank.Length > 0) {
+                        if (TextBox1.Text == "" && this.PlaceholderText != null && this.PlaceholderText.Length > 0) {
                                 TextBox1.ForeColor = System.Drawing.SystemColors.GrayText;
-                                TextBox1.Text = m_TipWhenBlank;
+                                TextBox1.Text = m_PlaceholderText;
                                 TextBox1.SelectionStart = 0;
                                 TextBox1.SelectionLength = 0;
                         } else {

@@ -42,7 +42,7 @@ namespace Lcc.Entrada
                 private bool m_AutoTab = true;
                 private bool m_AutoUpdate = true;
                 private bool m_Required = true;
-                private string m_TipWhenBlank = "";
+                private string m_PlaceholderText = "";
                 private string m_FreeTextCode = "";
                 private string m_LastText1;
                 private string m_TeclaDespuesDeEnter = "{tab}";
@@ -87,15 +87,15 @@ namespace Lcc.Entrada
                         }
                 }
 
-                public string TipWhenBlank
+                public string PlaceholderText
                 {
                         get
                         {
-                                return m_TipWhenBlank;
+                                return m_PlaceholderText;
                         }
                         set
                         {
-                                m_TipWhenBlank = value;
+                                m_PlaceholderText = value;
                         }
                 }
 
@@ -305,7 +305,7 @@ namespace Lcc.Entrada
                         {
                                 if (m_FreeTextCode.Length > 0 && this.TextBox1.Text == m_FreeTextCode)
                                         return EntradaFreeText.Text;
-                                else if (Label1.Text == "???")
+                                else if (Label1.Text == "???" || Label1.Text == this.PlaceholderText)
                                         return "";
                                 else
                                         return Label1.Text;
@@ -472,7 +472,7 @@ namespace Lcc.Entrada
                                 } else {
                                         m_ItemId = 0;
                                         m_LastText1 = "";
-                                        Label1.Text = this.TipWhenBlank;
+                                        Label1.Text = this.PlaceholderText;
                                         Label1.ForeColor = System.Drawing.SystemColors.GrayText;
                                 }
                         } else {

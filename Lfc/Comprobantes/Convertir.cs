@@ -136,7 +136,7 @@ namespace Lfc.Comprobantes
                         this.EntradaOrigen.Sufijo = "";
                         this.EntradaOrigen.TabIndex = 1;
                         this.EntradaOrigen.TabStop = false;
-                        this.EntradaOrigen.TipWhenBlank = "";
+                        this.EntradaOrigen.PlaceholderText = "";
                         this.EntradaOrigen.ToolTipText = "";
                         // 
                         // Label6
@@ -184,7 +184,7 @@ namespace Lfc.Comprobantes
                         this.EntradaDestinoTipo.TabIndex = 3;
                         this.EntradaDestinoTipo.Table = null;
                         this.EntradaDestinoTipo.TextKey = "F";
-                        this.EntradaDestinoTipo.TipWhenBlank = "";
+                        this.EntradaDestinoTipo.PlaceholderText = "";
                         this.EntradaDestinoTipo.ToolTipText = "";
                         this.EntradaDestinoTipo.TextChanged += new System.EventHandler(this.EntradaDestinoTipo_TextChanged);
                         // 

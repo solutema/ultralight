@@ -80,7 +80,7 @@ namespace Lfc
                         this.EntradaBuscar.Size = new System.Drawing.Size(212, 24);
                         this.EntradaBuscar.Sufijo = "";
                         this.EntradaBuscar.TabIndex = 1;
-                        this.EntradaBuscar.TipWhenBlank = "buscar";
+                        this.EntradaBuscar.PlaceholderText = "buscar";
                         this.EntradaBuscar.ToolTipText = "Escriba el texto o parte del texto a buscar y pulse <Intro>";
                         this.EntradaBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaBuscar_KeyDown);
                         // 

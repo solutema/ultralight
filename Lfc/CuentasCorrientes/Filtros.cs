@@ -130,7 +130,7 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaCliente.Table = "personas";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
-                        this.EntradaCliente.TipWhenBlank = "Todos";
+                        this.EntradaCliente.PlaceholderText = "Todos";
                         this.EntradaCliente.ToolTipText = "";
                         // 
                         // EntradaFechas
@@ -197,7 +197,7 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaLocalidad.Table = "ciudades";
                         this.EntradaLocalidad.Text = "0";
                         this.EntradaLocalidad.TextDetail = "";
-                        this.EntradaLocalidad.TipWhenBlank = "Todos";
+                        this.EntradaLocalidad.PlaceholderText = "Todos";
                         this.EntradaLocalidad.ToolTipText = "";
                         // 
                         // label4
@@ -233,7 +233,7 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaGrupo.Table = "personas_grupos";
                         this.EntradaGrupo.Text = "0";
                         this.EntradaGrupo.TextDetail = "";
-                        this.EntradaGrupo.TipWhenBlank = "Todos";
+                        this.EntradaGrupo.PlaceholderText = "Todos";
                         this.EntradaGrupo.ToolTipText = "";
                         // 
                         // label3

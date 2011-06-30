@@ -89,7 +89,7 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaProveedor.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaProveedor.Text = "0";
                         this.EntradaProveedor.TextDetail = "";
-                        this.EntradaProveedor.TipWhenBlank = "Sin especificar";
+                        this.EntradaProveedor.PlaceholderText = "Sin especificar";
                         this.EntradaProveedor.ToolTipText = "";
                         // 
                         // Label14
@@ -118,7 +118,7 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaUrl.SelectOnFocus = false;
                         this.EntradaUrl.Size = new System.Drawing.Size(444, 24);
                         this.EntradaUrl.TabIndex = 3;
-                        this.EntradaUrl.TipWhenBlank = "";
+                        this.EntradaUrl.PlaceholderText = "";
                         this.EntradaUrl.ToolTipText = "Dirección de la página web del producto.";
                         // 
                         // Label12
@@ -148,7 +148,7 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(444, 24);
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.TipWhenBlank = "";
+                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ToolTipText = "";
                         // 
                         // Label5
@@ -178,7 +178,7 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(444, 72);
                         this.EntradaObs.TabIndex = 7;
-                        this.EntradaObs.TipWhenBlank = "";
+                        this.EntradaObs.PlaceholderText = "";
                         this.EntradaObs.ToolTipText = "";
                         // 
                         // Label13

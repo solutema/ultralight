@@ -408,7 +408,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaServidor.Size = new System.Drawing.Size(208, 24);
                         this.EntradaServidor.Sufijo = "";
                         this.EntradaServidor.TabIndex = 60;
-                        this.EntradaServidor.TipWhenBlank = "";
+                        this.EntradaServidor.PlaceholderText = "";
                         this.EntradaServidor.ToolTipText = "";
                         // 
                         // label4

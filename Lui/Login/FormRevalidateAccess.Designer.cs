@@ -109,7 +109,7 @@ namespace Lui.Login
                         this.EntradaContrasena.Size = new System.Drawing.Size(180, 24);
                         this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 4;
-                        this.EntradaContrasena.TipWhenBlank = "";
+                        this.EntradaContrasena.PlaceholderText = "";
                         this.EntradaContrasena.ToolTipText = "";
                         // 
                         // PictureBox2
@@ -156,7 +156,7 @@ namespace Lui.Login
                         this.EntradaUsuario.Sufijo = "";
                         this.EntradaUsuario.TabIndex = 2;
                         this.EntradaUsuario.Text = "0";
-                        this.EntradaUsuario.TipWhenBlank = "";
+                        this.EntradaUsuario.PlaceholderText = "";
                         this.EntradaUsuario.ToolTipText = "";
                         // 
                         // label3

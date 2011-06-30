@@ -103,7 +103,7 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaBanco.Table = "bancos";
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
-                        this.EntradaBanco.TipWhenBlank = "";
+                        this.EntradaBanco.PlaceholderText = "";
                         this.EntradaBanco.ToolTipText = "";
                         // 
                         // EntradaDesde
@@ -126,7 +126,7 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaDesde.Size = new System.Drawing.Size(112, 24);
                         this.EntradaDesde.Sufijo = "";
                         this.EntradaDesde.TabIndex = 8;
-                        this.EntradaDesde.TipWhenBlank = "";
+                        this.EntradaDesde.PlaceholderText = "";
                         this.EntradaDesde.ToolTipText = "";
                         // 
                         // Label3
@@ -158,7 +158,7 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaHasta.Size = new System.Drawing.Size(112, 24);
                         this.EntradaHasta.Sufijo = "";
                         this.EntradaHasta.TabIndex = 10;
-                        this.EntradaHasta.TipWhenBlank = "";
+                        this.EntradaHasta.PlaceholderText = "";
                         this.EntradaHasta.ToolTipText = "";
                         // 
                         // label2
@@ -203,7 +203,7 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaCaja.Table = "cajas";
                         this.EntradaCaja.Text = "0";
                         this.EntradaCaja.TextDetail = "";
-                        this.EntradaCaja.TipWhenBlank = "Ninguna";
+                        this.EntradaCaja.PlaceholderText = "Ninguna";
                         this.EntradaCaja.ToolTipText = "";
                         // 
                         // EntradaEstado
@@ -227,7 +227,7 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaEstado.TabIndex = 16;
                         this.EntradaEstado.Table = null;
                         this.EntradaEstado.TextKey = "1";
-                        this.EntradaEstado.TipWhenBlank = "";
+                        this.EntradaEstado.PlaceholderText = "";
                         this.EntradaEstado.ToolTipText = "Estado para esta chequera.";
                         // 
                         // Label7
@@ -270,7 +270,7 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaTitular.Size = new System.Drawing.Size(539, 24);
                         this.EntradaTitular.Sufijo = "";
                         this.EntradaTitular.TabIndex = 1;
-                        this.EntradaTitular.TipWhenBlank = "";
+                        this.EntradaTitular.PlaceholderText = "";
                         this.EntradaTitular.ToolTipText = "Estado para esta chequera.";
                         // 
                         // label4
@@ -315,7 +315,7 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaSucursal.Table = "sucursales";
                         this.EntradaSucursal.Text = "0";
                         this.EntradaSucursal.TextDetail = "";
-                        this.EntradaSucursal.TipWhenBlank = "Todas";
+                        this.EntradaSucursal.PlaceholderText = "Todas";
                         this.EntradaSucursal.ToolTipText = "";
                         // 
                         // label6

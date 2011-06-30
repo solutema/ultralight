@@ -119,7 +119,7 @@ namespace Lfc.Pvs
                         this.EntradaTipo.TabIndex = 9;
                         this.EntradaTipo.Table = null;
                         this.EntradaTipo.TextKey = "1";
-                        this.EntradaTipo.TipWhenBlank = "";
+                        this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
                         // 
@@ -161,7 +161,7 @@ namespace Lfc.Pvs
                         this.EntradaEstacion.Size = new System.Drawing.Size(336, 24);
                         this.EntradaEstacion.Sufijo = "";
                         this.EntradaEstacion.TabIndex = 11;
-                        this.EntradaEstacion.TipWhenBlank = "";
+                        this.EntradaEstacion.PlaceholderText = "";
                         this.EntradaEstacion.ToolTipText = "";
                         // 
                         // EntradaCarga
@@ -184,7 +184,7 @@ namespace Lfc.Pvs
                         this.EntradaCarga.TabIndex = 16;
                         this.EntradaCarga.Table = null;
                         this.EntradaCarga.TextKey = "0";
-                        this.EntradaCarga.TipWhenBlank = "";
+                        this.EntradaCarga.PlaceholderText = "";
                         this.EntradaCarga.ToolTipText = "";
                         // 
                         // label2
@@ -238,7 +238,7 @@ namespace Lfc.Pvs
                         this.EntradaSucursal.Table = "sucursales";
                         this.EntradaSucursal.Text = "0";
                         this.EntradaSucursal.TextDetail = "";
-                        this.EntradaSucursal.TipWhenBlank = "Todas";
+                        this.EntradaSucursal.PlaceholderText = "Todas";
                         this.EntradaSucursal.ToolTipText = "Sucursal";
                         // 
                         // label4
@@ -300,7 +300,7 @@ namespace Lfc.Pvs
                         this.EntradaModelo.Table = null;
                         this.EntradaModelo.Text = "Epson";
                         this.EntradaModelo.TextKey = "300";
-                        this.EntradaModelo.TipWhenBlank = "";
+                        this.EntradaModelo.PlaceholderText = "";
                         this.EntradaModelo.ToolTipText = "";
                         // 
                         // EntradaPuerto
@@ -325,7 +325,7 @@ namespace Lfc.Pvs
                         this.EntradaPuerto.Table = null;
                         this.EntradaPuerto.Text = "COM1";
                         this.EntradaPuerto.TextKey = "1";
-                        this.EntradaPuerto.TipWhenBlank = "";
+                        this.EntradaPuerto.PlaceholderText = "";
                         this.EntradaPuerto.ToolTipText = "";
                         // 
                         // EntradaBps
@@ -350,7 +350,7 @@ namespace Lfc.Pvs
                         this.EntradaBps.Table = null;
                         this.EntradaBps.Text = "9600 bps";
                         this.EntradaBps.TextKey = "9600";
-                        this.EntradaBps.TipWhenBlank = "";
+                        this.EntradaBps.PlaceholderText = "";
                         this.EntradaBps.ToolTipText = "";
                         // 
                         // EntradaTipoFac
@@ -377,7 +377,7 @@ namespace Lfc.Pvs
                         this.EntradaTipoFac.Table = null;
                         this.EntradaTipoFac.Text = "Facturas, Notas de Crédito y Débito";
                         this.EntradaTipoFac.TextKey = "F,NC,ND";
-                        this.EntradaTipoFac.TipWhenBlank = "";
+                        this.EntradaTipoFac.PlaceholderText = "";
                         this.EntradaTipoFac.ToolTipText = "";
                         // 
                         // label8
@@ -410,7 +410,7 @@ namespace Lfc.Pvs
                         this.EntradaDeTalonario.Table = null;
                         this.EntradaDeTalonario.Text = "No";
                         this.EntradaDeTalonario.TextKey = "0";
-                        this.EntradaDeTalonario.TipWhenBlank = "";
+                        this.EntradaDeTalonario.PlaceholderText = "";
                         this.EntradaDeTalonario.ToolTipText = "";
                         // 
                         // label9
@@ -459,7 +459,7 @@ namespace Lfc.Pvs
                         this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 1;
                         this.EntradaNumero.Text = "0";
-                        this.EntradaNumero.TipWhenBlank = "";
+                        this.EntradaNumero.PlaceholderText = "";
                         this.EntradaNumero.ToolTipText = "";
                         // 
                         // Label3
@@ -495,7 +495,7 @@ namespace Lfc.Pvs
                         this.EntradaImpresora.Table = "impresoras";
                         this.EntradaImpresora.Text = "0";
                         this.EntradaImpresora.TextDetail = "";
-                        this.EntradaImpresora.TipWhenBlank = "Ninguna";
+                        this.EntradaImpresora.PlaceholderText = "Ninguna";
                         this.EntradaImpresora.ToolTipText = "Impresora";
                         // 
                         // label10

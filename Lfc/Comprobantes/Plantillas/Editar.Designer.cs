@@ -209,7 +209,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenes.TabIndex = 8;
                         this.EntradaMargenes.Table = null;
                         this.EntradaMargenes.TextKey = "1";
-                        this.EntradaMargenes.TipWhenBlank = "";
+                        this.EntradaMargenes.PlaceholderText = "";
                         this.EntradaMargenes.ToolTipText = "";
                         this.EntradaMargenes.TextChanged += new System.EventHandler(this.EntradaMargenes_TextChanged);
                         // 
@@ -234,7 +234,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenAbajo.Sufijo = "aba.";
                         this.EntradaMargenAbajo.TabIndex = 11;
                         this.EntradaMargenAbajo.Text = "0";
-                        this.EntradaMargenAbajo.TipWhenBlank = "auto";
+                        this.EntradaMargenAbajo.PlaceholderText = "auto";
                         this.EntradaMargenAbajo.ToolTipText = "";
                         // 
                         // EntradaMargenArriba
@@ -258,7 +258,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenArriba.Sufijo = "arr.";
                         this.EntradaMargenArriba.TabIndex = 10;
                         this.EntradaMargenArriba.Text = "0";
-                        this.EntradaMargenArriba.TipWhenBlank = "auto";
+                        this.EntradaMargenArriba.PlaceholderText = "auto";
                         this.EntradaMargenArriba.ToolTipText = "";
                         // 
                         // EntradaMargenDerecha
@@ -282,7 +282,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenDerecha.Sufijo = "der.";
                         this.EntradaMargenDerecha.TabIndex = 12;
                         this.EntradaMargenDerecha.Text = "0";
-                        this.EntradaMargenDerecha.TipWhenBlank = "auto";
+                        this.EntradaMargenDerecha.PlaceholderText = "auto";
                         this.EntradaMargenDerecha.ToolTipText = "";
                         // 
                         // EntradaMargenIzquierda
@@ -306,7 +306,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenIzquierda.Sufijo = "izq.";
                         this.EntradaMargenIzquierda.TabIndex = 9;
                         this.EntradaMargenIzquierda.Text = "0";
-                        this.EntradaMargenIzquierda.TipWhenBlank = "auto";
+                        this.EntradaMargenIzquierda.PlaceholderText = "auto";
                         this.EntradaMargenIzquierda.ToolTipText = "";
                         // 
                         // label3
@@ -340,7 +340,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaLandscape.TabIndex = 6;
                         this.EntradaLandscape.Table = null;
                         this.EntradaLandscape.TextKey = "0";
-                        this.EntradaLandscape.TipWhenBlank = "";
+                        this.EntradaLandscape.PlaceholderText = "";
                         this.EntradaLandscape.ToolTipText = "";
                         this.EntradaLandscape.TextChanged += new System.EventHandler(this.EntradaPapelTamano_TextChanged);
                         // 
@@ -401,7 +401,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuenteTamano.Sufijo = "ptos.";
                         this.EntradaFuenteTamano.TabIndex = 17;
                         this.EntradaFuenteTamano.Text = "10";
-                        this.EntradaFuenteTamano.TipWhenBlank = "";
+                        this.EntradaFuenteTamano.PlaceholderText = "";
                         this.EntradaFuenteTamano.ToolTipText = "";
                         this.EntradaFuenteTamano.TextChanged += new System.EventHandler(this.EntradaFuenteFuenteTamano_TextChanged);
                         // 
@@ -430,7 +430,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuente.TabIndex = 16;
                         this.EntradaFuente.Table = null;
                         this.EntradaFuente.TextKey = "*";
-                        this.EntradaFuente.TipWhenBlank = "";
+                        this.EntradaFuente.PlaceholderText = "";
                         this.EntradaFuente.ToolTipText = "";
                         this.EntradaFuente.TextChanged += new System.EventHandler(this.EntradaFuenteFuenteTamano_TextChanged);
                         // 
@@ -477,7 +477,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaPapelTamano.TabIndex = 5;
                         this.EntradaPapelTamano.Table = null;
                         this.EntradaPapelTamano.TextKey = "a4";
-                        this.EntradaPapelTamano.TipWhenBlank = "";
+                        this.EntradaPapelTamano.PlaceholderText = "";
                         this.EntradaPapelTamano.ToolTipText = "";
                         this.EntradaPapelTamano.TextChanged += new System.EventHandler(this.EntradaPapelTamano_TextChanged);
                         // 
@@ -511,7 +511,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 3;
                         this.EntradaNombre.Text = "Factura A";
-                        this.EntradaNombre.TipWhenBlank = "";
+                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ToolTipText = "";
                         // 
                         // label7
@@ -544,7 +544,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaCodigo.Sufijo = "";
                         this.EntradaCodigo.TabIndex = 1;
                         this.EntradaCodigo.Text = "A";
-                        this.EntradaCodigo.TipWhenBlank = "";
+                        this.EntradaCodigo.PlaceholderText = "";
                         this.EntradaCodigo.ToolTipText = "";
                         // 
                         // label6
@@ -579,7 +579,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMembrete.TabIndex = 14;
                         this.EntradaMembrete.Table = null;
                         this.EntradaMembrete.TextKey = "0";
-                        this.EntradaMembrete.TipWhenBlank = "";
+                        this.EntradaMembrete.PlaceholderText = "";
                         this.EntradaMembrete.ToolTipText = "";
                         // 
                         // EntradaCopias
@@ -603,7 +603,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaCopias.Sufijo = "";
                         this.EntradaCopias.TabIndex = 19;
                         this.EntradaCopias.Text = "1";
-                        this.EntradaCopias.TipWhenBlank = "";
+                        this.EntradaCopias.PlaceholderText = "";
                         this.EntradaCopias.ToolTipText = "";
                         // 
                         // label1

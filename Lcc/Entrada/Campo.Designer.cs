@@ -95,7 +95,7 @@ namespace Lcc.Entrada
                         this.FieldData.Sufijo = "";
                         this.FieldData.TabIndex = 0;
                         this.FieldData.Text = "0";
-                        this.FieldData.TipWhenBlank = "";
+                        this.FieldData.PlaceholderText = "";
                         this.FieldData.ToolTipText = "";
                         // 
                         // Campo

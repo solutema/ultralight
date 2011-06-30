@@ -125,7 +125,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaServidor.Size = new System.Drawing.Size(196, 25);
                         this.EntradaServidor.Sufijo = "";
                         this.EntradaServidor.TabIndex = 4;
-                        this.EntradaServidor.TipWhenBlank = "";
+                        this.EntradaServidor.PlaceholderText = "";
                         this.EntradaServidor.ToolTipText = "";
                         this.EntradaServidor.Leave += new System.EventHandler(this.EntradaServidor_Leave);
                         // 
@@ -222,7 +222,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaSucursal.Sufijo = "";
                         this.EntradaSucursal.TabIndex = 11;
                         this.EntradaSucursal.Text = "1";
-                        this.EntradaSucursal.TipWhenBlank = "";
+                        this.EntradaSucursal.PlaceholderText = "";
                         this.EntradaSucursal.ToolTipText = "";
                         // 
                         // label5
@@ -255,7 +255,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaSlowLink.TabIndex = 9;
                         this.EntradaSlowLink.Table = null;
                         this.EntradaSlowLink.TextKey = "0";
-                        this.EntradaSlowLink.TipWhenBlank = "";
+                        this.EntradaSlowLink.PlaceholderText = "";
                         this.EntradaSlowLink.ToolTipText = "";
                         // 
                         // label4
@@ -287,7 +287,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaBD.Size = new System.Drawing.Size(172, 24);
                         this.EntradaBD.Sufijo = "";
                         this.EntradaBD.TabIndex = 3;
-                        this.EntradaBD.TipWhenBlank = "";
+                        this.EntradaBD.PlaceholderText = "";
                         this.EntradaBD.ToolTipText = "";
                         // 
                         // Label2
@@ -321,7 +321,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaConexion.TabIndex = 1;
                         this.EntradaConexion.Table = null;
                         this.EntradaConexion.TextKey = "mysql";
-                        this.EntradaConexion.TipWhenBlank = "";
+                        this.EntradaConexion.PlaceholderText = "";
                         this.EntradaConexion.ToolTipText = "";
                         this.EntradaConexion.TextChanged += new System.EventHandler(this.EntradaConexion_TextChanged);
                         // 
@@ -354,7 +354,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaContrasena.Size = new System.Drawing.Size(124, 24);
                         this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 7;
-                        this.EntradaContrasena.TipWhenBlank = "";
+                        this.EntradaContrasena.PlaceholderText = "";
                         this.EntradaContrasena.ToolTipText = "";
                         // 
                         // EntradaUsuario
@@ -377,7 +377,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaUsuario.Size = new System.Drawing.Size(124, 25);
                         this.EntradaUsuario.Sufijo = "";
                         this.EntradaUsuario.TabIndex = 5;
-                        this.EntradaUsuario.TipWhenBlank = "";
+                        this.EntradaUsuario.PlaceholderText = "";
                         this.EntradaUsuario.ToolTipText = "";
                         // 
                         // Label28

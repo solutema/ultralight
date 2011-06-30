@@ -119,7 +119,7 @@ namespace Lfc.Tareas
                         this.EntradaTecnico.Table = "personas";
                         this.EntradaTecnico.Text = "0";
                         this.EntradaTecnico.TextDetail = "";
-                        this.EntradaTecnico.TipWhenBlank = "";
+                        this.EntradaTecnico.PlaceholderText = "";
                         this.EntradaTecnico.ToolTipText = "";
                         // 
                         // EntradaDescripcion
@@ -144,7 +144,7 @@ namespace Lfc.Tareas
                         this.EntradaDescripcion.Size = new System.Drawing.Size(516, 124);
                         this.EntradaDescripcion.Sufijo = "";
                         this.EntradaDescripcion.TabIndex = 3;
-                        this.EntradaDescripcion.TipWhenBlank = "";
+                        this.EntradaDescripcion.PlaceholderText = "";
                         this.EntradaDescripcion.ToolTipText = "";
                         // 
                         // Label2
@@ -202,7 +202,7 @@ namespace Lfc.Tareas
                         this.EntradaCondicion.TabIndex = 7;
                         this.EntradaCondicion.Table = null;
                         this.EntradaCondicion.TextKey = "0";
-                        this.EntradaCondicion.TipWhenBlank = "";
+                        this.EntradaCondicion.PlaceholderText = "";
                         this.EntradaCondicion.ToolTipText = "";
                         // 
                         // Label3
@@ -247,7 +247,7 @@ namespace Lfc.Tareas
                         this.EntradaTicket.Table = "tickets";
                         this.EntradaTicket.Text = "0";
                         this.EntradaTicket.TextDetail = "";
-                        this.EntradaTicket.TipWhenBlank = "";
+                        this.EntradaTicket.PlaceholderText = "";
                         this.EntradaTicket.ToolTipText = "";
                         // 
                         // Label5

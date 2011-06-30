@@ -84,7 +84,7 @@ namespace Lfc.Comprobantes
                     this.EntradaAgrupar.TabIndex = 1;
                     this.EntradaAgrupar.Table = null;
                     this.EntradaAgrupar.TextKey = "*";
-                    this.EntradaAgrupar.TipWhenBlank = "";
+                    this.EntradaAgrupar.PlaceholderText = "";
                     this.EntradaAgrupar.ToolTipText = "";
                     this.EntradaAgrupar.TextChanged += new System.EventHandler(this.EntradaAgrupar_TextChanged);
                     // 

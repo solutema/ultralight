@@ -137,7 +137,7 @@ namespace Lcc.Edicion
                         this.EntradaComentario.Size = new System.Drawing.Size(464, 24);
                         this.EntradaComentario.Sufijo = "";
                         this.EntradaComentario.TabIndex = 0;
-                        this.EntradaComentario.TipWhenBlank = null;
+                        this.EntradaComentario.PlaceholderText = null;
                         this.EntradaComentario.ToolTipText = null;
                         this.EntradaComentario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaComentario_KeyDown);
                         this.EntradaComentario.TextChanged += new System.EventHandler(this.EntradaComentario_TextChanged);

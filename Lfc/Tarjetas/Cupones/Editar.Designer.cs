@@ -86,7 +86,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaNumero.Size = new System.Drawing.Size(112, 24);
                         this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 1;
-                        this.EntradaNumero.TipWhenBlank = "";
+                        this.EntradaNumero.PlaceholderText = "";
                         this.EntradaNumero.ToolTipText = "";
                         // 
                         // Label3
@@ -132,7 +132,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaTarjeta.Table = "tarjetas";
                         this.EntradaTarjeta.Text = "0";
                         this.EntradaTarjeta.TextDetail = "";
-                        this.EntradaTarjeta.TipWhenBlank = "Todas";
+                        this.EntradaTarjeta.PlaceholderText = "Todas";
                         this.EntradaTarjeta.ToolTipText = "Sucursal";
                         // 
                         // label10
@@ -169,7 +169,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaPlan.Table = "tarjetas_planes";
                         this.EntradaPlan.Text = "0";
                         this.EntradaPlan.TextDetail = "";
-                        this.EntradaPlan.TipWhenBlank = "Ninguna";
+                        this.EntradaPlan.PlaceholderText = "Ninguna";
                         this.EntradaPlan.ToolTipText = "Impresora";
                         // 
                         // label1
@@ -202,7 +202,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFechaPresentacion.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaPresentacion.Sufijo = "";
                         this.EntradaFechaPresentacion.TabIndex = 7;
-                        this.EntradaFechaPresentacion.TipWhenBlank = "";
+                        this.EntradaFechaPresentacion.PlaceholderText = "";
                         this.EntradaFechaPresentacion.ToolTipText = "";
                         // 
                         // label2
@@ -235,7 +235,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFechaAcreditacion.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaAcreditacion.Sufijo = "";
                         this.EntradaFechaAcreditacion.TabIndex = 9;
-                        this.EntradaFechaAcreditacion.TipWhenBlank = "";
+                        this.EntradaFechaAcreditacion.PlaceholderText = "";
                         this.EntradaFechaAcreditacion.ToolTipText = "";
                         // 
                         // Editar

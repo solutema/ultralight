@@ -269,7 +269,7 @@ namespace Lazaro.Reportes
                         this.EntradaFacturacion.TabIndex = 29;
                         this.EntradaFacturacion.TabStop = false;
                         this.EntradaFacturacion.Text = "0.00";
-                        this.EntradaFacturacion.TipWhenBlank = "";
+                        this.EntradaFacturacion.PlaceholderText = "";
                         this.EntradaFacturacion.ToolTipText = "";
                         this.EntradaFacturacion.GotFocus += new System.EventHandler(this.EntradaFacturacion_GotFocus);
                         // 
@@ -297,7 +297,7 @@ namespace Lazaro.Reportes
                         this.txtCosto.TabIndex = 31;
                         this.txtCosto.TabStop = false;
                         this.txtCosto.Text = "0.00";
-                        this.txtCosto.TipWhenBlank = "";
+                        this.txtCosto.PlaceholderText = "";
                         this.txtCosto.ToolTipText = "";
                         // 
                         // txtGastosFijos
@@ -324,7 +324,7 @@ namespace Lazaro.Reportes
                         this.txtGastosFijos.TabIndex = 17;
                         this.txtGastosFijos.TabStop = false;
                         this.txtGastosFijos.Text = "0.00";
-                        this.txtGastosFijos.TipWhenBlank = "";
+                        this.txtGastosFijos.PlaceholderText = "";
                         this.txtGastosFijos.ToolTipText = "";
                         // 
                         // txtGastosVariables
@@ -351,7 +351,7 @@ namespace Lazaro.Reportes
                         this.txtGastosVariables.TabIndex = 20;
                         this.txtGastosVariables.TabStop = false;
                         this.txtGastosVariables.Text = "0.00";
-                        this.txtGastosVariables.TipWhenBlank = "";
+                        this.txtGastosVariables.PlaceholderText = "";
                         this.txtGastosVariables.ToolTipText = "";
                         // 
                         // txtOtrosEgresos
@@ -378,7 +378,7 @@ namespace Lazaro.Reportes
                         this.txtOtrosEgresos.TabIndex = 23;
                         this.txtOtrosEgresos.TabStop = false;
                         this.txtOtrosEgresos.Text = "0.00";
-                        this.txtOtrosEgresos.TipWhenBlank = "";
+                        this.txtOtrosEgresos.PlaceholderText = "";
                         this.txtOtrosEgresos.ToolTipText = "";
                         // 
                         // BotonGastosFijos
@@ -530,7 +530,7 @@ namespace Lazaro.Reportes
                         this.txtCobros.TabIndex = 5;
                         this.txtCobros.TabStop = false;
                         this.txtCobros.Text = "0.00";
-                        this.txtCobros.TipWhenBlank = "";
+                        this.txtCobros.PlaceholderText = "";
                         this.txtCobros.ToolTipText = "";
                         // 
                         // Label10
@@ -587,7 +587,7 @@ namespace Lazaro.Reportes
                         this.txtDiferenciaNeta.TabIndex = 26;
                         this.txtDiferenciaNeta.TabStop = false;
                         this.txtDiferenciaNeta.Text = "0.00";
-                        this.txtDiferenciaNeta.TipWhenBlank = "";
+                        this.txtDiferenciaNeta.PlaceholderText = "";
                         this.txtDiferenciaNeta.ToolTipText = "";
                         // 
                         // Label9
@@ -623,7 +623,7 @@ namespace Lazaro.Reportes
                         this.txtDiferenciaBruta.TabIndex = 33;
                         this.txtDiferenciaBruta.TabStop = false;
                         this.txtDiferenciaBruta.Text = "0.00";
-                        this.txtDiferenciaBruta.TipWhenBlank = "";
+                        this.txtDiferenciaBruta.PlaceholderText = "";
                         this.txtDiferenciaBruta.ToolTipText = "";
                         // 
                         // Label11
@@ -710,7 +710,7 @@ namespace Lazaro.Reportes
                         this.txtFecha1.Size = new System.Drawing.Size(92, 24);
                         this.txtFecha1.Sufijo = "";
                         this.txtFecha1.TabIndex = 1;
-                        this.txtFecha1.TipWhenBlank = "";
+                        this.txtFecha1.PlaceholderText = "";
                         this.txtFecha1.ToolTipText = "";
                         this.txtFecha1.LostFocus += new System.EventHandler(this.txtFecha12_LostFocus);
                         // 
@@ -736,7 +736,7 @@ namespace Lazaro.Reportes
                         this.txtFecha2.Size = new System.Drawing.Size(92, 24);
                         this.txtFecha2.Sufijo = "";
                         this.txtFecha2.TabIndex = 3;
-                        this.txtFecha2.TipWhenBlank = "";
+                        this.txtFecha2.PlaceholderText = "";
                         this.txtFecha2.ToolTipText = "";
                         this.txtFecha2.LostFocus += new System.EventHandler(this.txtFecha12_LostFocus);
                         // 
@@ -836,7 +836,7 @@ namespace Lazaro.Reportes
                         this.txtCompraMateriales.TabIndex = 11;
                         this.txtCompraMateriales.TabStop = false;
                         this.txtCompraMateriales.Text = "0.00";
-                        this.txtCompraMateriales.TipWhenBlank = "";
+                        this.txtCompraMateriales.PlaceholderText = "";
                         this.txtCompraMateriales.ToolTipText = "";
                         // 
                         // label25
@@ -892,7 +892,7 @@ namespace Lazaro.Reportes
                         this.txtCostoCapital.TabIndex = 14;
                         this.txtCostoCapital.TabStop = false;
                         this.txtCostoCapital.Text = "0.00";
-                        this.txtCostoCapital.TipWhenBlank = "";
+                        this.txtCostoCapital.PlaceholderText = "";
                         this.txtCostoCapital.ToolTipText = "";
                         // 
                         // label26
@@ -977,7 +977,7 @@ namespace Lazaro.Reportes
                         this.EntradaIngresosOtros.TabIndex = 8;
                         this.EntradaIngresosOtros.TabStop = false;
                         this.EntradaIngresosOtros.Text = "0.00";
-                        this.EntradaIngresosOtros.TipWhenBlank = "";
+                        this.EntradaIngresosOtros.PlaceholderText = "";
                         this.EntradaIngresosOtros.ToolTipText = "";
                         // 
                         // label24
@@ -1049,7 +1049,7 @@ namespace Lazaro.Reportes
                         this.EntradaGestionCobro.TabIndex = 72;
                         this.EntradaGestionCobro.TabStop = false;
                         this.EntradaGestionCobro.Text = "0.00";
-                        this.EntradaGestionCobro.TipWhenBlank = "";
+                        this.EntradaGestionCobro.PlaceholderText = "";
                         this.EntradaGestionCobro.ToolTipText = "";
                         // 
                         // BotonGestionCobro

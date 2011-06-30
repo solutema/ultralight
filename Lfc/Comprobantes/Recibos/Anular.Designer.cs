@@ -111,7 +111,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaPV.Sufijo = "";
                         this.EntradaPV.TabIndex = 3;
                         this.EntradaPV.Text = "1";
-                        this.EntradaPV.TipWhenBlank = "";
+                        this.EntradaPV.PlaceholderText = "";
                         this.EntradaPV.ToolTipText = "";
                         this.EntradaPV.TextChanged += new System.EventHandler(this.EntradaNumeroTipoPV);
                         // 
@@ -136,7 +136,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 5;
                         this.EntradaNumero.Text = "0";
-                        this.EntradaNumero.TipWhenBlank = "";
+                        this.EntradaNumero.PlaceholderText = "";
                         this.EntradaNumero.ToolTipText = "";
                         this.EntradaNumero.TextChanged += new System.EventHandler(this.EntradaNumeroTipoPV);
                         // 
@@ -171,7 +171,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaTipo.TabIndex = 1;
                         this.EntradaTipo.Table = null;
                         this.EntradaTipo.TextKey = "RC";
-                        this.EntradaTipo.TipWhenBlank = "";
+                        this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaNumeroTipoPV);
                         // 
@@ -216,7 +216,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.Sufijo = "";
                         this.EntradaCliente.TabIndex = 11;
                         this.EntradaCliente.TabStop = false;
-                        this.EntradaCliente.TipWhenBlank = "";
+                        this.EntradaCliente.PlaceholderText = "";
                         this.EntradaCliente.ToolTipText = "";
                         // 
                         // Label4
@@ -250,7 +250,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaImporte.TabIndex = 9;
                         this.EntradaImporte.TabStop = false;
                         this.EntradaImporte.Text = "0.00";
-                        this.EntradaImporte.TipWhenBlank = "";
+                        this.EntradaImporte.PlaceholderText = "";
                         this.EntradaImporte.ToolTipText = "";
                         // 
                         // Label5
@@ -283,7 +283,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaFecha.Sufijo = "";
                         this.EntradaFecha.TabIndex = 7;
                         this.EntradaFecha.TabStop = false;
-                        this.EntradaFecha.TipWhenBlank = "";
+                        this.EntradaFecha.PlaceholderText = "";
                         this.EntradaFecha.ToolTipText = "";
                         // 
                         // Label3

@@ -230,7 +230,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaSituacion.Table = "situaciones";
                         this.EntradaEmpresaSituacion.Text = "0";
                         this.EntradaEmpresaSituacion.TextDetail = "";
-                        this.EntradaEmpresaSituacion.TipWhenBlank = "";
+                        this.EntradaEmpresaSituacion.PlaceholderText = "";
                         this.EntradaEmpresaSituacion.ToolTipText = "";
                         // 
                         // Label19
@@ -263,7 +263,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaCuit.Size = new System.Drawing.Size(112, 24);
                         this.EntradaEmpresaCuit.Sufijo = "";
                         this.EntradaEmpresaCuit.TabIndex = 4;
-                        this.EntradaEmpresaCuit.TipWhenBlank = "";
+                        this.EntradaEmpresaCuit.PlaceholderText = "";
                         this.EntradaEmpresaCuit.ToolTipText = "";
                         // 
                         // Label18
@@ -296,7 +296,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaNombre.Size = new System.Drawing.Size(388, 24);
                         this.EntradaEmpresaNombre.Sufijo = "";
                         this.EntradaEmpresaNombre.TabIndex = 1;
-                        this.EntradaEmpresaNombre.TipWhenBlank = "";
+                        this.EntradaEmpresaNombre.PlaceholderText = "";
                         this.EntradaEmpresaNombre.ToolTipText = "";
                         // 
                         // Label17
@@ -363,7 +363,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaRazonSocial.Size = new System.Drawing.Size(388, 24);
                         this.EntradaEmpresaRazonSocial.Sufijo = "";
                         this.EntradaEmpresaRazonSocial.TabIndex = 2;
-                        this.EntradaEmpresaRazonSocial.TipWhenBlank = "";
+                        this.EntradaEmpresaRazonSocial.PlaceholderText = "";
                         this.EntradaEmpresaRazonSocial.ToolTipText = "";
                         // 
                         // label1
@@ -398,7 +398,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaActualizaciones.TabIndex = 16;
                         this.EntradaActualizaciones.Table = null;
                         this.EntradaActualizaciones.TextKey = "stable";
-                        this.EntradaActualizaciones.TipWhenBlank = "";
+                        this.EntradaActualizaciones.PlaceholderText = "";
                         this.EntradaActualizaciones.ToolTipText = "";
                         // 
                         // label30
@@ -432,7 +432,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaAislacion.TabIndex = 14;
                         this.EntradaAislacion.Table = null;
                         this.EntradaAislacion.TextKey = "Serializable";
-                        this.EntradaAislacion.TipWhenBlank = "";
+                        this.EntradaAislacion.PlaceholderText = "";
                         this.EntradaAislacion.ToolTipText = "";
                         // 
                         // EntradaModoPantalla
@@ -460,7 +460,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaModoPantalla.TabIndex = 12;
                         this.EntradaModoPantalla.Table = null;
                         this.EntradaModoPantalla.TextKey = "maximizado";
-                        this.EntradaModoPantalla.TipWhenBlank = "";
+                        this.EntradaModoPantalla.PlaceholderText = "";
                         this.EntradaModoPantalla.ToolTipText = "";
                         // 
                         // EntradaBackup
@@ -486,7 +486,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaBackup.TabIndex = 10;
                         this.EntradaBackup.Table = null;
                         this.EntradaBackup.TextKey = "0";
-                        this.EntradaBackup.TipWhenBlank = "";
+                        this.EntradaBackup.PlaceholderText = "";
                         this.EntradaBackup.ToolTipText = "";
                         // 
                         // label29
@@ -528,7 +528,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaEmail.Size = new System.Drawing.Size(388, 24);
                         this.EntradaEmpresaEmail.Sufijo = "";
                         this.EntradaEmpresaEmail.TabIndex = 8;
-                        this.EntradaEmpresaEmail.TipWhenBlank = "";
+                        this.EntradaEmpresaEmail.PlaceholderText = "";
                         this.EntradaEmpresaEmail.ToolTipText = "";
                         // 
                         // label28
@@ -574,7 +574,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockDecimales.TabIndex = 5;
                         this.EntradaStockDecimales.Table = null;
                         this.EntradaStockDecimales.TextKey = "0";
-                        this.EntradaStockDecimales.TipWhenBlank = "";
+                        this.EntradaStockDecimales.PlaceholderText = "";
                         this.EntradaStockDecimales.ToolTipText = "";
                         // 
                         // Label25
@@ -620,7 +620,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockDepositoPredet.Table = "articulos_situaciones";
                         this.EntradaStockDepositoPredet.Text = "0";
                         this.EntradaStockDepositoPredet.TextDetail = "";
-                        this.EntradaStockDepositoPredet.TipWhenBlank = "";
+                        this.EntradaStockDepositoPredet.PlaceholderText = "";
                         this.EntradaStockDepositoPredet.ToolTipText = "";
                         // 
                         // EntradaStockMultideposito
@@ -645,7 +645,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockMultideposito.TabIndex = 3;
                         this.EntradaStockMultideposito.Table = null;
                         this.EntradaStockMultideposito.TextKey = "0";
-                        this.EntradaStockMultideposito.TipWhenBlank = "";
+                        this.EntradaStockMultideposito.PlaceholderText = "";
                         this.EntradaStockMultideposito.ToolTipText = "";
                         // 
                         // Label23
@@ -682,7 +682,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaArticulosCodigoPredet.TabIndex = 1;
                         this.EntradaArticulosCodigoPredet.Table = null;
                         this.EntradaArticulosCodigoPredet.TextKey = "0";
-                        this.EntradaArticulosCodigoPredet.TipWhenBlank = "";
+                        this.EntradaArticulosCodigoPredet.PlaceholderText = "";
                         this.EntradaArticulosCodigoPredet.ToolTipText = "";
                         // 
                         // Label20
@@ -716,7 +716,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaPV.Sufijo = "";
                         this.EntradaPV.TabIndex = 5;
                         this.EntradaPV.Text = "0";
-                        this.EntradaPV.TipWhenBlank = "";
+                        this.EntradaPV.PlaceholderText = "";
                         this.EntradaPV.ToolTipText = "";
                         // 
                         // Label9
@@ -751,7 +751,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaPVND.Sufijo = "";
                         this.EntradaPVND.TabIndex = 13;
                         this.EntradaPVND.Text = "0";
-                        this.EntradaPVND.TipWhenBlank = "";
+                        this.EntradaPVND.PlaceholderText = "";
                         this.EntradaPVND.ToolTipText = "";
                         // 
                         // Label10
@@ -805,7 +805,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaPVNC.Sufijo = "";
                         this.EntradaPVNC.TabIndex = 10;
                         this.EntradaPVNC.Text = "0";
-                        this.EntradaPVNC.TipWhenBlank = "";
+                        this.EntradaPVNC.PlaceholderText = "";
                         this.EntradaPVNC.ToolTipText = "";
                         // 
                         // EntradaPVABC
@@ -830,7 +830,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaPVABC.Sufijo = "";
                         this.EntradaPVABC.TabIndex = 7;
                         this.EntradaPVABC.Text = "0";
-                        this.EntradaPVABC.TipWhenBlank = "";
+                        this.EntradaPVABC.PlaceholderText = "";
                         this.EntradaPVABC.ToolTipText = "";
                         // 
                         // Label6
@@ -894,7 +894,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaClientePredet.Table = "personas";
                         this.EntradaClientePredet.Text = "0";
                         this.EntradaClientePredet.TextDetail = "";
-                        this.EntradaClientePredet.TipWhenBlank = "Ninguno";
+                        this.EntradaClientePredet.PlaceholderText = "Ninguno";
                         this.EntradaClientePredet.ToolTipText = "";
                         // 
                         // Label15
@@ -931,7 +931,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaFormaPagoPredet.Table = "formaspago";
                         this.EntradaFormaPagoPredet.Text = "0";
                         this.EntradaFormaPagoPredet.TextDetail = "";
-                        this.EntradaFormaPagoPredet.TipWhenBlank = "Ninguna";
+                        this.EntradaFormaPagoPredet.PlaceholderText = "Ninguna";
                         this.EntradaFormaPagoPredet.ToolTipText = "";
                         // 
                         // BotonSiguiente
@@ -1016,7 +1016,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockDepositoPredetSuc.Table = "articulos_situaciones";
                         this.EntradaStockDepositoPredetSuc.Text = "0";
                         this.EntradaStockDepositoPredetSuc.TextDetail = "";
-                        this.EntradaStockDepositoPredetSuc.TipWhenBlank = "";
+                        this.EntradaStockDepositoPredetSuc.PlaceholderText = "";
                         this.EntradaStockDepositoPredetSuc.ToolTipText = "";
                         // 
                         // FrmComprobantes
@@ -1085,7 +1085,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaRedondeo.Sufijo = "";
                         this.EntradaRedondeo.TabIndex = 25;
                         this.EntradaRedondeo.Text = "0.00";
-                        this.EntradaRedondeo.TipWhenBlank = "";
+                        this.EntradaRedondeo.PlaceholderText = "";
                         this.EntradaRedondeo.ToolTipText = "";
                         // 
                         // label22
@@ -1119,7 +1119,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaLimiteCredito.Sufijo = "";
                         this.EntradaLimiteCredito.TabIndex = 23;
                         this.EntradaLimiteCredito.Text = "0.00";
-                        this.EntradaLimiteCredito.TipWhenBlank = "";
+                        this.EntradaLimiteCredito.PlaceholderText = "";
                         this.EntradaLimiteCredito.ToolTipText = "";
                         // 
                         // label21
@@ -1153,7 +1153,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaCambiaPrecioComprob.TabIndex = 21;
                         this.EntradaCambiaPrecioComprob.Table = null;
                         this.EntradaCambiaPrecioComprob.TextKey = "1";
-                        this.EntradaCambiaPrecioComprob.TipWhenBlank = "";
+                        this.EntradaCambiaPrecioComprob.PlaceholderText = "";
                         this.EntradaCambiaPrecioComprob.ToolTipText = "";
                         // 
                         // label13
@@ -1197,7 +1197,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaPVR.Sufijo = "";
                         this.EntradaPVR.TabIndex = 16;
                         this.EntradaPVR.Text = "0";
-                        this.EntradaPVR.TipWhenBlank = "";
+                        this.EntradaPVR.PlaceholderText = "";
                         this.EntradaPVR.ToolTipText = "";
                         // 
                         // label12
@@ -1231,7 +1231,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaPVRC.Sufijo = "";
                         this.EntradaPVRC.TabIndex = 19;
                         this.EntradaPVRC.Text = "0";
-                        this.EntradaPVRC.TipWhenBlank = "";
+                        this.EntradaPVRC.PlaceholderText = "";
                         this.EntradaPVRC.ToolTipText = "";
                         // 
                         // label3

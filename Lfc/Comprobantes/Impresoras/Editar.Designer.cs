@@ -101,7 +101,7 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaNombre.Size = new System.Drawing.Size(519, 24);
                         this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.TipWhenBlank = "";
+                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ToolTipText = "";
                         // 
                         // Label5
@@ -135,7 +135,7 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaUbicacion.Size = new System.Drawing.Size(519, 24);
                         this.EntradaUbicacion.Sufijo = "";
                         this.EntradaUbicacion.TabIndex = 10;
-                        this.EntradaUbicacion.TipWhenBlank = "";
+                        this.EntradaUbicacion.PlaceholderText = "";
                         this.EntradaUbicacion.ToolTipText = "";
                         // 
                         // label10
@@ -168,7 +168,7 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaTalonario.Table = null;
                         this.EntradaTalonario.Text = "No";
                         this.EntradaTalonario.TextKey = "0";
-                        this.EntradaTalonario.TipWhenBlank = "";
+                        this.EntradaTalonario.PlaceholderText = "";
                         this.EntradaTalonario.ToolTipText = "";
                         // 
                         // label9
@@ -201,7 +201,7 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaFiscalBps.TabIndex = 20;
                         this.EntradaFiscalBps.Table = null;
                         this.EntradaFiscalBps.TextKey = "9600";
-                        this.EntradaFiscalBps.TipWhenBlank = "";
+                        this.EntradaFiscalBps.PlaceholderText = "";
                         this.EntradaFiscalBps.ToolTipText = "";
                         // 
                         // label2
@@ -235,7 +235,7 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaFiscalPuerto.Table = null;
                         this.EntradaFiscalPuerto.Text = "COM1";
                         this.EntradaFiscalPuerto.TextKey = "1";
-                        this.EntradaFiscalPuerto.TipWhenBlank = "";
+                        this.EntradaFiscalPuerto.PlaceholderText = "";
                         this.EntradaFiscalPuerto.ToolTipText = "";
                         // 
                         // EntradaFiscalModelo
@@ -261,7 +261,7 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaFiscalModelo.Table = null;
                         this.EntradaFiscalModelo.Text = "Epson";
                         this.EntradaFiscalModelo.TextKey = "300";
-                        this.EntradaFiscalModelo.TipWhenBlank = "";
+                        this.EntradaFiscalModelo.PlaceholderText = "";
                         this.EntradaFiscalModelo.ToolTipText = "";
                         // 
                         // label7
@@ -313,7 +313,7 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaTipo.Table = null;
                         this.EntradaTipo.Text = "Impresora de Windows";
                         this.EntradaTipo.TextKey = "1";
-                        this.EntradaTipo.TipWhenBlank = "";
+                        this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
                         // 
@@ -347,7 +347,7 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaCarga.Table = null;
                         this.EntradaCarga.Text = "Automática";
                         this.EntradaCarga.TextKey = "0";
-                        this.EntradaCarga.TipWhenBlank = "";
+                        this.EntradaCarga.PlaceholderText = "";
                         this.EntradaCarga.ToolTipText = "";
                         // 
                         // label3
@@ -379,7 +379,7 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaEstacion.Size = new System.Drawing.Size(336, 24);
                         this.EntradaEstacion.Sufijo = "";
                         this.EntradaEstacion.TabIndex = 4;
-                        this.EntradaEstacion.TipWhenBlank = "";
+                        this.EntradaEstacion.PlaceholderText = "";
                         this.EntradaEstacion.ToolTipText = "";
                         this.EntradaEstacion.TextChanged += new System.EventHandler(this.EntradaEstacion_TextChanged);
                         // 
@@ -421,7 +421,7 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaDispositivo.Size = new System.Drawing.Size(336, 24);
                         this.EntradaDispositivo.Sufijo = "";
                         this.EntradaDispositivo.TabIndex = 7;
-                        this.EntradaDispositivo.TipWhenBlank = "";
+                        this.EntradaDispositivo.PlaceholderText = "";
                         this.EntradaDispositivo.ToolTipText = "";
                         // 
                         // label4

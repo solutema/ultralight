@@ -87,7 +87,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaEmisor.Size = new System.Drawing.Size(372, 24);
                         this.EntradaEmisor.Sufijo = "";
                         this.EntradaEmisor.TabIndex = 1;
-                        this.EntradaEmisor.TipWhenBlank = "";
+                        this.EntradaEmisor.PlaceholderText = "";
                         this.EntradaEmisor.ToolTipText = "Estado para esta chequera.";
                         // 
                         // EntradaNumero
@@ -112,7 +112,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaNumero.Size = new System.Drawing.Size(172, 24);
                         this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 5;
-                        this.EntradaNumero.TipWhenBlank = "";
+                        this.EntradaNumero.PlaceholderText = "";
                         this.EntradaNumero.ToolTipText = "";
                         // 
                         // EntradaBanco
@@ -141,7 +141,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaBanco.Table = "bancos";
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
-                        this.EntradaBanco.TipWhenBlank = "";
+                        this.EntradaBanco.PlaceholderText = "";
                         this.EntradaBanco.ToolTipText = "";
                         // 
                         // label5
@@ -193,7 +193,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaFechaCobro.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaCobro.Sufijo = "";
                         this.EntradaFechaCobro.TabIndex = 9;
-                        this.EntradaFechaCobro.TipWhenBlank = "";
+                        this.EntradaFechaCobro.PlaceholderText = "";
                         this.EntradaFechaCobro.ToolTipText = "";
                         // 
                         // label2
@@ -227,7 +227,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaFechaEmision.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaEmision.Sufijo = "";
                         this.EntradaFechaEmision.TabIndex = 7;
-                        this.EntradaFechaEmision.TipWhenBlank = "";
+                        this.EntradaFechaEmision.PlaceholderText = "";
                         this.EntradaFechaEmision.ToolTipText = "";
                         // 
                         // lblFecha1

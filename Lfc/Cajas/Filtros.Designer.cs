@@ -112,7 +112,7 @@ namespace Lfc.Cajas
                         this.EntradaPersona.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaPersona.Text = "0";
                         this.EntradaPersona.TextDetail = "";
-                        this.EntradaPersona.TipWhenBlank = "";
+                        this.EntradaPersona.PlaceholderText = "";
                         this.EntradaPersona.ToolTipText = "";
                         // 
                         // Label5
@@ -150,7 +150,7 @@ namespace Lfc.Cajas
                         this.EntradaConcepto.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaConcepto.Text = "0";
                         this.EntradaConcepto.TextDetail = "";
-                        this.EntradaConcepto.TipWhenBlank = "";
+                        this.EntradaConcepto.PlaceholderText = "";
                         this.EntradaConcepto.ToolTipText = "";
                         // 
                         // Label2
@@ -188,7 +188,7 @@ namespace Lfc.Cajas
                         this.EntradaCaja.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCaja.Text = "0";
                         this.EntradaCaja.TextDetail = "";
-                        this.EntradaCaja.TipWhenBlank = "";
+                        this.EntradaCaja.PlaceholderText = "";
                         this.EntradaCaja.ToolTipText = "";
                         // 
                         // Label3
@@ -224,7 +224,7 @@ namespace Lfc.Cajas
                         this.EntradaDireccion.Table = null;
                         this.EntradaDireccion.Text = "Ingresos y Egresos";
                         this.EntradaDireccion.TextKey = "0";
-                        this.EntradaDireccion.TipWhenBlank = "";
+                        this.EntradaDireccion.PlaceholderText = "";
                         this.EntradaDireccion.ToolTipText = "";
                         // 
                         // Label4
@@ -270,7 +270,7 @@ namespace Lfc.Cajas
                         this.EntradaTipoConcepto.Table = null;
                         this.EntradaTipoConcepto.Text = "Todos";
                         this.EntradaTipoConcepto.TextKey = "0";
-                        this.EntradaTipoConcepto.TipWhenBlank = "";
+                        this.EntradaTipoConcepto.PlaceholderText = "";
                         this.EntradaTipoConcepto.ToolTipText = "";
                         // 
                         // label6

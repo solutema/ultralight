@@ -85,7 +85,7 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaCantidad.Sufijo = "";
                         this.EntradaCantidad.TabIndex = 54;
                         this.EntradaCantidad.Text = "1.0000";
-                        this.EntradaCantidad.TipWhenBlank = "";
+                        this.EntradaCantidad.PlaceholderText = "";
                         this.EntradaCantidad.ToolTipText = "";
                         this.EntradaCantidad.TextChanged += new System.EventHandler(this.EntradaVariacionCantidad_TextChanged);
                         // 
@@ -112,7 +112,7 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaVariacion.Size = new System.Drawing.Size(364, 24);
                         this.EntradaVariacion.Sufijo = "";
                         this.EntradaVariacion.TabIndex = 53;
-                        this.EntradaVariacion.TipWhenBlank = "";
+                        this.EntradaVariacion.PlaceholderText = "";
                         this.EntradaVariacion.ToolTipText = "";
                         this.EntradaVariacion.TextChanged += new System.EventHandler(this.EntradaVariacionCantidad_TextChanged);
                         // 

@@ -528,7 +528,7 @@ namespace Lfx.Services
                         try {
                                 System.Console.Write("Descargando " + uri + ": ");
                                 System.Net.WebRequest Solicitud = null;
-                                Solicitud.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.Revalidate);
+                                Solicitud.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.BypassCache);
                                 Solicitud = System.Net.WebRequest.CreateDefault(new System.Uri(uri));
                                 System.Net.WebResponse Respuesta = Solicitud.GetResponse();
                                 byte[] Contenido = new byte[Respuesta.ContentLength];

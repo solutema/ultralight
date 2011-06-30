@@ -141,7 +141,7 @@ namespace Lazaro.Reportes
                     this.EntradaActivosCajas.Sufijo = "";
                     this.EntradaActivosCajas.TabIndex = 2;
                     this.EntradaActivosCajas.Text = "0.00";
-                    this.EntradaActivosCajas.TipWhenBlank = "";
+                    this.EntradaActivosCajas.PlaceholderText = "";
                     this.EntradaActivosCajas.ToolTipText = "";
                     // 
                     // txtFuturosTarjetas
@@ -167,7 +167,7 @@ namespace Lazaro.Reportes
                     this.EntradaFuturosTarjetas.Sufijo = "";
                     this.EntradaFuturosTarjetas.TabIndex = 4;
                     this.EntradaFuturosTarjetas.Text = "0.00";
-                    this.EntradaFuturosTarjetas.TipWhenBlank = "";
+                    this.EntradaFuturosTarjetas.PlaceholderText = "";
                     this.EntradaFuturosTarjetas.ToolTipText = "";
                     // 
                     // label2
@@ -203,7 +203,7 @@ namespace Lazaro.Reportes
                     this.EntradaActivosStock.Sufijo = "";
                     this.EntradaActivosStock.TabIndex = 6;
                     this.EntradaActivosStock.Text = "0.00";
-                    this.EntradaActivosStock.TipWhenBlank = "";
+                    this.EntradaActivosStock.PlaceholderText = "";
                     this.EntradaActivosStock.ToolTipText = "";
                     // 
                     // label3
@@ -239,7 +239,7 @@ namespace Lazaro.Reportes
                     this.EntradaFuturosPedidos.Sufijo = "";
                     this.EntradaFuturosPedidos.TabIndex = 8;
                     this.EntradaFuturosPedidos.Text = "0.00";
-                    this.EntradaFuturosPedidos.TipWhenBlank = "";
+                    this.EntradaFuturosPedidos.PlaceholderText = "";
                     this.EntradaFuturosPedidos.ToolTipText = "";
                     // 
                     // label4
@@ -275,7 +275,7 @@ namespace Lazaro.Reportes
                     this.EntradaPasivosCheques.Sufijo = "";
                     this.EntradaPasivosCheques.TabIndex = 13;
                     this.EntradaPasivosCheques.Text = "0.00";
-                    this.EntradaPasivosCheques.TipWhenBlank = "";
+                    this.EntradaPasivosCheques.PlaceholderText = "";
                     this.EntradaPasivosCheques.ToolTipText = "";
                     // 
                     // label7
@@ -311,7 +311,7 @@ namespace Lazaro.Reportes
                     this.EntradaPasivosCajas.Sufijo = "";
                     this.EntradaPasivosCajas.TabIndex = 11;
                     this.EntradaPasivosCajas.Text = "0.00";
-                    this.EntradaPasivosCajas.TipWhenBlank = "";
+                    this.EntradaPasivosCajas.PlaceholderText = "";
                     this.EntradaPasivosCajas.ToolTipText = "";
                     // 
                     // note2
@@ -379,7 +379,7 @@ namespace Lazaro.Reportes
                     this.EntradaActivosSubtotal.Sufijo = "";
                     this.EntradaActivosSubtotal.TabIndex = 20;
                     this.EntradaActivosSubtotal.Text = "0.00";
-                    this.EntradaActivosSubtotal.TipWhenBlank = "";
+                    this.EntradaActivosSubtotal.PlaceholderText = "";
                     this.EntradaActivosSubtotal.ToolTipText = "";
                     // 
                     // label5
@@ -416,7 +416,7 @@ namespace Lazaro.Reportes
                     this.EntradaPasivosSubtotal.Sufijo = "";
                     this.EntradaPasivosSubtotal.TabIndex = 22;
                     this.EntradaPasivosSubtotal.Text = "0.00";
-                    this.EntradaPasivosSubtotal.TipWhenBlank = "";
+                    this.EntradaPasivosSubtotal.PlaceholderText = "";
                     this.EntradaPasivosSubtotal.ToolTipText = "";
                     // 
                     // label6
@@ -453,7 +453,7 @@ namespace Lazaro.Reportes
                     this.EntradaFuturosSubtotal.Sufijo = "";
                     this.EntradaFuturosSubtotal.TabIndex = 24;
                     this.EntradaFuturosSubtotal.Text = "0.00";
-                    this.EntradaFuturosSubtotal.TipWhenBlank = "";
+                    this.EntradaFuturosSubtotal.PlaceholderText = "";
                     this.EntradaFuturosSubtotal.ToolTipText = "";
                     // 
                     // label9
@@ -490,7 +490,7 @@ namespace Lazaro.Reportes
                     this.EntradaPatrimonioActual.Sufijo = "";
                     this.EntradaPatrimonioActual.TabIndex = 26;
                     this.EntradaPatrimonioActual.Text = "0.00";
-                    this.EntradaPatrimonioActual.TipWhenBlank = "";
+                    this.EntradaPatrimonioActual.PlaceholderText = "";
                     this.EntradaPatrimonioActual.ToolTipText = "";
                     // 
                     // label10
@@ -543,7 +543,7 @@ namespace Lazaro.Reportes
                     this.EntradaPatrimonioFuturo.Sufijo = "";
                     this.EntradaPatrimonioFuturo.TabIndex = 29;
                     this.EntradaPatrimonioFuturo.Text = "0.00";
-                    this.EntradaPatrimonioFuturo.TipWhenBlank = "";
+                    this.EntradaPatrimonioFuturo.PlaceholderText = "";
                     this.EntradaPatrimonioFuturo.ToolTipText = "";
                     // 
                     // label11
@@ -580,7 +580,7 @@ namespace Lazaro.Reportes
                     this.EntradaActivosActualesFuturos.Sufijo = "";
                     this.EntradaActivosActualesFuturos.TabIndex = 33;
                     this.EntradaActivosActualesFuturos.Text = "0.00";
-                    this.EntradaActivosActualesFuturos.TipWhenBlank = "";
+                    this.EntradaActivosActualesFuturos.PlaceholderText = "";
                     this.EntradaActivosActualesFuturos.ToolTipText = "";
                     // 
                     // label12
@@ -617,7 +617,7 @@ namespace Lazaro.Reportes
                     this.EntradaPasivosStock.Sufijo = "";
                     this.EntradaPasivosStock.TabIndex = 35;
                     this.EntradaPasivosStock.Text = "0.00";
-                    this.EntradaPasivosStock.TipWhenBlank = "";
+                    this.EntradaPasivosStock.PlaceholderText = "";
                     this.EntradaPasivosStock.ToolTipText = "";
                     // 
                     // label13

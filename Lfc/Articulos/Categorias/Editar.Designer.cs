@@ -104,7 +104,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaNombre.Size = new System.Drawing.Size(612, 24);
                         this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.TipWhenBlank = "";
+                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ToolTipText = "";
                         // 
                         // Label5
@@ -138,7 +138,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaNombreSing.Size = new System.Drawing.Size(612, 24);
                         this.EntradaNombreSing.Sufijo = "";
                         this.EntradaNombreSing.TabIndex = 3;
-                        this.EntradaNombreSing.TipWhenBlank = "";
+                        this.EntradaNombreSing.PlaceholderText = "";
                         this.EntradaNombreSing.ToolTipText = "";
                         // 
                         // Label1
@@ -171,7 +171,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaStockMinimo.Sufijo = "";
                         this.EntradaStockMinimo.TabIndex = 5;
                         this.EntradaStockMinimo.Text = "0";
-                        this.EntradaStockMinimo.TipWhenBlank = "";
+                        this.EntradaStockMinimo.PlaceholderText = "";
                         this.EntradaStockMinimo.ToolTipText = "";
                         // 
                         // Label11
@@ -206,7 +206,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaItem.TabIndex = 1;
                         this.EntradaItem.TabStop = false;
                         this.EntradaItem.Text = "0";
-                        this.EntradaItem.TipWhenBlank = "";
+                        this.EntradaItem.PlaceholderText = "";
                         this.EntradaItem.ToolTipText = "";
                         // 
                         // Label2
@@ -241,7 +241,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaGarantia.Sufijo = "meses";
                         this.EntradaGarantia.TabIndex = 13;
                         this.EntradaGarantia.Text = "0";
-                        this.EntradaGarantia.TipWhenBlank = "";
+                        this.EntradaGarantia.PlaceholderText = "";
                         this.EntradaGarantia.ToolTipText = "Precio de costo o de compra.";
                         // 
                         // label20
@@ -275,7 +275,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaSeguimiento.TabIndex = 9;
                         this.EntradaSeguimiento.Table = null;
                         this.EntradaSeguimiento.TextKey = "0";
-                        this.EntradaSeguimiento.TipWhenBlank = "";
+                        this.EntradaSeguimiento.PlaceholderText = "";
                         this.EntradaSeguimiento.ToolTipText = "";
                         // 
                         // label8
@@ -309,7 +309,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaRubro.Table = "articulos_rubros";
                         this.EntradaRubro.Text = "0";
                         this.EntradaRubro.TextDetail = "";
-                        this.EntradaRubro.TipWhenBlank = "Sin especificar";
+                        this.EntradaRubro.PlaceholderText = "Sin especificar";
                         this.EntradaRubro.ToolTipText = "";
                         // 
                         // EntradaWeb
@@ -333,7 +333,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaWeb.TabIndex = 7;
                         this.EntradaWeb.Table = null;
                         this.EntradaWeb.TextKey = "0";
-                        this.EntradaWeb.TipWhenBlank = "";
+                        this.EntradaWeb.PlaceholderText = "";
                         this.EntradaWeb.ToolTipText = "";
                         // 
                         // Label7
@@ -409,7 +409,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaStockActual.TabIndex = 5;
                         this.EntradaStockActual.TabStop = false;
                         this.EntradaStockActual.Text = "0";
-                        this.EntradaStockActual.TipWhenBlank = "";
+                        this.EntradaStockActual.PlaceholderText = "";
                         this.EntradaStockActual.ToolTipText = "";
                         // 
                         // EntradaCosto
@@ -435,7 +435,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaCosto.TabIndex = 7;
                         this.EntradaCosto.TabStop = false;
                         this.EntradaCosto.Text = "0.00";
-                        this.EntradaCosto.TipWhenBlank = "";
+                        this.EntradaCosto.PlaceholderText = "";
                         this.EntradaCosto.ToolTipText = "";
                         // 
                         // Label4
@@ -472,7 +472,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaItemStock.TabIndex = 3;
                         this.EntradaItemStock.TabStop = false;
                         this.EntradaItemStock.Text = "0";
-                        this.EntradaItemStock.TipWhenBlank = "";
+                        this.EntradaItemStock.PlaceholderText = "";
                         this.EntradaItemStock.ToolTipText = "";
                         // 
                         // Label6

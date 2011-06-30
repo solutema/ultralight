@@ -149,7 +149,7 @@ namespace Lfc.Comprobantes
                         this.EntradaCliente.Table = "personas";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
-                        this.EntradaCliente.TipWhenBlank = "";
+                        this.EntradaCliente.PlaceholderText = "";
                         this.EntradaCliente.ToolTipText = "";
                         // 
                         // Label2
@@ -194,7 +194,7 @@ namespace Lfc.Comprobantes
                         this.EntradaEstado.TabIndex = 15;
                         this.EntradaEstado.Table = null;
                         this.EntradaEstado.TextKey = "0";
-                        this.EntradaEstado.TipWhenBlank = "";
+                        this.EntradaEstado.PlaceholderText = "";
                         this.EntradaEstado.ToolTipText = "";
                         // 
                         // Label3
@@ -233,7 +233,7 @@ namespace Lfc.Comprobantes
                         this.EntradaTipo.TabIndex = 0;
                         this.EntradaTipo.Table = null;
                         this.EntradaTipo.TextKey = "Lbl.Comprobantes.Factura";
-                        this.EntradaTipo.TipWhenBlank = "";
+                        this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
                         // 
@@ -270,7 +270,7 @@ namespace Lfc.Comprobantes
                         this.EntradaVendedor.Table = "personas";
                         this.EntradaVendedor.Text = "0";
                         this.EntradaVendedor.TextDetail = "";
-                        this.EntradaVendedor.TipWhenBlank = "";
+                        this.EntradaVendedor.PlaceholderText = "";
                         this.EntradaVendedor.ToolTipText = "";
                         // 
                         // Label5
@@ -304,7 +304,7 @@ namespace Lfc.Comprobantes
                         this.EntradaAnuladas.TabIndex = 17;
                         this.EntradaAnuladas.Table = null;
                         this.EntradaAnuladas.TextKey = "0";
-                        this.EntradaAnuladas.TipWhenBlank = "";
+                        this.EntradaAnuladas.PlaceholderText = "";
                         this.EntradaAnuladas.ToolTipText = "";
                         // 
                         // Label6
@@ -340,7 +340,7 @@ namespace Lfc.Comprobantes
                         this.EntradaSucursal.Table = "sucursales";
                         this.EntradaSucursal.Text = "0";
                         this.EntradaSucursal.TextDetail = "";
-                        this.EntradaSucursal.TipWhenBlank = "";
+                        this.EntradaSucursal.PlaceholderText = "";
                         this.EntradaSucursal.ToolTipText = "";
                         // 
                         // label7
@@ -376,7 +376,7 @@ namespace Lfc.Comprobantes
                         this.EntradaFormaPago.Table = "formaspago";
                         this.EntradaFormaPago.Text = "0";
                         this.EntradaFormaPago.TextDetail = "";
-                        this.EntradaFormaPago.TipWhenBlank = "";
+                        this.EntradaFormaPago.PlaceholderText = "";
                         this.EntradaFormaPago.ToolTipText = "";
                         // 
                         // label8
@@ -414,7 +414,7 @@ namespace Lfc.Comprobantes
                         this.EntradaLetra.TabIndex = 1;
                         this.EntradaLetra.Table = null;
                         this.EntradaLetra.TextKey = "*";
-                        this.EntradaLetra.TipWhenBlank = "";
+                        this.EntradaLetra.PlaceholderText = "";
                         this.EntradaLetra.ToolTipText = "";
                         // 
                         // Label9
@@ -447,7 +447,7 @@ namespace Lfc.Comprobantes
                         this.EntradaPv.Sufijo = "";
                         this.EntradaPv.TabIndex = 9;
                         this.EntradaPv.Text = "0";
-                        this.EntradaPv.TipWhenBlank = "";
+                        this.EntradaPv.PlaceholderText = "";
                         this.EntradaPv.ToolTipText = "";
                         // 
                         // EntradaFechas
@@ -559,7 +559,7 @@ namespace Lfc.Comprobantes
                         this.EntradaMontoHasta.Sufijo = "";
                         this.EntradaMontoHasta.TabIndex = 3;
                         this.EntradaMontoHasta.Text = "0.00";
-                        this.EntradaMontoHasta.TipWhenBlank = "";
+                        this.EntradaMontoHasta.PlaceholderText = "";
                         this.EntradaMontoHasta.ToolTipText = "";
                         // 
                         // EntradaMontoDesde
@@ -583,7 +583,7 @@ namespace Lfc.Comprobantes
                         this.EntradaMontoDesde.Sufijo = "";
                         this.EntradaMontoDesde.TabIndex = 1;
                         this.EntradaMontoDesde.Text = "0.00";
-                        this.EntradaMontoDesde.TipWhenBlank = "";
+                        this.EntradaMontoDesde.PlaceholderText = "";
                         this.EntradaMontoDesde.ToolTipText = "";
                         // 
                         // label12

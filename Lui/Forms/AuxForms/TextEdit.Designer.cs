@@ -73,7 +73,7 @@ namespace Lui.Forms.AuxForms
                         this.EntradaTexto.SelectOnFocus = false;
                         this.EntradaTexto.Size = new System.Drawing.Size(456, 199);
                         this.EntradaTexto.TabIndex = 0;
-                        this.EntradaTexto.TipWhenBlank = "";
+                        this.EntradaTexto.PlaceholderText = "";
                         this.EntradaTexto.ToolTipText = "";
                         // 
                         // BotonAceptar

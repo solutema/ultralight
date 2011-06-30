@@ -87,7 +87,7 @@ namespace Lfc.Comprobantes
                         this.textBox1.Size = new System.Drawing.Size(316, 24);
                         this.textBox1.Sufijo = "";
                         this.textBox1.TabIndex = 51;
-                        this.textBox1.TipWhenBlank = "";
+                        this.textBox1.PlaceholderText = "";
                         this.textBox1.ToolTipText = "";
                         // 
                         // textBox2
@@ -111,7 +111,7 @@ namespace Lfc.Comprobantes
                         this.textBox2.Size = new System.Drawing.Size(108, 24);
                         this.textBox2.Sufijo = "";
                         this.textBox2.TabIndex = 52;
-                        this.textBox2.TipWhenBlank = "";
+                        this.textBox2.PlaceholderText = "";
                         this.textBox2.ToolTipText = "";
                         // 
                         // textBox3
@@ -135,7 +135,7 @@ namespace Lfc.Comprobantes
                         this.textBox3.Size = new System.Drawing.Size(108, 24);
                         this.textBox3.Sufijo = "";
                         this.textBox3.TabIndex = 54;
-                        this.textBox3.TipWhenBlank = "";
+                        this.textBox3.PlaceholderText = "";
                         this.textBox3.ToolTipText = "";
                         // 
                         // textBox4
@@ -159,7 +159,7 @@ namespace Lfc.Comprobantes
                         this.textBox4.Size = new System.Drawing.Size(316, 24);
                         this.textBox4.Sufijo = "";
                         this.textBox4.TabIndex = 53;
-                        this.textBox4.TipWhenBlank = "";
+                        this.textBox4.PlaceholderText = "";
                         this.textBox4.ToolTipText = "";
                         // 
                         // textBox5
@@ -183,7 +183,7 @@ namespace Lfc.Comprobantes
                         this.textBox5.Size = new System.Drawing.Size(108, 24);
                         this.textBox5.Sufijo = "";
                         this.textBox5.TabIndex = 56;
-                        this.textBox5.TipWhenBlank = "";
+                        this.textBox5.PlaceholderText = "";
                         this.textBox5.ToolTipText = "";
                         // 
                         // textBox6
@@ -207,7 +207,7 @@ namespace Lfc.Comprobantes
                         this.textBox6.Size = new System.Drawing.Size(316, 24);
                         this.textBox6.Sufijo = "";
                         this.textBox6.TabIndex = 55;
-                        this.textBox6.TipWhenBlank = "";
+                        this.textBox6.PlaceholderText = "";
                         this.textBox6.ToolTipText = "";
                         // 
                         // EditarTallesYColores

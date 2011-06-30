@@ -119,7 +119,7 @@ namespace Lfc.Tareas
                         this.EntradaCliente.Table = "personas";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
-                        this.EntradaCliente.TipWhenBlank = "";
+                        this.EntradaCliente.PlaceholderText = "";
                         this.EntradaCliente.ToolTipText = "";
                         // 
                         // Label2
@@ -163,7 +163,7 @@ namespace Lfc.Tareas
                         this.EntradaOrden.TabIndex = 11;
                         this.EntradaOrden.Table = null;
                         this.EntradaOrden.TextKey = "tickets.id_ticket DESC";
-                        this.EntradaOrden.TipWhenBlank = "";
+                        this.EntradaOrden.PlaceholderText = "";
                         this.EntradaOrden.ToolTipText = "";
                         // 
                         // EntradaTarea
@@ -190,7 +190,7 @@ namespace Lfc.Tareas
                         this.EntradaTarea.Table = "tickets_tipos";
                         this.EntradaTarea.Text = "0";
                         this.EntradaTarea.TextDetail = "";
-                        this.EntradaTarea.TipWhenBlank = "";
+                        this.EntradaTarea.PlaceholderText = "";
                         this.EntradaTarea.ToolTipText = "";
                         // 
                         // Label4
@@ -226,7 +226,7 @@ namespace Lfc.Tareas
                         this.EntradaEstado.TabIndex = 9;
                         this.EntradaEstado.Table = null;
                         this.EntradaEstado.TextKey = "<30";
-                        this.EntradaEstado.TipWhenBlank = "";
+                        this.EntradaEstado.PlaceholderText = "";
                         this.EntradaEstado.ToolTipText = "";
                         // 
                         // EntradaLocalidad
@@ -253,7 +253,7 @@ namespace Lfc.Tareas
                         this.EntradaLocalidad.Table = "ciudades";
                         this.EntradaLocalidad.Text = "0";
                         this.EntradaLocalidad.TextDetail = "";
-                        this.EntradaLocalidad.TipWhenBlank = "";
+                        this.EntradaLocalidad.PlaceholderText = "";
                         this.EntradaLocalidad.ToolTipText = "";
                         // 
                         // label5
@@ -319,7 +319,7 @@ namespace Lfc.Tareas
                         this.EntradaGrupo.Table = "personas_grupos";
                         this.EntradaGrupo.Text = "0";
                         this.EntradaGrupo.TextDetail = "";
-                        this.EntradaGrupo.TipWhenBlank = "";
+                        this.EntradaGrupo.PlaceholderText = "";
                         this.EntradaGrupo.ToolTipText = "";
                         // 
                         // label6

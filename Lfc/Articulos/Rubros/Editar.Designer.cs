@@ -97,7 +97,7 @@ namespace Lfc.Articulos.Rubros
                         this.EntradaAlicuota.Table = "alicuotas";
                         this.EntradaAlicuota.Text = "0";
                         this.EntradaAlicuota.TextDetail = "";
-                        this.EntradaAlicuota.TipWhenBlank = "Sin especificar";
+                        this.EntradaAlicuota.PlaceholderText = "Sin especificar";
                         this.EntradaAlicuota.ToolTipText = "";
                         // 
                         // EntradaNombre
@@ -122,7 +122,7 @@ namespace Lfc.Articulos.Rubros
                         this.EntradaNombre.Size = new System.Drawing.Size(356, 24);
                         this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.TipWhenBlank = "";
+                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ToolTipText = "";
                         // 
                         // Label5

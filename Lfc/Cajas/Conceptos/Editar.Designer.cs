@@ -123,7 +123,7 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaNombre.Size = new System.Drawing.Size(536, 24);
                         this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 5;
-                        this.EntradaNombre.TipWhenBlank = "";
+                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ToolTipText = "";
                         // 
                         // EntradaDireccion
@@ -149,7 +149,7 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaDireccion.TabIndex = 7;
                         this.EntradaDireccion.Table = null;
                         this.EntradaDireccion.TextKey = "0";
-                        this.EntradaDireccion.TipWhenBlank = "";
+                        this.EntradaDireccion.PlaceholderText = "";
                         this.EntradaDireccion.ToolTipText = "";
                         // 
                         // EntradaGrupo
@@ -184,7 +184,7 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaGrupo.TabIndex = 9;
                         this.EntradaGrupo.Table = null;
                         this.EntradaGrupo.TextKey = "200";
-                        this.EntradaGrupo.TipWhenBlank = "";
+                        this.EntradaGrupo.PlaceholderText = "";
                         this.EntradaGrupo.ToolTipText = "";
                         // 
                         // EntradaCodigo
@@ -211,7 +211,7 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaCodigo.Sufijo = "";
                         this.EntradaCodigo.TabIndex = 3;
                         this.EntradaCodigo.Text = "0";
-                        this.EntradaCodigo.TipWhenBlank = "";
+                        this.EntradaCodigo.PlaceholderText = "";
                         this.EntradaCodigo.ToolTipText = "";
                         // 
                         // label4

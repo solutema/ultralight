@@ -127,7 +127,7 @@ namespace Lazaro.Misc
                         this.EntradaFormula.Size = new System.Drawing.Size(223, 29);
                         this.EntradaFormula.Sufijo = "";
                         this.EntradaFormula.TabIndex = 1;
-                        this.EntradaFormula.TipWhenBlank = "";
+                        this.EntradaFormula.PlaceholderText = "";
                         this.EntradaFormula.ToolTipText = "";
                         this.EntradaFormula.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFormula_KeyDown);
                         // 

@@ -93,7 +93,7 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaEstado.TabIndex = 1;
                         this.EntradaEstado.Text = "Todos";
                         this.EntradaEstado.TextKey = "-1";
-                        this.EntradaEstado.TipWhenBlank = "";
+                        this.EntradaEstado.PlaceholderText = "";
                         this.EntradaEstado.ToolTipText = "Estado para esta chequera.";
                         // 
                         // Label7
@@ -138,7 +138,7 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaCaja.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCaja.Text = "0";
                         this.EntradaCaja.TextDetail = "";
-                        this.EntradaCaja.TipWhenBlank = "";
+                        this.EntradaCaja.PlaceholderText = "";
                         this.EntradaCaja.ToolTipText = "";
                         // 
                         // Label1
@@ -174,7 +174,7 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaBanco.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
-                        this.EntradaBanco.TipWhenBlank = "";
+                        this.EntradaBanco.PlaceholderText = "";
                         this.EntradaBanco.ToolTipText = "";
                         // 
                         // Filtros

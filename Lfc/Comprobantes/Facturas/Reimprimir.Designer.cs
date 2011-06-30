@@ -118,7 +118,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.TabIndex = 1;
                         this.EntradaTipo.Table = null;
                         this.EntradaTipo.TextKey = "B";
-                        this.EntradaTipo.TipWhenBlank = "";
+                        this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
                         // 
@@ -143,7 +143,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaDesde.Sufijo = "";
                         this.EntradaDesde.TabIndex = 5;
                         this.EntradaDesde.Text = "0";
-                        this.EntradaDesde.TipWhenBlank = "";
+                        this.EntradaDesde.PlaceholderText = "";
                         this.EntradaDesde.ToolTipText = "";
                         this.EntradaDesde.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
                         // 
@@ -168,7 +168,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaPV.Sufijo = "";
                         this.EntradaPV.TabIndex = 3;
                         this.EntradaPV.Text = "1";
-                        this.EntradaPV.TipWhenBlank = "";
+                        this.EntradaPV.PlaceholderText = "";
                         this.EntradaPV.ToolTipText = "";
                         this.EntradaPV.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
                         // 
@@ -203,7 +203,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaOrden.TabIndex = 9;
                         this.EntradaOrden.Table = null;
                         this.EntradaOrden.TextKey = "0";
-                        this.EntradaOrden.TipWhenBlank = "";
+                        this.EntradaOrden.PlaceholderText = "";
                         this.EntradaOrden.ToolTipText = "";
                         // 
                         // label3
@@ -253,7 +253,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaHasta.Sufijo = "";
                         this.EntradaHasta.TabIndex = 7;
                         this.EntradaHasta.Text = "0";
-                        this.EntradaHasta.TipWhenBlank = "";
+                        this.EntradaHasta.PlaceholderText = "";
                         this.EntradaHasta.ToolTipText = "";
                         this.EntradaHasta.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
                         this.EntradaHasta.Enter += new System.EventHandler(this.EntradaHasta_Enter);

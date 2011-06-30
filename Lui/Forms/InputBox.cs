@@ -116,7 +116,7 @@ namespace Lui.Forms
                         this.Texto.Padding = new System.Windows.Forms.Padding(2);
                         this.Texto.Size = new System.Drawing.Size(452, 24);
                         this.Texto.TabIndex = 0;
-                        this.Texto.TipWhenBlank = "";
+                        this.Texto.PlaceholderText = "";
                         this.Texto.ToolTipText = "";
                         this.Texto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Texto_KeyDown);
                         // 
