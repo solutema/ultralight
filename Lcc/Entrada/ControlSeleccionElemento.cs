@@ -71,9 +71,11 @@ namespace Lcc.Entrada
                                 base.Elemento = value;
                                 if (value == null) {
                                         this.CurrentRow = null;
+                                        m_ItemId = 0;
                                         this.TextInt = 0;
                                 } else {
                                         this.CurrentRow = m_Elemento.Registro;
+                                        m_ItemId = m_Elemento.Id;
                                         this.TextInt = base.Elemento.Id;
                                 }
                         }

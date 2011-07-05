@@ -380,15 +380,15 @@ namespace Lbl.Comprobantes
 			}
 		}
 
-		public int NumeroRemito
+		public int IdRemito
 		{
 			get
 			{
-				return this.GetFieldValue<int>("remito");
+				return this.GetFieldValue<int>("id_remito");
 			}
                         set
                         {
-                                this.Registro["remito"] = value;
+                                this.Registro["id_remito"] = value;
                         }
 		}
 
@@ -506,7 +506,7 @@ namespace Lbl.Comprobantes
                                 this.Numerar(false);
                         }
 
-                        if (this.Fecha == null) {
+                        if (this.Fecha == null || this.Fecha.Year == 1) {
                                 Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                         } else {
                                 Comando.Fields.AddWithValue("fecha", this.Fecha);
@@ -516,14 +516,22 @@ namespace Lbl.Comprobantes
                                 Comando.Fields.AddWithValue("id_formapago", null);
                         else
                                 Comando.Fields.AddWithValue("id_formapago", FormaDePago.Id);
+
                         if (this.Vendedor == null)
                                 Comando.Fields.AddWithValue("id_vendedor", null);
                         else
                                 Comando.Fields.AddWithValue("id_vendedor", this.Vendedor.Id);
+                        
                         if (this.Sucursal == null)
                                 Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
                         else
                                 Comando.Fields.AddWithValue("id_sucursal", this.Sucursal.Id);
+
+                        if (this.IdRemito == 0)
+                                Comando.Fields.AddWithValue("id_remito", null);
+                        else
+                                Comando.Fields.AddWithValue("id_remito", this.IdRemito);
+
                         Comando.Fields.AddWithValue("pv", this.PV);
                         Comando.Fields.AddWithValue("numero", this.Numero);
                         Comando.Fields.AddWithValue("id_cliente", Lfx.Data.Connection.ConvertZeroToDBNull(this.Cliente.Id));
@@ -743,7 +751,7 @@ namespace Lbl.Comprobantes
                         //Nuevo.ImporteCancelado = this.ImporteCancelado;
                         //Nuevo.Impreso = this.Impreso;
                         Nuevo.Numero = this.Numero;
-                        Nuevo.NumeroRemito = this.NumeroRemito;
+                        Nuevo.IdRemito = this.IdRemito;
                         Nuevo.Obs = this.Obs;
                         Nuevo.OtrosGastos = this.OtrosGastos;
                         Nuevo.PV = this.PV;

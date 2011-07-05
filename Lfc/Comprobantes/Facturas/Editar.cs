@@ -75,28 +75,45 @@ namespace Lfc.Comprobantes.Facturas
                         Lfx.Types.OperationResult validarReturn = base.ValidarControl();
 
                         if (validarReturn.Success == true) {
-                                Lbl.Comprobantes.ComprobanteConArticulos Registro = this.ToRow() as Lbl.Comprobantes.ComprobanteConArticulos;
-                                Registro.Cliente.Cargar();
+                                Lbl.Comprobantes.ComprobanteFacturable Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteFacturable;
 
-                                if (Registro.NumeroRemito > 0) {
-                                        Lfx.Data.Row Remito = this.Connection.FirstRowFromSelect("SELECT * FROM comprob WHERE tipo_fac='R' AND numero=" + Registro.NumeroRemito.ToString() + " AND impresa>0 AND anulada=0");
-                                        if (Remito == null) {
+                                if (EntradaRemito.Text.Length > 0) {
+                                        int RemitoNumero, RemitoPv;
+                                        if (EntradaRemito.Text.IndexOfAny(new char[] { '-' }) >= 0) {
+                                                // El número de remito tiene guión
+                                                string[] Partes = EntradaRemito.Text.Split(new char[] { '-' });
+                                                RemitoNumero = Lfx.Types.Parsing.ParseInt(Partes[0]);
+                                                RemitoPv = Lfx.Types.Parsing.ParseInt(Partes[1]);
+                                        } else {
+                                                // El número de remito no tiene guión, asumo el mismo PV que la factura
+                                                RemitoNumero = EntradaRemito.ValueInt;
+                                                RemitoPv = EntradaPV.ValueInt;
+                                        }
+
+                                        int RemitoId = this.Connection.FieldInt("SELECT id_comprob FROM comprob WHERE compra=0 AND tipo_fac='R' AND pv=" + RemitoPv.ToString() + " AND numero=" + RemitoNumero.ToString() + " AND impresa>0 AND anulada=0");
+                                        if (RemitoId == 0) {
                                                 validarReturn.Success = false;
                                                 validarReturn.Message += "El número de Remito no es válido." + Environment.NewLine;
                                         }
                                 }
-                                if (Registro.FormaDePago == null && Registro.Tipo.EsFactura) {
+
+                                Lbl.Pagos.FormaDePago FormaPago = EntradaFormaPago.Elemento as Lbl.Pagos.FormaDePago;
+                                Lbl.Comprobantes.Tipo Tipo = new Lbl.Comprobantes.Tipo(this.Connection, EntradaTipo.TextKey);
+                                if (FormaPago == null && Tipo.EsFactura) {
                                         validarReturn.Success = false;
                                         validarReturn.Message += "Debe especificar la Forma de Pago." + Environment.NewLine;
                                 }
-                                if (Registro.Cliente.Id == 999 && Registro.FormaDePago != null && Registro.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente && Registro.Cliente != null) {
+                                if (EntradaCliente.TextInt == 999 && FormaPago != null && FormaPago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente) {
                                         validarReturn.Success = false;
                                         validarReturn.Message += @"""Consumidor Final"" no puede realizar pagos en Cuenta Corriente." + Environment.NewLine;
                                 }
 
-
-                                if (Registro.Cliente.SituacionTributaria != null && (Registro.Cliente.SituacionTributaria.Id == 2 || Registro.Cliente.SituacionTributaria.Id == 3)) {
-                                        if (Registro.Cliente.Cuit == null || Registro.Cliente.Cuit.EsValido() == false) {
+                                Lbl.Personas.Persona Cliente = EntradaCliente.Elemento as Lbl.Personas.Persona;
+                                if (Cliente == null) {
+                                        validarReturn.Success = false;
+                                        validarReturn.Message += "Debe especificar un Cliente." + Environment.NewLine;
+                                } else if (Cliente.SituacionTributaria != null && (Cliente.SituacionTributaria.Id == 2 || Cliente.SituacionTributaria.Id == 3)) {
+                                        if (Cliente.Cuit == null || Cliente.Cuit.EsValido() == false) {
                                                 validarReturn.Success = false;
                                                 validarReturn.Message += "El cliente debe tener una CUIT válida." + Environment.NewLine;
                                         }
@@ -139,7 +156,11 @@ namespace Lfc.Comprobantes.Facturas
                         }
 
                         EntradaTipo.TextKey = Res.Tipo.Nomenclatura;
-                        EntradaRemito.Text = Res.NumeroRemito.ToString();
+
+                        if (Res.IdRemito == 0)
+                                EntradaRemito.Text = "";
+                        else
+                                EntradaRemito.Text = Lbl.Comprobantes.Comprobante.NumeroCompleto(Res.Connection, Res.IdRemito);
                         BotonPago.Visible = EsCancelable();
 
                         base.ActualizarControl();
@@ -153,7 +174,24 @@ namespace Lfc.Comprobantes.Facturas
                                 Res.FormaDePago = new Lbl.Pagos.FormaDePago(Res.Connection, EntradaFormaPago.TextInt);
                         else
                                 Res.FormaDePago = null;
-                        Res.NumeroRemito = Lfx.Types.Parsing.ParseInt(EntradaRemito.Text);
+
+                        if (EntradaRemito.Text.Length > 0) {
+                                int RemitoNumero, RemitoPv;
+                                if (EntradaRemito.Text.IndexOfAny(new char[] { '-' }) >= 0) {
+                                        // El número de remito tiene guión
+                                        string[] Partes = EntradaRemito.Text.Split(new char[] { '-' });
+                                        RemitoNumero = Lfx.Types.Parsing.ParseInt(Partes[0]);
+                                        RemitoPv = Lfx.Types.Parsing.ParseInt(Partes[1]);
+                                } else {
+                                        // El número de remito no tiene guión, asumo el mismo PV que la factura
+                                        RemitoNumero = EntradaRemito.ValueInt;
+                                        RemitoPv = EntradaPV.ValueInt;
+                                }
+
+                                Res.IdRemito = this.Connection.FieldInt("SELECT id_comprob FROM comprob WHERE compra=0 AND tipo_fac='R' AND pv=" + RemitoPv.ToString() + " AND numero=" + RemitoNumero.ToString() + " AND impresa>0 AND anulada=0");
+                        } else {
+                                Res.IdRemito = 0;
+                        }
 
                         base.ActualizarElemento();
                 }

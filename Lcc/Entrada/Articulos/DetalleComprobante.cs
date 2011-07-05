@@ -396,10 +396,11 @@ namespace Lcc.Entrada.Articulos
                         {
                                 return EntradaArticulo.Elemento as Lbl.Articulos.Articulo;
                         }
-                        /* set
+                        set
                         {
                                 EntradaArticulo.Elemento = value;
-                        } */
+                                this.Elemento = value;
+                        }
                 }
 
                 [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]

@@ -116,6 +116,10 @@ namespace Lazaro
                                 string[] ArchivosNuevos = System.IO.Directory.GetFiles(Lfx.Environment.Folders.ApplicationFolder, "*.new", System.IO.SearchOption.AllDirectories);
                                 if (ArchivosNuevos.Length > 0) {
                                         System.Console.WriteLine("Existen actualizaciones pendientes. Ejecutando Cargador");
+                                        if (Lfx.Environment.SystemInformation.IsUacActive)
+                                                Lui.Forms.MessageBox.Show("A continuación se van a instalar actualizaciones del programa. Es posible que el sistema le solicite autorización para continuar con la instalación. Luego de la actualización el sistema iniciará normalmente.", "Lázaro");
+                                        else
+                                                Lui.Forms.MessageBox.Show("A continuación se van a instalar actualizaciones del programa. Luego de la actualización el sistema iniciará normalmente.", "Lázaro");
                                         Lfx.Environment.Shell.Reboot();
                                 }
                         }

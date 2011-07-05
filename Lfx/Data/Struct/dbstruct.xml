@@ -334,7 +334,7 @@
     <Column name="impresa" datatype="SmallInt" nullable="0" default="0" />
     <Column name="anulada" datatype="SmallInt" nullable="0" default="0" />
     <Column name="cancelado" inputtype="Currency" default="0" />
-    <Column name="remito" datatype="Integer" nullable="0" default="0" />
+    <Column name="id_remito" datatype="Integer" nullable="1" />
     <Column name="plantilla" datatype="SmallInt" nullable="0" default="0" />
     <Column name="id_sucursal" datatype="Integer" nullable="0" default="0" />
     <Column name="estado" datatype="Integer" nullable="0" />
@@ -348,12 +348,23 @@
     <Index table="comprob" name="comprob_id_formapago" columns="id_formapago" unique="0" primary="0" />
     <Index table="comprob" name="comprob_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
     <Index table="comprob" name="comprob_id_vendedor" columns="id_vendedor" unique="0" primary="0" />
+    <Index table="comprob" name="comprob_id_remito" columns="id_remito" unique="0" primary="0" />
     <Index table="comprob" name="comprob_situaciondestino" columns="situaciondestino" unique="0" primary="0" />
     <Index table="comprob" name="comprob_situacionorigen" columns="situacionorigen" unique="0" primary="0" />
     <Index table="comprob" name="comprob_tipo_fac_pv_numero_compra" columns="tipo_fac,pv,numero,compra" unique="0" primary="0" />
     <Index table="comprob" name="comprob_tipo_fac_fecha_id_sucursal_compra" columns="tipo_fac,fecha,id_sucursal,compra" unique="0" primary="0" />
     <Index table="comprob" name="PRIMARY" columns="id_comprob" unique="1" primary="1" />
   </Table>
+  <Constraint name="comprob_id_sucursal" table="comprob" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" />
+  <Constraint name="comprob_id_vendedor" table="comprob" column="id_vendedor" reference_table="personas" reference_column="id_persona" />
+  <Constraint name="comprob_situaciondestino" table="comprob" column="situaciondestino" reference_table="articulos_situaciones" reference_column="id_situacion" />
+  <Constraint name="comprob_situacionorigen" table="comprob" column="situacionorigen" reference_table="articulos_situaciones" reference_column="id_situacion" />
+  <Constraint name="comprob_id_cliente" table="comprob" column="id_cliente" reference_table="personas" reference_column="id_persona" />
+  <Constraint name="comprob_id_comprob_orig" table="comprob" column="id_comprob_orig" reference_table="comprob" reference_column="id_comprob" />
+  <Constraint name="comprob_id_formapago" table="comprob" column="id_formapago" reference_table="formaspago" reference_column="id_formapago" />
+  <Constraint name="comprob_id_remito" table="comprob" column="id_remito" reference_table="comprob" reference_column="id_comprob" />
+
+
   <Table name="comprob_detalle">
     <Column name="id_comprob_detalle" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="id_comprob" datatype="Integer" nullable="0" default="0" />
@@ -373,6 +384,10 @@
     <Index table="comprob_detalle" name="comprob_detalle_id_comprob_id_articulo" columns="id_comprob,id_articulo" unique="0" primary="0" />
     <Index table="comprob_detalle" name="PRIMARY" columns="id_comprob_detalle" unique="1" primary="1" />
   </Table>
+  <Constraint name="comprob_detalle_id_articulo" table="comprob_detalle" column="id_articulo" reference_table="articulos" reference_column="id_articulo" />
+  <Constraint name="comprob_detalle_id_comprob" table="comprob_detalle" column="id_comprob" reference_table="comprob" reference_column="id_comprob" />
+
+
   <Table name="comprob_imagenes">
     <Column name="id_comprob" datatype="Integer" nullable="0" primary_key="1" default="0" />
     <Column name="imagen" datatype="Blob" nullable="1" />
@@ -1033,15 +1048,6 @@
   <Constraint name="cajas_movim_id_persona" table="cajas_movim" column="id_persona" reference_table="personas" reference_column="id_persona" />
   <Constraint name="documentos_tipos_situacionorigen" table="documentos_tipos" column="situacionorigen" reference_table="articulos_situaciones" reference_column="id_situacion" />
   <Constraint name="documentos_tipos_situaciondestino" table="documentos_tipos" column="situaciondestino" reference_table="articulos_situaciones" reference_column="id_situacion" />
-  <Constraint name="comprob_id_sucursal" table="comprob" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" />
-  <Constraint name="comprob_id_vendedor" table="comprob" column="id_vendedor" reference_table="personas" reference_column="id_persona" />
-  <Constraint name="comprob_situaciondestino" table="comprob" column="situaciondestino" reference_table="articulos_situaciones" reference_column="id_situacion" />
-  <Constraint name="comprob_situacionorigen" table="comprob" column="situacionorigen" reference_table="articulos_situaciones" reference_column="id_situacion" />
-  <Constraint name="comprob_id_cliente" table="comprob" column="id_cliente" reference_table="personas" reference_column="id_persona" />
-  <Constraint name="comprob_id_comprob_orig" table="comprob" column="id_comprob_orig" reference_table="comprob" reference_column="id_comprob" />
-  <Constraint name="comprob_id_formapago" table="comprob" column="id_formapago" reference_table="formaspago" reference_column="id_formapago" />
-  <Constraint name="comprob_detalle_id_articulo" table="comprob_detalle" column="id_articulo" reference_table="articulos" reference_column="id_articulo" />
-  <Constraint name="comprob_detalle_id_comprob" table="comprob_detalle" column="id_comprob" reference_table="comprob" reference_column="id_comprob" />
   <Constraint name="formaspago_id_caja" table="formaspago" column="id_caja" reference_table="cajas" reference_column="id_caja" />
   <Constraint name="formaspago_id_concepto" table="formaspago" column="id_concepto" reference_table="conceptos" reference_column="id_concepto" />
   <Constraint name="impresoras_id_sucursal" table="impresoras" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" />

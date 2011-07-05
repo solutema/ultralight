@@ -338,9 +338,9 @@ namespace Lbl.Comprobantes
 			foreach (System.Data.DataRow Factura in TablaFacturas.Rows)
 			{
 				if (Facturas.Length == 0)
-					Facturas.Append(Lbl.Comprobantes.Comprobante.NumeroCompleto(dataBase, Lfx.Data.Connection.ConvertDBNullToZero(Factura["id_comprob"])));
+					Facturas.Append(Lbl.Comprobantes.Comprobante.TipoYNumeroCompleto(dataBase, Lfx.Data.Connection.ConvertDBNullToZero(Factura["id_comprob"])));
 				else
-					Facturas.Append(", " + Lbl.Comprobantes.Comprobante.NumeroCompleto(dataBase, Lfx.Data.Connection.ConvertDBNullToZero(Factura["id_comprob"])));
+					Facturas.Append(", " + Lbl.Comprobantes.Comprobante.TipoYNumeroCompleto(dataBase, Lfx.Data.Connection.ConvertDBNullToZero(Factura["id_comprob"])));
 			}
 
 			return Facturas.ToString();
@@ -453,15 +453,28 @@ namespace Lbl.Comprobantes
                 /// <summary>
                 /// Devuelve el tipo y número de un comprobante (por ejemplo: B 0001-00000135).
                 /// </summary>
-		public static string NumeroCompleto(Lfx.Data.Connection connection, int itemId)
+		public static string TipoYNumeroCompleto(Lfx.Data.Connection connection, int itemId)
 		{
-                        Lfx.Data.Row TmpFactura = connection.Tables["comprob"].FastRows[itemId]; //dataBase.Row("comprob", "tipo_fac, pv, numero", "id_comprob", iId);
+                        Lfx.Data.Row Comp = connection.Tables["comprob"].FastRows[itemId];
 
-			if (TmpFactura == null)
+			if (Comp == null)
 				return "";
 			else
-				return (string)TmpFactura["tipo_fac"].ToString() + " " + System.Convert.ToInt32(TmpFactura["pv"]).ToString("0000") + "-" + System.Convert.ToInt32(TmpFactura["numero"]).ToString("00000000");
+				return (string)Comp["tipo_fac"].ToString() + " " + System.Convert.ToInt32(Comp["pv"]).ToString("0000") + "-" + System.Convert.ToInt32(Comp["numero"]).ToString("00000000");
 		}
+
+                /// <summary>
+                /// Devuelve el número de un comprobante (por ejemplo: 0001-00000135).
+                /// </summary>
+                public static string NumeroCompleto(Lfx.Data.Connection connection, int itemId)
+                {
+                        Lfx.Data.Row Comp = connection.Tables["comprob"].FastRows[itemId];
+
+                        if (Comp == null)
+                                return "";
+                        else
+                                return System.Convert.ToInt32(Comp["pv"]).ToString("0000") + "-" + System.Convert.ToInt32(Comp["numero"]).ToString("00000000");
+                }
 
 		public static string NombreCompletoRecibo(Lfx.Data.Connection dataBase, int iId)
 		{

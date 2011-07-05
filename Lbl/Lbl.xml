@@ -179,9 +179,14 @@
             </summary>
             <param name="yMarcarComoImpreso">Si es Verdadero, el comprobante se marca como impreso y se actualiza la fecha.</param>
         </member>
-        <member name="M:Lbl.Comprobantes.Comprobante.NumeroCompleto(Lfx.Data.Connection,System.Int32)">
+        <member name="M:Lbl.Comprobantes.Comprobante.TipoYNumeroCompleto(Lfx.Data.Connection,System.Int32)">
             <summary>
             Devuelve el tipo y número de un comprobante (por ejemplo: B 0001-00000135).
+            </summary>
+        </member>
+        <member name="M:Lbl.Comprobantes.Comprobante.NumeroCompleto(Lfx.Data.Connection,System.Int32)">
+            <summary>
+            Devuelve el número de un comprobante (por ejemplo: 0001-00000135).
             </summary>
         </member>
         <member name="M:Lbl.Comprobantes.ComprobanteConArticulos.RedondearImporte(System.Decimal)">

@@ -413,6 +413,8 @@ namespace Lcc.Entrada
 
                         ProgramarActualizacionDetalle();
 
+                        this.OnTextChanged(EventArgs.Empty);
+
                         if (Label1.Text == "???" && TextBox1.Text.Length > 6)
                                 MostrarBuscador(TextBox1.Text);
 
@@ -423,25 +425,42 @@ namespace Lcc.Entrada
                 private void ProgramarActualizacionDetalle()
                 {
                         TimerActualizar.Stop();
-                        if (this.AutoUpdate)
-                                TimerActualizar.Start();
+
+                        if (m_FreeTextCode.Length > 0 && TextBox1.Text == m_FreeTextCode) {
+                                m_ItemId = 0;
+                                this.CurrentRow = null;
+                                m_LastText1 = "";
+                                EntradaFreeText.Visible = true;
+                                EntradaFreeText.Focus();
+                        } else if (this.Relation.IsEmpty() == false && TextBox1.Text.Length > 0 && TextBox1.Text != "0") {
+                                if (this.AutoUpdate)
+                                        TimerActualizar.Start();
+                        } else {
+                                m_ItemId = 0;
+                                this.CurrentRow = null;
+                                m_LastText1 = "";
+                                Label1.Text = this.PlaceholderText;
+                                Label1.ForeColor = System.Drawing.SystemColors.GrayText;
+                        }
                 }
 
 
                 private void ActualizarDetalle()
                 {
                         if (this.HasWorkspace && this.Connection != null) {
-                                //Actualizo sólo si cambió el código
-                                string KeyFieldAlt = this.Relation.ReferenceColumn; // KeyField Alternativo
-                                if (this.Relation.ReferenceTable == "articulos" && KeyFieldAlt == "id_articulo")
-                                        KeyFieldAlt = this.Workspace.CurrentConfig.Productos.CodigoPredeterminado();
-
                                 if (m_FreeTextCode.Length > 0 && TextBox1.Text == m_FreeTextCode) {
+                                        // *** Esta escribiendo texto libre
                                         m_ItemId = 0;
+                                        this.CurrentRow = null;
                                         m_LastText1 = "";
                                         EntradaFreeText.Visible = true;
                                         EntradaFreeText.Focus();
                                 } else if (this.Relation.IsEmpty() == false && TextBox1.Text.Length > 0 && TextBox1.Text != "0") {
+                                        // *** Ingresó un código que parece válido
+                                        string KeyFieldAlt = this.Relation.ReferenceColumn; // KeyField Alternativo
+                                        if (this.Relation.ReferenceTable == "articulos" && KeyFieldAlt == "id_articulo")
+                                                KeyFieldAlt = this.Workspace.CurrentConfig.Productos.CodigoPredeterminado();
+
                                         if (TextBox1.Text != m_LastText1) {
                                                 EntradaFreeText.Visible = false;
                                                 string TextoSql = "", Campos = "*";
@@ -470,18 +489,19 @@ namespace Lcc.Entrada
                                                 }
                                         }
                                 } else {
+                                        // El campo está en blanco o con algo que no parece un código válido
                                         m_ItemId = 0;
+                                        this.CurrentRow = null;
                                         m_LastText1 = "";
                                         Label1.Text = this.PlaceholderText;
                                         Label1.ForeColor = System.Drawing.SystemColors.GrayText;
                                 }
                         } else {
                                 m_ItemId = 0;
+                                this.CurrentRow = null;
                                 m_LastText1 = "";
                                 Label1.Text = "";
                         }
-
-                        this.OnTextChanged(EventArgs.Empty);
 
                         if (this.TextInt > 0 && this.Visible)
                                 this.Workspace.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", this.Relation.ReferenceTable, this.Text });

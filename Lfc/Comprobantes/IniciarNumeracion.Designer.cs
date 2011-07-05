@@ -77,10 +77,10 @@ namespace Lfc.Comprobantes
                         // 
                         // label4
                         // 
-                        this.label4.Location = new System.Drawing.Point(220, 24);
+                        this.label4.Location = new System.Drawing.Point(316, 24);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(132, 24);
-                        this.label4.TabIndex = 53;
+                        this.label4.TabIndex = 2;
                         this.label4.Text = "Punto de Venta";
                         this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -99,26 +99,28 @@ namespace Lfc.Comprobantes
                         this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTipo.PlaceholderText = "";
+                        this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
-        "A|A",
-        "B|B",
-        "C|C",
-        "E|E",
-        "M|M"};
-                        this.EntradaTipo.Size = new System.Drawing.Size(40, 81);
-                        this.EntradaTipo.TabIndex = 52;
+        "Facturas A|A",
+        "Facturas B|B",
+        "Facturas C|C",
+        "Facturas E|E",
+        "Facturas M|M",
+        "Remitos|R"};
+                        this.EntradaTipo.Size = new System.Drawing.Size(144, 81);
+                        this.EntradaTipo.TabIndex = 1;
                         this.EntradaTipo.Table = null;
                         this.EntradaTipo.TextKey = "B";
-                        this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipoPvDesde_TextChanged);
                         // 
                         // Label7
                         // 
-                        this.Label7.Location = new System.Drawing.Point(220, 56);
+                        this.Label7.Location = new System.Drawing.Point(316, 56);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(132, 24);
-                        this.Label7.TabIndex = 55;
+                        this.Label7.TabIndex = 4;
                         this.Label7.Text = "Próximo Número";
                         this.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -131,19 +133,20 @@ namespace Lfc.Comprobantes
                         this.EntradaPv.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaPv.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaPv.Location = new System.Drawing.Point(352, 24);
+                        this.EntradaPv.Location = new System.Drawing.Point(448, 24);
                         this.EntradaPv.MaxLenght = 32767;
                         this.EntradaPv.MultiLine = false;
                         this.EntradaPv.Name = "EntradaPv";
                         this.EntradaPv.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPv.PasswordChar = '\0';
+                        this.EntradaPv.PlaceholderText = "";
                         this.EntradaPv.Prefijo = "";
+                        this.EntradaPv.ReadOnly = false;
                         this.EntradaPv.SelectOnFocus = true;
                         this.EntradaPv.Size = new System.Drawing.Size(52, 24);
                         this.EntradaPv.Sufijo = "";
-                        this.EntradaPv.TabIndex = 54;
+                        this.EntradaPv.TabIndex = 3;
                         this.EntradaPv.Text = "1";
-                        this.EntradaPv.PlaceholderText = "";
                         this.EntradaPv.ToolTipText = "";
                         this.EntradaPv.TextChanged += new System.EventHandler(this.EntradaTipoPvDesde_TextChanged);
                         // 
@@ -156,19 +159,20 @@ namespace Lfc.Comprobantes
                         this.EntradaDesde.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDesde.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaDesde.Location = new System.Drawing.Point(352, 56);
+                        this.EntradaDesde.Location = new System.Drawing.Point(448, 56);
                         this.EntradaDesde.MaxLenght = 32767;
                         this.EntradaDesde.MultiLine = false;
                         this.EntradaDesde.Name = "EntradaDesde";
                         this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDesde.PasswordChar = '\0';
+                        this.EntradaDesde.PlaceholderText = "";
                         this.EntradaDesde.Prefijo = "";
+                        this.EntradaDesde.ReadOnly = false;
                         this.EntradaDesde.SelectOnFocus = true;
                         this.EntradaDesde.Size = new System.Drawing.Size(100, 24);
                         this.EntradaDesde.Sufijo = "";
-                        this.EntradaDesde.TabIndex = 56;
+                        this.EntradaDesde.TabIndex = 5;
                         this.EntradaDesde.Text = "0";
-                        this.EntradaDesde.PlaceholderText = "";
                         this.EntradaDesde.ToolTipText = "";
                         this.EntradaDesde.TextChanged += new System.EventHandler(this.EntradaTipoPvDesde_TextChanged);
                         // 
@@ -177,19 +181,19 @@ namespace Lfc.Comprobantes
                         this.Label1.Location = new System.Drawing.Point(24, 24);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(128, 24);
-                        this.Label1.TabIndex = 51;
+                        this.Label1.TabIndex = 0;
                         this.Label1.Text = "Comprobante";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // LabelAyuda
                         // 
-                        this.LabelAyuda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.LabelAyuda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.LabelAyuda.AutoEllipsis = true;
                         this.LabelAyuda.Location = new System.Drawing.Point(24, 120);
                         this.LabelAyuda.Name = "LabelAyuda";
-                        this.LabelAyuda.Size = new System.Drawing.Size(576, 72);
-                        this.LabelAyuda.TabIndex = 57;
+                        this.LabelAyuda.Size = new System.Drawing.Size(576, 100);
+                        this.LabelAyuda.TabIndex = 6;
                         this.LabelAyuda.Text = "...";
                         // 
                         // IniciarNumeracion

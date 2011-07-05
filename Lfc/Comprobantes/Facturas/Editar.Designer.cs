@@ -63,29 +63,30 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // EntradaFormaPago
                         // 
-                        this.EntradaFormaPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaFormaPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFormaPago.AutoNav = true;
                         this.EntradaFormaPago.AutoTab = true;
                         this.EntradaFormaPago.CanCreate = true;
                         this.EntradaFormaPago.DataTextField = "nombre";
+                        this.EntradaFormaPago.DataValueField = "id_formapago";
                         this.EntradaFormaPago.ExtraDetailFields = null;
                         this.EntradaFormaPago.Filter = "cobros=1 AND estado=1";
                         this.EntradaFormaPago.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFormaPago.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFormaPago.FreeTextCode = "";
-                        this.EntradaFormaPago.DataValueField = "id_formapago";
                         this.EntradaFormaPago.Location = new System.Drawing.Point(108, 0);
                         this.EntradaFormaPago.MaxLength = 200;
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
                         this.EntradaFormaPago.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaFormaPago.PlaceholderText = "";
+                        this.EntradaFormaPago.ReadOnly = false;
                         this.EntradaFormaPago.Required = true;
-                        this.EntradaFormaPago.Size = new System.Drawing.Size(168, 24);
+                        this.EntradaFormaPago.Size = new System.Drawing.Size(92, 24);
                         this.EntradaFormaPago.TabIndex = 1;
                         this.EntradaFormaPago.Table = "formaspago";
                         this.EntradaFormaPago.Text = "0";
                         this.EntradaFormaPago.TextDetail = "";
-                        this.EntradaFormaPago.PlaceholderText = "";
                         this.EntradaFormaPago.ToolTipText = "";
                         this.EntradaFormaPago.Leave += new System.EventHandler(this.EntradaFormaPago_Leave);
                         // 
@@ -113,6 +114,8 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTipo.PlaceholderText = "";
+                        this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Factura A|FA",
         "Factura B|FB",
@@ -124,14 +127,13 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.TabIndex = 11;
                         this.EntradaTipo.Table = null;
                         this.EntradaTipo.TextKey = "FA";
-                        this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
                         // 
                         // Label11
                         // 
                         this.Label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label11.Location = new System.Drawing.Point(476, 72);
+                        this.Label11.Location = new System.Drawing.Point(400, 72);
                         this.Label11.Name = "Label11";
                         this.Label11.Size = new System.Drawing.Size(56, 24);
                         this.Label11.TabIndex = 14;
@@ -149,6 +151,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.BotonPago.Location = new System.Drawing.Point(452, 372);
                         this.BotonPago.Name = "BotonPago";
                         this.BotonPago.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonPago.ReadOnly = false;
                         this.BotonPago.Size = new System.Drawing.Size(108, 28);
                         this.BotonPago.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonPago.Subtext = "F2";
@@ -168,31 +171,31 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaRemito.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaRemito.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaRemito.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaRemito.Location = new System.Drawing.Point(532, 72);
+                        this.EntradaRemito.Location = new System.Drawing.Point(456, 72);
                         this.EntradaRemito.MaxLenght = 32767;
                         this.EntradaRemito.MultiLine = false;
                         this.EntradaRemito.Name = "EntradaRemito";
                         this.EntradaRemito.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaRemito.PasswordChar = '\0';
+                        this.EntradaRemito.PlaceholderText = "Ninguno";
                         this.EntradaRemito.Prefijo = "";
+                        this.EntradaRemito.ReadOnly = false;
                         this.EntradaRemito.SelectOnFocus = true;
-                        this.EntradaRemito.Size = new System.Drawing.Size(68, 24);
+                        this.EntradaRemito.Size = new System.Drawing.Size(144, 24);
                         this.EntradaRemito.Sufijo = "";
                         this.EntradaRemito.TabIndex = 15;
-                        this.EntradaRemito.Text = "0";
-                        this.EntradaRemito.PlaceholderText = "ninguno";
                         this.EntradaRemito.ToolTipText = "";
                         this.EntradaRemito.TextChanged += new System.EventHandler(this.EntradaRemito_TextChanged);
                         // 
                         // PanelFormaPago
                         // 
-                        this.PanelFormaPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.PanelFormaPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.PanelFormaPago.Controls.Add(this.Label2);
                         this.PanelFormaPago.Controls.Add(this.EntradaFormaPago);
                         this.PanelFormaPago.Location = new System.Drawing.Point(192, 72);
                         this.PanelFormaPago.Name = "PanelFormaPago";
-                        this.PanelFormaPago.Size = new System.Drawing.Size(276, 24);
+                        this.PanelFormaPago.Size = new System.Drawing.Size(200, 24);
                         this.PanelFormaPago.TabIndex = 12;
                         // 
                         // Editar

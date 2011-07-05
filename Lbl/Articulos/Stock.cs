@@ -84,8 +84,8 @@ namespace Lbl.Articulos
                                         // Es un Remito. Muevo el Stock
                                         MoverStockFactura(comprobante, true);
                                 } else {
-                                        // Es una factura, NC o ND. Descuento el Stock, sólo si no hay remito asociado
-                                        if (comprobante.NumeroRemito == 0)
+                                        // Es una factura, NC o ND. Descuento el Stock, sólo si no hay Remito asociado
+                                        if (comprobante.IdRemito == 0)
                                                 MoverStockFactura(comprobante, true);
                                 }
                         }

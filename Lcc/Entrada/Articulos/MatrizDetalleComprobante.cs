@@ -91,7 +91,7 @@ namespace Lcc.Entrada.Articulos
                                         if (articulos[i].Articulo == null)
                                                 this.ChildControls[i].Text = this.FreeTextCode;
                                         else
-                                                this.ChildControls[i].Elemento = articulos[i].Articulo;
+                                                this.ChildControls[i].Articulo = articulos[i].Articulo;
 
                                         this.ChildControls[i].TextDetail = articulos[i].Nombre;
                                         this.ChildControls[i].Cantidad = articulos[i].Cantidad;
@@ -132,7 +132,7 @@ namespace Lcc.Entrada.Articulos
                         foreach (DetalleComprobante Pro in this.ChildControls) {
                                 if (Pro.IsEmpty == false) {
                                         Lbl.Comprobantes.DetalleArticulo DetArt = new Lbl.Comprobantes.DetalleArticulo(comprobante);
-                                        DetArt.Articulo = Pro.Elemento as Lbl.Articulos.Articulo;
+                                        DetArt.Articulo = Pro.Articulo;
                                         DetArt.Nombre = Pro.TextDetail;
                                         DetArt.Orden = i++;
                                         DetArt.Cantidad = Pro.Cantidad;

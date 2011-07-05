@@ -387,7 +387,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                         string TextoRemitoLinea1 = "";
                         string TextoRemitoLinea2 = "";
 
-                        if (Comprob.NumeroRemito == 0) {
+                        if (Comprob.IdRemito == 0) {
                                 if (Comprob.Obs == null) {
                                         TextoRemitoLinea1 = "";
                                 } else if (Comprob.Obs.Length > 43) {
@@ -400,7 +400,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                         TextoRemitoLinea1 = Comprob.Obs;
                                 }
                         } else {
-                                TextoRemitoLinea1 = "Remito(s) " + Comprob.NumeroRemito.ToString();
+                                TextoRemitoLinea1 = "Remito(s) " + Comprob.IdRemito.ToString();
                         }
 
                         string Domicilio = Comprob.Cliente.Domicilio;

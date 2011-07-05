@@ -51,6 +51,13 @@ namespace Lbl.Comprobantes
                 public Tipo(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
                         : base(dataBase, fromRow) { }
 
+                public Tipo(Lfx.Data.Connection dataBase, string nomenclatura)
+                        : base(dataBase)
+                {
+                        Lfx.Data.Row Rw = this.Connection.FirstRowFromSelect("SELECT * FROM documentos_tipos WHERE letra='" + nomenclatura + "'");
+                        this.FromRow(Rw);
+                }
+
                 public override void Crear()
                 {
                         m_Impresoras = new ColeccionGenerica<Lbl.Impresion.TipoImpresora>(this.Connection);

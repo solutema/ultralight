@@ -263,7 +263,7 @@ namespace Lfc.Tareas
                 {
                         int intComprobanteId = Lfx.Types.Parsing.ParseInt(EntradaComprobanteId.Text);
                         if (intComprobanteId > 0) {
-                                txtComprobante.Text = Lbl.Comprobantes.Comprobante.NumeroCompleto(this.Connection, intComprobanteId);
+                                txtComprobante.Text = Lbl.Comprobantes.Comprobante.TipoYNumeroCompleto(this.Connection, intComprobanteId);
                                 // Guardo el comprobante en la tarea (sólo si no tenía uno asociado)
                                 qGen.Update Actual = new qGen.Update("tickets");
                                 Actual.Fields.Add(new Lfx.Data.Field("id_comprob", intComprobanteId));
