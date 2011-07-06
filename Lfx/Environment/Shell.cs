@@ -74,8 +74,8 @@ namespace Lfx.Environment
                         string Params = string.Join(" ", ParametrosAPasar).Trim();
 
                         string ExeName;
-                        if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + "Cargador.exe"))
-                                ExeName = Lfx.Environment.Folders.ApplicationFolder + "Cargador.exe";
+                        if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + "ActualizadorLazaro.exe"))
+                                ExeName = Lfx.Environment.Folders.ApplicationFolder + "ActualizadorLazaro.exe";
                         else
                                 ExeName = Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe";
 

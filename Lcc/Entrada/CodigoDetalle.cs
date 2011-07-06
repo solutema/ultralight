@@ -63,13 +63,6 @@ namespace Lcc.Entrada
                         TextBox1.ForeColor = Label1.ForeColor;
                         EntradaFreeText.ForeColor = Label1.ForeColor;
                         this.BorderStyle = Lui.Forms.Control.BorderStyles.TextBox;
-
-                        if (this.HasWorkspace) {
-                                if (this.Workspace.SlowLink)
-                                        TimerActualizar.Interval = 750;
-                                else
-                                        TimerActualizar.Interval = 300;
-                        }
                 }
 
                 [EditorBrowsable(EditorBrowsableState.Never), 
@@ -169,7 +162,7 @@ namespace Lcc.Entrada
                                 base.TemporaryReadOnly = value;
                                 TextBox1.ReadOnly = value;
                                 if (Label1.Text == "???")
-                                        ProgramarActualizacionDetalle();
+                                        ProgramarActualizacionDetalle(false);
                         }
                 }
 
@@ -188,7 +181,7 @@ namespace Lcc.Entrada
                                 else
                                         TextBox1.Width = 50;
                                 ReubicarDetalle();
-                                ProgramarActualizacionDetalle();
+                                ProgramarActualizacionDetalle(false);
                         }
                 }
 
@@ -215,7 +208,7 @@ namespace Lcc.Entrada
                         set
                         {
                                 base.DataTextField = value;
-                                ProgramarActualizacionDetalle();
+                                ProgramarActualizacionDetalle(false);
                         }
                 }
 
@@ -229,7 +222,7 @@ namespace Lcc.Entrada
                         set
                         {
                                 m_ExtraDetailFields = value;
-                                ProgramarActualizacionDetalle();
+                                ProgramarActualizacionDetalle(false);
                         }
                 }
 
@@ -243,7 +236,7 @@ namespace Lcc.Entrada
                         set
                         {
                                 m_Filter = value;
-                                ProgramarActualizacionDetalle();
+                                ProgramarActualizacionDetalle(false);
                         }
                 }
 
@@ -292,7 +285,7 @@ namespace Lcc.Entrada
                                 else
                                         this.TextBox1.Text = value;
 
-                                ProgramarActualizacionDetalle();
+                                ProgramarActualizacionDetalle(false);
 
                                 this.Changed = false;
                         }
@@ -411,9 +404,7 @@ namespace Lcc.Entrada
                                 }
                         }
 
-                        ProgramarActualizacionDetalle();
-
-                        this.OnTextChanged(EventArgs.Empty);
+                        ProgramarActualizacionDetalle(true);
 
                         if (Label1.Text == "???" && TextBox1.Text.Length > 6)
                                 MostrarBuscador(TextBox1.Text);
@@ -421,8 +412,8 @@ namespace Lcc.Entrada
                         this.Changed = true;
                 }
 
-
-                private void ProgramarActualizacionDetalle()
+                private bool DispararTextChanged = false;
+                private void ProgramarActualizacionDetalle(bool textChanged)
                 {
                         TimerActualizar.Stop();
 
@@ -432,15 +423,33 @@ namespace Lcc.Entrada
                                 m_LastText1 = "";
                                 EntradaFreeText.Visible = true;
                                 EntradaFreeText.Focus();
+
+                                if (textChanged)
+                                        this.OnTextChanged(EventArgs.Empty);
                         } else if (this.Relation.IsEmpty() == false && TextBox1.Text.Length > 0 && TextBox1.Text != "0") {
-                                if (this.AutoUpdate)
+                                if (this.AutoUpdate) {
+                                        if (this.HasWorkspace == false || this.Workspace.SlowLink)
+                                                TimerActualizar.Interval = 500;
+                                        else
+                                                TimerActualizar.Interval = 200;
+
+                                        if (textChanged)
+                                                DispararTextChanged = true;
+
                                         TimerActualizar.Start();
+                                } else {
+                                        if (textChanged)
+                                                this.OnTextChanged(EventArgs.Empty);
+                                }
                         } else {
                                 m_ItemId = 0;
                                 this.CurrentRow = null;
                                 m_LastText1 = "";
                                 Label1.Text = this.PlaceholderText;
                                 Label1.ForeColor = System.Drawing.SystemColors.GrayText;
+
+                                if (textChanged)
+                                        this.OnTextChanged(EventArgs.Empty);
                         }
                 }
 
@@ -454,7 +463,6 @@ namespace Lcc.Entrada
                                         this.CurrentRow = null;
                                         m_LastText1 = "";
                                         EntradaFreeText.Visible = true;
-                                        EntradaFreeText.Focus();
                                 } else if (this.Relation.IsEmpty() == false && TextBox1.Text.Length > 0 && TextBox1.Text != "0") {
                                         // *** Ingresó un código que parece válido
                                         string KeyFieldAlt = this.Relation.ReferenceColumn; // KeyField Alternativo
@@ -487,6 +495,11 @@ namespace Lcc.Entrada
                                                         Label1.Text = System.Convert.ToString(CurrentRow[this.Relation.DetailColumn]);
                                                         Label1.ForeColor = System.Drawing.SystemColors.ControlText;
                                                 }
+                                        }
+
+                                        if (DispararTextChanged) {
+                                                this.OnTextChanged(EventArgs.Empty);
+                                                DispararTextChanged = false;
                                         }
                                 } else {
                                         // El campo está en blanco o con algo que no parece un código válido
@@ -564,7 +577,7 @@ namespace Lcc.Entrada
                 private void DetailBox_Enter(object sender, System.EventArgs e)
                 {
                         TextBox1.ScrollToCaret();
-                        ProgramarActualizacionDetalle();
+                        ProgramarActualizacionDetalle(false);
                         this.Refresh();
                 }
 

@@ -482,8 +482,8 @@ namespace Lfx.Services
                                                         System.IO.File.Move(CarpetaDescarga + NombreArchivo + ".new", CarpetaDescarga + NombreArchivo);
                                                 }
 
-                                                /* if (NombreArchivo == "version.xml" || NombreArchivo == "Cargador.exe") {
-                                                        // version.xml y Cargador.exe se actualizan de inmediato
+                                                /* if (NombreArchivo == "version.xml" || NombreArchivo == "ActualizadorLazaro.exe") {
+                                                        // version.xml y ActualizadorLazaro.exe se actualizan de inmediato
                                                         if (System.IO.File.Exists(CarpetaTrabajo + NombreArchivo))
                                                                 System.IO.File.Delete(CarpetaTrabajo + NombreArchivo);
                                                         System.IO.File.Move(CarpetaDescarga + NombreArchivo + ".new", CarpetaTrabajo + NombreArchivo);

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cargador", "Cargador.csproj", "{EC8FE4EF-22C8-4E9B-9F25-575851393E93}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActualizadorLazaro", "ActualizadorLazaro.csproj", "{EC8FE4EF-22C8-4E9B-9F25-575851393E93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -9,9 +9,9 @@ using System.Security.Permissions;
 
 #endregion
 
-[assembly: AssemblyTitle("Cargador Lázaro")]
+[assembly: AssemblyTitle("Actualizador Lázaro")]
 [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyDescription("Cargador Lázaro")]
+[assembly: AssemblyDescription("Actualizador Lázaro")]
 [assembly: AssemblyCompany("Carrea Ernesto, Martínez Miguel")]
 [assembly: AssemblyProduct("Lázaro")]
 [assembly: AssemblyCopyright("Copyright © 2004-2009 Carrea Ernesto, Martínez Miguel")]

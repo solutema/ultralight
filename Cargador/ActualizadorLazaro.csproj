@@ -8,15 +8,16 @@
     <ProjectGuid>{EC8FE4EF-22C8-4E9B-9F25-575851393E93}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cargador</RootNamespace>
-    <AssemblyName>Cargador</AssemblyName>
+    <RootNamespace>ActualizadorLazaro</RootNamespace>
+    <AssemblyName>ActualizadorLazaro</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>Lazaro.ico</ApplicationIcon>
     <SignAssembly>false</SignAssembly>
     <DelaySign>false</DelaySign>
     <SignManifests>false</SignManifests>
-    <AssemblyOriginatorKeyFile>Cargador.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -74,7 +75,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
-    <None Include="Cargador.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lazaro.ico" />

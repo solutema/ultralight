@@ -112,10 +112,10 @@ namespace Lazaro
                         }
 
                         if (IgnoreUpdates == false) {
-                                // Si hay actualizaciones pendientes, reinicio para que Cargador se encargue de ellas.
+                                // Si hay actualizaciones pendientes, reinicio para que ActualizadorLazaro se encargue de ellas.
                                 string[] ArchivosNuevos = System.IO.Directory.GetFiles(Lfx.Environment.Folders.ApplicationFolder, "*.new", System.IO.SearchOption.AllDirectories);
                                 if (ArchivosNuevos.Length > 0) {
-                                        System.Console.WriteLine("Existen actualizaciones pendientes. Ejecutando Cargador");
+                                        System.Console.WriteLine("Existen actualizaciones pendientes. Ejecutando ActualizadorLazaro");
                                         if (Lfx.Environment.SystemInformation.IsUacActive)
                                                 Lui.Forms.MessageBox.Show("A continuación se van a instalar actualizaciones del programa. Es posible que el sistema le solicite autorización para continuar con la instalación. Luego de la actualización el sistema iniciará normalmente.", "Lázaro");
                                         else
@@ -236,7 +236,7 @@ namespace Lazaro
                                                 // Lo descargo directamente a la carpeta de la aplicación
                                                 ArchDestino = Lfx.Environment.Folders.ApplicationFolder + Arch;
                                         else
-                                                // Tengo UAC, lo descargo a la carpeta de actualizaciones y luego tengo que iniciar el Cargador.exe
+                                                // Tengo UAC, lo descargo a la carpeta de actualizaciones y luego tengo que iniciar el ActualizadorLazaro.exe
                                                 ArchDestino = Lfx.Environment.Folders.UpdatesFolder + Arch + ".new";
                                         Lfx.Services.Updater.NetGet(@"http://www.sistemalazaro.com.ar/aslnlwc/" + Arch, ArchDestino);
                                         Progreso.Advance(1);

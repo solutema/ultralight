@@ -105,7 +105,7 @@ namespace Cargador
                         string[] ParametrosAPasar = System.Environment.GetCommandLineArgs();
                         ParametrosAPasar[0] = "";
                         string Params = string.Join(" ", ParametrosAPasar).Trim();
-                        string ExeName = "Cargador.exe";
+                        string ExeName = "ActualizadorLazaro.exe";
 
                         System.Diagnostics.Process NuevoProceso = new System.Diagnostics.Process();
                         if (RunTime == RunTimes.DotNet) {
@@ -238,7 +238,7 @@ namespace Cargador
 
                         MailMessage Mensaje = new MailMessage();
                         Mensaje.To.Add(new MailAddress("error@sistemalazaro.com.ar"));
-                        Mensaje.From = new MailAddress("Cargador");
+                        Mensaje.From = new MailAddress("actualizador@sistemalazaro.com.ar");
                         try {
                                 //No sé por qué, pero una vez dió un error al poner el asunto
                                 Mensaje.Subject = ex.Message;

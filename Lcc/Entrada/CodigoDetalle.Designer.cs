@@ -189,7 +189,7 @@ namespace Lcc.Entrada
                         // 
                         // TimerActualizar
                         // 
-                        this.TimerActualizar.Interval = 80;
+                        this.TimerActualizar.Interval = 200;
                         this.TimerActualizar.Tick += new System.EventHandler(this.TimerActualizar_Tick);
                         this.TimerActualizar.Enabled = false;
                         // 
