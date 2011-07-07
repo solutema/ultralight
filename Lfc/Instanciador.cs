@@ -197,6 +197,14 @@ namespace Lfc
                                 case "Lbl.Tareas.Tarea":
                                         return typeof(Lfc.Tareas.Inicio);
 
+                                case "TICKETS_ESTADOS":
+                                case "Lbl.Tareas.Estado":
+                                        return typeof(Lfc.Tareas.Estados.Inicio);
+
+                                case "TICKETS_TIPOS":
+                                case "Lbl.Tareas.Tipos":
+                                        return typeof(Lfc.Tareas.Tipos.Inicio);
+
                                 case "VENCIMIENTO":
                                 case "VENCIMIENTOS":
                                 case "Lbl.Cajas.Vencimiento":
@@ -333,8 +341,9 @@ namespace Lfc
                                 case "tickets":
                                 case "Lbl.Tareas.Tarea":
                                         return typeof(Lfc.Tareas.Editar);
-                                //case "tickets_tipos":
-                                //        return typeof(Lfc.Tareas.Tipos.Editar);
+                                case "tickets_tipos":
+                                case "Lbl.Tareas.Tipo":
+                                        return typeof(Lfc.Tareas.Tipos.Editar);
                                 //case "tipo_doc":
                                 //        return typeof(Lbl);
                                 default:

@@ -15,6 +15,7 @@
     </Opcion>
     <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="&amp;Ticker" Funcion="TICKER MOSTRADOR" />
+    <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="Tablas" Funcion="">
       <Opcion Nombre="&amp;Rubros" Funcion="LISTADO Lbl.Articulos.Rubro" />
       <Opcion Nombre="&amp;Categorías" Funcion="LISTADO Lbl.Articulos.Categoria" />
@@ -74,21 +75,22 @@
       <Opcion Nombre="-" Funcion="" />
       <Opcion Nombre="&amp;Nuevo" Funcion="CREAR Lbl.Comprobantes.Remito" />
     </Opcion>
+    <Opcion Nombre="-" Funcion="" />
+    <Opcion Nombre="Útiles" Funcion="">
+      <Opcion Nombre="&amp;Iniciar Talonario" Funcion="INICIAR_TALONARIO" />
+    </Opcion>
     <Opcion Nombre="Tablas" Funcion="">
       <Opcion Nombre="Puntos de Venta" Funcion="LISTADO Lbl.Comprobantes.PuntoDeVenta" />
       <Opcion Nombre="&amp;Impresoras" Funcion="LISTADO Lbl.Impresion.Impresora" />
       <Opcion Nombre="-" Funcion="" />
       <Opcion Nombre="&amp;Tipos de Comprobante" Funcion="LISTADO Lbl.Comprobantes.Tipo" />
       <Opcion Nombre="&amp;Plantillas" Funcion="LISTADO Lbl.Impresion.Plantilla" />
-      <Opcion Nombre="-" Funcion="" />
-      <Opcion Nombre="&amp;Iniciar Talonario" Funcion="INICIAR_TALONARIO" />
     </Opcion>
   </Opcion>
   <Opcion Nombre="Ca&amp;jas" Funcion="">
     <Opcion Nombre="Caja &amp;Efectivo" Funcion="CAJA_EFECTIVO" />
     <Opcion Nombre="&amp;Cuentas Corrientes" Funcion="CTACTE" />
     <Opcion Nombre="T&amp;odas las Cajas" Funcion="MENU Lbl.Cajas.Caja" />
-    <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="C&amp;upones de Cobro" Funcion="CUPONES" />
     <Opcion Nombre="C&amp;heques" Funcion="">
       <Opcion Nombre="&amp;Recibidos" Funcion="LISTADO Lbl.Bancos.Cheque RECIBIDOS" />
@@ -114,6 +116,7 @@
     <Opcion Nombre="&amp;Listado" Funcion="LISTADO Lbl.Tareas.Tarea" />
     <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="&amp;Nueva" Funcion="CREAR Lbl.Tareas.Tarea" />
+    <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="Tablas" Funcion="">
       <Opcion Nombre="&amp;Tipos de Tarea" Funcion="LISTADO Lbl.Tareas.Tipo" />
       <Opcion Nombre="&amp;Estados" Funcion="LISTADO Lbl.Tareas.Estado" />
@@ -125,10 +128,13 @@
     <Opcion Nombre="Contabilidad" Funcion="">
       <Opcion Nombre="&amp;Libro IVA Ventas" Funcion="LISTADO IvaVentas" />
     </Opcion>
-      <Opcion Nombre="Tablas" Funcion="">
+    <Opcion Nombre="-" Funcion="" />
+    <Opcion Nombre="Utiles" Funcion="">
+      <Opcion Nombre="Desduplicar Registros" Funcion="DESDUP" />
+    </Opcion>
+    <Opcion Nombre="Tablas" Funcion="">
       <Opcion Nombre="&amp;Localidades" Funcion="LISTADO Lbl.Entidades.Localidad" />
       <Opcion Nombre="Sucursales" Funcion="LISTADO Lbl.Entidades.Sucursal" />
     </Opcion>
-    <Opcion Nombre="Desduplicar Registros" Funcion="DESDUP" />
   </Opcion>
 </Menu>

@@ -31,64 +31,41 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
 
-namespace Lbl.Tareas
+namespace Lfc.Tareas.Tipos
 {
-        public class Tipo : ElementoDeDatos
+        public partial class Editar : Lcc.Edicion.ControlEdicion
         {
-                public Tipo(Lfx.Data.Connection dataBase)
-                        : base(dataBase) { }
-
-                public Tipo(Lfx.Data.Connection dataBase, int itemId)
-			: base(dataBase, itemId) { }
-
-                public Tipo(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
-
-		public override string TablaDatos
-		{
-			get
-			{
-                                return "tickets_tipos";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-                                return "id_tipo_ticket";
-			}
-		}
-
-
-                public override void Crear()
+                public Editar()
                 {
-                        base.Crear();
-                        this.Estado = 1;
+                        this.ElementoTipo = typeof(Lbl.Tareas.Tipo);
+
+                        InitializeComponent();
+
                 }
 
 
-                public override Lfx.Types.OperationResult Guardar()
+                public override void ActualizarControl()
                 {
-                        qGen.TableCommand Comando;
+                        Lbl.Tareas.Tipo Elem = this.Elemento as Lbl.Tareas.Tipo;
 
-                        if (this.Existe == false) {
-                                Comando = new qGen.Insert(this.Connection, this.TablaDatos);
-                        } else {
-                                Comando = new qGen.Update(this.Connection, this.TablaDatos);
-                                Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
-                        }
+                        EntradaNombre.Text = Elem.Nombre;
+                        EntradaObs.Text = Elem.Obs;
 
-                        Comando.Fields.AddWithValue("nombre", this.Nombre);
-                        Comando.Fields.AddWithValue("obs", this.Obs);
+                        base.ActualizarControl();
+                }
 
-                        this.AgregarTags(Comando);
+                public override void ActualizarElemento()
+                {
+                        Lbl.Tareas.Tipo Elem = this.Elemento as Lbl.Tareas.Tipo;
 
-                        this.Connection.Execute(Comando);
+                        Elem.Nombre = EntradaNombre.Text;
+                        Elem.Obs = EntradaObs.Text;
 
-                        return base.Guardar();
+                        base.ActualizarElemento();
                 }
         }
 }
