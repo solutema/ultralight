@@ -893,6 +893,8 @@
   <Table name="tickets_estados">
     <Column name="id_ticket_estado" datatype="SmallInt" nullable="0" primary_key="1" default="0" />
     <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" default="0" />
+    <Column name="obs" datatype="Text" nullable="1" />
+    <Column name="estado" datatype="SmallInt" nullable="0" default="0" />
     <Index table="tickets_estados" name="PRIMARY" columns="id_ticket_estado" unique="1" primary="1" />
   </Table>
   <Table name="tickets_eventos">

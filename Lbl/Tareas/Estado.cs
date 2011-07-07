@@ -63,6 +63,36 @@ namespace Lbl.Tareas
                         }
                 }
 
+                public override void Crear()
+                {
+                        base.Crear();
+                        this.Estado = 1;
+                }
+
+
+                public override Lfx.Types.OperationResult Guardar()
+                {
+                        qGen.TableCommand Comando;
+
+                        if (this.Existe == false) {
+                                Comando = new qGen.Insert(this.Connection, this.TablaDatos);
+                        } else {
+                                Comando = new qGen.Update(this.Connection, this.TablaDatos);
+                                Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
+                        }
+
+                        Comando.Fields.AddWithValue("nombre", this.Nombre);
+                        Comando.Fields.AddWithValue("obs", this.Obs);
+                        Comando.Fields.AddWithValue("estado", this.Estado);
+
+                        this.AgregarTags(Comando);
+
+                        this.Connection.Execute(Comando);
+
+                        return base.Guardar();
+                }
+
+
                 private static Dictionary<int, Estado> m_TodosPorNumero = null;
                 public static Dictionary<int, Estado> TodosPorNumero
                 {

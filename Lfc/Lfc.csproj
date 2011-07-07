@@ -569,6 +569,12 @@
     <Compile Include="Tareas\Articulos.Designer.cs">
       <DependentUpon>Articulos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tareas\Estados\Editar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tareas\Estados\Editar.Designer.cs">
+      <DependentUpon>Editar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tareas\Estados\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -955,6 +961,10 @@
       <DependentUpon>Reporte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sucursales\Editar.resx">
+      <DependentUpon>Editar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tareas\Estados\Editar.resx">
       <DependentUpon>Editar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -344,6 +344,9 @@ namespace Lfc
                                 case "tickets_tipos":
                                 case "Lbl.Tareas.Tipo":
                                         return typeof(Lfc.Tareas.Tipos.Editar);
+                                case "tickets_estados":
+                                case "Lbl.Tareas.Estado":
+                                        return typeof(Lfc.Tareas.Estados.Editar);
                                 //case "tipo_doc":
                                 //        return typeof(Lbl);
                                 default:
