@@ -83,6 +83,7 @@ namespace Lbl.Tareas
 
                         Comando.Fields.AddWithValue("nombre", this.Nombre);
                         Comando.Fields.AddWithValue("obs", this.Obs);
+                        Comando.Fields.AddWithValue("estado", this.Estado);
 
                         this.AgregarTags(Comando);
 
