@@ -81,7 +81,9 @@ namespace Lfc.Personas
                         // 
                         // EntradaAcceso
                         // 
+                        this.EntradaAcceso.AlwaysExpanded = true;
                         this.EntradaAcceso.AutoNav = true;
+                        this.EntradaAcceso.AutoSize = true;
                         this.EntradaAcceso.AutoTab = true;
                         this.EntradaAcceso.DetailField = null;
                         this.EntradaAcceso.Filter = null;
@@ -92,14 +94,15 @@ namespace Lfc.Personas
                         this.EntradaAcceso.MaxLenght = 32767;
                         this.EntradaAcceso.Name = "EntradaAcceso";
                         this.EntradaAcceso.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaAcceso.PlaceholderText = "";
+                        this.EntradaAcceso.ReadOnly = false;
                         this.EntradaAcceso.SetData = new string[] {
         "Si|1",
         "No|0"};
-                        this.EntradaAcceso.Size = new System.Drawing.Size(72, 24);
+                        this.EntradaAcceso.Size = new System.Drawing.Size(72, 36);
                         this.EntradaAcceso.TabIndex = 1;
                         this.EntradaAcceso.Table = null;
                         this.EntradaAcceso.TextKey = "1";
-                        this.EntradaAcceso.PlaceholderText = "";
                         this.EntradaAcceso.ToolTipText = "";
                         // 
                         // Label6
@@ -120,23 +123,24 @@ namespace Lfc.Personas
                         this.EntradaContrasena.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasena.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaContrasena.Location = new System.Drawing.Point(128, 32);
+                        this.EntradaContrasena.Location = new System.Drawing.Point(348, 0);
                         this.EntradaContrasena.MaxLenght = 32767;
                         this.EntradaContrasena.MultiLine = false;
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasena.PasswordChar = '*';
+                        this.EntradaContrasena.PlaceholderText = "";
                         this.EntradaContrasena.Prefijo = "";
+                        this.EntradaContrasena.ReadOnly = false;
                         this.EntradaContrasena.SelectOnFocus = false;
                         this.EntradaContrasena.Size = new System.Drawing.Size(132, 24);
                         this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 3;
-                        this.EntradaContrasena.PlaceholderText = "";
                         this.EntradaContrasena.ToolTipText = "";
                         // 
                         // label1
                         // 
-                        this.label1.Location = new System.Drawing.Point(0, 32);
+                        this.label1.Location = new System.Drawing.Point(220, 0);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(128, 24);
                         this.label1.TabIndex = 2;
@@ -145,9 +149,9 @@ namespace Lfc.Personas
                         // 
                         // Listado
                         // 
-                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.Listado.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColCod,
@@ -158,10 +162,10 @@ namespace Lfc.Personas
                         this.Listado.GridLines = true;
                         this.Listado.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.Listado.LabelWrap = false;
-                        this.Listado.Location = new System.Drawing.Point(0, 64);
+                        this.Listado.Location = new System.Drawing.Point(0, 44);
                         this.Listado.MultiSelect = false;
                         this.Listado.Name = "Listado";
-                        this.Listado.Size = new System.Drawing.Size(636, 296);
+                        this.Listado.Size = new System.Drawing.Size(636, 316);
                         this.Listado.Sorting = System.Windows.Forms.SortOrder.Ascending;
                         this.Listado.TabIndex = 4;
                         this.Listado.UseCompatibleStateImageBehavior = false;
@@ -199,6 +203,7 @@ namespace Lfc.Personas
                         this.BotonAgregar.Location = new System.Drawing.Point(532, 368);
                         this.BotonAgregar.Name = "BotonAgregar";
                         this.BotonAgregar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonAgregar.ReadOnly = false;
                         this.BotonAgregar.Size = new System.Drawing.Size(104, 28);
                         this.BotonAgregar.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonAgregar.Subtext = "F6";
@@ -218,6 +223,7 @@ namespace Lfc.Personas
                         this.BotonQuitar.Location = new System.Drawing.Point(420, 368);
                         this.BotonQuitar.Name = "BotonQuitar";
                         this.BotonQuitar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonQuitar.ReadOnly = false;
                         this.BotonQuitar.Size = new System.Drawing.Size(104, 28);
                         this.BotonQuitar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonQuitar.Subtext = "";

@@ -511,7 +511,7 @@
     <Column name="apellido" inputtype="Text" section="Personas Físicas" label="Apellido" nullable="1" lenght="50" />
     <Column name="razon_social" inputtype="Text" section="Personas Jurídicas" label="Razón Social" nullable="1" lenght="200" />
     <Column name="nombre_visible" datatype="VarChar" nullable="0" lenght="200" />
-    <Column name="contrasena" datatype="VarChar" nullable="1" lenght="20" />
+    <Column name="contrasena" datatype="VarChar" nullable="1" lenght="200" />
     <Column name="contrasena_fecha" datatype="DateTime" nullable="1" />
     <Column name="id_tipo_doc" inputtype="Relation" section="Personas Físicas" label="Tipo de Documento" nullable="1"
             relation_table="tipo_doc" relation_key="id_tipo_doc" relation_detail="nombre" />

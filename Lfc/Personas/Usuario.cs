@@ -49,7 +49,7 @@ namespace Lfc.Personas
                 {
                         Lbl.Personas.Usuario Usu = this.Elemento as Lbl.Personas.Usuario;
 
-                        EntradaContrasena.Text = Usu.Contrasena;
+                        EntradaContrasena.Text = "";
 
                         TipoOriginal = Usu.Tipo;
                         if ((Usu.Tipo & 4) == 4)
@@ -106,9 +106,23 @@ namespace Lfc.Personas
                                 Tipo = Tipo & (~4);
 
                         Pers.Tipo = Tipo;
-                        Pers.Contrasena = EntradaContrasena.Text;
+
+                        if (EntradaContrasena.Text.Length > 0)
+                                Pers.Contrasena = EntradaContrasena.Text;
 
                         base.ActualizarElemento();
+                }
+
+
+                public override Lfx.Types.OperationResult ValidarControl()
+                {
+                        if (EntradaContrasena.Text.Length > 0) {
+                                if (EntradaContrasena.Text.Length < 6 || EntradaContrasena.Text.Length > 32)
+                                        return new Lfx.Types.FailureOperationResult("La contraseña debe tener entre 6 y 32 caracteres");
+
+                        }
+
+                        return base.ValidarControl();
                 }
 
                 private void QuitarPermiso(Lbl.Sys.Permisos.Permiso permiso)

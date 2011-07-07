@@ -82,7 +82,7 @@ namespace Lfc.Tareas.Tipos
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(524, 24);
                         this.EntradaNombre.Sufijo = "";
-                        this.EntradaNombre.TabIndex = 3;
+                        this.EntradaNombre.TabIndex = 1;
                         this.EntradaNombre.ToolTipText = "";
                         // 
                         // Label1
@@ -90,7 +90,7 @@ namespace Lfc.Tareas.Tipos
                         this.Label1.Location = new System.Drawing.Point(0, 0);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(120, 24);
-                        this.Label1.TabIndex = 2;
+                        this.Label1.TabIndex = 0;
                         this.Label1.Text = "Nombre";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -117,7 +117,7 @@ namespace Lfc.Tareas.Tipos
                         this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(524, 72);
                         this.EntradaObs.Sufijo = "";
-                        this.EntradaObs.TabIndex = 21;
+                        this.EntradaObs.TabIndex = 3;
                         this.EntradaObs.ToolTipText = "Descripción larga";
                         // 
                         // Label13
@@ -125,7 +125,7 @@ namespace Lfc.Tareas.Tipos
                         this.Label13.Location = new System.Drawing.Point(0, 28);
                         this.Label13.Name = "Label13";
                         this.Label13.Size = new System.Drawing.Size(116, 24);
-                        this.Label13.TabIndex = 20;
+                        this.Label13.TabIndex = 2;
                         this.Label13.Text = "Observaciones";
                         this.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 

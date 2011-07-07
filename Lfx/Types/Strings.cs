@@ -118,14 +118,17 @@ namespace Lfx.Types
 			return valueInCSVReturn;
 		}
 
-		public static string GetMD5HashFromFile(string fileName)
+		public static string SHA256(string text)
 		{
-			System.IO.FileStream file = new System.IO.FileStream(fileName, System.IO.FileMode.Open);
-			System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
-			byte[] retVal = md5.ComputeHash(file);
-			file.Close();
-			return System.Text.Encoding.Default.GetString(retVal);
+			System.Security.Cryptography.SHA256 Proveedor = new System.Security.Cryptography.SHA256Managed();
+			byte[] HashBinario = Proveedor.ComputeHash(System.Text.Encoding.Default.GetBytes(text));
+                        System.Text.StringBuilder HashTexto = new System.Text.StringBuilder();
+                        foreach (byte b in HashBinario) {
+                                HashTexto.Append(b.ToString("x2").ToLower());
+                        }
+			return HashTexto.ToString();
 		}
+
 
                 public static bool EsCbuValida(string cbu)
                 {

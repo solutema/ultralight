@@ -111,6 +111,9 @@ namespace Lbl.Personas
                 public override void OnLoad()
                 {
                         if (this.Registro != null) {
+                                // Vacío el campo de contraseña, ya que tiene sólo un hash que no sirve para nada
+                                this.Contrasena = null;
+
                                 System.Data.DataTable AccList = null;
                                 try {
                                         AccList = this.Connection.Select("SELECT * FROM sys_permisos WHERE id_persona=" + this.Id.ToString());
@@ -363,10 +366,20 @@ namespace Lbl.Personas
                                 Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
-                        if (this.Contrasena == null || this.Contrasena.Length == 0)
-                                Comando.Fields.AddWithValue("contrasena", null);
-                        else
-                                Comando.Fields.AddWithValue("contrasena", this.Contrasena);
+                        if (this.Contrasena != null && this.Contrasena.Length > 0) {
+                                if (this.Contrasena.Length < 6 || this.Contrasena.Length > 32)
+                                        throw new InvalidOperationException("La contraseña debe tener entre 6 y 32 caracteres");
+
+                                string Sal = "";
+                                for (int i = 0; i < 100; i++) {
+                                        Sal += this.Id.ToString();
+                                }
+                                string ContrasenaConSal = this.Contrasena + Sal;
+
+                                // Guardo un MD5 de la contraseña
+                                Comando.Fields.AddWithValue("contrasena", Lfx.Types.Strings.SHA256(ContrasenaConSal));
+                                Comando.Fields.AddWithValue("contrasena_fecha", qGen.SqlFunctions.Now);
+                        }
 
                         Comando.Fields.AddWithValue("tipo", this.Tipo);
 

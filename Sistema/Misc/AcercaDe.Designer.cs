@@ -55,8 +55,8 @@ namespace Lazaro.Misc
                         // 
                         // Label1
                         // 
-                        this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.Label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label1.Location = new System.Drawing.Point(184, 48);
                         this.Label1.Name = "Label1";
@@ -72,7 +72,7 @@ namespace Lazaro.Misc
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(92, 24);
                         this.Label3.TabIndex = 6;
-                        this.Label3.Text = "lázaro";
+                        this.Label3.Text = "Lázaro";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // lblActualizar
@@ -90,8 +90,8 @@ namespace Lazaro.Misc
                         // 
                         // Label5
                         // 
-                        this.Label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.Label5.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label5.Location = new System.Drawing.Point(112, 104);
                         this.Label5.Name = "Label5";
@@ -112,8 +112,8 @@ namespace Lazaro.Misc
                         // 
                         // EtiquetaUsuario
                         // 
-                        this.EtiquetaUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaUsuario.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EtiquetaUsuario.Location = new System.Drawing.Point(196, 212);
                         this.EtiquetaUsuario.Name = "EtiquetaUsuario";
@@ -144,6 +144,7 @@ namespace Lazaro.Misc
                         this.OkButton.Location = new System.Drawing.Point(508, 336);
                         this.OkButton.Name = "OkButton";
                         this.OkButton.Padding = new System.Windows.Forms.Padding(2);
+                        this.OkButton.ReadOnly = false;
                         this.OkButton.Size = new System.Drawing.Size(110, 44);
                         this.OkButton.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.OkButton.Subtext = "Esc";
@@ -168,8 +169,8 @@ namespace Lazaro.Misc
                         // 
                         // EtiquetaFramework
                         // 
-                        this.EtiquetaFramework.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaFramework.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaFramework.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EtiquetaFramework.Location = new System.Drawing.Point(196, 228);
                         this.EtiquetaFramework.Name = "EtiquetaFramework";

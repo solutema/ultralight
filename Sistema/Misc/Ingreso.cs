@@ -82,10 +82,21 @@ namespace Lazaro.Misc
                                         return;
                                 }
                         }
+
+                        string Contrasena = EntradaContrasena.Text;
+                        string Sal = "";
+                        for (int i = 0; i < 100; i++) {
+                                Sal += EntradaUsuario.TextInt.ToString();
+                        }
+                        string ContrasenaConSal = Contrasena + Sal;
+
+                        // TODO: quitar el soporte para contraseñas en texto plano
 			Lfx.Data.Row RowUsuario = Lfx.Workspace.Master.MasterConnection.FirstRowFromSelect(@"SELECT id_persona, nombre, nombre_visible
                                 FROM personas
                                 WHERE estado=1 AND id_persona=" + EntradaUsuario.TextInt.ToString()
-                                                   + " AND contrasena='" + Lfx.Workspace.Master.MasterConnection.EscapeString(EntradaContrasena.Text) + "'");
+                                                   + " AND (contrasena='" + Lfx.Types.Strings.SHA256(ContrasenaConSal) + "'"
+                                                   + " OR contrasena='" + Lfx.Workspace.Master.MasterConnection.EscapeString(Contrasena) + "')"
+                                                   );
 			if(RowUsuario == null) {
 				System.Threading.Thread.Sleep(800);
                                 Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.LogonFail, EntradaUsuario.Elemento, "Usuario o contraseña incorrecto.");
