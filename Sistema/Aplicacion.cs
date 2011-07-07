@@ -754,14 +754,17 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         break;
 
                                 case "CONFIG":
-                                        Misc.Config.Preferencias OFormConfig = (Misc.Config.Preferencias)BuscarVentana("Misc.Config.Preferencias");
-                                        if (OFormConfig == null)
-                                                OFormConfig = new Misc.Config.Preferencias();
-                                        OFormConfig.ShowDialog(Aplicacion.FormularioPrincipal);
+                                        Misc.Config.Preferencias FormConfig = new Misc.Config.Preferencias();
+                                        FormConfig.ShowDialog(Aplicacion.FormularioPrincipal);
                                         break;
 
                                 case "ACCESSMGR":
                                         return Exec("LIST USER");
+
+                                case "CHANGEPWD":
+                                        Misc.CambioContrasena FormCambio = new Misc.CambioContrasena();
+                                        FormCambio.ShowDialog();
+                                        break;
 
                                 case "FISCAL":
                                         string SubComandoFiscal = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();

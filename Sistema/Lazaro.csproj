@@ -130,6 +130,12 @@
     <Compile Include="Errores\ExcepcionNoControlada.Designer.cs">
       <DependentUpon>ExcepcionNoControlada.cs</DependentUpon>
     </Compile>
+    <Compile Include="Misc\CambioContrasena.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\CambioContrasena.Designer.cs">
+      <DependentUpon>CambioContrasena.cs</DependentUpon>
+    </Compile>
     <Compile Include="Misc\Fiscal.Designer.cs">
       <DependentUpon>Fiscal.cs</DependentUpon>
     </Compile>
@@ -210,6 +216,10 @@
     </Compile>
     <EmbeddedResource Include="Misc\Config\Inicial.resx">
       <DependentUpon>Inicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc\CambioContrasena.resx">
+      <DependentUpon>CambioContrasena.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

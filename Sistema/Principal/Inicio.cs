@@ -410,11 +410,20 @@ namespace Lazaro.Principal
                         ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
                         AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
 
-                        // Creo la opción de Preferencias
+                        // Creo la opción de Usuarios
                         ItmTmp = new MenuItem("&Usuarios", new System.EventHandler(MnuClick));
                         ItmInfo = new MenuItemInfo();
                         ItmInfo.Item = ItmTmp;
                         ItmInfo.Funcion = "ACCESSMGR";
+                        ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
+                        ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
+                        AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
+
+                        // Creo la opción de Cambiar Contraseña
+                        ItmTmp = new MenuItem("&Cambiar Contraseña", new System.EventHandler(MnuClick));
+                        ItmInfo = new MenuItemInfo();
+                        ItmInfo.Item = ItmTmp;
+                        ItmInfo.Funcion = "CHANGEPWD";
                         ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
                         ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
                         AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
