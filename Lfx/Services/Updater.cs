@@ -214,7 +214,13 @@ namespace Lfx.Services
                                         return;
                                 }
 
-                                VersionXml.Load(Lfx.Environment.Folders.UpdatesFolder + "version.xml");
+                                try {
+                                        VersionXml.Load(Lfx.Environment.Folders.UpdatesFolder + "version.xml");
+                                } catch {
+                                        // No pude cargar version.xml. Debe estar malformado.
+                                        Updating = false;
+                                        return;
+                                }
                                 System.Xml.XmlNode VersionInfo = VersionXml.SelectSingleNode("/VersionInfo");
 
                                 //Importo los nodos de los archivos {nombre_componente}.ver como si formaran parte de version.xml
