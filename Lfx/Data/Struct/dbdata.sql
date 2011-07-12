@@ -4196,25 +4196,27 @@ INSERT INTO margenes (id_margen, nombre, sumar, porcentaje, porcentaje2, porcent
 INSERT INTO margenes (id_margen, nombre, sumar, porcentaje, porcentaje2, porcentaje3, sumar2, predet, obs, estado) VALUES (4, '50%', 0, 50, 0, 0, 0, 0, '', 1);
 INSERT INTO margenes (id_margen, nombre, sumar, porcentaje, porcentaje2, porcentaje3, sumar2, predet, obs, estado) VALUES (5, '100%', 0, 100, 0, 0, 0, 0, '', 1);
 
-INSERT INTO tickets_estados VALUES (1, 'Nuevo');
-INSERT INTO tickets_estados VALUES (5, 'Activo');
-INSERT INTO tickets_estados VALUES (10, 'Presupuestado');
-INSERT INTO tickets_estados VALUES (20, 'Iniciado');
-INSERT INTO tickets_estados VALUES (25, 'Reabierto');
-INSERT INTO tickets_estados VALUES (30, 'Terminado');
-INSERT INTO tickets_estados VALUES (35, 'Terminado sin Aprobar');
-INSERT INTO tickets_estados VALUES (40, 'Verificado');
-INSERT INTO tickets_estados VALUES (50, 'Entregado');
-INSERT INTO tickets_estados VALUES (80, 'Abandonado');
-INSERT INTO tickets_estados VALUES (90, 'Cancelado');
+INSERT INTO tickets_estados (id_ticket_estado, nombre, obs, estado) VALUES (1, 'Nuevo', '', 1);
+INSERT INTO tickets_estados (id_ticket_estado, nombre, obs, estado) VALUES (5, 'Activo', '', 1);
+INSERT INTO tickets_estados (id_ticket_estado, nombre, obs, estado) VALUES (10, 'Presupuestado', '', 1);
+INSERT INTO tickets_estados (id_ticket_estado, nombre, obs, estado) VALUES (20, 'Iniciado', '', 1);
+INSERT INTO tickets_estados (id_ticket_estado, nombre, obs, estado) VALUES (25, 'Reabierto', '', 1);
+INSERT INTO tickets_estados (id_ticket_estado, nombre, obs, estado) VALUES (30, 'Terminado', '', 1);
+INSERT INTO tickets_estados (id_ticket_estado, nombre, obs, estado) VALUES (35, 'Terminado sin Aprobar', '', 1);
+INSERT INTO tickets_estados (id_ticket_estado, nombre, obs, estado) VALUES (40, 'Verificado', '', 1);
+INSERT INTO tickets_estados (id_ticket_estado, nombre, obs, estado) VALUES (50, 'Entregado', '', 1);
+INSERT INTO tickets_estados (id_ticket_estado, nombre, obs, estado) VALUES (80, 'Abandonado', '', 1);
+INSERT INTO tickets_estados (id_ticket_estado, nombre, obs, estado) VALUES (90, 'Cancelado', '', 1);
 
-INSERT INTO tickets_tipos VALUES (1, 'Cita', '', 1);
-INSERT INTO tickets_tipos VALUES (2, 'Reunión', '', 1);
-INSERT INTO tickets_tipos VALUES (99, 'Otra', '', 1);
+INSERT INTO tickets_tipos (id_tipo_ticket, nombre, obs, estado) VALUES (1, 'Cita', '', 1);
+INSERT INTO tickets_tipos (id_tipo_ticket, nombre, obs, estado) VALUES (2, 'Reunión', '', 1);
+INSERT INTO tickets_tipos (id_tipo_ticket, nombre, obs, estado) VALUES (99, 'Otra', '', 1);
 
 
-INSERT INTO personas (id_persona, tipo, id_grupo, vendedor, nombre, apellido, razon_social, nombre_visible, contrasena, id_tipo_doc, num_doc, cuit, id_situacion, domicilio, id_ciudad, telefono, email, tipo_fac, obs, estado) VALUES (1, 4, NULL, 1, 'Administrador', '', '', 'Administrador', 'c7f9accb8d306535a35c8e4ee452273260f68a670b23d2d9b0d8d2fb3e4dea73', NULL, '', '', NULL, '', NULL, '', '', '', '', 1);
-INSERT INTO personas (id_persona, tipo, id_grupo, vendedor, nombre, apellido, razon_social, nombre_visible, contrasena, id_tipo_doc, num_doc, cuit, id_situacion, domicilio, id_ciudad, telefono, email, tipo_fac, obs, estado) VALUES (999, 1, NULL, 0, '', '', 'Consumidor Final', 'Consumidor Final', '', NULL, '', '', 1, '', NULL, '', '', '', '', 1);
+INSERT INTO personas (id_persona, tipo, id_grupo, vendedor, nombre, apellido, razon_social, nombre_visible, contrasena, id_tipo_doc, num_doc, cuit, id_situacion, domicilio, id_ciudad, telefono, email, tipo_fac, obs, estado) 
+	VALUES (1, 4, NULL, 1, 'Administrador', '', '', 'Administrador', 'c7f9accb8d306535a35c8e4ee452273260f68a670b23d2d9b0d8d2fb3e4dea73', NULL, '', '', NULL, '', NULL, '', '', '', '', 1);
+INSERT INTO personas (id_persona, tipo, id_grupo, vendedor, nombre, apellido, razon_social, nombre_visible, contrasena, id_tipo_doc, num_doc, cuit, id_situacion, domicilio, id_ciudad, telefono, email, tipo_fac, obs, estado)
+	VALUES (999, 1, NULL, 0, '', '', 'Consumidor Final', 'Consumidor Final', '', NULL, '', '', 1, '', NULL, '', '', '', '', 1);
 
 
 INSERT INTO articulos_codigos (id_codigo, nombre, id_proveedor) VALUES (1, 'Código 1', NULL);
