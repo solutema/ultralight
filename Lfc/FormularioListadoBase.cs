@@ -1068,6 +1068,9 @@ namespace Lfc
                 {
                         string FieldValueAsText;
 
+                        if (cellValue == null)
+                                return "";
+
                         if (formField == null)
                                 return cellValue.ToString();
 
