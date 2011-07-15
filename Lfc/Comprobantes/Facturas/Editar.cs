@@ -221,7 +221,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                         }
 
                         if (Comprob.Tipo.LetraSola.ToUpperInvariant() == "A") {
-                                if (Comprob.Cliente.Cuit.EsValido() == false)
+                                if (Comprob.Cliente.Cuit == null || Comprob.Cliente.Cuit.EsValido() == false)
                                         return new Lfx.Types.FailureOperationResult("Debe proporcionar el número de CUIT del cliente.");
                         } else if (Comprob.Tipo.LetraSola == "B") {
                                 //Si es factura B de más de $ 1000, debe llevar el Nº de DNI
