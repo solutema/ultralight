@@ -51,22 +51,9 @@ namespace Lazaro.Misc
 
 		private void BotonAceptar_Click(object sender, System.EventArgs e)
 		{
-                        string Contrasena = EntradaContrasena.Text;
+                        Lbl.Sys.Config.Actual.UsuarioConectado.Usuario.Cargar();
 
-                        string Sal = "";
-                        for (int i = 0; i < 100; i++) {
-                                Sal += Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString();
-                        }
-                        string ContrasenaConSal = Contrasena + Sal;
-
-                        // TODO: quitar el soporte para contraseñas en texto plano
-			Lfx.Data.Row RowUsuario = Lfx.Workspace.Master.MasterConnection.FirstRowFromSelect(@"SELECT id_persona, nombre, nombre_visible
-                                FROM personas
-                                WHERE estado=1 AND id_persona=" + Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString()
-                                                   + " AND (contrasena='" + Lfx.Types.Strings.SHA256(ContrasenaConSal) + "'"
-                                                   + " OR contrasena='" + Lfx.Workspace.Master.MasterConnection.EscapeString(Contrasena) + "')"
-                                                   );
-			if(RowUsuario == null) {
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.Usuario.ContrasenaValida(EntradaContrasena.Text) == false) {
 				System.Threading.Thread.Sleep(800);
 				MessageBox.Show("La contraseña no es correcta. Por favor escriba su contraseña actual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				EntradaContrasena.Focus();
@@ -83,8 +70,15 @@ namespace Lazaro.Misc
                                 return;
                         }
 
-                        Lbl.Sys.Config.Actual.UsuarioConectado.Usuario.Cargar();
+                        // Genero una nueva sal para la contraseña
+                        System.Random Rnd = new Random();
+                        string Sal = "";
+                        for (int i = 0; i < 100; i++) {
+                                Sal += Rnd.Next(1, 9).ToString();
+                        }
+
                         Lbl.Sys.Config.Actual.UsuarioConectado.Usuario.Contrasena = EntradaContrasenaNueva1.Text;
+                        Lbl.Sys.Config.Actual.UsuarioConectado.Usuario.ContrasenaSal = Sal;
                         Lbl.Sys.Config.Actual.UsuarioConectado.Usuario.Guardar();
 
                         MessageBox.Show("Su contraseña ha sido cambiada. A partir de ahora debe utilizar siempre su nueva contraseña.", "Error");

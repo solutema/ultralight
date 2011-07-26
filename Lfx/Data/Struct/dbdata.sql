@@ -4214,7 +4214,7 @@ INSERT INTO tickets_tipos (id_tipo_ticket, nombre, obs, estado) VALUES (99, 'Otr
 
 
 INSERT INTO personas (id_persona, tipo, id_grupo, vendedor, nombre, apellido, razon_social, nombre_visible, contrasena, id_tipo_doc, num_doc, cuit, id_situacion, domicilio, id_ciudad, telefono, email, tipo_fac, obs, estado) 
-	VALUES (1, 4, NULL, 1, 'Administrador', '', '', 'Administrador', 'c7f9accb8d306535a35c8e4ee452273260f68a670b23d2d9b0d8d2fb3e4dea73', NULL, '', '', NULL, '', NULL, '', '', '', '', 1);
+	VALUES (1, 4, NULL, 1, 'Administrador', '', '', 'Administrador', 'admin', NULL, '', '', NULL, '', NULL, '', '', '', '', 1);
 INSERT INTO personas (id_persona, tipo, id_grupo, vendedor, nombre, apellido, razon_social, nombre_visible, contrasena, id_tipo_doc, num_doc, cuit, id_situacion, domicilio, id_ciudad, telefono, email, tipo_fac, obs, estado)
 	VALUES (999, 1, NULL, 0, '', '', 'Consumidor Final', 'Consumidor Final', '', NULL, '', '', 1, '', NULL, '', '', '', '', 1);
 

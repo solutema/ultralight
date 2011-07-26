@@ -703,7 +703,10 @@ LEFT JOIN pg_attribute
                         foreach (Data.ConstraintDefinition CurCon in CurrentConstraints.Values) {
                                 if (CurCon != null && newConstraints.ContainsKey(CurCon.Name) == false) {
                                         Sql = "ALTER TABLE \"" + CurCon.TableName + "\" DROP FOREIGN KEY \"" + CurCon.Name + "\"";
-                                        this.Execute(this.CustomizeSql(Sql));
+                                        // TODO: los módulos agregan FK.
+                                        // Si el módulo no está cargado, no figuran las FK y se eliminan, cuando no deberían.
+                                        // Arreglar cómo y cuándo se eliminan las FK.
+                                        //this.Execute(this.CustomizeSql(Sql));
                                 }
                         }
                 }
@@ -743,6 +746,9 @@ LEFT JOIN pg_attribute
                                                 NewKey.ReferenceTable = Constraint["REFERENCED_TABLE_NAME"].ToString();
                                                 NewKey.ReferenceColumn = Constraint["REFERENCED_COLUMN_NAME"].ToString();
                                                 Res.Add(NewKey.Name, NewKey);
+                                                break;
+                                        default:
+                                                System.Console.WriteLine("GetConstraints: " + Constraint["CONSTRAINT_TYPE"].ToString().ToUpper() + " " + Constraint["CONSTRAINT_NAME"].ToString() + " no reconocida");
                                                 break;
                                 }
                         }

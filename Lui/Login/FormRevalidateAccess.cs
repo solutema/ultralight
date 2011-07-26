@@ -74,11 +74,12 @@ namespace Lui.Login
 					LabelExplain.Text = Explain;
 			}
 
-			EntradaUsuario.Text = this.Connection.Tables["personas"].FastRows[userId].Fields["nombre_visible"].ValueString;
+                        Lbl.Personas.Usuario Usuario = new Lbl.Personas.Usuario(this.Connection, userId);
+
+			EntradaUsuario.Text = Usuario.Nombre;
 			EntradaContrasena.Text = "";
 			if(this.ShowDialog() == DialogResult.OK) {
-				Lfx.Data.Row Usuario = this.Connection.FirstRowFromSelect("SELECT id_persona, nombre, nombre_visible FROM personas WHERE id_persona=" + userId.ToString() + " AND contrasena='" + this.Connection.EscapeString(EntradaContrasena.Text) + "'");
-				if(Usuario != null && System.Convert.ToInt32(Usuario["id_persona"]) == userId) {
+				if(Usuario.ContrasenaValida(EntradaContrasena.Text) == true) {
 					return true;
 				} else {
 					Lui.Forms.MessageBox.Show("La contraseña proporcionada no es correcta.", "Error");

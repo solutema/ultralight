@@ -76,11 +76,11 @@ namespace Lfc.Personas
                         // 
                         // OkButton
                         // 
-                        this.OkButton.Location = new System.Drawing.Point(250, 8);
+                        this.OkButton.Location = new System.Drawing.Point(354, 8);
                         // 
                         // CancelCommandButton
                         // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(370, 8);
+                        this.CancelCommandButton.Location = new System.Drawing.Point(474, 8);
                         // 
                         // Label4
                         // 
@@ -93,8 +93,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaTipo
                         // 
-                        this.EntradaTipo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaTipo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoTab = true;
                         this.EntradaTipo.CanCreate = true;
@@ -109,13 +109,14 @@ namespace Lfc.Personas
                         this.EntradaTipo.MaxLength = 200;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTipo.PlaceholderText = "Todas";
+                        this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.Required = false;
-                        this.EntradaTipo.Size = new System.Drawing.Size(308, 24);
+                        this.EntradaTipo.Size = new System.Drawing.Size(412, 24);
                         this.EntradaTipo.TabIndex = 1;
                         this.EntradaTipo.Table = "personas_tipos";
                         this.EntradaTipo.Text = "0";
                         this.EntradaTipo.TextDetail = "";
-                        this.EntradaTipo.PlaceholderText = "Todas";
                         this.EntradaTipo.ToolTipText = "";
                         // 
                         // Label1
@@ -129,8 +130,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaSituacion
                         // 
-                        this.EntradaSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSituacion.AutoNav = true;
                         this.EntradaSituacion.AutoTab = true;
                         this.EntradaSituacion.CanCreate = false;
@@ -145,13 +146,14 @@ namespace Lfc.Personas
                         this.EntradaSituacion.MaxLength = 200;
                         this.EntradaSituacion.Name = "EntradaSituacion";
                         this.EntradaSituacion.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaSituacion.PlaceholderText = "Todas";
+                        this.EntradaSituacion.ReadOnly = false;
                         this.EntradaSituacion.Required = false;
-                        this.EntradaSituacion.Size = new System.Drawing.Size(308, 24);
+                        this.EntradaSituacion.Size = new System.Drawing.Size(412, 24);
                         this.EntradaSituacion.TabIndex = 7;
                         this.EntradaSituacion.Table = "situaciones";
                         this.EntradaSituacion.Text = "0";
                         this.EntradaSituacion.TextDetail = "";
-                        this.EntradaSituacion.PlaceholderText = "Todas";
                         this.EntradaSituacion.ToolTipText = "";
                         // 
                         // Label2
@@ -165,8 +167,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaGrupo
                         // 
-                        this.EntradaGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaGrupo.AutoNav = true;
                         this.EntradaGrupo.AutoTab = true;
                         this.EntradaGrupo.CanCreate = true;
@@ -181,13 +183,14 @@ namespace Lfc.Personas
                         this.EntradaGrupo.MaxLength = 200;
                         this.EntradaGrupo.Name = "EntradaGrupo";
                         this.EntradaGrupo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaGrupo.PlaceholderText = "Todos";
+                        this.EntradaGrupo.ReadOnly = false;
                         this.EntradaGrupo.Required = false;
-                        this.EntradaGrupo.Size = new System.Drawing.Size(308, 24);
+                        this.EntradaGrupo.Size = new System.Drawing.Size(412, 24);
                         this.EntradaGrupo.TabIndex = 3;
                         this.EntradaGrupo.Table = "personas_grupos";
                         this.EntradaGrupo.Text = "0";
                         this.EntradaGrupo.TextDetail = "";
-                        this.EntradaGrupo.PlaceholderText = "Todos";
                         this.EntradaGrupo.ToolTipText = "";
                         this.EntradaGrupo.TextChanged += new System.EventHandler(this.EntradaGrupo_TextChanged);
                         // 
@@ -202,8 +205,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaLocalidad
                         // 
-                        this.EntradaLocalidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaLocalidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaLocalidad.AutoNav = true;
                         this.EntradaLocalidad.AutoTab = true;
                         this.EntradaLocalidad.CanCreate = false;
@@ -218,20 +221,21 @@ namespace Lfc.Personas
                         this.EntradaLocalidad.MaxLength = 200;
                         this.EntradaLocalidad.Name = "EntradaLocalidad";
                         this.EntradaLocalidad.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaLocalidad.PlaceholderText = "Todas";
+                        this.EntradaLocalidad.ReadOnly = false;
                         this.EntradaLocalidad.Required = false;
-                        this.EntradaLocalidad.Size = new System.Drawing.Size(308, 24);
+                        this.EntradaLocalidad.Size = new System.Drawing.Size(412, 24);
                         this.EntradaLocalidad.TabIndex = 9;
                         this.EntradaLocalidad.Table = "ciudades";
                         this.EntradaLocalidad.Text = "0";
                         this.EntradaLocalidad.TextDetail = "";
-                        this.EntradaLocalidad.PlaceholderText = "Todas";
                         this.EntradaLocalidad.ToolTipText = "";
                         // 
                         // EntradaEstadoCredito
                         // 
                         this.EntradaEstadoCredito.AlwaysExpanded = false;
-                        this.EntradaEstadoCredito.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaEstadoCredito.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEstadoCredito.AutoNav = true;
                         this.EntradaEstadoCredito.AutoSize = true;
                         this.EntradaEstadoCredito.AutoTab = true;
@@ -244,16 +248,17 @@ namespace Lfc.Personas
                         this.EntradaEstadoCredito.MaxLenght = 32767;
                         this.EntradaEstadoCredito.Name = "EntradaEstadoCredito";
                         this.EntradaEstadoCredito.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEstadoCredito.PlaceholderText = "";
+                        this.EntradaEstadoCredito.ReadOnly = false;
                         this.EntradaEstadoCredito.SetData = new string[] {
         "Cualquiera|-1",
         "Normal|0",
         "En plan de pagos|5",
         "Suspendido|10"};
-                        this.EntradaEstadoCredito.Size = new System.Drawing.Size(308, 25);
+                        this.EntradaEstadoCredito.Size = new System.Drawing.Size(412, 25);
                         this.EntradaEstadoCredito.TabIndex = 13;
                         this.EntradaEstadoCredito.Table = null;
                         this.EntradaEstadoCredito.TextKey = "0";
-                        this.EntradaEstadoCredito.PlaceholderText = "";
                         this.EntradaEstadoCredito.ToolTipText = "";
                         // 
                         // label21
@@ -267,6 +272,9 @@ namespace Lfc.Personas
                         // 
                         // tableLayoutPanel1
                         // 
+                        this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.tableLayoutPanel1.ColumnCount = 2;
                         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
                         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -300,28 +308,29 @@ namespace Lfc.Personas
                         this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
                         this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
                         this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-                        this.tableLayoutPanel1.Size = new System.Drawing.Size(448, 321);
+                        this.tableLayoutPanel1.Size = new System.Drawing.Size(552, 321);
                         this.tableLayoutPanel1.TabIndex = 0;
                         // 
                         // EntradaFechas
                         // 
-                        this.EntradaFechas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaFechas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFechas.AutoSize = true;
                         this.EntradaFechas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaFechas.Location = new System.Drawing.Point(137, 246);
                         this.EntradaFechas.MuestraFuturos = false;
                         this.EntradaFechas.Name = "EntradaFechas";
                         this.EntradaFechas.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechas.Size = new System.Drawing.Size(308, 30);
+                        this.EntradaFechas.ReadOnly = false;
+                        this.EntradaFechas.Size = new System.Drawing.Size(412, 31);
                         this.EntradaFechas.TabIndex = 17;
                         this.EntradaFechas.ToolTipText = "";
                         // 
                         // EntradaFechaAUsar
                         // 
                         this.EntradaFechaAUsar.AlwaysExpanded = false;
-                        this.EntradaFechaAUsar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaFechaAUsar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFechaAUsar.AutoNav = true;
                         this.EntradaFechaAUsar.AutoSize = true;
                         this.EntradaFechaAUsar.AutoTab = true;
@@ -334,6 +343,8 @@ namespace Lfc.Personas
                         this.EntradaFechaAUsar.MaxLenght = 32767;
                         this.EntradaFechaAUsar.Name = "EntradaFechaAUsar";
                         this.EntradaFechaAUsar.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaFechaAUsar.PlaceholderText = "";
+                        this.EntradaFechaAUsar.ReadOnly = false;
                         this.EntradaFechaAUsar.SetData = new string[] {
         "Fecha de Alta|fechaalta",
         "Fecha de Baja|fechabaja"};
@@ -341,7 +352,6 @@ namespace Lfc.Personas
                         this.EntradaFechaAUsar.TabIndex = 16;
                         this.EntradaFechaAUsar.Table = null;
                         this.EntradaFechaAUsar.TextKey = "fechaalta";
-                        this.EntradaFechaAUsar.PlaceholderText = "";
                         this.EntradaFechaAUsar.ToolTipText = "";
                         // 
                         // label7
@@ -355,8 +365,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaSubGrupo
                         // 
-                        this.EntradaSubGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaSubGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSubGrupo.AutoNav = true;
                         this.EntradaSubGrupo.AutoTab = true;
                         this.EntradaSubGrupo.CanCreate = true;
@@ -371,13 +381,14 @@ namespace Lfc.Personas
                         this.EntradaSubGrupo.MaxLength = 200;
                         this.EntradaSubGrupo.Name = "EntradaSubGrupo";
                         this.EntradaSubGrupo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaSubGrupo.PlaceholderText = "Todos";
+                        this.EntradaSubGrupo.ReadOnly = false;
                         this.EntradaSubGrupo.Required = false;
-                        this.EntradaSubGrupo.Size = new System.Drawing.Size(308, 24);
+                        this.EntradaSubGrupo.Size = new System.Drawing.Size(412, 24);
                         this.EntradaSubGrupo.TabIndex = 5;
                         this.EntradaSubGrupo.Table = "personas_grupos";
                         this.EntradaSubGrupo.Text = "0";
                         this.EntradaSubGrupo.TextDetail = "";
-                        this.EntradaSubGrupo.PlaceholderText = "Todos";
                         this.EntradaSubGrupo.ToolTipText = "";
                         // 
                         // label6
@@ -392,8 +403,8 @@ namespace Lfc.Personas
                         // EntradaEtiquetas
                         // 
                         this.EntradaEtiquetas.AlwaysExpanded = false;
-                        this.EntradaEtiquetas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaEtiquetas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEtiquetas.AutoNav = true;
                         this.EntradaEtiquetas.AutoSize = true;
                         this.EntradaEtiquetas.AutoTab = true;
@@ -406,14 +417,15 @@ namespace Lfc.Personas
                         this.EntradaEtiquetas.MaxLenght = 32767;
                         this.EntradaEtiquetas.Name = "EntradaEtiquetas";
                         this.EntradaEtiquetas.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEtiquetas.PlaceholderText = "";
+                        this.EntradaEtiquetas.ReadOnly = false;
                         this.EntradaEtiquetas.SetData = new string[] {
         "Todas|*",
         "Ninguna|-"};
-                        this.EntradaEtiquetas.Size = new System.Drawing.Size(308, 25);
+                        this.EntradaEtiquetas.Size = new System.Drawing.Size(412, 25);
                         this.EntradaEtiquetas.TabIndex = 15;
                         this.EntradaEtiquetas.Table = null;
                         this.EntradaEtiquetas.TextKey = "*";
-                        this.EntradaEtiquetas.PlaceholderText = "";
                         this.EntradaEtiquetas.ToolTipText = "";
                         // 
                         // label5
@@ -428,8 +440,8 @@ namespace Lfc.Personas
                         // EntradaEstado
                         // 
                         this.EntradaEstado.AlwaysExpanded = false;
-                        this.EntradaEstado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaEstado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.AutoTab = true;
@@ -442,21 +454,22 @@ namespace Lfc.Personas
                         this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEstado.PlaceholderText = "";
+                        this.EntradaEstado.ReadOnly = false;
                         this.EntradaEstado.SetData = new string[] {
         "Todos|-1",
         "Activos|1",
         "Inactivos|0"};
-                        this.EntradaEstado.Size = new System.Drawing.Size(308, 25);
+                        this.EntradaEstado.Size = new System.Drawing.Size(412, 25);
                         this.EntradaEstado.TabIndex = 11;
                         this.EntradaEstado.Table = null;
                         this.EntradaEstado.TextKey = "1";
-                        this.EntradaEstado.PlaceholderText = "";
                         this.EntradaEstado.ToolTipText = "";
                         // 
                         // Filtros
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(490, 407);
+                        this.ClientSize = new System.Drawing.Size(594, 407);
                         this.Controls.Add(this.tableLayoutPanel1);
                         this.Name = "Filtros";
                         this.Text = "Personas: Filtros";

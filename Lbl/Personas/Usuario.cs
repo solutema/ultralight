@@ -42,6 +42,8 @@ namespace Lbl.Personas
         [Lbl.Atributos.NombreItem("Usuario")]
         public class Usuario : ElementoDeDatos
         {
+                private bool CambioContrasena = false;
+
                 public Sys.Permisos.ListaDePermisos Pemisos = null;
 
                 // Heredar constructores
@@ -78,7 +80,6 @@ namespace Lbl.Personas
                         }
                 }
 
-
                 public string Contrasena
                 {
                         get
@@ -87,7 +88,22 @@ namespace Lbl.Personas
                         }
                         set
                         {
+                                if (this.Contrasena != value)
+                                        CambioContrasena = true;
                                 this.Registro["contrasena"] = value;
+                        }
+                }
+
+
+                public string ContrasenaSal
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("contrasena_sal");
+                        }
+                        set
+                        {
+                                this.Registro["contrasena_sal"] = value;
                         }
                 }
 
@@ -111,9 +127,6 @@ namespace Lbl.Personas
                 public override void OnLoad()
                 {
                         if (this.Registro != null) {
-                                // Vacío el campo de contraseña, ya que tiene sólo un hash que no sirve para nada
-                                this.Contrasena = null;
-
                                 System.Data.DataTable AccList = null;
                                 try {
                                         AccList = this.Connection.Select("SELECT * FROM sys_permisos WHERE id_persona=" + this.Id.ToString());
@@ -355,6 +368,18 @@ namespace Lbl.Personas
                         }
                 }
 
+
+                public bool ContrasenaValida(string contrasena)
+                {
+                        if (this.ContrasenaSal == null || this.ContrasenaSal.Length == 0) {
+                                // Es una contraseña en texto plano
+                                return this.Contrasena == contrasena;
+                        } else {
+                                // Es una contraseña encriptada
+                                return Lfx.Types.Strings.SHA256(contrasena + this.ContrasenaSal) == this.Contrasena;
+                        }
+                }
+
                 public override Lfx.Types.OperationResult Guardar()
                 {
                         qGen.TableCommand Comando;
@@ -366,18 +391,20 @@ namespace Lbl.Personas
                                 Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
-                        if (this.Contrasena != null && this.Contrasena.Length > 0) {
-                                if (this.Contrasena.Length < 6 || this.Contrasena.Length > 32)
+                        if (this.CambioContrasena) {
+                                if (this.Contrasena == null || this.Contrasena.Length < 6 || this.Contrasena.Length > 32)
                                         throw new InvalidOperationException("La contraseña debe tener entre 6 y 32 caracteres");
 
-                                string Sal = "";
-                                for (int i = 0; i < 100; i++) {
-                                        Sal += this.Id.ToString();
-                                }
-                                string ContrasenaConSal = this.Contrasena + Sal;
+                                string ContrasenaConSal = this.Contrasena + this.ContrasenaSal;
 
-                                // Guardo un MD5 de la contraseña
-                                Comando.Fields.AddWithValue("contrasena", Lfx.Types.Strings.SHA256(ContrasenaConSal));
+                                if (this.ContrasenaSal == null || this.ContrasenaSal.Length == 0) {
+                                        // Guardo la contraseña en texto plano
+                                        Comando.Fields.AddWithValue("contrasena", Contrasena);
+                                } else {
+                                        // Guardo un hash SHA256 de la contraseña
+                                        Comando.Fields.AddWithValue("contrasena", Lfx.Types.Strings.SHA256(ContrasenaConSal));
+                                }
+                                Comando.Fields.AddWithValue("contrasena_sal", this.ContrasenaSal);
                                 Comando.Fields.AddWithValue("contrasena_fecha", qGen.SqlFunctions.Now);
                         }
 

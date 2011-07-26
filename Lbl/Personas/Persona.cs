@@ -76,6 +76,7 @@ namespace Lbl.Personas
                         this.Localidad = new Lbl.Entidades.Localidad(this.Connection, this.Workspace.CurrentConfig.Empresa.IdLocalidad);
                         this.Estado = 1;
                         this.Contrasena = new System.Random().Next(1000, 9999).ToString();
+                        this.ContrasenaSal = null;
                 }
 
 
@@ -425,6 +426,19 @@ namespace Lbl.Personas
                         set
                         {
                                 this.Registro["contrasena"] = value;
+                        }
+                }
+
+
+                public string ContrasenaSal
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("contrasena_sal");
+                        }
+                        set
+                        {
+                                this.Registro["contrasena_sal"] = value;
                         }
                 }
 

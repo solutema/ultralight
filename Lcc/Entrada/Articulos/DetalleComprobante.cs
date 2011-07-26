@@ -425,7 +425,7 @@ namespace Lcc.Entrada.Articulos
 
                 private bool EstoyUsandoUnidadPrimaria()
                 {
-                        return (this.Articulo == null || Articulo.Unidad == null || EntradaCantidad.Sufijo == Articulo.Unidad || (EntradaCantidad.Sufijo.Length == 0 && Articulo.Unidad == "u"));
+                        return (this.Articulo == null || Articulo.Unidad == null || EntradaCantidad.Sufijo == Articulo.Unidad || (EntradaCantidad.Sufijo.Length == 0 && Articulo.Unidad == "u") ||Articulo.Rendimiento == 0);
 
                 }
 

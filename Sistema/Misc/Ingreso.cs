@@ -83,21 +83,8 @@ namespace Lazaro.Misc
                                 }
                         }
 
-                        string Contrasena = EntradaContrasena.Text;
-                        string Sal = "";
-                        for (int i = 0; i < 100; i++) {
-                                Sal += EntradaUsuario.TextInt.ToString();
-                        }
-                        string ContrasenaConSal = Contrasena + Sal;
-
-                        // TODO: quitar el soporte para contraseñas en texto plano
-			Lfx.Data.Row RowUsuario = Lfx.Workspace.Master.MasterConnection.FirstRowFromSelect(@"SELECT id_persona, nombre, nombre_visible
-                                FROM personas
-                                WHERE estado=1 AND id_persona=" + EntradaUsuario.TextInt.ToString()
-                                                   + " AND (contrasena='" + Lfx.Types.Strings.SHA256(ContrasenaConSal) + "'"
-                                                   + " OR contrasena='" + Lfx.Workspace.Master.MasterConnection.EscapeString(Contrasena) + "')"
-                                                   );
-			if(RowUsuario == null) {
+                        Lbl.Personas.Usuario Usu = new Lbl.Personas.Usuario(Lfx.Workspace.Master.MasterConnection, EntradaUsuario.TextInt);
+                        if(Usu.ContrasenaValida(EntradaContrasena.Text) == false) {
 				System.Threading.Thread.Sleep(800);
                                 Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.LogonFail, EntradaUsuario.Elemento, "Usuario o contraseña incorrecto.");
 				MessageBox.Show("El nombre de usuario o la contraseña son incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -105,8 +92,8 @@ namespace Lazaro.Misc
 			} else {
 				OkButton.Text = "Ingresando...";
 				OkButton.Refresh();
-                                Lbl.Personas.Persona Usuario = new Lbl.Personas.Persona(Lfx.Workspace.Master.MasterConnection, RowUsuario.Fields["id_persona"].ValueInt);
-                                Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(this.Workspace, new Lbl.Personas.Usuario(Lfx.Workspace.Master.MasterConnection, RowUsuario.Fields["id_persona"].ValueInt));
+                                Lbl.Personas.Persona Usuario = new Lbl.Personas.Persona(Lfx.Workspace.Master.MasterConnection, Usu.Id);
+                                Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(Lfx.Workspace.Master, Usu);
                                 this.Workspace.CurrentConfig.WriteGlobalSetting(null, "Sistema.Ingreso.UltimoUsuario", Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString(), System.Environment.MachineName.ToUpperInvariant());
 				this.Workspace.CurrentConfig.WriteGlobalSetting(null, "Sistema.Ingreso.UltimoIngreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), System.Environment.MachineName.ToUpperInvariant());
                                 Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.Logon, Usuario, null);
