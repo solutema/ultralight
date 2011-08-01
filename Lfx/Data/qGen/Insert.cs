@@ -144,8 +144,6 @@ namespace qGen
                                                         break;
                                                 case "Single":
                                                 case "Double":
-                                                        ParamValue = Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDouble(ThisField.Value));
-                                                        break;
                                                 case "Decimal":
                                                         ParamValue = Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDecimal(ThisField.Value), 8);
                                                         break;

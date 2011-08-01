@@ -447,28 +447,10 @@ namespace Lfx.Types
 			return formatearFechaYHoraReturn;
 		}
 
-		// Función: FormatNumberSql
-		// Parámetros:
-		//    dNumero: valor a convertir.
-		//    iDecimales: cantidad de espacios decimales despues de la coma.
-		// Descripción:
-		//    entrega un número con formato compatible para poder formar parte de una sentencia Sql.
-		public static string FormatNumberSql(double numero)
+
+		public static string FormatNumberSql(decimal numero)
 		{
 			return FormatNumberSql(numero, -1);
-		}
-
-		
-                public static string FormatNumberSql(double numero, int decimales)
-		{
-			string formatearNumeroSqlReturn = null;
-
-			if(decimales < 0)
-				decimales = 4;
-
-			formatearNumeroSqlReturn = numero.ToString("0." + "0000000000".Substring(0, decimales),
-				System.Globalization.CultureInfo.InvariantCulture);
-			return formatearNumeroSqlReturn;
 		}
 
 

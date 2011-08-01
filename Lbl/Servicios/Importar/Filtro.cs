@@ -94,10 +94,8 @@ namespace Lbl.Servicios.Importar
                                 string ImportIdSqlValue;
                                 if(ImportIdValue is string) {
                                         ImportIdSqlValue = "'" + ImportIdValue.ToString() + "'";
-                                } else if (ImportIdValue is decimal) {
-                                        ImportIdSqlValue = Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDecimal(ImportIdValue), 8);
-                                } else if (ImportIdValue is double) {
-                                        ImportIdSqlValue = Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDouble(ImportIdValue));
+                                } else if (ImportIdValue is decimal || ImportIdValue is double) {
+                                        ImportIdSqlValue = Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDecimal(ImportIdValue));
                                 } else if (ImportIdValue is DateTime) {
                                         ImportIdSqlValue = "'" + Lfx.Types.Formatting.FormatDateTimeSql(System.Convert.ToDateTime(ImportIdValue)) + "'";
                                 } else {

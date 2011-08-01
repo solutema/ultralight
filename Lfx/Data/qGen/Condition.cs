@@ -154,9 +154,7 @@ namespace qGen
                 {
                         if (value == null || value is DBNull) {
                                 return "NULL";
-                        } else if (value is double) {
-                                return Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDouble(value));
-                        } else if (value is decimal) {
+                        } else if (value is double || value is decimal) {
                                 return Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDecimal(value), 8);
                         } else if (value is Lfx.Types.LDateTime) {
                                 return "'" + Lfx.Types.Formatting.FormatDateTimeSql(((Lfx.Types.LDateTime)(value)).Value) + "'";
