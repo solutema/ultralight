@@ -195,13 +195,7 @@ namespace Lbl.CuentasCorrientes
                         else
                                 Comando.Fields.AddWithValue("id_recibo", recibo.Id);
                         Comando.Fields.AddWithValue("comprob", textoComprob);
-
-                        //Comando.Fields.AddWithValue("saldo", new qGen.SqlExpression("saldo SaldoActual + importeDebito);
-                        if (importeDebito > 0)
-                                Comando.Fields.AddWithValue("saldo", new qGen.SqlExpression("saldo+" + Lfx.Types.Formatting.FormatNumberSql(importeDebito)));
-                        else
-                                Comando.Fields.AddWithValue("saldo", new qGen.SqlExpression("saldo-" + Lfx.Types.Formatting.FormatNumberSql(-importeDebito)));
-
+                        Comando.Fields.AddWithValue("saldo", SaldoActual + importeDebito);
                         Comando.Fields.AddWithValue("obs", obs);
 
                         if (extras != null && extras.Count > 0) {
