@@ -99,11 +99,8 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.AutoTab = true;
-                        this.EntradaTipo.DetailField = null;
-                        this.EntradaTipo.Filter = null;
                         this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaTipo.KeyField = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(148, 20);
                         this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
@@ -116,7 +113,6 @@ namespace Lfc.Comprobantes.Facturas
         "M|M"};
                         this.EntradaTipo.Size = new System.Drawing.Size(40, 26);
                         this.EntradaTipo.TabIndex = 1;
-                        this.EntradaTipo.Table = null;
                         this.EntradaTipo.TextKey = "B";
                         this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ToolTipText = "";
@@ -187,11 +183,8 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaOrden.AutoNav = true;
                         this.EntradaOrden.AutoSize = true;
                         this.EntradaOrden.AutoTab = true;
-                        this.EntradaOrden.DetailField = null;
-                        this.EntradaOrden.Filter = null;
                         this.EntradaOrden.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaOrden.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaOrden.KeyField = null;
                         this.EntradaOrden.Location = new System.Drawing.Point(508, 20);
                         this.EntradaOrden.MaxLenght = 32767;
                         this.EntradaOrden.Name = "EntradaOrden";
@@ -201,7 +194,6 @@ namespace Lfc.Comprobantes.Facturas
         "Inverso|1"};
                         this.EntradaOrden.Size = new System.Drawing.Size(268, 36);
                         this.EntradaOrden.TabIndex = 9;
-                        this.EntradaOrden.Table = null;
                         this.EntradaOrden.TextKey = "0";
                         this.EntradaOrden.PlaceholderText = "";
                         this.EntradaOrden.ToolTipText = "";

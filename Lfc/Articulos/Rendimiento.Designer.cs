@@ -132,11 +132,8 @@ namespace Lfc.Articulos
                         this.EntradaUnidad.AutoNav = true;
                         this.EntradaUnidad.AutoSize = true;
                         this.EntradaUnidad.AutoTab = true;
-                        this.EntradaUnidad.DetailField = null;
-                        this.EntradaUnidad.Filter = null;
                         this.EntradaUnidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaUnidad.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaUnidad.KeyField = null;
                         this.EntradaUnidad.Location = new System.Drawing.Point(200, 24);
                         this.EntradaUnidad.MaxLenght = 32767;
                         this.EntradaUnidad.Name = "EntradaUnidad";
@@ -158,7 +155,6 @@ namespace Lfc.Articulos
         "Kg|kg"};
                         this.EntradaUnidad.Size = new System.Drawing.Size(112, 81);
                         this.EntradaUnidad.TabIndex = 1;
-                        this.EntradaUnidad.Table = null;
                         this.EntradaUnidad.TextKey = "u";
                         this.EntradaUnidad.PlaceholderText = "";
                         this.EntradaUnidad.ToolTipText = "¿El artículo usa control de stock?";
@@ -169,11 +165,8 @@ namespace Lfc.Articulos
                         this.EntradaUnidadRend.AutoNav = true;
                         this.EntradaUnidadRend.AutoSize = true;
                         this.EntradaUnidadRend.AutoTab = true;
-                        this.EntradaUnidadRend.DetailField = null;
-                        this.EntradaUnidadRend.Filter = null;
                         this.EntradaUnidadRend.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaUnidadRend.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaUnidadRend.KeyField = null;
                         this.EntradaUnidadRend.Location = new System.Drawing.Point(200, 120);
                         this.EntradaUnidadRend.MaxLenght = 32767;
                         this.EntradaUnidadRend.Name = "EntradaUnidadRend";
@@ -195,7 +188,6 @@ namespace Lfc.Articulos
         "Kg|kg"};
                         this.EntradaUnidadRend.Size = new System.Drawing.Size(112, 81);
                         this.EntradaUnidadRend.TabIndex = 4;
-                        this.EntradaUnidadRend.Table = null;
                         this.EntradaUnidadRend.TextKey = "";
                         this.EntradaUnidadRend.PlaceholderText = "";
                         this.EntradaUnidadRend.ToolTipText = "¿El artículo usa control de stock?";

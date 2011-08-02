@@ -58,11 +58,8 @@ namespace Lfc.Comprobantes
                     this.EntradaAgrupar.AutoSize = false;
                     this.EntradaAgrupar.AutoNav = true;
                     this.EntradaAgrupar.AutoTab = true;
-                    this.EntradaAgrupar.DetailField = null;
-                    this.EntradaAgrupar.Filter = null;
                     this.EntradaAgrupar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     this.EntradaAgrupar.ForeColor = System.Drawing.SystemColors.ControlText;
-                    this.EntradaAgrupar.KeyField = null;
                     this.EntradaAgrupar.Location = new System.Drawing.Point(400, 4);
                     this.EntradaAgrupar.MaxLenght = 32767;
                     this.EntradaAgrupar.Name = "EntradaAgrupar";
@@ -82,7 +79,6 @@ namespace Lfc.Comprobantes
         "Por Categoría|articulos.id_categoria"};
                     this.EntradaAgrupar.Size = new System.Drawing.Size(196, 24);
                     this.EntradaAgrupar.TabIndex = 1;
-                    this.EntradaAgrupar.Table = null;
                     this.EntradaAgrupar.TextKey = "*";
                     this.EntradaAgrupar.PlaceholderText = "";
                     this.EntradaAgrupar.ToolTipText = "";

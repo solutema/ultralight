@@ -35,7 +35,7 @@ using System.Text;
 
 namespace Lui.Forms
 {
-	public class ProgressBar : System.Windows.Forms.ProgressBar
+	public class ProgressBar : System.Windows.Forms.ProgressBar, IControl
 	{
 
 	}

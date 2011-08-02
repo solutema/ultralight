@@ -247,11 +247,8 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.AutoTab = true;
-                        this.EntradaTipo.DetailField = null;
-                        this.EntradaTipo.Filter = null;
                         this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaTipo.KeyField = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(396, 48);
                         this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
@@ -267,7 +264,6 @@ namespace Lfc.Comprobantes.Compra
         "Pedido|PD"};
                         this.EntradaTipo.Size = new System.Drawing.Size(92, 25);
                         this.EntradaTipo.TabIndex = 4;
-                        this.EntradaTipo.Table = null;
                         this.EntradaTipo.TextKey = "FA";
                         this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ToolTipText = "";
@@ -389,11 +385,8 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.DetailField = null;
-                        this.EntradaEstado.Filter = null;
                         this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaEstado.KeyField = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(288, 307);
                         this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
@@ -402,7 +395,6 @@ namespace Lfc.Comprobantes.Compra
         "N/A|0"};
                         this.EntradaEstado.Size = new System.Drawing.Size(164, 26);
                         this.EntradaEstado.TabIndex = 19;
-                        this.EntradaEstado.Table = null;
                         this.EntradaEstado.TextKey = "0";
                         this.EntradaEstado.PlaceholderText = "";
                         this.EntradaEstado.ToolTipText = "";
@@ -501,11 +493,8 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaFormaPago.AutoNav = true;
                         this.EntradaFormaPago.AutoSize = true;
                         this.EntradaFormaPago.AutoTab = true;
-                        this.EntradaFormaPago.DetailField = null;
-                        this.EntradaFormaPago.Filter = null;
                         this.EntradaFormaPago.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaFormaPago.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaFormaPago.KeyField = null;
                         this.EntradaFormaPago.Location = new System.Drawing.Point(294, 76);
                         this.EntradaFormaPago.MaxLenght = 32767;
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
@@ -515,7 +504,6 @@ namespace Lfc.Comprobantes.Compra
         "No|0"};
                         this.EntradaFormaPago.Size = new System.Drawing.Size(58, 25);
                         this.EntradaFormaPago.TabIndex = 10;
-                        this.EntradaFormaPago.Table = null;
                         this.EntradaFormaPago.TextKey = "0";
                         this.EntradaFormaPago.PlaceholderText = "";
                         this.EntradaFormaPago.ToolTipText = "";

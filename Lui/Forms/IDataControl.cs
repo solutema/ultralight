@@ -33,7 +33,7 @@ using System.ComponentModel;
 
 namespace Lui.Forms
 {
-        public interface IDataControl
+        public interface IDataControl : IEditableControl
         {
                 [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 bool HasWorkspace
@@ -51,13 +51,6 @@ namespace Lui.Forms
                 Lfx.Data.Connection Connection
                 {
                         get;
-                }
-
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                bool Changed
-                {
-                        get;
-                        set;
                 }
         }
 }

@@ -552,11 +552,8 @@ namespace Lfc.Personas
                         this.EntradaTipoFac.AlwaysExpanded = false;
                         this.EntradaTipoFac.AutoNav = true;
                         this.EntradaTipoFac.AutoTab = true;
-                        this.EntradaTipoFac.DetailField = null;
-                        this.EntradaTipoFac.Filter = null;
                         this.EntradaTipoFac.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTipoFac.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaTipoFac.KeyField = null;
                         this.EntradaTipoFac.Location = new System.Drawing.Point(124, 116);
                         this.EntradaTipoFac.MaxLenght = 32767;
                         this.EntradaTipoFac.Name = "EntradaTipoFac";
@@ -572,7 +569,6 @@ namespace Lfc.Personas
         "Ticket|T"};
                         this.EntradaTipoFac.Size = new System.Drawing.Size(188, 24);
                         this.EntradaTipoFac.TabIndex = 7;
-                        this.EntradaTipoFac.Table = null;
                         this.EntradaTipoFac.TextKey = "*";
                         this.EntradaTipoFac.ToolTipText = "";
                         // 
@@ -782,11 +778,8 @@ namespace Lfc.Personas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEstadoCredito.AutoNav = true;
                         this.EntradaEstadoCredito.AutoTab = true;
-                        this.EntradaEstadoCredito.DetailField = null;
-                        this.EntradaEstadoCredito.Filter = null;
                         this.EntradaEstadoCredito.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaEstadoCredito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaEstadoCredito.KeyField = null;
                         this.EntradaEstadoCredito.Location = new System.Drawing.Point(144, 140);
                         this.EntradaEstadoCredito.MaxLenght = 32767;
                         this.EntradaEstadoCredito.Name = "EntradaEstadoCredito";
@@ -800,7 +793,6 @@ namespace Lfc.Personas
         "Susp. con Reactivación Manual|100"};
                         this.EntradaEstadoCredito.Size = new System.Drawing.Size(134, 24);
                         this.EntradaEstadoCredito.TabIndex = 9;
-                        this.EntradaEstadoCredito.Table = null;
                         this.EntradaEstadoCredito.TextKey = "100";
                         this.EntradaEstadoCredito.ToolTipText = "";
                         // 
@@ -1033,11 +1025,8 @@ namespace Lfc.Personas
                         this.EntradaEstado.AlwaysExpanded = false;
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.DetailField = null;
-                        this.EntradaEstado.Filter = null;
                         this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaEstado.KeyField = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(120, 28);
                         this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
@@ -1049,7 +1038,6 @@ namespace Lfc.Personas
         "Activo|1"};
                         this.EntradaEstado.Size = new System.Drawing.Size(131, 24);
                         this.EntradaEstado.TabIndex = 1;
-                        this.EntradaEstado.Table = null;
                         this.EntradaEstado.TextKey = "1";
                         this.EntradaEstado.ToolTipText = "";
                         // 

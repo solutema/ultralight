@@ -176,11 +176,8 @@ namespace Lfc.Comprobantes
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.DetailField = null;
-                        this.EntradaEstado.Filter = null;
                         this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaEstado.KeyField = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(137, 212);
                         this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
@@ -192,7 +189,6 @@ namespace Lfc.Comprobantes
         "Sólo las Impresas e Impagas|2"};
                         this.EntradaEstado.Size = new System.Drawing.Size(248, 25);
                         this.EntradaEstado.TabIndex = 15;
-                        this.EntradaEstado.Table = null;
                         this.EntradaEstado.TextKey = "0";
                         this.EntradaEstado.PlaceholderText = "";
                         this.EntradaEstado.ToolTipText = "";
@@ -212,11 +208,8 @@ namespace Lfc.Comprobantes
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.AutoTab = true;
-                        this.EntradaTipo.DetailField = null;
-                        this.EntradaTipo.Filter = null;
                         this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaTipo.KeyField = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(3, 3);
                         this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
@@ -231,7 +224,6 @@ namespace Lfc.Comprobantes
         "Remitos|Lbl.Comprobantes.Remito"};
                         this.EntradaTipo.Size = new System.Drawing.Size(180, 25);
                         this.EntradaTipo.TabIndex = 0;
-                        this.EntradaTipo.Table = null;
                         this.EntradaTipo.TextKey = "Lbl.Comprobantes.Factura";
                         this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ToolTipText = "";
@@ -288,11 +280,8 @@ namespace Lfc.Comprobantes
                         this.EntradaAnuladas.AutoNav = true;
                         this.EntradaAnuladas.AutoSize = true;
                         this.EntradaAnuladas.AutoTab = true;
-                        this.EntradaAnuladas.DetailField = null;
-                        this.EntradaAnuladas.Filter = null;
                         this.EntradaAnuladas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaAnuladas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaAnuladas.KeyField = null;
                         this.EntradaAnuladas.Location = new System.Drawing.Point(137, 243);
                         this.EntradaAnuladas.MaxLenght = 32767;
                         this.EntradaAnuladas.Name = "EntradaAnuladas";
@@ -302,7 +291,6 @@ namespace Lfc.Comprobantes
         "Mostrar|1"};
                         this.EntradaAnuladas.Size = new System.Drawing.Size(248, 25);
                         this.EntradaAnuladas.TabIndex = 17;
-                        this.EntradaAnuladas.Table = null;
                         this.EntradaAnuladas.TextKey = "0";
                         this.EntradaAnuladas.PlaceholderText = "";
                         this.EntradaAnuladas.ToolTipText = "";
@@ -394,11 +382,8 @@ namespace Lfc.Comprobantes
                         this.EntradaLetra.AutoNav = true;
                         this.EntradaLetra.AutoSize = true;
                         this.EntradaLetra.AutoTab = true;
-                        this.EntradaLetra.DetailField = null;
-                        this.EntradaLetra.Filter = null;
                         this.EntradaLetra.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaLetra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaLetra.KeyField = null;
                         this.EntradaLetra.Location = new System.Drawing.Point(189, 3);
                         this.EntradaLetra.MaxLenght = 32767;
                         this.EntradaLetra.Name = "EntradaLetra";
@@ -412,7 +397,6 @@ namespace Lfc.Comprobantes
         "M|M"};
                         this.EntradaLetra.Size = new System.Drawing.Size(84, 25);
                         this.EntradaLetra.TabIndex = 1;
-                        this.EntradaLetra.Table = null;
                         this.EntradaLetra.TextKey = "*";
                         this.EntradaLetra.PlaceholderText = "";
                         this.EntradaLetra.ToolTipText = "";

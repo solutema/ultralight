@@ -146,11 +146,8 @@ namespace Lfc.Tareas
                         this.EntradaOrden.AutoNav = true;
                         this.EntradaOrden.AutoSize = true;
                         this.EntradaOrden.AutoTab = true;
-                        this.EntradaOrden.DetailField = null;
-                        this.EntradaOrden.Filter = null;
                         this.EntradaOrden.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaOrden.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaOrden.KeyField = null;
                         this.EntradaOrden.Location = new System.Drawing.Point(97, 210);
                         this.EntradaOrden.MaxLenght = 32767;
                         this.EntradaOrden.Name = "EntradaOrden";
@@ -161,7 +158,6 @@ namespace Lfc.Tareas
         "Por nombre del Cliente|personas.nombre_visible"};
                         this.EntradaOrden.Size = new System.Drawing.Size(299, 51);
                         this.EntradaOrden.TabIndex = 11;
-                        this.EntradaOrden.Table = null;
                         this.EntradaOrden.TextKey = "tickets.id_ticket DESC";
                         this.EntradaOrden.PlaceholderText = "";
                         this.EntradaOrden.ToolTipText = "";
@@ -208,11 +204,8 @@ namespace Lfc.Tareas
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.DetailField = null;
-                        this.EntradaEstado.Filter = null;
                         this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaEstado.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaEstado.KeyField = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(97, 123);
                         this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
@@ -224,7 +217,6 @@ namespace Lfc.Tareas
         "Terminados Sin Entregar|<50"};
                         this.EntradaEstado.Size = new System.Drawing.Size(299, 81);
                         this.EntradaEstado.TabIndex = 9;
-                        this.EntradaEstado.Table = null;
                         this.EntradaEstado.TextKey = "<30";
                         this.EntradaEstado.PlaceholderText = "";
                         this.EntradaEstado.ToolTipText = "";

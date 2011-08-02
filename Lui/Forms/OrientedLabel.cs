@@ -60,7 +60,7 @@ namespace Lui.Forms
 
         #endregion
 
-        public class OrientedTextLabel : System.Windows.Forms.Label
+        public class OrientedTextLabel2 : System.Windows.Forms.Label
         {
                 #region Variables
 
@@ -73,7 +73,7 @@ namespace Lui.Forms
 
                 #region Constructor
 
-                public OrientedTextLabel()
+                public OrientedTextLabel2()
                 {
                         //Setting the initial condition.
                         rotationAngle = 0d;

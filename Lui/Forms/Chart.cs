@@ -41,7 +41,7 @@ namespace Lui.Forms
         /// <summary>
         /// Descripción breve de Chart.
         /// </summary>
-        public class Chart : System.Windows.Forms.UserControl
+        public class Chart : System.Windows.Forms.UserControl, IControl
         {
                 /// <summary> 
                 /// Variable del diseñador requerida.

@@ -164,11 +164,8 @@ namespace Lfc.Misc
                         this.txtTipo.AutoSize = false;
                         this.txtTipo.AutoNav = true;
                         this.txtTipo.AutoTab = true;
-                        this.txtTipo.DetailField = null;
-                        this.txtTipo.Filter = null;
                         this.txtTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtTipo.KeyField = null;
                         this.txtTipo.Location = new System.Drawing.Point(152, 24);
                         this.txtTipo.MaxLenght = 32767;
                         this.txtTipo.Name = "EntradaTipo";
@@ -178,7 +175,6 @@ namespace Lfc.Misc
         "Persona|personas"};
                         this.txtTipo.Size = new System.Drawing.Size(140, 24);
                         this.txtTipo.TabIndex = 1;
-                        this.txtTipo.Table = null;
                         this.txtTipo.TextKey = "personas";
                         this.txtTipo.PlaceholderText = "";
                         this.txtTipo.ToolTipText = "";

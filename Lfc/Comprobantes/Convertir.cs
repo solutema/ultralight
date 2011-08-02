@@ -165,11 +165,8 @@ namespace Lfc.Comprobantes
                         this.EntradaDestinoTipo.AutoNav = true;
                         this.EntradaDestinoTipo.AutoSize = true;
                         this.EntradaDestinoTipo.AutoTab = true;
-                        this.EntradaDestinoTipo.DetailField = null;
-                        this.EntradaDestinoTipo.Filter = null;
                         this.EntradaDestinoTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaDestinoTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaDestinoTipo.KeyField = null;
                         this.EntradaDestinoTipo.Location = new System.Drawing.Point(300, 48);
                         this.EntradaDestinoTipo.MaxLenght = 32767;
                         this.EntradaDestinoTipo.Name = "EntradaDestinoTipo";
@@ -182,7 +179,6 @@ namespace Lfc.Comprobantes
         "Nota de Débito B|ND"};
                         this.EntradaDestinoTipo.Size = new System.Drawing.Size(312, 81);
                         this.EntradaDestinoTipo.TabIndex = 3;
-                        this.EntradaDestinoTipo.Table = null;
                         this.EntradaDestinoTipo.TextKey = "F";
                         this.EntradaDestinoTipo.PlaceholderText = "";
                         this.EntradaDestinoTipo.ToolTipText = "";

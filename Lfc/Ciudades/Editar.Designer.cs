@@ -183,10 +183,7 @@ namespace Lfc.Ciudades
                         this.EntradaNivel.AutoNav = true;
                         this.EntradaNivel.AutoSize = true;
                         this.EntradaNivel.AutoTab = true;
-                        this.EntradaNivel.DetailField = null;
-                        this.EntradaNivel.Filter = null;
                         this.EntradaNivel.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaNivel.KeyField = null;
                         this.EntradaNivel.Location = new System.Drawing.Point(116, 32);
                         this.EntradaNivel.MaxLenght = 32767;
                         this.EntradaNivel.Name = "EntradaNivel";
@@ -199,7 +196,6 @@ namespace Lfc.Ciudades
         "Localidad|2"};
                         this.EntradaNivel.Size = new System.Drawing.Size(172, 51);
                         this.EntradaNivel.TabIndex = 3;
-                        this.EntradaNivel.Table = null;
                         this.EntradaNivel.TextKey = "0";
                         this.EntradaNivel.ToolTipText = "";
                         this.EntradaNivel.TextChanged += new System.EventHandler(this.EntradaNivel_TextChanged);
@@ -210,10 +206,7 @@ namespace Lfc.Ciudades
                         this.EntradaIva.AutoNav = true;
                         this.EntradaIva.AutoSize = true;
                         this.EntradaIva.AutoTab = true;
-                        this.EntradaIva.DetailField = null;
-                        this.EntradaIva.Filter = null;
                         this.EntradaIva.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaIva.KeyField = null;
                         this.EntradaIva.Location = new System.Drawing.Point(116, 156);
                         this.EntradaIva.MaxLenght = 32767;
                         this.EntradaIva.Name = "EntradaIva";
@@ -225,7 +218,6 @@ namespace Lfc.Ciudades
         "Exento|1"};
                         this.EntradaIva.Size = new System.Drawing.Size(172, 36);
                         this.EntradaIva.TabIndex = 9;
-                        this.EntradaIva.Table = null;
                         this.EntradaIva.TextKey = "0";
                         this.EntradaIva.ToolTipText = "";
                         // 

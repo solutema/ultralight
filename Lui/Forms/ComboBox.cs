@@ -45,7 +45,7 @@ namespace Lui.Forms
                 private string[] m_SetDataText = { "" };
                 private string[] m_SetDataKey = { "" };
                 private int m_SetIndex; private string m_TextKey;
-                private string m_Table = null, m_KeyField = null, m_DetailField = null, m_Filter = null;
+                //private string m_Table = null, m_KeyField = null, m_DetailField = null, m_Filter = null;
                 private bool m_AlwaysExpanded = false;
 
                 public ComboBox()
@@ -318,7 +318,7 @@ namespace Lui.Forms
                         }
                 }
 
-                [System.ComponentModel.Category("Datos")]
+                /* [System.ComponentModel.Category("Datos")]
                 public string Table
                 {
                         get
@@ -406,7 +406,7 @@ namespace Lui.Forms
                                         this.TextRaw = "(this.DataBase is closed)";
                                 }
                         }
-                }
+                } */
 
                 private void ComboBox_Enter(object sender, EventArgs e)
                 {

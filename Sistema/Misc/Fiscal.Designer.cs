@@ -126,11 +126,8 @@ namespace Lazaro.Misc
                         this.EntradaPv.AlwaysExpanded = true;
                         this.EntradaPv.AutoNav = true;
                         this.EntradaPv.AutoTab = true;
-                        this.EntradaPv.DetailField = null;
-                        this.EntradaPv.Filter = null;
                         this.EntradaPv.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaPv.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaPv.KeyField = null;
                         this.EntradaPv.Location = new System.Drawing.Point(188, 24);
                         this.EntradaPv.MaxLenght = 32767;
                         this.EntradaPv.Name = "EntradaPv";
@@ -139,7 +136,6 @@ namespace Lazaro.Misc
         "N/A|0"};
                         this.EntradaPv.Size = new System.Drawing.Size(192, 100);
                         this.EntradaPv.TabIndex = 52;
-                        this.EntradaPv.Table = null;
                         this.EntradaPv.TextKey = "0";
                         this.EntradaPv.PlaceholderText = "";
                         this.EntradaPv.ToolTipText = "";

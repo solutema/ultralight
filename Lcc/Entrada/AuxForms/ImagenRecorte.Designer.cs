@@ -149,10 +149,7 @@ namespace Lcc.Entrada.AuxForms
                         this.EntradaRatio.AutoNav = true;
                         this.EntradaRatio.AutoSize = true;
                         this.EntradaRatio.AutoTab = true;
-                        this.EntradaRatio.DetailField = null;
-                        this.EntradaRatio.Filter = null;
                         this.EntradaRatio.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaRatio.KeyField = null;
                         this.EntradaRatio.Location = new System.Drawing.Point(96, 4);
                         this.EntradaRatio.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaRatio.MaxLenght = 32767;
@@ -164,7 +161,6 @@ namespace Lcc.Entrada.AuxForms
         "Libre|0"};
                         this.EntradaRatio.Size = new System.Drawing.Size(136, 22);
                         this.EntradaRatio.TabIndex = 1;
-                        this.EntradaRatio.Table = null;
                         this.EntradaRatio.Text = "Libre";
                         this.EntradaRatio.TextKey = "0";
                         this.EntradaRatio.PlaceholderText = "";

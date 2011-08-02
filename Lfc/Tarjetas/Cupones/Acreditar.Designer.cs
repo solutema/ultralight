@@ -112,11 +112,8 @@ namespace Lfc.Cupones.Cupones
                         // 
                         this.txtFormaPago.AutoNav = true;
                         this.txtFormaPago.AutoTab = true;
-                        this.txtFormaPago.DetailField = null;
-                        this.txtFormaPago.Filter = null;
                         this.txtFormaPago.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtFormaPago.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.txtFormaPago.KeyField = null;
                         this.txtFormaPago.Location = new System.Drawing.Point(188, 256);
                         this.txtFormaPago.MaxLenght = 32767;
                         this.txtFormaPago.Name = "txtFormaPago";
@@ -127,7 +124,6 @@ namespace Lfc.Cupones.Cupones
         "Depósito en Cuenta|6"};
                         this.txtFormaPago.Size = new System.Drawing.Size(200, 24);
                         this.txtFormaPago.TabIndex = 17;
-                        this.txtFormaPago.Table = null;
                         this.txtFormaPago.TextKey = "6";
                         this.txtFormaPago.PlaceholderText = "";
                         this.txtFormaPago.ToolTipText = "";

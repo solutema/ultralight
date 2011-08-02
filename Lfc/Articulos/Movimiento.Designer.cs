@@ -148,11 +148,8 @@ namespace Lfc.Articulos
                         this.EntradaMovimiento.AutoSize = false;
                         this.EntradaMovimiento.AutoNav = true;
                         this.EntradaMovimiento.AutoTab = true;
-                        this.EntradaMovimiento.DetailField = null;
-                        this.EntradaMovimiento.Filter = null;
                         this.EntradaMovimiento.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaMovimiento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaMovimiento.KeyField = null;
                         this.EntradaMovimiento.Location = new System.Drawing.Point(124, 84);
                         this.EntradaMovimiento.MaxLenght = 32767;
                         this.EntradaMovimiento.Name = "EntradaMovimiento";
@@ -164,7 +161,6 @@ namespace Lfc.Articulos
         "Salida|s"};
                         this.EntradaMovimiento.Size = new System.Drawing.Size(192, 24);
                         this.EntradaMovimiento.TabIndex = 5;
-                        this.EntradaMovimiento.Table = null;
                         this.EntradaMovimiento.Text = " ";
                         this.EntradaMovimiento.TextKey = "*";
                         this.EntradaMovimiento.PlaceholderText = "";

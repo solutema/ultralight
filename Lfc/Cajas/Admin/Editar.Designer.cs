@@ -168,11 +168,8 @@ namespace Lfc.Cajas.Admin
                         this.EntradaTipo.AutoSize = false;
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoTab = true;
-                        this.EntradaTipo.DetailField = null;
-                        this.EntradaTipo.Filter = null;
                         this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaTipo.KeyField = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(124, 64);
                         this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
@@ -184,7 +181,6 @@ namespace Lfc.Cajas.Admin
         "Cuenta Corriente|2"};
                         this.EntradaTipo.Size = new System.Drawing.Size(168, 24);
                         this.EntradaTipo.TabIndex = 5;
-                        this.EntradaTipo.Table = null;
                         this.EntradaTipo.Text = "Caja de Ahorro";
                         this.EntradaTipo.TextKey = "1";
                         this.EntradaTipo.PlaceholderText = "";
@@ -345,11 +341,8 @@ namespace Lfc.Cajas.Admin
                         this.EntradaEstado.AutoSize = false;
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.DetailField = null;
-                        this.EntradaEstado.Filter = null;
                         this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaEstado.KeyField = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(124, 224);
                         this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
@@ -360,7 +353,6 @@ namespace Lfc.Cajas.Admin
         "Inactiva|0"};
                         this.EntradaEstado.Size = new System.Drawing.Size(168, 24);
                         this.EntradaEstado.TabIndex = 15;
-                        this.EntradaEstado.Table = null;
                         this.EntradaEstado.Text = "Activa";
                         this.EntradaEstado.TextKey = "1";
                         this.EntradaEstado.PlaceholderText = "";

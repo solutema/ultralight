@@ -211,11 +211,8 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaEstado.AlwaysExpanded = false;
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.DetailField = null;
-                        this.EntradaEstado.Filter = null;
                         this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaEstado.KeyField = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(120, 160);
                         this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
@@ -225,7 +222,6 @@ namespace Lfc.Bancos.Chequeras
         "Activa|1"};
                         this.EntradaEstado.Size = new System.Drawing.Size(172, 24);
                         this.EntradaEstado.TabIndex = 16;
-                        this.EntradaEstado.Table = null;
                         this.EntradaEstado.TextKey = "1";
                         this.EntradaEstado.PlaceholderText = "";
                         this.EntradaEstado.ToolTipText = "Estado para esta chequera.";

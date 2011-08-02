@@ -39,7 +39,7 @@ using System.Windows.Forms;
 
 namespace Lui.Forms
 {
-        public partial class Bracket : UserControl
+        public partial class Bracket : UserControl, IControl
         {
                 public Bracket()
                 {

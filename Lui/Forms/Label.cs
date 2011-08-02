@@ -31,7 +31,7 @@
 
 namespace Lui.Forms
 {
-        public class Label : System.Windows.Forms.Label
+        public class Label : System.Windows.Forms.Label, IControl
         {
         }
 }

@@ -37,7 +37,7 @@ using System.Windows.Forms;
 
 namespace Lui.Forms
 {
-        public partial class TextBoxBase : Control
+        public partial class TextBoxBase : EditableControl
         {
                 protected internal bool m_AutoTab = true;
                 protected internal bool m_AutoNav = true;

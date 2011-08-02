@@ -258,11 +258,8 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaSeguimiento.AlwaysExpanded = false;
                         this.EntradaSeguimiento.AutoNav = true;
                         this.EntradaSeguimiento.AutoTab = true;
-                        this.EntradaSeguimiento.DetailField = null;
-                        this.EntradaSeguimiento.Filter = null;
                         this.EntradaSeguimiento.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaSeguimiento.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaSeguimiento.KeyField = null;
                         this.EntradaSeguimiento.Location = new System.Drawing.Point(140, 112);
                         this.EntradaSeguimiento.MaxLenght = 32767;
                         this.EntradaSeguimiento.Name = "EntradaSeguimiento";
@@ -273,7 +270,6 @@ namespace Lfc.Articulos.Categorias
         "Por Variaciones|5"};
                         this.EntradaSeguimiento.Size = new System.Drawing.Size(236, 24);
                         this.EntradaSeguimiento.TabIndex = 9;
-                        this.EntradaSeguimiento.Table = null;
                         this.EntradaSeguimiento.TextKey = "0";
                         this.EntradaSeguimiento.PlaceholderText = "";
                         this.EntradaSeguimiento.ToolTipText = "";
@@ -317,11 +313,8 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaWeb.AlwaysExpanded = false;
                         this.EntradaWeb.AutoNav = true;
                         this.EntradaWeb.AutoTab = true;
-                        this.EntradaWeb.DetailField = null;
-                        this.EntradaWeb.Filter = null;
                         this.EntradaWeb.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaWeb.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaWeb.KeyField = null;
                         this.EntradaWeb.Location = new System.Drawing.Point(140, 84);
                         this.EntradaWeb.MaxLenght = 32767;
                         this.EntradaWeb.Name = "EntradaWeb";
@@ -331,7 +324,6 @@ namespace Lfc.Articulos.Categorias
         "No|0"};
                         this.EntradaWeb.Size = new System.Drawing.Size(108, 24);
                         this.EntradaWeb.TabIndex = 7;
-                        this.EntradaWeb.Table = null;
                         this.EntradaWeb.TextKey = "0";
                         this.EntradaWeb.PlaceholderText = "";
                         this.EntradaWeb.ToolTipText = "";

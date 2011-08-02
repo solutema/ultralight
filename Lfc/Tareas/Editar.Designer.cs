@@ -703,11 +703,8 @@ namespace Lfc.Tareas
                         this.EntradaPrioridad.AutoNav = true;
                         this.EntradaPrioridad.AutoSize = true;
                         this.EntradaPrioridad.AutoTab = true;
-                        this.EntradaPrioridad.DetailField = null;
-                        this.EntradaPrioridad.Filter = null;
                         this.EntradaPrioridad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaPrioridad.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaPrioridad.KeyField = null;
                         this.EntradaPrioridad.Location = new System.Drawing.Point(490, 148);
                         this.EntradaPrioridad.MaxLenght = 32767;
                         this.EntradaPrioridad.Name = "EntradaPrioridad";
@@ -719,7 +716,6 @@ namespace Lfc.Tareas
         "Baja|-5"};
                         this.EntradaPrioridad.Size = new System.Drawing.Size(128, 25);
                         this.EntradaPrioridad.TabIndex = 22;
-                        this.EntradaPrioridad.Table = null;
                         this.EntradaPrioridad.TextKey = "0";
                         this.EntradaPrioridad.PlaceholderText = "";
                         this.EntradaPrioridad.ToolTipText = "";

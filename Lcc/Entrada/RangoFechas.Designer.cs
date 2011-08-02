@@ -65,11 +65,8 @@ namespace Lcc.Entrada
                         this.EntradaTipoDeRango.AutoNav = true;
                         this.EntradaTipoDeRango.AutoSize = true;
                         this.EntradaTipoDeRango.AutoTab = true;
-                        this.EntradaTipoDeRango.DetailField = null;
-                        this.EntradaTipoDeRango.Filter = null;
                         this.EntradaTipoDeRango.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaTipoDeRango.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaTipoDeRango.KeyField = null;
                         this.EntradaTipoDeRango.Location = new System.Drawing.Point(0, 0);
                         this.EntradaTipoDeRango.MaxLenght = 32767;
                         this.EntradaTipoDeRango.Name = "EntradaTipoDeRango";
@@ -82,7 +79,6 @@ namespace Lcc.Entrada
         "Todas|todas"};
                         this.EntradaTipoDeRango.Size = new System.Drawing.Size(124, 25);
                         this.EntradaTipoDeRango.TabIndex = 0;
-                        this.EntradaTipoDeRango.Table = null;
                         this.EntradaTipoDeRango.TextKey = "semana";
                         this.EntradaTipoDeRango.PlaceholderText = "";
                         this.EntradaTipoDeRango.ToolTipText = "";
@@ -145,11 +141,8 @@ namespace Lcc.Entrada
                         this.EntradaRango.AutoNav = true;
                         this.EntradaRango.AutoSize = true;
                         this.EntradaRango.AutoTab = true;
-                        this.EntradaRango.DetailField = null;
-                        this.EntradaRango.Filter = null;
                         this.EntradaRango.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaRango.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaRango.KeyField = null;
                         this.EntradaRango.Location = new System.Drawing.Point(128, 0);
                         this.EntradaRango.MaxLenght = 32767;
                         this.EntradaRango.Name = "EntradaRango";
@@ -158,7 +151,6 @@ namespace Lcc.Entrada
         "a|1"};
                         this.EntradaRango.Size = new System.Drawing.Size(311, 25);
                         this.EntradaRango.TabIndex = 1;
-                        this.EntradaRango.Table = null;
                         this.EntradaRango.TextKey = "1";
                         this.EntradaRango.PlaceholderText = "";
                         this.EntradaRango.ToolTipText = "";

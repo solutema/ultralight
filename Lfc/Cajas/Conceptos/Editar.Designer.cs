@@ -131,11 +131,8 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaDireccion.AutoSize = false;
                         this.EntradaDireccion.AutoNav = true;
                         this.EntradaDireccion.AutoTab = true;
-                        this.EntradaDireccion.DetailField = null;
-                        this.EntradaDireccion.Filter = null;
                         this.EntradaDireccion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaDireccion.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaDireccion.KeyField = null;
                         this.EntradaDireccion.Location = new System.Drawing.Point(84, 64);
                         this.EntradaDireccion.MaxLenght = 32767;
                         this.EntradaDireccion.Name = "EntradaDireccion";
@@ -147,7 +144,6 @@ namespace Lfc.Cajas.Conceptos
         "Salida|2"};
                         this.EntradaDireccion.Size = new System.Drawing.Size(180, 24);
                         this.EntradaDireccion.TabIndex = 7;
-                        this.EntradaDireccion.Table = null;
                         this.EntradaDireccion.TextKey = "0";
                         this.EntradaDireccion.PlaceholderText = "";
                         this.EntradaDireccion.ToolTipText = "";
@@ -157,11 +153,8 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaGrupo.AutoSize = false;
                         this.EntradaGrupo.AutoNav = true;
                         this.EntradaGrupo.AutoTab = true;
-                        this.EntradaGrupo.DetailField = null;
-                        this.EntradaGrupo.Filter = null;
                         this.EntradaGrupo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaGrupo.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaGrupo.KeyField = null;
                         this.EntradaGrupo.Location = new System.Drawing.Point(84, 96);
                         this.EntradaGrupo.MaxLenght = 32767;
                         this.EntradaGrupo.Name = "EntradaGrupo";
@@ -182,7 +175,6 @@ namespace Lfc.Cajas.Conceptos
         "Movimientos y ajustes|300"};
                         this.EntradaGrupo.Size = new System.Drawing.Size(284, 24);
                         this.EntradaGrupo.TabIndex = 9;
-                        this.EntradaGrupo.Table = null;
                         this.EntradaGrupo.TextKey = "200";
                         this.EntradaGrupo.PlaceholderText = "";
                         this.EntradaGrupo.ToolTipText = "";

@@ -205,11 +205,8 @@ namespace Lfc.Cajas
                         this.EntradaDireccion.AutoSize = true;
                         this.EntradaDireccion.AutoNav = true;
                         this.EntradaDireccion.AutoTab = true;
-                        this.EntradaDireccion.DetailField = null;
-                        this.EntradaDireccion.Filter = null;
                         this.EntradaDireccion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaDireccion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaDireccion.KeyField = null;
                         this.EntradaDireccion.Location = new System.Drawing.Point(93, 123);
                         this.EntradaDireccion.MaxLenght = 32767;
                         this.EntradaDireccion.Name = "EntradaDireccion";
@@ -221,7 +218,6 @@ namespace Lfc.Cajas
         "Ingresos y Egresos|0"};
                         this.EntradaDireccion.Size = new System.Drawing.Size(188, 24);
                         this.EntradaDireccion.TabIndex = 9;
-                        this.EntradaDireccion.Table = null;
                         this.EntradaDireccion.Text = "Ingresos y Egresos";
                         this.EntradaDireccion.TextKey = "0";
                         this.EntradaDireccion.PlaceholderText = "";
@@ -243,11 +239,8 @@ namespace Lfc.Cajas
                         this.EntradaTipoConcepto.AutoSize = true;
                         this.EntradaTipoConcepto.AutoNav = true;
                         this.EntradaTipoConcepto.AutoTab = true;
-                        this.EntradaTipoConcepto.DetailField = null;
-                        this.EntradaTipoConcepto.Filter = null;
                         this.EntradaTipoConcepto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTipoConcepto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaTipoConcepto.KeyField = null;
                         this.EntradaTipoConcepto.Location = new System.Drawing.Point(93, 93);
                         this.EntradaTipoConcepto.MaxLenght = 32767;
                         this.EntradaTipoConcepto.Name = "EntradaTipoConcepto";
@@ -267,7 +260,6 @@ namespace Lfc.Cajas
         "Cobros|100"};
                         this.EntradaTipoConcepto.Size = new System.Drawing.Size(495, 24);
                         this.EntradaTipoConcepto.TabIndex = 7;
-                        this.EntradaTipoConcepto.Table = null;
                         this.EntradaTipoConcepto.Text = "Todos";
                         this.EntradaTipoConcepto.TextKey = "0";
                         this.EntradaTipoConcepto.PlaceholderText = "";

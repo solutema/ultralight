@@ -164,10 +164,7 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaMueveStock.AutoNav = true;
                         this.EntradaMueveStock.AutoTab = true;
-                        this.EntradaMueveStock.DetailField = null;
-                        this.EntradaMueveStock.Filter = null;
                         this.EntradaMueveStock.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaMueveStock.KeyField = null;
                         this.EntradaMueveStock.Location = new System.Drawing.Point(120, 64);
                         this.EntradaMueveStock.MaxLenght = 32767;
                         this.EntradaMueveStock.Name = "EntradaMueveStock";
@@ -177,7 +174,6 @@ namespace Lfc.Comprobantes.Tipo
         "No|0"};
                         this.EntradaMueveStock.Size = new System.Drawing.Size(100, 24);
                         this.EntradaMueveStock.TabIndex = 5;
-                        this.EntradaMueveStock.Table = null;
                         this.EntradaMueveStock.TextKey = "1";
                         this.EntradaMueveStock.PlaceholderText = "";
                         this.EntradaMueveStock.ToolTipText = "";
@@ -255,10 +251,7 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaNumerarAl.AutoNav = true;
                         this.EntradaNumerarAl.AutoTab = true;
-                        this.EntradaNumerarAl.DetailField = null;
-                        this.EntradaNumerarAl.Filter = null;
                         this.EntradaNumerarAl.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaNumerarAl.KeyField = null;
                         this.EntradaNumerarAl.Location = new System.Drawing.Point(120, 164);
                         this.EntradaNumerarAl.MaxLenght = 32767;
                         this.EntradaNumerarAl.Name = "EntradaNumerarAl";
@@ -269,7 +262,6 @@ namespace Lfc.Comprobantes.Tipo
         "Cuando se imprime el comprobante|2"};
                         this.EntradaNumerarAl.Size = new System.Drawing.Size(248, 24);
                         this.EntradaNumerarAl.TabIndex = 11;
-                        this.EntradaNumerarAl.Table = null;
                         this.EntradaNumerarAl.Text = "Cuando se crea el comprobante";
                         this.EntradaNumerarAl.TextKey = "1";
                         this.EntradaNumerarAl.PlaceholderText = "";
@@ -288,10 +280,7 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaImprimirRepetir.AutoNav = true;
                         this.EntradaImprimirRepetir.AutoTab = true;
-                        this.EntradaImprimirRepetir.DetailField = null;
-                        this.EntradaImprimirRepetir.Filter = null;
                         this.EntradaImprimirRepetir.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaImprimirRepetir.KeyField = null;
                         this.EntradaImprimirRepetir.Location = new System.Drawing.Point(380, 244);
                         this.EntradaImprimirRepetir.MaxLenght = 32767;
                         this.EntradaImprimirRepetir.Name = "EntradaImprimirRepetir";
@@ -301,7 +290,6 @@ namespace Lfc.Comprobantes.Tipo
         "No|0"};
                         this.EntradaImprimirRepetir.Size = new System.Drawing.Size(52, 24);
                         this.EntradaImprimirRepetir.TabIndex = 13;
-                        this.EntradaImprimirRepetir.Table = null;
                         this.EntradaImprimirRepetir.Text = "Si";
                         this.EntradaImprimirRepetir.TextKey = "1";
                         this.EntradaImprimirRepetir.PlaceholderText = "";
@@ -320,10 +308,7 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaImprimirModificar.AutoNav = true;
                         this.EntradaImprimirModificar.AutoTab = true;
-                        this.EntradaImprimirModificar.DetailField = null;
-                        this.EntradaImprimirModificar.Filter = null;
                         this.EntradaImprimirModificar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaImprimirModificar.KeyField = null;
                         this.EntradaImprimirModificar.Location = new System.Drawing.Point(380, 276);
                         this.EntradaImprimirModificar.MaxLenght = 32767;
                         this.EntradaImprimirModificar.Name = "EntradaImprimirModificar";
@@ -333,7 +318,6 @@ namespace Lfc.Comprobantes.Tipo
         "No|0"};
                         this.EntradaImprimirModificar.Size = new System.Drawing.Size(52, 24);
                         this.EntradaImprimirModificar.TabIndex = 15;
-                        this.EntradaImprimirModificar.Table = null;
                         this.EntradaImprimirModificar.Text = "Si";
                         this.EntradaImprimirModificar.TextKey = "1";
                         this.EntradaImprimirModificar.PlaceholderText = "";
@@ -352,10 +336,7 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaImprimirGuardar.AutoNav = true;
                         this.EntradaImprimirGuardar.AutoTab = true;
-                        this.EntradaImprimirGuardar.DetailField = null;
-                        this.EntradaImprimirGuardar.Filter = null;
                         this.EntradaImprimirGuardar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaImprimirGuardar.KeyField = null;
                         this.EntradaImprimirGuardar.Location = new System.Drawing.Point(380, 308);
                         this.EntradaImprimirGuardar.MaxLenght = 32767;
                         this.EntradaImprimirGuardar.Name = "EntradaImprimirGuardar";
@@ -365,7 +346,6 @@ namespace Lfc.Comprobantes.Tipo
         "No|0"};
                         this.EntradaImprimirGuardar.Size = new System.Drawing.Size(52, 24);
                         this.EntradaImprimirGuardar.TabIndex = 17;
-                        this.EntradaImprimirGuardar.Table = null;
                         this.EntradaImprimirGuardar.Text = "Si";
                         this.EntradaImprimirGuardar.TextKey = "1";
                         this.EntradaImprimirGuardar.PlaceholderText = "";

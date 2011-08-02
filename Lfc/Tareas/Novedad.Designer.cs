@@ -186,11 +186,8 @@ namespace Lfc.Tareas
                         this.EntradaCondicion.AutoNav = true;
                         this.EntradaCondicion.AutoSize = true;
                         this.EntradaCondicion.AutoTab = true;
-                        this.EntradaCondicion.DetailField = null;
-                        this.EntradaCondicion.Filter = null;
                         this.EntradaCondicion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCondicion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaCondicion.KeyField = null;
                         this.EntradaCondicion.Location = new System.Drawing.Point(96, 192);
                         this.EntradaCondicion.MaxLenght = 32767;
                         this.EntradaCondicion.Name = "EntradaCondicion";
@@ -200,7 +197,6 @@ namespace Lfc.Tareas
         "Interna|1"};
                         this.EntradaCondicion.Size = new System.Drawing.Size(164, 36);
                         this.EntradaCondicion.TabIndex = 7;
-                        this.EntradaCondicion.Table = null;
                         this.EntradaCondicion.TextKey = "0";
                         this.EntradaCondicion.PlaceholderText = "";
                         this.EntradaCondicion.ToolTipText = "";

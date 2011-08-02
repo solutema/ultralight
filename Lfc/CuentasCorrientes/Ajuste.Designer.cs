@@ -192,11 +192,8 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaDireccion.AutoSize = false;
                         this.EntradaDireccion.AutoNav = true;
                         this.EntradaDireccion.AutoTab = true;
-                        this.EntradaDireccion.DetailField = null;
-                        this.EntradaDireccion.Filter = null;
                         this.EntradaDireccion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaDireccion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaDireccion.KeyField = null;
                         this.EntradaDireccion.Location = new System.Drawing.Point(120, 88);
                         this.EntradaDireccion.MaxLenght = 32767;
                         this.EntradaDireccion.Name = "EntradaDireccion";
@@ -207,7 +204,6 @@ namespace Lfc.CuentasCorrientes
         "Crédito|0"};
                         this.EntradaDireccion.Size = new System.Drawing.Size(128, 24);
                         this.EntradaDireccion.TabIndex = 5;
-                        this.EntradaDireccion.Table = null;
                         this.EntradaDireccion.Text = "Débito";
                         this.EntradaDireccion.TextKey = "1";
                         this.EntradaDireccion.ToolTipText = "";

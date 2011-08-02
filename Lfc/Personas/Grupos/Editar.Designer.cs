@@ -146,11 +146,8 @@ namespace Lfc.Personas.Grupos
                         this.EntradaPredet.AutoSize = false;
                         this.EntradaPredet.AutoNav = true;
                         this.EntradaPredet.AutoTab = true;
-                        this.EntradaPredet.DetailField = null;
-                        this.EntradaPredet.Filter = null;
                         this.EntradaPredet.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaPredet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaPredet.KeyField = null;
                         this.EntradaPredet.Location = new System.Drawing.Point(120, 96);
                         this.EntradaPredet.MaxLenght = 32767;
                         this.EntradaPredet.Name = "EntradaPredet";
@@ -161,7 +158,6 @@ namespace Lfc.Personas.Grupos
         "No|0"};
                         this.EntradaPredet.Size = new System.Drawing.Size(84, 24);
                         this.EntradaPredet.TabIndex = 7;
-                        this.EntradaPredet.Table = null;
                         this.EntradaPredet.Text = "No";
                         this.EntradaPredet.TextKey = "0";
                         // 

@@ -151,11 +151,8 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         this.EntradaTalonario.AutoNav = true;
                         this.EntradaTalonario.AutoTab = true;
-                        this.EntradaTalonario.DetailField = null;
-                        this.EntradaTalonario.Filter = null;
                         this.EntradaTalonario.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTalonario.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaTalonario.KeyField = null;
                         this.EntradaTalonario.Location = new System.Drawing.Point(244, 148);
                         this.EntradaTalonario.MaxLenght = 32767;
                         this.EntradaTalonario.Name = "EntradaTalonario";
@@ -165,7 +162,6 @@ namespace Lfc.Comprobantes.Impresoras
         "No|0"};
                         this.EntradaTalonario.Size = new System.Drawing.Size(116, 24);
                         this.EntradaTalonario.TabIndex = 12;
-                        this.EntradaTalonario.Table = null;
                         this.EntradaTalonario.Text = "No";
                         this.EntradaTalonario.TextKey = "0";
                         this.EntradaTalonario.PlaceholderText = "";
@@ -184,12 +180,9 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         this.EntradaFiscalBps.AutoNav = true;
                         this.EntradaFiscalBps.AutoTab = true;
-                        this.EntradaFiscalBps.DetailField = null;
                         this.EntradaFiscalBps.Enabled = false;
-                        this.EntradaFiscalBps.Filter = null;
                         this.EntradaFiscalBps.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFiscalBps.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaFiscalBps.KeyField = null;
                         this.EntradaFiscalBps.Location = new System.Drawing.Point(244, 268);
                         this.EntradaFiscalBps.MaxLenght = 32767;
                         this.EntradaFiscalBps.Name = "EntradaFiscalBps";
@@ -199,7 +192,6 @@ namespace Lfc.Comprobantes.Impresoras
         "19200 bps|19200"};
                         this.EntradaFiscalBps.Size = new System.Drawing.Size(136, 24);
                         this.EntradaFiscalBps.TabIndex = 20;
-                        this.EntradaFiscalBps.Table = null;
                         this.EntradaFiscalBps.TextKey = "9600";
                         this.EntradaFiscalBps.PlaceholderText = "";
                         this.EntradaFiscalBps.ToolTipText = "";
@@ -217,12 +209,9 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         this.EntradaFiscalPuerto.AutoNav = true;
                         this.EntradaFiscalPuerto.AutoTab = true;
-                        this.EntradaFiscalPuerto.DetailField = null;
                         this.EntradaFiscalPuerto.Enabled = false;
-                        this.EntradaFiscalPuerto.Filter = null;
                         this.EntradaFiscalPuerto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFiscalPuerto.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaFiscalPuerto.KeyField = null;
                         this.EntradaFiscalPuerto.Location = new System.Drawing.Point(244, 240);
                         this.EntradaFiscalPuerto.MaxLenght = 32767;
                         this.EntradaFiscalPuerto.Name = "EntradaFiscalPuerto";
@@ -232,7 +221,6 @@ namespace Lfc.Comprobantes.Impresoras
         "COM2|2"};
                         this.EntradaFiscalPuerto.Size = new System.Drawing.Size(136, 24);
                         this.EntradaFiscalPuerto.TabIndex = 18;
-                        this.EntradaFiscalPuerto.Table = null;
                         this.EntradaFiscalPuerto.Text = "COM1";
                         this.EntradaFiscalPuerto.TextKey = "1";
                         this.EntradaFiscalPuerto.PlaceholderText = "";
@@ -242,12 +230,9 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         this.EntradaFiscalModelo.AutoNav = true;
                         this.EntradaFiscalModelo.AutoTab = true;
-                        this.EntradaFiscalModelo.DetailField = null;
                         this.EntradaFiscalModelo.Enabled = false;
-                        this.EntradaFiscalModelo.Filter = null;
                         this.EntradaFiscalModelo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFiscalModelo.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaFiscalModelo.KeyField = null;
                         this.EntradaFiscalModelo.Location = new System.Drawing.Point(244, 212);
                         this.EntradaFiscalModelo.MaxLenght = 32767;
                         this.EntradaFiscalModelo.Name = "EntradaFiscalModelo";
@@ -258,7 +243,6 @@ namespace Lfc.Comprobantes.Impresoras
         "Emulación|1"};
                         this.EntradaFiscalModelo.Size = new System.Drawing.Size(136, 24);
                         this.EntradaFiscalModelo.TabIndex = 16;
-                        this.EntradaFiscalModelo.Table = null;
                         this.EntradaFiscalModelo.Text = "Epson";
                         this.EntradaFiscalModelo.TextKey = "300";
                         this.EntradaFiscalModelo.PlaceholderText = "";
@@ -295,11 +279,8 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoTab = true;
-                        this.EntradaTipo.DetailField = null;
-                        this.EntradaTipo.Filter = null;
                         this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTipo.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaTipo.KeyField = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(120, 28);
                         this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
@@ -310,7 +291,6 @@ namespace Lfc.Comprobantes.Impresoras
         "Controlador Fiscal|2"};
                         this.EntradaTipo.Size = new System.Drawing.Size(208, 24);
                         this.EntradaTipo.TabIndex = 2;
-                        this.EntradaTipo.Table = null;
                         this.EntradaTipo.Text = "Impresora de Windows";
                         this.EntradaTipo.TextKey = "1";
                         this.EntradaTipo.PlaceholderText = "";
@@ -330,11 +310,8 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         this.EntradaCarga.AutoNav = true;
                         this.EntradaCarga.AutoTab = true;
-                        this.EntradaCarga.DetailField = null;
-                        this.EntradaCarga.Filter = null;
                         this.EntradaCarga.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCarga.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaCarga.KeyField = null;
                         this.EntradaCarga.Location = new System.Drawing.Point(244, 176);
                         this.EntradaCarga.MaxLenght = 32767;
                         this.EntradaCarga.Name = "EntradaCarga";
@@ -344,7 +321,6 @@ namespace Lfc.Comprobantes.Impresoras
         "Manual|1"};
                         this.EntradaCarga.Size = new System.Drawing.Size(208, 24);
                         this.EntradaCarga.TabIndex = 14;
-                        this.EntradaCarga.Table = null;
                         this.EntradaCarga.Text = "Automática";
                         this.EntradaCarga.TextKey = "0";
                         this.EntradaCarga.PlaceholderText = "";

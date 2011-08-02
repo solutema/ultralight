@@ -88,11 +88,8 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaFrecuencia.AutoSize = false;
                         this.EntradaFrecuencia.AutoNav = true;
                         this.EntradaFrecuencia.AutoTab = true;
-                        this.EntradaFrecuencia.DetailField = null;
-                        this.EntradaFrecuencia.Filter = null;
                         this.EntradaFrecuencia.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFrecuencia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaFrecuencia.KeyField = null;
                         this.EntradaFrecuencia.Location = new System.Drawing.Point(96, 68);
                         this.EntradaFrecuencia.MaxLenght = 32767;
                         this.EntradaFrecuencia.Name = "EntradaFrecuencia";
@@ -110,7 +107,6 @@ namespace Lfc.Cajas.Vencimientos
         "Anual|Anual"};
                         this.EntradaFrecuencia.Size = new System.Drawing.Size(176, 24);
                         this.EntradaFrecuencia.TabIndex = 3;
-                        this.EntradaFrecuencia.Table = null;
                         this.EntradaFrecuencia.TextKey = "semestral";
                         this.EntradaFrecuencia.PlaceholderText = "";
                         this.EntradaFrecuencia.ToolTipText = "";
@@ -410,11 +406,8 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaEstado.AutoSize = false;
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.DetailField = null;
-                        this.EntradaEstado.Filter = null;
                         this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaEstado.KeyField = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(80, 32);
                         this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
@@ -426,7 +419,6 @@ namespace Lfc.Cajas.Vencimientos
         "Terminado|100"};
                         this.EntradaEstado.Size = new System.Drawing.Size(176, 24);
                         this.EntradaEstado.TabIndex = 3;
-                        this.EntradaEstado.Table = null;
                         this.EntradaEstado.Text = "Activo";
                         this.EntradaEstado.TextKey = "1";
                         this.EntradaEstado.PlaceholderText = "";

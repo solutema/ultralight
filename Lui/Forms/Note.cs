@@ -39,7 +39,7 @@ using System.Windows.Forms;
 
 namespace Lui.Forms
 {
-	public partial class Note : Lui.Forms.Control
+	public partial class Note : Control
 	{
 		public Note()
 		{

@@ -184,11 +184,8 @@ namespace Lfc.Articulos
                 this.EntradaStock.AutoSize = true;
                 this.EntradaStock.AutoNav = true;
                 this.EntradaStock.AutoTab = true;
-                this.EntradaStock.DetailField = null;
-                this.EntradaStock.Filter = null;
                 this.EntradaStock.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.EntradaStock.ForeColor = System.Drawing.SystemColors.ControlText;
-                this.EntradaStock.KeyField = null;
                 this.EntradaStock.Location = new System.Drawing.Point(97, 123);
                 this.EntradaStock.MaxLenght = 32767;
                 this.EntradaStock.Name = "EntradaStock";
@@ -204,7 +201,6 @@ namespace Lfc.Articulos
         "A Pedir|apedir"};
                 this.EntradaStock.Size = new System.Drawing.Size(256, 24);
                 this.EntradaStock.TabIndex = 9;
-                this.EntradaStock.Table = null;
                 this.EntradaStock.TextKey = "*";
                 this.EntradaStock.PlaceholderText = "";
                 this.EntradaStock.ToolTipText = "";
@@ -464,11 +460,8 @@ namespace Lfc.Articulos
                 this.EntradaAgrupar.AutoSize = true;
                 this.EntradaAgrupar.AutoNav = true;
                 this.EntradaAgrupar.AutoTab = true;
-                this.EntradaAgrupar.DetailField = null;
-                this.EntradaAgrupar.Filter = null;
                 this.EntradaAgrupar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.EntradaAgrupar.ForeColor = System.Drawing.SystemColors.ControlText;
-                this.EntradaAgrupar.KeyField = null;
                 this.EntradaAgrupar.Location = new System.Drawing.Point(97, 211);
                 this.EntradaAgrupar.MaxLenght = 32767;
                 this.EntradaAgrupar.Name = "EntradaAgrupar";
@@ -479,7 +472,6 @@ namespace Lfc.Articulos
         "Por Categoría|categorias_nombre"};
                 this.EntradaAgrupar.Size = new System.Drawing.Size(256, 24);
                 this.EntradaAgrupar.TabIndex = 15;
-                this.EntradaAgrupar.Table = null;
                 this.EntradaAgrupar.Text = "Sin agrupar";
                 this.EntradaAgrupar.TextKey = "*";
                 this.EntradaAgrupar.PlaceholderText = "";

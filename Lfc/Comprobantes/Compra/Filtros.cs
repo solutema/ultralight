@@ -111,11 +111,8 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoTab = true;
-                        this.EntradaTipo.DetailField = null;
-                        this.EntradaTipo.Filter = null;
                         this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTipo.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaTipo.KeyField = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(137, 3);
                         this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
@@ -134,7 +131,6 @@ namespace Lfc.Comprobantes.Compra
         "Todo|*"};
                         this.EntradaTipo.Size = new System.Drawing.Size(440, 24);
                         this.EntradaTipo.TabIndex = 1;
-                        this.EntradaTipo.Table = null;
                         this.EntradaTipo.TextKey = "PD";
                         this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ToolTipText = "";
@@ -203,11 +199,8 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.DetailField = null;
-                        this.EntradaEstado.Filter = null;
                         this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaEstado.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaEstado.KeyField = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(137, 33);
                         this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
@@ -217,7 +210,6 @@ namespace Lfc.Comprobantes.Compra
         "N/A|0"};
                         this.EntradaEstado.Size = new System.Drawing.Size(440, 24);
                         this.EntradaEstado.TabIndex = 3;
-                        this.EntradaEstado.Table = null;
                         this.EntradaEstado.Text = "N/A";
                         this.EntradaEstado.TextKey = "0";
                         this.EntradaEstado.PlaceholderText = "";

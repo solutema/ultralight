@@ -42,7 +42,7 @@ namespace Lui.Forms
         /// <summary>
         /// Control botón estándar.
         /// </summary>
-        public partial class Button : Control, IButtonControl
+        public partial class Button : Control, IControl, IButtonControl
         {
                 private SubLabelPositions m_SubLabelPos = SubLabelPositions.None;
                 private ImagePositions m_ImagePos = ImagePositions.Top;

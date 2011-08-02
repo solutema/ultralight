@@ -160,8 +160,8 @@ namespace Lui.Forms
                         foreach (System.Windows.Forms.Control ctl in controles) {
                                 if (ctl == null) {
                                         //Nada
-                                } else if (ctl is Lui.Forms.Control) {
-                                        ((Lui.Forms.Control)ctl).Changed = newValue;
+                                } else if (ctl is IEditableControl) {
+                                        ((IEditableControl)ctl).Changed = newValue;
                                 } else if (ctl is IDataControl) {
                                         ((IDataControl)ctl).Changed = newValue;
                                 } else if (ctl.Controls.Count > 0) {
@@ -177,8 +177,8 @@ namespace Lui.Forms
                         foreach (System.Windows.Forms.Control ctl in controls) {
                                 if (ctl == null) {
                                         //Nada
-                                } else if (ctl is Lui.Forms.Control) {
-                                        if (((Lui.Forms.Control)ctl).Changed) {
+                                } else if (ctl is IEditableControl) {
+                                        if (((IEditableControl)ctl).Changed) {
                                                 Result = true;
                                                 ((Lui.Forms.Control)ctl).ShowChanged = showChanges;
                                         }

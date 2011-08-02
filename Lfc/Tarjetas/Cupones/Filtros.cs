@@ -331,11 +331,8 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.DetailField = null;
-                        this.EntradaEstado.Filter = null;
                         this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaEstado.KeyField = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(85, 93);
                         this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
@@ -351,7 +348,6 @@ namespace Lfc.Cupones.Cupones
         "Todos|-1"};
                         this.EntradaEstado.Size = new System.Drawing.Size(180, 24);
                         this.EntradaEstado.TabIndex = 6;
-                        this.EntradaEstado.Table = null;
                         this.EntradaEstado.Text = "No Cobrados";
                         this.EntradaEstado.TextKey = "-2";
                         this.EntradaEstado.PlaceholderText = "";

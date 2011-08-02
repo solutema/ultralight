@@ -97,8 +97,16 @@
     <Compile Include="Forms\ContainerControl.Designer.cs">
       <DependentUpon>ContainerControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DataControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\EditableControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\IControl.cs" />
     <Compile Include="Forms\IDataControl.cs" />
     <Compile Include="Forms\IDataForm.cs" />
+    <Compile Include="Forms\IEditableControl.cs" />
     <Compile Include="Forms\Label.cs">
       <SubType>Component</SubType>
     </Compile>

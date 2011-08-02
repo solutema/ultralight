@@ -380,11 +380,8 @@ namespace Lazaro.Misc.Config
                         this.EntradaActualizaciones.AlwaysExpanded = false;
                         this.EntradaActualizaciones.AutoNav = true;
                         this.EntradaActualizaciones.AutoTab = true;
-                        this.EntradaActualizaciones.DetailField = null;
-                        this.EntradaActualizaciones.Filter = null;
                         this.EntradaActualizaciones.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaActualizaciones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaActualizaciones.KeyField = null;
                         this.EntradaActualizaciones.Location = new System.Drawing.Point(248, 332);
                         this.EntradaActualizaciones.MaxLenght = 32767;
                         this.EntradaActualizaciones.Name = "EntradaActualizaciones";
@@ -396,7 +393,6 @@ namespace Lazaro.Misc.Config
         "En prueba|beta"};
                         this.EntradaActualizaciones.Size = new System.Drawing.Size(132, 24);
                         this.EntradaActualizaciones.TabIndex = 16;
-                        this.EntradaActualizaciones.Table = null;
                         this.EntradaActualizaciones.TextKey = "stable";
                         this.EntradaActualizaciones.PlaceholderText = "";
                         this.EntradaActualizaciones.ToolTipText = "";
@@ -415,11 +411,8 @@ namespace Lazaro.Misc.Config
                         this.EntradaAislacion.AlwaysExpanded = false;
                         this.EntradaAislacion.AutoNav = true;
                         this.EntradaAislacion.AutoTab = true;
-                        this.EntradaAislacion.DetailField = null;
-                        this.EntradaAislacion.Filter = null;
                         this.EntradaAislacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaAislacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaAislacion.KeyField = null;
                         this.EntradaAislacion.Location = new System.Drawing.Point(248, 300);
                         this.EntradaAislacion.MaxLenght = 32767;
                         this.EntradaAislacion.Name = "EntradaAislacion";
@@ -430,7 +423,6 @@ namespace Lazaro.Misc.Config
         "Mejor consitencia|Serializable"};
                         this.EntradaAislacion.Size = new System.Drawing.Size(196, 24);
                         this.EntradaAislacion.TabIndex = 14;
-                        this.EntradaAislacion.Table = null;
                         this.EntradaAislacion.TextKey = "Serializable";
                         this.EntradaAislacion.PlaceholderText = "";
                         this.EntradaAislacion.ToolTipText = "";
@@ -440,11 +432,8 @@ namespace Lazaro.Misc.Config
                         this.EntradaModoPantalla.AlwaysExpanded = false;
                         this.EntradaModoPantalla.AutoNav = true;
                         this.EntradaModoPantalla.AutoTab = true;
-                        this.EntradaModoPantalla.DetailField = null;
-                        this.EntradaModoPantalla.Filter = null;
                         this.EntradaModoPantalla.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaModoPantalla.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaModoPantalla.KeyField = null;
                         this.EntradaModoPantalla.Location = new System.Drawing.Point(248, 268);
                         this.EntradaModoPantalla.MaxLenght = 32767;
                         this.EntradaModoPantalla.Name = "EntradaModoPantalla";
@@ -458,7 +447,6 @@ namespace Lazaro.Misc.Config
         "Ventanas Flotantes|flotante"};
                         this.EntradaModoPantalla.Size = new System.Drawing.Size(196, 24);
                         this.EntradaModoPantalla.TabIndex = 12;
-                        this.EntradaModoPantalla.Table = null;
                         this.EntradaModoPantalla.TextKey = "maximizado";
                         this.EntradaModoPantalla.PlaceholderText = "";
                         this.EntradaModoPantalla.ToolTipText = "";
@@ -468,11 +456,8 @@ namespace Lazaro.Misc.Config
                         this.EntradaBackup.AlwaysExpanded = false;
                         this.EntradaBackup.AutoNav = true;
                         this.EntradaBackup.AutoTab = true;
-                        this.EntradaBackup.DetailField = null;
-                        this.EntradaBackup.Filter = null;
                         this.EntradaBackup.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaBackup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaBackup.KeyField = null;
                         this.EntradaBackup.Location = new System.Drawing.Point(248, 236);
                         this.EntradaBackup.MaxLenght = 32767;
                         this.EntradaBackup.Name = "EntradaBackup";
@@ -484,7 +469,6 @@ namespace Lazaro.Misc.Config
         "Automáticamente|2"};
                         this.EntradaBackup.Size = new System.Drawing.Size(196, 24);
                         this.EntradaBackup.TabIndex = 10;
-                        this.EntradaBackup.Table = null;
                         this.EntradaBackup.TextKey = "0";
                         this.EntradaBackup.PlaceholderText = "";
                         this.EntradaBackup.ToolTipText = "";
@@ -554,11 +538,8 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockDecimales.AlwaysExpanded = false;
                         this.EntradaStockDecimales.AutoNav = true;
                         this.EntradaStockDecimales.AutoTab = true;
-                        this.EntradaStockDecimales.DetailField = null;
-                        this.EntradaStockDecimales.Filter = null;
                         this.EntradaStockDecimales.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaStockDecimales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaStockDecimales.KeyField = null;
                         this.EntradaStockDecimales.Location = new System.Drawing.Point(192, 92);
                         this.EntradaStockDecimales.MaxLenght = 32767;
                         this.EntradaStockDecimales.Name = "EntradaStockDecimales";
@@ -572,7 +553,6 @@ namespace Lazaro.Misc.Config
         "Cuatro decimales|4"};
                         this.EntradaStockDecimales.Size = new System.Drawing.Size(160, 24);
                         this.EntradaStockDecimales.TabIndex = 5;
-                        this.EntradaStockDecimales.Table = null;
                         this.EntradaStockDecimales.TextKey = "0";
                         this.EntradaStockDecimales.PlaceholderText = "";
                         this.EntradaStockDecimales.ToolTipText = "";
@@ -628,11 +608,8 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockMultideposito.AlwaysExpanded = false;
                         this.EntradaStockMultideposito.AutoNav = true;
                         this.EntradaStockMultideposito.AutoTab = true;
-                        this.EntradaStockMultideposito.DetailField = null;
-                        this.EntradaStockMultideposito.Filter = null;
                         this.EntradaStockMultideposito.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaStockMultideposito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaStockMultideposito.KeyField = null;
                         this.EntradaStockMultideposito.Location = new System.Drawing.Point(192, 64);
                         this.EntradaStockMultideposito.MaxLenght = 32767;
                         this.EntradaStockMultideposito.Name = "EntradaStockMultideposito";
@@ -643,7 +620,6 @@ namespace Lazaro.Misc.Config
         "Multidepósito|1"};
                         this.EntradaStockMultideposito.Size = new System.Drawing.Size(224, 24);
                         this.EntradaStockMultideposito.TabIndex = 3;
-                        this.EntradaStockMultideposito.Table = null;
                         this.EntradaStockMultideposito.TextKey = "0";
                         this.EntradaStockMultideposito.PlaceholderText = "";
                         this.EntradaStockMultideposito.ToolTipText = "";
@@ -662,11 +638,8 @@ namespace Lazaro.Misc.Config
                         this.EntradaArticulosCodigoPredet.AlwaysExpanded = false;
                         this.EntradaArticulosCodigoPredet.AutoNav = true;
                         this.EntradaArticulosCodigoPredet.AutoTab = true;
-                        this.EntradaArticulosCodigoPredet.DetailField = null;
-                        this.EntradaArticulosCodigoPredet.Filter = null;
                         this.EntradaArticulosCodigoPredet.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaArticulosCodigoPredet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaArticulosCodigoPredet.KeyField = null;
                         this.EntradaArticulosCodigoPredet.Location = new System.Drawing.Point(192, 36);
                         this.EntradaArticulosCodigoPredet.MaxLenght = 32767;
                         this.EntradaArticulosCodigoPredet.Name = "EntradaArticulosCodigoPredet";
@@ -680,7 +653,6 @@ namespace Lazaro.Misc.Config
         "Cód. 4|4"};
                         this.EntradaArticulosCodigoPredet.Size = new System.Drawing.Size(224, 24);
                         this.EntradaArticulosCodigoPredet.TabIndex = 1;
-                        this.EntradaArticulosCodigoPredet.Table = null;
                         this.EntradaArticulosCodigoPredet.TextKey = "0";
                         this.EntradaArticulosCodigoPredet.PlaceholderText = "";
                         this.EntradaArticulosCodigoPredet.ToolTipText = "";
@@ -1136,11 +1108,8 @@ namespace Lazaro.Misc.Config
                         this.EntradaCambiaPrecioComprob.AlwaysExpanded = false;
                         this.EntradaCambiaPrecioComprob.AutoNav = true;
                         this.EntradaCambiaPrecioComprob.AutoTab = true;
-                        this.EntradaCambiaPrecioComprob.DetailField = null;
-                        this.EntradaCambiaPrecioComprob.Filter = null;
                         this.EntradaCambiaPrecioComprob.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCambiaPrecioComprob.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaCambiaPrecioComprob.KeyField = null;
                         this.EntradaCambiaPrecioComprob.Location = new System.Drawing.Point(420, 280);
                         this.EntradaCambiaPrecioComprob.MaxLenght = 32767;
                         this.EntradaCambiaPrecioComprob.Name = "EntradaCambiaPrecioComprob";
@@ -1151,7 +1120,6 @@ namespace Lazaro.Misc.Config
         "No|0"};
                         this.EntradaCambiaPrecioComprob.Size = new System.Drawing.Size(64, 24);
                         this.EntradaCambiaPrecioComprob.TabIndex = 21;
-                        this.EntradaCambiaPrecioComprob.Table = null;
                         this.EntradaCambiaPrecioComprob.TextKey = "1";
                         this.EntradaCambiaPrecioComprob.PlaceholderText = "";
                         this.EntradaCambiaPrecioComprob.ToolTipText = "";

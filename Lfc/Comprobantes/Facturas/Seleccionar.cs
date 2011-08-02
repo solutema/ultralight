@@ -176,11 +176,8 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.AutoSize = false;
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoTab = true;
-                        this.EntradaTipo.DetailField = null;
-                        this.EntradaTipo.Filter = null;
                         this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaTipo.KeyField = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(84, 68);
                         this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
@@ -195,7 +192,6 @@ namespace Lfc.Comprobantes.Facturas
         "Todas|*"};
                         this.EntradaTipo.Size = new System.Drawing.Size(124, 24);
                         this.EntradaTipo.TabIndex = 5;
-                        this.EntradaTipo.Table = null;
                         this.EntradaTipo.TextKey = "*";
                         this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ToolTipText = "";

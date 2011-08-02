@@ -85,11 +85,8 @@ namespace Lfc.Personas
                         this.EntradaAcceso.AutoNav = true;
                         this.EntradaAcceso.AutoSize = true;
                         this.EntradaAcceso.AutoTab = true;
-                        this.EntradaAcceso.DetailField = null;
-                        this.EntradaAcceso.Filter = null;
                         this.EntradaAcceso.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaAcceso.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaAcceso.KeyField = null;
                         this.EntradaAcceso.Location = new System.Drawing.Point(128, 0);
                         this.EntradaAcceso.MaxLenght = 32767;
                         this.EntradaAcceso.Name = "EntradaAcceso";
@@ -101,7 +98,6 @@ namespace Lfc.Personas
         "No|0"};
                         this.EntradaAcceso.Size = new System.Drawing.Size(72, 36);
                         this.EntradaAcceso.TabIndex = 1;
-                        this.EntradaAcceso.Table = null;
                         this.EntradaAcceso.TextKey = "1";
                         this.EntradaAcceso.ToolTipText = "";
                         // 

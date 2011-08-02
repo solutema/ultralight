@@ -304,7 +304,7 @@ namespace Lui.Forms
 
 		private void MenuItemCalculadora_Click(System.Object sender, System.EventArgs e)
 		{
-			this.Workspace.RunTime.Execute("CALC", null);
+                        Lfx.Workspace.Master.RunTime.Execute("CALC", null);
 		}
 
 
@@ -405,8 +405,8 @@ namespace Lui.Forms
 			{
 				MenuItemPegadoRapido.MenuItems.RemoveAt(i);
 			}
-                        if (this.HasWorkspace) {
-                                System.Data.DataTable QuickPastes = this.Connection.Select("SELECT texto FROM sys_quickpaste ORDER BY fecha DESC LIMIT 12");
+                        if (Lfx.Workspace.Master.MasterConnection != null) {
+                                System.Data.DataTable QuickPastes = Lfx.Workspace.Master.MasterConnection.Select("SELECT texto FROM sys_quickpaste ORDER BY fecha DESC LIMIT 12");
                                 foreach (System.Data.DataRow QuickPaste in QuickPastes.Rows) {
                                         System.Windows.Forms.MenuItem NuevoItem = new System.Windows.Forms.MenuItem();
                                         NuevoItem.Text = QuickPaste["texto"].ToString();
@@ -512,8 +512,8 @@ namespace Lui.Forms
                                         else
                                                 DatoDinero =Lfx.Types.Evaluator.EvaluateDecimal(datos.ToString());
 
-                                        if (m_DecimalPlaces == -1 && this.HasWorkspace)
-                                                Res = Lfx.Types.Formatting.FormatCurrency(DatoDinero, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                        if (m_DecimalPlaces == -1 && Lfx.Workspace.Master != null)
+                                                Res = Lfx.Types.Formatting.FormatCurrency(DatoDinero, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                                         else if (m_DecimalPlaces == -1)
                                                 Res = Lfx.Types.Formatting.FormatCurrency(DatoDinero, 2);
                                         else
@@ -527,8 +527,8 @@ namespace Lui.Forms
                                         else
                                                 DatoStock =Lfx.Types.Evaluator.EvaluateDecimal(datos.ToString());
 
-                                        if (m_DecimalPlaces == -1 && this.HasWorkspace)
-                                                Res = Lfx.Types.Formatting.FormatCurrency(DatoStock, this.Workspace.CurrentConfig.Productos.DecimalesStock);
+                                        if (m_DecimalPlaces == -1 && Lfx.Workspace.Master != null)
+                                                Res = Lfx.Types.Formatting.FormatCurrency(DatoStock, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
                                         else if (m_DecimalPlaces == -1)
                                                 Res = Lfx.Types.Formatting.FormatCurrency(DatoStock, 2);
                                         else

@@ -99,11 +99,8 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.AutoTab = true;
-                        this.EntradaTipo.DetailField = null;
-                        this.EntradaTipo.Filter = null;
                         this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaTipo.KeyField = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(148, 20);
                         this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
@@ -116,7 +113,6 @@ namespace Lfc.Comprobantes.Facturas
         "M|M"};
                         this.EntradaTipo.Size = new System.Drawing.Size(40, 26);
                         this.EntradaTipo.TabIndex = 1;
-                        this.EntradaTipo.Table = null;
                         this.EntradaTipo.TextKey = "B";
                         this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ToolTipText = "";
@@ -199,11 +195,8 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaAnularPagos.AutoNav = true;
                         this.EntradaAnularPagos.AutoSize = true;
                         this.EntradaAnularPagos.AutoTab = true;
-                        this.EntradaAnularPagos.DetailField = null;
-                        this.EntradaAnularPagos.Filter = null;
                         this.EntradaAnularPagos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaAnularPagos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaAnularPagos.KeyField = null;
                         this.EntradaAnularPagos.Location = new System.Drawing.Point(508, 20);
                         this.EntradaAnularPagos.MaxLenght = 32767;
                         this.EntradaAnularPagos.Name = "EntradaAnularPagos";
@@ -213,7 +206,6 @@ namespace Lfc.Comprobantes.Facturas
         "No anular los pagos asociados|0"};
                         this.EntradaAnularPagos.Size = new System.Drawing.Size(268, 36);
                         this.EntradaAnularPagos.TabIndex = 9;
-                        this.EntradaAnularPagos.Table = null;
                         this.EntradaAnularPagos.TextKey = "0";
                         this.EntradaAnularPagos.PlaceholderText = "";
                         this.EntradaAnularPagos.ToolTipText = "";

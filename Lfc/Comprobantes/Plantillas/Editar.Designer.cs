@@ -193,11 +193,8 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenes.AutoNav = true;
                         this.EntradaMargenes.AutoSize = true;
                         this.EntradaMargenes.AutoTab = true;
-                        this.EntradaMargenes.DetailField = null;
-                        this.EntradaMargenes.Filter = null;
                         this.EntradaMargenes.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaMargenes.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaMargenes.KeyField = null;
                         this.EntradaMargenes.Location = new System.Drawing.Point(168, 156);
                         this.EntradaMargenes.MaxLenght = 32767;
                         this.EntradaMargenes.Name = "EntradaMargenes";
@@ -207,7 +204,6 @@ namespace Lfc.Comprobantes.Plantillas
         "Personalizado|1"};
                         this.EntradaMargenes.Size = new System.Drawing.Size(116, 36);
                         this.EntradaMargenes.TabIndex = 8;
-                        this.EntradaMargenes.Table = null;
                         this.EntradaMargenes.TextKey = "1";
                         this.EntradaMargenes.PlaceholderText = "";
                         this.EntradaMargenes.ToolTipText = "";
@@ -324,11 +320,8 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaLandscape.AutoNav = true;
                         this.EntradaLandscape.AutoSize = true;
                         this.EntradaLandscape.AutoTab = true;
-                        this.EntradaLandscape.DetailField = null;
-                        this.EntradaLandscape.Filter = null;
                         this.EntradaLandscape.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaLandscape.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaLandscape.KeyField = null;
                         this.EntradaLandscape.Location = new System.Drawing.Point(264, 68);
                         this.EntradaLandscape.MaxLenght = 32767;
                         this.EntradaLandscape.Name = "EntradaLandscape";
@@ -338,7 +331,6 @@ namespace Lfc.Comprobantes.Plantillas
         "apaisado|1"};
                         this.EntradaLandscape.Size = new System.Drawing.Size(96, 36);
                         this.EntradaLandscape.TabIndex = 6;
-                        this.EntradaLandscape.Table = null;
                         this.EntradaLandscape.TextKey = "0";
                         this.EntradaLandscape.PlaceholderText = "";
                         this.EntradaLandscape.ToolTipText = "";
@@ -411,11 +403,8 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuente.AutoNav = true;
                         this.EntradaFuente.AutoSize = true;
                         this.EntradaFuente.AutoTab = true;
-                        this.EntradaFuente.DetailField = null;
-                        this.EntradaFuente.Filter = null;
                         this.EntradaFuente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFuente.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaFuente.KeyField = null;
                         this.EntradaFuente.Location = new System.Drawing.Point(168, 268);
                         this.EntradaFuente.MaxLenght = 32767;
                         this.EntradaFuente.Name = "EntradaFuente";
@@ -428,7 +417,6 @@ namespace Lfc.Comprobantes.Plantillas
         "Monoespaciada Courier|Courier New"};
                         this.EntradaFuente.Size = new System.Drawing.Size(256, 81);
                         this.EntradaFuente.TabIndex = 16;
-                        this.EntradaFuente.Table = null;
                         this.EntradaFuente.TextKey = "*";
                         this.EntradaFuente.PlaceholderText = "";
                         this.EntradaFuente.ToolTipText = "";
@@ -458,11 +446,8 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaPapelTamano.AutoNav = true;
                         this.EntradaPapelTamano.AutoSize = true;
                         this.EntradaPapelTamano.AutoTab = true;
-                        this.EntradaPapelTamano.DetailField = null;
-                        this.EntradaPapelTamano.Filter = null;
                         this.EntradaPapelTamano.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaPapelTamano.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaPapelTamano.KeyField = null;
                         this.EntradaPapelTamano.Location = new System.Drawing.Point(168, 68);
                         this.EntradaPapelTamano.MaxLenght = 32767;
                         this.EntradaPapelTamano.Name = "EntradaPapelTamano";
@@ -475,7 +460,6 @@ namespace Lfc.Comprobantes.Plantillas
         "Continuo|cont"};
                         this.EntradaPapelTamano.Size = new System.Drawing.Size(88, 81);
                         this.EntradaPapelTamano.TabIndex = 5;
-                        this.EntradaPapelTamano.Table = null;
                         this.EntradaPapelTamano.TextKey = "a4";
                         this.EntradaPapelTamano.PlaceholderText = "";
                         this.EntradaPapelTamano.ToolTipText = "";
@@ -562,11 +546,8 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMembrete.AutoNav = true;
                         this.EntradaMembrete.AutoSize = true;
                         this.EntradaMembrete.AutoTab = true;
-                        this.EntradaMembrete.DetailField = null;
-                        this.EntradaMembrete.Filter = null;
                         this.EntradaMembrete.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaMembrete.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaMembrete.KeyField = null;
                         this.EntradaMembrete.Location = new System.Drawing.Point(168, 208);
                         this.EntradaMembrete.MaxLenght = 32767;
                         this.EntradaMembrete.Name = "EntradaMembrete";
@@ -577,7 +558,6 @@ namespace Lfc.Comprobantes.Plantillas
         "Recuadro|2"};
                         this.EntradaMembrete.Size = new System.Drawing.Size(256, 51);
                         this.EntradaMembrete.TabIndex = 14;
-                        this.EntradaMembrete.Table = null;
                         this.EntradaMembrete.TextKey = "0";
                         this.EntradaMembrete.PlaceholderText = "";
                         this.EntradaMembrete.ToolTipText = "";

@@ -37,7 +37,7 @@ using System.Windows.Forms;
 
 namespace Lcc
 {
-        public partial class LccControl : Lui.Forms.Control, ILccControl, Lui.Forms.IDataControl
+        public partial class LccControl : Lui.Forms.DataControl, ILccControl
         {
                 private bool m_AutoNav = true;
 

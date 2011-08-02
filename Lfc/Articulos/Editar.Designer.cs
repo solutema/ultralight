@@ -126,11 +126,8 @@ namespace Lfc.Articulos
                         this.EntradaMargen.AlwaysExpanded = true;
                         this.EntradaMargen.AutoNav = true;
                         this.EntradaMargen.AutoTab = true;
-                        this.EntradaMargen.DetailField = null;
-                        this.EntradaMargen.Filter = null;
                         this.EntradaMargen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaMargen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaMargen.KeyField = null;
                         this.EntradaMargen.Location = new System.Drawing.Point(76, 64);
                         this.EntradaMargen.MaxLenght = 32767;
                         this.EntradaMargen.Name = "EntradaMargen";
@@ -141,7 +138,6 @@ namespace Lfc.Articulos
         "Otro|-1"};
                         this.EntradaMargen.Size = new System.Drawing.Size(276, 96);
                         this.EntradaMargen.TabIndex = 4;
-                        this.EntradaMargen.Table = null;
                         this.EntradaMargen.TextKey = "-1";
                         this.EntradaMargen.ToolTipText = "Márgenes predefinidos";
                         this.EntradaMargen.TextChanged += new System.EventHandler(this.EntradaCostoMargen_TextChanged);
@@ -261,11 +257,8 @@ namespace Lfc.Articulos
                         this.EntradaUnidad.AutoNav = true;
                         this.EntradaUnidad.AutoSize = true;
                         this.EntradaUnidad.AutoTab = true;
-                        this.EntradaUnidad.DetailField = null;
-                        this.EntradaUnidad.Filter = null;
                         this.EntradaUnidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaUnidad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaUnidad.KeyField = null;
                         this.EntradaUnidad.Location = new System.Drawing.Point(324, 32);
                         this.EntradaUnidad.MaxLenght = 32767;
                         this.EntradaUnidad.Name = "EntradaUnidad";
@@ -289,7 +282,6 @@ namespace Lfc.Articulos
         "Kg|kg"};
                         this.EntradaUnidad.Size = new System.Drawing.Size(120, 81);
                         this.EntradaUnidad.TabIndex = 10;
-                        this.EntradaUnidad.Table = null;
                         this.EntradaUnidad.TextKey = "u";
                         this.EntradaUnidad.ToolTipText = "¿El artículo usa control de stock?";
                         this.EntradaUnidad.Enter += new System.EventHandler(this.EntradaPvp_Enter);
@@ -300,11 +292,8 @@ namespace Lfc.Articulos
                         this.EntradaUsaStock.AutoNav = true;
                         this.EntradaUsaStock.AutoSize = true;
                         this.EntradaUsaStock.AutoTab = true;
-                        this.EntradaUsaStock.DetailField = null;
-                        this.EntradaUsaStock.Filter = null;
                         this.EntradaUsaStock.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaUsaStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaUsaStock.KeyField = null;
                         this.EntradaUsaStock.Location = new System.Drawing.Point(80, 32);
                         this.EntradaUsaStock.MaxLenght = 32767;
                         this.EntradaUsaStock.Name = "EntradaUsaStock";
@@ -317,7 +306,6 @@ namespace Lfc.Articulos
         "Compuesto|2"};
                         this.EntradaUsaStock.Size = new System.Drawing.Size(120, 51);
                         this.EntradaUsaStock.TabIndex = 1;
-                        this.EntradaUsaStock.Table = null;
                         this.EntradaUsaStock.TextKey = "1";
                         this.EntradaUsaStock.ToolTipText = "¿El artículo usa control de stock?";
                         this.EntradaUsaStock.TextChanged += new System.EventHandler(this.EntradaUsaStock_TextChanged);
@@ -538,11 +526,8 @@ namespace Lfc.Articulos
                         this.EntradaDestacado.AutoNav = true;
                         this.EntradaDestacado.AutoSize = true;
                         this.EntradaDestacado.AutoTab = true;
-                        this.EntradaDestacado.DetailField = null;
-                        this.EntradaDestacado.Filter = null;
                         this.EntradaDestacado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaDestacado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaDestacado.KeyField = null;
                         this.EntradaDestacado.Location = new System.Drawing.Point(76, 292);
                         this.EntradaDestacado.MaxLenght = 32767;
                         this.EntradaDestacado.Name = "EntradaDestacado";
@@ -554,7 +539,6 @@ namespace Lfc.Articulos
         "No|0"};
                         this.EntradaDestacado.Size = new System.Drawing.Size(64, 36);
                         this.EntradaDestacado.TabIndex = 23;
-                        this.EntradaDestacado.Table = null;
                         this.EntradaDestacado.TextKey = "0";
                         this.EntradaDestacado.ToolTipText = "";
                         // 
@@ -564,11 +548,8 @@ namespace Lfc.Articulos
                         this.EntradaWeb.AutoNav = true;
                         this.EntradaWeb.AutoSize = true;
                         this.EntradaWeb.AutoTab = true;
-                        this.EntradaWeb.DetailField = null;
-                        this.EntradaWeb.Filter = null;
                         this.EntradaWeb.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaWeb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaWeb.KeyField = null;
                         this.EntradaWeb.Location = new System.Drawing.Point(228, 292);
                         this.EntradaWeb.MaxLenght = 32767;
                         this.EntradaWeb.Name = "EntradaWeb";
@@ -581,7 +562,6 @@ namespace Lfc.Articulos
         "Nunca|0"};
                         this.EntradaWeb.Size = new System.Drawing.Size(212, 51);
                         this.EntradaWeb.TabIndex = 25;
-                        this.EntradaWeb.Table = null;
                         this.EntradaWeb.TextKey = "2";
                         this.EntradaWeb.ToolTipText = "";
                         // 

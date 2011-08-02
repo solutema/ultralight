@@ -40,7 +40,7 @@ namespace Lui.Forms
         /// <summary>
         /// Control calendario.
         /// </summary>
-        public partial class Calendar : Control
+        public partial class Calendar : EditableControl
         {
 
                 private DateTime m_CurrentDate = System.DateTime.Now;

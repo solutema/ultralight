@@ -112,11 +112,8 @@ namespace Lfc.Reportes
                         this.EntradaExpandirGrupos.AutoSize = false;
                         this.EntradaExpandirGrupos.AutoNav = true;
                         this.EntradaExpandirGrupos.AutoTab = true;
-                        this.EntradaExpandirGrupos.DetailField = null;
-                        this.EntradaExpandirGrupos.Filter = null;
                         this.EntradaExpandirGrupos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaExpandirGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaExpandirGrupos.KeyField = null;
                         this.EntradaExpandirGrupos.Location = new System.Drawing.Point(124, 12);
                         this.EntradaExpandirGrupos.MaxLenght = 32767;
                         this.EntradaExpandirGrupos.Name = "EntradaExpandirGrupos";
@@ -127,7 +124,6 @@ namespace Lfc.Reportes
         "Sólo subtotales|0"};
                         this.EntradaExpandirGrupos.Size = new System.Drawing.Size(148, 24);
                         this.EntradaExpandirGrupos.TabIndex = 0;
-                        this.EntradaExpandirGrupos.Table = null;
                         this.EntradaExpandirGrupos.TextKey = "0";
                         this.EntradaExpandirGrupos.PlaceholderText = "";
                         this.EntradaExpandirGrupos.ToolTipText = "";

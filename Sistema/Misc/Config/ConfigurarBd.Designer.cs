@@ -239,11 +239,8 @@ namespace Lazaro.Misc.Config
                         this.EntradaSlowLink.AlwaysExpanded = false;
                         this.EntradaSlowLink.AutoNav = true;
                         this.EntradaSlowLink.AutoTab = true;
-                        this.EntradaSlowLink.DetailField = null;
-                        this.EntradaSlowLink.Filter = null;
                         this.EntradaSlowLink.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaSlowLink.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaSlowLink.KeyField = null;
                         this.EntradaSlowLink.Location = new System.Drawing.Point(232, 112);
                         this.EntradaSlowLink.MaxLenght = 32767;
                         this.EntradaSlowLink.Name = "EntradaSlowLink";
@@ -253,7 +250,6 @@ namespace Lazaro.Misc.Config
         "No|0"};
                         this.EntradaSlowLink.Size = new System.Drawing.Size(60, 25);
                         this.EntradaSlowLink.TabIndex = 9;
-                        this.EntradaSlowLink.Table = null;
                         this.EntradaSlowLink.TextKey = "0";
                         this.EntradaSlowLink.PlaceholderText = "";
                         this.EntradaSlowLink.ToolTipText = "";
@@ -304,11 +300,8 @@ namespace Lazaro.Misc.Config
                         this.EntradaConexion.AlwaysExpanded = false;
                         this.EntradaConexion.AutoNav = true;
                         this.EntradaConexion.AutoTab = true;
-                        this.EntradaConexion.DetailField = null;
-                        this.EntradaConexion.Filter = null;
                         this.EntradaConexion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaConexion.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaConexion.KeyField = null;
                         this.EntradaConexion.Location = new System.Drawing.Point(124, 0);
                         this.EntradaConexion.MaxLenght = 32767;
                         this.EntradaConexion.Name = "EntradaConexion";
@@ -319,7 +312,6 @@ namespace Lazaro.Misc.Config
         "PostgreSQL|npgsql"};
                         this.EntradaConexion.Size = new System.Drawing.Size(196, 23);
                         this.EntradaConexion.TabIndex = 1;
-                        this.EntradaConexion.Table = null;
                         this.EntradaConexion.TextKey = "mysql";
                         this.EntradaConexion.PlaceholderText = "";
                         this.EntradaConexion.ToolTipText = "";

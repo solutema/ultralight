@@ -46,7 +46,7 @@ namespace Lfc.Comprobantes.Plantillas
 		internal System.Windows.Forms.Label label4;
 		internal System.Windows.Forms.Label label5;
 		internal System.Windows.Forms.Label label6;
-                internal Lui.Forms.ComboBox txtTipo;
+                internal Lui.Forms.ComboBox EntradaTipo;
 		internal Lui.Forms.TextBox EntradaTexto;
 		internal Lui.Forms.TextBox EntradaX;
 		internal Lui.Forms.TextBox EntradaY;
@@ -93,7 +93,7 @@ namespace Lfc.Comprobantes.Plantillas
 		/// </summary>
 		private void InitializeComponent()
 		{
-                        this.txtTipo = new Lui.Forms.ComboBox();
+                        this.EntradaTipo = new Lui.Forms.ComboBox();
                         this.Label15 = new System.Windows.Forms.Label();
                         this.EntradaTexto = new Lui.Forms.TextBox();
                         this.label1 = new System.Windows.Forms.Label();
@@ -130,20 +130,17 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // txtTipo
                         // 
-                        this.txtTipo.AlwaysExpanded = false;
-                        this.txtTipo.AutoNav = true;
-                        this.txtTipo.AutoTab = true;
-                        this.txtTipo.DetailField = null;
-                        this.txtTipo.Enabled = false;
-                        this.txtTipo.Filter = null;
-                        this.txtTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtTipo.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtTipo.KeyField = null;
-                        this.txtTipo.Location = new System.Drawing.Point(108, 24);
-                        this.txtTipo.MaxLenght = 32767;
-                        this.txtTipo.Name = "txtTipo";
-                        this.txtTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtTipo.SetData = new string[] {
+                        this.EntradaTipo.AlwaysExpanded = false;
+                        this.EntradaTipo.AutoNav = true;
+                        this.EntradaTipo.AutoTab = true;
+                        this.EntradaTipo.Enabled = false;
+                        this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EntradaTipo.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaTipo.Location = new System.Drawing.Point(108, 24);
+                        this.EntradaTipo.MaxLenght = 32767;
+                        this.EntradaTipo.Name = "EntradaTipo";
+                        this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTipo.SetData = new string[] {
         "Fecha del documentos|Fecha",
         "Nombre del cliente|ClienteNombre",
         "Domicilio del cliente|ClienteDomicilio",
@@ -158,12 +155,11 @@ namespace Lfc.Comprobantes.Plantillas
         "Artículos: precios unitarios|ArticulosUnitarios",
         "Artículos: importes|ArticulosImportes",
         "Texto libre|Texto"};
-                        this.txtTipo.Size = new System.Drawing.Size(260, 24);
-                        this.txtTipo.TabIndex = 1;
-                        this.txtTipo.Table = null;
-                        this.txtTipo.TextKey = "Texto";
-                        this.txtTipo.PlaceholderText = "";
-                        this.txtTipo.ToolTipText = "";
+                        this.EntradaTipo.Size = new System.Drawing.Size(260, 24);
+                        this.EntradaTipo.TabIndex = 1;
+                        this.EntradaTipo.TextKey = "Texto";
+                        this.EntradaTipo.PlaceholderText = "";
+                        this.EntradaTipo.ToolTipText = "";
                         // 
                         // Label15
                         // 
@@ -275,11 +271,8 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuenteNombre.AlwaysExpanded = false;
                         this.EntradaFuenteNombre.AutoNav = true;
                         this.EntradaFuenteNombre.AutoTab = true;
-                        this.EntradaFuenteNombre.DetailField = null;
-                        this.EntradaFuenteNombre.Filter = null;
                         this.EntradaFuenteNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFuenteNombre.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaFuenteNombre.KeyField = null;
                         this.EntradaFuenteNombre.Location = new System.Drawing.Point(108, 120);
                         this.EntradaFuenteNombre.MaxLenght = 32767;
                         this.EntradaFuenteNombre.Name = "EntradaFuenteNombre";
@@ -292,7 +285,6 @@ namespace Lfc.Comprobantes.Plantillas
         "Monoespaciada Courier|Courier New"};
                         this.EntradaFuenteNombre.Size = new System.Drawing.Size(256, 24);
                         this.EntradaFuenteNombre.TabIndex = 13;
-                        this.EntradaFuenteNombre.Table = null;
                         this.EntradaFuenteNombre.TextKey = "*";
                         this.EntradaFuenteNombre.PlaceholderText = "";
                         this.EntradaFuenteNombre.ToolTipText = "";
@@ -401,11 +393,8 @@ namespace Lfc.Comprobantes.Plantillas
                         this.txtAlign.AlwaysExpanded = false;
                         this.txtAlign.AutoNav = true;
                         this.txtAlign.AutoTab = true;
-                        this.txtAlign.DetailField = null;
-                        this.txtAlign.Filter = null;
                         this.txtAlign.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtAlign.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtAlign.KeyField = null;
                         this.txtAlign.Location = new System.Drawing.Point(108, 152);
                         this.txtAlign.MaxLenght = 32767;
                         this.txtAlign.Name = "txtAlign";
@@ -416,7 +405,6 @@ namespace Lfc.Comprobantes.Plantillas
         "Derecha|Far"};
                         this.txtAlign.Size = new System.Drawing.Size(140, 24);
                         this.txtAlign.TabIndex = 16;
-                        this.txtAlign.Table = null;
                         this.txtAlign.TextKey = "Near";
                         this.txtAlign.PlaceholderText = "";
                         this.txtAlign.ToolTipText = "";
@@ -435,11 +423,8 @@ namespace Lfc.Comprobantes.Plantillas
                         this.txtLineAlign.AlwaysExpanded = false;
                         this.txtLineAlign.AutoNav = true;
                         this.txtLineAlign.AutoTab = true;
-                        this.txtLineAlign.DetailField = null;
-                        this.txtLineAlign.Filter = null;
                         this.txtLineAlign.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtLineAlign.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtLineAlign.KeyField = null;
                         this.txtLineAlign.Location = new System.Drawing.Point(256, 152);
                         this.txtLineAlign.MaxLenght = 32767;
                         this.txtLineAlign.Name = "txtLineAlign";
@@ -450,7 +435,6 @@ namespace Lfc.Comprobantes.Plantillas
         "Abajo|Far"};
                         this.txtLineAlign.Size = new System.Drawing.Size(140, 24);
                         this.txtLineAlign.TabIndex = 17;
-                        this.txtLineAlign.Table = null;
                         this.txtLineAlign.TextKey = "Near";
                         this.txtLineAlign.PlaceholderText = "";
                         this.txtLineAlign.ToolTipText = "";
@@ -522,11 +506,8 @@ namespace Lfc.Comprobantes.Plantillas
                         this.txtWrap.AlwaysExpanded = false;
                         this.txtWrap.AutoNav = true;
                         this.txtWrap.AutoTab = true;
-                        this.txtWrap.DetailField = null;
-                        this.txtWrap.Filter = null;
                         this.txtWrap.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtWrap.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.txtWrap.KeyField = null;
                         this.txtWrap.Location = new System.Drawing.Point(108, 184);
                         this.txtWrap.MaxLenght = 32767;
                         this.txtWrap.Name = "txtWrap";
@@ -536,7 +517,6 @@ namespace Lfc.Comprobantes.Plantillas
         "Fluir texto hacia abajo|1"};
                         this.txtWrap.Size = new System.Drawing.Size(288, 24);
                         this.txtWrap.TabIndex = 19;
-                        this.txtWrap.Table = null;
                         this.txtWrap.TextKey = "0";
                         this.txtWrap.PlaceholderText = "";
                         this.txtWrap.ToolTipText = "";
@@ -574,7 +554,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.Controls.Add(this.EntradaY);
                         this.Controls.Add(this.EntradaX);
                         this.Controls.Add(this.EntradaTexto);
-                        this.Controls.Add(this.txtTipo);
+                        this.Controls.Add(this.EntradaTipo);
                         this.Controls.Add(this.label3);
                         this.Controls.Add(this.label2);
                         this.Controls.Add(this.label1);
@@ -584,7 +564,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.Controls.SetChildIndex(this.label1, 0);
                         this.Controls.SetChildIndex(this.label2, 0);
                         this.Controls.SetChildIndex(this.label3, 0);
-                        this.Controls.SetChildIndex(this.txtTipo, 0);
+                        this.Controls.SetChildIndex(this.EntradaTipo, 0);
                         this.Controls.SetChildIndex(this.EntradaTexto, 0);
                         this.Controls.SetChildIndex(this.EntradaX, 0);
                         this.Controls.SetChildIndex(this.EntradaY, 0);

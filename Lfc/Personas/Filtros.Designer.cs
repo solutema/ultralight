@@ -239,11 +239,8 @@ namespace Lfc.Personas
                         this.EntradaEstadoCredito.AutoNav = true;
                         this.EntradaEstadoCredito.AutoSize = true;
                         this.EntradaEstadoCredito.AutoTab = true;
-                        this.EntradaEstadoCredito.DetailField = null;
-                        this.EntradaEstadoCredito.Filter = null;
                         this.EntradaEstadoCredito.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaEstadoCredito.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaEstadoCredito.KeyField = null;
                         this.EntradaEstadoCredito.Location = new System.Drawing.Point(137, 184);
                         this.EntradaEstadoCredito.MaxLenght = 32767;
                         this.EntradaEstadoCredito.Name = "EntradaEstadoCredito";
@@ -257,7 +254,6 @@ namespace Lfc.Personas
         "Suspendido|10"};
                         this.EntradaEstadoCredito.Size = new System.Drawing.Size(412, 25);
                         this.EntradaEstadoCredito.TabIndex = 13;
-                        this.EntradaEstadoCredito.Table = null;
                         this.EntradaEstadoCredito.TextKey = "0";
                         this.EntradaEstadoCredito.ToolTipText = "";
                         // 
@@ -334,11 +330,8 @@ namespace Lfc.Personas
                         this.EntradaFechaAUsar.AutoNav = true;
                         this.EntradaFechaAUsar.AutoSize = true;
                         this.EntradaFechaAUsar.AutoTab = true;
-                        this.EntradaFechaAUsar.DetailField = null;
-                        this.EntradaFechaAUsar.Filter = null;
                         this.EntradaFechaAUsar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFechaAUsar.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaFechaAUsar.KeyField = null;
                         this.EntradaFechaAUsar.Location = new System.Drawing.Point(3, 246);
                         this.EntradaFechaAUsar.MaxLenght = 32767;
                         this.EntradaFechaAUsar.Name = "EntradaFechaAUsar";
@@ -350,7 +343,6 @@ namespace Lfc.Personas
         "Fecha de Baja|fechabaja"};
                         this.EntradaFechaAUsar.Size = new System.Drawing.Size(128, 25);
                         this.EntradaFechaAUsar.TabIndex = 16;
-                        this.EntradaFechaAUsar.Table = null;
                         this.EntradaFechaAUsar.TextKey = "fechaalta";
                         this.EntradaFechaAUsar.ToolTipText = "";
                         // 
@@ -408,11 +400,8 @@ namespace Lfc.Personas
                         this.EntradaEtiquetas.AutoNav = true;
                         this.EntradaEtiquetas.AutoSize = true;
                         this.EntradaEtiquetas.AutoTab = true;
-                        this.EntradaEtiquetas.DetailField = null;
-                        this.EntradaEtiquetas.Filter = null;
                         this.EntradaEtiquetas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaEtiquetas.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaEtiquetas.KeyField = null;
                         this.EntradaEtiquetas.Location = new System.Drawing.Point(137, 215);
                         this.EntradaEtiquetas.MaxLenght = 32767;
                         this.EntradaEtiquetas.Name = "EntradaEtiquetas";
@@ -424,7 +413,6 @@ namespace Lfc.Personas
         "Ninguna|-"};
                         this.EntradaEtiquetas.Size = new System.Drawing.Size(412, 25);
                         this.EntradaEtiquetas.TabIndex = 15;
-                        this.EntradaEtiquetas.Table = null;
                         this.EntradaEtiquetas.TextKey = "*";
                         this.EntradaEtiquetas.ToolTipText = "";
                         // 
@@ -445,11 +433,8 @@ namespace Lfc.Personas
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.DetailField = null;
-                        this.EntradaEstado.Filter = null;
                         this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaEstado.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaEstado.KeyField = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(137, 153);
                         this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
@@ -462,7 +447,6 @@ namespace Lfc.Personas
         "Inactivos|0"};
                         this.EntradaEstado.Size = new System.Drawing.Size(412, 25);
                         this.EntradaEstado.TabIndex = 11;
-                        this.EntradaEstado.Table = null;
                         this.EntradaEstado.TextKey = "1";
                         this.EntradaEstado.ToolTipText = "";
                         // 

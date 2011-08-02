@@ -43,7 +43,7 @@ namespace Lui.Forms
 	[Designer("System.Windows.Forms.Design.ControlDesigner, System.Design", typeof(System.ComponentModel.Design.IDesigner)),
                 DefaultEvent("Click"),
                 DefaultProperty("Text")]
-        public partial class Control : System.Windows.Forms.UserControl, IDataControl
+        public partial class Control : System.Windows.Forms.UserControl, IControl
 	{
 		protected bool m_Highlighted;
                 protected Lui.Forms.Control.BorderStyles m_BorderStyle = Lui.Forms.Control.BorderStyles.Control;
@@ -57,7 +57,7 @@ namespace Lui.Forms
                 new public event System.EventHandler TextChanged;
 
                 // IDataControl
-                private Lfx.Data.Connection m_DataBase = null;
+                protected Lfx.Data.Connection m_DataBase = null;
 
 		public enum BorderStyles
 		{
@@ -106,7 +106,6 @@ namespace Lui.Forms
 				ControlCaption.Text = value;
 				ControlCaption.Visible = (value.Length > 0);
 				this.Refresh();
-				this.Changed = false;
 			}
 		}
 
@@ -349,34 +348,6 @@ namespace Lui.Forms
                 /// <summary>
                 /// IDataControl
                 /// </summary>
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public Lfx.Workspace Workspace
-                {
-                        get
-                        {
-                                if (m_DataBase == null)
-                                        return Lfx.Workspace.Master;
-                                else
-                                        return this.Connection.Workspace;
-                        }
-                }
-
-                /// <summary>
-                /// IDataControl
-                /// </summary>
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public bool HasWorkspace
-                {
-                        get
-                        {
-                                return this.Parent != null && this.Workspace != null;
-                        }
-                }
-
-
-                /// <summary>
-                /// IDataControl
-                /// </summary>
                 [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public Lfx.Data.Connection Connection
                 {
@@ -395,68 +366,6 @@ namespace Lui.Forms
                                 }
                                 return m_DataBase;
                         }
-                }
-
-                /// <summary>
-                /// IDataControl
-                /// </summary>
-                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public bool Changed
-                {
-                        get
-                        {
-                                if (this.GetControlsChanged(this.Controls, false))
-                                        return true;
-                                else
-                                        return m_Changed;
-                        }
-                        set
-                        {
-                                m_Changed = value;
-                                this.SetControlsChanged(this.Controls, value);
-                                Invalidate();
-                        }
-                }
-
-                protected void SetControlsChanged(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
-                {
-                        // Pongo los Changed en newValue
-                        foreach (System.Windows.Forms.Control ctl in controles) {
-                                if (ctl == null) {
-                                        //Nada
-                                } else if (ctl is Lui.Forms.Control) {
-                                        ((Lui.Forms.Control)ctl).Changed = newValue;
-                                } else if (ctl is IDataControl) {
-                                        ((IDataControl)ctl).Changed = newValue;
-                                } else if (ctl.Controls.Count > 0) {
-                                        SetControlsChanged(ctl.Controls, newValue);
-                                }
-                        }
-                }
-
-                protected bool GetControlsChanged(System.Windows.Forms.Control.ControlCollection controls, bool showChanges)
-                {
-                        bool Result = false;
-                        // Ver si algo cambió
-                        foreach (System.Windows.Forms.Control ctl in controls) {
-                                if (ctl == null) {
-                                        //Nada
-                                } else if (ctl is Lui.Forms.Control) {
-                                        if (((Lui.Forms.Control)ctl).Changed) {
-                                                Result = true;
-                                                ((Lui.Forms.Control)ctl).ShowChanged = showChanges;
-                                        }
-                                } else if (ctl is IDataControl) {
-                                        if (((IDataControl)ctl).Changed)
-                                                Result = true;
-                                } else if (ctl.Controls.Count > 0) {
-                                        if (GetControlsChanged(ctl.Controls, showChanges)) {
-                                                this.Changed = true;
-                                                Result = true;
-                                        }
-                                }
-                        }
-                        return Result;
                 }
 
 
