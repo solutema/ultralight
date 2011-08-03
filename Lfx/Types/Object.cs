@@ -46,8 +46,16 @@ namespace Lfx.Types
                         object a = val1, b = val2;
 
                         // Permito comparación con null
-                        if (val1 == null)
-                                return val2 == null ? 0 : -1;
+                        if (val1 == null) {
+                                if (val2 is int)
+                                        return (int)val2 == 0 ? 0 : -1;
+                                else if (val2 is double)
+                                        return (double)val2 == 0 ? 0 : -1;
+                                else if (val2 is decimal)
+                                        return (decimal)val2 == 0 ? 0 : -1;
+                                else
+                                        return val2 == null ? 0 : -1;
+                        }
 
                         if (val2 == null)
                                 return val1 == null ? 0 : 1;

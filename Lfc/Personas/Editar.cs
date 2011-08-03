@@ -266,10 +266,9 @@ namespace Lfc.Personas
                         else
                                 EntradaFechaBaja.Text = Cliente.FechaBaja.Value.ToString(Lfx.Types.Formatting.DateTime.ShortDatePattern);
 
-                        EntradaImagen.Enabled = PermitirEdicionAvanzada;
-                        EntradaImagen.Elemento = Cliente;
-                        EntradaTags.Elemento = Cliente;
-                        EntradaTags.Enabled = PermitirEdicionAvanzada;
+                        // TODO: pasar esto al formulario parent
+                        //EntradaImagen.Enabled = PermitirEdicionAvanzada;
+                        //EntradaTags.Enabled = PermitirEdicionAvanzada;
 
                         EntradaEstado.Enabled = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Cliente, Lbl.Sys.Permisos.Operaciones.Eliminar);
                         BotonAcceso.Visible = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Cliente, Lbl.Sys.Permisos.Operaciones.Eliminar);
@@ -370,9 +369,6 @@ namespace Lfc.Personas
                         Res.Cbu = EntradaCbu.Text.Replace("-", "").Replace(" ", "").Replace("/", "").Replace(".", "");
                         Res.EstadoCredito = ((Lbl.Personas.EstadoCredito)(Lfx.Types.Parsing.ParseInt(EntradaEstadoCredito.TextKey)));
                         Res.Estado = Lfx.Types.Parsing.ParseInt(EntradaEstado.TextKey);
-
-                        EntradaTags.ActualizarElemento();
-                        EntradaImagen.ActualizarElemento();
 
                         base.ActualizarElemento();
                 }

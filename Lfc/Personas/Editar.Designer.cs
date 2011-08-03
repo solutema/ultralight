@@ -116,8 +116,6 @@ namespace Lfc.Personas
                         this.label25 = new System.Windows.Forms.Label();
                         this.label24 = new System.Windows.Forms.Label();
                         this.EntradaFechaAlta = new Lui.Forms.TextBox();
-                        this.EntradaTags = new Lcc.Edicion.MatrizTags();
-                        this.EntradaImagen = new Lcc.Entrada.Imagen();
                         this.matrizTelefonos1 = new Lcc.Entrada.MatrizTelefonos();
                         this.Frame1.SuspendLayout();
                         this.Frame2.SuspendLayout();
@@ -129,8 +127,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaEmail
                         // 
-                        this.EntradaEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEmail.AutoNav = true;
                         this.EntradaEmail.AutoTab = true;
                         this.EntradaEmail.DataType = Lui.Forms.DataTypes.FreeText;
@@ -156,8 +154,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaLocalidad
                         // 
-                        this.EntradaLocalidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaLocalidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaLocalidad.AutoNav = true;
                         this.EntradaLocalidad.AutoTab = true;
                         this.EntradaLocalidad.CanCreate = true;
@@ -184,8 +182,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaDomicilio
                         // 
-                        this.EntradaDomicilio.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaDomicilio.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaDomicilio.AutoNav = true;
                         this.EntradaDomicilio.AutoTab = true;
                         this.EntradaDomicilio.DataType = Lui.Forms.DataTypes.FreeText;
@@ -260,8 +258,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaApellido
                         // 
-                        this.EntradaApellido.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaApellido.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaApellido.AutoNav = true;
                         this.EntradaApellido.AutoTab = true;
                         this.EntradaApellido.DataType = Lui.Forms.DataTypes.FreeText;
@@ -287,8 +285,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNombre.AutoNav = true;
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
@@ -339,8 +337,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaRazonSocial
                         // 
-                        this.EntradaRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaRazonSocial.AutoNav = true;
                         this.EntradaRazonSocial.AutoTab = true;
                         this.EntradaRazonSocial.DataType = Lui.Forms.DataTypes.FreeText;
@@ -456,8 +454,8 @@ namespace Lfc.Personas
                         // 
                         // Frame1
                         // 
-                        this.Frame1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Frame1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.Frame1.Controls.Add(this.EntradaNombre);
                         this.Frame1.Controls.Add(this.EntradaApellido);
                         this.Frame1.Controls.Add(this.Label1);
@@ -479,8 +477,8 @@ namespace Lfc.Personas
                         // 
                         // Frame2
                         // 
-                        this.Frame2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Frame2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.Frame2.Controls.Add(this.Label3);
                         this.Frame2.Controls.Add(this.EntradaRazonSocial);
                         this.Frame2.Controls.Add(this.Label15);
@@ -520,8 +518,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaSituacion
                         // 
-                        this.EntradaSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSituacion.AutoNav = true;
                         this.EntradaSituacion.AutoTab = true;
                         this.EntradaSituacion.CanCreate = false;
@@ -574,8 +572,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaTipo
                         // 
-                        this.EntradaTipo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaTipo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoTab = true;
                         this.EntradaTipo.CanCreate = true;
@@ -611,8 +609,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaGrupo
                         // 
-                        this.EntradaGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaGrupo.AutoNav = true;
                         this.EntradaGrupo.AutoTab = true;
                         this.EntradaGrupo.CanCreate = true;
@@ -669,8 +667,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaLimiteCredito
                         // 
-                        this.EntradaLimiteCredito.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaLimiteCredito.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaLimiteCredito.AutoNav = true;
                         this.EntradaLimiteCredito.AutoTab = true;
                         this.EntradaLimiteCredito.DataType = Lui.Forms.DataTypes.Currency;
@@ -738,8 +736,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaDomicilioTrabajo
                         // 
-                        this.EntradaDomicilioTrabajo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaDomicilioTrabajo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaDomicilioTrabajo.AutoNav = true;
                         this.EntradaDomicilioTrabajo.AutoTab = true;
                         this.EntradaDomicilioTrabajo.DataType = Lui.Forms.DataTypes.FreeText;
@@ -774,8 +772,8 @@ namespace Lfc.Personas
                         // EntradaEstadoCredito
                         // 
                         this.EntradaEstadoCredito.AlwaysExpanded = false;
-                        this.EntradaEstadoCredito.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaEstadoCredito.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEstadoCredito.AutoNav = true;
                         this.EntradaEstadoCredito.AutoTab = true;
                         this.EntradaEstadoCredito.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -807,8 +805,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaCbu
                         // 
-                        this.EntradaCbu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaCbu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCbu.AutoNav = true;
                         this.EntradaCbu.AutoTab = true;
                         this.EntradaCbu.DataType = Lui.Forms.DataTypes.FreeText;
@@ -842,8 +840,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaNumeroCuenta
                         // 
-                        this.EntradaNumeroCuenta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaNumeroCuenta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNumeroCuenta.AutoNav = true;
                         this.EntradaNumeroCuenta.AutoTab = true;
                         this.EntradaNumeroCuenta.DataType = Lui.Forms.DataTypes.FreeText;
@@ -877,8 +875,8 @@ namespace Lfc.Personas
                         // 
                         // frame3
                         // 
-                        this.frame3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.frame3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.frame3.Controls.Add(this.Label8);
                         this.frame3.Controls.Add(this.EntradaDomicilio);
                         this.frame3.Controls.Add(this.EntradaVendedor);
@@ -905,8 +903,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaVendedor
                         // 
-                        this.EntradaVendedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaVendedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaVendedor.AutoNav = true;
                         this.EntradaVendedor.AutoTab = true;
                         this.EntradaVendedor.CanCreate = true;
@@ -942,8 +940,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaTelefono
                         // 
-                        this.EntradaTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTelefono.AutoNav = true;
                         this.EntradaTelefono.AutoScrollMargin = new System.Drawing.Size(4, 4);
                         this.EntradaTelefono.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -957,8 +955,8 @@ namespace Lfc.Personas
                         // 
                         // frame4
                         // 
-                        this.frame4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.frame4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.frame4.Controls.Add(this.EntradaSubGrupo);
                         this.frame4.Controls.Add(this.EntradaGrupo);
                         this.frame4.Controls.Add(this.EntradaCbu);
@@ -985,8 +983,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaSubGrupo
                         // 
-                        this.EntradaSubGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaSubGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSubGrupo.AutoNav = true;
                         this.EntradaSubGrupo.AutoTab = true;
                         this.EntradaSubGrupo.CanCreate = true;
@@ -1068,8 +1066,8 @@ namespace Lfc.Personas
                         // 
                         // EntradaNombreVisible
                         // 
-                        this.EntradaNombreVisible.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaNombreVisible.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNombreVisible.AutoNav = true;
                         this.EntradaNombreVisible.AutoTab = true;
                         this.EntradaNombreVisible.DataType = Lui.Forms.DataTypes.FreeText;
@@ -1104,9 +1102,9 @@ namespace Lfc.Personas
                         // 
                         // TableLayoutPanel
                         // 
-                        this.TableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.TableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                                    | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.TableLayoutPanel.AutoSize = true;
                         this.TableLayoutPanel.ColumnCount = 2;
                         this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
@@ -1128,8 +1126,8 @@ namespace Lfc.Personas
                         // 
                         // frame5
                         // 
-                        this.frame5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.frame5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.frame5.Controls.Add(this.label26);
                         this.frame5.Controls.Add(this.BotonAcceso);
                         this.frame5.Controls.Add(this.EntradaEstado);
@@ -1224,38 +1222,6 @@ namespace Lfc.Personas
                         this.EntradaFechaAlta.TabStop = false;
                         this.EntradaFechaAlta.ToolTipText = "";
                         // 
-                        // EntradaTags
-                        // 
-                        this.EntradaTags.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaTags.AutoNav = true;
-                        this.EntradaTags.AutoSize = true;
-                        this.EntradaTags.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaTags.Location = new System.Drawing.Point(4, 386);
-                        this.EntradaTags.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-                        this.EntradaTags.Name = "EntradaTags";
-                        this.EntradaTags.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTags.ReadOnly = false;
-                        this.EntradaTags.Size = new System.Drawing.Size(418, 166);
-                        this.EntradaTags.TabIndex = 4;
-                        this.EntradaTags.Text = "Atributos especiales";
-                        this.EntradaTags.ToolTipText = "";
-                        // 
-                        // EntradaImagen
-                        // 
-                        this.EntradaImagen.AutoNav = true;
-                        this.EntradaImagen.AutoSize = true;
-                        this.EntradaImagen.Dock = System.Windows.Forms.DockStyle.Fill;
-                        this.EntradaImagen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaImagen.Location = new System.Drawing.Point(429, 386);
-                        this.EntradaImagen.Name = "EntradaImagen";
-                        this.EntradaImagen.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaImagen.ReadOnly = false;
-                        this.EntradaImagen.Size = new System.Drawing.Size(343, 166);
-                        this.EntradaImagen.TabIndex = 6;
-                        this.EntradaImagen.ToolTipText = "";
-                        // 
                         // matrizTelefonos1
                         // 
                         this.matrizTelefonos1.AutoNav = true;
@@ -1346,10 +1312,8 @@ namespace Lfc.Personas
                 internal Lui.Forms.TextBox EntradaNombreVisible;
                 internal Label Label4;
                 private TableLayoutPanel TableLayoutPanel;
-                private Lcc.Edicion.MatrizTags EntradaTags;
                 internal Lcc.Entrada.CodigoDetalle EntradaSubGrupo;
                 internal Label label13;
-                private Lcc.Entrada.Imagen EntradaImagen;
                 internal Lcc.Entrada.CodigoDetalle EntradaVendedor;
                 internal Label label23;
                 private Lui.Forms.Frame frame5;

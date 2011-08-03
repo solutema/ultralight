@@ -490,7 +490,7 @@ namespace Lbl
                                         if (this.m_RegistroOriginal != null && this.m_RegistroOriginal.Fields != null)
                                                 ValorOriginal = this.m_RegistroOriginal[Fl.ColumnName];
 
-                                        if (Lfx.Types.Object.CompareByValue(ValorOriginal, ValorNuevo) != 0) {
+                                        if (Lfx.Types.Object.CompareByValue(ValorOriginal, ValorNuevo) != 0 && Fl.ColumnName != "contrasena") {
                                                 if (Extra1 == null)
                                                         Extra1 = new StringBuilder();
                                                 else
