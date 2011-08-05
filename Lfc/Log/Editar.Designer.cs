@@ -78,6 +78,7 @@ namespace Lfc.Log
                         this.ListaHistoral.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.ListaHistoral.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.ListaHistoral.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColFecha,
             this.ColPersona,
@@ -114,13 +115,13 @@ namespace Lfc.Log
                         this.ColDatos.Text = "Datos";
                         this.ColDatos.Width = 600;
                         // 
-                        // EditHistory
+                        // Editar
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(624, 362);
                         this.Controls.Add(this.ListaHistoral);
-                        this.Name = "EditHistory";
+                        this.Name = "Editar";
                         this.Text = "Historial";
                         this.Controls.SetChildIndex(this.ListaHistoral, 0);
                         this.ResumeLayout(false);
