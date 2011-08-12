@@ -225,7 +225,7 @@ namespace Lfx
                 public void CheckAndUpdateDataBaseVersion(Lfx.Data.Connection dataBase, bool ignorarFecha, bool noTocarDatos)
                 {
                         dataBase.RequiresTransaction = false;
-                        int VersionActual = this.CurrentConfig.ReadGlobalSettingInt("Sistema", "DB.Version", 0);
+                        int VersionActual = this.CurrentConfig.ReadGlobalSetting<int>("Sistema", "DB.Version", 0);
 
                         if (VersionUltima < VersionActual) {
                                 this.RunTime.Message("Es necesario actualizar Lázaro en esta estación de trabajo. Se esperaba la versión " + VersionUltima.ToString() + " de la base de datos, pero se encontró la versión " + VersionActual.ToString() + " que es demasiado nueva.");
@@ -233,24 +233,18 @@ namespace Lfx
                         }
 
                         // Me fijo si ya hay alguien descargando las actualizaciones
-                        string FechaInicioActualizacion = dataBase.Workspace.CurrentConfig.ReadGlobalSettingString(null, "Sistema.VerificarVersionBd.Inicio", string.Empty);
+                        string FechaInicioActualizacion = dataBase.Workspace.CurrentConfig.ReadGlobalSetting<string>(null, "Sistema.VerificarVersionBd.Inicio", string.Empty);
                         string FechaInicioActualizacionMax = Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.AddHours(2));
                         
                         if (string.Compare(FechaInicioActualizacion, FechaInicioActualizacionMax) > 0)
                                 // Ya hay alguien actualizando.
                                 return;
 
-                        DateTime VersionEstructura = Lfx.Types.Parsing.ParseSqlDateTime(this.CurrentConfig.ReadGlobalSettingString("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"));
+                        DateTime VersionEstructura = Lfx.Types.Parsing.ParseSqlDateTime(this.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"));
                         DateTime FechaLazaroExe = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).LastWriteTime;
                         TimeSpan Diferencia = FechaLazaroExe - VersionEstructura;
                         System.Console.WriteLine("Versión estructura: " + VersionEstructura.ToString());
                         System.Console.WriteLine("Versión Lázaro    : " + FechaLazaroExe.ToString() + " (" + Diferencia.ToString() + " más nuevo)");
-
-                        if (Diferencia.TotalDays < -7 && ignorarFecha == false) {
-                                //Lázaro es más viejo que la bd por al menos 7 días
-                                this.RunTime.Message("La versión de Lázaro que está utilizando es antigua. Por favor actualice su sistema urgentemente.");
-                                return;
-                        }
 
                         if((noTocarDatos || VersionActual == VersionUltima) && (ignorarFecha == false && Diferencia.TotalHours <= 1)) {
                                 // No es necesario actualizar nada

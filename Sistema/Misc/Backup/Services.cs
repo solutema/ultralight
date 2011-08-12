@@ -306,7 +306,7 @@ namespace Lazaro.Misc.Backup
                                 Archivo.Close();
                         }
 
-                        if (Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingInt("Sistema", "ComprimirCopiasDeRespaldo", 0) != 0) {
+                        if (Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema", "ComprimirCopiasDeRespaldo", 0) != 0) {
                                 Progreso.ChangeStatus("Comprimiendo los datos");
                                 Lfx.FileFormats.Compression.Archive ArchivoComprimido = new Lfx.FileFormats.Compression.Archive(Lfx.Environment.Folders.TemporaryFolder + workFolder + "backup.7z");
                                 ArchivoComprimido.Add(Lfx.Environment.Folders.TemporaryFolder + workFolder + "*");
@@ -326,7 +326,7 @@ namespace Lazaro.Misc.Backup
                         Progreso.ChangeStatus(Progreso.Value + 1);
                         System.IO.Directory.Move(Lfx.Environment.Folders.TemporaryFolder + workFolder, storeFolder + workFolder);
 
-                        int GuardarBackups = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingInt("", "Sisteam.Backup.CantMax", 7);
+                        int GuardarBackups = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("", "Sisteam.Backup.CantMax", 7);
                         if (GuardarBackups > 0) {
                                 List<string> ListaDeBackups = ListaBackups();
                                 if (ListaDeBackups.Count > GuardarBackups) {
@@ -625,7 +625,7 @@ namespace Lazaro.Misc.Backup
                                 case "I":
                                         return int.Parse(this.ReadString(Len));
                                 case "N":
-                                        return Lfx.Types.Parsing.ParseDouble(this.ReadString(Len));
+                                        return Lfx.Types.Parsing.ParseDecimal(this.ReadString(Len));
                                 case "D":
                                         string FldVal = this.ReadString(Len);
                                         return DateTime.ParseExact(FldVal, Lfx.Types.Formatting.DateTime.SqlDateTimeFormat, null);

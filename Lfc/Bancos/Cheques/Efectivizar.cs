@@ -77,7 +77,7 @@ namespace Lfc.Bancos.Cheques
                                 aceptarReturn.Success = false;
                                 aceptarReturn.Message += "Debe especificar la cuenta de destino." + Environment.NewLine;
                         }
-                        if (EntradaTotal.ValueDouble <= 0) {
+                        if (EntradaTotal.ValueDecimal <= 0) {
                                 aceptarReturn.Success = false;
                                 aceptarReturn.Message += "El importe total debe ser mayor o igual a cero." + Environment.NewLine;
                         }

@@ -66,7 +66,7 @@ namespace Lazaro.Principal
                         }
 
                         BarraInferior.Visible = this.Workspace.CurrentConfig.ReadLocalSettingInt("Sistema", "Apariencia.BarraInformacion", 1) != 0;
-                        switch (this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Apariencia.ModoPantalla", ModoPredeterminado)) {
+                        switch (this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Apariencia.ModoPantalla", ModoPredeterminado)) {
                                 case "normal":
                                         this.Text = "Lázaro - " + Lbl.Sys.Config.Actual.UsuarioConectado.Persona.NombreSolo + " en " + Lfx.Workspace.Master.ToString();
                                         break;

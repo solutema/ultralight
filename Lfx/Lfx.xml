@@ -393,11 +393,6 @@
             Devuelve true si la cadena tiene formato numérico.
             </summary>
         </member>
-        <member name="M:Lfx.Types.Parsing.ParseDouble(System.String)">
-            <summary>
-            Interpreta un valor de punto flotante. Devuelve cero para cualquier valor desconocido.
-            </summary>
-        </member>
         <member name="M:Lfx.Types.Parsing.ParseDecimal(System.String)">
             <summary>
             Interpreta un valor de punto flotante. Devuelve cero para cualquier valor desconocido.

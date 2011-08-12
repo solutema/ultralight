@@ -54,7 +54,7 @@ namespace Lbl.Sys.Configuracion
                 {
                         get
                         {
-                                return this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Empresa.Nombre", "Empresa Sin Nombre");
+                                return this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Empresa.Nombre", "Empresa Sin Nombre");
                         }
                         set
                         {
@@ -62,11 +62,25 @@ namespace Lbl.Sys.Configuracion
                         }
                 }
 
+
+                public int Id
+                {
+                        get
+                        {
+                                return this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Empresa.Id", 1);
+                        }
+                        set
+                        {
+                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Empresa.Id", value.ToString(), "*");
+                        }
+                }
+
+
                 public string RazonSocial
                 {
                         get
                         {
-                                return this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Empresa.RazonSocial", Nombre);
+                                return this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Empresa.RazonSocial", Nombre);
                         }
                         set
                         {
@@ -78,7 +92,7 @@ namespace Lbl.Sys.Configuracion
                 {
                         get
                         {
-                                string Res = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Empresa.CUIT", "00-00000000-0");
+                                string Res = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Empresa.CUIT", "00-00000000-0");
                                 if (Res == "00-00000000-0")
                                         return null;
                                 else
@@ -97,7 +111,7 @@ namespace Lbl.Sys.Configuracion
                 {
                         get
                         {
-                                return this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Empresa.Email", "");
+                                return this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Empresa.Email", "");
                         }
                         set
                         {

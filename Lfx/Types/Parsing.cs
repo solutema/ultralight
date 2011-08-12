@@ -115,7 +115,7 @@ namespace Lfx.Types
                         }
                 }
 
-
+                /*
                 /// <summary>
                 /// Interpreta un valor de punto flotante. Devuelve cero para cualquier valor desconocido.
                 /// </summary>
@@ -130,7 +130,7 @@ namespace Lfx.Types
                         } else {
                                 return 0;
                         }
-                }
+                } */
 
                 /// <summary>
                 /// Interpreta un valor de punto flotante. Devuelve cero para cualquier valor desconocido.

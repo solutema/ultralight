@@ -864,7 +864,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
 
                         switch (comando.CodigoComando) {
                                 case CodigosComandosFiscales.EpsonDocumentoFiscalCerrar:
-                                        int LastComprob = this.Workspace.CurrentConfig.ReadGlobalSettingInt("ServidorFiscal", "UltimoComprobEmulacionPV" + this.PV.ToString(), 0) + 1;
+                                        int LastComprob = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("ServidorFiscal", "UltimoComprobEmulacionPV" + this.PV.ToString(), 0) + 1;
                                         Res.Campos.Add(LastComprob.ToString("00000000"));
                                         this.Workspace.CurrentConfig.WriteGlobalSetting("ServidorFiscal", "UltimoComprobEmulacionPV" + this.PV.ToString(), LastComprob.ToString());
                                         System.Console.WriteLine(m_TextEmulacion.ToString());

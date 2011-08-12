@@ -494,7 +494,7 @@ namespace Lfx.Data
                                                 case DbTypes.Integer:
                                                 case DbTypes.SmallInt:
                                                 case DbTypes.Numeric:
-                                                        if (Lfx.Types.Parsing.ParseDouble(FieldDef.DefaultValue) == 0)
+                                                        if (Lfx.Types.Parsing.ParseDecimal(FieldDef.DefaultValue) == 0)
                                                                 FieldDef.DefaultValue = "0";
                                                         break;
                                                 case DbTypes.DateTime:
@@ -1317,7 +1317,7 @@ LEFT JOIN pg_attribute
                 public bool HasLock(string lockName)
                 {
                         this.Workspace.CurrentConfig.ClearCache();
-                        return this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Lock." + lockName, 0) != 0;
+                        return this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Lock." + lockName, 0) != 0;
                 }
 
                 public bool HasGlobalLock()

@@ -67,7 +67,7 @@ namespace Lfc.Comprobantes
                 {
                         if (this.HasWorkspace) {
                                 EntradaTotal.DecimalPlaces = this.Workspace.CurrentConfig.Moneda.DecimalesFinal;
-                                ProductArray.LockPrice = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.CambiaPrecioItemFactura", 0) == 0;
+                                ProductArray.LockPrice = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Documentos.CambiaPrecioItemFactura", 0) == 0;
                         }
                         base.OnWorkspaceChanged();
                 }

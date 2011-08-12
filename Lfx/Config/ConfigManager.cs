@@ -200,31 +200,34 @@ namespace Lfx.Config
 		}
 
 
-		public int ReadGlobalSettingInt(string sectionName, string settingName, int defaultValue)
-		{
-			return ReadGlobalSettingInt(sectionName, settingName, defaultValue, 0);
-		}
+                public T ReadGlobalSetting<T>(string sectionName, string settingName, T defaultValue)
+                {
+                        return this.ReadGlobalSetting<T>(sectionName, settingName, defaultValue, null, 0);
+                }
 
 
-		public int ReadGlobalSettingInt(string sectionName, string settingName, int defaultValue, int sucursal)
-		{
-			string Val = ReadGlobalSettingString(sectionName, settingName, defaultValue.ToString(), null, sucursal);
-			try
-			{
-				return int.Parse(Val);
-			}
-			catch
-			{
-				System.Console.WriteLine("ReadGlobalSettingInt: Can't parse " + Val + " as int (" + settingName + ")");
-				return 0;
-			}
-		}
+                public T ReadGlobalSetting<T>(string sectionName, string settingName, T defaultValue, string terminalName, int sucursal)
+                {
+                        string Val = ReadGlobalSettingString(sectionName, settingName, null, terminalName, sucursal);
+                        if (Val == null)
+                                return defaultValue;
 
-		public string ReadGlobalSettingString(string sectionName, string settingName, string defaultValue)
-		{
-			return ReadGlobalSettingString(sectionName, settingName, defaultValue, null, 0);
-		}
+                        object Res;
+                        if (typeof(T) == typeof(string))
+                                Res = Val;
+                        else if (typeof(T) == typeof(int))
+                                Res = Lfx.Types.Parsing.ParseInt(Val);
+                        else if (typeof(T) == typeof(decimal))
+                                Res = Lfx.Types.Parsing.ParseDecimal(Val);
+                        else if (typeof(T) == typeof(DateTime))
+                                Res = Lfx.Types.Parsing.ParseSqlDateTime(Val);
+                        else
+                                Res = null;
 
+                        return (T)Res;
+                }
+
+                // TODO: hacer private
                 public string ReadGlobalSettingString(string sectionName, string settingName, string defaultValue, string terminalName, int sucursal)
 		{
 			string CompleteSettingName = (sectionName==null||sectionName.Length==0?"":(sectionName+@".")) + settingName;
@@ -324,7 +327,7 @@ namespace Lfx.Config
 
 		public bool WriteGlobalSetting(string sectionName, string settingName, string stringValue, int branch)
 		{
-			string CurrentValue = ReadGlobalSettingString(sectionName, settingName, null, null, branch);
+			string CurrentValue = ReadGlobalSetting<string>(sectionName, settingName, null, null, branch);
 			string CompleteSettingName = (sectionName==null||sectionName.Length==0?"":(sectionName+@".")) + settingName;
 			if(CurrentValue == null) 
 			{
@@ -357,7 +360,7 @@ namespace Lfx.Config
 			if(terminalName == null || terminalName.Length == 0)
                                 terminalName = System.Environment.MachineName.ToUpperInvariant();
 
-                        string CurrentValue = ReadGlobalSettingString(sectionName, settingName, null, terminalName, 0);
+                        string CurrentValue = ReadGlobalSetting<string>(sectionName, settingName, null, terminalName, 0);
 			string CompleteSettingName = (sectionName==null||sectionName.Length==0?"":(sectionName+@".")) + settingName;
 			if(CurrentValue == null) 
 			{

@@ -194,6 +194,16 @@ namespace Lazaro
                                 }
                         }
 
+                        // Verificar si la versión de Lázaro que se está usando es muy antigua con respecto a la versión de la BD.
+                        DateTime VersionEstructura = Lfx.Types.Parsing.ParseSqlDateTime(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"));
+                        DateTime FechaLazaroExe = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).LastWriteTime;
+                        TimeSpan Diferencia = FechaLazaroExe - VersionEstructura;
+
+                        if (Diferencia.TotalDays < -7) {
+                                //Lázaro es más viejo que la bd por al menos 7 días
+                                Lfx.Workspace.Master.RunTime.Message("La versión de Lázaro que está utilizando es antigua. Por favor actualice su sistema urgentemente.");
+                        }
+
                         // Cargar todos los componentes en memoria
                         Lfx.Components.Manager.LoadAll();
 
@@ -440,7 +450,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                         }
 
                         // Configuro el nivel de aislación predeterminado
-                        Lfx.Data.DataBaseCache.DefaultCache.DefaultIsolationLevel = (Lfx.Data.IsolationLevels)(Enum.Parse(typeof(Lfx.Data.IsolationLevels), Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Datos.Aislacion", "Serializable")));
+                        Lfx.Data.DataBaseCache.DefaultCache.DefaultIsolationLevel = (Lfx.Data.IsolationLevels)(Enum.Parse(typeof(Lfx.Data.IsolationLevels), Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Datos.Aislacion", "Serializable")));
 
                         if (Lfx.Environment.SystemInformation.DesignMode == false) {
                                 // Si es necesario, actualizo la estructura de la base de datos
@@ -493,9 +503,9 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                         FormIngreso = null;
 
                         if (Lbl.Sys.Config.Actual.UsuarioConectado.Id > 0) {
-                                if (Lfx.Workspace.Master.MasterConnection.SlowLink == false && Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Backup.Tipo", "0") == "2") {
+                                if (Lfx.Workspace.Master.MasterConnection.SlowLink == false && Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Backup.Tipo", "0") == "2") {
                                         string FechaActual = System.DateTime.Now.ToString("yyyy-MM-dd");
-                                        string FechaBackup = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Backup.Ultimo", "");
+                                        string FechaBackup = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Backup.Ultimo", "");
                                         if (FechaActual != FechaBackup) {
                                                 int Articulos = Lfx.Workspace.Master.MasterConnection.FieldInt("SELECT COUNT(id_articulo) FROM articulos");
                                                 if (Articulos > 0) {
@@ -508,7 +518,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                 }
 
                                 // Mostrar qué hay de nuevo
-                                string FechaWhatsnew = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Usuario." + Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString(), "Whatsnew.Ultimo", "firsttime");
+                                string FechaWhatsnew = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Usuario." + Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString(), "Whatsnew.Ultimo", "firsttime");
                                 if (FechaWhatsnew == "firsttime") {
                                         // Primera vez que entra. No muestro qué hay de nuevo (TODO: pero podría darle una bienvenida)
                                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Usuario." + Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString(), "Whatsnew.Ultimo", System.DateTime.Now.ToString("yyyy-MM-dd"));

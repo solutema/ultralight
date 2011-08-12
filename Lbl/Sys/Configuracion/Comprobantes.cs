@@ -48,7 +48,7 @@ namespace Lbl.Sys.Configuracion
                 {
                         get
                         {
-                                return this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.ClientePredet", 0);
+                                return this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Documentos.ClientePredet", 0);
                         }
                 }
         }

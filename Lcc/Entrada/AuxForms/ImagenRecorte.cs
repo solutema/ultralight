@@ -52,7 +52,7 @@ namespace Lcc.Entrada.AuxForms
                 private System.Drawing.Point StartPoint = System.Drawing.Point.Empty;
                 private System.Drawing.Brush SelectionBrush = null;
                 private System.Drawing.Image m_Imagen = null;
-                private double SelectionRatio = 0;
+                private decimal SelectionRatio = 0;
                 private MouseActions MouseAction = MouseActions.None;
 
                 public ImagenRecorte()
@@ -180,7 +180,7 @@ namespace Lcc.Entrada.AuxForms
 
                 private void EntradaRatio_TextChanged(object sender, EventArgs e)
                 {
-                        this.SelectionRatio = Lfx.Types.Parsing.ParseDouble(EntradaRatio.TextKey);
+                        this.SelectionRatio = Lfx.Types.Parsing.ParseDecimal(EntradaRatio.TextKey);
                 }
 
                 private void BotonSinRecorte_Click(object sender, EventArgs e)

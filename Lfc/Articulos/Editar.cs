@@ -91,7 +91,7 @@ namespace Lfc.Articulos
                         if (this.HasWorkspace == false)
                                 return;
 
-                        if (EntradaCosto.ValueDouble < 0)
+                        if (EntradaCosto.ValueDecimal < 0)
                                 EntradaCosto.ErrorText = "El costo no debería ser menor que cero.";
                         else
                                 EntradaCosto.ErrorText = "";
@@ -124,10 +124,10 @@ namespace Lfc.Articulos
                                 IgnorarCostoTextChanged++;
                                 EntradaMargen.TextKey = "";
 
-                                if (EntradaCosto.ValueDouble == 0)
+                                if (EntradaCosto.ValueDecimal == 0)
                                         EntradaMargen.Text = "N/A";
                                 else
-                                        EntradaMargen.Text = "Otro (" + Lfx.Types.Formatting.FormatNumber(EntradaPvp.ValueDouble / EntradaCosto.ValueDouble * 100 - 100, this.Workspace.CurrentConfig.Moneda.DecimalesCosto) + "%)";
+                                        EntradaMargen.Text = "Otro (" + Lfx.Types.Formatting.FormatNumber(EntradaPvp.ValueDecimal / EntradaCosto.ValueDecimal * 100 - 100, this.Workspace.CurrentConfig.Moneda.DecimalesCosto) + "%)";
 
                                 IgnorarCostoTextChanged--;
                         }

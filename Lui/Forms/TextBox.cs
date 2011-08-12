@@ -237,22 +237,6 @@ namespace Lui.Forms
                 [EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public double ValueDouble
-                {
-                        get
-                        {
-                                return Lfx.Types.Parsing.ParseDouble(this.Text);
-                        }
-                        set
-                        {
-                                this.TextRaw = FormatearDatos(value);
-                        }
-                }
-
-
-                [EditorBrowsable(EditorBrowsableState.Never),
-                        Browsable(false),
-                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public decimal ValueDecimal
                 {
                         get

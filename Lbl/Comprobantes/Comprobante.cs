@@ -80,14 +80,14 @@ namespace Lbl.Comprobantes
                                                 this.SituacionDestino = Tipo.SituacionDestino;
 
                                         if (this.PV == 0) {
-                                                this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos." + Tipo.Nomenclatura + ".PV", 0);
+                                                this.PV = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Documentos." + Tipo.Nomenclatura + ".PV", 0);
                                                 if (this.PV /* still */ == 0) {
                                                         if (Tipo.EsFactura)
-                                                                this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.ABC.PV", 0);
+                                                                this.PV = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Documentos.ABC.PV", 0);
                                                         else if (Tipo.EsNotaCredito)
-                                                                this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.NC.PV", 0);
+                                                                this.PV = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Documentos.NC.PV", 0);
                                                         else if (Tipo.EsNotaDebito)
-                                                                this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.ND.PV", 0);
+                                                                this.PV = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Documentos.ND.PV", 0);
                                                 }
 
                                                 if (this.PV /* still */ == 0)
@@ -98,7 +98,7 @@ namespace Lbl.Comprobantes
                                                         this.PV = this.Connection.FieldInt("SELECT MIN(numero) FROM pvs WHERE CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.LetraSola + ",%' AND tipo>0");
 
                                                 if (this.PV /* still */ == 0)
-                                                        this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos.PV", 1);
+                                                        this.PV = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Documentos.PV", 1);
                                         }
                                 }
                         }

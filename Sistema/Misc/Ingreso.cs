@@ -50,7 +50,7 @@ namespace Lazaro.Misc
 
 		private void FormIngreso_Load(object sender, System.EventArgs e)
 		{
-                        int UltimoUsuario = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingInt(null, "Sistema.Ingreso.UltimoUsuario", 0);
+                        int UltimoUsuario = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>(null, "Sistema.Ingreso.UltimoUsuario", 0);
                         if (UltimoUsuario == 0 && Lfx.Data.DataBaseCache.DefaultCache.ServerName.ToUpperInvariant() == "LOCALHOST")
                                 // Si estoy en localhost, el usuario predeterminado es Administrador
                                 UltimoUsuario = 1;
@@ -62,7 +62,7 @@ namespace Lazaro.Misc
 		private void BotonAceptar_Click(object sender, System.EventArgs e)
 		{
                         if (EntradaUsuario.TextInt == 1 && Lfx.Environment.SystemInformation.DesignMode == false) {
-                                string[] EstacionesAdministrador = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSettingString("Sistema", "Ingreso.Administrador.Estaciones", "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                                string[] EstacionesAdministrador = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Ingreso.Administrador.Estaciones", "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                                 bool Puede = false;
                                 if (EstacionesAdministrador.Length == 0) {
                                         Puede = true;

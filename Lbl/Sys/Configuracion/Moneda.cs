@@ -55,7 +55,7 @@ namespace Lbl.Sys.Configuracion
                         get
                         {
                                 if (m_Decimales == -1)
-                                        m_Decimales = this.DataBase.Workspace.CurrentConfig.ReadGlobalSettingInt(null, "Sistema.Moneda.Decimales", 2);
+                                        m_Decimales = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<int>(null, "Sistema.Moneda.Decimales", 2);
                                 return m_Decimales;
                         }
                 }
@@ -66,7 +66,7 @@ namespace Lbl.Sys.Configuracion
                         get
                         {
                                 if (m_DecimalesCosto == -1)
-                                        m_DecimalesCosto = this.DataBase.Workspace.CurrentConfig.ReadGlobalSettingInt(null, "Sistema.Moneda.DecimalesCosto", this.Decimales);
+                                        m_DecimalesCosto = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<int>(null, "Sistema.Moneda.DecimalesCosto", this.Decimales);
                                 return m_DecimalesCosto;
                         }
                 }
@@ -77,7 +77,7 @@ namespace Lbl.Sys.Configuracion
                         get
                         {
                                 if (m_DecimalesFinal == -1)
-                                        m_DecimalesFinal = this.DataBase.Workspace.CurrentConfig.ReadGlobalSettingInt(null, "Sistema.Moneda.DecimalesFinal", this.Decimales);
+                                        m_DecimalesFinal = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<int>(null, "Sistema.Moneda.DecimalesFinal", this.Decimales);
                                 return m_DecimalesFinal;
                         }
                 }
@@ -88,7 +88,7 @@ namespace Lbl.Sys.Configuracion
                         get
                         {
                                 if (m_Redodeo == -1)
-                                        m_Redodeo = Lfx.Types.Parsing.ParseDecimal(this.DataBase.Workspace.CurrentConfig.ReadGlobalSettingString("", "Sistema.Moneda.Redondeo", "0"));
+                                        m_Redodeo = Lfx.Types.Parsing.ParseDecimal(this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<string>("", "Sistema.Moneda.Redondeo", "0"));
                                 return m_Redodeo;
                         }
                 }

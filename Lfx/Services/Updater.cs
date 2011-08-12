@@ -188,7 +188,7 @@ namespace Lfx.Services
                         Updating = true;
 
                         // Me fijo si ya hay alguien descargando las actualizaciones
-                        string FechaInicioActualizacion = this.DataBase.Workspace.CurrentConfig.ReadGlobalSettingString(null, "Sistema.Actualizaciones.InicioDescarga", string.Empty);
+                        string FechaInicioActualizacion = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<string>(null, "Sistema.Actualizaciones.InicioDescarga", string.Empty);
                         string FechaInicioActualizacionMax = Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.AddHours(2));
 
                         // Si hay alguien, pero está hace 4 horas o más, me pongo a descargar igual
@@ -196,7 +196,7 @@ namespace Lfx.Services
                                 this.DataBase.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.Actualizaciones.InicioDescarga", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "*");
                                 this.DataBase.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.Actualizaciones.EstacionDescarga", System.Environment.MachineName.ToUpperInvariant(), "*");
 
-                                string NivelActualizaciones = this.DataBase.Workspace.CurrentConfig.ReadGlobalSettingString(null, "Sistema.Actualizaciones.Nivel", "stable");
+                                string NivelActualizaciones = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<string>(null, "Sistema.Actualizaciones.Nivel", "stable");
                                 string UrlActualizaciones = @"http://www.sistemalazaro.com.ar/aslnlwc/" + NivelActualizaciones + "/";
 
                                 // formularioEstado.TextoOperacion = "Contactando al servidor...";

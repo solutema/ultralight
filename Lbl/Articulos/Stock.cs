@@ -189,7 +189,7 @@ namespace Lbl.Articulos
 			// Si se pasa un registro artículo como parmetro, devuelve el valor del
 			// De lo contrario, devuelve el nombre del campo
 			// Espero que no se preste a confusin
-			string CodPredet = workspace.CurrentConfig.ReadGlobalSettingString(null, "Sistema.Stock.CodigoPredet", "0");
+			string CodPredet = workspace.CurrentConfig.ReadGlobalSetting<string>(null, "Sistema.Stock.CodigoPredet", "0");
 
 			switch(CodPredet)
 			{

@@ -143,7 +143,7 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                return ConfigManager.ReadGlobalSettingInt("Sistema", "Empresa.Situacion", 2);
+                                return ConfigManager.ReadGlobalSetting<int>("Sistema", "Empresa.Situacion", 2);
                         }
                         set
                         {

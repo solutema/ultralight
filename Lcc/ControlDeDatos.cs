@@ -78,7 +78,7 @@ namespace Lcc
                 /// </summary>
                 public virtual void ActualizarControl()
                 {
-                        
+                        this.SetControlsChanged(this.Controls, false);
                 }
 
                 protected override void OnParentChanged(EventArgs e)

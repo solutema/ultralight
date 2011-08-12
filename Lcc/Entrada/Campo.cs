@@ -98,7 +98,7 @@ namespace Lcc.Entrada
                                         case DbTypes.Integer:
                                                 return Lfx.Types.Parsing.ParseInt(FieldData.Text);
                                         case DbTypes.Numeric:
-                                                return Lfx.Types.Parsing.ParseDouble(FieldData.Text);
+                                                return Lfx.Types.Parsing.ParseDecimal(FieldData.Text);
                                         case DbTypes.Currency:
                                                 return Lfx.Types.Parsing.ParseCurrency(FieldData.Text);
                                         case DbTypes.Date:

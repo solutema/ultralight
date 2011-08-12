@@ -74,12 +74,12 @@ namespace Lazaro.Misc.Config
 				ListaCodigos[System.Convert.ToInt32(Codigo["id_codigo"])] += System.Convert.ToString(Codigo["nombre"]) + "|" + System.Convert.ToString(Codigo["id_codigo"]);
 			}
 			EntradaArticulosCodigoPredet.SetData = ListaCodigos;
-			EntradaArticulosCodigoPredet.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.CodigoPredet", "*");
+			EntradaArticulosCodigoPredet.TextKey = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Stock.CodigoPredet", "*");
 
-			EntradaStockMultideposito.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.Multideposito", "0");
-			EntradaStockDepositoPredet.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.DepositoPredet", "0");
-			EntradaStockDepositoPredetSuc.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.DepositoPredet", "0");
-			EntradaStockDecimales.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Stock.Decimales", "0");
+			EntradaStockMultideposito.TextKey = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Stock.Multideposito", "0");
+			EntradaStockDepositoPredet.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Stock.DepositoPredet", "0");
+			EntradaStockDepositoPredetSuc.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Stock.DepositoPredet", "0");
+			EntradaStockDecimales.TextKey = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Stock.Decimales", "0");
 
                         EntradaEmpresaNombre.Text = Lbl.Sys.Config.Actual.Empresa.Nombre;
                         EntradaEmpresaRazonSocial.Text = Lbl.Sys.Config.Actual.Empresa.RazonSocial;
@@ -89,26 +89,27 @@ namespace Lazaro.Misc.Config
                                 EntradaEmpresaCuit.Text = Lbl.Sys.Config.Actual.Empresa.Cuit.ToString();
 			EntradaEmpresaSituacion.TextInt = this.Workspace.CurrentConfig.Empresa.SituacionTributaria;
                         EntradaEmpresaEmail.Text = Lbl.Sys.Config.Actual.Empresa.Email;
+                        EntradaEmpresaId.ValueInt = Lbl.Sys.Config.Actual.Empresa.Id;
 
-                        EntradaBackup.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Backup.Tipo", "0");
-                        EntradaModoPantalla.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Apariencia.ModoPantalla", "maximizado");
-                        EntradaAislacion.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Datos.Aislacion", "Serializable");
-                        EntradaActualizaciones.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Actualizaciones.Nivel", "stable");
+                        EntradaBackup.TextKey = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Backup.Tipo", "0");
+                        EntradaModoPantalla.TextKey = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Apariencia.ModoPantalla", "maximizado");
+                        EntradaAislacion.TextKey = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Datos.Aislacion", "Serializable");
+                        EntradaActualizaciones.TextKey = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Actualizaciones.Nivel", "stable");
 
-			EntradaPV.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.PV", "1");
-			EntradaPVABC.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.ABC.PV", "0");
-			EntradaPVNC.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.NC.PV", "0");
-			EntradaPVND.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.ND.PV", "0");
-			EntradaPVR.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.R.PV", "0");
-                        EntradaPVRC.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.RC.PV", "0");
+			EntradaPV.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Documentos.PV", "1");
+			EntradaPVABC.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Documentos.ABC.PV", "0");
+			EntradaPVNC.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Documentos.NC.PV", "0");
+			EntradaPVND.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Documentos.ND.PV", "0");
+			EntradaPVR.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Documentos.R.PV", "0");
+                        EntradaPVRC.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Documentos.RC.PV", "0");
 
-			EntradaClientePredet.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.ClientePredet", "");
-			EntradaFormaPagoPredet.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.FormaPagoPredet", "");
+			EntradaClientePredet.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Documentos.ClientePredet", "");
+			EntradaFormaPagoPredet.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Documentos.FormaPagoPredet", "");
 
-			EntradaCambiaPrecioComprob.TextKey = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Documentos.CambiaPrecioItemFactura", "1");
+			EntradaCambiaPrecioComprob.TextKey = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Documentos.CambiaPrecioItemFactura", "1");
 
-                        EntradaLimiteCredito.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Cuentas.LimiteCreditoPredet", "0");
-                        EntradaRedondeo.Text = this.Workspace.CurrentConfig.ReadGlobalSettingString("Sistema", "Moneda.Redondeo", "0.05");
+                        EntradaLimiteCredito.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Cuentas.LimiteCreditoPredet", "0");
+                        EntradaRedondeo.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Moneda.Redondeo", "0.05");
 		}
 
 
@@ -146,6 +147,8 @@ namespace Lazaro.Misc.Config
                                 Lbl.Sys.Config.Actual.Empresa.Cuit = null;
 			this.Workspace.CurrentConfig.Empresa.SituacionTributaria = EntradaEmpresaSituacion.TextInt;
                         Lbl.Sys.Config.Actual.Empresa.Email = EntradaEmpresaEmail.Text;
+                        Lbl.Sys.Config.Actual.Empresa.Id = EntradaEmpresaId.ValueInt;
+
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Backup.Tipo", EntradaBackup.TextKey, System.Environment.MachineName.ToUpperInvariant());
                         if (EntradaModoPantalla.TextKey == "*")
                                 this.Workspace.CurrentConfig.DeleteGlobalSetting("Sistema", "Apariencia.ModoPantalla", System.Environment.MachineName.ToUpperInvariant());

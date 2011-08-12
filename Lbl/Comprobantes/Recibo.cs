@@ -95,7 +95,7 @@ namespace Lbl.Comprobantes
                         if (this.Tipo == null)
                                 this.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra["RC"];
                         
-                        this.PV = this.Workspace.CurrentConfig.ReadGlobalSettingInt("Sistema", "Documentos." + this.Tipo.Nomenclatura + ".PV", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
+                        this.PV = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Documentos." + this.Tipo.Nomenclatura + ".PV", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
                         this.Vendedor = new Personas.Persona(this.Connection, Lbl.Sys.Config.Actual.UsuarioConectado.Id);
                 }
 
@@ -492,9 +492,11 @@ namespace Lbl.Comprobantes
                 public void Anular()
                 {
                         if (this.Existe && this.Anulado == false) {
+                                this.Estado = 90;
+
                                 // Marco el recibo como anulado
                                 qGen.Update Act = new qGen.Update(this.TablaDatos);
-                                Act.Fields.AddWithValue("estado", 90);
+                                Act.Fields.AddWithValue("estado", this.Estado);
                                 Act.WhereClause = new qGen.Where(this.CampoId, this.Id);
                                 this.Connection.Execute(Act);
 
