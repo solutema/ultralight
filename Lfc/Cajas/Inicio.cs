@@ -75,7 +75,7 @@ namespace Lfc.Cajas
                         this.FormFields["concepto"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.TotalName;
                         this.FormFields["importe"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
 
-                        this.OrderBy = "cajas_movim.id_movim";
+                        this.OrderBy = "cajas_movim.id_movim DESC";
 
                         if (this.HasWorkspace) {
                                 this.Caja = new Lbl.Cajas.Caja(this.Connection, 999);
