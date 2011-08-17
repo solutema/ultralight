@@ -72,9 +72,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.HabilitarImprimir = true;
                         this.HabilitarBusqueda = false;
                         this.HabilitarCrear = false;
-
-                        if (this.HasWorkspace)
-                                m_Sucursal = this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada;
                 }
 
 
