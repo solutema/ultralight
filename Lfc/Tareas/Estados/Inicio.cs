@@ -37,22 +37,26 @@ namespace Lfc.Tareas.Estados
 	{
                 public Inicio()
                 {
-                        this.ElementoTipo = typeof(Lbl.Tareas.Estado);
-
-                        this.NombreTabla = "tickets_estados";
-                        this.KeyField = new Lfx.Data.FormField("tickets_estados.id_ticket_estado", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64);
-
-                        Dictionary<int, string> EstadosTickets = new Dictionary<int, string>()
+                        /* Dictionary<int, string> EstadosTickets = new Dictionary<int, string>()
                         {
                                 {0, "Inactivo"},
                                 {1, "Activo"}
-                        };
+                        }; */
 
-                        this.FormFields = new Lfx.Data.FormFieldCollection()
-			{
-				new Lfx.Data.FormField("tickets_estados.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
-			};
-                        this.OrderBy = "tickets_estados.nombre";
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Tareas.Estado),
+
+                                NombreTabla = "tickets_estados",
+                                KeyField = new Lfx.Data.FormField("tickets_estados.id_ticket_estado", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
+
+                                FormFields = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("tickets_estados.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+			        },
+
+                                OrderBy = "tickets_estados.nombre"
+                        };
                         this.HabilitarFiltrar = true;
                 }
 	}

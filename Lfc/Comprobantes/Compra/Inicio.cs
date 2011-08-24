@@ -46,31 +46,34 @@ namespace Lfc.Comprobantes.Compra
 
         	public Inicio()
 		{
-                        this.ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteDeCompra);
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteDeCompra),
 
-			// agregar código de constructor después de llamar a InitializeComponent
-                        this.NombreTabla = "comprob";
-			this.Joins.Add(new qGen.Join("comprob_detalle", "comprob.id_comprob=comprob_detalle.id_comprob"));
-                        this.KeyField = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        this.GroupBy = KeyField;
-                        this.OrderBy = "comprob.fecha DESC";
-                        this.FormFields = new Lfx.Data.FormFieldCollection()
-			{
-				new Lfx.Data.FormField("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 48),
-				new Lfx.Data.FormField("comprob.pv", "PV", Lfx.Data.InputFieldTypes.Integer, 80),
-				new Lfx.Data.FormField("comprob.numero", "Número", Lfx.Data.InputFieldTypes.Integer, 120),
-				new Lfx.Data.FormField("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
-				new Lfx.Data.FormField("comprob.id_cliente", "Proveedor", Lfx.Data.InputFieldTypes.Relation, 160),
-				new Lfx.Data.FormField("comprob.total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
-                                new Lfx.Data.FormField("comprob.total-comprob.cancelado AS pendiente", "Pendiente", Lfx.Data.InputFieldTypes.Currency, 96),
-				new Lfx.Data.FormField("comprob.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 0),
-                                new Lfx.Data.FormField("comprob.id_formapago", "Pago", Lfx.Data.InputFieldTypes.Text, 0)
-			};
-                        this.ExtraSearchFields = new Lfx.Data.FormFieldCollection()
-			{
-				new Lfx.Data.FormField("comprob_detalle.series", "Números de Serie", Lfx.Data.InputFieldTypes.Text, 0),
-				new Lfx.Data.FormField("comprob.obs", "Observaciones", Lfx.Data.InputFieldTypes.Memo, 0)
-			};
+                                NombreTabla = "comprob",
+                                Joins = new qGen.JoinCollection() { new qGen.Join("comprob_detalle", "comprob.id_comprob=comprob_detalle.id_comprob") },
+                                KeyField = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                GroupBy = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                OrderBy = "comprob.fecha DESC",
+                                FormFields = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 48),
+				        new Lfx.Data.FormField("comprob.pv", "PV", Lfx.Data.InputFieldTypes.Integer, 80),
+				        new Lfx.Data.FormField("comprob.numero", "Número", Lfx.Data.InputFieldTypes.Integer, 120),
+				        new Lfx.Data.FormField("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
+				        new Lfx.Data.FormField("comprob.id_cliente", "Proveedor", Lfx.Data.InputFieldTypes.Relation, 160),
+				        new Lfx.Data.FormField("comprob.total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
+                                        new Lfx.Data.FormField("comprob.total-comprob.cancelado AS pendiente", "Pendiente", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lfx.Data.FormField("comprob.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 0),
+                                        new Lfx.Data.FormField("comprob.id_formapago", "Pago", Lfx.Data.InputFieldTypes.Text, 0)
+			        },
+                                
+                                ExtraSearchFields = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("comprob_detalle.series", "Números de Serie", Lfx.Data.InputFieldTypes.Text, 0),
+				        new Lfx.Data.FormField("comprob.obs", "Observaciones", Lfx.Data.InputFieldTypes.Memo, 0)
+			        }
+                        };
 
                         this.Contadores.Add(new Contador("Total", Lui.Forms.DataTypes.Currency));
 

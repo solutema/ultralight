@@ -41,17 +41,20 @@ namespace Lfc.Comprobantes.Impresoras
 	{
 		public Inicio()
 		{
-                        this.ElementoTipo = typeof(Lbl.Impresion.Impresora);
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Impresion.Impresora),
 
-			this.NombreTabla = "impresoras";
-                        this.OrderBy = "nombre";
-                        this.KeyField = new Lfx.Data.FormField("id_impresora", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        this.FormFields = new Lfx.Data.FormFieldCollection()
-			{
-				new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
-                                new Lfx.Data.FormField("dispositivo", "Dispositivo", Lfx.Data.InputFieldTypes.Text, 240),
-                                new Lfx.Data.FormField("ubicacion", "Ubicacion", Lfx.Data.InputFieldTypes.Text, 240)
-			};
+                                NombreTabla = "impresoras",
+                                OrderBy = "nombre",
+                                KeyField = new Lfx.Data.FormField("id_impresora", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                FormFields = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
+                                        new Lfx.Data.FormField("dispositivo", "Dispositivo", Lfx.Data.InputFieldTypes.Text, 240),
+                                        new Lfx.Data.FormField("ubicacion", "Ubicacion", Lfx.Data.InputFieldTypes.Text, 240)
+			        }
+                        };
 		}
 	}
 }

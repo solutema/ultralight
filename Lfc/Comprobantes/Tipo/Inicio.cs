@@ -41,17 +41,20 @@ namespace Lfc.Comprobantes.Tipo
 	{
 		public Inicio()
 		{
-                        this.ElementoTipo = typeof(Lbl.Comprobantes.Tipo);
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Comprobantes.Tipo),
 
-			this.NombreTabla = "documentos_tipos";
-                        this.OrderBy = "nombre";
-                        this.KeyField = new Lfx.Data.FormField("id_tipo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        this.FormFields = new Lfx.Data.FormFieldCollection()
-			{
-				new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
-				new Lfx.Data.FormField("letra", "Letra", Lfx.Data.InputFieldTypes.Text, 60),
-				new Lfx.Data.FormField("mueve_stock", "Mueve Stock", Lfx.Data.InputFieldTypes.Bool, 120)
-			};
+                                NombreTabla = "documentos_tipos",
+                                OrderBy = "nombre",
+                                KeyField = new Lfx.Data.FormField("id_tipo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                FormFields = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
+				        new Lfx.Data.FormField("letra", "Letra", Lfx.Data.InputFieldTypes.Text, 60),
+				        new Lfx.Data.FormField("mueve_stock", "Mueve Stock", Lfx.Data.InputFieldTypes.Bool, 120)
+			        }
+                        };
 		}
 	}
 }

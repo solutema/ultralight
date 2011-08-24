@@ -75,8 +75,7 @@ namespace Lbl.Personas
                         this.SituacionTributaria = new Lbl.Impuestos.SituacionTributaria(this.Connection, 1);
                         this.Localidad = new Lbl.Entidades.Localidad(this.Connection, this.Workspace.CurrentConfig.Empresa.IdLocalidad);
                         this.Estado = 1;
-                        this.Contrasena = new System.Random().Next(1000, 9999).ToString();
-                        this.ContrasenaSal = null;
+                        //this.Contrasena = new System.Random().Next(100000, 999999).ToString();
                 }
 
 
@@ -145,6 +144,15 @@ namespace Lbl.Personas
                         Comando.Fields.AddWithValue("numerocuenta", this.NumeroCuenta);
                         Comando.Fields.AddWithValue("cbu", this.Cbu);
                         Comando.Fields.AddWithValue("estadocredito", this.EstadoCredito);
+
+                        if (this.Existe == false) {
+                                // Si estoy creando una persona, le asigno una contraseña aleatoria de 6 digitos
+                                string Contrasena = new System.Random().Next(100000, 999999).ToString();
+                                string Sal = Lbl.Personas.Usuario.GenerarSal();
+                                Comando.Fields.AddWithValue("contrasena", Lfx.Types.Strings.SHA256(Contrasena + Sal));
+                                Comando.Fields.AddWithValue("contrasena_sal", Sal);
+                                Comando.Fields.AddWithValue("contrasena_fecha", qGen.SqlFunctions.Now);
+                        }
 
                         this.AgregarTags(Comando);
 
@@ -417,7 +425,7 @@ namespace Lbl.Personas
                         }
                 }
 
-                public string Contrasena
+                /* public string Contrasena
                 {
                         get
                         {
@@ -440,7 +448,7 @@ namespace Lbl.Personas
                         {
                                 this.Registro["contrasena_sal"] = value;
                         }
-                }
+                } */
 
                 public Lfx.Types.LDateTime FechaNacimiento
 		{

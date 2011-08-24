@@ -45,20 +45,6 @@ namespace Lfc.Cupones.Cupones
 
                 public Inicio()
                 {
-                        this.ElementoTipo = typeof(Lbl.Pagos.Cupon);
-
-                        InitializeComponent();
-
-                        this.HabilitarBusqueda = false;
-                        this.HabilitarCrear = false;
-                        this.HabilitarFiltrar = true;
-                        this.CheckBoxes = true;
-
-                        this.NombreTabla = "tarjetas_cupones";
-                        this.Joins.Add(new qGen.Join("formaspago", "tarjetas_cupones.id_tarjeta=formaspago.id_formapago"));
-                        this.Joins.Add(new qGen.Join("personas", "tarjetas_cupones.id_cliente=personas.id_persona"));
-                        this.KeyField = new Lfx.Data.FormField("tarjetas_cupones.id_cupon", "Cód.", Lfx.Data.InputFieldTypes.Serial, 28);
-
                         Lbl.ColeccionCodigoDetalle SetEstados = new Lbl.ColeccionCodigoDetalle()
                         {
                                 {(int)Lbl.Pagos.EstadosCupones.Acreditado, "Acreditado"},
@@ -68,16 +54,31 @@ namespace Lfc.Cupones.Cupones
                                 {(int)Lbl.Pagos.EstadosCupones.SinPresentar, "Sin Presentar"}
 
                         };
-                        this.FormFields = new Lfx.Data.FormFieldCollection()
-			{
-                                new Lfx.Data.FormField("tarjetas_cupones.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 240),
-                                new Lfx.Data.FormField("formaspago.nombre", "Tarjeta", Lfx.Data.InputFieldTypes.Text, 240),
-				new Lfx.Data.FormField("tarjetas_cupones.numero", "Cupón", Lfx.Data.InputFieldTypes.Text, 100),
-                                new Lfx.Data.FormField("tarjetas_cupones.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 100),
-				new Lfx.Data.FormField("tarjetas_cupones.estado", "Estado", 120, SetEstados),
-				new Lfx.Data.FormField("tarjetas_cupones.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 120)
-			};
-                        this.OrderBy = "tarjetas_cupones.id_cupon DESC";
+
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Pagos.Cupon),
+                                NombreTabla = "tarjetas_cupones",
+                                Joins = new qGen.JoinCollection() { new qGen.Join("formaspago", "tarjetas_cupones.id_tarjeta=formaspago.id_formapago"), new qGen.Join("personas", "tarjetas_cupones.id_cliente=personas.id_persona") },
+                                KeyField = new Lfx.Data.FormField("tarjetas_cupones.id_cupon", "Cód.", Lfx.Data.InputFieldTypes.Serial, 28),
+
+                                FormFields = new Lfx.Data.FormFieldCollection()
+			        {
+                                        new Lfx.Data.FormField("tarjetas_cupones.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 240),
+                                        new Lfx.Data.FormField("formaspago.nombre", "Tarjeta", Lfx.Data.InputFieldTypes.Text, 240),
+				        new Lfx.Data.FormField("tarjetas_cupones.numero", "Cupón", Lfx.Data.InputFieldTypes.Text, 100),
+                                        new Lfx.Data.FormField("tarjetas_cupones.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 100),
+				        new Lfx.Data.FormField("tarjetas_cupones.estado", "Estado", 120, SetEstados),
+				        new Lfx.Data.FormField("tarjetas_cupones.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 120)
+			        },
+                                OrderBy = "tarjetas_cupones.id_cupon DESC"
+                        };
+
+
+                        this.HabilitarBusqueda = false;
+                        this.HabilitarCrear = false;
+                        this.HabilitarFiltrar = true;
+                        this.CheckBoxes = true;
 
                         this.Contadores.Add(new Contador("Presentados", Lui.Forms.DataTypes.Currency));
                         this.Contadores.Add(new Contador("SinPresentar", Lui.Forms.DataTypes.Currency));

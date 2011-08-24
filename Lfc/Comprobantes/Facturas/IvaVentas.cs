@@ -41,30 +41,32 @@ namespace Lfc.Comprobantes.Facturas
 
                 public IvaVentas()
                 {
-                        this.ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteFacturable);
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteFacturable),
 
-                        this.NombreTabla = "comprob";
-                        this.KeyField = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        this.Joins.Add(new qGen.Join("personas", "comprob.id_cliente=personas.id_persona"));
-                        this.Joins.Add(new qGen.Join("situaciones", "personas.id_situacion=situaciones.id_situacion"));
-                        this.FormFields = new Lfx.Data.FormFieldCollection()
-			{
-				new Lfx.Data.FormField("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
-				new Lfx.Data.FormField("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 40),
-				new Lfx.Data.FormField("CONCAT(LPAD(comprob.pv, 4, '0'), '-', LPAD(comprob.numero, 8, '0')) AS numero", "Número", Lfx.Data.InputFieldTypes.Text, 140),
-				new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 300),
-				new Lfx.Data.FormField("personas.cuit", "CUIT", Lfx.Data.InputFieldTypes.Text, 140),
-				new Lfx.Data.FormField("situaciones.nombrecorto AS situacion", "Cond. IVA", Lfx.Data.InputFieldTypes.Text, 100),
-				new Lfx.Data.FormField("(comprob.total-comprob.iva)*(1-anulada) AS gravado", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
-                                new Lfx.Data.FormField("comprob.iva*(1-anulada) AS iva", "IVA", Lfx.Data.InputFieldTypes.Currency, 96),
-				new Lfx.Data.FormField("comprob.total*(1-anulada) AS total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
-				new Lfx.Data.FormField("comprob.anulada", "Anulada", Lfx.Data.InputFieldTypes.Bool, 0),                                
-			};
+                                NombreTabla = "comprob",
+                                KeyField = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                Joins = new qGen.JoinCollection() { new qGen.Join("personas", "comprob.id_cliente=personas.id_persona"), new qGen.Join("situaciones", "personas.id_situacion=situaciones.id_situacion") },
+                                FormFields = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
+				        new Lfx.Data.FormField("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 40),
+				        new Lfx.Data.FormField("CONCAT(LPAD(comprob.pv, 4, '0'), '-', LPAD(comprob.numero, 8, '0')) AS numero", "Número", Lfx.Data.InputFieldTypes.Text, 140),
+				        new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 300),
+				        new Lfx.Data.FormField("personas.cuit", "CUIT", Lfx.Data.InputFieldTypes.Text, 140),
+				        new Lfx.Data.FormField("situaciones.nombrecorto AS situacion", "Cond. IVA", Lfx.Data.InputFieldTypes.Text, 100),
+				        new Lfx.Data.FormField("(comprob.total-comprob.iva)*(1-anulada) AS gravado", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
+                                        new Lfx.Data.FormField("comprob.iva*(1-anulada) AS iva", "IVA", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lfx.Data.FormField("comprob.total*(1-anulada) AS total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lfx.Data.FormField("comprob.anulada", "Anulada", Lfx.Data.InputFieldTypes.Bool, 0),                                
+			        },
 
-                        this.FormFields["gravado"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
-                        this.FormFields["total"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+                                OrderBy = "comprob.pv, comprob.numero"
+                        };
 
-                        this.OrderBy = "comprob.pv, comprob.numero";
+                        this.Definicion.FormFields["gravado"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+                        this.Definicion.FormFields["total"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
 
                         this.Contadores.Add(new Lfc.Contador("Total", Lui.Forms.DataTypes.Currency));
 
@@ -83,7 +85,7 @@ namespace Lfc.Comprobantes.Facturas
                                 using (Lfc.Comprobantes.Filtros FormFiltros = new Lfc.Comprobantes.Filtros()) {
                                         FormFiltros.Connection = this.Connection;
                                         FormFiltros.EntradaTipo.TemporaryReadOnly = true;
-                                        FormFiltros.EntradaTipo.TextKey = this.ElementoTipo.ToString();
+                                        FormFiltros.EntradaTipo.TextKey = this.Definicion.ElementoTipo.ToString();
                                         FormFiltros.EntradaPv.Text = m_PV.ToString();
                                         FormFiltros.EntradaLetra.TextKey = m_Letra;
                                         FormFiltros.EntradaSucursal.TextInt = m_Sucursal;
@@ -107,7 +109,7 @@ namespace Lfc.Comprobantes.Facturas
                                                 m_Fecha = FormFiltros.EntradaFechas.Rango;
                                                 m_Anuladas = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaAnuladas.TextKey);
                                                 m_PV = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaPv.Text);
-                                                this.ElementoTipo = Lbl.Instanciador.InferirTipo(FormFiltros.EntradaTipo.TextKey);
+                                                this.Definicion.ElementoTipo = Lbl.Instanciador.InferirTipo(FormFiltros.EntradaTipo.TextKey);
                                                 m_Letra = FormFiltros.EntradaLetra.TextKey;
 
                                                 this.RefreshList();
@@ -142,7 +144,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.CustomFilters.Clear();
                         this.CustomFilters.AddWithValue("compra", 0);
 
-                        switch (this.ElementoTipo.ToString()) {
+                        switch (this.Definicion.ElementoTipo.ToString()) {
                                 case "Lbl.Comprobantes.NotaDeCredito":
                                         if (m_Letra == "*")
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "NCA", "NCB", "NCC", "NCE", "NCM" });
@@ -158,7 +160,7 @@ namespace Lfc.Comprobantes.Facturas
                                         break;
 
                                 case "Lbl.Comprobantes.Factura":
-                                        this.FormFields["pendiente"].Visible = true;
+                                        this.Definicion.FormFields["pendiente"].Visible = true;
                                         if (m_Letra == "*")
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "FA", "FB", "FC", "FE", "FM" });
                                         else
@@ -185,7 +187,7 @@ namespace Lfc.Comprobantes.Facturas
                                         break;
 
                                 default:
-                                        throw new System.NotImplementedException("No se reconoce el tipo de comprobante " + this.ElementoTipo.ToString());
+                                        throw new System.NotImplementedException("No se reconoce el tipo de comprobante " + this.Definicion.ElementoTipo.ToString());
                         }
 
                         if (m_Sucursal > 0)

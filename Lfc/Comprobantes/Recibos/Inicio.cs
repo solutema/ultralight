@@ -43,24 +43,27 @@ namespace Lfc.Comprobantes.Recibos
 
                 public Inicio()
                 {
-                        this.ElementoTipo = typeof(Lbl.Comprobantes.ReciboDeCobro);
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Comprobantes.ReciboDeCobro),
 
-                        this.NombreTabla = "recibos";
-                        this.Joins.Add(new qGen.Join("personas", "recibos.id_cliente=personas.id_persona"));
-                        this.KeyField = new Lfx.Data.FormField("recibos.id_recibo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        this.OrderBy = "recibos.fecha DESC";
-                        this.FormFields = new Lfx.Data.FormFieldCollection()
-			{
-                                new Lfx.Data.FormField("recibos.pv", "PV", Lfx.Data.InputFieldTypes.Integer, 28),
-				new Lfx.Data.FormField("recibos.numero", "Número", Lfx.Data.InputFieldTypes.Integer, 96),
-				new Lfx.Data.FormField("recibos.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
-				new Lfx.Data.FormField("recibos.total", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
-				new Lfx.Data.FormField("0", "Facturas", Lfx.Data.InputFieldTypes.Text, 160),
-				new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 240),
-				new Lfx.Data.FormField("recibos.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
-				new Lfx.Data.FormField("recibos.obs", "Obs.", Lfx.Data.InputFieldTypes.Memo, 320),
-                                new Lfx.Data.FormField("recibos.estado", "Estado", Lfx.Data.InputFieldTypes.Integer, 0)
-			};
+                                NombreTabla = "recibos",
+                                Joins = new qGen.JoinCollection() { new qGen.Join("personas", "recibos.id_cliente=personas.id_persona") },
+                                KeyField = new Lfx.Data.FormField("recibos.id_recibo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                OrderBy = "recibos.fecha DESC",
+                                FormFields = new Lfx.Data.FormFieldCollection()
+			        {
+                                        new Lfx.Data.FormField("recibos.pv", "PV", Lfx.Data.InputFieldTypes.Integer, 28),
+				        new Lfx.Data.FormField("recibos.numero", "Número", Lfx.Data.InputFieldTypes.Integer, 96),
+				        new Lfx.Data.FormField("recibos.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
+				        new Lfx.Data.FormField("recibos.total", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lfx.Data.FormField("0", "Facturas", Lfx.Data.InputFieldTypes.Text, 160),
+				        new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 240),
+				        new Lfx.Data.FormField("recibos.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
+				        new Lfx.Data.FormField("recibos.obs", "Obs.", Lfx.Data.InputFieldTypes.Memo, 320),
+                                        new Lfx.Data.FormField("recibos.estado", "Estado", Lfx.Data.InputFieldTypes.Integer, 0)
+			        }
+                        };
 
                         this.Contadores.Add(new Contador("Total", Lui.Forms.DataTypes.Currency, "$", null));
 
@@ -84,14 +87,14 @@ namespace Lfc.Comprobantes.Recibos
                 {
                         get
                         {
-                                return this.ElementoTipo == typeof(Lbl.Comprobantes.ReciboDePago);
+                                return this.Definicion.ElementoTipo == typeof(Lbl.Comprobantes.ReciboDePago);
                         }
                         set
                         {
                                 if (value)
-                                        this.ElementoTipo = typeof(Lbl.Comprobantes.ReciboDePago);
+                                        this.Definicion.ElementoTipo = typeof(Lbl.Comprobantes.ReciboDePago);
                                 else
-                                        this.ElementoTipo = typeof(Lbl.Comprobantes.ReciboDeCobro);
+                                        this.Definicion.ElementoTipo = typeof(Lbl.Comprobantes.ReciboDeCobro);
                         }
                 }
 

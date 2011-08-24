@@ -42,7 +42,7 @@ namespace Lfc.Sucursales
 	{
 		public Editar()
 		{
-                        this.ElementoTipo = typeof(Lbl.Entidades.Sucursal);
+                        ElementoTipo = typeof(Lbl.Entidades.Sucursal);
 
 			InitializeComponent();
 		}

@@ -47,15 +47,6 @@ namespace Lfc.Bancos.Cheques
 
                 public Inicio()
                 {
-                        this.ElementoTipo = typeof(Lbl.Bancos.Cheque);
-
-                        InitializeComponent();
-
-                        this.NombreTabla = "bancos_cheques";
-                        this.KeyField = new Lfx.Data.FormField("bancos_cheques.id_cheque", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20);
-                        this.OrderBy = "bancos_cheques.fecha DESC";
-                        this.Joins.Add(new qGen.Join("bancos", "bancos_cheques.id_banco=bancos.id_banco"));
-
                         Lbl.ColeccionCodigoDetalle EstadosCheques;
                         if (m_Emitidos) {
                                 EstadosCheques = new Lbl.ColeccionCodigoDetalle()
@@ -77,18 +68,28 @@ namespace Lfc.Bancos.Cheques
                                 };
                         }
 
-                        this.FormFields = new Lfx.Data.FormFieldCollection()
-			{
-				new Lfx.Data.FormField("bancos_cheques.numero", "Número", Lfx.Data.InputFieldTypes.Text, 120),
-				new Lfx.Data.FormField("bancos_cheques.fechaemision", "Fecha Emision", Lfx.Data.InputFieldTypes.Date, 96),
-				new Lfx.Data.FormField("bancos_cheques.emitidopor", "Emitido por", Lfx.Data.InputFieldTypes.Text, 120),
-				new Lfx.Data.FormField("bancos_cheques.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
-				new Lfx.Data.FormField("bancos_cheques.fechacobro", "Fecha de Cobro", Lfx.Data.InputFieldTypes.Date, 96),
-				new Lfx.Data.FormField("bancos_cheques.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 160),
-				new Lfx.Data.FormField("bancos.nombre", "Banco", Lfx.Data.InputFieldTypes.Text, 120),
-				new Lfx.Data.FormField("bancos_cheques.estado", "Estado", 96, EstadosCheques),
-                                new Lfx.Data.FormField("bancos_cheques.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 320)
-			};
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Bancos.Cheque),
+
+                                NombreTabla = "bancos_cheques",
+                                KeyField = new Lfx.Data.FormField("bancos_cheques.id_cheque", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20),
+                                OrderBy = "bancos_cheques.fecha DESC",
+                                Joins = new qGen.JoinCollection() { new qGen.Join("bancos", "bancos_cheques.id_banco=bancos.id_banco") },
+
+                                FormFields = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("bancos_cheques.numero", "Número", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lfx.Data.FormField("bancos_cheques.fechaemision", "Fecha Emision", Lfx.Data.InputFieldTypes.Date, 96),
+				        new Lfx.Data.FormField("bancos_cheques.emitidopor", "Emitido por", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lfx.Data.FormField("bancos_cheques.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lfx.Data.FormField("bancos_cheques.fechacobro", "Fecha de Cobro", Lfx.Data.InputFieldTypes.Date, 96),
+				        new Lfx.Data.FormField("bancos_cheques.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 160),
+				        new Lfx.Data.FormField("bancos.nombre", "Banco", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lfx.Data.FormField("bancos_cheques.estado", "Estado", 96, EstadosCheques),
+                                        new Lfx.Data.FormField("bancos_cheques.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 320)
+			        }
+                        };
 
                         this.Contadores.Add(new Contador("Total", Lui.Forms.DataTypes.Currency));
                         this.Contadores.Add(new Contador("Sin Cobrar", Lui.Forms.DataTypes.Currency));

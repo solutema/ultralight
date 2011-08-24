@@ -506,7 +506,7 @@ namespace Lbl.Comprobantes
                                 this.Numerar(false);
                         }
 
-                        if (this.Fecha == null || this.Fecha.Year == 1) {
+                        if (this.Fecha.Year == 1) {
                                 Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                         } else {
                                 Comando.Fields.AddWithValue("fecha", this.Fecha);

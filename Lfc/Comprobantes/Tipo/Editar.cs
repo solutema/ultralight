@@ -41,7 +41,7 @@ namespace Lfc.Comprobantes.Tipo
 	{
 		public Editar()
 		{
-                        this.ElementoTipo = typeof(Lbl.Comprobantes.Tipo);
+                        ElementoTipo = typeof(Lbl.Comprobantes.Tipo);
 
                         InitializeComponent();
 		}

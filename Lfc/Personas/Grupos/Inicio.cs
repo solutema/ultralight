@@ -41,17 +41,20 @@ namespace Lfc.Personas.Grupos
 	{
 		public Inicio()
 		{
-                        this.ElementoTipo = typeof(Lbl.Personas.Grupo);
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Personas.Grupo),
 
-			this.NombreTabla = "personas_grupos";
-                        this.KeyField = new Lfx.Data.FormField("id_grupo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        this.OrderBy = "parent, nombre";
-                        this.FormFields = new Lfx.Data.FormFieldCollection()
-			{
-				new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
-				new Lfx.Data.FormField("descuento", "Descuento", Lfx.Data.InputFieldTypes.Numeric, 320),
-                                new Lfx.Data.FormField("parent", "Parent", Lfx.Data.InputFieldTypes.Integer, 0),
-			};
+                                NombreTabla = "personas_grupos",
+                                KeyField = new Lfx.Data.FormField("id_grupo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                OrderBy = "parent, nombre",
+                                FormFields = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+				        new Lfx.Data.FormField("descuento", "Descuento", Lfx.Data.InputFieldTypes.Numeric, 320),
+                                        new Lfx.Data.FormField("parent", "Parent", Lfx.Data.InputFieldTypes.Integer, 0),
+			        }
+                        };
 		}
 	}
 }

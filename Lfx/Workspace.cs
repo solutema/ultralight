@@ -296,7 +296,7 @@ namespace Lfx
                         try {
                                 Lfx.Workspace.Master.MasterConnection.FieldString("SELECT nombre FROM sys_config");
                                 return true;
-                        } catch (Exception ex) {
+                        } catch {
                                 return false;
                         }
                 }

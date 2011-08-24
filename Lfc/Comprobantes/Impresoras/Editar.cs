@@ -41,7 +41,7 @@ namespace Lfc.Comprobantes.Impresoras
 	{
 		public Editar()
 		{
-                        this.ElementoTipo = typeof(Lbl.Impresion.Impresora);
+                        ElementoTipo = typeof(Lbl.Impresion.Impresora);
 
                         InitializeComponent();
 		}

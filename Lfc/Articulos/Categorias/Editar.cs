@@ -42,7 +42,7 @@ namespace Lfc.Articulos.Categorias
         {
                 public Editar()
                 {
-                        this.ElementoTipo = typeof(Lbl.Articulos.Categoria);
+                        ElementoTipo = typeof(Lbl.Articulos.Categoria);
 
                         InitializeComponent();
                 }

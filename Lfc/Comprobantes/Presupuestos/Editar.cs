@@ -42,7 +42,7 @@ namespace Lfc.Comprobantes.Presupuestos
 	{
                 public Editar()
                 {
-                        this.ElementoTipo = typeof(Lbl.Comprobantes.Presupuesto);
+                        ElementoTipo = typeof(Lbl.Comprobantes.Presupuesto);
 
                         InitializeComponent();
                 }

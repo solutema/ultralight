@@ -83,9 +83,9 @@ namespace Lfc
 
                 public virtual Lfx.Types.OperationResult OnDelete(Lbl.ListaIds itemIds)
                 {
-                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Eliminar)) {
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Definicion.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Eliminar)) {
                                 foreach (int itemId in itemIds) {
-                                        this.Connection.Tables[this.NombreTabla].FastRows.RemoveFromCache(itemId);
+                                        this.Connection.Tables[this.Definicion.NombreTabla].FastRows.RemoveFromCache(itemId);
                                 }
 
                                 return new Lfx.Types.SuccessOperationResult();
@@ -113,7 +113,7 @@ namespace Lfc
 
                 public virtual Lbl.IElementoDeDatos Crear()
                 {
-                        Lbl.IElementoDeDatos El = Lbl.Instanciador.Instanciar(this.ElementoTipo, this.Workspace.GetNewConnection("Crear " + this.ElementoTipo.ToString()));
+                        Lbl.IElementoDeDatos El = Lbl.Instanciador.Instanciar(this.Definicion.ElementoTipo, this.Workspace.GetNewConnection("Crear " + this.Definicion.ElementoTipo.ToString()));
                         El.Crear();
                         return El;
                 }
@@ -121,7 +121,7 @@ namespace Lfc
 
                 public virtual Lfx.Types.OperationResult OnCreate()
                 {
-                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Crear)) {
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Definicion.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Crear)) {
                                 Lfc.FormularioEdicion FormNuevo = Lfc.Instanciador.InstanciarFormularioEdicion(this.Crear());
                                 FormNuevo.MdiParent = this.MdiParent;
                                 FormNuevo.Show();
@@ -152,7 +152,7 @@ namespace Lfc
                                                 e.Handled = true;
                                                 Lbl.ListaIds Codigos = this.CodigosSeleccionados;
 
-                                                if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Eliminar)) {
+                                                if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Definicion.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Eliminar)) {
                                                         if (Codigos != null && Codigos.Count > 0) {
                                                                 string EstaSeguro = "¿Está seguro de que desea eliminar ";
                                                                 if (Codigos.Count == 1)
@@ -179,7 +179,7 @@ namespace Lfc
 
                 public virtual void ItemSelected(ListViewItem itm)
                 {
-                        this.Workspace.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", m_NombreTabla, itm.Text });
+                        this.Workspace.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", this.Definicion.NombreTabla, itm.Text });
                 }
 
 

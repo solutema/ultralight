@@ -42,10 +42,6 @@ namespace Lfc.Cajas.Admin
 	{
                 public Inicio()
                 {
-                        this.ElementoTipo = typeof(Lbl.Cajas.Caja);
-
-                        this.NombreTabla = "cajas";
-                        this.KeyField = new Lfx.Data.FormField("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
                         Lbl.ColeccionCodigoDetalle SetTipos = new Lbl.ColeccionCodigoDetalle()
                         {
                                 {0, "Efectivo"},
@@ -59,17 +55,26 @@ namespace Lfc.Cajas.Admin
                                 {1, "Activa"}
                         };
 
-                        this.FormFields = new Lfx.Data.FormFieldCollection()
-			{
-				new Lfx.Data.FormField("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Relation, 96),
-				new Lfx.Data.FormField("cajas.id_banco", "Banco", Lfx.Data.InputFieldTypes.Relation, 120),
-				new Lfx.Data.FormField("cajas.numero", "Número", Lfx.Data.InputFieldTypes.Text, 120),
-				new Lfx.Data.FormField("cajas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
-				new Lfx.Data.FormField("cajas.tipo", "Tipo", 80, SetTipos),
-				new Lfx.Data.FormField("0", "Saldo Actual", Lfx.Data.InputFieldTypes.Currency, 120),
-                                new Lfx.Data.FormField("1", "Saldo Futuro", Lfx.Data.InputFieldTypes.Currency, 120),
-                                new Lfx.Data.FormField("estado", "Estado", 96, SetEstados),
-			};
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Cajas.Caja),
+
+                                NombreTabla = "cajas",
+                                KeyField = new Lfx.Data.FormField("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+
+                                FormFields = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Relation, 96),
+				        new Lfx.Data.FormField("cajas.id_banco", "Banco", Lfx.Data.InputFieldTypes.Relation, 120),
+				        new Lfx.Data.FormField("cajas.numero", "Número", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lfx.Data.FormField("cajas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
+				        new Lfx.Data.FormField("cajas.tipo", "Tipo", 80, SetTipos),
+				        new Lfx.Data.FormField("0", "Saldo Actual", Lfx.Data.InputFieldTypes.Currency, 120),
+                                        new Lfx.Data.FormField("1", "Saldo Futuro", Lfx.Data.InputFieldTypes.Currency, 120),
+                                        new Lfx.Data.FormField("estado", "Estado", 96, SetEstados),
+			        }
+                        };
+
 
                         this.Contadores.Add(new Contador("Total", Lui.Forms.DataTypes.Currency, "$", null));
                         this.Contadores.Add(new Contador("Activos", Lui.Forms.DataTypes.Currency, "$", null));

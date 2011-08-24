@@ -42,16 +42,19 @@ namespace Lfc.Ciudades
 	{
 		public Inicio()
 		{
-                        this.ElementoTipo = typeof(Lbl.Entidades.Localidad);
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Entidades.Localidad),
 
-			this.NombreTabla = "ciudades";
-                        this.KeyField = new Lfx.Data.FormField("ciudades.id_ciudad", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-			this.OrderBy = "ciudades.parent, ciudades.nombre";
-			this.FormFields = new Lfx.Data.FormFieldCollection()
-			{
-				new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
-				new Lfx.Data.FormField("cp", "Cód. Postal", Lfx.Data.InputFieldTypes.Text, 120)
-			};
+                                NombreTabla = "ciudades",
+                                KeyField = new Lfx.Data.FormField("ciudades.id_ciudad", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                OrderBy = "ciudades.parent, ciudades.nombre",
+                                FormFields = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+				        new Lfx.Data.FormField("cp", "Cód. Postal", Lfx.Data.InputFieldTypes.Text, 120)
+			        }
+                        };
 		}
 	}
 }

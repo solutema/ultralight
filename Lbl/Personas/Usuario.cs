@@ -395,16 +395,17 @@ namespace Lbl.Personas
                                 if (this.Contrasena == null || this.Contrasena.Length < 6 || this.Contrasena.Length > 32)
                                         throw new InvalidOperationException("La contraseña debe tener entre 6 y 32 caracteres");
 
-                                string ContrasenaConSal = this.Contrasena + this.ContrasenaSal;
+                                string Sal = GenerarSal();
+                                this.ContrasenaSal = Sal;
 
                                 if (this.ContrasenaSal == null || this.ContrasenaSal.Length == 0) {
                                         // Guardo la contraseña en texto plano
                                         Comando.Fields.AddWithValue("contrasena", Contrasena);
                                 } else {
                                         // Guardo un hash SHA256 de la contraseña
-                                        Comando.Fields.AddWithValue("contrasena", Lfx.Types.Strings.SHA256(ContrasenaConSal));
+                                        Comando.Fields.AddWithValue("contrasena", Lfx.Types.Strings.SHA256(Contrasena + Sal));
                                 }
-                                Comando.Fields.AddWithValue("contrasena_sal", this.ContrasenaSal);
+                                Comando.Fields.AddWithValue("contrasena_sal", Sal);
                                 Comando.Fields.AddWithValue("contrasena_fecha", qGen.SqlFunctions.Now);
                         }
 
@@ -431,6 +432,19 @@ namespace Lbl.Personas
                         }
 
                         return base.Guardar();
+                }
+
+                public static string GenerarSal()
+                {
+                        StringBuilder builder = new StringBuilder();
+                        Random random = new Random();
+                        char ch;
+                        for (int i = 0; i < 100; i++) {
+                                ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
+                                builder.Append(ch);
+                        }
+
+                        return builder.ToString();
                 }
         }
 }

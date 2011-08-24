@@ -350,7 +350,7 @@ namespace Lfx.Services
                                         } else {
                                                 return false;
                                         }
-                                } catch (Exception ex) {
+                                } catch {
                                         // No se puede conectar al servidor de actualizaciones
                                         // Aplicacion.GenericExceptionHandler(ex);
                                         ErrorMessage = "Existe una nueva versión del archivo " + NombreArchivo + ", pero el sistema no puede actualizar automáticamente. Por favor actualice la aplicación manualmente.";
@@ -459,7 +459,7 @@ namespace Lfx.Services
                                                                 LazaroFileInfo.LastWriteTime = FechaNuevaD;
                                                                 LazaroFileInfo.CreationTime = FechaNuevaD;
                                                                 LazaroFileInfo = null;
-                                                        } catch (Exception ex) {
+                                                        } catch {
                                                                 // Aplicacion.GenericExceptionHandler(ex);
                                                                 // No pude poner la fecha del archivo... estoy en un problema?
                                                                 if (Lfx.Environment.SystemInformation.DesignMode)

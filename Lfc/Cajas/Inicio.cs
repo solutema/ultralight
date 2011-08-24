@@ -50,32 +50,34 @@ namespace Lfc.Cajas
                         InitializeComponent();
 
                         this.Fechas = new Lfx.Types.DateRange("dia-0");
-                        this.NombreTabla = "cajas_movim";
-                        this.KeyField = new Lfx.Data.FormField("cajas_movim.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        this.Joins.Add(new qGen.Join("personas", "cajas_movim.id_persona=personas.id_persona"));
-                        this.Joins.Add(new qGen.Join("cajas", "cajas_movim.id_caja=cajas.id_caja"));
-                        this.FormFields = new Lfx.Data.FormFieldCollection() {
-                                new Lfx.Data.FormField("cajas.nombre", "Caja", Lfx.Data.InputFieldTypes.Text, 120),
-                                new Lfx.Data.FormField("cajas_movim.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Relation, 0),
-                                new Lfx.Data.FormField("cajas_movim.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
-                                new Lfx.Data.FormField("cajas_movim.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 100),
-                                new Lfx.Data.FormField("cajas_movim.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
-                                new Lfx.Data.FormField("cajas_movim.saldo", "Saldo", Lfx.Data.InputFieldTypes.Currency, 96),
-                                new Lfx.Data.FormField("personas.nombre_visible", "Persona", Lfx.Data.InputFieldTypes.Text, 200),
-                                new Lfx.Data.FormField("cajas_movim.id_comprob", "Factura", Lfx.Data.InputFieldTypes.Relation, 0),
-                                new Lfx.Data.FormField("cajas_movim.id_recibo", "Recibo", Lfx.Data.InputFieldTypes.Relation, 0),
-                                new Lfx.Data.FormField("cajas_movim.obs", "Obs.", Lfx.Data.InputFieldTypes.Text, 240),
-                                new Lfx.Data.FormField("cajas_movim.comprob", "Comprobante", Lfx.Data.InputFieldTypes.Text, 160)
+
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                NombreTabla = "cajas_movim",
+                                KeyField = new Lfx.Data.FormField("cajas_movim.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                Joins = new qGen.JoinCollection() { new qGen.Join("personas", "cajas_movim.id_persona=personas.id_persona"), new qGen.Join("cajas", "cajas_movim.id_caja=cajas.id_caja") },
+                                FormFields = new Lfx.Data.FormFieldCollection() {
+                                        new Lfx.Data.FormField("cajas.nombre", "Caja", Lfx.Data.InputFieldTypes.Text, 120),
+                                        new Lfx.Data.FormField("cajas_movim.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Relation, 0),
+                                        new Lfx.Data.FormField("cajas_movim.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
+                                        new Lfx.Data.FormField("cajas_movim.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 100),
+                                        new Lfx.Data.FormField("cajas_movim.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
+                                        new Lfx.Data.FormField("cajas_movim.saldo", "Saldo", Lfx.Data.InputFieldTypes.Currency, 96),
+                                        new Lfx.Data.FormField("personas.nombre_visible", "Persona", Lfx.Data.InputFieldTypes.Text, 200),
+                                        new Lfx.Data.FormField("cajas_movim.id_comprob", "Factura", Lfx.Data.InputFieldTypes.Relation, 0),
+                                        new Lfx.Data.FormField("cajas_movim.id_recibo", "Recibo", Lfx.Data.InputFieldTypes.Relation, 0),
+                                        new Lfx.Data.FormField("cajas_movim.obs", "Obs.", Lfx.Data.InputFieldTypes.Text, 240),
+                                        new Lfx.Data.FormField("cajas_movim.comprob", "Comprobante", Lfx.Data.InputFieldTypes.Text, 160)
+                                },
+                                OrderBy = "cajas_movim.id_movim DESC"
                         };
 
-                        this.FormFields["nombre"].Visible = false;
-                        this.FormFields["nombre"].Printable = false;
-                        this.FormFields["comprob"].Printable = false;
+                        this.Definicion.FormFields["nombre"].Visible = false;
+                        this.Definicion.FormFields["nombre"].Printable = false;
+                        this.Definicion.FormFields["comprob"].Printable = false;
 
-                        this.FormFields["concepto"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.TotalName;
-                        this.FormFields["importe"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
-
-                        this.OrderBy = "cajas_movim.id_movim DESC";
+                        this.Definicion.FormFields["concepto"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.TotalName;
+                        this.Definicion.FormFields["importe"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
 
                         if (this.HasWorkspace) {
                                 this.Caja = new Lbl.Cajas.Caja(this.Connection, 999);
@@ -126,13 +128,13 @@ namespace Lfc.Cajas
                                         // Calculo el transporte combinado de todas las cajas
                                         DataTable Cajas = this.Connection.Select("SELECT id_caja FROM cajas");
                                         foreach (System.Data.DataRow Caja in Cajas.Rows) {
-                                                Transporte += Math.Round(this.Connection.FieldDecimal("SELECT saldo FROM " + this.NombreTabla + " WHERE  id_caja=" + Caja["id_caja"].ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom).ToString() + " 00:00:00' ORDER BY id_movim DESC"), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                                Transporte += Math.Round(this.Connection.FieldDecimal("SELECT saldo FROM " + this.Definicion.NombreTabla + " WHERE  id_caja=" + Caja["id_caja"].ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom).ToString() + " 00:00:00' ORDER BY id_movim DESC"), this.Workspace.CurrentConfig.Moneda.Decimales);
                                         }
                                 }
                         } else {
                                 this.Text = Caja.ToString();
                                 // Calculo el transporte de una cuenta
-                                Transporte = Math.Round(this.Connection.FieldDecimal("SELECT saldo FROM " + this.NombreTabla + " WHERE  id_caja=" + this.Caja.Id.ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom) + " 00:00:00' ORDER BY id_movim DESC LIMIT 1"), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                Transporte = Math.Round(this.Connection.FieldDecimal("SELECT saldo FROM " + this.Definicion.NombreTabla + " WHERE  id_caja=" + this.Caja.Id.ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom) + " 00:00:00' ORDER BY id_movim DESC LIMIT 1"), this.Workspace.CurrentConfig.Moneda.Decimales);
                         }
 
                         if (m_Direccion == 1)
@@ -143,10 +145,10 @@ namespace Lfc.Cajas
                         if (this.Caja != null) {
                                 this.CustomFilters.AddWithValue("cajas_movim.id_caja", this.Caja.Id);
                                 this.GroupingColumnName = null;
-                                this.FormFields["saldo"].Visible = true;
+                                this.Definicion.FormFields["saldo"].Visible = true;
                         } else {
                                 this.GroupingColumnName = "nombre";
-                                this.FormFields["saldo"].Visible = false;
+                                this.Definicion.FormFields["saldo"].Visible = false;
                         }
 
                         if (this.Cliente != null)

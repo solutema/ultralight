@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -30,32 +30,33 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
+using System.Collections.Generic;
 
-namespace Lfc.Alicuotas
+namespace Lbl.Listados
 {
-	public partial class Inicio : Lfc.FormularioListado
-	{
-		public Inicio()
-		{
-                        this.Definicion = new Lbl.Listados.Listado()
-                        {
-                                ElementoTipo = typeof(Lbl.Impuestos.Alicuota),
+        /// <summary>
+        /// Define los datos para emitir un listado.
+        /// </summary>
+        public class Listado
+        {
+                public Type ElementoTipo = null;
 
-                                NombreTabla = "alicuotas",
-                                OrderBy = "nombre",
-                                KeyField = new Lfx.Data.FormField("id_alicuota", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                FormFields = new Lfx.Data.FormFieldCollection()
-			        {
-				        new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
-				        new Lfx.Data.FormField("porcentaje", "Porcentaje", Lfx.Data.InputFieldTypes.Numeric, 160),
-				        new Lfx.Data.FormField("importe_minimo", "Imp. Mín.", Lfx.Data.InputFieldTypes.Currency, 160)
-			        }
-                        };
-		}
-	}
+                public string NombreTabla;
+                public Lfx.Data.FormField KeyField;
+                public string DetailColumnName = null;
+                public Lfx.Data.FormFieldCollection FormFields = null, ExtraSearchFields = null;
+
+                public Lfx.Data.FormField GroupBy = null;
+                public string OrderBy = null;
+                public qGen.JoinCollection Joins = new qGen.JoinCollection();
+
+                public qGen.Where Having = null;
+                public qGen.Where Where = null;
+
+                public Listado()
+                {
+
+                }
+        }
 }
-

@@ -41,7 +41,7 @@ namespace Lfc.Tareas.Tipos
         {
                 public Editar()
                 {
-                        this.ElementoTipo = typeof(Lbl.Tareas.Tipo);
+                        ElementoTipo = typeof(Lbl.Tareas.Tipo);
 
                         InitializeComponent();
 

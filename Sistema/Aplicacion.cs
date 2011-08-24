@@ -1270,7 +1270,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                 case "Lbl.Comprobantes.NotaDeCredito":
                                 case "Lbl.Comprobantes.NotaDeDebito":
                                         FormularioListado = new Lfc.Comprobantes.Inicio();
-                                        FormularioListado.ElementoTipo = Lbl.Instanciador.InferirTipo(SubComando);
+                                        FormularioListado.Definicion.ElementoTipo = Lbl.Instanciador.InferirTipo(SubComando);
                                         string ListadoComprobLetra = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();
                                         if (ListadoComprobLetra.Length > 0)
                                                 ((Lfc.Comprobantes.Inicio)(FormularioListado)).Letra = ListadoComprobLetra;
@@ -1278,12 +1278,12 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
 
                                 case "Lbl.Comprobantes.Remito":
                                         FormularioListado = new Lfc.Comprobantes.Inicio();
-                                        FormularioListado.ElementoTipo = Lbl.Instanciador.InferirTipo(SubComando);
+                                        FormularioListado.Definicion.ElementoTipo = Lbl.Instanciador.InferirTipo(SubComando);
                                         break;
 
                                 case "Lbl.Comprobantes.ComprobanteDeCompra":
                                         FormularioListado = new Lfc.Comprobantes.Compra.Inicio();
-                                        FormularioListado.ElementoTipo = Lbl.Instanciador.InferirTipo(SubComando);
+                                        FormularioListado.Definicion.ElementoTipo = Lbl.Instanciador.InferirTipo(SubComando);
                                         string ListadoComprobCompraTipo = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();
                                         if (ListadoComprobCompraTipo.Length > 0)
                                                 ((Lfc.Comprobantes.Compra.Inicio)(FormularioListado)).Tipo = ListadoComprobCompraTipo;
@@ -1293,12 +1293,12 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                 case "Lbl.Comprobantes.Recibo":
                                 case "Lbl.Comprobantes.ReciboDeCobro":
                                         FormularioListado = new Lfc.Comprobantes.Recibos.Inicio();
-                                        FormularioListado.ElementoTipo = typeof(Lbl.Comprobantes.ReciboDeCobro);
+                                        FormularioListado.Definicion.ElementoTipo = typeof(Lbl.Comprobantes.ReciboDeCobro);
                                         break;
 
                                 case "Lbl.Comprobantes.ReciboDePago":
                                         FormularioListado = new Lfc.Comprobantes.Recibos.Inicio();
-                                        FormularioListado.ElementoTipo = typeof(Lbl.Comprobantes.ReciboDePago);
+                                        FormularioListado.Definicion.ElementoTipo = typeof(Lbl.Comprobantes.ReciboDePago);
                                         break;
 
                                 case "Lbl.Comprobantes.Tipo":

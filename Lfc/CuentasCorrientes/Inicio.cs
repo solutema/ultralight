@@ -47,21 +47,24 @@ namespace Lfc.CuentasCorrientes
                 {
                         InitializeComponent();
 
-                        this.NombreTabla = "ctacte";
-                        this.KeyField = new Lfx.Data.FormField("ctacte.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        this.Joins.Add(new qGen.Join("personas", "ctacte.id_cliente=personas.id_persona"));
-                        this.FormFields = new Lfx.Data.FormFieldCollection() {
-                                new Lfx.Data.FormField("personas.nombre_visible", "Persona", Lfx.Data.InputFieldTypes.Text, 320),
-                                new Lfx.Data.FormField("ctacte.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Relation, 0),
-                                new Lfx.Data.FormField("ctacte.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
-                                new Lfx.Data.FormField("ctacte.fecha", "Fecha.", Lfx.Data.InputFieldTypes.Date, 100),
-                                new Lfx.Data.FormField("ctacte.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
-                                new Lfx.Data.FormField("ctacte.saldo", "Saldo", Lfx.Data.InputFieldTypes.Currency, 96),
-                                new Lfx.Data.FormField("ctacte.obs", "Obs.", Lfx.Data.InputFieldTypes.Text, 320),
-                                new Lfx.Data.FormField("ctacte.comprob", "Comprobante", Lfx.Data.InputFieldTypes.Text, 160),
-                                new Lfx.Data.FormField("ctacte.id_recibo", "Recibo", Lfx.Data.InputFieldTypes.Relation, 0)
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                NombreTabla = "ctacte",
+                                KeyField = new Lfx.Data.FormField("ctacte.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                Joins = new qGen.JoinCollection() { new qGen.Join("personas", "ctacte.id_cliente=personas.id_persona") },
+                                FormFields = new Lfx.Data.FormFieldCollection() {
+                                        new Lfx.Data.FormField("personas.nombre_visible", "Persona", Lfx.Data.InputFieldTypes.Text, 320),
+                                        new Lfx.Data.FormField("ctacte.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Relation, 0),
+                                        new Lfx.Data.FormField("ctacte.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
+                                        new Lfx.Data.FormField("ctacte.fecha", "Fecha.", Lfx.Data.InputFieldTypes.Date, 100),
+                                        new Lfx.Data.FormField("ctacte.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
+                                        new Lfx.Data.FormField("ctacte.saldo", "Saldo", Lfx.Data.InputFieldTypes.Currency, 96),
+                                        new Lfx.Data.FormField("ctacte.obs", "Obs.", Lfx.Data.InputFieldTypes.Text, 320),
+                                        new Lfx.Data.FormField("ctacte.comprob", "Comprobante", Lfx.Data.InputFieldTypes.Text, 160),
+                                        new Lfx.Data.FormField("ctacte.id_recibo", "Recibo", Lfx.Data.InputFieldTypes.Relation, 0)
+                                },
+                                OrderBy = "personas.nombre_visible"
                         };
-                        this.OrderBy = "personas.nombre_visible";
 
                         this.Fechas = new Lfx.Types.DateRange("*");
 
@@ -106,20 +109,20 @@ namespace Lfc.CuentasCorrientes
 
                         if (this.Cliente == null) {
                                 // Es para todas los clientes
-                                this.GroupBy = new Lfx.Data.FormField("ctacte.id_cliente", "Cliente");
-                                this.OrderBy = "personas.nombre_visible";
+                                this.Definicion.GroupBy = new Lfx.Data.FormField("ctacte.id_cliente", "Cliente");
+                                this.Definicion.OrderBy = "personas.nombre_visible";
                                 this.Text = "Listado de Cuentas Corrientes";
 
-                                this.FormFields["nombre_visible"].Visible = true;
-                                this.FormFields["fecha"].Visible = false;
-                                this.FormFields["concepto"].Visible = false;
-                                this.FormFields["importe"].Visible = false;
-                                this.FormFields["saldo"].Visible = true;
-                                this.FormFields["obs"].Visible = false;
-                                this.FormFields["comprob"].Visible = false;
+                                this.Definicion.FormFields["nombre_visible"].Visible = true;
+                                this.Definicion.FormFields["fecha"].Visible = false;
+                                this.Definicion.FormFields["concepto"].Visible = false;
+                                this.Definicion.FormFields["importe"].Visible = false;
+                                this.Definicion.FormFields["saldo"].Visible = true;
+                                this.Definicion.FormFields["obs"].Visible = false;
+                                this.Definicion.FormFields["comprob"].Visible = false;
 
-                                this.FormFields["saldo"].ColumnName = "SUM(ctacte.importe) AS saldo";
-                                this.Having = new qGen.Where("saldo", qGen.ComparisonOperators.NotEquals, 0);
+                                this.Definicion.FormFields["saldo"].ColumnName = "SUM(ctacte.importe) AS saldo";
+                                this.Definicion.Having = new qGen.Where("saldo", qGen.ComparisonOperators.NotEquals, 0);
 
                                 this.UpdateFormFields();
 
@@ -134,20 +137,20 @@ namespace Lfc.CuentasCorrientes
                         } else {
                                 // Es un cliente en particular
                                 this.CustomFilters.AddWithValue("ctacte.id_cliente", this.Cliente.Id);
-                                this.GroupBy = null;
-                                this.OrderBy = "ctacte.id_movim DESC";
+                                this.Definicion.GroupBy = null;
+                                this.Definicion.OrderBy = "ctacte.id_movim DESC";
                                 this.Text = "Cuenta Corriente de " + this.Cliente.ToString();
 
-                                this.FormFields["nombre_visible"].Visible = false;
-                                this.FormFields["fecha"].Visible = true;
-                                this.FormFields["concepto"].Visible = true;
-                                this.FormFields["importe"].Visible = true;
-                                this.FormFields["saldo"].Visible = true;
-                                this.FormFields["obs"].Visible = true;
-                                this.FormFields["comprob"].Visible = true;
+                                this.Definicion.FormFields["nombre_visible"].Visible = false;
+                                this.Definicion.FormFields["fecha"].Visible = true;
+                                this.Definicion.FormFields["concepto"].Visible = true;
+                                this.Definicion.FormFields["importe"].Visible = true;
+                                this.Definicion.FormFields["saldo"].Visible = true;
+                                this.Definicion.FormFields["obs"].Visible = true;
+                                this.Definicion.FormFields["comprob"].Visible = true;
 
-                                this.FormFields["saldo"].ColumnName = "ctacte.saldo";
-                                this.Having = null;
+                                this.Definicion.FormFields["saldo"].ColumnName = "ctacte.saldo";
+                                this.Definicion.Having = null;
 
                                 this.UpdateFormFields();
 

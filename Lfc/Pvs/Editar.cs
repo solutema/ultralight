@@ -41,7 +41,7 @@ namespace Lfc.Pvs
         {
                 public Editar()
                 {
-                        this.ElementoTipo = typeof(Lbl.Comprobantes.PuntoDeVenta);
+                        ElementoTipo = typeof(Lbl.Comprobantes.PuntoDeVenta);
 
                         InitializeComponent();
 

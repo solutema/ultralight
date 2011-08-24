@@ -39,7 +39,7 @@ namespace Lfc.Personas
         {
                 public Editar()
                 {
-                        this.ElementoTipo = typeof(Lbl.Personas.Persona);
+                        ElementoTipo = typeof(Lbl.Personas.Persona);
 
                         InitializeComponent();
                 }

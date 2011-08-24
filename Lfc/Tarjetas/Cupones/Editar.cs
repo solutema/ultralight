@@ -41,7 +41,7 @@ namespace Lfc.Tarjetas.Cupones
         {
                 public Editar()
                 {
-                        this.ElementoTipo = typeof(Lbl.Pagos.Cupon);
+                        ElementoTipo = typeof(Lbl.Pagos.Cupon);
 
                         InitializeComponent();
 

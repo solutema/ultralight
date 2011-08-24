@@ -44,7 +44,7 @@ namespace Lfc.Cajas.Admin
 
                 public Editar()
                 {
-                        this.ElementoTipo = typeof(Lbl.Cajas.Caja);
+                        ElementoTipo = typeof(Lbl.Cajas.Caja);
 
                         InitializeComponent();
                 }

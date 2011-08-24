@@ -37,23 +37,27 @@ namespace Lfc.Tareas.Tipos
 	{
                 public Inicio()
                 {
-                        this.ElementoTipo = typeof(Lbl.Tareas.Tipo);
-
-                        this.NombreTabla = "tickets_tipos";
-                        this.KeyField = new Lfx.Data.FormField("tickets_tipos.id_tipo_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64);
-
                         Dictionary<int, string> EstadosTickets = new Dictionary<int, string>()
                         {
                                 {0, "Inactivo"},
                                 {1, "Activo"}
                         };
 
-                        this.FormFields = new Lfx.Data.FormFieldCollection()
-			{
-				new Lfx.Data.FormField("tickets_tipos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
-				new Lfx.Data.FormField("tickets_tipos.estado", "Estado", 160, EstadosTickets),
-			};
-                        this.OrderBy = "tickets_tipos.nombre";
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Tareas.Tipo),
+
+                                NombreTabla = "tickets_tipos",
+                                KeyField = new Lfx.Data.FormField("tickets_tipos.id_tipo_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
+
+                                FormFields = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("tickets_tipos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+				        new Lfx.Data.FormField("tickets_tipos.estado", "Estado", 160, EstadosTickets),
+			        },
+                                OrderBy = "tickets_tipos.nombre"
+                        };
+
                         this.HabilitarFiltrar = true;
                 }
 	}

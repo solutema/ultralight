@@ -42,7 +42,7 @@ namespace Lfc.Cajas.Conceptos
 	{
                 public Editar()
                 {
-                        this.ElementoTipo = typeof(Lbl.Cajas.Concepto);
+                        ElementoTipo = typeof(Lbl.Cajas.Concepto);
 
                         InitializeComponent();
                 }

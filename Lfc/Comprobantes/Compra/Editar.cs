@@ -48,7 +48,7 @@ namespace Lfc.Comprobantes.Compra
 
 		public Editar()
 		{
-                        this.ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteDeCompra);
+                        ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteDeCompra);
 
 			InitializeComponent();
 

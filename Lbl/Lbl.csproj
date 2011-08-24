@@ -100,6 +100,7 @@
     <Compile Include="Impresion\TipoImpresora.cs" />
     <Compile Include="Impuestos\CondicionesFrenteAlIva.cs" />
     <Compile Include="Impuestos\SituacionIva.cs" />
+    <Compile Include="Listados\Listado.cs" />
     <Compile Include="ListaIds.cs" />
     <Compile Include="Personas\Cuit.cs" />
     <Compile Include="Personas\IIdentificadorUnico.cs" />

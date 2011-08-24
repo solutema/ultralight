@@ -42,7 +42,7 @@ namespace Lfc.Personas.Grupos
 
                 public Editar()
                 {
-                        this.ElementoTipo = typeof(Lbl.Personas.Grupo);
+                        ElementoTipo = typeof(Lbl.Personas.Grupo);
 
                         InitializeComponent();
                 }

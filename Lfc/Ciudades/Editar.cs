@@ -37,7 +37,7 @@ namespace Lfc.Ciudades
 	{
                 public Editar()
                 {
-                        this.ElementoTipo = typeof(Lbl.Entidades.Localidad);
+                        ElementoTipo = typeof(Lbl.Entidades.Localidad);
 
                         InitializeComponent();
                 }

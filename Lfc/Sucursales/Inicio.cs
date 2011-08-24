@@ -42,17 +42,20 @@ namespace Lfc.Sucursales
         {
                 public Inicio()
                 {
-                        this.ElementoTipo = typeof(Lbl.Entidades.Sucursal);
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Entidades.Sucursal),
 
-                        this.NombreTabla = "sucursales";
-                        this.KeyField = new Lfx.Data.FormField("sucursales.id_sucursal", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        this.FormFields = new Lfx.Data.FormFieldCollection() 
-			{
-				new Lfx.Data.FormField("sucursales.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
-				new Lfx.Data.FormField("sucursales.direccion", "Dirección", Lfx.Data.InputFieldTypes.Text, 120),
-				new Lfx.Data.FormField("sucursales.telefono", "Teléfono", Lfx.Data.InputFieldTypes.Text, 320)
-			};
-                        this.OrderBy = "sucursales.nombre";
+                                NombreTabla = "sucursales",
+                                KeyField = new Lfx.Data.FormField("sucursales.id_sucursal", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                FormFields = new Lfx.Data.FormFieldCollection() 
+			        {
+				        new Lfx.Data.FormField("sucursales.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+				        new Lfx.Data.FormField("sucursales.direccion", "Dirección", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lfx.Data.FormField("sucursales.telefono", "Teléfono", Lfx.Data.InputFieldTypes.Text, 320)
+			        },
+                                OrderBy = "sucursales.nombre"
+                        };
                 }
         }
 }

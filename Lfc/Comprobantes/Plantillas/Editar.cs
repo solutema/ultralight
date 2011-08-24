@@ -51,7 +51,7 @@ namespace Lfc.Comprobantes.Plantillas
 
                 public Editar()
                 {
-                        this.ElementoTipo = typeof(Lbl.Impresion.Plantilla);
+                        ElementoTipo = typeof(Lbl.Impresion.Plantilla);
 
                         InitializeComponent();
 

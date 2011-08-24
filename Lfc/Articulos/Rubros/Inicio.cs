@@ -41,16 +41,19 @@ namespace Lfc.Articulos.Rubros
 	{
 		public Inicio()
 		{
-                        this.ElementoTipo = typeof(Lbl.Articulos.Rubro);
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Articulos.Rubro),
 
-                        this.NombreTabla = "articulos_rubros";
-                        this.KeyField = new Lfx.Data.FormField("articulos_rubros.id_rubro", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        this.OrderBy = "articulos_rubros.nombre";
-                        this.FormFields = new Lfx.Data.FormFieldCollection()
-			{
-				new Lfx.Data.FormField("articulos_rubros.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
-				new Lfx.Data.FormField("articulos_rubros.id_alicuota", "Alícuota", Lfx.Data.InputFieldTypes.Integer, 160)
-			};
+                                NombreTabla = "articulos_rubros",
+                                KeyField = new Lfx.Data.FormField("articulos_rubros.id_rubro", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                OrderBy = "articulos_rubros.nombre",
+                                FormFields = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("articulos_rubros.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+				        new Lfx.Data.FormField("articulos_rubros.id_alicuota", "Alícuota", Lfx.Data.InputFieldTypes.Integer, 160)
+			        }
+                        };
 		}
 	}
 }

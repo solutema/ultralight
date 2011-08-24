@@ -41,7 +41,7 @@ namespace Lfc.Alicuotas
 	{
 		public Editar()
 		{
-                        this.ElementoTipo = typeof(Lbl.Impuestos.Alicuota);
+                        ElementoTipo = typeof(Lbl.Impuestos.Alicuota);
 
                         InitializeComponent();
 		}

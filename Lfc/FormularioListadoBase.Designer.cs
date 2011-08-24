@@ -60,19 +60,6 @@ namespace Lfc
                 {
                         this.components = new System.ComponentModel.Container();
                         this.Listado = new Lui.Forms.ListView();
-                        this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.nombre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.extra1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.extra2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.extra3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.extra4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.extra5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.extra6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.extra7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.extra8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.extra9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.extra10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.extra11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.EtiquetaContador2 = new System.Windows.Forms.Label();
                         this.EntradaContador2 = new Lui.Forms.TextBox();
                         this.EtiquetaContador1 = new System.Windows.Forms.Label();
@@ -96,20 +83,6 @@ namespace Lfc
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.Listado.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.id,
-            this.nombre,
-            this.extra1,
-            this.extra2,
-            this.extra3,
-            this.extra4,
-            this.extra5,
-            this.extra6,
-            this.extra7,
-            this.extra8,
-            this.extra9,
-            this.extra10,
-            this.extra11});
                         this.Listado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Listado.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.Listado.FullRowSelect = true;
@@ -124,62 +97,6 @@ namespace Lfc
                         this.Listado.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.Listado_ColumnClick);
                         this.Listado.DoubleClick += new System.EventHandler(this.Listado_DoubleClick);
                         this.Listado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Listado_KeyDown);
-                        // 
-                        // id
-                        // 
-                        this.id.Text = "Cód";
-                        this.id.Width = 64;
-                        // 
-                        // nombre
-                        // 
-                        this.nombre.Text = "Nombre";
-                        this.nombre.Width = 220;
-                        // 
-                        // extra1
-                        // 
-                        this.extra1.Text = "";
-                        this.extra1.Width = 160;
-                        // 
-                        // extra2
-                        // 
-                        this.extra2.Text = "";
-                        this.extra2.Width = 160;
-                        // 
-                        // extra3
-                        // 
-                        this.extra3.Text = "";
-                        // 
-                        // extra4
-                        // 
-                        this.extra4.Text = "";
-                        // 
-                        // extra5
-                        // 
-                        this.extra5.Text = "";
-                        // 
-                        // extra6
-                        // 
-                        this.extra6.Text = "";
-                        // 
-                        // extra7
-                        // 
-                        this.extra7.Text = "";
-                        // 
-                        // extra8
-                        // 
-                        this.extra8.Text = "";
-                        // 
-                        // extra9
-                        // 
-                        this.extra9.Text = "";
-                        // 
-                        // extra10
-                        // 
-                        this.extra10.Text = "";
-                        // 
-                        // extra11
-                        // 
-                        this.extra11.Text = "";
                         // 
                         // EtiquetaContador2
                         // 
@@ -211,13 +128,14 @@ namespace Lfc
                         this.EntradaContador2.Name = "EntradaContador2";
                         this.EntradaContador2.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContador2.PasswordChar = '\0';
+                        this.EntradaContador2.PlaceholderText = "";
                         this.EntradaContador2.Prefijo = "";
+                        this.EntradaContador2.ReadOnly = false;
                         this.EntradaContador2.SelectOnFocus = true;
                         this.EntradaContador2.Size = new System.Drawing.Size(108, 24);
                         this.EntradaContador2.Sufijo = "";
                         this.EntradaContador2.TabIndex = 62;
                         this.EntradaContador2.TabStop = false;
-                        this.EntradaContador2.PlaceholderText = "";
                         this.EntradaContador2.ToolTipText = "";
                         this.EntradaContador2.Visible = false;
                         // 
@@ -251,13 +169,14 @@ namespace Lfc
                         this.EntradaContador1.Name = "EntradaContador1";
                         this.EntradaContador1.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContador1.PasswordChar = '\0';
+                        this.EntradaContador1.PlaceholderText = "";
                         this.EntradaContador1.Prefijo = "";
+                        this.EntradaContador1.ReadOnly = false;
                         this.EntradaContador1.SelectOnFocus = true;
                         this.EntradaContador1.Size = new System.Drawing.Size(108, 24);
                         this.EntradaContador1.Sufijo = "";
                         this.EntradaContador1.TabIndex = 60;
                         this.EntradaContador1.TabStop = false;
-                        this.EntradaContador1.PlaceholderText = "";
                         this.EntradaContador1.ToolTipText = "";
                         this.EntradaContador1.Visible = false;
                         // 
@@ -282,6 +201,7 @@ namespace Lfc
                         this.BotonImprimir.Location = new System.Drawing.Point(12, 432);
                         this.BotonImprimir.Name = "BotonImprimir";
                         this.BotonImprimir.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonImprimir.ReadOnly = false;
                         this.BotonImprimir.Size = new System.Drawing.Size(96, 29);
                         this.BotonImprimir.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonImprimir.Subtext = "F8";
@@ -300,6 +220,7 @@ namespace Lfc
                         this.BotonFiltrar.Location = new System.Drawing.Point(12, 236);
                         this.BotonFiltrar.Name = "BotonFiltrar";
                         this.BotonFiltrar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonFiltrar.ReadOnly = false;
                         this.BotonFiltrar.Size = new System.Drawing.Size(96, 29);
                         this.BotonFiltrar.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonFiltrar.Subtext = "F2";
@@ -320,6 +241,7 @@ namespace Lfc
                         this.BotonCancelar.Location = new System.Drawing.Point(120, 432);
                         this.BotonCancelar.Name = "BotonCancelar";
                         this.BotonCancelar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonCancelar.ReadOnly = false;
                         this.BotonCancelar.Size = new System.Drawing.Size(96, 29);
                         this.BotonCancelar.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonCancelar.Subtext = "Esc";
@@ -360,13 +282,14 @@ namespace Lfc
                         this.EntradaContador4.Name = "EntradaContador4";
                         this.EntradaContador4.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContador4.PasswordChar = '\0';
+                        this.EntradaContador4.PlaceholderText = "";
                         this.EntradaContador4.Prefijo = "";
+                        this.EntradaContador4.ReadOnly = false;
                         this.EntradaContador4.SelectOnFocus = true;
                         this.EntradaContador4.Size = new System.Drawing.Size(108, 24);
                         this.EntradaContador4.Sufijo = "";
                         this.EntradaContador4.TabIndex = 66;
                         this.EntradaContador4.TabStop = false;
-                        this.EntradaContador4.PlaceholderText = "";
                         this.EntradaContador4.ToolTipText = "";
                         this.EntradaContador4.Visible = false;
                         // 
@@ -400,13 +323,14 @@ namespace Lfc
                         this.EntradaContador3.Name = "EntradaContador3";
                         this.EntradaContador3.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContador3.PasswordChar = '\0';
+                        this.EntradaContador3.PlaceholderText = "";
                         this.EntradaContador3.Prefijo = "";
+                        this.EntradaContador3.ReadOnly = false;
                         this.EntradaContador3.SelectOnFocus = true;
                         this.EntradaContador3.Size = new System.Drawing.Size(108, 24);
                         this.EntradaContador3.Sufijo = "";
                         this.EntradaContador3.TabIndex = 64;
                         this.EntradaContador3.TabStop = false;
-                        this.EntradaContador3.PlaceholderText = "";
                         this.EntradaContador3.ToolTipText = "";
                         this.EntradaContador3.Visible = false;
                         // 
@@ -453,19 +377,6 @@ namespace Lfc
                 #endregion
 
                 public Lui.Forms.ListView Listado;
-                protected System.Windows.Forms.ColumnHeader id;
-                protected System.Windows.Forms.ColumnHeader nombre;
-                protected System.Windows.Forms.ColumnHeader extra1;
-                protected System.Windows.Forms.ColumnHeader extra2;
-                protected System.Windows.Forms.ColumnHeader extra3;
-                protected System.Windows.Forms.ColumnHeader extra4;
-                protected System.Windows.Forms.ColumnHeader extra5;
-                protected System.Windows.Forms.ColumnHeader extra6;
-                protected System.Windows.Forms.ColumnHeader extra7;
-                protected System.Windows.Forms.ColumnHeader extra8;
-                protected System.Windows.Forms.ColumnHeader extra9;
-                protected System.Windows.Forms.ColumnHeader extra10;
-                protected System.Windows.Forms.ColumnHeader extra11;
                 protected System.Windows.Forms.Label EtiquetaContador2;
                 protected Lui.Forms.TextBox EntradaContador2;
                 protected System.Windows.Forms.Label EtiquetaContador1;

@@ -52,20 +52,23 @@ namespace Lfc.Bancos.Chequeras
 
                 public Inicio()
                 {
-                        this.ElementoTipo = typeof(Lbl.Bancos.Chequera);
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Bancos.Chequera),
 
-                        this.NombreTabla = "chequeras";
-                        this.KeyField = new Lfx.Data.FormField("chequeras.id_chequera", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        this.FormFields = new Lfx.Data.FormFieldCollection()
-			{
-				new Lfx.Data.FormField("chequeras.id_banco", "Banco", Lfx.Data.InputFieldTypes.Relation, 240),
-                                new Lfx.Data.FormField("chequeras.cheques_emitidos", "Emitidos", Lfx.Data.InputFieldTypes.Integer, 90),
-				new Lfx.Data.FormField("chequeras.desde", "Desde", Lfx.Data.InputFieldTypes.Integer, 120),
-				new Lfx.Data.FormField("chequeras.hasta", "Hasta", Lfx.Data.InputFieldTypes.Integer, 120),
-				new Lfx.Data.FormField("chequeras.id_caja", "Caja", Lfx.Data.InputFieldTypes.Relation, 240),
-				new Lfx.Data.FormField("chequeras.titular", "Titular", Lfx.Data.InputFieldTypes.Text, 240),
-				new Lfx.Data.FormField("chequeras.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 80),
-			};
+                                NombreTabla = "chequeras",
+                                KeyField = new Lfx.Data.FormField("chequeras.id_chequera", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                FormFields = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("chequeras.id_banco", "Banco", Lfx.Data.InputFieldTypes.Relation, 240),
+                                        new Lfx.Data.FormField("chequeras.cheques_emitidos", "Emitidos", Lfx.Data.InputFieldTypes.Integer, 90),
+				        new Lfx.Data.FormField("chequeras.desde", "Desde", Lfx.Data.InputFieldTypes.Integer, 120),
+				        new Lfx.Data.FormField("chequeras.hasta", "Hasta", Lfx.Data.InputFieldTypes.Integer, 120),
+				        new Lfx.Data.FormField("chequeras.id_caja", "Caja", Lfx.Data.InputFieldTypes.Relation, 240),
+				        new Lfx.Data.FormField("chequeras.titular", "Titular", Lfx.Data.InputFieldTypes.Text, 240),
+				        new Lfx.Data.FormField("chequeras.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 80),
+			        }
+                        };
                 }
 
                 public override Lfx.Types.OperationResult OnFilter()

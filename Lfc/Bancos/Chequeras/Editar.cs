@@ -41,7 +41,7 @@ namespace Lfc.Bancos.Chequeras
         {
                 public Editar()
                 {
-                        this.ElementoTipo = typeof(Lbl.Bancos.Chequera);
+                        ElementoTipo = typeof(Lbl.Bancos.Chequera);
 
                         InitializeComponent();
                 }

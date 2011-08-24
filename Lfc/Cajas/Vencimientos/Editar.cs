@@ -43,7 +43,7 @@ namespace Lfc.Cajas.Vencimientos
         {
                 public Editar()
                 {
-                        this.ElementoTipo = typeof(Lbl.Cajas.Vencimiento);
+                        ElementoTipo = typeof(Lbl.Cajas.Vencimiento);
 
                         InitializeComponent();
                 }

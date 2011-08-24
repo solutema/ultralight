@@ -41,18 +41,21 @@ namespace Lfc.Comprobantes.Plantillas
 	{
 		public Inicio()
 		{
-                        this.ElementoTipo = typeof(Lbl.Impresion.Plantilla);
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Impresion.Plantilla),
 
-                        this.NombreTabla = "sys_plantillas";
-                        this.KeyField = new Lfx.Data.FormField("sys_plantillas.id_plantilla", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        this.FormFields = new Lfx.Data.FormFieldCollection()
-			{
-				new Lfx.Data.FormField("sys_plantillas.codigo", "Código", Lfx.Data.InputFieldTypes.Text, 240),
-				new Lfx.Data.FormField("sys_plantillas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
-                                new Lfx.Data.FormField("sys_plantillas.tamanopapel", "Papel", Lfx.Data.InputFieldTypes.Text, 64),
-				new Lfx.Data.FormField("sys_plantillas.copias", "Copias", Lfx.Data.InputFieldTypes.Integer, 64)
-			};
-                        this.OrderBy = "sys_plantillas.codigo";
+                                NombreTabla = "sys_plantillas",
+                                KeyField = new Lfx.Data.FormField("sys_plantillas.id_plantilla", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                FormFields = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("sys_plantillas.codigo", "Código", Lfx.Data.InputFieldTypes.Text, 240),
+				        new Lfx.Data.FormField("sys_plantillas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
+                                        new Lfx.Data.FormField("sys_plantillas.tamanopapel", "Papel", Lfx.Data.InputFieldTypes.Text, 64),
+				        new Lfx.Data.FormField("sys_plantillas.copias", "Copias", Lfx.Data.InputFieldTypes.Integer, 64)
+			        },
+                                OrderBy = "sys_plantillas.codigo"
+                        };
 
 			this.HabilitarFiltrar = false;
 			this.HabilitarImprimir = false;

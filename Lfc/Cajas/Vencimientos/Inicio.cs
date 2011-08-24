@@ -39,21 +39,25 @@ namespace Lfc.Cajas.Vencimientos
         {
                 public Inicio()
                 {
-                        this.ElementoTipo = typeof(Lbl.Cajas.Vencimiento);
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Cajas.Vencimiento),
 
-                        this.NombreTabla = "vencimientos";
-                        this.KeyField = new Lfx.Data.FormField("vencimientos.id_vencimiento", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20);
-                        this.OrderBy = "vencimientos.fecha_proxima DESC";
-                        this.FormFields = new Lfx.Data.FormFieldCollection()
-			{
-				new Lfx.Data.FormField("vencimientos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 120),
-				new Lfx.Data.FormField("vencimientos.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
-				new Lfx.Data.FormField("vencimientos.frecuencia", "Frecuencia", Lfx.Data.InputFieldTypes.Text, 120),
-				new Lfx.Data.FormField("vencimientos.fecha_proxima", "Próxima Ocurrencia", Lfx.Data.InputFieldTypes.Date, 96),
-				new Lfx.Data.FormField("vencimientos.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 160),
-				new Lfx.Data.FormField("vencimientos.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 96),
-                                new Lfx.Data.FormField("vencimientos.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 320)
-			};
+                                NombreTabla = "vencimientos",
+                                KeyField = new Lfx.Data.FormField("vencimientos.id_vencimiento", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20),
+                                OrderBy = "vencimientos.fecha_proxima DESC",
+                                FormFields = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("vencimientos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lfx.Data.FormField("vencimientos.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lfx.Data.FormField("vencimientos.frecuencia", "Frecuencia", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lfx.Data.FormField("vencimientos.fecha_proxima", "Próxima Ocurrencia", Lfx.Data.InputFieldTypes.Date, 96),
+				        new Lfx.Data.FormField("vencimientos.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 160),
+				        new Lfx.Data.FormField("vencimientos.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 96),
+                                        new Lfx.Data.FormField("vencimientos.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 320)
+			        }
+                        };
+
                         Listado.CheckBoxes = true;
                         this.HabilitarFiltrar = true;
                 }

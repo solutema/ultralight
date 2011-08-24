@@ -40,7 +40,7 @@ namespace Lfc.Personas
 
                 public Usuario()
                 {
-                        this.ElementoTipo = typeof(Lbl.Personas.Usuario);
+                        ElementoTipo = typeof(Lbl.Personas.Usuario);
 
                         InitializeComponent();
                 }

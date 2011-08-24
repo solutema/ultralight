@@ -40,7 +40,7 @@ namespace Lfc.Comprobantes.Recibos
         {
                 public Editar()
                 {
-                        this.ElementoTipo = typeof(Lbl.Comprobantes.Recibo);
+                        ElementoTipo = typeof(Lbl.Comprobantes.Recibo);
 
                         InitializeComponent();
 

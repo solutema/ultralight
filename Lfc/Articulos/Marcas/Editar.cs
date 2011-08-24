@@ -42,7 +42,7 @@ namespace Lfc.Articulos.Marcas
         {
                 public Editar()
                 {
-                        this.ElementoTipo = typeof(Lbl.Articulos.Marca);
+                        ElementoTipo = typeof(Lbl.Articulos.Marca);
 
                         InitializeComponent();
                 }

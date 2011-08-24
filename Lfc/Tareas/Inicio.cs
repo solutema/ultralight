@@ -53,27 +53,31 @@ namespace Lfc.Tareas
 
                 public Inicio()
                 {
-                        this.ElementoTipo = typeof(Lbl.Tareas.Tarea);
-
-                        this.NombreTabla = "tickets";
-                        this.Joins.Add(new qGen.Join("personas", "tickets.id_persona=personas.id_persona"));
-                        this.KeyField = new Lfx.Data.FormField("tickets.id_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64);
-
                         if (this.HasWorkspace) {
                                 // Localidad = Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.Localidad.Id;
                                 EstadosTickets = new Lbl.ColeccionCodigoDetalle(this.Connection.Select("SELECT id_ticket_estado, nombre FROM tickets_estados"));
                         }
 
-                        this.FormFields = new Lfx.Data.FormFieldCollection()
-			{
-				new Lfx.Data.FormField("tickets.nombre", "Asunto", Lfx.Data.InputFieldTypes.Text, 320),
-				new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 240),
-				new Lfx.Data.FormField("tickets.estado", "Estado", 160, EstadosTickets),
-				new Lfx.Data.FormField("tickets.fecha_ingreso", "Ingreso", Lfx.Data.InputFieldTypes.DateTime, 160),
-                                new Lfx.Data.FormField("tickets.id_tecnico_recibe", "Encargado", Lfx.Data.InputFieldTypes.Text, 240),
-                                new Lfx.Data.FormField("DATEDIFF(NOW(), tickets.fecha_ingreso) AS fechadiff", "Antigüedad", Lfx.Data.InputFieldTypes.Integer, 60)
-			};
-                        this.OrderBy = "tickets.id_ticket DESC";
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Tareas.Tarea),
+
+                                NombreTabla = "tickets",
+                                Joins = new qGen.JoinCollection() { new qGen.Join("personas", "tickets.id_persona=personas.id_persona") },
+                                KeyField = new Lfx.Data.FormField("tickets.id_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
+
+                                FormFields = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("tickets.nombre", "Asunto", Lfx.Data.InputFieldTypes.Text, 320),
+				        new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 240),
+				        new Lfx.Data.FormField("tickets.estado", "Estado", 160, EstadosTickets),
+				        new Lfx.Data.FormField("tickets.fecha_ingreso", "Ingreso", Lfx.Data.InputFieldTypes.DateTime, 160),
+                                        new Lfx.Data.FormField("tickets.id_tecnico_recibe", "Encargado", Lfx.Data.InputFieldTypes.Text, 240),
+                                        new Lfx.Data.FormField("DATEDIFF(NOW(), tickets.fecha_ingreso) AS fechadiff", "Antigüedad", Lfx.Data.InputFieldTypes.Integer, 60)
+			        },
+                                OrderBy = "tickets.id_ticket DESC",
+                        };
+
                         this.HabilitarFiltrar = true;
                 }
 
@@ -133,7 +137,7 @@ namespace Lfc.Tareas
                                 FormFiltros.EntradaLocalidad.TextInt = Localidad;
                                 FormFiltros.EntradaTarea.TextInt = Tipo;
                                 FormFiltros.EntradaEstado.TextKey = Estado;
-                                FormFiltros.EntradaOrden.TextKey = OrderBy;
+                                FormFiltros.EntradaOrden.TextKey = this.Definicion.OrderBy;
 
                                 // Agrego los estados de los tickets que figuran en la base de datos
                                 string[] SetData1 = FormFiltros.EntradaEstado.SetData;
@@ -152,7 +156,7 @@ namespace Lfc.Tareas
                                         Localidad = FormFiltros.EntradaLocalidad.TextInt;
                                         Tipo = FormFiltros.EntradaTarea.TextInt;
                                         Estado = FormFiltros.EntradaEstado.TextKey;
-                                        OrderBy = FormFiltros.EntradaOrden.TextKey;
+                                        this.Definicion.OrderBy = FormFiltros.EntradaOrden.TextKey;
                                         this.RefreshList();
                                         filtrarReturn.Success = true;
                                 } else {

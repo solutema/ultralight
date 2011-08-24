@@ -42,16 +42,19 @@ namespace Lfc.Articulos.Marcas
 	{
 		public Inicio()
 		{
-                        this.ElementoTipo = typeof(Lbl.Articulos.Marca);
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Articulos.Marca),
 
-			this.NombreTabla = "marcas";
-                        this.OrderBy = "nombre";
-                        this.KeyField = new Lfx.Data.FormField("id_marca", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
-                        this.FormFields = new Lfx.Data.FormFieldCollection()
-			{
-				new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 480),
-				new Lfx.Data.FormField("url", "Web", Lfx.Data.InputFieldTypes.Text, 120)
-			};
+                                NombreTabla = "marcas",
+                                OrderBy = "nombre",
+                                KeyField = new Lfx.Data.FormField("id_marca", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                FormFields = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 480),
+				        new Lfx.Data.FormField("url", "Web", Lfx.Data.InputFieldTypes.Text, 120)
+			        }
+                        };
 		}
 	}
 }

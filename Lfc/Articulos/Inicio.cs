@@ -46,13 +46,6 @@ namespace Lfc.Articulos
 
                 public Inicio()
                 {
-                        this.ElementoTipo = typeof(Lbl.Articulos.Articulo);
-
-                        this.NombreTabla = "articulos";
-                        this.KeyField = new Lfx.Data.FormField("articulos.id_articulo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80);
-                        this.Joins = this.FixedJoins();
-                        this.OrderBy = "articulos.nombre";
-
                         string Cod1 = "Código 1", Cod2 = "Código 2", Cod3 = "Código 3", Cod4 = "Código 4";
                         if (this.HasWorkspace) {
                                 Lfx.Data.Row CodRow = this.Connection.Tables["articulos_codigos"].FastRows[1];
@@ -72,42 +65,50 @@ namespace Lfc.Articulos
                                 this.Connection.Tables["articulos_codigos"].PreLoad();
                         }
 
+                        this.Definicion = new Lbl.Listados.Listado()
+                        {
+                                ElementoTipo = typeof(Lbl.Articulos.Articulo),
+
+                                NombreTabla = "articulos",
+                                KeyField = new Lfx.Data.FormField("articulos.id_articulo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
+                                DetailColumnName = "nombre",
+                                Joins = this.FixedJoins(),
+                                OrderBy = "articulos.nombre",
+                                FormFields = new Lfx.Data.FormFieldCollection()
+                                {
+				        new Lfx.Data.FormField("articulos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+                                        new Lfx.Data.FormField("articulos.costo", "Costo", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lfx.Data.FormField("articulos.pvp", "PVP", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lfx.Data.FormField("articulos.stock_actual", "Stock Act", Lfx.Data.InputFieldTypes.Numeric, 96),
+				        new Lfx.Data.FormField("articulos.stock_minimo", "Stock Mín", Lfx.Data.InputFieldTypes.Numeric, 96),
+				        new Lfx.Data.FormField("articulos.pedido", "Pedidos", Lfx.Data.InputFieldTypes.Numeric, 96),
+				        new Lfx.Data.FormField("articulos.apedir", "A Pedir", Lfx.Data.InputFieldTypes.Numeric, 96),
+				        new Lfx.Data.FormField("articulos.destacado", "Destacado", Lfx.Data.InputFieldTypes.Bool, 0),
+				        new Lfx.Data.FormField("articulos.codigo1", Cod1, Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lfx.Data.FormField("articulos.codigo2", Cod2, Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lfx.Data.FormField("articulos.codigo3", Cod3, Lfx.Data.InputFieldTypes.Text, 120),
+                                        new Lfx.Data.FormField("articulos_categorias.nombre AS categorias_nombre", "Categoría", Lfx.Data.InputFieldTypes.Text, 120)
+			        },
+
+                                ExtraSearchFields = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("articulos.codigo1", Cod1, Lfx.Data.InputFieldTypes.Text, 0),
+				        new Lfx.Data.FormField("articulos.codigo2", Cod2, Lfx.Data.InputFieldTypes.Text, 0),
+				        new Lfx.Data.FormField("articulos.codigo3", Cod3, Lfx.Data.InputFieldTypes.Text, 0),
+				        new Lfx.Data.FormField("articulos.codigo4", Cod4, Lfx.Data.InputFieldTypes.Text, 0),
+				        new Lfx.Data.FormField("articulos.descripcion", "Descripción", Lfx.Data.InputFieldTypes.Memo, 0),
+				        new Lfx.Data.FormField("articulos.descripcion2", "Descripción Extendida", Lfx.Data.InputFieldTypes.Memo, 0),
+				        new Lfx.Data.FormField("articulos.obs", "Observaciones", Lfx.Data.InputFieldTypes.Memo, 0)
+			        }
+                        };
+
                         this.Contadores.Add(new Contador("Costo", Lui.Forms.DataTypes.Currency, "$", null));
                         this.Contadores.Add(new Contador("PVP", Lui.Forms.DataTypes.Currency, "$", null));
 
-                        this.FormFields = new Lfx.Data.FormFieldCollection()
-                        {
-				new Lfx.Data.FormField("articulos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
-                                new Lfx.Data.FormField("articulos.costo", "Costo", Lfx.Data.InputFieldTypes.Currency, 96),
-				new Lfx.Data.FormField("articulos.pvp", "PVP", Lfx.Data.InputFieldTypes.Currency, 96),
-				new Lfx.Data.FormField("articulos.stock_actual", "Stock Act", Lfx.Data.InputFieldTypes.Numeric, 96),
-				new Lfx.Data.FormField("articulos.stock_minimo", "Stock Mín", Lfx.Data.InputFieldTypes.Numeric, 96),
-				new Lfx.Data.FormField("articulos.pedido", "Pedidos", Lfx.Data.InputFieldTypes.Numeric, 96),
-				new Lfx.Data.FormField("articulos.apedir", "A Pedir", Lfx.Data.InputFieldTypes.Numeric, 96),
-				new Lfx.Data.FormField("articulos.destacado", "Destacado", Lfx.Data.InputFieldTypes.Bool, 0),
-				new Lfx.Data.FormField("articulos.codigo1", Cod1, Lfx.Data.InputFieldTypes.Text, 120),
-				new Lfx.Data.FormField("articulos.codigo2", Cod2, Lfx.Data.InputFieldTypes.Text, 120),
-				new Lfx.Data.FormField("articulos.codigo3", Cod3, Lfx.Data.InputFieldTypes.Text, 120),
-                                new Lfx.Data.FormField("articulos_categorias.nombre AS categorias_nombre", "Categoría", Lfx.Data.InputFieldTypes.Text, 120)
-			};
-
-                        this.FormFields["pedido"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
-                        this.FormFields["apedir"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
-                        this.FormFields["articulos.stock_actual"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
-
-                        this.ExtraSearchFields = new Lfx.Data.FormFieldCollection()
-			{
-				new Lfx.Data.FormField("articulos.codigo1", Cod1, Lfx.Data.InputFieldTypes.Text, 0),
-				new Lfx.Data.FormField("articulos.codigo2", Cod2, Lfx.Data.InputFieldTypes.Text, 0),
-				new Lfx.Data.FormField("articulos.codigo3", Cod3, Lfx.Data.InputFieldTypes.Text, 0),
-				new Lfx.Data.FormField("articulos.codigo4", Cod4, Lfx.Data.InputFieldTypes.Text, 0),
-				new Lfx.Data.FormField("articulos.descripcion", "Descripción", Lfx.Data.InputFieldTypes.Memo, 0),
-				new Lfx.Data.FormField("articulos.descripcion2", "Descripción Extendida", Lfx.Data.InputFieldTypes.Memo, 0),
-				new Lfx.Data.FormField("articulos.obs", "Observaciones", Lfx.Data.InputFieldTypes.Memo, 0)
-			};
-
-                        this.DetailColumnName = "nombre";
-
+                        this.Definicion.FormFields["pedido"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+                        this.Definicion.FormFields["apedir"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+                        this.Definicion.FormFields["articulos.stock_actual"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+                        
                         this.HabilitarFiltrar = true;
                 }
 
@@ -164,12 +165,12 @@ namespace Lfc.Articulos
                         if (m_Situacion > 0) {
                                 this.CustomFilters.Add(new qGen.ComparisonCondition("articulos_stock.id_situacion", m_Situacion));
                                 this.CustomFilters.Add(new qGen.ComparisonCondition("articulos_stock.cantidad", qGen.ComparisonOperators.NotEquals, 0));
-                                this.Joins = this.FixedJoins();
-                                this.Joins.Add(new qGen.Join("articulos_stock", "articulos.id_articulo=articulos_stock.id_articulo"));
-                                this.FormFields[3].ColumnName = "articulos_stock.cantidad";
+                                this.Definicion.Joins = this.FixedJoins();
+                                this.Definicion.Joins.Add(new qGen.Join("articulos_stock", "articulos.id_articulo=articulos_stock.id_articulo"));
+                                this.Definicion.FormFields[3].ColumnName = "articulos_stock.cantidad";
                         } else {
-                                this.Joins = this.FixedJoins();
-                                this.FormFields[3].ColumnName = "articulos.stock_actual";
+                                this.Definicion.Joins = this.FixedJoins();
+                                this.Definicion.FormFields[3].ColumnName = "articulos.stock_actual";
                         }
 
                         switch (m_Stock) {
@@ -202,8 +203,8 @@ namespace Lfc.Articulos
                 protected override void OnEndRefreshList()
                 {
                         string SelectValorizacion = "SELECT SUM(costo*stock_actual) FROM articulos";
-                        if (this.Joins != null && this.Joins.Count > 0) {
-                                foreach (qGen.Join Jo in this.Joins) {
+                        if (this.Definicion.Joins != null && this.Definicion.Joins.Count > 0) {
+                                foreach (qGen.Join Jo in this.Definicion.Joins) {
                                         SelectValorizacion += Jo.ToString();
                                 }
                         }
@@ -212,8 +213,8 @@ namespace Lfc.Articulos
                         this.Contadores[0].Total = this.Connection.FieldDecimal(SelectValorizacion);
 
                         SelectValorizacion = "SELECT SUM(pvp*stock_actual) FROM articulos";
-                        if (this.Joins != null && this.Joins.Count > 0) {
-                                foreach (qGen.Join Jo in this.Joins) {
+                        if (this.Definicion.Joins != null && this.Definicion.Joins.Count > 0) {
+                                foreach (qGen.Join Jo in this.Definicion.Joins) {
                                         SelectValorizacion += Jo.ToString();
                                 }
                         }

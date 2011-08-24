@@ -43,7 +43,7 @@ namespace Lfc.Bancos.Cheques
         {
                 public Editar()
                 {
-                        this.ElementoTipo = typeof(Lbl.Bancos.Cheque);
+                        ElementoTipo = typeof(Lbl.Bancos.Cheque);
 
                         InitializeComponent();
                 }

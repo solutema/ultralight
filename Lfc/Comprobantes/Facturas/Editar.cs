@@ -45,7 +45,7 @@ namespace Lfc.Comprobantes.Facturas
 
                 public Editar()
                 {
-                        this.ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteConArticulos);
+                        ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteConArticulos);
 
                         InitializeComponent();
                 }
@@ -75,8 +75,6 @@ namespace Lfc.Comprobantes.Facturas
                         Lfx.Types.OperationResult validarReturn = base.ValidarControl();
 
                         if (validarReturn.Success == true) {
-                                Lbl.Comprobantes.ComprobanteFacturable Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteFacturable;
-
                                 if (EntradaRemito.Text.Length > 0) {
                                         int RemitoNumero, RemitoPv;
                                         if (EntradaRemito.Text.IndexOfAny(new char[] { '-' }) >= 0) {
