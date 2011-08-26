@@ -88,8 +88,10 @@ namespace Lbl.Personas
                         }
                         set
                         {
-                                if (this.Contrasena != value)
+                                if (this.Contrasena != value) {
                                         CambioContrasena = true;
+                                        this.ContrasenaSal = GenerarSal();
+                                }
                                 this.Registro["contrasena"] = value;
                         }
                 }
@@ -395,17 +397,14 @@ namespace Lbl.Personas
                                 if (this.Contrasena == null || this.Contrasena.Length < 6 || this.Contrasena.Length > 32)
                                         throw new InvalidOperationException("La contraseña debe tener entre 6 y 32 caracteres");
 
-                                string Sal = GenerarSal();
-                                this.ContrasenaSal = Sal;
-
                                 if (this.ContrasenaSal == null || this.ContrasenaSal.Length == 0) {
                                         // Guardo la contraseña en texto plano
                                         Comando.Fields.AddWithValue("contrasena", Contrasena);
                                 } else {
                                         // Guardo un hash SHA256 de la contraseña
-                                        Comando.Fields.AddWithValue("contrasena", Lfx.Types.Strings.SHA256(Contrasena + Sal));
+                                        Comando.Fields.AddWithValue("contrasena", Lfx.Types.Strings.SHA256(Contrasena + this.ContrasenaSal));
                                 }
-                                Comando.Fields.AddWithValue("contrasena_sal", Sal);
+                                Comando.Fields.AddWithValue("contrasena_sal", this.ContrasenaSal);
                                 Comando.Fields.AddWithValue("contrasena_fecha", qGen.SqlFunctions.Now);
                         }
 

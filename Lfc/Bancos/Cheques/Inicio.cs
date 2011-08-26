@@ -47,6 +47,8 @@ namespace Lfc.Bancos.Cheques
 
                 public Inicio()
                 {
+                        InitializeComponent();
+
                         Lbl.ColeccionCodigoDetalle EstadosCheques;
                         if (m_Emitidos) {
                                 EstadosCheques = new Lbl.ColeccionCodigoDetalle()

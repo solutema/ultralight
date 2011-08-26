@@ -148,9 +148,8 @@ namespace Lbl.Personas
                         if (this.Existe == false) {
                                 // Si estoy creando una persona, le asigno una contraseña aleatoria de 6 digitos
                                 string Contrasena = new System.Random().Next(100000, 999999).ToString();
-                                string Sal = Lbl.Personas.Usuario.GenerarSal();
-                                Comando.Fields.AddWithValue("contrasena", Lfx.Types.Strings.SHA256(Contrasena + Sal));
-                                Comando.Fields.AddWithValue("contrasena_sal", Sal);
+                                Comando.Fields.AddWithValue("contrasena", Contrasena);
+                                Comando.Fields.AddWithValue("contrasena_sal", null);
                                 Comando.Fields.AddWithValue("contrasena_fecha", qGen.SqlFunctions.Now);
                         }
 
