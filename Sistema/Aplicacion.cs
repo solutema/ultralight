@@ -71,7 +71,7 @@ namespace Lazaro
                         System.Threading.Thread.CurrentThread.Name = "Lazaro";
 
                         bool ReconfigDB = false, IgnoreUpdates = false, DebugMode = Lfx.Environment.SystemInformation.DesignMode;
-                        bool PrimeraVez = false;
+                        bool MostrarAsistenteConfig = false, ClearCache = false;
 
                         string NombreConfig = "default";
 
@@ -85,11 +85,15 @@ namespace Lazaro
 
                                                 case "/wizard":
                                                 case "--wizard":
-                                                        PrimeraVez = true;
+                                                        MostrarAsistenteConfig = true;
                                                         break;
 
                                                 case "/ignoreupdates":
                                                         IgnoreUpdates = true;
+                                                        break;
+
+                                                case "/clearcache":
+                                                        ClearCache = true;
                                                         break;
 
                                                 case "/help":
@@ -110,6 +114,9 @@ namespace Lazaro
                                         }
                                 }
                         }
+
+                        if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationDataFolder + "clear.txt"))
+                                ClearCache = true;
 
                         if (IgnoreUpdates == false) {
                                 // Si hay actualizaciones pendientes, reinicio para que ActualizadorLazaro se encargue de ellas.
@@ -167,9 +174,9 @@ namespace Lazaro
 
                         // Si no hay datos de configuración, voy a presentar el asistente
                         if (Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "DataSource", null) == null)
-                                PrimeraVez = true;
+                                MostrarAsistenteConfig = true;
 
-                        if (PrimeraVez) {
+                        if (MostrarAsistenteConfig) {
                                 // Presento el asistente de configurar almacén de datos
                                 using (Misc.Config.Inicial AsistenteInicial = new Misc.Config.Inicial()) {
                                         if (AsistenteInicial.ShowDialog() == DialogResult.Cancel)
@@ -186,7 +193,37 @@ namespace Lazaro
                         IniciarDatos();
                         
                         // Busco actualización en la caché
-                        if (Lfx.Workspace.Master.SlowLink == false && Lfx.Environment.SystemInformation.DesignMode == false) {
+                        if (ClearCache) {
+                                try {
+                                        qGen.Delete ClearCacheSql = new qGen.Delete("sys_asl");
+                                        ClearCacheSql.EnableDeleleteWithoutWhere = true;
+                                        Lfx.Workspace.Master.MasterConnection.Execute(ClearCacheSql);
+                                } catch {
+                                        // No pasa nada si falla... igualmente intento iniciar
+                                }
+
+                                try {
+                                        Lfx.Environment.Folders.DeleteWithWildcards(Lfx.Environment.Folders.TemporaryFolder, "*.*");
+                                } catch {
+                                        // Si algún archivo no se puede borrar, no importa
+                                }
+
+                                try {
+                                        Lfx.Environment.Folders.DeleteWithWildcards(Lfx.Environment.Folders.UpdatesFolder, "*.*");
+                                        Lfx.Environment.Folders.DeleteWithWildcards(Lfx.Environment.Folders.UpdatesFolder + "Components" + System.IO.Path.DirectorySeparatorChar, "*.*");
+                                } catch {
+                                        // Si algún archivo no se puede borrar, no importa
+                                }
+
+                                try {
+                                        Lfx.Environment.Folders.DeleteWithWildcards(Lfx.Environment.Folders.ApplicationDataFolder, "clear.txt");
+                                } catch {
+                                        // Si algún archivo no se puede borrar, no importa
+                                }
+
+                        }
+
+                        if (ClearCache == false && Lfx.Workspace.Master.SlowLink == false && Lfx.Environment.SystemInformation.DesignMode == false) {
                                 Lfx.Services.Updater.Master.UpdateFromDbCache();
                                 if (Lfx.Services.Updater.Master.UpdatedFiles > 0) {
                                         Aplicacion.Exec("REBOOT");

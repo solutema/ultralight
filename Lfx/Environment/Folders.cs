@@ -44,6 +44,15 @@ namespace Lfx.Environment
                                 System.IO.Directory.CreateDirectory(path);
                 }
 
+
+                public static void DeleteWithWildcards(string path, string wildcards)
+                {
+                        string[] Files = System.IO.Directory.GetFiles(path, wildcards);
+                        foreach (string File in Files) {
+                                System.IO.File.Delete(File);
+                        }
+                }
+
 		public static string TemporaryFolder
 		{
 			get

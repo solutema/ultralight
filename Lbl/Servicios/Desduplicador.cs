@@ -61,6 +61,16 @@ namespace Lbl.Servicios
                                 this.DataBase.BeginTransaction(true);
                         }
 
+                        // Le doy tratamiento especial a algunas situaciones
+                        switch (TablaOriginal) {
+                                case "personas":
+                                        // Quito la imagen del elemento duplicado... para que no choque con la original
+                                        qGen.Delete QuitarImagen = new qGen.Delete("personas_imagenes");
+                                        QuitarImagen.WhereClause = new qGen.Where("id_persona", this.IdDuplicado);
+                                        this.DataBase.Execute(QuitarImagen);
+                                        break;
+                        }
+
                         // Busco una lista de relaciones entre tablas
                         System.Collections.Generic.List<Lfx.Data.Relation> Rels = this.ListaRelaciones();
                         foreach (Lfx.Data.Relation Rel in Rels) {

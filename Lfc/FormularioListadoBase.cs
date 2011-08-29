@@ -946,9 +946,9 @@ namespace Lfc
                                         if (cellValue == null || cellValue is DBNull)
                                                 FieldValueAsText = "";
                                         else if (formField.Format != null)
-                                                FieldValueAsText = System.Convert.ToInt32(cellValue).ToString(formField.Format);
+                                                FieldValueAsText = Lfx.Types.Parsing.ParseInt(cellValue.ToString()).ToString(formField.Format);
                                         else
-                                                FieldValueAsText = System.Convert.ToInt32(cellValue).ToString();
+                                                FieldValueAsText = Lfx.Types.Parsing.ParseInt(cellValue.ToString()).ToString();
                                         break;
 
                                 case Lfx.Data.InputFieldTypes.Text:
