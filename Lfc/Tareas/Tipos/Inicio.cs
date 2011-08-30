@@ -43,14 +43,14 @@ namespace Lfc.Tareas.Tipos
                                 {1, "Activo"}
                         };
 
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Tareas.Tipo),
 
-                                NombreTabla = "tickets_tipos",
-                                KeyField = new Lfx.Data.FormField("tickets_tipos.id_tipo_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
+                                TableName = "tickets_tipos",
+                                KeyColumnName = new Lfx.Data.FormField("tickets_tipos.id_tipo_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
 
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("tickets_tipos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 				        new Lfx.Data.FormField("tickets_tipos.estado", "Estado", 160, EstadosTickets),

@@ -41,14 +41,14 @@ namespace Lfc.Comprobantes.Tipo
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Comprobantes.Tipo),
 
-                                NombreTabla = "documentos_tipos",
+                                TableName = "documentos_tipos",
                                 OrderBy = "nombre",
-                                KeyField = new Lfx.Data.FormField("id_tipo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                KeyColumnName = new Lfx.Data.FormField("id_tipo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
 				        new Lfx.Data.FormField("letra", "Letra", Lfx.Data.InputFieldTypes.Text, 60),

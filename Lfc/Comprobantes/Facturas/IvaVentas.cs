@@ -41,14 +41,14 @@ namespace Lfc.Comprobantes.Facturas
 
                 public IvaVentas()
                 {
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteFacturable),
 
-                                NombreTabla = "comprob",
-                                KeyField = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                TableName = "comprob",
+                                KeyColumnName = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Joins = new qGen.JoinCollection() { new qGen.Join("personas", "comprob.id_cliente=personas.id_persona"), new qGen.Join("situaciones", "personas.id_situacion=situaciones.id_situacion") },
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
 				        new Lfx.Data.FormField("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 40),
@@ -65,8 +65,8 @@ namespace Lfc.Comprobantes.Facturas
                                 OrderBy = "comprob.pv, comprob.numero"
                         };
 
-                        this.Definicion.FormFields["gravado"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
-                        this.Definicion.FormFields["total"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+                        this.Definicion.Columns["gravado"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+                        this.Definicion.Columns["total"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
 
                         this.Contadores.Add(new Lfc.Contador("Total", Lui.Forms.DataTypes.Currency));
 
@@ -160,7 +160,7 @@ namespace Lfc.Comprobantes.Facturas
                                         break;
 
                                 case "Lbl.Comprobantes.Factura":
-                                        this.Definicion.FormFields["pendiente"].Visible = true;
+                                        this.Definicion.Columns["pendiente"].Visible = true;
                                         if (m_Letra == "*")
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "FA", "FB", "FC", "FE", "FM" });
                                         else

@@ -55,14 +55,14 @@ namespace Lfc.Cajas.Admin
                                 {1, "Activa"}
                         };
 
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Cajas.Caja),
 
-                                NombreTabla = "cajas",
-                                KeyField = new Lfx.Data.FormField("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                TableName = "cajas",
+                                KeyColumnName = new Lfx.Data.FormField("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
 
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Relation, 96),
 				        new Lfx.Data.FormField("cajas.id_banco", "Banco", Lfx.Data.InputFieldTypes.Relation, 120),

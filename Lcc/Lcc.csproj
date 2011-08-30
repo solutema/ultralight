@@ -99,6 +99,12 @@
     <Compile Include="Entrada\MatrizTelefonos.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Entrada\RangoNumerico.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Entrada\RangoNumerico.Designer.cs">
+      <DependentUpon>RangoNumerico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entrada\Telefono.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -282,6 +288,9 @@
     <EmbeddedResource Include="Entrada\CodigoDetalle.resx">
       <DependentUpon>CodigoDetalle.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Entrada\RangoNumerico.resx">
+      <DependentUpon>RangoNumerico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Entrada\Telefono.resx">
       <DependentUpon>Telefono.cs</DependentUpon>

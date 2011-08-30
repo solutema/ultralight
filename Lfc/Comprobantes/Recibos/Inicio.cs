@@ -43,15 +43,15 @@ namespace Lfc.Comprobantes.Recibos
 
                 public Inicio()
                 {
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Comprobantes.ReciboDeCobro),
 
-                                NombreTabla = "recibos",
+                                TableName = "recibos",
                                 Joins = new qGen.JoinCollection() { new qGen.Join("personas", "recibos.id_cliente=personas.id_persona") },
-                                KeyField = new Lfx.Data.FormField("recibos.id_recibo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumnName = new Lfx.Data.FormField("recibos.id_recibo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 OrderBy = "recibos.fecha DESC",
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
                                         new Lfx.Data.FormField("recibos.pv", "PV", Lfx.Data.InputFieldTypes.Integer, 28),
 				        new Lfx.Data.FormField("recibos.numero", "Número", Lfx.Data.InputFieldTypes.Integer, 96),

@@ -48,12 +48,12 @@ namespace Lfc.Cajas
                         this.GroupingColumnName = "cajas_movim.id_caja";
                         this.Fechas = new Lfx.Types.DateRange("dia-0");
 
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
-                                NombreTabla = "cajas_movim",
-                                KeyField = new Lfx.Data.FormField("cajas_movim.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                TableName = "cajas_movim",
+                                KeyColumnName = new Lfx.Data.FormField("cajas_movim.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Joins = new qGen.JoinCollection() {new qGen.Join("personas", "cajas_movim.id_persona=personas.id_persona") },
-                                FormFields = new Lfx.Data.FormFieldCollection() {
+                                Columns = new Lfx.Data.FormFieldCollection() {
                                         new Lfx.Data.FormField("cajas_movim.id_caja", "Caja", Lfx.Data.InputFieldTypes.Relation, 0),
                                         new Lfx.Data.FormField("cajas_movim.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Relation, 0),
                                         new Lfx.Data.FormField("cajas_movim.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 200),

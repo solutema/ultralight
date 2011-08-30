@@ -46,16 +46,16 @@ namespace Lfc.Comprobantes.Compra
 
         	public Inicio()
 		{
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteDeCompra),
 
-                                NombreTabla = "comprob",
+                                TableName = "comprob",
                                 Joins = new qGen.JoinCollection() { new qGen.Join("comprob_detalle", "comprob.id_comprob=comprob_detalle.id_comprob") },
-                                KeyField = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumnName = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 GroupBy = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 OrderBy = "comprob.fecha DESC",
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 48),
 				        new Lfx.Data.FormField("comprob.pv", "PV", Lfx.Data.InputFieldTypes.Integer, 80),
@@ -68,7 +68,7 @@ namespace Lfc.Comprobantes.Compra
                                         new Lfx.Data.FormField("comprob.id_formapago", "Pago", Lfx.Data.InputFieldTypes.Text, 0)
 			        },
                                 
-                                ExtraSearchFields = new Lfx.Data.FormFieldCollection()
+                                ExtraSearchColumns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("comprob_detalle.series", "Números de Serie", Lfx.Data.InputFieldTypes.Text, 0),
 				        new Lfx.Data.FormField("comprob.obs", "Observaciones", Lfx.Data.InputFieldTypes.Memo, 0)

@@ -70,16 +70,16 @@ namespace Lfc.Bancos.Cheques
                                 };
                         }
 
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Bancos.Cheque),
 
-                                NombreTabla = "bancos_cheques",
-                                KeyField = new Lfx.Data.FormField("bancos_cheques.id_cheque", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20),
+                                TableName = "bancos_cheques",
+                                KeyColumnName = new Lfx.Data.FormField("bancos_cheques.id_cheque", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20),
                                 OrderBy = "bancos_cheques.fecha DESC",
                                 Joins = new qGen.JoinCollection() { new qGen.Join("bancos", "bancos_cheques.id_banco=bancos.id_banco") },
 
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("bancos_cheques.numero", "Número", Lfx.Data.InputFieldTypes.Text, 120),
 				        new Lfx.Data.FormField("bancos_cheques.fechaemision", "Fecha Emision", Lfx.Data.InputFieldTypes.Date, 96),

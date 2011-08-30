@@ -292,11 +292,6 @@
             Representa la relación entre un tipo de comprobante y una impresora.
             </summary>
         </member>
-        <member name="T:Lbl.Listados.Listado">
-            <summary>
-            Define los datos para emitir un listado.
-            </summary>
-        </member>
         <member name="M:Lbl.ListaIds.ToString">
             <summary>
             Convierte la lista a una cadena, en la forma de una lista de valores separados por comas.

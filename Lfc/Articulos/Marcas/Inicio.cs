@@ -42,14 +42,14 @@ namespace Lfc.Articulos.Marcas
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Articulos.Marca),
 
-                                NombreTabla = "marcas",
+                                TableName = "marcas",
                                 OrderBy = "nombre",
-                                KeyField = new Lfx.Data.FormField("id_marca", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                KeyColumnName = new Lfx.Data.FormField("id_marca", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 480),
 				        new Lfx.Data.FormField("url", "Web", Lfx.Data.InputFieldTypes.Text, 120)

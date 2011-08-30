@@ -45,16 +45,16 @@ namespace Lfc.Personas
 
                 public Inicio()
                 {
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Personas.Persona),
 
-                                NombreTabla = "personas",
-                                KeyField = new Lfx.Data.FormField("personas.id_persona", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
+                                TableName = "personas",
+                                KeyColumnName = new Lfx.Data.FormField("personas.id_persona", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
                                 DetailColumnName = "nombre_visible",
                                 Joins =  new qGen.JoinCollection() { new qGen.Join("personas_grupos", "personas_grupos.id_grupo=personas.id_grupo"), new qGen.Join("ciudades", "personas.id_ciudad=ciudades.id_ciudad") },
                                 OrderBy = "personas.nombre_visible",
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("personas.nombre_visible", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
 				        new Lfx.Data.FormField("personas.telefono", "Teléfono", Lfx.Data.InputFieldTypes.Text, 140),
@@ -68,7 +68,7 @@ namespace Lfc.Personas
                                         new Lfx.Data.FormField("personas.fechaalta", "Alta", Lfx.Data.InputFieldTypes.Date, 120),
                                         new Lfx.Data.FormField("personas.fechabaja", "Baja", Lfx.Data.InputFieldTypes.Date, 120)
 			        },
-                                ExtraSearchFields = new Lfx.Data.FormFieldCollection()
+                                ExtraSearchColumns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("personas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 0),
 				        new Lfx.Data.FormField("personas.apellido", "Apellido", Lfx.Data.InputFieldTypes.Text, 0),
@@ -163,7 +163,7 @@ namespace Lfc.Personas
                                 int i = 0;
                                 Etiquetas[i++] = "Todas|0";
                                 foreach (Lfx.Data.Row Lab in this.Connection.Tables["sys_labels"].FastRows.Values) {
-                                        if (Lab["tablas"].ToString() == this.Definicion.NombreTabla) {
+                                        if (Lab["tablas"].ToString() == this.Definicion.TableName) {
                                                 if (Etiquetas.Length < (i + 1))
                                                         Array.Resize<string>(ref Etiquetas, i + 2);
 

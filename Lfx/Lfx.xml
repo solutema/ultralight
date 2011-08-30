@@ -19,6 +19,21 @@
             Esqueleto del componente.
             </summary>
         </member>
+        <member name="P:Lfx.Data.Filter.Value">
+            <summary>
+            Obtiene o establece el valor actual del filtro.
+            </summary>
+        </member>
+        <member name="P:Lfx.Data.Filter.Value2">
+            <summary>
+            Obtiene o establece el segundo valor del filtro, para el caso de los filtros de rango que tienen 2 valores (por ejemplo mínimo/máximo o desde/hasta).
+            </summary>
+        </member>
+        <member name="T:Lfx.Data.Listing">
+            <summary>
+            Define los datos para emitir un listado.
+            </summary>
+        </member>
         <member name="T:qGen.Command">
             <summary>
             Esta clase y sus derivadas se utilizan para evitar escribir los comandos SQL como literales de texto.
@@ -158,6 +173,26 @@
         <member name="T:qGen.Select">
             <summary>
             Comando SELECT
+            </summary>
+        </member>
+        <member name="P:Lfx.Data.Relation.Column">
+            <summary>
+            Obtiene o establece el nombre de la columna en la en la tabla de origen.
+            </summary>
+        </member>
+        <member name="P:Lfx.Data.Relation.ReferenceTable">
+            <summary>
+            Obtiene o establece el nombre de la tabla de destino (de la cual se obtienen los detalles).
+            </summary>
+        </member>
+        <member name="P:Lfx.Data.Relation.ReferenceColumn">
+            <summary>
+            Obtiene o establece el nombre de la columna de clave mediante la cual obtener el detalle en la tabla de destino.
+            </summary>
+        </member>
+        <member name="P:Lfx.Data.Relation.DetailColumn">
+            <summary>
+            Obtiene o establece el nombre de la columna que contiene los detalles en la tabla de destino.
             </summary>
         </member>
         <member name="T:Lfx.Lic">

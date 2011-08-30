@@ -58,15 +58,15 @@ namespace Lfc.Tareas
                                 EstadosTickets = new Lbl.ColeccionCodigoDetalle(this.Connection.Select("SELECT id_ticket_estado, nombre FROM tickets_estados"));
                         }
 
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Tareas.Tarea),
 
-                                NombreTabla = "tickets",
+                                TableName = "tickets",
                                 Joins = new qGen.JoinCollection() { new qGen.Join("personas", "tickets.id_persona=personas.id_persona") },
-                                KeyField = new Lfx.Data.FormField("tickets.id_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
+                                KeyColumnName = new Lfx.Data.FormField("tickets.id_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
 
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("tickets.nombre", "Asunto", Lfx.Data.InputFieldTypes.Text, 320),
 				        new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 240),

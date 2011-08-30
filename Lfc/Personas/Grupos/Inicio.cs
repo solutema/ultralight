@@ -41,14 +41,14 @@ namespace Lfc.Personas.Grupos
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Personas.Grupo),
 
-                                NombreTabla = "personas_grupos",
-                                KeyField = new Lfx.Data.FormField("id_grupo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                TableName = "personas_grupos",
+                                KeyColumnName = new Lfx.Data.FormField("id_grupo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 OrderBy = "parent, nombre",
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 				        new Lfx.Data.FormField("descuento", "Descuento", Lfx.Data.InputFieldTypes.Numeric, 320),

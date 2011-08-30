@@ -39,14 +39,14 @@ namespace Lfc.Pvs
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Comprobantes.PuntoDeVenta),
 
-                                NombreTabla = "pvs",
-                                KeyField = new Lfx.Data.FormField("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                TableName = "pvs",
+                                KeyColumnName = new Lfx.Data.FormField("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Joins = new qGen.JoinCollection() { new qGen.Join("sucursales", "pvs.id_sucursal=sucursales.id_sucursal") },
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                         new Lfx.Data.FormField("pvs.numero", "PV", Lfx.Data.InputFieldTypes.Integer, 96),

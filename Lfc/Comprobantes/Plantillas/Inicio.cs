@@ -41,13 +41,13 @@ namespace Lfc.Comprobantes.Plantillas
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Impresion.Plantilla),
 
-                                NombreTabla = "sys_plantillas",
-                                KeyField = new Lfx.Data.FormField("sys_plantillas.id_plantilla", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                TableName = "sys_plantillas",
+                                KeyColumnName = new Lfx.Data.FormField("sys_plantillas.id_plantilla", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("sys_plantillas.codigo", "Código", Lfx.Data.InputFieldTypes.Text, 240),
 				        new Lfx.Data.FormField("sys_plantillas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),

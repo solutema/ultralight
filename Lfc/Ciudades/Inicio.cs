@@ -42,14 +42,14 @@ namespace Lfc.Ciudades
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Entidades.Localidad),
 
-                                NombreTabla = "ciudades",
-                                KeyField = new Lfx.Data.FormField("ciudades.id_ciudad", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                TableName = "ciudades",
+                                KeyColumnName = new Lfx.Data.FormField("ciudades.id_ciudad", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 OrderBy = "ciudades.parent, ciudades.nombre",
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 				        new Lfx.Data.FormField("cp", "Cód. Postal", Lfx.Data.InputFieldTypes.Text, 120)

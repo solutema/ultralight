@@ -30,22 +30,22 @@
 #endregion
 
 using System;
-using System.ComponentModel;
 using System.Collections.Generic;
 
-namespace Lbl.Listados
+namespace Lfx.Data
 {
         /// <summary>
         /// Define los datos para emitir un listado.
         /// </summary>
-        public class Listado
+        public class Listing
         {
                 public Type ElementoTipo = null;
 
-                public string NombreTabla;
-                public Lfx.Data.FormField KeyField;
+                public string TableName;
+                public Lfx.Data.FormField KeyColumnName;
                 public string DetailColumnName = null;
-                public Lfx.Data.FormFieldCollection FormFields = null, ExtraSearchFields = null;
+                public Lfx.Data.FormFieldCollection Columns = null, ExtraSearchColumns = null, SortColumns = null;
+                public List<IFilter> Filters = null;
 
                 public Lfx.Data.FormField GroupBy = null;
                 public string OrderBy = null;
@@ -53,10 +53,5 @@ namespace Lbl.Listados
 
                 public qGen.Where Having = null;
                 public qGen.Where Where = null;
-
-                public Listado()
-                {
-
-                }
         }
 }

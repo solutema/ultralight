@@ -55,14 +55,14 @@ namespace Lfc.Cupones.Cupones
 
                         };
 
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Pagos.Cupon),
-                                NombreTabla = "tarjetas_cupones",
+                                TableName = "tarjetas_cupones",
                                 Joins = new qGen.JoinCollection() { new qGen.Join("formaspago", "tarjetas_cupones.id_tarjeta=formaspago.id_formapago"), new qGen.Join("personas", "tarjetas_cupones.id_cliente=personas.id_persona") },
-                                KeyField = new Lfx.Data.FormField("tarjetas_cupones.id_cupon", "Cód.", Lfx.Data.InputFieldTypes.Serial, 28),
+                                KeyColumnName = new Lfx.Data.FormField("tarjetas_cupones.id_cupon", "Cód.", Lfx.Data.InputFieldTypes.Serial, 28),
 
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
                                         new Lfx.Data.FormField("tarjetas_cupones.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 240),
                                         new Lfx.Data.FormField("formaspago.nombre", "Tarjeta", Lfx.Data.InputFieldTypes.Text, 240),

@@ -65,16 +65,16 @@ namespace Lfc.Articulos
                                 this.Connection.Tables["articulos_codigos"].PreLoad();
                         }
 
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Articulos.Articulo),
 
-                                NombreTabla = "articulos",
-                                KeyField = new Lfx.Data.FormField("articulos.id_articulo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
+                                TableName = "articulos",
+                                KeyColumnName = new Lfx.Data.FormField("articulos.id_articulo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
                                 DetailColumnName = "nombre",
                                 Joins = this.FixedJoins(),
                                 OrderBy = "articulos.nombre",
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lfx.Data.FormFieldCollection()
                                 {
 				        new Lfx.Data.FormField("articulos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
                                         new Lfx.Data.FormField("articulos.costo", "Costo", Lfx.Data.InputFieldTypes.Currency, 96),
@@ -90,7 +90,7 @@ namespace Lfc.Articulos
                                         new Lfx.Data.FormField("articulos_categorias.nombre AS categorias_nombre", "Categoría", Lfx.Data.InputFieldTypes.Text, 120)
 			        },
 
-                                ExtraSearchFields = new Lfx.Data.FormFieldCollection()
+                                ExtraSearchColumns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("articulos.codigo1", Cod1, Lfx.Data.InputFieldTypes.Text, 0),
 				        new Lfx.Data.FormField("articulos.codigo2", Cod2, Lfx.Data.InputFieldTypes.Text, 0),
@@ -105,9 +105,9 @@ namespace Lfc.Articulos
                         this.Contadores.Add(new Contador("Costo", Lui.Forms.DataTypes.Currency, "$", null));
                         this.Contadores.Add(new Contador("PVP", Lui.Forms.DataTypes.Currency, "$", null));
 
-                        this.Definicion.FormFields["pedido"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
-                        this.Definicion.FormFields["apedir"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
-                        this.Definicion.FormFields["articulos.stock_actual"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+                        this.Definicion.Columns["pedido"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+                        this.Definicion.Columns["apedir"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+                        this.Definicion.Columns["articulos.stock_actual"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
                         
                         this.HabilitarFiltrar = true;
                 }
@@ -167,10 +167,10 @@ namespace Lfc.Articulos
                                 this.CustomFilters.Add(new qGen.ComparisonCondition("articulos_stock.cantidad", qGen.ComparisonOperators.NotEquals, 0));
                                 this.Definicion.Joins = this.FixedJoins();
                                 this.Definicion.Joins.Add(new qGen.Join("articulos_stock", "articulos.id_articulo=articulos_stock.id_articulo"));
-                                this.Definicion.FormFields[3].ColumnName = "articulos_stock.cantidad";
+                                this.Definicion.Columns[3].ColumnName = "articulos_stock.cantidad";
                         } else {
                                 this.Definicion.Joins = this.FixedJoins();
-                                this.Definicion.FormFields[3].ColumnName = "articulos.stock_actual";
+                                this.Definicion.Columns[3].ColumnName = "articulos.stock_actual";
                         }
 
                         switch (m_Stock) {

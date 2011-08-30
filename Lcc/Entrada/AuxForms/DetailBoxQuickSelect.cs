@@ -200,7 +200,7 @@ namespace Lcc.Entrada.AuxForms
                 {
                         ListaItem.Items.Clear();
                         if (this.HasWorkspace && this.Connection != null) {
-                                if (m_Table.Length > 0 && m_KeyField.Length > 0 && m_DetailField.Length > 0) {
+                                if (m_Table.Length > 0 && m_KeyField.Length > 0 && m_DetailField != null && m_DetailField.Length > 0) {
                                         string TextoSql = null;
                                         string sBuscar = EntradaBuscar.Text;
 

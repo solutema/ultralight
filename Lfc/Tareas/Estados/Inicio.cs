@@ -43,14 +43,14 @@ namespace Lfc.Tareas.Estados
                                 {1, "Activo"}
                         }; */
 
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Tareas.Estado),
 
-                                NombreTabla = "tickets_estados",
-                                KeyField = new Lfx.Data.FormField("tickets_estados.id_ticket_estado", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
+                                TableName = "tickets_estados",
+                                KeyColumnName = new Lfx.Data.FormField("tickets_estados.id_ticket_estado", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
 
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("tickets_estados.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 			        },

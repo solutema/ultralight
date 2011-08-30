@@ -42,13 +42,13 @@ namespace Lfc.Sucursales
         {
                 public Inicio()
                 {
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Entidades.Sucursal),
 
-                                NombreTabla = "sucursales",
-                                KeyField = new Lfx.Data.FormField("sucursales.id_sucursal", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                FormFields = new Lfx.Data.FormFieldCollection() 
+                                TableName = "sucursales",
+                                KeyColumnName = new Lfx.Data.FormField("sucursales.id_sucursal", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                Columns = new Lfx.Data.FormFieldCollection() 
 			        {
 				        new Lfx.Data.FormField("sucursales.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 				        new Lfx.Data.FormField("sucursales.direccion", "Dirección", Lfx.Data.InputFieldTypes.Text, 120),

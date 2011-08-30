@@ -47,12 +47,12 @@ namespace Lfc.CuentasCorrientes
                 {
                         InitializeComponent();
 
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
-                                NombreTabla = "ctacte",
-                                KeyField = new Lfx.Data.FormField("ctacte.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                TableName = "ctacte",
+                                KeyColumnName = new Lfx.Data.FormField("ctacte.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Joins = new qGen.JoinCollection() { new qGen.Join("personas", "ctacte.id_cliente=personas.id_persona") },
-                                FormFields = new Lfx.Data.FormFieldCollection() {
+                                Columns = new Lfx.Data.FormFieldCollection() {
                                         new Lfx.Data.FormField("personas.nombre_visible", "Persona", Lfx.Data.InputFieldTypes.Text, 320),
                                         new Lfx.Data.FormField("ctacte.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Relation, 0),
                                         new Lfx.Data.FormField("ctacte.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
@@ -113,15 +113,15 @@ namespace Lfc.CuentasCorrientes
                                 this.Definicion.OrderBy = "personas.nombre_visible";
                                 this.Text = "Listado de Cuentas Corrientes";
 
-                                this.Definicion.FormFields["nombre_visible"].Visible = true;
-                                this.Definicion.FormFields["fecha"].Visible = false;
-                                this.Definicion.FormFields["concepto"].Visible = false;
-                                this.Definicion.FormFields["importe"].Visible = false;
-                                this.Definicion.FormFields["saldo"].Visible = true;
-                                this.Definicion.FormFields["obs"].Visible = false;
-                                this.Definicion.FormFields["comprob"].Visible = false;
+                                this.Definicion.Columns["nombre_visible"].Visible = true;
+                                this.Definicion.Columns["fecha"].Visible = false;
+                                this.Definicion.Columns["concepto"].Visible = false;
+                                this.Definicion.Columns["importe"].Visible = false;
+                                this.Definicion.Columns["saldo"].Visible = true;
+                                this.Definicion.Columns["obs"].Visible = false;
+                                this.Definicion.Columns["comprob"].Visible = false;
 
-                                this.Definicion.FormFields["saldo"].ColumnName = "SUM(ctacte.importe) AS saldo";
+                                this.Definicion.Columns["saldo"].ColumnName = "SUM(ctacte.importe) AS saldo";
                                 this.Definicion.Having = new qGen.Where("saldo", qGen.ComparisonOperators.NotEquals, 0);
 
                                 this.UpdateFormFields();
@@ -141,15 +141,15 @@ namespace Lfc.CuentasCorrientes
                                 this.Definicion.OrderBy = "ctacte.id_movim DESC";
                                 this.Text = "Cuenta Corriente de " + this.Cliente.ToString();
 
-                                this.Definicion.FormFields["nombre_visible"].Visible = false;
-                                this.Definicion.FormFields["fecha"].Visible = true;
-                                this.Definicion.FormFields["concepto"].Visible = true;
-                                this.Definicion.FormFields["importe"].Visible = true;
-                                this.Definicion.FormFields["saldo"].Visible = true;
-                                this.Definicion.FormFields["obs"].Visible = true;
-                                this.Definicion.FormFields["comprob"].Visible = true;
+                                this.Definicion.Columns["nombre_visible"].Visible = false;
+                                this.Definicion.Columns["fecha"].Visible = true;
+                                this.Definicion.Columns["concepto"].Visible = true;
+                                this.Definicion.Columns["importe"].Visible = true;
+                                this.Definicion.Columns["saldo"].Visible = true;
+                                this.Definicion.Columns["obs"].Visible = true;
+                                this.Definicion.Columns["comprob"].Visible = true;
 
-                                this.Definicion.FormFields["saldo"].ColumnName = "ctacte.saldo";
+                                this.Definicion.Columns["saldo"].ColumnName = "ctacte.saldo";
                                 this.Definicion.Having = null;
 
                                 this.UpdateFormFields();

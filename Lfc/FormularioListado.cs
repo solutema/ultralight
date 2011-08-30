@@ -29,8 +29,6 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 
@@ -85,7 +83,7 @@ namespace Lfc
                 {
                         if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Definicion.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Eliminar)) {
                                 foreach (int itemId in itemIds) {
-                                        this.Connection.Tables[this.Definicion.NombreTabla].FastRows.RemoveFromCache(itemId);
+                                        this.Connection.Tables[this.Definicion.TableName].FastRows.RemoveFromCache(itemId);
                                 }
 
                                 return new Lfx.Types.SuccessOperationResult();
@@ -179,7 +177,7 @@ namespace Lfc
 
                 public virtual void ItemSelected(ListViewItem itm)
                 {
-                        this.Workspace.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", this.Definicion.NombreTabla, itm.Text });
+                        this.Workspace.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", this.Definicion.TableName, itm.Text });
                 }
 
 

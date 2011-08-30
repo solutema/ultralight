@@ -45,56 +45,43 @@ namespace Lfc.Articulos.Categorias
 
                 public Inicio()
                 {
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Articulos.Categoria),
 
-                                NombreTabla = "articulos_categorias",
-                                KeyField = new Lfx.Data.FormField("articulos_categorias.id_categoria", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                TableName = "articulos_categorias",
+                                KeyColumnName = new Lfx.Data.FormField("articulos_categorias.id_categoria", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 GroupBy = new Lfx.Data.FormField("articulos_categorias.id_categoria", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Joins = new qGen.JoinCollection() { new qGen.Join("articulos", "articulos_categorias.id_categoria") },
                                 OrderBy = "articulos_categorias.nombre",
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("articulos_categorias.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 				        new Lfx.Data.FormField("articulos_categorias.stock_minimo", "Stock Mín", Lfx.Data.InputFieldTypes.Numeric, 96),
 				        new Lfx.Data.FormField("articulos_categorias.cache_stock_actual", "Stock Act", Lfx.Data.InputFieldTypes.Numeric, 96),
                                         new Lfx.Data.FormField("articulos_categorias.cache_costo", "Valorización", Lfx.Data.InputFieldTypes.Numeric, 96),
                                         new Lfx.Data.FormField("0", "Valorización %", Lfx.Data.InputFieldTypes.Numeric, 96)
-			        }
+			        },
+                                Filters = new List<Lfx.Data.IFilter>()
+                                {
+                                        new Lfx.Data.SetFilter("Stock Actual", "articulos_categorias.cache_stock_actual", new string[] { "Todos|*", "Con faltantes|f" }, "*")
+                                }
                         };
                         
                         this.HabilitarFiltrar = true;
                 }
 
-                public override Lfx.Types.OperationResult OnFilter()
+
+                public override void FiltersChanged()
                 {
-                        switch (m_Stock)
-                        {
-                                case "*":
-                                        m_Stock = "f";
-                                        break;
+                        this.CustomFilters.Clear();
 
-                                default:
-                                        m_Stock = "*";
-                                        break;
-                        }
+                        if (((Lfx.Data.SetFilter)(this.Definicion.Filters[0])).CurrentValue == "f")
+                                CustomFilters.AddWithValue("articulos_categorias.stock_minimo>0 AND articulos_categorias.stock_minimo>(SELECT SUM(articulos.stock_actual) FROM articulos WHERE articulos_categorias.id_categoria=id_categoria)");
 
-                        switch (m_Stock)
-                        {
-                                case "f":
-                                        this.CustomFilters.Clear();
-					CustomFilters.AddWithValue("articulos_categorias.stock_minimo>0 AND articulos_categorias.stock_minimo>(SELECT SUM(articulos.stock_actual) FROM articulos WHERE articulos_categorias.id_categoria=id_categoria)");
-                                        break;
-
-                                default:
-					CustomFilters.Clear();
-                                        break;
-                        }
-
-                        this.RefreshList();
-                        return new Lfx.Types.SuccessOperationResult();
+                        base.FiltersChanged();
                 }
+
 
                 protected override void OnBeginRefreshList()
                 {
@@ -103,6 +90,7 @@ namespace Lfc.Articulos.Categorias
                         this.Connection.Commit();
                         m_ValorizacionCostoTotal = this.Connection.FieldDecimal("SELECT SUM(cache_costo) FROM articulos_categorias");
                 }
+
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {

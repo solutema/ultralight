@@ -52,13 +52,13 @@ namespace Lfc.Bancos.Chequeras
 
                 public Inicio()
                 {
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Bancos.Chequera),
 
-                                NombreTabla = "chequeras",
-                                KeyField = new Lfx.Data.FormField("chequeras.id_chequera", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                TableName = "chequeras",
+                                KeyColumnName = new Lfx.Data.FormField("chequeras.id_chequera", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("chequeras.id_banco", "Banco", Lfx.Data.InputFieldTypes.Relation, 240),
                                         new Lfx.Data.FormField("chequeras.cheques_emitidos", "Emitidos", Lfx.Data.InputFieldTypes.Integer, 90),

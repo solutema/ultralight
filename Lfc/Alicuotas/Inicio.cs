@@ -41,14 +41,14 @@ namespace Lfc.Alicuotas
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Impuestos.Alicuota),
 
-                                NombreTabla = "alicuotas",
+                                TableName = "alicuotas",
                                 OrderBy = "nombre",
-                                KeyField = new Lfx.Data.FormField("id_alicuota", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                KeyColumnName = new Lfx.Data.FormField("id_alicuota", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
 				        new Lfx.Data.FormField("porcentaje", "Porcentaje", Lfx.Data.InputFieldTypes.Numeric, 160),

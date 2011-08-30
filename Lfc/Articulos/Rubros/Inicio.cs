@@ -41,14 +41,14 @@ namespace Lfc.Articulos.Rubros
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Articulos.Rubro),
 
-                                NombreTabla = "articulos_rubros",
-                                KeyField = new Lfx.Data.FormField("articulos_rubros.id_rubro", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                TableName = "articulos_rubros",
+                                KeyColumnName = new Lfx.Data.FormField("articulos_rubros.id_rubro", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 OrderBy = "articulos_rubros.nombre",
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("articulos_rubros.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 				        new Lfx.Data.FormField("articulos_rubros.id_alicuota", "Alícuota", Lfx.Data.InputFieldTypes.Integer, 160)

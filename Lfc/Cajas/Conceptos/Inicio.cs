@@ -42,13 +42,13 @@ namespace Lfc.Cajas.Conceptos
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lbl.Listados.Listado()
+                        this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Cajas.Concepto),
 
-                                NombreTabla = "conceptos",
-                                KeyField = new Lfx.Data.FormField("conceptos.id_concepto", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                FormFields = new Lfx.Data.FormFieldCollection()
+                                TableName = "conceptos",
+                                KeyColumnName = new Lfx.Data.FormField("conceptos.id_concepto", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                Columns = new Lfx.Data.FormFieldCollection()
 			        {
 				        new Lfx.Data.FormField("conceptos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 				        new Lfx.Data.FormField("conceptos.es", "Tipo", Lfx.Data.InputFieldTypes.Text, 120),
