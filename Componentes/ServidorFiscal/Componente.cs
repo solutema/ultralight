@@ -32,6 +32,7 @@
 using System;
 using System.Net.Mail;
 using System.Windows.Forms;
+using System.Data;
 
 namespace ServidorFiscal
 {
@@ -199,11 +200,11 @@ namespace ServidorFiscal
                         }
 
                         Watchdog.Stop();
-                        this.Impresora.DataBase.BeginTransaction();
+                        IDbTransaction Trans = this.Impresora.DataBase.BeginTransaction();
                         qGen.Update Actualizar = new qGen.Update("pvs", new qGen.Where("id_pv", this.PV));
                         Actualizar.Fields.AddWithValue("lsa", qGen.SqlFunctions.Now);
                         this.Impresora.DataBase.Execute(Actualizar);
-                        this.Impresora.DataBase.Commit();
+                        Trans.Commit();
                         Lfx.Services.Task ProximaTarea = this.Workspace.DefaultScheduler.GetNextTask("fiscal" + this.PV.ToString());
                         if (ProximaTarea != null) {
                                 string Comando = ProximaTarea.Command;
