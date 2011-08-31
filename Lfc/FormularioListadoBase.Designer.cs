@@ -74,7 +74,9 @@ namespace Lfc
                         this.EntradaContador3 = new Lui.Forms.TextBox();
                         this.EtiquetaContador3 = new System.Windows.Forms.Label();
                         this.RefreshTimer = new System.Windows.Forms.Timer(this.components);
+                        this.PicEsperar = new System.Windows.Forms.PictureBox();
                         this.PanelContadores.SuspendLayout();
+                        ((System.ComponentModel.ISupportInitialize)(this.PicEsperar)).BeginInit();
                         this.SuspendLayout();
                         // 
                         // Listado
@@ -183,9 +185,9 @@ namespace Lfc
                         // EtiquetaCantidad
                         // 
                         this.EtiquetaCantidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EtiquetaCantidad.Location = new System.Drawing.Point(8, 204);
+                        this.EtiquetaCantidad.Location = new System.Drawing.Point(28, 204);
                         this.EtiquetaCantidad.Name = "EtiquetaCantidad";
-                        this.EtiquetaCantidad.Size = new System.Drawing.Size(208, 20);
+                        this.EtiquetaCantidad.Size = new System.Drawing.Size(188, 20);
                         this.EtiquetaCantidad.TabIndex = 59;
                         this.EtiquetaCantidad.Text = "Cargando...";
                         this.EtiquetaCantidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -353,12 +355,22 @@ namespace Lfc
                         this.RefreshTimer.Interval = 50;
                         this.RefreshTimer.Tick += new System.EventHandler(this.RefreshTimer_Tick);
                         // 
+                        // PicEsperar
+                        // 
+                        this.PicEsperar.Image = global::Lfc.Properties.Resources.ajax_loader;
+                        this.PicEsperar.Location = new System.Drawing.Point(8, 204);
+                        this.PicEsperar.Name = "PicEsperar";
+                        this.PicEsperar.Size = new System.Drawing.Size(16, 16);
+                        this.PicEsperar.TabIndex = 68;
+                        this.PicEsperar.TabStop = false;
+                        // 
                         // FormularioListadoBase
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.AutoSize = true;
                         this.ClientSize = new System.Drawing.Size(792, 472);
+                        this.Controls.Add(this.PicEsperar);
                         this.Controls.Add(this.PanelContadores);
                         this.Controls.Add(this.BotonImprimir);
                         this.Controls.Add(this.BotonFiltrar);
@@ -370,6 +382,7 @@ namespace Lfc
                         this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormularioListadoBase_FormClosing);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioListadoBase_KeyDown);
                         this.PanelContadores.ResumeLayout(false);
+                        ((System.ComponentModel.ISupportInitialize)(this.PicEsperar)).EndInit();
                         this.ResumeLayout(false);
 
                 }
@@ -391,5 +404,6 @@ namespace Lfc
                 protected Lui.Forms.TextBox EntradaContador3;
                 protected System.Windows.Forms.Label EtiquetaContador3;
                 private System.Windows.Forms.Timer RefreshTimer;
+                private System.Windows.Forms.PictureBox PicEsperar;
         }
 }

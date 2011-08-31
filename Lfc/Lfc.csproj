@@ -516,9 +516,6 @@
     <Compile Include="CuentasCorrientes\Ajuste.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CuentasCorrientes\Filtros.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="CuentasCorrientes\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -932,10 +929,6 @@
       <DependentUpon>Ajuste.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="CuentasCorrientes\Filtros.resx">
-      <DependentUpon>Filtros.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="CuentasCorrientes\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1057,6 +1050,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lazaro.ico" />
+    <None Include="Resources\ajax-loader.gif" />
     <None Include="Resources\Flecha-Der-Azul.png" />
     <None Include="Resources\Comprobante1.png" />
     <None Include="Resources\Comprobante.png" />

@@ -67,14 +67,14 @@ namespace Lfc.Pvs
 		}
 
 
-                public override void FiltersChanged()
+                public override void FiltersChanged(IList<Lfx.Data.IFilter> filters)
                 {
                         this.CustomFilters.Clear();
 
-                        if (((Lfx.Data.SetFilter)(this.Definicion.Filters[0])).CurrentValue != "*")
-                                CustomFilters.AddWithValue("pvs.tipo", Lfx.Types.Parsing.ParseInt(this.Definicion.Filters[0].Value.ToString()));
+                        if (((Lfx.Data.SetFilter)(filters[0])).CurrentValue != "*")
+                                CustomFilters.AddWithValue("pvs.tipo", Lfx.Types.Parsing.ParseInt(filters[0].Value.ToString()));
 
-                        base.FiltersChanged();
+                        base.FiltersChanged(filters);
                 }
 
 

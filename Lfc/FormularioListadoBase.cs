@@ -229,7 +229,7 @@ namespace Lfc
                                 FormularioFiltros FormFiltros = new FormularioFiltros();
                                 FormFiltros.FromFilters(this.Definicion.Filters);
                                 if (FormFiltros.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                                        this.FiltersChanged();
+                                        this.FiltersChanged(this.Definicion.Filters);
                                         this.RefreshList();
                                         return new Lfx.Types.SuccessOperationResult();
                                 } else {
@@ -241,7 +241,7 @@ namespace Lfc
                 }
 
 
-                public virtual void FiltersChanged()
+                public virtual void FiltersChanged(IList<Lfx.Data.IFilter> filters)
                 {
 
                 }
@@ -707,7 +707,9 @@ namespace Lfc
                         }
 
                         EtiquetaCantidad.Text = "Cargando...";
+                        PicEsperar.Visible = true;
                         EtiquetaCantidad.Refresh();
+                        PicEsperar.Refresh();
 
                         Listado.SuspendLayout();
                         Listado.BeginUpdate();
@@ -771,6 +773,7 @@ namespace Lfc
                                 EtiquetaCantidad.Text = "";
                         else
                                 EtiquetaCantidad.Text = Listado.Items.Count.ToString() + " elementos";
+                        PicEsperar.Visible = false;
 
                         // Muestro los totales de grupo
 

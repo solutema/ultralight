@@ -51,7 +51,6 @@ namespace Lui.Forms
                 new public event System.EventHandler Click;
                 new public event System.Windows.Forms.KeyEventHandler KeyDown;
 
-
                 public Button()
                 {
                         InitializeComponent();

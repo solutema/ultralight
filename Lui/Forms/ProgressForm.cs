@@ -45,7 +45,7 @@ namespace Lui.Forms
                         InitializeComponent();
                 }
 
-                public void MostrarProgreso(List<Lfx.Types.OperationProgress> operaciones, Lfx.Types.OperationProgress progreso)
+                public void MostrarProgreso(IList<Lfx.Types.OperationProgress> operaciones, Lfx.Types.OperationProgress progreso)
                 {
                         ProgressBar.Maximum = progreso.Max;
                         if (ProgressBar.Value > 0)

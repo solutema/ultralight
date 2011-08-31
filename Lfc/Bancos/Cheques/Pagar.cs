@@ -38,7 +38,7 @@ namespace Lfc.Bancos.Cheques
 {
         public class Pagar : Lui.Forms.DialogForm
         {
-                List<string> Cheques = null;
+                IList<string> Cheques = null;
                 private string ChequesIds = null;
 
                 internal System.Windows.Forms.Label label7;
@@ -331,7 +331,7 @@ namespace Lfc.Bancos.Cheques
                         EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(EntradaSubTotal.Text) + Lfx.Types.Parsing.ParseCurrency(EntradaImpuestos.Text), this.Workspace.CurrentConfig.Moneda.Decimales);
                 }
 
-                public System.Windows.Forms.DialogResult Mostrar(List<string> ChequesAPagar)
+                public System.Windows.Forms.DialogResult Mostrar(IList<string> ChequesAPagar)
                 {
                         this.Cheques = ChequesAPagar;
 

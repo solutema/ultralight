@@ -90,6 +90,12 @@
     <Compile Include="Edicion\MatrizTags.Designer.cs">
       <DependentUpon>MatrizTags.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entrada\Filtros.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Entrada\Filtros.Designer.cs">
+      <DependentUpon>Filtros.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entrada\MatrizControlesEntrada.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -245,6 +251,9 @@
     <EmbeddedResource Include="Edicion\Etiquetas.resx">
       <DependentUpon>Etiquetas.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Entrada\Filtros.resx">
+      <DependentUpon>Filtros.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Entrada\MatrizControlesEntrada.resx">
       <DependentUpon>MatrizControlesEntrada.cs</DependentUpon>

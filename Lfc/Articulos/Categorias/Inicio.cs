@@ -72,14 +72,14 @@ namespace Lfc.Articulos.Categorias
                 }
 
 
-                public override void FiltersChanged()
+                public override void FiltersChanged(IList<Lfx.Data.IFilter> filters)
                 {
                         this.CustomFilters.Clear();
 
-                        if (((Lfx.Data.SetFilter)(this.Definicion.Filters[0])).CurrentValue == "f")
+                        if (((Lfx.Data.SetFilter)(filters[0])).CurrentValue == "f")
                                 CustomFilters.AddWithValue("articulos_categorias.stock_minimo>0 AND articulos_categorias.stock_minimo>(SELECT SUM(articulos.stock_actual) FROM articulos WHERE articulos_categorias.id_categoria=id_categoria)");
 
-                        base.FiltersChanged();
+                        base.FiltersChanged(filters);
                 }
 
 

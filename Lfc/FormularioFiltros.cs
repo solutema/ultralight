@@ -36,105 +36,21 @@ namespace Lfc
 {
         public partial class FormularioFiltros : Lui.Forms.DialogForm
         {
-                private List<Lfx.Data.IFilter> Filtros;
-
                 public FormularioFiltros()
                 {
                         InitializeComponent();
                 }
 
-                public void FromFilters(List<Lfx.Data.IFilter> filters)
+
+                public void FromFilters(IList<Lfx.Data.IFilter> filtros)
                 {
-                        this.Filtros = filters;
-                        this.TablaFiltros.RowCount = filters.Count;
-
-                        int i = 0;
-                        foreach (Lfx.Data.IFilter Filtro in this.Filtros) {
-                                Label Etiqueta = new Label();
-                                Etiqueta.Name = "etiqueta" + i.ToString();
-                                Etiqueta.Text = Filtro.Label;
-                                Etiqueta.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-                                Etiqueta.Margin = new System.Windows.Forms.Padding(0, 4, 4, 0);
-                                Etiqueta.Dock = DockStyle.Fill;
-                                this.TablaFiltros.Controls.Add(Etiqueta, 0, i);
-
-                                Control Entrada;
-                                if (Filtro is Lfx.Data.NumericRangeFilter) {
-                                        Lcc.Entrada.RangoNumerico EntradaRangoNumerico = new Lcc.Entrada.RangoNumerico();
-                                        Lfx.Data.NumericRangeFilter FiltroNumerico = Filtro as Lfx.Data.NumericRangeFilter;
-                                        EntradaRangoNumerico.DecimalPlaces = FiltroNumerico.DecimalPlaces;
-                                        EntradaRangoNumerico.Valule1 = FiltroNumerico.Min;
-                                        EntradaRangoNumerico.Valule2 = FiltroNumerico.Max;
-                                        EntradaRangoNumerico.Dock = DockStyle.Top;
-                                        Entrada = EntradaRangoNumerico;
-                                } else if (Filtro is Lfx.Data.SetFilter) {
-                                        Lfx.Data.SetFilter FiltroSet = Filtro as Lfx.Data.SetFilter;
-                                        Lui.Forms.ComboBox EntradaSet = new Lui.Forms.ComboBox();
-                                        EntradaSet.SetData = FiltroSet.SetData;
-                                        EntradaSet.TextKey = FiltroSet.CurrentValue;
-                                        EntradaSet.AlwaysExpanded = EntradaSet.SetData != null && EntradaSet.SetData.Length <= 3;
-                                        EntradaSet.AutoSize = true;
-                                        Entrada = EntradaSet;
-                                } else if (Filtro is Lfx.Data.DateRangeFilter) {
-                                        Lfx.Data.DateRangeFilter FiltroFechas = Filtro as Lfx.Data.DateRangeFilter;
-                                        Lcc.Entrada.RangoFechas EntradaRangoFechas = new Lcc.Entrada.RangoFechas();
-                                        EntradaRangoFechas.Rango = FiltroFechas.DateRange;
-                                        EntradaRangoFechas.AutoSize = true;
-                                        Entrada = EntradaRangoFechas;
-                                } else if (Filtro is Lfx.Data.RelationFilter) {
-                                        Lfx.Data.RelationFilter FiltroRelacion = Filtro as Lfx.Data.RelationFilter;
-                                        Lcc.Entrada.CodigoDetalle EntradaRelacion = new Lcc.Entrada.CodigoDetalle();
-                                        EntradaRelacion.Relation = FiltroRelacion.Relation;
-                                        EntradaRelacion.TextInt = FiltroRelacion.CurrentValue;
-                                        EntradaRelacion.Dock = DockStyle.Top;
-                                        Entrada = EntradaRelacion;
-                                } else {
-                                        Entrada = new Label();
-                                        Entrada.Text = Filtro.GetType().ToString();
-                                        Etiqueta.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                                }
-
-                                Entrada.Name = "entrada" + i.ToString();
-                                Entrada.Dock = DockStyle.Fill;
-                                Filtro.Control = Entrada;
-
-                                this.TablaFiltros.Controls.Add(Entrada, 1, i);
-
-                                this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle());
-
-                                i++;
-                        }
+                        this.ControlFiltros.FromFilters(filtros);
                 }
 
-
+                
                 public override Lfx.Types.OperationResult Ok()
                 {
-                        foreach (Lfx.Data.IFilter Filtro in this.Filtros) {
-                                if (Filtro is Lfx.Data.NumericRangeFilter) {
-                                        Lcc.Entrada.RangoNumerico EntradaRangoNumerico = Filtro.Control as Lcc.Entrada.RangoNumerico;
-                                        Lfx.Data.NumericRangeFilter FiltroNumerico = Filtro as Lfx.Data.NumericRangeFilter;
-
-                                        FiltroNumerico.Min = EntradaRangoNumerico.Valule1;
-                                        FiltroNumerico.Max = EntradaRangoNumerico.Valule2;
-                                } else if (Filtro is Lfx.Data.SetFilter) {
-                                        Lfx.Data.SetFilter FiltroSet = Filtro as Lfx.Data.SetFilter;
-                                        Lui.Forms.ComboBox EntradaSet = Filtro.Control as Lui.Forms.ComboBox;
-
-                                        FiltroSet.CurrentValue = EntradaSet.TextKey;
-                                } else if (Filtro is Lfx.Data.DateRangeFilter) {
-                                        Lfx.Data.DateRangeFilter FiltroFechas = Filtro as Lfx.Data.DateRangeFilter;
-                                        Lcc.Entrada.RangoFechas EntradaRangoFechas = Filtro.Control as Lcc.Entrada.RangoFechas;
-
-                                        FiltroFechas.DateRange = EntradaRangoFechas.Rango;
-                                } else if (Filtro is Lfx.Data.RelationFilter) {
-                                        Lfx.Data.RelationFilter FiltroRelacion = Filtro as Lfx.Data.RelationFilter;
-                                        Lcc.Entrada.CodigoDetalle EntradaRelacion = Filtro.Control as Lcc.Entrada.CodigoDetalle;
-
-                                        FiltroRelacion.CurrentValue = EntradaRelacion.TextInt;
-                                } else {
-                                        // Tipo de filtro de reconocidgo
-                                }
-                        }
+                        this.ControlFiltros.ActualizarFiltros();
                         
                         return base.Ok();
                 }

@@ -63,6 +63,12 @@ namespace Lfc.CuentasCorrientes
                                         new Lfx.Data.FormField("ctacte.comprob", "Comprobante", Lfx.Data.InputFieldTypes.Text, 160),
                                         new Lfx.Data.FormField("ctacte.id_recibo", "Recibo", Lfx.Data.InputFieldTypes.Relation, 0)
                                 },
+                                Filters = new List<Lfx.Data.IFilter>() {
+                                        new Lfx.Data.RelationFilter("Cliente", new Lfx.Data.Relation("ctacte.id_cliente", "personas", "id_persona", "nombre_visible")),
+                                        new Lfx.Data.RelationFilter("Grupo", new Lfx.Data.Relation("personas.id_grupo", "personas_grupos", "id_grpo")),
+                                        new Lfx.Data.RelationFilter("Localidad", new Lfx.Data.Relation("personas.id_ciudad", "ciudades", "id_ciudad")),
+                                        new Lfx.Data.DateRangeFilter("Fecha", "ctacte.fecha", new Lfx.Types.DateRange("*"))
+                                },
                                 OrderBy = "personas.nombre_visible"
                         };
 
@@ -179,6 +185,7 @@ namespace Lfc.CuentasCorrientes
                         Lfx.Data.Row Movim = this.Connection.Tables["ctacte"].FastRows[itemId];
                         if (this.Cliente == null) {
                                 this.Cliente = new Lbl.Personas.Persona(this.Connection, System.Convert.ToInt32(Movim["id_cliente"]));
+                                ((Lfx.Data.RelationFilter)(this.Definicion.Filters[0])).ElementId = this.Cliente.Id;
                                 RefreshList();
                         } else {
                                 if (Movim != null) {
@@ -197,27 +204,21 @@ namespace Lfc.CuentasCorrientes
                 }
 
 
-                public override Lfx.Types.OperationResult OnFilter()
+                public override void FiltersChanged(IList<Lfx.Data.IFilter> filters)
                 {
-                        using (Filtros FormFiltros = new Filtros()) {
-                                FormFiltros.Connection = this.Connection;
-                                FormFiltros.EntradaCliente.Elemento = this.Cliente;
-                                FormFiltros.EntradaGrupo.TextInt = m_Grupo;
-                                FormFiltros.EntradaLocalidad.TextInt = m_Localidad;
-                                FormFiltros.EntradaFechas.Rango = Fechas;
-
-                                FormFiltros.ShowDialog();
-                                if (FormFiltros.DialogResult == DialogResult.OK) {
-                                        this.Cliente = FormFiltros.EntradaCliente.Elemento as Lbl.Personas.Persona;
-                                        m_Grupo = FormFiltros.EntradaGrupo.TextInt;
-                                        m_Localidad = FormFiltros.EntradaLocalidad.TextInt;
-                                        Fechas = FormFiltros.EntradaFechas.Rango;
-                                        this.RefreshList();
-                                        return base.OnFilter();
-                                } else {
-                                        return new Lfx.Types.CancelOperationResult();
-                                }
+                        int NuevoClienteId = ((Lfx.Data.RelationFilter)(filters[0])).ElementId;
+                        if ((this.Cliente == null && NuevoClienteId != 0) || (this.Cliente != null && this.Cliente.Id != NuevoClienteId)) {
+                                if (NuevoClienteId == 0)
+                                        this.Cliente = null;
+                                else
+                                        this.Cliente = new Lbl.Personas.Persona(this.Connection, NuevoClienteId);
                         }
+
+                        m_Grupo = ((Lfx.Data.RelationFilter)(filters[1])).ElementId;
+                        m_Localidad = ((Lfx.Data.RelationFilter)(filters[2])).ElementId;
+                        Fechas = ((Lfx.Data.DateRangeFilter)(filters[3])).DateRange;
+
+                        base.FiltersChanged(filters);
                 }
 
 

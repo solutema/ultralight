@@ -53,9 +53,7 @@ namespace Lfc
 
                 private void InitializeComponent()
                 {
-                        this.ContenedorPrincipal = new System.Windows.Forms.Panel();
-                        this.TablaFiltros = new System.Windows.Forms.TableLayoutPanel();
-                        this.ContenedorPrincipal.SuspendLayout();
+                        this.ControlFiltros = new Lcc.Entrada.Filtros();
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -64,57 +62,44 @@ namespace Lfc
                         // 
                         // CancelCommandButton
                         // 
+                        this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                         this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
                         // 
-                        // ContenedorPrincipal
+                        // ControlFiltros
                         // 
-                        this.ContenedorPrincipal.AutoScroll = true;
-                        this.ContenedorPrincipal.Controls.Add(this.TablaFiltros);
-                        this.ContenedorPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
-                        this.ContenedorPrincipal.Location = new System.Drawing.Point(0, 0);
-                        this.ContenedorPrincipal.Name = "ContenedorPrincipal";
-                        this.ContenedorPrincipal.Size = new System.Drawing.Size(634, 312);
-                        this.ContenedorPrincipal.TabIndex = 0;
-                        // 
-                        // TablaFiltros
-                        // 
-                        this.TablaFiltros.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.TablaFiltros.AutoSize = true;
-                        this.TablaFiltros.ColumnCount = 2;
-                        this.TablaFiltros.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-                        this.TablaFiltros.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-                        this.TablaFiltros.Location = new System.Drawing.Point(24, 20);
-                        this.TablaFiltros.Name = "TablaFiltros";
-                        this.TablaFiltros.RowCount = 1;
-                        this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 285F));
-                        this.TablaFiltros.Size = new System.Drawing.Size(586, 285);
-                        this.TablaFiltros.TabIndex = 0;
+                        this.ControlFiltros.AutoScroll = true;
+                        this.ControlFiltros.AutoSize = true;
+                        this.ControlFiltros.Dock = System.Windows.Forms.DockStyle.Fill;
+                        this.ControlFiltros.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.ControlFiltros.Location = new System.Drawing.Point(0, 0);
+                        this.ControlFiltros.Margin = new System.Windows.Forms.Padding(8);
+                        this.ControlFiltros.Name = "ControlFiltros";
+                        this.ControlFiltros.Padding = new System.Windows.Forms.Padding(4);
+                        this.ControlFiltros.ShowApplyButton = false;
+                        this.ControlFiltros.Size = new System.Drawing.Size(634, 312);
+                        this.ControlFiltros.TabIndex = 0;
                         // 
                         // FormularioFiltros
                         // 
+                        this.AcceptButton = this.OkButton;
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+                        this.AutoSize = true;
+                        this.CancelButton = this.CancelCommandButton;
                         this.ClientSize = new System.Drawing.Size(634, 372);
-                        this.Controls.Add(this.ContenedorPrincipal);
+                        this.Controls.Add(this.ControlFiltros);
+                        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+                        this.MinimumSize = new System.Drawing.Size(320, 200);
                         this.Name = "FormularioFiltros";
                         this.Text = "Filtros";
-                        this.Controls.SetChildIndex(this.ContenedorPrincipal, 0);
-                        this.ContenedorPrincipal.ResumeLayout(false);
-                        this.ContenedorPrincipal.PerformLayout();
+                        this.Controls.SetChildIndex(this.ControlFiltros, 0);
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
                 }
 
                 #endregion
 
-                private Panel ContenedorPrincipal;
-                protected TableLayoutPanel TablaFiltros;
+                private Lcc.Entrada.Filtros ControlFiltros;
+
         }
 }

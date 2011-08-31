@@ -230,7 +230,7 @@ namespace Lfx.Data
         {
                 public Lfx.Data.Relation Relation { get; set; }
 
-                public int CurrentValue { get; set; }
+                public int ElementId { get; set; }
 
                 public RelationFilter(string label, string columnName)
                         : base(label, columnName)
@@ -247,7 +247,7 @@ namespace Lfx.Data
 
                 override public bool IsEmpty()
                 {
-                        return this.Relation == null || this.CurrentValue == 0;
+                        return this.Relation == null || this.ElementId == 0;
                 }
         }
 }

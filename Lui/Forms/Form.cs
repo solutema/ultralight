@@ -38,9 +38,14 @@ namespace Lui.Forms
 {
         public partial class Form : System.Windows.Forms.Form, IDataForm
 	{
-                [DefaultValue(true)]
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Content),
+                        DefaultValue(true)]
                 public bool DisposeConnection { get; set; }
+
                 private Lfx.Data.Connection m_Connection = null;
+
 		public event System.EventHandler WorkspaceChanged;
 
 		public Form()

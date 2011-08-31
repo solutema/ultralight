@@ -78,7 +78,7 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
-                public void CargarArticulos(List<Lbl.Comprobantes.DetalleArticulo> articulos)
+                public void CargarArticulos(IList<Lbl.Comprobantes.DetalleArticulo> articulos)
                 {
                         if (articulos == null || articulos.Count == 0) {
                                 this.Count = 1;
