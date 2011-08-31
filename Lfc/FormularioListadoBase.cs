@@ -195,7 +195,7 @@ namespace Lfc
                 public virtual Lfx.Types.OperationResult OnPrint(bool selectPrinter)
                 {
                         Lfx.FileFormats.Office.Spreadsheet.Workbook Workbook = this.ToWorkbook();
-                        Lazaro.Impresion.ImpresorListado Impresor = new Lazaro.Impresion.ImpresorListado(Workbook.Sheets[0]);
+                        Lazaro.Impresion.ImpresorListado Impresor = new Lazaro.Impresion.ImpresorListado(Workbook.Sheets[0], null);
 
                         if (selectPrinter) {
                                 using (Lui.Printing.PrinterSelectionDialog SeleccionarImpresroa = new Lui.Printing.PrinterSelectionDialog()) {

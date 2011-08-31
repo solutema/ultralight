@@ -42,7 +42,8 @@ namespace qGen.Providers
                         "OdbcConnection",
                         "OdbcCommand",
                         "OdbcDataAdapter",
-                        "OdbcParameter")
+                        "OdbcParameter",
+                        "OdbcTransaction")
                 {
                 }
 

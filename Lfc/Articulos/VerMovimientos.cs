@@ -97,20 +97,20 @@ namespace Lfc.Articulos
 		private void InitializeComponent()
 		{
                         this.lvItems = new Lui.Forms.ListView();
-                        this.id = new System.Windows.Forms.ColumnHeader();
-                        this.fecha = new System.Windows.Forms.ColumnHeader();
-                        this.cantidad = new System.Windows.Forms.ColumnHeader();
-                        this.desde = new System.Windows.Forms.ColumnHeader();
-                        this.hacia = new System.Windows.Forms.ColumnHeader();
-                        this.saldo = new System.Windows.Forms.ColumnHeader();
-                        this.obs = new System.Windows.Forms.ColumnHeader();
+                        this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.fecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.cantidad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.desde = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.hacia = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.saldo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.obs = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.lvPedidos = new Lui.Forms.ListView();
-                        this.ColumnHeader1 = new System.Windows.Forms.ColumnHeader();
-                        this.ColumnHeader2 = new System.Windows.Forms.ColumnHeader();
-                        this.ColumnHeader3 = new System.Windows.Forms.ColumnHeader();
-                        this.ColumnHeader6 = new System.Windows.Forms.ColumnHeader();
-                        this.ColumnHeader4 = new System.Windows.Forms.ColumnHeader();
-                        this.ColumnHeader5 = new System.Windows.Forms.ColumnHeader();
+                        this.ColumnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColumnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColumnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColumnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColumnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColumnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.Label1 = new System.Windows.Forms.Label();
                         this.Label2 = new System.Windows.Forms.Label();
                         this.SuspendLayout();
@@ -150,7 +150,7 @@ namespace Lfc.Articulos
                         // fecha
                         // 
                         this.fecha.Text = "Fecha";
-                        this.fecha.Width = 136;
+                        this.fecha.Width = 155;
                         // 
                         // cantidad
                         // 
@@ -272,6 +272,10 @@ namespace Lfc.Articulos
                         this.Name = "VerMovimientos";
                         this.Text = "Artículos: Detalle de Entrada y Salida";
                         this.Activated += new System.EventHandler(this.FormArticulosMovimDetalles_Activated);
+                        this.Controls.SetChildIndex(this.lvItems, 0);
+                        this.Controls.SetChildIndex(this.lvPedidos, 0);
+                        this.Controls.SetChildIndex(this.Label1, 0);
+                        this.Controls.SetChildIndex(this.Label2, 0);
                         this.ResumeLayout(false);
 
 		}

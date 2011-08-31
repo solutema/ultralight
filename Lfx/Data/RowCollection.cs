@@ -52,7 +52,7 @@ namespace Lfx.Data
                         if (this.Table.Cacheable && LoadAll_Loaded)
                                 return;
 
-                        System.Data.DataTable Todo = this.Table.DataBase.Select("SELECT * FROM " + this.Table.Name);
+                        System.Data.DataTable Todo = this.Table.Connection.Select("SELECT * FROM " + this.Table.Name);
                         foreach(System.Data.DataRow Rw in Todo.Rows) {
                                 Lfx.Data.Row NewRow = (Lfx.Data.Row)Rw;
                                 NewRow.Table = this.Table;
@@ -83,14 +83,14 @@ namespace Lfx.Data
                                         LastCacheRefresh = DateTime.Now;
                                 }
 
-                                if (Table.Cacheable == false || (Table.DataBase.InTransaction && Table.AlwaysCache == false)) {
+                                if (Table.Cacheable == false || (Table.Connection.InTransaction && Table.AlwaysCache == false)) {
 					// No uso el caché si hay una transacción activa o se esta tabla no es cacheable
-                                        Lfx.Data.Row NewRow = this.Table.DataBase.Row(this.Table.Name, this.Table.PrimaryKey, id) as Lfx.Data.Row;
+                                        Lfx.Data.Row NewRow = this.Table.Connection.Row(this.Table.Name, this.Table.PrimaryKey, id) as Lfx.Data.Row;
 					if (NewRow != null)
                                         	NewRow.Table = this.Table;
                                         return NewRow;
                                 } else if (this.ContainsKey(id) == false) {
-                                        Lfx.Data.Row NewRow = this.Table.DataBase.Row(this.Table.Name, this.Table.PrimaryKey, id);
+                                        Lfx.Data.Row NewRow = this.Table.Connection.Row(this.Table.Name, this.Table.PrimaryKey, id);
                                         if (NewRow != null) {
                                                 NewRow.Table = this.Table;
                                                 this.Add(id, NewRow);

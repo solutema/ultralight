@@ -181,7 +181,7 @@ namespace Lfc.Comprobantes.Facturas
                         if (Pregunta.ShowDialog() == DialogResult.OK) {
                                 bool AnularPagos = Lfx.Types.Parsing.ParseInt(EntradaAnularPagos.TextKey) != 0;
 
-                                this.Connection.BeginTransaction(true);
+                                IDbTransaction Trans = this.Connection.BeginTransaction(IsolationLevel.Serializable);
                                 int m_Id = 0;
                                 string IncluyeTipos = "";
 
@@ -237,7 +237,7 @@ namespace Lfc.Comprobantes.Facturas
 
                                 ProximosNumeros.Clear();
 
-                                this.Connection.Commit();
+                                Trans.Commit();
 
                                 Lui.Forms.MessageBox.Show("Se anularon los comprobantes seleccionados. Recuerde archivar ambas copias.", "Aviso");
 

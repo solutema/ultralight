@@ -30,14 +30,14 @@
 #endregion
 
 using System;
-using System.ComponentModel;
+using System.Data;
 
 namespace Lazaro.Impresion.Comprobantes
 {
 	public class ImpresorComprobanteConArticulos : ImpresorComprobante
 	{
-		public ImpresorComprobanteConArticulos(Lbl.ElementoDeDatos elemento)
-			: base(elemento)
+                public ImpresorComprobanteConArticulos(Lbl.ElementoDeDatos elemento, IDbTransaction transaction)
+			: base(elemento, transaction)
 		{
 		}
 

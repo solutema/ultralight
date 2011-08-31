@@ -37,6 +37,7 @@ namespace Lfx.Data
         /// <summary>
         /// Define los datos para emitir un listado.
         /// </summary>
+        [Serializable]
         public class Listing
         {
                 public Type ElementoTipo = null;

@@ -433,7 +433,7 @@ namespace Lazaro.Misc.Backup
                                         Lfx.Workspace.Master.Structure.LoadFromFile(BackupPath + Carpeta + "dbstruct.xml");
                                         Lfx.Workspace.Master.CheckAndUpdateDataBaseVersion(DataBase, true, true);
 
-                                        DataBase.BeginTransaction();
+                                        IDbTransaction Trans = DataBase.BeginTransaction();
                                         DataBase.EnableConstraints(false);
 
                                         Progreso.ChangeStatus("Incorporando tablas de datos");
@@ -556,7 +556,7 @@ namespace Lazaro.Misc.Backup
                                                 }
                                         }
                                         Progreso.ChangeStatus("Terminando transacción");
-                                        DataBase.Commit();
+                                        Trans.Commit();
                                 }
                                 Progreso.End();
 

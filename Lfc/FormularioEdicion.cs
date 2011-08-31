@@ -31,6 +31,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Data;
 using System.Windows.Forms;
 
 namespace Lfc
@@ -142,22 +143,23 @@ namespace Lfc
                         this.Elemento = this.ToRow();
                         if (this.GetControlsChanged(this.Controls, false) || this.Elemento.Modificado) {
                                 // Guardo sólo si hubo cambios
-                                bool WasInTransaction = this.Elemento.Connection.InTransaction;
-                                if (WasInTransaction == false)
-                                        this.Elemento.Connection.BeginTransaction(true);
+                                IDbTransaction Trans = null;
+                                if (this.Elemento.Connection.InTransaction == false)
+                                        Trans = this.Elemento.Connection.BeginTransaction(IsolationLevel.Serializable);
                                 try {
                                         Resultado = this.Elemento.Guardar();
                                 } catch {
-                                        this.Elemento.Connection.RollBack();
+                                        if (Trans != null)
+                                                Trans.Rollback();
                                         throw;
                                 }
                                 if (Resultado.Success) {
-                                        this.ControlUnico.AfterSave();
-                                        if (WasInTransaction == false)
-                                                this.Elemento.Connection.Commit();
+                                        this.ControlUnico.AfterSave(Trans);
+                                        if (Trans != null)
+                                                Trans.Commit();
                                 } else {
-                                        if (WasInTransaction == false)
-                                                this.Elemento.Connection.RollBack();
+                                        if (Trans != null)
+                                                Trans.Rollback();
                                 }
                         }
 
@@ -428,13 +430,12 @@ namespace Lfc
                                                 return;
                                 }
 
-                                Lazaro.Impresion.ImpresorElemento Impresor = Lazaro.Impresion.Instanciador.InstanciarImpresor(this.Elemento);
-
                                 if (Impresora != null && Impresora.EsVistaPrevia) {
-                                        Impresor.PrintController = new System.Drawing.Printing.PreviewPrintController();
+                                        Lazaro.Impresion.ImpresorElemento ImpresorVistaPrevia = Lazaro.Impresion.Instanciador.InstanciarImpresor(this.Elemento, null);
+                                        ImpresorVistaPrevia.PrintController = new System.Drawing.Printing.PreviewPrintController();
                                         Lui.Printing.PrintPreviewForm VistaPrevia = new Lui.Printing.PrintPreviewForm();
                                         VistaPrevia.MdiParent = this.ParentForm.MdiParent;
-                                        VistaPrevia.PrintPreview.Document = Impresor;
+                                        VistaPrevia.PrintPreview.Document = ImpresorVistaPrevia;
                                         VistaPrevia.Show();
                                 } else {
                                         Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Imprimiendo", "El documento se está enviando a la impresora.");
@@ -442,19 +443,20 @@ namespace Lfc
                                                 Progreso.Description = "El documento se está enviando a la impresora " + Impresora.ToString();
                                         Progreso.Begin();
 
+                                        IDbTransaction Trans = this.Elemento.Connection.BeginTransaction();
+                                        Lazaro.Impresion.ImpresorElemento Impresor = Lazaro.Impresion.Instanciador.InstanciarImpresor(this.Elemento, Trans);
                                         Impresor.Impresora = Impresora;
-                                        this.Elemento.Connection.BeginTransaction();
                                         Res = Impresor.Imprimir();
                                         Progreso.End();
                                         if (Res.Success == false) {
-                                                if (this.Elemento.Connection.InTransaction)
+                                                if (Trans != null)
                                                         // Puede que la transacción ya haya sido finalizada por el impresor
-                                                        this.Elemento.Connection.RollBack();
+                                                        Trans.Rollback();
                                                 Lui.Forms.MessageBox.Show(Res.Message, "Error");
                                         } else {
-                                                if (this.Elemento.Connection.InTransaction)
+                                                if (Trans != null)
                                                         // Puede que la transacción ya haya sido finalizada por el impresor
-                                                        this.Elemento.Connection.Commit();
+                                                        Trans.Commit();
                                                 this.Elemento.Cargar();
                                                 this.FromRow(this.Elemento);
                                                 this.ControlUnico.AfterPrint();

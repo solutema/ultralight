@@ -30,11 +30,10 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace qGen
 {
+        [Serializable]
         public class SqlExpression
         {
                 public string Value = null;

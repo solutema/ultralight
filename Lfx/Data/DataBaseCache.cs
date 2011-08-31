@@ -53,7 +53,7 @@ namespace Lfx.Data
                 public bool SlowLink = false, Mars = true;
                 public Lfx.Data.AccessModes AccessMode = Lfx.Data.AccessModes.Undefined;
                 public qGen.SqlModes SqlMode = qGen.SqlModes.Ansi;
-                public Lfx.Data.IsolationLevels DefaultIsolationLevel = IsolationLevels.Serializable;
+                public System.Data.IsolationLevel DefaultIsolationLevel = System.Data.IsolationLevel.Serializable;
 
                 public void Clear()
                 {

@@ -31,7 +31,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data;
 using System.Text;
 
 namespace Lazaro.Impresion
@@ -41,9 +41,11 @@ namespace Lazaro.Impresion
                 public Lbl.Impresion.Impresora Impresora = null;
                 protected const double mm = 3.937007874015748031496062992126;
                 protected Lfx.Data.Connection m_DataBase = null;
+                protected IDbTransaction Transaction = null;
 
-                public Impresor()
+                public Impresor(IDbTransaction transaction)
                 {
+                        this.Transaction = transaction;
                 }
 
                 public Lfx.Data.Connection Connection

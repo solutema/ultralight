@@ -30,11 +30,10 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Lfx.Data
 {
+        [Serializable]
         public class ColumnDefinition
         {
                 public string Name;

@@ -34,6 +34,7 @@ using System.Collections.Generic;
 
 namespace Lfx.Data
 {
+        [Serializable]
 	public class FieldCollection : List<Field>
 	{
 		public FieldCollection()

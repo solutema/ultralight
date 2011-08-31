@@ -71,7 +71,7 @@ namespace Lbl
 
                 public static implicit operator Etiqueta(Lfx.Data.Row row)
                 {
-                        Etiqueta Res = new Etiqueta(((Lfx.Data.Table)(row.Table)).DataBase);
+                        Etiqueta Res = new Etiqueta(((Lfx.Data.Table)(row.Table)).Connection);
                         Res.FromRow(row);
                         return Res;
                 }

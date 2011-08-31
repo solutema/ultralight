@@ -42,7 +42,8 @@ namespace qGen.Providers
                         "NpgsqlConnection",
                         "NpgsqlCommand",
                         "NpgsqlDataAdapter",
-                        "NpgsqlParameter")
+                        "NpgsqlParameter",
+                        "NpgsqlTransacion")
                 {
                 }
         }

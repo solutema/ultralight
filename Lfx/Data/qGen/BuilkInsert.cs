@@ -31,10 +31,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace qGen
 {
+        [Serializable]
         public class BuilkInsert : TableCommand
         {
                 System.Collections.Generic.List<Insert> InsertCommands = new List<Insert>();

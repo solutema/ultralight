@@ -261,9 +261,9 @@ namespace Lfc.CuentasCorrientes
                                                 if (this.Cliente != null) {
                                                         // Recalculo la cuenta del cliente
                                                         Lui.Forms.MessageBox.Show("Se va a recalcular la Cuenta Corriente", "Aviso");
-                                                        this.Cliente.Connection.BeginTransaction();
+                                                        IDbTransaction Trans = this.Cliente.Connection.BeginTransaction();
                                                         this.Cliente.CuentaCorriente.Recalcular();
-                                                        this.Cliente.Connection.Commit();
+                                                        Trans.Commit();
                                                         this.RefreshList();
                                                 }
                                                 e.Handled = true;
@@ -298,7 +298,7 @@ namespace Lfc.CuentasCorrientes
 
                                                 if (ClienteId > 0) {
                                                         Lbl.CuentasCorrientes.CuentaCorriente CtaCte = new Lbl.CuentasCorrientes.CuentaCorriente(new Lbl.Personas.Persona(this.Connection, ClienteId));
-                                                        CtaCte.Connection.BeginTransaction();
+                                                        IDbTransaction Trans = CtaCte.Connection.BeginTransaction();
                                                         CtaCte.Movimiento(false,
                                                                 FormAjuste.EntradaConcepto.Elemento as Lbl.Cajas.Concepto,
                                                                 FormAjuste.EntradaConcepto.TextDetail,
@@ -308,7 +308,7 @@ namespace Lfc.CuentasCorrientes
                                                                 null,
                                                                 null,
                                                                 false);
-                                                        CtaCte.Connection.Commit();
+                                                        Trans.Commit();
                                                         this.RefreshList();
                                                 }
                                         }

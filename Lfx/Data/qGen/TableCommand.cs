@@ -30,14 +30,13 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace qGen
 {
         /// <summary>
         /// Comandos que operan sobre una o más tablas (SELECT, UPDATE, INSERT, DELETE, TRUNCATE, etc.)
         /// </summary>
+        [Serializable]
         public abstract class TableCommand : Command
         {
                 public string Tables = "";

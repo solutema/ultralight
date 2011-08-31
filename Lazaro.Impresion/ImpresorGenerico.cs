@@ -29,16 +29,13 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Data;
 
 namespace Lazaro.Impresion
 {
         public class ImpresorGenerico : ImpresorElemento
         {
-                public ImpresorGenerico(Lbl.ElementoDeDatos elemento)
-                        : base(elemento) { }
+                public ImpresorGenerico(Lbl.ElementoDeDatos elemento, IDbTransaction transaction)
+                        : base(elemento, transaction) { }
         }
 }

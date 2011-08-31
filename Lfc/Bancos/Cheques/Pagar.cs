@@ -31,6 +31,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 namespace Lfc.Bancos.Cheques
@@ -366,7 +367,7 @@ namespace Lfc.Bancos.Cheques
                         if (aceptarReturn.Success == true) {
                                 decimal Impuestos = EntradaImpuestos.ValueDecimal;
 
-                                this.Connection.BeginTransaction(true);
+                                IDbTransaction Trans = this.Connection.BeginTransaction(IsolationLevel.Serializable);
 
                                 string ChequesNum = null;
                                 System.Data.DataTable TablaCheques = Connection.Select("SELECT * FROM bancos_cheques WHERE id_cheque IN (" + ChequesIds + ")");
@@ -383,7 +384,7 @@ namespace Lfc.Bancos.Cheques
                                                 -Impuestos,
                                                 "Cheques Nº " + ChequesNum, null, null, null);
 
-                                this.Connection.Commit();
+                                Trans.Commit();
                         }
                         return aceptarReturn;
                 }

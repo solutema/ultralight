@@ -30,6 +30,7 @@
 #endregion
 
 using System;
+using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Text.RegularExpressions;
@@ -42,8 +43,8 @@ namespace Lazaro.Impresion
                 public Lbl.Impresion.Plantilla Plantilla = null;
                 private Lbl.Comprobantes.Tipo Tipo = null;
 
-                public ImpresorElemento(Lbl.ElementoDeDatos elemento)
-                        : base()
+                public ImpresorElemento(Lbl.ElementoDeDatos elemento, IDbTransaction transaction)
+                        : base(transaction)
 		{
                         this.Elemento = elemento;
                         m_DataBase = elemento.Connection;

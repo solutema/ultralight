@@ -30,8 +30,6 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Lfx.Data
 {
@@ -42,6 +40,7 @@ namespace Lfx.Data
                 Count
         }
 
+        [Serializable]
         public class Aggregate
         {
                 public Lfx.Data.FormField Field;
@@ -74,6 +73,8 @@ namespace Lfx.Data
                 }
         }
 
+
+        [Serializable]
         public class Grouping
         {
                 public Lfx.Data.FormField Field;

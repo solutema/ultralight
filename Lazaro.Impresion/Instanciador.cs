@@ -31,18 +31,18 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data;
 using System.Text;
 
 namespace Lazaro.Impresion
 {
         public class Instanciador
         {
-                public static ImpresorElemento InstanciarImpresor(Lbl.IElementoDeDatos elemento)
+                public static ImpresorElemento InstanciarImpresor(Lbl.IElementoDeDatos elemento, IDbTransaction transaction)
                 {
                         Type tipo = InferirImpresor(elemento.GetType());
-                        System.Reflection.ConstructorInfo TConstr = tipo.GetConstructor(new Type[] { typeof(Lbl.ElementoDeDatos) });
-                        return (ImpresorElemento)(TConstr.Invoke(new object[] { elemento }));
+                        System.Reflection.ConstructorInfo TConstr = tipo.GetConstructor(new Type[] { typeof(Lbl.ElementoDeDatos), typeof(IDbTransaction) });
+                        return (ImpresorElemento)(TConstr.Invoke(new object[] { elemento, transaction }));
                 }
 
                 public static Type InferirImpresor(Type tipo)

@@ -171,7 +171,7 @@ namespace Lazaro.Principal
                                                         System.IO.StreamReader Lector = new System.IO.StreamReader(Archivo, System.Text.Encoding.Default);
 
                                                         using (Lfx.Data.Connection ConexionActualizar = this.Workspace.GetNewConnection("Inyectar SQL")) {
-                                                                ConexionActualizar.BeginTransaction(false);
+                                                                IDbTransaction Trans = ConexionActualizar.BeginTransaction();
                                                                 string SqlActualizacion = ConexionActualizar.CustomizeSql(Lector.ReadToEnd());
                                                                 do {
                                                                         string Comando = Lfx.Data.Connection.GetNextCommand(ref SqlActualizacion);
@@ -183,7 +183,7 @@ namespace Lazaro.Principal
                                                                         }
                                                                 }
                                                                 while (SqlActualizacion.Length > 0);
-                                                                ConexionActualizar.Commit();
+                                                                Trans.Commit();
                                                                 Lector.Dispose();
                                                                 Archivo.Dispose();
                                                         }

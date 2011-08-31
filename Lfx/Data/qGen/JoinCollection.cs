@@ -30,10 +30,10 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 
 namespace qGen
 {
+        [Serializable]
         public class JoinCollection : System.Collections.Generic.List<qGen.Join>
         {
                 public Join this[string tableName]

@@ -54,7 +54,7 @@ namespace Lcc.Edicion
                         this.FieldContainer.Controls.Clear();
                         //Tomos los tags del registro
                         Lfx.Data.Table Tabla = m_Elemento.Connection.Tables[m_Elemento.TablaDatos];
-                        Tabla.DataBase = this.Connection;
+                        Tabla.Connection = this.Connection;
                         if (Tabla.Tags != null) {
                                 foreach (Lfx.Data.Tag Tg in Tabla.Tags) {
                                         Entrada.Campo Fld = new Entrada.Campo();

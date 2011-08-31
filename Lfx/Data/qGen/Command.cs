@@ -30,8 +30,6 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace qGen
 {
@@ -44,6 +42,7 @@ namespace qGen
         ///   2.- Agregar extensibilidad al acceso a datos. Así como hoy se implementa ToOdbcCommand() para acceso mediante ODBC, luego se
         ///       pueden implementar otros métodos para acceso mediante otros adaptadores (p. ej. MySQL Connector/Net).
         /// </summary>
+        [Serializable]
         public class Command
         {
                 internal SqlModes m_Mode = SqlModes.Ansi;

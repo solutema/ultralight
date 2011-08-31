@@ -30,15 +30,16 @@
 #endregion
 
 using System;
+using System.Data;
 using System.Reflection;
 
 namespace Lfx.Data
 {
         /// <summary>
         /// Proporciona una conexión a la base de datos y acceso de bajo nivel (sin abstracción) a los datos. Se utiliza normalmente para ejecutar consultas.
-        /// Vea Lfx.Data.DataBase para acceso de medio nivel a los datos o Lbl.* para para acceso de alto nivel a los datos.
+        /// Vea Lbl.* para para acceso de alto nivel a los datos.
         /// </summary>
-        public class Connection : IDisposable
+        public class Connection : IDisposable, System.Data.IDbConnection
         {
                 public bool EnableRecover = false, RequiresTransaction = false, ReadOnly = false;
 
@@ -49,8 +50,9 @@ namespace Lfx.Data
                 public readonly int Handle = 0;
                 private static int LastHandle = 0;
                 private System.Timers.Timer KeepAliveTimer = null;
-                private System.Data.IDbConnection DbConnection;
-                private bool m_InTransaction = false, m_Closing = false;
+                internal System.Data.IDbConnection DbConnection;
+                internal bool m_InTransaction = false;
+                private bool m_Closing = false;
 
                 public Connection(Lfx.Workspace workspace, string ownerName)
                 {
@@ -63,12 +65,12 @@ namespace Lfx.Data
                                 Lfx.Data.DataBaseCache.DefaultCache = new DataBaseCache(this);
                 }
 
-                public bool Open()
+                public void Open()
                 {
                         EnableRecover = false;
 
                         if (DbConnection != null && DbConnection.State != System.Data.ConnectionState.Closed && DbConnection.State != System.Data.ConnectionState.Broken)
-                                return false;
+                                return;
 
                         this.Workspace.DebugLog(this.Handle, "Abriendo " + this.Name);
 
@@ -156,8 +158,6 @@ namespace Lfx.Data
                                 }
                                 OdbcConnection.StateChange += new System.Data.StateChangeEventHandler(this.Connection_StateChange);
                         }
-
-                        return false;
                 }
 
                 private void KeepAliveTimer_Elapsed(object source, System.Timers.ElapsedEventArgs e)
@@ -215,7 +215,7 @@ namespace Lfx.Data
                         }
                 }
 
-                private void SetTransactionIsolationLevel(IsolationLevels level)
+                private void SetTransactionIsolationLevel(System.Data.IsolationLevel level)
                 {
                         string SqlCommand;
                         switch (this.SqlMode) {
@@ -232,16 +232,16 @@ namespace Lfx.Data
 
                         string SqlLevel;
                         switch (level) {
-                                case IsolationLevels.ReadUncommitted:
+                                case System.Data.IsolationLevel.ReadUncommitted:
                                         SqlLevel = "READ UNCOMMITTED";
                                         break;
-                                case IsolationLevels.ReadCommited:
+                                case System.Data.IsolationLevel.ReadCommitted:
                                         SqlLevel = "READ COMMITTED";
                                         break;
-                                case IsolationLevels.RepeatableRead:
+                                case System.Data.IsolationLevel.RepeatableRead:
                                         SqlLevel = "REPEATABLE READ";
                                         break;
-                                case IsolationLevels.Serializable:
+                                case System.Data.IsolationLevel.Serializable:
                                         SqlLevel = "SERIALIZABLE";
                                         break;
                                 default:
@@ -846,7 +846,7 @@ LEFT JOIN pg_attribute
 		}
 
 
-                public bool Close()
+                public void Close()
                 {
                         if (this.DbConnection != null) {
                                 m_Closing = true;
@@ -861,8 +861,6 @@ LEFT JOIN pg_attribute
                                 }
                                 m_Closing = false;
                         }
-
-                        return false;
                 }
 
                 public System.Data.IDbCommand GetCommand(string commandText)
@@ -952,7 +950,7 @@ LEFT JOIN pg_attribute
                                 throw new InvalidOperationException("No se pueden realizar cambios en la conexión de lectura");
 
                         // TODO: esto debería hacerlo no sólo en DesignMode
-                        if (this.RequiresTransaction && this.InTransaction == false && Lfx.Environment.SystemInformation.DesignMode)
+                        if (this.RequiresTransaction && m_InTransaction == false && Lfx.Environment.SystemInformation.DesignMode)
                                 throw new InvalidOperationException("No se permite la ejecución de comandos fuera de una transacción en la conexión " + this.Name);
 
                         sqlCommand = sqlCommand.Trim(new char[] { ' ', (char)13, (char)10, (char)9 });
@@ -969,7 +967,7 @@ LEFT JOIN pg_attribute
 
                         if (sqlCommand is qGen.Update || sqlCommand is qGen.Insert || sqlCommand is qGen.Delete) {
                                 // TODO: esto debería hacerlo no sólo en DesignMode
-                                if (this.RequiresTransaction && this.InTransaction == false && Lfx.Environment.SystemInformation.DesignMode)
+                                if (this.RequiresTransaction && this.m_InTransaction == false && Lfx.Environment.SystemInformation.DesignMode)
                                         throw new InvalidOperationException("No se permite la ejecución de comandos fuera de una transacción en la conexión " + this.Name);
                         }
                         sqlCommand.SqlMode = this.SqlMode;
@@ -1168,7 +1166,7 @@ LEFT JOIN pg_attribute
 
                 public bool IsOpen()
                 {
-                        return (this.ConectionState == System.Data.ConnectionState.Open) || (this.ConectionState == System.Data.ConnectionState.Executing) || (this.ConectionState == System.Data.ConnectionState.Fetching);
+                        return (this.State == System.Data.ConnectionState.Open) || (this.State == System.Data.ConnectionState.Executing) || (this.State == System.Data.ConnectionState.Fetching);
                 }
 
                 public System.Data.IDataReader GetReader(qGen.Select comando)
@@ -1334,12 +1332,13 @@ LEFT JOIN pg_attribute
                 }
 
 
-                public void BeginTransaction()
+                public System.Data.IDbTransaction BeginTransaction()
                 {
-                        this.BeginTransaction(true);
+                        return this.BeginTransaction(Lfx.Data.DataBaseCache.DefaultCache.DefaultIsolationLevel);
                 }
 
-                public void BeginTransaction(bool serializable)
+
+                public System.Data.IDbTransaction BeginTransaction(System.Data.IsolationLevel isolationLevel)
                 {
                         if (this.Handle == 0 && Lfx.Environment.SystemInformation.DesignMode)
                                 throw new InvalidOperationException("No se pueden realizar transacciones en el espacio de trabajo maestro");
@@ -1347,48 +1346,36 @@ LEFT JOIN pg_attribute
                         if (this.ReadOnly)
                                 throw new InvalidOperationException("No se pueden realizar transacciones en la conexión de lectura");
 
-
                         if (this.IsOpen() == false)
                                 this.Open();
 
-                        if (serializable)
-                                this.SetTransactionIsolationLevel(Lfx.Data.IsolationLevels.Serializable);
-                        else
-                                this.SetTransactionIsolationLevel(Lfx.Data.DataBaseCache.DefaultCache.DefaultIsolationLevel);
-
-                        if (m_InTransaction && Lfx.Environment.SystemInformation.DesignMode)
+                        if (m_InTransaction)
                                 throw new InvalidOperationException("Ya se inició una transacción");
+                        m_InTransaction = true;
 
-                        if (m_InTransaction == false) {
-                                m_InTransaction = true;
-                                this.Execute(new qGen.BeginTransactionCommand(this));
-                        }
+                        return new Transaction(this, isolationLevel);
                 }
 
-                public void Commit()
-                {
-                        if (m_InTransaction == true) {
-                                m_InTransaction = false;
-                                try {
-                                        this.Execute(new qGen.CommitCommand(this));
-                                }
-                                catch {
-                                        this.Execute(new qGen.RollBackCommand(this));
-                                        throw;
-                                }
-                        } else {
-                                if (Lfx.Environment.SystemInformation.DesignMode)
-                                        throw new InvalidOperationException("Commit(): sin BeginTransaction()");
-                                else
-                                        System.Console.WriteLine("Commit(): sin BeginTransaction()");
-                        }
-                }
 
-                public void RollBack()
+                internal void Commit(Transaction transaction)
                 {
-                        this.Execute(new qGen.RollBackCommand(this));
+                        if (m_InTransaction == false)
+                                throw new InvalidOperationException("Commit sin BeginTransaction");
+
+                        transaction.DbTransaction.Commit();
                         m_InTransaction = false;
                 }
+
+
+                internal void Rollback(Transaction transaction)
+                {
+                        if (m_InTransaction == false)
+                                throw new InvalidOperationException("Rollback sin BeginTransaction");
+
+                        transaction.DbTransaction.Rollback();
+                        m_InTransaction = false;
+                }
+
 
                 //Función: CustomizeSql
                 //	Convierte un Sql "genérico" en Sql para un servidor en particular
@@ -1510,7 +1497,7 @@ LEFT JOIN pg_attribute
                         }
                 }
 
-                public System.Data.ConnectionState ConectionState
+                public System.Data.ConnectionState State
                 {
                         get
                         {
@@ -1602,6 +1589,48 @@ LEFT JOIN pg_attribute
                                 r++;
                         }
                         while (true);
+                }
+
+
+                // Compatibilidad con IDbConnection
+
+                public void ChangeDatabase(string databaseName)
+                {
+                        this.DbConnection.ChangeDatabase(databaseName);
+                }
+
+                public System.Data.IDbCommand CreateCommand()
+                {
+                        return this.DbConnection.CreateCommand();
+                }
+
+                public string ConnectionString
+                {
+                        get
+                        {
+                                return this.DbConnection.ConnectionString;
+                        }
+                        set
+                        {
+                                this.DbConnection.ConnectionString = value;
+                        }
+                }
+
+
+                public string Database
+                {
+                        get
+                        {
+                                return this.DbConnection.Database;
+                        }
+                }
+
+                public int ConnectionTimeout
+                {
+                        get
+                        {
+                                return this.DbConnection.ConnectionTimeout;
+                        }
                 }
         }
 }

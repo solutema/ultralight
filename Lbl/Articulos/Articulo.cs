@@ -445,7 +445,7 @@ namespace Lbl.Articulos
                                                 qGen.Insert InsertarCantidadSituacion = new qGen.Insert("articulos_stock");
                                                 InsertarCantidadSituacion.Fields.AddWithValue("id_articulo", this.Id);
                                                 InsertarCantidadSituacion.Fields.AddWithValue("id_situacion", situacionOrigen.Id);
-                                                InsertarCantidadSituacion.Fields.AddWithValue("cantidad", cantidad);
+                                                InsertarCantidadSituacion.Fields.AddWithValue("cantidad", -cantidad);
                                                 this.Connection.Execute(InsertarCantidadSituacion);
                                         } else {
                                                 // Actualizo el stock en la nueva situación

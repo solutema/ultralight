@@ -105,6 +105,7 @@
     <Compile Include="Data\qGen\SetCommand.cs" />
     <Compile Include="Data\qGen\TextCommand.cs" />
     <Compile Include="Data\Structure.cs" />
+    <Compile Include="Data\Transaction.cs" />
     <Compile Include="FileFormats\Office\Spreadsheet\Cell.cs" />
     <Compile Include="FileFormats\Office\Spreadsheet\CellCollection.cs" />
     <Compile Include="FileFormats\Office\Spreadsheet\ColumnHeader.cs" />
@@ -140,7 +141,6 @@
     <Compile Include="Data\Field.cs" />
     <Compile Include="Data\Grouping.cs" />
     <Compile Include="Data\IndexDefinition.cs" />
-    <Compile Include="Data\IsolationLevels.cs" />
     <Compile Include="Data\Providers\Npgsql.cs" />
     <Compile Include="Data\qGen\BuilkInsert.cs" />
     <Compile Include="Data\qGen\Command.cs" />

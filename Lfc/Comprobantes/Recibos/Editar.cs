@@ -510,14 +510,14 @@ namespace Lfc.Comprobantes.Recibos
                 }
 
 
-                public override void AfterSave()
+                public override void AfterSave(IDbTransaction transaction)
                 {
                         Lbl.Comprobantes.Recibo Rec = this.Elemento as Lbl.Comprobantes.Recibo;
                         if (Rec.Tipo.ImprimirAlGuardar) {
-                                Lazaro.Impresion.Comprobantes.ImpresorRecibo Impresor = new Lazaro.Impresion.Comprobantes.ImpresorRecibo(Rec);
+                                Lazaro.Impresion.Comprobantes.ImpresorRecibo Impresor = new Lazaro.Impresion.Comprobantes.ImpresorRecibo(Rec, transaction);
                                 Impresor.Imprimir();
                         }
-                        base.AfterSave();
+                        base.AfterSave(transaction);
                 }
 
                 public override bool PuedeEditar()

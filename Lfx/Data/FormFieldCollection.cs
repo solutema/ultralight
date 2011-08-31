@@ -31,10 +31,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Lfx.Data
 {
+        [Serializable]
         public class FormFieldCollection : List<FormField>
         {
                 public FormField this[string index]

@@ -30,6 +30,7 @@
 #endregion
 
 using System;
+using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Text.RegularExpressions;
@@ -47,8 +48,8 @@ namespace Lazaro.Impresion.Comprobantes
                 // Indica si es una reimpresión. Si es reimpresión, no hay que asentar movimientos.
                 public bool Reimpresion { get; set; }
 
-                public ImpresorComprobante(Lbl.ElementoDeDatos elemento)
-                        : base(elemento) { }
+                public ImpresorComprobante(Lbl.ElementoDeDatos elemento, IDbTransaction transaction)
+                        : base(elemento, transaction) { }
 
                 public Lbl.Comprobantes.Comprobante Comprobante
                 {
@@ -110,7 +111,11 @@ namespace Lazaro.Impresion.Comprobantes
                                                 throw new InvalidOperationException("No se permiten reimpresiones fiscales.");
 
                                         // Primero hago un COMMIT, porque si no el otro proceso no va a poder hacer movimientos
-                                        this.Connection.Commit();
+                                        if (this.Transaction != null) {
+                                                this.Transaction.Commit();
+                                                this.Transaction.Dispose();
+                                                this.Transaction = null;
+                                        }
                                         ImprimiLocal = false;
 
                                         // Lo mando a imprimir al servidor fiscal
@@ -165,7 +170,11 @@ namespace Lazaro.Impresion.Comprobantes
                                                         throw new InvalidOperationException("No se permiten reimpresiones remotas.");
 
                                                 // Primero hago un COMMIT, porque si no el otro proceso no va a poder hacer movimientos
-                                                this.Connection.Commit();
+                                                if (this.Transaction != null) {
+                                                        this.Transaction.Commit();
+                                                        this.Transaction.Dispose();
+                                                        this.Transaction = null;
+                                                }
                                                 ImprimiLocal = false;
 
                                                 // Lo mando a imprimir a la estación remota

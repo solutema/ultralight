@@ -30,11 +30,10 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace qGen
 {
+        [Serializable]
         public class Where : System.Collections.Generic.List<qGen.Condition>
         {
                 public SqlModes SqlMode = SqlModes.Ansi;

@@ -43,6 +43,7 @@ namespace Lfx.Data
                 NumericRange
         }
 
+
         public interface IFilter
         {
                 string Label { get; set;  }
@@ -58,6 +59,7 @@ namespace Lfx.Data
                 bool IsEmpty();
         }
 
+        [Serializable]
         public class Filter : IFilter
         {
                 public string Label { get; set; }
@@ -101,6 +103,7 @@ namespace Lfx.Data
         }
 
 
+        [Serializable]
         public class NumericRangeFilter : Filter
         {
                 public decimal Min { get; set; }
@@ -157,6 +160,7 @@ namespace Lfx.Data
         }
 
 
+        [Serializable]
         public class DateRangeFilter : Filter
         {
                 public Lfx.Types.DateRange DateRange { get; set; }
@@ -180,8 +184,10 @@ namespace Lfx.Data
         }
 
 
+        [Serializable]
         public class SetFilter : Filter
         {
+                [NonSerialized]
                 public string[] SetData = null;
 
                 public SetFilter(string label, string columnName)
@@ -219,8 +225,11 @@ namespace Lfx.Data
         }
 
 
+        [Serializable]
         public class RelationFilter : Filter
         {
+                public Lfx.Data.Relation Relation { get; set; }
+
                 public int CurrentValue { get; set; }
 
                 public RelationFilter(string label, string columnName)
@@ -233,19 +242,6 @@ namespace Lfx.Data
                         : this(label, relation.Column)
                 {
                         this.Relation = relation;
-                }
-
-
-                public Lfx.Data.Relation Relation
-                {
-                        get
-                        {
-                                return this.Value as Lfx.Data.Relation;
-                        }
-                        set
-                        {
-                                this.Value = value;
-                        }
                 }
 
 

@@ -31,6 +31,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Net.Mail;
 using System.Security.Permissions;
@@ -487,7 +488,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                         }
 
                         // Configuro el nivel de aislación predeterminado
-                        Lfx.Data.DataBaseCache.DefaultCache.DefaultIsolationLevel = (Lfx.Data.IsolationLevels)(Enum.Parse(typeof(Lfx.Data.IsolationLevels), Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Datos.Aislacion", "Serializable")));
+                        Lfx.Data.DataBaseCache.DefaultCache.DefaultIsolationLevel = (System.Data.IsolationLevel)(Enum.Parse(typeof(System.Data.IsolationLevel), Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Datos.Aislacion", "Serializable")));
 
                         if (Lfx.Environment.SystemInformation.DesignMode == false) {
                                 // Si es necesario, actualizo la estructura de la base de datos
@@ -871,14 +872,15 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                                         Lfx.Types.OperationResult ResultadoImpresion;
 
                                                         using (Lfx.Data.Connection DataBaseImprimir = Lfx.Workspace.Master.GetNewConnection("Imprimir comprobante")) {
-                                                                DataBaseImprimir.BeginTransaction(true);
+                                                                IDbTransaction Trans = DataBaseImprimir.BeginTransaction(IsolationLevel.Serializable);
                                                                 Lbl.Comprobantes.ComprobanteConArticulos Comprob = new Lbl.Comprobantes.ComprobanteConArticulos(DataBaseImprimir, IdComprobante);
-                                                                Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos Impresor = new Impresion.Comprobantes.ImpresorComprobanteConArticulos(Comprob);
+                                                                Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos Impresor = new Impresion.Comprobantes.ImpresorComprobanteConArticulos(Comprob, Trans);
                                                                 ResultadoImpresion = Impresor.Imprimir();
                                                                 if (ResultadoImpresion.Success)
-                                                                        DataBaseImprimir.Commit();
+                                                                        Trans.Commit();
                                                                 else
-                                                                        DataBaseImprimir.RollBack();
+                                                                        Trans.Rollback();
+                                                                Trans.Dispose();
                                                                 DataBaseImprimir.Dispose();
                                                         }
 
@@ -889,7 +891,8 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                                         if (TipoElem != null && itemId > 0) {
                                                                 using (Lfx.Data.Connection DbImprimir = Lfx.Workspace.Master.GetNewConnection("Imprimir " + TipoElem.ToString() + " " + itemId.ToString())) {
                                                                         Lbl.IElementoDeDatos Elem = Lbl.Instanciador.Instanciar(TipoElem, DbImprimir, itemId);
-                                                                        Lazaro.Impresion.ImpresorElemento Impresor = Lazaro.Impresion.Instanciador.InstanciarImpresor(Elem);
+                                                                        IDbTransaction Trans = DbImprimir.BeginTransaction();
+                                                                        Lazaro.Impresion.ImpresorElemento Impresor = Lazaro.Impresion.Instanciador.InstanciarImpresor(Elem, Trans);
 
                                                                         string ImprimirEn = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpperInvariant();
                                                                         if (ImprimirEn == "EN") {
@@ -899,13 +902,13 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                                                                 Impresor.Impresora = Lbl.Impresion.Impresora.InstanciarImpresoraLocal(DbImprimir, NombreImpresora);
                                                                         }
 
-                                                                        DbImprimir.BeginTransaction();
                                                                         Lfx.Types.OperationResult Res = Impresor.Imprimir();
                                                                         if (Res.Success) {
-                                                                                DbImprimir.Commit();
+                                                                                Trans.Commit();
                                                                         } else {
-                                                                                DbImprimir.RollBack();
+                                                                                Trans.Rollback();
                                                                         }
+                                                                        Trans.Dispose();
                                                                         return Res;
                                                                 }
                                                         }

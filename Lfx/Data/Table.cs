@@ -30,8 +30,6 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Lfx.Data
 {
@@ -39,14 +37,14 @@ namespace Lfx.Data
         {
                 public string Name;
                 public bool AlwaysCache = false, Cacheable = true;
-                public Connection DataBase;
+                public Connection Connection;
 
                 private string m_PrimaryKey = null;
 		protected RowCollection m_Rows = null;
 
-                public Table(Connection dataBase, string name)
+                public Table(Connection connection, string name)
                 {
-			this.DataBase = dataBase;
+			this.Connection = connection;
                         this.Name = name;
                 }
 

@@ -30,9 +30,7 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
 
@@ -52,8 +50,8 @@ namespace Lazaro.Impresion
 
                 private string LastGroup = null;
 
-                public ImpresorListado(Lfx.FileFormats.Office.Spreadsheet.Sheet sheet)
-                        : base()
+                public ImpresorListado(Lfx.FileFormats.Office.Spreadsheet.Sheet sheet, IDbTransaction transaction)
+                        : base(transaction)
                 {
                         this.Sheet = sheet;
 

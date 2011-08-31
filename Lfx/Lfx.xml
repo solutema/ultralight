@@ -149,11 +149,6 @@
             Devuelve una colección con las tablas de datos.
             </summary>
         </member>
-        <member name="T:Lfx.Data.IsolationLevels">
-            <summary>
-            Define los niveles de aislamiento para las transacciones
-            </summary>
-        </member>
         <member name="T:qGen.Providers.Npgsql">
             <summary>
             Proveedor compatible con Npgsql versión 2. Requiere la presencia de Npgsql.dll en el directorio del programa.
@@ -288,7 +283,7 @@
         <member name="T:Lfx.Data.Connection">
             <summary>
             Proporciona una conexión a la base de datos y acceso de bajo nivel (sin abstracción) a los datos. Se utiliza normalmente para ejecutar consultas.
-            Vea Lfx.Data.DataBase para acceso de medio nivel a los datos o Lbl.* para para acceso de alto nivel a los datos.
+            Vea Lbl.* para para acceso de alto nivel a los datos.
             </summary>
         </member>
         <member name="M:Lfx.Data.Connection.GetFieldName(System.String)">

@@ -31,6 +31,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Data;
 
 namespace Lfc.Cajas
 {
@@ -105,7 +106,7 @@ namespace Lfc.Cajas
                         }
 
                         if (aceptarReturn.Success == true) {
-                                this.Caja.Connection.BeginTransaction();
+                                IDbTransaction Trans = this.Caja.Connection.BeginTransaction();
                                 if (m_Ingreso)
                                         this.Caja.Movimiento(false, 
                                                 EntradaConcepto.Elemento as Lbl.Cajas.Concepto,
@@ -126,7 +127,7 @@ namespace Lfc.Cajas
                                                 null,
                                                 null, 
                                                 EntradaComprobante.Text);
-                                this.Caja.Connection.Commit();
+                                Trans.Commit();
                         }
                         return aceptarReturn;
                 }

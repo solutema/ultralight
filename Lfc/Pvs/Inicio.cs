@@ -56,11 +56,27 @@ namespace Lfc.Pvs
 				        new Lfx.Data.FormField("pvs.estacion", "Estacion", Lfx.Data.InputFieldTypes.Text, 160),
 				        new Lfx.Data.FormField("pvs.carga", "Carga", Lfx.Data.InputFieldTypes.Text, 120),
                                         new Lfx.Data.FormField("pvs.detalonario", "Usa Talonarios", Lfx.Data.InputFieldTypes.Bool, 120)
-			        }
+			        },
+                                Filters = new List<Lfx.Data.IFilter>()
+                                {
+                                        new Lfx.Data.SetFilter("Tipo", "pvs.tipo", new string[] { "Todos|*", "Inactivo|0", "Normal|1", "Fiscal|2" }, "*")
+                                }
                         };
 
                         this.HabilitarFiltrar = false;
 		}
+
+
+                public override void FiltersChanged()
+                {
+                        this.CustomFilters.Clear();
+
+                        if (((Lfx.Data.SetFilter)(this.Definicion.Filters[0])).CurrentValue != "*")
+                                CustomFilters.AddWithValue("pvs.tipo", Lfx.Types.Parsing.ParseInt(this.Definicion.Filters[0].Value.ToString()));
+
+                        base.FiltersChanged();
+                }
+
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {

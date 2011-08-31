@@ -85,12 +85,12 @@ namespace Lfc.Bancos.Cheques
                                 decimal GestionDeCobro = Lfx.Types.Parsing.ParseCurrency(EntradaGestionDeCobro.Text);
                                 decimal Impuestos = Lfx.Types.Parsing.ParseCurrency(EntradaImpuestos.Text);
 
-                                this.Connection.BeginTransaction(true);
+                                IDbTransaction Trans = this.Connection.BeginTransaction(IsolationLevel.Serializable);
 
                                 Lbl.Cajas.Caja CajaDestino = EntradaCajaDestino.Elemento as Lbl.Cajas.Caja;
                                 this.Cheque.Efectivizar(CajaDestino, GestionDeCobro, Impuestos);
 
-                                this.Connection.Commit();
+                                Trans.Commit();
                         }
                         return aceptarReturn;
                 }

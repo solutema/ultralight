@@ -42,7 +42,8 @@ namespace qGen.Providers
                         "MySqlClient.MySqlConnection",
                         "MySqlClient.MySqlCommand",
                         "MySqlClient.MySqlDataAdapter",
-                        "MySqlClient.MySqlParameter")
+                        "MySqlClient.MySqlParameter",
+                        "MySqlClient.MySqlTransaction")
                 {
                 }
         }

@@ -46,10 +46,11 @@ namespace qGen.Providers
                 public string CommandClass = null;
                 public string AdapterClass = null;
                 public string ParameterClass = null;
+                public string TransactionClass = null;
 
                 protected internal Assembly m_Assembly = null;
 
-                public Provider(string assemblyName, string nameSpace, string connectionClass, string commandClass, string adapterClass, string parameterClass)
+                public Provider(string assemblyName, string nameSpace, string connectionClass, string commandClass, string adapterClass, string parameterClass, string transactionClass)
                 {
                         this.AssemblyName = assemblyName;
                         this.NameSpace = nameSpace;
@@ -57,6 +58,7 @@ namespace qGen.Providers
                         this.CommandClass = commandClass;
                         this.AdapterClass = adapterClass;
                         this.ParameterClass = parameterClass;
+                        this.TransactionClass = transactionClass;
                 }
 
                 public Assembly Assembly

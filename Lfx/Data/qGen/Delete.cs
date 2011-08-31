@@ -30,11 +30,10 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace qGen
 {
+        [Serializable]
         public class Delete : TableCommand
         {
                 public bool EnableDeleleteWithoutWhere = false;

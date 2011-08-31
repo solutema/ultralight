@@ -44,7 +44,7 @@ namespace Lfx.Data
 
                 new public void Add(Table table)
                 {
-                        table.DataBase = this.DataBase;
+                        table.Connection = this.DataBase;
                         base.Add(table);
                 }
 

@@ -29,8 +29,6 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 
@@ -40,8 +38,8 @@ namespace Lazaro.Impresion.Comprobantes
         {
                 private int m_Pagina;
 
-                public ImpresorPresupuesto(Lbl.ElementoDeDatos elemento)
-                        : base(elemento) { }
+                public ImpresorPresupuesto(Lbl.ElementoDeDatos elemento, IDbTransaction transaction)
+                        : base(elemento, transaction) { }
 
                 public Lbl.Comprobantes.Presupuesto Presupuesto
                 {

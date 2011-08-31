@@ -30,6 +30,7 @@
 #endregion
 
 using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Text;
 
@@ -791,8 +792,9 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                 if (NotifHandler != null)
                                         NotifHandler(this, new ImpresoraEventArgs("Asentando el movimiento"));
 
+                                IDbTransaction Trans = null;
                                 try {
-                                        Comprob.Connection.BeginTransaction(true);
+                                        Trans = Comprob.Connection.BeginTransaction(IsolationLevel.Serializable);
 
                                         //Marco la factura como impresa y numerada
                                         Comprob.Numerar(Res.NumeroComprobante, true);
@@ -823,11 +825,12 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                         break;
                                         }
 
-                                        Comprob.Connection.Commit();
+                                        Trans.Commit();
                                 } catch (Exception ex) {
                                         Res = new Respuesta(ErroresFiscales.Error);
                                         Res.Mensaje = ex.ToString();
-                                        Comprob.Connection.RollBack();
+                                        if (Trans != null)
+                                                Trans.Rollback();
                                 }
 
                                 if (NotifHandler != null)

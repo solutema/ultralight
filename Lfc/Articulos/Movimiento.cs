@@ -82,13 +82,13 @@ namespace Lfc.Articulos
                         }
 
                         if (aceptarReturn.Success == true) {
-                                Connection.BeginTransaction(true);
+                                IDbTransaction Trans = this.Connection.BeginTransaction(IsolationLevel.Serializable);
                                 decimal Cantidad = EntradaCantidad.ValueDecimal;
                                 Lbl.Articulos.Situacion Origen, Destino;
                                 Origen = EntradaDesdeSituacion.Elemento as Lbl.Articulos.Situacion;
                                 Destino = EntradaHaciaSituacion.Elemento as Lbl.Articulos.Situacion;
                                 Art.MoverStock(Cantidad, EntradaObs.Text, Origen, Destino, null);
-                                Connection.Commit();
+                                Trans.Commit();
                         }
 
                         return aceptarReturn;

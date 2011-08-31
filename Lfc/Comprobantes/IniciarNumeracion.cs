@@ -117,7 +117,7 @@ namespace Lfc.Comprobantes
                                 OkButton.Enabled = false;
                         }
 
-                        this.Connection.BeginTransaction();
+                        IDbTransaction Trans = this.Connection.BeginTransaction();
                         qGen.Insert InsertarComprob = new qGen.Insert("comprob");
 
                         switch (EntradaTipo.TextKey) {
@@ -143,7 +143,7 @@ namespace Lfc.Comprobantes
                         InsertarComprob.Fields.AddWithValue("impresa", 1);
                         InsertarComprob.Fields.AddWithValue("anulada", 1);
                         this.Connection.Execute(InsertarComprob);
-                        this.Connection.Commit();
+                        Trans.Commit();
 
                         return base.Ok();
                 }

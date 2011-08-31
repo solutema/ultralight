@@ -54,7 +54,7 @@ namespace Lfc.Comprobantes.Recibos
 			if(Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text) <= 0)
 				return new Lfx.Types.FailureOperationResult("Debe especificar el importe");
 
-			this.Connection.BeginTransaction(true);
+                        IDbTransaction Trans = this.Connection.BeginTransaction(IsolationLevel.Serializable);
 
 			Lbl.Personas.Persona Cliente = new Lbl.Personas.Persona(Connection, EntradaCliente.TextInt);
 			Lbl.Comprobantes.ReciboDeCobro Rec = new Lbl.Comprobantes.ReciboDeCobro(this.Connection);
@@ -66,16 +66,16 @@ namespace Lfc.Comprobantes.Recibos
 			Lfx.Types.OperationResult Res = Rec.Guardar();
 
                         if (Res.Success) {
-                                this.Connection.Commit();
+                                Trans.Commit();
 
                                 if (Rec.Tipo.ImprimirAlGuardar) {
-                                        Lazaro.Impresion.Comprobantes.ImpresorRecibo Impresor = new Lazaro.Impresion.Comprobantes.ImpresorRecibo(Rec);
-                                        Rec.Connection.BeginTransaction();
+                                        IDbTransaction TransImpr = Rec.Connection.BeginTransaction();
+                                        Lazaro.Impresion.Comprobantes.ImpresorRecibo Impresor = new Lazaro.Impresion.Comprobantes.ImpresorRecibo(Rec, TransImpr);
                                         Lfx.Types.OperationResult ResImprimir = Impresor.Imprimir();
                                         if (ResImprimir.Success) {
-                                                Rec.Connection.Commit();
+                                                TransImpr.Commit();
                                         } else {
-                                                Rec.Connection.RollBack();
+                                                TransImpr.Rollback();
                                                 if (ResImprimir.Message != null)
                                                         Lui.Forms.MessageBox.Show(ResImprimir.Message, "Error");
                                                 else
@@ -88,7 +88,7 @@ namespace Lfc.Comprobantes.Recibos
                                 EntradaCliente.Focus();
                                 return new Lfx.Types.FailureOperationResult("Se creo el recibo para el cliente " + Nombrecliente);
                         } else {
-                                this.Connection.RollBack();
+                                Trans.Rollback();
                                 return Res;
                         }
         	}

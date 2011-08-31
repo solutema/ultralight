@@ -30,6 +30,7 @@
 #endregion
 
 using System.ComponentModel;
+using System.Data;
 
 namespace Lcc.Edicion
 {
@@ -57,7 +58,7 @@ namespace Lcc.Edicion
                 /// <summary>
                 /// Se dispara cuando el elemento fue guardado.
                 /// </summary>
-                public virtual void AfterSave()
+                public virtual void AfterSave(IDbTransaction transaction)
                 {
                 }
 

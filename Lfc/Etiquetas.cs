@@ -64,9 +64,9 @@ namespace Lfc
 
                 public override Lfx.Types.OperationResult Ok()
                 {
-                        this.Elemento.Connection.BeginTransaction();
+                        IDbTransaction Trans = this.Elemento.Connection.BeginTransaction();
                         this.Elemento.GuardarEtiquetas();
-                        this.Elemento.Connection.Commit();
+                        Trans.Commit();
 
                         return base.Ok();
                 }

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,20 +29,55 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Data;
 
 namespace Lfx.Data
 {
-        /// <summary>
-        /// Define los niveles de aislamiento para las transacciones
-        /// </summary>
-        public enum IsolationLevels
+        public class Transaction : IDbTransaction
         {
-                ReadUncommitted,
-                ReadCommited,
-                RepeatableRead,
-                Serializable
+                internal IDbTransaction DbTransaction = null;
+                private Connection DataConnection = null;
+
+                public Transaction(Connection connection, IsolationLevel isolationLevel)
+                {
+                        this.DataConnection = connection;
+                        this.DbTransaction = connection.DbConnection.BeginTransaction(isolationLevel);
+                }
+
+
+                public IDbConnection Connection
+                {
+                        get
+                        {
+                                return this.DataConnection.DbConnection;
+                        }
+                }
+
+
+                public IsolationLevel IsolationLevel
+                {
+                        get
+                        {
+                                return this.DbTransaction.IsolationLevel;
+                        }
+                }
+
+                public void Commit()
+                {
+                        this.DataConnection.Commit(this);
+                }
+
+
+                public void Rollback()
+                {
+                        this.DataConnection.Rollback(this);
+                }
+
+
+                public void Dispose()
+                {
+                        if (DbTransaction != null)
+                                DbTransaction.Dispose();
+                }
         }
 }

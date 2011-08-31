@@ -213,7 +213,7 @@ namespace Lfc.Comprobantes.Facturas
                                                 // No existe, supongo que está anulado, lo salteo
                                         } else {
                                                 Lbl.Comprobantes.ComprobanteConArticulos Fac = new Lbl.Comprobantes.ComprobanteConArticulos(Connection, IdFactura);
-                                                Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos Impr = new Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos(Fac);
+                                                Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos Impr = new Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos(Fac, null);
                                                 Impr.Reimpresion = true;
                                                 Impr.Imprimir();
                                         }

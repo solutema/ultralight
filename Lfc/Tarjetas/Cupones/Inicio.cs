@@ -31,6 +31,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -219,7 +220,7 @@ namespace Lfc.Cupones.Cupones
                                 FormularioAcreditacion.EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total - ComisionTarjeta - ComisionPlan, this.Workspace.CurrentConfig.Moneda.Decimales);
                                 FormularioAcreditacion.IgnorarCambios = false;
 
-                                bool bAceptar = false;
+                                bool Aceptar = false;
                                 Lfc.Comprobantes.Recibos.EditarCobro FormularioPago = new Lfc.Comprobantes.Recibos.EditarCobro();
                                 do {
                                         if (FormularioAcreditacion.ShowDialog() == DialogResult.OK) {
@@ -234,17 +235,17 @@ namespace Lfc.Cupones.Cupones
                                                 FormularioPago.Cobro.Obs = "Cupones Nº " + Cupones.ToString();
                                                 FormularioPago.Cobro.ObsEditable = false;
                                                 if (FormularioPago.ShowDialog() == DialogResult.OK) {
-                                                        bAceptar = true;
+                                                        Aceptar = true;
                                                         break;
                                                 }
                                         } else {
-                                                bAceptar = false;
+                                                Aceptar = false;
                                                 break;
                                         }
                                 }
                                 while (true);
-                                if (bAceptar) {
-                                        Connection.BeginTransaction(true);
+                                if (Aceptar) {
+                                        IDbTransaction Trans = Connection.BeginTransaction(IsolationLevel.Serializable);
 
                                         Progreso.ChangeStatus("Asentando el movimiento");
                                         Progreso.Max = Listado.Items.Count + 2;
@@ -314,7 +315,7 @@ namespace Lfc.Cupones.Cupones
                                         }
 
 
-                                        Connection.Commit();
+                                        Trans.Commit();
                                         Progreso.End();
                                 }
                         }

@@ -396,7 +396,7 @@ namespace Lfc.Cajas
 
                         if (aceptarReturn.Success == true) {
                                 decimal Importe = EntradaImporte.ValueDecimal;
-                                Connection.BeginTransaction(true);
+                                IDbTransaction Trans = Connection.BeginTransaction(IsolationLevel.Serializable);
                                 Lbl.Cajas.Caja CajaOrigen = new Lbl.Cajas.Caja(Connection, iOrigen);
                                 CajaOrigen.Movimiento(false, EntradaConcepto.Elemento as Lbl.Cajas.Concepto, 
                                         EntradaConcepto.TextDetail,
@@ -412,7 +412,7 @@ namespace Lfc.Cajas
                                         Lbl.Sys.Config.Actual.UsuarioConectado.Persona,
                                         Importe,
                                         EntradaObs.Text, null, null, EntradaComprob.Text);
-                                Connection.Commit();
+                                Trans.Commit();
                         }
                         return aceptarReturn;
                 }

@@ -30,6 +30,7 @@
 #endregion
 
 using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Text;
 
@@ -55,11 +56,10 @@ namespace Lbl.Servicios
 
                 public void Desduplicar()
                 {
-                        bool MustCommit = false;
-                        if(this.DataBase.InTransaction == false) {
-                                MustCommit = true;
-                                this.DataBase.BeginTransaction(true);
-                        }
+                        IDbTransaction Trans = null;
+
+                        if(this.DataBase.InTransaction == false)
+                                Trans = this.DataBase.BeginTransaction(IsolationLevel.Serializable);
 
                         // Le doy tratamiento especial a algunas situaciones
                         switch (TablaOriginal) {
@@ -97,8 +97,8 @@ namespace Lbl.Servicios
                                         // En artículos, debería recalcular el historial de movimientos y el stock actual, pedidos, etc.
                         }
 
-                        if (MustCommit)
-                                this.DataBase.Commit();
+                        if (Trans != null)
+                                Trans.Commit();
                 }
 
                 public System.Collections.Generic.List<Lfx.Data.Relation> ListaRelaciones()

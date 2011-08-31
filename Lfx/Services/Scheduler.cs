@@ -97,9 +97,9 @@ namespace Lfx.Services
                         Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
 
                         try {
-                                this.DataBase.BeginTransaction();
+                                System.Data.IDbTransaction Trans = this.DataBase.BeginTransaction();
                                 this.DataBase.Execute(Comando);
-                                this.DataBase.Commit();
+                                Trans.Commit();
                         }
                         catch {
                                 return true;
@@ -113,7 +113,7 @@ namespace Lfx.Services
                         if (Workspace == null)
                                 return null;
 
-                        if (this.DataBase.ConectionState != System.Data.ConnectionState.Open)
+                        if (this.DataBase.State != System.Data.ConnectionState.Open)
                                 this.DataBase.Open();
 
                         qGen.Where WhereEstacion = new qGen.Where(qGen.AndOr.Or);
@@ -144,10 +144,10 @@ namespace Lfx.Services
                                 qGen.Update Actualizar = new qGen.Update("sys_programador", new qGen.Where("id_evento", Result.Id));
                                 Actualizar.Fields.AddWithValue("estado", 1);
 
-                                this.DataBase.BeginTransaction();
+                                System.Data.IDbTransaction Trans = this.DataBase.BeginTransaction();
                                 this.DataBase.Execute(Actualizar);
                                 this.DataBase.Execute(new qGen.Delete("sys_programador", new qGen.Where("fecha", qGen.ComparisonOperators.LessThan, System.DateTime.Now.AddDays(-7))));
-                                this.DataBase.Commit();
+                                Trans.Commit();
 
                                 return Result;
                         } else

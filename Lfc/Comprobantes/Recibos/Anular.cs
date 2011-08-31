@@ -115,9 +115,9 @@ namespace Lfc.Comprobantes.Recibos
                                         Rec = new Lbl.Comprobantes.Recibo(this.Connection, IdRecibo);
 
                                 if (Rec != null && Rec.Existe) {
-                                        Rec.Connection.BeginTransaction(true);
+                                        IDbTransaction Trans = Rec.Connection.BeginTransaction(IsolationLevel.Serializable);
                                         Rec.Anular();
-                                        Rec.Connection.Commit();
+                                        Trans.Commit();
                                 }
 
                                 EntradaNumero.Text = "";

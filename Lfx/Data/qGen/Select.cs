@@ -30,14 +30,13 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace qGen
 {
         /// <summary>
         /// Comando SELECT
         /// </summary>
+        [Serializable]
         public class Select : TableCommand
         {
                 new public string Fields = "*";

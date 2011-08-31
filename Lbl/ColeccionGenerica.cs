@@ -93,7 +93,7 @@ namespace Lbl
                 }
 
                 public ColeccionGenerica(Lfx.Data.Table tabla)
-                        : this(tabla.DataBase)
+                        : this(tabla.Connection)
                 {
                         this.DesdeTable(tabla);
                 }
