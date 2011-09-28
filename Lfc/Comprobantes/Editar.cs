@@ -370,7 +370,7 @@ namespace Lfc.Comprobantes
                 }
 
 
-                protected internal virtual void CambioValores(object sender, System.EventArgs e)
+                internal virtual void CambioValores(object sender, System.EventArgs e)
                 {
                         if (IgnorarEventos)
                                 return;

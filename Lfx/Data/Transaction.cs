@@ -29,6 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
+using System;
 using System.Data;
 
 namespace Lfx.Data
@@ -78,6 +79,7 @@ namespace Lfx.Data
                 {
                         if (DbTransaction != null)
                                 DbTransaction.Dispose();
+                        GC.SuppressFinalize(this);
                 }
         }
 }

@@ -41,8 +41,8 @@ namespace Lbl.Sys.Log
                 public Entrada(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Entrada(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public Entrada(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
 
 		public override string TablaDatos
 		{
@@ -60,13 +60,6 @@ namespace Lbl.Sys.Log
 			}
 		}
 
-                public DateTime Fecha
-                {
-                        get
-                        {
-                                return this.FieldDateTime("fecha");
-                        }
-                }
 
                 public string ComandoTexto
                 {

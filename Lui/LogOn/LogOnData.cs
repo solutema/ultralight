@@ -33,9 +33,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lui.Login
+namespace Lui.LogOn
 {
-	public static class LoginData
+	public static class LogOnData
 	{
 		public static bool ValidateAccess(string accessName, Lbl.Sys.Permisos.Operaciones operacion)
 		{
@@ -63,7 +63,7 @@ namespace Lui.Login
 
 		public static bool RevalidateAccess()
 		{
-			Lui.Login.FormRevalidateAccess Reval = new Lui.Login.FormRevalidateAccess();
+			Lui.LogOn.FormRevalidateAccess Reval = new Lui.LogOn.FormRevalidateAccess();
 			bool Res = Reval.Revalidate();
                         Reval.Close();
                         Reval.Dispose();
@@ -79,7 +79,7 @@ namespace Lui.Login
 
 		public static bool ValidateAsAdmin(string Explain)
 		{
-			Lui.Login.FormRevalidateAccess Reval = new Lui.Login.FormRevalidateAccess();
+			Lui.LogOn.FormRevalidateAccess Reval = new Lui.LogOn.FormRevalidateAccess();
 			if(Explain != null)
 				Reval.Explain = Explain;
 			return Reval.ValidateAs(1);

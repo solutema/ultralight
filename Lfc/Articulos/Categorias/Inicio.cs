@@ -40,7 +40,6 @@ namespace Lfc.Articulos.Categorias
 {
         public partial class Inicio : Lfc.FormularioListado
         {
-                internal string m_Stock = "*";
                 internal decimal m_ValorizacionCostoTotal = 0;
 
                 public Inicio()

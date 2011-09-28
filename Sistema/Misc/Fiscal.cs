@@ -41,7 +41,7 @@ namespace Lazaro.Misc
         {
                 private int Pv = 0;
 
-                public Fiscal() : base()
+                public Fiscal()
                 {
                         InitializeComponent();
 
@@ -56,7 +56,6 @@ namespace Lazaro.Misc
                                 EntradaPv.SetData = PVDataSet;
 
                                 if (EntradaPv.SetData.Length > 0) {
-
                                         //Busco el PV para esta estación, en esta sucursal
                                         this.Pv = Connection.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada.ToString() + " AND estacion='" + System.Environment.MachineName.ToUpperInvariant() + "'");
 

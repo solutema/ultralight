@@ -291,6 +291,7 @@ namespace Lfx.Data
                         }
                 }
 
+                
                 public void SetTableStructure(Data.TableStructure newTableDef)
                 {
                         Data.TableStructure CurrentTableDef = this.GetTableStructure(newTableDef.Name, false);
@@ -301,11 +302,16 @@ namespace Lfx.Data
                                 TablaCreada = true;
                         } else {
                                 //Modificar tabla existente
+                                string LastColName = null;
                                 foreach (Data.ColumnDefinition NewFieldDef in newTableDef.Columns.Values) {
                                         string Sql = null;
                                         if (CurrentTableDef.Columns.ContainsKey(NewFieldDef.Name) == false) {
                                                 //Agregar campo a una tabla existente
                                                 Sql = "ALTER TABLE \"" + newTableDef.Name + "\" ADD \"" + NewFieldDef.Name + "\" " + NewFieldDef.SqlDefinition();
+                                                if (LastColName == null)
+                                                        Sql += " FIRST";
+                                                else
+                                                        Sql += " AFTER \"" + LastColName + "\"";
                                         } else {
                                                 Data.ColumnDefinition CurrentFieldDef = CurrentTableDef.Columns[NewFieldDef.Name];
                                                 if (CurrentFieldDef != NewFieldDef) {
@@ -350,8 +356,11 @@ namespace Lfx.Data
                                                 }
                                         }
 
-                                        if (Sql != null)
-                                                this.Execute(this.CustomizeSql(Sql));
+                                        if (Sql != null) {
+                                                   this.Execute(this.CustomizeSql(Sql));
+                                        }
+
+                                        LastColName = NewFieldDef.Name;
                                 }
 
                                 foreach (Data.ColumnDefinition FieldDef in CurrentTableDef.Columns.Values) {
@@ -825,9 +834,7 @@ LEFT JOIN pg_attribute
 		public void Dispose()
 		{
                         if (this.Handle == 0 && this.Workspace.Disposing == false) {
-                                if (Lfx.Environment.SystemInformation.DesignMode)
-                                        throw new InvalidOperationException("No se puede deshechar el espacio de trabajo maestro");
-                                return;
+                                throw new InvalidOperationException("No se puede deshechar el espacio de trabajo maestro");
                         } else {
                                 this.Workspace.ActiveConnections.Remove(this);
                                 this.Workspace.DebugLog(this.Handle, "Deshechando " + this.Name);
@@ -842,6 +849,8 @@ LEFT JOIN pg_attribute
                                         DbConnection.Dispose();
                                         DbConnection = null;
                                 }
+
+                                GC.SuppressFinalize(this);
                         }
 		}
 
@@ -1246,6 +1255,7 @@ LEFT JOIN pg_attribute
 
                         System.Data.IDbDataAdapter Adaptador = Lfx.Data.DataBaseCache.DefaultCache.Provider.GetAdapter(selectCommand, this.DbConnection);
                         using (System.Data.DataSet Lector = new System.Data.DataSet()) {
+                                Lector.Locale = System.Globalization.CultureInfo.CurrentCulture;
                                 while (true) {
                                         try {
                                                 this.ResetKeepAliveTimer();
@@ -1338,7 +1348,7 @@ LEFT JOIN pg_attribute
                 }
 
 
-                public System.Data.IDbTransaction BeginTransaction(System.Data.IsolationLevel isolationLevel)
+                public System.Data.IDbTransaction BeginTransaction(System.Data.IsolationLevel il)
                 {
                         if (this.Handle == 0 && Lfx.Environment.SystemInformation.DesignMode)
                                 throw new InvalidOperationException("No se pueden realizar transacciones en el espacio de trabajo maestro");
@@ -1353,7 +1363,7 @@ LEFT JOIN pg_attribute
                                 throw new InvalidOperationException("Ya se inició una transacción");
                         m_InTransaction = true;
 
-                        return new Transaction(this, isolationLevel);
+                        return new Transaction(this, il);
                 }
 
 

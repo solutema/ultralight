@@ -83,8 +83,8 @@ namespace qGen
                                 if (FieldParam == "?" || FieldParam.Substring(0, 1) == "@") {
                                         System.Data.IDbDataParameter Param = Lfx.Data.DataBaseCache.DefaultCache.Provider.GetParameter();
                                         Param.ParameterName = "@" + ThisField.ColumnName;
-                                        if (ThisField.Value is Lfx.Types.LDateTime)
-                                                Param.Value = ((Lfx.Types.LDateTime)(ThisField.Value)).Value;
+                                        if (ThisField.Value is NullableDateTime && ThisField.Value != null)
+                                                Param.Value = ((NullableDateTime)(ThisField.Value)).Value;
                                         else
                                                 Param.Value = ThisField.Value;
                                         if (ThisField.DataType == Lfx.Data.DbTypes.Blob)

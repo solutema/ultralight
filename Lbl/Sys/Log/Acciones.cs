@@ -31,16 +31,15 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Lbl.Sys.Log
 {
         public enum Acciones
         {
-                Logon,
-                LogonFail,
-                Logoff,
+                LogOn,
+                LogOnFail,
+                LogOff,
                 Save,
                 Delete,
                 DeleteAndRevert,

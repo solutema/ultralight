@@ -61,6 +61,23 @@ namespace Lfc.Comprobantes.Plantillas
                 }
 
 
+                /// <summary>
+                /// Clean up any resources being used.
+                /// </summary>
+                protected override void Dispose(bool disposing)
+                {
+                        if (disposing) {
+                                if (components != null) {
+                                        components.Dispose();
+                                }
+                                LapizBordeCampos.Dispose();
+                                BrushSeleccion.Dispose();
+                        }
+                        
+                        base.Dispose(disposing);
+                }
+
+
                 public override void ActualizarControl()
                 {
                         Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;

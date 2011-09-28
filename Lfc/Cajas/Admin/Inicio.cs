@@ -80,13 +80,13 @@ namespace Lfc.Cajas.Admin
                         this.Contadores.Add(new Contador("Activos", Lui.Forms.DataTypes.Currency, "$", null));
                 }
 
-                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
 		{
-                        int IdBanco = Lfx.Types.Parsing.ParseInt(itm.SubItems[2].Text);
+                        int IdBanco = Lfx.Types.Parsing.ParseInt(item.SubItems[2].Text);
                         if (IdBanco != 0)
-                                itm.SubItems["id_banco"].Text = this.Connection.Tables["bancos"].FastRows[IdBanco].Fields["nombre"].ValueString;
+                                item.SubItems["id_banco"].Text = this.Connection.Tables["bancos"].FastRows[IdBanco].Fields["nombre"].ValueString;
 
-                        int IdCaja = Lfx.Types.Parsing.ParseInt(itm.Text);
+                        int IdCaja = Lfx.Types.Parsing.ParseInt(item.Text);
                         decimal Saldo = this.Connection.FieldDecimal("SELECT saldo FROM cajas_movim WHERE id_caja=" + IdCaja.ToString() + " ORDER BY id_movim DESC LIMIT 1");
                         decimal Pasivos = this.Connection.FieldDecimal("SELECT SUM(importe) FROM bancos_cheques WHERE estado IN (0, 5) AND emitido=1 AND id_chequera IN (SELECT chequeras.id_chequera FROM chequeras WHERE estado=1 AND id_caja=" + IdCaja.ToString() + ")");
 
@@ -94,8 +94,8 @@ namespace Lfc.Cajas.Admin
 			if (Saldo > 0)
                                 this.Contadores[1].AddValue(Saldo);
 			
-                        itm.SubItems["0"].Text = Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        itm.SubItems["1"].Text = Lfx.Types.Formatting.FormatCurrency(Saldo - Pasivos, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        item.SubItems["0"].Text = Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        item.SubItems["1"].Text = Lfx.Types.Formatting.FormatCurrency(Saldo - Pasivos, this.Workspace.CurrentConfig.Moneda.Decimales);
 		}
 	}
 }

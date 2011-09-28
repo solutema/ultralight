@@ -39,6 +39,7 @@ namespace Lbl
         {
                 string Nombre { get; set; }
                 string Obs { get; set; }
+                DateTime Fecha { get; }
                 int Estado { get; set; }
         }
 }

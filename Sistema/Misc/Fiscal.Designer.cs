@@ -87,6 +87,7 @@ namespace Lazaro.Misc
                         this.BotonCierreZ.Location = new System.Drawing.Point(188, 172);
                         this.BotonCierreZ.Name = "BotonCierreZ";
                         this.BotonCierreZ.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonCierreZ.ReadOnly = false;
                         this.BotonCierreZ.Size = new System.Drawing.Size(100, 28);
                         this.BotonCierreZ.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonCierreZ.Subtext = "Ctrl-Z";
@@ -125,6 +126,7 @@ namespace Lazaro.Misc
                         // 
                         this.EntradaPv.AlwaysExpanded = true;
                         this.EntradaPv.AutoNav = true;
+                        this.EntradaPv.AutoSize = true;
                         this.EntradaPv.AutoTab = true;
                         this.EntradaPv.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaPv.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -132,12 +134,12 @@ namespace Lazaro.Misc
                         this.EntradaPv.MaxLenght = 32767;
                         this.EntradaPv.Name = "EntradaPv";
                         this.EntradaPv.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPv.SetData = new string[] {
-        "N/A|0"};
-                        this.EntradaPv.Size = new System.Drawing.Size(192, 100);
-                        this.EntradaPv.TabIndex = 52;
-                        this.EntradaPv.TextKey = "0";
                         this.EntradaPv.PlaceholderText = "";
+                        this.EntradaPv.ReadOnly = false;
+                        this.EntradaPv.SetData = null;
+                        this.EntradaPv.Size = new System.Drawing.Size(192, 21);
+                        this.EntradaPv.TabIndex = 52;
+                        this.EntradaPv.TextKey = "";
                         this.EntradaPv.ToolTipText = "";
                         this.EntradaPv.TextChanged += new System.EventHandler(this.txtPV_TextChanged);
                         // 
@@ -152,6 +154,7 @@ namespace Lazaro.Misc
                         this.BotonReiniciar.Location = new System.Drawing.Point(296, 260);
                         this.BotonReiniciar.Name = "BotonReiniciar";
                         this.BotonReiniciar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonReiniciar.ReadOnly = false;
                         this.BotonReiniciar.Size = new System.Drawing.Size(100, 28);
                         this.BotonReiniciar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonReiniciar.Subtext = "Ctrl-Z";
@@ -204,6 +207,7 @@ namespace Lazaro.Misc
                         this.BotonIniciarDetener.Location = new System.Drawing.Point(188, 260);
                         this.BotonIniciarDetener.Name = "BotonIniciarDetener";
                         this.BotonIniciarDetener.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonIniciarDetener.ReadOnly = false;
                         this.BotonIniciarDetener.Size = new System.Drawing.Size(100, 28);
                         this.BotonIniciarDetener.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonIniciarDetener.Subtext = "Ctrl-Z";
@@ -238,6 +242,7 @@ namespace Lazaro.Misc
                         this.Controls.SetChildIndex(this.BotonIniciarDetener, 0);
                         this.Controls.SetChildIndex(this.EntradaPv, 0);
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
                 }
                 #endregion

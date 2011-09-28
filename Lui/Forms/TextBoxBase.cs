@@ -148,7 +148,7 @@ namespace Lui.Forms
                 }
 
 
-                protected internal void TextBox1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+                internal void TextBox1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
                 {
                         if (m_AutoNav) {
                                 switch (e.KeyCode) {

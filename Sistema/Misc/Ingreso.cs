@@ -77,7 +77,7 @@ namespace Lazaro.Misc
 
                                 if (Puede == false) {
                                         System.Threading.Thread.Sleep(800);
-                                        Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.LogonFail, EntradaUsuario.Elemento, "Estación no permitida.");
+                                        Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.LogOnFail, EntradaUsuario.Elemento, "Estación no permitida.");
                                         MessageBox.Show("No se permite el acceso como Administrador desde este equipo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                         return;
                                 }
@@ -86,7 +86,7 @@ namespace Lazaro.Misc
                         Lbl.Personas.Usuario Usu = new Lbl.Personas.Usuario(Lfx.Workspace.Master.MasterConnection, EntradaUsuario.TextInt);
                         if(Usu.ContrasenaValida(EntradaContrasena.Text) == false) {
 				System.Threading.Thread.Sleep(800);
-                                Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.LogonFail, EntradaUsuario.Elemento, "Usuario o contraseña incorrecto.");
+                                Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.LogOnFail, EntradaUsuario.Elemento, "Usuario o contraseña incorrecto.");
 				MessageBox.Show("El nombre de usuario o la contraseña son incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				EntradaContrasena.Focus();
 			} else {
@@ -96,7 +96,7 @@ namespace Lazaro.Misc
                                 Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(Lfx.Workspace.Master, Usu);
                                 this.Workspace.CurrentConfig.WriteGlobalSetting(null, "Sistema.Ingreso.UltimoUsuario", Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString(), System.Environment.MachineName.ToUpperInvariant());
 				this.Workspace.CurrentConfig.WriteGlobalSetting(null, "Sistema.Ingreso.UltimoIngreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), System.Environment.MachineName.ToUpperInvariant());
-                                Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.Logon, Usuario, null);
+                                Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.LogOn, Usuario, null);
 				this.Close();
 			}
 		}

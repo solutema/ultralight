@@ -85,7 +85,7 @@ namespace Lazaro.Misc
                         Lfx.Services.Updater.Master.UpdateFromWeb();
 			OFormActualizador.Close();
 			OFormActualizador = null;
-                        if (Lfx.Services.Updater.Master.ErrorFlag) {
+                        if (Lfx.Services.Updater.Master.HasError()) {
                                 Lui.Forms.MessageBox.Show(Lfx.Services.Updater.Master.ErrorMessage, "Error");
                         } else if (Lfx.Services.Updater.Master.UpdatedFiles == 0) {
                                 Lui.Forms.MessageBox.Show("Ya está utilizando la versión más nueva disponible.", "Actualizar");

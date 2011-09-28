@@ -81,6 +81,7 @@ namespace Lbl.Servicios.Importar
                         System.Data.Odbc.OdbcCommand TableCommand = ConexionExterna.CreateCommand();
                         TableCommand.CommandText = SqlSelect;
                         System.Data.DataTable ReadTable = new System.Data.DataTable();
+                        ReadTable.Locale = System.Globalization.CultureInfo.InvariantCulture;
                         ReadTable.Load(TableCommand.ExecuteReader());
 
                         Progreso.Max = ReadTable.Rows.Count;

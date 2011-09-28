@@ -45,8 +45,8 @@ namespace Lbl.Comprobantes
                 public ReciboDeCobro(Lfx.Data.Connection dataBase, int itemId)
                         : base(dataBase, itemId) { }
 
-                public ReciboDeCobro(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public ReciboDeCobro(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
 
                 public override void Crear()
                 {

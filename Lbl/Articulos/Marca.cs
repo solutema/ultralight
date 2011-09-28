@@ -44,8 +44,8 @@ namespace Lbl.Articulos
 		public Marca(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Marca(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public Marca(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
 
 		public override string TablaDatos
 		{

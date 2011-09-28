@@ -93,7 +93,9 @@
     <Compile Include="Components\FunctionInfo.cs" />
     <Compile Include="Components\Component.cs" />
     <Compile Include="Components\FunctionTypes.cs" />
+    <Compile Include="Components\IRegisteredType.cs" />
     <Compile Include="Components\MenuEntry.cs" />
+    <Compile Include="Components\FunctionInfoCollection.cs" />
     <Compile Include="Components\TryFunction.cs" />
     <Compile Include="Data\Filter.cs" />
     <Compile Include="Data\FormFieldCollection.cs" />
@@ -179,7 +181,7 @@
     <Compile Include="Types\Currency.cs" />
     <Compile Include="Types\Formatting.cs" />
     <Compile Include="Types\Ini.cs" />
-    <Compile Include="Types\LDateTime.cs" />
+    <Compile Include="Types\NullableDateTime.cs" />
     <Compile Include="Types\Object.cs" />
     <Compile Include="Types\OperationProgress.cs" />
     <Compile Include="Types\OperationResult.cs" />
@@ -231,6 +233,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Data\Struct\db_upd25_pre.sql" />
     <EmbeddedResource Include="Data\Struct\db_upd_post.sql" />
     <EmbeddedResource Include="Data\Struct\dbdata.sql" />
     <EmbeddedResource Include="Data\Struct\db_upd_pre.sql" />
@@ -248,9 +251,9 @@
     <EmbeddedResource Include="Data\Struct\db_upd24_post.sql" />
     <EmbeddedResource Include="Data\Struct\db_upd24_pre.sql" />
     <EmbeddedResource Include="Data\Struct\db_upd25_post.sql" />
-    <EmbeddedResource Include="Data\Struct\db_upd25_pre.sql" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Data\Struct\db_upd26_pre.sql" />
     <Content Include="Lazaro.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

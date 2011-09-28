@@ -48,8 +48,8 @@ namespace Lbl.Comprobantes
                 public Tipo(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Tipo(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public Tipo(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
 
                 public Tipo(Lfx.Data.Connection dataBase, string nomenclatura)
                         : base(dataBase)

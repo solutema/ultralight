@@ -41,7 +41,7 @@ namespace Lui.Forms
         [System.ComponentModel.DefaultEvent("TextChanged")]
         public partial class ComboBox : TextBoxBase
         {
-                private string[] m_SetData = { "" };
+                private string[] m_SetData = new string[] { "" };
                 private string[] m_SetDataText = { "" };
                 private string[] m_SetDataKey = { "" };
                 private int m_SetIndex; private string m_TextKey;
@@ -103,8 +103,22 @@ namespace Lui.Forms
                         set
                         {
                                 base.TemporaryReadOnly = value;
-                                TextBox1.ReadOnly = true;
-                                ItemList.Enabled = !value;
+                                TextBox1.ReadOnly = value || this.ReadOnly;
+                                ItemList.Enabled = !(value || this.ReadOnly);
+                        }
+                }
+
+                public override bool ReadOnly
+                {
+                        get
+                        {
+                                return base.ReadOnly;
+                        }
+                        set
+                        {
+                                TextBox1.ReadOnly = value || this.TemporaryReadOnly;
+                                ItemList.Enabled = !(value || this.TemporaryReadOnly);
+                                base.ReadOnly = value;
                         }
                 }
 
@@ -167,7 +181,7 @@ namespace Lui.Forms
                 private void DetectarSetIndex()
                 {
                         // Detecta el SetIndex que le corresponde al TextKey actual
-                        if (m_SetDataKey.GetLength(0) > 0) {
+                        if (m_SetData != null && m_SetDataKey.GetLength(0) > 0) {
                                 m_SetIndex = -1;
                                 for (int i = 0; i <= m_SetDataKey.GetUpperBound(0); i++) {
                                         if (m_SetDataKey[i] == m_TextKey) {
@@ -178,8 +192,16 @@ namespace Lui.Forms
                                                 break;
                                         }
                                 }
+
+                                for (int i = m_SetDataText.GetLowerBound(0); i <= m_SetDataText.GetUpperBound(0); i++) {
+                                        if (m_SetData[i] == this.Text) {
+                                                if (ItemList.Items.Count >= (i + 1))
+                                                        ItemList.SelectedIndex = i;
+                                        }
+                                }
                         }
                 }
+
 
                 private void ImagenMasMenos_Click(object sender, System.EventArgs e)
                 {
@@ -222,7 +244,7 @@ namespace Lui.Forms
                 private string NextValueInSet()
                 {
                         string nextValueInSetReturn = null;
-                        if (m_SetIndex >= m_SetData.GetUpperBound(0))
+                        if (m_SetIndex >= m_SetData.Length - 1)
                                 m_SetIndex = 0;
                         else
                                 m_SetIndex++;
@@ -256,7 +278,7 @@ namespace Lui.Forms
                 {
                         string prevValueInSetReturn = null;
                         if (m_SetIndex <= 0)
-                                m_SetIndex = m_SetData.GetUpperBound(0);
+                                m_SetIndex = m_SetData.Length;
                         else
                                 m_SetIndex--;
                         prevValueInSetReturn = m_SetDataText[m_SetIndex];
@@ -308,7 +330,9 @@ namespace Lui.Forms
                                         if (PopUps.ODataSetHelp == null && Lfx.Environment.SystemInformation.RunTime == Lfx.Environment.SystemInformation.RunTimes.DotNet)
                                                 PopUps.ODataSetHelp = new DataSetHelp();
                                         if (PopUps.ODataSetHelp != null && this.TemporaryReadOnly == false && this.ReadOnly == false) {
-                                                PopUps.ODataSetHelp.SetData = this.SetData;
+                                                string[] Aja = new string[this.SetData.Length];
+                                                this.SetData.CopyTo(Aja, 0);
+                                                PopUps.ODataSetHelp.SetData = Aja;
                                                 PopUps.ODataSetHelp.TextKey = this.TextKey;
                                                 PopUps.ODataSetHelp.Mostrar(this);
                                                 this.TextBox1.Focus();

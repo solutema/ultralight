@@ -30,6 +30,7 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 
 namespace qGen
 {
@@ -44,7 +45,7 @@ namespace qGen
                 public string Order = null;
                 public string Group = "";
                 public bool ForUpdate = false;
-                public System.Collections.Generic.List<Join> Joins = new System.Collections.Generic.List<Join>();
+                public List<Join> Joins = new List<Join>();
 
                 public Where HavingClause = null;
 

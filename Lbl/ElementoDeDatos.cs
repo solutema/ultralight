@@ -50,9 +50,14 @@ namespace Lbl
                 public object Tag { get; set; }
 
 		protected int m_ItemId = 0;
+
+                [NonSerialized]
 		protected Lfx.Data.Row m_Registro = null, m_RegistroOriginal = null;
+
                 protected System.Drawing.Image m_Imagen = null;
                 protected bool m_ImagenCambio = false;
+
+                [NonSerialized]
                 protected ColeccionGenerica<Etiqueta> m_Etiquetas = null, m_EtiquetasOriginal = null;
 
 		protected ElementoDeDatos(Lfx.Data.Connection conn)
@@ -60,34 +65,33 @@ namespace Lbl
 			this.Connection = conn;
 		}
 
-                public ElementoDeDatos(Lfx.Data.Connection conn, int itemId)
+                protected ElementoDeDatos(Lfx.Data.Connection conn, int itemId)
                         : this(conn)
                 {
                         m_ItemId = itemId;
                         this.Cargar();
                 }
 
-                public ElementoDeDatos(Lfx.Data.Connection conn, Lfx.Data.Row fromRow)
+                protected ElementoDeDatos(Lfx.Data.Connection conn, Lfx.Data.Row row)
                         : this(conn)
                 {
-                        this.FromRow(fromRow);
+                        this.FromRow(row);
                 }
 
                 /// <summary>
                 /// Instancia un ElementoDeDatos desde un registro de la base de datos.
                 /// </summary>
-                /// <param name="fromRow"></param>
-                protected void FromRow(Lfx.Data.Row fromRow)
+                protected void FromRow(Lfx.Data.Row row)
                 {
                         this.m_Etiquetas = null;
                         this.m_ImagenCambio = false;
                         this.m_Imagen = null;
 
-                        m_Registro = fromRow;
+                        m_Registro = row;
                         if (m_Registro != null) {
                                 m_ItemId = System.Convert.ToInt32(m_Registro[this.CampoId]);
-                                m_Registro.IsNew = fromRow.IsNew;
-                                m_Registro.IsModified = fromRow.IsModified;
+                                m_Registro.IsNew = row.IsNew;
+                                m_Registro.IsModified = row.IsModified;
                                 m_RegistroOriginal = m_Registro.Clone();
                                 this.OnLoad();
                         } else {
@@ -262,6 +266,16 @@ namespace Lbl
 			}
 		}
 
+
+                public DateTime Fecha
+                {
+                        get
+                        {
+                                return this.GetFieldValue<DateTime>("fecha");
+                        }
+                }
+
+
                 /// <summary>
                 /// Obtiene o establece el estado del elemento. El valor de esta propiedad tiene diferentes significados para cada
                 /// clase derivada.
@@ -339,7 +353,10 @@ namespace Lbl
 			m_Registro = new Lfx.Data.Row();
                         m_RegistroOriginal = null;
                         m_Etiquetas = null;
-                        this.Estado = 1;
+                        if (this is ICamposBaseEstandar) {
+                                this.Estado = 1;
+                                this.SetFieldValue("fecha", this.Connection.ServerDateTime);
+                        }
 		}
 
                 /// <summary>
@@ -593,11 +610,15 @@ namespace Lbl
                                         object Res = Lbl.Instanciador.Instanciar(typeof(T), this.Connection, this.GetFieldValue<int>(fieldName));
                                         return (T)Res;
                                 }
-                        } else if (typeof(T) == typeof(Lfx.Types.LDateTime)) {
+                        } else if (typeof(T) == typeof(NullableDateTime)) {
                                 if (this.Registro[fieldName] == null) {
                                         return default(T);
                                 } else {
-                                        object Res = new Lfx.Types.LDateTime(this.GetFieldValue<DateTime>(fieldName));
+                                        object Res;
+                                        if (this.Registro[fieldName] is NullableDateTime)
+                                                Res = (NullableDateTime)(this.Registro[fieldName]);
+                                        else
+                                                Res = new NullableDateTime(this.GetFieldValue<DateTime>(fieldName));
                                         return (T)Res;
                                 }
                         } else {
@@ -621,15 +642,16 @@ namespace Lbl
                 /// <param name="newVal">El valor a asignar.</param>
                 public void SetFieldValue(string fieldName, object newVal)
                 {
-                        if (newVal == null)
+                        if (newVal == null) {
                                 // null es null
                                 this.Registro[fieldName] = null;
-                        else if (newVal is Lbl.IElementoDeDatos)
+                        } else if (newVal is Lbl.IElementoDeDatos) {
                                 // Si es un ElementoDeDatos, no guardo el objeto, sino su Id.
                                 this.Registro[fieldName] = ((Lbl.IElementoDeDatos)(newVal)).Id;
-                        else
+                        } else {
                                 // De lo contrario, asumo que es un tipo intrínseco y guardo su valor
                                 this.Registro[fieldName] = newVal;
+                        }
                 }
 
                 /// <summary>
@@ -637,14 +659,14 @@ namespace Lbl
                 /// </summary>
                 /// <param name="fieldName">El nombre del campo.</param>
                 /// <returns>El valor</returns>
-                protected Lfx.Types.LDateTime FieldDateTime(string fieldName)
+                protected NullableDateTime FieldDateTime(string fieldName)
 		{
 			if(this.Registro[fieldName] == null)
 				return null;
-                        if (this.Registro[fieldName] is Lfx.Types.LDateTime)
-                                return this.Registro[fieldName] as Lfx.Types.LDateTime;
+                        if (this.Registro[fieldName] is NullableDateTime)
+                                return this.Registro[fieldName] as NullableDateTime;
 			else
-				return new Lfx.Types.LDateTime(System.Convert.ToDateTime(this.Registro[fieldName]));
+				return new NullableDateTime(System.Convert.ToDateTime(this.Registro[fieldName]));
 		}
 
                 /// <summary>

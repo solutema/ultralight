@@ -74,7 +74,7 @@ namespace Lfc
                         this.ControlFiltros.Location = new System.Drawing.Point(0, 0);
                         this.ControlFiltros.Margin = new System.Windows.Forms.Padding(8);
                         this.ControlFiltros.Name = "ControlFiltros";
-                        this.ControlFiltros.Padding = new System.Windows.Forms.Padding(4);
+                        this.ControlFiltros.Padding = new System.Windows.Forms.Padding(16);
                         this.ControlFiltros.ShowApplyButton = false;
                         this.ControlFiltros.Size = new System.Drawing.Size(634, 312);
                         this.ControlFiltros.TabIndex = 0;

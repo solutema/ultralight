@@ -48,8 +48,8 @@ namespace Lbl.Personas
 		public Proveedor(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Proveedor(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public Proveedor(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
 
                 public override void Crear()
                 {

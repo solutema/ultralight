@@ -31,7 +31,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Lbl.Personas
@@ -53,8 +52,8 @@ namespace Lbl.Personas
 		public Usuario(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Usuario(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public Usuario(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
 
                 public override string TablaDatos
                 {

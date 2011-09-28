@@ -64,10 +64,9 @@ namespace Lfc
                 private static Type InferirFormularioListado(Type tipo)
                 {
                         // Primero busco en los tipos registrados por los componentes
-                        if (Lfx.Components.Manager.TiposRegistrados.ContainsKey(tipo)) {
-                                Lfx.Components.FunctionInfo Func = Lfx.Components.Manager.TiposRegistrados[tipo];
-                                return Func.Instancia.FormularioListado;
-                        }
+                        Lfx.Components.FunctionInfo Func = Lfx.Components.Manager.TiposRegistrados.GetByLblType(tipo);
+                        if(Func != null && Func.Instancia.RegisteredType is Lfc.ITipoRegistrado)
+                                return ((Lfc.ITipoRegistrado)(Func.Instancia.RegisteredType)).Listado;
 
                         return InferirFormularioListado(tipo.ToString());
                 }
@@ -228,7 +227,8 @@ namespace Lfc
 
                 private static Lcc.Edicion.ControlEdicion InstanciarControlEdicion(Type tipo)
                 {
-                        return Activator.CreateInstance(tipo, null) as Lcc.Edicion.ControlEdicion;
+                        object Res = Activator.CreateInstance(tipo, null);
+                        return Res as Lcc.Edicion.ControlEdicion;
                 }
 
                 /// <summary>
@@ -237,9 +237,10 @@ namespace Lfc
                 private static Type InferirControlEdicion(string nombreTablaOTipo)
                 {
                         // Primero busco en los tipos registrados por los componentes
-                        foreach (Type tipo in Lfx.Components.Manager.TiposRegistrados.Keys) {
-                                if (tipo.ToString() == nombreTablaOTipo)
-                                        return Lfx.Components.Manager.TiposRegistrados[tipo].Instancia.ControlEdicion;
+                        foreach (Lfx.Components.IRegisteredType tipo in Lfx.Components.Manager.TiposRegistrados.Keys) {
+                                if (tipo.LblType.ToString() == nombreTablaOTipo && tipo is Lfc.ITipoRegistrado) {
+                                        return ((Lfc.ITipoRegistrado)tipo).Editor;
+                                }
                         }
 
                         switch (nombreTablaOTipo) {

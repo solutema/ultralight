@@ -31,7 +31,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Lfx
@@ -120,7 +119,7 @@ namespace Lfx
                         }
                 }
 
-                public void Progress(Lfx.Types.OperationProgress progress)
+                public void NotifyProgress(Lfx.Types.OperationProgress progress)
                 {
                         if (IpcEvent != null) {
                                 IpcEventArgs e = new IpcEventArgs();

@@ -30,21 +30,22 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 
 namespace Lfx.Data
 {
         [Serializable]
         public class TableStructure
         {
-                public string Name;
-                public System.Collections.Generic.Dictionary<string, ColumnDefinition> Columns = null;
-                public System.Collections.Generic.Dictionary<string, IndexDefinition> Indexes = null;
-                public System.Collections.Generic.Dictionary<string, ConstraintDefinition> Constraints = null;
+                public string Name, Label = null;
+                public IDictionary<string, ColumnDefinition> Columns = null;
+                public IDictionary<string, IndexDefinition> Indexes = null;
+                public IDictionary<string, ConstraintDefinition> Constraints = null;
                 protected string CodePage;
 
                 public TableStructure()
                 {
-                        Columns = new System.Collections.Generic.Dictionary<string, ColumnDefinition>();
+                        Columns = new Dictionary<string, ColumnDefinition>();
                 }
 
                 public ColumnDefinition PrimaryKey
@@ -104,6 +105,11 @@ namespace Lfx.Data
 
                         Res.Attributes.Append(document.CreateAttribute("name"));
                         Res.Attributes["name"].Value = this.Name;
+
+                        if (this.Label != null) {
+                                Res.Attributes.Append(document.CreateAttribute("label"));
+                                Res.Attributes["label"].Value = this.Label;
+                        }
 
                         foreach (ColumnDefinition Col in Columns.Values) {
                                 Res.AppendChild(Col.ToXml(Res));

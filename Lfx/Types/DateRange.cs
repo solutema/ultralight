@@ -58,7 +58,7 @@ namespace Lfx.Types
                 {
                         get
                         {
-                                return this.Type != DateRangeTypes.All;
+                                return this.RangeType != DateRangeTypes.All;
                         }
                 }
 
@@ -71,7 +71,7 @@ namespace Lfx.Types
                         }
                 }
 
-                public DateRangeTypes Type
+                public DateRangeTypes RangeType
                 {
                         get
                         {
@@ -211,10 +211,6 @@ namespace Lfx.Types
                                                 return m_From;
                                 }
                         }
-                        set
-                        {
-                                m_From = value;
-                        }
                 }
 
                 /// <summary>
@@ -258,10 +254,6 @@ namespace Lfx.Types
                                         default:
                                                 return m_To;
                                 }
-                        }
-                        set
-                        {
-                                m_To = value;
                         }
                 }
         }

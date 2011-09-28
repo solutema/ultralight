@@ -40,7 +40,6 @@ namespace Lfc.Tareas
 {
         public partial class Editar : Lcc.Edicion.ControlEdicion
         {
-                internal int iEstadoOriginal = 0;
                 internal decimal Descuento = 0;
                 
                 public Editar()

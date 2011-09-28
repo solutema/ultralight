@@ -34,7 +34,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -81,8 +80,8 @@ namespace Lcc.Entrada
                                         Lui.Forms.ComboBox EntradaSet = new Lui.Forms.ComboBox();
                                         EntradaSet.SetData = FiltroSet.SetData;
                                         EntradaSet.TextKey = FiltroSet.CurrentValue;
-                                        EntradaSet.AlwaysExpanded = EntradaSet.SetData != null && EntradaSet.SetData.Length <= 3;
-                                        EntradaSet.AutoSize = true;
+                                        EntradaSet.AlwaysExpanded = EntradaSet.SetData != null && EntradaSet.SetData.Length <= 4;
+                                        EntradaSet.AutoSize = !EntradaSet.AlwaysExpanded;
                                         Entrada = EntradaSet;
                                 } else if (Filtro is Lfx.Data.DateRangeFilter) {
                                         Lfx.Data.DateRangeFilter FiltroFechas = Filtro as Lfx.Data.DateRangeFilter;

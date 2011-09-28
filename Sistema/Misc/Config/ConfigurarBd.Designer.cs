@@ -29,7 +29,6 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-
 namespace Lazaro.Misc.Config
 {
         public partial class ConfigurarBd

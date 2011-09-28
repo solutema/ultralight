@@ -30,6 +30,7 @@
 #endregion
 
 using System;
+using System.Security.Permissions;
 
 namespace Lfx.Environment
 {
@@ -38,6 +39,7 @@ namespace Lfx.Environment
         /// </summary>
         public class Shell
         {
+                [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
                 public static void Execute(string command, string paramsIdent, System.Diagnostics.ProcessWindowStyle windowStyle, bool wait)
                 {
                         System.Diagnostics.Process NuevoProceso = new System.Diagnostics.Process();
@@ -52,7 +54,9 @@ namespace Lfx.Environment
                         if (wait)
                                 NuevoProceso.WaitForExit();
                 }
-		
+
+
+                /* [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
 		public static string[] ExecuteAndGet(string command, string paramsIdent, System.Diagnostics.ProcessWindowStyle windowStyle)
                 {
                         System.Diagnostics.Process NuevoProceso = new System.Diagnostics.Process();
@@ -65,8 +69,10 @@ namespace Lfx.Environment
                         NuevoProceso.WaitForExit();
 			string Res = NuevoProceso.StandardOutput.ReadToEnd();
 			return Res.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.None);
-                }
+                } */
 
+
+                [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
                 public static void Reboot()
                 {
                         string[] ParametrosAPasar = System.Environment.GetCommandLineArgs();

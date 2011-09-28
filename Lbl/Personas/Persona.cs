@@ -56,8 +56,8 @@ namespace Lbl.Personas
 		public Persona(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Persona(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public Persona(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
 
                 public override void Crear()
                 {
@@ -78,13 +78,13 @@ namespace Lbl.Personas
                         //this.Contrasena = new System.Random().Next(100000, 999999).ToString();
                 }
 
-
                 public override Lfx.Types.OperationResult Guardar()
                 {
                         qGen.TableCommand Comando;
 
                         if (this.Existe == false) {
                                 Comando = new qGen.Insert(this.Connection, this.TablaDatos);
+                                Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                                 Comando.Fields.AddWithValue("fechaalta", qGen.SqlFunctions.Now);
                         } else {
                                 Comando = new qGen.Update(this.Connection, this.TablaDatos);
@@ -449,7 +449,7 @@ namespace Lbl.Personas
                         }
                 } */
 
-                public Lfx.Types.LDateTime FechaNacimiento
+                public NullableDateTime FechaNacimiento
 		{
 			get
 			{
@@ -461,7 +461,7 @@ namespace Lbl.Personas
                         }
 		}
 
-                public Lfx.Types.LDateTime FechaAlta
+                public NullableDateTime FechaAlta
                 {
                         get
                         {
@@ -473,7 +473,7 @@ namespace Lbl.Personas
                         }
                 }
 
-                public Lfx.Types.LDateTime FechaBaja
+                public NullableDateTime FechaBaja
                 {
                         get
                         {

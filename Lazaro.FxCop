@@ -1,0 +1,4176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FxCopProject Version="1.36" Name="My FxCop Project">
+ <ProjectOptions>
+  <SharedProject>True</SharedProject>
+  <Stylesheet Apply="False">c:\program files (x86)\microsoft fxcop 1.36\Xml\FxCopReport.xsl</Stylesheet>
+  <SaveMessages>
+   <Project Status="Active, Excluded" NewOnly="False" />
+   <Report Status="Active" NewOnly="False" />
+  </SaveMessages>
+  <ProjectFile Compress="True" DefaultTargetCheck="True" DefaultRuleCheck="True" SaveByRuleGroup="" Deterministic="True" />
+  <EnableMultithreadedLoad>True</EnableMultithreadedLoad>
+  <EnableMultithreadedAnalysis>True</EnableMultithreadedAnalysis>
+  <SourceLookup>True</SourceLookup>
+  <AnalysisExceptionsThreshold>10</AnalysisExceptionsThreshold>
+  <RuleExceptionsThreshold>1</RuleExceptionsThreshold>
+  <Spelling Locale="es-ES" />
+  <OverrideRuleVisibilities>False</OverrideRuleVisibilities>
+  <CustomDictionaries SearchFxCopDir="True" SearchUserProfile="True" SearchProjectDir="True" />
+  <SearchGlobalAssemblyCache>False</SearchGlobalAssemblyCache>
+  <DeadlockDetectionTimeout>120</DeadlockDetectionTimeout>
+  <IgnoreGeneratedCode>False</IgnoreGeneratedCode>
+  <TargetFrameworkVersion>3.5</TargetFrameworkVersion>
+ </ProjectOptions>
+ <Targets>
+  <Target Name="$(ProjectDir)/Sistema/bin/Lazaro.exe" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/Sistema/bin/Lazaro.Impresion.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/Sistema/bin/Lbl.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/Sistema/bin/Lcc.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/Sistema/bin/Lfc.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/Sistema/bin/Lfx.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/Sistema/bin/Lui.dll" Analyze="True" AnalyzeAllChildren="True" />
+ </Targets>
+ <Rules>
+  <RuleFiles>
+   <RuleFile Name="$(FxCopDir)\Rules\DesignRules.dll" Enabled="False" AllRulesEnabled="False" />
+   <RuleFile Name="$(FxCopDir)\Rules\GlobalizationRules.dll" Enabled="False" AllRulesEnabled="False" />
+   <RuleFile Name="$(FxCopDir)\Rules\InteroperabilityRules.dll" Enabled="False" AllRulesEnabled="False" />
+   <RuleFile Name="$(FxCopDir)\Rules\MobilityRules.dll" Enabled="False" AllRulesEnabled="False" />
+   <RuleFile Name="$(FxCopDir)\Rules\NamingRules.dll" Enabled="False" AllRulesEnabled="False" />
+   <RuleFile Name="$(FxCopDir)\Rules\PerformanceRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PortabilityRules.dll" Enabled="False" AllRulesEnabled="False" />
+   <RuleFile Name="$(FxCopDir)\Rules\SecurityRules.dll" Enabled="False" AllRulesEnabled="False" />
+   <RuleFile Name="$(FxCopDir)\Rules\UsageRules.dll" Enabled="False" AllRulesEnabled="False" />
+  </RuleFiles>
+  <Groups />
+  <Settings />
+ </Rules>
+ <FxCopReport Version="1.36">
+  <Targets>
+   <Target Name="$(ProjectDir)/Sistema/bin/Lazaro.exe">
+    <Modules>
+     <Module Name="lazaro.exe">
+      <Namespaces>
+       <Namespace Name="Lazaro">
+        <Types>
+         <Type Name="Aplicacion">
+          <Members>
+           <Member Name="#Exec(System.Object)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Parameter">
+               <Item>'param'</Item>
+               <Item>'Task'</Item>
+               <Item>'Aplicacion.Exec(object)'</Item>
+               <Item>isint</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Exec(System.String,System.String)">
+            <Messages>
+             <Message TypeName="AvoidExcessiveLocals" Category="Microsoft.Performance" CheckId="CA1809" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Compiler">
+               <Item>'Aplicacion.Exec(string, string)'</Item>
+               <Item>71</Item>
+               <Item>5</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820" Created="2011-09-01 21:06:35Z">
+              <Issue Name="IsNullOrEmpty">
+               <Item>'string.operator ==(string, string)'</Item>
+               <Item>'Aplicacion.Exec(string, string)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ExecDelegate(System.Object)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Parameter">
+               <Item>'param'</Item>
+               <Item>'Task'</Item>
+               <Item>'Aplicacion.ExecDelegate(object)'</Item>
+               <Item>isint</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ExecListado(System.String)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'FormularioListado'</Item>
+               <Item>'Inicio'</Item>
+               <Item>'Aplicacion.ExecListado(string)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'FormularioListado'</Item>
+               <Item>'Inicio'</Item>
+               <Item>'Aplicacion.ExecListado(string)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'FormularioListado'</Item>
+               <Item>'Inicio'</Item>
+               <Item>'Aplicacion.ExecListado(string)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lazaro.Misc.Backup">
+        <Types>
+         <Type Name="Services">
+          <Members>
+           <Member Name="#ExportTableBin(System.String,Lazaro.Misc.Backup.BackupStreamWriter)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'ValorOrigen'</Item>
+               <Item>'byte[]'</Item>
+               <Item>'Services.ExportTableBin(string, BackupStreamWriter)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'ValorOrigen'</Item>
+               <Item>'string'</Item>
+               <Item>'Services.ExportTableBin(string, BackupStreamWriter)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lazaro.Principal">
+        <Types>
+         <Type Name="BarraInferior">
+          <Members>
+           <Member Name="#Workspace">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'BarraInferior.Workspace'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Inicio">
+          <Members>
+           <Member Name="#Workspace">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'Inicio.Workspace'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/Sistema/bin/Lazaro.Impresion.dll">
+    <Modules>
+     <Module Name="lazaro.impresion.dll">
+      <Namespaces>
+       <Namespace Name="Lazaro.Impresion">
+        <Types>
+         <Type Name="Impresor">
+          <Members>
+           <Member Name="#.ctor(System.Data.IDbTransaction)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Impresor.Impresor(IDbTransaction)'</Item>
+               <Item>'Impresor.Impresora'</Item>
+               <Item>'Impresora'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Impresor.Impresor(IDbTransaction)'</Item>
+               <Item>'Impresor.m_DataBase'</Item>
+               <Item>'Connection'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Workspace">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'Impresor.Workspace'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ImpresorElemento">
+          <Members>
+           <Member Name="#.ctor(Lbl.ElementoDeDatos,System.Data.IDbTransaction)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'ImpresorElemento.ImpresorElemento(ElementoDeDatos, IDbTransaction)'</Item>
+               <Item>'ImpresorElemento.Plantilla'</Item>
+               <Item>'Plantilla'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ImpresorElemento.ImpresorElemento(ElementoDeDatos, IDbTransaction)'</Item>
+               <Item>'ImpresorElemento.Tipo'</Item>
+               <Item>'Tipo'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ImpresorListado">
+          <Members>
+           <Member Name="#.ctor(Lfx.FileFormats.Office.Spreadsheet.Sheet,System.Data.IDbTransaction)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'ImpresorListado.ImpresorListado(Sheet, IDbTransaction)'</Item>
+               <Item>'ImpresorListado.ColumnFormats'</Item>
+               <Item>'StringFormat[]'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ImpresorListado.ImpresorListado(Sheet, IDbTransaction)'</Item>
+               <Item>'ImpresorListado.ColumnWidths'</Item>
+               <Item>'float[]'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ImpresorListado.ImpresorListado(Sheet, IDbTransaction)'</Item>
+               <Item>'ImpresorListado.HeaderTotalWidth'</Item>
+               <Item>'float'</Item>
+               <Item>0.0</Item>
+              </Issue>
+              <Issue>
+               <Item>'ImpresorListado.ImpresorListado(Sheet, IDbTransaction)'</Item>
+               <Item>'ImpresorListado.LastGroup'</Item>
+               <Item>'string'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ImpresorListado.ImpresorListado(Sheet, IDbTransaction)'</Item>
+               <Item>'ImpresorListado.TotalPages'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lazaro.Impresion.Comprobantes.Fiscal">
+        <Types>
+         <Type Name="Impresora">
+          <Members>
+           <Member Name="#.ctor(Lfx.Workspace)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Impresora.Impresora(Workspace)'</Item>
+               <Item>'Impresora.m_PV'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Respuesta">
+          <Members>
+           <Member Name="#.ctor(Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Respuesta.Respuesta(ErroresFiscales)'</Item>
+               <Item>'Respuesta.Campos'</Item>
+               <Item>'List&lt;string&gt;'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Respuesta.Respuesta(ErroresFiscales)'</Item>
+               <Item>'Respuesta.HacerCierreZ'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+              <Issue>
+               <Item>'Respuesta.Respuesta(ErroresFiscales)'</Item>
+               <Item>'Respuesta.Secuencia'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/Sistema/bin/Lbl.dll">
+    <Modules>
+     <Module Name="lbl.dll">
+      <Namespaces>
+       <Namespace Name="Lbl">
+        <Types>
+         <Type Name="ElementoDeDatos">
+          <Members>
+           <Member Name="#.ctor(Lfx.Data.Connection)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'ElementoDeDatos.ElementoDeDatos(Connection)'</Item>
+               <Item>'ElementoDeDatos.m_Etiquetas'</Item>
+               <Item>'ColeccionGenerica&lt;Etiqueta&gt;'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ElementoDeDatos.ElementoDeDatos(Connection)'</Item>
+               <Item>'ElementoDeDatos.m_EtiquetasOriginal'</Item>
+               <Item>'ColeccionGenerica&lt;Etiqueta&gt;'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ElementoDeDatos.ElementoDeDatos(Connection)'</Item>
+               <Item>'ElementoDeDatos.m_Imagen'</Item>
+               <Item>'Image'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ElementoDeDatos.ElementoDeDatos(Connection)'</Item>
+               <Item>'ElementoDeDatos.m_ImagenCambio'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+              <Issue>
+               <Item>'ElementoDeDatos.ElementoDeDatos(Connection)'</Item>
+               <Item>'ElementoDeDatos.m_ItemId'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+              <Issue>
+               <Item>'ElementoDeDatos.ElementoDeDatos(Connection)'</Item>
+               <Item>'ElementoDeDatos.m_Registro'</Item>
+               <Item>'Row'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ElementoDeDatos.ElementoDeDatos(Connection)'</Item>
+               <Item>'ElementoDeDatos.m_RegistroOriginal'</Item>
+               <Item>'Row'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SetFieldValue(System.String,System.Object)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Parameter">
+               <Item>'newVal'</Item>
+               <Item>'IElementoDeDatos'</Item>
+               <Item>'ElementoDeDatos.SetFieldValue(string, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lbl.Articulos">
+        <Types>
+         <Type Name="Articulo">
+          <Members>
+           <Member Name="#.ctor(Lfx.Data.Connection)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Articulo.Articulo(Connection)'</Item>
+               <Item>'Articulo.m_Caja'</Item>
+               <Item>'Caja'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Articulo.Articulo(Connection)'</Item>
+               <Item>'Articulo.m_Categoria'</Item>
+               <Item>'Categoria'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Articulo.Articulo(Connection)'</Item>
+               <Item>'Articulo.m_ListaItem'</Item>
+               <Item>'ColeccionItem'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Articulo.Articulo(Connection)'</Item>
+               <Item>'Articulo.m_Marca'</Item>
+               <Item>'Marca'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Articulo.Articulo(Connection)'</Item>
+               <Item>'Articulo.m_Margen'</Item>
+               <Item>'Margen'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Articulo.Articulo(Connection)'</Item>
+               <Item>'Articulo.m_Proveedor'</Item>
+               <Item>'Persona'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Articulo.Articulo(Connection)'</Item>
+               <Item>'Articulo.m_Receta'</Item>
+               <Item>'Receta'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,Lfx.Data.Row)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Articulo.Articulo(Connection, Row)'</Item>
+               <Item>'Articulo.m_Caja'</Item>
+               <Item>'Caja'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Articulo.Articulo(Connection, Row)'</Item>
+               <Item>'Articulo.m_Categoria'</Item>
+               <Item>'Categoria'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Articulo.Articulo(Connection, Row)'</Item>
+               <Item>'Articulo.m_ListaItem'</Item>
+               <Item>'ColeccionItem'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Articulo.Articulo(Connection, Row)'</Item>
+               <Item>'Articulo.m_Marca'</Item>
+               <Item>'Marca'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Articulo.Articulo(Connection, Row)'</Item>
+               <Item>'Articulo.m_Margen'</Item>
+               <Item>'Margen'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Articulo.Articulo(Connection, Row)'</Item>
+               <Item>'Articulo.m_Proveedor'</Item>
+               <Item>'Persona'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Articulo.Articulo(Connection, Row)'</Item>
+               <Item>'Articulo.m_Receta'</Item>
+               <Item>'Receta'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,System.Int32)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Articulo.Articulo(Connection, int)'</Item>
+               <Item>'Articulo.m_Caja'</Item>
+               <Item>'Caja'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Articulo.Articulo(Connection, int)'</Item>
+               <Item>'Articulo.m_Categoria'</Item>
+               <Item>'Categoria'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Articulo.Articulo(Connection, int)'</Item>
+               <Item>'Articulo.m_ListaItem'</Item>
+               <Item>'ColeccionItem'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Articulo.Articulo(Connection, int)'</Item>
+               <Item>'Articulo.m_Marca'</Item>
+               <Item>'Marca'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Articulo.Articulo(Connection, int)'</Item>
+               <Item>'Articulo.m_Margen'</Item>
+               <Item>'Margen'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Articulo.Articulo(Connection, int)'</Item>
+               <Item>'Articulo.m_Proveedor'</Item>
+               <Item>'Persona'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Articulo.Articulo(Connection, int)'</Item>
+               <Item>'Articulo.m_Receta'</Item>
+               <Item>'Receta'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Categoria">
+          <Members>
+           <Member Name="#.ctor(Lfx.Data.Connection)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Categoria.Categoria(Connection)'</Item>
+               <Item>'Categoria.m_Alicuota'</Item>
+               <Item>'Alicuota'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Categoria.Categoria(Connection)'</Item>
+               <Item>'Categoria.m_Rubro'</Item>
+               <Item>'Rubro'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,Lfx.Data.Row)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Categoria.Categoria(Connection, Row)'</Item>
+               <Item>'Categoria.m_Alicuota'</Item>
+               <Item>'Alicuota'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Categoria.Categoria(Connection, Row)'</Item>
+               <Item>'Categoria.m_Rubro'</Item>
+               <Item>'Rubro'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,System.Int32)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Categoria.Categoria(Connection, int)'</Item>
+               <Item>'Categoria.m_Alicuota'</Item>
+               <Item>'Alicuota'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Categoria.Categoria(Connection, int)'</Item>
+               <Item>'Categoria.m_Rubro'</Item>
+               <Item>'Rubro'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Rubro">
+          <Members>
+           <Member Name="#.ctor(Lfx.Data.Connection)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Rubro.Rubro(Connection)'</Item>
+               <Item>'Rubro.Alicuota'</Item>
+               <Item>'Alicuota'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,Lfx.Data.Row)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Rubro.Rubro(Connection, Row)'</Item>
+               <Item>'Rubro.Alicuota'</Item>
+               <Item>'Alicuota'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,System.Int32)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Rubro.Rubro(Connection, int)'</Item>
+               <Item>'Rubro.Alicuota'</Item>
+               <Item>'Alicuota'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Stock">
+          <Members>
+           <Member Name="#CodigoPredet(Lfx.Workspace,Lfx.Data.Row)">
+            <Messages>
+             <Message TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820" Created="2011-09-01 21:06:35Z">
+              <Issue Name="IsNullOrEmpty">
+               <Item>'string.operator ==(string, string)'</Item>
+               <Item>'Stock.CodigoPredet(Workspace, Row)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lbl.Atributos">
+        <Types>
+         <Type Name="MuestraMensajeAlCrear">
+          <Messages>
+           <Message TypeName="AvoidUnsealedAttributes" Category="Microsoft.Performance" CheckId="CA1813" Created="2011-09-01 21:06:35Z">
+            <Issue>
+             <Item>'MuestraMensajeAlCrear'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="MuestraPanelExtendido">
+          <Messages>
+           <Message TypeName="AvoidUnsealedAttributes" Category="Microsoft.Performance" CheckId="CA1813" Created="2011-09-01 21:06:35Z">
+            <Issue>
+             <Item>'MuestraPanelExtendido'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="NombreItem">
+          <Messages>
+           <Message TypeName="AvoidUnsealedAttributes" Category="Microsoft.Performance" CheckId="CA1813" Created="2011-09-01 21:06:35Z">
+            <Issue>
+             <Item>'NombreItem'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lbl.Cajas">
+        <Types>
+         <Type Name="Caja">
+          <Members>
+           <Member Name="#.ctor(Lfx.Data.Connection)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Caja.Caja(Connection)'</Item>
+               <Item>'Caja.m_Banco'</Item>
+               <Item>'Banco'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Caja.Caja(Connection)'</Item>
+               <Item>'Caja.m_Moneda'</Item>
+               <Item>'Moneda'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,Lfx.Data.Row)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Caja.Caja(Connection, Row)'</Item>
+               <Item>'Caja.m_Banco'</Item>
+               <Item>'Banco'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Caja.Caja(Connection, Row)'</Item>
+               <Item>'Caja.m_Moneda'</Item>
+               <Item>'Moneda'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,System.Int32)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Caja.Caja(Connection, int)'</Item>
+               <Item>'Caja.m_Banco'</Item>
+               <Item>'Banco'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Caja.Caja(Connection, int)'</Item>
+               <Item>'Caja.m_Moneda'</Item>
+               <Item>'Moneda'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Concepto">
+          <Members>
+           <Member Name="#.cctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Concepto.Concepto()'</Item>
+               <Item>'Concepto.m_AjustesYMovimientos'</Item>
+               <Item>'Concepto'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Concepto.Concepto()'</Item>
+               <Item>'Concepto.m_IngresosPorFacturacion'</Item>
+               <Item>'Concepto'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lbl.Charts">
+        <Types>
+         <Type Name="Element">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Element.Element()'</Item>
+               <Item>'Element.Label'</Item>
+               <Item>'string'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Serie">
+          <Members>
+           <Member Name="#.ctor(System.String)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Serie.Serie(string)'</Item>
+               <Item>'Serie.Elements'</Item>
+               <Item>'Element[]'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lbl.Comprobantes">
+        <Types>
+         <Type Name="ColeccionDetalleArticulos">
+          <Members>
+           <Member Name="#.ctor(Lfx.Data.Connection)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'ColeccionDetalleArticulos.ColeccionDetalleArticulos(Connection)'</Item>
+               <Item>'ColeccionDetalleArticulos.Comprobante'</Item>
+               <Item>'ComprobanteConArticulos'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ComprobanteConArticulos">
+          <Members>
+           <Member Name="#.ctor(Lfx.Data.Connection)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'ComprobanteConArticulos.ComprobanteConArticulos(Connection)'</Item>
+               <Item>'ComprobanteConArticulos.m_Articulos'</Item>
+               <Item>'ColeccionDetalleArticulos'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ComprobanteConArticulos.ComprobanteConArticulos(Connection)'</Item>
+               <Item>'ComprobanteConArticulos.m_ArticulosOriginales'</Item>
+               <Item>'ColeccionDetalleArticulos'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ComprobanteConArticulos.ComprobanteConArticulos(Connection)'</Item>
+               <Item>'ComprobanteConArticulos.m_FormaDePago'</Item>
+               <Item>'FormaDePago'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ComprobanteConArticulos.ComprobanteConArticulos(Connection)'</Item>
+               <Item>'ComprobanteConArticulos.m_Recibos'</Item>
+               <Item>'ColeccionRecibos'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ComprobanteConArticulos.ComprobanteConArticulos(Connection)'</Item>
+               <Item>'ComprobanteConArticulos.m_SituacionDestinoOriginal'</Item>
+               <Item>'Situacion'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,Lfx.Data.Row)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'ComprobanteConArticulos.ComprobanteConArticulos(Connection, Row)'</Item>
+               <Item>'ComprobanteConArticulos.m_Articulos'</Item>
+               <Item>'ColeccionDetalleArticulos'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ComprobanteConArticulos.ComprobanteConArticulos(Connection, Row)'</Item>
+               <Item>'ComprobanteConArticulos.m_ArticulosOriginales'</Item>
+               <Item>'ColeccionDetalleArticulos'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ComprobanteConArticulos.ComprobanteConArticulos(Connection, Row)'</Item>
+               <Item>'ComprobanteConArticulos.m_FormaDePago'</Item>
+               <Item>'FormaDePago'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ComprobanteConArticulos.ComprobanteConArticulos(Connection, Row)'</Item>
+               <Item>'ComprobanteConArticulos.m_Recibos'</Item>
+               <Item>'ColeccionRecibos'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ComprobanteConArticulos.ComprobanteConArticulos(Connection, Row)'</Item>
+               <Item>'ComprobanteConArticulos.m_SituacionDestinoOriginal'</Item>
+               <Item>'Situacion'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,System.Int32)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'ComprobanteConArticulos.ComprobanteConArticulos(Connection, int)'</Item>
+               <Item>'ComprobanteConArticulos.m_Articulos'</Item>
+               <Item>'ColeccionDetalleArticulos'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ComprobanteConArticulos.ComprobanteConArticulos(Connection, int)'</Item>
+               <Item>'ComprobanteConArticulos.m_ArticulosOriginales'</Item>
+               <Item>'ColeccionDetalleArticulos'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ComprobanteConArticulos.ComprobanteConArticulos(Connection, int)'</Item>
+               <Item>'ComprobanteConArticulos.m_FormaDePago'</Item>
+               <Item>'FormaDePago'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ComprobanteConArticulos.ComprobanteConArticulos(Connection, int)'</Item>
+               <Item>'ComprobanteConArticulos.m_Recibos'</Item>
+               <Item>'ColeccionRecibos'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ComprobanteConArticulos.ComprobanteConArticulos(Connection, int)'</Item>
+               <Item>'ComprobanteConArticulos.m_SituacionDestinoOriginal'</Item>
+               <Item>'Situacion'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="DetalleArticulo">
+          <Members>
+           <Member Name="#.ctor(Lbl.Comprobantes.ComprobanteConArticulos)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'DetalleArticulo.DetalleArticulo(ComprobanteConArticulos)'</Item>
+               <Item>'DetalleArticulo.m_Articulo'</Item>
+               <Item>'Articulo'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lbl.Comprobantes.ComprobanteConArticulos,Lfx.Data.Row)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'DetalleArticulo.DetalleArticulo(ComprobanteConArticulos, Row)'</Item>
+               <Item>'DetalleArticulo.m_Articulo'</Item>
+               <Item>'Articulo'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lbl.Comprobantes.ComprobanteConArticulos,System.Int32)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'DetalleArticulo.DetalleArticulo(ComprobanteConArticulos, int)'</Item>
+               <Item>'DetalleArticulo.m_Articulo'</Item>
+               <Item>'Articulo'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'DetalleArticulo.DetalleArticulo(Connection)'</Item>
+               <Item>'DetalleArticulo.Comprobante'</Item>
+               <Item>'ComprobanteConArticulos'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'DetalleArticulo.DetalleArticulo(Connection)'</Item>
+               <Item>'DetalleArticulo.m_Articulo'</Item>
+               <Item>'Articulo'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Numerador">
+          <Members>
+           <Member Name="#ProximoNumero(Lbl.Comprobantes.Comprobante)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Parameter">
+               <Item>'comprobante'</Item>
+               <Item>'ComprobanteConArticulos'</Item>
+               <Item>'Numerador.ProximoNumero(Comprobante)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="PuntoDeVenta">
+          <Members>
+           <Member Name="#.cctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'PuntoDeVenta.PuntoDeVenta()'</Item>
+               <Item>'PuntoDeVenta.m_TodosPorNumero'</Item>
+               <Item>'Dictionary&lt;int, PuntoDeVenta&gt;'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Tipo">
+          <Members>
+           <Member Name="#.cctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Tipo.Tipo()'</Item>
+               <Item>'Tipo.m_TodosPorLetra'</Item>
+               <Item>'Dictionary&lt;string, Tipo&gt;'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Tipo.Tipo(Connection)'</Item>
+               <Item>'Tipo.m_Impresoras'</Item>
+               <Item>'ColeccionGenerica&lt;TipoImpresora&gt;'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,Lfx.Data.Row)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Tipo.Tipo(Connection, Row)'</Item>
+               <Item>'Tipo.m_Impresoras'</Item>
+               <Item>'ColeccionGenerica&lt;TipoImpresora&gt;'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,System.Int32)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Tipo.Tipo(Connection, int)'</Item>
+               <Item>'Tipo.m_Impresoras'</Item>
+               <Item>'ColeccionGenerica&lt;TipoImpresora&gt;'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,System.String)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Tipo.Tipo(Connection, string)'</Item>
+               <Item>'Tipo.m_Impresoras'</Item>
+               <Item>'ColeccionGenerica&lt;TipoImpresora&gt;'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lbl.CuentasCorrientes">
+        <Types>
+         <Type Name="CuentaCorriente">
+          <Members>
+           <Member Name="#CampoId">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'CuentaCorriente.CampoId'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#TablaDatos">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'CuentaCorriente.TablaDatos'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lbl.Entidades">
+        <Types>
+         <Type Name="Localidad">
+          <Members>
+           <Member Name="#.ctor(Lfx.Data.Connection)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Localidad.Localidad(Connection)'</Item>
+               <Item>'Localidad.m_Parent'</Item>
+               <Item>'Localidad'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,Lfx.Data.Row)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Localidad.Localidad(Connection, Row)'</Item>
+               <Item>'Localidad.m_Parent'</Item>
+               <Item>'Localidad'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,System.Int32)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Localidad.Localidad(Connection, int)'</Item>
+               <Item>'Localidad.m_Parent'</Item>
+               <Item>'Localidad'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Sucursal">
+          <Members>
+           <Member Name="#.ctor(Lfx.Data.Connection)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Sucursal.Sucursal(Connection)'</Item>
+               <Item>'Sucursal.m_CajaCheques'</Item>
+               <Item>'Caja'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Sucursal.Sucursal(Connection)'</Item>
+               <Item>'Sucursal.m_CajaDiaria'</Item>
+               <Item>'Caja'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Sucursal.Sucursal(Connection)'</Item>
+               <Item>'Sucursal.m_Localidad'</Item>
+               <Item>'Localidad'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Sucursal.Sucursal(Connection)'</Item>
+               <Item>'Sucursal.m_SituacionOrigen'</Item>
+               <Item>'Situacion'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,Lfx.Data.Row)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Sucursal.Sucursal(Connection, Row)'</Item>
+               <Item>'Sucursal.m_CajaCheques'</Item>
+               <Item>'Caja'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Sucursal.Sucursal(Connection, Row)'</Item>
+               <Item>'Sucursal.m_CajaDiaria'</Item>
+               <Item>'Caja'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Sucursal.Sucursal(Connection, Row)'</Item>
+               <Item>'Sucursal.m_Localidad'</Item>
+               <Item>'Localidad'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Sucursal.Sucursal(Connection, Row)'</Item>
+               <Item>'Sucursal.m_SituacionOrigen'</Item>
+               <Item>'Situacion'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,System.Int32)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Sucursal.Sucursal(Connection, int)'</Item>
+               <Item>'Sucursal.m_CajaCheques'</Item>
+               <Item>'Caja'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Sucursal.Sucursal(Connection, int)'</Item>
+               <Item>'Sucursal.m_CajaDiaria'</Item>
+               <Item>'Caja'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Sucursal.Sucursal(Connection, int)'</Item>
+               <Item>'Sucursal.m_Localidad'</Item>
+               <Item>'Localidad'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Sucursal.Sucursal(Connection, int)'</Item>
+               <Item>'Sucursal.m_SituacionOrigen'</Item>
+               <Item>'Situacion'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lbl.Impresion">
+        <Types>
+         <Type Name="Campo">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Campo.Campo()'</Item>
+               <Item>'Campo.AnchoBorde'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+              <Issue>
+               <Item>'Campo.Campo()'</Item>
+               <Item>'Campo.Wrap'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="TipoImpresora">
+          <Members>
+           <Member Name="#.ctor(Lfx.Data.Connection)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'TipoImpresora.TipoImpresora(Connection)'</Item>
+               <Item>'TipoImpresora.Impresora'</Item>
+               <Item>'Impresora'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'TipoImpresora.TipoImpresora(Connection)'</Item>
+               <Item>'TipoImpresora.PuntoDeVenta'</Item>
+               <Item>'PuntoDeVenta'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'TipoImpresora.TipoImpresora(Connection)'</Item>
+               <Item>'TipoImpresora.Sucursal'</Item>
+               <Item>'Sucursal'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'TipoImpresora.TipoImpresora(Connection)'</Item>
+               <Item>'TipoImpresora.Tipo'</Item>
+               <Item>'Tipo'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,Lfx.Data.Row)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'TipoImpresora.TipoImpresora(Connection, Row)'</Item>
+               <Item>'TipoImpresora.Impresora'</Item>
+               <Item>'Impresora'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'TipoImpresora.TipoImpresora(Connection, Row)'</Item>
+               <Item>'TipoImpresora.PuntoDeVenta'</Item>
+               <Item>'PuntoDeVenta'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'TipoImpresora.TipoImpresora(Connection, Row)'</Item>
+               <Item>'TipoImpresora.Sucursal'</Item>
+               <Item>'Sucursal'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'TipoImpresora.TipoImpresora(Connection, Row)'</Item>
+               <Item>'TipoImpresora.Tipo'</Item>
+               <Item>'Tipo'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,System.Int32)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'TipoImpresora.TipoImpresora(Connection, int)'</Item>
+               <Item>'TipoImpresora.Impresora'</Item>
+               <Item>'Impresora'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'TipoImpresora.TipoImpresora(Connection, int)'</Item>
+               <Item>'TipoImpresora.PuntoDeVenta'</Item>
+               <Item>'PuntoDeVenta'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'TipoImpresora.TipoImpresora(Connection, int)'</Item>
+               <Item>'TipoImpresora.Sucursal'</Item>
+               <Item>'Sucursal'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'TipoImpresora.TipoImpresora(Connection, int)'</Item>
+               <Item>'TipoImpresora.Tipo'</Item>
+               <Item>'Tipo'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lbl.Impuestos">
+        <Types>
+         <Type Name="SituacionTributaria">
+          <Members>
+           <Member Name="#.cctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'SituacionTributaria.SituacionTributaria()'</Item>
+               <Item>'SituacionTributaria.m_Todas'</Item>
+               <Item>'ColeccionGenerica&lt;SituacionTributaria&gt;'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lbl.Pagos">
+        <Types>
+         <Type Name="Cupon">
+          <Members>
+           <Member Name="#Guardar()">
+            <Messages>
+             <Message Id="Existia" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Cupon.Guardar()'</Item>
+               <Item>'Existia'</Item>
+               <Item>'bool'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Valor">
+          <Members>
+           <Member Name="#Anular()">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'Valor.Anular()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lbl.Personas">
+        <Types>
+         <Type Name="Grupo">
+          <Members>
+           <Member Name="#.ctor(Lfx.Data.Connection)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Grupo.Grupo(Connection)'</Item>
+               <Item>'Grupo.m_Parent'</Item>
+               <Item>'Grupo'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,Lfx.Data.Row)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Grupo.Grupo(Connection, Row)'</Item>
+               <Item>'Grupo.m_Parent'</Item>
+               <Item>'Grupo'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,System.Int32)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Grupo.Grupo(Connection, int)'</Item>
+               <Item>'Grupo.m_Parent'</Item>
+               <Item>'Grupo'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Persona">
+          <Members>
+           <Member Name="#.ctor(Lfx.Data.Connection)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Persona.Persona(Connection)'</Item>
+               <Item>'Persona.m_CuentaCorriente'</Item>
+               <Item>'CuentaCorriente'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Persona.Persona(Connection)'</Item>
+               <Item>'Persona.m_Grupo'</Item>
+               <Item>'Grupo'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Persona.Persona(Connection)'</Item>
+               <Item>'Persona.m_Localidad'</Item>
+               <Item>'Localidad'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Persona.Persona(Connection)'</Item>
+               <Item>'Persona.m_SituacionTributaria'</Item>
+               <Item>'SituacionTributaria'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Persona.Persona(Connection)'</Item>
+               <Item>'Persona.m_SubGrupo'</Item>
+               <Item>'Grupo'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Persona.Persona(Connection)'</Item>
+               <Item>'Persona.m_Vendedor'</Item>
+               <Item>'Persona'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,Lfx.Data.Row)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Persona.Persona(Connection, Row)'</Item>
+               <Item>'Persona.m_CuentaCorriente'</Item>
+               <Item>'CuentaCorriente'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Persona.Persona(Connection, Row)'</Item>
+               <Item>'Persona.m_Grupo'</Item>
+               <Item>'Grupo'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Persona.Persona(Connection, Row)'</Item>
+               <Item>'Persona.m_Localidad'</Item>
+               <Item>'Localidad'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Persona.Persona(Connection, Row)'</Item>
+               <Item>'Persona.m_SituacionTributaria'</Item>
+               <Item>'SituacionTributaria'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Persona.Persona(Connection, Row)'</Item>
+               <Item>'Persona.m_SubGrupo'</Item>
+               <Item>'Grupo'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Persona.Persona(Connection, Row)'</Item>
+               <Item>'Persona.m_Vendedor'</Item>
+               <Item>'Persona'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,System.Int32)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Persona.Persona(Connection, int)'</Item>
+               <Item>'Persona.m_CuentaCorriente'</Item>
+               <Item>'CuentaCorriente'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Persona.Persona(Connection, int)'</Item>
+               <Item>'Persona.m_Grupo'</Item>
+               <Item>'Grupo'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Persona.Persona(Connection, int)'</Item>
+               <Item>'Persona.m_Localidad'</Item>
+               <Item>'Localidad'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Persona.Persona(Connection, int)'</Item>
+               <Item>'Persona.m_SituacionTributaria'</Item>
+               <Item>'SituacionTributaria'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Persona.Persona(Connection, int)'</Item>
+               <Item>'Persona.m_SubGrupo'</Item>
+               <Item>'Grupo'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Persona.Persona(Connection, int)'</Item>
+               <Item>'Persona.m_Vendedor'</Item>
+               <Item>'Persona'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Usuario">
+          <Members>
+           <Member Name="#.ctor(Lfx.Data.Connection)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Usuario.Usuario(Connection)'</Item>
+               <Item>'Usuario.CambioContrasena'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+              <Issue>
+               <Item>'Usuario.Usuario(Connection)'</Item>
+               <Item>'Usuario.Pemisos'</Item>
+               <Item>'ListaDePermisos'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,Lfx.Data.Row)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Usuario.Usuario(Connection, Row)'</Item>
+               <Item>'Usuario.CambioContrasena'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+              <Issue>
+               <Item>'Usuario.Usuario(Connection, Row)'</Item>
+               <Item>'Usuario.Pemisos'</Item>
+               <Item>'ListaDePermisos'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,System.Int32)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Usuario.Usuario(Connection, int)'</Item>
+               <Item>'Usuario.CambioContrasena'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+              <Issue>
+               <Item>'Usuario.Usuario(Connection, int)'</Item>
+               <Item>'Usuario.Pemisos'</Item>
+               <Item>'ListaDePermisos'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lbl.Reportes">
+        <Types>
+         <Type Name="Reporte">
+          <Members>
+           <Member Name="#.ctor(Lfx.Data.Connection,qGen.Select)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Reporte.Reporte(Connection, Select)'</Item>
+               <Item>'Reporte.Grouping'</Item>
+               <Item>'Grouping'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ToWorkbookSheet()">
+            <Messages>
+             <Message Id="ColName" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Reporte.ToWorkbookSheet()'</Item>
+               <Item>'ColName'</Item>
+               <Item>'string'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lbl.Servicios.Importar">
+        <Types>
+         <Type Name="Filtro">
+          <Members>
+           <Member Name="#FusionarTabla(Lbl.Servicios.Importar.MapaDeTabla)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'Elem'</Item>
+               <Item>'Articulo'</Item>
+               <Item>'Filtro.FusionarTabla(MapaDeTabla)'</Item>
+               <Item>isint</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="MapaDeColumna">
+          <Members>
+           <Member Name="#.ctor(System.String,System.String)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'MapaDeColumna.MapaDeColumna(string, string)'</Item>
+               <Item>'MapaDeColumna.ParametroConversion'</Item>
+               <Item>'object'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'MapaDeColumna.MapaDeColumna(string, string)'</Item>
+               <Item>'MapaDeColumna.ValorPredeterminado'</Item>
+               <Item>'object'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="MapaDeTabla">
+          <Members>
+           <Member Name="#.ctor(System.String,System.String)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'MapaDeTabla.MapaDeTabla(string, string)'</Item>
+               <Item>'MapaDeTabla.ColumnaIdExterna'</Item>
+               <Item>'string'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'MapaDeTabla.MapaDeTabla(string, string)'</Item>
+               <Item>'MapaDeTabla.Where'</Item>
+               <Item>'string'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Reemplazo">
+          <Members>
+           <Member Name="#.ctor(System.Object,System.Object)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Reemplazo.Reemplazo(object, object)'</Item>
+               <Item>'Reemplazo.MatchSubString'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+              <Issue>
+               <Item>'Reemplazo.Reemplazo(object, object)'</Item>
+               <Item>'Reemplazo.NombreCampo'</Item>
+               <Item>'string'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lbl.Sys.Configuracion">
+        <Types>
+         <Type Name="Empresa">
+          <Members>
+           <Member Name="#.ctor(Lfx.Workspace)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Empresa.Empresa(Workspace)'</Item>
+               <Item>'Empresa.m_PuntosDeVenta'</Item>
+               <Item>'ColeccionGenerica&lt;PuntoDeVenta&gt;'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Impresion">
+          <Members>
+           <Member Name="#.ctor(Lfx.Workspace)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Impresion.Impresion(Workspace)'</Item>
+               <Item>'Impresion.m_Impresoras'</Item>
+               <Item>'ColeccionGenerica&lt;Impresora&gt;'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lbl.Sys.Permisos">
+        <Types>
+         <Type Name="ListaDePermisos">
+          <Members>
+           <Member Name="#.ctor(Lbl.Personas.Usuario)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'ListaDePermisos.ListaDePermisos(Usuario)'</Item>
+               <Item>'ListaDePermisos.Usuario'</Item>
+               <Item>'Usuario'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Permiso">
+          <Members>
+           <Member Name="#.ctor(Lfx.Data.Connection)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Permiso.Permiso(Connection)'</Item>
+               <Item>'Permiso.Item'</Item>
+               <Item>'ListaIds'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Permiso.Permiso(Connection)'</Item>
+               <Item>'Permiso.Objeto'</Item>
+               <Item>'Objeto'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Permiso.Permiso(Connection)'</Item>
+               <Item>'Permiso.Usuario'</Item>
+               <Item>'Usuario'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,Lfx.Data.Row)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Permiso.Permiso(Connection, Row)'</Item>
+               <Item>'Permiso.Item'</Item>
+               <Item>'ListaIds'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Permiso.Permiso(Connection, Row)'</Item>
+               <Item>'Permiso.Objeto'</Item>
+               <Item>'Objeto'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Permiso.Permiso(Connection, Row)'</Item>
+               <Item>'Permiso.Usuario'</Item>
+               <Item>'Usuario'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,System.Int32)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Permiso.Permiso(Connection, int)'</Item>
+               <Item>'Permiso.Item'</Item>
+               <Item>'ListaIds'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Permiso.Permiso(Connection, int)'</Item>
+               <Item>'Permiso.Objeto'</Item>
+               <Item>'Objeto'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Permiso.Permiso(Connection, int)'</Item>
+               <Item>'Permiso.Usuario'</Item>
+               <Item>'Usuario'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lbl.Tareas">
+        <Types>
+         <Type Name="Estado">
+          <Members>
+           <Member Name="#.cctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Estado.Estado()'</Item>
+               <Item>'Estado.m_TodosPorNumero'</Item>
+               <Item>'Dictionary&lt;int, Estado&gt;'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Novedad">
+          <Members>
+           <Member Name="#.ctor(Lfx.Data.Connection)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Novedad.Novedad(Connection)'</Item>
+               <Item>'Novedad.m_Persona'</Item>
+               <Item>'Persona'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Novedad.Novedad(Connection)'</Item>
+               <Item>'Novedad.m_Tarea'</Item>
+               <Item>'Tarea'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,Lfx.Data.Row)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Novedad.Novedad(Connection, Row)'</Item>
+               <Item>'Novedad.m_Persona'</Item>
+               <Item>'Persona'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Novedad.Novedad(Connection, Row)'</Item>
+               <Item>'Novedad.m_Tarea'</Item>
+               <Item>'Tarea'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,System.Int32)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Novedad.Novedad(Connection, int)'</Item>
+               <Item>'Novedad.m_Persona'</Item>
+               <Item>'Persona'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Novedad.Novedad(Connection, int)'</Item>
+               <Item>'Novedad.m_Tarea'</Item>
+               <Item>'Tarea'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Tarea">
+          <Members>
+           <Member Name="#.ctor(Lfx.Data.Connection)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Tarea.Tarea(Connection)'</Item>
+               <Item>'Tarea.m_Articulos'</Item>
+               <Item>'ColeccionGenerica&lt;DetalleArticulo&gt;'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,Lfx.Data.Row)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Tarea.Tarea(Connection, Row)'</Item>
+               <Item>'Tarea.m_Articulos'</Item>
+               <Item>'ColeccionGenerica&lt;DetalleArticulo&gt;'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(Lfx.Data.Connection,System.Int32)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Tarea.Tarea(Connection, int)'</Item>
+               <Item>'Tarea.m_Articulos'</Item>
+               <Item>'ColeccionGenerica&lt;DetalleArticulo&gt;'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/Sistema/bin/Lcc.dll">
+    <Modules>
+     <Module Name="lcc.dll">
+      <Namespaces>
+       <Namespace Name="Lcc">
+        <Types>
+         <Type Name="ControlDeDatos">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'ControlDeDatos.ControlDeDatos()'</Item>
+               <Item>'ControlDeDatos.m_Elemento'</Item>
+               <Item>'IElementoDeDatos'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ControlDeDatos.ControlDeDatos()'</Item>
+               <Item>'ControlDeDatos.m_ElementoTipo'</Item>
+               <Item>'Type'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lcc.Edicion">
+        <Types>
+         <Type Name="ControlEdicion">
+          <Members>
+           <Member Name="#SetControlsReadOnly(System.Windows.Forms.Control+ControlCollection,System.Boolean)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'ctl'</Item>
+               <Item>'Control'</Item>
+               <Item>'ControlEdicion.SetControlsReadOnly(Control.ControlCollection, bool)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="MatrizCampos">
+          <Members>
+           <Member Name="#AutoLabelWidth">
+            <Accessors>
+             <Accessor Name="#get_AutoLabelWidth()">
+              <Messages>
+               <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+                <Issue Name="Local">
+                 <Item>'Ctl'</Item>
+                 <Item>'Campo'</Item>
+                 <Item>'MatrizCampos.AutoLabelWidth.get()'</Item>
+                 <Item>castclass</Item>
+                </Issue>
+                <Issue Name="Local">
+                 <Item>'Ctl'</Item>
+                 <Item>'Campo'</Item>
+                 <Item>'MatrizCampos.AutoLabelWidth.get()'</Item>
+                 <Item>castclass</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+           <Member Name="#FieldContainer_ClientSizeChanged(System.Object,System.EventArgs)">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'MatrizCampos.FieldContainer_ClientSizeChanged(object, EventArgs)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#FieldContainer_ControlAdded(System.Object,System.Windows.Forms.ControlEventArgs)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'Ctl'</Item>
+               <Item>'Campo'</Item>
+               <Item>'MatrizCampos.FieldContainer_ControlAdded(object, ControlEventArgs)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Item[System.String]">
+            <Accessors>
+             <Accessor Name="#get_Item(System.String)">
+              <Messages>
+               <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+                <Issue Name="Local">
+                 <Item>'Ctl'</Item>
+                 <Item>'Campo'</Item>
+                 <Item>'MatrizCampos.this.get(string)'</Item>
+                 <Item>castclass</Item>
+                </Issue>
+                <Issue Name="Local">
+                 <Item>'Ctl'</Item>
+                 <Item>'Campo'</Item>
+                 <Item>'MatrizCampos.this.get(string)'</Item>
+                 <Item>castclass</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+             <Accessor Name="#set_Item(System.String,System.Object)">
+              <Messages>
+               <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+                <Issue Name="Local">
+                 <Item>'Ctl'</Item>
+                 <Item>'Campo'</Item>
+                 <Item>'MatrizCampos.this.set(string, object)'</Item>
+                 <Item>castclass</Item>
+                </Issue>
+                <Issue Name="Local">
+                 <Item>'Ctl'</Item>
+                 <Item>'Campo'</Item>
+                 <Item>'MatrizCampos.this.set(string, object)'</Item>
+                 <Item>castclass</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="MatrizTags">
+          <Members>
+           <Member Name="#ActualizarElemento()">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'Ctl'</Item>
+               <Item>'Campo'</Item>
+               <Item>'MatrizTags.ActualizarElemento()'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'Ctl'</Item>
+               <Item>'Campo'</Item>
+               <Item>'MatrizTags.ActualizarElemento()'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lcc.Entrada">
+        <Types>
+         <Type Name="CodigoDetalle">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'CodigoDetalle.CodigoDetalle()'</Item>
+               <Item>'CodigoDetalle.DispararTextChanged'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ControlSeleccionElemento">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'ControlSeleccionElemento.ControlSeleccionElemento()'</Item>
+               <Item>'ControlSeleccionElemento.CurrentRow'</Item>
+               <Item>'Row'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Filtros">
+          <Members>
+           <Member Name="#ActualizarFiltros()">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'Filtro'</Item>
+               <Item>'DateRangeFilter'</Item>
+               <Item>'Filtros.ActualizarFiltros()'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'Filtro'</Item>
+               <Item>'NumericRangeFilter'</Item>
+               <Item>'Filtros.ActualizarFiltros()'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'Filtro'</Item>
+               <Item>'RelationFilter'</Item>
+               <Item>'Filtros.ActualizarFiltros()'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'Filtro'</Item>
+               <Item>'SetFilter'</Item>
+               <Item>'Filtros.ActualizarFiltros()'</Item>
+               <Item>isint</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#FromFilters(System.Collections.Generic.IList`1&lt;Lfx.Data.IFilter&gt;)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'Filtro'</Item>
+               <Item>'DateRangeFilter'</Item>
+               <Item>'Filtros.FromFilters(IList&lt;IFilter&gt;)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'Filtro'</Item>
+               <Item>'NumericRangeFilter'</Item>
+               <Item>'Filtros.FromFilters(IList&lt;IFilter&gt;)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'Filtro'</Item>
+               <Item>'RelationFilter'</Item>
+               <Item>'Filtros.FromFilters(IList&lt;IFilter&gt;)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'Filtro'</Item>
+               <Item>'SetFilter'</Item>
+               <Item>'Filtros.FromFilters(IList&lt;IFilter&gt;)'</Item>
+               <Item>isint</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="RangoFechas">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'RangoFechas.RangoFechas()'</Item>
+               <Item>'RangoFechas.m_MuestraFuturos'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Statics">
+          <Members>
+           <Member Name="#.cctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Statics.Statics()'</Item>
+               <Item>'Statics.DetailBoxQuickSelect'</Item>
+               <Item>'DetailBoxQuickSelect'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lcc.Entrada.Articulos">
+        <Types>
+         <Type Name="MatrizDetalleComprobante">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'MatrizDetalleComprobante.MatrizDetalleComprobante()'</Item>
+               <Item>'MatrizDetalleComprobante.m_Articulos'</Item>
+               <Item>'ColeccionDetalleArticulos'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="MatrizVariacionCantidad">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'MatrizVariacionCantidad.MatrizVariacionCantidad()'</Item>
+               <Item>'MatrizVariacionCantidad.m_EsNumeroDeSerie'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lcc.Entrada.AuxForms">
+        <Types>
+         <Type Name="DetailBoxQuickSelect">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'DetailBoxQuickSelect.DetailBoxQuickSelect()'</Item>
+               <Item>'DetailBoxQuickSelect.m_Changed'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#BotonNuevo_Click(System.Object,System.EventArgs)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'Resultado'</Item>
+               <Item>'OperationResult'</Item>
+               <Item>'DetailBoxQuickSelect.BotonNuevo_Click(object, EventArgs)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ImagenRecorte">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'ImagenRecorte.ImagenRecorte()'</Item>
+               <Item>'ImagenRecorte.SelectionBrush'</Item>
+               <Item>'Brush'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ImagenRecorte.ImagenRecorte()'</Item>
+               <Item>'ImagenRecorte.m_Imagen'</Item>
+               <Item>'Image'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#RectangleFromPoints(System.Drawing.Point,System.Drawing.Point)">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="NonBreaking">
+              <Issue>
+               <Item>'ImagenRecorte.RectangleFromPoints(Point, Point)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/Sistema/bin/Lfc.dll">
+    <Modules>
+     <Module Name="lfc.dll">
+      <Namespaces>
+       <Namespace Name="Lfc">
+        <Types>
+         <Type Name="Contador">
+          <Members>
+           <Member Name="#.ctor(System.String,Lui.Forms.DataTypes)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Contador.Contador(string, DataTypes)'</Item>
+               <Item>'Contador.CantidadValores'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+              <Issue>
+               <Item>'Contador.Contador(string, DataTypes)'</Item>
+               <Item>'Contador.Prefijo'</Item>
+               <Item>'string'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Contador.Contador(string, DataTypes)'</Item>
+               <Item>'Contador.Sufijo'</Item>
+               <Item>'string'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="FormularioCuenta">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'FormularioCuenta.FormularioCuenta()'</Item>
+               <Item>'FormularioCuenta.m_Cliente'</Item>
+               <Item>'Persona'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="FormularioEdicion">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'FormularioEdicion.FormularioEdicion()'</Item>
+               <Item>'FormularioEdicion.ElementoTipo'</Item>
+               <Item>'Type'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'FormularioEdicion.FormularioEdicion()'</Item>
+               <Item>'FormularioEdicion.m_ControlUnico'</Item>
+               <Item>'ControlEdicion'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'FormularioEdicion.FormularioEdicion()'</Item>
+               <Item>'FormularioEdicion.m_ReadOnly'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SetControlsReadOnly(System.Windows.Forms.Control+ControlCollection,System.Boolean)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'ctl'</Item>
+               <Item>'Control'</Item>
+               <Item>'FormularioEdicion.SetControlsReadOnly(Control.ControlCollection, bool)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="FormularioListadoBase">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'FormularioListadoBase.FormularioListadoBase()'</Item>
+               <Item>'FormularioListadoBase.CancelFill'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+              <Issue>
+               <Item>'FormularioListadoBase.FormularioListadoBase()'</Item>
+               <Item>'FormularioListadoBase.ColumnsLoaded'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+              <Issue>
+               <Item>'FormularioListadoBase.FormularioListadoBase()'</Item>
+               <Item>'FormularioListadoBase.Definicion'</Item>
+               <Item>'Listing'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'FormularioListadoBase.FormularioListadoBase()'</Item>
+               <Item>'FormularioListadoBase.LastGroup'</Item>
+               <Item>'ListViewGroup'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'FormularioListadoBase.FormularioListadoBase()'</Item>
+               <Item>'FormularioListadoBase.LastGroupingValue'</Item>
+               <Item>'string'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'FormularioListadoBase.FormularioListadoBase()'</Item>
+               <Item>'FormularioListadoBase.m_GroupingColumnName'</Item>
+               <Item>'string'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'FormularioListadoBase.FormularioListadoBase()'</Item>
+               <Item>'FormularioListadoBase.m_LabelField'</Item>
+               <Item>'string'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'FormularioListadoBase.FormularioListadoBase()'</Item>
+               <Item>'FormularioListadoBase.m_Labels'</Item>
+               <Item>'int[]'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'FormularioListadoBase.FormularioListadoBase()'</Item>
+               <Item>'FormularioListadoBase.m_SearchText'</Item>
+               <Item>'string'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#FormatValue(System.Object,Lfx.Data.FormField)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Parameter">
+               <Item>'cellValue'</Item>
+               <Item>'DBNull'</Item>
+               <Item>'FormularioListadoBase.FormatValue(object, FormField)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'cellValue'</Item>
+               <Item>'DBNull'</Item>
+               <Item>'FormularioListadoBase.FormatValue(object, FormField)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'cellValue'</Item>
+               <Item>'byte[]'</Item>
+               <Item>'FormularioListadoBase.FormatValue(object, FormField)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'cellValue'</Item>
+               <Item>'byte[]'</Item>
+               <Item>'FormularioListadoBase.FormatValue(object, FormField)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Labels">
+            <Messages>
+             <Message TypeName="PropertiesShouldNotReturnArrays" Category="Microsoft.Performance" CheckId="CA1819" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'FormularioListadoBase.Labels'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SearchText">
+            <Accessors>
+             <Accessor Name="#set_SearchText(System.String)">
+              <Messages>
+               <Message TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820" Created="2011-09-01 21:06:35Z">
+                <Issue Name="IsNullOrEmpty">
+                 <Item>'string.operator ==(string, string)'</Item>
+                 <Item>'FormularioListadoBase.SearchText.set(string)'</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Instanciador">
+          <Members>
+           <Member Name="#InferirFormularioListado(System.String)">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Instanciador.InferirFormularioListado(string)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#InferirFormularioListado(System.Type)">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Instanciador.InferirFormularioListado(Type)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lfc.Articulos">
+        <Types>
+         <Type Name="Editar">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Editar.Editar()'</Item>
+               <Item>'Editar.CustomName'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Inicio">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Inicio.Inicio()'</Item>
+               <Item>'Inicio.m_Categoria'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+              <Issue>
+               <Item>'Inicio.Inicio()'</Item>
+               <Item>'Inicio.m_Marca'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+              <Issue>
+               <Item>'Inicio.Inicio()'</Item>
+               <Item>'Inicio.m_Proveedor'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+              <Issue>
+               <Item>'Inicio.Inicio()'</Item>
+               <Item>'Inicio.m_Rubro'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+              <Issue>
+               <Item>'Inicio.Inicio()'</Item>
+               <Item>'Inicio.m_Situacion'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#FixedJoins()">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="NonBreaking">
+              <Issue>
+               <Item>'Inicio.FixedJoins()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lfc.Bancos.Chequeras">
+        <Types>
+         <Type Name="Inicio">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Inicio.Inicio()'</Item>
+               <Item>'Inicio.m_Banco'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+              <Issue>
+               <Item>'Inicio.Inicio()'</Item>
+               <Item>'Inicio.m_Caja'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lfc.Bancos.Cheques">
+        <Types>
+         <Type Name="Inicio">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Inicio.Inicio()'</Item>
+               <Item>'Inicio.m_Emitidos'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Pagar">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Pagar.Pagar()'</Item>
+               <Item>'Pagar.Cheques'</Item>
+               <Item>'IList&lt;string&gt;'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Pagar.Pagar()'</Item>
+               <Item>'Pagar.ChequesIds'</Item>
+               <Item>'string'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lfc.Cajas">
+        <Types>
+         <Type Name="IngresoEgreso">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'IngresoEgreso.IngresoEgreso()'</Item>
+               <Item>'IngresoEgreso.m_Caja'</Item>
+               <Item>'Caja'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Inicio">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Inicio.Inicio()'</Item>
+               <Item>'Inicio.m_Caja'</Item>
+               <Item>'Caja'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lfc.Comprobantes">
+        <Types>
+         <Type Name="Editar">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Editar.Editar()'</Item>
+               <Item>'Editar.IgnorarEventos'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+              <Issue>
+               <Item>'Editar.Editar()'</Item>
+               <Item>'Editar.Ignorar_EntradaCliente_TextChanged'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+              <Issue>
+               <Item>'Editar.Editar()'</Item>
+               <Item>'Editar.TipoPredet'</Item>
+               <Item>'string'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="EditarSeguimiento">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'EditarSeguimiento.EditarSeguimiento()'</Item>
+               <Item>'EditarSeguimiento.TextoLibre'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+              <Issue>
+               <Item>'EditarSeguimiento.EditarSeguimiento()'</Item>
+               <Item>'EditarSeguimiento.m_DatosSeguimiento'</Item>
+               <Item>'ColeccionDatosSeguimiento'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ListaSeries_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'EditarSeguimiento.ListaSeries_KeyDown(object, KeyEventArgs)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="FormComprobantesListado">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'FormComprobantesListado.FormComprobantesListado()'</Item>
+               <Item>'FormComprobantesListado.m_Cliente'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+              <Issue>
+               <Item>'FormComprobantesListado.FormComprobantesListado()'</Item>
+               <Item>'FormComprobantesListado.m_Fechas'</Item>
+               <Item>'DateRange'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'FormComprobantesListado.FormComprobantesListado()'</Item>
+               <Item>'FormComprobantesListado.m_FormaPago'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+              <Issue>
+               <Item>'FormComprobantesListado.FormComprobantesListado()'</Item>
+               <Item>'FormComprobantesListado.m_PV'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+              <Issue>
+               <Item>'FormComprobantesListado.FormComprobantesListado()'</Item>
+               <Item>'FormComprobantesListado.m_Sucursal'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+              <Issue>
+               <Item>'FormComprobantesListado.FormComprobantesListado()'</Item>
+               <Item>'FormComprobantesListado.m_Vendedor'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#MostrarNormal(System.String)">
+            <Messages>
+             <Message TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820" Created="2011-09-01 21:06:35Z">
+              <Issue Name="IsNullOrEmpty">
+               <Item>'string.operator ==(string, string)'</Item>
+               <Item>'FormComprobantesListado.MostrarNormal(string)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Inicio">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Inicio.Inicio()'</Item>
+               <Item>'Inicio.m_PV'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lfc.Comprobantes.Compra">
+        <Types>
+         <Type Name="Inicio">
+          <Members>
+           <Member Name="#Crear()">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'Res'</Item>
+               <Item>'ComprobanteDeCompra'</Item>
+               <Item>'Inicio.Crear()'</Item>
+               <Item>isint</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lfc.Comprobantes.Facturas">
+        <Types>
+         <Type Name="Editar">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Editar.Editar()'</Item>
+               <Item>'Editar.ControlDestino'</Item>
+               <Item>'Control'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="FormSeleccionarFactura">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'FormSeleccionarFactura.FormSeleccionarFactura()'</Item>
+               <Item>'FormSeleccionarFactura.AceptarAnuladas'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+              <Issue>
+               <Item>'FormSeleccionarFactura.FormSeleccionarFactura()'</Item>
+               <Item>'FormSeleccionarFactura.AceptarNoImpresas'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+              <Issue>
+               <Item>'FormSeleccionarFactura.FormSeleccionarFactura()'</Item>
+               <Item>'FormSeleccionarFactura.DeCompra'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+              <Issue>
+               <Item>'FormSeleccionarFactura.FormSeleccionarFactura()'</Item>
+               <Item>'FormSeleccionarFactura.FacturaId'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="IvaVentas">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'IvaVentas.IvaVentas()'</Item>
+               <Item>'IvaVentas.m_PV'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lfc.Comprobantes.Plantillas">
+        <Types>
+         <Type Name="Editar">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Editar.Editar()'</Item>
+               <Item>'Editar.KnobGrabbed'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lfc.CuentasCorrientes">
+        <Types>
+         <Type Name="Inicio">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Inicio.Inicio()'</Item>
+               <Item>'Inicio.m_Grupo'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+              <Issue>
+               <Item>'Inicio.Inicio()'</Item>
+               <Item>'Inicio.m_Localidad'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lfc.Cupones.Cupones">
+        <Types>
+         <Type Name="Inicio">
+          <Members>
+           <Member Name="#InitializeComponent()">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Inicio.InitializeComponent()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lfc.Misc">
+        <Types>
+         <Type Name="Desduplicar">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Desduplicar.Desduplicar()'</Item>
+               <Item>'Desduplicar.PersonaDuplicada'</Item>
+               <Item>'Persona'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Desduplicar.Desduplicar()'</Item>
+               <Item>'Desduplicar.PersonaOriginal'</Item>
+               <Item>'Persona'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lfc.Personas">
+        <Types>
+         <Type Name="EditarPermiso">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'EditarPermiso.EditarPermiso()'</Item>
+               <Item>'EditarPermiso.m_Permiso'</Item>
+               <Item>'Permiso'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Usuario">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Usuario.Usuario()'</Item>
+               <Item>'Usuario.TipoOriginal'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lfc.Tareas">
+        <Types>
+         <Type Name="Inicio">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Inicio.Inicio()'</Item>
+               <Item>'Inicio.EstadosTickets'</Item>
+               <Item>'ColeccionCodigoDetalle'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/Sistema/bin/Lfx.dll">
+    <Modules>
+     <Module Name="lfx.dll">
+      <Namespaces>
+       <Namespace Name="Lfx">
+        <Types>
+         <Type Name="Workspace">
+          <Members>
+           <Member Name="#CheckAndUpdateDataBaseStructure(Lfx.Data.Connection,System.Boolean)">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'Workspace.CheckAndUpdateDataBaseStructure(Connection, bool)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#DebugLog(System.Int32,System.String)">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'Workspace.DebugLog(int, string)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#IsPrepared()">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'Workspace.IsPrepared()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#NotifyTableChange(System.String,System.Int32)">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'Workspace.NotifyTableChange(string, int)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lfx.Components">
+        <Types>
+         <Type Name="Manager">
+          <Members>
+           <Member Name="#Run(System.Windows.Forms.Form,System.String,System.String)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'Result'</Item>
+               <Item>'Form'</Item>
+               <Item>'Manager.Run(Form, string, string)'</Item>
+               <Item>isint</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lfx.Data">
+        <Types>
+         <Type Name="ColumnDefinition">
+          <Members>
+           <Member Name="#ToXml(System.Xml.XmlNode)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Parameter">
+               <Item>'node'</Item>
+               <Item>'XmlDocument'</Item>
+               <Item>'ColumnDefinition.ToXml(XmlNode)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Connection">
+          <Members>
+           <Member Name="#AccessMode">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'Connection.AccessMode'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#DataBaseName">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'Connection.DataBaseName'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ServerName">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'Connection.ServerName'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SlowLink">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'Connection.SlowLink'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SqlMode">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'Connection.SqlMode'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Tables">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'Connection.Tables'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ConstraintDefinition">
+          <Members>
+           <Member Name="#ToXml(System.Xml.XmlNode)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Parameter">
+               <Item>'node'</Item>
+               <Item>'XmlDocument'</Item>
+               <Item>'ConstraintDefinition.ToXml(XmlNode)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="IndexDefinition">
+          <Members>
+           <Member Name="#ToXml(System.Xml.XmlNode)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Parameter">
+               <Item>'node'</Item>
+               <Item>'XmlDocument'</Item>
+               <Item>'IndexDefinition.ToXml(XmlNode)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Structure">
+          <Members>
+           <Member Name="#ToXml(System.Xml.XmlNode)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Parameter">
+               <Item>'node'</Item>
+               <Item>'XmlDocument'</Item>
+               <Item>'Structure.ToXml(XmlNode)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'Structure.ToXml(XmlNode)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="TableStructure">
+          <Members>
+           <Member Name="#ToXml(System.Xml.XmlNode)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Parameter">
+               <Item>'node'</Item>
+               <Item>'XmlDocument'</Item>
+               <Item>'TableStructure.ToXml(XmlNode)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Tag">
+          <Members>
+           <Member Name="#.ctor(Lfx.Data.Connection,System.String,Lfx.Data.Row)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Tag.Tag(Connection, string, Row)'</Item>
+               <Item>'Tag.DefaultValue'</Item>
+               <Item>'object'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lfx.FileFormats.Compression">
+        <Types>
+         <Type Name="Archive">
+          <Members>
+           <Member Name="#SharpZipLib">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-09-01 21:06:35Z" FixCategory="NonBreaking">
+              <Issue>
+               <Item>'Archive.SharpZipLib'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lfx.Services">
+        <Types>
+         <Type Name="Updater">
+          <Members>
+           <Member Name="#DataBase">
+            <Accessors>
+             <Accessor Name="#set_DataBase(Lfx.Data.Connection)">
+              <Messages>
+               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2011-09-01 21:06:35Z">
+                <Issue>
+                 <Item>'Updater.DataBase.set(Connection)'</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lfx.Types">
+        <Types>
+         <Type Name="Formatting">
+          <Members>
+           <Member Name="#FormatDate(System.Object)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Parameter">
+               <Item>'fecha'</Item>
+               <Item>'DateTime?'</Item>
+               <Item>'Formatting.FormatDate(object)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'fecha'</Item>
+               <Item>'LDateTime'</Item>
+               <Item>'Formatting.FormatDate(object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Object">
+          <Members>
+           <Member Name="#CompareByValue(System.Object,System.Object)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'a'</Item>
+               <Item>'decimal'</Item>
+               <Item>'Object.CompareByValue(object, object)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'a'</Item>
+               <Item>'double'</Item>
+               <Item>'Object.CompareByValue(object, object)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'a'</Item>
+               <Item>'string'</Item>
+               <Item>'Object.CompareByValue(object, object)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'b'</Item>
+               <Item>'decimal'</Item>
+               <Item>'Object.CompareByValue(object, object)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'b'</Item>
+               <Item>'decimal'</Item>
+               <Item>'Object.CompareByValue(object, object)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'b'</Item>
+               <Item>'double'</Item>
+               <Item>'Object.CompareByValue(object, object)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'b'</Item>
+               <Item>'double'</Item>
+               <Item>'Object.CompareByValue(object, object)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'b'</Item>
+               <Item>'int'</Item>
+               <Item>'Object.CompareByValue(object, object)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'b'</Item>
+               <Item>'string'</Item>
+               <Item>'Object.CompareByValue(object, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'b'</Item>
+               <Item>'string'</Item>
+               <Item>'Object.CompareByValue(object, object)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'b'</Item>
+               <Item>'string'</Item>
+               <Item>'Object.CompareByValue(object, object)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'val1'</Item>
+               <Item>'LDateTime'</Item>
+               <Item>'Object.CompareByValue(object, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'val2'</Item>
+               <Item>'LDateTime'</Item>
+               <Item>'Object.CompareByValue(object, object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820" Created="2011-09-01 21:06:35Z">
+              <Issue Name="IsNullOrEmpty">
+               <Item>'string.operator ==(string, string)'</Item>
+               <Item>'Object.CompareByValue(object, object)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Parsing">
+          <Members>
+           <Member Name="#IsNumeric(System.String)">
+            <Messages>
+             <Message TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820" Created="2011-09-01 21:06:35Z">
+              <Issue Name="IsNullOrEmpty">
+               <Item>'string.operator ==(string, string)'</Item>
+               <Item>'Parsing.IsNumeric(string)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="qGen">
+        <Types>
+         <Type Name="ComparisonCondition">
+          <Members>
+           <Member Name="#FormatValue(System.Object)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Parameter">
+               <Item>'value'</Item>
+               <Item>'IList'</Item>
+               <Item>'ComparisonCondition.FormatValue(object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'value'</Item>
+               <Item>'LDateTime'</Item>
+               <Item>'ComparisonCondition.FormatValue(object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'value'</Item>
+               <Item>'int[]'</Item>
+               <Item>'ComparisonCondition.FormatValue(object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'value'</Item>
+               <Item>'string[]'</Item>
+               <Item>'ComparisonCondition.FormatValue(object)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Where">
+          <Members>
+           <Member Name="#ToString()">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'Condition'</Item>
+               <Item>'Condition'</Item>
+               <Item>'Where.ToString()'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'Condition'</Item>
+               <Item>'Condition'</Item>
+               <Item>'Where.ToString()'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'Condition'</Item>
+               <Item>'NestedCondition'</Item>
+               <Item>'Where.ToString()'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'Condition'</Item>
+               <Item>'NestedCondition'</Item>
+               <Item>'Where.ToString()'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'Condition'</Item>
+               <Item>'NestedCondition'</Item>
+               <Item>'Where.ToString()'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="System">
+        <Types>
+         <Type Name="TypeExtension">
+          <Members>
+           <Member Name="#GetAttribute`1(System.Type)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'Attrib'</Item>
+               <Item>'T'</Item>
+               <Item>'TypeExtension.GetAttribute&lt;T&gt;(this Type)'</Item>
+               <Item>isint</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/Sistema/bin/Lui.dll">
+    <Modules>
+     <Module Name="lui.dll">
+      <Namespaces>
+       <Namespace Name="Lui.Forms">
+        <Types>
+         <Type Name="Calendar">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Calendar.Calendar()'</Item>
+               <Item>'Calendar.m_MultiSelect'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Chart">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Chart.Chart()'</Item>
+               <Item>'Chart.Series'</Item>
+               <Item>'List&lt;Serie&gt;'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ChildForm">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'ChildForm.ChildForm()'</Item>
+               <Item>'ChildForm.m_MyToolBarButton'</Item>
+               <Item>'ToolBarButton'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'ChildForm.ChildForm()'</Item>
+               <Item>'ChildForm.m_ParentToolBar'</Item>
+               <Item>'ToolBar'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ParentToolBar">
+            <Accessors>
+             <Accessor Name="#get_ParentToolBar()">
+              <Messages>
+               <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+                <Issue Name="Local">
+                 <Item>'TmpCtl'</Item>
+                 <Item>'ToolBar'</Item>
+                 <Item>'ChildForm.ParentToolBar.get()'</Item>
+                 <Item>castclass</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ComboBox">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'ComboBox.ComboBox()'</Item>
+               <Item>'ComboBox.m_AlwaysExpanded'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SetData">
+            <Messages>
+             <Message TypeName="PropertiesShouldNotReturnArrays" Category="Microsoft.Performance" CheckId="CA1819" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'ComboBox.SetData'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Control">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Control.Control()'</Item>
+               <Item>'Control.m_AutoHeight'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+              <Issue>
+               <Item>'Control.Control()'</Item>
+               <Item>'Control.m_DataBase'</Item>
+               <Item>'Connection'</Item>
+               <Item>null</Item>
+              </Issue>
+              <Issue>
+               <Item>'Control.Control()'</Item>
+               <Item>'Control.m_ReadOnly'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+              <Issue>
+               <Item>'Control.Control()'</Item>
+               <Item>'Control.m_TemporaryReadOnly'</Item>
+               <Item>'bool'</Item>
+               <Item>false</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Connection">
+            <Accessors>
+             <Accessor Name="#get_Connection()">
+              <Messages>
+               <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+                <Issue Name="Local">
+                 <Item>'MiParent'</Item>
+                 <Item>'IDataControl'</Item>
+                 <Item>'Control.Connection.get()'</Item>
+                 <Item>castclass</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+           <Member Name="#SetControlsTemporaryReadOnly(System.Windows.Forms.Control+ControlCollection,System.Boolean)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'ctl'</Item>
+               <Item>'Control'</Item>
+               <Item>'Control.SetControlsTemporaryReadOnly(Control.ControlCollection, bool)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="DataSetHelp">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'DataSetHelp.DataSetHelp()'</Item>
+               <Item>'DataSetHelp.LineHeight'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="EditableControl">
+          <Members>
+           <Member Name="#GetControlsChanged(System.Windows.Forms.Control+ControlCollection,System.Boolean)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'ctl'</Item>
+               <Item>'IEditableControl'</Item>
+               <Item>'EditableControl.GetControlsChanged(Control.ControlCollection, bool)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SetControlsChanged(System.Windows.Forms.Control+ControlCollection,System.Boolean)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'ctl'</Item>
+               <Item>'IEditableControl'</Item>
+               <Item>'EditableControl.SetControlsChanged(Control.ControlCollection, bool)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Form">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'Form.Form()'</Item>
+               <Item>'Form.m_Connection'</Item>
+               <Item>'Connection'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ClicarBoton(System.Windows.Forms.Control+ControlCollection,System.String)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'ctl'</Item>
+               <Item>'Button'</Item>
+               <Item>'Form.ClicarBoton(Control.ControlCollection, string)'</Item>
+               <Item>isint</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#GetControlsChanged(System.Windows.Forms.Control+ControlCollection,System.Boolean)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'ctl'</Item>
+               <Item>'IDataControl'</Item>
+               <Item>'Form.GetControlsChanged(Control.ControlCollection, bool)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'ctl'</Item>
+               <Item>'IEditableControl'</Item>
+               <Item>'Form.GetControlsChanged(Control.ControlCollection, bool)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SetControlsChanged(System.Windows.Forms.Control+ControlCollection,System.Boolean)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Local">
+               <Item>'ctl'</Item>
+               <Item>'IDataControl'</Item>
+               <Item>'Form.SetControlsChanged(Control.ControlCollection, bool)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+              <Issue Name="Local">
+               <Item>'ctl'</Item>
+               <Item>'IEditableControl'</Item>
+               <Item>'Form.SetControlsChanged(Control.ControlCollection, bool)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="OrientedTextLabel2">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'OrientedTextLabel2.OrientedTextLabel2()'</Item>
+               <Item>'OrientedTextLabel2.rotationAngle'</Item>
+               <Item>'double'</Item>
+               <Item>0.0</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="TextBox">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'TextBox.TextBox()'</Item>
+               <Item>'TextBox.m_PasswordChar'</Item>
+               <Item>'char'</Item>
+               <Item>'\0'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#FormatearDatos(System.Object)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2011-09-01 21:06:35Z">
+              <Issue Name="Parameter">
+               <Item>'datos'</Item>
+               <Item>'DateTime'</Item>
+               <Item>'TextBox.FormatearDatos(object)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'datos'</Item>
+               <Item>'decimal'</Item>
+               <Item>'TextBox.FormatearDatos(object)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'datos'</Item>
+               <Item>'double'</Item>
+               <Item>'TextBox.FormatearDatos(object)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'datos'</Item>
+               <Item>'double'</Item>
+               <Item>'TextBox.FormatearDatos(object)'</Item>
+               <Item>isint</Item>
+              </Issue>
+              <Issue Name="Parameter">
+               <Item>'datos'</Item>
+               <Item>'float'</Item>
+               <Item>'TextBox.FormatearDatos(object)'</Item>
+               <Item>isint</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="TextBoxBase">
+          <Members>
+           <Member Name="#SetTipIfBlank()">
+            <Messages>
+             <Message TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820" Created="2011-09-01 21:06:35Z">
+              <Issue Name="IsNullOrEmpty">
+               <Item>'string.operator ==(string, string)'</Item>
+               <Item>'TextBoxBase.SetTipIfBlank()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="WorkspaceSelectorForm">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'WorkspaceSelectorForm.WorkspaceSelectorForm()'</Item>
+               <Item>'WorkspaceSelectorForm.m_WorkspaceName'</Item>
+               <Item>'string'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lui.LogOn">
+        <Types>
+         <Type Name="FormRevalidateAccess">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'FormRevalidateAccess.FormRevalidateAccess()'</Item>
+               <Item>'FormRevalidateAccess.Explain'</Item>
+               <Item>'string'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Lui.Printing">
+        <Types>
+         <Type Name="PrinterSelectionDialog">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2011-09-01 21:06:35Z">
+              <Issue>
+               <Item>'PrinterSelectionDialog.PrinterSelectionDialog()'</Item>
+               <Item>'PrinterSelectionDialog.m_Resultado'</Item>
+               <Item>'Impresora'</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+  </Targets>
+  <Rules>
+   <Rule TypeName="AvoidExcessiveLocals" Category="Microsoft.Performance" CheckId="CA1809">
+    <Resolution Name="Compiler">{0} has {1} local variables, {2} of which were generated by the compiler. Refactor {0} so that it uses fewer than 64 local variables.</Resolution>
+   </Rule>
+   <Rule TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811">
+    <Resolution Name="Default">{0} appears to have no upstream public or protected callers.</Resolution>
+   </Rule>
+   <Rule TypeName="AvoidUnsealedAttributes" Category="Microsoft.Performance" CheckId="CA1813">
+    <Resolution Name="Default">Seal {0}, if possible.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800">
+    <Resolution Name="Local">{0}, a variable, is cast to type {1} multiple times in method {2}. Cache the result of the 'as' operator or direct cast in order to eliminate the redundant {3} instruction.</Resolution>
+    <Resolution Name="Parameter">{0}, a parameter, is cast to type {1} multiple times in method {2}. Cache the result of the 'as' operator or direct cast in order to eliminate the redundant {3} instruction.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805">
+    <Resolution Name="Default">{0} initializes field {1} of type {2} to {3}. Remove this initialization because it will be done automatically by the runtime.</Resolution>
+   </Rule>
+   <Rule TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822">
+    <Resolution Name="Default">The 'this' parameter (or 'Me' in Visual Basic) of {0} is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Resolution>
+   </Rule>
+   <Rule TypeName="PropertiesShouldNotReturnArrays" Category="Microsoft.Performance" CheckId="CA1819">
+    <Resolution Name="Default">Change {0} to return a collection or make it a method.</Resolution>
+   </Rule>
+   <Rule TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804">
+    <Resolution Name="Default">{0} declares a variable, {1}, of type {2}, which is never used or is only assigned to. Use this variable or remove it.</Resolution>
+   </Rule>
+   <Rule TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820">
+    <Resolution Name="IsNullOrEmpty">Replace the call to {0} in {1} with a call to 'String.IsNullOrEmpty'.</Resolution>
+   </Rule>
+  </Rules>
+ </FxCopReport>
+</FxCopProject>

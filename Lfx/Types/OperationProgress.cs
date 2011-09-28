@@ -67,7 +67,7 @@ namespace Lfx.Types
                         this.Value = 0;
                         this.Status = "Iniciando...";
                         if (Lfx.Workspace.Master != null)
-                                Lfx.Workspace.Master.RunTime.Progress(this);
+                                Lfx.Workspace.Master.RunTime.NotifyProgress(this);
                 }
 
                 public void Begin(int maxValue)
@@ -86,21 +86,21 @@ namespace Lfx.Types
                 {
                         this.Value = newValue;
                         if (Lfx.Workspace.Master != null)
-                                Lfx.Workspace.Master.RunTime.Progress(this);
+                                Lfx.Workspace.Master.RunTime.NotifyProgress(this);
                 }
 
                 public void ChangeStatus(string newStatus)
                 {
                         this.Status = newStatus;
                         if (Lfx.Workspace.Master != null)
-                                Lfx.Workspace.Master.RunTime.Progress(this);
+                                Lfx.Workspace.Master.RunTime.NotifyProgress(this);
                 }
 
                 public void Advance(int newValue)
                 {
                         this.Value += newValue;
                         if (Lfx.Workspace.Master != null)
-                                Lfx.Workspace.Master.RunTime.Progress(this);
+                                Lfx.Workspace.Master.RunTime.NotifyProgress(this);
                 }
 
                 public void End()
@@ -108,7 +108,7 @@ namespace Lfx.Types
                         this.IsDone = true;
                         this.Status = "Terminado.";
                         if (Lfx.Workspace.Master != null)
-                                Lfx.Workspace.Master.RunTime.Progress(this);
+                                Lfx.Workspace.Master.RunTime.NotifyProgress(this);
                 }
         }
 }

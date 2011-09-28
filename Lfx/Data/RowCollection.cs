@@ -35,7 +35,8 @@ using System.Text;
 
 namespace Lfx.Data
 {
-        public class RowCollection : System.Collections.Generic.Dictionary<int, Lfx.Data.Row>
+        [Serializable]
+        public class RowCollection : Dictionary<int, Lfx.Data.Row>
         {
                 private System.DateTime LastCacheRefresh;
                 protected Table Table;

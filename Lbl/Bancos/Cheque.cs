@@ -51,8 +51,8 @@ namespace Lbl.Bancos
 		public Cheque(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Cheque(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public Cheque(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
 
                 public Cheque(Lfx.Data.Connection dataBase, Lbl.Comprobantes.ComprobanteConArticulos factura)
                         : this(dataBase)
@@ -61,7 +61,7 @@ namespace Lbl.Bancos
                         this.Cargar();
                 }
 
-                public Cheque(Lfx.Data.Connection dataBase, decimal importe, int numero, string emisor, Lfx.Types.LDateTime fechaEmision, Lfx.Types.LDateTime fechaCobro, Bancos.Banco banco)
+                public Cheque(Lfx.Data.Connection dataBase, decimal importe, int numero, string emisor, NullableDateTime fechaEmision, NullableDateTime fechaCobro, Bancos.Banco banco)
 			: this(dataBase)
 		{
 			this.Importe = importe;
@@ -223,7 +223,7 @@ namespace Lbl.Bancos
                         }
                 }
 
-                public Lfx.Types.LDateTime FechaEmision
+                public NullableDateTime FechaEmision
                 {
                         get
                         {
@@ -235,7 +235,7 @@ namespace Lbl.Bancos
                         }
                 }
 
-                public Lfx.Types.LDateTime FechaCobro
+                public NullableDateTime FechaCobro
                 {
                         get
                         {

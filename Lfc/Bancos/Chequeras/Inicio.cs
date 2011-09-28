@@ -110,27 +110,27 @@ namespace Lfc.Bancos.Chequeras
                                 this.CustomFilters.AddWithValue("id_caja", m_Caja);
                 }
 
-                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
 		{
 			switch(row.Fields["estado"].ValueInt)
 			{
 				case 0:
-                                        itm.SubItems["estado"].Text = "Fuera de uso";
+                                        item.SubItems["estado"].Text = "Fuera de uso";
                                         break;
 				case 1:
-                                        itm.SubItems["estado"].Text = "Activa";
+                                        item.SubItems["estado"].Text = "Activa";
 					break;
 				default:
-                                        itm.SubItems["estado"].Text = "???";
+                                        item.SubItems["estado"].Text = "???";
 					break;
 			}
 
-                        itm.SubItems["id_banco"].Text = this.Connection.Tables["bancos"].FastRows[System.Convert.ToInt32(row["id_banco"])].Fields["nombre"].ToString();
-                        itm.SubItems["desde"].Text = row.Fields["desde"].ValueInt.ToString("00000000");
-                        itm.SubItems["hasta"].Text = row.Fields["hasta"].ValueInt.ToString("00000000");
+                        item.SubItems["id_banco"].Text = this.Connection.Tables["bancos"].FastRows[System.Convert.ToInt32(row["id_banco"])].Fields["nombre"].ToString();
+                        item.SubItems["desde"].Text = row.Fields["desde"].ValueInt.ToString("00000000");
+                        item.SubItems["hasta"].Text = row.Fields["hasta"].ValueInt.ToString("00000000");
                         int IdCaja = row.Fields["id_caja"].ValueInt;
                         if (IdCaja > 0)
-                                itm.SubItems["id_caja"].Text = this.Connection.Tables["cajas"].FastRows[IdCaja].Fields["nombre"].ToString();
+                                item.SubItems["id_caja"].Text = this.Connection.Tables["cajas"].FastRows[IdCaja].Fields["nombre"].ToString();
 		}
 	}
 

@@ -30,9 +30,9 @@
 #endregion
 
 using System;
-using System.Data;
 using System.Collections.Generic;
-using System.Text;
+using System.Data;
+using System.Security.Permissions;
 
 namespace Lazaro.Impresion.Comprobantes.Fiscal
 {
@@ -261,6 +261,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                         return new Lazaro.Impresion.Comprobantes.Fiscal.Respuesta();
                 }
 
+                [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
                 public Lazaro.Impresion.Comprobantes.Fiscal.Respuesta ImprimirComprobante(int idComprob)
                 {
                         try {

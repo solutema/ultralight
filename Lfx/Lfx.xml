@@ -380,7 +380,8 @@
         </member>
         <member name="M:Lfx.Types.Object.CompareByValue(System.Object,System.Object)">
             <summary>
-            Intenta comparar dos objetos para ver si son iguales en cuanto a su valor.
+            Intenta comparar dos objetos en cuanto a su valor, de manera felxible e independiente del tipo.
+            Ejemplos: (int)3 == (decimal)3, (int)0 == null, true == (int)1, (int)0 == "0", etc.
             </summary>
         </member>
         <member name="T:Lfx.Types.OperationProgress">

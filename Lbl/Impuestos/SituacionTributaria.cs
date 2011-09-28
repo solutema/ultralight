@@ -44,8 +44,8 @@ namespace Lbl.Impuestos
 		public SituacionTributaria(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
 
-                public SituacionTributaria(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public SituacionTributaria(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
 
 		public SituacionTributaria(Lfx.Data.Connection dataBase, int itemId)
                         : base(dataBase, itemId) { }

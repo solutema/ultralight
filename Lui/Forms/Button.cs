@@ -364,6 +364,8 @@ namespace Lui.Forms
                         }
                 }
 
+                [System.Security.Permissions.UIPermission(System.Security.Permissions.SecurityAction.LinkDemand,
+                        Window = System.Security.Permissions.UIPermissionWindow.AllWindows)]
                 protected override bool ProcessMnemonic(char charCode)
                 {
                         if (this.Enabled && this.Visible && IsMnemonic(charCode, this.Text)) {

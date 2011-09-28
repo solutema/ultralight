@@ -43,12 +43,13 @@ namespace Lazaro
         {
                 public static Principal.Inicio FormularioPrincipal;
                 public static Lui.Forms.ProgressForm FormularioProgreso;
-                public static List<Lfx.Types.OperationProgress> Operaciones = new List<Lfx.Types.OperationProgress>();
+                public static IList<Lfx.Types.OperationProgress> Operaciones = new List<Lfx.Types.OperationProgress>();
                 public static bool Flotante;
 
                 /// <summary>
                 /// Obtiene la versión del ejecutable principal.
                 /// </summary>
+                [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
                 public static string Version()
                 {
                         return System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).ProductVersion;
@@ -258,13 +259,13 @@ namespace Lazaro
                 /// </summary>
                 private static void DescargarArchivosNecesarios()
                 {
-                        List<string> ArchivosNecesarios = new List<string>()
+                        IList<string> ArchivosNecesarios = new List<string>()
                         {
                                 "Interop.WIA.dll",
                                 "MySql.Data.dll",
                                 "ICSharpCode.SharpZipLib.dll"
                         };
-                        List<string> ArchivosFaltantes = new List<string>();
+                        IList<string> ArchivosFaltantes = new List<string>();
 
                         foreach (string Arch in ArchivosNecesarios) {
                                 if (System.IO.File.Exists(Arch) == false)
@@ -606,7 +607,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                 /// <summary>
                 /// Envía datos anónimos sobre el equipo en el que se está ejecutando Lázaro.
                 /// </summary>
-                /// <param name="param"></param>
+                [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
                 public static void EnviarEstadisticas(object param)
                 {
                         try {
@@ -618,7 +619,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                                                 "email=" + System.Uri.EscapeUriString(Lbl.Sys.Config.Actual.Empresa.Email),
                                                                 "version=" + System.Uri.EscapeUriString(System.Diagnostics.FileVersionInfo.GetVersionInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").ProductVersion)
                                                         };
-                                System.Net.WebRequest webRequest = System.Net.WebRequest.Create("http://www.sistemalazaro.com.ar/stats/index.php");
+                                System.Net.WebRequest webRequest = System.Net.WebRequest.Create(new System.Uri("http://www.sistemalazaro.com.ar/stats/index.php"));
                                 webRequest.ContentType = "application/x-www-form-urlencoded";
                                 webRequest.Method = "POST";
                                 byte[] PostData = System.Text.Encoding.Default.GetBytes(string.Join("&", Vars));
@@ -781,7 +782,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         break;
 
                                 case "BACKUP":
-                                        if (Lui.Login.LoginData.ValidateAccess("Global.Backup", Lbl.Sys.Permisos.Operaciones.Administrar)) {
+                                        if (Lui.LogOn.LogOnData.ValidateAccess("Global.Backup", Lbl.Sys.Permisos.Operaciones.Administrar)) {
                                                 string SubComandoBackup = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
 
                                                 switch (SubComandoBackup) {
@@ -840,7 +841,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
 
                                         switch (SubComandoReporte) {
                                                 case "RENTABILIDAD":
-                                                        if (Lui.Login.LoginData.ValidateAccess("Global", Lbl.Sys.Permisos.Operaciones.Total)) {
+                                                        if (Lui.LogOn.LogOnData.ValidateAccess("Global", Lbl.Sys.Permisos.Operaciones.Total)) {
                                                                 Lazaro.Reportes.IngresosEgresos OFormRepRentabilidad = new Lazaro.Reportes.IngresosEgresos();
                                                                 if (!Aplicacion.Flotante)
                                                                         OFormRepRentabilidad.MdiParent = Aplicacion.FormularioPrincipal;
@@ -849,7 +850,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                                         }
                                                         break;
                                                 case "PATRIMONIO":
-                                                        if (Lui.Login.LoginData.ValidateAccess("Global", Lbl.Sys.Permisos.Operaciones.Total)) {
+                                                        if (Lui.LogOn.LogOnData.ValidateAccess("Global", Lbl.Sys.Permisos.Operaciones.Total)) {
                                                                 Lazaro.Reportes.Patrimonio RepPatr = new Lazaro.Reportes.Patrimonio();
                                                                 if (!Aplicacion.Flotante)
                                                                         RepPatr.MdiParent = Aplicacion.FormularioPrincipal;
@@ -1005,7 +1006,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                                 FormularioCaja.Caja = Caja;
 
                                                 if (SubComandoCaja.Length > 0) {
-                                                        Lfx.Types.LDateTime Fecha = Lfx.Types.Parsing.ParseDate(SubComandoCaja);
+                                                        NullableDateTime Fecha = Lfx.Types.Parsing.ParseDate(SubComandoCaja);
                                                         if (Fecha != null) {
                                                                 FormularioCaja.Fechas = new Lfx.Types.DateRange("dia");
                                                                 FormularioCaja.Fechas.From = Fecha;
@@ -1087,7 +1088,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         break;
 
                                 case "QUIT":
-                                        Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.Logoff, Lbl.Sys.Config.Actual.UsuarioConectado.Usuario, null);
+                                        Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.LogOff, Lbl.Sys.Config.Actual.UsuarioConectado.Usuario, null);
                                         if (Aplicacion.FormularioPrincipal != null)
                                                 Aplicacion.FormularioPrincipal.Close();
                                         break;
@@ -1508,7 +1509,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                 }
 
                 
-                public static void ThreadExceptionHandler(object sender, System.Threading.ThreadExceptionEventArgs e)
+                private static void ThreadExceptionHandler(object sender, System.Threading.ThreadExceptionEventArgs e)
                 {
                         GenericExceptionHandler(e.Exception);
                 }
@@ -1519,7 +1520,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                         Application.Exit();
                 }
 
-                public static void GenericExceptionHandler(Exception ex)
+                private static void GenericExceptionHandler(Exception ex)
                 {
                         if (ex is System.Drawing.Printing.InvalidPrinterException) {
                                 KnownExceptionHandler(ex);
@@ -1548,7 +1549,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                 }
 
 
-                public static void KnownExceptionHandler(Exception ex)
+                private static void KnownExceptionHandler(Exception ex)
                 {
                         KnownExceptionHandler(ex, null);
                 }
@@ -1575,7 +1576,8 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                 /// Manejador de excepciones desconocidas. Presenta una ventana con el error y envía un informe por correo electrónico.
                 /// </summary>
                 /// <param name="ex">La excepción a reportar.</param>
-                public static void UnknownExceptionHandler(Exception ex)
+                [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
+                private static void UnknownExceptionHandler(Exception ex)
                 {
                         Errores.ExcepcionNoControlada FormularioError = new Errores.ExcepcionNoControlada();
                         FormularioError.Show();

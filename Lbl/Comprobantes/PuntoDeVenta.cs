@@ -54,8 +54,8 @@ namespace Lbl.Comprobantes
                 public PuntoDeVenta(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public PuntoDeVenta(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public PuntoDeVenta(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
 
                 public override string TablaDatos
                 {

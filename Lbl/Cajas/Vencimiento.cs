@@ -60,8 +60,8 @@ namespace Lbl.Cajas
                 public Vencimiento(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Vencimiento(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public Vencimiento(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
 
                 public override void Crear()
                 {
@@ -157,7 +157,7 @@ namespace Lbl.Cajas
                         }
                 }
 
-                public Lfx.Types.LDateTime FechaInicio
+                public NullableDateTime FechaInicio
                 {
                         get
                         {
@@ -169,7 +169,7 @@ namespace Lbl.Cajas
                         }
                 }
 
-                public Lfx.Types.LDateTime FechaProxima
+                public NullableDateTime FechaProxima
                 {
                         get
                         {
@@ -181,7 +181,7 @@ namespace Lbl.Cajas
                         }
                 }
 
-                public Lfx.Types.LDateTime FechaFin
+                public NullableDateTime FechaFin
                 {
                         get
                         {

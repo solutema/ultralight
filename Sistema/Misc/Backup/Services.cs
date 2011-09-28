@@ -280,7 +280,8 @@ namespace Lazaro.Misc.Backup
                         BackupStreamWriter Writer = new BackupStreamWriter(Lfx.Environment.Folders.TemporaryFolder + workFolder + "dbdata.lbd");
                         Writer.Write(":BKP");
 
-                        foreach (string Tabla in Lfx.Data.DataBaseCache.DefaultCache.GetTableNames()) {
+                        IList<string> TableList = Lfx.Data.DataBaseCache.DefaultCache.GetTableNames();
+                        foreach (string Tabla in TableList) {
                                 if (Tabla != "sys_asl") {
                                         Progreso.ChangeStatus("Volcando " + Tabla);
                                         Progreso.ChangeStatus(Progreso.Value + 1);

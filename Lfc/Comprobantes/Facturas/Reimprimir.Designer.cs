@@ -105,6 +105,8 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTipo.PlaceholderText = "";
+                        this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "A|A",
         "B|B",
@@ -114,7 +116,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.Size = new System.Drawing.Size(40, 26);
                         this.EntradaTipo.TabIndex = 1;
                         this.EntradaTipo.TextKey = "B";
-                        this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
                         // 
@@ -133,13 +134,14 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaDesde.Name = "EntradaDesde";
                         this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDesde.PasswordChar = '\0';
+                        this.EntradaDesde.PlaceholderText = "";
                         this.EntradaDesde.Prefijo = "";
+                        this.EntradaDesde.ReadOnly = false;
                         this.EntradaDesde.SelectOnFocus = true;
                         this.EntradaDesde.Size = new System.Drawing.Size(100, 24);
                         this.EntradaDesde.Sufijo = "";
                         this.EntradaDesde.TabIndex = 5;
                         this.EntradaDesde.Text = "0";
-                        this.EntradaDesde.PlaceholderText = "";
                         this.EntradaDesde.ToolTipText = "";
                         this.EntradaDesde.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
                         // 
@@ -158,13 +160,14 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPV.PasswordChar = '\0';
+                        this.EntradaPV.PlaceholderText = "";
                         this.EntradaPV.Prefijo = "";
+                        this.EntradaPV.ReadOnly = false;
                         this.EntradaPV.SelectOnFocus = true;
                         this.EntradaPV.Size = new System.Drawing.Size(52, 24);
                         this.EntradaPV.Sufijo = "";
                         this.EntradaPV.TabIndex = 3;
                         this.EntradaPV.Text = "1";
-                        this.EntradaPV.PlaceholderText = "";
                         this.EntradaPV.ToolTipText = "";
                         this.EntradaPV.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
                         // 
@@ -189,13 +192,14 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaOrden.MaxLenght = 32767;
                         this.EntradaOrden.Name = "EntradaOrden";
                         this.EntradaOrden.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaOrden.PlaceholderText = "";
+                        this.EntradaOrden.ReadOnly = false;
                         this.EntradaOrden.SetData = new string[] {
         "Normal|0",
         "Inverso|1"};
                         this.EntradaOrden.Size = new System.Drawing.Size(268, 36);
                         this.EntradaOrden.TabIndex = 9;
                         this.EntradaOrden.TextKey = "0";
-                        this.EntradaOrden.PlaceholderText = "";
                         this.EntradaOrden.ToolTipText = "";
                         // 
                         // label3
@@ -218,6 +222,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.ComprobanteVistaPrevia.MinimumSize = new System.Drawing.Size(600, 320);
                         this.ComprobanteVistaPrevia.Name = "ComprobanteVistaPrevia";
                         this.ComprobanteVistaPrevia.Padding = new System.Windows.Forms.Padding(2);
+                        this.ComprobanteVistaPrevia.ReadOnly = false;
                         this.ComprobanteVistaPrevia.Size = new System.Drawing.Size(760, 320);
                         this.ComprobanteVistaPrevia.TabIndex = 12;
                         this.ComprobanteVistaPrevia.TabStop = false;
@@ -239,13 +244,14 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaHasta.Name = "EntradaHasta";
                         this.EntradaHasta.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaHasta.PasswordChar = '\0';
+                        this.EntradaHasta.PlaceholderText = "";
                         this.EntradaHasta.Prefijo = "";
+                        this.EntradaHasta.ReadOnly = false;
                         this.EntradaHasta.SelectOnFocus = true;
                         this.EntradaHasta.Size = new System.Drawing.Size(100, 24);
                         this.EntradaHasta.Sufijo = "";
                         this.EntradaHasta.TabIndex = 7;
                         this.EntradaHasta.Text = "0";
-                        this.EntradaHasta.PlaceholderText = "";
                         this.EntradaHasta.ToolTipText = "";
                         this.EntradaHasta.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
                         this.EntradaHasta.Enter += new System.EventHandler(this.EntradaHasta_Enter);
@@ -346,7 +352,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.Controls.Add(this.Label1);
                         this.Controls.Add(this.ComprobanteVistaPrevia);
                         this.Name = "Reimprimir";
-                        this.Text = "Anular Comprobante";
+                        this.Text = "Reimprimir Comprobantes";
                         this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
                         this.Controls.SetChildIndex(this.ComprobanteVistaPrevia, 0);
                         this.Controls.SetChildIndex(this.Label1, 0);

@@ -55,18 +55,6 @@ namespace Lfc.Comprobantes.Plantillas
                 internal Lui.Forms.ComboBox EntradaPapelTamano;
                 private System.ComponentModel.IContainer components = null;
 
-                /// <summary>
-                /// Clean up any resources being used.
-                /// </summary>
-                protected override void Dispose(bool disposing)
-                {
-                        if (disposing) {
-                                if (components != null) {
-                                        components.Dispose();
-                                }
-                        }
-                        base.Dispose(disposing);
-                }
 
                 #region Designer generated code
                 /// <summary>

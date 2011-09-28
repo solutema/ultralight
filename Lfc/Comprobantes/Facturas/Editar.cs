@@ -319,7 +319,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                         case Lbl.Pagos.TiposFormasDePago.Tarjeta:
                                         case Lbl.Pagos.TiposFormasDePago.OtroValor:
                                         case Lbl.Pagos.TiposFormasDePago.Caja:
-                                                EditarPago(false);
+                                                EditarPago();
                                                 break;
                                 }
                         }
@@ -332,11 +332,11 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
 
                 private void BotonPago_Click(object sender, System.EventArgs e)
                 {
-                        EditarPago(false);
+                        EditarPago();
                 }
 
 
-                private Lfx.Types.OperationResult EditarPago(bool PasarACtaCte)
+                private Lfx.Types.OperationResult EditarPago()
                 {
                         Lbl.Comprobantes.ComprobanteConArticulos Factura = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
 

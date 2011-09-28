@@ -53,8 +53,8 @@ namespace Lbl.Articulos
 		public Articulo(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Articulo(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public Articulo(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
 
 		public override string TablaDatos
 		{
@@ -212,7 +212,7 @@ namespace Lbl.Articulos
 			}
 		}
 
-                public Lfx.Types.LDateTime FechaPrecio
+                public NullableDateTime FechaPrecio
                 {
                         get
                         {
@@ -220,7 +220,7 @@ namespace Lbl.Articulos
                         }
                 }
 
-                public Lfx.Types.LDateTime FechaAlta
+                public NullableDateTime FechaAlta
                 {
                         get
                         {

@@ -47,8 +47,8 @@ namespace Lbl.Impresion
 		public Plantilla(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
 
-                public Plantilla(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public Plantilla(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
 
                 public Plantilla(Lfx.Data.Connection dataBase, int itemId)
                         : base(dataBase, itemId) { }

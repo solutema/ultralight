@@ -55,8 +55,8 @@ namespace Lbl.Pagos
                 public Cupon(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Cupon(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public Cupon(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
 
                 public Cupon(Lfx.Data.Connection dataBase, Lbl.Comprobantes.ComprobanteConArticulos factura)
                         : this(dataBase)
@@ -127,7 +127,7 @@ namespace Lbl.Pagos
                         }
                 }
 
-                public Lfx.Types.LDateTime FechaPresentacion
+                public NullableDateTime FechaPresentacion
                 {
                         get
                         {
@@ -139,7 +139,7 @@ namespace Lbl.Pagos
                         }
                 }
 
-                public Lfx.Types.LDateTime FechaAcreditacion
+                public NullableDateTime FechaAcreditacion
                 {
                         get
                         {

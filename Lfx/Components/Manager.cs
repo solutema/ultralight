@@ -40,7 +40,7 @@ namespace Lfx.Components
 	public static class Manager
 	{
                 public static Dictionary<string, Lfx.Components.Component> ComponentesCargados = new Dictionary<string, Component>();
-                public static Dictionary<Type, FunctionInfo> TiposRegistrados = new Dictionary<Type, FunctionInfo>();
+                public static FunctionInfoCollection TiposRegistrados = new FunctionInfoCollection();
 
 
                 public static void LoadAll()

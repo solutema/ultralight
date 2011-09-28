@@ -60,6 +60,23 @@ namespace Lcc.Entrada.AuxForms
                         InitializeComponent();
                 }
 
+
+                /// <summary>
+                /// Limpiar los recursos que se estén utilizando.
+                /// </summary>
+                /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+                protected override void Dispose(bool disposing)
+                {
+                        if (disposing) {
+                                if (components != null) {
+                                        components.Dispose();
+                                }
+                                SelectionBrush.Dispose();
+                        }
+                        base.Dispose(disposing);
+                }
+
+
                 public System.Drawing.Image Imagen
                 {
                         set

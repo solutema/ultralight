@@ -161,7 +161,6 @@ namespace Lfx.Data
 
                         System.Xml.XmlNodeList TablasXml = xmlDoc.SelectNodes("/Database/Table");
                         foreach (System.Xml.XmlNode TablaXml in TablasXml) {
-
                                 string TableName = TablaXml.Attributes["name"].Value;
                                 Lfx.Data.TableStructure Tabla;
                                 
@@ -172,6 +171,8 @@ namespace Lfx.Data
                                         // Es una definición de una tabla nueva
                                         Tabla = new Lfx.Data.TableStructure();
                                         Tabla.Name = TableName;
+                                        if (TablaXml.Attributes["label"] != null)
+                                                Tabla.Label = TablaXml.Attributes["label"].Value;
                                         Tabla.Columns = new System.Collections.Generic.Dictionary<string, Lfx.Data.ColumnDefinition>();
                                 }
 

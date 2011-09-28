@@ -43,7 +43,7 @@ namespace Lfx.Components
 		public string ExecutableName = null;
 		public string[] CommandLineArgs = null;
                 public Lfx.Components.FunctionTypes FunctionType = FunctionTypes.MdiChildren;
-                public Type TipoRegistrado = null, Impresor = null, ControlEdicion = null, FormularioListado = null;
+                public IRegisteredType RegisteredType;
 
 		public Function()
 		{
@@ -75,15 +75,5 @@ namespace Lfx.Components
 		{
 			return new Types.SuccessOperationResult();
 		}
-
-                /* public virtual Type FormularioListado()
-                {
-                        return null;
-                }
-
-                public virtual Type ControlEdicion()
-                {
-                        return null;
-                } */
 	}
 }

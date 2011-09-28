@@ -213,7 +213,7 @@ namespace Lfc.Comprobantes.Facturas
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
-                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
                         if (row.Fields["anulada"].ValueInt == 0) {
                                 switch(row.Fields["tipo_fac"].ValueString)
@@ -231,11 +231,11 @@ namespace Lfc.Comprobantes.Facturas
                                 }
                         } else {
                                 // Si está anulada, la tacho
-                                itm.SubItems["nombre_visible"].Text = "Anulada";
-                                itm.Font = new System.Drawing.Font("Bitstream Vera Sans", 10, System.Drawing.FontStyle.Strikeout);
+                                item.SubItems["nombre_visible"].Text = "Anulada";
+                                item.Font = new System.Drawing.Font("Bitstream Vera Sans", 10, System.Drawing.FontStyle.Strikeout);
                         }
 
-                        base.OnItemAdded(itm, row);
+                        base.OnItemAdded(item, row);
                 }
 
                 protected override Lfx.FileFormats.Office.Spreadsheet.Row FormatRow(int itemId, Lfx.Data.Row row, Lfx.FileFormats.Office.Spreadsheet.Sheet sheet, Lfx.Data.FormFieldCollection useFields)

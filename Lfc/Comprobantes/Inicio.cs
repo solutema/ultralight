@@ -248,7 +248,7 @@ namespace Lfc.Comprobantes
                                         this.CustomFilters.AddWithValue("comprob.pv", m_PV);
 
                                 if (m_Fechas.HasRange)
-                                        this.CustomFilters.AddWithValue("(fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.To) + " 23:59:59')");
+                                        this.CustomFilters.AddWithValue("(comprob.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.To) + " 23:59:59')");
                         }
 
                         switch (m_Estado) {
@@ -256,13 +256,13 @@ namespace Lfc.Comprobantes
                                         // Nada
                                         break;
                                 case "1":
-                                        this.CustomFilters.AddWithValue("impresa=1 AND (cancelado>=total) AND total>0");
+                                        this.CustomFilters.AddWithValue("comprob.impresa=1 AND (comprob.cancelado>=comprob.total) AND comprob.total>0");
                                         break;
                                 case "2":
-                                        this.CustomFilters.AddWithValue("impresa=1 AND (cancelado<total) AND total>0");
+                                        this.CustomFilters.AddWithValue("comprob.impresa=1 AND (comprob.cancelado<comprob.total) AND comprob.total>0");
                                         break;
                                 case "3":
-                                        this.CustomFilters.AddWithValue("impresa", 1);
+                                        this.CustomFilters.AddWithValue("comprob.impresa", 1);
                                         break;
                         }
 
@@ -281,14 +281,14 @@ namespace Lfc.Comprobantes
                         base.OnBeginRefreshList();
                 }
 
-                protected override Lfx.Types.OperationResult OnEdit(int lCodigo)
+                protected override Lfx.Types.OperationResult OnEdit(int itemId)
                 {
-                        string sTipo = this.Connection.FieldString("SELECT tipo_fac FROM comprob WHERE id_comprob=" + lCodigo.ToString());
-                        this.Workspace.RunTime.Execute("EDITAR " + sTipo + " " + lCodigo.ToString());
+                        string sTipo = this.Connection.FieldString("SELECT tipo_fac FROM comprob WHERE id_comprob=" + itemId.ToString());
+                        this.Workspace.RunTime.Execute("EDITAR " + sTipo + " " + itemId.ToString());
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
-                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
                         if (row.Fields["anulada"].ValueInt == 0 && row.Fields["impresa"].ValueInt != 0) {
                                 string TipoComprob = row.Fields["tipo_fac"].ValueString;
@@ -300,21 +300,21 @@ namespace Lfc.Comprobantes
 
                         if (row.Fields["anulada"].ValueInt != 0) {
                                 // Si está anulada, la tacho
-                                itm.Font = new Font("Bitstream Vera Sans", 10, FontStyle.Strikeout);
+                                item.Font = new Font("Bitstream Vera Sans", 10, FontStyle.Strikeout);
                         } else if (row.Fields["impresa"].ValueInt == 0) {
                                 // No impresa, en gris
-                                itm.ForeColor = System.Drawing.Color.Gray;
+                                item.ForeColor = System.Drawing.Color.Gray;
                         } else if (this.Definicion.ElementoTipo != typeof(Lbl.Comprobantes.Presupuesto) && row.Fields["pendiente"].ValueDecimal > 0) {
                                 // Impaga, en rojo
                                 this.Contadores[1].AddValue(row.Fields["pendiente"].ValueDecimal);
-                                itm.ForeColor = System.Drawing.Color.Red;
+                                item.ForeColor = System.Drawing.Color.Red;
                         }
 
                         int IdVendedor = row.Fields["id_vendedor"].ValueInt;
                         if (IdVendedor > 0) {
                                 Lfx.Data.Row Vend = this.Connection.Tables["personas"].FastRows[IdVendedor];
                                 if (Vend != null)
-                                        itm.SubItems["id_vendedor"].Text = Vend.Fields["nombre_visible"].Value.ToString();
+                                        item.SubItems["id_vendedor"].Text = Vend.Fields["nombre_visible"].Value.ToString();
                         }
                 }
         }

@@ -31,7 +31,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Lbl.Sys.Permisos
@@ -52,8 +51,8 @@ namespace Lbl.Sys.Permisos
 		public Permiso(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Permiso(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public Permiso(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
 
                 public Permiso(Lbl.Personas.Usuario usuario, Objeto tipo, Operaciones ops, ListaIds item)
                         : this(usuario.Connection)

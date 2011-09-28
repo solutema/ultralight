@@ -37,19 +37,19 @@ namespace Lfx.Types
 {
 	public static class Strings
 	{
-		public static System.Collections.Generic.List<string> SplitDelimitedString(string CurrentLine)
+		public static IList<string> SplitDelimitedString(string CurrentLine)
 		{
 			return SplitDelimitedString(CurrentLine, ',', Lfx.Types.ControlChars.Quote);
 		}
 
-                public static System.Collections.Generic.List<string> SplitDelimitedString(string CurrentLine, char Delimiter)
+                public static IList<string> SplitDelimitedString(string CurrentLine, char Delimiter)
 		{
 			return SplitDelimitedString(CurrentLine, Delimiter, Lfx.Types.ControlChars.Quote);
 		}
 
-                public static System.Collections.Generic.List<string> SplitDelimitedString(string CurrentLine, char Delimiter, char Qualifier)
+                public static IList<string> SplitDelimitedString(string CurrentLine, char Delimiter, char Qualifier)
 		{
-                        System.Collections.Generic.List<string> Result = new List<string>();
+                        IList<string> Result = new List<string>();
 
                         if (CurrentLine == null)
                                 return Result;

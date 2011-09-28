@@ -120,9 +120,9 @@ namespace Lfc.Bancos.Cheques
                         }
                 }
 
-                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
-                        itm.SubItems["numero"].Text = row.Fields["numero"].ValueInt.ToString("00000000");
+                        item.SubItems["numero"].Text = row.Fields["numero"].ValueInt.ToString("00000000");
 
                         decimal Importe = row.Fields["importe"].ValueDecimal;
                         this.Contadores[0].AddValue(Importe);
@@ -130,34 +130,34 @@ namespace Lfc.Bancos.Cheques
                         switch (row.Fields["estado"].ValueInt) {
                                 case 0:
                                         if (m_Emitidos)
-                                                itm.SubItems["estado"].Text = "A pagar";
+                                                item.SubItems["estado"].Text = "A pagar";
                                         else
-                                                itm.SubItems["estado"].Text = "A cobrar";
+                                                item.SubItems["estado"].Text = "A cobrar";
                                         if (DateTime.Compare(row.Fields["fechacobro"].ValueDateTime, System.DateTime.Now) <= 0)
-                                                itm.ForeColor = System.Drawing.Color.Green;
+                                                item.ForeColor = System.Drawing.Color.Green;
                                         else
-                                                itm.ForeColor = System.Drawing.Color.Black;
+                                                item.ForeColor = System.Drawing.Color.Black;
                                         this.Contadores[1].AddValue(Importe);
                                         break;
                                 case 5:
-                                        itm.SubItems["estado"].Text = "Depositado";
+                                        item.SubItems["estado"].Text = "Depositado";
                                         this.Contadores[1].AddValue(Importe);
                                         break;
                                 case 10:
                                         if (m_Emitidos)
-                                                itm.SubItems["estado"].Text = "Pagado";
+                                                item.SubItems["estado"].Text = "Pagado";
                                         else
-                                                itm.SubItems["estado"].Text = "Cobrado";
-                                        itm.ForeColor = System.Drawing.Color.Gray;
+                                                item.SubItems["estado"].Text = "Cobrado";
+                                        item.ForeColor = System.Drawing.Color.Gray;
                                         break;
                                 case 11:
-                                        itm.SubItems["estado"].Text = "Entregado";
-                                        itm.ForeColor = System.Drawing.Color.Gray;
+                                        item.SubItems["estado"].Text = "Entregado";
+                                        item.ForeColor = System.Drawing.Color.Gray;
                                         break;
                                 case 90:
-                                        itm.SubItems["estado"].Text = "Anulado";
-                                        itm.ForeColor = System.Drawing.Color.Gray;
-                                        itm.Font = new Font(itm.Font, FontStyle.Strikeout);
+                                        item.SubItems["estado"].Text = "Anulado";
+                                        item.ForeColor = System.Drawing.Color.Gray;
+                                        item.Font = new Font(item.Font, FontStyle.Strikeout);
                                         break;
                         }
                 }

@@ -176,7 +176,12 @@ namespace Lfx
                         foreach (Lfx.Data.Connection Db in Dbs) {
                                 Db.Dispose();
                         }
+
+                        m_MasterConnection.Dispose();
+
                         this.ActiveConnections.Clear();
+
+                        GC.SuppressFinalize(this);
                 }
 
                 public Lfx.Data.Connection GetNewConnection(string ownerName)
@@ -418,7 +423,10 @@ namespace Lfx
 
                         Progreso.Max = Lfx.Workspace.Master.Structure.Tables.Count;
                         foreach (Lfx.Data.TableStructure Tab in Lfx.Workspace.Master.Structure.Tables.Values) {
-                                Progreso.ChangeStatus(Progreso.Value + 1, "Verificando " + Tab.Name);
+                                string TableLabel = Tab.Label;
+                                if (Tab.Label == null)
+                                        TableLabel = Tab.Name.ToTitleCase();
+                                Progreso.ChangeStatus(Progreso.Value + 1, "Verificando " + TableLabel);
                                 dataBase.SetTableStructure(Tab);
                         }
 

@@ -140,11 +140,7 @@ namespace Lfc.Tareas
                                 FormFiltros.EntradaOrden.TextKey = this.Definicion.OrderBy;
 
                                 // Agrego los estados de los tickets que figuran en la base de datos
-                                string[] SetData1 = FormFiltros.EntradaEstado.SetData;
-                                List<string> SetData2 = new List<string>();
-                                foreach (string Dat in SetData1) {
-                                        SetData2.Add(Dat);
-                                }
+                                List<string> SetData2 = new List<string>(FormFiltros.EntradaEstado.SetData);
                                 foreach (int IdEstado in EstadosTickets.Keys) {
                                         SetData2.Add(EstadosTickets[IdEstado] + "|" + IdEstado.ToString());
                                 }
@@ -167,11 +163,11 @@ namespace Lfc.Tareas
 		}
 
 
-                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
                         int IdEncargado = row.Fields["id_tecnico_recibe"].ValueInt;
                         if (IdEncargado > 0)
-                                itm.SubItems["id_tecnico_recibe"].Text = this.Connection.Tables["personas"].FastRows[IdEncargado].Fields["nombre"].ValueString;
+                                item.SubItems["id_tecnico_recibe"].Text = this.Connection.Tables["personas"].FastRows[IdEncargado].Fields["nombre"].ValueString;
 
                         int IdEstado = row.Fields["estado"].ValueInt;
                         int Dias = row.Fields["fechadiff"].ValueInt;
@@ -180,14 +176,14 @@ namespace Lfc.Tareas
                                 case 1:
                                         Nuevos++;
                                         if (Dias > 1) {
-                                                itm.ForeColor = Color.Crimson;
+                                                item.ForeColor = Color.Crimson;
                                                 Retrasados++;
                                         }
                                         break;
                                 case 5:
                                         Activos++;
                                         if (Dias > 3) {
-                                                itm.ForeColor = Color.Crimson;
+                                                item.ForeColor = Color.Crimson;
                                                 Retrasados++;
                                         }
                                         break;
@@ -195,21 +191,21 @@ namespace Lfc.Tareas
                                 case 20:
                                         Activos++;
                                         if (Dias > 4) {
-                                                itm.ForeColor = Color.Crimson;
+                                                item.ForeColor = Color.Crimson;
                                                 Retrasados++;
                                         }
                                         break;
                                 case 30:
                                 case 35:
-                                        itm.ForeColor = Color.DarkGreen;
+                                        item.ForeColor = Color.DarkGreen;
                                         Terminados++;
                                         break;
                                 case 50:
-                                        itm.ForeColor = System.Drawing.Color.Gray;
+                                        item.ForeColor = System.Drawing.Color.Gray;
                                         break;
                                 case 80:
                                 case 90:
-                                        itm.Font = new Font(itm.Font, FontStyle.Strikeout);
+                                        item.Font = new Font(item.Font, FontStyle.Strikeout);
                                         break;
                         }
                 }

@@ -31,7 +31,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Lbl
@@ -39,5 +38,7 @@ namespace Lbl
         public interface ICuenta
         {
                 decimal Saldo(bool forUpdate);
+
+                void Recalcular();
         }
 }

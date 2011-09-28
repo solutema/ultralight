@@ -57,68 +57,68 @@ namespace Lfc.Cajas.Conceptos
                         };
 		}
 
-                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
 		{
-			string Codigo = itm.Text;
+			string Codigo = item.Text;
 			if(Codigo.Substring(2, 1) != "0")
-                                itm.SubItems["nombre"].Text = "    " + itm.SubItems["nombre"].Text;
+                                item.SubItems["nombre"].Text = "    " + item.SubItems["nombre"].Text;
 			if(Codigo.Substring(3, 1) != "0")
-                                itm.SubItems["nombre"].Text = "    " + itm.SubItems["nombre"].Text;
+                                item.SubItems["nombre"].Text = "    " + item.SubItems["nombre"].Text;
 
 			switch(row.Fields["es"].ValueInt) {
 				case 1:
-					itm.SubItems["es"].Text = "Entrada";
+					item.SubItems["es"].Text = "Entrada";
 					break;
 				case 2:
-                                        itm.SubItems["es"].Text = "Salida";
+                                        item.SubItems["es"].Text = "Salida";
 					break;
 				case 0:
-                                        itm.SubItems["es"].Text = "Entrada/Salida";
+                                        item.SubItems["es"].Text = "Entrada/Salida";
 					break;
 				default:
-                                        itm.SubItems["es"].Text = "???";
+                                        item.SubItems["es"].Text = "???";
 					break;
 			}
 
 			switch(row.Fields["grupo"].ValueInt) {
 				case 0:
-					itm.SubItems["grupo"].Text = "-";
+					item.SubItems["grupo"].Text = "-";
 					break;
 				case 110:
-                                        itm.SubItems["grupo"].Text = "Cobros";
+                                        item.SubItems["grupo"].Text = "Cobros";
 					break;
 				case 100:
-                                        itm.SubItems["grupo"].Text = "Otros ingresos";
+                                        item.SubItems["grupo"].Text = "Otros ingresos";
 					break;
 				case 230:
-                                        itm.SubItems["grupo"].Text = "Gastos fijos";
+                                        item.SubItems["grupo"].Text = "Gastos fijos";
 					break;
 				case 240:
-                                        itm.SubItems["grupo"].Text = "Gastos variables";
+                                        item.SubItems["grupo"].Text = "Gastos variables";
 					break;
 				case 200:
-                                        itm.SubItems["grupo"].Text = "Otros gastos";
+                                        item.SubItems["grupo"].Text = "Otros gastos";
 					break;
 				case 260:
-                                        itm.SubItems["grupo"].Text = "Pérdida";
+                                        item.SubItems["grupo"].Text = "Pérdida";
 					break;
 				case 250:
-                                        itm.SubItems["grupo"].Text = "Reinversión";
+                                        item.SubItems["grupo"].Text = "Reinversión";
 					break;
 				case 210:
-                                        itm.SubItems["grupo"].Text = "Costo materiales";
+                                        item.SubItems["grupo"].Text = "Costo materiales";
 					break;
 				case 220:
-                                        itm.SubItems["grupo"].Text = "Costo capital";
+                                        item.SubItems["grupo"].Text = "Costo capital";
 					break;
 				case 231:
-                                        itm.SubItems["grupo"].Text = "Sueldos y salarios";
+                                        item.SubItems["grupo"].Text = "Sueldos y salarios";
 					break;
 				case 300:
-                                        itm.SubItems["grupo"].Text = "Movimientos y ajustes";
+                                        item.SubItems["grupo"].Text = "Movimientos y ajustes";
 					break;
 				default:
-                                        itm.SubItems["grupo"].Text = "???";
+                                        item.SubItems["grupo"].Text = "???";
 					break;
 			}
 

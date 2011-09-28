@@ -51,6 +51,7 @@ namespace Lfx.Services
                 {
                         if (m_DataBase != null)
                                 m_DataBase.Dispose();
+                        GC.SuppressFinalize(this);
                 }
 
                 public bool AddTask(string commandString)

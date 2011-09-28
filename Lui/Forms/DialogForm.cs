@@ -52,13 +52,13 @@ namespace Lui.Forms
 			return new Lfx.Types.SuccessOperationResult();
 		}
 
-                internal void CancelCommandButton_Click(object sender, System.EventArgs e)
+                private void CancelCommandButton_Click(object sender, System.EventArgs e)
 		{
 			this.DialogResult = DialogResult.Cancel;
 			this.Close();
 		}
 
-                protected internal void OkButton_Click(object sender, System.EventArgs e)
+                private void OkButton_Click(object sender, System.EventArgs e)
 		{
 			Lfx.Types.OperationResult res = Ok();
 

@@ -70,17 +70,17 @@ namespace Lfc.Comprobantes.Recibos
                         this.HabilitarFiltrar = true;
                 }
 
-                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
 		{
                         this.Contadores[0].AddValue(row.Fields["total"].ValueDecimal);
 
                         if (this.Workspace.SlowLink || this.Listado.Items.Count > 300)
-                                itm.SubItems["0"].Text = "";
+                                item.SubItems["0"].Text = "";
                         else
-                                itm.SubItems["0"].Text = Lbl.Comprobantes.Comprobante.FacturasDeUnRecibo(this.Connection, row.Fields["id_recibo"].ValueInt);
+                                item.SubItems["0"].Text = Lbl.Comprobantes.Comprobante.FacturasDeUnRecibo(this.Connection, row.Fields["id_recibo"].ValueInt);
 
                         if (row.Fields["estado"].ValueInt == 90)
-                                itm.Font = new Font(itm.Font, FontStyle.Strikeout);
+                                item.Font = new Font(item.Font, FontStyle.Strikeout);
 		}
 
                 public bool DePago
@@ -181,7 +181,7 @@ namespace Lfc.Comprobantes.Recibos
                                         this.CustomFilters.AddWithValue("recibos.id_vendedor", m_Vendedor);
 
                                 if (m_Fecha.HasRange)
-                                        this.CustomFilters.AddWithValue("(fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')");
+                                        this.CustomFilters.AddWithValue("(recibos.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')");
                         }
 
                         base.OnBeginRefreshList();

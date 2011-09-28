@@ -107,8 +107,8 @@ namespace Lfx.Types
 		{
 			System.Drawing.Rectangle readRectangleReturn = new System.Drawing.Rectangle();
 			string sCadena = null;
-                        List<string> cColXY = null;
-                        List<string> cColHW = null;
+                        IList<string> cColXY = null;
+                        IList<string> cColHW = null;
 
 			sCadena = ReadString(sIni, sSectionName, sClave, "");
 

@@ -205,6 +205,18 @@ namespace Lfx.Data
                 }
 
 
+                public SetFilter(string label, string columnName, IDictionary<int, string> setValues, int initialValue)
+                        : this(label, columnName)
+                {
+                        this.SetData = new string[setValues.Count];
+                        int i = 0;
+                        foreach (KeyValuePair<int, string> Val in setValues) {
+                                this.SetData[i++] = Val.Value + "|" + Val.Key.ToString();
+                        }
+                        this.CurrentValue = initialValue.ToString();
+                }
+
+
                 public string CurrentValue
                 {
                         get

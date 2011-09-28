@@ -51,8 +51,8 @@ namespace Lbl.Comprobantes
                 public Recibo(Lfx.Data.Connection dataBase, int idRecibo)
                         : base(dataBase, idRecibo) { }
 
-                public Recibo(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public Recibo(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
 
                 public override string TablaDatos
                 {

@@ -37,7 +37,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Lui.Login
+namespace Lui.LogOn
 {
 	internal partial class FormRevalidateAccess : Lui.Forms.DialogForm
 	{

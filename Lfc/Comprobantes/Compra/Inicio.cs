@@ -96,27 +96,27 @@ namespace Lfc.Comprobantes.Compra
                 }
 
 
-                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
-                        itm.SubItems["pv"].Text = row.Fields["pv"].ValueInt.ToString("0000");
-                        itm.SubItems["numero"].Text = row.Fields["numero"].ValueInt.ToString("00000000");
+                        item.SubItems["pv"].Text = row.Fields["pv"].ValueInt.ToString("0000");
+                        item.SubItems["numero"].Text = row.Fields["numero"].ValueInt.ToString("00000000");
 
                         Lfx.Data.Row Persona = this.Connection.Tables["personas"].FastRows[row.Fields["id_cliente"].ValueInt];
                         if (Persona != null)
-                                itm.SubItems["id_cliente"].Text = Persona.Fields["nombre_visible"].ToString();
+                                item.SubItems["id_cliente"].Text = Persona.Fields["nombre_visible"].ToString();
 
                         switch (row.Fields["estado"].ValueInt) {
                                 case 50:
-                                        itm.ForeColor = System.Drawing.Color.DarkOrange;
+                                        item.ForeColor = System.Drawing.Color.DarkOrange;
                                         this.Contadores[0].AddValue(row.Fields["total"].ValueDecimal);
                                         break;
                                 case 100:
-                                        itm.ForeColor = System.Drawing.Color.DarkGreen;
+                                        item.ForeColor = System.Drawing.Color.DarkGreen;
                                         this.Contadores[0].AddValue(row.Fields["total"].ValueDecimal);
                                         break;
                                 case 200:
-                                        itm.ForeColor = System.Drawing.Color.DarkRed;
-                                        itm.Font = new Font(itm.Font, System.Drawing.FontStyle.Strikeout);
+                                        item.ForeColor = System.Drawing.Color.DarkRed;
+                                        item.Font = new Font(item.Font, System.Drawing.FontStyle.Strikeout);
                                         break;
                         }
 
@@ -126,7 +126,7 @@ namespace Lfc.Comprobantes.Compra
                                                 //Controla Pago
                                                 break;
                                         default:
-                                                itm.SubItems["pendiente"].Text = "";
+                                                item.SubItems["pendiente"].Text = "";
                                                 break;
                                 }
                         }

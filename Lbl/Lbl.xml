@@ -14,7 +14,6 @@
             <summary>
             Instancia un ElementoDeDatos desde un registro de la base de datos.
             </summary>
-            <param name="fromRow"></param>
         </member>
         <member name="M:Lbl.ElementoDeDatos.OnLoad">
             <summary>
@@ -615,6 +614,11 @@
         <member name="T:Lbl.Impresion.Plantilla">
             <summary>
             Define una plantilla que se utiliza para imprimir un ElementoDeDatos.
+            </summary>
+        </member>
+        <member name="T:Lbl.TipoRegistrado">
+            <summary>
+            Define un tipo de elemento, con su editor, su impresor, etc.
             </summary>
         </member>
     </members>

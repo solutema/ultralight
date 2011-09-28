@@ -39,13 +39,13 @@ namespace Lfx.Types
 	{
                 public static class DateTime
                 {
-                        public static string ShortDatePattern = "dd/MM/yyyy";
-                        public static string LongDatePattern = @"dddd, d ""de"" MMMM ""de"" yyyy";
-                        public static string FullDateTimePattern = "dd/MM/yyyy HH:mm:ss";
-                        public static string SqlDateFormat = "yyyy-MM-dd";
-                        public static string SqlDateTimeFormat = "yyyy-MM-dd HH:mm:ss";
-                        public static string MonthAndYearPattern = @"MMMM ""de"" yyyy";
-                        public static string ShortMonthAndYearPattern = @"MMM-yyyy";
+                        public static readonly string ShortDatePattern = "dd/MM/yyyy";
+                        public static readonly string LongDatePattern = @"dddd, d ""de"" MMMM ""de"" yyyy";
+                        public static readonly string FullDateTimePattern = "dd/MM/yyyy HH:mm:ss";
+                        public static readonly string SqlDateFormat = "yyyy-MM-dd";
+                        public static readonly string SqlDateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+                        public static readonly string MonthAndYearPattern = @"MMMM ""de"" yyyy";
+                        public static readonly string ShortMonthAndYearPattern = @"MMM-yyyy";
                 }
 
                 public static class Currency
@@ -527,11 +527,11 @@ namespace Lfx.Types
                                 return string.Empty;
                         } else if (fecha is System.DateTime) {
                                 return FormatDate(System.Convert.ToDateTime(fecha).ToString(DateTime.ShortDatePattern));
-                        } else if (fecha is LDateTime) {
+                        } else if (fecha is NullableDateTime) {
                                 if (fecha == null)
                                         return string.Empty;
                                 else
-                                        return FormatDate(((LDateTime)(fecha)).Value);
+                                        return FormatDate(((NullableDateTime)(fecha)).Value);
                         } else if (fecha is Nullable<System.DateTime>) {
                                 System.DateTime? fechaNullable = fecha as System.DateTime?;
                                 if (fechaNullable.HasValue)

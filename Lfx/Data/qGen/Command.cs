@@ -50,6 +50,8 @@ namespace qGen
                 public Where WhereClause = null;
 
                 public Lfx.Data.FieldCollection Fields = new Lfx.Data.FieldCollection();
+
+                [NonSerialized]
                 public Lfx.Data.Connection DataBase = null;
 
                 protected Command()

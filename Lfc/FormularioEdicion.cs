@@ -443,20 +443,19 @@ namespace Lfc
                                                 Progreso.Description = "El documento se está enviando a la impresora " + Impresora.ToString();
                                         Progreso.Begin();
 
-                                        IDbTransaction Trans = this.Elemento.Connection.BeginTransaction();
-                                        Lazaro.Impresion.ImpresorElemento Impresor = Lazaro.Impresion.Instanciador.InstanciarImpresor(this.Elemento, Trans);
+                                        Lazaro.Impresion.ImpresorElemento Impresor = Lazaro.Impresion.Instanciador.InstanciarImpresor(this.Elemento, this.Elemento.Connection.BeginTransaction());
                                         Impresor.Impresora = Impresora;
                                         Res = Impresor.Imprimir();
                                         Progreso.End();
                                         if (Res.Success == false) {
-                                                if (Trans != null)
+                                                if (Impresor.Transaction != null)
                                                         // Puede que la transacción ya haya sido finalizada por el impresor
-                                                        Trans.Rollback();
+                                                        Impresor.Transaction.Rollback();
                                                 Lui.Forms.MessageBox.Show(Res.Message, "Error");
                                         } else {
-                                                if (Trans != null)
+                                                if (Impresor.Transaction != null)
                                                         // Puede que la transacción ya haya sido finalizada por el impresor
-                                                        Trans.Commit();
+                                                        Impresor.Transaction.Commit();
                                                 this.Elemento.Cargar();
                                                 this.FromRow(this.Elemento);
                                                 this.ControlUnico.AfterPrint();

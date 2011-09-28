@@ -31,7 +31,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Lfx.FileFormats.Office.Spreadsheet
@@ -80,18 +79,18 @@ namespace Lfx.FileFormats.Office.Spreadsheet
                         }
                 }
 
-                public int CompareTo(Cell cl2)
+                public int CompareTo(Cell other)
                 {
-                        if (this.Content == null || cl2.Content == null)
+                        if (this.Content == null || other.Content == null)
                                 return 0;
-                        else if (this.Content is double && cl2.Content is double)
-                                return ((double)(this.Content)).CompareTo(cl2.Content);
-                        else if (this.Content is decimal && cl2.Content is decimal)
-                                return ((decimal)(this.Content)).CompareTo(cl2.Content);
-                        else if (this.Content is int && cl2.Content is int)
-                                return ((int)(this.Content)).CompareTo(cl2.Content);
-                        else if (this.Content is string && cl2.Content is string)
-                                return ((string)(this.Content)).CompareTo(cl2.Content);
+                        else if (this.Content is double && other.Content is double)
+                                return ((double)(this.Content)).CompareTo(other.Content);
+                        else if (this.Content is decimal && other.Content is decimal)
+                                return ((decimal)(this.Content)).CompareTo(other.Content);
+                        else if (this.Content is int && other.Content is int)
+                                return ((int)(this.Content)).CompareTo(other.Content);
+                        else if (this.Content is string && other.Content is string)
+                                return ((string)(this.Content)).CompareTo(other.Content);
                         else
                                 return 0;
                 }

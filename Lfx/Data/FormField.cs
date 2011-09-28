@@ -41,7 +41,7 @@ namespace Lfx.Data
                 public Lfx.Data.InputFieldTypes DataType = Lfx.Data.InputFieldTypes.Text;
 		public int Width = 120;
                 private bool m_Visible = true, m_Printable = true;
-                public Dictionary<int, string> SetValues = null;
+                public IDictionary<int, string> SetValues = null;
                 public object TotalFunction = null;
 
 		public FormField(string columnName, string label)
@@ -59,7 +59,7 @@ namespace Lfx.Data
                                 this.Visible = false;
 		}
 
-                public FormField(string columnName, string label, int width, Dictionary<int,string> setValues)
+                public FormField(string columnName, string label, int width, IDictionary<int,string> setValues)
                         : this(columnName, label, InputFieldTypes.Set, width)
                 {
                         this.SetValues = setValues;

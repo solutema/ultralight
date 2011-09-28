@@ -136,7 +136,7 @@ namespace Lazaro.Impresion
 
                                 if (this.Plantilla.Bandeja > 0) {
                                         if (this.Plantilla.Bandeja > this.PrinterSettings.PaperSources.Count)
-                                                throw new ArgumentOutOfRangeException("El número de bandeja no es válido para esta impresora");
+                                                throw new InvalidOperationException("El número de bandeja no es válido para esta impresora");
                                         else
                                                 this.DefaultPageSettings.PaperSource = this.PrinterSettings.PaperSources[this.Plantilla.Bandeja - 1];
                                 }

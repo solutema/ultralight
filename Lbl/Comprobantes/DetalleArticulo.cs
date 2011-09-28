@@ -55,8 +55,8 @@ namespace Lbl.Comprobantes
                         this.Comprobante = comprobante;
                 }
 
-                public DetalleArticulo(Lbl.Comprobantes.ComprobanteConArticulos comprobante, Lfx.Data.Row fromRow)
-                        : base(comprobante.Connection, fromRow)
+                public DetalleArticulo(Lbl.Comprobantes.ComprobanteConArticulos comprobante, Lfx.Data.Row row)
+                        : base(comprobante.Connection, row)
                 {
                         this.Comprobante = comprobante;
                 }

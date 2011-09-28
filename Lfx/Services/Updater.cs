@@ -127,14 +127,12 @@ namespace Lfx.Services
                                 m_DataBase.Dispose();
                                 m_DataBase = null;
                         }
+                        GC.SuppressFinalize(this);
                 }
 
-                public bool ErrorFlag
+                public bool HasError()
                 {
-                        get
-                        {
-                                return ErrorMessage != null;
-                        }
+                        return ErrorMessage != null;
                 }
 
                 public bool RebootNeeded

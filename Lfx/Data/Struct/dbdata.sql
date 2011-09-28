@@ -4016,6 +4016,7 @@ INSERT INTO tipo_doc (id_tipo_doc, nombre) VALUES (3, 'LC');
 INSERT INTO tipo_doc (id_tipo_doc, nombre) VALUES (4, 'CI');
 INSERT INTO tipo_doc (id_tipo_doc, nombre) VALUES (5, 'CUIL');
 INSERT INTO tipo_doc (id_tipo_doc, nombre) VALUES (6, 'CUIT');
+INSERT INTO tipo_doc (id_tipo_doc, nombre) VALUES (7, 'Pasaporte');
 
 INSERT INTO personas_tipos (id_tipo_persona, nombre) VALUES (1, 'Cliente');
 INSERT INTO personas_tipos (id_tipo_persona, nombre) VALUES (2, 'Proveedor');

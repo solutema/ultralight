@@ -53,8 +53,8 @@ namespace Lbl.Tareas
                 public Tarea(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public Tarea(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public Tarea(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
 
 		public override string TablaDatos
 		{
@@ -120,19 +120,21 @@ namespace Lbl.Tareas
                         }
                 }
 
-                public Lfx.Types.LDateTime Fecha
+
+                public new DateTime Fecha
                 {
                         get
                         {
-                                return this.FieldDateTime("fecha_ingreso");
+                                return this.GetFieldValue<DateTime>("fecha_ingreso");
                         }
                         set
                         {
-                                this.Registro["fecha_ingreso"] = value;
+                                Registro["fecha_ingreso"] = value;
                         }
                 }
 
-                public Lfx.Types.LDateTime FechaEstimada
+
+                public NullableDateTime FechaEstimada
                 {
                         get
                         {
@@ -144,7 +146,7 @@ namespace Lbl.Tareas
                         }
                 }
 
-                public Lfx.Types.LDateTime FechaLimite
+                public NullableDateTime FechaLimite
                 {
                         get
                         {
@@ -177,12 +179,12 @@ namespace Lbl.Tareas
                         base.OnLoad();
                 }
 
+
                 public override void Crear()
                 {
                         base.Crear();
                         this.Encargado = new Lbl.Personas.Persona(this.Connection, Lbl.Sys.Config.Actual.UsuarioConectado.Id);
                         this.Estado = 1;
-                        this.Fecha = this.Connection.ServerDateTime;
                         this.Tipo = new Lbl.Tareas.Tipo(this.Connection, 99);
                 }
 

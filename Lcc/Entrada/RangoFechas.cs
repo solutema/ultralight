@@ -200,8 +200,8 @@ namespace Lcc.Entrada
                 {
                         get
                         {
-                                Lfx.Types.LDateTime Desde = Lfx.Types.Parsing.ParseDate(EntradaDesde.Text);
-                                Lfx.Types.LDateTime Hasta = Lfx.Types.Parsing.ParseDate(EntradaHasta.Text);
+                                NullableDateTime Desde = Lfx.Types.Parsing.ParseDate(EntradaDesde.Text);
+                                NullableDateTime Hasta = Lfx.Types.Parsing.ParseDate(EntradaHasta.Text);
                                 if (Desde != null)
                                         m_Rango.From = Desde.Value;
                                 if (Hasta != null)
@@ -212,7 +212,7 @@ namespace Lcc.Entrada
                         }
                         set
                         {
-                                switch (value.Type)
+                                switch (value.RangeType)
                                 {
                                         case Lfx.Types.DateRangeTypes.Day:
                                                 EntradaTipoDeRango.TextKey = "dia";
@@ -239,14 +239,14 @@ namespace Lcc.Entrada
 
                 private void EntradaDesde_TextChanged(object sender, EventArgs e)
                 {
-                        Lfx.Types.LDateTime Fecha = Lfx.Types.Parsing.ParseDate(EntradaDesde.Text);
+                        NullableDateTime Fecha = Lfx.Types.Parsing.ParseDate(EntradaDesde.Text);
                         if (Fecha != null)
                                 m_Rango.From = Fecha.Value;
                 }
 
                 private void EntradaHasta_TextChanged(object sender, EventArgs e)
                 {
-                        Lfx.Types.LDateTime Fecha = Lfx.Types.Parsing.ParseDate(EntradaHasta.Text);
+                        NullableDateTime Fecha = Lfx.Types.Parsing.ParseDate(EntradaHasta.Text);
                         if (Fecha != null)
                                 m_Rango.To = Fecha.Value;
                 }

@@ -59,7 +59,7 @@ namespace qGen
                         this.Tables = tables;
                 }
 
-                public TableCommand(string tables, Where whereClause)
+                protected TableCommand(string tables, Where whereClause)
                         : this(tables)
                 {
                         this.WhereClause = whereClause;

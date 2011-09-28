@@ -336,6 +336,7 @@
     <Compile Include="FormularioListadoExportar.Designer.cs">
       <DependentUpon>FormularioListadoExportar.cs</DependentUpon>
     </Compile>
+    <Compile Include="ITipoRegistrado.cs" />
     <Compile Include="Log\Editar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -642,6 +643,7 @@
     <Compile Include="FormularioListadoTexto.Designer.cs">
       <DependentUpon>FormularioListadoTexto.cs</DependentUpon>
     </Compile>
+    <Compile Include="TipoRegistrado.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lazaro.Impresion\Lazaro.Impresion.csproj">

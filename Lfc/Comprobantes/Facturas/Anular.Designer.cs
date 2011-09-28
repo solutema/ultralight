@@ -347,7 +347,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.Controls.Add(this.EtiquetaAviso);
                         this.Controls.Add(this.ComprobanteVistaPrevia);
                         this.Name = "Anular";
-                        this.Text = "Anular Comprobante";
+                        this.Text = "Anular Comprobantes";
                         this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
                         this.Controls.SetChildIndex(this.ComprobanteVistaPrevia, 0);
                         this.Controls.SetChildIndex(this.EtiquetaAviso, 0);

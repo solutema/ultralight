@@ -65,7 +65,7 @@ namespace Lfc.CuentasCorrientes
                                 },
                                 Filters = new List<Lfx.Data.IFilter>() {
                                         new Lfx.Data.RelationFilter("Cliente", new Lfx.Data.Relation("ctacte.id_cliente", "personas", "id_persona", "nombre_visible")),
-                                        new Lfx.Data.RelationFilter("Grupo", new Lfx.Data.Relation("personas.id_grupo", "personas_grupos", "id_grpo")),
+                                        new Lfx.Data.RelationFilter("Grupo", new Lfx.Data.Relation("personas.id_grupo", "personas_grupos", "id_grupo")),
                                         new Lfx.Data.RelationFilter("Localidad", new Lfx.Data.Relation("personas.id_ciudad", "ciudades", "id_ciudad")),
                                         new Lfx.Data.DateRangeFilter("Fecha", "ctacte.fecha", new Lfx.Types.DateRange("*"))
                                 },

@@ -119,25 +119,25 @@ namespace Lfc.Articulos
                         };
                 }
 
-                protected override void OnItemAdded(ListViewItem itm, Lfx.Data.Row row)
+                protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
                         if (row.Fields["destacado"].ValueInt != 0)
-                                itm.Font = new Font(itm.Font, FontStyle.Bold);
+                                item.Font = new Font(item.Font, FontStyle.Bold);
 
-                        if (itm.SubItems.ContainsKey("stock_actual")) {
+                        if (item.SubItems.ContainsKey("stock_actual")) {
                                 if (row.Fields["stock_actual"].ValueDouble < row.Fields["stock_minimo"].ValueDouble) {
                                         //Faltante
-                                        itm.UseItemStyleForSubItems = false;
-                                        itm.SubItems["stock_actual"].BackColor = System.Drawing.Color.Pink;
-                                        itm.SubItems["stock_actual"].BackColor = System.Drawing.Color.Pink;
+                                        item.UseItemStyleForSubItems = false;
+                                        item.SubItems["stock_actual"].BackColor = System.Drawing.Color.Pink;
+                                        item.SubItems["stock_actual"].BackColor = System.Drawing.Color.Pink;
                                 }
                         }
 
-                        if (itm.SubItems.ContainsKey("apedir")) {
+                        if (item.SubItems.ContainsKey("apedir")) {
                                 if (row.Fields["apedir"].ValueDouble > 0)
-                                        itm.SubItems["apedir"].Text = "-";
+                                        item.SubItems["apedir"].Text = "-";
                                 else
-                                        itm.SubItems["apedir"].BackColor = System.Drawing.Color.LightPink;
+                                        item.SubItems["apedir"].BackColor = System.Drawing.Color.LightPink;
                         }
                 }
 

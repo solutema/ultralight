@@ -100,6 +100,7 @@
     <Compile Include="Impresion\TipoImpresora.cs" />
     <Compile Include="Impuestos\CondicionesFrenteAlIva.cs" />
     <Compile Include="Impuestos\SituacionIva.cs" />
+    <Compile Include="ITipoRegistrado.cs" />
     <Compile Include="ListaIds.cs" />
     <Compile Include="Personas\Cuit.cs" />
     <Compile Include="Personas\IIdentificadorUnico.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Personas\Persona.cs" />
     <Compile Include="Impresion\Plantilla.cs" />
     <Compile Include="Servicios\Verificador.cs" />
+    <Compile Include="TipoRegistrado.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lfx\Lfx.csproj">

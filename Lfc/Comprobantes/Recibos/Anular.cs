@@ -97,7 +97,7 @@ namespace Lfc.Comprobantes.Recibos
 
                 public override Lfx.Types.OperationResult Ok()
                 {
-                        if (Lui.Login.LoginData.ValidateAccess(typeof(Lbl.Comprobantes.Recibo), Lbl.Sys.Permisos.Operaciones.Eliminar) == false)
+                        if (Lui.LogOn.LogOnData.ValidateAccess(typeof(Lbl.Comprobantes.Recibo), Lbl.Sys.Permisos.Operaciones.Eliminar) == false)
                                 return new Lfx.Types.NoAccessOperationResult();
 
                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Una vez anulado, el comprobante deberá ser archivado en todas sus copias y no podrá ser rehabilitado ni reutilizado.", "¿Está seguro de que desea anular el comprobante?");

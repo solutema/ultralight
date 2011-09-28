@@ -50,8 +50,8 @@ namespace Lbl.Pagos
                 public FormaDePago(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
-                public FormaDePago(Lfx.Data.Connection dataBase, Lfx.Data.Row fromRow)
-                        : base(dataBase, fromRow) { }
+                public FormaDePago(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
 
                 public FormaDePago(Lfx.Data.Connection dataBase, TiposFormasDePago tipoFormaPago)
                         : this(dataBase)

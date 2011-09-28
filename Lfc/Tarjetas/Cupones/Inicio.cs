@@ -46,6 +46,8 @@ namespace Lfc.Cupones.Cupones
 
                 public Inicio()
                 {
+                        InitializeComponent();
+
                         Lbl.ColeccionCodigoDetalle SetEstados = new Lbl.ColeccionCodigoDetalle()
                         {
                                 {(int)Lbl.Pagos.EstadosCupones.Acreditado, "Acreditado"},

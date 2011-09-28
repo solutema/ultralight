@@ -36,7 +36,6 @@ namespace Lfc
 {
         public partial class FormularioListado : FormularioListadoBase
         {
-
                 public FormularioListado()
                 {
                         InitializeComponent();
@@ -104,7 +103,8 @@ namespace Lfc
                         set
                         {
                                 Listado.CheckBoxes = value;
-                                Listado.Columns[0].Width = value ? 24 : 0;
+                                if (Listado.Columns.Count > 0)
+                                        Listado.Columns[0].Width = value ? 24 : 0;
                         }
                 }
 

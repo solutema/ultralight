@@ -63,10 +63,10 @@ namespace Lfx.Types
                 /// <summary>
                 /// Interpreta un valor de fecha en varios formatos diferentes. Devuelve null para cadenas vacías o fechas inválidas.
                 /// </summary>
-                public static LDateTime ParseDate(string fecha)
+                public static NullableDateTime ParseDate(string fecha)
                 {
                         // Toma una fecha DD-MM-YYYY y devuelve un Date
-                        string FechaTemp = fecha.Replace("  ", " ").Replace("/", "-").Trim();
+                        string FechaTemp = fecha.Replace(" ", "").Replace("/", "-").Trim();
                         string[] FormatosAceptados =
 				{
                                         "yyyy-MM-dd",
@@ -86,7 +86,7 @@ namespace Lfx.Types
 				};
 
                         try {
-                                return new LDateTime(DateTime.ParseExact(FechaTemp, FormatosAceptados, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AllowWhiteSpaces));
+                                return new NullableDateTime(DateTime.ParseExact(FechaTemp, FormatosAceptados, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AllowWhiteSpaces));
                         } catch {
                                 return null;
                         }

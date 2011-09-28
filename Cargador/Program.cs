@@ -42,13 +42,13 @@ namespace Cargador
                 {
                         AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
 
+                        string CarpetaTrabajo = ApplicationFolder;
+                        if (System.IO.Directory.Exists(CarpetaTrabajo) == false)
+                                System.IO.Directory.CreateDirectory(CarpetaTrabajo);
+
                         string CarpetaDescarga = ApplicationDataFolder + "Updates" + System.IO.Path.DirectorySeparatorChar;
                         if (System.IO.Directory.Exists(CarpetaDescarga) == false)
                                 System.IO.Directory.CreateDirectory(CarpetaDescarga);
-
-                        string CarpetaTrabajo = ApplicationFolder;
-                        if (System.IO.Directory.Exists(CarpetaTrabajo) == false)
-                            System.IO.Directory.CreateDirectory(CarpetaTrabajo);
 
                         string[] ArchivosNuevos = System.IO.Directory.GetFiles(CarpetaDescarga, "*.new", System.IO.SearchOption.AllDirectories);
                         if (ArchivosNuevos.Length > 0) {

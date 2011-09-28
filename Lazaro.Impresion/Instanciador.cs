@@ -48,10 +48,10 @@ namespace Lazaro.Impresion
                 public static Type InferirImpresor(Type tipo)
                 {
                         // Primero busco en los tipos registrados por los componentes
-                        if (Lfx.Components.Manager.TiposRegistrados.ContainsKey(tipo)) {
-                                Lfx.Components.FunctionInfo Func = Lfx.Components.Manager.TiposRegistrados[tipo];
-                                if (Func.Instancia.Impresor != null)
-                                        return Func.Instancia.Impresor;
+                        Lfx.Components.FunctionInfo Func = Lfx.Components.Manager.TiposRegistrados.GetByLblType(tipo);
+                        if (Func != null && Func.Instancia.RegisteredType is Lbl.ITipoRegistrado) {
+                                if (((Lbl.ITipoRegistrado)(Func.Instancia.RegisteredType)).Impresor != null)
+                                        return ((Lbl.ITipoRegistrado)(Func.Instancia.RegisteredType)).Impresor;
                         }
 
                         Type Res = InferirImpresor(tipo.ToString());

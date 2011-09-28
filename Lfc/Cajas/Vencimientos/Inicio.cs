@@ -67,7 +67,7 @@ namespace Lfc.Cajas.Vencimientos
                         switch (row.Fields["estado"].ValueInt) {
                                 case 1:
                                         item.SubItems["estado"].Text = "Activo";
-                                        Lfx.Types.LDateTime Vencimiento = row.Fields["fecha_proxima"].ValueDateTime;
+                                        NullableDateTime Vencimiento = row.Fields["fecha_proxima"].ValueDateTime;
                                         if (Vencimiento != null && Vencimiento <= DateTime.Now)
                                                 item.ForeColor = System.Drawing.Color.Red;
                                         else if (Vencimiento != null && Vencimiento <= DateTime.Now.AddDays(5))

@@ -73,7 +73,7 @@ namespace Lfc.Personas
 
                                 if (EntradaTelefono.Text.Length > 0) {
                                         string Telefono = EntradaTelefono.Text.Replace(" -", "").Replace("- ", "").Replace("/", " ").Replace(",", " ").Replace(".", " ").Replace("  ", " ").Replace("%", "").Replace("_", "");
-                                        List<string> Telefonos = Lfx.Types.Strings.SplitDelimitedString(Telefono, ';');
+                                        IList<string> Telefonos = Lfx.Types.Strings.SplitDelimitedString(Telefono, ';');
                                         if (Telefonos != null && Telefonos.Count > 0) {
                                                 foreach (string Tel in Telefonos) {
                                                         if (Tel != null && Tel.Length > 4)
@@ -326,7 +326,7 @@ namespace Lfc.Personas
                         if (this.Elemento.Existe == false) {
                                 Lui.Forms.MessageBox.Show("No puede editar el acceso del usuario porque aun no ha sido guardado.", "Error");
                         } else {
-                                if (Lui.Login.LoginData.ValidateAccess(this.Elemento, Lbl.Sys.Permisos.Operaciones.Administrar))
+                                if (Lui.LogOn.LogOnData.ValidateAccess(this.Elemento, Lbl.Sys.Permisos.Operaciones.Administrar))
                                         this.Workspace.RunTime.Execute("EDITAR Lbl.Personas.Usuario " + this.Elemento.Id.ToString());
                         }
                 }

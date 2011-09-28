@@ -30,19 +30,17 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Lfx.Types
 {
         public class Object
         {
                 /// <summary>
-                /// Intenta comparar dos objetos para ver si son iguales en cuanto a su valor.
+                /// Intenta comparar dos objetos en cuanto a su valor, de manera felxible e independiente del tipo.
+                /// Ejemplos: (int)3 == (decimal)3, (int)0 == null, true == (int)1, (int)0 == "0", etc.
                 /// </summary>
                 public static int CompareByValue(object val1, object val2)
                 {
-
                         object a = val1, b = val2;
 
                         // Permito comparación con null
@@ -65,27 +63,27 @@ namespace Lfx.Types
                                 a = (bool)val1 ? 1 : 0;
                         else if (val1.GetType().IsEnum)
                                 a = (int)val1;
-                        else if (val1 is LDateTime)
-                                a = ((LDateTime)(val1)).Value;
+                        else if (val1 is NullableDateTime)
+                                a = ((NullableDateTime)(val1)).Value;
 
                         if (val2 is bool)
                                 b = (bool)val2 ? 1 : 0;
                         else if (val2.GetType().IsEnum)
                                 b = (int)val2;
-                        else if (val2 is LDateTime)
-                                b = ((LDateTime)(val2)).Value;
+                        else if (val2 is NullableDateTime)
+                                b = ((NullableDateTime)(val2)).Value;
 
                         if (a == null && b is int && (int)b == 0) {
-                                // Por la forma en la que trabaja FieldCollection[columName], digo que NULL==0 es true
+                                // Por la forma en la que trabaja FieldCollection[columName], digo que null==0 es true
                                 return 0;
                         } else if (a == null && b is double && (double)b == 0) {
-                                // Por la forma en la que trabaja FieldCollection[columName], digo que NULL==0 es true
+                                // Por la forma en la que trabaja FieldCollection[columName], digo que null==0 es true
                                 return 0;
                         } else if (a == null && b is decimal && (decimal)b == 0) {
-                                // Por la forma en la que trabaja FieldCollection[columName], digo que NULL==0 es true
+                                // Por la forma en la que trabaja FieldCollection[columName], digo que null==0 es true
                                 return 0;
                         } else if (a == null && b is string && (string)b == "") {
-                                // Por la forma en la que trabaja FieldCollection[columName], digo que NULL=="" es true
+                                // Por la forma en la que trabaja FieldCollection[columName], digo que null=="" es true
                                 return 0;
                         } else if ((a is short || a is int || a is long)
                            && (b is short || b is int || b is long)) {

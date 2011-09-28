@@ -41,7 +41,7 @@ namespace Lazaro.Impresion
                 public Lbl.Impresion.Impresora Impresora = null;
                 protected const double mm = 3.937007874015748031496062992126;
                 protected Lfx.Data.Connection m_DataBase = null;
-                protected IDbTransaction Transaction = null;
+                public IDbTransaction Transaction = null;
 
                 public Impresor(IDbTransaction transaction)
                 {

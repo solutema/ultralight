@@ -31,7 +31,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Lbl
@@ -42,9 +41,9 @@ namespace Lbl
                 {
                 }
 
-                public ListaIds(string fromCsv)
+                public ListaIds(string csv)
                 {
-                        this.FromCsv(fromCsv);
+                        this.FromCsv(csv);
                 }
 
                 public ListaIds(System.Data.DataTable dataTable)
@@ -52,10 +51,10 @@ namespace Lbl
                         this.FromDataTable(dataTable);
                 }
 
-                public void FromCsv(string fromCsv)
+                public void FromCsv(string csv)
                 {
                         this.Clear();
-                        string[] Valores = fromCsv.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                        string[] Valores = csv.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                         foreach (string Val in Valores) {
                                 this.Add(Lfx.Types.Parsing.ParseInt(Val));
                         }

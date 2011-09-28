@@ -50,10 +50,10 @@ namespace Lbl.Comprobantes
 		protected Comprobante(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
 
-                public Comprobante(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                protected Comprobante(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
 			: base(dataBase, row) { }
 
-                public Comprobante(Lfx.Data.Connection dataBase, int itemId)
+                protected Comprobante(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
 
@@ -176,7 +176,7 @@ namespace Lbl.Comprobantes
                 }
 
 
-                public DateTime Fecha
+                public new DateTime Fecha
                 {
                         get
                         {

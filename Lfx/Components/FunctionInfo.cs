@@ -41,7 +41,7 @@ namespace Lfx.Components
                 public string Nombre;
                 public bool AutoRun = false;
                 public Lfx.Components.Function Instancia = null;
-                public Type TipoRegistrado = null;
+                public IRegisteredType TipoRegistrado = null;
                 public bool Ready = false;
 
                 public FunctionInfo(Component compInfo)
@@ -59,7 +59,7 @@ namespace Lfx.Components
                                 Lfx.Types.OperationResult Res = this.Instancia.Try();
                                 if (Res.Success) {
                                         this.Ready = true;
-                                        this.TipoRegistrado = this.Instancia.TipoRegistrado;
+                                        this.TipoRegistrado = this.Instancia.RegisteredType;
                                 } else {
                                         this.Ready = false;
                                 }

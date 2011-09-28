@@ -235,13 +235,13 @@
     <Compile Include="Forms\YesNoDialog.Designer.cs">
       <DependentUpon>YesNoDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\FormRevalidateAccess.cs">
+    <Compile Include="LogOn\FormRevalidateAccess.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login\FormRevalidateAccess.Designer.cs">
+    <Compile Include="LogOn\FormRevalidateAccess.designer.cs">
       <DependentUpon>FormRevalidateAccess.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\LoginData.cs" />
+    <Compile Include="LogOn\LogOnData.cs" />
     <Compile Include="Printing\ManualFeedDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -366,9 +366,8 @@
       <DependentUpon>YesNoDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login\FormRevalidateAccess.resx">
+    <EmbeddedResource Include="LogOn\FormRevalidateAccess.resx">
       <DependentUpon>FormRevalidateAccess.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Printing\ManualFeedDialog.resx">
       <DependentUpon>ManualFeedDialog.cs</DependentUpon>

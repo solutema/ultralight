@@ -74,6 +74,7 @@ namespace Lfx.Config
                 {
                         if (m_DataBase != null)
                                 m_DataBase.Dispose();
+                        GC.SuppressFinalize(this);
                 }
 
 		public string ConfigFileName

@@ -94,7 +94,7 @@ namespace Lui.Printing
 		}
 
 
-		public override Lfx.Types.OperationResult Ok()
+                public override Lfx.Types.OperationResult Ok()
 		{
 			if(Listado.SelectedItems != null) {
 				m_Resultado = Listado.SelectedItems[0].Tag as Lbl.Impresion.Impresora;

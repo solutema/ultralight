@@ -156,8 +156,8 @@ namespace qGen
                                 return "NULL";
                         } else if (value is double || value is decimal) {
                                 return Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDecimal(value), 8);
-                        } else if (value is Lfx.Types.LDateTime) {
-                                return "'" + Lfx.Types.Formatting.FormatDateTimeSql(((Lfx.Types.LDateTime)(value)).Value) + "'";
+                        } else if (value is NullableDateTime && value != null) {
+                                return "'" + Lfx.Types.Formatting.FormatDateTimeSql(((NullableDateTime)(value)).Value) + "'";
                         } else if (value is DateTime) {
                                 return "'" + Lfx.Types.Formatting.FormatDateTimeSql((DateTime)value) + "'";
                         } else if (value is int || value is long) {

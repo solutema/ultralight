@@ -331,9 +331,9 @@ namespace Lfc.Bancos.Cheques
                         EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(EntradaSubTotal.Text) + Lfx.Types.Parsing.ParseCurrency(EntradaImpuestos.Text), this.Workspace.CurrentConfig.Moneda.Decimales);
                 }
 
-                public System.Windows.Forms.DialogResult Mostrar(IList<string> ChequesAPagar)
+                public System.Windows.Forms.DialogResult Mostrar(IList<string> chequesAPagar)
                 {
-                        this.Cheques = ChequesAPagar;
+                        this.Cheques = chequesAPagar;
 
                         foreach (string ChequeId in Cheques) {
                                 if (ChequesIds == null)

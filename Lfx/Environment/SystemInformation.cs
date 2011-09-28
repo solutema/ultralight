@@ -30,6 +30,7 @@
 #endregion
 
 using System;
+using System.Security.Permissions;
 
 namespace Lfx.Environment
 {
@@ -168,6 +169,7 @@ namespace Lfx.Environment
 			}
 		}
 
+
 		public static bool DesignMode
 		{
 			get
@@ -181,6 +183,7 @@ namespace Lfx.Environment
 					return false;
 			}
 		}
+
 
                 public static bool IsUacActive
                 {
