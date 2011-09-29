@@ -720,21 +720,7 @@
     <Index table="sys_permisos_objetos" name="PRIMARY" columns="id_objeto" unique="1" primary="1" />
   </Table>
   
-  <Table name="sys_accessbase" label="Accesos (antiguos)">
-    <Column name="id_acceso" datatype="VarChar" nullable="0" primary_key="1" lenght="200" />
-    <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" />
-    <Column name="tipo" datatype="Integer" nullable="0" default="0" />
-    <Column name="parent" datatype="VarChar" nullable="1" lenght="200" />
-    <Index table="sys_accessbase" name="PRIMARY" columns="id_acceso" unique="1" primary="1" />
-  </Table>
-  <Table name="sys_accesslist" label="Lista de Accessos (antiguos)">
-    <Column name="id_acceso" datatype="VarChar" nullable="0" primary_key="1" lenght="255" />
-    <Column name="id_persona" datatype="Integer" nullable="0" primary_key="1" default="0" />
-    <Column name="item" datatype="VarChar" nullable="0" primary_key="1" lenght="50" />
-    <Index table="sys_accesslist" name="PRIMARY" columns="id_acceso,id_persona,item" unique="1" primary="1" />
-    <Index table="sys_accesslist" name="sys_accesslist_id_persona" columns="id_persona" unique="0" primary="0" />
-  </Table>
-  
+
   <Table name="sys_asl" label="Caché de Actualizaciones">
     <Column name="nombre" datatype="VarChar" nullable="0" primary_key="1" lenght="200" />
     <Column name="fecha" datatype="VarChar" nullable="0" lenght="50" />
@@ -742,7 +728,8 @@
     <Column name="contenido" datatype="Blob" nullable="1" />
     <Index table="sys_asl" name="PRIMARY" columns="nombre" unique="1" primary="1" />
   </Table>
-  
+
+
   <Table name="sys_config" label="Configuración">
     <Column name="estacion" datatype="VarChar" nullable="0" primary_key="1" lenght="200" />
     <Column name="grupo" datatype="VarChar" nullable="0" lenght="200" />
@@ -1140,7 +1127,6 @@
   <Constraint name="sucursales_situacionorigen" table="sucursales" column="situacionorigen" reference_table="situaciones" reference_column="id_situacion" />
   <Constraint name="sucursales_id_caja_diaria" table="sucursales" column="id_caja_diaria" reference_table="cajas" reference_column="id_caja" />
   <Constraint name="sucursales_id_caja_cheques" table="sucursales" column="id_caja_cheques" reference_table="cajas" reference_column="id_caja" />
-  <Constraint name="sys_accesslist_id_persona" table="sys_accesslist" column="id_persona" reference_table="personas" reference_column="id_persona" />
   <Constraint name="sys_comments_id_persona" table="sys_comments" column="id_persona" reference_table="personas" reference_column="id_persona" />
   <Constraint name="sys_labels_values_id_label" table="sys_labels_values" column="id_label" reference_table="sys_labels" reference_column="id_label" />
   <DisabledConstraint name="sys_config_id_sucursal" table="sys_config" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" />

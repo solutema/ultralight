@@ -19,6 +19,4 @@ REPLACE INTO monedas (id_moneda, nombre, signo, cotizacion, iso) VALUES (6, 'Rea
 DELETE FROM articulos_imagenes WHERE id_articulo NOT IN (SELECT id_articulo FROM articulos);
 UPDATE bancos_cheques SET id_sucursal=NULL WHERE id_sucursal=0;
 
-REPLACE INTO "sys_accessbase" ("id_acceso", "nombre", "tipo", "parent") VALUES ('people.basicwrite','Modificar datos básicos','2','people');
-
 SET FOREIGN_KEY_CHECKS=1;
