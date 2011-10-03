@@ -50,6 +50,7 @@ namespace Lazaro.Principal
 		{
 			InitializeComponent();
 
+
 			TimerReloj_Tick(this, null);
 		}
 
@@ -190,7 +191,7 @@ namespace Lazaro.Principal
 		}
 
 
-                public void MostrarProgreso(Lfx.Types.OperationProgress progreso)
+                internal void ShowProgressRoutine(Lfx.Types.OperationProgress progreso)
                 {
                         if (progreso.IsDone) {
                                 PanelProgreso.Visible = false;
@@ -205,7 +206,7 @@ namespace Lazaro.Principal
                                 }
                                 PanelProgreso.Visible = true;
                                 EtiquetaOperacion.Text = progreso.Name;
-                                EtiquetaDescripcion.Text = progreso.Description;
+                                EtiquetaDescripcion.Text = progreso.Status;
                                 PanelProgreso.Refresh();
                         }
                 }

@@ -145,7 +145,7 @@ namespace Lazaro.Principal
                 internal System.Windows.Forms.MainMenu MainMenu;
                 public System.Windows.Forms.ToolBar BarraTareas;
                 private System.Windows.Forms.ImageList BarraTareasImagenes;
-                internal BarraInferior BarraInferior;
+                private BarraInferior BarraInferior;
                 private System.Windows.Forms.ListBox ListaBd;
         }
 }

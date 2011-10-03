@@ -323,7 +323,12 @@ namespace Lazaro
                                                         }
                                                         Aplicacion.FormularioProgreso.MostrarProgreso(Operaciones, Prog);
                                                 } else {
-                                                        FormularioPrincipal.BarraInferior.MostrarProgreso(Prog);
+                                                        if (FormularioPrincipal.InvokeRequired) {
+                                                                MethodInvoker Mi = delegate { FormularioPrincipal.ShowProgress(Prog); };
+                                                                FormularioPrincipal.Invoke(Mi);
+                                                        } else {
+                                                                FormularioPrincipal.ShowProgress(Prog);
+                                                        }
                                                 }
 
                                                 if (Prog.IsDone) {

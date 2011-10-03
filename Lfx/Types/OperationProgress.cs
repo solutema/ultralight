@@ -34,16 +34,21 @@ using System.ComponentModel;
 
 namespace Lfx.Types
 {
+        public delegate void ShowProgressDelegate(Lfx.Types.OperationProgress progreso);
+
         /// <summary>
         /// Describe el progreso de una operación.
         /// </summary>
         public class OperationProgress
         {
+
                 public string Name { get; set; }
 
                 public string Status { get; set; }
 
                 public string Description { get; set; }
+
+                public string EndMessage { get; set; }
 
                 public int Value { get; set; }
 
@@ -101,6 +106,12 @@ namespace Lfx.Types
                         this.Value += newValue;
                         if (Lfx.Workspace.Master != null)
                                 Lfx.Workspace.Master.RunTime.NotifyProgress(this);
+                }
+
+                public void End(string message)
+                {
+                        this.EndMessage = message;
+                        this.End();
                 }
 
                 public void End()

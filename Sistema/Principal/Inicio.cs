@@ -41,10 +41,13 @@ namespace Lazaro.Principal
         public partial class Inicio : Form
         {
                 private static System.Collections.Generic.Dictionary<string, MenuItemInfo> MenuItemInfoTable = null;
+                public Lfx.Types.ShowProgressDelegate ShowProgress = null;
 
                 public Inicio()
                 {
                         InitializeComponent();
+
+                        ShowProgress = new Lfx.Types.ShowProgressDelegate(ShowProgressRoutine);
 
                         if (Lfx.Environment.SystemInformation.DesignMode) {
                                 ListaBd.Visible = true;
@@ -52,6 +55,11 @@ namespace Lazaro.Principal
                         }
                 }
 
+
+                public void ShowProgressRoutine(Lfx.Types.OperationProgress progreso)
+                {
+                        this.BarraInferior.ShowProgressRoutine(progreso);
+                }
 
                 private void FormPrincipal_Load(object sender, EventArgs e)
                 {
