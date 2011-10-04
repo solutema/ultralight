@@ -133,14 +133,14 @@ namespace Lazaro.Principal
 
                                 if (ProximaTarea != null) {
                                         // Lanzo la tarea en un nuevo thread
-                                        System.Threading.Thread TareaNueva = new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(Aplicacion.ExecDelegate));
-                                        TareaNueva.Start(ProximaTarea);
+                                        System.Threading.ThreadStart ParamInicio = delegate { Aplicacion.Exec(ProximaTarea.Command, ProximaTarea.ComputerName); };
+                                        new System.Threading.Thread(ParamInicio).Start();
                                 }
 
                                 if (YaSubiEstadisticas == false && Lfx.Environment.SystemInformation.DesignMode == false) {
                                         YaSubiEstadisticas = true;
-                                        System.Threading.Thread EnviarEstadisticas = new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(Aplicacion.EnviarEstadisticas));
-                                        EnviarEstadisticas.Start();
+                                        System.Threading.ThreadStart ParamInicio = delegate { Aplicacion.EnviarEstadisticas(); };
+                                        new System.Threading.Thread(ParamInicio).Start();
                                 }
 
                                 if (Lfx.Services.Updater.Master.RebootNeeded && YaPregunteReiniciar == false) {

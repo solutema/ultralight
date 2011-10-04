@@ -674,7 +674,7 @@ LEFT JOIN pg_attribute
 
                 public void EmptyConstraints()
                 {
-                        //Borra todas las claves foráneas
+                        // Borra todas las claves foráneas
                         System.Collections.Generic.Dictionary<string, ConstraintDefinition> CurrentConstraints = this.GetConstraints();
                         foreach (Data.ConstraintDefinition Con in CurrentConstraints.Values) {
                                 string Sql = "ALTER TABLE \"" + Con.TableName + "\" DROP FOREIGN KEY \"" + Con.Name + "\"";

@@ -162,9 +162,10 @@ namespace Lfc.Personas
 
                 private void EntradaObjeto_TextChanged(object sender, EventArgs e)
                 {
+                        Lbl.Sys.Permisos.Objeto Ob = EntradaObjeto.Elemento as Lbl.Sys.Permisos.Objeto;
                         string NombreElemento = "Ítem";
 
-                        if (EntradaObjeto.TextInt != 0)
+                        if (Ob != null)
                                 NombreElemento = EntradaObjeto.TextDetail;
 
                         CheckNivelListar.Text = CheckNivelListar.Tag.ToString().Replace("%s", NombreElemento);
@@ -176,6 +177,45 @@ namespace Lfc.Personas
                         CheckNivelMover.Text = CheckNivelMover.Tag.ToString().Replace("%s", NombreElemento);
                         CheckNivelEliminar.Text = CheckNivelEliminar.Tag.ToString().Replace("%s", NombreElemento);
                         CheckNivelAdministrar.Text = CheckNivelAdministrar.Tag.ToString().Replace("%s", NombreElemento);
+
+                        if (Ob != null) {
+                                if (Ob.NombreExtra1 == null)
+                                        CheckNivelExtra1.Text = "Extra 1";
+                                else
+                                        CheckNivelExtra1.Text = Ob.NombreExtra1;
+
+                                if (Ob.NombreExtra2 == null)
+                                        CheckNivelExtra2.Text = "Extra 2";
+                                else
+                                        CheckNivelExtra2.Text = Ob.NombreExtra2;
+
+                                if (Ob.NombreExtra3 == null)
+                                        CheckNivelExtra3.Text = "Extra 3";
+                                else
+                                        CheckNivelExtra3.Text = Ob.NombreExtra3;
+
+                                if (Ob.NombreExtraA == null)
+                                        CheckNivelExtraA.Text = "Extra A";
+                                else
+                                        CheckNivelExtraA.Text = Ob.NombreExtraA;
+
+                                if (Ob.NombreExtraB == null)
+                                        CheckNivelExtraB.Text = "Extra B";
+                                else
+                                        CheckNivelExtraB.Text = Ob.NombreExtraB;
+
+                                if (Ob.NombreExtraC == null)
+                                        CheckNivelExtraC.Text = "Extra C";
+                                else
+                                        CheckNivelExtraC.Text = Ob.NombreExtraC;
+                        } else {
+                                CheckNivelExtra1.Text = "Extra 1";
+                                CheckNivelExtra2.Text = "Extra 2";
+                                CheckNivelExtra3.Text = "Extra 3";
+                                CheckNivelExtraA.Text = "Extra A";
+                                CheckNivelExtraB.Text = "Extra B";
+                                CheckNivelExtraC.Text = "Extra C";
+                        }
                 }
         }
 }

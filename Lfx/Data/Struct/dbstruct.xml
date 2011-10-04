@@ -717,6 +717,12 @@
     <Column name="id_objeto" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="tipo" datatype="VarChar" nullable="0" lenght="200" />
     <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" />
+    <Column name="extra1_nombre" datatype="VarChar" nullable="1" lenght="200" default="NULL" />
+    <Column name="extra2_nombre" datatype="VarChar" nullable="1" lenght="200" default="NULL" />
+    <Column name="extra3_nombre" datatype="VarChar" nullable="1" lenght="200" default="NULL" />
+    <Column name="extraa_nombre" datatype="VarChar" nullable="1" lenght="200" default="NULL" />
+    <Column name="extrab_nombre" datatype="VarChar" nullable="1" lenght="200" default="NULL" />
+    <Column name="extrac_nombre" datatype="VarChar" nullable="1" lenght="200" default="NULL" />
     <Index table="sys_permisos_objetos" name="PRIMARY" columns="id_objeto" unique="1" primary="1" />
   </Table>
   

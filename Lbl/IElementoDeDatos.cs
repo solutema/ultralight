@@ -36,7 +36,7 @@ using System.ComponentModel;
 
 namespace Lbl
 {
-        public interface IElementoDeDatos
+        public interface IElementoDeDatos : IEquatable<ElementoDeDatos>
         {
                 Lfx.Data.Connection Connection { get; set;  }
                 int Id { get; }

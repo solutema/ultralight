@@ -678,6 +678,16 @@ namespace Lbl
 			return this.GetFieldValue<string>(this.CampoNombre);
 		}
 
+
+                public bool Equals(ElementoDeDatos other)
+                {
+                        if (object.ReferenceEquals(other, null))
+                                return false;
+
+                        return this.Id == other.Id;
+                }
+
+
                 /// <summary>
                 /// Carga (o vuelve a cargar) el elemento desde su registro asociado en la base de datos.
                 /// </summary>

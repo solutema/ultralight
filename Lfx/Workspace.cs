@@ -224,71 +224,72 @@ namespace Lfx
                 /// <summary>
                 /// Verifica la versión de la base de datos y si es necesario actualiza.
                 /// </summary>
-                /// <param name="dataBase">Acceso a la base de datos.</param>
                 /// <param name="ignorarFecha">Ignorar la fecha y actualizar siempre.</param>
                 /// <param name="noTocarDatos">Actualizar sólo la estructura. No incorpora ni modifica datos.</param>
-                public void CheckAndUpdateDataBaseVersion(Lfx.Data.Connection dataBase, bool ignorarFecha, bool noTocarDatos)
+                public void CheckAndUpdateDataBaseVersion(bool ignorarFecha, bool noTocarDatos)
                 {
-                        dataBase.RequiresTransaction = false;
-                        int VersionActual = this.CurrentConfig.ReadGlobalSetting<int>("Sistema", "DB.Version", 0);
+                        using (Lfx.Data.Connection Conn = Lfx.Workspace.Master.GetNewConnection("Verificar estructura de la base de datos")) {
+                                Conn.RequiresTransaction = false;
+                                int VersionActual = this.CurrentConfig.ReadGlobalSetting<int>("Sistema", "DB.Version", 0);
 
-                        if (VersionUltima < VersionActual) {
-                                this.RunTime.Message("Es necesario actualizar Lázaro en esta estación de trabajo. Se esperaba la versión " + VersionUltima.ToString() + " de la base de datos, pero se encontró la versión " + VersionActual.ToString() + " que es demasiado nueva.");
-                                return;
-                        }
-
-                        // Me fijo si ya hay alguien descargando las actualizaciones
-                        string FechaInicioActualizacion = dataBase.Workspace.CurrentConfig.ReadGlobalSetting<string>(null, "Sistema.VerificarVersionBd.Inicio", string.Empty);
-                        string FechaInicioActualizacionMax = Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.AddHours(2));
-                        
-                        if (string.Compare(FechaInicioActualizacion, FechaInicioActualizacionMax) > 0)
-                                // Ya hay alguien actualizando.
-                                return;
-
-                        DateTime VersionEstructura = Lfx.Types.Parsing.ParseSqlDateTime(this.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"));
-                        DateTime FechaLazaroExe = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).LastWriteTime;
-                        TimeSpan Diferencia = FechaLazaroExe - VersionEstructura;
-                        System.Console.WriteLine("Versión estructura: " + VersionEstructura.ToString());
-                        System.Console.WriteLine("Versión Lázaro    : " + FechaLazaroExe.ToString() + " (" + Diferencia.ToString() + " más nuevo)");
-
-                        if((noTocarDatos || VersionActual == VersionUltima) && (ignorarFecha == false && Diferencia.TotalHours <= 1)) {
-                                // No es necesario actualizar nada
-                                return;
-                        }
-
-                        Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Verificando Versión de los Datos", "Se están analizando los datos del almacén de datos y se van a realizar cambios si fuera necesario.");
-                        Progreso.Blocking = true;
-                        Progreso.Begin();
-
-                        dataBase.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Inicio", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "*");
-                        dataBase.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Estacion", System.Environment.MachineName.ToUpperInvariant(), "*");
-
-                        if (noTocarDatos == false && VersionActual < VersionUltima && VersionActual > 0) {
-                                //Actualizo desde la versión actual a la última
-                                for (int i = VersionActual + 1; i <= VersionUltima; i++) {
-                                        Progreso.ChangeStatus("Pre-actualización " + i.ToString());
-                                        InyectarSqlDesdeRecurso(dataBase, @"Data.Struct.db_upd" + i.ToString() + "_pre.sql");
+                                if (VersionUltima < VersionActual) {
+                                        this.RunTime.Message("Es necesario actualizar Lázaro en esta estación de trabajo. Se esperaba la versión " + VersionUltima.ToString() + " de la base de datos, pero se encontró la versión " + VersionActual.ToString() + " que es demasiado nueva.");
+                                        return;
                                 }
-                        }
 
-                        if (ignorarFecha || Diferencia.TotalHours > 1) {
-                                // Lázaro es más nuevo que la BD por más de 1 hora
-                                Progreso.ChangeStatus("Verificando estructuras");
-                                this.CheckAndUpdateDataBaseStructure(dataBase, false);
-                                if (noTocarDatos == false)
-                                        this.CurrentConfig.WriteGlobalSetting("Sistema", "DB.VersionEstructura", Lfx.Types.Formatting.FormatDateTimeSql(FechaLazaroExe));
-                        }
+                                // Me fijo si ya hay alguien descargando las actualizaciones
+                                string FechaInicioActualizacion = Conn.Workspace.CurrentConfig.ReadGlobalSetting<string>(null, "Sistema.VerificarVersionBd.Inicio", string.Empty);
+                                string FechaInicioActualizacionMax = Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.AddHours(2));
 
-                        if (noTocarDatos == false && VersionActual < VersionUltima && VersionActual > 0) {
-                                for (int i = VersionActual + 1; i <= VersionUltima; i++) {
-                                        Progreso.ChangeStatus("Post-actualización " + i.ToString());
-                                        InyectarSqlDesdeRecurso(dataBase, @"Data.Struct.db_upd" + i.ToString() + "_post.sql");
-                                        this.CurrentConfig.WriteGlobalSetting("Sistema", "DB.Version", i.ToString(), "*");
+                                if (string.Compare(FechaInicioActualizacion, FechaInicioActualizacionMax) > 0)
+                                        // Ya hay alguien actualizando.
+                                        return;
+
+                                DateTime VersionEstructura = Lfx.Types.Parsing.ParseSqlDateTime(this.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"));
+                                DateTime FechaLazaroExe = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).LastWriteTime;
+                                TimeSpan Diferencia = FechaLazaroExe - VersionEstructura;
+                                System.Console.WriteLine("Versión estructura: " + VersionEstructura.ToString());
+                                System.Console.WriteLine("Versión Lázaro    : " + FechaLazaroExe.ToString() + " (" + Diferencia.ToString() + " más nuevo)");
+
+                                if ((noTocarDatos || VersionActual == VersionUltima) && (ignorarFecha == false && Diferencia.TotalHours <= 1)) {
+                                        // No es necesario actualizar nada
+                                        return;
                                 }
-                        }
 
-                        dataBase.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Inicio", "0", "*");
-                        Progreso.End();
+                                Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Verificando Versión de los Datos", "Se están analizando los datos del almacén de datos y se van a realizar cambios si fuera necesario.");
+                                Progreso.Blocking = true;
+                                Progreso.Begin();
+
+                                Conn.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Inicio", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "*");
+                                Conn.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Estacion", System.Environment.MachineName.ToUpperInvariant(), "*");
+
+                                if (noTocarDatos == false && VersionActual < VersionUltima && VersionActual > 0) {
+                                        //Actualizo desde la versión actual a la última
+                                        for (int i = VersionActual + 1; i <= VersionUltima; i++) {
+                                                Progreso.ChangeStatus("Pre-actualización " + i.ToString());
+                                                InyectarSqlDesdeRecurso(Conn, @"Data.Struct.db_upd" + i.ToString() + "_pre.sql");
+                                        }
+                                }
+
+                                if (ignorarFecha || Diferencia.TotalHours > 1) {
+                                        // Lázaro es más nuevo que la BD por más de 1 hora
+                                        Progreso.ChangeStatus("Verificando estructuras");
+                                        this.CheckAndUpdateDataBaseStructure(Conn, false);
+                                        if (noTocarDatos == false)
+                                                this.CurrentConfig.WriteGlobalSetting("Sistema", "DB.VersionEstructura", Lfx.Types.Formatting.FormatDateTimeSql(FechaLazaroExe));
+                                }
+
+                                if (noTocarDatos == false && VersionActual < VersionUltima && VersionActual > 0) {
+                                        for (int i = VersionActual + 1; i <= VersionUltima; i++) {
+                                                Progreso.ChangeStatus("Post-actualización " + i.ToString());
+                                                InyectarSqlDesdeRecurso(Conn, @"Data.Struct.db_upd" + i.ToString() + "_post.sql");
+                                                this.CurrentConfig.WriteGlobalSetting("Sistema", "DB.Version", i.ToString(), "*");
+                                        }
+                                }
+
+                                Conn.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Inicio", "0", "*");
+                                Progreso.End();
+                        }
                 }
 
                 /// <summary>

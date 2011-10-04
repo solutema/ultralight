@@ -77,5 +77,78 @@ namespace Lbl.Sys.Permisos
                                 this.SetFieldValue("tipo", value);
                         }
                 }
+
+
+                public string NombreExtra1
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("extra1_nombre");
+                        }
+                        set
+                        {
+                                this.SetFieldValue("extra1_nombre", value);
+                        }
+                }
+
+                public string NombreExtra2
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("extra2_nombre");
+                        }
+                        set
+                        {
+                                this.SetFieldValue("extra2_nombre", value);
+                        }
+                }
+
+                public string NombreExtra3
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("extra3_nombre");
+                        }
+                        set
+                        {
+                                this.SetFieldValue("extra3_nombre", value);
+                        }
+                }
+
+                public string NombreExtraA
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("extraa_nombre");
+                        }
+                        set
+                        {
+                                this.SetFieldValue("extraa_nombre", value);
+                        }
+                }
+
+                public string NombreExtraB
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("extrab_nombre");
+                        }
+                        set
+                        {
+                                this.SetFieldValue("extrab_nombre", value);
+                        }
+                }
+
+                public string NombreExtraC
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("extrac_nombre");
+                        }
+                        set
+                        {
+                                this.SetFieldValue("extrac_nombre", value);
+                        }
+                }
         }
 }

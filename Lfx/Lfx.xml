@@ -469,11 +469,10 @@
             Notifica sobre un cambio de una tabla de datos
             </summary>
         </member>
-        <member name="M:Lfx.Workspace.CheckAndUpdateDataBaseVersion(Lfx.Data.Connection,System.Boolean,System.Boolean)">
+        <member name="M:Lfx.Workspace.CheckAndUpdateDataBaseVersion(System.Boolean,System.Boolean)">
             <summary>
             Verifica la versión de la base de datos y si es necesario actualiza.
             </summary>
-            <param name="dataBase">Acceso a la base de datos.</param>
             <param name="ignorarFecha">Ignorar la fecha y actualizar siempre.</param>
             <param name="noTocarDatos">Actualizar sólo la estructura. No incorpora ni modifica datos.</param>
         </member>

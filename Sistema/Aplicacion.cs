@@ -498,10 +498,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
 
                         if (Lfx.Environment.SystemInformation.DesignMode == false) {
                                 // Si es necesario, actualizo la estructura de la base de datos
-                                using (Lfx.Data.Connection DataBaseVerif = Lfx.Workspace.Master.GetNewConnection("Verificar versión de la base de datos")) {
-                                        Lfx.Workspace.Master.CheckAndUpdateDataBaseVersion(DataBaseVerif, false, false);
-                                        DataBaseVerif.Dispose();
-                                }
+                                Lfx.Workspace.Master.CheckAndUpdateDataBaseVersion(false, false);
                         }
                         return iniciarReturn;
                 }
@@ -613,7 +610,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                 /// Envía datos anónimos sobre el equipo en el que se está ejecutando Lázaro.
                 /// </summary>
                 [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
-                public static void EnviarEstadisticas(object param)
+                public static void EnviarEstadisticas()
                 {
                         try {
                                 string[] Vars = new string[] {
@@ -657,7 +654,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                         }
                 }
 
-                public static void ExecDelegate(object param)
+                /* public static void ExecDelegate(object param)
                 {
                         if (param is Lfx.Services.Task) {
                                 Lfx.Services.Task Tsk = param as Lfx.Services.Task;
@@ -665,7 +662,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                         } else {
                                 Exec(param.ToString(), null);
                         }
-                }
+                } */
 
                 public static object Exec(string comando, string estacion)
                 {
@@ -751,12 +748,8 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                                         Ver.CheckDataBase();
                                                         break;
                                                 case "STRUCT":
-                                                        using (Lfx.Data.Connection DataBaseChk = Lfx.Workspace.Master.GetNewConnection("Verificar estructura de la base de datos")) {
-                                                                if (SubComandoDbCheck == "DFK")
-                                                                        DataBaseChk.EmptyConstraints();
-                                                                Lfx.Workspace.Master.CheckAndUpdateDataBaseVersion(DataBaseChk, true, false);
-                                                                DataBaseChk.Dispose();
-                                                        }
+                                                        System.Threading.ThreadStart ParamInicioVerif = delegate { Lfx.Workspace.Master.CheckAndUpdateDataBaseVersion(true, false); };
+                                                        new System.Threading.Thread(ParamInicioVerif).Start();
                                                         break;
                                         }
                                         break;
