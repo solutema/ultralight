@@ -233,9 +233,16 @@ namespace Lazaro
                                 }
                         }
 
+                        // Verifico la versión de Lázaro requerida por la BD
+                        DateTime FechaLazaroExe = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).LastWriteTime;
+                        DateTime MinVersion = Lfx.Types.Parsing.ParseSqlDateTime(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionMinima", "2000-01-01 00:00:00"));
+                        if (FechaLazaroExe < MinVersion) {
+                                Lfx.Workspace.Master.RunTime.Message("La versión de Lázaro que está utilizando es antigua. Debe actualizar su sistema antes de continuar. Para obtener la útlma versión visite el sitio web de Lázaro: www.sistemalazaro.com.ar");
+                                System.Environment.Exit(1);
+                        }
+
                         // Verificar si la versión de Lázaro que se está usando es muy antigua con respecto a la versión de la BD.
                         DateTime VersionEstructura = Lfx.Types.Parsing.ParseSqlDateTime(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"));
-                        DateTime FechaLazaroExe = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).LastWriteTime;
                         TimeSpan Diferencia = FechaLazaroExe - VersionEstructura;
 
                         if (Diferencia.TotalDays < -7) {

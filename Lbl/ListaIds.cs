@@ -78,7 +78,7 @@ namespace Lbl
 
                         foreach (int i in this) {
                                 if (Res.Length != 0)
-                                        Res.Append(",");
+                                        Res.Append(", ");
                                 Res.Append(i);
                         }
 

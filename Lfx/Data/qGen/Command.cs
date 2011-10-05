@@ -43,11 +43,11 @@ namespace qGen
         ///       pueden implementar otros métodos para acceso mediante otros adaptadores (p. ej. MySQL Connector/Net).
         /// </summary>
         [Serializable]
-        public class Command
+        public class Command : ICommand
         {
                 internal SqlModes m_Mode = SqlModes.Ansi;
 
-                public Where WhereClause = null;
+                public Where WhereClause { get; set; }
 
                 public Lfx.Data.FieldCollection Fields = new Lfx.Data.FieldCollection();
 

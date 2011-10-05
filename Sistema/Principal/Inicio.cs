@@ -185,7 +185,7 @@ namespace Lazaro.Principal
                                                                         string Comando = Lfx.Data.Connection.GetNextCommand(ref SqlActualizacion);
                                                                         System.Windows.Forms.Clipboard.SetDataObject(Comando, true);
                                                                         try {
-                                                                                ConexionActualizar.Execute(Comando);
+                                                                                ConexionActualizar.ExecuteSql(Comando);
                                                                         } catch (Exception ex) {
                                                                                 System.Windows.Forms.MessageBox.Show(Comando + System.Environment.NewLine + System.Environment.NewLine + ex.Message, "Lazaro.Datos.Iniciar");
                                                                         }

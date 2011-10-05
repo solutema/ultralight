@@ -122,6 +122,7 @@ namespace qGen
                                 switch (this.SqlMode) {
                                         case SqlModes.MySql:
                                         case SqlModes.PostgreSql:
+                                        case SqlModes.SQLite:
                                                 // TODO: Postgre desde la versión 9 permite el estándar ANSI SQL:2008 (OFFSET x FETCH y ONLY)
                                                 Command.Append(" LIMIT " + this.Window.Limit.ToString());
                                                 if (this.Window.Offset > 0)

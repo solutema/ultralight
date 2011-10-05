@@ -489,7 +489,7 @@ namespace Lazaro.Misc.Backup
                                                                 break;
                                                 }
                                                 if (EndTable || Insertador.Count >= 1000) {
-                                                        DataBase.Execute(Insertador.ToString());
+                                                        DataBase.ExecuteSql(Insertador.ToString());
                                                         Insertador.Clear();
                                                         Progreso.Value = (int)Lector.Position;
                                                         System.Windows.Forms.Application.DoEvents();
@@ -512,7 +512,7 @@ namespace Lazaro.Misc.Backup
                                                                                 foreach (System.Text.RegularExpressions.Match Ocurrencia in Regex.Matches(DefaultCampo, PatronSecuencia)) {
                                                                                         string Secuencia = Ocurrencia.Groups[1].ToString();
                                                                                         int MaxId = DataBase.FieldInt("SELECT MAX(" + NombreCampo + ") FROM " + Tabla) + 1;
-                                                                                        DataBase.Execute("ALTER SEQUENCE " + Secuencia + " RESTART WITH " + MaxId.ToString());
+                                                                                        DataBase.ExecuteSql("ALTER SEQUENCE " + Secuencia + " RESTART WITH " + MaxId.ToString());
                                                                                 }
                                                                         }
                                                                 }

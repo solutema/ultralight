@@ -46,14 +46,14 @@ namespace Lbl.Servicios
 
                 public void CheckDataBase()
                 {
-                        this.DataBase.Execute("ALTER DATABASE " + this.DataBase.DataBaseName + " charset=utf8");
+                        this.DataBase.ExecuteSql("ALTER DATABASE " + this.DataBase.DataBaseName + " charset=utf8");
 
                         // Actualizo los saldos de stock, se acuerdo a stock_movim
-                        this.DataBase.Execute(@"UPDATE articulos SET stock_actual=(SELECT saldo FROM articulos_movim WHERE 
+                        this.DataBase.ExecuteSql(@"UPDATE articulos SET stock_actual=(SELECT saldo FROM articulos_movim WHERE 
 	                        articulos_movim.id_articulo=articulos.id_articulo
 	                        ORDER BY id_movim DESC
 	                        LIMIT 1) WHERE control_stock<>0");
-                        this.DataBase.Execute(@"UPDATE articulos SET stock_actual=0 WHERE control_stock=0");
+                        this.DataBase.ExecuteSql(@"UPDATE articulos SET stock_actual=0 WHERE control_stock=0");
 
                         // Verificar saldos de cuentas corrientes
                         string Sql = @"SELECT personas.id_persona

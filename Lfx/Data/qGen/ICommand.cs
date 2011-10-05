@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,70 +29,18 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace qGen
 {
-        public enum AndOr
+        public interface ICommand
         {
-                And,
-                Or,
-        }
+                Where WhereClause { get; set; }
+                SqlModes SqlMode { get; set; }
 
-        public enum WhereHaving
-        {
-                Where,
-                Having,
-        }
-
-        public enum SqlFunctions
-        {
-                Now
-        }
-
-        public enum SqlModes
-        {
-                Ansi = 0,
-                MySql,
-                PostgreSql,
-                SQLite,
-                TransactSql,
-                Oracle,
-        }
-
-        public enum ComparisonOperators
-        {
-                NullSafeEquals,
-                Equals,
-                NotEquals,
-                LessThan,
-                GreaterThan,
-                LessOrEqual,
-                GreaterOrEqual,
-                SensitiveLike,
-                InsensitiveLike,
-                SensitiveNotLike,
-                InsensitiveNotLike,
-                SoundsLike,
-                In,
-                NotIn,
-                Between
-        }
-
-        public enum JoinTypes
-        {
-                ImplicitJoin,
-                InnerJoin,
-                NaturalJoin,
-                CrossJoin,
-                LeftJoin,
-                LeftOuterJoin,
-                RightOuterJoin,
-                FullOuterJoin
-        }
-
-        public enum InsertTypes
-        {
-                Insert,
-                InsertOrReplace
+                void SetupDbCommand(ref System.Data.IDbCommand baseCommand);
         }
 }

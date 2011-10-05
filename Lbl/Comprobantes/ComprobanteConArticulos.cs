@@ -635,14 +635,14 @@ namespace Lbl.Comprobantes
                                 if (ArticulosAfectados.Count > 0) {
                                         string ArtCsv = ArticulosAfectados.ToString();
                                         //Actualizo cantidades pedidas y a pedir
-                                        Connection.Execute(@"UPDATE articulos SET apedir=(
+                                        Connection.ExecuteSql(@"UPDATE articulos SET apedir=(
 							SELECT SUM(cantidad)
 							FROM comprob, comprob_detalle
 							WHERE comprob.id_comprob=comprob_detalle.id_comprob
 							AND comprob.compra=1
 							AND tipo_fac='NP' AND estado=50 AND comprob_detalle.id_articulo=articulos.id_articulo)
 						WHERE control_stock=1 AND id_articulo IN (" + ArtCsv + " )");
-                                        Connection.Execute(@"UPDATE articulos SET pedido=(
+                                        Connection.ExecuteSql(@"UPDATE articulos SET pedido=(
 							SELECT SUM(cantidad)
 							FROM comprob, comprob_detalle
 							WHERE comprob.id_comprob=comprob_detalle.id_comprob

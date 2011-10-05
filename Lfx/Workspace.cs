@@ -344,7 +344,7 @@ namespace Lfx
 
                         Progreso.ChangeStatus("Carga inicial de datos");
                         Progreso.Max = Sql.Length;
-                        this.MasterConnection.Execute(Sql);
+                        this.MasterConnection.ExecuteSql(Sql);
                         /*
                         do {
                                 string Comando = Lfx.Data.Connection.GetNextCommand(ref Sql);
@@ -383,7 +383,7 @@ namespace Lfx
                                 System.IO.StreamReader Lector = new System.IO.StreamReader(RecursoActualizacion);
                                 string SqlActualizacion = dataBase.CustomizeSql(Lector.ReadToEnd());
                                 RecursoActualizacion.Close();
-                                dataBase.Execute(SqlActualizacion);
+                                dataBase.ExecuteSql(SqlActualizacion);
                                 /* Esto es si no soporta lotes (MyODBC) 
                                 do {
                                         string Comando = Data.Connection.GetNextCommand(ref SqlActualizacion);

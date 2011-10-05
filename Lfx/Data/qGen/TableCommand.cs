@@ -37,7 +37,7 @@ namespace qGen
         /// Comandos que operan sobre una o más tablas (SELECT, UPDATE, INSERT, DELETE, TRUNCATE, etc.)
         /// </summary>
         [Serializable]
-        public abstract class TableCommand : Command
+        public abstract class TableCommand : Command, ITableCommand
         {
                 public string Tables = "";
 

@@ -121,31 +121,26 @@ namespace Lfx.Data
                 /// <summary>
                 /// Obtiene una lista de tablas actualmente presente en la base de datos (puede no coincidir con dbstruct.xml)
                 /// </summary>
-                public System.Collections.Generic.List<string> GetTableNames()
+                public IList<string> GetTableNames()
                 {
-                        System.Collections.Generic.List<string> m_TableList = new List<string>();
+                        IList<string> m_TableList = new List<string>();
 
-                        if (m_TableList == null || m_TableList.Count == 0) {
-                                if (m_TableList == null)
-                                        m_TableList = new System.Collections.Generic.List<string>();
-                                System.Data.DataTable Tablas = null;
-                                switch (SqlMode) {
-                                        case qGen.SqlModes.MySql:
-                                        case qGen.SqlModes.Oracle:
-                                                Tablas = this.Connection.Select("SHOW TABLES");
-                                                break;
-                                        default:
-                                                Tablas = this.Connection.Select("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE' AND TABLE_SCHEMA='public'");
-                                                break;
-                                }
-
-                                if (m_TableList != null) {
-                                        foreach (System.Data.DataRow Tabla in Tablas.Rows) {
-                                                if (m_TableList.Contains(Tabla[0].ToString()) == false)
-                                                        m_TableList.Add(Tabla[0].ToString());
-                                        }
-                                }
+                        System.Data.DataTable Tablas = null;
+                        switch (SqlMode) {
+                                case qGen.SqlModes.MySql:
+                                case qGen.SqlModes.Oracle:
+                                        Tablas = this.Connection.Select("SHOW TABLES");
+                                        break;
+                                default:
+                                        Tablas = this.Connection.Select("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE' AND TABLE_SCHEMA='public'");
+                                        break;
                         }
+
+                        foreach (System.Data.DataRow Tabla in Tablas.Rows) {
+                                if (m_TableList.Contains(Tabla[0].ToString()) == false)
+                                        m_TableList.Add(Tabla[0].ToString());
+                        }
+
                         return m_TableList;
                 }
         }

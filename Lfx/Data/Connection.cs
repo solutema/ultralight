@@ -93,7 +93,7 @@ namespace Lfx.Data
                                         ConnectionString.Append("Allow Batch=True;");
                                         // ConnectionString.Append("KeepAlive=20;");     // No sirve, uso KeepAlive propio
                                         ConnectionString.Append("Pooling=false;");      // Si habilitamos el Pooling, en conector mantiene muchas conexiones abiertas
-                                                                                        // El pool crece, pero nunca se achica
+                                        // El pool crece, pero nunca se achica
                                         switch (System.Text.Encoding.Default.BodyName) {
                                                 case "utf-8":
                                                         ConnectionString.Append("charset=utf8;");
@@ -152,8 +152,7 @@ namespace Lfx.Data
                                 System.Data.Odbc.OdbcConnection OdbcConnection = DbConnection as System.Data.Odbc.OdbcConnection;
                                 try {
                                         OdbcConnection.StateChange -= new System.Data.StateChangeEventHandler(this.Connection_StateChange);
-                                }
-                                catch {
+                                } catch {
                                         // Nada
                                 }
                                 OdbcConnection.StateChange += new System.Data.StateChangeEventHandler(this.Connection_StateChange);
@@ -163,7 +162,7 @@ namespace Lfx.Data
                 private void KeepAliveTimer_Elapsed(object source, System.Timers.ElapsedEventArgs e)
                 {
                         try {
-                                this.Execute("SELECT 1");
+                                this.ExecuteSql("SELECT 1");
                         } catch {
                                 // Nada
                         }
@@ -291,14 +290,14 @@ namespace Lfx.Data
                         }
                 }
 
-                
+
                 public void SetTableStructure(Data.TableStructure newTableDef)
                 {
                         Data.TableStructure CurrentTableDef = this.GetTableStructure(newTableDef.Name, false);
                         bool TablaCreada = false;
                         if (CurrentTableDef.Columns.Count == 0) {
                                 //Crear la tabla
-                                this.Execute(this.CustomizeSql(newTableDef.ToString()));
+                                this.ExecuteSql(this.CustomizeSql(newTableDef.ToString()));
                                 TablaCreada = true;
                         } else {
                                 //Modificar tabla existente
@@ -357,7 +356,7 @@ namespace Lfx.Data
                                         }
 
                                         if (Sql != null) {
-                                                   this.Execute(this.CustomizeSql(Sql));
+                                                this.ExecuteSql(this.CustomizeSql(Sql));
                                         }
 
                                         LastColName = NewFieldDef.Name;
@@ -431,7 +430,7 @@ namespace Lfx.Data
                                         Sql = "ALTER TABLE \"" + index.TableName + "\" ADD " + index.SqlDefinition();
                                         break;
                         }
-                        this.Execute(Sql);
+                        this.ExecuteSql(Sql);
                 }
 
                 public void DropIndex(Data.IndexDefinition index)
@@ -451,7 +450,7 @@ namespace Lfx.Data
                                                 Sql = "ALTER TABLE \"" + index.TableName + "\" DROP INDEX \"" + index.Name + "\"";
                                         break;
                         }
-                        this.Execute(Sql);
+                        this.ExecuteSql(Sql);
                 }
 
                 public Data.TableStructure GetTableStructure(string tableName, bool withConstraints)
@@ -678,7 +677,7 @@ LEFT JOIN pg_attribute
                         System.Collections.Generic.Dictionary<string, ConstraintDefinition> CurrentConstraints = this.GetConstraints();
                         foreach (Data.ConstraintDefinition Con in CurrentConstraints.Values) {
                                 string Sql = "ALTER TABLE \"" + Con.TableName + "\" DROP FOREIGN KEY \"" + Con.Name + "\"";
-                                this.Execute(this.CustomizeSql(Sql));
+                                this.ExecuteSql(this.CustomizeSql(Sql));
                         }
                 }
 
@@ -694,16 +693,16 @@ LEFT JOIN pg_attribute
                                         if (CurrentConstraints.ContainsKey(NewCon.Name) == false) {
                                                 //Agregar
                                                 Sql = "ALTER TABLE \"" + NewCon.TableName + "\" ADD CONSTRAINT \"" + NewCon.Name + "\" FOREIGN KEY (\"" + NewCon.Column + "\") REFERENCES \"" + NewCon.ReferenceTable + "\" (\"" + NewCon.ReferenceColumn + "\") $DEFERRABLE$";
-                                                this.Execute(this.CustomizeSql(Sql));
+                                                this.ExecuteSql(this.CustomizeSql(Sql));
                                         } else if (CurrentConstraints[NewCon.Name] != NewCon) {
                                                 //No es igual... hay que modificarlo
                                                 if (this.AccessMode == AccessModes.Npgsql)
                                                         Sql = "ALTER TABLE \"" + NewCon.TableName + "\" DROP CONSTRAINT \"" + NewCon.Name + "\"";
                                                 else
                                                         Sql = "ALTER TABLE \"" + NewCon.TableName + "\" DROP FOREIGN KEY \"" + NewCon.Name + "\"";
-                                                this.Execute(this.CustomizeSql(Sql));
+                                                this.ExecuteSql(this.CustomizeSql(Sql));
                                                 Sql = "ALTER TABLE \"" + NewCon.TableName + "\" ADD CONSTRAINT \"" + NewCon.Name + "\" FOREIGN KEY (\"" + NewCon.Column + "\") REFERENCES \"" + NewCon.ReferenceTable + "\" (\"" + NewCon.ReferenceColumn + "\") $DEFERRABLE$";
-                                                this.Execute(this.CustomizeSql(Sql));
+                                                this.ExecuteSql(this.CustomizeSql(Sql));
                                         }
                                 }
                         } //deleteOnly
@@ -819,8 +818,7 @@ LEFT JOIN pg_attribute
                                 while ((DbConnection == null || DbConnection.State != System.Data.ConnectionState.Open) && intentos-- > 0) {
                                         try {
                                                 this.Open();
-                                        }
-                                        catch {
+                                        } catch {
                                                 System.Threading.Thread.Sleep(1000);
                                         }
                                 }
@@ -830,9 +828,9 @@ LEFT JOIN pg_attribute
                                 return true;
                         }
                 }
-		
-		public void Dispose()
-		{
+
+                public void Dispose()
+                {
                         if (this.Handle == 0 && this.Workspace.Disposing == false) {
                                 throw new InvalidOperationException("No se puede deshechar el espacio de trabajo maestro");
                         } else {
@@ -852,7 +850,7 @@ LEFT JOIN pg_attribute
 
                                 GC.SuppressFinalize(this);
                         }
-		}
+                }
 
 
                 public void Close()
@@ -861,7 +859,7 @@ LEFT JOIN pg_attribute
                                 m_Closing = true;
                                 try {
                                         KeepAliveTimer.Stop();
-                                        
+
                                         if (DbConnection.State == System.Data.ConnectionState.Open)
                                                 DbConnection.Close();
                                 } catch {
@@ -908,8 +906,7 @@ LEFT JOIN pg_attribute
                                         int Res = TempCommand.ExecuteNonQuery();
                                         TempCommand.Dispose();
                                         return Res;
-                                }
-                                catch (Exception ex) {
+                                } catch (Exception ex) {
                                         if (this.TryToRecover(ex))
                                                 throw;
                                 }
@@ -926,7 +923,7 @@ LEFT JOIN pg_attribute
                         if (this.IsOpen() == false)
                                 this.Open();
 
-                        return this.Execute(deleteCommand.ToString());
+                        return this.ExecuteSql(deleteCommand.ToString());
                 }
 
                 public int Insert(qGen.Insert insertCommand)
@@ -942,8 +939,7 @@ LEFT JOIN pg_attribute
                         System.Data.IDbCommand TempCommand = this.GetCommand(insertCommand);
                         try {
                                 return TempCommand.ExecuteNonQuery();
-                        }
-                        catch (Exception ex) {
+                        } catch (Exception ex) {
                                 this.LogError("----------------------------------------------------------------------------");
                                 this.LogError(ex.Message);
                                 this.LogError(TempCommand.CommandText);
@@ -952,8 +948,7 @@ LEFT JOIN pg_attribute
                 }
 
 
-                // FIXME: Debería ser private o no existir
-                public int Execute(string sqlCommand)
+                public int ExecuteSql(string sqlCommand)
                 {
                         if (this.ReadOnly)
                                 throw new InvalidOperationException("No se pueden realizar cambios en la conexión de lectura");
@@ -985,7 +980,7 @@ LEFT JOIN pg_attribute
                         }
                 }
 
-                private int ExecuteNonQuery(System.Data.IDbCommand command)
+                public int ExecuteNonQuery(System.Data.IDbCommand command)
                 {
                         if (this.ReadOnly)
                                 throw new InvalidOperationException("No se pueden realizar cambios en la conexión de lectura");
@@ -1002,7 +997,7 @@ LEFT JOIN pg_attribute
                                         this.ResetKeepAliveTimer();
                                         int Res = command.ExecuteNonQuery();
                                         return Res;
-                                } catch (Exception ex)  {
+                                } catch (Exception ex) {
                                         if (this.TryToRecover(ex) || Intentos-- <= 0) {
                                                 LogError("----------------------------------------------------------------------------");
                                                 LogError(ex.Message);
@@ -1064,8 +1059,7 @@ LEFT JOIN pg_attribute
                                 try {
                                         object Res = Cmd.ExecuteScalar();
                                         return Res;
-                                }
-                                catch (Exception ex) {
+                                } catch (Exception ex) {
                                         if (this.TryToRecover(ex) || Intentos-- <= 0) {
                                                 LogError("----------------------------------------------------------------------------");
                                                 LogError(ex.Message);
@@ -1196,8 +1190,7 @@ LEFT JOIN pg_attribute
                                         this.ResetKeepAliveTimer();
                                         System.Data.IDataReader Rdr = Cmd.ExecuteReader(System.Data.CommandBehavior.SingleResult);
                                         return Rdr;
-                                }
-                                catch (Exception ex) {
+                                } catch (Exception ex) {
                                         if (this.TryToRecover(ex)) {
                                                 LogError("----------------------------------------------------------------------------");
                                                 LogError(ex.Message);
@@ -1218,40 +1211,6 @@ LEFT JOIN pg_attribute
                 {
                         if (this.IsOpen() == false)
                                 this.Open();
-
-                        // FIXME: se puede eliminar el uso de DataAdapter, con el siguiente código
-                        /*
-                        System.Data.DataTable Res = new System.Data.DataTable();
-                        System.Data.IDataReader Lector = this.GetReader(selectCommand);
-                        while (Lector.Read()) {
-                                if(Res.Columns.Count == 0) {
-                                        for (int i = 0; i < Lector.FieldCount; i++) {
-                                                Type Tipo;
-                                                if (Lector.IsDBNull(i))
-                                                        Tipo = (new Object()).GetType();
-                                                else
-                                                        Tipo = Lector.GetValue(i).GetType();
-                                                Res.Columns.Add(new System.Data.DataColumn(Lector.GetName(i), Tipo));
-                                        }
-                                }
-                                
-                                System.Data.DataRow Rw = Res.NewRow();
-                                for (int i = 0; i < Lector.FieldCount; i++) {
-                                        Rw[i] = Lector[i];
-                                }
-                                Res.Rows.Add(Rw);
-                        }
-                        Lector.Close();
-                        return Res; */
-
-                        // Esto detecta SELECT con WHERE que no encuentren índices apropiados
-                        /* if (Lfx.Environment.SystemInformation.DesignMode && selectCommand.Length > 7 && selectCommand.Substring(0, 7) == "SELECT " && selectCommand.IndexOf(" WHERE ") >= 0) {
-                                System.Data.DataTable Explain = Select("EXPLAIN " + selectCommand);
-                                foreach (System.Data.DataRow Rw in Explain.Rows) {
-                                        if (Rw["key"] is DBNull || Rw["extra"].ToString() != "Using where")
-                                                System.Console.WriteLine(selectCommand);
-                                }
-                        } */
 
                         System.Data.IDbDataAdapter Adaptador = Lfx.Data.DataBaseCache.DefaultCache.Provider.GetAdapter(selectCommand, this.DbConnection);
                         using (System.Data.DataSet Lector = new System.Data.DataSet()) {

@@ -102,6 +102,8 @@
     <Compile Include="Data\Listing.cs" />
     <Compile Include="Data\qGen\BeginTransactionCommand.cs" />
     <Compile Include="Data\qGen\CommitCommand.cs" />
+    <Compile Include="Data\qGen\ICommand.cs" />
+    <Compile Include="Data\qGen\ITableCommand.cs" />
     <Compile Include="Data\qGen\JoinCollection.cs" />
     <Compile Include="Data\qGen\RollBackCommand.cs" />
     <Compile Include="Data\qGen\SetCommand.cs" />
