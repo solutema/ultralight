@@ -61,7 +61,7 @@ namespace Lbl.Comprobantes
                         ColeccionDetalleArticulos Res = new ColeccionDetalleArticulos(comprobante);
                         foreach (DetalleArticulo Det in this) {
                                 // FIXME: debería clonar también Det
-                                Res.Add(Det);
+                                Res.Add(Det.Clone());
                         }
                         return Res;
                 }

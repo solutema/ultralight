@@ -73,6 +73,8 @@ namespace Lazaro.Misc
                         }
 
                         EtiquetaFramework.Text = Lfx.Environment.SystemInformation.RuntimeName;
+                        if (System.Runtime.InteropServices.Marshal.SizeOf(typeof(System.IntPtr)) == 8)
+                                EtiquetaFramework.Text += " (64 bits)";
                 }
 
 

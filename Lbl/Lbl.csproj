@@ -84,6 +84,7 @@
     <Compile Include="Atributos\MuestraPanelExtendido.cs" />
     <Compile Include="Atributos\NombreItem.cs" />
     <Compile Include="ColeccionCodigoDetalle.cs" />
+    <Compile Include="Componentes\Componente.cs" />
     <Compile Include="Comprobantes\Factura.cs" />
     <Compile Include="Comprobantes\Lote.cs" />
     <Compile Include="Estados.cs" />

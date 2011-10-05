@@ -4,6 +4,11 @@
         <name>Lbl</name>
     </assembly>
     <members>
+        <member name="T:Lbl.Componentes.Componente">
+            <summary>
+            Representa un componente.
+            </summary>
+        </member>
         <member name="T:Lbl.ElementoDeDatos">
             <summary>
             Proporciona acceso a los datos con alto nivel de abstracción.
@@ -163,6 +168,21 @@
         <member name="P:Lbl.ElementoDeDatos.Etiquetas">
             <summary>
             Obtiene o establece las etiquetas del elemento.
+            </summary>
+        </member>
+        <member name="P:Lbl.Componentes.Componente.EspacioNombres">
+            <summary>
+            Espacio de nombres bajo el cual opera el componente.
+            </summary>
+        </member>
+        <member name="P:Lbl.Componentes.Componente.Version">
+            <summary>
+            Versión instalada del componente.
+            </summary>
+        </member>
+        <member name="P:Lbl.Componentes.Componente.Estructura">
+            <summary>
+            Estructura adicional de base de datos requerida por este componente.
             </summary>
         </member>
         <member name="M:Lbl.Comprobantes.Comprobante.Numerar(System.Int32,System.Boolean)">
