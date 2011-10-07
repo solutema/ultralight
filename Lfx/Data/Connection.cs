@@ -301,6 +301,22 @@ namespace Lfx.Data
                                 TablaCreada = true;
                         } else {
                                 //Modificar tabla existente
+
+                                // Primero dropeo las que ya no son claves primarias
+                                foreach (Data.ColumnDefinition NewFieldDef in newTableDef.Columns.Values) {
+                                        if (CurrentTableDef.Columns.ContainsKey(NewFieldDef.Name)) {
+                                                Data.ColumnDefinition CurrentFieldDef = CurrentTableDef.Columns[NewFieldDef.Name];
+                                                if (CurrentFieldDef.PrimaryKey == true && NewFieldDef.PrimaryKey == false) {
+                                                        // FIXME: esto es léxico MySQL
+                                                        string Sql = "ALTER TABLE \"" + newTableDef.Name + "\" DROP PRIMARY KEY;";
+                                                        this.ExecuteSql(this.CustomizeSql(Sql));
+                                                        break;
+                                                }
+                                        }
+                                }
+
+
+                                // Luego hago las modificaciones pertinentes
                                 string LastColName = null;
                                 foreach (Data.ColumnDefinition NewFieldDef in newTableDef.Columns.Values) {
                                         string Sql = null;

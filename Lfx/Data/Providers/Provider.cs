@@ -70,6 +70,8 @@ namespace qGen.Providers
                                                 m_Assembly = Assembly.LoadFrom(Lfx.Environment.Folders.ApplicationFolder + this.AssemblyName + ".dll");
                                         else if (System.IO.File.Exists(this.AssemblyName + ".dll"))
                                                 m_Assembly = Assembly.LoadFrom(this.AssemblyName + ".dll");
+                                        else
+                                                throw new System.IO.FileNotFoundException("No se encuenta " + this.AssemblyName + ".dll");
                                 }
                                 return m_Assembly;
                         }

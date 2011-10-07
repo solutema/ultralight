@@ -1145,14 +1145,14 @@
 
 
   <Table name="tickets_articulos" label="Tareas/Artículos">
-    <Column name="id_ticket_articulo" datatype="Integer" />
-    <Column name="id_ticket" datatype="Integer" nullable="0" primary_key="1" />
-    <Column name="id_articulo" datatype="Integer" nullable="0" primary_key="1" />
+    <Column name="id_ticket_articulo" datatype="Serial" nullable="0" primary_key="1" />
+    <Column name="id_ticket" datatype="Integer" nullable="0" />
+    <Column name="id_articulo" datatype="Integer" nullable="1" />
     <Column name="nombre" datatype="VarChar" nullable="0" lenght="200" />
     <Column name="orden" datatype="SmallInt" nullable="0" default="0" />
     <Column name="cantidad" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
     <Column name="precio" inputtype="Currency" default="0" />
-    <Index table="tickets_articulos" name="PRIMARY" columns="id_ticket,id_articulo" unique="1" primary="1" />
+    <Index table="tickets_articulos" name="PRIMARY" columns="id_ticket_articulo" unique="1" primary="1" />
     <Index table="tickets_articulos" name="tickets_articulos_id_ticket" columns="id_ticket" unique="0" primary="0" />
     <Index table="tickets_articulos" name="tickets_articulos_id_articulo" columns="id_articulo" unique="0" primary="0" />
   </Table>
