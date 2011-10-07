@@ -307,6 +307,7 @@ namespace Lazaro.Misc.Config
                         this.EntradaConexion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConexion.SetData = new string[] {
         "ODBC|odbc",
+        "SQLite|sqlite",
         "MySQL|mysql",
         "PostgreSQL|npgsql"};
                         this.EntradaConexion.Size = new System.Drawing.Size(196, 23);

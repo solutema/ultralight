@@ -379,6 +379,17 @@ namespace Lbl
                         this.Connection.Execute(NuevoCom);
                 }
 
+
+                /// <summary>
+                /// Actualiza el Id del elemento, sólo después de crear.
+                /// </summary>
+                protected void ActualizarId()
+                {
+                        if (this.Id == 0)
+                                m_ItemId = this.Connection.FieldInt("SELECT LAST_INSERT_ID()");
+                }
+
+
                 /// <summary>
                 /// Guarda todos los cambios en la base de datos. Si se trata de un elemento nuevo, se agrega un registro a la base de datos.
                 /// Si se trata de un elemento existente, se modifica el registro original.
@@ -387,7 +398,7 @@ namespace Lbl
 		{
                         if (this.Id == 0) {
                                 // Acabo de insertar, averiguo mi propio id
-                                m_ItemId = this.Connection.FieldInt("SELECT LAST_INSERT_ID()");
+                                 this.ActualizarId();
                         } else {
                                 // Es un registro antiguo, lo elimino de la caché
                                 this.Connection.Tables[this.TablaDatos].FastRows.RemoveFromCache(this.Id);

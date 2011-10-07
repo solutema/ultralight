@@ -40,6 +40,7 @@ namespace Lfx.Data
                 MySql,          // MySQL Connector/NET
                 Npgsql,
                 MSSql,
+                SQLite,
                 Oracle,
         }
 

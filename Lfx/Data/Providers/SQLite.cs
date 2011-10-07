@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -31,43 +31,25 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Lfx.Data
+namespace qGen.Providers
 {
-        public class TableCollection : List<Lfx.Data.Table>
+        /// <summary>
+        /// Proveedor compatible con SQLite. Requiere la presencia de System.Data.SQLite.dll en el directorio del programa.
+        /// </summary>
+        public class SQLite : Provider
         {
-                protected Connection DataBase;
-
-                public TableCollection(Connection dataBase)
+                public SQLite() :
+                        base("System.Data.SQLite",
+                        "System.Data.SQLite",
+                        "SQLiteConnection",
+                        "SQLiteCommand",
+                        "SQLiteDataAdapter",
+                        "SQLiteParameter",
+                        "SQLiteTransaction")
                 {
-                        this.DataBase = dataBase;
                 }
-
-                new public void Add(Table table)
-                {
-                        table.Connection = this.DataBase;
-                        base.Add(table);
-                }
-
-                public bool ContainsKey(string name)
-                {
-                        foreach (Table Tb in this) {
-                                if (Tb.Name == name)
-                                        return true;
-                        }
-                        return false;
-                }
-
-		public Table this[string name]
-		{
-			get
-			{
-				foreach(Table Tb in this) {
-					if(Tb.Name == name)
-						return Tb;
-				}
-                                throw new ArgumentOutOfRangeException("No existe la tabla " + name);
-			}
-		}
         }
 }

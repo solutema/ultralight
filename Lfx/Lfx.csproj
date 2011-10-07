@@ -100,6 +100,8 @@
     <Compile Include="Data\Filter.cs" />
     <Compile Include="Data\FormFieldCollection.cs" />
     <Compile Include="Data\Listing.cs" />
+    <Compile Include="Data\Providers\IProvider.cs" />
+    <Compile Include="Data\Providers\SQLite.cs" />
     <Compile Include="Data\qGen\BeginTransactionCommand.cs" />
     <Compile Include="Data\qGen\CommitCommand.cs" />
     <Compile Include="Data\qGen\ICommand.cs" />

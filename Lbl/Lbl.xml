@@ -37,6 +37,11 @@
             </summary>
             <param name="texto">El texto del comentario.</param>
         </member>
+        <member name="M:Lbl.ElementoDeDatos.ActualizarId">
+            <summary>
+            Actualiza el Id del elemento, sólo después de crear.
+            </summary>
+        </member>
         <member name="M:Lbl.ElementoDeDatos.Guardar">
             <summary>
             Guarda todos los cambios en la base de datos. Si se trata de un elemento nuevo, se agrega un registro a la base de datos.

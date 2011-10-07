@@ -223,6 +223,7 @@ namespace Lbl.Tareas
                         this.AgregarTags(Comando);
 
                         this.Connection.Execute(Comando);
+                        this.ActualizarId();
 
                         if (this.RegistroOriginal != null && this.RegistroOriginal["estado"] != this.Registro["estado"])
                                 this.AgregarComentario("Actualización de Estado: " + Lbl.Tareas.Estado.TodosPorNumero[this.Estado].ToString());

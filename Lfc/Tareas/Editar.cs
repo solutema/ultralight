@@ -292,14 +292,10 @@ namespace Lfc.Tareas
 
                 private void BotonArticulos_Click(object sender, System.EventArgs e)
                 {
-                        if (this.Elemento.Existe == false) {
-                                Lui.Forms.MessageBox.Show("No se puede cargar artículos en una Tarea que aun no ha sido creada.", "Error");
-                        } else {
-                                Tareas.Articulos FormularioArticulos = new Tareas.Articulos();
-                                FormularioArticulos.MdiParent = this.ParentForm.MdiParent;
-                                FormularioArticulos.Tarea = this.Elemento as Lbl.Tareas.Tarea;
-                                FormularioArticulos.Show();
-                        }
+                        Tareas.Articulos FormularioArticulos = new Tareas.Articulos();
+                        FormularioArticulos.MdiParent = this.ParentForm.MdiParent;
+                        FormularioArticulos.Tarea = this.Elemento as Lbl.Tareas.Tarea;
+                        FormularioArticulos.Show();
                 }
 
 

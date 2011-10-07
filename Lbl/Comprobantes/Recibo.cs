@@ -308,9 +308,7 @@ namespace Lbl.Comprobantes
                         this.AgregarTags(Comando);
 
                         this.Connection.Execute(Comando);
-
-                        // Tomo el id del recibo que acabo de crear
-                        m_ItemId = this.Connection.FieldInt("SELECT LAST_INSERT_ID()");
+                        this.ActualizarId();
 
                         string ObsPago = string.Empty;
                         if (this.Obs != null && this.Obs.Length > 0)

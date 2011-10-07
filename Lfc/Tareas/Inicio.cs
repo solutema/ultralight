@@ -29,6 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.ComponentModel;
@@ -72,6 +73,7 @@ namespace Lfc.Tareas
 				        new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 240),
 				        new Lfx.Data.FormField("tickets.estado", "Estado", 160, EstadosTickets),
 				        new Lfx.Data.FormField("tickets.fecha_ingreso", "Ingreso", Lfx.Data.InputFieldTypes.DateTime, 160),
+                                        new Lfx.Data.FormField("tickets.entrega_limite", "Vencimiento", Lfx.Data.InputFieldTypes.Date, 96),
                                         new Lfx.Data.FormField("tickets.id_tecnico_recibe", "Encargado", Lfx.Data.InputFieldTypes.Text, 240),
                                         new Lfx.Data.FormField("DATEDIFF(NOW(), tickets.fecha_ingreso) AS fechadiff", "Antigüedad", Lfx.Data.InputFieldTypes.Integer, 60)
 			        },
@@ -170,6 +172,11 @@ namespace Lfc.Tareas
                                 item.SubItems["id_tecnico_recibe"].Text = this.Connection.Tables["personas"].FastRows[IdEncargado].Fields["nombre"].ValueString;
 
                         int IdEstado = row.Fields["estado"].ValueInt;
+                        DateTime FechaLimite = row.Fields["entrega_limite"].ValueDateTime;
+                        if (FechaLimite > DateTime.Now) {
+                                item.SubItems["entrega_limite"].BackColor = Color.Red;
+                                item.SubItems["entrega_limite"].ForeColor = Color.White;
+                        }
                         int Dias = row.Fields["fechadiff"].ValueInt;
                         switch (IdEstado) {
                                 case 0:

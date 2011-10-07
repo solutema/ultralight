@@ -563,9 +563,7 @@ namespace Lbl.Comprobantes
 			this.AgregarTags(Comando);
 
                         this.Connection.Execute(Comando);
-
-                        if (this.Existe == false)
-                                this.m_ItemId = this.Connection.FieldInt("SELECT LAST_INSERT_ID()");
+                        this.ActualizarId();
 
                         this.GuardarDetalle();
 
@@ -768,6 +766,10 @@ namespace Lbl.Comprobantes
                 {
                         Lbl.Comprobantes.ComprobanteConArticulos Nuevo = this.Clone(tipo);
                         Nuevo.ComprobanteOriginal = this;
+                        Nuevo.Estado = 0;
+                        Nuevo.Impreso = false;
+                        Nuevo.Numero = 0;
+                        Nuevo.PV = 0;
                         Nuevo.Tipo = tipo;
                         Nuevo.Obs = "s/" + this.ToString();
                         return Nuevo;

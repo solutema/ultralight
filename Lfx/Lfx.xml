@@ -34,6 +34,17 @@
             Define los datos para emitir un listado.
             </summary>
         </member>
+        <member name="T:qGen.Providers.SQLite">
+            <summary>
+            Proveedor compatible con SQLite. Requiere la presencia de System.Data.SQLite.dll en el directorio del programa.
+            </summary>
+        </member>
+        <member name="T:qGen.Providers.Provider">
+            <summary>
+            Representa un proveedor ADO.NET, el cual se carga en tiempo de ejecución a través de System.Reflection para no
+            agregar dependencias en tiempo de diseño. La única dependencia en tiempo de diseño es System.Data.Odbc.
+            </summary>
+        </member>
         <member name="T:qGen.Command">
             <summary>
             Esta clase y sus derivadas se utilizan para evitar escribir los comandos SQL como literales de texto.
@@ -152,12 +163,6 @@
         <member name="T:qGen.Providers.Npgsql">
             <summary>
             Proveedor compatible con Npgsql versión 2. Requiere la presencia de Npgsql.dll en el directorio del programa.
-            </summary>
-        </member>
-        <member name="T:qGen.Providers.Provider">
-            <summary>
-            Representa un proveedor ADO.NET, el cual se carga en tiempo de ejecución a través de System.Reflection para no
-            agregar dependencias en tiempo de diseño. La única dependencia en tiempo de diseño es System.Data.Odbc.
             </summary>
         </member>
         <member name="T:qGen.TableCommand">
@@ -340,7 +345,7 @@
         </member>
         <member name="T:System.StringExtensions">
             <summary>
-            Métodos de extension para el tipo Int.
+            Métodos de extension para el tipo string.
             </summary>
         </member>
         <member name="M:System.StringExtensions.ParseSqlDateTime(System.String)">
@@ -502,7 +507,7 @@
             <param name="dataBase">PrintDataBase mediante el cual se accede a la base de datos.</param>
             <param name="omitPreAndPostSql">Omitir la ejecución de comandos Pre- y Post-actualización de estructura. Esto es útil cuando se actualiza una estructura vacía, por ejemplo al crear una base de datos nueva.</param>
         </member>
-        <member name="T:qGen.Providers.MySqlProvider">
+        <member name="T:qGen.Providers.MySql">
             <summary>
             Proveedor compatible con MySql Connector/NET versión 6. Requiere la presencia de MySql.Data.dll en el directorio del programa.
             </summary>

@@ -38,7 +38,7 @@ namespace qGen.Providers
         /// Representa un proveedor ADO.NET, el cual se carga en tiempo de ejecución a través de System.Reflection para no
         /// agregar dependencias en tiempo de diseño. La única dependencia en tiempo de diseño es System.Data.Odbc.
         /// </summary>
-        public class Provider
+        public abstract class Provider : IProvider
         {
                 public string AssemblyName = null;
                 public string NameSpace = null;
@@ -61,7 +61,7 @@ namespace qGen.Providers
                         this.TransactionClass = transactionClass;
                 }
 
-                public Assembly Assembly
+                protected Assembly Assembly
                 {
                         get
                         {

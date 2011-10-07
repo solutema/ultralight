@@ -126,9 +126,9 @@ namespace Lazaro
                                 if (ArchivosNuevos.Length > 0) {
                                         System.Console.WriteLine("Existen actualizaciones pendientes. Ejecutando ActualizadorLazaro");
                                         if (Lfx.Environment.SystemInformation.IsUacActive)
-                                                Lui.Forms.MessageBox.Show("A continuación se van a instalar actualizaciones del programa. Es posible que el sistema le solicite autorización para continuar con la instalación. Luego de la actualización el sistema iniciará normalmente.", "Lázaro");
+                                                Lui.Forms.MessageBox.Show("A continuación se van a instalar actualizaciones del programa. Es posible que el sistema le solicite autorización para continuar con la instalación. Luego de la actualización el sistema iniciará nuevamente.", "Lázaro");
                                         else
-                                                Lui.Forms.MessageBox.Show("A continuación se van a instalar actualizaciones del programa. Luego de la actualización el sistema iniciará normalmente.", "Lázaro");
+                                                Lui.Forms.MessageBox.Show("A continuación se van a instalar actualizaciones del programa. Luego de la actualización el sistema iniciará nuevamente.", "Lázaro");
                                         Lfx.Environment.Shell.Reboot();
                                 }
                         }
@@ -237,7 +237,18 @@ namespace Lazaro
                         DateTime FechaLazaroExe = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).LastWriteTime;
                         DateTime MinVersion = Lfx.Types.Parsing.ParseSqlDateTime(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionMinima", "2000-01-01 00:00:00"));
                         if (FechaLazaroExe < MinVersion) {
-                                Lfx.Workspace.Master.RunTime.Message("La versión de Lázaro que está utilizando es antigua. Debe actualizar su sistema antes de continuar. Para obtener la útlma versión visite el sitio web de Lázaro: www.sistemalazaro.com.ar");
+                                Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("La versión de Lázaro que está utilizando es demasiado antigua. Debe actualizar su sistema antes de continuar. ¿Desea descargar la versión más nueva hora?", "Actualización");
+                                Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
+                                if (Pregunta.ShowDialog() == DialogResult.OK) {
+                                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Descargando...", "Se está descargando la versión más nueva de la aplicación.");
+                                        Progreso.Blocking = true;
+                                        Progreso.Begin();
+                                        Lfx.Services.Updater.NetGet("http://www.sistemalazaro.com.ar/aslnlwc/InstalarLazaro.exe", Lfx.Environment.Folders.UpdatesFolder + "InstalarLazaro.exe");
+                                        Progreso.End();
+                                        Lfx.Environment.Shell.Reboot();
+                                } else {
+                                        Lfx.Workspace.Master.RunTime.Message("La versión de Lázaro que está utilizando es demasiado antigua. Descargue e instale la última versión para continuar. Si desea más información ingrese a la página web www.sistemalazaro.com.ar");
+                                }
                                 System.Environment.Exit(1);
                         }
 
@@ -250,8 +261,11 @@ namespace Lazaro
                                 Lfx.Workspace.Master.RunTime.Message("La versión de Lázaro que está utilizando es antigua. Por favor actualice su sistema urgentemente.");
                         }
 
-                        // Cargar todos los componentes en memoria
-                        Lfx.Components.Manager.LoadAll();
+                        if (Lfx.Workspace.Master.MasterConnection.Tables.ContainsKey("sys_components"))
+                                CargarComponentes();
+                        else
+                                // FIXME: quitar una vez que esté todo mudado a Lbl.Componentes
+                                Lfx.Components.Manager.LoadAll();
 
                         Lfx.Types.OperationResult ResultadoInicio = IniciarGui();
 
@@ -260,6 +274,29 @@ namespace Lazaro
 
                         return 0;
                 }
+
+
+                /// <summary>
+                /// Carga en memoria los componentes registrados en la base de datos
+                /// </summary>
+                private static void CargarComponentes()
+                {
+                        Lbl.ColeccionGenerica<Lbl.Componentes.Componente> Comps = Lbl.Componentes.Componente.Todos();
+                        foreach (Lbl.Componentes.Componente Comp in Comps) {
+                                // Cargar todos los componentes en memoria
+                                Lfx.Components.Component CompInfo = Lfx.Components.Manager.Load(Comp.EspacioNombres);
+                                if (CompInfo != null && Lfx.Environment.SystemInformation.DesignMode == false && CompInfo.Version > Comp.Version) {
+                                        // Actualizo los datos sobre el componente
+
+                                        Comp.Version = CompInfo.Version;
+                                        if (CompInfo.DataStructure != null)
+                                                Comp.Estructura = CompInfo.DataStructure.InnerXml;
+
+                                        Comp.Guardar();
+                                }
+                        }
+                }
+
 
                 /// <summary>
                 /// Descarga en caso de que haga falta algunos ensamblados necesarios para el funcionamiento del programa.

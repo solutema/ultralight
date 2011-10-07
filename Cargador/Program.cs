@@ -52,11 +52,31 @@ namespace Cargador
 
                         string[] ArchivosNuevos = System.IO.Directory.GetFiles(CarpetaDescarga, "*.new", System.IO.SearchOption.AllDirectories);
                         if (ArchivosNuevos.Length > 0) {
-                                if (IsUacActive && IsAdministrator == false)
+                                if (IsUacActive && IsAdministrator == false) {
+                                        System.Console.WriteLine("Ejecutando como Administrador.");
                                         Elevate();
-                                System.Console.WriteLine("Se van a actualizar " + ArchivosNuevos.Length.ToString() + " archivos.");
-                                // Espero 1 segundo por si algún proceso todavía está corriendo.
-                                System.Threading.Thread.Sleep(1500);
+                                        return;
+                                } else {
+                                        System.Console.WriteLine("Se van a actualizar " + ArchivosNuevos.Length.ToString() + " archivos.");
+                                }
+                        }
+
+
+                        if (System.IO.File.Exists(CarpetaDescarga + "InstalarLazaro.exe")) {
+                                System.Diagnostics.Process NuevoProceso = new System.Diagnostics.Process();
+                                NuevoProceso.StartInfo = new System.Diagnostics.ProcessStartInfo(CarpetaDescarga + "InstalarLazaro.exe", "/SILENT /NOCANCEL /NORESTART");
+                                NuevoProceso.StartInfo.UseShellExecute = true;
+                                NuevoProceso.StartInfo.Verb = "runas";
+                                NuevoProceso.Start();
+
+                                NuevoProceso.WaitForExit();
+
+                                System.Threading.Thread.Sleep(500);
+
+                                System.IO.File.Delete(CarpetaDescarga + "InstalarLazaro.exe");
+
+                                EjecutarLazaro();
+                                return;
                         }
 
                         foreach (string ArchivoNuevo in ArchivosNuevos) {
@@ -80,7 +100,12 @@ namespace Cargador
                                         System.Console.WriteLine("Ignorando " + ArchivoNuevo);
                                 }
                         }
+                        
+                        EjecutarLazaro();
+                }
 
+                public static void EjecutarLazaro()
+                {
                         string[] ParametrosAPasar = System.Environment.GetCommandLineArgs();
                         ParametrosAPasar[0] = "";
                         string Params = string.Join(" ", ParametrosAPasar).Trim();
@@ -98,6 +123,8 @@ namespace Cargador
 
                         NuevoProceso.StartInfo.UseShellExecute = false;
                         NuevoProceso.Start();
+
+                        System.Environment.Exit(0);
                 }
 
                 public static void Elevate()

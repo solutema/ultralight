@@ -105,6 +105,10 @@ namespace Lfx
                                         case "mssql":
                                                 Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MSSql;
                                                 break;
+
+                                        case "sqlite":
+                                                Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.SQLite;
+                                                break;
                                 }
                         }
 

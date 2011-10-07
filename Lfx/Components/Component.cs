@@ -42,6 +42,8 @@ namespace Lfx.Components
                 public List<MenuEntry> MenuEntries = null;
                 public System.Reflection.Assembly Assembly = null;
                 public bool Disabled = false;
+                public DateTime Version;
+                public System.Xml.XmlDocument DataStructure = null;
 
                 public Component(string cifFileName)
                 {
@@ -49,6 +51,7 @@ namespace Lfx.Components
                         this.Nombre = System.IO.Path.GetFileNameWithoutExtension(cifFileName);
 
                         if (System.IO.File.Exists(this.CifFileName)) {
+                                this.Version = System.IO.File.GetLastWriteTime(this.CifFileName);
                                 using (System.IO.TextReader ArchivoCif = new System.IO.StreamReader(this.CifFileName, true)) {
                                         System.Xml.XmlDocument DocumentoCif = new System.Xml.XmlDocument();
                                         DocumentoCif.Load(ArchivoCif);

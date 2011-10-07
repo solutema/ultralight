@@ -42,6 +42,28 @@ namespace Lfx.Components
                 public static Dictionary<string, Lfx.Components.Component> ComponentesCargados = new Dictionary<string, Component>();
                 public static FunctionInfoCollection TiposRegistrados = new FunctionInfoCollection();
 
+                public static Lfx.Components.Component Load(string nameSpace)
+                {
+                        string CifName = Lfx.Environment.Folders.ComponentsFolder + nameSpace + ".cif";
+                        if (System.IO.File.Exists(CifName)) {
+                                Lfx.Components.Component CompInfo = new Lfx.Components.Component(CifName);
+                                if (CompInfo.Disabled == false) {
+                                        if (Lfx.Environment.SystemInformation.DesignMode) {
+                                                RegisterComponent(CompInfo);
+                                        } else {
+                                                try {
+                                                        RegisterComponent(CompInfo);
+                                                } catch {
+                                                        if (Lfx.Workspace.Master != null)
+                                                                Lfx.Workspace.Master.RunTime.Message("No se puede registrar el componente " + CompInfo.Nombre);
+                                                }
+                                        }
+                                        return CompInfo;
+                                }
+                        }
+                        return null;
+                }
+
 
                 public static void LoadAll()
                 {
@@ -92,6 +114,9 @@ namespace Lfx.Components
                                                                 Doc.Load(Lector);
                                                                 Lector.Close();
                                                                 DbStructXml.Close();
+                                                                componentInfo.DataStructure = Doc;
+
+                                                                // FIXME: quitar una vez que esté todo mudado a Lbl.Componentes
                                                                 Lfx.Workspace.Master.Structure.AddToBuiltIn(Doc);
                                                         }
                                                 }

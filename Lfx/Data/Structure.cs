@@ -391,7 +391,7 @@ namespace Lfx.Data
                                 if (m_TagList == null || m_TagList.Count == 0) {
                                         if (m_TagList == null)
                                                 m_TagList = new System.Collections.Generic.Dictionary<string, Data.TagCollection>();
-                                        if (Lfx.Data.DataBaseCache.DefaultCache.Tables.Contains("sys_tags")) {
+                                        if (Lfx.Data.DataBaseCache.DefaultCache.Tables.ContainsKey("sys_tags")) {
                                                 System.Data.DataTable TagsTable = Lfx.Workspace.Master.MasterConnection.Select("SELECT * FROM sys_tags ORDER BY tablename");
                                                 foreach (System.Data.DataRow TagRow in TagsTable.Rows) {
                                                         string TableName = TagRow["tablename"].ToString();

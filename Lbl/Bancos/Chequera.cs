@@ -169,9 +169,7 @@ namespace Lbl.Bancos
                         Comando.Fields.AddWithValue("estado", this.Estado);
 
                         Connection.Execute(Comando);
-
-                        if (m_ItemId == 0)
-                                m_ItemId = Connection.FieldInt("SELECT LAST_INSERT_ID()");
+                        this.ActualizarId();
 
                         if (this.Desde > 0 && this.Hasta > 0 && this.Hasta > this.Desde) {
 				qGen.Update Actua = new qGen.Update("bancos_cheques");

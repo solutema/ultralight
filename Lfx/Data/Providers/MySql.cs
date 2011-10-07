@@ -34,9 +34,9 @@ namespace qGen.Providers
         /// <summary>
         /// Proveedor compatible con MySql Connector/NET versión 6. Requiere la presencia de MySql.Data.dll en el directorio del programa.
         /// </summary>
-        public class MySqlProvider : Provider
+        public class MySql : Provider
         {
-                public MySqlProvider() :
+                public MySql() :
                         base("MySql.Data",
                         "MySql.Data",
                         "MySqlClient.MySqlConnection",

@@ -815,7 +815,7 @@ namespace Lbl.Articulos
                         this.Connection.Execute(Comando);
 
                         if (this.Existe == false) {
-                                m_ItemId = this.Connection.FieldInt("SELECT LAST_INSERT_ID()");
+                                this.ActualizarId();
                         } else {
                                 if (CostoOriginal != this.Costo) {
                                         // Cambió el costo

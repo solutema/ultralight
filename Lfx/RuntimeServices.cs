@@ -29,10 +29,6 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Lfx
 {
         /// <summary>

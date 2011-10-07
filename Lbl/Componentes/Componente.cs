@@ -142,5 +142,15 @@ namespace Lbl.Componentes
 
                         return base.Guardar();
                 }
+
+                private static ColeccionGenerica<Componente> m_Todos = null;
+                public static ColeccionGenerica<Componente> Todos()
+                {
+                        if (m_Todos == null) {
+                                System.Data.DataTable Comps = Lfx.Workspace.Master.MasterConnection.Select("SELECT * FROM sys_components");
+                                m_Todos = new ColeccionGenerica<Componente>(Lfx.Workspace.Master.MasterConnection, Comps);
+                        }
+                        return m_Todos;
+                }
         }
 }

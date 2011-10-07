@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -29,45 +29,16 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections.Generic;
+using System.Data;
+using System.Reflection;
 
-namespace Lfx.Data
+namespace qGen.Providers
 {
-        public class TableCollection : List<Lfx.Data.Table>
+        public interface IProvider
         {
-                protected Connection DataBase;
-
-                public TableCollection(Connection dataBase)
-                {
-                        this.DataBase = dataBase;
-                }
-
-                new public void Add(Table table)
-                {
-                        table.Connection = this.DataBase;
-                        base.Add(table);
-                }
-
-                public bool ContainsKey(string name)
-                {
-                        foreach (Table Tb in this) {
-                                if (Tb.Name == name)
-                                        return true;
-                        }
-                        return false;
-                }
-
-		public Table this[string name]
-		{
-			get
-			{
-				foreach(Table Tb in this) {
-					if(Tb.Name == name)
-						return Tb;
-				}
-                                throw new ArgumentOutOfRangeException("No existe la tabla " + name);
-			}
-		}
+                IDbConnection GetConnection();
+                IDbCommand GetCommand();
+                IDbDataAdapter GetAdapter(string commandText, IDbConnection connection);
+                IDbDataParameter GetParameter();
         }
 }

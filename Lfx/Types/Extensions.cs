@@ -30,12 +30,13 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace System
 {
         /// <summary>
-        /// Métodos de extension para el tipo Int.
+        /// Métodos de extension para el tipo string.
         /// </summary>
         public static class StringExtensions
         {

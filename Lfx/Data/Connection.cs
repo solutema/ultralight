@@ -39,7 +39,7 @@ namespace Lfx.Data
         /// Proporciona una conexión a la base de datos y acceso de bajo nivel (sin abstracción) a los datos. Se utiliza normalmente para ejecutar consultas.
         /// Vea Lbl.* para para acceso de alto nivel a los datos.
         /// </summary>
-        public class Connection : IDisposable, System.Data.IDbConnection
+        public class Connection : IDisposable
         {
                 public bool EnableRecover = false, RequiresTransaction = false, ReadOnly = false;
 
@@ -85,7 +85,7 @@ namespace Lfx.Data
                                         break;
                                 case AccessModes.MySql:
                                         if (Lfx.Data.DataBaseCache.DefaultCache.Provider == null)
-                                                Lfx.Data.DataBaseCache.DefaultCache.Provider = new qGen.Providers.MySqlProvider();
+                                                Lfx.Data.DataBaseCache.DefaultCache.Provider = new qGen.Providers.MySql();
                                         ConnectionString.Append("Convert Zero Datetime=true;");
                                         ConnectionString.Append("Connection Timeout=30;");
                                         ConnectionString.Append("Default Command Timeout=9000;");

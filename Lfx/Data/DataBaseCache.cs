@@ -47,7 +47,7 @@ namespace Lfx.Data
                         this.Connection = connection;
                 }
                 
-                public qGen.Providers.Provider Provider = null;
+                public qGen.Providers.IProvider Provider = null;
                 public string OdbcDriver = null;
                 public string ServerName = null, DataBaseName, UserName, Password;
                 public bool SlowLink = false, Mars = true;
@@ -130,6 +130,9 @@ namespace Lfx.Data
                                 case qGen.SqlModes.MySql:
                                 case qGen.SqlModes.Oracle:
                                         Tablas = this.Connection.Select("SHOW TABLES");
+                                        break;
+                                case qGen.SqlModes.SQLite:
+                                        Tablas = this.Connection.Select("SELECT name FROM sqlite_master WHERE type='table'");
                                         break;
                                 default:
                                         Tablas = this.Connection.Select("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE' AND TABLE_SCHEMA='public'");
