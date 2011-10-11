@@ -24,10 +24,8 @@ INSERT INTO tipo_doc SET id_tipo_doc=7, nombre='Pasaporte';
 	situaciones			-> impu_situaciones
 	talonarios			-> comprob_talonarios
 	tipo_doc			-> personas_tipodoc
+	tickets*			-> tareas*
 */
 
-DROP TABLE IF EXISTS quickpaste;
-DROP TABLE IF EXISTS sys_accessbase;
-DROP TABLE IF EXISTS sys_accesslist;
 
 SET FOREIGN_KEY_CHECKS=1;

@@ -37,8 +37,8 @@ using System.Windows.Forms;
 
 namespace Lazaro.Misc.Backup
 {
-	public partial class Manager : Lui.Forms.DialogForm
-	{
+        public partial class Manager : Lui.Forms.DialogForm
+        {
                 public Manager()
                 {
                         InitializeComponent();
@@ -47,78 +47,72 @@ namespace Lazaro.Misc.Backup
                         MostrarListaBackups();
                 }
 
-		public void MostrarListaBackups()
-		{
+                public void MostrarListaBackups()
+                {
                         List<string> Backups = Misc.Backup.Services.ListaBackups();
-			string BackupMasNuevo = Misc.Backup.Services.BackupMasNuevo();
+                        string BackupMasNuevo = Misc.Backup.Services.BackupMasNuevo();
 
-			lvItems.BeginUpdate();
-			lvItems.Items.Clear();
-			int i = 1;
-			foreach (string NombreCarpeta in Backups)
-			{
-				string ArchivoIni = Lfx.Types.Strings.ReadTextFile(Misc.Backup.Services.BackupPath + NombreCarpeta + System.IO.Path.DirectorySeparatorChar + "info.txt");
-				ListViewItem Itm = new ListViewItem();
-				Itm = lvItems.Items.Add(NombreCarpeta);
-				if (BackupMasNuevo == NombreCarpeta)
-				{
-					Itm.Font = new Font(Itm.Font, FontStyle.Bold);
-					Itm.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
-				}
-				Itm.SubItems.Add(System.Convert.ToString(i));
-				Itm.SubItems.Add(Lfx.Types.Ini.ReadString(ArchivoIni, "", "FechaYHora"));
-				Itm.SubItems.Add(Lfx.Types.Ini.ReadString(ArchivoIni, "", "Usuario"));
-				i++;
-			}
-			lvItems.Sorting = SortOrder.Descending;
-			lvItems.Sort();
-			lvItems.EndUpdate();
-		}
+                        lvItems.BeginUpdate();
+                        lvItems.Items.Clear();
+                        int i = 1;
+                        foreach (string NombreCarpeta in Backups) {
+                                string ArchivoIni = Lfx.Types.Strings.ReadTextFile(Misc.Backup.Services.BackupPath + NombreCarpeta + System.IO.Path.DirectorySeparatorChar + "info.txt");
+                                ListViewItem Itm = new ListViewItem();
+                                Itm = lvItems.Items.Add(NombreCarpeta);
+                                if (BackupMasNuevo == NombreCarpeta) {
+                                        Itm.Font = new Font(Itm.Font, FontStyle.Bold);
+                                        Itm.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
+                                }
+                                Itm.SubItems.Add(System.Convert.ToString(i));
+                                Itm.SubItems.Add(Lfx.Types.Ini.ReadString(ArchivoIni, "", "FechaYHora"));
+                                Itm.SubItems.Add(Lfx.Types.Ini.ReadString(ArchivoIni, "", "Usuario"));
+                                i++;
+                        }
+                        lvItems.Sorting = SortOrder.Descending;
+                        lvItems.Sort();
+                        lvItems.EndUpdate();
+                }
 
 
-		private void BotonBackup_Click(System.Object sender, System.EventArgs e)
-		{
-			BotonBackup.Enabled = false;
-			Aplicacion.Exec("BACKUP NOW");
-			MostrarListaBackups();
-		}
+                private void BotonBackup_Click(System.Object sender, System.EventArgs e)
+                {
+                        BotonBackup.Enabled = false;
+                        Aplicacion.Exec("BACKUP NOW");
+                        MostrarListaBackups();
+                }
 
 
-		private void BotonEliminar_Click(object sender, System.EventArgs e)
-		{
-			if (lvItems.SelectedItems.Count > 0 && lvItems.SelectedItems[0] != null)
-			{
-				string NombreCarpeta = lvItems.SelectedItems[0].Text;
-				Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Puede eliminar una copia de respaldo antigua o que ya no sea de utilidad. Al eliminar una copia de respaldo no se modifican los datos actualmente almacenados en el sistema, ni tampoco se impide que el sistema haga nuevas copias de respaldo.", "¿Desea eliminar la copia de respaldo seleccionada?");
-				Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
-				if (Pregunta.ShowDialog() == DialogResult.OK)
-				{
-					Misc.Backup.Services.DeleteBackup(NombreCarpeta);
-					MostrarListaBackups();
-				}
-			}
-		}
+                private void BotonEliminar_Click(object sender, System.EventArgs e)
+                {
+                        if (lvItems.SelectedItems.Count > 0 && lvItems.SelectedItems[0] != null) {
+                                string NombreCarpeta = lvItems.SelectedItems[0].Text;
+                                Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Puede eliminar una copia de respaldo antigua o que ya no sea de utilidad. Al eliminar una copia de respaldo no se modifican los datos actualmente almacenados en el sistema, ni tampoco se impide que el sistema haga nuevas copias de respaldo.", "¿Desea eliminar la copia de respaldo seleccionada?");
+                                Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
+                                if (Pregunta.ShowDialog() == DialogResult.OK) {
+                                        Misc.Backup.Services.DeleteBackup(NombreCarpeta);
+                                        MostrarListaBackups();
+                                }
+                        }
+                }
 
 
-		private void BotonRestaurar_Click(object sender, System.EventArgs e)
-		{
-			if (lvItems.SelectedItems.Count > 0 && lvItems.SelectedItems[0] != null)
-			{
-				string NombreCarpeta = lvItems.SelectedItems[0].Text;
-				string FechaYHora = lvItems.SelectedItems[0].SubItems[2].Text;
+                private void BotonRestaurar_Click(object sender, System.EventArgs e)
+                {
+                        if (lvItems.SelectedItems.Count > 0 && lvItems.SelectedItems[0] != null) {
+                                string NombreCarpeta = lvItems.SelectedItems[0].Text;
+                                string FechaYHora = lvItems.SelectedItems[0].SubItems[2].Text;
 
-				Misc.Backup.Restore OPregunta = new Misc.Backup.Restore();
-				OPregunta.lblFecha.Text = FechaYHora;
-				if (OPregunta.ShowDialog() == DialogResult.OK)
-				{
-					Misc.Backup.Services.Restore(NombreCarpeta);
-				}
-			}
-		}
+                                Misc.Backup.Restore OPregunta = new Misc.Backup.Restore();
+                                OPregunta.lblFecha.Text = FechaYHora;
+                                if (OPregunta.ShowDialog() == DialogResult.OK) {
+                                        Misc.Backup.Services.Restore(NombreCarpeta);
+                                }
+                        }
+                }
 
-		private void BotonCopiar_Click(object sender, EventArgs e)
-		{
-			Lfx.Environment.Shell.Execute(Lfx.Environment.Folders.ApplicationDataFolder + @"Backup\", "", ProcessWindowStyle.Normal, false);
-		}
-	}
+                private void BotonCopiar_Click(object sender, EventArgs e)
+                {
+                        Lfx.Environment.Shell.Execute(Lfx.Environment.Folders.ApplicationDataFolder + @"Backup\", "", ProcessWindowStyle.Normal, false);
+                }
+        }
 }

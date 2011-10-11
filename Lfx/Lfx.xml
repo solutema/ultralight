@@ -95,20 +95,11 @@
         </member>
         <member name="T:Lfx.Services.Updater">
             <summary>
-            Actualizador de Lázaro (actualiza desde web o base de datos).
-            Desde web:
+            Actualizador de Lázaro (actualiza desde web).
             Descarga el archivo version.xml que contiene información sobre
             los archivos que hay que actualizar y sus versiones actuales
             Utiliza la variable "Sistema.Actualizaciones.URLNLWC" de la tabla "sys_config"
             para saber de dénde descargar.
-            Para que dos estaciones no descarguen a la vez, utiliza las variables
-            "Sistema.Actualizaciones.InicioDescarga" para saber cuándo comenzó la última
-            descarga (fecha y hora) y "Sistema.Actualizaciones.Estacion" para saber el
-            nombre de la estación que inició la descarga.
-            Guarda las actualizaciones bajadas en la BD.
-            Desde BD:
-            Actualiza desde la tabla "sys_asl", que es el caché de las últimas
-            versiones descargadas de la web.
             </summary>
         </member>
         <member name="M:Lfx.Services.Updater.NetGet(System.String,System.String)">

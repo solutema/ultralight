@@ -103,7 +103,6 @@ namespace Lfx.Data
                                                                 NewTable.AlwaysCache = true;
                                                                 break;
 
-                                                        case "sys_asl":
                                                         case "sys_log":
                                                         case "sys_programador":
                                                         case "sys_quickpaste":

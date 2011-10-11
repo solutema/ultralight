@@ -71,7 +71,6 @@ namespace Lfc.Alicuotas
                         // 
                         this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaNombre.AutoSize = false;
                         this.EntradaNombre.AutoNav = true;
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
@@ -85,13 +84,13 @@ namespace Lfc.Alicuotas
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.PasswordChar = '\0';
+                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.Prefijo = "";
-                        this.EntradaNombre.TemporaryReadOnly = false;
+                        this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
-                        this.EntradaNombre.Size = new System.Drawing.Size(384, 24);
+                        this.EntradaNombre.Size = new System.Drawing.Size(408, 24);
                         this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ToolTipText = "";
                         // 
                         // Label5
@@ -105,7 +104,6 @@ namespace Lfc.Alicuotas
                         // 
                         // EntradaPorcentaje
                         // 
-                        this.EntradaPorcentaje.AutoSize = false;
                         this.EntradaPorcentaje.AutoNav = true;
                         this.EntradaPorcentaje.AutoTab = true;
                         this.EntradaPorcentaje.DataType = Lui.Forms.DataTypes.Float;
@@ -119,14 +117,14 @@ namespace Lfc.Alicuotas
                         this.EntradaPorcentaje.Name = "EntradaPorcentaje";
                         this.EntradaPorcentaje.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPorcentaje.PasswordChar = '\0';
+                        this.EntradaPorcentaje.PlaceholderText = "";
                         this.EntradaPorcentaje.Prefijo = "";
-                        this.EntradaPorcentaje.TemporaryReadOnly = false;
+                        this.EntradaPorcentaje.ReadOnly = false;
                         this.EntradaPorcentaje.SelectOnFocus = true;
                         this.EntradaPorcentaje.Size = new System.Drawing.Size(100, 24);
                         this.EntradaPorcentaje.Sufijo = "%";
                         this.EntradaPorcentaje.TabIndex = 3;
                         this.EntradaPorcentaje.Text = "0.0000";
-                        this.EntradaPorcentaje.PlaceholderText = "";
                         this.EntradaPorcentaje.ToolTipText = "";
                         // 
                         // label1
@@ -149,7 +147,6 @@ namespace Lfc.Alicuotas
                         // 
                         // EntradaImporteMinimo
                         // 
-                        this.EntradaImporteMinimo.AutoSize = false;
                         this.EntradaImporteMinimo.AutoNav = true;
                         this.EntradaImporteMinimo.AutoTab = true;
                         this.EntradaImporteMinimo.DataType = Lui.Forms.DataTypes.Currency;
@@ -163,14 +160,14 @@ namespace Lfc.Alicuotas
                         this.EntradaImporteMinimo.Name = "EntradaImporteMinimo";
                         this.EntradaImporteMinimo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImporteMinimo.PasswordChar = '\0';
+                        this.EntradaImporteMinimo.PlaceholderText = "";
                         this.EntradaImporteMinimo.Prefijo = "";
-                        this.EntradaImporteMinimo.TemporaryReadOnly = false;
+                        this.EntradaImporteMinimo.ReadOnly = false;
                         this.EntradaImporteMinimo.SelectOnFocus = true;
                         this.EntradaImporteMinimo.Size = new System.Drawing.Size(100, 24);
                         this.EntradaImporteMinimo.Sufijo = "";
                         this.EntradaImporteMinimo.TabIndex = 5;
                         this.EntradaImporteMinimo.Text = "0.00";
-                        this.EntradaImporteMinimo.PlaceholderText = "";
                         this.EntradaImporteMinimo.ToolTipText = "";
                         // 
                         // Editar
@@ -183,7 +180,7 @@ namespace Lfc.Alicuotas
                         this.Controls.Add(this.EntradaNombre);
                         this.Controls.Add(this.Label5);
                         this.Name = "Editar";
-                        this.Size = new System.Drawing.Size(504, 93);
+                        this.Size = new System.Drawing.Size(528, 93);
                         this.Controls.SetChildIndex(this.Label5, 0);
                         this.Controls.SetChildIndex(this.EntradaNombre, 0);
                         this.Controls.SetChildIndex(this.label1, 0);

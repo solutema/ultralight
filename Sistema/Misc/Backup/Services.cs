@@ -282,16 +282,15 @@ namespace Lazaro.Misc.Backup
 
                         IList<string> TableList = Lfx.Data.DataBaseCache.DefaultCache.GetTableNames();
                         foreach (string Tabla in TableList) {
-                                if (Tabla != "sys_asl") {
-                                        string NombreTabla = Tabla;
-                                        if (Lfx.Workspace.Master.Structure.Tables.ContainsKey(Tabla))
-                                                NombreTabla = Lfx.Workspace.Master.Structure.Tables[Tabla].Label;
+                                string NombreTabla = Tabla;
+                                if (Lfx.Workspace.Master.Structure.Tables.ContainsKey(Tabla))
+                                        NombreTabla = Lfx.Workspace.Master.Structure.Tables[Tabla].Label;
 
-                                        Progreso.ChangeStatus("Volcando " + NombreTabla);
-                                        Progreso.ChangeStatus(Progreso.Value + 1);
-                                        ExportTableBin(Tabla, Writer);
-                                        System.Windows.Forms.Application.DoEvents();
-                                }
+                                Progreso.ChangeStatus("Volcando " + NombreTabla);
+                                Progreso.ChangeStatus(Progreso.Value + 1);
+                                ExportTableBin(Tabla, Writer);
+                                System.Windows.Forms.Application.DoEvents();
+
                         }
                         Writer.Close();
 

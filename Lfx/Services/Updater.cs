@@ -35,20 +35,11 @@ using System.Data;
 namespace Lfx.Services
 {
         /// <summary>
-        /// Actualizador de Lázaro (actualiza desde web o base de datos).
-        /// Desde web:
+        /// Actualizador de Lázaro (actualiza desde web).
         /// Descarga el archivo version.xml que contiene información sobre
         /// los archivos que hay que actualizar y sus versiones actuales
         /// Utiliza la variable "Sistema.Actualizaciones.URLNLWC" de la tabla "sys_config"
         /// para saber de dénde descargar.
-        /// Para que dos estaciones no descarguen a la vez, utiliza las variables
-        /// "Sistema.Actualizaciones.InicioDescarga" para saber cuándo comenzó la última
-        /// descarga (fecha y hora) y "Sistema.Actualizaciones.Estacion" para saber el
-        /// nombre de la estación que inició la descarga.
-        /// Guarda las actualizaciones bajadas en la BD.
-        /// Desde BD:
-        /// Actualiza desde la tabla "sys_asl", que es el caché de las últimas
-        /// versiones descargadas de la web.
         /// </summary>
         public class Updater : IDisposable
         {
@@ -56,7 +47,7 @@ namespace Lfx.Services
                 public string ErrorMessage = null;
                 public static Updater Master = null;
 
-                private bool IgnoreOthersUpdating = false, Updating = false, Running = false;
+                private bool Updating = false, Running = false;
                 private System.Threading.Thread UpdaterThread = null;
                 private Lfx.Data.Connection m_DataBase = null;
 
@@ -78,15 +69,9 @@ namespace Lfx.Services
                 {
                         this.Running = true;
 
-                        int Loop = 0;
                         while (this.Running) {
-                                if (Loop++ > 3) {
-                                        this.UpdateFromWeb();
-                                        Loop = 0;
-                                } else {
-                                        this.UpdateFromDbCache();
-                                }
-                                System.Threading.Thread.Sleep(30 * 60 * 1000);  // Dormir 30 minutos
+                                this.UpdateFromWeb();
+                                System.Threading.Thread.Sleep(120 * 60 * 1000);  // Dormir 120 minutos
                         }
                 }
 
@@ -109,17 +94,6 @@ namespace Lfx.Services
                         Updating = false;
                 }
 
-                public void UpdateFromDbCache()
-                {
-                        if (Updating)
-                                return;
-
-                        Updating = true;
-
-                        UpdateAllFromDbCache(string.Empty);
-
-                        Updating = false;
-                }
 
                 public void Dispose()
                 {
@@ -130,10 +104,12 @@ namespace Lfx.Services
                         GC.SuppressFinalize(this);
                 }
 
+
                 public bool HasError()
                 {
                         return ErrorMessage != null;
                 }
+
 
                 public bool RebootNeeded
                 {
@@ -148,6 +124,7 @@ namespace Lfx.Services
                                 return false;
                         }
                 }
+
 
                 private Lfx.Data.Connection DataBase
                 {
@@ -164,20 +141,6 @@ namespace Lfx.Services
                 }
 
 
-                private void UpdateAllFromDbCache(string nombreCarpeta)
-                {
-                        try {
-                                using (DataTable Archivos = this.DataBase.Select("SELECT nombre, fecha, checksum FROM sys_asl")) {
-                                        foreach (System.Data.DataRow Archivo in Archivos.Rows) {
-                                                if (UpdateFileFromDbCache((Lfx.Data.Row)Archivo, false, nombreCarpeta))
-                                                        UpdatedFiles++;
-                                        }
-                                }
-                        } catch (Exception ex) {
-                                System.Console.WriteLine("UpdateAllFromDbCache: " + ex.Message);
-                        }
-                }
-
 
                 private void UpdateAllFromWeb()
                 {
@@ -185,177 +148,93 @@ namespace Lfx.Services
                         UpdatedFiles = 0;
                         Updating = true;
 
-                        // Me fijo si ya hay alguien descargando las actualizaciones
-                        string FechaInicioActualizacion = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<string>(null, "Sistema.Actualizaciones.InicioDescarga", string.Empty);
-                        string FechaInicioActualizacionMax = Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.AddHours(2));
+                        string NivelActualizaciones = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<string>(null, "Sistema.Actualizaciones.Nivel", "stable");
+                        string UrlActualizaciones = @"http://www.sistemalazaro.com.ar/aslnlwc/" + NivelActualizaciones + "/";
 
-                        // Si hay alguien, pero está hace 4 horas o más, me pongo a descargar igual
-                        if (this.IgnoreOthersUpdating || string.Compare(FechaInicioActualizacion, FechaInicioActualizacionMax) < 0) {
-                                this.DataBase.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.Actualizaciones.InicioDescarga", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "*");
-                                this.DataBase.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.Actualizaciones.EstacionDescarga", System.Environment.MachineName.ToUpperInvariant(), "*");
+                        // formularioEstado.TextoOperacion = "Contactando al servidor...";
 
-                                string NivelActualizaciones = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<string>(null, "Sistema.Actualizaciones.Nivel", "stable");
-                                string UrlActualizaciones = @"http://www.sistemalazaro.com.ar/aslnlwc/" + NivelActualizaciones + "/";
+                        System.Xml.XmlDocument VersionXml = new System.Xml.XmlDocument();
 
-                                // formularioEstado.TextoOperacion = "Contactando al servidor...";
+                        //Creo un nodo de mentira, para descargar el archivo version.xml
+                        System.Xml.XmlNode ArchivoVersion = VersionXml.CreateElement("File");
+                        ArchivoVersion.Attributes.Append(VersionXml.CreateAttribute("name"));
+                        ArchivoVersion.Attributes["name"].Value = "version.xml";
+                        UpdateFileFromWeb(UrlActualizaciones, ArchivoVersion, true, string.Empty);
 
-                                System.Xml.XmlDocument VersionXml = new System.Xml.XmlDocument();
-
-                                //Creo un nodo de mentira, para descargar el archivo version.xml
-                                System.Xml.XmlNode ArchivoVersion = VersionXml.CreateElement("File");
-                                ArchivoVersion.Attributes.Append(VersionXml.CreateAttribute("name"));
-                                ArchivoVersion.Attributes["name"].Value = "version.xml";
-                                UpdateFileFromWeb(UrlActualizaciones, ArchivoVersion, true, string.Empty);
-
-                                if (System.IO.File.Exists(Lfx.Environment.Folders.UpdatesFolder + "version.xml") == false) {
-                                        Updating = false;
-                                        return;
-                                }
-
-                                try {
-                                        VersionXml.Load(Lfx.Environment.Folders.UpdatesFolder + "version.xml");
-                                } catch {
-                                        // No pude cargar version.xml. Debe estar malformado.
-                                        Updating = false;
-                                        return;
-                                }
-                                System.Xml.XmlNode VersionInfo = VersionXml.SelectSingleNode("/VersionInfo");
-
-                                //Importo los nodos de los archivos {nombre_componente}.ver como si formaran parte de version.xml
-                                System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ComponentsFolder);
-                                foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.ver")) {
-                                        //Ignoro archivos ocultos
-                                        if ((DirItem.Attributes & System.IO.FileAttributes.Hidden) != System.IO.FileAttributes.Hidden) {
-                                                System.Xml.XmlDocument VersionComponente = new System.Xml.XmlDocument();
-                                                string VerFileName = Lfx.Environment.Folders.UpdatesFolder + "Components" + System.IO.Path.DirectorySeparatorChar + DirItem.Name;
-                                                try {
-                                                        if (System.IO.File.Exists(VerFileName))
-                                                                VersionComponente.Load(VerFileName);
-                                                        else if (System.IO.File.Exists(Lfx.Environment.Folders.ComponentsFolder + DirItem.Name))
-                                                                VersionComponente.Load(Lfx.Environment.Folders.ComponentsFolder + DirItem.Name);
-
-                                                        System.Xml.XmlNode NodoComponente = VersionComponente.SelectSingleNode("/VersionInfo/Component[@name='" + System.IO.Path.GetFileNameWithoutExtension(DirItem.Name) + "']");
-                                                        string URLComponente;
-                                                        if (NodoComponente.Attributes["url"] == null)
-                                                                URLComponente = UrlActualizaciones;
-                                                        else
-                                                                URLComponente = NodoComponente.Attributes["url"].Value;
-
-                                                        ArchivoVersion.Attributes["name"].Value = DirItem.Name;
-                                                        if (UpdateFileFromWeb(URLComponente, ArchivoVersion, true, "Components/")) {
-                                                                VersionComponente.Load(VerFileName);
-                                                                NodoComponente = VersionComponente.SelectSingleNode("/VersionInfo/Component[@name='" + System.IO.Path.GetFileNameWithoutExtension(DirItem.Name) + "']");
-                                                                VersionInfo.AppendChild(VersionXml.ImportNode(NodoComponente, true));
-                                                        } else {
-                                                                //No pude descargar. No importa, despejo el error
-                                                                ErrorMessage = null;
-                                                        }
-                                                } catch {
-                                                        // Error al cargar archivo de info de versión. No importa.
-                                                }
-                                        }
-                                }
-
-                                System.Xml.XmlNodeList ListaComponentes = VersionXml.GetElementsByTagName("Component");
-                                foreach (System.Xml.XmlNode Componente in ListaComponentes) {
-                                        string URLComponente;
-                                        string nombreComponente = Componente.Attributes["name"].Value;
-                                        System.Xml.XmlNode Core = VersionXml.SelectSingleNode("/VersionInfo/Component[@name='" + nombreComponente + "']");
-                                        if (Core.Attributes["url"] == null)
-                                                URLComponente = UrlActualizaciones;
-                                        else
-                                                URLComponente = Core.Attributes["url"].Value;
-
-                                        foreach (System.Xml.XmlNode Archivo in Core.ChildNodes) {
-                                                if (Archivo.Name == "File") {
-                                                        if (Archivo.Attributes["name"] != null && Archivo.Attributes["name"].Value != null) {
-                                                                string nombreCarpeta = string.Empty;
-                                                                if (nombreComponente != "Core")
-                                                                        nombreCarpeta = "Components" + System.IO.Path.DirectorySeparatorChar;
-                                                                // formularioEstado.TextoOperacion = "Descargando archivos...";
-                                                                if (UpdateFileFromWeb(URLComponente, Archivo, false, nombreCarpeta))
-                                                                        UpdatedFiles++;
-                                                        }
-                                                }
-                                        }
-                                }
-
+                        if (System.IO.File.Exists(Lfx.Environment.Folders.UpdatesFolder + "version.xml") == false) {
+                                Updating = false;
+                                return;
                         }
-                        this.DataBase.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.Actualizaciones.InicioDescarga", "0", "*");
+
+                        try {
+                                VersionXml.Load(Lfx.Environment.Folders.UpdatesFolder + "version.xml");
+                        } catch {
+                                // No pude cargar version.xml. Debe estar malformado.
+                                Updating = false;
+                                return;
+                        }
+                        System.Xml.XmlNode VersionInfo = VersionXml.SelectSingleNode("/VersionInfo");
+
+                        //Importo los nodos de los archivos {nombre_componente}.ver como si formaran parte de version.xml
+                        System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ComponentsFolder);
+                        foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.ver")) {
+                                //Ignoro archivos ocultos
+                                if ((DirItem.Attributes & System.IO.FileAttributes.Hidden) != System.IO.FileAttributes.Hidden) {
+                                        System.Xml.XmlDocument VersionComponente = new System.Xml.XmlDocument();
+                                        string VerFileName = Lfx.Environment.Folders.UpdatesFolder + "Components" + System.IO.Path.DirectorySeparatorChar + DirItem.Name;
+                                        try {
+                                                if (System.IO.File.Exists(VerFileName))
+                                                        VersionComponente.Load(VerFileName);
+                                                else if (System.IO.File.Exists(Lfx.Environment.Folders.ComponentsFolder + DirItem.Name))
+                                                        VersionComponente.Load(Lfx.Environment.Folders.ComponentsFolder + DirItem.Name);
+
+                                                System.Xml.XmlNode NodoComponente = VersionComponente.SelectSingleNode("/VersionInfo/Component[@name='" + System.IO.Path.GetFileNameWithoutExtension(DirItem.Name) + "']");
+                                                string URLComponente;
+                                                if (NodoComponente.Attributes["url"] == null)
+                                                        URLComponente = UrlActualizaciones;
+                                                else
+                                                        URLComponente = NodoComponente.Attributes["url"].Value;
+
+                                                ArchivoVersion.Attributes["name"].Value = DirItem.Name;
+                                                if (UpdateFileFromWeb(URLComponente, ArchivoVersion, true, "Components/")) {
+                                                        VersionComponente.Load(VerFileName);
+                                                        NodoComponente = VersionComponente.SelectSingleNode("/VersionInfo/Component[@name='" + System.IO.Path.GetFileNameWithoutExtension(DirItem.Name) + "']");
+                                                        VersionInfo.AppendChild(VersionXml.ImportNode(NodoComponente, true));
+                                                } else {
+                                                        //No pude descargar. No importa, despejo el error
+                                                        ErrorMessage = null;
+                                                }
+                                        } catch {
+                                                // Error al cargar archivo de info de versión. No importa.
+                                        }
+                                }
+                        }
+
+                        System.Xml.XmlNodeList ListaComponentes = VersionXml.GetElementsByTagName("Component");
+                        foreach (System.Xml.XmlNode Componente in ListaComponentes) {
+                                string URLComponente;
+                                string nombreComponente = Componente.Attributes["name"].Value;
+                                System.Xml.XmlNode Core = VersionXml.SelectSingleNode("/VersionInfo/Component[@name='" + nombreComponente + "']");
+                                if (Core.Attributes["url"] == null)
+                                        URLComponente = UrlActualizaciones;
+                                else
+                                        URLComponente = Core.Attributes["url"].Value;
+
+                                foreach (System.Xml.XmlNode Archivo in Core.ChildNodes) {
+                                        if (Archivo.Name == "File") {
+                                                if (Archivo.Attributes["name"] != null && Archivo.Attributes["name"].Value != null) {
+                                                        string nombreCarpeta = string.Empty;
+                                                        if (nombreComponente != "Core")
+                                                                nombreCarpeta = "Components" + System.IO.Path.DirectorySeparatorChar;
+                                                        // formularioEstado.TextoOperacion = "Descargando archivos...";
+                                                        if (UpdateFileFromWeb(URLComponente, Archivo, false, nombreCarpeta))
+                                                                UpdatedFiles++;
+                                                }
+                                        }
+                                }
+                        }
 
                         Updating = false;
-                }
-
-
-                private bool UpdateFileFromDbCache(Lfx.Data.Row Archivo, bool IgnorarFecha, string nombreCarpeta)
-                {
-                        string FechaNueva = "1901-01-02";
-                        string FechaArchivo = "1901-01-01";
-
-                        string CarpetaTrabajo = Lfx.Environment.Folders.ApplicationFolder + nombreCarpeta;
-                        if (CarpetaTrabajo[CarpetaTrabajo.Length - 1] != System.IO.Path.DirectorySeparatorChar)
-                                CarpetaTrabajo += System.IO.Path.DirectorySeparatorChar;
-
-                        string CarpetaDescarga = Lfx.Environment.Folders.UpdatesFolder + nombreCarpeta;
-                        if (System.IO.Directory.Exists(CarpetaDescarga) == false)
-                                System.IO.Directory.CreateDirectory(CarpetaDescarga);
-
-                        string NombreArchivo = Archivo["nombre"].ToString();
-
-                        if (IgnorarFecha == false) {
-                                FechaNueva = System.Convert.ToString(Archivo["fecha"]);
-                                try {
-                                        FechaArchivo = Lfx.Types.Formatting.FormatDateTimeSql(new System.IO.FileInfo(CarpetaTrabajo + NombreArchivo).LastWriteTime);
-                                } catch (Exception ex) {
-                                        System.Console.WriteLine("ActualizarArchivoDesdeBD: CambiarFecha: " + ex.Message);
-                                        if (Lfx.Environment.SystemInformation.DesignMode)
-                                                throw;
-                                        FechaArchivo = string.Empty;
-                                }
-                        }
-
-                        if (string.Compare(FechaNueva, FechaArchivo) > 0) {
-                                try {
-                                        Lfx.Environment.Folders.EnsurePathExists(System.IO.Path.GetDirectoryName(CarpetaDescarga + NombreArchivo));
-
-                                        if (System.IO.File.Exists(CarpetaDescarga + NombreArchivo + ".new"))
-                                                System.IO.File.Delete(CarpetaDescarga + NombreArchivo + ".new");
-
-                                        Archivo = this.DataBase.FirstRowFromSelect("SELECT nombre, fecha, contenido FROM sys_asl WHERE nombre='" + (nombreCarpeta + Archivo["nombre"]).Replace("\\", "/") + "'");
-
-                                        if (Archivo != null && Archivo["contenido"] != null) {
-                                                using (System.IO.BinaryWriter wr = new System.IO.BinaryWriter(System.IO.File.OpenWrite(CarpetaDescarga + NombreArchivo + ".new"), System.Text.Encoding.Default)) {
-                                                        wr.Write(((byte[])(Archivo["contenido"])));
-                                                        wr.Close();
-                                                }
-
-                                                System.Console.WriteLine("Actualización BD de " + NombreArchivo);
-
-                                                if (string.Compare(FechaNueva, "1950-00-00 00:00:00") > 0) {
-                                                        try {
-                                                                System.IO.FileInfo LazaroFileInfo = new System.IO.FileInfo(CarpetaDescarga + NombreArchivo + ".new");
-                                                                DateTime FechaNuevaD = Lfx.Types.Parsing.ParseSqlDateTime(FechaNueva);
-                                                                LazaroFileInfo.LastWriteTime = FechaNuevaD;
-                                                                LazaroFileInfo.CreationTime = FechaNuevaD;
-                                                        } catch (Exception ex) {
-                                                                System.Console.WriteLine("ActualizarArchivoDesdeBD: CambiarFecha: " + ex.Message);
-                                                                if (Lfx.Environment.SystemInformation.DesignMode)
-                                                                        throw;
-                                                                // No pude poner la fecha del archivo... estoy en un problema?
-                                                        }
-                                                }
-                                                return true;
-                                        } else {
-                                                return false;
-                                        }
-                                } catch {
-                                        // No se puede conectar al servidor de actualizaciones
-                                        // Aplicacion.GenericExceptionHandler(ex);
-                                        ErrorMessage = "Existe una nueva versión del archivo " + NombreArchivo + ", pero el sistema no puede actualizar automáticamente. Por favor actualice la aplicación manualmente.";
-                                        return false;
-                                }
-                        }
-                        return false;
                 }
 
 
@@ -465,19 +344,6 @@ namespace Lfx.Services
                                                         }
                                                 }
                                                 actualizarArchivoDesdeWebReturn = true;
-
-                                                // Lo publico en la BD
-                                                if (IgnoreOthersUpdating == false && NombreArchivo != "version.xml" && this.DataBase.SlowLink == false && Lfx.Environment.SystemInformation.DesignMode == false) {
-                                                        qGen.Delete EliminarArchivoViejo = new qGen.Delete("sys_asl");
-                                                        EliminarArchivoViejo.WhereClause = new qGen.Where("nombre", (nombreCarpeta + NombreArchivo).Replace("\\", "/"));
-                                                        this.DataBase.Execute(EliminarArchivoViejo);
-                                                        qGen.Insert InsertarArchivoNuevo = new qGen.Insert("sys_asl");
-                                                        InsertarArchivoNuevo.Fields.AddWithValue("nombre", (nombreCarpeta + NombreArchivo).Replace("\\", "/"));
-                                                        InsertarArchivoNuevo.Fields.AddWithValue("fecha", FechaNueva);
-                                                        InsertarArchivoNuevo.Fields.AddWithValue("checksum", ChecksumContenido);
-                                                        InsertarArchivoNuevo.Fields.AddWithValue("contenido", Contenido);
-                                                        this.DataBase.Execute(InsertarArchivoNuevo);
-                                                }
 
                                                 if (NombreArchivo == "version.xml" || System.IO.Path.GetExtension(NombreArchivo).ToUpperInvariant() == ".VER") {
                                                         // version.xml no queda como .new

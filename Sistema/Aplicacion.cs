@@ -197,14 +197,6 @@ namespace Lazaro
                         // Busco actualización en la caché
                         if (ClearCache) {
                                 try {
-                                        qGen.Delete ClearCacheSql = new qGen.Delete("sys_asl");
-                                        ClearCacheSql.EnableDeleleteWithoutWhere = true;
-                                        Lfx.Workspace.Master.MasterConnection.Execute(ClearCacheSql);
-                                } catch {
-                                        // No pasa nada si falla... igualmente intento iniciar
-                                }
-
-                                try {
                                         Lfx.Environment.Folders.DeleteWithWildcards(Lfx.Environment.Folders.TemporaryFolder, "*.*");
                                 } catch {
                                         // Si algún archivo no se puede borrar, no importa
@@ -225,13 +217,6 @@ namespace Lazaro
 
                         }
 
-                        if (ClearCache == false && Lfx.Workspace.Master.SlowLink == false && Lfx.Environment.SystemInformation.DesignMode == false) {
-                                Lfx.Services.Updater.Master.UpdateFromDbCache();
-                                if (Lfx.Services.Updater.Master.UpdatedFiles > 0) {
-                                        Aplicacion.Exec("REBOOT");
-                                        System.Environment.Exit(0);
-                                }
-                        }
 
                         // Verifico la versión de Lázaro requerida por la BD
                         DateTime FechaLazaroExe = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).LastWriteTime;
