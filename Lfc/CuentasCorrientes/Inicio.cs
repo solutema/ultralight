@@ -63,11 +63,11 @@ namespace Lfc.CuentasCorrientes
                                         new Lfx.Data.FormField("ctacte.comprob", "Comprobante", Lfx.Data.InputFieldTypes.Text, 160),
                                         new Lfx.Data.FormField("ctacte.id_recibo", "Recibo", Lfx.Data.InputFieldTypes.Relation, 0)
                                 },
-                                Filters = new List<Lfx.Data.IFilter>() {
-                                        new Lfx.Data.RelationFilter("Cliente", new Lfx.Data.Relation("ctacte.id_cliente", "personas", "id_persona", "nombre_visible")),
-                                        new Lfx.Data.RelationFilter("Grupo", new Lfx.Data.Relation("personas.id_grupo", "personas_grupos", "id_grupo")),
-                                        new Lfx.Data.RelationFilter("Localidad", new Lfx.Data.Relation("personas.id_ciudad", "ciudades", "id_ciudad")),
-                                        new Lfx.Data.DateRangeFilter("Fecha", "ctacte.fecha", new Lfx.Types.DateRange("*"))
+                                Filters = new Lfx.Data.Filters.FilterCollection() {
+                                        new Lfx.Data.Filters.RelationFilter("Cliente", new Lfx.Data.Relation("ctacte.id_cliente", "personas", "id_persona", "nombre_visible")),
+                                        new Lfx.Data.Filters.RelationFilter("Grupo", new Lfx.Data.Relation("personas.id_grupo", "personas_grupos", "id_grupo")),
+                                        new Lfx.Data.Filters.RelationFilter("Localidad", new Lfx.Data.Relation("personas.id_ciudad", "ciudades", "id_ciudad")),
+                                        new Lfx.Data.Filters.DateRangeFilter("Fecha", "ctacte.fecha", new Lfx.Types.DateRange("*"))
                                 },
                                 OrderBy = "personas.nombre_visible"
                         };
@@ -185,7 +185,7 @@ namespace Lfc.CuentasCorrientes
                         Lfx.Data.Row Movim = this.Connection.Tables["ctacte"].FastRows[itemId];
                         if (this.Cliente == null) {
                                 this.Cliente = new Lbl.Personas.Persona(this.Connection, System.Convert.ToInt32(Movim["id_cliente"]));
-                                ((Lfx.Data.RelationFilter)(this.Definicion.Filters[0])).ElementId = this.Cliente.Id;
+                                ((Lfx.Data.Filters.RelationFilter)(this.Definicion.Filters[0])).ElementId = this.Cliente.Id;
                                 RefreshList();
                         } else {
                                 if (Movim != null) {
@@ -204,9 +204,9 @@ namespace Lfc.CuentasCorrientes
                 }
 
 
-                public override void FiltersChanged(IList<Lfx.Data.IFilter> filters)
+                public override void FiltersChanged(Lfx.Data.Filters.FilterCollection filters)
                 {
-                        int NuevoClienteId = ((Lfx.Data.RelationFilter)(filters[0])).ElementId;
+                        int NuevoClienteId = ((Lfx.Data.Filters.RelationFilter)(filters["ctacte.id_cliente"])).ElementId;
                         if ((this.Cliente == null && NuevoClienteId != 0) || (this.Cliente != null && this.Cliente.Id != NuevoClienteId)) {
                                 if (NuevoClienteId == 0)
                                         this.Cliente = null;
@@ -214,9 +214,9 @@ namespace Lfc.CuentasCorrientes
                                         this.Cliente = new Lbl.Personas.Persona(this.Connection, NuevoClienteId);
                         }
 
-                        m_Grupo = ((Lfx.Data.RelationFilter)(filters[1])).ElementId;
-                        m_Localidad = ((Lfx.Data.RelationFilter)(filters[2])).ElementId;
-                        Fechas = ((Lfx.Data.DateRangeFilter)(filters[3])).DateRange;
+                        m_Grupo = ((Lfx.Data.Filters.RelationFilter)(filters["personas.id_grupo"])).ElementId;
+                        m_Localidad = ((Lfx.Data.Filters.RelationFilter)(filters["personas.id_ciudad"])).ElementId;
+                        Fechas = ((Lfx.Data.Filters.DateRangeFilter)(filters["ctacte.fecha"])).DateRange;
 
                         base.FiltersChanged(filters);
                 }

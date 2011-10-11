@@ -148,9 +148,6 @@
     <Compile Include="Articulos\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Articulos\Filtros.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Articulos\Marcas\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
@@ -701,10 +698,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Articulos\Editar.resx">
       <DependentUpon>Editar.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Articulos\Filtros.resx">
-      <DependentUpon>Filtros.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Articulos\Receta.resx">

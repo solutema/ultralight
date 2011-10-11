@@ -97,7 +97,13 @@
     <Compile Include="Components\MenuEntry.cs" />
     <Compile Include="Components\FunctionInfoCollection.cs" />
     <Compile Include="Components\TryFunction.cs" />
-    <Compile Include="Data\Filter.cs" />
+    <Compile Include="Data\Filters\DateRangeFilter.cs" />
+    <Compile Include="Data\Filters\Filter.cs" />
+    <Compile Include="Data\Filters\FilterCollection.cs" />
+    <Compile Include="Data\Filters\IFilter.cs" />
+    <Compile Include="Data\Filters\NumericRangeFilter.cs" />
+    <Compile Include="Data\Filters\RelationFilter.cs" />
+    <Compile Include="Data\Filters\SerFilter.cs" />
     <Compile Include="Data\FormFieldCollection.cs" />
     <Compile Include="Data\Listing.cs" />
     <Compile Include="Data\Providers\IProvider.cs" />

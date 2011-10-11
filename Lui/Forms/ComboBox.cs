@@ -103,7 +103,7 @@ namespace Lui.Forms
                         set
                         {
                                 base.TemporaryReadOnly = value;
-                                TextBox1.ReadOnly = value || this.ReadOnly;
+                                TextBox1.ReadOnly = true;
                                 ItemList.Enabled = !(value || this.ReadOnly);
                         }
                 }
@@ -116,9 +116,9 @@ namespace Lui.Forms
                         }
                         set
                         {
-                                TextBox1.ReadOnly = value || this.TemporaryReadOnly;
-                                ItemList.Enabled = !(value || this.TemporaryReadOnly);
                                 base.ReadOnly = value;
+                                TextBox1.ReadOnly = true;
+                                ItemList.Enabled = !(value || this.TemporaryReadOnly);
                         }
                 }
 
@@ -441,21 +441,21 @@ namespace Lui.Forms
                 {
                         switch (e.KeyCode) {
                                 case Keys.Subtract:
+                                        e.Handled = true;
                                         if (this.TemporaryReadOnly == false && this.ReadOnly == false) {
-                                                e.Handled = true;
                                                 this.SetPrevValueInSet();
                                         }
                                         break;
                                 case Keys.Add:
                                 case Keys.Space:
+                                        e.Handled = true;
                                         if (this.TemporaryReadOnly == false && this.ReadOnly == false) {
-                                                e.Handled = true;
                                                 this.SetNextValueInSet();
                                         }
                                         break;
                                 case Keys.Return:
+                                        e.Handled = true;
                                         if (m_AutoNav & ItemList.Visible && e.Shift == false && e.Alt == false && e.Control == false) {
-                                                e.Handled = true;
                                                 System.Windows.Forms.SendKeys.Send("{tab}");
                                         }
                                         break;

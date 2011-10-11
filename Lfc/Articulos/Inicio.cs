@@ -41,7 +41,11 @@ namespace Lfc.Articulos
         public partial class Inicio : Lfc.FormularioListado
         {
                 protected internal decimal m_PvpDesde = 0, m_PvpHasta = 0;
-                protected internal int m_Proveedor = 0, m_Marca = 0, m_Categoria = 0, m_Rubro = 0, m_Situacion = 0;
+                protected internal Lbl.Personas.Persona m_Proveedor = null;
+                protected internal Lbl.Articulos.Marca m_Marca = null;
+                protected internal Lbl.Articulos.Categoria m_Categoria = null;
+                protected internal Lbl.Articulos.Rubro m_Rubro = null;
+                protected internal Lbl.Articulos.Situacion m_Situacion = null;
                 public string m_Stock = "*";
 
                 public Inicio()
@@ -99,7 +103,17 @@ namespace Lfc.Articulos
 				        new Lfx.Data.FormField("articulos.descripcion", "Descripción", Lfx.Data.InputFieldTypes.Memo, 0),
 				        new Lfx.Data.FormField("articulos.descripcion2", "Descripción Extendida", Lfx.Data.InputFieldTypes.Memo, 0),
 				        new Lfx.Data.FormField("articulos.obs", "Observaciones", Lfx.Data.InputFieldTypes.Memo, 0)
-			        }
+			        },
+
+                                Filters = new Lfx.Data.Filters.FilterCollection()
+                                {
+                                        new Lfx.Data.Filters.RelationFilter("Rubro", new Lfx.Data.Relation("id_rubro", "articulos_rubros", "id_rubro")),
+                                        new Lfx.Data.Filters.RelationFilter("Categoría", new Lfx.Data.Relation("id_categoria", "articulos_categorias", "id_categoria")),
+                                        new Lfx.Data.Filters.RelationFilter("Marca", new Lfx.Data.Relation("id_marca", "marcas", "id_marca")),
+                                        new Lfx.Data.Filters.RelationFilter("Proveedor", new Lfx.Data.Relation("id_proveedor", "personas", "id_persona", "nombre_visible")),
+                                        new Lfx.Data.Filters.RelationFilter("Situación", new Lfx.Data.Relation("id_situacion", "articulos_situaciones", "id_situacion")),
+                                        new Lfx.Data.Filters.SetFilter("Existencias", "stock_actual", new string[] { "Cualquiera|*", "En Existencia|cs", "Sin Existencia|ss", "Con Faltante|faltante", "Con Faltante (Incluyendo Pedidos)|faltanteip", "Con Pedidos|pedido", "A Pedir|apedir" }, "*")
+                                }
                         };
 
                         this.Contadores.Add(new Contador("Costo", Lui.Forms.DataTypes.Currency, "$", null));
@@ -145,16 +159,16 @@ namespace Lfc.Articulos
                 {
                         this.CustomFilters.Clear();
 
-                        if (m_Proveedor > 0)
-                                this.CustomFilters.Add(new qGen.ComparisonCondition("id_proveedor", m_Proveedor));
+                        if (m_Proveedor != null)
+                                this.CustomFilters.Add(new qGen.ComparisonCondition("id_proveedor", m_Proveedor.Id));
 
-                        if (m_Marca > 0)
-                                this.CustomFilters.Add(new qGen.ComparisonCondition("id_marca", m_Marca));
+                        if (m_Marca != null)
+                                this.CustomFilters.Add(new qGen.ComparisonCondition("id_marca", m_Marca.Id));
 
-                        if (m_Categoria > 0)
-                                this.CustomFilters.Add(new qGen.ComparisonCondition("articulos.id_categoria", m_Categoria));
-                        
-                        if (m_Rubro > 0)
+                        if (m_Categoria != null)
+                                this.CustomFilters.Add(new qGen.ComparisonCondition("articulos.id_categoria", m_Categoria.Id));
+
+                        if (m_Rubro != null)
                                 this.CustomFilters.Add(new qGen.ComparisonCondition("articulos.id_categoria", qGen.ComparisonOperators.In, new qGen.SqlExpression("SELECT id_categoria FROM articulos_categorias WHERE id_rubro=" + m_Rubro.ToString())));
 
                         if (m_PvpDesde != 0)
@@ -162,8 +176,8 @@ namespace Lfc.Articulos
                         if (m_PvpHasta != 0)
                                 this.CustomFilters.Add(new qGen.ComparisonCondition("pvp", qGen.ComparisonOperators.LessOrEqual, m_PvpHasta));
 
-                        if (m_Situacion > 0) {
-                                this.CustomFilters.Add(new qGen.ComparisonCondition("articulos_stock.id_situacion", m_Situacion));
+                        if (m_Situacion != null) {
+                                this.CustomFilters.Add(new qGen.ComparisonCondition("articulos_stock.id_situacion", m_Situacion.Id));
                                 this.CustomFilters.Add(new qGen.ComparisonCondition("articulos_stock.cantidad", qGen.ComparisonOperators.NotEquals, 0));
                                 this.Definicion.Joins = this.FixedJoins();
                                 this.Definicion.Joins.Add(new qGen.Join("articulos_stock", "articulos.id_articulo=articulos_stock.id_articulo"));
@@ -225,36 +239,16 @@ namespace Lfc.Articulos
                         base.OnEndRefreshList();
                 }
 
-                public override Lfx.Types.OperationResult OnFilter()
+                public override void FiltersChanged(Lfx.Data.Filters.FilterCollection filters)
                 {
-                        using (Articulos.Filtros FormFiltros = new Articulos.Filtros()) {
-                                FormFiltros.Connection = this.Connection;
-                                FormFiltros.EntradaRubro.TextInt = m_Rubro;
-                                FormFiltros.EntradaCategoria.TextInt = m_Categoria;
-                                FormFiltros.EntradaProveedor.TextInt = m_Proveedor;
-                                FormFiltros.EntradaMarca.TextInt = m_Marca;
-                                FormFiltros.EntradaStock.TextKey = m_Stock;
-                                FormFiltros.EntradaSituacion.TextInt = m_Situacion;
-                                FormFiltros.EntradaPvpDesde.Text = Lfx.Types.Formatting.FormatCurrency(m_PvpDesde, this.Workspace.CurrentConfig.Moneda.Decimales);
-                                FormFiltros.EntradaPvpHasta.Text = Lfx.Types.Formatting.FormatCurrency(m_PvpHasta, this.Workspace.CurrentConfig.Moneda.Decimales);
-                                FormFiltros.EntradaAgrupar.TextKey = this.GroupingColumnName;
+                        m_Rubro = (Lbl.Articulos.Rubro)(filters["id_rubro"].Value);
+                        m_Categoria = (Lbl.Articulos.Categoria)(filters["id_categoria"].Value);
+                        m_Marca = (Lbl.Articulos.Marca)(filters["id_marca"].Value);
+                        m_Proveedor = (Lbl.Personas.Persona)(filters["id_proveedor"].Value);
+                        m_Situacion = (Lbl.Articulos.Situacion)(filters["id_situacion"].Value);
+                        m_Stock = System.Convert.ToString(filters["stock_actual"].Value);
 
-                                if (FormFiltros.ShowDialog() == DialogResult.OK) {
-                                        m_Rubro = FormFiltros.EntradaRubro.TextInt;
-                                        m_Categoria = FormFiltros.EntradaCategoria.TextInt;
-                                        m_Marca = FormFiltros.EntradaMarca.TextInt;
-                                        m_Proveedor = FormFiltros.EntradaProveedor.TextInt;
-                                        m_Stock = FormFiltros.EntradaStock.TextKey;
-                                        m_Situacion = FormFiltros.EntradaSituacion.TextInt;
-                                        m_PvpDesde = Lfx.Types.Parsing.ParseCurrency(FormFiltros.EntradaPvpDesde.Text);
-                                        m_PvpHasta = Lfx.Types.Parsing.ParseCurrency(FormFiltros.EntradaPvpHasta.Text);
-                                        this.GroupingColumnName = FormFiltros.EntradaAgrupar.TextKey;
-                                        this.RefreshList();
-                                        return new Lfx.Types.SuccessOperationResult();
-                                } else {
-                                        return new Lfx.Types.OperationResult(false);
-                                }
-                        }
+                        base.FiltersChanged(filters);
                 }
         }
 }

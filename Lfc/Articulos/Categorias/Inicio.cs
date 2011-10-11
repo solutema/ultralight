@@ -61,9 +61,9 @@ namespace Lfc.Articulos.Categorias
                                         new Lfx.Data.FormField("articulos_categorias.cache_costo", "Valorización", Lfx.Data.InputFieldTypes.Numeric, 96),
                                         new Lfx.Data.FormField("0", "Valorización %", Lfx.Data.InputFieldTypes.Numeric, 96)
 			        },
-                                Filters = new List<Lfx.Data.IFilter>()
+                                Filters = new Lfx.Data.Filters.FilterCollection()
                                 {
-                                        new Lfx.Data.SetFilter("Stock Actual", "articulos_categorias.cache_stock_actual", new string[] { "Todos|*", "Con faltantes|f" }, "*")
+                                        new Lfx.Data.Filters.SetFilter("Stock Actual", "articulos_categorias.cache_stock_actual", new string[] { "Todos|*", "Con faltantes|f" }, "*")
                                 }
                         };
                         
@@ -71,11 +71,11 @@ namespace Lfc.Articulos.Categorias
                 }
 
 
-                public override void FiltersChanged(IList<Lfx.Data.IFilter> filters)
+                public override void FiltersChanged(Lfx.Data.Filters.FilterCollection filters)
                 {
                         this.CustomFilters.Clear();
 
-                        if (((Lfx.Data.SetFilter)(filters[0])).CurrentValue == "f")
+                        if (((Lfx.Data.Filters.SetFilter)(filters["articulos_categorias.cache_stock_actual"])).CurrentValue == "f")
                                 CustomFilters.AddWithValue("articulos_categorias.stock_minimo>0 AND articulos_categorias.stock_minimo>(SELECT SUM(articulos.stock_actual) FROM articulos WHERE articulos_categorias.id_categoria=id_categoria)");
 
                         base.FiltersChanged(filters);

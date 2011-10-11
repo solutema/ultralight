@@ -58,7 +58,6 @@ namespace Lfc.Comprobantes.Plantillas
                         };
 
 			this.HabilitarFiltrar = false;
-			this.HabilitarImprimir = false;
 		}
 	}
 }

@@ -82,7 +82,6 @@ namespace Lfc.Comprobantes
                         this.Contadores.Add(new Lfc.Contador("Pendiente", Lui.Forms.DataTypes.Currency));
 
                         this.HabilitarFiltrar = true;
-                        this.HabilitarImprimir = true;
 
                         if (this.HasWorkspace)
                                 m_Sucursal = this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada;

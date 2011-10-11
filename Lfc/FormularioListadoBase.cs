@@ -84,21 +84,6 @@ namespace Lfc
                         }
                 }
 
-                [EditorBrowsable(EditorBrowsableState.Never),
-                        System.ComponentModel.Browsable(false),
-                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public bool HabilitarImprimir
-                {
-                        get
-                        {
-                                return BotonImprimir.Visible;
-                        }
-                        set
-                        {
-                                BotonImprimir.Visible = value;
-                        }
-                }
-
 
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
@@ -241,7 +226,7 @@ namespace Lfc
                 }
 
 
-                public virtual void FiltersChanged(IList<Lfx.Data.IFilter> filters)
+                public virtual void FiltersChanged(Lfx.Data.Filters.FilterCollection filters)
                 {
 
                 }

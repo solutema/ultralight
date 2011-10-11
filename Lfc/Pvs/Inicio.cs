@@ -57,9 +57,9 @@ namespace Lfc.Pvs
 				        new Lfx.Data.FormField("pvs.carga", "Carga", Lfx.Data.InputFieldTypes.Text, 120),
                                         new Lfx.Data.FormField("pvs.detalonario", "Usa Talonarios", Lfx.Data.InputFieldTypes.Bool, 120)
 			        },
-                                Filters = new List<Lfx.Data.IFilter>()
+                                Filters = new Lfx.Data.Filters.FilterCollection()
                                 {
-                                        new Lfx.Data.SetFilter("Tipo", "pvs.tipo", new string[] { "Todos|*", "Inactivo|0", "Normal|1", "Fiscal|2" }, "*")
+                                        new Lfx.Data.Filters.SetFilter("Tipo", "pvs.tipo", new string[] { "Todos|*", "Inactivo|0", "Normal|1", "Fiscal|2" }, "*")
                                 }
                         };
 
@@ -67,11 +67,11 @@ namespace Lfc.Pvs
 		}
 
 
-                public override void FiltersChanged(IList<Lfx.Data.IFilter> filters)
+                public override void FiltersChanged(Lfx.Data.Filters.FilterCollection filters)
                 {
                         this.CustomFilters.Clear();
 
-                        if (((Lfx.Data.SetFilter)(filters[0])).CurrentValue != "*")
+                        if (((Lfx.Data.Filters.SetFilter)(filters["pvs.tipo"])).CurrentValue != "*")
                                 CustomFilters.AddWithValue("pvs.tipo", Lfx.Types.Parsing.ParseInt(filters[0].Value.ToString()));
 
                         base.FiltersChanged(filters);

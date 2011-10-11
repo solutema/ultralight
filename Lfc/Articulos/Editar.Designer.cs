@@ -212,7 +212,7 @@ namespace Lfc.Articulos
                         this.EntradaPvp.TabIndex = 6;
                         this.EntradaPvp.Text = "0.00";
                         this.EntradaPvp.ToolTipText = "Precio de venta al público. Puede dejar el PVP en blanco y utilizar un márgen pre" +
-    "definido a continuación";
+                            "definido a continuación";
                         this.EntradaPvp.TextChanged += new System.EventHandler(this.EntradaPvp_TextChanged);
                         // 
                         // Label6
@@ -353,7 +353,7 @@ namespace Lfc.Articulos
                         // 
                         this.label19.Location = new System.Drawing.Point(244, 32);
                         this.label19.Name = "label19";
-                        this.label19.Size = new System.Drawing.Size(76, 24);
+                        this.label19.Size = new System.Drawing.Size(80, 24);
                         this.label19.TabIndex = 9;
                         this.label19.Text = "Unidad";
                         this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -397,7 +397,7 @@ namespace Lfc.Articulos
                         // 
                         this.Label7.Location = new System.Drawing.Point(0, 32);
                         this.Label7.Name = "Label7";
-                        this.Label7.Size = new System.Drawing.Size(76, 24);
+                        this.Label7.Size = new System.Drawing.Size(80, 24);
                         this.Label7.TabIndex = 0;
                         this.Label7.Text = "Usa Stock";
                         this.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -474,8 +474,8 @@ namespace Lfc.Articulos
                         // 
                         // Frame1
                         // 
-                        this.Frame1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Frame1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.Frame1.Controls.Add(this.EntradaDestacado);
                         this.Frame1.Controls.Add(this.EntradaWeb);
                         this.Frame1.Controls.Add(this.EntradaModelo);
@@ -695,8 +695,8 @@ namespace Lfc.Articulos
                         // 
                         // EntradaMarca
                         // 
-                        this.EntradaMarca.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaMarca.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaMarca.AutoNav = true;
                         this.EntradaMarca.AutoTab = true;
                         this.EntradaMarca.CanCreate = true;
@@ -748,8 +748,8 @@ namespace Lfc.Articulos
                         // 
                         // EntradaDescripcion2
                         // 
-                        this.EntradaDescripcion2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaDescripcion2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaDescripcion2.AutoNav = true;
                         this.EntradaDescripcion2.AutoTab = true;
                         this.EntradaDescripcion2.DataType = Lui.Forms.DataTypes.FreeText;
@@ -822,8 +822,8 @@ namespace Lfc.Articulos
                         // 
                         // EntradaUrl
                         // 
-                        this.EntradaUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaUrl.AutoNav = true;
                         this.EntradaUrl.AutoTab = true;
                         this.EntradaUrl.DataType = Lui.Forms.DataTypes.FreeText;
@@ -872,8 +872,8 @@ namespace Lfc.Articulos
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNombre.AutoNav = true;
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
@@ -900,8 +900,8 @@ namespace Lfc.Articulos
                         // 
                         // EntradaSerie
                         // 
-                        this.EntradaSerie.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaSerie.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSerie.AutoNav = true;
                         this.EntradaSerie.AutoTab = true;
                         this.EntradaSerie.DataType = Lui.Forms.DataTypes.FreeText;
@@ -1076,8 +1076,8 @@ namespace Lfc.Articulos
                         // 
                         // frame3
                         // 
-                        this.frame3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.frame3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.frame3.Controls.Add(this.EntradaCaja);
                         this.frame3.Controls.Add(this.BotonConformacion);
                         this.frame3.Controls.Add(this.BotonHistorial);

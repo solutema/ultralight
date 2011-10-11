@@ -69,6 +69,7 @@ namespace Lui.Forms
                         // 
                         // TextBox1
                         // 
+                        this.TextBox1.ReadOnly = true;
                         this.TextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ItemList_KeyDown);
                         // 
                         // ImagenMasMenos

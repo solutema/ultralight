@@ -70,7 +70,6 @@ namespace Lfc.Cajas
                         };
 
                         this.HabilitarFiltrar = true;
-                        this.HabilitarImprimir = true;
                 }
 
                 protected override void OnBeginRefreshList()

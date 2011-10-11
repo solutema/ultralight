@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,30 +29,46 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
+using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
-namespace Lfc
+namespace Lfx.Data.Filters
 {
-        public partial class FormularioFiltros : Lui.Forms.DialogForm
+        [Serializable]
+        public class RelationFilter : Filter
         {
-                public FormularioFiltros()
+                public Lfx.Data.Relation Relation { get; set; }
+
+                public int ElementId { get; set; }
+
+                public RelationFilter(string label, string columnName)
+                        : base(label, columnName)
                 {
-                        InitializeComponent();
+                }
+
+                public RelationFilter(string label, Lfx.Data.Relation relation)
+                        : this(label, relation.Column)
+                {
+                        this.Relation = relation;
                 }
 
 
-                public void FromFilters(IList<Lfx.Data.Filters.IFilter> filtros)
+                override public bool IsEmpty()
                 {
-                        this.ControlFiltros.FromFilters(filtros);
+                        return this.Relation == null || this.ElementId == 0;
                 }
 
-                
-                public override Lfx.Types.OperationResult Ok()
+
+                public object Elemento
                 {
-                        this.ControlFiltros.ActualizarFiltros();
-                        
-                        return base.Ok();
+                        get
+                        {
+                                return this.Value;
+                        }
+                        set
+                        {
+                                this.Value = value;
+                        }
                 }
         }
 }

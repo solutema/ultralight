@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,30 +29,39 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System.Collections.Generic;
-using System.Windows.Forms;
+using System;
 
-namespace Lfc
+namespace Lfx.Data.Filters
 {
-        public partial class FormularioFiltros : Lui.Forms.DialogForm
+        [Serializable]
+        public class DateRangeFilter : Filter
         {
-                public FormularioFiltros()
+                public DateRangeFilter(string label, string columnName)
+                        : base(label, columnName)
                 {
-                        InitializeComponent();
                 }
 
-
-                public void FromFilters(IList<Lfx.Data.Filters.IFilter> filtros)
+                public DateRangeFilter(string label, string columnName, Lfx.Types.DateRange dateRange)
+                        : this(label, columnName)
                 {
-                        this.ControlFiltros.FromFilters(filtros);
+                        this.DateRange = dateRange;
                 }
 
-                
-                public override Lfx.Types.OperationResult Ok()
+                override public bool IsEmpty()
                 {
-                        this.ControlFiltros.ActualizarFiltros();
-                        
-                        return base.Ok();
+                        return this.DateRange == null;
+                }
+
+                public Lfx.Types.DateRange DateRange
+                {
+                        get
+                        {
+                                return this.Value as Lfx.Types.DateRange;
+                        }
+                        set
+                        {
+                                this.Value = value;
+                        }
                 }
         }
 }

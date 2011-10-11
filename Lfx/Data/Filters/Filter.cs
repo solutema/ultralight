@@ -1,5 +1,5 @@
-#region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+﻿#region License
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,30 +29,40 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
+using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
-namespace Lfc
+namespace Lfx.Data.Filters
 {
-        public partial class FormularioFiltros : Lui.Forms.DialogForm
+        [Serializable]
+        public class Filter : IFilter
         {
-                public FormularioFiltros()
+                public string Label { get; set; }
+                public string ColumnName { get; set; }
+
+                /// <summary>
+                /// Obtiene o establece el valor actual del filtro.
+                /// </summary>
+                public object Value { get; set; }
+
+                /// <summary>
+                /// Obtiene o establece el segundo valor del filtro, para el caso de los filtros de rango que tienen 2 valores (por ejemplo mínimo/máximo o desde/hasta).
+                /// </summary>
+                public object Value2 { get; set; }
+
+                // El control asociado a este filtro, cuando se lo presenta en un formulario
+                public object Control { get; set; }
+
+                public Filter(string label, string columnName)
                 {
-                        InitializeComponent();
+                        this.Label = label;
+                        this.ColumnName = columnName;
                 }
 
 
-                public void FromFilters(IList<Lfx.Data.Filters.IFilter> filtros)
+                virtual public bool IsEmpty()
                 {
-                        this.ControlFiltros.FromFilters(filtros);
-                }
-
-                
-                public override Lfx.Types.OperationResult Ok()
-                {
-                        this.ControlFiltros.ActualizarFiltros();
-                        
-                        return base.Ok();
+                        return true;
                 }
         }
 }

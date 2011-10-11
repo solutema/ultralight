@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,30 +29,23 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
+using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
-namespace Lfc
+namespace Lfx.Data.Filters
 {
-        public partial class FormularioFiltros : Lui.Forms.DialogForm
+        public class FilterCollection : List<IFilter>
         {
-                public FormularioFiltros()
+                public IFilter this[string columnName]
                 {
-                        InitializeComponent();
-                }
-
-
-                public void FromFilters(IList<Lfx.Data.Filters.IFilter> filtros)
-                {
-                        this.ControlFiltros.FromFilters(filtros);
-                }
-
-                
-                public override Lfx.Types.OperationResult Ok()
-                {
-                        this.ControlFiltros.ActualizarFiltros();
-                        
-                        return base.Ok();
+                        get
+                        {
+                                foreach (IFilter fil in this) {
+                                        if (fil.ColumnName == columnName)
+                                                return fil;
+                                }
+                                throw new IndexOutOfRangeException();
+                        }
                 }
         }
 }

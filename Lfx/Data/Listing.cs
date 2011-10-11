@@ -46,7 +46,7 @@ namespace Lfx.Data
                 public Lfx.Data.FormField KeyColumnName;
                 public string DetailColumnName = null;
                 public Lfx.Data.FormFieldCollection Columns = null, ExtraSearchColumns = null, SortColumns = null;
-                public IList<IFilter> Filters = null;
+                public Filters.FilterCollection Filters = null;
 
                 public Lfx.Data.FormField GroupBy = null;
                 public string OrderBy = null;

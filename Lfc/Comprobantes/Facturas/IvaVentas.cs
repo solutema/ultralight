@@ -71,7 +71,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.Contadores.Add(new Lfc.Contador("Total", Lui.Forms.DataTypes.Currency));
 
                         this.HabilitarFiltrar = true;
-                        this.HabilitarImprimir = true;
                         this.HabilitarBusqueda = false;
                         this.HabilitarCrear = false;
                 }

@@ -19,12 +19,12 @@
             Esqueleto del componente.
             </summary>
         </member>
-        <member name="P:Lfx.Data.Filter.Value">
+        <member name="P:Lfx.Data.Filters.Filter.Value">
             <summary>
             Obtiene o establece el valor actual del filtro.
             </summary>
         </member>
-        <member name="P:Lfx.Data.Filter.Value2">
+        <member name="P:Lfx.Data.Filters.Filter.Value2">
             <summary>
             Obtiene o establece el segundo valor del filtro, para el caso de los filtros de rango que tienen 2 valores (por ejemplo mínimo/máximo o desde/hasta).
             </summary>

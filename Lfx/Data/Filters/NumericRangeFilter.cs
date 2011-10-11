@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,30 +29,62 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System.Collections.Generic;
-using System.Windows.Forms;
+using System;
 
-namespace Lfc
+namespace Lfx.Data.Filters
 {
-        public partial class FormularioFiltros : Lui.Forms.DialogForm
+        [Serializable]
+        public class NumericRangeFilter : Filter
         {
-                public FormularioFiltros()
+                public decimal Min { get; set; }
+                public decimal Max { get; set; }
+
+                public int DecimalPlaces = 2;
+
+                public NumericRangeFilter(string label, string columnName)
+                        : base(label, columnName)
                 {
-                        InitializeComponent();
                 }
 
 
-                public void FromFilters(IList<Lfx.Data.Filters.IFilter> filtros)
+                public NumericRangeFilter(string label, string columnName, int decimalPlaces)
+                        : this(label, columnName)
                 {
-                        this.ControlFiltros.FromFilters(filtros);
+                        this.DecimalPlaces = decimalPlaces;
+                        this.Value = 0m;
+                        this.Value2 = 0m;
                 }
 
-                
-                public override Lfx.Types.OperationResult Ok()
+
+                public decimal From
                 {
-                        this.ControlFiltros.ActualizarFiltros();
-                        
-                        return base.Ok();
+                        get
+                        {
+                                return System.Convert.ToDecimal(this.Value);
+                        }
+                        set
+                        {
+                                this.Value = value;
+                        }
+                }
+
+
+                public decimal To
+                {
+                        get
+                        {
+                                return System.Convert.ToDecimal(this.Value2);
+                        }
+                        set
+                        {
+                                this.Value2 = value;
+                        }
+                }
+
+
+                override public bool IsEmpty()
+                {
+                        return this.From == 0 && this.To == 0;
                 }
         }
 }
