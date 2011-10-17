@@ -70,7 +70,7 @@ namespace Lfx.Updates
                 public Updater(string channel)
                 {
                         this.Channel = channel;
-                        this.Progress = new Types.OperationProgress("Actualizando...", "De están descargando actualizaciones");
+                        this.Progress = new Types.OperationProgress("Actualizador", "Mantiene los archivos de la aplicación actualizados.");
                         this.Progress.Blocking = false;
                         this.Progress.Advertise = false;
                         this.Packages = new PackageCollection(this);
