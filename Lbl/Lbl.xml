@@ -180,6 +180,16 @@
             Espacio de nombres bajo el cual opera el componente.
             </summary>
         </member>
+        <member name="P:Lbl.Componentes.Componente.Url">
+            <summary>
+            Dirección de la página web del componente.
+            </summary>
+        </member>
+        <member name="P:Lbl.Componentes.Componente.UrlActualizaciones">
+            <summary>
+            Dirección donde se pueden descargar actualizaciones del componente.
+            </summary>
+        </member>
         <member name="P:Lbl.Componentes.Componente.Version">
             <summary>
             Versión instalada del componente.
@@ -188,6 +198,11 @@
         <member name="P:Lbl.Componentes.Componente.Estructura">
             <summary>
             Estructura adicional de base de datos requerida por este componente.
+            </summary>
+        </member>
+        <member name="P:Lbl.Componentes.Componente.Cif">
+            <summary>
+            Archivo CIF, que contiene información sobre menús y funciones.
             </summary>
         </member>
         <member name="M:Lbl.Comprobantes.Comprobante.Numerar(System.Int32,System.Boolean)">

@@ -37,14 +37,14 @@ namespace Lfx.Components
 {
         public class FunctionInfo
         {
-                public Lfx.Components.Component ComponentInfo;
+                public IComponent ComponentInfo;
                 public string Nombre;
                 public bool AutoRun = false;
                 public Lfx.Components.Function Instancia = null;
                 public IRegisteredType TipoRegistrado = null;
                 public bool Ready = false;
 
-                public FunctionInfo(Component compInfo)
+                public FunctionInfo(IComponent compInfo)
                 {
                         this.ComponentInfo = compInfo;
                 }
@@ -52,7 +52,7 @@ namespace Lfx.Components
                 public void Load()
                 {
                         if (this.Instancia == null)
-                                this.Instancia = (Lfx.Components.Function)this.ComponentInfo.Assembly.CreateInstance(this.ComponentInfo.Nombre + "." + this.Nombre);
+                                this.Instancia = (Lfx.Components.Function)this.ComponentInfo.Assembly.CreateInstance(this.ComponentInfo.EspacioNombres + "." + this.Nombre);
 
                         if (Instancia != null) {
                                 this.Instancia.Workspace = Lfx.Workspace.Master;

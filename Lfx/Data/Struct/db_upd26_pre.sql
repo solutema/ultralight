@@ -17,7 +17,7 @@ INSERT INTO tipo_doc SET id_tipo_doc=7, nombre='Pasaporte';
 	chequeras			-> bancos_chequeras
 	ciudades			-> localidades
 	conceptos			-> cajas_conceptos
-	documentos_tipos	-> comprob_tipos
+	documentos_tipos	-> docu_tipos
 	marcas				-> articulos_marcas
 	margenes			-> articulos_margenes
 	pvs					-> comprob_pvs
@@ -25,6 +25,7 @@ INSERT INTO tipo_doc SET id_tipo_doc=7, nombre='Pasaporte';
 	talonarios			-> comprob_talonarios
 	tipo_doc			-> personas_tipodoc
 	tickets*			-> tareas*
+	sys_plantillas		-> docu_plantillas
 */
 
 

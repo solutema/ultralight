@@ -266,7 +266,6 @@ namespace Lfc
                         this.Text = "Editar";
                         this.Closing += new System.ComponentModel.CancelEventHandler(this.EditForm_Closing);
                         this.Load += new System.EventHandler(this.EditForm_Load);
-                        this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditForm_KeyDown);
                         this.LowerPanel.ResumeLayout(false);
                         this.SplitContainer.Panel2.ResumeLayout(false);
                         this.SplitContainer.ResumeLayout(false);

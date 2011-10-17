@@ -46,18 +46,19 @@ namespace Lfx.FileFormats.Compression
 	public class Archive
 	{
                 private static System.Reflection.Assembly m_SharpZipLib = null;
-		public string ArchiveFileName = null;
+		//public string ArchiveFileName = null;
+                public System.IO.Stream InputStream = null;
 		public ArchiveTypes ArchiveType = ArchiveTypes.Unknown;
 
-		public Archive(string archiveFileName, ArchiveTypes archiveType)
+                public Archive(System.IO.Stream inputStream, ArchiveTypes archiveType)
 		{
-			this.ArchiveFileName = archiveFileName;
+                        this.InputStream = inputStream;
 			this.ArchiveType = archiveType;
 		}
 
-		public Archive(string archiveFileName)
+                public Archive(string archiveFileName)
 		{
-			this.ArchiveFileName = archiveFileName;
+                        this.InputStream = System.IO.File.OpenRead(archiveFileName);
 			switch(System.IO.Path.GetExtension(archiveFileName).ToUpperInvariant())
 			{
                                 case ".BZ2":
@@ -83,53 +84,29 @@ namespace Lfx.FileFormats.Compression
                         }
                 }
 
-		public bool ExtractAll(string outputFolder)
+		/* public bool ExtractAll(string outputFolder)
 		{
 			return this.Extract("*.*", outputFolder);
-		}
+		} */
 
-		public bool Extract(string fileName, string outputFolder)
+		public bool Extract(System.IO.Stream outputStream)
 		{
 			switch(this.ArchiveType)
 			{
                                 case ArchiveTypes.BZip2:
-                                        string ArchivoSalida = outputFolder + System.IO.Path.DirectorySeparatorChar + fileName;
-                                        object[] Args = new object[] { System.IO.File.OpenRead(this.ArchiveFileName), System.IO.File.Create(ArchivoSalida), true };
+                                        object[] Args = new object[] { InputStream, outputStream, true };
                                         System.Reflection.MethodInfo DecompMethod = this.SharpZipLib.GetType("ICSharpCode.SharpZipLib.BZip2.BZip2").GetMethod("Decompress");
                                         DecompMethod.Invoke(null, Args);
                                         break;
-                                case ArchiveTypes.SevenZip:
-					Lfx.Environment.Shell.Execute(Get7ZipExeName(), @"e -y -r -t7z -o""" + outputFolder + @""" """ + this.ArchiveFileName + @""" """ + fileName + @"""", System.Diagnostics.ProcessWindowStyle.Hidden, true);
-					break;
-				default:
-					Lfx.Environment.Shell.Execute(Get7ZipExeName(), @"e -y -r -o""" + outputFolder + @""" """ + this.ArchiveFileName + @""" """ + fileName + @"""", System.Diagnostics.ProcessWindowStyle.Hidden, true);
-					break;
+                                default:
+                                        throw new NotImplementedException("Tipo de archivo no reconocido");
 			}
 			return true;
 		}
 
 		public bool Add(string fileName)
 		{
-			switch(this.ArchiveType) {
-				case ArchiveTypes.SevenZip:
-					Lfx.Environment.Shell.Execute(Get7ZipExeName(), @" a -y -r -t7z """ + this.ArchiveFileName + @""" """ + fileName + @"""", System.Diagnostics.ProcessWindowStyle.Hidden, true);
-					break;
-				default:
-					Lfx.Environment.Shell.Execute(Get7ZipExeName(), @" a -y -r """ + this.ArchiveFileName + @""" """ + fileName + @"""", System.Diagnostics.ProcessWindowStyle.Hidden, true);
-					break;
-			}
-			return true;
-		}
-
-		private static string Get7ZipExeName()
-		{
-			switch(Lfx.Environment.SystemInformation.Platform)
-			{
-				case Lfx.Environment.SystemInformation.Platforms.Windows:
-					return @"""" + Lfx.Environment.Folders.ApplicationFolder + @"7za.exe""";
-				default:
-					return @"7za";
-			}
+                        throw new NotImplementedException("No implementado");
 		}
 	}
 }

@@ -84,7 +84,7 @@ namespace Lfc.Cajas.Admin
 		{
                         int IdBanco = Lfx.Types.Parsing.ParseInt(item.SubItems[2].Text);
                         if (IdBanco != 0)
-                                item.SubItems["id_banco"].Text = this.Connection.Tables["bancos"].FastRows[IdBanco].Fields["nombre"].ValueString;
+                                item.SubItems["cajas.id_banco"].Text = this.Connection.Tables["bancos"].FastRows[IdBanco].Fields["nombre"].ValueString;
 
                         int IdCaja = Lfx.Types.Parsing.ParseInt(item.Text);
                         decimal Saldo = this.Connection.FieldDecimal("SELECT saldo FROM cajas_movim WHERE id_caja=" + IdCaja.ToString() + " ORDER BY id_movim DESC LIMIT 1");

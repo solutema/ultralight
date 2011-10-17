@@ -93,28 +93,25 @@
             Proporciona servicios de comunicación inter-proceso (entre el Lfx, la aplicación principal y los componentes)
             </summary>
         </member>
-        <member name="T:Lfx.Services.Updater">
+        <member name="P:Lfx.Updates.Package.RelativePath">
             <summary>
-            Actualizador de Lázaro (actualiza desde web).
-            Descarga el archivo version.xml que contiene información sobre
-            los archivos que hay que actualizar y sus versiones actuales
-            Utiliza la variable "Sistema.Actualizaciones.URLNLWC" de la tabla "sys_config"
-            para saber de dénde descargar.
+            Ruta de destino relativa a la ruta del actualizador.
             </summary>
         </member>
-        <member name="M:Lfx.Services.Updater.NetGet(System.String,System.String)">
+        <member name="F:Lfx.Updates.Updater.Interval">
             <summary>
-            Descarga un archivo desde una URI y lo guarda en el disco.
+            Interval between checks, in minutes.
             </summary>
-            <param name="uri">La URI del archivo a descargar.</param>
-            <param name="archivo">El nombre del archivo en el disco.</param>
         </member>
-        <member name="M:Lfx.Services.Updater.NetGet(System.String)">
+        <member name="P:Lfx.Updates.Updater.TempPath">
             <summary>
-            Descarga un archivo desde una URI.
+            Path to store temporary files.
             </summary>
-            <param name="uri">La URI del archivo a descargar.</param>
-            <returns>Una matriz de bytes con el contenido del archivo descargado.</returns>
+        </member>
+        <member name="P:Lfx.Updates.Updater.Path">
+            <summary>
+            Destination path for the downloaded files.
+            </summary>
         </member>
         <member name="T:Lfx.Components.Manager">
             <summary>

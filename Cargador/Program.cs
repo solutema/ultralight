@@ -95,6 +95,14 @@ namespace Cargador
 
                                         // Y ahora renombro el nuevo a .bak
                                         System.Console.WriteLine("  en " + NombreFinal);
+
+                                        try {
+                                                string CarpetaDestino = System.IO.Path.GetDirectoryName(NombreFinal);
+                                                if (System.IO.Directory.Exists(CarpetaDestino) == false)
+                                                        System.IO.Directory.CreateDirectory(CarpetaDestino);
+                                        } catch {
+                                        }
+
                                         System.IO.File.Move(ArchivoNuevo, NombreFinal);
                                 } else {
                                         System.Console.WriteLine("Ignorando " + ArchivoNuevo);

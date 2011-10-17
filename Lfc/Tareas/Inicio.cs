@@ -167,17 +167,17 @@ namespace Lfc.Tareas
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
-                        int IdEncargado = row.Fields["id_tecnico_recibe"].ValueInt;
+                        int IdEncargado = row.Fields["tickets.id_tecnico_recibe"].ValueInt;
                         if (IdEncargado > 0)
-                                item.SubItems["id_tecnico_recibe"].Text = this.Connection.Tables["personas"].FastRows[IdEncargado].Fields["nombre"].ValueString;
+                                item.SubItems["tickets.id_tecnico_recibe"].Text = this.Connection.Tables["personas"].FastRows[IdEncargado].Fields["nombre"].ValueString;
 
-                        int IdEstado = row.Fields["estado"].ValueInt;
-                        DateTime FechaLimite = row.Fields["entrega_limite"].ValueDateTime;
+                        int IdEstado = row.Fields["tickets.estado"].ValueInt;
+                        DateTime FechaLimite = row.Fields["tickets.entrega_limite"].ValueDateTime;
                         if (FechaLimite > DateTime.Now) {
-                                item.SubItems["entrega_limite"].BackColor = Color.Red;
-                                item.SubItems["entrega_limite"].ForeColor = Color.White;
+                                item.SubItems["tickets.entrega_limite"].BackColor = Color.Red;
+                                item.SubItems["tickets.entrega_limite"].ForeColor = Color.White;
                         }
-                        int Dias = row.Fields["fechadiff"].ValueInt;
+                        int Dias = row.Fields["tickets.fechadiff"].ValueInt;
                         switch (IdEstado) {
                                 case 0:
                                 case 1:

@@ -469,8 +469,6 @@ namespace Lfc
                         else if ((e.Column - 1) < this.Definicion.Columns.Count)
                                 NuevoOrden = Listado.Columns[e.Column].Name;
 
-                        NuevoOrden = Lfx.Data.Connection.GetFieldName(NuevoOrden);
-
                         if (NuevoOrden != null) {
                                 if (this.Definicion.OrderBy == NuevoOrden)
                                         this.Definicion.OrderBy = NuevoOrden + " DESC";
@@ -500,7 +498,7 @@ namespace Lfc
                                 Listado.Columns.Clear();
 
                                 Listado.Columns.Add(new ColumnHeader());
-                                Listado.Columns[ColNum].Name = Lfx.Data.Connection.GetFieldName(this.Definicion.KeyColumnName.ColumnName);
+                                Listado.Columns[ColNum].Name = this.Definicion.KeyColumnName.ColumnName;
                                 Listado.Columns[ColNum].Width = this.Definicion.KeyColumnName.Width;
                                 Listado.Columns[ColNum].Text = this.Definicion.KeyColumnName.Label;
 
@@ -516,7 +514,7 @@ namespace Lfc
                                                 if (Listado.Columns.Count <= ColNum)
                                                         Listado.Columns.Add(new ColumnHeader());
 
-                                                Listado.Columns[ColNum].Name = Lfx.Data.Connection.GetFieldName(this.Definicion.Columns[i].ColumnName);
+                                                Listado.Columns[ColNum].Name = this.Definicion.Columns[i].ColumnName;
                                                 Listado.Columns[ColNum].Width = this.Definicion.Columns[i].Width;
                                                 Listado.Columns[ColNum].Text = this.Definicion.Columns[i].Label;
 
@@ -769,7 +767,7 @@ namespace Lfc
                                         Itm.Font = new Font(Itm.Font, FontStyle.Bold);
                                         Itm.BackColor = Color.Lavender;
                                         foreach (ColumnHeader Col in Listado.Columns) {
-                                                if (Col.Name != Lfx.Data.Connection.GetFieldName(this.Definicion.KeyColumnName.ColumnName)) {
+                                                if (Col.Name != this.Definicion.KeyColumnName.ColumnName) {
                                                         Itm.Group = Grp;
                                                         object ColFunc = this.Definicion.Columns[Col.Name].TotalFunction;
                                                         if (ColFunc == null) {
@@ -909,7 +907,7 @@ namespace Lfc
                                 int FieldNum = -1;
                                 if (SubItemToFormField.ContainsKey(FieldName) == false) {
                                         for (int fi = 0; fi < this.Definicion.Columns.Count; fi++) {
-                                                if (Lfx.Data.Connection.GetFieldName(this.Definicion.Columns[fi].ColumnName) == FieldName) {
+                                                if (this.Definicion.Columns[fi].ColumnName == FieldName) {
                                                         FieldNum = fi;
                                                         SubItemToFormField.Add(FieldName, FieldNum);
                                                         break;

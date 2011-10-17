@@ -84,20 +84,20 @@ namespace Lfc.Personas
                 {
                         base.OnItemAdded(item, row);
 
-                        if (row.Fields["estado"].ValueInt == 0)
+                        if (row.Fields["personas.estado"].ValueInt == 0)
                                 item.ForeColor = System.Drawing.Color.Gray;
 
-                        string Cuit = row.Fields["cuit"].ValueString;
+                        string Cuit = row.Fields["personas.cuit"].ValueString;
                         if (Cuit != null && Cuit.Length > 0 && Lfx.Types.Strings.EsCuitValido(Cuit) == false) {
                                 item.UseItemStyleForSubItems = false;
-                                item.SubItems["cuit"].BackColor = System.Drawing.Color.Pink;
+                                item.SubItems["personas.cuit"].BackColor = System.Drawing.Color.Pink;
                         }
 
-                        int IdSubGrupo = row.Fields["id_subgrupo"].ValueInt;
+                        int IdSubGrupo = row.Fields["personas.id_subgrupo"].ValueInt;
                         if (IdSubGrupo != 0) {
                                 Lfx.Data.Row SubGrupo = this.Connection.Tables["personas_grupos"].FastRows[IdSubGrupo];
                                 if (SubGrupo != null)
-                                        item.SubItems["id_subgrupo"].Text = SubGrupo.Fields["nombre"].ValueString;
+                                        item.SubItems["personas.id_subgrupo"].Text = SubGrupo.Fields["personas.nombre"].ValueString;
                         }
                 }
 

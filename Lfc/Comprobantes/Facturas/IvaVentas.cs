@@ -196,9 +196,9 @@ namespace Lfc.Comprobantes.Facturas
                                 this.CustomFilters.AddWithValue("comprob.pv", m_PV);
 
                         if (m_Fecha.HasRange)
-                                this.CustomFilters.AddWithValue("(fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')");
+                                this.CustomFilters.AddWithValue("(comprob.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')");
 
-                        this.CustomFilters.AddWithValue("impresa", 1);
+                        this.CustomFilters.AddWithValue("comprob.impresa", 1);
 
                         this.UpdateFormFields();
 

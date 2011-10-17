@@ -122,7 +122,7 @@ namespace Lfc.Bancos.Cheques
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
-                        item.SubItems["numero"].Text = row.Fields["numero"].ValueInt.ToString("00000000");
+                        item.SubItems["bancos_cheques.numero"].Text = row.Fields["numero"].ValueInt.ToString("00000000");
 
                         decimal Importe = row.Fields["importe"].ValueDecimal;
                         this.Contadores[0].AddValue(Importe);
@@ -130,9 +130,9 @@ namespace Lfc.Bancos.Cheques
                         switch (row.Fields["estado"].ValueInt) {
                                 case 0:
                                         if (m_Emitidos)
-                                                item.SubItems["estado"].Text = "A pagar";
+                                                item.SubItems["bancos_cheques.estado"].Text = "A pagar";
                                         else
-                                                item.SubItems["estado"].Text = "A cobrar";
+                                                item.SubItems["bancos_cheques.estado"].Text = "A cobrar";
                                         if (DateTime.Compare(row.Fields["fechacobro"].ValueDateTime, System.DateTime.Now) <= 0)
                                                 item.ForeColor = System.Drawing.Color.Green;
                                         else
@@ -140,22 +140,22 @@ namespace Lfc.Bancos.Cheques
                                         this.Contadores[1].AddValue(Importe);
                                         break;
                                 case 5:
-                                        item.SubItems["estado"].Text = "Depositado";
+                                        item.SubItems["bancos_cheques.estado"].Text = "Depositado";
                                         this.Contadores[1].AddValue(Importe);
                                         break;
                                 case 10:
                                         if (m_Emitidos)
-                                                item.SubItems["estado"].Text = "Pagado";
+                                                item.SubItems["bancos_cheques.estado"].Text = "Pagado";
                                         else
-                                                item.SubItems["estado"].Text = "Cobrado";
+                                                item.SubItems["bancos_cheques.estado"].Text = "Cobrado";
                                         item.ForeColor = System.Drawing.Color.Gray;
                                         break;
                                 case 11:
-                                        item.SubItems["estado"].Text = "Entregado";
+                                        item.SubItems["bancos_cheques.estado"].Text = "Entregado";
                                         item.ForeColor = System.Drawing.Color.Gray;
                                         break;
                                 case 90:
-                                        item.SubItems["estado"].Text = "Anulado";
+                                        item.SubItems["bancos_cheques.estado"].Text = "Anulado";
                                         item.ForeColor = System.Drawing.Color.Gray;
                                         item.Font = new Font(item.Font, FontStyle.Strikeout);
                                         break;

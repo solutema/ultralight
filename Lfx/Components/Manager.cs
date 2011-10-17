@@ -39,10 +39,10 @@ namespace Lfx.Components
 	/// </summary>
 	public static class Manager
 	{
-                public static Dictionary<string, Lfx.Components.Component> ComponentesCargados = new Dictionary<string, Component>();
+                public static Dictionary<string, IComponent> ComponentesCargados = new Dictionary<string, IComponent>();
                 public static FunctionInfoCollection TiposRegistrados = new FunctionInfoCollection();
 
-                public static Lfx.Components.Component Load(string nameSpace)
+                /* public static Lfx.Components.Component Load(string nameSpace)
                 {
                         string CifName = Lfx.Environment.Folders.ComponentsFolder + nameSpace + ".cif";
                         if (System.IO.File.Exists(CifName)) {
@@ -83,12 +83,12 @@ namespace Lfx.Components
                                         }
                                 }
                         }
-                }
+                } */
 
-                public static Lfx.Types.OperationResult RegisterComponent(Component componentInfo)
+                public static Lfx.Types.OperationResult RegisterComponent(IComponent componentInfo)
                 {
                         // Simplemente lo cargo... eso ya registra los tipos
-                        if (ComponentesCargados.ContainsKey(componentInfo.Nombre) == false) {
+                        if (ComponentesCargados.ContainsKey(componentInfo.EspacioNombres) == false) {
                                 Lfx.Types.OperationResult Res = componentInfo.Load();
                                 if (Res.Success == false)
                                         return Res;
@@ -97,28 +97,12 @@ namespace Lfx.Components
                                 Lfx.Types.OperationResult TryResult = componentInfo.Funciones["Try"].Run() as Lfx.Types.OperationResult;
 
                                 if (TryResult != null && TryResult.Success) {
-                                        ComponentesCargados.Add(componentInfo.Nombre, componentInfo);
+                                        ComponentesCargados.Add(componentInfo.EspacioNombres, componentInfo);
                                         if (componentInfo.Funciones != null) {
                                                 foreach (FunctionInfo Func in componentInfo.Funciones.Values) {
                                                         Func.Load();
                                                         if (Func.TipoRegistrado != null)
                                                                 TiposRegistrados.Add(Func.TipoRegistrado, Func);
-                                                }
-                                        }
-
-                                        // Cargo las estructuras de datos adicionales que el componente necesita
-                                        using (System.IO.Stream DbStructXml = componentInfo.Assembly.GetManifestResourceStream(componentInfo.Nombre + ".Data.Struct.dbstruct.xml")) {
-                                                if (DbStructXml != null) {
-                                                        using (System.IO.StreamReader Lector = new System.IO.StreamReader(DbStructXml)) {
-                                                                System.Xml.XmlDocument Doc = new System.Xml.XmlDocument();
-                                                                Doc.Load(Lector);
-                                                                Lector.Close();
-                                                                DbStructXml.Close();
-                                                                componentInfo.DataStructure = Doc;
-
-                                                                // FIXME: quitar una vez que esté todo mudado a Lbl.Componentes
-                                                                Lfx.Workspace.Master.Structure.AddToBuiltIn(Doc);
-                                                        }
                                                 }
                                         }
                                 } else {
@@ -133,7 +117,7 @@ namespace Lfx.Components
                 {
                         if (ComponentesCargados.ContainsKey(componentName)) {
                                 //Ya fue cargado
-                                Lfx.Components.Component Componente = ComponentesCargados[componentName];
+                                IComponent Componente = ComponentesCargados[componentName];
 
                                 if (Componente.Funciones.ContainsKey(functionName)) {
                                         Lfx.Components.FunctionInfo Func = Componente.Funciones[functionName];

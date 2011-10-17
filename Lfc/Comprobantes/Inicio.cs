@@ -313,7 +313,7 @@ namespace Lfc.Comprobantes
                         if (IdVendedor > 0) {
                                 Lfx.Data.Row Vend = this.Connection.Tables["personas"].FastRows[IdVendedor];
                                 if (Vend != null)
-                                        item.SubItems["id_vendedor"].Text = Vend.Fields["nombre_visible"].Value.ToString();
+                                        item.SubItems["comprob.id_vendedor"].Text = Vend.Fields["nombre_visible"].Value.ToString();
                         }
                 }
         }

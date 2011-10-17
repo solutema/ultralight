@@ -30,29 +30,20 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace Lazaro.Misc
 {
 	public partial class AcercaDe : Lui.Forms.Form
 	{
+                private bool YaBusqueActualizaciones = false;
 
                 public AcercaDe()
                 {
                         InitializeComponent();
-                }
 
-		private void FormAcercaDe_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Escape)
-			{
-				e.Handled = true;
-				OkButton.PerformClick();
-			}
-		}
+                        EtiquetaActualizar.Visible = Lfx.Updates.Updater.Master != null;
+                }
 
 
                 private void FormAcercaDe_Load(object sender, System.EventArgs e)
@@ -68,7 +59,7 @@ namespace Lazaro.Misc
                         }
 
                         Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ComponentsFolder);
-                        foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.dll")) {
+                        foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.dll", System.IO.SearchOption.AllDirectories)) {
                                 ListaComponentes.Items.Add(DirItem.Name + " versión " + System.Diagnostics.FileVersionInfo.GetVersionInfo(DirItem.FullName).ProductVersion + " del " + new System.IO.FileInfo(DirItem.FullName).LastWriteTime.ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern));
                         }
 
@@ -81,17 +72,7 @@ namespace Lazaro.Misc
 		private void BotonActualizar_LinkClicked(System.Object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
                         this.Close();
-			Actualizador.Estado OFormActualizador = new Actualizador.Estado();
-			OFormActualizador.TopMost = true;
-			OFormActualizador.Show();
-                        Lfx.Services.Updater.Master.UpdateFromWeb();
-			OFormActualizador.Close();
-			OFormActualizador = null;
-                        if (Lfx.Services.Updater.Master.HasError()) {
-                                Lui.Forms.MessageBox.Show(Lfx.Services.Updater.Master.ErrorMessage, "Error");
-                        } else if (Lfx.Services.Updater.Master.UpdatedFiles == 0) {
-                                Lui.Forms.MessageBox.Show("Ya está utilizando la versión más nueva disponible.", "Actualizar");
-                        } else {
+                        if (Lfx.Updates.Updater.Master != null && Lfx.Updates.Updater.Master.UpdatesPending()) {
                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Se descargó una nueva versión de Lázaro. Debe reiniciar la aplicación para instalar la actualización.", "¿Desea reiniciar ahora?");
                                 Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                 DialogResult Respuesta = Pregunta.ShowDialog();
@@ -108,6 +89,34 @@ namespace Lazaro.Misc
                 private void BotonWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
                         Help.ShowHelp(this, "http://www.sistemalazaro.com.ar");
+                }
+
+                private void TimerBuscarActualizaciones_Tick(object sender, EventArgs e)
+                {
+                        TimerBuscarActualizaciones.Stop();
+
+                        if (Lfx.Updates.Updater.Master == null)
+                                return;
+
+                        if (YaBusqueActualizaciones == false) {
+                                YaBusqueActualizaciones = true;
+                                Lfx.Updates.Updater.Master.ForceCheckNow();
+                        }
+
+                        if (Lfx.Updates.Updater.Master.Progress.IsRunning) {
+                                EtiquetaActualizar.Text = "Descargando " + Lfx.Updates.Updater.Master.Progress.PercentDone.ToString() + "%";
+                                EtiquetaActualizar.LinkArea = new LinkArea(0, 0);
+                        } else {
+                                if (Lfx.Updates.Updater.Master.UpdatesPending()) {
+                                        EtiquetaActualizar.Text = "Hay una actualización lista para aplicarse";
+                                        EtiquetaActualizar.LinkArea = new LinkArea(0, EtiquetaActualizar.Text.Length);
+                                } else {
+                                        EtiquetaActualizar.Text = "Lázaro está actualizado";
+                                        EtiquetaActualizar.LinkArea = new LinkArea(0, 0);
+                                }
+                        }
+
+                        TimerBuscarActualizaciones.Start();
                 }
 	}
 }

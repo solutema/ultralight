@@ -79,7 +79,7 @@ namespace Lfx.Types
                                         "ddMM",
                                         "yyyy-MM-dd HH:mm:ss",
                                         "yyyy-MM-dd HH:mm",
-                                        "dd-MM-yyyy  HH:mm:ss",
+                                        "dd-MM-yyyy HH:mm:ss",
                                         "dd-MM-yyyy HH:mm",
                                         "dd-MM-yy HH:mm:ss",
                                         "dd-MM-yy HH:mm"

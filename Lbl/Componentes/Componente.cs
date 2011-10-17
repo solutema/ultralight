@@ -40,33 +40,39 @@ namespace Lbl.Componentes
         /// Representa un componente.
         /// </summary>
         [Lbl.Atributos.NombreItem("Componente")]
-        public class Componente : ElementoDeDatos
+        public class Componente : ElementoDeDatos, Lfx.Components.IComponent
         {
+                public IDictionary<string, Lfx.Components.FunctionInfo> Funciones { get; set; }
+                public System.Reflection.Assembly Assembly { get; set; }
+                public IList<Lfx.Components.MenuEntry> MenuEntries { get; set; }
+                public string CifFileName { get; set; }
+                public bool Disabled { get; set; }
+
                 //Heredar constructor
-		public Componente(Lfx.Data.Connection dataBase)
+                public Componente(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
 
-		public Componente(Lfx.Data.Connection dataBase, int itemId)
-			: base(dataBase, itemId) { }
+                public Componente(Lfx.Data.Connection dataBase, int itemId)
+                        : base(dataBase, itemId) { }
 
                 public Componente(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-		public override string TablaDatos
-		{
-			get
-			{
-				return "sys_components";
-			}
-		}
+                public override string TablaDatos
+                {
+                        get
+                        {
+                                return "sys_components";
+                        }
+                }
 
-		public override string CampoId
-		{
-			get
-			{
-				return "id_component";
-			}
-		}
+                public override string CampoId
+                {
+                        get
+                        {
+                                return "id_component";
+                        }
+                }
 
 
                 /// <summary>
@@ -80,7 +86,39 @@ namespace Lbl.Componentes
                         }
                         set
                         {
-                                this.SetFieldValue("epacio", value);
+                                this.SetFieldValue("espacio", value);
+                        }
+                }
+
+
+                /// <summary>
+                /// Dirección de la página web del componente.
+                /// </summary>
+                public string Url
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("url");
+                        }
+                        set
+                        {
+                                this.SetFieldValue("url", value);
+                        }
+                }
+
+
+                /// <summary>
+                /// Dirección donde se pueden descargar actualizaciones del componente.
+                /// </summary>
+                public string UrlActualizaciones
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("url_act");
+                        }
+                        set
+                        {
+                                this.SetFieldValue("url_act", value);
                         }
                 }
 
@@ -101,6 +139,16 @@ namespace Lbl.Componentes
                 }
 
 
+
+                public DateTime ObtenerVersionActual()
+                {
+                        if (this.Assembly == null)
+                                return DateTime.MinValue;
+
+                        return System.IO.File.GetLastWriteTime(this.Assembly.Location);
+                }
+
+
                 /// <summary>
                 /// Estructura adicional de base de datos requerida por este componente.
                 /// </summary>
@@ -113,6 +161,22 @@ namespace Lbl.Componentes
                         set
                         {
                                 this.SetFieldValue("estructura", value);
+                        }
+                }
+
+
+                /// <summary>
+                /// Archivo CIF, que contiene información sobre menús y funciones.
+                /// </summary>
+                public string Cif
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("cif");
+                        }
+                        set
+                        {
+                                this.SetFieldValue("cif", value);
                         }
                 }
 
@@ -135,6 +199,10 @@ namespace Lbl.Componentes
                         Comando.Fields.AddWithValue("espacio", this.EspacioNombres);
                         Comando.Fields.AddWithValue("version", this.Version);
                         Comando.Fields.AddWithValue("estructura", this.Estructura);
+                        Comando.Fields.AddWithValue("cif", this.Cif);
+
+                        Comando.Fields.AddWithValue("url", this.Url);
+                        Comando.Fields.AddWithValue("url_act", this.UrlActualizaciones);
 
                         this.AgregarTags(Comando);
 
@@ -142,6 +210,128 @@ namespace Lbl.Componentes
 
                         return base.Guardar();
                 }
+
+
+                public void LoadCif()
+                {
+                        if (this.Cif == null)
+                                return;
+
+                        System.Xml.XmlDocument DocumentoCif = new System.Xml.XmlDocument();
+                        DocumentoCif.LoadXml(this.Cif);
+                        System.Xml.XmlNodeList ListaComponentes = DocumentoCif.GetElementsByTagName("Component");
+                        //Abro el/los nodo(s) de componentes
+                        foreach (System.Xml.XmlNode Componente in ListaComponentes) {
+                                if (Componente.Attributes["Disabled"] == null || Componente.Attributes["Disabled"].Value != "1") {
+                                        System.Xml.XmlNodeList NodosMenu = DocumentoCif.GetElementsByTagName("MenuItem");
+                                        foreach (System.Xml.XmlNode NodoMenu in NodosMenu) {
+                                                if (this.MenuEntries == null)
+                                                        this.MenuEntries = new List<Lfx.Components.MenuEntry>();
+
+                                                Lfx.Components.MenuEntry Menu = new Lfx.Components.MenuEntry();
+                                                Menu.Name = NodoMenu.Attributes["name"].Value;
+                                                if (NodoMenu.Attributes["position"] == null)
+                                                        Menu.Parent = "Componentes";
+                                                else
+                                                        Menu.Parent = NodoMenu.Attributes["position"].Value;
+
+                                                if (NodoMenu.Attributes["function"] != null)
+                                                        Menu.Function = NodoMenu.Attributes["function"].Value;
+
+                                                this.MenuEntries.Add(Menu);
+                                        }
+
+                                        System.Xml.XmlNodeList NodosFunciones = DocumentoCif.GetElementsByTagName("Function");
+                                        //Abro los nodos de funciones
+                                        foreach (System.Xml.XmlNode NodoFuncion in NodosFunciones) {
+                                                if (this.Funciones == null) {
+                                                        this.Funciones = new Dictionary<string, Lfx.Components.FunctionInfo>();
+
+                                                        // Creo la función Try, que la tienen que definir todos los componentes
+                                                        Lfx.Components.FunctionInfo TryFunc = new Lfx.Components.FunctionInfo(this);
+                                                        TryFunc.Nombre = "Try";
+                                                        this.Funciones.Add(TryFunc.Nombre, TryFunc);
+                                                }
+
+                                                Lfx.Components.FunctionInfo Func = new Lfx.Components.FunctionInfo(this);
+                                                Func.Nombre = NodoFuncion.Attributes["name"].Value;
+                                                if (Func.Nombre != null && Func.Nombre.Length > 0 && Func.Nombre != "-") {
+                                                        if (NodoFuncion.Attributes["autorun"] != null && NodoFuncion.Attributes["autorun"].Value == "1")
+                                                                Func.AutoRun = true;
+
+                                                        this.Funciones.Add(Func.Nombre, Func);
+                                                }
+                                        }
+                                } else {
+                                        this.Disabled = true;
+                                }
+
+                        }
+                }
+
+                public Lfx.Types.OperationResult Load()
+                {
+                        if (this.Assembly == null) {
+                                string[] WhereToLook;
+
+                                if (Lfx.Environment.SystemInformation.DesignMode) {
+                                        WhereToLook = new string[] {
+                                                System.IO.Path.Combine(Lfx.Environment.Folders.ApplicationFolder, @"../../Componentes/bin/" + this.EspacioNombres + ".dll"),
+                                                System.IO.Path.Combine(Lfx.Environment.Folders.ComponentsFolder, this.EspacioNombres + System.IO.Path.DirectorySeparatorChar + this.EspacioNombres + ".dll"),
+					        Lfx.Environment.Folders.ComponentsFolder + this.EspacioNombres + ".dll",
+					        Lfx.Environment.Folders.ApplicationFolder + this.EspacioNombres + ".dll"
+				};
+                                } else {
+                                        WhereToLook = new string[] {
+                                                Lfx.Environment.Folders.ComponentsFolder + this.EspacioNombres + System.IO.Path.DirectorySeparatorChar + this.EspacioNombres + ".dll",
+					        Lfx.Environment.Folders.ComponentsFolder + this.EspacioNombres + ".dll",
+					        Lfx.Environment.Folders.ApplicationFolder + this.EspacioNombres + ".dll"
+				        };
+                                }
+
+                                foreach (string Archivo in WhereToLook) {
+                                        if (System.IO.File.Exists(Archivo)) {
+                                                try {
+                                                        this.Assembly = System.Reflection.Assembly.LoadFrom(Archivo);
+                                                        break;
+                                                } catch {
+                                                        // Nada
+                                                }
+                                        }
+                                }
+                        }
+
+                        if (this.Assembly == null) {
+                                return new Lfx.Types.FailureOperationResult("No se puede cargar el componente " + this.Nombre);
+                        } else {
+                                // Cargo las estructuras de datos adicionales que el componente necesita
+                                using (System.IO.Stream DbStructXml = this.Assembly.GetManifestResourceStream(this.EspacioNombres + ".dbstruct.xml")) {
+                                        if (DbStructXml != null) {
+                                                // FIXME: puedo cargarlo con un lector de texto
+                                                using (System.IO.StreamReader Lector = new System.IO.StreamReader(DbStructXml)) {
+                                                        this.Estructura = Lector.ReadToEnd();
+                                                        Lector.Close();
+                                                }
+                                        }
+                                }
+
+                                // Cargo el archivo CIF
+                                using (System.IO.Stream CifXml = this.Assembly.GetManifestResourceStream(this.EspacioNombres + ".cif.xml")) {
+                                        if (CifXml != null) {
+                                                // FIXME: puedo cargarlo con un lector de texto
+                                                using (System.IO.StreamReader Lector = new System.IO.StreamReader(CifXml)) {
+                                                        this.Cif = Lector.ReadToEnd();
+                                                        Lector.Close();
+                                                }
+                                        }
+                                }
+
+                                this.LoadCif();
+
+                                return new Lfx.Types.SuccessOperationResult();
+                        }
+                }
+
 
                 private static ColeccionGenerica<Componente> m_Todos = null;
                 public static ColeccionGenerica<Componente> Todos()

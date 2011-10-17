@@ -23,11 +23,12 @@ namespace Lazaro.Misc
 
                 private void InitializeComponent()
                 {
+                        this.components = new System.ComponentModel.Container();
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AcercaDe));
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
                         this.Label1 = new System.Windows.Forms.Label();
                         this.Label3 = new System.Windows.Forms.Label();
-                        this.lblActualizar = new System.Windows.Forms.LinkLabel();
+                        this.EtiquetaActualizar = new System.Windows.Forms.LinkLabel();
                         this.Label5 = new System.Windows.Forms.Label();
                         this.Label6 = new System.Windows.Forms.Label();
                         this.EtiquetaUsuario = new System.Windows.Forms.Label();
@@ -39,6 +40,7 @@ namespace Lazaro.Misc
                         this.panel1 = new System.Windows.Forms.Panel();
                         this.pictureBox2 = new System.Windows.Forms.PictureBox();
                         this.BotonWeb = new System.Windows.Forms.LinkLabel();
+                        this.TimerBuscarActualizaciones = new System.Windows.Forms.Timer(this.components);
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
                         this.panel1.SuspendLayout();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -55,8 +57,8 @@ namespace Lazaro.Misc
                         // 
                         // Label1
                         // 
-                        this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.Label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label1.Location = new System.Drawing.Point(184, 48);
                         this.Label1.Name = "Label1";
@@ -75,23 +77,23 @@ namespace Lazaro.Misc
                         this.Label3.Text = "Lázaro";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // lblActualizar
+                        // EtiquetaActualizar
                         // 
-                        this.lblActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.lblActualizar.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.lblActualizar.Location = new System.Drawing.Point(112, 364);
-                        this.lblActualizar.Name = "lblActualizar";
-                        this.lblActualizar.Size = new System.Drawing.Size(212, 16);
-                        this.lblActualizar.TabIndex = 8;
-                        this.lblActualizar.TabStop = true;
-                        this.lblActualizar.Text = "Buscar actualizaciones ahora";
-                        this.lblActualizar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        this.lblActualizar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BotonActualizar_LinkClicked);
+                        this.EtiquetaActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.EtiquetaActualizar.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaActualizar.LinkArea = new System.Windows.Forms.LinkArea(0, 0);
+                        this.EtiquetaActualizar.Location = new System.Drawing.Point(112, 364);
+                        this.EtiquetaActualizar.Name = "EtiquetaActualizar";
+                        this.EtiquetaActualizar.Size = new System.Drawing.Size(384, 16);
+                        this.EtiquetaActualizar.TabIndex = 8;
+                        this.EtiquetaActualizar.Text = "Buscar actualizaciones ahora";
+                        this.EtiquetaActualizar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaActualizar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BotonActualizar_LinkClicked);
                         // 
                         // Label5
                         // 
-                        this.Label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.Label5.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label5.Location = new System.Drawing.Point(112, 104);
                         this.Label5.Name = "Label5";
@@ -112,8 +114,8 @@ namespace Lazaro.Misc
                         // 
                         // EtiquetaUsuario
                         // 
-                        this.EtiquetaUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaUsuario.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EtiquetaUsuario.Location = new System.Drawing.Point(196, 212);
                         this.EtiquetaUsuario.Name = "EtiquetaUsuario";
@@ -136,7 +138,7 @@ namespace Lazaro.Misc
                         // OkButton
                         // 
                         this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.OkButton.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.OkButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                         this.OkButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.OkButton.Image = null;
@@ -169,8 +171,8 @@ namespace Lazaro.Misc
                         // 
                         // EtiquetaFramework
                         // 
-                        this.EtiquetaFramework.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaFramework.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaFramework.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EtiquetaFramework.Location = new System.Drawing.Point(196, 228);
                         this.EtiquetaFramework.Name = "EtiquetaFramework";
@@ -225,9 +227,16 @@ namespace Lazaro.Misc
                         this.BotonWeb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         this.BotonWeb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BotonWeb_LinkClicked);
                         // 
+                        // TimerBuscarActualizaciones
+                        // 
+                        this.TimerBuscarActualizaciones.Enabled = true;
+                        this.TimerBuscarActualizaciones.Interval = 1000;
+                        this.TimerBuscarActualizaciones.Tick += new System.EventHandler(this.TimerBuscarActualizaciones_Tick);
+                        // 
                         // AcercaDe
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+                        this.CancelButton = this.OkButton;
                         this.ClientSize = new System.Drawing.Size(634, 394);
                         this.Controls.Add(this.BotonWeb);
                         this.Controls.Add(this.panel1);
@@ -239,7 +248,7 @@ namespace Lazaro.Misc
                         this.Controls.Add(this.Label6);
                         this.Controls.Add(this.PictureBox1);
                         this.Controls.Add(this.Label5);
-                        this.Controls.Add(this.lblActualizar);
+                        this.Controls.Add(this.EtiquetaActualizar);
                         this.Controls.Add(this.Label3);
                         this.Controls.Add(this.Label1);
                         this.Controls.Add(this.OkButton);
@@ -249,7 +258,6 @@ namespace Lazaro.Misc
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
                         this.Text = "Acerca de Lázaro";
                         this.Load += new System.EventHandler(this.FormAcercaDe_Load);
-                        this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormAcercaDe_KeyDown);
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
                         this.panel1.ResumeLayout(false);
                         this.panel1.PerformLayout();
@@ -267,7 +275,7 @@ namespace Lazaro.Misc
                 private System.Windows.Forms.PictureBox PictureBox1;
                 private System.Windows.Forms.Label Label1;
                 private System.Windows.Forms.Label Label3;
-                private System.Windows.Forms.LinkLabel lblActualizar;
+                private System.Windows.Forms.LinkLabel EtiquetaActualizar;
                 private System.Windows.Forms.Label Label5;
                 private System.Windows.Forms.Label Label6;
                 private System.Windows.Forms.Label EtiquetaUsuario;
@@ -279,6 +287,7 @@ namespace Lazaro.Misc
                 private Panel panel1;
                 internal PictureBox pictureBox2;
                 private LinkLabel BotonWeb;
+                private Timer TimerBuscarActualizaciones;
 
         }
 }

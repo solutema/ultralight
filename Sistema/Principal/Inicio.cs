@@ -40,8 +40,11 @@ namespace Lazaro.Principal
 {
         public partial class Inicio : Form
         {
-                private static System.Collections.Generic.Dictionary<string, MenuItemInfo> MenuItemInfoTable = null;
                 public Lfx.Types.ShowProgressDelegate ShowProgress = null;
+
+                private static System.Collections.Generic.Dictionary<string, MenuItemInfo> MenuItemInfoTable = null;
+                private System.IO.TextWriter ConsoleWriter = null;
+                private System.Text.StringBuilder ConsoleBuffer = new System.Text.StringBuilder();
 
                 public Inicio()
                 {
@@ -50,9 +53,12 @@ namespace Lazaro.Principal
                         ShowProgress = new Lfx.Types.ShowProgressDelegate(ShowProgressRoutine);
 
                         if (Lfx.Environment.SystemInformation.DesignMode) {
-                                ListaBd.Visible = true;
+                                PanelDebug.Visible = true;
                                 TimerProgramador.Interval = 1000;
                         }
+
+                        ConsoleWriter = new TextBoxStreamWriter(ConsoleOut);
+                        Console.SetOut(ConsoleWriter);
                 }
 
 
@@ -102,8 +108,8 @@ namespace Lazaro.Principal
                         }
                         MostrarAyuda("Bienvenido a Lázaro", "Pulse la tecla <F12> para activar el menú.");
 
-                        if (Lfx.Environment.SystemInformation.DesignMode == false)
-                                Lfx.Services.Updater.Master.Start();
+                        if (Lfx.Environment.SystemInformation.DesignMode)
+                                this.Text += " - Versión " + Aplicacion.Version();
                 }
 
 
@@ -111,8 +117,10 @@ namespace Lazaro.Principal
                 private static bool YaSubiEstadisticas = false;
                 private void TimerProgramador_Tick(object sender, EventArgs e)
                 {
+                        TimerProgramador.Stop();
+
                         if (this.Visible) {
-                                if (ListaBd.Visible) {
+                                if (PanelDebug.Visible) {
                                         ListaBd.Items.Clear();
                                         foreach (Lfx.Data.Connection Bd in this.Workspace.ActiveConnections) {
                                                 ListaBd.Items.Add(Bd.Handle.ToString() + " " + Bd.Name);
@@ -143,7 +151,7 @@ namespace Lazaro.Principal
                                         new System.Threading.Thread(ParamInicio).Start();
                                 }
 
-                                if (Lfx.Services.Updater.Master.RebootNeeded && YaPregunteReiniciar == false) {
+                                if (YaPregunteReiniciar == false && Lfx.Updates.Updater.Master != null && Lfx.Updates.Updater.Master.UpdatesPending() && ActiveForm == this) {
                                         YaPregunteReiniciar = true;
                                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Existe una nueva versión de Lázaro. Debe reiniciar la aplicación para instalar la actualización.", "¿Desea reiniciar ahora?");
                                         Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
@@ -152,6 +160,8 @@ namespace Lazaro.Principal
                                                 Aplicacion.Exec("REBOOT");
                                 }
                         }
+
+                        TimerProgramador.Start();
                 }
 
 
@@ -200,8 +210,8 @@ namespace Lazaro.Principal
                                         break;
                                 case Keys.D:
                                         if (e.Control && e.Alt == false && e.Shift == false) {
-                                                ListaBd.Visible = !ListaBd.Visible;
-                                                if (ListaBd.Visible)
+                                                PanelDebug.Visible = !PanelDebug.Visible;
+                                                if (PanelDebug.Visible)
                                                         this.TimerProgramador_Tick(this, null);
                                         }
                                         break;
@@ -248,13 +258,8 @@ namespace Lazaro.Principal
 
                 private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
                 {
-                        if (this.Workspace != null) {
+                        if (this.Workspace != null)
                                 this.Workspace.CurrentConfig.WriteGlobalSetting("", "Sistema.Ingreso.UltimoEgreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "");
-                                Lfx.Services.Updater.Master.Stop();
-                                Lfx.Services.Updater.Master.Dispose();
-                                Lfx.Workspace.Master.Disposing = true;
-                                Lfx.Workspace.Master.Dispose();
-                        }
                         System.Environment.Exit(0);
                 }
 
@@ -310,7 +315,7 @@ namespace Lazaro.Principal
 
                 private void CargarMenuComponentes()
                 {
-                        foreach (Lfx.Components.Component CompInfo in Lfx.Components.Manager.ComponentesCargados.Values) {
+                        foreach (Lfx.Components.IComponent CompInfo in Lfx.Components.Manager.ComponentesCargados.Values) {
                                 // Registro el componente
                                 Lfx.Types.OperationResult Res = Lfx.Components.Manager.RegisterComponent(CompInfo);
 
@@ -343,7 +348,7 @@ namespace Lazaro.Principal
                                                 MenuItem Itm = new MenuItem(MenuItem.Name, new System.EventHandler(MnuClick));
                                                 ItmInfo = new MenuItemInfo();
                                                 ItmInfo.Item = Itm;
-                                                ItmInfo.Funcion = "RUNCOMPONENT " + CompInfo.Nombre + " " + MenuItem.Function;
+                                                ItmInfo.Funcion = "RUNCOMPONENT " + CompInfo.EspacioNombres + " " + MenuItem.Function;
                                                 ItmInfo.ParentText = "Menu." + MenuItem.Parent.QuitarAcentos();
                                                 ItmInfo.Text = MenuItem.Name.QuitarAcentos();
                                                 AgregarAlMenu(ColgarDe, Itm, ItmInfo);
@@ -655,6 +660,47 @@ namespace Lazaro.Principal
                         get
                         {
                                 return Lfx.Workspace.Master;
+                        }
+                }
+
+                public void ConsoleWrite(char value)
+                {
+                        if (PanelDebug.Visible) {
+                                ConsoleBuffer.Append(value);
+                                if (value == Lfx.Types.ControlChars.Lf) {
+                                        ConsoleOut.AppendText(ConsoleBuffer.ToString());
+                                        ConsoleBuffer = new System.Text.StringBuilder();
+                                }
+                        }
+                }
+        }
+
+        public class TextBoxStreamWriter : System.IO.TextWriter
+        {
+                private TextBox destinationControl = null;
+
+                public TextBoxStreamWriter(TextBox output)
+                {
+                        destinationControl = output;
+                }
+
+                public override void Write(char value)
+                {
+                        base.Write(value);
+
+                        if (destinationControl.InvokeRequired) {
+                                MethodInvoker Mi = delegate { Aplicacion.FormularioPrincipal.ConsoleWrite(value); };
+                                Aplicacion.FormularioPrincipal.Invoke(Mi);
+                        } else {
+                                Aplicacion.FormularioPrincipal.ConsoleWrite(value);
+                        }
+                }
+
+                public override System.Text.Encoding Encoding
+                {
+                        get
+                        {
+                                return System.Text.Encoding.UTF8;
                         }
                 }
         }

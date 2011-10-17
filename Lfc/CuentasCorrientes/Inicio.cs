@@ -80,14 +80,14 @@ namespace Lfc.CuentasCorrientes
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
-                        decimal Importe = row.Fields["importe"].ValueDecimal;
-                        decimal Saldo = row.Fields["saldo"].ValueDecimal;
+                        decimal Importe = row.Fields["ctacte.importe"].ValueDecimal;
+                        decimal Saldo = row.Fields["ctacte.saldo"].ValueDecimal;
 
                         if (this.Cliente == null) {
                                 if (Saldo < 0) {
                                         this.Contadores[2].AddValue(-Saldo);          // Pasivos
-                                        if (item.SubItems.ContainsKey("saldo"))
-                                                item.SubItems["saldo"].ForeColor = Color.Red;
+                                        if (item.SubItems.ContainsKey("ctacte.saldo"))
+                                                item.SubItems["ctacte.saldo"].ForeColor = Color.Red;
                                         item.UseItemStyleForSubItems = false;
                                 } else if (Importe > 0) {
                                         this.Contadores[1].AddValue(Saldo);           // Crédito
@@ -95,7 +95,7 @@ namespace Lfc.CuentasCorrientes
                         } else {
                                 if (Importe < 0) {
                                         this.Contadores[2].AddValue(-Importe);        // Egresos
-                                        item.SubItems["importe"].ForeColor = Color.Red;
+                                        item.SubItems["ctacte.importe"].ForeColor = Color.Red;
                                         item.UseItemStyleForSubItems = false;
                                 } else if (Importe > 0) {
                                         this.Contadores[1].AddValue(Importe);         // Ingresos
@@ -206,14 +206,7 @@ namespace Lfc.CuentasCorrientes
 
                 public override void FiltersChanged(Lfx.Data.Filters.FilterCollection filters)
                 {
-                        int NuevoClienteId = ((Lfx.Data.Filters.RelationFilter)(filters["ctacte.id_cliente"])).ElementId;
-                        if ((this.Cliente == null && NuevoClienteId != 0) || (this.Cliente != null && this.Cliente.Id != NuevoClienteId)) {
-                                if (NuevoClienteId == 0)
-                                        this.Cliente = null;
-                                else
-                                        this.Cliente = new Lbl.Personas.Persona(this.Connection, NuevoClienteId);
-                        }
-
+                        this.Cliente = filters["ctacte.id_cliente"].Value as Lbl.Personas.Persona;
                         m_Grupo = ((Lfx.Data.Filters.RelationFilter)(filters["personas.id_grupo"])).ElementId;
                         m_Localidad = ((Lfx.Data.Filters.RelationFilter)(filters["personas.id_ciudad"])).ElementId;
                         Fechas = ((Lfx.Data.Filters.DateRangeFilter)(filters["ctacte.fecha"])).DateRange;

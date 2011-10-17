@@ -77,7 +77,15 @@ namespace Lfx.Environment
                 {
                         get
                         {
-                                return System.Environment.OSVersion.ToString();
+                                string Res = System.Environment.OSVersion.ToString();
+                                Res = Res.Replace("Service Pack ", "SP");
+                                Res = Res.Replace("Microsoft Windows NT 5.1.2600", "Windows XP");
+                                Res = Res.Replace("Microsoft Windows NT 6.0.6000", "Windows Vista");
+                                Res = Res.Replace("Microsoft Windows NT 6.0.6001", "Windows Vista");
+                                Res = Res.Replace("Microsoft Windows NT 6.0.6002", "Windows Vista");
+                                Res = Res.Replace("Microsoft Windows NT 6.1.7601", "Windows 7");
+                                Res = Res.Replace("Microsoft Windows NT 6.2", "Windows 8");
+                                return Res;
                         }
                 }
 
@@ -209,9 +217,9 @@ namespace Lfx.Environment
                         get
                         {
                                 try {
-                                        System.IO.FileStream Wr = System.IO.File.Create(Lfx.Environment.Folders.ApplicationFolder + "test.dat");
-                                        Wr.Close();
-                                        Wr.Dispose();
+                                        using (System.IO.FileStream Wr = System.IO.File.Create(Lfx.Environment.Folders.ApplicationFolder + "test.dat")) {
+                                                Wr.Close();
+                                        }
                                         System.IO.File.Delete(Lfx.Environment.Folders.ApplicationFolder + "test.dat");
                                 } catch {
                                         return false;

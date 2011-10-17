@@ -74,10 +74,10 @@ namespace Lfc.Cajas
 
                         this.Definicion.Columns["nombre"].Visible = false;
                         this.Definicion.Columns["nombre"].Printable = false;
-                        this.Definicion.Columns["comprob"].Printable = false;
+                        this.Definicion.Columns["cajas_movim.comprob"].Printable = false;
 
-                        this.Definicion.Columns["concepto"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.TotalName;
-                        this.Definicion.Columns["importe"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+                        this.Definicion.Columns["cajas_movim.concepto"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.TotalName;
+                        this.Definicion.Columns["cajas_movim.importe"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
 
                         if (this.HasWorkspace) {
                                 this.Caja = new Lbl.Cajas.Caja(this.Connection, 999);
@@ -88,10 +88,10 @@ namespace Lfc.Cajas
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
-                        decimal Importe = row.Fields["importe"].ValueDecimal;
+                        decimal Importe = row.Fields["cajas_movim.importe"].ValueDecimal;
                         if (Importe < 0) {
                                 this.Contadores[2].AddValue(-Importe);           // Egresos
-                                item.SubItems["importe"].ForeColor = Color.Red;
+                                item.SubItems["cajas_movim.importe"].ForeColor = Color.Red;
                                 item.UseItemStyleForSubItems = false;
                         } else if (Importe > 0) {
                                 this.Contadores[1].AddValue(Importe);           // Ingresos
@@ -145,10 +145,10 @@ namespace Lfc.Cajas
                         if (this.Caja != null) {
                                 this.CustomFilters.AddWithValue("cajas_movim.id_caja", this.Caja.Id);
                                 this.GroupingColumnName = null;
-                                this.Definicion.Columns["saldo"].Visible = true;
+                                this.Definicion.Columns["cajas_movim.saldo"].Visible = true;
                         } else {
                                 this.GroupingColumnName = "nombre";
-                                this.Definicion.Columns["saldo"].Visible = false;
+                                this.Definicion.Columns["cajas_movim.saldo"].Visible = false;
                         }
 
                         if (this.Cliente != null)

@@ -54,6 +54,11 @@ namespace Lfx.Data
                                         if (Lfx.Data.Connection.GetFieldName(Itm.ColumnName) == columnName)
                                                 return Itm;
                                 }
+
+                                foreach (Field Itm in this) {
+                                        if (Itm.ColumnName == Lfx.Data.Connection.GetFieldName(columnName))
+                                                return Itm;
+                                }
 				//Si no existe, creo dinámicamente el campo
 				Field Res = new Field(columnName);
 				this.Add(Res);

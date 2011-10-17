@@ -61,64 +61,64 @@ namespace Lfc.Cajas.Conceptos
 		{
 			string Codigo = item.Text;
 			if(Codigo.Substring(2, 1) != "0")
-                                item.SubItems["nombre"].Text = "    " + item.SubItems["nombre"].Text;
+                                item.SubItems["conceptos.nombre"].Text = "    " + item.SubItems["conceptos.nombre"].Text;
 			if(Codigo.Substring(3, 1) != "0")
-                                item.SubItems["nombre"].Text = "    " + item.SubItems["nombre"].Text;
+                                item.SubItems["conceptos.nombre"].Text = "    " + item.SubItems["conceptos.nombre"].Text;
 
-			switch(row.Fields["es"].ValueInt) {
+                        switch (row.Fields["conceptos.es"].ValueInt) {
 				case 1:
-					item.SubItems["es"].Text = "Entrada";
+                                        item.SubItems["conceptos.es"].Text = "Entrada";
 					break;
 				case 2:
-                                        item.SubItems["es"].Text = "Salida";
+                                        item.SubItems["conceptos.es"].Text = "Salida";
 					break;
 				case 0:
-                                        item.SubItems["es"].Text = "Entrada/Salida";
+                                        item.SubItems["conceptos.es"].Text = "Entrada/Salida";
 					break;
 				default:
-                                        item.SubItems["es"].Text = "???";
+                                        item.SubItems["conceptos.es"].Text = "???";
 					break;
 			}
 
 			switch(row.Fields["grupo"].ValueInt) {
 				case 0:
-					item.SubItems["grupo"].Text = "-";
+                                        item.SubItems["conceptos.grupo"].Text = "-";
 					break;
 				case 110:
-                                        item.SubItems["grupo"].Text = "Cobros";
+                                        item.SubItems["conceptos.grupo"].Text = "Cobros";
 					break;
 				case 100:
-                                        item.SubItems["grupo"].Text = "Otros ingresos";
+                                        item.SubItems["conceptos.grupo"].Text = "Otros ingresos";
 					break;
 				case 230:
-                                        item.SubItems["grupo"].Text = "Gastos fijos";
+                                        item.SubItems["conceptos.grupo"].Text = "Gastos fijos";
 					break;
 				case 240:
-                                        item.SubItems["grupo"].Text = "Gastos variables";
+                                        item.SubItems["conceptos.grupo"].Text = "Gastos variables";
 					break;
 				case 200:
-                                        item.SubItems["grupo"].Text = "Otros gastos";
+                                        item.SubItems["conceptos.grupo"].Text = "Otros gastos";
 					break;
 				case 260:
-                                        item.SubItems["grupo"].Text = "Pérdida";
+                                        item.SubItems["conceptos.grupo"].Text = "Pérdida";
 					break;
 				case 250:
-                                        item.SubItems["grupo"].Text = "Reinversión";
+                                        item.SubItems["conceptos.grupo"].Text = "Reinversión";
 					break;
 				case 210:
-                                        item.SubItems["grupo"].Text = "Costo materiales";
+                                        item.SubItems["conceptos.grupo"].Text = "Costo materiales";
 					break;
 				case 220:
-                                        item.SubItems["grupo"].Text = "Costo capital";
+                                        item.SubItems["conceptos.grupo"].Text = "Costo capital";
 					break;
 				case 231:
-                                        item.SubItems["grupo"].Text = "Sueldos y salarios";
+                                        item.SubItems["conceptos.grupo"].Text = "Sueldos y salarios";
 					break;
 				case 300:
-                                        item.SubItems["grupo"].Text = "Movimientos y ajustes";
+                                        item.SubItems["conceptos.grupo"].Text = "Movimientos y ajustes";
 					break;
 				default:
-                                        item.SubItems["grupo"].Text = "???";
+                                        item.SubItems["conceptos.grupo"].Text = "???";
 					break;
 			}
 

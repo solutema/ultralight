@@ -33,6 +33,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Net;
 using System.Net.Mail;
 using System.Security.Permissions;
 using System.Windows.Forms;
@@ -49,10 +50,11 @@ namespace Lazaro
                 /// <summary>
                 /// Obtiene la versión del ejecutable principal.
                 /// </summary>
-                [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+                [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
                 public static string Version()
                 {
-                        return System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).ProductVersion;
+                        System.Diagnostics.FileVersionInfo Ver = System.Diagnostics.FileVersionInfo.GetVersionInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe");
+                        return Ver.ProductVersion.ToString();
                 }
 
                 /// <summary>
@@ -228,7 +230,9 @@ namespace Lazaro
                                         Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Descargando...", "Se está descargando la versión más nueva de la aplicación.");
                                         Progreso.Blocking = true;
                                         Progreso.Begin();
-                                        Lfx.Services.Updater.NetGet("http://www.sistemalazaro.com.ar/aslnlwc/InstalarLazaro.exe", Lfx.Environment.Folders.UpdatesFolder + "InstalarLazaro.exe");
+                                        using (WebClient Cliente = new WebClient()) {
+                                                Cliente.DownloadFile(@"http://www.sistemalazaro.com.ar/aslnlwc/InstalarLazaro.exe", Lfx.Environment.Folders.UpdatesFolder + "InstalarLazaro.exe");
+                                        }
                                         Progreso.End();
                                         Lfx.Environment.Shell.Reboot();
                                 } else {
@@ -246,11 +250,12 @@ namespace Lazaro
                                 Lfx.Workspace.Master.RunTime.Message("La versión de Lázaro que está utilizando es antigua. Por favor actualice su sistema urgentemente.");
                         }
 
-                        if (Lfx.Workspace.Master.MasterConnection.Tables.ContainsKey("sys_components"))
-                                CargarComponentes();
-                        else
-                                // FIXME: quitar una vez que esté todo mudado a Lbl.Componentes
-                                Lfx.Components.Manager.LoadAll();
+                        CargarComponentes();
+
+                        if (Lfx.Environment.SystemInformation.DesignMode == false) {
+                                // Si es necesario, actualizo la estructura de la base de datos
+                                Lfx.Workspace.Master.CheckAndUpdateDataBaseVersion(false, false);
+                        }
 
                         Lfx.Types.OperationResult ResultadoInicio = IniciarGui();
 
@@ -269,15 +274,32 @@ namespace Lazaro
                         Lbl.ColeccionGenerica<Lbl.Componentes.Componente> Comps = Lbl.Componentes.Componente.Todos();
                         foreach (Lbl.Componentes.Componente Comp in Comps) {
                                 // Cargar todos los componentes en memoria
-                                Lfx.Components.Component CompInfo = Lfx.Components.Manager.Load(Comp.EspacioNombres);
-                                if (CompInfo != null && Lfx.Environment.SystemInformation.DesignMode == false && CompInfo.Version > Comp.Version) {
-                                        // Actualizo los datos sobre el componente
+                                Comp.UrlActualizaciones = Comp.UrlActualizaciones;
+                                try {
+                                        Lfx.Components.Manager.RegisterComponent(Comp);
+                                        if (Comp.Estructura != null) {
+                                                System.Xml.XmlDocument Doc = new System.Xml.XmlDocument();
+                                                Doc.LoadXml(Comp.Estructura);
+                                                Lfx.Workspace.Master.Structure.AddToBuiltIn(Doc);
+                                        }
+                                        if (Lfx.Environment.SystemInformation.DesignMode == false && Comp.ObtenerVersionActual() > Comp.Version) {
+                                                // Actualizo el CIF y la estrucutra en la BD
+                                                Comp.Version = Comp.ObtenerVersionActual();
+                                                Comp.Guardar();
+                                        }
 
-                                        Comp.Version = CompInfo.Version;
-                                        if (CompInfo.DataStructure != null)
-                                                Comp.Estructura = CompInfo.DataStructure.InnerXml;
+                                        Lfx.Updates.Package Pkg = new Lfx.Updates.Package();
+                                        Pkg.Name = Comp.EspacioNombres;
+                                        Pkg.RelativePath = "Components" + System.IO.Path.DirectorySeparatorChar + Comp.EspacioNombres + System.IO.Path.DirectorySeparatorChar;
+                                        Pkg.Url = Comp.UrlActualizaciones;
 
-                                        Comp.Guardar();
+                                        if (Lfx.Updates.Updater.Master != null)
+                                                Lfx.Updates.Updater.Master.Packages.Add(Pkg);
+                                } catch (Exception ex) {
+                                        if (Lfx.Workspace.Master != null) {
+                                                Lfx.Workspace.Master.RunTime.Message("No se puede registrar el componente " + Comp.Nombre + "." + ex.Message);
+                                                UnknownExceptionHandler(ex);
+                                        }
                                 }
                         }
                 }
@@ -307,17 +329,24 @@ namespace Lazaro
                                 Progreso.Begin();
                                 
                                 bool CanWriteToAppFolder = Lfx.Environment.SystemInformation.CanWriteToAppFolder;
-                                foreach (string Arch in ArchivosFaltantes) {
-                                        Progreso.ChangeStatus("Descargando " + Arch);
-                                        string ArchDestino;
-                                        if (CanWriteToAppFolder)
-                                                // Lo descargo directamente a la carpeta de la aplicación
-                                                ArchDestino = Lfx.Environment.Folders.ApplicationFolder + Arch;
-                                        else
-                                                // Tengo UAC, lo descargo a la carpeta de actualizaciones y luego tengo que iniciar el ActualizadorLazaro.exe
-                                                ArchDestino = Lfx.Environment.Folders.UpdatesFolder + Arch + ".new";
-                                        Lfx.Services.Updater.NetGet(@"http://www.sistemalazaro.com.ar/aslnlwc/" + Arch, ArchDestino);
-                                        Progreso.Advance(1);
+                                using (WebClient Cliente = new WebClient()) {
+                                        foreach (string Arch in ArchivosFaltantes) {
+                                                Progreso.ChangeStatus("Descargando " + Arch);
+                                                string ArchDestino;
+                                                if (CanWriteToAppFolder)
+                                                        // Lo descargo directamente a la carpeta de la aplicación
+                                                        ArchDestino = Lfx.Environment.Folders.ApplicationFolder + Arch;
+                                                else
+                                                        // Tengo UAC, lo descargo a la carpeta de actualizaciones y luego tengo que iniciar el ActualizadorLazaro.exe
+                                                        ArchDestino = Lfx.Environment.Folders.UpdatesFolder + Arch + ".new";
+                                                
+                                                try {
+                                                        Cliente.DownloadFile(@"http://www.sistemalazaro.com.ar/aslnlwc/" + Arch, ArchDestino);
+                                                } catch {
+
+                                                }
+                                                Progreso.Advance(1);
+                                        }
                                 }
                                 Progreso.End();
 
@@ -351,7 +380,7 @@ namespace Lazaro
                                                                 Aplicacion.FormularioProgreso.Show();
                                                         }
                                                         Aplicacion.FormularioProgreso.MostrarProgreso(Operaciones, Prog);
-                                                } else {
+                                                } else if(Prog.Advertise) {
                                                         if (FormularioPrincipal.InvokeRequired) {
                                                                 MethodInvoker Mi = delegate { FormularioPrincipal.ShowProgress(Prog); };
                                                                 FormularioPrincipal.Invoke(Mi);
@@ -525,10 +554,6 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                         // Configuro el nivel de aislación predeterminado
                         Lfx.Data.DataBaseCache.DefaultCache.DefaultIsolationLevel = (System.Data.IsolationLevel)(Enum.Parse(typeof(System.Data.IsolationLevel), Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Datos.Aislacion", "Serializable")));
 
-                        if (Lfx.Environment.SystemInformation.DesignMode == false) {
-                                // Si es necesario, actualizo la estructura de la base de datos
-                                Lfx.Workspace.Master.CheckAndUpdateDataBaseVersion(false, false);
-                        }
                         return iniciarReturn;
                 }
 
@@ -648,7 +673,8 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                                                 "runtime=" + System.Uri.EscapeUriString(Lfx.Environment.SystemInformation.RuntimeName),
                                                                 "empresa=" + System.Uri.EscapeUriString(Lbl.Sys.Config.Actual.Empresa.Nombre),
                                                                 "email=" + System.Uri.EscapeUriString(Lbl.Sys.Config.Actual.Empresa.Email),
-                                                                "version=" + System.Uri.EscapeUriString(System.Diagnostics.FileVersionInfo.GetVersionInfo(Lfx.Environment.Folders.ApplicationFolder + "Lazaro.exe").ProductVersion)
+                                                                "build=" + System.Uri.EscapeUriString(Aplicacion.BuildDate()),
+                                                                "version=" + System.Uri.EscapeUriString(Aplicacion.Version())
                                                         };
                                 System.Net.WebRequest webRequest = System.Net.WebRequest.Create(new System.Uri("http://www.sistemalazaro.com.ar/stats/index.php"));
                                 webRequest.ContentType = "application/x-www-form-urlencoded";
@@ -664,6 +690,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                 // Nada
                         }
                 }
+
 
 		/// <summary>
 		/// Ejecuta un comando. Se trata de un pequeño lenguaje de scripting de Lázaro.
@@ -695,6 +722,8 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
 
                 public static object Exec(string comando, string estacion)
                 {
+                        Console.WriteLine("Exec:" + comando);
+
                         if (estacion == null || estacion.Length == 0)
                                 estacion = System.Environment.MachineName.ToUpperInvariant();
 

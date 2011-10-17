@@ -91,8 +91,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\FunctionInfo.cs" />
-    <Compile Include="Components\Component.cs" />
     <Compile Include="Components\FunctionTypes.cs" />
+    <Compile Include="Components\IComponent.cs" />
     <Compile Include="Components\IRegisteredType.cs" />
     <Compile Include="Components\MenuEntry.cs" />
     <Compile Include="Components\FunctionInfoCollection.cs" />
@@ -134,7 +134,12 @@
     <Compile Include="FileFormats\Office\Spreadsheet\QuickFunctions.cs" />
     <Compile Include="FileFormats\Office\Spreadsheet\Workbook.cs" />
     <Compile Include="RuntimeServices.cs" />
-    <Compile Include="Services\Updater.cs" />
+    <Compile Include="Updates\CompressionFormats.cs" />
+    <Compile Include="Updates\File.cs" />
+    <Compile Include="Updates\FileCollection.cs" />
+    <Compile Include="Updates\Package.cs" />
+    <Compile Include="Updates\PackageCollection.cs" />
+    <Compile Include="Updates\Updater.cs" />
     <Compile Include="Components\Function.cs" />
     <Compile Include="Components\Manager.cs" />
     <Compile Include="Config\CompanyConfig.cs" />

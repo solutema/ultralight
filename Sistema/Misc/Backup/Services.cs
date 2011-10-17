@@ -421,13 +421,13 @@ namespace Lazaro.Misc.Backup
                                 Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Restaurando Copia de Respaldo", "Este proceso va a demorar varios minutos. Por favor no lo interrumpa");
                                 Progreso.Blocking = true;
 
-                                Progreso.ChangeStatus("Descomprimiendo");
+                                /* Progreso.ChangeStatus("Descomprimiendo");
                                 // Descomprimir backup si está comprimido
                                 if (System.IO.File.Exists(BackupPath + Carpeta + "backup.7z")) {
                                         Lfx.FileFormats.Compression.Archive ArchivoComprimido = new Lfx.FileFormats.Compression.Archive(BackupPath + Carpeta + "backup.7z");
                                         ArchivoComprimido.ExtractAll(BackupPath + Carpeta);
                                         UsandoArchivoComprimido = true;
-                                }
+                                } */
 
                                 Progreso.ChangeStatus("Eliminando datos actuales");
                                 using (Lfx.Data.Connection DataBase = Lfx.Workspace.Master.GetNewConnection("Restauración de copia de seguridad")) {

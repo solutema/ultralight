@@ -59,7 +59,13 @@ namespace Lfx.Types
                 public bool Blocking { get; set; }
 
                 [DefaultValue(false)]
+                public bool IsRunning { get; set; }
+
+                [DefaultValue(false)]
                 public bool IsDone { get; set; }
+
+                [DefaultValue(true)]
+                public bool Advertise { get; set; }
 
                 public OperationProgress(string name, string description)
                 {
@@ -69,10 +75,13 @@ namespace Lfx.Types
 
                 public void Begin()
                 {
+                        this.IsDone = false;
+                        this.IsRunning = true;
                         this.Value = 0;
                         this.Status = "Iniciando...";
                         if (Lfx.Workspace.Master != null)
                                 Lfx.Workspace.Master.RunTime.NotifyProgress(this);
+                        Console.WriteLine("Inicio: " + this.Name);
                 }
 
                 public void Begin(int maxValue)
@@ -97,6 +106,7 @@ namespace Lfx.Types
                 public void ChangeStatus(string newStatus)
                 {
                         this.Status = newStatus;
+                        Console.WriteLine(newStatus);
                         if (Lfx.Workspace.Master != null)
                                 Lfx.Workspace.Master.RunTime.NotifyProgress(this);
                 }
@@ -116,10 +126,27 @@ namespace Lfx.Types
 
                 public void End()
                 {
+                        Console.WriteLine("Fin: " + this.Name);
                         this.IsDone = true;
+                        this.IsRunning = false;
                         this.Status = "Terminado.";
                         if (Lfx.Workspace.Master != null)
                                 Lfx.Workspace.Master.RunTime.NotifyProgress(this);
+                }
+
+
+                public int PercentDone
+                {
+                        get
+                        {
+                                if (this.Value > this.Max)
+                                        return 100;
+
+                                if (this.Max <= 0)
+                                        return 0;
+
+                                return System.Convert.ToInt32(System.Convert.ToDouble(this.Value) / System.Convert.ToDouble(this.Max) * 100d);
+                        }
                 }
         }
 }

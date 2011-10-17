@@ -80,39 +80,39 @@ namespace Lfc.Pvs
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
-                        switch (row.Fields["tipo_fac"].ValueString) {
+                        switch (row.Fields["pvs.tipo_fac"].ValueString) {
                                 case "F":
-                                        item.SubItems[Listado.Columns["tipo_fac"].Index].Text = "Facturas";
+                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Facturas";
                                         break;
                                 case "F,ND":
-                                        item.SubItems[Listado.Columns["tipo_fac"].Index].Text = "Facturas, Notas de Débito";
+                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Facturas, Notas de Débito";
                                         break;
                                 case "F,NC,ND":
-                                        item.SubItems[Listado.Columns["tipo_fac"].Index].Text = "Facturas, Notas de Crédito y Débito";
+                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Facturas, Notas de Crédito y Débito";
                                         break;
                                 case "R":
-                                        item.SubItems[Listado.Columns["tipo_fac"].Index].Text = "Remitos";
+                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Remitos";
                                         break;
                                 case "RC":
-                                        item.SubItems[Listado.Columns["tipo_fac"].Index].Text = "Recibos de Cobro";
+                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Recibos de Cobro";
                                         break;
                                 case "RP":
-                                        item.SubItems[Listado.Columns["tipo_fac"].Index].Text = "Recibos de Pago";
+                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Recibos de Pago";
                                         break;
                         }
 
-                        int TipoPv = row.Fields["tipo"].ValueInt;
+                        int TipoPv = row.Fields["pvs.tipo"].ValueInt;
                         if (TipoPv == 0)
-                                item.SubItems[Listado.Columns["tipo"].Index].Text = "Inactivo";
+                                item.SubItems[Listado.Columns["pvs.tipo"].Index].Text = "Inactivo";
                         if (TipoPv == 1)
-                                item.SubItems[Listado.Columns["tipo"].Index].Text = "Normal";
+                                item.SubItems[Listado.Columns["pvs.tipo"].Index].Text = "Normal";
                         else if (TipoPv == 2)
-                                item.SubItems[Listado.Columns["tipo"].Index].Text = "Fiscal";
+                                item.SubItems[Listado.Columns["pvs.tipo"].Index].Text = "Fiscal";
 
-                        if (item.SubItems[Listado.Columns["carga"].Index].Text == "0")
-                                item.SubItems[Listado.Columns["carga"].Index].Text = "Automática";
-                        else if (item.SubItems[Listado.Columns["carga"].Index].Text == "1")
-                                item.SubItems[Listado.Columns["carga"].Index].Text = "Manual";
+                        if (item.SubItems[Listado.Columns["pvs.carga"].Index].Text == "0")
+                                item.SubItems[Listado.Columns["pvs.carga"].Index].Text = "Automática";
+                        else if (item.SubItems[Listado.Columns["pvs.carga"].Index].Text == "1")
+                                item.SubItems[Listado.Columns["pvs.carga"].Index].Text = "Manual";
                 }
 	}
 }

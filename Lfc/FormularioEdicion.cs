@@ -222,18 +222,6 @@ namespace Lfc
                         Cancel();
                 }
 
-                private void EditForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-                {
-                        if (e.Alt == false && e.Control == true) {
-                                // Teclas con Ctrl
-                                switch (e.KeyCode) {
-                                        case Keys.R:
-                                                e.Handled = true;
-                                                // TODO: Print(!e.Shift);
-                                                break;
-                                }
-                        }
-                }
 
                 private void EditForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
                 {
@@ -249,6 +237,7 @@ namespace Lfc
                                 }
                         }
                 }
+
 
                 /// <summary>
                 /// Pongo la propiedad ReadOnly de los controles hijos en cascada.

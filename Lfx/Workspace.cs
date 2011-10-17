@@ -84,9 +84,6 @@ namespace Lfx
                         if (Lfx.Data.DataBaseCache.DefaultCache == null)
                                 Lfx.Data.DataBaseCache.DefaultCache = new Lfx.Data.DataBaseCache(m_MasterConnection);
 
-                        if (Lfx.Services.Updater.Master == null && this.WebAppMode == false)
-                                Lfx.Services.Updater.Master = new Services.Updater();
-
                         if (this.MasterConnection.AccessMode == Lfx.Data.AccessModes.Undefined) {
                                 switch (this.CurrentConfig.ReadLocalSettingString("Data", "ConnectionType", "mysql")) {
                                         case "odbc":
@@ -140,6 +137,20 @@ namespace Lfx
 
                         System.Threading.Thread.CurrentThread.CurrentCulture = this.CultureInfo;
                         System.Threading.Thread.CurrentThread.CurrentUICulture = this.CultureInfo;
+
+                        if (Lfx.Updates.Updater.Master == null && this.WebAppMode == false && Lfx.Environment.SystemInformation.DesignMode == false) {
+                                string Nivel = this.CurrentConfig.ReadGlobalSetting<string>(null, "Sistema.Actualizaciones.Nivel", "stable");
+                                Lfx.Updates.Updater.Master = new Updates.Updater(Nivel);
+                                Lfx.Updates.Updater.Master.Path = Lfx.Environment.Folders.ApplicationFolder;
+                                Lfx.Updates.Updater.Master.TempPath = Lfx.Environment.Folders.UpdatesFolder;
+                                Lfx.Updates.Package LazaroPkg = new Updates.Package();
+                                LazaroPkg.Name = "Lazaro";
+                                LazaroPkg.RelativePath = "";
+                                LazaroPkg.Url = @"http://www.sistemalazaro.com.ar/aslnlwc/{0}/";
+                                Lfx.Updates.Updater.Master.Packages.Add(LazaroPkg);
+                                Lfx.Updates.Updater.Master.Start();
+                        }
+
                 }
 
                 public string Name

@@ -44,8 +44,11 @@ namespace Lazaro.Principal
                 /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
                 protected override void Dispose(bool disposing)
                 {
-                        if (disposing && (components != null)) {
-                                components.Dispose();
+                        if (disposing) {
+                                if (components != null)
+                                        components.Dispose();
+                                if (ConsoleWriter != null)
+                                        ConsoleWriter.Dispose();
                         }
                         base.Dispose(disposing);
                 }
@@ -66,6 +69,9 @@ namespace Lazaro.Principal
                         this.BarraTareasImagenes = new System.Windows.Forms.ImageList(this.components);
                         this.ListaBd = new System.Windows.Forms.ListBox();
                         this.BarraInferior = new Lazaro.Principal.BarraInferior();
+                        this.ConsoleOut = new System.Windows.Forms.TextBox();
+                        this.PanelDebug = new System.Windows.Forms.Panel();
+                        this.PanelDebug.SuspendLayout();
                         this.SuspendLayout();
                         // 
                         // TimerProgramador
@@ -97,14 +103,13 @@ namespace Lazaro.Principal
                         // 
                         // ListaBd
                         // 
-                        this.ListaBd.Dock = System.Windows.Forms.DockStyle.Left;
+                        this.ListaBd.Dock = System.Windows.Forms.DockStyle.Top;
                         this.ListaBd.FormattingEnabled = true;
                         this.ListaBd.IntegralHeight = false;
-                        this.ListaBd.Location = new System.Drawing.Point(0, 28);
+                        this.ListaBd.Location = new System.Drawing.Point(0, 0);
                         this.ListaBd.Name = "ListaBd";
-                        this.ListaBd.Size = new System.Drawing.Size(232, 357);
+                        this.ListaBd.Size = new System.Drawing.Size(308, 144);
                         this.ListaBd.TabIndex = 10;
-                        this.ListaBd.Visible = false;
                         // 
                         // BarraInferior
                         // 
@@ -116,12 +121,39 @@ namespace Lazaro.Principal
                         this.BarraInferior.Size = new System.Drawing.Size(950, 52);
                         this.BarraInferior.TabIndex = 8;
                         // 
+                        // ConsoleOut
+                        // 
+                        this.ConsoleOut.BackColor = System.Drawing.SystemColors.Window;
+                        this.ConsoleOut.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                        this.ConsoleOut.Dock = System.Windows.Forms.DockStyle.Fill;
+                        this.ConsoleOut.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.ConsoleOut.Location = new System.Drawing.Point(0, 144);
+                        this.ConsoleOut.Multiline = true;
+                        this.ConsoleOut.Name = "ConsoleOut";
+                        this.ConsoleOut.ReadOnly = true;
+                        this.ConsoleOut.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+                        this.ConsoleOut.Size = new System.Drawing.Size(308, 213);
+                        this.ConsoleOut.TabIndex = 12;
+                        this.ConsoleOut.TabStop = false;
+                        this.ConsoleOut.WordWrap = false;
+                        // 
+                        // PanelDebug
+                        // 
+                        this.PanelDebug.Controls.Add(this.ConsoleOut);
+                        this.PanelDebug.Controls.Add(this.ListaBd);
+                        this.PanelDebug.Dock = System.Windows.Forms.DockStyle.Left;
+                        this.PanelDebug.Location = new System.Drawing.Point(0, 28);
+                        this.PanelDebug.Name = "PanelDebug";
+                        this.PanelDebug.Size = new System.Drawing.Size(308, 357);
+                        this.PanelDebug.TabIndex = 13;
+                        this.PanelDebug.Visible = false;
+                        // 
                         // Inicio
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(950, 437);
-                        this.Controls.Add(this.ListaBd);
+                        this.Controls.Add(this.PanelDebug);
                         this.Controls.Add(this.BarraInferior);
                         this.Controls.Add(this.BarraTareas);
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -134,6 +166,8 @@ namespace Lazaro.Principal
                         this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPrincipal_FormClosing);
                         this.Load += new System.EventHandler(this.FormPrincipal_Load);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormPrincipal_KeyDown);
+                        this.PanelDebug.ResumeLayout(false);
+                        this.PanelDebug.PerformLayout();
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -147,5 +181,7 @@ namespace Lazaro.Principal
                 private System.Windows.Forms.ImageList BarraTareasImagenes;
                 private BarraInferior BarraInferior;
                 private System.Windows.Forms.ListBox ListaBd;
+                private System.Windows.Forms.TextBox ConsoleOut;
+                private System.Windows.Forms.Panel PanelDebug;
         }
 }
