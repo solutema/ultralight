@@ -1,0 +1,218 @@
+﻿#region License
+// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// Este programa es software libre; puede distribuirlo y/o moficiarlo de
+// acuerdo a los términos de la Licencia Pública General de GNU (GNU
+// General Public License), como la publica la Fundación para el Software
+// Libre (Free Software Foundation), tanto la versión 3 de la Licencia
+// como (a su elección) cualquier versión posterior.
+//
+// Este programa se distribuye con la esperanza de que sea útil, pero SIN
+// GARANTÍA ALGUNA; ni siquiera la garantía MERCANTIL implícita y sin
+// garantizar su CONVENIENCIA PARA UN PROPÓSITO PARTICULAR. Véase la
+// Licencia Pública General de GNU para más detalles. 
+//
+// Debería haber recibido una copia de la Licencia Pública General junto
+// con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
+#endregion
+
+using System;
+using System.Windows.Forms;
+
+namespace Lazaro.Misc
+{
+        partial class ActualizarAhora
+        {
+                /// <summary>
+                /// Variable del diseñador requerida.
+                /// </summary>
+                private System.ComponentModel.IContainer components = null;
+
+                /// <summary>
+                /// Limpiar los recursos que se estén utilizando.
+                /// </summary>
+                /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+                protected override void Dispose(bool disposing)
+                {
+                        if (disposing && (components != null)) {
+                                components.Dispose();
+                        }
+                        base.Dispose(disposing);
+                }
+
+                #region Código generado por el Diseñador de Windows Forms
+
+                /// <summary>
+                /// Método necesario para admitir el Diseñador. No se puede modificar
+                /// el contenido del método con el editor de código.
+                /// </summary>
+                private void InitializeComponent()
+                {
+                        this.components = new System.ComponentModel.Container();
+                        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActualizarAhora));
+                        this.BarraProgreso = new Lui.Forms.ProgressBar();
+                        this.panel1 = new System.Windows.Forms.Panel();
+                        this.pictureBox2 = new System.Windows.Forms.PictureBox();
+                        this.labelH11 = new Lui.Forms.LabelH1();
+                        this.label1 = new Lui.Forms.Label();
+                        this.EtiquetaEstado = new Lui.Forms.Label();
+                        this.EtiquetaProgreso = new Lui.Forms.Label();
+                        this.BotonInstalar = new Lui.Forms.Button();
+                        this.EtiquetaAyuda = new Lui.Forms.Label();
+                        this.TimerProgreso = new System.Windows.Forms.Timer(this.components);
+                        this.panel1.SuspendLayout();
+                        ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+                        this.SuspendLayout();
+                        // 
+                        // BarraProgreso
+                        // 
+                        this.BarraProgreso.Location = new System.Drawing.Point(136, 168);
+                        this.BarraProgreso.Name = "BarraProgreso";
+                        this.BarraProgreso.Size = new System.Drawing.Size(464, 24);
+                        this.BarraProgreso.TabIndex = 0;
+                        // 
+                        // panel1
+                        // 
+                        this.panel1.BackColor = System.Drawing.Color.White;
+                        this.panel1.Controls.Add(this.pictureBox2);
+                        this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+                        this.panel1.Location = new System.Drawing.Point(0, 0);
+                        this.panel1.Name = "panel1";
+                        this.panel1.Size = new System.Drawing.Size(100, 394);
+                        this.panel1.TabIndex = 55;
+                        // 
+                        // pictureBox2
+                        // 
+                        this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+                        this.pictureBox2.Location = new System.Drawing.Point(20, 254);
+                        this.pictureBox2.Name = "pictureBox2";
+                        this.pictureBox2.Size = new System.Drawing.Size(37, 120);
+                        this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+                        this.pictureBox2.TabIndex = 51;
+                        this.pictureBox2.TabStop = false;
+                        // 
+                        // labelH11
+                        // 
+                        this.labelH11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(202)))), ((int)(((byte)(174)))));
+                        this.labelH11.Font = new System.Drawing.Font("Bitstream Vera Sans", 11F, System.Drawing.FontStyle.Bold);
+                        this.labelH11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.labelH11.Location = new System.Drawing.Point(136, 32);
+                        this.labelH11.Name = "labelH11";
+                        this.labelH11.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+                        this.labelH11.Size = new System.Drawing.Size(464, 24);
+                        this.labelH11.TabIndex = 56;
+                        this.labelH11.Text = "Actualizar sistema ahora";
+                        this.labelH11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // label1
+                        // 
+                        this.label1.Location = new System.Drawing.Point(136, 68);
+                        this.label1.Name = "label1";
+                        this.label1.Size = new System.Drawing.Size(464, 40);
+                        this.label1.TabIndex = 57;
+                        this.label1.Text = "La versión de Lázaro que está utilizando es antigua. Por favor aguarde mientras s" +
+                            "e descarga la versión más nueva.";
+                        // 
+                        // EtiquetaEstado
+                        // 
+                        this.EtiquetaEstado.Location = new System.Drawing.Point(136, 148);
+                        this.EtiquetaEstado.Name = "EtiquetaEstado";
+                        this.EtiquetaEstado.Size = new System.Drawing.Size(176, 20);
+                        this.EtiquetaEstado.TabIndex = 58;
+                        this.EtiquetaEstado.Text = "Iniciando...";
+                        this.EtiquetaEstado.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EtiquetaProgreso
+                        // 
+                        this.EtiquetaProgreso.Location = new System.Drawing.Point(560, 148);
+                        this.EtiquetaProgreso.Name = "EtiquetaProgreso";
+                        this.EtiquetaProgreso.Size = new System.Drawing.Size(40, 20);
+                        this.EtiquetaProgreso.TabIndex = 59;
+                        this.EtiquetaProgreso.Text = "0%";
+                        this.EtiquetaProgreso.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+                        // 
+                        // BotonInstalar
+                        // 
+                        this.BotonInstalar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonInstalar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.BotonInstalar.Image = null;
+                        this.BotonInstalar.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonInstalar.Location = new System.Drawing.Point(488, 324);
+                        this.BotonInstalar.Name = "BotonInstalar";
+                        this.BotonInstalar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonInstalar.ReadOnly = false;
+                        this.BotonInstalar.Size = new System.Drawing.Size(112, 36);
+                        this.BotonInstalar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonInstalar.Subtext = "Tecla";
+                        this.BotonInstalar.TabIndex = 61;
+                        this.BotonInstalar.Text = "Cancelar";
+                        this.BotonInstalar.ToolTipText = "";
+                        this.BotonInstalar.Click += new System.EventHandler(this.BotonInstalar_Click);
+                        // 
+                        // EtiquetaAyuda
+                        // 
+                        this.EtiquetaAyuda.Location = new System.Drawing.Point(136, 228);
+                        this.EtiquetaAyuda.Name = "EtiquetaAyuda";
+                        this.EtiquetaAyuda.Size = new System.Drawing.Size(464, 68);
+                        this.EtiquetaAyuda.TabIndex = 63;
+                        this.EtiquetaAyuda.Text = "Si no desea instalar la actualización ahora, haga clic en el botón \'Cancelar\'. La" +
+                            " descarga continuará en segundo plano y se instalará en otro momento.";
+                        // 
+                        // TimerProgreso
+                        // 
+                        this.TimerProgreso.Enabled = true;
+                        this.TimerProgreso.Interval = 1000;
+                        this.TimerProgreso.Tick += new System.EventHandler(this.TimerProgreso_Tick);
+                        // 
+                        // ActualizarAhora
+                        // 
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+                        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+                        this.ClientSize = new System.Drawing.Size(634, 394);
+                        this.Controls.Add(this.EtiquetaAyuda);
+                        this.Controls.Add(this.BotonInstalar);
+                        this.Controls.Add(this.EtiquetaProgreso);
+                        this.Controls.Add(this.EtiquetaEstado);
+                        this.Controls.Add(this.label1);
+                        this.Controls.Add(this.labelH11);
+                        this.Controls.Add(this.panel1);
+                        this.Controls.Add(this.BarraProgreso);
+                        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+                        this.Name = "ActualizarAhora";
+                        this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+                        this.Text = "Actualizador";
+                        this.panel1.ResumeLayout(false);
+                        this.panel1.PerformLayout();
+                        ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+                        this.ResumeLayout(false);
+
+                }
+
+                #endregion
+
+                private Lui.Forms.ProgressBar BarraProgreso;
+                private Panel panel1;
+                internal PictureBox pictureBox2;
+                private Lui.Forms.LabelH1 labelH11;
+                private Lui.Forms.Label label1;
+                private Lui.Forms.Label EtiquetaEstado;
+                private Lui.Forms.Label EtiquetaProgreso;
+                private Lui.Forms.Button BotonInstalar;
+                private Lui.Forms.Label EtiquetaAyuda;
+                private Timer TimerProgreso;
+        }
+}

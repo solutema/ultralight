@@ -60,10 +60,10 @@ namespace Lazaro
                 /// <summary>
                 /// Obtiene la fecha del ejecutable principal.
                 /// </summary>
-                public static string BuildDate()
+                public static DateTime BuildDate()
                 {
                         System.IO.FileInfo InfoArchivo = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
-                        return Lfx.Types.Formatting.FormatDateAndTime(InfoArchivo.LastWriteTime);
+                        return InfoArchivo.CreationTime;
                 }
 
                 /// <summary>
@@ -219,38 +219,44 @@ namespace Lazaro
 
                         }
 
+                        CargarComponentes();
 
                         // Verifico la versión de Lázaro requerida por la BD
                         DateTime FechaLazaroExe = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).LastWriteTime;
                         DateTime MinVersion = Lfx.Types.Parsing.ParseSqlDateTime(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionMinima", "2000-01-01 00:00:00"));
                         if (FechaLazaroExe < MinVersion) {
-                                Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("La versión de Lázaro que está utilizando es demasiado antigua. Debe actualizar su sistema antes de continuar. ¿Desea descargar la versión más nueva hora?", "Actualización");
-                                Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
-                                if (Pregunta.ShowDialog() == DialogResult.OK) {
-                                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Descargando...", "Se está descargando la versión más nueva de la aplicación.");
-                                        Progreso.Blocking = true;
-                                        Progreso.Begin();
-                                        using (WebClient Cliente = new WebClient()) {
-                                                Cliente.DownloadFile(@"http://www.sistemalazaro.com.ar/aslnlwc/InstalarLazaro.exe", Lfx.Environment.Folders.UpdatesFolder + "InstalarLazaro.exe");
-                                        }
-                                        Progreso.End();
-                                        Lfx.Environment.Shell.Reboot();
-                                } else {
-                                        Lfx.Workspace.Master.RunTime.Message("La versión de Lázaro que está utilizando es demasiado antigua. Descargue e instale la última versión para continuar. Si desea más información ingrese a la página web www.sistemalazaro.com.ar");
+                                Misc.ActualizarAhora Act = new Misc.ActualizarAhora();
+                                DialogResult Res = Act.ShowDialog();
+                                switch (Res) {
+                                        case DialogResult.OK:
+                                                Lfx.Environment.Shell.Reboot();
+                                                break;
+                                        case DialogResult.Ignore:
+                                        case DialogResult.Cancel:
+                                                Lfx.Workspace.Master.RunTime.Message("La versión de Lázaro que está utilizando es demasiado antigua. Descargue e instale la última versión para continuar. Si desea más información ingrese a la página web www.sistemalazaro.com.ar");
+                                                break;
                                 }
                                 System.Environment.Exit(1);
+                        } else {
+                                // Cumple con la versión requerida, pero de todos modos verifico si es necesario actualizar Lázaro
+                                DateTime VersionEstructura = Lfx.Types.Parsing.ParseSqlDateTime(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"));
+                                TimeSpan Diferencia = FechaLazaroExe - VersionEstructura;
+
+                                if (Diferencia.TotalHours < -12) {
+                                        // Lázaro es más viejo que la bd por al menos 12 horas
+                                        Misc.ActualizarAhora Act = new Misc.ActualizarAhora();
+                                        DialogResult Res = Act.ShowDialog();
+                                        switch (Res) {
+                                                case DialogResult.OK:
+                                                        Lfx.Environment.Shell.Reboot();
+                                                        break;
+                                                case DialogResult.Ignore:
+                                                case DialogResult.Cancel:
+                                                        Lfx.Workspace.Master.RunTime.Message("La versión de Lázaro que está utilizando es demasiado antigua. Puede continuar trabajando, pero es recomendable que descargue e instale la última versión.");
+                                                        break;
+                                        }
+                                }
                         }
-
-                        // Verificar si la versión de Lázaro que se está usando es muy antigua con respecto a la versión de la BD.
-                        DateTime VersionEstructura = Lfx.Types.Parsing.ParseSqlDateTime(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"));
-                        TimeSpan Diferencia = FechaLazaroExe - VersionEstructura;
-
-                        if (Diferencia.TotalDays < -7) {
-                                //Lázaro es más viejo que la bd por al menos 7 días
-                                Lfx.Workspace.Master.RunTime.Message("La versión de Lázaro que está utilizando es antigua. Por favor actualice su sistema urgentemente.");
-                        }
-
-                        CargarComponentes();
 
                         if (Lfx.Environment.SystemInformation.DesignMode == false) {
                                 // Si es necesario, actualizo la estructura de la base de datos
@@ -374,18 +380,20 @@ namespace Lazaro
                                                         // Agrego a la lista de operaciones en progreso
                                                         Operaciones.Add(Prog);
 
-                                                if (Aplicacion.FormularioPrincipal == null || Prog.Blocking) {
-                                                        if (Aplicacion.FormularioProgreso == null) {
-                                                                Aplicacion.FormularioProgreso = new Lui.Forms.ProgressForm();
-                                                                Aplicacion.FormularioProgreso.Show();
-                                                        }
-                                                        Aplicacion.FormularioProgreso.MostrarProgreso(Operaciones, Prog);
-                                                } else if(Prog.Advertise) {
-                                                        if (FormularioPrincipal.InvokeRequired) {
-                                                                MethodInvoker Mi = delegate { FormularioPrincipal.ShowProgress(Prog); };
-                                                                FormularioPrincipal.Invoke(Mi);
+                                                if (Prog.Advertise) {
+                                                        if (Aplicacion.FormularioPrincipal == null || Prog.Blocking) {
+                                                                if (Aplicacion.FormularioProgreso == null) {
+                                                                        Aplicacion.FormularioProgreso = new Lui.Forms.ProgressForm();
+                                                                        Aplicacion.FormularioProgreso.Show();
+                                                                }
+                                                                Aplicacion.FormularioProgreso.MostrarProgreso(Operaciones, Prog);
                                                         } else {
-                                                                FormularioPrincipal.ShowProgress(Prog);
+                                                                if (FormularioPrincipal.InvokeRequired) {
+                                                                        MethodInvoker Mi = delegate { FormularioPrincipal.ShowProgress(Prog); };
+                                                                        FormularioPrincipal.Invoke(Mi);
+                                                                } else {
+                                                                        FormularioPrincipal.ShowProgress(Prog);
+                                                                }
                                                         }
                                                 }
 
@@ -673,7 +681,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                                                 "runtime=" + System.Uri.EscapeUriString(Lfx.Environment.SystemInformation.RuntimeName),
                                                                 "empresa=" + System.Uri.EscapeUriString(Lbl.Sys.Config.Actual.Empresa.Nombre),
                                                                 "email=" + System.Uri.EscapeUriString(Lbl.Sys.Config.Actual.Empresa.Email),
-                                                                "build=" + System.Uri.EscapeUriString(Aplicacion.BuildDate()),
+                                                                "build=" + System.Uri.EscapeUriString(Aplicacion.BuildDate().ToString(Lfx.Types.Formatting.DateTime.SqlDateTimeFormat)),
                                                                 "version=" + System.Uri.EscapeUriString(Aplicacion.Version())
                                                         };
                                 System.Net.WebRequest webRequest = System.Net.WebRequest.Create(new System.Uri("http://www.sistemalazaro.com.ar/stats/index.php"));

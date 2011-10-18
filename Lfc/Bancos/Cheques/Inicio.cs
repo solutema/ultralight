@@ -259,12 +259,13 @@ namespace Lfc.Bancos.Cheques
                                 this.CustomFilters.AddWithValue("bancos_cheques.fechaemision BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.From) + "  00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.To) + " 23:59:59'");
                 }
 
+
                 private Lfx.Types.OperationResult Efectivizar()
                 {
                         Lfc.Bancos.Cheques.Efectivizar Efectivizar = new Lfc.Bancos.Cheques.Efectivizar();
 
                         foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
-                                if (itm.Checked && (itm.SubItems["estado"].Text == "A cobrar" || itm.SubItems["estado"].Text == "Depositado")) {
+                                if (itm.Checked && (itm.SubItems["bancos_cheques.estado"].Text == "A cobrar" || itm.SubItems["bancos_cheques.estado"].Text == "Depositado")) {
                                         int IdCheque = Lfx.Types.Parsing.ParseInt(itm.Text);
                                         Lbl.Bancos.Cheque Ch  =new Lbl.Bancos.Cheque(this.Connection, IdCheque);
                                         Efectivizar.EntradaSubTotal.ValueDecimal = Ch.Importe;

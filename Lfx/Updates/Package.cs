@@ -73,7 +73,15 @@ namespace Lfx.Updates
                                                                 if (FileVers.Attributes["name"] != null && FileVers.Attributes["name"].Value != null) {
                                                                         File FileVersionInfo = new File(this);
                                                                         FileVersionInfo.Name = FileVers.Attributes["name"].Value;
-                                                                        FileVersionInfo.NewVersion = Lfx.Types.Parsing.ParseDate(FileVers.Attributes["version"].Value).Value;
+                                                                        DateTime Fecha;
+                                                                        try {
+                                                                                DateTime.TryParseExact(FileVers.Attributes["version"].Value, Lfx.Types.Formatting.DateTime.SqlDateTimeFormat, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AssumeUniversal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out Fecha);
+                                                                                
+                                                                        } catch {
+                                                                                Fecha = DateTime.MinValue;
+                                                                        }
+                                                                        FileVersionInfo.NewVersion = Fecha;
+                                                                        
                                                                         if (FileVers.Attributes["compression"] != null && FileVers.Attributes["compression"].Value != null) {
                                                                                 switch(FileVers.Attributes["compression"].Value) {
                                                                                         case "none":
