@@ -119,8 +119,41 @@ namespace Lazaro
                                 }
                         }
 
+                        // Manejadores de excepciones
+                        Application.EnableVisualStyles();
+                        if (Lfx.Environment.SystemInformation.DesignMode == false) {
+                                Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(ThreadExceptionHandler);
+                                AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
+                                Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+                        }
+
                         if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationDataFolder + "clear.txt"))
                                 ClearCache = true;
+
+
+                        // Busco actualización en la caché
+                        if (ClearCache) {
+                                try {
+                                        Lfx.Environment.Folders.DeleteWithWildcards(Lfx.Environment.Folders.TemporaryFolder, "*.*");
+                                } catch {
+                                        // Si algún archivo no se puede borrar, no importa
+                                }
+
+                                try {
+                                        Lfx.Environment.Folders.DeleteWithWildcards(Lfx.Environment.Folders.UpdatesFolder, "*.*");
+                                        Lfx.Environment.Folders.DeleteWithWildcards(Lfx.Environment.Folders.UpdatesFolder + "Components" + System.IO.Path.DirectorySeparatorChar, "*.*");
+                                } catch {
+                                        // Si algún archivo no se puede borrar, no importa
+                                }
+
+                                try {
+                                        Lfx.Environment.Folders.DeleteWithWildcards(Lfx.Environment.Folders.ApplicationDataFolder, "clear.txt");
+                                } catch {
+                                        // Si algún archivo no se puede borrar, no importa
+                                }
+
+                        }
+
 
                         if (IgnoreUpdates == false) {
                                 // Si hay actualizaciones pendientes, reinicio para que ActualizadorLazaro se encargue de ellas.
@@ -143,14 +176,6 @@ namespace Lazaro
                                 System.Windows.Forms.Application.Exit();
                         }
 
-
-                        // Manejadores de excepciones
-                        Application.EnableVisualStyles();
-                        if (Lfx.Environment.SystemInformation.DesignMode == false) {
-                                Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(ThreadExceptionHandler);
-                                AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
-                                Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
-                        }
 
                         DescargarArchivosNecesarios();
 
@@ -195,29 +220,6 @@ namespace Lazaro
                         }
 
                         IniciarDatos();
-                        
-                        // Busco actualización en la caché
-                        if (ClearCache) {
-                                try {
-                                        Lfx.Environment.Folders.DeleteWithWildcards(Lfx.Environment.Folders.TemporaryFolder, "*.*");
-                                } catch {
-                                        // Si algún archivo no se puede borrar, no importa
-                                }
-
-                                try {
-                                        Lfx.Environment.Folders.DeleteWithWildcards(Lfx.Environment.Folders.UpdatesFolder, "*.*");
-                                        Lfx.Environment.Folders.DeleteWithWildcards(Lfx.Environment.Folders.UpdatesFolder + "Components" + System.IO.Path.DirectorySeparatorChar, "*.*");
-                                } catch {
-                                        // Si algún archivo no se puede borrar, no importa
-                                }
-
-                                try {
-                                        Lfx.Environment.Folders.DeleteWithWildcards(Lfx.Environment.Folders.ApplicationDataFolder, "clear.txt");
-                                } catch {
-                                        // Si algún archivo no se puede borrar, no importa
-                                }
-
-                        }
 
                         CargarComponentes();
 
@@ -231,8 +233,7 @@ namespace Lazaro
                                         case DialogResult.OK:
                                                 Lfx.Environment.Shell.Reboot();
                                                 break;
-                                        case DialogResult.Ignore:
-                                        case DialogResult.Cancel:
+                                        default:
                                                 Lfx.Workspace.Master.RunTime.Message("La versión de Lázaro que está utilizando es demasiado antigua. Descargue e instale la última versión para continuar. Si desea más información ingrese a la página web www.sistemalazaro.com.ar");
                                                 break;
                                 }
@@ -250,8 +251,7 @@ namespace Lazaro
                                                 case DialogResult.OK:
                                                         Lfx.Environment.Shell.Reboot();
                                                         break;
-                                                case DialogResult.Ignore:
-                                                case DialogResult.Cancel:
+                                                default:
                                                         Lfx.Workspace.Master.RunTime.Message("La versión de Lázaro que está utilizando es demasiado antigua. Puede continuar trabajando, pero es recomendable que descargue e instale la última versión.");
                                                         break;
                                         }

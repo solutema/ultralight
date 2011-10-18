@@ -46,15 +46,16 @@ namespace Lazaro.Misc
                 private void BotonInstalar_Click(object sender, EventArgs e)
                 {
                         switch (BotonInstalar.Text) {
-                                case "Cancelar":
-                                        this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-                                        break;
                                 case "Continuar":
                                         this.DialogResult = System.Windows.Forms.DialogResult.Ignore;
                                         break;
                                 case "Instalar":
                                         this.DialogResult = System.Windows.Forms.DialogResult.OK;
                                         Lfx.Environment.Shell.Reboot();
+                                        break;
+                                case "Cancelar":
+                                default:
+                                        this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                                         break;
                         }
                         this.Close();
